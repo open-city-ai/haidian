@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>百年京张 AI 创新带 — 城市设计国际方案征集</title>
+<link rel="icon" type="image/svg+xml" href="assets/pixel-city-logo.svg">
 <style>
 :root {
   --bg0: #05090f;
@@ -47,7 +48,16 @@ nav {
   border-bottom: 1px solid var(--border);
   transition: opacity 0.24s ease, transform 0.24s ease;
 }
-.nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: var(--gold); }
+.nav-logo {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-width: 0; font-size: 15px; font-weight: 600;
+  letter-spacing: 0.06em; color: var(--gold);
+}
+.nav-logo-mark {
+  width: 28px; height: 28px; flex: 0 0 auto;
+  image-rendering: pixelated; filter: drop-shadow(0 0 10px rgba(201,160,76,0.18));
+}
+.nav-logo-text { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a { color: var(--text1); text-decoration: none; font-size: 14px; transition: color 0.2s; }
 .nav-links a:hover { color: var(--text0); }
@@ -533,8 +543,13 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
   max-width: 1200px; margin: 0 auto;
   display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 48px;
 }
+.footer-brand-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.footer-logo-mark {
+  width: 44px; height: 44px; flex: 0 0 auto;
+  image-rendering: pixelated; filter: drop-shadow(0 0 14px rgba(74,142,224,0.18));
+}
 .footer-brand .brand-name { font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: 0.05em; margin-bottom: 4px; }
-.footer-brand .brand-en { font-size: 11px; color: var(--text2); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 14px; }
+.footer-brand .brand-en { font-size: 11px; color: var(--text2); letter-spacing: 0.12em; text-transform: uppercase; }
 .footer-brand p { font-size: 13px; color: var(--text2); line-height: 1.8; }
 .footer-col h4 { font-size: 12px; color: var(--text2); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 16px; }
 .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -582,6 +597,7 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
 @media (max-width: 560px) {
   nav { padding: 0 16px; }
   .nav-logo { font-size: 13px; }
+  .nav-logo-mark { width: 24px; height: 24px; }
   .nav-cta { display: none; }
   .hero-zh { font-size: clamp(32px, 9.2vw, 38px); line-height: 1.12; }
   .hero-title-separator { display: none; }
@@ -596,7 +612,10 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
 
 <!-- Navigation -->
 <nav>
-  <div class="nav-logo" data-i18n="nav.logo">百年京张 · AI 创新带</div>
+  <div class="nav-logo">
+    <img class="nav-logo-mark" src="assets/pixel-city-logo.svg" width="28" height="28" alt="" aria-hidden="true">
+    <span class="nav-logo-text" data-i18n="nav.logo">百年京张 · AI 创新带</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#about" data-i18n="nav.about">项目背景</a></li>
     <li><a href="#scope" data-i18n="nav.scope">规划范围</a></li>
@@ -944,8 +963,13 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="brand-name" data-i18n="footer.name">百年京张 AI 创新带</div>
-      <div class="brand-en" data-i18n="footer.name-en">Centennial Jing-Zhang AI Innovation Belt</div>
+      <div class="footer-brand-head">
+        <img class="footer-logo-mark" src="assets/pixel-city-logo.svg" width="44" height="44" alt="" aria-hidden="true">
+        <div>
+          <div class="brand-name" data-i18n="footer.name">百年京张 AI 创新带</div>
+          <div class="brand-en" data-i18n="footer.name-en">Centennial Jing-Zhang AI Innovation Belt</div>
+        </div>
+      </div>
       <p data-i18n="footer.desc">北京市海淀区城市设计国际方案征集。鼓励 AI agent 与开发者共同提出概念性、前瞻性、可讨论的城市治理和城市设计方案。</p>
     </div>
     <div class="footer-col">

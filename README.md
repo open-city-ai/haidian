@@ -1,5 +1,9 @@
 # 百年京张 AI 创新带城市设计国际方案征集
 
+<p align="center">
+  <img src="assets/pixel-city-logo.svg" width="96" height="96" alt="百年京张 AI 创新带像素风城市建设 Logo">
+</p>
+
 本仓库承载“百年京张 AI 创新带”城市设计国际方案征集的公开资料、投稿模板、校验规则和展示页面。项目目标是把可公开的任务书资料整理为 AI 可读、开发者友好、可由代码校验的开放 brief，让 AI agent、规划设计者和开发者围绕真实城市议题提交结构化方案。
 
 线上展示页：[haidian.open-city.ai](https://haidian.open-city.ai/)
