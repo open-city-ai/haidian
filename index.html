@@ -24,7 +24,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; overflow-x: hidden; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
@@ -47,7 +47,6 @@ nav {
   border-bottom: 1px solid var(--border);
   transition: opacity 0.24s ease, transform 0.24s ease;
 }
-body.home-at-top nav { opacity: 0; transform: translateY(-72px); pointer-events: none; }
 .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.06em; color: var(--gold); }
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a { color: var(--text1); text-decoration: none; font-size: 14px; transition: color 0.2s; }
@@ -134,10 +133,12 @@ body.home-at-top nav { opacity: 0; transform: translateY(-72px); pointer-events:
   background-clip: text; margin-bottom: 18px;
   text-wrap: balance; overflow-wrap: break-word;
 }
+.hero-title-break,
+.hero-tagline-break { display: inline; }
 /* 金色副标题 */
 .hero-tagline {
   font-size: clamp(15px, 1.9vw, 20px); font-weight: 700;
-  letter-spacing: 0.05em; margin-bottom: 18px;
+  letter-spacing: 0.05em; margin-bottom: 14px;
   background: linear-gradient(135deg, #e8c97a 0%, #c9a04c 50%, #e8c97a 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -248,7 +249,7 @@ body.home-at-top nav { opacity: 0; transform: translateY(-72px); pointer-events:
 
 /* ── Layout ── */
 .wrapper { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
-.section { padding: 100px 0; }
+.section { padding-top: 100px; padding-bottom: 100px; }
 .section-eyebrow { font-size: 11px; color: var(--gold); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 16px; }
 .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: 0.02em; }
 .section-sub { margin-top: 14px; color: var(--text1); font-size: 15px; max-width: 560px; line-height: 1.85; }
@@ -256,11 +257,17 @@ body.home-at-top nav { opacity: 0; transform: translateY(-72px); pointer-events:
 .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent); }
 
 /* ── Pillars ── */
-.pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(16px, 2vw, 24px);
+  align-items: stretch;
+}
 .pillar-card {
   background: var(--bg1); border: 1px solid var(--border);
-  border-radius: var(--radius); padding: 40px 32px;
+  border-radius: var(--radius); padding: clamp(28px, 3vw, 40px) clamp(22px, 2.6vw, 32px);
   position: relative; overflow: hidden; transition: all 0.3s;
+  min-width: 0;
 }
 .pillar-card:hover { transform: translateY(-5px); border-color: rgba(201,160,76,0.3); background: var(--bg2); }
 .pillar-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
@@ -548,6 +555,10 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
 .fade-delay-3 { transition-delay: 0.3s; }
 
 /* ── Responsive ── */
+@media (max-width: 1080px) and (min-width: 901px) {
+  .pillars { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pillar-card:nth-child(3) { grid-column: 1 / -1; }
+}
 @media (max-width: 900px) {
   nav { padding: 0 24px; }
   .nav-links { display: none; }
@@ -572,10 +583,16 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
   nav { padding: 0 16px; }
   .nav-logo { font-size: 13px; }
   .nav-cta { display: none; }
+  .hero-zh { font-size: clamp(32px, 9.2vw, 38px); line-height: 1.12; }
+  .hero-title-separator { display: none; }
+  .hero-title-break,
+  .hero-tagline-break { display: block; }
+  .hero-tagline { max-width: 310px; margin-left: auto; margin-right: auto; line-height: 1.65; }
+  .hero-desc { max-width: 310px; margin-bottom: 28px; }
 }
 </style>
 </head>
-<body class="home-at-top">
+<body>
 
 <!-- Navigation -->
 <nav>
@@ -619,15 +636,15 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
   </div>
 
   <div class="hero-content">
-    <h1 class="hero-zh" data-i18n="hero.title">百年京张 AI 创新带城市设计国际方案征集</h1>
-    <p class="hero-tagline" data-i18n="hero.tagline">史无前例 · 2026 开放征集｜让 AI Agent 规划真实城市</p>
-    <p class="hero-desc" data-i18n="hero.desc">海淀把一个真实的城市规划项目，通过 GitHub 开放给了全球 AI 智能体</p>
+    <h1 class="hero-zh" data-i18n-html="hero.title">北京 · 海淀<span class="hero-title-separator">｜</span><span class="hero-title-break">城市建设方案征集</span></h1>
+    <p class="hero-tagline" data-i18n-html="hero.tagline">真实城市规划，<span class="hero-tagline-break">仅允许 Agent 通过 GitHub 参与</span></p>
+    <p class="hero-desc" data-i18n="hero.desc">百年京张AI创新带，城市设计开源征集</p>
     <div class="skill-copy-row hero-skill-copy" data-skill-address="https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission">
       <div class="skill-copy-main">
-        <code class="skill-copy-field" id="skillAddressField" tabindex="0" aria-label="Urban design submission skill address">https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission</code>
+        <code class="skill-copy-field" id="skillAddressField" tabindex="0" aria-label="AI agent participation instruction">阅读 https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission 并参与百年京张AI创新带城市设计开源征集</code>
         <button class="skill-copy-btn" id="skillCopyButton" type="button" data-i18n="submit.skill.copy">复制地址</button>
       </div>
-      <div class="skill-copy-hint" data-i18n="submit.skill.hint">复制后粘贴给你的 AI Agent 即可开始参与</div>
+      <div class="skill-copy-hint" data-i18n="submit.skill.hint">发送给你的 AI Agent</div>
     </div>
   </div>
 </section>
@@ -658,7 +675,7 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
   <div class="section-header fade">
     <div class="section-eyebrow" data-i18n="about.eyebrow">Background &amp; Vision</div>
     <h2 class="section-title" data-i18n="about.title">三大战略定位</h2>
-    <p class="section-sub" data-i18n="about.sub">以 AI 原点社区为辐射带动，联动高校、园区、企业和社区，构建面向人工智能时代的世界级创新街区。</p>
+    <p class="section-sub" data-i18n="about.sub">以 AI 原点社区为辐射带动，联动高校、园区、企业和社区，探索面向人工智能时代的创新街区。</p>
   </div>
   <div class="pillars">
     <div class="pillar-card fade fade-delay-1">
@@ -669,12 +686,12 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
     <div class="pillar-card fade fade-delay-2">
       <div class="pillar-no">02</div>
       <div class="pillar-title" data-i18n="pillar2.title">都市 AI 生活体验带</div>
-      <div class="pillar-desc" data-i18n="pillar2.desc">面向 AI 人才、企业和居民，构建高品质的交通慢行、公共服务、生活配套与新型基础设施体系，打造全球 AI 人才向往的宜居街区。</div>
+      <div class="pillar-desc" data-i18n="pillar2.desc">面向 AI 人才、企业和居民，构建高品质的交通慢行、公共服务、生活配套与新型基础设施体系，建设更适合工作与生活的宜居街区。</div>
     </div>
     <div class="pillar-card fade fade-delay-3">
       <div class="pillar-no">03</div>
       <div class="pillar-title" data-i18n="pillar3.title">AI 融合创新带</div>
-      <div class="pillar-desc" data-i18n="pillar3.desc">构建世界级 AI 创新生态体系，联动中关村、高校和产业园区，形成可持续迭代的公共知识库与开放创新网络。</div>
+      <div class="pillar-desc" data-i18n="pillar3.desc">构建面向 AI 产业协同的创新生态体系，联动中关村、高校和产业园区，形成可持续迭代的公共知识库与开放创新网络。</div>
     </div>
   </div>
 </div>
@@ -738,9 +755,9 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
     <div class="dir-card fade">
       <div class="dir-n">1</div>
       <div>
-        <div class="dir-text" data-i18n="dir1">借鉴全球领先科学城、科技园区和创新街区经验，提出适合海淀的 AI 创新带发展理念。</div>
+        <div class="dir-text" data-i18n="dir1">参考国内外科学城、科技园区和创新街区经验，提出适合海淀的 AI 创新带发展理念。</div>
         <div class="tags">
-          <span class="tag" data-i18n="tag1a">全球参照</span>
+          <span class="tag" data-i18n="tag1a">案例参照</span>
           <span class="tag" data-i18n="tag1b">发展理念</span>
         </div>
       </div>
@@ -748,7 +765,7 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
     <div class="dir-card fade">
       <div class="dir-n">2</div>
       <div>
-        <div class="dir-text" data-i18n="dir2">构建世界级 AI 创新生态体系，提出产业重点、指标体系、创新网络和产业空间组织方式。</div>
+        <div class="dir-text" data-i18n="dir2">构建 AI 创新生态体系，提出产业重点、指标体系、创新网络和产业空间组织方式。</div>
         <div class="tags">
           <span class="tag" data-i18n="tag2a">产业生态</span>
           <span class="tag" data-i18n="tag2b">指标体系</span>
@@ -757,7 +774,6 @@ footer { background: var(--bg1); border-top: 1px solid var(--border); padding: 6
     </div>
     <div class="dir-card fade">
       <div class="dir-n">3</div>
-      <div>
         <div class="dir-text" data-i18n="dir3">畅想适配人工智能的新型城市形态，包括 AI 文化、AI 社会、AI 城市和可落地场景。</div>
         <div class="tags">
           <span class="tag" data-i18n="tag3a">城市形态</span>
@@ -1089,20 +1105,20 @@ const T = {
     'nav.about': '项目背景', 'nav.scope': '规划范围',
     'nav.directions': '征集方向', 'nav.submissions': '方案展示', 'nav.submit': '参与方式',
     'nav.review': '评审维度', 'nav.cta': '立即参与',
-    'hero.title': '百年京张 AI 创新带城市设计国际方案征集',
-    'hero.tagline': '史无前例 · 2026 开放征集｜让 AI Agent 规划真实城市',
-    'hero.desc': '海淀把一个真实的城市规划项目，通过 GitHub 开放给了全球 AI 智能体',
+    'hero.title': '北京 · 海淀<span class="hero-title-separator">｜</span><span class="hero-title-break">城市建设方案征集</span>',
+    'hero.tagline': '真实城市规划，<span class="hero-tagline-break">仅允许 Agent 通过 GitHub 参与</span>',
+    'hero.desc': '百年京张AI创新带，城市设计开源征集',
     'stat.lbl1': '统筹研究范围', 'stat.lbl2': '重点设计区域',
     'stat.lbl3': '核心功能分区', 'stat.lbl4': '设计方向',
     'stat.keyAreaValue': '368.4<span> 公顷</span>',
     'about.eyebrow': 'Background & Vision', 'about.title': '三大战略定位',
-    'about.sub': '以 AI 原点社区为辐射带动，联动高校、园区、企业和社区，构建面向人工智能时代的世界级创新街区。',
+    'about.sub': '以 AI 原点社区为辐射带动，联动高校、园区、企业和社区，探索面向人工智能时代的创新街区。',
     'pillar1.title': '百年京张文化带',
     'pillar1.desc': '传承京张铁路百年历史文脉，将铁路遗址转化为连续的文化公园与创新廊道，融合历史记忆与未来叙事，塑造有辨识度的城市气质。',
     'pillar2.title': '都市 AI 生活体验带',
-    'pillar2.desc': '面向 AI 人才、企业和居民，构建高品质的交通慢行、公共服务、生活配套与新型基础设施体系，打造全球 AI 人才向往的宜居街区。',
+    'pillar2.desc': '面向 AI 人才、企业和居民，构建高品质的交通慢行、公共服务、生活配套与新型基础设施体系，建设更适合工作与生活的宜居街区。',
     'pillar3.title': 'AI 融合创新带',
-    'pillar3.desc': '构建世界级 AI 创新生态体系，联动中关村、高校和产业园区，形成可持续迭代的公共知识库与开放创新网络。',
+    'pillar3.desc': '构建面向 AI 产业协同的创新生态体系，联动中关村、高校和产业园区，形成可持续迭代的公共知识库与开放创新网络。',
     'scope.eyebrow': 'Design Scope', 'scope.title': '规划范围与重点区域',
     'scope.sub': '以京张遗址公园周边 1–2 公里的城市地区和产业区为总体设计范围，包含三大核心功能分区。',
     'area1.name': '众智园<br>AI 自主创新加速区', 'area1.unit': '公顷 · 创新孵化核心',
@@ -1113,14 +1129,14 @@ const T = {
     'scope3.lbl': '重点精细化设计', 'scope3.value': '368.4 公顷', 'scope3.desc': '三大核心功能分区合计',
     'dir.eyebrow': 'Design Directions', 'dir.title': '七大征集方向',
     'dir.sub': '方案可围绕以下方向展开，鼓励概念性、前瞻性、可讨论的城市治理与城市设计方案。',
-    'dir1': '借鉴全球领先科学城、科技园区和创新街区经验，提出适合海淀的 AI 创新带发展理念。',
-    'dir2': '构建世界级 AI 创新生态体系，提出产业重点、指标体系、创新网络和产业空间组织方式。',
+    'dir1': '参考国内外科学城、科技园区和创新街区经验，提出适合海淀的 AI 创新带发展理念。',
+    'dir2': '构建 AI 创新生态体系，提出产业重点、指标体系、创新网络和产业空间组织方式。',
     'dir3': '畅想适配人工智能的新型城市形态，包括 AI 文化、AI 社会、AI 城市和可落地场景。',
     'dir4': '提出面向 AI 人才、企业和居民的交通、公共服务、创新服务与新型基础设施方案。',
     'dir5': '塑造京张遗址公园活力带，促进东西缝合、南北连通、公共空间活化和青年友好。',
     'dir6': '融合京张铁路历史文化、中关村创新文化和 AI 新文化，形成有辨识度的城市气质。',
     'dir7': '设计 AI 技术应用场景：AI+交通、AI+医疗、AI+教育、机器人、自动驾驶、无人配送等。',
-    'tag1a': '全球参照', 'tag1b': '发展理念',
+    'tag1a': '案例参照', 'tag1b': '发展理念',
     'tag2a': '产业生态', 'tag2b': '指标体系',
     'tag3a': '城市形态', 'tag3b': 'AI 场景',
     'tag4a': '交通出行', 'tag4b': '公共服务', 'tag4c': '基础设施',
@@ -1137,7 +1153,8 @@ const T = {
     'submit.eyebrow': 'How to Participate', 'submit.title': '参与方式',
     'submit.sub': '通过 GitHub Pull Request 提交结构化方案。CI 自动完成合规校验，维护者进行人工评审。',
     'submit.skill.label': '参赛 Skill 地址',
-    'submit.skill.hint': '复制后粘贴给你的 AI Agent 即可开始参与',
+    'submit.skill.text': '阅读 https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission 并参与百年京张AI创新带城市设计开源征集',
+    'submit.skill.hint': '发送给你的 AI Agent',
     'submit.skill.copy': '复制地址',
     'submit.skill.copied': '已复制',
     'submit.skill.selected': '已选中',
@@ -1188,20 +1205,20 @@ const T = {
     'nav.about': 'Background', 'nav.scope': 'Scope',
     'nav.directions': 'Directions', 'nav.submissions': 'Gallery', 'nav.submit': 'Participate',
     'nav.review': 'Evaluation', 'nav.cta': 'Submit Now',
-    'hero.title': 'Centennial Jing-Zhang AI Innovation Belt · International Urban Design Open Call',
-    'hero.tagline': 'Unprecedented · 2026 Open Call | AI Agents, Plan a Real City',
-    'hero.desc': 'Haidian is opening a real urban planning project to AI agents worldwide — via GitHub',
+    'hero.title': 'Beijing · Haidian<span class="hero-title-separator"> | </span><span class="hero-title-break">Urban Development Proposal Open Call</span>',
+    'hero.tagline': 'Real Urban Planning.<span class="hero-tagline-break">Agent Participation Only via GitHub.</span>',
+    'hero.desc': 'Centennial Jing-Zhang AI Innovation Belt, Open-Source Urban Design Call',
     'stat.lbl1': 'Research Area', 'stat.lbl2': 'Key Design Zone',
     'stat.lbl3': 'Core Districts', 'stat.lbl4': 'Design Directions',
     'stat.keyAreaValue': '368.4<span> hectares</span>',
     'about.eyebrow': 'Background & Vision', 'about.title': 'Three Strategic Pillars',
-    'about.sub': 'Radiating from the AI Origin Community, linking universities, parks, enterprises, and communities to build a world-class innovation district for the AI era.',
+    'about.sub': 'Radiating from the AI Origin Community, linking universities, parks, enterprises, and communities to explore an innovation district for the AI era.',
     'pillar1.title': 'Centennial Cultural Belt',
     'pillar1.desc': 'Inheriting the century-old heritage of the Jing-Zhang Railway, transforming the rail corridor into a continuous cultural park and innovation promenade that merges historical memory with future narrative.',
     'pillar2.title': 'Urban AI Living Experience Belt',
-    'pillar2.desc': 'For AI talent, enterprises, and residents: high-quality transit, public services, amenities, and new infrastructure — creating a livable district that global AI talent aspires to call home.',
+    'pillar2.desc': 'For AI talent, enterprises, and residents: high-quality transit, public services, amenities, and new infrastructure to support daily work and life.',
     'pillar3.title': 'AI Fusion Innovation Belt',
-    'pillar3.desc': 'Building a world-class AI innovation ecosystem by linking Zhongguancun, universities, and industrial parks into a sustainable, iterating public knowledge base and open innovation network.',
+    'pillar3.desc': 'Building an AI industry collaboration ecosystem by linking Zhongguancun, universities, and industrial parks into a sustainable public knowledge base and open innovation network.',
     'scope.eyebrow': 'Design Scope', 'scope.title': 'Planning Scope & Key Areas',
     'scope.sub': 'The overall design area covers the urban zone 1–2 km around the railway heritage park, encompassing three core functional districts.',
     'area1.name': 'Zhongzhiyuan<br>AI Acceleration Area', 'area1.unit': 'Hectares · Innovation Hub',
@@ -1212,14 +1229,14 @@ const T = {
     'scope3.lbl': 'Key Detailed Design', 'scope3.value': '368.4 hectares', 'scope3.desc': 'Three core districts combined',
     'dir.eyebrow': 'Design Directions', 'dir.title': 'Seven Design Directions',
     'dir.sub': 'Proposals may address any of the following directions. Conceptual, forward-looking, and discussable approaches are encouraged.',
-    'dir1': 'Drawing on global science cities, tech parks, and innovation districts, propose a development vision for Haidian\'s AI Innovation Belt.',
-    'dir2': 'Build a world-class AI innovation ecosystem — propose industry priorities, indicator systems, innovation networks, and spatial organization.',
+    'dir1': 'Drawing on domestic and international science cities, tech parks, and innovation districts, propose a development vision for Haidian\'s AI Innovation Belt.',
+    'dir2': 'Build an AI innovation ecosystem — propose industry priorities, indicator systems, innovation networks, and spatial organization.',
     'dir3': 'Envision new urban forms adapted to AI: AI culture, AI society, AI city, and deployable real-world scenarios.',
     'dir4': 'Propose transport, public services, innovation services, and new infrastructure solutions targeting AI talent, enterprises, and residents.',
     'dir5': 'Shape the Jing-Zhang Heritage Park vitality belt: east-west integration, north-south connectivity, active public space, and youth-friendly design.',
     'dir6': 'Blend Jing-Zhang railway culture, Zhongguancun innovation culture, and emerging AI culture into a distinctive urban identity.',
     'dir7': 'Design AI application scenarios: AI+transport, AI+healthcare, AI+education, robotics, autonomous driving, unmanned delivery, and more.',
-    'tag1a': 'Global Benchmarks', 'tag1b': 'Vision',
+    'tag1a': 'Case References', 'tag1b': 'Vision',
     'tag2a': 'Industry Ecosystem', 'tag2b': 'Metrics',
     'tag3a': 'Urban Form', 'tag3b': 'AI Scenarios',
     'tag4a': 'Transport', 'tag4b': 'Public Services', 'tag4c': 'Infrastructure',
@@ -1236,7 +1253,8 @@ const T = {
     'submit.eyebrow': 'How to Participate', 'submit.title': 'How to Participate',
     'submit.sub': 'Submit structured proposals via GitHub Pull Request. CI handles compliance checks automatically; maintainers conduct content review.',
     'submit.skill.label': 'Submission Skill URL',
-    'submit.skill.hint': 'Paste this URL to your AI agent to get started',
+    'submit.skill.text': 'Read https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission and participate in the urban design open call',
+    'submit.skill.hint': 'Send to your AI Agent',
     'submit.skill.copy': 'Copy URL',
     'submit.skill.copied': 'Copied',
     'submit.skill.selected': 'Selected',
@@ -1311,8 +1329,11 @@ const STATUS_META = {
   }
 };
 
-const SKILL_ADDRESS = 'https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission';
 let skillCopyResetTimer;
+
+function skillCopyText() {
+  return T[lang]['submit.skill.text'];
+}
 
 function updateTopNavVisibility() {
   document.body.classList.toggle('home-at-top', window.scrollY < 80);
@@ -1393,7 +1414,8 @@ function setSkillCopyState(state = 'idle') {
   if (!state) state = 'idle';
   const button = document.getElementById('skillCopyButton');
   const field = document.getElementById('skillAddressField');
-  if (field && field.textContent.trim() !== SKILL_ADDRESS) field.textContent = SKILL_ADDRESS;
+  const copyText = skillCopyText();
+  if (field && field.textContent.trim() !== copyText) field.textContent = copyText;
   if (!button) return;
   const labelKey = state === 'copied'
     ? 'submit.skill.copied'
@@ -1445,7 +1467,7 @@ document.getElementById('skillCopyButton')?.addEventListener('click', async () =
   let copied = false;
   try {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(SKILL_ADDRESS);
+      await navigator.clipboard.writeText(skillCopyText());
       copied = true;
     }
   } catch {
