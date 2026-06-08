@@ -1,0 +1,122 @@
+from __future__ import annotations
+
+import importlib.util
+import json
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+STANDARD_EXAMPLE_DIR = REPO_ROOT / "submissions" / "codex-final" / "jingzhang-ai-symbiotic-rail"
+STANDARD_EXAMPLE_AUTHOR = "codex-final"
+
+HAS_REVIEW_DEPS = all(
+    importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
+)
+
+if HAS_REVIEW_DEPS:
+    from test_agent_scaffold_and_self_check import run_scaffold, write_official_site_package  # noqa: E402
+
+
+def run_maintainer_review(submission_dir: Path, pr_author: str, repo_root: Path = REPO_ROOT, out_dir: Path | None = None):
+    command = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "maintainer_review.py"),
+        str(submission_dir),
+        "--repo-root",
+        str(repo_root),
+        "--pr-author",
+        pr_author,
+        "--json",
+    ]
+    if out_dir is not None:
+        command.extend(["--out", str(out_dir)])
+    return subprocess.run(command, capture_output=True, text=True, check=False)
+
+
+def run_maintainer_comment(submission_dir: Path, pr_author: str, repo_root: Path = REPO_ROOT, out_dir: Path | None = None):
+    command = [
+        sys.executable,
+        str(REPO_ROOT / "scripts" / "maintainer_review.py"),
+        str(submission_dir),
+        "--repo-root",
+        str(repo_root),
+        "--pr-author",
+        pr_author,
+        "--comment",
+    ]
+    if out_dir is not None:
+        command.extend(["--out", str(out_dir)])
+    return subprocess.run(command, capture_output=True, text=True, check=False)
+
+
+@unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run maintainer review tests")
+class MaintainerReviewTests(unittest.TestCase):
+    def test_provisional_package_outputs_intake_provisional(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "review"
+            completed = run_maintainer_review(STANDARD_EXAMPLE_DIR, STANDARD_EXAMPLE_AUTHOR, out_dir=out_dir)
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            summary = json.loads(completed.stdout)
+            self.assertEqual("intake-provisional", summary["recommendation"])
+            self.assertFalse(summary["can_enter_formal_review"])
+            self.assertTrue((out_dir / "review-summary.json").exists())
+            self.assertTrue((out_dir / "maintainer-comment.md").exists())
+            advisory = (out_dir / "advisory-review.md").read_text(encoding="utf-8")
+            self.assertNotIn("TODO", advisory)
+
+    def test_default_output_is_local_ignored_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+
+            completed = run_maintainer_review(submission_dir, "alice", repo_root=root)
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            self.assertTrue((root / ".maintainer-review" / "topology-pass" / "maintainer-comment.md").exists())
+            self.assertFalse((root / "docs" / "reviews" / "topology-pass").exists())
+
+    def test_comment_mode_prints_pr_comment_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "review"
+            completed = run_maintainer_comment(STANDARD_EXAMPLE_DIR, STANDARD_EXAMPLE_AUTHOR, out_dir=out_dir)
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            self.assertIn("# Maintainer Review Summary", completed.stdout)
+            self.assertIn("Recommendation: **intake-provisional**", completed.stdout)
+            self.assertNotIn(str(out_dir), completed.stdout)
+
+    def test_failed_package_outputs_request_changes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            out_dir = Path(tmp) / "review"
+            completed = run_maintainer_review(STANDARD_EXAMPLE_DIR, "wrong-author", out_dir=out_dir)
+            self.assertNotEqual(completed.returncode, 0)
+            summary = json.loads(completed.stdout)
+            self.assertEqual("request-changes", summary["recommendation"])
+            self.assertFalse(summary["ok"])
+            self.assertIn("deterministic_validation", summary["checks"])
+
+    def test_official_fixture_outputs_formal_review_ready(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+            out_dir = root / "review"
+
+            completed = run_maintainer_review(submission_dir, "alice", repo_root=root, out_dir=out_dir)
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            summary = json.loads(completed.stdout)
+            self.assertEqual("formal-review-ready", summary["recommendation"])
+            self.assertTrue(summary["can_enter_formal_review"])
+            self.assertEqual("PASS", summary["checks"]["spatial_review"])
+
+
+if __name__ == "__main__":
+    unittest.main()

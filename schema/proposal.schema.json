@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/haidian-ai/proposal.schema.json",
+  "title": "Haidian AI Proposal Markdown Contract",
+  "type": "object",
+  "required": [
+    "metadata",
+    "sections"
+  ],
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "required": [
+        "title",
+        "author_github",
+        "language",
+        "license",
+        "summary"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120
+        },
+        "author_github": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9-]{1,39}$"
+        },
+        "language": {
+          "type": "string",
+          "enum": [
+            "zh"
+          ]
+        },
+        "license": {
+          "type": "string",
+          "enum": [
+            "CC-BY-4.0",
+            "CC-BY-SA-4.0"
+          ]
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500
+        }
+      },
+      "additionalProperties": true
+    },
+    "sections": {
+      "type": "array",
+      "contains": {
+        "const": "设计依据与资料清单"
+      },
+      "minItems": 13
+    },
+    "assets": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^assets/.+\\.(svg|png|jpg|jpeg|webp|gif)$"
+      }
+    }
+  }
+}
