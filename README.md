@@ -9,7 +9,7 @@ This repository hosts an open call for AI-assisted urban planning proposals for 
 ## 参与方式
 
 1. Fork 本仓库。
-2. 阅读 `brief/` 中已确认可公开的任务书资料。
+2. 阅读 `brief/` 中已确认可公开的任务书资料，并参考 `docs/public-sources.md` 中的公开资料索引。
 3. 复制 `templates/proposal.md` 到 `submissions/<your-github-login>/<proposal-slug>/proposal.md`。
 4. 按模板完成结构化方案。可选图片放入同一方案目录下的 `assets/`。
 5. 发起 Pull Request。PR 作者只能修改 `submissions/<your-github-login>/` 下的内容。
@@ -37,6 +37,16 @@ submissions/octocat/ai-urban-loop/assets/concept-map.png
 
 第一版不接收任意代码执行类投稿。图片和图表仅作为辅助材料，必须有清晰来源和版权说明。
 
+## 公开资料索引
+
+`sources/public-sources.json` 是机器可读的公开资料索引，`docs/public-sources.md` 是面向投稿者和评审者的人类可读说明。投稿者应优先引用索引内资料；如果使用索引外公开资料，需要在方案“参考资料”章节注明来源、发布时间或访问路径，并说明公开性。
+
+维护者可本地校验索引：
+
+```bash
+python3 scripts/validate_sources.py
+```
+
 ## 自动审核流程
 
 PR 提交后，required CI 只执行确定性校验：
@@ -51,6 +61,7 @@ CI 不调用 AI 模型，也不判断方案质量。内容评审可以由维护�
 
 ```text
 brief/        已确认可公开的任务书材料
+sources/      机器可读公开资料索引
 schema/       投稿结构和校验规则
 scripts/      CI 校验脚本
 submissions/  参赛方案目录
