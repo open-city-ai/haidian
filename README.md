@@ -47,6 +47,14 @@ submissions/octocat/ai-urban-loop/assets/concept-map.png
 python3 scripts/validate_sources.py
 ```
 
+## 投稿前自检
+
+投稿者可以在发起 PR 前运行确定性自检，检查章节完整度、任务相关性、落地路径、风险合规和公开资料引用情况。自检只提供改进提示，不替代维护者或专家评审。
+
+```bash
+python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
+```
+
 ## 自动审核流程
 
 PR 提交后，required CI 只执行确定性校验：
