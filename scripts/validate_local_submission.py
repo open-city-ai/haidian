@@ -19,10 +19,23 @@ def repo_relative(path: Path, repo_root: Path) -> str:
     try:
         return path.resolve().relative_to(repo_root.resolve()).as_posix()
     except ValueError as exc:
-        raise SystemExit(f"{path} is not under repo root {repo_root}") from exc
+        raise SystemExit(
+            f"{path} is not under repo root {repo_root.resolve()}; "
+            "submissions must live at submissions/<github-login>/<proposal-slug> "
+            "inside the repository (pass --repo-root if you run this from elsewhere)"
+        ) from exc
 
 
 def discover_submission_files(submission_dir: Path, repo_root: Path) -> list[str]:
+    try:
+        submission_dir.resolve().relative_to(repo_root.resolve())
+    except ValueError as exc:
+        raise SystemExit(
+            f"{submission_dir}: submission directory is not under repo root "
+            f"{repo_root.resolve()}; scaffold and validate submissions at "
+            "submissions/<github-login>/<proposal-slug> inside the repository "
+            "(pass --repo-root if you run this from elsewhere)"
+        ) from exc
     if not submission_dir.exists():
         raise SystemExit(f"{submission_dir}: submission directory does not exist")
     if not submission_dir.is_dir():

@@ -111,12 +111,19 @@ def next_actions(report: dict[str, Any]) -> list[str]:
 
     deterministic = report.get("deterministic_validation", {})
     stdout = deterministic.get("stdout") if isinstance(deterministic, dict) else {}
+    reported_errors = bool(isinstance(stdout, dict) and stdout.get("errors"))
     if isinstance(stdout, dict):
         for error in stdout.get("errors", []) or []:
             actions.append(f"Fix deterministic validation error: {error}")
         for warning in stdout.get("warnings", []) or []:
             if "cannot enter formal" in warning or "non-official" in warning:
                 actions.append(f"Resolve formal-readiness warning: {warning}")
+    # Surface a hard crash (non-zero exit with no parsed errors), e.g. the
+    # submission directory living outside the repo root.
+    if isinstance(deterministic, dict) and not deterministic.get("ok") and not reported_errors:
+        stderr = str(deterministic.get("stderr") or "").strip()
+        if stderr:
+            actions.append(f"Fix deterministic validation error: {stderr}")
 
     spatial = report.get("spatial_review", {})
     spatial_stdout = spatial.get("stdout") if isinstance(spatial, dict) else {}
