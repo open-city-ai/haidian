@@ -148,6 +148,27 @@ summary: "这个方案主要讨论咖啡优惠券。"
 无。
 """
 
+VALID_CHANGELOG = """# 方案迭代记录
+
+## v0.1 - 2026-06-14
+
+### 改动摘要
+
+- 创建 formal 方案初稿，说明设计依据、空间图层、AI 场景和证据链。
+
+### 采纳反馈
+
+- 暂无，首版提交。
+
+### 暂未采纳或待复核事项
+
+- 具体建设强度、道路线位、设施落位和权属判断均需基于公开资料进一步复核。
+
+### 公开资料与合规说明
+
+- 本版本仅使用公开任务书和可公开资料，不包含个人隐私、涉密资料、内部图件或未审定规划控制指标。
+"""
+
 
 class SubmissionWorkflowTests(unittest.TestCase):
     def write(self, root: Path, rel: str, content: str = VALID_BODY) -> None:
@@ -728,6 +749,61 @@ class SubmissionWorkflowTests(unittest.TestCase):
             changed = self.write_minimal_ai_package(root, base)
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
+
+    def test_changelog_submission_passes_hard_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\niteration: "v0.1"',
+                ),
+                encoding="utf-8",
+            )
+            changelog = f"{base}/changelog.md"
+            self.write(root, changelog, VALID_CHANGELOG)
+            changed.append(changelog)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertEqual(report.changelog_files, [changelog])
+
+    def test_changelog_bad_version_heading_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            changelog = f"{base}/changelog.md"
+            self.write(root, changelog, VALID_CHANGELOG.replace("## v0.1 - 2026-06-14", "## 首版"))
+            changed.append(changelog)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("version heading", "\n".join(report.errors))
+
+    def test_invalid_iteration_metadata_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\niteration: "first draft"',
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("iteration must look like", "\n".join(report.errors))
 
     def test_non_zh_language_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

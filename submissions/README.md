@@ -13,6 +13,7 @@ submissions/<github-login>/<proposal-slug>/
 - `<github-login>` 必须与 Pull Request 作者一致。
 - `<proposal-slug>` 使用小写字母、数字和连字符。
 - 每个方案目录只能有一个 `proposal.md`。
+- 每个方案目录可以有一个 `changelog.md`，用于记录版本变化、采纳反馈和待复核事项。
 - 方案文件必须使用中文书写；英文只能作为附录或辅助译文。
 - 可选图片或图表放在 `assets/` 或 `visual/assets/` 下，并在 `sources.json` 或版权声明中说明来源。
 
@@ -21,6 +22,7 @@ submissions/<github-login>/<proposal-slug>/
 ```text
 submissions/<github-login>/<proposal-slug>/
   proposal.md
+  changelog.md              # optional iteration log
   manifest.json
   agent.json
   metrics.json

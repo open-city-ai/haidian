@@ -4,6 +4,7 @@ author_github: "your-github-login"
 language: "zh"
 license: "CC-BY-4.0"
 summary: "用 1-2 句话概括 formal 城市设计方案、核心空间策略和 AI 场景。"
+iteration: "v0.1"
 ---
 
 # 方案标题

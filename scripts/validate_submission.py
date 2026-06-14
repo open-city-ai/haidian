@@ -66,6 +66,8 @@ ALL_REQUIRED_TASK_IDS = OFFICIAL_REQUIRED_TASK_IDS | AGENT_OPEN_CALL_REQUIRED_TA
 
 GITHUB_LOGIN_RE = re.compile(r"^[A-Za-z0-9-]{1,39}$")
 PROPOSAL_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
+ITERATION_RE = re.compile(r"^v?\d+(?:\.\d+){0,2}(?:[-+][A-Za-z0-9.-]+)?$")
+CHANGELOG_VERSION_HEADING_RE = re.compile(r"^##\s+v?\d+(?:\.\d+){0,2}\s+-\s+\d{4}-\d{2}-\d{2}\s*$")
 ALLOWED_ASSET_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 ALLOWED_DRAWING_EXTENSIONS = {".pdf"}
 PACKAGE_ROOT_JSON_FILES = {
@@ -237,6 +239,7 @@ class ValidationReport:
     errors: list[str] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
     proposal_files: list[str] = field(default_factory=list)
+    changelog_files: list[str] = field(default_factory=list)
     changed_files: list[str] = field(default_factory=list)
     ai_package_stages: dict[str, str] = field(default_factory=dict)
     total_bytes: int = 0
@@ -255,6 +258,7 @@ class ValidationReport:
             "errors": self.errors,
             "warnings": self.warnings,
             "proposal_files": self.proposal_files,
+            "changelog_files": self.changelog_files,
             "changed_files": self.changed_files,
             "ai_package_stages": self.ai_package_stages,
             "total_bytes": self.total_bytes,
@@ -1162,6 +1166,13 @@ def validate_proposal_file(
     if license_value and license_value not in {"CC-BY-4.0", "CC-BY-SA-4.0"}:
         report.add_error(f"{proposal_path}: license must be CC-BY-4.0 or CC-BY-SA-4.0")
 
+    for version_key in ["iteration", "version"]:
+        version_value = metadata.get(version_key)
+        if version_value and not ITERATION_RE.match(version_value):
+            report.add_error(
+                f"{proposal_path}: {version_key} must look like v0.1, 0.1, or 1.0.0"
+            )
+
     headings = extract_headings(body)
     section_bodies = extract_section_bodies(body)
     for required in REQUIRED_SECTIONS:
@@ -1202,6 +1213,41 @@ def validate_proposal_file(
             report.add_warning(f"{proposal_path}: {reason}; maintainer review required")
 
 
+def validate_changelog_file(
+    report: ValidationReport,
+    repo_root: Path,
+    changelog_path: str,
+) -> None:
+    full_path = repo_root / changelog_path
+    try:
+        text = full_path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        report.add_error(f"{changelog_path}: changelog.md must be UTF-8 text")
+        return
+
+    if "# 方案迭代记录" not in text:
+        report.add_error(f"{changelog_path}: missing title `# 方案迭代记录`")
+
+    if not any(CHANGELOG_VERSION_HEADING_RE.match(line.strip()) for line in text.splitlines()):
+        report.add_error(
+            f"{changelog_path}: add at least one version heading like `## v0.1 - 2026-06-14`"
+        )
+
+    compact_len = len(re.sub(r"\s+", "", text))
+    if compact_len < 80:
+        report.add_warning(
+            f"{changelog_path}: changelog is short; consider noting changes, feedback, and open issues"
+        )
+
+    for pattern, reason in HARD_RISK_PATTERNS:
+        if pattern.search(text):
+            report.add_error(f"{changelog_path}: {reason}")
+
+    for pattern, reason in SOFT_RISK_PATTERNS:
+        if pattern.search(text):
+            report.add_warning(f"{changelog_path}: {reason}; maintainer review required")
+
+
 def validate_submission(
     repo_root: Path,
     pr_author: str,
@@ -1234,6 +1280,7 @@ def validate_submission(
     proposal_dirs: set[str] = set()
     proposal_files: set[str] = set()
     ai_package_dirs: set[str] = set()
+    changelog_files: set[str] = set()
 
     for path in normalized_files:
         parts = path.split("/")
@@ -1285,6 +1332,8 @@ def validate_submission(
 
         if len(parts) == 4 and parts[3] == "proposal.md":
             proposal_files.add(path)
+        elif len(parts) == 4 and parts[3] == "changelog.md":
+            changelog_files.add(path)
         elif len(parts) == 4 and parts[3] in PACKAGE_ROOT_JSON_FILES:
             ai_package_dirs.add(proposal_dir)
         elif is_under_assets(parts):
@@ -1317,7 +1366,7 @@ def validate_submission(
                 report.add_error(f"{path}: visual assets must use one of {allowed}")
         else:
             report.add_error(
-                f"{path}: each proposal directory may contain proposal.md, AI package files, assets/*, geometry/*, drawings/*, report/*, and visual/index.html plus visual/assets/* only"
+                f"{path}: each proposal directory may contain proposal.md, changelog.md, AI package files, assets/*, geometry/*, drawings/*, report/*, and visual/index.html plus visual/assets/* only"
             )
 
         if not full_path.exists():
@@ -1366,7 +1415,13 @@ def validate_submission(
     for proposal_dir in sorted(ai_package_dirs):
         validate_ai_package_dir(report, repo_root, proposal_dir)
 
+    for changelog_path in sorted(changelog_files):
+        if not (repo_root / changelog_path).exists():
+            continue
+        validate_changelog_file(report, repo_root, changelog_path)
+
     report.proposal_files = sorted(proposal_files)
+    report.changelog_files = sorted(changelog_files)
     return report
 
 
@@ -1375,6 +1430,7 @@ def format_report(report: ValidationReport) -> str:
     lines.append(f"Result: {'PASS' if report.ok else 'FAIL'}")
     lines.append(f"Changed files: {len(report.changed_files)}")
     lines.append(f"Proposal files: {len(report.proposal_files)}")
+    lines.append(f"Changelog files: {len(report.changelog_files)}")
     if report.ai_package_stages:
         stage_summary = ", ".join(
             f"{path}={stage}" for path, stage in sorted(report.ai_package_stages.items())

@@ -72,7 +72,7 @@ python3 scripts/scaffold_ai_submission.py \
   --proposal-title "<proposal title>"
 ```
 
-7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。`proposal.md` 必须嵌入由 GeoJSON/metrics/矩阵派生的本地图片；图片、图表或示意图放在同一方案目录下的 `assets/` 或 `visual/assets/`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html` 作为人类评审阅读版。
+7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。`proposal.md` 必须嵌入由 GeoJSON/metrics/矩阵派生的本地图片；图片、图表或示意图放在同一方案目录下的 `assets/` 或 `visual/assets/`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html` 作为人类评审阅读版。可选复制 `templates/changelog.md` 为 `changelog.md`，记录方案版本变化、采纳反馈和待复核事项。
 8. 提交前运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
 9. 维护者合并方案后运行 `scripts/generate_submissions_data.py` 更新展示页索引；参赛者不要修改 `submissions-data.js`。
 
@@ -80,6 +80,7 @@ python3 scripts/scaffold_ai_submission.py \
 
 ```text
 submissions/octocat/ai-urban-loop/proposal.md
+submissions/octocat/ai-urban-loop/changelog.md
 submissions/octocat/ai-urban-loop/report/proposal.html
 submissions/octocat/ai-urban-loop/visual/index.html
 ```
@@ -104,7 +105,7 @@ submissions/octocat/ai-urban-loop/visual/index.html
 - 风险、版权与合规说明
 - 参考资料与来源
 
-必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。`proposal.md` 是唯一主体方案文本；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
+必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。可选 `changelog.md` 用于记录迭代过程；一旦提交，CI 会检查它的基本格式和合规风险。`proposal.md` 是唯一主体方案文本；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
 
 可读性优先级最高。`proposal.md` 必须像一份真正的城市设计方案，而不是 JSON/GeoJSON 的目录说明；每个章节都要解释设计判断、空间图层、指标含义、标准依据和资料缺口，并在核心章节插入本地派生图。必须嵌入 `assets/figures/site-overview.png`、`land-use-structure.png`、`key-areas.png`、`mobility-bluegreen.png`、`metrics-evidence.png`。`report/proposal.html` 是从 `proposal.md` 渲染出的离线阅读版，解决不同 Markdown 预览器图片路径和排版不一致的问题；`visual/index.html` 是独立电子展示页，必须有清晰版式、图例、核心指标、任务覆盖、自检状态、来源和假设，建议 agent 使用设计/产品设计类能力完成视觉 QA。
 
