@@ -66,6 +66,9 @@ ALL_REQUIRED_TASK_IDS = OFFICIAL_REQUIRED_TASK_IDS | AGENT_OPEN_CALL_REQUIRED_TA
 
 GITHUB_LOGIN_RE = re.compile(r"^[A-Za-z0-9-]{1,39}$")
 PROPOSAL_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
+TRACK_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
+SCENARIO_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
+SPATIAL_ITEM_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 ITERATION_RE = re.compile(r"^v?\d+(?:\.\d+){0,2}(?:[-+][A-Za-z0-9.-]+)?$")
 CHANGELOG_VERSION_HEADING_RE = re.compile(r"^##\s+v?\d+(?:\.\d+){0,2}\s+-\s+\d{4}-\d{2}-\d{2}\s*$")
 ALLOWED_ASSET_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
@@ -80,6 +83,16 @@ PACKAGE_ROOT_JSON_FILES = {
     "compliance_matrix.json",
     "standard_matrix.json",
     "design_depth_matrix.json",
+}
+RISK_DIMENSIONS = {
+    "data_privacy": "数据隐私",
+    "implementation_complexity": "实施复杂度",
+    "public_acceptance": "公众接受度",
+    "operations_cost": "运维成本",
+    "policy_uncertainty": "政策不确定性",
+    "spatial_dispute": "空间争议",
+    "technology_maturity": "技术成熟度",
+    "equity_inclusion": "公平与包容性",
 }
 REQUIRED_AI_PACKAGE_FILES = {
     "manifest.json",
@@ -201,6 +214,13 @@ MAX_VISUAL_ASSET_BYTES = 5 * 1024 * 1024
 MAX_TOTAL_BYTES = 20 * 1024 * 1024
 MIN_FORMAL_PROPOSAL_COMPACT_CHARS = 5000
 MIN_REQUIRED_SECTION_COMPACT_CHARS = 280
+MAX_TRACKS_PER_PROPOSAL = 3
+MAX_SCENARIOS_PER_PROPOSAL = 8
+MIN_RISK_SCORE = 1
+MAX_RISK_SCORE = 5
+HIGH_RISK_SCORE = 4
+SPATIAL_ITEM_TYPES = {"node", "corridor", "area"}
+SPATIAL_PUBLIC_LEVELS = {"public", "cleared", "provisional"}
 
 PLACEHOLDERS = [
     "your-github-login",
@@ -308,6 +328,126 @@ def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
         value = value.strip().strip('"').strip("'")
         metadata[key.strip()] = value
     return metadata, body
+
+
+def parse_track_metadata(raw_value: object) -> list[str]:
+    if raw_value is None:
+        return []
+    if isinstance(raw_value, list):
+        return [str(item).strip() for item in raw_value if str(item).strip()]
+    raw = str(raw_value).strip()
+    if not raw:
+        return []
+    if raw.startswith("[") and raw.endswith("]"):
+        try:
+            parsed = json.loads(raw)
+        except json.JSONDecodeError:
+            parsed = None
+        if isinstance(parsed, list):
+            return [str(item).strip() for item in parsed if str(item).strip()]
+        raw = raw[1:-1]
+    return [
+        item.strip().strip('"').strip("'")
+        for item in raw.split(",")
+        if item.strip().strip('"').strip("'")
+    ]
+
+
+def load_track_registry(repo_root: Path) -> dict[str, dict[str, object]]:
+    track_path = policy_file(repo_root, "tracks.json")
+    if not track_path.exists():
+        return {}
+    try:
+        data = json.loads(track_path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return {}
+    tracks = data.get("tracks")
+    if not isinstance(tracks, list):
+        return {}
+    registry: dict[str, dict[str, object]] = {}
+    for item in tracks:
+        if not isinstance(item, dict):
+            continue
+        track_id = str(item.get("id", "")).strip()
+        if track_id:
+            registry[track_id] = item
+    return registry
+
+
+def load_scenario_registry(repo_root: Path) -> dict[str, dict[str, object]]:
+    scenarios_dir = policy_file(repo_root, "scenarios")
+    if not scenarios_dir.exists() or not scenarios_dir.is_dir():
+        return {}
+    registry: dict[str, dict[str, object]] = {}
+    for path in sorted(scenarios_dir.glob("*.json")):
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            continue
+        if not isinstance(data, dict):
+            continue
+        scenario_id = str(data.get("id", "")).strip()
+        if scenario_id:
+            registry[scenario_id] = data
+    return registry
+
+
+def validate_track_metadata(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_path: str,
+    raw_value: object,
+) -> None:
+    tracks = parse_track_metadata(raw_value)
+    if not tracks:
+        return
+    if len(tracks) > MAX_TRACKS_PER_PROPOSAL:
+        report.add_error(
+            f"{proposal_path}: tracks may include at most {MAX_TRACKS_PER_PROPOSAL} track IDs"
+        )
+    if len(set(tracks)) != len(tracks):
+        report.add_error(f"{proposal_path}: tracks must not contain duplicate IDs")
+
+    registry = load_track_registry(repo_root)
+    if not registry:
+        report.add_error(f"{proposal_path}: tracks registry is missing or invalid")
+        return
+    for track_id in tracks:
+        if not TRACK_ID_RE.match(track_id):
+            report.add_error(
+                f"{proposal_path}: track id `{track_id}` must use lowercase letters, digits, and hyphens"
+            )
+        elif track_id not in registry:
+            report.add_error(f"{proposal_path}: unknown track id `{track_id}`")
+
+
+def validate_scenario_metadata(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_path: str,
+    raw_value: object,
+) -> None:
+    scenarios = parse_track_metadata(raw_value)
+    if not scenarios:
+        return
+    if len(scenarios) > MAX_SCENARIOS_PER_PROPOSAL:
+        report.add_error(
+            f"{proposal_path}: scenarios may include at most {MAX_SCENARIOS_PER_PROPOSAL} scenario IDs"
+        )
+    if len(set(scenarios)) != len(scenarios):
+        report.add_error(f"{proposal_path}: scenarios must not contain duplicate IDs")
+
+    registry = load_scenario_registry(repo_root)
+    if not registry:
+        report.add_error(f"{proposal_path}: scenario registry is missing or invalid")
+        return
+    for scenario_id in scenarios:
+        if not SCENARIO_ID_RE.match(scenario_id):
+            report.add_error(
+                f"{proposal_path}: scenario id `{scenario_id}` must use lowercase letters, digits, and hyphens"
+            )
+        elif scenario_id not in registry:
+            report.add_error(f"{proposal_path}: unknown scenario id `{scenario_id}`")
 
 
 def extract_headings(text: str) -> list[str]:
@@ -1173,6 +1313,9 @@ def validate_proposal_file(
                 f"{proposal_path}: {version_key} must look like v0.1, 0.1, or 1.0.0"
             )
 
+    validate_track_metadata(report, repo_root, proposal_path, metadata.get("tracks"))
+    validate_scenario_metadata(report, repo_root, proposal_path, metadata.get("scenarios"))
+
     headings = extract_headings(body)
     section_bodies = extract_section_bodies(body)
     for required in REQUIRED_SECTIONS:
@@ -1248,6 +1391,169 @@ def validate_changelog_file(
             report.add_warning(f"{changelog_path}: {reason}; maintainer review required")
 
 
+def validate_risk_file(
+    report: ValidationReport,
+    repo_root: Path,
+    risk_path: str,
+) -> None:
+    full_path = repo_root / risk_path
+    data = load_json_file(report, full_path, risk_path)
+    if not isinstance(data, dict):
+        report.add_error(f"{risk_path}: risk.json root must be an object")
+        return
+
+    if data.get("version") != 1:
+        report.add_error(f"{risk_path}: version must be 1")
+
+    dimensions = data.get("dimensions")
+    if not isinstance(dimensions, list) or not dimensions:
+        report.add_error(f"{risk_path}: dimensions must be a non-empty array")
+        return
+    if len(dimensions) > len(RISK_DIMENSIONS):
+        report.add_error(f"{risk_path}: dimensions may include at most {len(RISK_DIMENSIONS)} items")
+
+    seen_ids: set[str] = set()
+    for index, item in enumerate(dimensions):
+        label = f"{risk_path}: dimensions[{index}]"
+        if not isinstance(item, dict):
+            report.add_error(f"{label}: must be an object")
+            continue
+
+        dimension_id = str(item.get("id", "")).strip()
+        if dimension_id not in RISK_DIMENSIONS:
+            allowed = ", ".join(sorted(RISK_DIMENSIONS))
+            report.add_error(f"{label}: unknown risk dimension `{dimension_id}`; use one of {allowed}")
+        elif dimension_id in seen_ids:
+            report.add_error(f"{label}: duplicate risk dimension `{dimension_id}`")
+        seen_ids.add(dimension_id)
+
+        dimension_label = str(item.get("label", "")).strip()
+        if not dimension_label:
+            report.add_error(f"{label}: missing label")
+
+        score = item.get("score")
+        if isinstance(score, bool) or not isinstance(score, int):
+            report.add_error(f"{label}: score must be an integer from {MIN_RISK_SCORE} to {MAX_RISK_SCORE}")
+            continue
+        if score < MIN_RISK_SCORE or score > MAX_RISK_SCORE:
+            report.add_error(f"{label}: score must be between {MIN_RISK_SCORE} and {MAX_RISK_SCORE}")
+
+        note = str(item.get("note", "")).strip()
+        mitigation = str(item.get("mitigation", "")).strip()
+        human_review = str(item.get("human_review", "")).strip()
+        if len(note) < 8:
+            report.add_error(f"{label}: note must explain the risk")
+        if len(mitigation) < 8:
+            report.add_error(f"{label}: mitigation must explain how the risk is reduced")
+        if score >= HIGH_RISK_SCORE and len(human_review) < 8:
+            report.add_error(
+                f"{label}: high risk scores need human_review with a professional or public review path"
+            )
+
+        combined_text = "\n".join([note, mitigation, human_review])
+        for pattern, reason in HARD_RISK_PATTERNS:
+            if pattern.search(combined_text):
+                report.add_error(f"{label}: {reason}")
+        for pattern, reason in SOFT_RISK_PATTERNS:
+            if pattern.search(combined_text):
+                report.add_warning(f"{label}: {reason}; maintainer review required")
+
+
+def validate_spatial_file(
+    report: ValidationReport,
+    repo_root: Path,
+    spatial_path: str,
+) -> None:
+    full_path = repo_root / spatial_path
+    data = load_json_file(report, full_path, spatial_path)
+    if not isinstance(data, dict):
+        report.add_error(f"{spatial_path}: spatial.json root must be an object")
+        return
+
+    if data.get("version") != 1:
+        report.add_error(f"{spatial_path}: version must be 1")
+    if data.get("disclaimer") != "concept-only":
+        report.add_error(f"{spatial_path}: disclaimer must be concept-only")
+
+    items = data.get("items")
+    if not isinstance(items, list) or not items:
+        report.add_error(f"{spatial_path}: items must be a non-empty array")
+        return
+    if len(items) > 24:
+        report.add_error(f"{spatial_path}: items may include at most 24 concept objects")
+
+    seen_ids: set[str] = set()
+    scenario_registry = load_scenario_registry(repo_root)
+    for index, item in enumerate(items):
+        label = f"{spatial_path}: items[{index}]"
+        if not isinstance(item, dict):
+            report.add_error(f"{label}: must be an object")
+            continue
+
+        item_id = str(item.get("id", "")).strip()
+        if not SPATIAL_ITEM_ID_RE.match(item_id):
+            report.add_error(f"{label}: id must use lowercase letters, digits, and hyphens")
+        elif item_id in seen_ids:
+            report.add_error(f"{label}: duplicate spatial item id `{item_id}`")
+        seen_ids.add(item_id)
+
+        item_type = item.get("type")
+        if item_type not in SPATIAL_ITEM_TYPES:
+            allowed = ", ".join(sorted(SPATIAL_ITEM_TYPES))
+            report.add_error(f"{label}: type must be one of {allowed}")
+
+        title = str(item.get("title", "")).strip()
+        summary = str(item.get("summary", "")).strip()
+        source = str(item.get("source", "")).strip()
+        public_level = item.get("public_level")
+        if len(title) < 2:
+            report.add_error(f"{label}: title is required")
+        if len(summary) < 8:
+            report.add_error(f"{label}: summary must explain the concept")
+        if len(source) < 2:
+            report.add_error(f"{label}: source is required")
+        if public_level not in SPATIAL_PUBLIC_LEVELS:
+            allowed = ", ".join(sorted(SPATIAL_PUBLIC_LEVELS))
+            report.add_error(f"{label}: public_level must be one of {allowed}")
+        elif public_level == "provisional":
+            report.add_warning(
+                f"{label}: provisional spatial concept needs maintainer review before being treated as public-facing context"
+            )
+
+        linked_scenarios = item.get("linked_scenarios")
+        if linked_scenarios is not None:
+            if not isinstance(linked_scenarios, list):
+                report.add_error(f"{label}: linked_scenarios must be an array")
+            else:
+                for scenario_id in linked_scenarios:
+                    scenario_id_text = str(scenario_id).strip()
+                    if scenario_registry and scenario_id_text not in scenario_registry:
+                        report.add_error(f"{label}: unknown linked scenario `{scenario_id_text}`")
+
+        geometry = item.get("geometry")
+        if not isinstance(geometry, dict):
+            report.add_error(f"{label}: geometry must be an object")
+            continue
+        if geometry.get("mode") != "concept":
+            report.add_error(f"{label}: geometry.mode must be concept")
+        geometry_label = str(geometry.get("label", "")).strip()
+        if len(geometry_label) < 2:
+            report.add_error(f"{label}: geometry.label is required")
+        forbidden_keys = sorted(set(geometry) - {"mode", "label"})
+        if forbidden_keys:
+            report.add_error(
+                f"{label}: geometry may only contain mode and label; remove {', '.join(forbidden_keys)}"
+            )
+
+        combined_text = "\n".join([title, summary, source, geometry_label])
+        for pattern, reason in HARD_RISK_PATTERNS:
+            if pattern.search(combined_text):
+                report.add_error(f"{label}: {reason}")
+        for pattern, reason in SOFT_RISK_PATTERNS:
+            if pattern.search(combined_text):
+                report.add_warning(f"{label}: {reason}; maintainer review required")
+
+
 def validate_submission(
     repo_root: Path,
     pr_author: str,
@@ -1281,6 +1587,8 @@ def validate_submission(
     proposal_files: set[str] = set()
     ai_package_dirs: set[str] = set()
     changelog_files: set[str] = set()
+    risk_files: set[str] = set()
+    spatial_files: set[str] = set()
 
     for path in normalized_files:
         parts = path.split("/")
@@ -1334,6 +1642,10 @@ def validate_submission(
             proposal_files.add(path)
         elif len(parts) == 4 and parts[3] == "changelog.md":
             changelog_files.add(path)
+        elif len(parts) == 4 and parts[3] == "risk.json":
+            risk_files.add(path)
+        elif len(parts) == 4 and parts[3] == "spatial.json":
+            spatial_files.add(path)
         elif len(parts) == 4 and parts[3] in PACKAGE_ROOT_JSON_FILES:
             ai_package_dirs.add(proposal_dir)
         elif is_under_assets(parts):
@@ -1366,7 +1678,7 @@ def validate_submission(
                 report.add_error(f"{path}: visual assets must use one of {allowed}")
         else:
             report.add_error(
-                f"{path}: each proposal directory may contain proposal.md, changelog.md, AI package files, assets/*, geometry/*, drawings/*, report/*, and visual/index.html plus visual/assets/* only"
+                f"{path}: each proposal directory may contain proposal.md, changelog.md, risk.json, spatial.json, AI package files, assets/*, geometry/*, drawings/*, report/*, and visual/index.html plus visual/assets/* only"
             )
 
         if not full_path.exists():
@@ -1405,6 +1717,12 @@ def validate_submission(
             report.add_error(f"{proposal_path}: every touched proposal directory needs proposal.md")
         else:
             proposal_files.add(proposal_path)
+        risk_path = f"{proposal_dir}/risk.json"
+        if (repo_root / risk_path).exists():
+            risk_files.add(risk_path)
+        spatial_path = f"{proposal_dir}/spatial.json"
+        if (repo_root / spatial_path).exists():
+            spatial_files.add(spatial_path)
 
     for proposal_path in sorted(proposal_files):
         if not (repo_root / proposal_path).exists():
@@ -1419,6 +1737,16 @@ def validate_submission(
         if not (repo_root / changelog_path).exists():
             continue
         validate_changelog_file(report, repo_root, changelog_path)
+
+    for risk_path in sorted(risk_files):
+        if not (repo_root / risk_path).exists():
+            continue
+        validate_risk_file(report, repo_root, risk_path)
+
+    for spatial_path in sorted(spatial_files):
+        if not (repo_root / spatial_path).exists():
+            continue
+        validate_spatial_file(report, repo_root, spatial_path)
 
     report.proposal_files = sorted(proposal_files)
     report.changelog_files = sorted(changelog_files)

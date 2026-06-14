@@ -10,7 +10,7 @@ import re
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from validate_submission import parse_front_matter
+from validate_submission import load_track_registry, parse_front_matter, parse_track_metadata
 
 
 ALLOWED_ASSET_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
@@ -358,8 +358,15 @@ def render_html(proposal_path: Path, exhibit_path: Path) -> str:
     license_value = metadata.get("license") or "CC-BY-4.0"
     language = metadata.get("language") or "zh"
     hero = exhibit.get("hero") if isinstance(exhibit.get("hero"), dict) else {}
+    card = exhibit.get("card") if isinstance(exhibit.get("card"), dict) else {}
     badges = exhibit.get("badges") if isinstance(exhibit.get("badges"), list) else []
     modules = exhibit.get("modules", [])
+    track_registry = load_track_registry(Path.cwd())
+    track_ids = parse_track_metadata(card.get("tracks")) or parse_track_metadata(metadata.get("tracks"))
+    track_badges = [
+        text(track_registry.get(track_id, {}).get("title"), track_id)
+        for track_id in track_ids[:3]
+    ]
 
     nav_links = []
     module_sections = []
@@ -383,7 +390,8 @@ def render_html(proposal_path: Path, exhibit_path: Path) -> str:
         "</section>"
     )
 
-    badge_html = "".join(f"<span>{esc(item)}</span>" for item in badges[:8])
+    combined_badges = list(dict.fromkeys([*track_badges, *[text(item) for item in badges]]))[:8]
+    badge_html = "".join(f"<span>{esc(item)}</span>" for item in combined_badges)
     hero_figure = image_figure(hero.get("image"), hero.get("caption"))
     hero_eyebrow = text(hero.get("eyebrow"), "AI 城市方案展示")
     hero_tagline = text(hero.get("tagline"), summary)

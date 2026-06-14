@@ -28,7 +28,13 @@ This repository hosts the public open call materials for the Centennial Jing-Zha
 - 严格的审核 agent 与 CI 预检：PR 会经过路径归属、格式完整度、合规风险和资料边界检查；审核 agent 给出非强制但可追溯的评审建议，维护者保留最终判断。
 - 投稿前轻量自检：`scripts/score_submission.py` 可对 `proposal.md` 做 advisory 自检，提示章节完整度、任务相关性、落地路径、风险合规和公开资料引用情况。
 - 结构化投稿模板：`templates/proposal.md`、`schema/proposal.schema.json`、`standard_matrix.json` 和 `design_depth_matrix.json` 约束方案元数据、专业标准响应、成果深度、正文证据引用和图层指标引用方式，让人工评审与自动校验都能稳定读取。
-- 方案展示配置：`templates/exhibit.json`、`schema/exhibit.schema.json`、`scripts/render_exhibit.py` 和 `scripts/render_portal.py` 支持生成标准展示页与 portal 卡片，示例位于 `examples/`。
+- 主题赛道：`tracks.json` 和 `docs/tracks.md` 定义 AI+交通、京张文化遗产、青年友好公共空间、AI 原点社区、企业服务、城市智能体治理、AI+公共服务、机器人与自动驾驶等赛道；`proposal.md` 和 `exhibit.json` 可声明 1-3 个赛道，portal 支持按赛道筛选。
+- 风险矩阵：`templates/risk.json`、`schema/risk.schema.json` 和 `docs/risk-radar.md` 支持投稿者用 1-5 分说明数据隐私、实施复杂度、公众接受度、运维成本、政策不确定性、空间争议、技术成熟度、公平与包容性等风险；portal 会展示最高风险项。
+- 方案横向对比：`scripts/render_portal.py` 会输出 `window.PROPOSALS`，并在 portal 中提供 2-4 个方案的并排对比视图；说明见 `docs/compare-view.md`。
+- 精选方案专题：`collections/*.json`、`schema/collection.schema.json`、`templates/collection.json` 和 `docs/collections.md` 支持维护者手动组织“最佳公共空间”“最佳 AI 治理”等专题合集，portal 会展示精选入口和入选理由。
+- 场景卡片库：`scenarios/*.json`、`schema/scenario.schema.json`、`templates/scenario.json` 和 `docs/scenarios.md` 维护 AI+交通、AI+医疗、机器人配送、AI 导览、企业服务、公共安全等标准场景；`proposal.md` 和 `exhibit.json` 可引用场景 ID，portal 支持按场景筛选。
+- 概念空间节点：`templates/spatial.json`、`schema/spatial.schema.json` 和 `docs/spatial.md` 支持投稿者用概念节点、廊道和区域说明方案空间结构；不允许坐标、bbox 或官方规划线位，portal 会以节点清单展示。
+- 方案展示配置：`templates/exhibit.json`、`schema/exhibit.schema.json`、`scripts/render_exhibit.py` 和 `scripts/render_portal.py` 支持生成标准展示页、portal 卡片、赛道筛选和方案对比，示例位于 `examples/`。
 - 方案迭代记录：`templates/changelog.md` 和 `proposal.md` 中的 `iteration` / `version` 元数据用于记录版本变化、采纳反馈和待复核事项。
 - 面向 AI agent 的参与指南：`agent.html`、`skills/urban-design-ai-submission/` 和 `scripts/install_submission_skill.py` 说明 agent 如何安装参赛 skill、读取 brief、生成方案包、标注假设、列出来源并完成自检。
 - 双语线上展示页面：首页、公开任务书、评审细则和方案展示页面支持中英文切换，当前线上入口为 `https://haidian.open-city.ai/`。
@@ -76,7 +82,7 @@ python3 scripts/scaffold_ai_submission.py \
   --proposal-title "<proposal title>"
 ```
 
-7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。`proposal.md` 必须嵌入由 GeoJSON/metrics/矩阵派生的本地图片；图片、图表或示意图放在同一方案目录下的 `assets/` 或 `visual/assets/`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html` 作为人类评审阅读版。可选复制 `templates/changelog.md` 为 `changelog.md`，记录方案版本变化、采纳反馈和待复核事项。
+7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。`proposal.md` 必须嵌入由 GeoJSON/metrics/矩阵派生的本地图片；图片、图表或示意图放在同一方案目录下的 `assets/` 或 `visual/assets/`。在 `proposal.md` front matter 中使用 `tracks` 选择 1-3 个主题赛道，赛道 ID 见 `docs/tracks.md`；使用 `scenarios` 引用 1-8 个标准场景，场景 ID 见 `docs/scenarios.md`。可选复制 `templates/spatial.json` 为 `spatial.json`，用 concept-only 节点/廊道/区域说明概念空间结构；可选复制 `templates/risk.json` 为 `risk.json`，说明方案风险、缓解措施和高风险人工复核路径。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html` 作为人类评审阅读版。可选复制 `templates/changelog.md` 为 `changelog.md`，记录方案版本变化、采纳反馈和待复核事项。
 8. 提交前运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
 9. 维护者合并方案后运行 `scripts/generate_submissions_data.py` 更新展示页索引；参赛者不要修改 `submissions-data.js`。
 
@@ -94,6 +100,8 @@ submissions/octocat/ai-urban-loop/visual/index.html
 本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
 
 - 方案标题与元数据
+- 1-3 个主题赛道 ID
+- 1-8 个标准场景 ID
 - 设计依据与资料清单
 - 三层范围工作框架
 - 统筹研究范围产业与未来城市研究
@@ -107,9 +115,11 @@ submissions/octocat/ai-urban-loop/visual/index.html
 - 更新项目清单、实施政策与分期计划
 - 指标体系、面积复算与合规矩阵
 - 风险、版权与合规说明
+- 可选 `spatial.json` 概念空间节点
+- 可选 `risk.json` 风险矩阵
 - 参考资料与来源
 
-必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。可选 `changelog.md` 用于记录迭代过程；一旦提交，CI 会检查它的基本格式和合规风险。`proposal.md` 是唯一主体方案文本；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
+必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。可选 `risk.json` 用于说明风险矩阵；可选 `changelog.md` 用于记录迭代过程；一旦提交，CI 会检查它们的基本格式和合规风险。`proposal.md` 是唯一主体方案文本；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
 
 可读性优先级最高。`proposal.md` 必须像一份真正的城市设计方案，而不是 JSON/GeoJSON 的目录说明；每个章节都要解释设计判断、空间图层、指标含义、标准依据和资料缺口，并在核心章节插入本地派生图。必须嵌入 `assets/figures/site-overview.png`、`land-use-structure.png`、`key-areas.png`、`mobility-bluegreen.png`、`metrics-evidence.png`。`report/proposal.html` 是从 `proposal.md` 渲染出的离线阅读版，解决不同 Markdown 预览器图片路径和排版不一致的问题；`visual/index.html` 是独立电子展示页，必须有清晰版式、图例、核心指标、任务覆盖、自检状态、来源和假设，建议 agent 使用设计/产品设计类能力完成视觉 QA。
 
@@ -216,6 +226,7 @@ python3 scripts/render_exhibit.py \
 
 python3 scripts/render_portal.py \
   --output examples/portal/index.html \
+  --collections-dir collections \
   examples/agent-civic-loop
 ```
 
@@ -262,6 +273,7 @@ python3 scripts/generate_submissions_data.py
 agent.html    AI Agent 参与指南页面
 assets/       展示页图片资源
 brief/        公开任务书和结构化场地资料
+collections/  精选方案专题配置
 data/         公开资料登记、原始资料索引和清洗后资料
 docs/         评审细则与维护文档
 examples/     exhibit 与 portal 示例
@@ -269,10 +281,12 @@ index.html    项目展示首页
 review.html   评审维度页面
 schema/       投稿结构和校验规则
 scripts/      CI 与资料发现脚本
+scenarios/    标准 AI 城市场景卡片
 sources/      轻量公开资料索引
 submissions/  投稿目录
 templates/    投稿模板
 tests/        自动化测试
+tracks.json   主题赛道注册表
 ```
 
 ## 维护说明

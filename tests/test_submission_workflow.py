@@ -169,6 +169,46 @@ VALID_CHANGELOG = """# 方案迭代记录
 - 本版本仅使用公开任务书和可公开资料，不包含个人隐私、涉密资料、内部图件或未审定规划控制指标。
 """
 
+VALID_RISK = {
+    "version": 1,
+    "summary": "测试风险矩阵。",
+    "dimensions": [
+        {
+            "id": "data_privacy",
+            "label": "数据隐私",
+            "score": 4,
+            "note": "涉及公众反馈数据，需要授权和脱敏。",
+            "mitigation": "只使用聚合指标，不采集个人敏感信息。",
+            "human_review": "由数据安全和法律合规人员复核。",
+        },
+        {
+            "id": "implementation_complexity",
+            "label": "实施复杂度",
+            "score": 3,
+            "note": "涉及多主体协同，需要分阶段推进。",
+            "mitigation": "先做轻量试点，再扩大范围。",
+        },
+    ],
+}
+
+VALID_SPATIAL = {
+    "version": 1,
+    "disclaimer": "concept-only",
+    "summary": "测试概念空间节点。",
+    "items": [
+        {
+            "id": "node-youth-hub",
+            "type": "node",
+            "title": "青年创新会客厅",
+            "summary": "面向青年团队和居民的公共活动节点。",
+            "source": "brief/public-brief.md",
+            "public_level": "public",
+            "linked_scenarios": ["enterprise-service-copilot"],
+            "geometry": {"mode": "concept", "label": "京张铁路遗址公园沿线"},
+        }
+    ],
+}
+
 
 class SubmissionWorkflowTests(unittest.TestCase):
     def write(self, root: Path, rel: str, content: str = VALID_BODY) -> None:
@@ -786,6 +826,115 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("version heading", "\n".join(report.errors))
 
+    def test_risk_json_submission_passes_hard_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            risk = f"{base}/risk.json"
+            self.write_json(root, risk, VALID_RISK)
+            changed.append(risk)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
+    def test_high_risk_without_human_review_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            risk_data = json.loads(json.dumps(VALID_RISK))
+            risk_data["dimensions"][0].pop("human_review")
+            risk = f"{base}/risk.json"
+            self.write_json(root, risk, risk_data)
+            changed.append(risk)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("high risk scores need human_review", "\n".join(report.errors))
+
+    def test_invalid_risk_score_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            risk_data = json.loads(json.dumps(VALID_RISK))
+            risk_data["dimensions"][0]["score"] = 6
+            risk = f"{base}/risk.json"
+            self.write_json(root, risk, risk_data)
+            changed.append(risk)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("score must be between 1 and 5", "\n".join(report.errors))
+
+    def test_unknown_risk_dimension_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            risk_data = json.loads(json.dumps(VALID_RISK))
+            risk_data["dimensions"][0]["id"] = "brand_risk"
+            risk = f"{base}/risk.json"
+            self.write_json(root, risk, risk_data)
+            changed.append(risk)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("unknown risk dimension `brand_risk`", "\n".join(report.errors))
+
+    def test_spatial_json_submission_passes_hard_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            spatial = f"{base}/spatial.json"
+            self.write_json(root, spatial, VALID_SPATIAL)
+            changed.append(spatial)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
+    def test_spatial_json_coordinates_fail_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            spatial_data = json.loads(json.dumps(VALID_SPATIAL))
+            spatial_data["items"][0]["geometry"]["coordinates"] = [116.3, 39.9]
+            spatial = f"{base}/spatial.json"
+            self.write_json(root, spatial, spatial_data)
+            changed.append(spatial)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("geometry may only contain mode and label", "\n".join(report.errors))
+
+    def test_spatial_json_non_concept_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            spatial_data = json.loads(json.dumps(VALID_SPATIAL))
+            spatial_data["disclaimer"] = "official"
+            spatial_data["items"][0]["geometry"]["mode"] = "coordinates"
+            spatial = f"{base}/spatial.json"
+            self.write_json(root, spatial, spatial_data)
+            changed.append(spatial)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("disclaimer must be concept-only", errors)
+            self.assertIn("geometry.mode must be concept", errors)
+
     def test_invalid_iteration_metadata_fails_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -804,6 +953,99 @@ class SubmissionWorkflowTests(unittest.TestCase):
 
             self.assertFalse(report.ok)
             self.assertIn("iteration must look like", "\n".join(report.errors))
+
+    def test_proposal_tracks_pass_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\ntracks: ["ai-traffic-walkability", "civic-agent-governance"]',
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
+    def test_unknown_proposal_track_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\ntracks: ["unknown-track"]',
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("unknown track id `unknown-track`", "\n".join(report.errors))
+
+    def test_too_many_proposal_tracks_fail_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\ntracks: ["ai-traffic-walkability", "civic-agent-governance", "ai-public-services", "robotics-autonomous-mobility"]',
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("tracks may include at most 3 track IDs", "\n".join(report.errors))
+
+    def test_proposal_scenarios_pass_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\nscenarios: ["ai-traffic-walkability", "enterprise-service-copilot"]',
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
+    def test_unknown_proposal_scenario_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"',
+                    'summary: "围绕百年京张 AI 创新带提出 formal 城市设计方案、空间更新策略和 AI 场景。"\nscenarios: ["unknown-scenario"]',
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("unknown scenario id `unknown-scenario`", "\n".join(report.errors))
 
     def test_non_zh_language_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -4,6 +4,8 @@ author_github: "agent-civic-loop"
 language: "zh"
 license: "CC-BY-4.0"
 summary: "以城市智能体为组织内核，把京张铁路遗址公园、AI 原点社区、青年友好公共空间和产业服务场景联动为可学习、可反馈、可复核的创新生活环。"
+tracks: ["civic-agent-governance", "youth-friendly-public-space", "enterprise-services-ecosystem"]
+scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 
 # 京张城市智能体环

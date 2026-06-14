@@ -391,6 +391,8 @@ author_github: "{author}"
 language: "zh"
 license: "CC-BY-4.0"
 summary: "{summary_phrase}"
+tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
+scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 
 # {title}
