@@ -119,7 +119,7 @@ class ScoreSubmissionTests(unittest.TestCase):
             checks = self.check_map(report)
 
             self.assertFalse(report.ready)
-            self.assertIn("落地路径", report.required_sections_missing)
+            self.assertIn("落地路径 / 实施计划", report.required_sections_missing)
             self.assertEqual(checks["表达完整度"], STATUS_MISSING)
 
     def test_missing_indexed_source_reference_needs_work(self) -> None:

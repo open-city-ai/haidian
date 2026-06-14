@@ -35,16 +35,27 @@ DIMENSION_ORDER = [
 ]
 
 REQUIRED_METADATA = ["title", "author_github", "language", "license", "summary"]
-SELF_CHECK_REQUIRED_SECTIONS = [
-    "摘要",
-    "问题理解",
-    "核心概念",
-    "空间与产业方案",
-    "AI 治理与创新场景",
-    "落地路径",
-    "风险与合规说明",
-    "参考资料",
+
+# Each required area is satisfied when a heading contains ANY of its aliases.
+# This keeps the advisory self-check in sync with both the lightweight example
+# template and the formal scaffold template (templates/proposal.md), whose
+# section headings differ.
+REQUIRED_SECTION_GROUPS: list[tuple[str, list[str]]] = [
+    ("摘要 / 设计依据", ["摘要", "设计依据"]),
+    ("问题理解 / 研究范围", ["问题理解", "研究范围", "三层范围"]),
+    ("核心概念 / 总体设计", ["核心概念", "总体设计", "重点区域"]),
+    ("空间与产业方案", ["空间与产业", "用地", "交通", "蓝绿"]),
+    ("AI 创新场景", ["AI 治理与创新场景", "AI 创新生态"]),
+    ("落地路径 / 实施计划", ["落地路径", "更新项目清单", "实施政策", "分期"]),
+    ("风险与合规说明", ["风险与合规", "风险、版权", "风险"]),
+    ("参考资料", ["参考资料"]),
 ]
+
+CONCEPT_SECTION_ALIASES = ["核心概念", "总体设计", "重点区域"]
+AI_SECTION_ALIASES = ["AI 治理与创新场景", "AI 创新生态"]
+LANDING_SECTION_ALIASES = ["落地路径", "更新项目清单", "实施政策", "分期"]
+RISK_SECTION_ALIASES = ["风险与合规", "风险、版权", "风险"]
+REFERENCE_SECTION_ALIASES = ["参考资料"]
 
 TASK_TERMS = ["百年京张", "京张", "海淀", "AI", "人工智能", "创新带", "中关村", "城市"]
 ORIGINALITY_TERMS = ["概念", "机制", "模式", "体系", "网络", "平台", "社区", "场景", "环"]
@@ -152,6 +163,13 @@ def first_section(sections: dict[str, str], required_title: str) -> str:
     return ""
 
 
+def find_section(sections: dict[str, str], aliases: list[str]) -> str:
+    for title, content in sections.items():
+        if any(alias in title for alias in aliases):
+            return content
+    return ""
+
+
 def status_from_term_count(count: int, pass_at: int = 3, needs_at: int = 1) -> str:
     if count >= pass_at:
         return STATUS_PASS
@@ -229,9 +247,9 @@ def score_proposal(
     sections = split_sections(body)
     missing_metadata = [key for key in REQUIRED_METADATA if not metadata.get(key)]
     missing_sections = [
-        required
-        for required in SELF_CHECK_REQUIRED_SECTIONS
-        if not any(required in heading for heading in headings)
+        label
+        for label, aliases in REQUIRED_SECTION_GROUPS
+        if not any(any(alias in heading for alias in aliases) for heading in headings)
     ]
 
     checks: list[CheckResult] = []
@@ -245,7 +263,7 @@ def score_proposal(
         )
     )
 
-    concept = first_section(sections, "核心概念")
+    concept = find_section(sections, CONCEPT_SECTION_ALIASES)
     concept_terms = count_terms(concept, ORIGINALITY_TERMS)
     if not concept:
         originality_status = STATUS_MISSING
@@ -258,7 +276,7 @@ def score_proposal(
         originality_message = "核心概念偏短或缺少清晰机制，建议补充命名、关键机制和差异化主张。"
     checks.append(build_check("原创性", originality_status, originality_message))
 
-    ai_scene = first_section(sections, "AI 治理与创新场景")
+    ai_scene = find_section(sections, AI_SECTION_ALIASES)
     ai_count = count_terms(ai_scene, AI_TERMS)
     urban_count = count_terms(ai_scene, URBAN_TERMS)
     if not ai_scene:
@@ -272,7 +290,7 @@ def score_proposal(
         ai_message = "建议把 AI 能力和具体城市问题绑定，说明数据、服务对象、人工复核和落地场景。"
     checks.append(build_check("AI 与城市规划创新性", ai_status, ai_message))
 
-    landing = first_section(sections, "落地路径")
+    landing = find_section(sections, LANDING_SECTION_ALIASES)
     phase_count = count_terms(landing, PHASE_TERMS)
     actor_count = count_terms(landing, ACTOR_TERMS)
     metric_count = count_terms(landing, METRIC_TERMS)
@@ -299,7 +317,7 @@ def score_proposal(
         )
     )
 
-    risk = first_section(sections, "风险与合规说明")
+    risk = find_section(sections, RISK_SECTION_ALIASES)
     risk_count = count_terms(risk, RISK_TERMS)
     manual_review_count = count_terms(text, MANUAL_REVIEW_TERMS)
     if manual_review_count:
@@ -332,7 +350,7 @@ def score_proposal(
         completeness_message = "结构完整，正文长度达到基础自检阈值。"
     checks.append(build_check("表达完整度", completeness_status, completeness_message))
 
-    reference_section = first_section(sections, "参考资料")
+    reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
     sources = load_source_index(repo_root, sources_index_path)
     matched_sources, unmatched_references = match_sources(text, reference_section, sources)
     if not reference_section:
