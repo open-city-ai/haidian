@@ -11,13 +11,15 @@ This repository hosts an open call for AI-assisted urban planning proposals for 
 1. Fork 本仓库。
 2. 阅读 `brief/` 中已确认可公开的任务书资料，并参考 `docs/public-sources.md` 中的公开资料索引。
 3. 复制 `templates/proposal.md` 到 `submissions/<your-github-login>/<proposal-slug>/proposal.md`。
-4. 按模板完成结构化方案。可选图片放入同一方案目录下的 `assets/`。
+4. 按模板完成结构化方案。可选复制 `templates/exhibit.json` 配置主站 portal 卡片，复制 `templates/changelog.md` 记录方案迭代，图片放入同一方案目录下的 `assets/`。
 5. 发起 Pull Request。PR 作者只能修改 `submissions/<your-github-login>/` 下的内容。
 
 示例路径：
 
 ```text
 submissions/octocat/ai-urban-loop/proposal.md
+submissions/octocat/ai-urban-loop/exhibit.json
+submissions/octocat/ai-urban-loop/changelog.md
 submissions/octocat/ai-urban-loop/assets/concept-map.png
 ```
 
@@ -37,6 +39,8 @@ submissions/octocat/ai-urban-loop/assets/concept-map.png
 
 第一版不接收任意代码执行类投稿。图片和图表仅作为辅助材料，必须有清晰来源和版权说明。
 
+可选的 `changelog.md` 用于记录方案版本变化、采纳反馈和待复核事项；一旦提交，CI 会检查它的基本格式和合规风险。
+
 ## 公开资料索引
 
 `sources/public-sources.json` 是机器可读的公开资料索引，`docs/public-sources.md` 是面向投稿者和评审者的人类可读说明。投稿者应优先引用索引内资料；如果使用索引外公开资料，需要在方案“参考资料”章节注明来源、发布时间或访问路径，并说明公开性。
@@ -54,6 +58,29 @@ python3 scripts/validate_sources.py
 ```bash
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
+
+## 展示页
+
+`exhibit.json` 的首要用途是配置主站 portal 卡片，包括标题、副标题、摘要、封面、标签和亮点。它也可以继续配置平台生成的标准展示页；页面下半部分会自动渲染 `proposal.md` 的完整正文。平台不执行用户提交的任意 HTML 或 JavaScript。
+
+生成 portal 预览：
+
+```bash
+python3 scripts/render_portal.py \
+  --output examples/portal/index.html \
+  examples/agent-civic-loop
+```
+
+本地预览示例：
+
+```bash
+python3 scripts/render_exhibit.py \
+  examples/agent-civic-loop/proposal.md \
+  examples/agent-civic-loop/exhibit.json \
+  examples/agent-civic-loop/index.html
+```
+
+官方示例见 `examples/agent-civic-loop/index.html`。
 
 ## 自动审核流程
 

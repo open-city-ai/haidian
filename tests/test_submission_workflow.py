@@ -1,6 +1,7 @@
 import sys
 import tempfile
 import unittest
+import json
 from pathlib import Path
 
 
@@ -8,6 +9,8 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from validate_submission import validate_submission  # noqa: E402
+from render_exhibit import render_html  # noqa: E402
+from render_portal import load_card, render_portal  # noqa: E402
 
 
 VALID_BODY = """
@@ -86,11 +89,83 @@ summary: "这个方案主要讨论咖啡优惠券。"
 """
 
 
+VALID_EXHIBIT = {
+    "version": 1,
+    "theme": "civic-lab",
+    "card": {
+        "title": "AI Urban Loop",
+        "subtitle": "可学习、可复核的城市智能体环",
+        "summary": "以京张铁路遗址公园为公共空间主线，串联公共服务、慢行网络和产业服务场景。",
+        "cover": "assets/hero.png",
+        "tags": ["城市智能体", "慢行网络", "公开数据"],
+        "highlights": ["公开资料驱动", "人工复核", "低风险试点"],
+        "status": "featured"
+    },
+    "links": {
+        "proposal": "proposal.md",
+        "detail": "index.html"
+    },
+    "hero": {
+        "eyebrow": "AI 城市方案展示",
+        "tagline": "把京张铁路遗址公园沿线组织为可学习、可复核的城市智能体环。",
+        "image": "assets/hero.png",
+        "caption": "示意图，由投稿者提供。"
+    },
+    "badges": ["城市智能体", "慢行网络", "公开数据"],
+    "modules": [
+        {
+            "type": "executive_summary",
+            "title": "方案摘要",
+            "body": "本展示摘要来自结构化 exhibit.json。"
+        },
+        {
+            "type": "concept_cards",
+            "title": "核心概念",
+            "cards": [
+                {
+                    "title": "城市智能体",
+                    "body": "读取公开资料，生成建议，并接受人工复核。"
+                }
+            ]
+        },
+        {
+            "type": "references",
+            "title": "参考资料",
+            "items": ["brief/public-brief.md"]
+        }
+    ]
+}
+
+VALID_CHANGELOG = """# 方案迭代记录
+
+## v0.1 - 2026-06-14
+
+### 改动摘要
+
+- 创建方案初稿，说明核心概念、空间与产业方案、AI 治理场景和落地路径。
+
+### 采纳反馈
+
+- 暂无，首版提交。
+
+### 暂未采纳或待复核事项
+
+- 具体建设强度、道路线位、设施落位和权属判断均需基于公开资料进一步复核。
+
+### 公开资料与合规说明
+
+- 本版本仅使用公开任务书和可公开资料，不包含个人隐私、涉密资料、内部图件或未审定规划控制指标。
+"""
+
+
 class SubmissionWorkflowTests(unittest.TestCase):
     def write(self, root: Path, rel: str, content: str = VALID_BODY) -> None:
         path = root / rel
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(content, encoding="utf-8")
+
+    def write_json(self, root: Path, rel: str, content: dict) -> None:
+        self.write(root, rel, json.dumps(content, ensure_ascii=False, indent=2))
 
     def test_valid_submission_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -145,6 +220,161 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", [rel])
             self.assertFalse(report.ok)
             self.assertIn("疑似手机号", "\n".join(report.errors))
+
+    def test_exhibit_submission_passes_hard_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            exhibit = "submissions/alice/ai-urban-loop/exhibit.json"
+            asset = "submissions/alice/ai-urban-loop/assets/hero.png"
+            self.write(root, proposal)
+            self.write_json(root, exhibit, VALID_EXHIBIT)
+            self.write(root, asset, "placeholder")
+            report = validate_submission(root, "alice", [proposal, exhibit, asset])
+            self.assertTrue(report.ok, report.errors)
+            self.assertEqual(report.exhibit_files, [exhibit])
+
+    def test_exhibit_external_image_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            exhibit = "submissions/alice/ai-urban-loop/exhibit.json"
+            bad_exhibit = json.loads(json.dumps(VALID_EXHIBIT))
+            bad_exhibit["hero"]["image"] = "https://example.com/hero.png"
+            self.write(root, proposal)
+            self.write_json(root, exhibit, bad_exhibit)
+            report = validate_submission(root, "alice", [proposal, exhibit])
+            self.assertFalse(report.ok)
+            self.assertIn("external asset URLs", "\n".join(report.errors))
+
+    def test_exhibit_path_traversal_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            exhibit = "submissions/alice/ai-urban-loop/exhibit.json"
+            bad_exhibit = json.loads(json.dumps(VALID_EXHIBIT))
+            bad_exhibit["hero"]["image"] = "../secrets/hero.png"
+            self.write(root, proposal)
+            self.write_json(root, exhibit, bad_exhibit)
+            report = validate_submission(root, "alice", [proposal, exhibit])
+            self.assertFalse(report.ok)
+            self.assertIn("unsafe asset path", "\n".join(report.errors))
+
+    def test_exhibit_unknown_module_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            exhibit = "submissions/alice/ai-urban-loop/exhibit.json"
+            bad_exhibit = json.loads(json.dumps(VALID_EXHIBIT))
+            bad_exhibit["modules"][0]["type"] = "custom_html"
+            self.write(root, proposal)
+            self.write_json(root, exhibit, bad_exhibit)
+            self.write(root, "submissions/alice/ai-urban-loop/assets/hero.png", "placeholder")
+            report = validate_submission(root, "alice", [proposal, exhibit])
+            self.assertFalse(report.ok)
+            self.assertIn("unsupported module type", "\n".join(report.errors))
+
+    def test_exhibit_invalid_json_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            exhibit = "submissions/alice/ai-urban-loop/exhibit.json"
+            self.write(root, proposal)
+            self.write(root, exhibit, "{not-json")
+            report = validate_submission(root, "alice", [proposal, exhibit])
+            self.assertFalse(report.ok)
+            self.assertIn("invalid JSON", "\n".join(report.errors))
+
+    def test_changelog_submission_passes_hard_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            changelog = "submissions/alice/ai-urban-loop/changelog.md"
+            self.write(root, proposal, VALID_BODY.replace('summary: "围绕百年京张 AI 创新带提出城市智能体、慢行网络和产业场景协同方案。"', 'summary: "围绕百年京张 AI 创新带提出城市智能体、慢行网络和产业场景协同方案。"\niteration: "v0.1"'))
+            self.write(root, changelog, VALID_CHANGELOG)
+
+            report = validate_submission(root, "alice", [proposal, changelog])
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertEqual(report.changelog_files, [changelog])
+
+    def test_changelog_bad_version_heading_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            changelog = "submissions/alice/ai-urban-loop/changelog.md"
+            self.write(root, proposal)
+            self.write(root, changelog, VALID_CHANGELOG.replace("## v0.1 - 2026-06-14", "## 首版"))
+
+            report = validate_submission(root, "alice", [proposal, changelog])
+
+            self.assertFalse(report.ok)
+            self.assertIn("version heading", "\n".join(report.errors))
+
+    def test_invalid_iteration_metadata_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = "submissions/alice/ai-urban-loop/proposal.md"
+            self.write(root, proposal, VALID_BODY.replace(
+                'summary: "围绕百年京张 AI 创新带提出城市智能体、慢行网络和产业场景协同方案。"',
+                'summary: "围绕百年京张 AI 创新带提出城市智能体、慢行网络和产业场景协同方案。"\niteration: "first draft"',
+            ))
+
+            report = validate_submission(root, "alice", [proposal])
+
+            self.assertFalse(report.ok)
+            self.assertIn("iteration must look like", "\n".join(report.errors))
+
+    def test_renderer_outputs_nonempty_escaped_html(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal = root / "proposal.md"
+            exhibit = root / "exhibit.json"
+            proposal.write_text(
+                VALID_BODY.replace(
+                    'title: "AI Urban Loop"',
+                    'title: "<script>alert(1)</script> 城市智能体环"',
+                )
+                + "\n## 额外说明\n\n<script>bad()</script>",
+                encoding="utf-8",
+            )
+            render_exhibit = json.loads(json.dumps(VALID_EXHIBIT))
+            render_exhibit["hero"].pop("image")
+            exhibit.write_text(json.dumps(render_exhibit, ensure_ascii=False), encoding="utf-8")
+
+            html = render_html(proposal, exhibit)
+
+            self.assertIn("&lt;script&gt;alert(1)&lt;/script&gt; 城市智能体环", html)
+            self.assertNotIn("<script>alert(1)</script>", html)
+            self.assertIn("&lt;script&gt;bad()&lt;/script&gt;", html)
+            self.assertNotIn("<script>bad()</script>", html)
+            self.assertIn("本展示摘要来自结构化 exhibit.json。", html)
+            self.assertIn("完整方案正文", html)
+            self.assertIn("海淀具备高校、企业、科研机构", html)
+            self.assertGreater(len(html), 1000)
+
+    def test_portal_renderer_outputs_card(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal_dir = root / "examples" / "agent-civic-loop"
+            output = root / "examples" / "portal" / "index.html"
+            proposal_dir.mkdir(parents=True)
+            (proposal_dir / "proposal.md").write_text(VALID_BODY, encoding="utf-8")
+            (proposal_dir / "exhibit.json").write_text(
+                json.dumps(VALID_EXHIBIT, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            (proposal_dir / "assets").mkdir()
+            (proposal_dir / "assets" / "hero.png").write_text("placeholder", encoding="utf-8")
+
+            card = load_card(proposal_dir, output.parent)
+            html = render_portal([card], "Portal Test")
+
+            self.assertIn("Portal Test", html)
+            self.assertIn("AI Urban Loop", html)
+            self.assertIn("可学习、可复核的城市智能体环", html)
+            self.assertIn("../agent-civic-loop/index.html", html)
+            self.assertIn("../agent-civic-loop/assets/hero.png", html)
 
 
 if __name__ == "__main__":

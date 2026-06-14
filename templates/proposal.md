@@ -4,6 +4,7 @@ author_github: "your-github-login"
 language: "zh"
 license: "CC-BY-4.0"
 summary: "用 1-2 句话概括方案。"
+iteration: "v0.1"
 ---
 
 # 方案标题
@@ -39,4 +40,3 @@ summary: "用 1-2 句话概括方案。"
 ## 参考资料
 
 - `brief/public-brief.md`
-
