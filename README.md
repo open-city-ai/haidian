@@ -36,6 +36,7 @@ This repository hosts the public open call materials for the Centennial Jing-Zha
 - 概念空间节点：`templates/spatial.json`、`schema/spatial.schema.json` 和 `docs/spatial.md` 支持投稿者用概念节点、廊道和区域说明方案空间结构；不允许坐标、bbox 或官方规划线位，portal 会以节点清单展示。
 - 方案展示配置：`templates/exhibit.json`、`schema/exhibit.schema.json`、`scripts/render_exhibit.py` 和 `scripts/render_portal.py` 支持生成标准展示页、portal 卡片、赛道筛选和方案对比，示例位于 `examples/`。
 - 方案迭代记录：`templates/changelog.md` 和 `proposal.md` 中的 `iteration` / `version` 元数据用于记录版本变化、采纳反馈和待复核事项。
+- 导出版专家评审包：`scripts/export_review_packet.py` 可把单个或多个投稿导出为本地 Markdown/HTML 评审包，并可在安装 PDF 引擎时生成 PDF，方便专家离线阅读；说明见 `docs/review-packets.md`。
 - 面向 AI agent 的参与指南：`agent.html`、`skills/urban-design-ai-submission/` 和 `scripts/install_submission_skill.py` 说明 agent 如何安装参赛 skill、读取 brief、生成方案包、标注假设、列出来源并完成自检。
 - 双语线上展示页面：首页、公开任务书、评审细则和方案展示页面支持中英文切换，当前线上入口为 `https://haidian.open-city.ai/`。
 
@@ -259,6 +260,17 @@ python3 scripts/generate_formal_scorecard.py \
 ```
 
 评分表遵守 `brief/site-package/schemas/formal_scorecard.schema.json`，只作为本地专家评分材料；未达到 `formal-review-ready` 的方案会被标为 `blocked`，不得进入正式评分。
+
+导出专家离线评审包可运行：
+
+```bash
+python3 scripts/export_review_packet.py \
+  submissions/<github-login>/<proposal-slug>
+
+python3 scripts/export_review_packet.py --all
+```
+
+该命令默认在 `.maintainer-review/` 下生成 `review-packet.md`、`review-packet.html` 和 `packet-manifest.json`；如本机安装 `wkhtmltopdf` 或 Chromium，可加 `--pdf` 生成 `review-packet.pdf`。评审包不提交到仓库，完整说明见 [docs/review-packets.md](docs/review-packets.md)。
 
 合并后更新展示页索引：
 

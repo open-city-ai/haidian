@@ -95,6 +95,26 @@ python3 scripts/generate_formal_scorecard.py \
 
 正式评分表使用 `brief/site-package/schemas/formal_scorecard.schema.json`，七维度按 0-5 分填写并折算为 100 分。评分 JSON、专家分歧和中间材料不提交到仓库；如需反馈参赛者，只复制最终整理后的 PR comment。
 
-## 7. 可选人工/模型评审
+## 7. 导出专家离线评审包
+
+需要把一个或多个方案发给专家离线阅读时，维护者可以生成 Markdown/HTML 评审包：
+
+```bash
+python3 scripts/export_review_packet.py \
+  submissions/<github-login>/<proposal-slug>
+```
+
+多方案短名单可一次导出：
+
+```bash
+python3 scripts/export_review_packet.py \
+  submissions/alice/proposal-a \
+  submissions/bob/proposal-b \
+  --out .maintainer-review/review-packets/shortlist
+```
+
+如本机安装 `wkhtmltopdf` 或 Chromium，可追加 `--pdf` 生成 `review-packet.pdf`。默认输出在 `.maintainer-review/`，评审包只作本地专家材料，不提交到仓库、不进入公开 portal。详细说明见 `docs/review-packets.md`。
+
+## 8. 可选人工/模型评审
 
 `review-input.json` 和 `review-prompt.md` 可在本地交给独立专业评审或外部模型生成七维度评审意见。输出必须符合 `brief/site-package/schemas/advisory_review.schema.json`，其中 `pr_comment_markdown` 是唯一面向参赛者的可见文本。仓库 CI 不配置模型密钥，也不在 untrusted PR 中调用模型；评审意见如需反馈参赛者，仍只复制到 PR comment，不进入公开展示页。
