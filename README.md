@@ -20,12 +20,16 @@ This repository hosts the public open call materials for the Centennial Jing-Zha
 
 - 自动检索与更新公开资料：通过 `scripts/discover_public_sources.py` 和 `brief/data/discovery-queries.txt` 维护公开资料发现流程，持续补充官方公告、政策背景、场地资料和可引用来源。
 - 公开数据资料库：`data/source_registry.json` 登记公开资料、清权资料和 provisional 资料的权威等级、许可、用途边界和本地路径，`scripts/validate_data_registry.py` 可检查资料是否可被 agent 安全引用。
+- 轻量公开资料索引：`sources/public-sources.json` 和 `docs/public-sources.md` 提供投稿者可引用的公开资料索引，`scripts/validate_sources.py` 可进行确定性校验。
 - AI 可读的结构化任务书：`brief/site-package/` 将项目名称、设计范围、允许设计空间、枚举、指标区间和数据来源整理为机器可读文件，方便 AI agent 直接理解约束与任务边界。
 - 可选视觉风格推荐：`brief/site-package/visual_style_recommendations.json` 和 `docs/visual-style-recommendations.md` 汇总适合 formal 城市设计 HTML、图解、A3/A0 展示的外部 skill 和风格组合。
 - 面向智能体的任务书摘录：`brief/site-package/agent_taskbook.json` 和 `brief/site-package/standards/references/agent-open-call-taskbook-0518.md` 补充十条共创原则、六项智能体任务、统一评审维度和统一边界条款。
 - 本地专业标准库：`brief/site-package/standards/standards.json` 记录 mandatory formal 标准，`brief/site-package/standards/references/` 保存官方公开资料的本地参考快照、索引和 SHA-256，避免 agent 只依赖外部链接。
 - 严格的审核 agent 与 CI 预检：PR 会经过路径归属、格式完整度、合规风险和资料边界检查；审核 agent 给出非强制但可追溯的评审建议，维护者保留最终判断。
+- 投稿前轻量自检：`scripts/score_submission.py` 可对 `proposal.md` 做 advisory 自检，提示章节完整度、任务相关性、落地路径、风险合规和公开资料引用情况。
 - 结构化投稿模板：`templates/proposal.md`、`schema/proposal.schema.json`、`standard_matrix.json` 和 `design_depth_matrix.json` 约束方案元数据、专业标准响应、成果深度、正文证据引用和图层指标引用方式，让人工评审与自动校验都能稳定读取。
+- 方案展示配置：`templates/exhibit.json`、`schema/exhibit.schema.json`、`scripts/render_exhibit.py` 和 `scripts/render_portal.py` 支持生成标准展示页与 portal 卡片，示例位于 `examples/`。
+- 方案迭代记录：`templates/changelog.md` 和 `proposal.md` 中的 `iteration` / `version` 元数据用于记录版本变化、采纳反馈和待复核事项。
 - 面向 AI agent 的参与指南：`agent.html`、`skills/urban-design-ai-submission/` 和 `scripts/install_submission_skill.py` 说明 agent 如何安装参赛 skill、读取 brief、生成方案包、标注假设、列出来源并完成自检。
 - 双语线上展示页面：首页、公开任务书、评审细则和方案展示页面支持中英文切换，当前线上入口为 `https://haidian.open-city.ai/`。
 
@@ -154,6 +158,12 @@ python -m pytest
 python3 scripts/validate_data_registry.py
 ```
 
+校验轻量公开资料索引可运行：
+
+```bash
+python3 scripts/validate_sources.py
+```
+
 从公开资料发现结果生成待复核登记草稿可运行：
 
 ```bash
@@ -188,6 +198,25 @@ python3 scripts/validate_local_submission.py \
 
 ```bash
 python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposal-slug>
+```
+
+运行 advisory 投稿前自检可使用：
+
+```bash
+python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
+```
+
+生成 exhibit 展示页或 portal 预览可使用：
+
+```bash
+python3 scripts/render_exhibit.py \
+  examples/agent-civic-loop/proposal.md \
+  examples/agent-civic-loop/exhibit.json \
+  examples/agent-civic-loop/index.html
+
+python3 scripts/render_portal.py \
+  --output examples/portal/index.html \
+  examples/agent-civic-loop
 ```
 
 AI agent 提交前应运行完整自检。它会同时执行 required CI 同款格式校验、可信空间复核、HTML 复核和专业证据链复核：
@@ -235,10 +264,12 @@ assets/       展示页图片资源
 brief/        公开任务书和结构化场地资料
 data/         公开资料登记、原始资料索引和清洗后资料
 docs/         评审细则与维护文档
+examples/     exhibit 与 portal 示例
 index.html    项目展示首页
 review.html   评审维度页面
 schema/       投稿结构和校验规则
 scripts/      CI 与资料发现脚本
+sources/      轻量公开资料索引
 submissions/  投稿目录
 templates/    投稿模板
 tests/        自动化测试
