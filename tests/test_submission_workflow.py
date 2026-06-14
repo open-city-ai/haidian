@@ -13,8 +13,28 @@ from validate_submission import (  # noqa: E402
     ALL_REQUIRED_TASK_IDS,
     FALLBACK_REQUIRED_STANDARD_IDS,
     REQUIRED_DESIGN_DEPTH_IDS,
+    is_empty_pdf,
     validate_submission,
 )
+
+
+class EmptyPdfDetectionTests(unittest.TestCase):
+    def test_zero_count_placeholder_is_empty(self) -> None:
+        placeholder = (
+            b"%PDF-1.4\n1 0 obj<</Type/Catalog/Pages 2 0 R>>endobj\n"
+            b"2 0 obj<</Type/Pages/Count 0>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n"
+        )
+        self.assertTrue(is_empty_pdf(placeholder))
+
+    def test_tiny_stub_without_pages_is_empty(self) -> None:
+        self.assertTrue(is_empty_pdf(b"%PDF-1.4\n%%EOF\n"))
+
+    def test_pdf_with_page_objects_is_not_empty(self) -> None:
+        data = b"%PDF-1.4\n3 0 obj<</Type/Page/Parent 2 0 R>>endobj\n" + b"0" * 4096
+        self.assertFalse(is_empty_pdf(data))
+
+    def test_non_pdf_is_not_flagged(self) -> None:
+        self.assertFalse(is_empty_pdf(b"not a pdf"))
 
 
 REFERENCE_BLOCK = (

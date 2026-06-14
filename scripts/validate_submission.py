@@ -502,6 +502,22 @@ def is_under_drawings(parts: list[str]) -> bool:
     return len(parts) == 5 and parts[3] == "drawings"
 
 
+def is_empty_pdf(data: bytes) -> bool:
+    """Detect zero-page placeholder PDFs (advisory only).
+
+    Catches the scaffold placeholder (a page tree with ``/Count 0``) and tiny
+    stub PDFs with no page objects. Real multi-page boards have ``/Count`` > 0
+    or embedded ``/Type /Page`` objects, so this avoids false positives on
+    legitimate drawings.
+    """
+    if not data.startswith(b"%PDF"):
+        return False
+    if re.search(rb"/Count\s+0\b", data):
+        return True
+    has_page = re.search(rb"/Type\s*/Page\b", data) is not None
+    return not has_page and len(data) < 2048
+
+
 def is_under_report(parts: list[str]) -> bool:
     return len(parts) == 5 and parts[3] == "report"
 
@@ -1700,6 +1716,10 @@ def validate_submission(
             report.add_error(f"{path}: assets must be <= {MAX_ASSET_BYTES} bytes")
         if is_under_drawings(parts) and size > MAX_DRAWING_BYTES:
             report.add_error(f"{path}: drawings must be <= {MAX_DRAWING_BYTES} bytes")
+        if is_under_drawings(parts) and Path(path).suffix.lower() == ".pdf" and is_empty_pdf(full_path.read_bytes()):
+            report.add_warning(
+                f"{path}: drawing PDF has no pages; replace the placeholder with the actual A3/A0 boards before formal review"
+            )
         if is_visual_index(parts) and size > MAX_HTML_BYTES:
             report.add_error(f"{path}: visual/index.html must be <= {MAX_HTML_BYTES} bytes")
         if is_under_report(parts) and parts[4].endswith(".html") and size > MAX_HTML_BYTES:
