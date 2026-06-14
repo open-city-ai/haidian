@@ -61,12 +61,28 @@ class GitHubClient:
             url = next_link(headers.get("Link", ""))
         return results
 
-    def download_raw(self, raw_url: str, destination: Path, max_bytes: int = 6 * 1024 * 1024) -> None:
+    def download_content(
+        self,
+        repo: str,
+        path: str,
+        ref: str,
+        destination: Path,
+        max_bytes: int = 6 * 1024 * 1024,
+    ) -> None:
+        # Fetch raw bytes through the Contents API on api.github.com. Unlike the
+        # github.com raw_url, this honors the Bearer token on private repos (the
+        # raw_url redirects to raw.githubusercontent.com, which drops the header
+        # and 404s).
+        encoded_path = urllib.parse.quote(path)
+        encoded_ref = urllib.parse.quote(ref)
+        url = f"{API_ROOT}/repos/{repo}/contents/{encoded_path}?ref={encoded_ref}"
         request = urllib.request.Request(
-            raw_url,
+            url,
+            method="GET",
             headers={
                 "Authorization": f"Bearer {self.token}",
                 "Accept": "application/vnd.github.raw",
+                "X-GitHub-Api-Version": "2022-11-28",
             },
         )
         with urllib.request.urlopen(request, timeout=60) as response:
@@ -161,10 +177,7 @@ def main() -> int:
             filename = item["filename"]
             if item.get("status") == "removed":
                 continue
-            raw_url = item.get("raw_url")
-            if not raw_url:
-                continue
-            client.download_raw(raw_url, worktree / filename)
+            client.download_content(head_repo, filename, head_sha, worktree / filename)
 
         for proposal_path in proposal_paths_for(changed_files):
             destination = worktree / proposal_path
