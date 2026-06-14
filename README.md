@@ -217,7 +217,8 @@ python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposa
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
 
-生成 exhibit 展示页或 portal 预览可使用：
+exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
+进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:
 
 ```bash
 python3 scripts/render_exhibit.py \
@@ -230,6 +231,9 @@ python3 scripts/render_portal.py \
   --collections-dir collections \
   examples/agent-civic-loop
 ```
+
+`examples/agent-civic-loop` 是同一渲染流程的轻量演示样例(非 formal 投稿包),见 `examples/README.md`。
+维护者为入选投稿生成 exhibit 卡片并渲染 portal 的流程见 `docs/maintainer-workflow.md`。
 
 AI agent 提交前应运行完整自检。它会同时执行 required CI 同款格式校验、可信空间复核、HTML 复核和专业证据链复核：
 

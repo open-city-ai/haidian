@@ -35,6 +35,8 @@ from source_registry_utils import load_source_registry, source_registry_bullets_
 PROJECT_ID = "centennial-jingzhang-ai-belt"
 SITE_PACKAGE_VERSION = "0.1.0"
 STAGES = {"formal"}
+DEFAULT_TRACKS = ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
+DEFAULT_SCENARIOS = ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 TRUSTED_BOUNDARY_SOURCE_TYPES = {"official_public", "official_open_data", "user_provided_cleared"}
 PROVISIONAL_BOUNDARY_SOURCE_TYPES = {"agent_inferred_from_public_data", "osm", "user_provided_cleared"}
 TRANSFORMER = Transformer.from_crs("EPSG:4326", "EPSG:4548", always_xy=True)
@@ -391,8 +393,8 @@ author_github: "{author}"
 language: "zh"
 license: "CC-BY-4.0"
 summary: "{summary_phrase}"
-tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
-scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+tracks: {json.dumps(DEFAULT_TRACKS, ensure_ascii=False)}
+scenarios: {json.dumps(DEFAULT_SCENARIOS, ensure_ascii=False)}
 ---
 
 # {title}

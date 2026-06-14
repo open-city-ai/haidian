@@ -150,6 +150,80 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual([], report["visual_issue_ids"])
             self.assertEqual([], report["professional_issue_ids"])
 
+    def test_scaffold_does_not_emit_contributor_exhibit(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+            # Portal entry is a maintainer decision; contributors do not ship exhibit.json.
+            self.assertFalse((submission_dir / "exhibit.json").exists())
+
+    def test_validation_rejects_contributor_supplied_exhibit(self) -> None:
+        from validate_submission import validate_submission
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+            (submission_dir / "exhibit.json").write_text("{}", encoding="utf-8")
+
+            changed = ["submissions/alice/topology-pass/exhibit.json"]
+            report = validate_submission(root, "alice", changed)
+            self.assertFalse(report.ok)
+            self.assertTrue(
+                any("exhibit.json" in error for error in report.errors),
+                report.errors,
+            )
+
+    def test_maintainer_exhibit_generation_renders_portal(self) -> None:
+        import jsonschema
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+
+            generated = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "generate_exhibit.py"),
+                    str(submission_dir),
+                    "--repo-root",
+                    str(REPO_ROOT),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(generated.returncode, 0, generated.stdout + generated.stderr)
+
+            exhibit_path = submission_dir / "exhibit.json"
+            self.assertTrue(exhibit_path.exists())
+            schema = json.loads((REPO_ROOT / "schema" / "exhibit.schema.json").read_text(encoding="utf-8"))
+            jsonschema.validate(json.loads(exhibit_path.read_text(encoding="utf-8")), schema)
+
+            portal_out = root / "portal.html"
+            rendered = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "render_portal.py"),
+                    str(submission_dir),
+                    "--output",
+                    str(portal_out),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(rendered.returncode, 0, rendered.stdout + rendered.stderr)
+            self.assertTrue(portal_out.exists() and portal_out.stat().st_size > 0)
+
     def test_scaffold_manifest_hashes_match_written_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

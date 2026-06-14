@@ -81,6 +81,23 @@ python3 scripts/generate_submissions_data.py --check
 
 提交展示索引时，只提交 `submissions-data.js` 等展示页必要变更，不提交 `.maintainer-review/`、`docs/reviews/` 或任何 review packet。
 
+### 策展 portal 展示卡片
+
+进入 portal 的方案由维护者策展。投稿包本身不包含 `exhibit.json`，deterministic 校验也会拒绝参赛者提交的 `exhibit.json`。为入选方案生成 exhibit 卡片并渲染 portal：
+
+```bash
+# 为单个入选投稿生成 exhibit.json（默认写入投稿目录，已 gitignore）
+python3 scripts/generate_exhibit.py submissions/<github-login>/<proposal-slug>
+
+# 渲染 portal（可传入多个已生成 exhibit.json 的投稿目录）
+python3 scripts/render_portal.py \
+  --output examples/portal/index.html \
+  --collections-dir collections \
+  submissions/<github-login>/<proposal-slug>
+```
+
+`submissions/**/exhibit.json` 是本地构建产物（已在 `.gitignore` 中），可随时由 `generate_exhibit.py` 确定性重生成，不进入参赛者 intake 路径。`generate_exhibit.py --check` 可校验现有 exhibit 是否最新。
+
 ## 6. 正式专业评分
 
 只有 `maintainer_review.py` 返回 `formal-review-ready` 后，才运行正式评分表生成器：
