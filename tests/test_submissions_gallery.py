@@ -157,9 +157,7 @@ class TestSubmissionsGallery(unittest.TestCase):
         )
         self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
 
-    def test_public_gallery_starts_empty_without_approved_submissions(self):
-        proposal_paths = sorted((ROOT / "submissions").glob("*/*/proposal.md"))
-        self.assertEqual([], proposal_paths)
+    def test_public_gallery_stays_empty_without_approved_submissions(self):
         self.assertEqual([], self.load_gallery_items())
 
     def test_gallery_pages_explain_review_statuses(self):
