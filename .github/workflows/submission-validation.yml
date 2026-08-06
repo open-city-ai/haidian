@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: read
+  pull-requests: write
   issues: write
 
 jobs:
@@ -25,4 +25,3 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           MAINTAINER_BYPASS_LOGINS: ${{ vars.MAINTAINER_BYPASS_LOGINS }}
         run: python3 scripts/github_pr_validation.py
-
