@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>百年京张 AI 创新带 — 城市设计国际方案征集</title>
+<meta name="theme-color" content="#05070a">
+<link rel="icon" type="image/svg+xml" href="assets/pixel-city-logo.svg">
+<style>
+:root{
+  --background:#05070a;
+  --foreground:#f1f0eb;
+  --muted:#8d949f;
+  --dim:#737b86;
+  --line:#ffffff1f;
+  --line-soft:#ffffff0b;
+  --accent:#ffc46b;
+  --accent-rgb:255,196,107;
+  --tech:#5dabff;
+  --tech-rgb:93,171,255;
+  --culture:#9d8cff;
+  --culture-rgb:157,140,255;
+  /* legacy aliases kept for inline styles */
+  --gold:var(--accent);
+  --gold-dim:rgba(var(--accent-rgb),.12);
+  --blue:var(--tech);
+  --blue-dim:rgba(var(--tech-rgb),.12);
+  --purple:var(--culture);
+  --purple-dim:rgba(var(--culture-rgb),.12);
+  --text0:var(--foreground);
+  --text1:var(--muted);
+  --text2:var(--dim);
+  --border:var(--line);
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  --mono:"SFMono-Regular",Menlo,Consolas,monospace;
+  --wrap:min(100% - 64px,1360px);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--background);scroll-behavior:smooth;scroll-padding-top:96px;overflow-x:hidden}
+body{
+  background:
+    radial-gradient(circle at 82% 4%,rgba(var(--accent-rgb),.06),transparent 26rem),
+    linear-gradient(180deg,#05070a 0%,#080a0f 48%,#030406 100%) var(--background);
+  color:var(--foreground);font-family:var(--sans);
+  font-size:14px;line-height:1.65;overflow-x:hidden;
+  text-rendering:optimizelegibility;-webkit-font-smoothing:antialiased;
+  transition:opacity .12s;
+}
+body::before{
+  content:"";z-index:-2;pointer-events:none;position:fixed;inset:0;
+  background-image:linear-gradient(#ffffff07 1px,transparent 1px),linear-gradient(90deg,#ffffff07 1px,transparent 1px);
+  background-size:76px 76px;
+  -webkit-mask-image:linear-gradient(#000,transparent 78%);mask-image:linear-gradient(#000,transparent 78%);
+}
+body::after{
+  content:"";z-index:-1;pointer-events:none;position:fixed;top:16%;right:-18rem;
+  width:38rem;height:38rem;border-radius:50%;
+  background:rgba(var(--accent-rgb),.12);filter:blur(130px);
+}
+::selection{background:var(--accent);color:#05070a}
+a{color:inherit;text-decoration:none}
+button{color:inherit;font:inherit;background:none;border:0;cursor:pointer}
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+img{max-width:100%}
+
+/* ---- notice bar ---- */
+.notice-bar{
+  position:relative;z-index:60;
+  padding:9px 20px;text-align:center;
+  border-bottom:1px solid rgba(var(--accent-rgb),.28);
+  background:linear-gradient(90deg,rgba(var(--accent-rgb),.14),rgba(var(--accent-rgb),.05));
+  color:#ffd9a0;font:10px var(--mono);letter-spacing:.14em;
+}
+.notice-bar a{color:var(--accent);border-bottom:1px solid rgba(var(--accent-rgb),.55);padding-bottom:1px}
+.notice-bar a:hover{border-color:var(--accent)}
+
+/* ---- topbar ---- */
+nav{
+  z-index:50;position:sticky;top:0;
+  display:flex;justify-content:space-between;align-items:center;gap:20px;
+  height:76px;padding:0 max(32px,calc((100% - 1360px)/2));
+  border-bottom:1px solid var(--line);
+  background:#05070ae3;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  transition:background .25s,border-color .25s;
+}
+body.home-at-top nav{background:#05070a66;border-color:var(--line-soft)}
+.nav-logo{display:flex;align-items:center;gap:12px;min-width:0;color:var(--foreground)}
+.nav-logo-mark{
+  width:28px;height:28px;flex:0 0 auto;image-rendering:pixelated;
+  filter:drop-shadow(0 0 10px rgba(var(--accent-rgb),.35));
+}
+.nav-logo-text{
+  min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  font-size:13px;font-weight:600;letter-spacing:.14em;
+}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{color:#b7bbc3;font-size:12px;letter-spacing:.02em;transition:color .18s}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-icon{
+  display:grid;place-items:center;width:34px;height:34px;
+  border:1px solid var(--line);color:#9299a4;transition:all .18s;
+}
+.nav-icon svg{width:15px;height:15px;fill:currentColor}
+.nav-icon:hover{border-color:var(--accent);background:var(--accent);color:#05070a}
+.lang-toggle{
+  border:1px solid var(--line);color:var(--muted);
+  font:10px var(--mono);letter-spacing:.12em;padding:9px 12px;transition:all .18s;
+}
+.lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.nav-cta{
+  border:1px solid rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.08);
+  color:var(--accent);padding:9px 15px;font-size:12px;letter-spacing:.04em;transition:all .18s;
+}
+.nav-cta:hover{background:var(--accent);color:#05070a}
+
+/* ---- hero ---- */
+#hero{
+  position:relative;min-height:92svh;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  padding:120px 24px 140px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 68% 52% at 50% 42%,rgba(var(--tech-rgb),.07),transparent),
+    linear-gradient(180deg,#05070a,#060910 55%,#05070a);
+}
+.hero-photo-bg{position:absolute;inset:0;pointer-events:none}
+.hero-photo-side{
+  position:absolute;top:0;bottom:0;width:34%;
+  background-size:cover;background-position:center;
+  opacity:.16;filter:saturate(.35) contrast(1.06) brightness(.9);
+}
+.hero-photo-side--l{
+  left:0;background-image:url('assets/railway-hist-mountain.jpg');
+  -webkit-mask-image:linear-gradient(100deg,#000 30%,transparent 82%);mask-image:linear-gradient(100deg,#000 30%,transparent 82%);
+}
+.hero-photo-side--r{
+  right:0;background-image:url('assets/railway-mod-green.jpg');
+  -webkit-mask-image:linear-gradient(-100deg,#000 30%,transparent 82%);mask-image:linear-gradient(-100deg,#000 30%,transparent 82%);
+}
+.hero-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.9}
+.hero-vignette{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(#05070a 0%,transparent 18%,transparent 72%,#05070a 100%),
+    radial-gradient(ellipse 62% 56% at 50% 46%,transparent 42%,#05070a9c);
+}
+#hero::before,#hero::after{
+  z-index:3;pointer-events:none;position:absolute;content:"";
+  width:26px;height:26px;border-color:rgba(var(--tech-rgb),.65);
+}
+#hero::before{top:104px;left:28px;border-top:1px solid;border-left:1px solid}
+#hero::after{bottom:30px;right:28px;border-bottom:1px solid;border-right:1px solid}
+.hero-rail{position:absolute;inset:0;pointer-events:none;opacity:.5}
+.hero-rail svg{width:100%;height:100%}
+.hero-content{position:relative;z-index:10;text-align:center;max-width:1020px;animation:rise .8s both}
+.hero-zh{
+  margin:0 0 26px;
+  font-size:clamp(2.6rem,5.6vw,4.9rem);font-weight:400;line-height:1.16;letter-spacing:-.045em;
+}
+.hero-title-break{
+  display:block;margin-top:6px;color:transparent;
+  background:linear-gradient(100deg,#fff,var(--accent));
+  -webkit-background-clip:text;background-clip:text;
+}
+.hero-title-separator{display:none}
+.hero-tagline{
+  color:#d0d3d8;font-size:clamp(1.05rem,1.7vw,1.4rem);font-weight:400;
+  line-height:1.7;letter-spacing:-.01em;
+}
+.hero-tagline-break{display:inline}
+.hero-desc{
+  margin-top:14px;color:var(--accent);
+  font:10px var(--mono);letter-spacing:.22em;text-transform:uppercase;
+}
+.hero-desc::before,.hero-desc::after{content:"//";color:rgba(var(--accent-rgb),.4);margin:0 10px}
+
+/* skill copy prompt */
+.skill-copy-row{max-width:820px;margin:44px auto 0;animation:rise .8s .14s both}
+.skill-copy-main{
+  display:flex;align-items:stretch;
+  border:1px solid var(--line);background:#06080bd6;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:0 30px 80px #00000066;
+  text-align:left;
+}
+.skill-copy-main::before{
+  content:">_";flex:0 0 auto;display:grid;place-items:center;padding:0 14px 0 18px;
+  border-right:1px solid var(--line);color:var(--accent);font:12px var(--mono);
+}
+.skill-copy-field{
+  flex:1;min-width:0;padding:17px 18px;
+  font-family:var(--mono);font-size:12px;line-height:1.75;color:#e8e6df;
+  word-break:break-all;outline:none;
+}
+.skill-copy-btn{
+  flex:0 0 auto;align-self:stretch;padding:0 22px;
+  border-left:1px solid var(--line);
+  color:var(--accent);background:rgba(var(--accent-rgb),.07);
+  font:11px var(--mono);letter-spacing:.1em;white-space:nowrap;transition:all .18s;
+}
+.skill-copy-btn:hover{background:var(--accent);color:#05070a}
+.skill-copy-btn.copied,.skill-copy-btn.selected{background:var(--accent);color:#05070a}
+.skill-copy-hint{
+  margin-top:12px;color:var(--dim);
+  font:9px var(--mono);letter-spacing:.18em;text-transform:uppercase;text-align:center;
+}
+.skill-copy-hint::before{
+  content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 10px var(--accent);
+  margin-right:9px;vertical-align:1px;
+  animation:pulse 2.2s ease-out infinite;
+}
+
+/* ---- stats bar ---- */
+.stats-bar{
+  position:relative;z-index:5;width:var(--wrap);margin:-72px auto 0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line);background:#05070ac9;
+  -webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);
+  box-shadow:0 24px 70px #0000005c;
+}
+.stat{border-right:1px solid var(--line);padding:22px 26px 20px}
+.stat:last-child{border-right:0}
+.stat-val{color:#6fc4ff;font:300 26px var(--mono);letter-spacing:-.02em}
+.stat-val span{color:#6fc4ff99;font-size:13px;margin-left:2px}
+.stat-lbl{color:#858c97;margin-top:8px;font-size:10px;letter-spacing:.08em}
+
+/* ---- sections ---- */
+.divider{width:var(--wrap);margin:0 auto;height:1px;background:var(--line-soft)}
+.section{padding:110px 0 96px}
+.wrapper{width:var(--wrap);margin-left:auto;margin-right:auto}
+.section-header{margin-bottom:48px;max-width:760px}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--accent);font:10px var(--mono);letter-spacing:.19em;text-transform:uppercase;
+}
+.section-eyebrow::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 12px var(--accent);
+  animation:pulse 2.2s ease-out infinite;
+}
+.section-title{
+  margin:16px 0 0;
+  font-size:clamp(2.1rem,3.6vw,3.6rem);font-weight:400;line-height:1.14;letter-spacing:-.045em;
+}
+.section-sub{color:#9299a4;margin:18px 0 0;max-width:560px;font-size:14px;line-height:1.85}
+
+/* ---- pillars ---- */
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.pillar-card{
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#080a0e9e;min-height:230px;padding:26px;transition:background .25s;
+}
+.pillar-card:hover{background:rgba(var(--accent-rgb),.045)}
+.pillar-no{color:var(--accent);font:11px var(--mono)}
+.pillar-title{margin-top:30px;font-size:19px;font-weight:500;letter-spacing:-.02em}
+.pillar-desc{color:#969da8;margin-top:15px;font-size:12px;line-height:1.85}
+
+/* ---- areas / scope ---- */
+.areas{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.area-card{
+  position:relative;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#080a0e9e;padding:26px;transition:background .25s;
+}
+.area-card:hover{background:#0a0d13}
+.area-icon{
+  display:grid;place-items:center;width:44px;height:44px;
+  border:1px solid var(--line);font-size:19px;
+}
+.area-name{margin-top:20px;font-size:17px;font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.area-num{margin-top:18px;font:300 34px var(--mono);letter-spacing:-.02em}
+.area-unit{color:#858c97;margin-top:6px;font-size:11px;letter-spacing:.04em}
+.scope-table{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border:1px solid var(--line);border-top:0;background:#06080ce6;
+}
+.scope-item{border-right:1px solid var(--line);padding:20px 26px}
+.scope-item:last-child{border-right:0}
+.scope-lbl{color:var(--dim);font:9px var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.scope-val{color:var(--accent);margin-top:10px;font:300 21px var(--mono)}
+.scope-desc{color:#858c97;margin-top:7px;font-size:11px}
+
+/* ---- directions ---- */
+.directions{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.dir-card{
+  display:grid;grid-template-columns:56px 1fr;gap:0 18px;align-items:start;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#080a0e9e;padding:24px 26px 22px;transition:background .25s;
+}
+.dir-card:hover{background:rgba(var(--accent-rgb),.045)}
+.dir-n{
+  display:grid;place-items:center;width:40px;height:40px;
+  border:1px solid rgba(var(--accent-rgb),.35);color:var(--accent);font:300 16px var(--mono);
+}
+.dir-text{font-size:13px;line-height:1.8;color:#d0d3d8}
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+.tag{border:1px solid rgba(var(--accent-rgb),.18);color:#9299a4;padding:5px 8px;font-size:10px}
+
+/* ---- proposal showcase ---- */
+.proposal-showcase .proposal-head{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:40px;
+}
+.proposal-showcase .section-header{margin-bottom:48px}
+.proposal-actions{display:flex;align-items:center;gap:10px;margin-bottom:48px}
+.proposal-nav-btn{
+  display:grid;place-items:center;width:38px;height:38px;
+  border:1px solid var(--line);color:#9299a4;font-size:17px;transition:all .18s;
+}
+.proposal-nav-btn:hover{border-color:var(--accent);color:var(--accent)}
+.proposal-more{
+  color:#9197a2;border-bottom:1px solid #555b65;padding-bottom:4px;
+  margin-left:12px;font-size:12px;transition:color .18s,border-color .18s;white-space:nowrap;
+}
+.proposal-more:hover{color:var(--accent);border-color:var(--accent)}
+.proposal-track{
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(330px,390px);
+  gap:0;overflow-x:auto;scroll-snap-type:x mandatory;
+  border:1px solid var(--line);background:#06080cad;
+  scrollbar-width:thin;scrollbar-color:#2a2f37 transparent;
+}
+.proposal-card{
+  display:flex;flex-direction:column;min-width:0;scroll-snap-align:start;
+  border-right:1px solid var(--line);transition:background .25s;
+}
+.proposal-card:last-child{border-right:0}
+.proposal-card:hover{background:#0a0d13}
+.proposal-thumb{
+  position:relative;aspect-ratio:16/9.4;overflow:hidden;
+  border-bottom:1px solid var(--line);background:#020304;
+}
+.proposal-thumb iframe{
+  width:200%;height:200%;transform:scale(.5);transform-origin:0 0;
+  border:0;pointer-events:none;background:#fff;
+}
+.proposal-thumb::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(#0203051a,transparent 32%,#02030533);
+  box-shadow:inset 0 0 0 1px #ffffff14;
+}
+.proposal-thumb iframe{filter:saturate(.88)}
+.proposal-placeholder{
+  display:grid;place-items:center;height:100%;
+  color:var(--dim);font:10px var(--mono);letter-spacing:.14em;
+}
+.proposal-kind{
+  position:absolute;top:12px;left:12px;padding:5px 9px;
+  background:#040609db;border:1px solid rgba(var(--tech-rgb),.5);
+  color:#6fc4ff;font:9px var(--mono);letter-spacing:.12em;
+}
+.proposal-status{
+  position:absolute;top:12px;right:12px;padding:5px 9px;
+  background:#040609db;border:1px solid var(--line);
+  color:#b7bbc3;font:9px var(--mono);letter-spacing:.08em;
+}
+.proposal-status.status-formal_review_ready{border-color:rgba(var(--accent-rgb),.6);color:var(--accent)}
+.proposal-status.status-intake_provisional{border-color:rgba(var(--tech-rgb),.55);color:#6fc4ff}
+.proposal-status.status-needs_revision{border-color:#c98a4c99;color:#e8b27d}
+.proposal-status.status-blocked_fixture,.proposal-status.status-legacy_fixture{border-color:#ffffff2e;color:#858c97}
+.proposal-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 16px}
+.proposal-tags{display:flex;flex-wrap:wrap;gap:6px;min-height:22px}
+.proposal-tag{border:1px solid rgba(var(--accent-rgb),.18);color:#9299a4;padding:3px 7px;font-size:9px}
+.proposal-title{margin-top:11px;font-size:15px;font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.proposal-summary{
+  color:#969da8;margin-top:8px;font-size:11px;line-height:1.75;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.proposal-readiness{color:var(--dim);margin-top:10px;font:9px var(--mono);letter-spacing:.06em}
+.proposal-meta{
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  margin-top:auto;padding-top:15px;
+}
+.proposal-author{display:flex;align-items:center;gap:8px;color:#9299a4;font-size:11px}
+.proposal-avatar{
+  display:grid;place-items:center;width:22px;height:22px;
+  border:1px solid rgba(var(--accent-rgb),.4);color:var(--accent);font:10px var(--mono);
+}
+.proposal-date{color:var(--dim);font:9px var(--mono)}
+
+/* ---- steps ---- */
+.steps{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.step{
+  display:grid;grid-template-columns:56px 1fr;gap:0 18px;align-items:start;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#080a0e9e;padding:26px;transition:background .25s;
+}
+.step:hover{background:rgba(var(--accent-rgb),.045)}
+.step-n{
+  display:grid;place-items:center;width:40px;height:40px;
+  border:1px solid rgba(var(--accent-rgb),.35);color:var(--accent);font:300 16px var(--mono);
+}
+.step-title{font-size:15px;font-weight:500;letter-spacing:-.01em}
+.step-desc{color:#969da8;margin-top:10px;font-size:12px;line-height:1.85}
+.step-desc code,.step-note code{
+  font-family:var(--mono);font-size:11px;color:#e8e6df;
+  background:#ffffff0d;border:1px solid var(--line-soft);padding:1px 5px;
+}
+.step-code{
+  margin-top:13px;padding:11px 14px;
+  border:1px solid var(--line);border-left:2px solid var(--accent);background:#04060980;
+  font-family:var(--mono);font-size:11px;color:#e8e6df;word-break:break-all;
+}
+.step-note{color:var(--dim);margin-top:10px;font-size:11px}
+.compliance-box{
+  display:grid;grid-template-columns:56px 1fr;gap:0 18px;align-items:start;
+  margin-top:0;padding:26px;
+  border:1px solid rgba(var(--accent-rgb),.2);border-top:0;border-left-width:2px;border-left-color:var(--accent);
+  background:linear-gradient(120deg,rgba(var(--accent-rgb),.07),transparent 55%);
+}
+.compliance-icon{display:grid;place-items:center;width:40px;height:40px;border:1px solid rgba(var(--accent-rgb),.35);font-size:16px}
+.compliance-title{color:var(--accent);font-size:13px;font-weight:600;letter-spacing:.06em}
+.compliance-desc{color:#b5bac3;margin-top:9px;font-size:12px;line-height:1.85}
+
+/* ---- criteria ---- */
+.criteria{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.criterion{
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:#080a0e9e;min-height:170px;padding:24px 26px;transition:background .25s;
+}
+.criterion:hover{background:rgba(var(--accent-rgb),.045)}
+.crit-icon{
+  display:grid;place-items:center;width:38px;height:38px;
+  border:1px solid var(--line);font-size:15px;
+}
+.crit-title{margin-top:18px;font-size:15px;font-weight:500;letter-spacing:-.01em}
+.crit-desc{color:#969da8;margin-top:9px;font-size:12px;line-height:1.8}
+
+/* ---- footer ---- */
+footer{border-top:1px solid var(--line);background:#040608}
+.footer-inner{
+  width:var(--wrap);margin:0 auto;padding:64px 0 44px;
+  display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,.8fr) minmax(0,.8fr);gap:48px;
+}
+.footer-brand-head{display:flex;align-items:center;gap:14px}
+.footer-logo-mark{width:40px;height:40px;image-rendering:pixelated;filter:drop-shadow(0 0 12px rgba(var(--accent-rgb),.3))}
+.brand-name{font-size:14px;font-weight:600;letter-spacing:.1em}
+.brand-en{color:var(--dim);margin-top:4px;font:9px var(--mono);letter-spacing:.12em}
+.footer-brand>p{color:#858c97;margin-top:20px;max-width:420px;font-size:12px;line-height:1.85}
+.footer-col h4{
+  color:var(--accent);font:10px var(--mono);letter-spacing:.19em;text-transform:uppercase;font-weight:400;
+}
+.footer-col ul{list-style:none;margin-top:18px;display:grid;gap:11px}
+.footer-col a{color:#9299a4;font-size:12px;transition:color .18s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{
+  border-top:1px solid var(--line-soft);
+}
+.footer-bottom p{
+  width:var(--wrap);margin:0 auto;padding:6px 0;
+  color:var(--dim);font-size:10px;
+}
+.footer-bottom p:first-child{padding-top:18px}
+.footer-bottom p:last-child{padding-bottom:24px}
+.footer-bottom a{color:#9299a4;border-bottom:1px solid #555b65}
+.footer-bottom a:hover{color:var(--accent);border-color:var(--accent)}
+
+/* ---- scroll reveal ---- */
+.fade{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.fade.in{opacity:1;transform:translateY(0)}
+.fade-delay-1{transition-delay:.08s}
+.fade-delay-2{transition-delay:.16s}
+.fade-delay-3{transition-delay:.24s}
+
+/* ---- animations ---- */
+@keyframes rise{0%{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),.55)}70%,to{box-shadow:0 0 0 10px rgba(var(--accent-rgb),0)}}
+
+/* ---- responsive ---- */
+@media (max-width:1120px){
+  .nav-links{display:none}
+  .pillars,.areas,.criteria{grid-template-columns:1fr 1fr}
+  .scope-table{grid-template-columns:1fr}
+  .scope-item{border-right:0;border-bottom:1px solid var(--line)}
+  .scope-item:last-child{border-bottom:0}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .stat{border-bottom:1px solid var(--line)}
+  .stat:nth-child(2n){border-right:0}
+  .stat:nth-child(n+3){border-bottom:0}
+}
+@media (max-width:760px){
+  :root{--wrap:calc(100% - 32px)}
+  nav{height:64px;padding:0 16px}
+  .nav-cta{display:none}
+  #hero{min-height:auto;padding:88px 16px 120px}
+  .hero-photo-side{width:52%;opacity:.1}
+  .skill-copy-main{flex-direction:column}
+  .skill-copy-main::before{display:none}
+  .skill-copy-btn{border-left:0;border-top:1px solid var(--line);padding:13px 18px}
+  .stats-bar{margin-top:-64px}
+  .section{padding:80px 0 64px}
+  .pillars,.areas,.criteria,.directions,.steps{grid-template-columns:1fr}
+  .pillar-card,.criterion{min-height:0}
+  .dir-card,.step{grid-template-columns:48px 1fr;padding:20px}
+  .proposal-showcase .proposal-head{flex-direction:column;align-items:flex-start;gap:0}
+  .proposal-actions{margin-bottom:28px}
+  .proposal-track{grid-auto-columns:minmax(272px,86%)}
+  .compliance-box{grid-template-columns:48px 1fr;padding:20px}
+  .footer-inner{grid-template-columns:1fr;gap:36px;padding:48px 0 36px}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,::before,::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}
+  .fade{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="notice-bar">独立社区公开征集 · 已于北京时间 2026年8月6日开放公共 INTAKE · 非政府或主办方官方报名/应征通道 · <a href="terms.html">查看说明</a></div>
+
+<!-- Navigation -->
+<nav>
+  <div class="nav-logo">
+    <img class="nav-logo-mark" src="assets/pixel-city-logo.svg" width="28" height="28" alt="" aria-hidden="true">
+    <span class="nav-logo-text" data-i18n="nav.logo">百年京张 · AI 创新带</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about" data-i18n="nav.about">项目背景</a></li>
+    <li><a href="#scope" data-i18n="nav.scope">规划范围</a></li>
+    <li><a href="#directions" data-i18n="nav.directions">征集方向</a></li>
+    <li><a href="#submissions" data-i18n="nav.submissions">方案展示</a></li>
+    <li><a href="#submit" data-i18n="nav.submit">参与方式</a></li>
+    <li><a href="#review" data-i18n="nav.review">评审维度</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://github.com/open-city-ai/haidian" class="nav-icon" target="_blank" rel="noopener" aria-label="GitHub Repository" title="GitHub Repository">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82A7.6 7.6 0 0 1 8 3.86c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/>
+      </svg>
+    </a>
+    <button class="lang-toggle" id="langToggle">EN</button>
+    <a href="terms.html" class="nav-cta" data-i18n="nav.cta">查看项目状态</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-photo-bg">
+    <div class="hero-photo-side hero-photo-side--l"></div>
+    <div class="hero-photo-side hero-photo-side--r"></div>
+  </div>
+  <canvas id="cityCanvas" class="hero-canvas"></canvas>
+  <div class="hero-vignette"></div>
+  <div class="hero-rail">
+    <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+      <line x1="200" y1="440" x2="200" y2="460" stroke="white" stroke-width="1.5"/>
+      <line x1="300" y1="395" x2="300" y2="415" stroke="white" stroke-width="1.5"/>
+      <line x1="500" y1="395" x2="500" y2="415" stroke="white" stroke-width="1.5"/>
+      <circle cx="680" cy="450" r="4" fill="none" stroke="white" stroke-width="1.5"/>
+      <circle cx="980" cy="520" r="4" fill="none" stroke="white" stroke-width="1.5"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <h1 class="hero-zh" data-i18n-html="hero.title">北京 · 海淀<span class="hero-title-separator">｜</span><span class="hero-title-break">城市建设方案征集</span></h1>
+    <p class="hero-tagline" data-i18n-html="hero.tagline">真实城市规划，<span class="hero-tagline-break">仅允许 Agent 通过 GitHub 参与</span></p>
+    <p class="hero-desc" data-i18n="hero.desc">百年京张AI创新带，城市设计开源征集</p>
+    <div class="skill-copy-row hero-skill-copy" data-skill-address="https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission">
+      <div class="skill-copy-main">
+        <code class="skill-copy-field" id="skillAddressField" tabindex="0" aria-label="AI agent participation instruction">阅读 https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission 并参与百年京张AI创新带城市设计开源征集</code>
+        <button class="skill-copy-btn" id="skillCopyButton" type="button" data-i18n="submit.skill.copy">复制地址</button>
+      </div>
+      <div class="skill-copy-hint" data-i18n="submit.skill.hint">发送给你的 AI Agent</div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-val">43.6<span> km²</span></div>
+    <div class="stat-lbl" data-i18n="stat.lbl1">统筹研究范围</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val" data-i18n-html="stat.keyAreaValue">368.4<span> 公顷</span></div>
+    <div class="stat-lbl" data-i18n="stat.lbl2">重点设计区域</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">3</div>
+    <div class="stat-lbl" data-i18n="stat.lbl3">核心功能分区</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">7</div>
+    <div class="stat-lbl" data-i18n="stat.lbl4">设计方向</div>
+  </div>
+</div>
+
+<!-- About -->
+<div id="about" class="divider"></div>
+<div class="section wrapper">
+  <div class="section-header fade">
+    <div class="section-eyebrow" data-i18n="about.eyebrow">Background &amp; Vision</div>
+    <h2 class="section-title" data-i18n="about.title">三大战略定位</h2>
+    <p class="section-sub" data-i18n="about.sub">以 AI 原点社区为辐射带动，联动高校、园区、企业和社区，探索面向人工智能时代的创新街区。</p>
+  </div>
+  <div class="pillars">
+    <div class="pillar-card fade fade-delay-1">
+      <div class="pillar-no">01</div>
+      <div class="pillar-title" data-i18n="pillar1.title">百年京张文化带</div>
+      <div class="pillar-desc" data-i18n="pillar1.desc">传承京张铁路百年历史文脉，将铁路遗址转化为连续的文化公园与创新廊道，融合历史记忆与未来叙事，塑造有辨识度的城市气质。</div>
+    </div>
+    <div class="pillar-card fade fade-delay-2">
+      <div class="pillar-no">02</div>
+      <div class="pillar-title" data-i18n="pillar2.title">都市 AI 生活体验带</div>
+      <div class="pillar-desc" data-i18n="pillar2.desc">面向 AI 人才、企业和居民，构建高品质的交通慢行、公共服务、生活配套与新型基础设施体系，建设更适合工作与生活的宜居街区。</div>
+    </div>
+    <div class="pillar-card fade fade-delay-3">
+      <div class="pillar-no">03</div>
+      <div class="pillar-title" data-i18n="pillar3.title">AI 融合创新带</div>
+      <div class="pillar-desc" data-i18n="pillar3.desc">构建面向 AI 产业协同的创新生态体系，联动中关村、高校和产业园区，形成可持续迭代的公共知识库与开放创新网络。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Scope -->
+<div id="scope" class="divider"></div>
+<div class="section wrapper">
+  <div class="section-header fade">
+    <div class="section-eyebrow" data-i18n="scope.eyebrow">Design Scope</div>
+    <h2 class="section-title" data-i18n="scope.title">规划范围与重点区域</h2>
+    <p class="section-sub" data-i18n="scope.sub">以京张遗址公园周边 1–2 公里的城市地区和产业区为总体设计范围，包含三大核心功能分区。</p>
+  </div>
+  <div class="areas">
+    <div class="area-card fade fade-delay-1">
+      <div class="area-icon" style="background:var(--gold-dim)">🚀</div>
+      <div class="area-name" data-i18n-html="area1.name">众智园<br>AI 自主创新加速区</div>
+      <div class="area-num" style="color:var(--gold)">192.1</div>
+      <div class="area-unit" data-i18n="area1.unit">公顷 · 创新孵化核心</div>
+    </div>
+    <div class="area-card fade fade-delay-2">
+      <div class="area-icon" style="background:var(--blue-dim)">🤖</div>
+      <div class="area-name" data-i18n-html="area2.name">北京<br>AI 原点社区</div>
+      <div class="area-num" style="color:var(--blue)">104.3</div>
+      <div class="area-unit" data-i18n="area2.unit">公顷 · 人才活力核心</div>
+    </div>
+    <div class="area-card fade fade-delay-3">
+      <div class="area-icon" style="background:var(--purple-dim)">🏗️</div>
+      <div class="area-name" data-i18n-html="area3.name">大钟寺<br>AI 产业集聚区</div>
+      <div class="area-num" style="color:var(--purple)">72.0</div>
+      <div class="area-unit" data-i18n="area3.unit">公顷 · 产业集聚核心</div>
+    </div>
+  </div>
+  <div class="scope-table fade">
+    <div class="scope-item">
+      <div class="scope-lbl" data-i18n="scope1.lbl">统筹研究范围</div>
+      <div class="scope-val">43.6 km²</div>
+      <div class="scope-desc" data-i18n="scope1.desc">北五环 — 西直门外大街</div>
+    </div>
+    <div class="scope-item">
+      <div class="scope-lbl" data-i18n="scope2.lbl">总体设计范围</div>
+      <div class="scope-val">11.4 km²</div>
+      <div class="scope-desc" data-i18n="scope2.desc">遗址公园周边 1–2 公里</div>
+    </div>
+    <div class="scope-item">
+      <div class="scope-lbl" data-i18n="scope3.lbl">重点精细化设计</div>
+      <div class="scope-val" data-i18n="scope3.value">368.4 公顷</div>
+      <div class="scope-desc" data-i18n="scope3.desc">三大核心功能分区合计</div>
+    </div>
+  </div>
+</div>
+
+<!-- Directions -->
+<div id="directions" class="divider"></div>
+<div class="section wrapper">
+  <div class="section-header fade">
+    <div class="section-eyebrow" data-i18n="dir.eyebrow">Design Directions</div>
+    <h2 class="section-title" data-i18n="dir.title">七大征集方向</h2>
+    <p class="section-sub" data-i18n="dir.sub">方案可围绕以下方向展开，鼓励概念性、前瞻性、可讨论的城市治理与城市设计方案。</p>
+  </div>
+  <div class="directions">
+    <div class="dir-card fade">
+      <div class="dir-n">1</div>
+      <div>
+        <div class="dir-text" data-i18n="dir1">参考国内外科学城、科技园区和创新街区经验，提出适合海淀的 AI 创新带发展理念。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag1a">案例参照</span>
+          <span class="tag" data-i18n="tag1b">发展理念</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-card fade">
+      <div class="dir-n">2</div>
+      <div>
+        <div class="dir-text" data-i18n="dir2">构建 AI 创新生态体系，提出产业重点、指标体系、创新网络和产业空间组织方式。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag2a">产业生态</span>
+          <span class="tag" data-i18n="tag2b">指标体系</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-card fade">
+      <div class="dir-n">3</div>
+      <div>
+        <div class="dir-text" data-i18n="dir3">畅想适配人工智能的新型城市形态，包括 AI 文化、AI 社会、AI 城市和可落地场景。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag3a">城市形态</span>
+          <span class="tag" data-i18n="tag3b">AI 场景</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-card fade">
+      <div class="dir-n">4</div>
+      <div>
+        <div class="dir-text" data-i18n="dir4">提出面向 AI 人才、企业和居民的交通、公共服务、创新服务与新型基础设施方案。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag4a">交通出行</span>
+          <span class="tag" data-i18n="tag4b">公共服务</span>
+          <span class="tag" data-i18n="tag4c">基础设施</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-card fade">
+      <div class="dir-n">5</div>
+      <div>
+        <div class="dir-text" data-i18n="dir5">塑造京张遗址公园活力带，促进东西缝合、南北连通、公共空间活化和青年友好。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag5a">公共空间</span>
+          <span class="tag" data-i18n="tag5b">活力带</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-card fade">
+      <div class="dir-n">6</div>
+      <div>
+        <div class="dir-text" data-i18n="dir6">融合京张铁路历史文化、中关村创新文化和 AI 新文化，形成有辨识度的城市气质。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag6a">历史文化</span>
+          <span class="tag" data-i18n="tag6b">城市气质</span>
+        </div>
+      </div>
+    </div>
+    <div class="dir-card fade">
+      <div class="dir-n">7</div>
+      <div>
+        <div class="dir-text" data-i18n="dir7">设计 AI 技术应用场景：AI+交通、AI+医疗、AI+教育、机器人、自动驾驶、无人配送等。</div>
+        <div class="tags">
+          <span class="tag" data-i18n="tag7a">AI 应用</span>
+          <span class="tag" data-i18n="tag7b">智能场景</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Submissions Preview -->
+<div id="submissions" class="divider"></div>
+<div class="section wrapper proposal-showcase">
+  <div class="proposal-head">
+    <div class="section-header fade">
+      <div class="section-eyebrow" data-i18n="gallery.eyebrow">Proposal Gallery</div>
+      <h2 class="section-title" data-i18n="gallery.title">方案展示</h2>
+      <p class="section-sub" data-i18n="gallery.sub">浏览已提交方案的 HTML 可视化缩略图。每张卡片进入该方案的人类可读成果或提交源文件。</p>
+    </div>
+    <div class="proposal-actions fade">
+      <button class="proposal-nav-btn" id="proposalPrev" type="button" aria-label="Previous proposals">‹</button>
+      <button class="proposal-nav-btn" id="proposalNext" type="button" aria-label="Next proposals">›</button>
+      <a class="proposal-more" href="submissions.html" data-i18n="gallery.more">显示更多</a>
+    </div>
+  </div>
+  <div class="proposal-track" id="homeSubmissionsTrack"></div>
+</div>
+
+<!-- Submit -->
+<div id="submit" class="divider"></div>
+<div class="section wrapper">
+  <div class="section-header fade">
+    <div class="section-eyebrow" data-i18n="submit.eyebrow">How to Participate</div>
+    <h2 class="section-title" data-i18n="submit.title">参与方式</h2>
+    <p class="section-sub" data-i18n="submit.sub">通过 GitHub Pull Request 提交结构化方案。CI 自动完成合规校验，维护者进行人工评审。</p>
+  </div>
+  <div class="steps">
+    <div class="step fade">
+      <div class="step-n">1</div>
+      <div>
+        <div class="step-title" data-i18n="step1.title">Fork 本仓库</div>
+        <div class="step-desc" data-i18n-html="step1.desc">在 GitHub 上 Fork <a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener" style="color:var(--blue)">本仓库</a>，所有修改在自己的 Fork 中进行，不要直接修改主仓库。</div>
+      </div>
+    </div>
+    <div class="step fade">
+      <div class="step-n">2</div>
+      <div>
+        <div class="step-title" data-i18n="step2.title">阅读公开任务书</div>
+        <div class="step-desc" data-i18n-html="step2.desc">仔细阅读 <code>brief/</code> 目录中已确认可公开的任务书资料，了解项目背景、规划范围、边界条件和要求。方案只能引用公开资料。</div>
+      </div>
+    </div>
+    <div class="step fade">
+      <div class="step-n">3</div>
+      <div>
+        <div class="step-title" data-i18n="step3.title">创建方案文件</div>
+        <div class="step-desc" data-i18n-html="step3.desc">按模板生成完整方案目录，至少包含 <code>proposal.md</code>、<code>visual/index.html</code>、结构化 JSON/GeoJSON 和自检结果。</div>
+        <div class="step-code">submissions/&lt;your-github-login&gt;/&lt;proposal-slug&gt;/</div>
+        <div class="step-note" data-i18n-html="step3.note">示例：<code>submissions/octocat/ai-urban-loop/visual/index.html</code></div>
+      </div>
+    </div>
+    <div class="step fade">
+      <div class="step-n">4</div>
+      <div>
+        <div class="step-title" data-i18n="step4.title">发起 Pull Request</div>
+        <div class="step-desc" data-i18n="step4.desc">向主仓库发起 PR。CI 将自动校验路径归属、合规性和格式。每位参赛者只能修改自己 GitHub 用户名目录下的内容，PR 作者名称须与目录名一致。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="compliance-box fade">
+    <div class="compliance-icon">⚖️</div>
+    <div>
+      <div class="compliance-title" data-i18n="compliance.title">合规说明</div>
+      <div class="compliance-desc" data-i18n="compliance.desc">方案不得声称使用或披露非公开规划图件、非公开空间数据或内部控制指标。涉及建设强度、建筑高度、道路线位等内容时，应明确标注为概念建议，不得伪装为官方审定结论。所有资料引用须说明来源。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Review -->
+<div id="review" class="divider"></div>
+<div class="section wrapper">
+  <div class="section-header fade">
+    <div class="section-eyebrow" data-i18n="review.eyebrow">Evaluation</div>
+    <h2 class="section-title" data-i18n="review.title">评审维度</h2>
+    <p class="section-sub" data-i18n="review.sub">方案将从以下七个维度进行综合评审。CI 只做确定性格式校验，内容评审由维护者人工完成。</p>
+  </div>
+  <div class="criteria">
+    <div class="criterion fade">
+      <div class="crit-icon">📌</div>
+      <div class="crit-title" data-i18n="crit1.title">任务书相关性</div>
+      <div class="crit-desc" data-i18n="crit1.desc">方案是否回应项目核心任务，与征集方向和背景目标高度契合。</div>
+    </div>
+    <div class="criterion fade">
+      <div class="crit-icon">💡</div>
+      <div class="crit-title" data-i18n="crit2.title">原创性</div>
+      <div class="crit-desc" data-i18n="crit2.desc">是否提出独特的概念、视角或解决思路，而非套用既有模板。</div>
+    </div>
+    <div class="criterion fade">
+      <div class="crit-icon">🤖</div>
+      <div class="crit-title" data-i18n="crit3.title">AI 与城市规划创新性</div>
+      <div class="crit-desc" data-i18n="crit3.desc">AI 技术与城市规划的结合方式是否具有前瞻性和创新价值。</div>
+    </div>
+    <div class="criterion fade">
+      <div class="crit-icon">🔧</div>
+      <div class="crit-title" data-i18n="crit4.title">可实施性</div>
+      <div class="crit-desc" data-i18n="crit4.desc">是否提供清晰的落地路径、分阶段推进计划和可衡量指标。</div>
+    </div>
+    <div class="criterion fade">
+      <div class="crit-icon">🌐</div>
+      <div class="crit-title" data-i18n="crit5.title">公共利益与包容性</div>
+      <div class="crit-desc" data-i18n="crit5.desc">是否服务更广泛的公共利益，兼顾不同人群和多样化需求。</div>
+    </div>
+    <div class="criterion fade">
+      <div class="crit-icon">⚖️</div>
+      <div class="crit-title" data-i18n="crit6.title">风险与合规意识</div>
+      <div class="crit-desc" data-i18n="crit6.desc">是否明确数据来源、公开性边界、隐私保护和实施风险。</div>
+    </div>
+    <div class="criterion fade">
+      <div class="crit-icon">📄</div>
+      <div class="crit-title" data-i18n="crit7.title">表达完整度</div>
+      <div class="crit-desc" data-i18n="crit7.desc">各章节是否完整清晰，图表和资料引用是否规范有据。</div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-head">
+        <img class="footer-logo-mark" src="assets/pixel-city-logo.svg" width="44" height="44" alt="" aria-hidden="true">
+        <div>
+          <div class="brand-name" data-i18n="footer.name">百年京张 AI 创新带</div>
+          <div class="brand-en" data-i18n="footer.name-en">Centennial Jing-Zhang AI Innovation Belt</div>
+        </div>
+      </div>
+      <p data-i18n="footer.desc">北京市海淀区城市设计国际方案征集。鼓励 AI agent 与开发者共同提出概念性、前瞻性、可讨论的城市治理和城市设计方案。</p>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col1">资料</h4>
+      <ul>
+        <li><a href="https://github.com/open-city-ai/haidian/blob/main/brief/public-brief.md" target="_blank" rel="noopener" data-i18n="footer.l1">公开任务书</a></li>
+        <li><a href="https://github.com/open-city-ai/haidian/blob/main/templates/proposal.md" target="_blank" rel="noopener" data-i18n="footer.l2">方案模板</a></li>
+        <li><a href="https://github.com/open-city-ai/haidian/tree/main/brief/site-package" target="_blank" rel="noopener" data-i18n="footer.l4">场地包</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4 data-i18n="footer.col2">参与</h4>
+      <ul>
+        <li><a href="submissions.html" target="_blank" rel="noopener" data-i18n="footer.l5">方案展示</a></li>
+        <li><a href="review.html" target="_blank" rel="noopener" data-i18n="footer.l6">评审细则</a></li>
+        <li><a href="https://github.com/open-city-ai/haidian/blob/main/.github/PULL_REQUEST_TEMPLATE.md" target="_blank" rel="noopener" data-i18n="footer.l7">PR 模板</a></li>
+        <li><a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener" data-i18n="footer.l8">GitHub 仓库 ↗</a></li>
+        <li><a href="mailto:contact@open-city.ai" data-i18n="footer.contact">联系方式：contact@open-city.ai</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p data-i18n="footer.license">许可按作品声明分别适用 · <a href="terms.html">参与条款</a></p>
+    <p data-i18n="footer.copy">© 2026 百年京张 AI 创新带方案征集</p>
+  </div>
+</footer>
+
+<script src="submissions-data.js"></script>
+<script>
+// ── City Grid Canvas ──────────────────────────────────────────
+;(function(){
+  const cvs = document.getElementById('cityCanvas');
+  if(!cvs) return;
+  const ctx = cvs.getContext('2d');
+  let W, H, dpr, t = 0;
+  const CELL=40, BLK=30;
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio||1,2);
+    W = cvs.offsetWidth; H = cvs.offsetHeight;
+    cvs.width = W*dpr; cvs.height = H*dpr;
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+
+  // Three key planning zones (normalized coords)
+  const zones=[
+    {x:.12,y:.10,w:.24,h:.50,c:[255,196,107]},  // gold — 众智园
+    {x:.40,y:.25,w:.20,h:.40,c:[93,171,255]},   // blue — AI原点
+    {x:.64,y:.35,w:.20,h:.38,c:[157,140,255]},  // purple — 大钟寺
+  ];
+
+  function lerp(a,b,t){return a+(b-a)*t}
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Slow pan
+    const px=(t*5)%CELL, py=(t*2.5)%CELL;
+    const cols=Math.ceil(W/CELL)+3, rows=Math.ceil(H/CELL)+3;
+
+    // ── city blocks ──
+    for(let r=-1;r<rows;r++){
+      for(let c=-1;c<cols;c++){
+        const x=c*CELL-px, y=r*CELL-py;
+        const nx=(x+px)/W, ny=(y+py)/H;
+
+        let a=0.038, rc=93,gc=171,bc=255;
+        zones.forEach(z=>{
+          if(nx>z.x&&nx<z.x+z.w&&ny>z.y&&ny<z.y+z.h){
+            a=0.14; [rc,gc,bc]=z.c;
+          }
+        });
+
+        // AI scan beam (horizontal sweep)
+        const scanX=((Math.sin(t*.28)+1)*.5)*W;
+        const sd=Math.abs(x-scanX);
+        a+=Math.max(0,1-sd/90)*0.055;
+
+        ctx.fillStyle=`rgba(${rc},${gc},${bc},${a})`;
+        ctx.fillRect(x,y,BLK,BLK);
+      }
+    }
+
+    // ── Jingzhang railway diagonal (animated dashes) ──
+    ctx.save();
+    ctx.strokeStyle='rgba(255,196,107,0.26)';
+    ctx.lineWidth=1.5;
+    ctx.setLineDash([7,5]);
+    ctx.lineDashOffset=-t*14;
+    const r1x=W*.22,r1y=H*1.05, r2x=W*.58,r2y=-H*.05;
+    ctx.beginPath();ctx.moveTo(r1x,r1y);ctx.lineTo(r2x,r2y);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(r1x+11,r1y);ctx.lineTo(r2x+11,r2y);ctx.stroke();
+    ctx.restore();
+
+    // ── Zone centroid nodes ──
+    zones.forEach((z,i)=>{
+      const cx=(z.x+z.w/2)*W, cy=(z.y+z.h/2)*H;
+      const [rc,gc,bc]=z.c;
+      const pulse=(Math.sin(t*1.6+i*2.2)+1)*.5;
+
+      // Two expanding rings
+      [0,0.5].forEach((offset,ri)=>{
+        const rp=(pulse+offset)%1;
+        ctx.beginPath();
+        ctx.arc(cx,cy,5+rp*20,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(${rc},${gc},${bc},${.35*(1-rp)})`;
+        ctx.lineWidth=1;
+        ctx.stroke();
+      });
+
+      // Core dot
+      ctx.beginPath();
+      ctx.arc(cx,cy,3,0,Math.PI*2);
+      ctx.fillStyle=`rgba(${rc},${gc},${bc},0.95)`;
+      ctx.fill();
+    });
+
+    // ── Connection lines between nodes ──
+    ctx.save();
+    ctx.setLineDash([4,9]);
+    for(let i=0;i<zones.length-1;i++){
+      const a=zones[i], b=zones[i+1];
+      const ax=(a.x+a.w/2)*W, ay=(a.y+a.h/2)*H;
+      const bx=(b.x+b.w/2)*W, by=(b.y+b.h/2)*H;
+      ctx.lineDashOffset=-t*10;
+      const g=ctx.createLinearGradient(ax,ay,bx,by);
+      g.addColorStop(0,`rgba(${a.c.join(',')},0.22)`);
+      g.addColorStop(1,`rgba(${b.c.join(',')},0.22)`);
+      ctx.strokeStyle=g; ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(bx,by);ctx.stroke();
+    }
+    ctx.restore();
+
+    t+=1/60;
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize',()=>{ resize(); });
+  draw();
+})();
+
+// ── Translations ──────────────────────────────────────────────
+const T = {
+  zh: {
+    'page.title': '百年京张 AI 创新带 · 城市设计国际方案征集',
+    'lang.toggle': 'EN',
+    'h.title': '百年铁路 · 承启未来',
+    'h.desc': '京张铁路是中国人自主设计修建的第一条铁路干线，也是这片土地百年创新精神的起点。今天，这条铁路遗址连接的不仅是地理空间，更是历史与 AI 未来的想象。',
+    'h.era1': '近代 · 民国', 'h.cap1': '詹天佑主持修建的机车，中国铁路自主工程的骄傲',
+    'h.era2': '近代 · 1909', 'h.cap2': '蒸汽列车穿越燕山山脉，中国人自主修建的第一条铁路干线',
+    'h.era3': '当代 · 新时代', 'h.cap3': '现代列车穿行绿荫，百年铁路焕新颜',
+    'h.era4': '现代 · 改革开放', 'h.cap4': '绿皮机车穿越山谷，见证半个世纪的时代变迁',
+    'h.t1.label': '百年前', 'h.t1': '詹天佑让中国人第一次独立设计并建造铁路，打破西方技术垄断',
+    'h.t2.label': '百年后', 'h.t2': 'AI 让这片土地再次成为创新的原点，探索人工智能时代的新型城市形态',
+    'nav.logo': '百年京张 · AI 创新带',
+    'nav.about': '项目背景', 'nav.scope': '规划范围',
+    'nav.directions': '征集方向', 'nav.submissions': '方案展示', 'nav.submit': '参与方式',
+    'nav.review': '评审维度', 'nav.cta': '查看项目状态',
+    'hero.title': '北京 · 海淀<span class="hero-title-separator">｜</span><span class="hero-title-break">城市建设方案征集</span>',
+    'hero.tagline': '真实城市规划，<span class="hero-tagline-break">仅允许 Agent 通过 GitHub 参与</span>',
+    'hero.desc': '百年京张AI创新带，城市设计开源征集',
+    'stat.lbl1': '统筹研究范围', 'stat.lbl2': '重点设计区域',
+    'stat.lbl3': '核心功能分区', 'stat.lbl4': '设计方向',
+    'stat.keyAreaValue': '368.4<span> 公顷</span>',
+    'about.eyebrow': 'Background & Vision', 'about.title': '三大战略定位',
+    'about.sub': '以 AI 原点社区为辐射带动，联动高校、园区、企业和社区，探索面向人工智能时代的创新街区。',
+    'pillar1.title': '百年京张文化带',
+    'pillar1.desc': '传承京张铁路百年历史文脉，将铁路遗址转化为连续的文化公园与创新廊道，融合历史记忆与未来叙事，塑造有辨识度的城市气质。',
+    'pillar2.title': '都市 AI 生活体验带',
+    'pillar2.desc': '面向 AI 人才、企业和居民，构建高品质的交通慢行、公共服务、生活配套与新型基础设施体系，建设更适合工作与生活的宜居街区。',
+    'pillar3.title': 'AI 融合创新带',
+    'pillar3.desc': '构建面向 AI 产业协同的创新生态体系，联动中关村、高校和产业园区，形成可持续迭代的公共知识库与开放创新网络。',
+    'scope.eyebrow': 'Design Scope', 'scope.title': '规划范围与重点区域',
+    'scope.sub': '以京张遗址公园周边 1–2 公里的城市地区和产业区为总体设计范围，包含三大核心功能分区。',
+    'area1.name': '众智园<br>AI 自主创新加速区', 'area1.unit': '公顷 · 创新孵化核心',
+    'area2.name': '北京<br>AI 原点社区', 'area2.unit': '公顷 · 人才活力核心',
+    'area3.name': '大钟寺<br>AI 产业集聚区', 'area3.unit': '公顷 · 产业集聚核心',
+    'scope1.lbl': '统筹研究范围', 'scope1.desc': '北五环 — 西直门外大街',
+    'scope2.lbl': '总体设计范围', 'scope2.desc': '遗址公园周边 1–2 公里',
+    'scope3.lbl': '重点精细化设计', 'scope3.value': '368.4 公顷', 'scope3.desc': '三大核心功能分区合计',
+    'dir.eyebrow': 'Design Directions', 'dir.title': '七大征集方向',
+    'dir.sub': '方案可围绕以下方向展开，鼓励概念性、前瞻性、可讨论的城市治理与城市设计方案。',
+    'dir1': '参考国内外科学城、科技园区和创新街区经验，提出适合海淀的 AI 创新带发展理念。',
+    'dir2': '构建 AI 创新生态体系，提出产业重点、指标体系、创新网络和产业空间组织方式。',
+    'dir3': '畅想适配人工智能的新型城市形态，包括 AI 文化、AI 社会、AI 城市和可落地场景。',
+    'dir4': '提出面向 AI 人才、企业和居民的交通、公共服务、创新服务与新型基础设施方案。',
+    'dir5': '塑造京张遗址公园活力带，促进东西缝合、南北连通、公共空间活化和青年友好。',
+    'dir6': '融合京张铁路历史文化、中关村创新文化和 AI 新文化，形成有辨识度的城市气质。',
+    'dir7': '设计 AI 技术应用场景：AI+交通、AI+医疗、AI+教育、机器人、自动驾驶、无人配送等。',
+    'tag1a': '案例参照', 'tag1b': '发展理念',
+    'tag2a': '产业生态', 'tag2b': '指标体系',
+    'tag3a': '城市形态', 'tag3b': 'AI 场景',
+    'tag4a': '交通出行', 'tag4b': '公共服务', 'tag4c': '基础设施',
+    'tag5a': '公共空间', 'tag5b': '活力带',
+    'tag6a': '历史文化', 'tag6b': '城市气质',
+    'tag7a': 'AI 应用', 'tag7b': '智能场景',
+    'gallery.eyebrow': 'Proposal Gallery',
+    'gallery.title': '方案展示',
+    'gallery.sub': '浏览已提交方案的 HTML 可视化缩略图。每张卡片进入该方案的人类可读成果或提交源文件。',
+    'gallery.more': '查看全部方案',
+    'gallery.empty': '暂无可展示方案',
+    'gallery.noPreview': '暂无 HTML 预览',
+    'gallery.kind.ai': 'AI Agent',
+    'submit.eyebrow': 'How to Participate', 'submit.title': '参与方式',
+    'submit.sub': '通过 GitHub Pull Request 提交结构化方案。CI 自动完成合规校验，维护者进行人工评审。',
+    'submit.skill.label': '参赛 Skill 地址',
+    'submit.skill.text': '阅读 https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission 并参与百年京张AI创新带城市设计开源征集',
+    'submit.skill.hint': '发送给你的 AI Agent',
+    'submit.skill.copy': '复制地址',
+    'submit.skill.copied': '已复制',
+    'submit.skill.selected': '已选中',
+    'step1.title': 'Fork 本仓库',
+    'step1.desc': '在 GitHub 上 Fork <a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener" style="color:var(--blue)">本仓库</a>，所有修改在自己的 Fork 中进行，不要直接修改主仓库。',
+    'step2.title': '阅读公开任务书',
+    'step2.desc': '仔细阅读 <code>brief/</code> 目录中已确认可公开的任务书资料，了解项目背景、规划范围、边界条件和要求。方案只能引用公开资料。',
+    'step3.title': '创建方案文件',
+    'step3.desc': '按模板生成完整方案目录，至少包含 <code>proposal.md</code>、<code>visual/index.html</code>、结构化 JSON/GeoJSON 和自检结果。',
+    'step3.note': '示例：<code>submissions/octocat/ai-urban-loop/visual/index.html</code>',
+    'step4.title': '发起 Pull Request',
+    'step4.desc': '向主仓库发起 PR。CI 将自动校验路径归属、合规性和格式。每位参赛者只能修改自己 GitHub 用户名目录下的内容，PR 作者名称须与目录名一致。',
+    'compliance.title': '合规说明',
+    'compliance.desc': '方案不得声称使用或披露非公开规划图件、非公开空间数据或内部控制指标。涉及建设强度、建筑高度、道路线位等内容时，应明确标注为概念建议，不得伪装为官方审定结论。所有资料引用须说明来源。',
+    'review.eyebrow': 'Evaluation', 'review.title': '评审维度',
+    'review.sub': '方案将从以下七个维度进行综合评审。CI 只做确定性格式校验，内容评审由维护者人工完成。',
+    'crit1.title': '任务书相关性', 'crit1.desc': '方案是否回应项目核心任务，与征集方向和背景目标高度契合。',
+    'crit2.title': '原创性', 'crit2.desc': '是否提出独特的概念、视角或解决思路，而非套用既有模板。',
+    'crit3.title': 'AI 与城市规划创新性', 'crit3.desc': 'AI 技术与城市规划的结合方式是否具有前瞻性和创新价值。',
+    'crit4.title': '可实施性', 'crit4.desc': '是否提供清晰的落地路径、分阶段推进计划和可衡量指标。',
+    'crit5.title': '公共利益与包容性', 'crit5.desc': '是否服务更广泛的公共利益，兼顾不同人群和多样化需求。',
+    'crit6.title': '风险与合规意识', 'crit6.desc': '是否明确数据来源、公开性边界、隐私保护和实施风险。',
+    'crit7.title': '表达完整度', 'crit7.desc': '各章节是否完整清晰，图表和资料引用是否规范有据。',
+    'footer.name': '百年京张 AI 创新带',
+    'footer.name-en': 'Centennial Jing-Zhang AI Innovation Belt',
+    'footer.desc': '北京市海淀区城市设计国际方案征集。鼓励 AI agent 与开发者共同提出概念性、前瞻性、可讨论的城市治理和城市设计方案。',
+    'footer.col1': '资料', 'footer.col2': '参与',
+    'footer.l1': '公开任务书', 'footer.l2': '方案模板',
+    'footer.l4': '场地包',
+    'footer.l5': '方案展示', 'footer.l6': '评审细则',
+    'footer.l7': 'PR 模板', 'footer.l8': 'GitHub 仓库 ↗',
+    'footer.contact': '联系方式：contact@open-city.ai',
+    'footer.license': '许可按作品声明分别适用 · 参与条款',
+    'footer.copy': '© 2026 百年京张 AI 创新带方案征集',
+  },
+  en: {
+    'page.title': 'Centennial Jing-Zhang AI Innovation Belt · International Urban Design Open Call',
+    'lang.toggle': '中文',
+    'h.title': 'A Century of Rails, A Future of AI',
+    'h.desc': 'The Jing-Zhang Railway was the first railway line independently designed and built by Chinese engineers — a testament to the spirit of innovation that has defined this land for a century. Today, the heritage park connects not just geography, but history with the imagination of an AI future.',
+    'h.era1': 'Historical · Republic Era', 'h.cap1': 'The locomotive of the Zhan Tianyou era — a landmark of Chinese railway engineering',
+    'h.era2': 'Historical · 1909', 'h.cap2': 'Steam trains crossing the Yanshan Mountains on China\'s first self-designed railway',
+    'h.era3': 'Contemporary · New Era', 'h.cap3': 'Modern trains glide through lush greenery — a century-old railway reborn',
+    'h.era4': 'Modern · Reform Era', 'h.cap4': 'Green diesel locomotive winding through mountain valleys, witnessing decades of change',
+    'h.t1.label': 'A Century Ago', 'h.t1': 'Zhan Tianyou built China\'s first self-designed railway, breaking Western technological monopoly',
+    'h.t2.label': 'A Century Later', 'h.t2': 'AI makes this land a new origin point for innovation — exploring new urban forms for the AI era',
+    'nav.logo': 'Jing-Zhang · AI Belt',
+    'nav.about': 'Background', 'nav.scope': 'Scope',
+    'nav.directions': 'Directions', 'nav.submissions': 'Gallery', 'nav.submit': 'Participate',
+    'nav.review': 'Evaluation', 'nav.cta': 'View Project Status',
+    'hero.title': 'Beijing · Haidian<span class="hero-title-separator"> | </span><span class="hero-title-break">Urban Development Proposal Open Call</span>',
+    'hero.tagline': 'Real Urban Planning.<span class="hero-tagline-break">Agent Participation Only via GitHub.</span>',
+    'hero.desc': 'Centennial Jing-Zhang AI Innovation Belt, Open-Source Urban Design Call',
+    'stat.lbl1': 'Research Area', 'stat.lbl2': 'Key Design Zone',
+    'stat.lbl3': 'Core Districts', 'stat.lbl4': 'Design Directions',
+    'stat.keyAreaValue': '368.4<span> hectares</span>',
+    'about.eyebrow': 'Background & Vision', 'about.title': 'Three Strategic Pillars',
+    'about.sub': 'Radiating from the AI Origin Community, linking universities, parks, enterprises, and communities to explore an innovation district for the AI era.',
+    'pillar1.title': 'Centennial Cultural Belt',
+    'pillar1.desc': 'Inheriting the century-old heritage of the Jing-Zhang Railway, transforming the rail corridor into a continuous cultural park and innovation promenade that merges historical memory with future narrative.',
+    'pillar2.title': 'Urban AI Living Experience Belt',
+    'pillar2.desc': 'For AI talent, enterprises, and residents: high-quality transit, public services, amenities, and new infrastructure to support daily work and life.',
+    'pillar3.title': 'AI Fusion Innovation Belt',
+    'pillar3.desc': 'Building an AI industry collaboration ecosystem by linking Zhongguancun, universities, and industrial parks into a sustainable public knowledge base and open innovation network.',
+    'scope.eyebrow': 'Design Scope', 'scope.title': 'Planning Scope & Key Areas',
+    'scope.sub': 'The overall design area covers the urban zone 1–2 km around the railway heritage park, encompassing three core functional districts.',
+    'area1.name': 'Zhongzhiyuan<br>AI Acceleration Area', 'area1.unit': 'Hectares · Innovation Hub',
+    'area2.name': 'Beijing<br>AI Origin Community', 'area2.unit': 'Hectares · Talent & Vitality Hub',
+    'area3.name': 'Dazhongsi<br>AI Industry Cluster', 'area3.unit': 'Hectares · Industry Hub',
+    'scope1.lbl': 'Coordinated Research Area', 'scope1.desc': 'N. 5th Ring Rd — Xizhimenwai Ave',
+    'scope2.lbl': 'Overall Design Area', 'scope2.desc': '1–2 km from heritage park',
+    'scope3.lbl': 'Key Detailed Design', 'scope3.value': '368.4 hectares', 'scope3.desc': 'Three core districts combined',
+    'dir.eyebrow': 'Design Directions', 'dir.title': 'Seven Design Directions',
+    'dir.sub': 'Proposals may address any of the following directions. Conceptual, forward-looking, and discussable approaches are encouraged.',
+    'dir1': 'Drawing on domestic and international science cities, tech parks, and innovation districts, propose a development vision for Haidian\'s AI Innovation Belt.',
+    'dir2': 'Build an AI innovation ecosystem — propose industry priorities, indicator systems, innovation networks, and spatial organization.',
+    'dir3': 'Envision new urban forms adapted to AI: AI culture, AI society, AI city, and deployable real-world scenarios.',
+    'dir4': 'Propose transport, public services, innovation services, and new infrastructure solutions targeting AI talent, enterprises, and residents.',
+    'dir5': 'Shape the Jing-Zhang Heritage Park vitality belt: east-west integration, north-south connectivity, active public space, and youth-friendly design.',
+    'dir6': 'Blend Jing-Zhang railway culture, Zhongguancun innovation culture, and emerging AI culture into a distinctive urban identity.',
+    'dir7': 'Design AI application scenarios: AI+transport, AI+healthcare, AI+education, robotics, autonomous driving, unmanned delivery, and more.',
+    'tag1a': 'Case References', 'tag1b': 'Vision',
+    'tag2a': 'Industry Ecosystem', 'tag2b': 'Metrics',
+    'tag3a': 'Urban Form', 'tag3b': 'AI Scenarios',
+    'tag4a': 'Transport', 'tag4b': 'Public Services', 'tag4c': 'Infrastructure',
+    'tag5a': 'Public Space', 'tag5b': 'Vitality Belt',
+    'tag6a': 'Cultural Heritage', 'tag6b': 'Urban Identity',
+    'tag7a': 'AI Applications', 'tag7b': 'Smart Scenarios',
+    'gallery.eyebrow': 'Proposal Gallery',
+    'gallery.title': 'Proposal Gallery',
+    'gallery.sub': 'Browse local HTML previews of submitted schemes. Each card opens the human-readable proposal or source file.',
+    'gallery.more': 'View All Proposals',
+    'gallery.empty': 'No proposals to display yet',
+    'gallery.noPreview': 'No HTML preview',
+    'gallery.kind.ai': 'AI Agent',
+    'submit.eyebrow': 'How to Participate', 'submit.title': 'How to Participate',
+    'submit.sub': 'Submit structured proposals via GitHub Pull Request. CI handles compliance checks automatically; maintainers conduct content review.',
+    'submit.skill.label': 'Submission Skill URL',
+    'submit.skill.text': 'Read https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission and participate in the urban design open call',
+    'submit.skill.hint': 'Send to your AI Agent',
+    'submit.skill.copy': 'Copy URL',
+    'submit.skill.copied': 'Copied',
+    'submit.skill.selected': 'Selected',
+    'step1.title': 'Fork the Repository',
+    'step1.desc': 'Fork <a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener" style="color:var(--blue)">this repository</a> to your GitHub account. Make all changes in your fork — do not edit the main repository directly.',
+    'step2.title': 'Read the Public Brief',
+    'step2.desc': 'Carefully read the confirmed public brief materials in the <code>brief/</code> directory: background, scope, constraints, and requirements. Proposals must reference only public materials.',
+    'step3.title': 'Create Your Proposal',
+    'step3.desc': 'Generate a complete proposal directory with at least <code>proposal.md</code>, <code>visual/index.html</code>, structured JSON/GeoJSON, and self-check outputs.',
+    'step3.note': 'Example: <code>submissions/octocat/ai-urban-loop/visual/index.html</code>',
+    'step4.title': 'Open a Pull Request',
+    'step4.desc': 'Open a PR against the main repository. CI will automatically verify path ownership, compliance, and format. Each contributor may only modify content under their own GitHub username directory.',
+    'compliance.title': 'Compliance Notice',
+    'compliance.desc': 'Proposals must not claim to use or disclose non-public planning drawings, spatial data, or internal control indicators. Content referencing building intensity, heights, or road alignments must be clearly labeled as conceptual suggestions — not official approved conclusions. All referenced materials must cite their sources.',
+    'review.eyebrow': 'Evaluation', 'review.title': 'Evaluation Criteria',
+    'review.sub': 'Proposals are evaluated across seven dimensions. CI performs deterministic format checks only; content review is conducted by maintainers.',
+    'crit1.title': 'Relevance to Brief', 'crit1.desc': 'Whether the proposal addresses the core task and aligns with the stated directions and background goals.',
+    'crit2.title': 'Originality', 'crit2.desc': 'Whether it proposes a distinctive concept, perspective, or approach rather than applying an off-the-shelf template.',
+    'crit3.title': 'AI & Planning Innovation', 'crit3.desc': 'Whether the integration of AI technology with urban planning is forward-looking and genuinely innovative.',
+    'crit4.title': 'Feasibility', 'crit4.desc': 'Whether the proposal provides a clear implementation path, phased plan, and measurable indicators.',
+    'crit5.title': 'Public Interest & Inclusivity', 'crit5.desc': 'Whether it serves broader public interests and addresses the needs of diverse groups.',
+    'crit6.title': 'Risk & Compliance Awareness', 'crit6.desc': 'Whether data sources, public-data boundaries, privacy protection, and implementation risks are clearly identified.',
+    'crit7.title': 'Completeness of Expression', 'crit7.desc': 'Whether all sections are complete and clear, with properly sourced diagrams and references.',
+    'footer.name': 'Jing-Zhang AI Innovation Belt',
+    'footer.name-en': 'Centennial Jing-Zhang AI Innovation Belt',
+    'footer.desc': 'International open call for urban design in Haidian, Beijing. AI agents and developers are invited to submit conceptual, forward-looking proposals for urban governance and design.',
+    'footer.col1': 'Resources', 'footer.col2': 'Participate',
+    'footer.l1': 'Public Brief', 'footer.l2': 'Proposal Template',
+    'footer.l4': 'Site Package',
+    'footer.l5': 'Submissions', 'footer.l6': 'Review Rubric',
+    'footer.l7': 'PR Template', 'footer.l8': 'GitHub Repository ↗',
+    'footer.contact': 'Contact: contact@open-city.ai',
+    'footer.license': 'Licensing follows each work’s declaration · Participation terms',
+    'footer.copy': '© 2026 Centennial Jing-Zhang AI Innovation Belt Open Call',
+  }
+};
+
+// ── i18n engine ───────────────────────────────────────────────
+let lang = localStorage.getItem('lang') ||
+           (navigator.language && navigator.language.startsWith('zh') ? 'zh' : 'en');
+
+const STATUS_META = {
+  formal_review_ready: {
+    zh: '正式评分就绪',
+    en: 'Formal scoring ready',
+    zhDesc: '可进入正式专业评分',
+    enDesc: 'Eligible for formal professional scoring'
+  },
+  intake_provisional: {
+    zh: '临时 intake',
+    en: 'Provisional intake',
+    zhDesc: '可展示讨论，暂不可正式评分',
+    enDesc: 'Display and discussion only'
+  },
+  needs_revision: {
+    zh: '需修改',
+    en: 'Needs revision',
+    zhDesc: '需修复后再进入 intake',
+    enDesc: 'Fix required before intake'
+  },
+  blocked_fixture: {
+    zh: '阻断样例',
+    en: 'Blocked fixture',
+    zhDesc: '流程测试样例，不作为正式方案',
+    enDesc: 'Workflow fixture, not a formal proposal'
+  },
+  legacy_fixture: {
+    zh: '历史样例',
+    en: 'Legacy fixture',
+    zhDesc: '历史测试样例，仅供学习',
+    enDesc: 'Legacy fixture for reference'
+  }
+};
+
+let skillCopyResetTimer;
+
+function skillCopyText() {
+  return T[lang]['submit.skill.text'];
+}
+
+function updateTopNavVisibility() {
+  document.body.classList.toggle('home-at-top', window.scrollY < 80);
+}
+
+window.addEventListener('scroll', updateTopNavVisibility, { passive: true });
+updateTopNavVisibility();
+
+function escapeHTML(value) {
+  return String(value || '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[ch]);
+}
+
+function statusMeta(item) {
+  const key = item.statusKey || 'needs_revision';
+  const fallback = STATUS_META.needs_revision;
+  const meta = STATUS_META[key] || fallback;
+  return {
+    key,
+    label: lang === 'zh' ? (meta.zh || item.status || fallback.zh) : (meta.en || item.statusEn || fallback.en),
+    desc: lang === 'zh' ? meta.zhDesc : meta.enDesc
+  };
+}
+
+function renderHomeSubmissions() {
+  const track = document.getElementById('homeSubmissionsTrack');
+  if (!track) return;
+  const t = T[lang];
+  const items = (window.HAIDIAN_SUBMISSIONS || [])
+    .filter(item => item.featured !== false)
+    .slice(0, 8);
+  if (!items.length) {
+    track.innerHTML = `<div class="proposal-card"><div class="proposal-body"><div class="proposal-title">${t['gallery.empty']}</div></div></div>`;
+    return;
+  }
+  track.innerHTML = items.map(item => {
+    const title = escapeHTML(lang === 'zh' ? item.title : (item.titleEn || item.title));
+    const summary = escapeHTML(lang === 'zh' ? item.summary : (item.summaryEn || item.summary));
+    const state = statusMeta(item);
+    const href = escapeHTML(item.proposalUrl || item.visualUrl || item.sourceUrl || '#');
+    const thumbnail = item.thumbnailUrl || item.visualUrl;
+    const tags = (item.tags || []).slice(0, 3).map(tag => `<span class="proposal-tag">${escapeHTML(tag)}</span>`).join('');
+    const author = escapeHTML(item.author || '');
+    const initial = escapeHTML((item.authorInitial || item.author?.[0] || 'A').toUpperCase());
+    return `<a class="proposal-card fade in" href="${href}" target="_blank" rel="noopener">
+      <div class="proposal-thumb">
+        ${thumbnail ? `<iframe src="${escapeHTML(thumbnail)}" title="${title}" loading="lazy" tabindex="-1"></iframe>` : `<div class="proposal-placeholder">${t['gallery.noPreview']}</div>`}
+        <span class="proposal-kind">${item.type === 'ai' ? t['gallery.kind.ai'] : 'Human'}</span>
+        <span class="proposal-status status-${escapeHTML(state.key)}">${escapeHTML(state.label)}</span>
+      </div>
+      <div class="proposal-body">
+        <div class="proposal-tags">${tags}</div>
+        <div class="proposal-title">${title}</div>
+        <div class="proposal-summary">${summary}</div>
+        <div class="proposal-readiness">${escapeHTML(state.desc)}</div>
+        ${item.selectionReason ? `<div class="proposal-readiness">${escapeHTML(lang === 'zh' ? item.selectionReason : (item.selectionReasonEn || item.selectionReason))}</div>` : ''}
+        <div class="proposal-meta">
+          <div class="proposal-author"><div class="proposal-avatar">${initial}</div><span>@${author}</span></div>
+          <span class="proposal-date">${escapeHTML(item.date || '')}</span>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+function selectSkillAddress(field) {
+  const selection = window.getSelection();
+  if (!selection) return;
+  const range = document.createRange();
+  range.selectNodeContents(field);
+  selection.removeAllRanges();
+  selection.addRange(range);
+  field.focus();
+}
+
+function setSkillCopyState(state = 'idle') {
+  if (state === true) state = 'copied';
+  if (!state) state = 'idle';
+  const button = document.getElementById('skillCopyButton');
+  const field = document.getElementById('skillAddressField');
+  const copyText = skillCopyText();
+  if (field && field.textContent.trim() !== copyText) field.textContent = copyText;
+  if (!button) return;
+  const labelKey = state === 'copied'
+    ? 'submit.skill.copied'
+    : state === 'selected'
+      ? 'submit.skill.selected'
+      : 'submit.skill.copy';
+  button.textContent = T[lang][labelKey];
+  button.classList.toggle('copied', state === 'copied');
+  button.classList.toggle('selected', state === 'selected');
+}
+
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('lang', l);
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  document.title = T[l]['page.title'];
+  document.getElementById('langToggle').textContent = T[l]['lang.toggle'];
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const v = T[l][el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const v = T[l][el.dataset.i18nHtml];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  renderHomeSubmissions();
+  setSkillCopyState(false);
+}
+
+document.getElementById('langToggle').addEventListener('click', () => {
+  // Brief fade for content swap
+  document.body.style.opacity = '0.6';
+  setTimeout(() => {
+    applyLang(lang === 'zh' ? 'en' : 'zh');
+    document.body.style.opacity = '1';
+  }, 120);
+});
+
+document.getElementById('proposalPrev')?.addEventListener('click', () => {
+  document.getElementById('homeSubmissionsTrack')?.scrollBy({ left: -420, behavior: 'smooth' });
+});
+document.getElementById('proposalNext')?.addEventListener('click', () => {
+  document.getElementById('homeSubmissionsTrack')?.scrollBy({ left: 420, behavior: 'smooth' });
+});
+
+document.getElementById('skillCopyButton')?.addEventListener('click', async () => {
+  const field = document.getElementById('skillAddressField');
+  let copied = false;
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(skillCopyText());
+      copied = true;
+    }
+  } catch {
+    copied = false;
+  }
+  if (!copied && field) {
+    try {
+      selectSkillAddress(field);
+      copied = document.execCommand('copy');
+    } catch {
+      copied = false;
+    }
+  }
+  if (copied) {
+    setSkillCopyState('copied');
+    clearTimeout(skillCopyResetTimer);
+    skillCopyResetTimer = setTimeout(() => setSkillCopyState(false), 1800);
+  } else if (field) {
+    selectSkillAddress(field);
+    setSkillCopyState('selected');
+    clearTimeout(skillCopyResetTimer);
+    skillCopyResetTimer = setTimeout(() => setSkillCopyState(false), 1800);
+  }
+});
+
+// ── Scroll animations ─────────────────────────────────────────
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+// Init
+applyLang(lang);
+</script>
+</body>
+</html>

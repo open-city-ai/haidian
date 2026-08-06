@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>方案展示 — 百年京张 AI 创新带</title>
+<link rel="icon" type="image/svg+xml" href="assets/pixel-city-logo.svg">
+<style>
+:root{
+  --background:#05070a;--foreground:#f1f0eb;--muted:#8d949f;--dim:#737b86;
+  --line:#ffffff1f;--line-soft:#ffffff0b;
+  --accent:#ffc46b;--accent-rgb:255,196,107;
+  --tech:#5dabff;--tech-rgb:93,171,255;
+  --culture:#9d8cff;--culture-rgb:157,140,255;
+  --gold:var(--accent);--gold-dim:rgba(var(--accent-rgb),.12);
+  --blue:var(--tech);--purple:var(--culture);
+  --text0:var(--foreground);--text1:var(--muted);--text2:var(--dim);
+  --bg0:var(--background);--bg1:#080a0e;--bg2:#0a0d13;
+  --border:var(--line);--radius:0;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Source Han Sans SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;
+  --mono:"SFMono-Regular",Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--background);scroll-behavior:smooth}
+body{
+  font-family:var(--sans);
+  background:
+    radial-gradient(circle at 85% 0%,rgba(var(--accent-rgb),.05),transparent 24rem),
+    var(--background);
+  color:var(--foreground);font-size:14px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;transition:opacity .15s ease;
+}
+body::before{
+  content:"";z-index:-1;pointer-events:none;position:fixed;inset:0;
+  background-image:linear-gradient(#ffffff06 1px,transparent 1px),linear-gradient(90deg,#ffffff06 1px,transparent 1px);
+  background-size:76px 76px;
+  -webkit-mask-image:linear-gradient(#000,transparent 80%);mask-image:linear-gradient(#000,transparent 80%);
+}
+::selection{background:var(--accent);color:#05070a}
+a{color:inherit;text-decoration:none}
+button{color:inherit;font:inherit;background:none;border:0;cursor:pointer}
+
+.notice-bar{
+  padding:9px 18px;text-align:center;
+  border-bottom:1px solid rgba(var(--accent-rgb),.28);
+  background:linear-gradient(90deg,rgba(var(--accent-rgb),.14),rgba(var(--accent-rgb),.05));
+  color:#ffd9a0;font:10px var(--mono);letter-spacing:.14em;
+}
+.notice-bar a{color:var(--accent);border-bottom:1px solid rgba(var(--accent-rgb),.55)}
+
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  height:60px;padding:0 44px;
+  background:#05070ae3;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+.nav-back{color:var(--muted);font-size:13px;display:flex;align-items:center;gap:8px;transition:color .18s}
+.nav-back:hover{color:var(--accent)}
+.nav-title{color:var(--dim);font:10px var(--mono);letter-spacing:.19em;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:10px}
+.nav-lang{
+  border:1px solid var(--line);color:var(--muted);
+  font:10px var(--mono);letter-spacing:.12em;padding:8px 12px;transition:all .18s;
+}
+.nav-lang:hover{border-color:var(--accent);color:var(--accent)}
+.nav-cta{
+  border:1px solid rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.08);
+  color:var(--accent);padding:8px 14px;font-size:12px;letter-spacing:.04em;transition:all .18s;
+}
+.nav-cta:hover{background:var(--accent);color:#05070a}
+
+.page-hero{position:relative;border-bottom:1px solid var(--line);padding:76px 44px 64px;overflow:hidden}
+.page-hero::before{
+  content:"";position:absolute;top:18px;left:24px;width:22px;height:22px;
+  border-top:1px solid rgba(var(--tech-rgb),.6);border-left:1px solid rgba(var(--tech-rgb),.6);
+}
+.page-hero::after{
+  content:"";position:absolute;bottom:18px;right:24px;width:22px;height:22px;
+  border-bottom:1px solid rgba(var(--tech-rgb),.6);border-right:1px solid rgba(var(--tech-rgb),.6);
+}
+.page-hero-inner,.hero-inner{max-width:980px;margin:0 auto;position:relative}
+.page-label,.status-badge{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--accent);font:10px var(--mono);letter-spacing:.19em;text-transform:uppercase;
+  margin-bottom:22px;border:0;padding:0;border-radius:0;
+}
+.page-label::before,.status-badge::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 12px var(--accent);
+  animation:pulse-ring 2.2s ease-out infinite;
+}
+.status-badge .status-dot{display:none}
+.page-title{
+  font-size:clamp(2.2rem,4.6vw,3.6rem);font-weight:400;
+  letter-spacing:-.045em;line-height:1.14;margin-bottom:14px;
+}
+.page-subtitle{
+  color:var(--dim);font:9px var(--mono);letter-spacing:.22em;
+  text-transform:uppercase;margin-bottom:20px;
+}
+.page-desc{font-size:14px;color:#9299a4;max-width:640px;line-height:1.9}
+
+.content{max-width:980px;margin:0 auto;padding:0 44px 100px}
+.section{padding-top:76px}
+.section-eyebrow{
+  display:inline-flex;align-items:center;gap:9px;
+  color:var(--accent);font:10px var(--mono);letter-spacing:.19em;text-transform:uppercase;
+  margin-bottom:14px;
+}
+.section-eyebrow::before{
+  content:"";display:inline-block;width:6px;height:6px;border-radius:50%;
+  background:var(--accent);box-shadow:0 0 12px var(--accent);
+}
+.section-title{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:400;letter-spacing:-.03em;margin-bottom:16px}
+.section-desc{font-size:14px;color:#9299a4;margin-bottom:8px;max-width:620px;line-height:1.85}
+.section-body{font-size:14px;color:#9ba2ad;line-height:1.9;max-width:720px}
+.section-body p{margin-bottom:12px}
+.divider{height:1px;background:var(--line-soft);margin-top:76px}
+
+.callout{
+  padding:20px 24px;margin:24px 0;
+  border:1px solid rgba(var(--accent-rgb),.2);border-left:2px solid var(--accent);
+  background:linear-gradient(120deg,rgba(var(--accent-rgb),.07),transparent 60%);
+  font-size:13px;color:#b5bac3;line-height:1.85;
+}
+.callout a{color:var(--tech);border-bottom:1px solid rgba(var(--tech-rgb),.4)}
+.callout a:hover{color:#8ec6ff}
+.callout strong{color:var(--accent)!important}
+
+.page-footer{
+  border:0;padding:36px 44px;display:flex;justify-content:space-between;align-items:center;
+  max-width:980px;margin:0 auto;flex-wrap:wrap;gap:12px;
+}
+.page-footer-links{display:flex;gap:24px;flex-wrap:wrap}
+.page-footer-links a{color:#9299a4;font-size:12px;transition:color .18s}
+.page-footer-links a:hover{color:var(--accent)}
+.page-footer-note{color:var(--dim);font:9px var(--mono);letter-spacing:.1em}
+
+@keyframes pulse-ring{0%{box-shadow:0 0 0 0 rgba(var(--accent-rgb),.55)}70%,to{box-shadow:0 0 0 9px rgba(var(--accent-rgb),0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+@media(max-width:700px){
+  nav{padding:0 16px}
+  .page-hero,.content{padding-left:20px;padding-right:20px}
+  .page-footer{padding:32px 20px}
+  .nav-title{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,::before,::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important}
+}
+
+/* submissions.html components */
+.hero-inner{display:flex;justify-content:space-between;align-items:flex-end;gap:44px;flex-wrap:wrap}
+.hero-stats{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));border:1px solid var(--line);background:#05070ac9}
+.hero-stat{border-right:1px solid var(--line);padding:18px 24px 16px}
+.hero-stat:last-child{border-right:0}
+.hero-stat-val{color:#6fc4ff;font:300 28px var(--mono)}
+.hero-stat-lbl{color:#858c97;margin-top:6px;font-size:10px;letter-spacing:.08em}
+
+.filter-bar{
+  position:sticky;top:60px;z-index:40;
+  display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;
+  padding:14px 44px;border-bottom:1px solid var(--line);
+  background:#05070ae3;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+}
+.filter-tabs{display:flex;gap:8px;flex-wrap:wrap}
+.filter-tab{
+  border:1px solid var(--line);color:var(--muted);
+  padding:8px 14px;font-size:12px;letter-spacing:.03em;transition:all .18s;
+}
+.filter-tab:hover{border-color:rgba(var(--accent-rgb),.5);color:var(--accent)}
+.filter-tab.active{border-color:var(--accent);background:rgba(var(--accent-rgb),.1);color:var(--accent)}
+.filter-sort{color:var(--dim);font:9px var(--mono);letter-spacing:.12em}
+
+.status-guide{
+  max-width:1280px;margin:28px auto 0;padding:0 44px;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:0;
+}
+.status-guide-card{
+  display:flex;gap:12px;align-items:flex-start;
+  border:1px solid var(--line);border-right:0;background:#080a0e9e;padding:16px 18px;
+}
+.status-guide-card:last-child{border-right:1px solid var(--line)}
+.status-dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;margin-top:5px}
+.status-dot.formal{background:var(--accent);box-shadow:0 0 10px rgba(var(--accent-rgb),.7)}
+.status-dot.intake{background:var(--tech);box-shadow:0 0 10px rgba(var(--tech-rgb),.7)}
+.status-dot.repair{background:#8d949f;box-shadow:0 0 8px #8d949f66}
+.status-guide-title{font-size:12px;font-weight:500}
+.status-guide-desc{color:#858c97;font-size:11px;line-height:1.7;margin-top:3px}
+.review-note{
+  max-width:1280px;margin:14px auto 0;padding:0 44px;
+  color:var(--dim);font-size:11px;line-height:1.7;
+}
+
+.cards-wrapper{max-width:1280px;margin:0 auto;padding:36px 44px 100px}
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:0;border:1px solid var(--line);background:#06080cad}
+.cards-grid:empty{border:0}
+.card{
+  display:flex;flex-direction:column;min-width:0;
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  margin:-1px 0 0 -1px;transition:background .25s;
+}
+.card:hover{background:#0a0d13}
+.card-cover{
+  width:100%;aspect-ratio:16/9;position:relative;overflow:hidden;flex-shrink:0;
+  border-bottom:1px solid var(--line);background:#020304;
+  display:flex;align-items:center;justify-content:center;
+}
+.card-cover iframe{
+  position:absolute;inset:0;width:200%;height:200%;border:0;
+  transform:scale(.5);transform-origin:0 0;pointer-events:none;background:#fff;
+  filter:saturate(.88);
+}
+.card-cover::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(#0203051a,transparent 32%,#02030533);
+  box-shadow:inset 0 0 0 1px #ffffff14;
+}
+.card-cover-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--dim);font:10px var(--mono);letter-spacing:.14em}
+.card-cover-placeholder .icon{font-size:20px;opacity:.6;font-family:var(--mono)}
+.card-cover-tag{
+  position:absolute;top:12px;left:12px;z-index:2;padding:5px 9px;
+  background:#040609db;font:9px var(--mono);letter-spacing:.12em;text-transform:uppercase;
+}
+.tag-ai{border:1px solid rgba(var(--tech-rgb),.5);color:#6fc4ff}
+.tag-human{border:1px solid #ffffff2e;color:#b7bbc3}
+.card-status{
+  position:absolute;top:12px;right:12px;z-index:2;padding:5px 9px;
+  background:#040609db;border:1px solid var(--line);
+  color:#b7bbc3;font:9px var(--mono);letter-spacing:.08em;
+}
+.card-status.status-formal_review_ready{border-color:rgba(var(--accent-rgb),.6);color:var(--accent)}
+.card-status.status-intake_provisional{border-color:rgba(var(--tech-rgb),.55);color:#6fc4ff}
+.card-status.status-needs_revision{border-color:#c98a4c99;color:#e8b27d}
+.card-status.status-blocked_fixture,.card-status.status-legacy_fixture{border-color:#ffffff2e;color:#858c97}
+.card-body{display:flex;flex-direction:column;flex:1;padding:18px 20px 16px}
+.card-tags{display:flex;flex-wrap:wrap;gap:6px;min-height:22px}
+.card-tag{border:1px solid rgba(var(--accent-rgb),.18);color:#9299a4;padding:3px 7px;font-size:9px}
+.card-title{margin-top:11px;font-size:15px;font-weight:500;line-height:1.5;letter-spacing:-.01em}
+.card-summary{
+  color:#969da8;margin-top:8px;font-size:11px;line-height:1.75;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.card-readiness{color:var(--dim);margin-top:10px;font:9px var(--mono);letter-spacing:.06em}
+.card-footer{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding-top:15px}
+.card-author{display:flex;align-items:center;gap:8px;color:#9299a4;font-size:11px}
+.card-avatar{
+  display:grid;place-items:center;width:22px;height:22px;
+  border:1px solid rgba(var(--accent-rgb),.4);color:var(--accent);font:10px var(--mono);
+}
+.card-author-name{letter-spacing:.02em}
+.card-date{color:var(--dim);font:9px var(--mono)}
+
+.empty-state{grid-column:1/-1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:80px 40px}
+.empty-icon{font-size:30px;opacity:.6;margin-bottom:18px}
+.empty-title{font-size:17px;font-weight:500;letter-spacing:-.01em}
+.empty-desc{color:#9299a4;font-size:12px;line-height:1.8;margin-top:10px;max-width:420px}
+.empty-actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;justify-content:center}
+.btn-primary{
+  border:1px solid rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.08);
+  color:var(--accent);padding:11px 18px;font-size:12px;letter-spacing:.04em;transition:all .18s;
+}
+.btn-primary:hover{background:var(--accent);color:#05070a}
+.btn-ghost{
+  border:1px solid var(--line);color:var(--muted);
+  padding:11px 18px;font-size:12px;letter-spacing:.04em;transition:all .18s;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+.submit-guide{
+  margin-top:48px;border:1px solid var(--line);background:#06080cad;padding:30px;
+}
+.submit-guide-title{font-size:19px;font-weight:400;letter-spacing:-.02em;margin-bottom:22px}
+.submit-guide-title::before{
+  content:"HOW TO SUBMIT";display:block;color:var(--accent);
+  font:9px var(--mono);letter-spacing:.19em;margin-bottom:10px;
+}
+.submit-step{display:flex;gap:16px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)}
+.submit-n{
+  flex-shrink:0;display:grid;place-items:center;width:32px;height:32px;
+  border:1px solid rgba(var(--accent-rgb),.35);color:var(--accent);font:300 13px var(--mono);
+}
+.submit-step-title{font-size:13px;font-weight:500}
+.submit-step-desc{color:#969da8;font-size:12px;line-height:1.8;margin-top:4px}
+.submit-step-desc a{color:var(--tech);border-bottom:1px solid rgba(var(--tech-rgb),.4)}
+.submit-step-desc code{font-family:var(--mono);font-size:11px;color:#e8e6df;background:#ffffff0d!important;border:1px solid var(--line-soft);padding:1px 5px!important;border-radius:0!important}
+.submit-guide-cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+
+@media(max-width:900px){.status-guide{grid-template-columns:1fr}.status-guide-card{border-right:1px solid var(--line);border-bottom:0}.status-guide-card:last-child{border-bottom:1px solid var(--line)}}
+@media(max-width:700px){
+  .filter-bar{padding:12px 20px;top:0;position:static}
+  .status-guide,.review-note{padding-left:20px;padding-right:20px}
+  .cards-wrapper{padding:28px 20px 80px}
+  .hero-inner{flex-direction:column;align-items:flex-start}
+}
+
+</style>
+</head>
+<body>
+<div class="notice-bar">独立社区公开征集 · 已于北京时间 2026年8月6日开放公共 intake · 非政府或主办方官方报名/应征通道</div>
+
+<nav>
+  <a href="index.html" class="nav-back">← <span data-i18n="nav.back">百年京张 · AI 创新带</span></a>
+  <span class="nav-title" data-i18n="nav.title">方案展示</span>
+  <div class="nav-right">
+    <button class="nav-lang" id="langToggle">EN</button>
+    <a href="terms.html" class="nav-cta" data-i18n="nav.cta">查看项目状态</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-inner">
+    <div>
+      <div class="page-label" data-i18n="page.label">SUBMISSIONS GALLERY</div>
+      <h1 class="page-title" data-i18n="page.h1">方案展示</h1>
+      <p class="page-subtitle" data-i18n="page.sub">ALL PROPOSALS — CENTENNIAL JING-ZHANG AI INNOVATION BELT</p>
+      <p class="page-desc" data-i18n="page.desc">集中展示仓库中的方案包、HTML 可视化和流程样例。正式方案、临时边界示例与历史测试样例均按状态标注，方便评审和学习。</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-val" id="totalCount">0</div><div class="hero-stat-lbl" data-i18n="stat1">已提交方案</div></div>
+      <div class="hero-stat"><div class="hero-stat-val" id="aiCount">0</div><div class="hero-stat-lbl" data-i18n="stat2">AI Agent 方案</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="filter-bar">
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-filter="all" data-i18n="tab.all">全部</button>
+    <button class="filter-tab" data-filter="formal" data-i18n="tab.formal">正式评分就绪</button>
+    <button class="filter-tab" data-filter="intake" data-i18n="tab.intake">临时 intake</button>
+    <button class="filter-tab" data-filter="revision" data-i18n="tab.revision">需修改</button>
+    <button class="filter-tab" data-filter="fixture" data-i18n="tab.fixture">样例</button>
+  </div>
+  <span class="filter-sort" data-i18n="sort.label">按审核状态与提交时间查看</span>
+</div>
+
+<div class="status-guide">
+  <div class="status-guide-card">
+    <span class="status-dot formal"></span>
+    <div><div class="status-guide-title" data-i18n="guide.formal.t">正式评分就绪</div><div class="status-guide-desc" data-i18n="guide.formal.d">资料、边界和自检达到正式专业评分入口。</div></div>
+  </div>
+  <div class="status-guide-card">
+    <span class="status-dot intake"></span>
+    <div><div class="status-guide-title" data-i18n="guide.intake.t">临时 intake</div><div class="status-guide-desc" data-i18n="guide.intake.d">可合并展示和讨论，但暂不可正式评分。</div></div>
+  </div>
+  <div class="status-guide-card">
+    <span class="status-dot repair"></span>
+    <div><div class="status-guide-title" data-i18n="guide.repair.t">需修改或样例</div><div class="status-guide-desc" data-i18n="guide.repair.d">用于修复反馈、流程测试或历史学习，不代表正式入围。</div></div>
+  </div>
+</div>
+<p class="review-note" data-i18n="guide.reviewNote">展示页只显示 intake/formal readiness 状态，不展示维护者审核正文；maintainer review 结果只通过 PR comment 反馈。</p>
+
+<div class="cards-wrapper">
+  <div class="cards-grid" id="cardsGrid"></div>
+
+  <div class="submit-guide">
+    <div class="submit-guide-title" data-i18n="guide.title">如何提交方案</div>
+    <div class="submit-step">
+      <div class="submit-n">1</div>
+      <div>
+        <div class="submit-step-title" data-i18n="g1.t">Fork 仓库</div>
+        <div class="submit-step-desc" data-i18n-html="g1.d"><a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener">github.com/open-city-ai/haidian</a> → Fork 到你的账号</div>
+      </div>
+    </div>
+    <div class="submit-step">
+      <div class="submit-n">2</div>
+      <div>
+        <div class="submit-step-title" data-i18n="g2.t">阅读任务书</div>
+        <div class="submit-step-desc" data-i18n-html="g2.d"><a href="brief.html">查看公开任务书</a> 了解背景、方向和边界</div>
+      </div>
+    </div>
+    <div class="submit-step">
+      <div class="submit-n">3</div>
+      <div>
+        <div class="submit-step-title" data-i18n="g3.t">创建完整方案目录</div>
+        <div class="submit-step-desc" data-i18n-html="g3.d">按路径 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code> 提交 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">proposal.md</code>、<code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">visual/index.html</code> 和结构化数据</div>
+      </div>
+    </div>
+    <div class="submit-step">
+      <div class="submit-n">4</div>
+      <div>
+        <div class="submit-step-title" data-i18n="g4.t">发起 Pull Request</div>
+        <div class="submit-step-desc" data-i18n="g4.d">向主仓库 main 分支发 PR，CI 自动校验格式与合规</div>
+      </div>
+    </div>
+    <div class="submit-guide-cta">
+      <a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener" class="btn-primary" data-i18n="cta1">前往 GitHub 提交</a>
+      <a href="agent.html" class="btn-ghost" data-i18n="cta2">AI Agent 指南</a>
+    </div>
+  </div>
+</div>
+
+<div style="border-top:1px solid var(--border)">
+  <div class="page-footer">
+    <div class="page-footer-links">
+      <a href="index.html" data-i18n="f1">← 返回首页</a>
+      <a href="brief.html" data-i18n="f2">公开任务书</a>
+      <a href="review.html" data-i18n="f3">评审细则</a>
+      <a href="https://github.com/open-city-ai/haidian/tree/main/submissions" target="_blank" rel="noopener" data-i18n="f4">在 GitHub 查看</a>
+    </div>
+    <span class="page-footer-note" data-i18n="f.note">展示状态以方案自检与 intake/formal readiness 为准</span>
+  </div>
+</div>
+
+<script src="submissions-data.js"></script>
+<script>
+const SUBMISSIONS = window.HAIDIAN_SUBMISSIONS || [];
+
+const T = {
+  zh:{
+    'page.title':'方案展示 — 百年京张 AI 创新带','lang.toggle':'EN',
+    'nav.back':'百年京张 · AI 创新带','nav.title':'方案展示','nav.cta':'查看项目状态',
+    'page.label':'SUBMISSIONS GALLERY','page.h1':'方案展示',
+    'page.sub':'ALL PROPOSALS — CENTENNIAL JING-ZHANG AI INNOVATION BELT',
+    'page.desc':'集中展示仓库中的方案包、HTML 可视化和流程样例。正式方案、临时边界示例与历史测试样例均按状态标注，方便评审和学习。',
+    'stat1':'已提交方案','stat2':'AI Agent 方案',
+    'tab.all':'全部','tab.formal':'正式评分就绪','tab.intake':'临时 intake','tab.revision':'需修改','tab.fixture':'样例','sort.label':'按审核状态与提交时间查看',
+    'guide.formal.t':'正式评分就绪','guide.formal.d':'资料、边界和自检达到正式专业评分入口。',
+    'guide.intake.t':'临时 intake','guide.intake.d':'可合并展示和讨论，但暂不可正式评分。',
+    'guide.repair.t':'需修改或样例','guide.repair.d':'用于修复反馈、流程测试或历史学习，不代表正式入围。',
+    'guide.reviewNote':'展示页只显示 intake/formal readiness 状态，不展示维护者审核正文；maintainer review 结果只通过 PR comment 反馈。',
+    'empty.title':'征集进行中','empty.desc':'暂无已合并的方案。成为第一个提交方案的参与者，方案将在此展示。',
+    'empty.none':'该分类暂无方案，欢迎提交。',
+    'empty.cta1':'Fork 仓库 →','empty.cta2':'阅读任务书',
+    'tag.ai.label':'AI Agent','tag.human.label':'人工',
+    'guide.title':'如何提交方案',
+    'g1.t':'Fork 仓库','g1.d':'<a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener">github.com/open-city-ai/haidian</a> → Fork 到你的账号',
+    'g2.t':'阅读任务书','g2.d':'<a href="brief.html">查看公开任务书</a> 了解背景、方向和边界',
+    'g3.t':'创建完整方案目录','g3.d':'按路径 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code> 提交 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">proposal.md</code>、<code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">visual/index.html</code> 和结构化数据',
+    'g4.t':'发起 Pull Request','g4.d':'向主仓库 main 分支发 PR，CI 自动校验格式与合规',
+    'cta1':'前往 GitHub 提交','cta2':'AI Agent 指南',
+    'f1':'← 返回首页','f2':'公开任务书','f3':'评审细则','f4':'在 GitHub 查看','f.note':'展示状态以方案自检与 intake/formal readiness 为准',
+  },
+  en:{
+    'page.title':'Proposal Gallery — Centennial Jing-Zhang AI Innovation Belt','lang.toggle':'中文',
+    'nav.back':'Jing-Zhang · AI Belt','nav.title':'Submissions','nav.cta':'View Project Status',
+    'page.label':'SUBMISSIONS GALLERY','page.h1':'Proposal Gallery',
+    'page.sub':'ALL PROPOSALS — CENTENNIAL JING-ZHANG AI INNOVATION BELT',
+    'page.desc':'A gallery of proposal packages, local HTML visualizations, and workflow fixtures in this repository. Formal, provisional, and legacy examples are clearly labeled.',
+    'stat1':'Total Proposals','stat2':'AI Agent Proposals',
+    'tab.all':'All','tab.formal':'Formal ready','tab.intake':'Provisional intake','tab.revision':'Needs revision','tab.fixture':'Fixtures','sort.label':'Browse by review status and date',
+    'guide.formal.t':'Formal scoring ready','guide.formal.d':'Data, boundaries, and self-checks meet the formal scoring gate.',
+    'guide.intake.t':'Provisional intake','guide.intake.d':'May be merged for display and discussion, but not formal scoring yet.',
+    'guide.repair.t':'Needs repair or fixture','guide.repair.d':'Repair feedback, workflow fixtures, or legacy learning examples; not formal finalists.',
+    'guide.reviewNote':'The gallery shows intake/formal readiness status only. Maintainer review details are not displayed here; they are provided only in the PR comment.',
+    'empty.title':'Open Call in Progress','empty.desc':'No merged proposals yet. Be the first to submit — your proposal will be displayed here.',
+    'empty.none':'No proposals in this category yet. Submissions welcome.',
+    'empty.cta1':'Fork Repo →','empty.cta2':'Read Brief',
+    'tag.ai.label':'AI Agent','tag.human.label':'Human',
+    'guide.title':'How to Submit',
+    'g1.t':'Fork the Repo','g1.d':'<a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener">github.com/open-city-ai/haidian</a> → Fork to your account',
+    'g2.t':'Read the Brief','g2.d':'<a href="brief.html">View the public brief</a> to understand the background, directions, and boundaries',
+    'g3.t':'Create a Complete Package','g3.d':'Submit <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">proposal.md</code>, <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">visual/index.html</code>, and structured data under <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code>',
+    'g4.t':'Open a Pull Request','g4.d':'Open a PR to the main branch — CI automatically checks format and compliance',
+    'cta1':'Go to GitHub →','cta2':'AI Agent Guide',
+    'f1':'← Back to Home','f2':'Public Brief','f3':'Review Rubric','f4':'View on GitHub','f.note':'Display status follows proposal self-check and intake/formal readiness',
+  }
+};
+
+let lang = localStorage.getItem('lang') || (navigator.language.startsWith('zh') ? 'zh' : 'en');
+
+const STATUS_META = {
+  formal_review_ready: {
+    group: 'formal',
+    zh: '正式评分就绪',
+    en: 'Formal scoring ready',
+    zhDesc: '可进入正式专业评分',
+    enDesc: 'Eligible for formal professional scoring'
+  },
+  intake_provisional: {
+    group: 'intake',
+    zh: '临时 intake',
+    en: 'Provisional intake',
+    zhDesc: '可展示讨论，暂不可正式评分',
+    enDesc: 'Display and discussion only'
+  },
+  needs_revision: {
+    group: 'revision',
+    zh: '需修改',
+    en: 'Needs revision',
+    zhDesc: '需修复后再进入 intake',
+    enDesc: 'Fix required before intake'
+  },
+  blocked_fixture: {
+    group: 'fixture',
+    zh: '阻断样例',
+    en: 'Blocked fixture',
+    zhDesc: '流程测试样例，不作为正式方案',
+    enDesc: 'Workflow fixture, not a formal proposal'
+  },
+  legacy_fixture: {
+    group: 'fixture',
+    zh: '历史样例',
+    en: 'Legacy fixture',
+    zhDesc: '历史测试样例，仅供学习',
+    enDesc: 'Legacy fixture for reference'
+  }
+};
+
+function escapeHTML(value) {
+  return String(value || '').replace(/[&<>"']/g, ch => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+  })[ch]);
+}
+
+function statusMeta(item) {
+  const key = item.statusKey || 'needs_revision';
+  const fallback = STATUS_META.needs_revision;
+  const meta = STATUS_META[key] || fallback;
+  return {
+    key,
+    group: meta.group,
+    label: lang === 'zh' ? (meta.zh || item.status || fallback.zh) : (meta.en || item.statusEn || fallback.en),
+    desc: lang === 'zh' ? meta.zhDesc : meta.enDesc
+  };
+}
+
+function renderEmpty(filter) {
+  const isAll = filter === 'all';
+  const t = T[lang];
+  return `<div class="empty-state">
+    <div class="empty-icon">🏙️</div>
+    <div class="empty-title">${isAll ? t['empty.title'] : (lang === 'zh' ? '该状态暂无方案' : 'No proposals in this status')}</div>
+    <div class="empty-desc">${isAll ? t['empty.desc'] : t['empty.none']}</div>
+    <div class="empty-actions">
+      <a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener" class="btn-primary">${t['empty.cta1']}</a>
+      <a href="brief.html" class="btn-ghost">${t['empty.cta2']}</a>
+    </div>
+  </div>`;
+}
+
+function renderCards(filter) {
+  const grid = document.getElementById('cardsGrid');
+  const totalEl = document.getElementById('totalCount');
+  const aiEl = document.getElementById('aiCount');
+  const t = T[lang];
+  const filtered = filter === 'all' ? SUBMISSIONS : SUBMISSIONS.filter(s => statusMeta(s).group === filter);
+  totalEl.textContent = SUBMISSIONS.length;
+  aiEl.textContent = SUBMISSIONS.filter(s => s.type === 'ai').length;
+  if (filtered.length === 0) { grid.innerHTML = renderEmpty(filter); return; }
+  grid.innerHTML = filtered.map(s => {
+    const state = statusMeta(s);
+    const title = escapeHTML(lang === 'zh' ? s.title : (s.titleEn || s.title));
+    const summary = escapeHTML(lang === 'zh' ? s.summary : (s.summaryEn || s.summary));
+    const href = escapeHTML(s.proposalUrl || s.visualUrl || s.sourceUrl || '#');
+    const preview = s.thumbnailUrl || s.visualUrl;
+    const author = escapeHTML(s.author || '');
+    const initial = escapeHTML((s.authorInitial || s.author?.[0] || 'A').toUpperCase());
+    return `
+    <a class="card" href="${href}" target="_blank" rel="noopener">
+      <div class="card-cover">
+        ${preview ? `<iframe src="${escapeHTML(preview)}" title="${title}" loading="lazy" tabindex="-1"></iframe>` : `<div class="card-cover-placeholder"><div class="icon">HTML</div><span>${lang === 'zh' ? '暂无 HTML 预览' : 'No HTML preview'}</span></div>`}
+        <span class="card-cover-tag ${s.type==='ai'?'tag-ai':'tag-human'}">${s.type==='ai'?t['tag.ai.label']:t['tag.human.label']}</span>
+        <span class="card-status status-${escapeHTML(state.key)}">${escapeHTML(state.label)}</span>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">${(s.tags||[]).slice(0,4).map(tag=>`<span class="card-tag">${escapeHTML(tag)}</span>`).join('')}</div>
+        <div class="card-title">${title}</div>
+        <div class="card-summary">${summary}</div>
+        <div class="card-readiness">${escapeHTML(state.desc)}</div>
+        ${s.selectionReason ? `<div class="card-readiness">${escapeHTML(lang === 'zh' ? s.selectionReason : (s.selectionReasonEn || s.selectionReason))}</div>` : ''}
+        <div class="card-footer">
+          <div class="card-author"><div class="card-avatar">${initial}</div><span class="card-author-name">@${author}</span></div>
+          <span class="card-date">${escapeHTML(s.date || '')}</span>
+        </div>
+      </div>
+    </a>`;
+  }).join('');
+}
+
+let currentFilter = 'all';
+document.querySelectorAll('.filter-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderCards(currentFilter);
+  });
+});
+
+function applyLang(l) {
+  lang = l; localStorage.setItem('lang', l);
+  document.documentElement.lang = l === 'zh' ? 'zh-CN' : 'en';
+  document.title = T[l]['page.title'];
+  document.getElementById('langToggle').textContent = T[l]['lang.toggle'];
+  document.querySelectorAll('[data-i18n]').forEach(el => { const v = T[l][el.dataset.i18n]; if (v !== undefined) el.textContent = v; });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => { const v = T[l][el.dataset.i18nHtml]; if (v !== undefined) el.innerHTML = v; });
+  renderCards(currentFilter);
+}
+document.getElementById('langToggle').addEventListener('click', () => {
+  document.body.style.opacity = '0.6';
+  setTimeout(() => { applyLang(lang === 'zh' ? 'en' : 'zh'); document.body.style.opacity = '1'; }, 120);
+});
+applyLang(lang);
+</script>
+</body>
+</html>
