@@ -145,6 +145,13 @@ def write_official_site_package(root: Path) -> None:
     )
 
 
+def write_provisional_site_package(root: Path) -> None:
+    geometry_dir = root / "brief" / "site-package" / "geometry"
+    geometry_dir.mkdir(parents=True, exist_ok=True)
+    source = REPO_ROOT / "brief" / "site-package" / "geometry" / "provisional_boundaries.geojson"
+    (geometry_dir / "provisional_boundaries.geojson").write_bytes(source.read_bytes())
+
+
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")
 class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
     def test_generated_scaffold_is_blocked_until_participant_finalizes_it(self) -> None:
@@ -390,32 +397,38 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertIn("formal scaffold requires a trusted official or explicit provisional SITE_BOUNDARY", scaffold.stderr)
             self.assertFalse(submission_dir.exists())
 
-    def test_standard_example_passes_full_self_check_and_content_review_gate(self) -> None:
-        submission_dir = REPO_ROOT / "submissions" / "codex-final" / "jingzhang-ai-symbiotic-rail"
-        self.assertTrue(submission_dir.exists(), "standard example is missing")
-        completed = subprocess.run(
+    def test_generated_provisional_fixture_passes_full_self_check_and_content_review_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_provisional_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "provisional-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(finalized.returncode, 0, finalized.stdout + finalized.stderr)
+            completed = subprocess.run(
             [
                 sys.executable,
                 str(REPO_ROOT / "scripts" / "self_check_submission.py"),
                 str(submission_dir),
                 "--repo-root",
-                str(REPO_ROOT),
+                str(root),
                 "--pr-author",
-                "codex-final",
+                "alice",
                 "--json",
             ],
             capture_output=True,
             text=True,
             check=False,
         )
-        self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
-        report = json.loads(completed.stdout)
-        self.assertTrue(report["ok"])
-        self.assertTrue(report["can_enter_formal_review"])
-        self.assertEqual("professional_design_package", report["package_type"])
-        self.assertEqual("formal-review-ready", report["review_status"])
-        self.assertEqual([], report["professional_issue_ids"])
-        self.assertEqual([], report["visual_issue_ids"])
+            self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+            report = json.loads(completed.stdout)
+            self.assertTrue(report["ok"])
+            self.assertTrue(report["can_enter_formal_review"])
+            self.assertEqual("professional_design_package", report["package_type"])
+            self.assertEqual("formal-review-ready", report["review_status"])
+            self.assertEqual([], report["professional_issue_ids"])
+            self.assertEqual([], report["visual_issue_ids"])
 
     def test_missing_review_dependencies_are_reported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

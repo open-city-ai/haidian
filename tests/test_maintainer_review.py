@@ -11,15 +11,29 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-STANDARD_EXAMPLE_DIR = REPO_ROOT / "submissions" / "codex-final" / "jingzhang-ai-symbiotic-rail"
-STANDARD_EXAMPLE_AUTHOR = "codex-final"
-
 HAS_REVIEW_DEPS = all(
     importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
 )
 
 if HAS_REVIEW_DEPS:
-    from test_agent_scaffold_and_self_check import complete_scaffold, run_scaffold, write_official_site_package  # noqa: E402
+    from test_agent_scaffold_and_self_check import (  # noqa: E402
+        complete_scaffold,
+        run_scaffold,
+        write_official_site_package,
+        write_provisional_site_package,
+    )
+
+
+def make_provisional_fixture(root: Path) -> Path:
+    write_provisional_site_package(root)
+    submission_dir = root / "submissions" / "alice" / "provisional-pass"
+    scaffold = run_scaffold(submission_dir, cwd=root)
+    if scaffold.returncode != 0:
+        raise AssertionError(scaffold.stdout + scaffold.stderr)
+    finalized = complete_scaffold(submission_dir)
+    if finalized.returncode != 0:
+        raise AssertionError(finalized.stdout + finalized.stderr)
+    return submission_dir
 
 
 def run_maintainer_review(submission_dir: Path, pr_author: str, repo_root: Path = REPO_ROOT, out_dir: Path | None = None):
@@ -58,8 +72,10 @@ def run_maintainer_comment(submission_dir: Path, pr_author: str, repo_root: Path
 class MaintainerReviewTests(unittest.TestCase):
     def test_provisional_package_is_not_blocked_by_organizer_data_gap(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            out_dir = Path(tmp) / "review"
-            completed = run_maintainer_review(STANDARD_EXAMPLE_DIR, STANDARD_EXAMPLE_AUTHOR, out_dir=out_dir)
+            root = Path(tmp)
+            submission_dir = make_provisional_fixture(root)
+            out_dir = root / "review"
+            completed = run_maintainer_review(submission_dir, "alice", repo_root=root, out_dir=out_dir)
             self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
             summary = json.loads(completed.stdout)
             self.assertEqual("formal-review-ready", summary["recommendation"])
@@ -85,8 +101,10 @@ class MaintainerReviewTests(unittest.TestCase):
 
     def test_comment_mode_prints_pr_comment_only(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            out_dir = Path(tmp) / "review"
-            completed = run_maintainer_comment(STANDARD_EXAMPLE_DIR, STANDARD_EXAMPLE_AUTHOR, out_dir=out_dir)
+            root = Path(tmp)
+            submission_dir = make_provisional_fixture(root)
+            out_dir = root / "review"
+            completed = run_maintainer_comment(submission_dir, "alice", repo_root=root, out_dir=out_dir)
             self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
             self.assertIn("# Maintainer Review Summary", completed.stdout)
             self.assertIn("Recommendation: **formal-review-ready**", completed.stdout)
@@ -94,8 +112,10 @@ class MaintainerReviewTests(unittest.TestCase):
 
     def test_failed_package_outputs_request_changes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
-            out_dir = Path(tmp) / "review"
-            completed = run_maintainer_review(STANDARD_EXAMPLE_DIR, "wrong-author", out_dir=out_dir)
+            root = Path(tmp)
+            submission_dir = make_provisional_fixture(root)
+            out_dir = root / "review"
+            completed = run_maintainer_review(submission_dir, "wrong-author", repo_root=root, out_dir=out_dir)
             self.assertNotEqual(completed.returncode, 0)
             summary = json.loads(completed.stdout)
             self.assertEqual("request-changes", summary["recommendation"])
