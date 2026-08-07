@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>京张校验环 JVCL · visual index</title>
+<style>
+:root { --bg:#0b1220; --card:#121a2b; --ink:#e5eefc; --muted:#93a4c3; --ai:#60a5fa; --park:#34d399; --work:#fbbf24; --warn:#f97316; --line:#24324d; }
+* { box-sizing:border-box; }
+body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; background:linear-gradient(180deg,#0b1220,#111827); color:var(--ink); }
+header { padding:28px 24px 10px; border-bottom:1px solid var(--line); }
+header h1 { margin:0 0 8px; font-size:28px; }
+header p { margin:0; color:var(--muted); line-height:1.5; }
+.badge { display:inline-block; margin-top:10px; padding:4px 10px; border-radius:999px; background:#7c2d12; color:#ffedd5; font-size:12px; }
+main { display:grid; gap:16px; padding:16px; }
+section { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:16px; }
+h2 { margin:0 0 12px; font-size:18px; }
+h3 { margin:0 0 8px; font-size:14px; color:var(--muted); text-transform:none; }
+.grid { display:grid; gap:12px; }
+@media(min-width:960px) { .grid.cols-2 { grid-template-columns: 1.4fr .8fr; } .grid.cols-3 { grid-template-columns: repeat(3,1fr); } .grid.cols-4 { grid-template-columns: repeat(4,1fr); } }
+.map { background:#0f172a; border:1px dashed #64748b; border-radius:12px; min-height:280px; padding:12px; position:relative; overflow:hidden; }
+.svgwrap svg { width:100%; height:auto; display:block; }
+.legend { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; color:var(--muted); font-size:12px; }
+.sw { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:middle; }
+.metric { background:#0f172a; border:1px solid var(--line); border-radius:12px; padding:12px; }
+.metric span { display:block; color:var(--muted); font-size:12px; }
+.metric strong { display:block; margin-top:6px; font-size:22px; }
+.card { background:#0f172a; border:1px solid var(--line); border-radius:12px; padding:12px; }
+.card strong { display:block; margin-bottom:6px; }
+ul { margin:0; padding-left:18px; color:var(--muted); }
+table { width:100%; border-collapse:collapse; font-size:13px; }
+td, th { border-bottom:1px solid var(--line); padding:8px 6px; text-align:left; vertical-align:top; }
+th { color:var(--muted); font-weight:600; }
+.warn { border-color:#9a3412; background:#1c1410; }
+.ok { color:#86efac; }
+footer { padding:8px 16px 28px; color:var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>京张校验环 · 可审计公共智能体带</h1>
+  <p>JingZhang Verifiable Civic Loop (JVCL) · submissions/jiayuqi7813/jingzhang-verifiable-loop · package_type=professional_design_package</p>
+  <div class="badge">临时边界 provisional_constraint · 非正式红线 · 正式数据发布后复算</div>
+</header>
+<main>
+  <section>
+    <h2>总览地图</h2>
+    <div class="grid cols-2">
+      <div class="map svgwrap">
+        <svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JVCL overview diagram">
+          <rect x="40" y="30" width="180" height="360" rx="12" fill="#1e293b" stroke="#94a3b8" stroke-dasharray="6 4"/>
+          <text x="55" y="55" fill="#93a4c3" font-size="14">临时 SITE</text>
+          <rect x="250" y="40" width="120" height="90" rx="10" fill="#1d4ed8" opacity=".85"/>
+          <text x="262" y="90" fill="#fff" font-size="14">众智园核</text>
+          <rect x="250" y="160" width="120" height="90" rx="10" fill="#059669" opacity=".85"/>
+          <text x="268" y="210" fill="#fff" font-size="14">AI原点核</text>
+          <rect x="250" y="280" width="120" height="90" rx="10" fill="#d97706" opacity=".9"/>
+          <text x="268" y="330" fill="#fff" font-size="14">大钟寺核</text>
+          <path d="M430 60 C500 80,500 340,430 360" stroke="#34d399" stroke-width="18" fill="none"/>
+          <text x="470" y="210" fill="#34d399" font-size="14">校验环</text>
+          <circle cx="560" cy="120" r="28" fill="#fbbf24"/><text x="545" y="125" fill="#111" font-size="12">地标</text>
+          <circle cx="610" cy="210" r="28" fill="#60a5fa"/><text x="590" y="215" fill="#111" font-size="12">场景</text>
+          <circle cx="560" cy="300" r="28" fill="#f472b6"/><text x="545" y="305" fill="#111" font-size="12">荣誉</text>
+          <path d="M250 205 H720" stroke="#60a5fa" stroke-width="4"/>
+          <text x="640" y="195" fill="#93a4c3" font-size="12">东西缝合</text>
+          <text x="640" y="50" fill="#93a4c3" font-size="12">中关村服务翼（概念）</text>
+          <text x="640" y="390" fill="#93a4c3" font-size="12">小月河场景翼（概念）</text>
+        </svg>
+        <div class="legend">
+          <span><i class="sw" style="background:var(--park)"></i>蓝绿公共空间</span>
+          <span><i class="sw" style="background:var(--ai)"></i>交通慢行</span>
+          <span><i class="sw" style="background:var(--work)"></i>建筑与更新项目</span>
+          <span><i class="sw" style="background:#94a3b8"></i>临时边界</span>
+        </div>
+      </div>
+      <aside>
+        <h3>核心指标</h3>
+        <div class="grid" style="grid-template-columns:1fr; gap:10px;">
+          <div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong></div>
+          <div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.243894">0.243894</strong></div>
+          <div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.012781">0.012781</strong></div>
+          <div class="metric"><span>building_footprint_area_sqm</span><strong>287463.673</strong></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section>
+    <h2>三层范围</h2>
+    <div class="grid cols-3">
+      <div class="card"><strong>统筹研究范围</strong><p>约 43.6 km²。产业生态、未来城市形态与两翼协同研究。边界为公告文字 + provisional。</p></div>
+      <div class="card"><strong>总体设计范围</strong><p>约 11.4 km²。城市更新、慢行蓝绿、校验环与用地分区。当前提交 SITE 为临时粗略边界。</p></div>
+      <div class="card"><strong>重点区域范围</strong><p>368.4 ha，三核详细设计。provisional polygons，不可作官方红线。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>重点区域</h2>
+    <table>
+      <tr><th>区域</th><th>定位</th><th>设计抓手</th><th>风险</th></tr>
+      <tr><td>众智园AI自主创新加速区</td><td>全栈自主 + 治理话语权</td><td>可信评测庭院、开源试验设施</td><td>provisional 边界与控规缺失</td></tr>
+      <tr><td>北京AI原点社区</td><td>开源生态 + 近校创新</td><td>社区枢纽、人才服务、公共前场</td><td>权属与高校界面待确认</td></tr>
+      <tr><td>大钟寺AI产业聚集区</td><td>智能原生新业态</td><td>站域步行连通、市集界面</td><td>交通工程条件待复核</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>用地分区</h2>
+    <p>用地图层完整划分临时 SITE：科研（0802）、社区服务（0702）、商业服务（05）、文化过渡（0803）、公园开敞（1401）。拓扑无缝无重叠，面积由 EPSG:4548 复算。</p>
+  </section>
+
+  <section>
+    <h2>交通慢行</h2>
+    <p>南北校验环慢行主脊 + 三核东西缝合廊。轨道接驳、停车与道路红线因缺官方附件，仅作概念建议，不写成工程线位。</p>
+  </section>
+
+  <section>
+    <h2>蓝绿公共空间</h2>
+    <p>京张遗址公园活力带作为校验环主绿廊，串联公共审计广场、开源成就廊、未来开发者广场与站前口袋绿地。</p>
+  </section>
+
+  <section>
+    <h2>建筑</h2>
+    <p>示范建筑基底表达保留改造、更新复合、新建轻型三类动作，仅为概念包络，不替代现状测绘与拆改留审批。</p>
+  </section>
+
+  <section>
+    <h2>更新项目</h2>
+    <ul>
+      <li>近期：校验环贯通、原点/大钟寺公共界面试点</li>
+      <li>中期：众智园可信评测与治理核</li>
+      <li>远期：两翼服务网络与全球活动体系</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>AI 场景</h2>
+    <div class="grid cols-3">
+      <div class="card"><strong>S01 慢行断点审计</strong>公开路网与反馈，人工复核后发布。</div>
+      <div class="card"><strong>S04 开源贡献荣誉廊</strong>聚合公开贡献，不暴露隐私。</div>
+      <div class="card"><strong>S08 站域低速配送试点</strong>封闭低速范围，可监管可退出。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>任务覆盖</h2>
+    <p>compliance_matrix 覆盖公告 1.3、1.4、1.5 与 agent.1–agent.6；standard_matrix 覆盖 5 条 mandatory 标准；design_depth_matrix 15 项均为 complete。</p>
+  </section>
+
+  <section class="warn">
+    <h2>自检状态</h2>
+    <p>提交前必须使 deterministic validation、spatial review、visual packaging check、professional evidence review 全部 <span class="ok">PASS</span>。当前边界状态：临时边界，保留精度警示，组织方数据缺口不阻断内容评分。</p>
+  </section>
+
+  <section>
+    <h2>来源</h2>
+    <ul>
+      <li>DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509</li>
+      <li>DATA-SRC-AGENT-TASKBOOK-20260518</li>
+      <li>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</li>
+      <li>MOHURD / MNR 本地标准快照</li>
+      <li>data/source_registry.json</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>假设</h2>
+    <ul>
+      <li>A-PROVISIONAL-BOUNDARY：临时边界不可作官方红线或精确面积依据</li>
+      <li>A-CONTROLS-MISSING：容积率/高度/密度等控规条件待官方附件</li>
+      <li>A-OWNERSHIP-ASBUILT：权属与现状建筑待清权测绘</li>
+      <li>A-NON-STATUTORY：全部空间与运营建议均为概念参考</li>
+    </ul>
+  </section>
+</main>
+<footer>Offline static page · no CDN · no remote tiles · values must match metrics.json</footer>
+</body>
+</html>
