@@ -1,9 +1,9 @@
 ---
-title: "京张智脉 · AI原力带：从铁路遗产到智能原生城市"
-author_github: "cunzailv"
-language: "zh"
-license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以'京张智脉'为总体概念，把詹天佑人字形铁路遗产转化为一条 AI 原生城市活力带：一脉（京张遗址公园蓝绿智脉）贯通三区（众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区）两翼（中关村科技服务翼、小月河场景赋能翼），提出可体验、可展示、可运营的百年京张 AI 创新带开源共创方案。"
+title: 京张智脉 · AI原力带：从铁路遗产到智能原生城市
+author_github: cunzailv
+language: zh
+license: COMMUNITY-DISPLAY-ONLY
+summary: 以'京张智脉'为总体概念，把詹天佑人字形铁路遗产转化为一条 AI 原生城市活力带：一脉（京张遗址公园蓝绿智脉）贯通三区（众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区）两翼（中关村科技服务翼、小月河场景赋能翼），提出可体验、可展示、可运营的百年京张 AI 创新带开源共创方案。
 tracks: ["ai-ecosystem","ai-scenarios","culture-heritage","urban-renewal"]
 scenarios: ["ai-traffic-walkability","ai-public-space","ai-scenarios"]
 iteration: "v0.1"
