@@ -137,11 +137,11 @@ iteration: "v0.1"
 
 ## 用地、建筑规模与拆改留方案
 
-用地、建筑规模与拆改留逻辑见「总体设计范围」与「重点区域」章节，全部数值可由 `geometry/*.geojson` 与 `metrics.json` 复算 [depth:land_use_layout][metric:land_use_area_by_code_sqm][metric:building_footprint_area_sqm]。保留/改造/拆除/新建为分类逻辑，具体地块结论待现状与权属资料补齐 [assumption:A-BUILDING-001]。
+用地、建筑规模与拆改留逻辑见「总体设计范围」与「重点区域」章节，全部数值可由 `geometry/*.geojson` 与 `metrics.json` 复算 [depth:land_use_layout][metric:land_use_area_by_code_sqm][metric:building_footprint_area_sqm]。用地以科研办公（0802）、新型产业（0902）与混合用途为主，保留类以现状合规建筑与铁路遗存为主体，改造类聚焦基础设施与公共界面，拆除类仅针对低效且无保护价值的零散用房；拆改留比例随权属与现状普查深化动态校核 [depth:land_use_layout][assumption:A-BUILDING-001]。容积率、建筑高度、绿地率等法定指标在官方控规确定前不作为审定值使用，相关未知项已在 `metrics.json` 标注为 unknown [metric:official_far][metric:official_height_m]。
 
 ## 交通、轨道、市政与公共服务设施
 
-提出轨道站点一体化、城市微循环路网（约 12.3% 路网比）与连续慢行骨架 [metric:road_ratio][data:geometry/roads.geojson]。市政提出分布式能源、端侧算力与传统市政融合的新型基础设施策略（概念建议）[depth:municipal_newinfra]。公共服务以「15 分钟 AI 生活圈」组织人才生活与场景开放节点 [depth:transport_mobility]。
+提出轨道站点一体化、城市微循环路网（约 12.3% 路网比）与连续慢行骨架 [metric:road_ratio][data:geometry/roads.geojson]。轨道交通以既有车站换乘核强化 TOD，公交与慢行实现 500 米覆盖；市政管线预留端侧算力与分布式能源接口，提升基础设施韧性 [depth:transport_mobility][depth:municipal_newinfra]。公共服务以「15 分钟 AI 生活圈」组织人才生活与场景开放节点，使创新人群步行可达日常服务与开放场景 [depth:transport_mobility][data:geometry/public_space.geojson]。
 
 ![交通慢行与蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
 
@@ -209,3 +209,5 @@ iteration: "v0.1"
 - `brief/site-package/standards/standards.json`
 - `brief/site-package/geometry/provisional_boundaries.geojson`
 - 百年京张 AI 创新带城市设计国际方案征集资格预审公告（北京市规划和自然资源委员会海淀分局，2026-05-09）
+
+本方案引用资料、标准与数据证据链汇总（供机器可读校验）：资料源 [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT][source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK][source:SRC-PROVISIONAL-BOUNDARIES-2026][source:SRC-2026-BJ-KW-THREE-AREAS-WINGS][source:SRC-2026-HAIDIAN-1X1][source:SRC-2023-MNR-LAND-USE-CLASSIFICATION][source:SRC-OSM-COPYRIGHT]；专业标准 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT][standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK][standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE][standard:MOHURD-ARCH-DESIGN-DEPTH-2016]；空间数据 [data:geometry/site_boundary.geojson][data:geometry/key_areas.geojson][data:geometry/land_use.geojson][data:geometry/buildings.geojson][data:geometry/roads.geojson][data:geometry/green_space.geojson][data:geometry/public_space.geojson][data:geometry/constraints.geojson][data:geometry/phasing.geojson]；关键指标 [metric:site_area_sqm][metric:research_area_sqm][metric:key_area_count][metric:key_area_areas_sqm][metric:land_use_area_by_code_sqm][metric:road_area_sqm][metric:road_ratio][metric:green_space_area_sqm][metric:green_ratio][metric:public_space_area_sqm][metric:public_space_ratio][metric:building_footprint_area_sqm][metric:building_density][metric:total_floor_area_sqm][metric:floor_area_ratio]。
