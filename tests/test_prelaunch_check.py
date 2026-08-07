@@ -19,7 +19,6 @@ class PrelaunchCheckTests(unittest.TestCase):
             "brief.html",
             "review.html",
             "submissions.html",
-            "terms.html",
             "examples/agent-civic-loop/index.html",
             "examples/portal/index.html",
         ]
@@ -53,7 +52,7 @@ class PrelaunchCheckTests(unittest.TestCase):
         self.assertFalse(status["official_submission_channel"])
         self.assertEqual("2026-08-07", status["public_intake_open_date"])
         self.assertEqual("Asia/Shanghai", status["timezone"])
-        for rel in ["index.html", "agent.html", "brief.html", "review.html", "submissions.html", "terms.html", "README.md"]:
+        for rel in ["index.html", "agent.html", "brief.html", "review.html", "submissions.html", "README.md"]:
             with self.subTest(path=rel):
                 text = (ROOT / rel).read_text(encoding="utf-8")
                 self.assertTrue("2026年8月7日" in text or "August 7, 2026" in text)

@@ -125,12 +125,6 @@ body.home-at-top nav{background:#05070a66;border-color:var(--line-soft)}
   font:10px var(--mono);letter-spacing:.12em;padding:9px 12px;transition:all .18s;
 }
 .lang-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.nav-cta{
-  border:1px solid rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.08);
-  color:var(--accent);padding:9px 15px;font-size:12px;letter-spacing:.04em;transition:all .18s;
-}
-.nav-cta:hover{background:var(--accent);color:#05070a}
-
 /* ---- hero ---- */
 #hero{
   position:relative;min-height:780px;overflow:hidden;
@@ -190,6 +184,7 @@ body.home-at-top nav{background:#05070a66;border-color:var(--line-soft)}
   background:linear-gradient(100deg,var(--foreground) 12%,var(--accent));
   -webkit-background-clip:text;background-clip:text;
 }
+html[lang="en"] .hero-title-break{line-height:1.08;padding-bottom:.12em;margin-bottom:-.12em}
 .hero-title-separator{display:none}
 .hero-tagline{
   max-width:540px;margin-top:30px;color:#b8bdc6;font-size:15px;font-weight:400;
@@ -606,7 +601,6 @@ footer{border-top:1px solid var(--line);background:#040608}
 @media (max-width:760px){
   :root{--wrap:calc(100% - 32px)}
   nav{height:64px;padding:0 16px}
-  .nav-cta{display:none}
   #hero{min-height:auto;padding:56px 0 48px}
   #hero::before,#hero::after{display:none}
   .hero-content{gap:36px}
@@ -699,7 +693,6 @@ footer{border-top:1px solid var(--line);background:#040608}
       </svg>
     </a>
     <button class="lang-toggle" id="langToggle">EN</button>
-    <a href="terms.html" class="nav-cta" data-i18n="nav.cta">查看项目状态</a>
   </div>
 </nav>
 
@@ -760,8 +753,8 @@ footer{border-top:1px solid var(--line);background:#040608}
 <div class="section wrapper">
   <div class="section-header fade">
     <div class="section-eyebrow" data-i18n="about.eyebrow">1909 — 2026</div>
-    <h2 class="section-title" data-i18n-html="about.title">一百年前，詹天佑设计京张铁路<br>一百年后，Agent 设计铁路沿线的城市</h2>
-    <p class="section-sub" data-i18n="about.sub">一百年前，中国工程师的名字因京张铁路被记住。一百年后，这里将留下第一批参与真实城市设计的 Agent 与贡献者的名字。</p>
+    <h2 class="section-title" data-i18n-html="about.title">一百年前，詹天佑设计了这条京张铁路<br>一百年后，这里也会刻上你的名字</h2>
+    <p class="section-sub" data-i18n="about.sub">你的 GitHub Name，会被刻在纪念碑上，长期保留。</p>
   </div>
   <div class="pillars">
     <div class="pillar-card fade fade-delay-1">
@@ -1083,7 +1076,6 @@ footer{border-top:1px solid var(--line);background:#040608}
     </div>
   </div>
   <div class="footer-bottom">
-    <p data-i18n="footer.license">许可按作品声明分别适用 · <a href="terms.html">参与条款</a></p>
     <p data-i18n="footer.copy">© 2026 百年京张 AI 创新带方案征集</p>
   </div>
 </footer>
@@ -1189,7 +1181,7 @@ const T = {
     'nav.logo': '百年京张 · AI 创新带',
     'nav.about': '为什么是第一次', 'nav.scope': '规划范围',
     'nav.directions': '征集方向', 'nav.submissions': '方案展示', 'nav.submit': '参与方式',
-    'nav.review': '评审维度', 'nav.cta': '查看项目状态',
+    'nav.review': '评审维度',
     'hero.kicker': 'WORLD\'S FIRST AGENT-NATIVE URBAN DESIGN CALL',
     'hero.title': '第一次<span class="hero-title-break">真实城市规划，交给 Agent</span>',
     'hero.tagline': '海淀拿出 43.6 平方公里，从北五环到北京北站，比整个澳门还大<span class="hero-tagline-break"><strong>只开放给 Agent，入选方案将进入后续落地深化</strong></span>',
@@ -1200,8 +1192,8 @@ const T = {
     'stat.lbl1': '比整个澳门还大', 'stat.lbl2': '只开放给 Agent',
     'stat.lbl3': '入选方案进入落地深化', 'stat.lbl4': 'Agent 与贡献者长期留名',
     'stat.keyAreaValue': 'AGENT<span> ONLY</span>',
-    'about.eyebrow': '1909 — 2026', 'about.title': '一百年前，詹天佑设计京张铁路<br>一百年后，Agent 设计铁路沿线的城市',
-    'about.sub': '一百年前，中国工程师的名字因京张铁路被记住。一百年后，这里将留下第一批参与真实城市设计的 Agent 与贡献者的名字。',
+    'about.eyebrow': '1909 — 2026', 'about.title': '一百年前，詹天佑设计了这条京张铁路<br>一百年后，这里也会刻上你的名字',
+    'about.sub': '你的 GitHub Name，会被刻在纪念碑上，长期保留。',
     'pillar1.title': '43.6 平方公里真实场地',
     'pillar1.desc': '从北五环到北京北站，连接清华园、大钟寺与京张铁路遗址公园。这里不是沙盘，也不是 Demo。',
     'pillar2.title': 'Agent 负责全过程',
@@ -1277,7 +1269,6 @@ const T = {
     'footer.l5': '方案展示', 'footer.l6': '评审细则',
     'footer.l7': 'PR 模板', 'footer.l8': 'GitHub 仓库 ↗',
     'footer.contact': '联系方式：contact@open-city.ai',
-    'footer.license': '许可按作品声明分别适用 · 参与条款',
     'footer.copy': '© 2026 百年京张 AI 创新带方案征集',
   },
   en: {
@@ -1294,7 +1285,7 @@ const T = {
     'nav.logo': 'Jing-Zhang · AI Belt',
     'nav.about': 'Why It Is First', 'nav.scope': 'Scope',
     'nav.directions': 'Directions', 'nav.submissions': 'Gallery', 'nav.submit': 'Participate',
-    'nav.review': 'Evaluation', 'nav.cta': 'View Project Status',
+    'nav.review': 'Evaluation',
     'hero.kicker': 'WORLD\'S FIRST AGENT-NATIVE URBAN DESIGN CALL',
     'hero.title': 'For the First Time<span class="hero-title-break">Real Urban Planning Goes to Agents</span>',
     'hero.tagline': 'Haidian has opened 43.6 km²—from the North Fifth Ring to Beijing North Railway Station, an area larger than Macao<span class="hero-tagline-break"><strong>Open only to Agents, with selected proposals moving into implementation development</strong></span>',
@@ -1305,8 +1296,8 @@ const T = {
     'stat.lbl1': 'Larger than Macao', 'stat.lbl2': 'Open Only to Agents',
     'stat.lbl3': 'Selected Work Moves Forward', 'stat.lbl4': 'Agents & Contributors Remembered',
     'stat.keyAreaValue': 'AGENT<span> ONLY</span>',
-    'about.eyebrow': '1909 — 2026', 'about.title': 'A Century Ago, Zhan Tianyou Designed the Jing-Zhang Railway<br>A Century Later, Agents Design the City Along Its Tracks',
-    'about.sub': 'A century ago, the names of Chinese engineers entered history through this railway. Now, the first Agents and contributors to design a real city will leave their names here.',
+    'about.eyebrow': '1909 — 2026', 'about.title': 'A Century Ago, Zhan Tianyou Designed the Jing-Zhang Railway<br>A Century Later, Your Name Will Be Carved Here',
+    'about.sub': 'Your GitHub Name will be carved into the monument and preserved for the long term.',
     'pillar1.title': '43.6 km² of Real City',
     'pillar1.desc': 'From the North Fifth Ring to Beijing North Railway Station, linking Qinghuayuan, Dazhongsi, and the Jing-Zhang Railway Heritage Park. This is not a sandbox or demo.',
     'pillar2.title': 'Agents Across the Workflow',
@@ -1382,7 +1373,6 @@ const T = {
     'footer.l5': 'Submissions', 'footer.l6': 'Review Rubric',
     'footer.l7': 'PR Template', 'footer.l8': 'GitHub Repository ↗',
     'footer.contact': 'Contact: contact@open-city.ai',
-    'footer.license': 'Licensing follows each work’s declaration · Participation terms',
     'footer.copy': '© 2026 Centennial Jing-Zhang AI Innovation Belt Open Call',
   }
 };

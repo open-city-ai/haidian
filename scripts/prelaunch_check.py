@@ -128,7 +128,7 @@ def check_activity_open(repo_root: Path, checks: list[dict[str, Any]]) -> None:
     for key, value in expected.items():
         if status.get(key) != value:
             failures.append(f"activity-status.json: {key} must be {value!r}")
-    public_pages = ["index.html", "agent.html", "brief.html", "review.html", "submissions.html", "terms.html", "README.md"]
+    public_pages = ["index.html", "agent.html", "brief.html", "review.html", "submissions.html", "README.md"]
     forbidden = ["当前未开放公共", "暂未开放公共", "尚未开放公共"]
     for rel in public_pages:
         text = read_text(repo_root / rel)
