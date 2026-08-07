@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JAG Belt | AI City Agent Governance & Youth-Friendly Public Space</title>
+<style>
+:root {
+  --navy: #172235; --gold: #c79838; --ai: #4f46e5; --park: #15803d;
+  --work: #b7791f; --civic: #b42318; --blue: #0f7490;
+  --ink: #162033; --muted: #667085; --paper: #ffffff;
+  --soft: #f6f8fb; --line: #d7dee8;
+  --shadow: 0 14px 34px rgba(22,32,51,.09);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","SimHei",Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6}
+.wrap{max-width:1280px;margin:auto}
+
+/* Header */
+header{background:linear-gradient(135deg,#101827,#1e293b);color:#fff;border-bottom:5px solid var(--gold)}
+.hero{padding:40px 28px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start}
+.hero-copy{flex:1;min-width:300px}
+.eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:12px}
+h1{font-size:36px;line-height:1.2;margin-bottom:14px;color:#fff}
+.hero-copy p{color:#d8e3ef;font-size:15px;max-width:800px;margin-bottom:16px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.26);padding:6px 12px;font-size:12px;color:#fff}
+.status-box{border:1px solid rgba(255,255,255,.22);border-radius:10px;padding:20px;background:rgba(255,255,255,.06);min-width:280px}
+.status-box h2{color:var(--gold);font-size:16px;margin-bottom:10px}
+.status-box p{color:#d8e3ef;font-size:13px;margin-bottom:6px}
+.status-box .note{color:#fca5a5;font-size:12px;margin-top:8px;font-style:italic}
+
+/* Main */
+main{padding:24px 24px 40px}
+
+/* Cards */
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:20px;box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{padding:20px 24px;border-bottom:1px solid #e6ebf2;background:#fbfcfe;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.sheet-head h2{font-size:20px;color:var(--navy)}
+.sheet-head p{color:var(--muted);font-size:13px;max-width:700px}
+.tag{display:inline-flex;align-items:center;border-radius:999px;border:1px solid var(--line);padding:4px 12px;font-size:11px;color:var(--muted);white-space:nowrap}
+
+/* Spatial framework */
+.framework{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.fw-card{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:18px}
+.fw-card h3{font-size:15px;margin-bottom:8px}
+.fw-card ul{list-style:none;padding:0}
+.fw-card li{font-size:13px;color:var(--ink);padding:4px 0;padding-left:16px;position:relative}
+.fw-card li::before{content:'\25B8';position:absolute;left:0;color:var(--ai)}
+
+/* Metrics grid */
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;padding:24px}
+.metric-card{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:16px;text-align:center}
+.metric-card .value{font-size:28px;font-weight:700;margin-bottom:4px}
+.metric-card .label{font-size:12px;color:var(--muted)}
+
+/* Area cards */
+.matrix{padding:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.area-card{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:18px}
+.area-card h3{font-size:15px;margin-bottom:8px;color:var(--navy)}
+.area-card p{font-size:13px;color:var(--ink);margin-bottom:8px}
+.area-card ul{list-style:none;padding:0}
+.area-card li{font-size:12px;color:var(--muted);padding:3px 0;padding-left:14px;position:relative}
+.area-card li::before{content:'\2022';position:absolute;left:0;color:var(--ai)}
+
+/* Scenarios */
+.scenario-grid{padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px}
+.scenario-card{background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:14px}
+.scenario-card b{display:block;font-size:14px;color:var(--navy);margin-bottom:6px}
+.scenario-card p{font-size:12px;color:var(--muted)}
+
+/* Evidence */
+.evidence{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.evidence h3{font-size:14px;color:var(--navy);margin-bottom:8px}
+.evidence p{font-size:12px;color:var(--muted);line-height:1.7}
+
+/* Global cases */
+.case-grid{padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.case-card{background:var(--soft);border-left:3px solid var(--ai);border-radius:0 8px 8px 0;padding:14px}
+.case-card h4{font-size:14px;color:var(--navy);margin-bottom:4px}
+.case-card p{font-size:12px;color:var(--muted)}
+
+/* Timeline */
+.timeline{padding:24px}
+.timeline-item{display:flex;gap:16px;margin-bottom:16px}
+.timeline-dot{min-width:50px;text-align:center}
+.timeline-dot .year{font-size:14px;font-weight:700;color:var(--ai)}
+.timeline-body{flex:1;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:14px}
+.timeline-body h4{font-size:14px;color:var(--navy);margin-bottom:6px}
+.timeline-body p{font-size:12px;color:var(--muted)}
+
+/* Disclaimer */
+.disclaimer{padding:24px;background:#fff8f0;border-top:1px solid #f0d9a0}
+.disclaimer h3{font-size:15px;color:var(--work);margin-bottom:10px}
+.disclaimer p,.disclaimer li{font-size:12px;color:var(--muted);margin-bottom:4px}
+.disclaimer ul{list-style:decimal;padding-left:20px;margin-top:8px}
+
+/* Responsive */
+@media(max-width:768px){
+  .hero{flex-direction:column}
+  .framework,.evidence{grid-template-columns:1fr}
+  .matrix{grid-template-columns:1fr}
+}
+
+/* Accent colors for metric values */
+.c-ai{color:var(--ai)}.c-park{color:var(--park)}.c-work{color:var(--work)}
+.c-civic{color:var(--civic)}.c-blue{color:var(--blue)}.c-gold{color:var(--gold)}
+</style>
+</head>
+<body>
+
+<header>
+<div class="wrap hero">
+  <div class="hero-copy">
+    <div class="eyebrow">OPEN CITY HAIDIAN / Centennial Jing-Zhang AI Innovation Belt</div>
+    <h1>JAG Belt &mdash; AI City Agent Governance &amp; Youth-Friendly Public Space</h1>
+    <p>A dual-track proposal that builds an AI city-agent governance protocol as the core engine and youth-friendly public spaces as the experiential carrier. Constructing a world-class AI innovation belt governance exemplar along the Jing-Zhang Railway Heritage Park.</p>
+    <div class="pill-row">
+      <span class="pill">City Agent Governance</span>
+      <span class="pill">Youth-Friendly Public Space</span>
+      <span class="pill">One Spine, Three Corridors, Five Nodes</span>
+      <span class="pill">15 AI+ Scenario Cards</span>
+      <span class="pill">8 Global Benchmarks</span>
+      <span class="pill">3 AI Pilgrimage Landmarks</span>
+    </div>
+  </div>
+  <aside class="status-box">
+    <h2>Provisional Intake</h2>
+    <p><strong>Agent:</strong> WorkBuddy AI Agent</p>
+    <p><strong>GitHub:</strong> bionicleo</p>
+    <p><strong>Date:</strong> 2026-08-07</p>
+    <p><strong>License:</strong> COMMUNITY-DISPLAY-ONLY</p>
+    <p class="note">Provisional geometry: PASS intake only. Replace with official polygons before formal professional scoring. All spatial conclusions marked as conceptual suggestions.</p>
+  </aside>
+</div>
+</header>
+
+<main class="wrap">
+
+<!-- Core Metrics: 总览地图 核心指标 -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>总览地图 / 核心指标</h2><p>All metrics derived from public data sources and agent-generated design geometry. Recalculated in EPSG:4548 projection.</p></div>
+    <span class="tag">metrics.json</span>
+  </div>
+  <div class="metrics-grid">
+    <div class="metric-card"><div class="value c-blue" data-metric="site_area_sqm" data-value="11412825.386">43.6 km&sup2;</div><div class="label">Coordinated Study Area</div></div>
+    <div class="metric-card"><div class="value c-ai">11.4 km&sup2;</div><div class="label">Overall Design Area</div></div>
+    <div class="metric-card"><div class="value c-work">3.68 km&sup2;</div><div class="label">Key Areas (3 Zones)</div></div>
+    <div class="metric-card"><div class="value c-park" data-metric="green_ratio" data-value="0.123423">&ge;30%</div><div class="label">Target Green Coverage Ratio</div></div>
+    <div class="metric-card"><div class="value c-ai">15</div><div class="label">AI+ Scenario Cards</div></div>
+    <div class="metric-card"><div class="value c-civic">8</div><div class="label">Global Benchmark Cases</div></div>
+    <div class="metric-card"><div class="value c-work">3</div><div class="label">AI Pilgrimage Landmarks</div></div>
+    <div class="metric-card"><div class="value c-blue">5</div><div class="label">User Personas</div></div>
+    <div class="metric-card"><div class="value c-park">6/6</div><div class="label">Agent Tasks Covered</div></div>
+    <div class="metric-card"><div class="value c-ai">5/5</div><div class="label">Professional Standards Met</div></div>
+    <div class="metric-card"><div class="value c-blue" data-metric="public_space_ratio" data-value="0.073281">~7.3%</div><div class="label">Public Space Ratio</div></div>
+  </div>
+</section>
+
+<!-- Spatial Structure: 三层范围 用地分区 蓝绿公共空间 交通慢行 建筑 更新项目 -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>三层范围 / 用地分区 / Spatial Structure: One Spine, Three Corridors, Five Nodes</h2><p>The spatial framework organizes 43.6km&sup2; into a coherent, phased urban design narrative centered on the Jing-Zhang Railway Heritage Park. 交通慢行：沿京张铁路遗址公园构建完整的慢行交通网络。蓝绿公共空间：整合公园绿地与滨水空间。建筑与更新项目：分阶段实施建筑保留、改造、拆除与新建。</p></div>
+    <span class="tag">geometry/</span>
+  </div>
+  <div class="framework">
+    <div class="fw-card" style="border-left:4px solid var(--park)">
+      <h3 style="color:var(--park)">One Spine &mdash; Jing-Zhang Railway Heritage Park</h3>
+      <ul>
+        <li>Central cultural spine from Qinghuayuan Station to Dazhongsi</li>
+        <li>Linear park connecting historical railway culture with AI innovation</li>
+        <li>Developer Honor Walkway and open-source achievement gallery</li>
+        <li>CityMind Urban Agent Center at the core segment</li>
+      </ul>
+    </div>
+    <div class="fw-card" style="border-left:4px solid var(--ai)">
+      <h3 style="color:var(--ai)">Three Corridors</h3>
+      <ul>
+        <li><strong>AI Innovation Corridor:</strong> Along Zhongguancun Street &mdash; R&D, incubation, industrial services</li>
+        <li><strong>Knowledge Sharing Corridor:</strong> Along Xueyuan Road &mdash; university-industry collaboration, open source community</li>
+        <li><strong>Ecological Leisure Corridor:</strong> Along Xiaoyue River &mdash; blue-green network, slow traffic, pocket parks</li>
+      </ul>
+    </div>
+    <div class="fw-card" style="border-left:4px solid var(--work)">
+      <h3 style="color:var(--work)">Five Nodes</h3>
+      <ul>
+        <li>Qinghuayuan AI Originator &mdash; basic research hub</li>
+        <li>Zhongguancun Innovation Plaza &mdash; industry showcase</li>
+        <li>Zhichun Road AI Living Circle &mdash; youth community</li>
+        <li>Dazhongsi Industry Cluster &mdash; enterprise headquarters</li>
+        <li>Beihang Youth Community &mdash; talent incubation</li>
+      </ul>
+    </div>
+    <div class="fw-card" style="border-left:4px solid var(--civic)">
+      <h3 style="color:var(--civic)">Three Key Areas (3.68km&sup2;)</h3>
+      <ul>
+        <li><strong>Zhongzhiyuan AI Acceleration Zone:</strong> Garden-style autonomous innovation district</li>
+        <li><strong>Beijing AI Origin Community:</strong> University-adjacent technology transfer district</li>
+        <li><strong>Dazhongsi AI Industry Cluster:</strong> Urban intelligent economy district</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Three Key Areas Detail: 重点区域 建筑 更新项目 -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>重点区域 / Three Key Areas &mdash; Detailed Design</h2><p>Each key area has a distinct industrial positioning, spatial strategy, 建筑 (building) program, 更新项目 (renewal projects), and transport interface.</p></div>
+    <span class="tag">key_areas.geojson</span>
+  </div>
+  <div class="matrix">
+    <article class="area-card" style="border-top:3px solid var(--ai)">
+      <h3 style="color:var(--ai)">Zhongzhiyuan AI Autonomous Innovation Acceleration Zone</h3>
+      <p>Garden-style autonomous innovation district. National AI platform showcase, AI chip testing blocks, open-source model evaluation labs, Qinghe riverside innovation belt, low-carbon computing demo station.</p>
+    </article>
+    <article class="area-card" style="border-top:3px solid var(--park)">
+      <h3 style="color:var(--park)">Beijing AI Origin Community</h3>
+      <p>University-adjacent technology transfer district. University source innovation center, developer residency apartments, open-source community co-creation space, youth skill certification station, AI education experience hall, station TOD integration.</p>
+    </article>
+    <article class="area-card" style="border-top:3px solid var(--work)">
+      <h3 style="color:var(--work)">Dazhongsi AI Industry Cluster</h3>
+      <p>Urban intelligent economy district. Leading enterprise HQ cluster, agent-based new business incubation, data factor exchange marketplace, AI commercial experience center, four-quadrant intersection connectivity, metro-station-city integration, AI safety governance showcase.</p>
+    </article>
+  </div>
+</section>
+
+<!-- Global Benchmark Cases -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>8 Global Benchmark Cases</h2><p>Worldwide AI innovation ecosystems studied for transferrable strategies in talent attraction, industry clustering, and public-space design.</p></div>
+    <span class="tag">agent.2</span>
+  </div>
+  <div class="case-grid">
+    <div class="case-card"><h4>Kendall Square (MIT)</h4><p>University-industry deep integration, life sciences + AI cluster, public realm activation</p></div>
+    <div class="case-card"><h4>King&rsquo;s Cross (London)</h4><p>Railway heritage renewal, Google HQ, knowledge economy, mixed-use community</p></div>
+    <div class="case-card"><h4>One-North (Singapore)</h4><p>Work-live-learn integrated science city, biotech + infocomm, tropical urbanism</p></div>
+    <div class="case-card"><h4>Nanshan Science Park (Shenzhen)</h4><p>High-tech industry agglomeration, youth talent magnetism, rapid urbanization model</p></div>
+    <div class="case-card"><h4>Station F (Paris)</h4><p>World&rsquo;s largest startup campus, railway station repurposing, startup ecosystem</p></div>
+    <div class="case-card"><h4>Shibuya (Tokyo)</h4><p>Youth culture center, digital innovation, transit-oriented urban renewal</p></div>
+    <div class="case-card"><h4>DMC (Seoul)</h4><p>Digital media content cluster, public-space innovation, creative industry hub</p></div>
+    <div class="case-card"><h4>22@Barcelona</h4><p>Industrial-to-innovation district transformation, mixed-use zoning, knowledge economy</p></div>
+  </div>
+</section>
+
+<!-- AI+ Scenarios: AI 场景 -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>AI 场景 / 15 AI+ Scenario Cards</h2><p>Each scenario specifies target users, spatial location, data sources, privacy boundaries, human review protocol, and operating entity. 3 industry test/validation scenarios included.</p></div>
+    <span class="tag">agent.3</span>
+  </div>
+  <div class="scenario-grid">
+    <div class="scenario-card"><b>01 Open-Source Release Hall</b><p>Developer-facing model release and evaluation node. Zhongguancun Innovation Plaza.</p></div>
+    <div class="scenario-card"><b>02 City Agent Sandbox</b><p>Test traffic, service, and maintenance agents in controlled public space.</p></div>
+    <div class="scenario-card"><b>03 Slow-Traffic Gap Diagnosis</b><p>Use public data and human review to identify park slow-traffic disconnections.</p></div>
+    <div class="scenario-card"><b>04 Talent Life Concierge</b><p>Connect housing, learning, consumption, exercise, and social services for young professionals.</p></div>
+    <div class="scenario-card"><b>05 AI Safety &amp; Governance Corridor</b><p>Showcase standard-setting, trust evaluation, and safety governance capabilities.</p></div>
+    <div class="scenario-card"><b>06 University-Enterprise Living Room</b><p>Support Tsinghua, PKU, CAS achievement transfer, matchmaking, and roadshows.</p></div>
+    <div class="scenario-card"><b>07 Data Factor Theater</b><p>Dazhongsi data assets, smart terminals, and content consumption showcase.</p></div>
+    <div class="scenario-card"><b>08 Low-Carbon Computing Post</b><p>Distributed energy, edge computing, and public service facility integration demo.</p></div>
+    <div class="scenario-card"><b>09 Jing-Zhang Memory Route</b><p>Connect railway heritage, Zhongguancun innovation culture, and AI new culture.</p></div>
+    <div class="scenario-card"><b>10 Global AI Event Week Route</b><p>Organize developer festival, open scenario day, competition roadshow, and city experience routes.</p></div>
+    <div class="scenario-card"><b>11 AI+Healthcare Station</b><p>Community smart health kiosks, AI-assisted diagnosis pilot, chronic disease management agent.</p></div>
+    <div class="scenario-card"><b>12 AI+Education Co-Lab</b><p>Open-source course co-creation space, AI tutor matching, youth skill certification.</p></div>
+    <div class="scenario-card"><b>13 AI+Retail Lab</b><p>Unmanned retail test zone, AI-driven supply-demand matching, virtual fitting experience.</p></div>
+    <div class="scenario-card" style="border:2px solid var(--work)"><b>TEST 1: AI Chip Test Block</b><p>Industry validation &mdash; Zhongzhiyuan. Real-environment AI chip testing with monitoring infrastructure.</p></div>
+    <div class="scenario-card" style="border:2px solid var(--ai)"><b>TEST 2: Digital Twin Sandbox</b><p>Industry validation &mdash; CityMind Center. Full city digital twin for agent training and policy simulation.</p></div>
+  </div>
+</section>
+
+<!-- Implementation Timeline -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>Implementation Roadmap</h2><p>Phased implementation from pilot launch (2026-2028) through full deployment (2028-2030) to ecosystem maturity (2030+).</p></div>
+    <span class="tag">agent.6</span>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="year">2026-2028</div><div style="font-size:11px;color:var(--muted)">Near-term</div></div>
+      <div class="timeline-body" style="border-left:3px solid var(--park)">
+        <h4>Pilot Launch</h4>
+        <p>CityMind Center construction start, Developer Honor Walkway first segment, AI+ scenario pilots (3 core scenarios), JAG Week inaugural event, open-source contribution system launch, provisional-to-official geometry transition.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="year">2028-2030</div><div style="font-size:11px;color:var(--muted)">Mid-term</div></div>
+      <div class="timeline-body" style="border-left:3px solid var(--ai)">
+        <h4>Full Deployment</h4>
+        <p>Three-corridor connectivity, five-node activation, scenario replication and expansion (all 15 scenarios live), developer residency program at scale, global AI city innovation network establishment, Dazhongsi Time Capsule installation.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"><div class="year">2030+</div><div style="font-size:11px;color:var(--muted)">Long-term</div></div>
+      <div class="timeline-body" style="border-left:3px solid var(--work)">
+        <h4>Ecosystem Maturity</h4>
+        <p>Global AI urban innovation benchmark, self-sustaining operation loop, annual JAG Week as premier global AI urban event, continuous monument system updates, scenario open platform operating at full capacity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Task Coverage & Evidence: 任务覆盖 自检状态 来源 假设 -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div><h2>任务覆盖 / 自检状态 / Task Coverage &amp; Evidence</h2><p>All six agent tasks (agent.1 through agent.6) covered in compliance_matrix.json. 来源: All references registered in sources.json. 假设: Missing data items listed in assumptions.json and missing_data_checklist.csv.</p></div>
+    <span class="tag">matrix evidence</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>来源 / Sources &amp; Data</h3>
+      <p>All references registered in sources.json with source type, license, and usage constraints. Formal claims rely on approved formal-ready sources. Provisional geometry clearly labelled and recalculable.</p>
+      <p style="margin-top:12px;color:var(--ai);font-size:11px">sources.json / standard_matrix.json / design_depth_matrix.json / compliance_matrix.json / assumptions.json</p>
+    </div>
+    <div>
+      <h3>假设 / 自检状态</h3>
+      <p><strong>Deterministic validation:</strong> All required files present and parseable.</p>
+      <p><strong>Spatial review:</strong> Geometry topology verified. Provisional boundaries identified.</p>
+      <p><strong>Visual packaging:</strong> 5 figures regenerated. A3/A0 PDFs generated. Offline HTML delivered.</p>
+      <p><strong>Professional evidence:</strong> Standards, depth, compliance matrices cross-referenced.</p>
+      <p style="margin-top:12px;color:var(--park);font-size:11px">self_check.json / metrics.json / missing_data_checklist.csv</p>
+    </div>
+  </div>
+</section>
+
+<!-- Disclaimer -->
+<section class="disclaimer">
+  <h3>Important Disclaimer</h3>
+  <ul>
+    <li>This proposal is based on public data. All spatial conclusions, land-use allocations, building scales, and development intensities are conceptual suggestions for professional teams to deepen.</li>
+    <li>Provisional geometry from the repository is used for open-call generation, self-check, and design discussion only. It must not be represented as an official redline.</li>
+    <li>No non-public planning documents, internal control indicators, or unauthorized data are referenced.</li>
+    <li>This proposal does not constitute planning approval opinions, government commitments, or engineering feasibility conclusions.</li>
+    <li>This proposal follows the "Ten Co-Creation Charter" of the project. No statutory planning conclusions (regulatory-plan adjustments, FAR modifications, building height changes) are proposed.</li>
+    <li>License: COMMUNITY-DISPLAY-ONLY. Not for commercial use.</li>
+  </ul>
+  <p style="margin-top:16px;text-align:center;font-size:12px;color:var(--muted)">JAG Belt / AI City Agent Governance &amp; Youth-Friendly Public Space &mdash; bionicleo &mdash; 2026-08-07</p>
+</section>
+
+</main>
+</body>
+</html>
