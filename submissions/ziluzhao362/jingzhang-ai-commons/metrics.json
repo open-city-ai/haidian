@@ -1,0 +1,314 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(EPSG:4548, provisional submitted site boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note": "临时边界复算值，不是正式红线面积。"
+    },
+    "announced_research_scope_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "43.6 km2 × 1,000,000",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "公告文字面积；未附精确 polygon。"
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "11.4 km2 × 1,000,000",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "公告文字约面积，不等同于临时 polygon 复算值。"
+    },
+    "announced_key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "sources.json"
+      ],
+      "formula": "(192.1 + 104.3 + 72.0) ha × 10,000",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 118160.004,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union area(EPSG:4548, conceptual building envelopes)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BUILDING-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2086486.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union area(EPSG:4548, proposed green spaces)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 97759.936,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union area(EPSG:4548, proposed public spaces)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.182819,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.008566,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "conceptual_road_centerline_length_m": {
+      "status": "known",
+      "value": 24633.882,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum length(EPSG:4548, conceptual road and slow-mobility centerlines)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TRANSPORT-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional key areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(complete conceptual land-use zones)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "conceptual_building_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(conceptual building prototypes)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(AI+ scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(primary personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(civic innovation landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "testbed_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry validation protocols)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "case_study_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(comparable official-source cases)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "osm_education_anchor_count": {
+      "status": "known",
+      "value": 147,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(unique named OSM education/library objects within 1,500 m of provisional site)",
+      "confidence": "low",
+      "assumptions": [
+        "A-OSM-001"
+      ],
+      "note": "仅反映 OSM 标注覆盖，不代表设施总量、学位或服务能力。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开包未提供批准的容积率控制与正式红线。"
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved building height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开包未提供限高、航空净空与景观视廊控制。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building footprint / official parcel area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少正式地块与批准控制，概念基底不得替代建筑密度。"
+    },
+    "parking_supply_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved parking supply)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少交通调查、停车普查与配建标准适用结论。"
+    },
+    "municipal_capacity_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "capacity / design demand",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少给排水、电力、热力、通信与再生水现状容量数据。"
+    },
+    "demolition_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "surveyed demolition footprint",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少权属与现状建筑测绘，本方案不作实际拆除量承诺。"
+    }
+  }
+}

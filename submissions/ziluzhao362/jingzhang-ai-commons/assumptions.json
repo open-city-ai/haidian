@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_organizer_geometry",
+      "statement": "总体设计范围和三处重点区采用仓库内置临时粗略 polygon；公告约面积为已知文本值，但精确红线尚未提供。",
+      "impact": "空间结构和比率可用于概念比较，不能用于审批、征拆、工程放样或法定指标认定。",
+      "resolution": "取得组织方统一的正式坐标文件后，替换 site/key area 图层并重跑全部面积、拓扑与图纸。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "公开包未包含容积率、建筑密度、限高、绿地率下限、退界、道路红线、权属及市政容量控制。",
+      "impact": "所有功能与体量均为城市设计建议，未知指标保持 null，不以经验值冒充批准控制。",
+      "resolution": "由规划、交通、市政、文保和实施专业联合确认后再进入法定或工程阶段。"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "conceptual_only",
+      "statement": "buildings.geojson 的十二个基底是功能原型和容量讨论载体，不是现状测绘或报建建筑轮廓。",
+      "impact": "建筑面积、层数、高度和拆改留数量均不得从这些基底外推。",
+      "resolution": "补充现状建筑测绘、权属、结构安全、历史价值与使用调查后逐栋判定。"
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "conceptual_only",
+      "statement": "道路与慢行线表达连接意图，不表示正式道路红线、车道数或工程断面。",
+      "impact": "中心线长度仅用于比较网络完整度；交通容量、停车与交叉口设计仍未知。",
+      "resolution": "基于合法取得的汇总 OD、断面流量、公交客流和路缘停靠调查开展交通模型校核。"
+    },
+    {
+      "id": "A-OSM-001",
+      "status": "open_data_context",
+      "statement": "OpenStreetMap 对象仅作为 2026-08-07 时点的公开语境快照，并按名称与类型去重。",
+      "impact": "教育、医疗、公园数量只代表地图标注覆盖，不能解释学位、床位、服务半径或真实人流。",
+      "resolution": "后续以主管部门设施台账和匿名汇总调查交叉核验。"
+    },
+    {
+      "id": "A-PRIVACY-001",
+      "status": "design_guardrail",
+      "statement": "场景默认不使用人脸识别、设备指纹或可回溯个人的连续轨迹；传感数据遵循最小化、短留存与人工复核。",
+      "impact": "部分个性化精度会降低，但降低监控、歧视和目的漂移风险。",
+      "resolution": "每个试点上线前完成数据保护影响评估、公众告知、退出机制和独立审查。"
+    },
+    {
+      "id": "A-IMPLEMENTATION-001",
+      "status": "conditional_program",
+      "statement": "实施清单采用分期门槛而非确定性开工承诺。",
+      "impact": "项目顺序可根据官方边界、资金、公众反馈、就业住房绩效和技术成熟度调整。",
+      "resolution": "每期只在上期安全、包容、运营和空间绩效通过后扩展。"
+    }
+  ]
+}
