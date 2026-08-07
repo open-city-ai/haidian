@@ -1,0 +1,188 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "临时粗略边界；不作为官方红线或精确面积依据。"
+      ]
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "brief/site-package/standards/references/project-official-announcement.md"
+      ],
+      "formula": "official_announcement_text_area",
+      "confidence": "high",
+      "assumptions": [
+        "公告面积值是文字任务依据，不能替代精确 polygon。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 739392.72,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底为设计参考，不代表现状、权属或拆改结论。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1547367.483,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地为概念公共空间骨架，需结合现状、公园方案与蓝线复核。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.135581,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_union_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "临时边界下的方案内部比较指标。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 41657.165,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间节点为概念建议，不含未获得许可的工程判断。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.00365,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_union_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "临时边界下的方案内部比较指标。"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 20151.722,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "仅表达慢行与接驳关系，不是道路红线或工程量。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(public_honor_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(concept_renewal_projects",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开 site package 未提供批准的 FAR、建筑高度、密度、退线、道路红线或市政条件。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方高度控制和景观/文保条件。"
+    }
+  }
+}
