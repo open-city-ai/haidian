@@ -1,0 +1,94 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "category": "boundary_precision",
+      "status": "active",
+      "statement": "当前提交的三层范围和三处重点区域边界均为临时粗略边界（provisional），由维护者根据公告文字四至推导生成，非官方测量红线。",
+      "impact": "所有基于provisional boundary复算的面积、比例和空间关系均为近似值，仅供方案生成和自检讨论使用，不能作为官方红线、审批依据、精确面积计算或法定规划控制。",
+      "resolution": "待官方发布精确boundary GeoJSON后，需重新运行脚手架、复算所有指标并更新全部图纸。",
+      "source_ref": "SRC-PROVISIONAL-BOUNDARIES-2026"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "category": "boundary_precision",
+      "status": "active",
+      "statement": "临时边界精度受限于公告文字四至的模糊性（如'周边1-2公里'），推导的polygon可能与实际官方边界存在显著偏差。",
+      "impact": "方案中涉及的空间布局、用地划分和指标均为概念建议，不替代专业规划团队的正式测绘和控规编制。",
+      "resolution": "正式评分前需替换为official polygon并重新验证。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "category": "regulatory_missing",
+      "status": "active",
+      "statement": "官方控制性详细规划指标全部缺失：容积率、建筑高度、建筑密度、绿地率目标、建筑退线、道路红线均未在公开资料包中提供。",
+      "impact": "本方案无法给出具有法定效力的开发强度、建筑高度或用地控制指标。所有涉及开发强度的表述均为概念建议或参考方案。",
+      "resolution": "需由专业规划团队依据官方控规条件确认后重新计算。",
+      "affected_metrics": [
+        "floor_area_ratio",
+        "building_height_control",
+        "building_density",
+        "green_ratio_target",
+        "setback_line",
+        "road_redline"
+      ]
+    },
+    {
+      "id": "A-CONTROLS-002",
+      "category": "regulatory_missing",
+      "status": "active",
+      "statement": "文物保护控制线、航空限高、蓝线（河道保护）和生态管控线均未在公开资料包中提供。",
+      "impact": "方案中的建筑形态、高度和布局建议可能受上述未公开约束影响，当前表述仅为概念方向。",
+      "resolution": "需由专业团队核实文保、航空、水务和生态部门的具体管控要求。"
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "category": "land_use",
+      "status": "active",
+      "statement": "用地分类为概念建议，基于公开数据推断，未经官方确认。用地功能分区和比例仅供设计讨论参考。",
+      "impact": "方案中的用地结构图和用地比例不反映法定用地性质，不能作为规划管理依据。",
+      "resolution": "正式方案需依据官方控规用地性质和国土空间分类标准重新编制。"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "category": "building_estimation",
+      "status": "active",
+      "statement": "建筑基底面积和估算建筑面积基于OpenStreetMap等公开数据，可能存在遗漏或偏差。总建筑面积因缺少容积率和层数控制而无法可靠估算。",
+      "impact": "方案中引用的建筑规模数据为现状估算值，不代表最终设计方案或法定建设规模。",
+      "resolution": "需由专业团队进行实地测绘和方案设计后确定。"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "category": "infrastructure_missing",
+      "status": "active",
+      "statement": "市政管线、能源容量、排水系统、防洪标准、消防通道和通信基础设施等工程数据均未在公开资料包中提供。",
+      "impact": "方案中的交通、市政和新基建策略均为概念方向，不具备工程可行性结论。",
+      "resolution": "需由市政工程专业团队依据实际工程条件进行专项设计。"
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "category": "ownership_missing",
+      "status": "active",
+      "statement": "土地权属、地块边界和产权信息未在公开资料包中提供。",
+      "impact": "方案中的拆改留分类、功能布局和项目实施建议不涉及权属判断，仅为空间概念。",
+      "resolution": "需由专业团队核实权属后确定实施方案。"
+    },
+    {
+      "id": "A-INDUSTRY-001",
+      "category": "industry_data",
+      "status": "active",
+      "statement": "产业数据（企业数量、产值、投资额、人才规模等）未使用非公开数据。方案中的产业分析基于公开政策和行业报告推断，不构成经济测算。",
+      "impact": "方案中的产业定位、生态策划和运营机制均为概念建议，不反映确定的产业招商、资金支持或政策安排。",
+      "resolution": "需由产业策划团队依据实际调研数据进行深化。"
+    },
+    {
+      "id": "A-ACTIVITY-001",
+      "category": "operation",
+      "status": "active",
+      "statement": "方案中的活动体系、运营机制和品牌策略均为概念设想，不反映已确定的政府活动安排或实施承诺。",
+      "impact": "读者不应将方案中的活动设想理解为已批准的日程或保证落地的运营计划。",
+      "resolution": "需由运营团队与主办方协商确认后确定。"
+    }
+  ]
+}
