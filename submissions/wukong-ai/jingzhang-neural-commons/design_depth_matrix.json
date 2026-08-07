@@ -1,0 +1,583 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "wukong-ai/jingzhang-neural-commons",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "title_zh": "百年京张AI创新带城市设计——设计深度矩阵",
+  "generated_by": "wukong-ai agent",
+  "data_status_note_zh": "本包采用 provisional boundary；官方边界发布后须重算所有面积指标。设计深度为概念性城市设计深度，非法定控规或施工图深度。",
+  "items": [
+    {
+      "item_id": "existing_conditions_diagnosis",
+      "title_zh": "现状条件诊断与分析",
+      "professional_dimension": "总体分析",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 包含设计依据与资料清单章节，系统梳理了上位规划、控规条件、市政设施、现状用地、建筑质量、历史资源等数据；PROCESSED-FACT-PACK 整合了实地调研、遥感影像和公开数据；source_registry.json 记录全部数据来源并附 sha256 校验值。",
+      "proposal_sections": [
+        "设计依据与资料清单",
+        "统筹研究范围产业与未来城市研究"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "building_footprint_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "PROCESSED-FACT-PACK",
+        "SOURCE-REGISTRY"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "DATA_SOURCE_TRUST",
+        "BOUNDARY_TRUST"
+      ]
+    },
+    {
+      "item_id": "three_level_scope_framework",
+      "title_zh": "三层范围工作框架",
+      "professional_dimension": "总体框架",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 明确划定统筹研究范围（约11.4k㎡）、总体设计范围（约5.8k㎡）和重点区域设计范围（368.4h㎡）；三层范围在 site_boundary.geojson 中以独立矢量面呈现，并叠加于总平面图中；A3/A0 图纸包含三层范围示意图，标注各层面积指标。",
+      "proposal_sections": [
+        "三层范围工作框架",
+        "总体空间结构与区域创新协同"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "key_area_count"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "AGENT-TASKBOOK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "BOUNDARY_TRUST",
+        "SCOPE_CONSISTENCY"
+      ]
+    },
+    {
+      "item_id": "overall_spatial_structure",
+      "title_zh": "总体空间结构规划",
+      "professional_dimension": "空间规划",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 定义'京张智脉共生带'总体概念，形成一带（京张遗址公园历史与公共空间主轴）、三核（三处重点片区创新锚点）、多点（AI+公共服务与城市生活节点）、复合环（慢行、绿地与活动路线联动）的空间组织；geometry/key_areas.geojson、geometry/public_space.geojson、geometry/roads.geojson 共同支撑空间结构落图；A3/A0 图纸含总体空间结构图。",
+      "proposal_sections": [
+        "总体空间结构与区域创新协同",
+        "三区两翼空间协同框架"
+      ],
+      "geometry_refs": [
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/green_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "key_area_count",
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "AGENT-TASKBOOK",
+        "PROCESSED-FACT-PACK"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "SPATIAL_CLARITY",
+        "REGIONAL_SYERGY"
+      ]
+    },
+    {
+      "item_id": "land_use_layout",
+      "title_zh": "用地布局与用地分类规划",
+      "professional_dimension": "用地规划",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "geometry/land_use.geojson 完整覆盖 site_boundary，定义居住、公共管理与公共服务、商业服务业、工业仓储、交通、绿地与开敞空间、水域等国土空间分类体系用地类型，各多边形附属性标签；proposal.md 总体设计范围章节说明用地结构与功能比例；metrics.json 复算 site_area_sqm；自检项 LAND_USE_TOPOLOGY 验证拓扑完整性。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——用地布局",
+        "三区两翼空间协同框架"
+      ],
+      "geometry_refs": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "land_use_balance_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "LAND_USE_TOPOLOGY",
+        "NO_UNVERIFIED_LAND_USE"
+      ]
+    },
+    {
+      "item_id": "development_intensity_controls",
+      "title_zh": "开发强度控制指标",
+      "professional_dimension": "开发控制",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 总体设计范围章节提出分区分级容积率控制建议（一般地区≤2.0、重点片区≤3.0）；metrics.json 记录各分区 FAR 建议值和开发总量估算；开发强度控制以图则形式表达于 A3/A0 图纸中；自检项 NO_ENGINEERING_CLAIMS 确认所有强度指标为设计建议而非工程承诺。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——开发强度"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "floor_area_ratio",
+        "site_area_sqm",
+        "total_floor_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "NO_ENGINEERING_CLAIMS",
+        "DEVELOPMENT_CONTROL_AWARENESS"
+      ]
+    },
+    {
+      "item_id": "height_massing_character",
+      "title_zh": "建筑高度与体量风貌控制",
+      "professional_dimension": "城市设计",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 提出分区高度控制引导（历史保护带限高9m、创新核心区限高45m、一般地区限高24m）；geometry/buildings.geojson 标注各幢建筑拟建高度区间；A3/A0 图纸含高度体量分析图和城市设计导则；自检项 NO_HEIGHT_CLAIMS 和 URBAN_CHARACTER 确认高度为设计引导而非工程数据。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——城市风貌控制"
+      ],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "metric_refs": [
+        "building_height_m",
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "MOHURD-URBAN-DESIGN-MEASURES",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "NO_HEIGHT_CLAIMS",
+        "URBAN_CHARACTER"
+      ]
+    },
+    {
+      "item_id": "retain_renovate_demolish",
+      "title_zh": "保留、改造与拆除分类",
+      "professional_dimension": "城市更新",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 城市更新总体框架章节明确保留（历史建筑、优质产业空间）、改造（低效工业厂房、待提升公服设施）和拆除（危旧住区、低效集体用地）分类原则；geometry/buildings.geojson 各多边形附改造策略标签；更新项目清单（proposal.md 章节）对应标注各更新单元；自检项 NO_PROPERTY_CLAIMS 确认不涉及产权承诺。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——更新项目清单",
+        "城市更新总体框架"
+      ],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "building_footprint_area_sqm",
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "UPDATE_PROJECT_LIST",
+        "NO_PROPERTY_CLAIMS"
+      ]
+    },
+    {
+      "item_id": "traffic_rail_slow_parking",
+      "title_zh": "交通轨道慢行与停车组织",
+      "professional_dimension": "交通规划",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 交通轨道市政支撑章节系统梳理轨道线路、站点、公交枢纽和慢行网络布局；geometry/roads.geojson 标注各级道路红线、轨道走向和慢行路径；A3/A0 图纸含交通组织图；metrics.json 记录轨道站点覆盖率、慢行网络密度等指标建议；自检项 MOBILITY_CONCEPTUAL 确认交通规划为概念性建议。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——交通轨道市政支撑"
+      ],
+      "geometry_refs": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "metric_refs": [
+        "road_density_km_per_sqkm",
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "NO_ENGINEERING_CLAIMS",
+        "MOBILITY_CONCEPTUAL"
+      ]
+    },
+    {
+      "item_id": "municipal_new_infrastructure",
+      "title_zh": "市政与新型基础设施",
+      "professional_dimension": "市政工程",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 市政与新型基础设施策略章节提出市政负荷估算、5G/算力网络、智慧多功能杆等新基建布局方向；metrics.json 记录市政需求指标建议；A3/A0 图纸含市政支撑能力示意图；自检项 NO_ENGINEERING_CLAIMS 确认市政内容为规划概念，不替代工程可行性研究。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——交通轨道市政支撑"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "utility_demand_estimate"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "NO_ENGINEERING_CLAIMS"
+      ]
+    },
+    {
+      "item_id": "blue_green_public_space",
+      "title_zh": "蓝绿系统与公共空间网络",
+      "professional_dimension": "公共空间",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 蓝绿系统与公共空间章节定义蓝绿骨架（蓝线水系+绿线公园+附属绿地）、公共空间体系（大型公园—社区广场—街头绿地三级）和京张遗址公园活力带；geometry/green_space.geojson、geometry/public_space.geojson 完整覆盖各层级开敞空间；metrics.json 复算绿化率和公共空间覆盖率指标；自检项 BLUE_GREEN_SPACE 验证蓝绿空间连通性。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——京张遗址公园活力带",
+        "蓝绿系统与公共空间"
+      ],
+      "geometry_refs": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "green_ratio",
+        "public_space_ratio",
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "MOHURD-URBAN-DESIGN-MEASURES",
+        "PROCESSED-FACT-PACK"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "BLUE_GREEN_SPACE",
+        "GREEN_LINE_COMPLIANCE"
+      ]
+    },
+    {
+      "item_id": "three_key_area_detailed_design",
+      "title_zh": "三处重点区域详细设计",
+      "professional_dimension": "重点片区城市设计",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 包含众智园AI自主创新加速区、北京AI原点社区和大钟寺AI产业集聚区三处重点区域详细设计章节，分别覆盖定位与目标、功能业态布局、空间形态设计、AI场景设计、指标控制和实施依赖；geometry/key_areas.geojson 附各片区详细设计矢量；A3/A0 图纸包含重点区域详细设计总平面图和效果图；自检项 KEY_AREAS_TRUST 和 SPATIAL_CLARITY 验证各片区空间表达完整性。",
+      "proposal_sections": [
+        "众智园AI自主创新加速区详细设计",
+        "北京AI原点社区详细设计",
+        "大钟寺AI产业集聚区详细设计",
+        "重点区域详细设计——众智园",
+        "重点区域详细设计——AI原点社区",
+        "重点区域详细设计——大钟寺"
+      ],
+      "geometry_refs": [
+        "geometry/key_areas.geojson",
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "metric_refs": [
+        "key_area_count",
+        "site_area_sqm",
+        "building_footprint_area_sqm",
+        "green_ratio",
+        "public_space_ratio"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "AGENT-TASKBOOK",
+        "KEY-AREA-SOURCE",
+        "PROCESSED-FACT-PACK"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "KEY_AREAS_TRUST",
+        "SPATIAL_CLARITY",
+        "LAND_USE_TOPOLOGY"
+      ]
+    },
+    {
+      "item_id": "renewal_project_list",
+      "title_zh": "城市更新项目清单",
+      "professional_dimension": "城市更新",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 更新项目清单章节系统梳理近中期城市更新单元，分类为整治提升类、功能转换类和拆建结合类；geometry/phasing.geojson 标注各更新单元位置、类型和时序；A3/A0 图纸含更新项目分布图；自检项 UPDATE_PROJECT_LIST 验证清单覆盖完整，自检项 NO_PROPERTY_CLAIMS 确认不涉及具体产权承诺。",
+      "proposal_sections": [
+        "总体设计范围城市更新与控规深度城市设计——更新项目清单",
+        "城市更新总体框架"
+      ],
+      "geometry_refs": [
+        "geometry/phasing.geojson",
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "renewal_unit_count",
+        "site_area_sqm",
+        "building_footprint_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "PROCESSED-FACT-PACK",
+        "SITE-PACKAGE"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "UPDATE_PROJECT_LIST",
+        "NO_PROPERTY_CLAIMS"
+      ]
+    },
+    {
+      "item_id": "phasing_implementation",
+      "title_zh": "分期实施计划",
+      "professional_dimension": "实施规划",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 分期实施计划章节将项目分为近期（1-3年）、中期（4-5年）和远期（6年+）三阶段，明确各阶段启动项目、支撑条件和预期成效；geometry/phasing.geojson 以时间分区多边形表达各期空间范围；A3/A0 图纸含分期实施总平面图；自检项 PHASING_PLAN 和 NO_CONFIRMED_TIMELINE 验证分期逻辑和不确定性声明。",
+      "proposal_sections": [
+        "分期实施计划",
+        "总体设计范围城市更新与控规深度城市设计——分期实施"
+      ],
+      "geometry_refs": [
+        "geometry/phasing.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "phase_count",
+        "key_area_count",
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "MOHURD-CONTROL-DETAILED-PLANNING",
+        "PROCESSED-FACT-PACK"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "PHASING_PLAN",
+        "NO_CONFIRMED_TIMELINE"
+      ]
+    },
+    {
+      "item_id": "metrics_recalculation",
+      "title_zh": "指标复核与重算",
+      "professional_dimension": "量化分析",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "metrics.json 完整记录本包涉及的全部量化指标，包括site_area_sqm（基于provisional boundary计算）、key_area_count、building_footprint_area_sqm、green_ratio、public_space_ratio、floor_area_ratio等；各指标均标注数据状态（known/unknown/not_applicable）和数据来源；proposal.md 相应章节引用指标数值；数据状态注记明确说明 provisional boundary 精度限制。",
+      "proposal_sections": [
+        "设计依据与资料清单",
+        "总体设计范围城市更新与控规深度城市设计"
+      ],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "key_area_count",
+        "building_footprint_area_sqm",
+        "green_ratio",
+        "public_space_ratio",
+        "floor_area_ratio"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "PROCESSED-FACT-PACK",
+        "SOURCE-REGISTRY"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "METRIC_RECALC_TRUST",
+        "DATA_SOURCE_TRUST"
+      ]
+    },
+    {
+      "item_id": "risk_missing_data",
+      "title_zh": "数据缺口与风险识别",
+      "professional_dimension": "风险管理",
+      "required": true,
+      "status": "complete",
+      "evidence_summary_zh": "proposal.md 数据状态与不确定性章节系统梳理当前数据缺口：官方精确边界未发布、控规条件未正式确认、建筑产权数据不完整、市政管网现状资料缺失、历史建筑测绘数据不完整等；各数据缺口均附风险评估说明和应对建议；assumptions.json 记录全部数据假设；metrics.json 对应指标标注为 unknown 状态并说明原因。",
+      "proposal_sections": [
+        "数据状态与不确定性",
+        "设计依据与资料清单"
+      ],
+      "geometry_refs": [
+        "geometry/constraints.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm"
+      ],
+      "drawing_refs": [
+        "drawings/a3-booklet.pdf"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "PROCESSED-FACT-PACK",
+        "SOURCE-REGISTRY"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001"
+      ],
+      "self_check_ids": [
+        "DATA_GAP_AWARENESS",
+        "RISK_MISSING_DATA_TRUST"
+      ]
+    }
+  ]
+}

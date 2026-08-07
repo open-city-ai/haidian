@@ -1,0 +1,110 @@
+{
+  "schema_version": "0.2.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-PRECISION-001",
+      "status": "provisional_only",
+      "statement": "All spatial boundary data used in this submission package is PROVISIONAL. Official published polygon boundaries for the coordinated research area, overall design area, and key detailed design areas have not been released as CAD/GIS files.",
+      "impact": "Provisional boundaries may be used for intake submission but BLOCK formal professional scoring. All area calculations based on text descriptions in the official brief, not precise CAD measurements.",
+      "caveat_zh": "所有空间边界数据均为临时数据，不得用于正式计分。"
+    },
+    {
+      "id": "A-BOUNDARY-PRECISION-002",
+      "status": "provisional_only",
+      "statement": "Provisional boundary GeoJSON files (PROV-RESEARCH-001, PROV-SITE-001, PROV-KEY-SCOPE-001, PROV-KEY-001/002/003) were estimated by the agent from textual boundary descriptions in the official brief. These are NOT official government-approved polygons.",
+      "impact": "Area figures reported as 'known' from the official brief are trusted as the authoritative text values, but their spatial precision has not been verified by survey.",
+      "caveat_zh": "临时边界文件由官方文件文字描述推算，非官方审定边界。"
+    },
+    {
+      "id": "A-MISSING-POLYGONS-001",
+      "status": "data_missing",
+      "statement": "Official polygon geometry for the three key detailed design areas (众智园, 北京AI原点, 大钟寺) has not been published. The sub-area figures (1.921 km², 1.043 km², 0.720 km²) are taken from the official brief text.",
+      "impact": "Cannot perform precise GIS overlap analysis, setback calculations, or street-level shadow studies without exact polygons.",
+      "caveat_zh": "三个重点区域的具体边界尚未发布，无法进行精确的GIS叠图分析。"
+    },
+    {
+      "id": "A-MISSING-REGULATORY-001",
+      "status": "data_missing",
+      "statement": "Official regulatory plan data (控规), including approved FAR controls, building height limits, road redlines, land use codes, and property ownership records, has not been included in the public site package.",
+      "impact": "All FAR, building area, and density metrics in this package are conceptual design targets only. No approved planning control values are represented.",
+      "caveat_zh": "官方控规数据（含容积率、建筑高度、道路红线）尚未公布，所有密度指标均为概念设计建议。"
+    },
+    {
+      "id": "A-MISSING-REGULATORY-002",
+      "status": "data_missing",
+      "statement": "Municipal infrastructure data (市政规划条件), including water, electricity, gas, heating, and telecom capacity, has not been provided in the site package.",
+      "impact": "Infrastructure capacity analysis is not possible. Utility strategies in the design proposal are conceptual and for reference only.",
+      "caveat_zh": "市政基础设施数据尚未提供，方案中的市政策略仅为概念性建议。"
+    },
+    {
+      "id": "A-CONCEPTUAL-SPATIAL-001",
+      "status": "conceptual_only",
+      "statement": "All spatial proposals in this submission — including AI scenario node locations, pilgrimage landmark placements, public space distributions, green space allocations, and building massing — are CONCEPTUAL DESIGN INTENT.",
+      "impact": "These proposals do not constitute confirmed implementations, approved plans, or government commitments. They are submitted as reference material for professional teams to develop into formal plans.",
+      "caveat_zh": "所有空间落地方案均为概念性设计意向，不构成政府审定结论。"
+    },
+    {
+      "id": "A-CONCEPTUAL-SPATIAL-002",
+      "status": "conceptual_only",
+      "statement": "The three AI pilgrimage landmarks (AI Origin Plaza, Jingzhang Heritage Bridge, Neural Commons Tower) are named conceptual concepts. No architectural design, structural system, or construction budget has been developed.",
+      "impact": "Landmarks are positioning symbols and design narrative devices; they require substantial further design development before any implementation.",
+      "caveat_zh": "AI朝圣地标仅为概念定位符号，实际建设需深化设计。"
+    },
+    {
+      "id": "A-NO-GOVERNMENT-APPROVAL-001",
+      "status": "no_government_approval",
+      "statement": "This submission package has not been reviewed or endorsed by any government authority. No figures, metrics, phasing schedules, or spatial proposals contained herein have been approved by the Haidian District Government, Beijing Municipal Government, or any relevant national ministry.",
+      "impact": "All content is submitted as AI-generated conceptual reference material for the open call. It must not be represented as an officially endorsed plan.",
+      "caveat_zh": "本提交包未经任何政府部门审核或批准，所有内容仅为参赛概念方案。"
+    },
+    {
+      "id": "A-NO-GOVERNMENT-APPROVAL-002",
+      "status": "no_government_approval",
+      "statement": "The boundary statement from the agent taskbook applies in full: '所有 agent 空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论。'",
+      "impact": "Designers using this package must independently verify all data against official sources before making any commitments.",
+      "caveat_zh": "设计团队使用本包须自行核实所有数据，并以官方数据为准。"
+    },
+    {
+      "id": "A-AREA-CALCULATION-001",
+      "status": "text_derived",
+      "statement": "Area figures for key design areas (众智园 1.921 km², 北京AI原点 1.043 km², 大钟寺 0.720 km²) are derived from text descriptions in the official brief, not from CAD polygon calculation.",
+      "impact": "These values are trusted as authoritative brief figures but have not been independently verified. Sum checks (1.921+1.043+0.720 = 3.684 km²) are consistent with the stated key detailed design area.",
+      "caveat_zh": "重点区域面积来源于官方文件文字描述，非CAD精确计算。"
+    },
+    {
+      "id": "A-AREA-CALCULATION-002",
+      "status": "text_derived",
+      "statement": "The coordinated research area (43.6 km²) and overall design area (11.4 km²) are taken from the official brief as text values. The ratio 11.4/43.6 ≈ 26.1% is consistent with a 1-2 km band around the overall design area, but this geometric relationship has not been formally verified.",
+      "impact": "Area figures are treated as authoritative for design purposes; boundary geometry remains provisional.",
+      "caveat_zh": "统筹研究范围和总体设计范围面积来源于官方文字描述，几何关系未经正式验证。"
+    },
+    {
+      "id": "A-DESIGN-FAR-001",
+      "status": "conceptual_only",
+      "statement": "The proposed FAR of 2.5 for the AI innovation zone is a design concept target. No official FAR control has been published. The actual approved FAR may differ significantly based on the regulatory plan.",
+      "impact": "Total building area (11.4M sqm × 2.5 = 28.5M sqm) and all derived population and infrastructure estimates are contingent on this unconfirmed parameter.",
+      "caveat_zh": "概念FAR 2.5未经官方批准，实际容积率以控规为准。"
+    },
+    {
+      "id": "A-POPULATION-ESTIMATE-001",
+      "status": "conceptual_estimate",
+      "statement": "AI talent population estimate of 85,000 persons is a top-down conceptual estimate based on industry density benchmarks (~100 sqm per knowledge worker). It is not a demographically modeled projection.",
+      "impact": "Actual AI worker population will depend on approved land use mix, market absorption, company relocation decisions, and housing availability. The estimate should not be used for infrastructure capacity planning without professional validation.",
+      "caveat_zh": "AI人才人口预测为概念估算，非专业人口模型预测，不应用于基础设施规模论证。"
+    },
+    {
+      "id": "A-SUBMISSION-POLICY-001",
+      "status": "policy_disclaimer",
+      "statement": "Per the submission policy, PDFs are presentation-only and structured data is authoritative. This metrics.json does not replace the human-readable proposal narrative. All figures should be interpreted in the context of the full design proposal.",
+      "impact": "Metrics provide a quantitative reference layer; design intent and narrative govern the conceptual framework.",
+      "caveat_zh": "指标文件为定量参考层，设计意向和叙事文本具有优先解释权。"
+    },
+    {
+      "id": "A-FABRICATED-CERTAINTY-001",
+      "status": "no_fabricated_certainty",
+      "statement": "This package strictly avoids fabricated certainty. All metrics are labeled with appropriate confidence levels (high/medium/low) and source status (known/conceptual_derived/conceptual_target). No figures are presented as confirmed facts where they are actually design intent.",
+      "impact": "Reviewers should apply the confidence and status labels when evaluating metrics. High confidence is reserved for values sourced directly from official brief text.",
+      "caveat_zh": "本包严格避免虚高确定性，所有指标均标注置信度和来源状态。"
+    }
+  ]
+}
