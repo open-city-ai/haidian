@@ -260,43 +260,47 @@ def draw_corridor_map(cv: Cv, rect, detail: str = "full"):
     cv.line(axis, color=AMBER, sw=L(12.5))
     cv.line(axis, color=WHITE, sw=L(2.4), dash="[3 12] 0", op=0.9)
     # kink annotation
-    cv.text_at(*P(348, 806), "人字折线 · 致敬青龙桥", ff=F_SANS, size=10.5 * fs, color=AMBER_D)
-    cv.text_at(*P(668, 330), "京张遗址公园主轴 · 上行线", ff=F_SANS_B, size=12.5 * fs, color=AMBER_D)
+    cv.text_at(*P(452, 826), "人字折线 · 致敬青龙桥", ff=F_SANS, size=10.5 * fs, color=AMBER_D)
+    cv.text_at(*P(150, 648), "京张遗址公园主轴 · 上行线", ff=F_SANS_B, size=12.5 * fs, color=AMBER_D)
 
     # --- key-area zones ---
     zones = [
-        ((148, 700, 372, 892), BLUE, "大钟寺AI产业集聚区", "上行·编组中枢 MARSHALLING HUB"),
-        ((330, 548, 630, 800), AMBER, "北京AI原点社区", "上行·始发场 ORIGIN YARD"),
-        ((648, 170, 952, 428), GREEN, "众智园AI自主创新加速区", "上行·动力段 POWER DEPOT"),
+        ((148, 700, 372, 892), BLUE, "大钟寺AI产业集聚区", "上行·编组中枢 MARSHALLING HUB", 846, 884),
+        ((330, 548, 630, 800), AMBER, "北京AI原点社区", "上行·始发场 ORIGIN YARD", 558, 782),
+        ((648, 170, 952, 428), GREEN, "众智园AI自主创新加速区", "上行·动力段 POWER DEPOT", 180, 224),
     ]
-    for (zx0, zy0, zx1, zy1), col, name, en in zones:
+    for (zx0, zy0, zx1, zy1), col, name, en, tag_y, en_y in zones:
         cv.rect(P(zx0, zy0) + P(zx1, zy1), fill=col, fill_op=0.13, stroke=col, sw=L(2.6), radius=0.05)
-        # name tag
+        # name tag + EN subtitle (positions chosen to stay clear of the axis)
         tag_w = text_width(name, F_SANS_B, 13.5 * fs) + 20 * fs
-        cv.rect(P(zx0 + 10, zy0 + 10) + (P(zx0 + 10, zy0 + 10)[0] + tag_w, P(zx0 + 10, zy0 + 10)[1] + 24 * fs),
-                fill=col, radius=0.3)
-        cv.text(P(zx0 + 10, zy0 + 9) + (P(zx0 + 10, zy0 + 10)[0] + tag_w, P(zx0 + 10, zy0 + 10)[1] + 25 * fs),
+        tx0, ty0 = P(zx0 + 10, tag_y)
+        cv.rect((tx0, ty0, tx0 + tag_w, ty0 + 24 * fs), fill=col, radius=0.3)
+        cv.text((tx0, ty0 - 0.5 * fs, tx0 + tag_w, ty0 + 25 * fs),
                 name, ff=F_SANS_B, size=13.5 * fs, color=WHITE, align=1)
-        cv.text_at(*P(zx0 + 12, zy0 + 52), en, ff=F_MONO, size=8.8 * fs, color=col)
+        cv.text_at(*P(zx0 + 12, en_y), en, ff=F_MONO, size=8.8 * fs, color=col)
 
     # --- stations ---
-    stations = [((206, 772), "大钟寺站", "DAZHONGSI"),
-                ((464, 684), "五道口", "WUDAOKOU"),
-                ((730, 398), "清华东路西口", "QINGHUA E. RD W.")]
-    for (sx, sy), name, en in stations:
+    stations = [((206, 772), "大钟寺站", "DAZHONGSI", (26, 4)),
+                ((464, 684), "五道口", "WUDAOKOU", (26, 4)),
+                ((730, 398), "清华东路西口", "QINGHUA E. RD W.", (-24, 48))]
+    for (sx, sy), name, en, (ldx, ldy) in stations:
         cv.circle(P(sx, sy), L(17), fill=WHITE, stroke=INK, sw=L(4.5))
         cv.circle(P(sx, sy), L(6.5), fill=INK)
-        lx, ly = P(sx + 26, sy + 4)
+        lx, ly = P(sx + ldx, sy + ldy)
         cv.text_at(lx, ly, name, ff=F_SANS_B, size=12 * fs, color=INK)
         cv.text_at(lx, ly + 13 * fs, en, ff=F_MONO, size=8.2 * fs, color=INK2)
 
     # --- landmarks (AI 朝圣地标) ---
-    marks = [((468, 726), "AI原点·零号站", AMBER_D),
-             ((812, 250), "清河模型罗盘", GREEN),
-             ((232, 826), "大钟寺·智汇钟", BLUE)]
-    for (mx, my), name, col in marks:
+    marks = [((468, 726), "AI原点·零号站", AMBER_D, 1),
+             ((812, 250), "清河模型罗盘", GREEN, -1),
+             ((232, 826), "大钟寺·智汇钟", BLUE, 1)]
+    for (mx, my), name, col, side in marks:
         cv.diamond(*P(mx, my), L(13), fill=col, stroke=WHITE, sw=L(2))
-        cv.text_at(*P(mx + 22, my + 4), name, ff=F_SANS, size=10.5 * fs, color=col)
+        if side > 0:
+            cv.text_at(*P(mx + 22, my + 4), name, ff=F_SANS, size=10.5 * fs, color=col)
+        else:
+            tw = text_width(name, F_SANS, 10.5 * fs) / k
+            cv.text_at(*P(mx - 22 - tw, my + 4), name, ff=F_SANS, size=10.5 * fs, color=col)
 
     # --- north arrow + scale note ---
     nx, ny = P(908, 106)
@@ -312,8 +316,8 @@ def draw_corridor_map(cv: Cv, rect, detail: str = "full"):
         cv.text_at(*P(820, 196), "清河方向 →", ff=F_SANS, size=10.5 * fs, color=INK2)
 
 
-def draw_legend_row(cv: Cv, x, y, w, fs=1.0):
-    """Horizontal legend strip (A0 p1)."""
+def draw_legend_row(cv: Cv, x, y, w, fs=1.0, max_w=None):
+    """Legend strip; wraps to a second row when max_w is exceeded."""
     items = [
         ("axis", "上行线主轴（遗址公园慢行轴）"),
         ("loop", "蓝绿慢行复合环"),
@@ -325,29 +329,36 @@ def draw_legend_row(cv: Cv, x, y, w, fs=1.0):
         ("mark", "AI朝圣地标"),
     ]
     cx = x
+    cy = y
     for kind, label in items:
+        lw = text_width(label, F_SANS, 13 * fs)
+        item_w = 42 * fs + lw + 30 * fs
+        if max_w and cx > x and cx + item_w > x + max_w:
+            cx = x
+            cy += 26 * fs
+        icx = cx
         if kind == "axis":
-            cv.line([(cx, y + 8), (cx + 34, y + 8)], color=AMBER, sw=7)
-            cv.line([(cx, y + 8), (cx + 34, y + 8)], color=WHITE, sw=1.4, dash="[2 6] 0")
+            cv.line([(icx, cy + 8 * fs), (icx + 34 * fs, cy + 8 * fs)], color=AMBER, sw=7 * fs)
+            cv.line([(icx, cy + 8 * fs), (icx + 34 * fs, cy + 8 * fs)], color=WHITE, sw=1.4 * fs, dash="[2 6] 0")
         elif kind == "loop":
-            cv.line([(cx, y + 8), (cx + 34, y + 8)], color=GREEN, sw=3, dash="[6 4] 0")
+            cv.line([(icx, cy + 8 * fs), (icx + 34 * fs, cy + 8 * fs)], color=GREEN, sw=3 * fs, dash="[6 4] 0")
         elif kind == "river":
-            cv.rect((cx, y + 3, cx + 34, y + 13), fill=RIVER, stroke=RIVER_D, sw=1)
+            cv.rect((icx, cy + 3 * fs, icx + 34 * fs, cy + 13 * fs), fill=RIVER, stroke=RIVER_D, sw=1)
         elif kind == "road":
-            cv.line([(cx, y + 8), (cx + 34, y + 8)], color=ROAD, sw=4)
+            cv.line([(icx, cy + 8 * fs), (icx + 34 * fs, cy + 8 * fs)], color=ROAD, sw=4 * fs)
         elif kind == "zone":
-            cv.rect((cx, y + 1, cx + 20, y + 15), fill=BLUE, fill_op=0.15, stroke=BLUE, sw=1.6)
+            cv.rect((icx, cy + 1 * fs, icx + 20 * fs, cy + 15 * fs), fill=BLUE, fill_op=0.15, stroke=BLUE, sw=1.6)
         elif kind == "bound":
-            cv.line([(cx, y + 8), (cx + 34, y + 8)], color=RED, sw=2, dash="[5 4] 0")
+            cv.line([(icx, cy + 8 * fs), (icx + 34 * fs, cy + 8 * fs)], color=RED, sw=2 * fs, dash="[5 4] 0")
         elif kind == "station":
-            cv.circle((cx + 9, y + 8), 7.5, fill=WHITE, stroke=INK, sw=2.4)
-            cv.circle((cx + 9, y + 8), 2.8, fill=INK)
+            cv.circle((icx + 9 * fs, cy + 8 * fs), 7.5 * fs, fill=WHITE, stroke=INK, sw=2.4 * fs)
+            cv.circle((icx + 9 * fs, cy + 8 * fs), 2.8 * fs, fill=INK)
         elif kind == "mark":
-            cv.diamond(cx + 9, y + 8, 8, fill=AMBER_D, stroke=WHITE, sw=1.2)
-        lx = cx + 42
-        cv.text_at(lx, y + 12.5, label, ff=F_SANS, size=13 * fs, color=INK2)
-        cx = lx + text_width(label, F_SANS, 13 * fs) + 34
-    return cx
+            cv.diamond(icx + 9 * fs, cy + 8 * fs, 8 * fs, fill=AMBER_D, stroke=WHITE, sw=1.2)
+        lx = icx + 42 * fs
+        cv.text_at(lx, cy + 12.5 * fs, label, ff=F_SANS, size=13 * fs, color=INK2)
+        cx = lx + lw + 30 * fs
+    return cy
 
 
 # ------------------------------------------------------------- page chrome ----
@@ -359,7 +370,9 @@ def a0_header(cv: Cv, title: str, page_no: str):
     cv.text_at(196, 106, tracked("JINGZHANG UPLINE"), ff=F_MONO, size=15, color=AMBER)
     cv.text_at(196, 140, "百年京张AI创新带 · 城市设计国际方案征集（AI agent 方案）",
                ff=F_SANS, size=15.5, color=C("B9C4CE"))
-    cv.text((1960, 44, 2900, 92), title, ff=F_SANS_B, size=42, color=WHITE, align=2)
+    # right-aligned page title (text_at avoids insert_textbox height-fit failures)
+    tw = text_width(title, F_SANS_B, 42)
+    cv.text_at(2900 - tw, 92, title, ff=F_SANS_B, size=42, color=WHITE)
     cv.chip(2940, 52, f"A0 · {page_no}", bg=C("2A3B49"), fg=WHITE, ff=F_MONO, size=15, h=34, pad_x=14)
     cv.chip(2940, 100, "PROVISIONAL · 概念方案", bg=RED, fg=WHITE, ff=F_MONO, size=12.5, h=30, pad_x=12)
     # right-most date
@@ -443,17 +456,17 @@ def build_a0_p1(page: fitz.Page):
         ("三区", "上行·始发场 / 动力段 / 编组中枢", "ORIGIN YARD · POWER DEPOT · MARSHALLING HUB", INK2),
         ("两翼", "上行·西线 / 上行·东线", "WEST LINE · EAST LINE", INK2),
     ]
-    ry = yy + 30
+    ry = yy + 28
     for tag, zh, en, col in rows:
         cv.rect((rx0 + 36, ry - 14, rx0 + 40, ry + 2), fill=col)
         cv.text_at(rx0 + 54, ry, tag, ff=F_SANS, size=14.5, color=FAINT)
         cv.text_at(rx0 + 300, ry, zh, ff=F_SANS_B, size=16.5, color=INK)
         cv.text_at(rx0 + 300, ry + 20, en, ff=F_MONO, size=10.5, color=col)
-        ry += 78
-    cv.para((rx0 + 36, ry - 8, rx1 - 36, y + 552),
+        ry += 66
+    cv.para((rx0 + 36, ry - 2, rx1 - 36, y + 552),
             "「上行」双关：铁路术语（驶向北京方向的股道）× 通信术语 uplink（数据上传通道）——一条曾把人和物资"
             "送进北京城的铁路，今天成为把智能与创意送向世界的通道。",
-            size=14, leading=1.6, color=INK2)
+            size=13.5, leading=1.55, color=INK2)
 
     # 03 核心指标
     y = 1278
@@ -485,14 +498,14 @@ def build_a0_p1(page: fitz.Page):
     refs = ["source:OFFICIAL-ANNOUNCEMENT", "source:AGENT-TASKBOOK", "source:SITE-PACKAGE",
             "data:geometry/site_boundary.geojson#SITE-001", "data:geometry/key_areas.geojson#PROV-KEY-001~003",
             "metric:site_area_sqm · green_ratio · public_space_ratio"]
-    ry = yy + 16
+    ry = yy + 10
     for r_ in refs:
         ry += cv.chip(rx0 + 36, ry, r_, bg=WHITE, fg=INK2, ff=F_MONO, size=10, h=24, pad_x=8,
-                      stroke=HAIR, sw=1) * 0 + 30
-    cv.para((rx0 + 36, ry + 6, rx1 - 36, 2146),
+                      stroke=HAIR, sw=1) * 0 + 28
+    cv.para((rx0 + 36, ry + 4, rx1 - 36, 2146),
             "本展板为概念设计表达：道路红线、轨道、市政、河道、防洪、文保、消防、土地与房屋权属均待主管或"
             "权利主体确认；正式控规条件发布前不给出审定指标。",
-            size=13.5, leading=1.55)
+            size=13, leading=1.5)
 
     a0_footer(cv)
 
@@ -535,7 +548,7 @@ def mini_origin(cv: Cv, r):
     cv.circle(P(580, 116), L(6), fill=INK)
     cv.text_at(*P(608, 122), "轨道站点 · 一体化", ff=F_SANS, size=fs * 0.92, color=INK)
     cv.diamond(*P(545, 856), L(15), fill=AMBER_D, stroke=WHITE, sw=L(2))
-    cv.text_at(*P(570, 862), "零号站（清华园站旧址外侧）", ff=F_SANS, size=fs * 0.92, color=AMBER_D)
+    cv.text_at(*P(576, 862), "零号站（清华园站旧址外侧）", ff=F_SANS, size=fs * 0.92, color=AMBER_D)
 
 
 def mini_zhongzhi(cv: Cv, r):
@@ -572,12 +585,12 @@ def mini_zhongzhi(cv: Cv, r):
                    color=INK2, width=L(3), dashes="[8 6] 0")
     cv.text_c(P(480, 856)[0], P(480, 856)[1], "03 具身机器人混行测试场（可封闭支路）",
               ff=F_SANS, size=fs * 0.92, color=INK2)
-    # compass landmark at entry plaza
-    cvx, cvy = P(880, 300)
+    # compass landmark at entry plaza (bottom-right, clear of blocks and loop)
+    cvx, cvy = P(905, 780)
     cv.circle((cvx, cvy), L(34), stroke=GREEN, sw=L(3.4), fill=WHITE)
     cv.circle((cvx, cvy), L(20), stroke=GREEN, sw=L(2))
     cv.diamond(cvx, cvy, L(12), fill=GREEN)
-    cv.text_c(cvx, cvy + L(58), "清河模型罗盘", ff=F_SANS_B, size=fs, color=GREEN)
+    cv.text_c(cvx, cvy + L(66), "清河模型罗盘", ff=F_SANS_B, size=fs, color=GREEN)
 
 
 def mini_dazhongsi(cv: Cv, r):
@@ -614,7 +627,7 @@ def mini_dazhongsi(cv: Cv, r):
     # station box (on the axis)
     cv.rect(P(425, 370) + P(605, 495), fill=INK, radius=0.12)
     cv.text_c(P(515, 424)[0], P(515, 424)[1], "大钟寺站", ff=F_SANS_B, size=fs * 1.15, color=WHITE)
-    cv.text_c(P(515, 464)[0], P(515, 464)[1], "站厅 · 地面 · 连廊 一体化", ff=F_SANS, size=fs * 0.82, color=C("B9C4CE"))
+    cv.text_c(P(515, 462)[0], P(515, 462)[1], "站厅·地面·连廊", ff=F_SANS, size=fs * 0.82, color=C("B9C4CE"))
     # bell landmark rings
     bx, by = P(790, 690)
     for rr, col in [(52, BLUE), (36, AMBER_D), (20, GREEN)]:
@@ -771,22 +784,23 @@ def build_a3_cover(page: fitz.Page):
     cv.text_at(64, 268, "京张上行线", ff=F_SANS_B, size=108, color=WHITE)
     cv.text_at(68, 318, tracked("JINGZHANG UPLINE", 1), ff=F_MONO, size=25, color=AMBER)
     cv.text_at(68, 366, "百年京张AI创新带 · 城市设计提案", ff=F_SANS, size=25, color=WHITE)
-    cv.text_at(68, 398, "从铁轨到数据轨 FROM RAILWAY TO DATA TRACK — EVERY DEPARTURE IS AN UPLINK",
-               ff=F_MONO, size=11, color=C("8FA0AE"))
+    cv.text_at(68, 398, "从铁轨到数据轨 · 每一次出发，都是上行", ff=F_SANS, size=12.5, color=C("9FB0BD"))
+    cv.text_at(68, 420, "FROM RAILWAY TO DATA TRACK — EVERY DEPARTURE IS AN UPLINK",
+               ff=F_MONO, size=10.5, color=C("7E8B96"))
 
     # ascending track graphic with three stations
     pts = [(40, 700), (300, 610), (400, 664), (500, 576), (760, 470), (1160, 350)]
     cv.line(pts, color=C("33465A"), sw=26)
     cv.line(pts, color=AMBER, sw=15)
     cv.line(pts, color=WHITE, sw=2.2, dash="[3 12] 0", op=0.85)
-    stops = [((352, 632), "上行·始发场", "ORIGIN YARD · 北京AI原点社区", AMBER),
-             ((640, 520), "上行·动力段", "POWER DEPOT · 众智园", GREEN),
-             ((960, 408), "上行·编组中枢", "MARSHALLING HUB · 大钟寺", BLUE)]
+    stops = [((352, 632), "上行·始发场 · 北京AI原点社区", "ORIGIN YARD", AMBER),
+             ((640, 520), "上行·动力段 · 众智园", "POWER DEPOT", GREEN),
+             ((960, 408), "上行·编组中枢 · 大钟寺", "MARSHALLING HUB", BLUE)]
     for (sx, sy), zh, en, col in stops:
         cv.circle((sx, sy), 13, fill=INK, stroke=WHITE, sw=3)
         cv.circle((sx, sy), 5.5, fill=col)
-        cv.text_at(sx + 22, sy - 8, zh, ff=F_SANS_B, size=15, color=WHITE)
-        cv.text_at(sx + 22, sy + 12, en, ff=F_MONO, size=8.5, color=C("9FB0BD"))
+        cv.text_at(sx + 24, sy - 10, zh, ff=F_SANS_B, size=14.5, color=WHITE)
+        cv.text_at(sx + 24, sy + 12, en, ff=F_MONO, size=8.5, color=C("9FB0BD"))
     cv.text_at(48, 742, "↑ 上行方向 · 西直门 — 清河", ff=F_SANS, size=11, color=C("8FA0AE"))
 
     # index (right column)
@@ -818,10 +832,10 @@ def build_a3_structure(page: fitz.Page):
     # map
     cv.rect((34, 84, 758, 796), fill=PANEL, stroke=HAIR, sw=1, radius=0.02)
     draw_corridor_map(cv, (44, 96, 748, 730), detail="compact")
-    cv.line([(44, 742), (748, 742)], color=HAIR, sw=0.8)
-    cv.text_at(48, 762, "图例", ff=F_SANS_B, size=9.5, color=INK)
-    draw_legend_row(cv, 92, 748, 640, fs=0.72)
-    cv.text_at(48, 788, "PROV-KEY-001~003 临时范围 · 概念示意非比例尺", ff=F_MONO, size=7.5, color=FAINT)
+    cv.line([(44, 738), (748, 738)], color=HAIR, sw=0.8)
+    cv.text_at(48, 758, "图例", ff=F_SANS_B, size=9.5, color=INK)
+    draw_legend_row(cv, 92, 742, 640, fs=0.72, max_w=648)
+    cv.text_at(48, 790, "PROV-KEY-001~003 临时范围 · 概念示意非比例尺", ff=F_MONO, size=7.5, color=FAINT)
 
     rx0, rx1 = 782, A3_W - 34
     y = 84
@@ -895,14 +909,17 @@ def build_a3_keyareas(page: fitz.Page):
     cv.rect((0, 0, A3_W, A3_H), fill=PAPER)
     a3_header(cv, "三处重点区域详细设计", "THREE ANCHORS · ONE NETWORK", "04 / 05")
     cards = [
-        dict(name="北京AI原点社区", en="上行·始发场", col=AMBER, dark=AMBER_D, draw=mini_origin,
+        dict(name="北京AI原点社区", zhsub="上行·始发场", ensub="ORIGIN YARD", col=AMBER, dark=AMBER_D, draw=mini_origin,
              acts=["慢行主轴缝合校区园区街区", "首层 50–120㎡ 成果转化单元", "零号站地标不占文保本体"],
+             scenes="01 发布厅 · 07 转化街 · 09 服务岛",
              rights="校地/房屋/成果权利待确认"),
-        dict(name="众智园", en="上行·动力段", col=GREEN, dark=GREEN, draw=mini_zhongzhi,
+        dict(name="众智园", zhsub="上行·动力段", ensub="POWER DEPOT", col=GREEN, dark=GREEN, draw=mini_zhongzhi,
              acts=["清河滨水界面+织纹肌理", "院落组团+厂房改造中试空间", "可封闭支路混行测试场"],
+             scenes="02 沙盒 · 03 混行 · 06 快试 · 10 观测",
              rights="河道/岸线/防洪权利待确认"),
-        dict(name="大钟寺", en="上行·编组中枢", col=BLUE, dark=BLUE, draw=mini_dazhongsi,
+        dict(name="大钟寺", zhsub="上行·编组中枢", ensub="MARSHALLING HUB", col=BLUE, dark=BLUE, draw=mini_dazhongsi,
              acts=["站点一体化+四象限步行连通", "首层路演客厅+样机库", "绿地复合利用+智汇钟地标"],
+             scenes="05 路演客厅 · 08 数据洁净室",
              rights="轨道/道路/市政权利待确认"),
     ]
     cw, gap = 360, 33
@@ -913,13 +930,17 @@ def build_a3_keyareas(page: fitz.Page):
         cv.rect((cx0, 84, cx1, 148), fill=cd["col"], radius=0.03)
         cv.rect((cx0, 124, cx1, 148), fill=cd["col"])
         cv.text_at(cx0 + 20, 116, cd["name"], ff=F_SANS_B, size=17.5, color=WHITE)
-        cv.text_at(cx0 + 20, 138, cd["en"], ff=F_MONO, size=10, color=WHITE)
-        cd["draw"](cv, (cx0 + 14, 160, cx1 - 14, 560))
-        cv.text_at(cx0 + 20, 580, "概念平面 · 非比例尺 · PROV", ff=F_MONO, size=7.5, color=FAINT)
-        ay = 606
+        zhw = text_width(cd["zhsub"], F_SANS, 10)
+        cv.text_at(cx0 + 20, 138, cd["zhsub"], ff=F_SANS, size=10, color=WHITE)
+        cv.text_at(cx0 + 28 + zhw, 138, cd["ensub"], ff=F_MONO, size=8.5, color=WHITE)
+        cd["draw"](cv, (cx0 + 14, 160, cx1 - 14, 556))
+        cv.text_at(cx0 + 20, 576, "概念平面 · 非比例尺 · PROV", ff=F_MONO, size=7.5, color=FAINT)
+        ay = 600
         for act in cd["acts"]:
             cv.rect((cx0 + 20, ay - 9, cx0 + 24, ay - 5), fill=cd["col"])
             ay = cv.para((cx0 + 32, ay - 18, cx1 - 18, ay + 30), act, size=9.8, color=INK2, leading=1.45) + 24
+        cv.text_at(cx0 + 20, ay - 4, "AI 场景", ff=F_SANS_B, size=10, color=INK)
+        cv.para((cx0 + 20, ay + 4, cx1 - 18, ay + 50), cd["scenes"], size=9.2, color=cd["dark"], leading=1.4)
         cv.line([(cx0 + 20, 748), (cx1 - 20, 748)], color=HAIR, sw=0.8)
         cv.chip(cx0 + 20, 758, "公开信息", bg=WHITE, fg=GREEN, ff=F_SANS, size=8, h=20, pad_x=6, stroke=GREEN, sw=0.8)
         cv.chip(cx0 + 92, 758, "权利人待确认", bg=WHITE, fg=RED_D, ff=F_SANS, size=8, h=20, pad_x=6, stroke=RED, sw=0.8)
@@ -964,25 +985,25 @@ def build_a3_ledger(page: fitz.Page):
     cv.rect((lx0, 526, lx1, 796), fill=PANEL, stroke=HAIR, sw=1, radius=0.02)
     yy = card_head(cv, lx0 + 24, 544, lx1 - lx0 - 48, "02", "指标复核表", size=15)
     heads = ["指标", "数值", "复算公式", "来源", "状态"]
-    cols = [lx0 + 24, lx0 + 190, lx0 + 330, lx0 + 500, lx1 - 90]
+    cols = [lx0 + 24, lx0 + 176, lx0 + 306, lx0 + 472, lx1 - 78]
     ry = yy + 30
     for hdx, cxp in zip(heads, cols):
         cv.text_at(cxp, ry, hdx, ff=F_SANS_B, size=9.5, color=FAINT)
     cv.line([(lx0 + 24, ry + 8), (lx1 - 24, ry + 8)], color=HAIR, sw=0.8)
     mrows = [
-        ("范围面积", "11,412,825 ㎡", "polygon_area(site_boundary)", "site_boundary.geojson", "PROV"),
-        ("建筑基底", "310,807 ㎡", "Σ polygon_area(buildings)", "buildings.geojson", "PROV"),
-        ("绿地率", "12.34 %", "green / site", "green_space + boundary", "PROV"),
-        ("公共空间比例", "7.33 %", "public / site", "public_space + boundary", "PROV"),
-        ("重点片区数", "3", "count(key_areas)", "key_areas.geojson", "PROV"),
-        ("容积率", "—", "待正式控规条件", "planning_limits.json", "UNKNOWN"),
+        ("范围面积", "11,412,825 ㎡", "polygon_area(boundary)", "site_boundary", "PROV"),
+        ("建筑基底", "310,807 ㎡", "Σ polygon_area(bldgs)", "buildings", "PROV"),
+        ("绿地率", "12.34 %", "green / site", "green_space+site", "PROV"),
+        ("公共空间比例", "7.33 %", "public / site", "public_space+site", "PROV"),
+        ("重点片区数", "3", "count(key_areas)", "key_areas", "PROV"),
+        ("容积率", "—", "待正式控规条件", "planning_limits", "UNKNOWN"),
     ]
     ry += 26
     for row in mrows:
         for val, cxp in zip(row, cols):
             col = RED_D if val in ("PROV", "UNKNOWN") else INK2
             ff = F_MONO if cxp != cols[0] else F_SANS
-            cv.text_at(cxp, ry, val, ff=ff, size=8.8, color=col)
+            cv.text_at(cxp, ry, val, ff=ff, size=8.6, color=col)
         ry += 21.5
         cv.line([(lx0 + 24, ry - 14.5), (lx1 - 24, ry - 14.5)], color=HAIR, sw=0.5)
     cv.para((lx0 + 24, ry - 2, lx1 - 24, 792),
@@ -1038,6 +1059,7 @@ def main() -> int:
     for builder in (build_a0_p1, build_a0_p2):
         page = a0.new_page(width=A0_W, height=A0_H)
         builder(page)
+    a0.subset_fonts()
     a0_path = HERE / "a0-boards.pdf"
     a0.save(a0_path, deflate=True, garbage=3)
     print(f"wrote {a0_path} ({a0_path.stat().st_size} bytes)")
@@ -1047,6 +1069,7 @@ def main() -> int:
                     build_a3_keyareas, build_a3_ledger):
         page = a3.new_page(width=A3_W, height=A3_H)
         builder(page)
+    a3.subset_fonts()
     a3_path = HERE / "a3-booklet.pdf"
     a3.save(a3_path, deflate=True, garbage=3)
     print(f"wrote {a3_path} ({a3_path.stat().st_size} bytes)")
