@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "已按 provisional_constraint 标注，未声称 official redline。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三个重点区均显式标为 provisional，内容评分与精确面积评分分离。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地由同一场地 polygon 的 3x6 拓扑切分生成，完整覆盖且不重叠。"
+    },
+    {
+      "check_id": "METRICS_RECOMPUTED",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "空间指标统一投影至 EPSG:4548 后复算；精度敏感值标为 low。"
+    },
+    {
+      "check_id": "SCENARIO_GOVERNANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "12 张场景卡均含最小数据、隐私边界、人工复核、运营主体和风险。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "静态离线 HTML，无远程资源、脚本、表单、iframe 或追踪。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文、图层、指标、标准、深度项和矩阵互相引用。"
+    },
+    {
+      "check_id": "COPYRIGHT_CLEARED",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "图形、排版、文本与代码生成资产均为本次制作；外部资料仅作可追溯事实引用。"
+    },
+    {
+      "check_id": "OFFICIAL_RECALC_TRIGGER",
+      "result": "pass",
+      "severity": "info",
+      "target": "assumptions.json",
+      "message": "列明 official polygon 与专业资料补齐后的重算清单。"
+    }
+  ]
+}
