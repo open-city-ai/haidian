@@ -505,38 +505,37 @@ def mini_origin(cv: Cv, r):
     ox, oy = x0 + ((x1 - x0) - U * k) / 2, y0 + ((y1 - y0) - U * k) / 2
     P = lambda px, py: (ox + px * k, oy + py * k)
     L = lambda v: v * k
+    fs = max(16 * k, 7.0)
     cv.rect(r, fill=MAPBG)
     # campus blocks (left) / park (right)
     for bx in range(3):
         for by in range(4):
-            cv.rect(P(70 + bx * 130, 90 + by * 210) + P(170 + bx * 130, 250 + by * 210),
+            cv.rect(P(70 + bx * 122, 100 + by * 200) + P(166 + bx * 122, 252 + by * 200),
                     fill=C("D8CFBB"), stroke=ROAD, sw=L(2), radius=0.06)
-    cv.text_at(*P(92, 62), "校 区", ff=F_SANS, size=13, color=FAINT)
-    cv.rect(P(760, 60) + P(950, 940), fill=GREEN, fill_op=0.14, stroke=GREEN, sw=L(2))
-    cv.text_at(*P(788, 92), "园区·公园", ff=F_SANS, size=13, color=GREEN)
+    cv.text_at(*P(70, 66), "校 区", ff=F_SANS, size=fs, color=FAINT)
+    cv.rect(P(770, 60) + P(940, 930), fill=GREEN, fill_op=0.14, stroke=GREEN, sw=L(2))
+    cv.text_at(*P(770, 44), "园区 · 公园", ff=F_SANS, size=fs, color=GREEN)
     # spine
-    spine = [P(560, 920), P(540, 640), P(600, 560), P(560, 380), P(580, 90)]
+    spine = [P(580, 900), P(548, 640), P(604, 556), P(560, 380), P(580, 130)]
     cv.line(spine, color=INK, sw=L(16))
     cv.line(spine, color=AMBER, sw=L(9))
     cv.line(spine, color=WHITE, sw=L(1.8), dash="[3 10] 0")
-    cv.text_at(*P(610, 940), "南北慢行主轴", ff=F_SANS_B, size=13, color=AMBER_D)
+    cv.text_at(*P(610, 946), "南北慢行主轴", ff=F_SANS_B, size=fs, color=AMBER_D)
     # storefront units along spine
-    for i, uy in enumerate(range(160, 860, 100)):
-        cv.rect(P(452, uy) + P(500, uy + 56), fill=WHITE, stroke=AMBER_D, sw=L(2.4), radius=0.12)
-    cv.text_at(*P(330, 140), "成果转化街 50–120㎡ 可分合单元", ff=F_SANS, size=11.5, color=AMBER_D)
+    for uy in range(180, 800, 88):
+        cv.rect(P(452, uy) + P(500, uy + 52), fill=WHITE, stroke=AMBER_D, sw=L(2.4), radius=0.12)
+        cv.line([P(430, uy + 26), P(452, uy + 26)], color=AMBER_D, sw=L(1.8), dash="[3 3] 0")
+    cv.text_at(*P(70, 946), "沿街首层 50–120㎡ 可分合单元（成果转化街）", ff=F_SANS, size=fs * 0.92, color=AMBER_D)
     # nodes
-    for ny, name in [(250, "开源发布厅 01"), (470, "社区服务岛 09"), (700, "成果橱窗")]:
+    for ny, name in [(290, "01 开源发布厅"), (520, "09 社区服务岛"), (700, "成果橱窗")]:
         cv.circle(P(566, ny), L(15), fill=WHITE, stroke=AMBER_D, sw=L(3.4))
-        cv.text_at(*P(592, ny + 5), name, ff=F_SANS, size=11.5, color=INK2)
+        cv.text_at(*P(592, ny + 5), name, ff=F_SANS, size=fs * 0.92, color=INK2)
     # station + landmark
-    cv.circle(P(580, 96), L(17), fill=WHITE, stroke=INK, sw=L(4))
-    cv.circle(P(580, 96), L(6), fill=INK)
-    cv.text_at(*P(610, 100), "轨道站点（一体化）", ff=F_SANS, size=11.5, color=INK)
-    cv.diamond(*P(540, 880), L(16), fill=AMBER_D, stroke=WHITE, sw=L(2))
-    cv.text_at(*P(566, 886), "AI原点·零号站（清华园站旧址外侧，不占文保本体）", ff=F_SANS, size=11, color=AMBER_D)
-    # dashed stitch lines campus<->spine
-    for sy in (200, 480, 760):
-        cv.line([P(460, sy), P(540, sy + 20)], color=AMBER_D, sw=L(2.2), dash="[4 4] 0")
+    cv.circle(P(580, 116), L(17), fill=WHITE, stroke=INK, sw=L(4))
+    cv.circle(P(580, 116), L(6), fill=INK)
+    cv.text_at(*P(608, 122), "轨道站点 · 一体化", ff=F_SANS, size=fs * 0.92, color=INK)
+    cv.diamond(*P(545, 856), L(15), fill=AMBER_D, stroke=WHITE, sw=L(2))
+    cv.text_at(*P(570, 862), "零号站（清华园站旧址外侧）", ff=F_SANS, size=fs * 0.92, color=AMBER_D)
 
 
 def mini_zhongzhi(cv: Cv, r):
@@ -546,42 +545,39 @@ def mini_zhongzhi(cv: Cv, r):
     ox, oy = x0 + ((x1 - x0) - U * k) / 2, y0 + ((y1 - y0) - U * k) / 2
     P = lambda px, py: (ox + px * k, oy + py * k)
     L = lambda v: v * k
+    fs = max(16 * k, 7.0)
     cv.rect(r, fill=MAPBG)
     # river
-    cv.bez(P(20, 120), P(320, 60), P(660, 160), P(980, 100), RIVER_D, L(66), op=0.9)
-    cv.bez(P(20, 120), P(320, 60), P(660, 160), P(980, 100), RIVER, L(52))
-    cv.text_at(*P(60, 108), "清 河", ff=F_SANS, size=13, color=C("3F647F"))
+    cv.bez(P(20, 110), P(320, 52), P(660, 148), P(980, 92), RIVER_D, L(60), op=0.9)
+    cv.bez(P(20, 110), P(320, 52), P(660, 148), P(980, 92), RIVER, L(46))
+    cv.text_at(*P(56, 102), "清 河", ff=F_SANS, size=fs, color=C("3F647F"))
     # waterfront platform
-    cv.line([P(60, 210), P(940, 190)], color=GREEN, sw=L(7))
-    cv.line([P(60, 210), P(940, 190)], color=WHITE, sw=L(1.6), dash="[2 8] 0")
-    cv.text_at(*P(620, 180), "连续滨水界面 · 呢厂织纹肌理", ff=F_SANS, size=11.5, color=GREEN)
-    # observation decks
-    for dx in (180, 520, 860):
-        cv.rect(P(dx, 186) + P(dx + 44, 214), fill=GREEN, radius=0.2)
+    cv.line([P(60, 196), P(940, 178)], color=GREEN, sw=L(7))
+    cv.line([P(60, 196), P(940, 178)], color=WHITE, sw=L(1.6), dash="[2 8] 0")
+    for dx in (170, 500, 830):
+        cv.rect(P(dx, 172) + P(dx + 42, 200), fill=GREEN, radius=0.2)
+    cv.text_at(*P(600, 162), "连续滨水界面 · 呢厂织纹肌理", ff=F_SANS, size=fs * 0.92, color=GREEN)
     # courtyard clusters 2-4F
     for gx in range(3):
         for gy in range(2):
-            cx0, cy0 = 120 + gx * 300, 330 + gy * 300
+            cx0, cy0 = 110 + gx * 300, 300 + gy * 250
             for px in range(2):
                 for py in range(2):
-                    cv.rect(P(cx0 + px * 96, cy0 + py * 96) + P(cx0 + px * 96 + 72, cy0 + py * 96 + 72),
+                    cv.rect(P(cx0 + px * 92, cy0 + py * 92) + P(cx0 + px * 92 + 68, cy0 + py * 92 + 68),
                             fill=WHITE, stroke=GREEN, sw=L(2.6), radius=0.1)
-    cv.text_at(*P(120, 310), "院落式组团 · 2–4 层 · 厂房改造中试测试空间", ff=F_SANS, size=11.5, color=INK2)
+    cv.text_at(*P(110, 268), "院落组团 2–4F · 厂房改造中试测试", ff=F_SANS, size=fs * 0.92, color=INK2)
     # robot test loop
-    ex, ey = P(500, 640)
-    cv.p.draw_oval(fitz.Rect(ex - L(360), ey - L(120), ex + L(360), ey + L(120)),
+    ex, ey = P(480, 850)
+    cv.p.draw_oval(fitz.Rect(ex - L(370), ey - L(95), ex + L(370), ey + L(95)),
                    color=INK2, width=L(3), dashes="[8 6] 0")
-    cv.text_at(*P(350, 646), "具身机器人混行测试场（可封闭支路 03）", ff=F_SANS, size=11.5, color=INK2)
+    cv.text_c(P(480, 856)[0], P(480, 856)[1], "03 具身机器人混行测试场（可封闭支路）",
+              ff=F_SANS, size=fs * 0.92, color=INK2)
     # compass landmark at entry plaza
-    cvx, cvy = P(860, 300)
+    cvx, cvy = P(880, 300)
     cv.circle((cvx, cvy), L(34), stroke=GREEN, sw=L(3.4), fill=WHITE)
-    cv.circle((cvx, cvy), L(20), stroke=GREEN, sw=L(2), fill=None)
+    cv.circle((cvx, cvy), L(20), stroke=GREEN, sw=L(2))
     cv.diamond(cvx, cvy, L(12), fill=GREEN)
-    cv.text_at(cvx - L(40), cvy + L(56), "清河模型罗盘", ff=F_SANS_B, size=12, color=GREEN)
-    # sandbox / workshop chips
-    cv.chip(*P(120, 880), "02 模型安全沙盒", bg=WHITE, fg=INK2, ff=F_SANS, size=10.5, h=26, stroke=HAIR)
-    cv.chip(*P(340, 880), "06 端侧AI硬件快试坊", bg=WHITE, fg=INK2, ff=F_SANS, size=10.5, h=26, stroke=HAIR)
-    cv.chip(*P(620, 880), "10 蓝绿智慧观测廊", bg=WHITE, fg=GREEN, ff=F_SANS, size=10.5, h=26, stroke=HAIR)
+    cv.text_c(cvx, cvy + L(58), "清河模型罗盘", ff=F_SANS_B, size=fs, color=GREEN)
 
 
 def mini_dazhongsi(cv: Cv, r):
@@ -591,37 +587,39 @@ def mini_dazhongsi(cv: Cv, r):
     ox, oy = x0 + ((x1 - x0) - U * k) / 2, y0 + ((y1 - y0) - U * k) / 2
     P = lambda px, py: (ox + px * k, oy + py * k)
     L = lambda v: v * k
+    fs = max(16 * k, 7.0)
     cv.rect(r, fill=MAPBG)
     # crossing roads (四象限)
-    cv.line([P(80, 480), P(920, 430)], color=ROAD, sw=L(16))
-    cv.line([P(480, 60), P(520, 940)], color=ROAD, sw=L(16))
+    cv.line([P(60, 470), P(940, 420)], color=ROAD, sw=L(16))
+    cv.line([P(490, 60), P(520, 940)], color=ROAD, sw=L(16))
     # axis / metro line
     cv.line([P(60, 700), P(940, 260)], color=INK, sw=L(14))
     cv.line([P(60, 700), P(940, 260)], color=BLUE, sw=L(8))
     cv.line([P(60, 700), P(940, 260)], color=WHITE, sw=L(1.6), dash="[3 10] 0")
-    # quadrant blocks (骑楼界面 L shapes)
-    quads = [(150, 140), (640, 120), (140, 600), (660, 580)]
-    for qx, qy in quads:
+    # quadrant blocks (骑楼界面)
+    quads = [((140, 130), "转角广场 · 骑楼界面"), ((660, 110), ""),
+             ((130, 590), ""), ((670, 570), "地面优先过街")]
+    for (qx, qy), qlabel in quads:
         cv.rect(P(qx, qy) + P(qx + 200, qy + 170), fill=BLUE, fill_op=0.12, stroke=BLUE, sw=L(2.6), radius=0.06)
         cv.line([P(qx, qy + 170), P(qx + 200, qy + 170)], color=BLUE, sw=L(6))
-    cv.text_at(*P(150, 122), "转角广场 · 骑楼界面", ff=F_SANS, size=11.5, color=BLUE)
-    cv.text_at(*P(640, 560), "地面优先过街", ff=F_SANS, size=11.5, color=BLUE)
-    # station box
-    cv.rect(P(420, 380) + P(600, 500), fill=INK, radius=0.12)
-    cv.text(P(420, 380) + P(600, 440), "大钟寺站", ff=F_SANS_B, size=16, color=WHITE, align=1)
-    cv.text(P(420, 436) + P(600, 492), "站厅·地面·连廊 一体化", ff=F_SANS, size=9.5, color=C("B9C4CE"), align=1)
+        if qlabel:
+            cv.text_at(*P(qx, qy - 18), qlabel, ff=F_SANS, size=fs * 0.92, color=BLUE)
+    # roadshow hall + cleanroom
+    cv.rect(P(140, 630) + P(370, 770), fill=WHITE, stroke=AMBER_D, sw=L(2.6), radius=0.08)
+    cv.text_c(P(255, 682)[0], P(255, 682)[1], "05 国际路演客厅", ff=F_SANS_B, size=fs, color=AMBER_D)
+    cv.text_c(P(255, 726)[0], P(255, 726)[1], "沿街首层 · 300 座主厅", ff=F_SANS, size=fs * 0.85, color=INK2)
+    cv.rect(P(620, 800) + P(890, 910), fill=WHITE, stroke=INK2, sw=L(2.4), radius=0.08)
+    cv.text_c(P(755, 848)[0], P(755, 848)[1], "08 授权数据洁净室", ff=F_SANS_B, size=fs, color=INK2)
+    cv.text_c(P(755, 888)[0], P(755, 888)[1], "可控访问 · 原始数据不出域", ff=F_SANS, size=fs * 0.85, color=INK2)
+    # station box (on the axis)
+    cv.rect(P(425, 370) + P(605, 495), fill=INK, radius=0.12)
+    cv.text_c(P(515, 424)[0], P(515, 424)[1], "大钟寺站", ff=F_SANS_B, size=fs * 1.15, color=WHITE)
+    cv.text_c(P(515, 464)[0], P(515, 464)[1], "站厅 · 地面 · 连廊 一体化", ff=F_SANS, size=fs * 0.82, color=C("B9C4CE"))
     # bell landmark rings
-    bx, by = P(760, 700)
+    bx, by = P(790, 690)
     for rr, col in [(52, BLUE), (36, AMBER_D), (20, GREEN)]:
         cv.circle((bx, by), L(rr), stroke=col, sw=L(3))
-    cv.text_at(bx - L(50), by + L(80), "智汇钟（四象限集合点）", ff=F_SANS_B, size=12, color=BLUE)
-    # roadshow hall + cleanroom
-    cv.rect(P(150, 640) + P(360, 760), fill=WHITE, stroke=AMBER_D, sw=L(2.6), radius=0.08)
-    cv.text(P(150, 660) + P(360, 700), "05 国际路演客厅", ff=F_SANS_B, size=11.5, color=AMBER_D, align=1)
-    cv.text(P(150, 700) + P(360, 752), "沿街首层 · 300 座主厅", ff=F_SANS, size=9.5, color=INK2, align=1)
-    cv.rect(P(640, 820) + P(880, 910), fill=WHITE, stroke=INK2, sw=L(2.4), radius=0.08)
-    cv.text(P(640, 840) + P(880, 874), "08 授权数据洁净室", ff=F_SANS_B, size=11, color=INK2, align=1)
-    cv.text(P(640, 872) + P(880, 906), "可控访问 · 原始数据不出域", ff=F_SANS, size=9, color=INK2, align=1)
+    cv.text_c(bx, by + L(84), "智汇钟 · 四象限集合点", ff=F_SANS_B, size=fs, color=BLUE)
 
 
 def build_a0_p2(page: fitz.Page):
@@ -630,21 +628,21 @@ def build_a0_p2(page: fitz.Page):
     a0_header(cv, "重点区域详细设计与实施台账", "02 / 02")
 
     cards = [
-        dict(name="北京AI原点社区", en="上行·始发场 ORIGIN YARD", tag="近校型成果转化与人才社区",
+        dict(name="北京AI原点社区", zhsub="上行·始发场", ensub="ORIGIN YARD", tag="近校型成果转化与人才社区",
              col=AMBER, dark=AMBER_D, draw=mini_origin,
              acts=["南北慢行主轴缝合校区、园区与街区，打通围墙断点",
                    "沿街首层改造为 50–120㎡ 可分合成果转化单元",
                    "清华园站旧址外侧设零号站地标，不占文保本体"],
              scenes=["01 开源发布厅", "07 成果转化街", "09 社区服务岛"],
              rights="校地 / 房屋 / 成果知识产权待确认"),
-        dict(name="众智园AI自主创新加速区", en="上行·动力段 POWER DEPOT", tag="花园型全栈自主创新街区",
+        dict(name="众智园AI自主创新加速区", zhsub="上行·动力段", ensub="POWER DEPOT", tag="花园型全栈自主创新街区",
              col=GREEN, dark=GREEN, draw=mini_zhongzhi,
              acts=["临清河打开连续滨水界面，延续呢厂织纹肌理",
                    "院落式 2–4 层组团，厂房改造为中试与测试空间",
                    "可封闭支路设机器人混行测试场，预约时段运转"],
              scenes=["02 安全沙盒", "03 混行工场", "06 快试坊", "10 观测廊"],
              rights="河道 / 岸线 / 防洪 / 场地权利待确认"),
-        dict(name="大钟寺AI产业集聚区", en="上行·编组中枢 MARSHALLING HUB", tag="城市型智能经济与国际交往街区",
+        dict(name="大钟寺AI产业集聚区", zhsub="上行·编组中枢", ensub="MARSHALLING HUB", tag="城市型智能经济与国际交往街区",
              col=BLUE, dark=BLUE, draw=mini_dazhongsi,
              acts=["大钟寺站一体化，路口四象限地面优先步行连通",
                    "沿街首层布置国际路演客厅、样机库与商业服务",
@@ -661,9 +659,11 @@ def build_a0_p2(page: fitz.Page):
         # header band
         cv.rect((cx0, cy0, cx1, cy0 + 128), fill=cd["col"], radius=0.02)
         cv.rect((cx0, cy0 + 96, cx1, cy0 + 128), fill=cd["col"])
-        cv.text_at(cx0 + 34, cy0 + 52, cd["name"], ff=F_SANS_B, size=30, color=WHITE)
-        cv.text_at(cx0 + 34, cy0 + 82, cd["en"], ff=F_MONO, size=13.5, color=WHITE)
-        cv.text_at(cx0 + 34, cy0 + 110, cd["tag"], ff=F_SANS, size=14, color=WHITE)
+        cv.text_at(cx0 + 34, cy0 + 50, cd["name"], ff=F_SANS_B, size=29, color=WHITE)
+        zhw = text_width(cd["zhsub"], F_SANS_B, 15)
+        cv.text_at(cx0 + 34, cy0 + 82, cd["zhsub"], ff=F_SANS_B, size=15, color=WHITE)
+        cv.text_at(cx0 + 44 + zhw, cy0 + 82, cd["ensub"], ff=F_MONO, size=12.5, color=C("F3E9DC"))
+        cv.text_at(cx0 + 34, cy0 + 110, cd["tag"], ff=F_SANS, size=13.5, color=WHITE)
         # diagram
         cd["draw"](cv, (cx0 + 26, cy0 + 154, cx1 - 26, cy0 + 830))
         cv.text_at(cx0 + 34, cy0 + 862, "概念平面 · 非比例尺 · PROV", ff=F_MONO, size=10.5, color=FAINT)
