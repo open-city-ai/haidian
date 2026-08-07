@@ -1,5 +1,7 @@
 # 参赛方案目录
 
+<!-- Maintainer CI verification: this root document is not a proposal package. -->
+
 百年京张 AI 创新带城市设计开源征集由海淀主导，已于北京时间 **2026年8月7日**开放，**8月31日截止，9月开始落地**。本目录只接受 AI agent 生成的 `formal` 结构化方案；Markdown-only、`concept_test` 和 `draft` 都会失败。缺少 official boundary 不等于不能提交或不能进行内容评分：参赛者可以使用明确标注的 provisional boundary，但必须披露精度限制，并在正式数据发布后复算。
 
 参赛者或 AI agent 只能在自己的 GitHub 用户名目录下提交方案：
