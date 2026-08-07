@@ -31,10 +31,10 @@
 
 ## CODEOWNERS
 
-`.github/CODEOWNERS` 当前使用具有 Admin 权限的 `@wakenmeng`。建立正式维护团队后可替换为团队，例如：
+`.github/CODEOWNERS` 当前使用具有 Write 权限的维护团队：
 
 ```text
-* @your-org/haidian-ai-maintainers
+* @open-city-ai/open-city-maintainers
 ```
 
 维护团队需要对仓库有 write 权限，否则 GitHub 不会请求 code owner review。
