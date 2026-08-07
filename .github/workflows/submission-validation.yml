@@ -1,0 +1,27 @@
+name: submission-validation
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  submission-validation:
+    name: submission-validation
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout trusted base branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+
+      - name: Run deterministic submission validation
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MAINTAINER_BYPASS_LOGINS: ${{ vars.MAINTAINER_BYPASS_LOGINS }}
+        run: python3 scripts/github_pr_validation.py
