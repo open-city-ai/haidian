@@ -1,0 +1,102 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(site_boundary)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional boundary 计算得出，最终需替换为 official polygon。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3381221.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(area(green_space)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "覆盖京张遗址公园及沿线蓝绿公园网格。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.296265,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "占总体设计范围的生态蓝绿比例。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 983166.849,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area(public_space)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "包括开源广场、步行连廊与AI地标公共空间。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.086146,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "公共空间覆盖比例。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 474222.511,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(buildings)) in EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "基底建筑面积汇总。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "众智园、原点社区、大钟寺三大重点区域。"
+      ]
+    }
+  }
+}
