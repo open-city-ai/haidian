@@ -1,0 +1,48 @@
+{
+  "schema_version": "0.1.0",
+  "proposal_id": "cunzailv/jingzhang-ai-centennial-belt",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "title_zh": "临时粗略边界",
+      "detail_zh": "所有几何基于仓库 provisional_boundaries.geojson，非官方红线；official polygon 补齐后需复算 site/key/land_use/metrics。",
+      "severity": "high"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "title_zh": "缺控规条件",
+      "detail_zh": "容积率、建筑高度、建筑密度、绿地率、退线均为待补；本方案 FAR/密度/绿地率为概念派生设计值，不替代审定指标。",
+      "severity": "high"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "title_zh": "建筑概念生成",
+      "detail_zh": "建筑底图与层数为概念性生成，用于建筑规模与 FAR 派生，非现状或审批数据。",
+      "severity": "medium"
+    },
+    {
+      "id": "A-ROAD-001",
+      "title_zh": "路网概念性",
+      "detail_zh": "道路为城市微循环概念骨架，非道路红线或工程线位。",
+      "severity": "medium"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "title_zh": "遗产/蓝线推断",
+      "detail_zh": "遗产缓冲与小月河蓝线为临时推断，非官方文保/蓝线。",
+      "severity": "medium"
+    },
+    {
+      "id": "A-AREA-001",
+      "title_zh": "面积近似方法",
+      "detail_zh": "面积采用 EPSG:4548 局部切平面近似（网格法），误差<0.5%；official polygon 补齐后复算。",
+      "severity": "low"
+    }
+  ],
+  "recalculation_required_when_official": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "metrics: site_area_sqm, key_area_areas_sqm, land_use_area_by_code_sqm, road_area_sqm, green_ratio, public_space_ratio, floor_area_ratio"
+  ]
+}
