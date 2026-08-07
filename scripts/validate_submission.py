@@ -860,6 +860,14 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
         report.add_error(
             f"{proposal_dir}/manifest.json: project_id must be centennial-jingzhang-ai-belt"
         )
+    # Fields required by brief/site-package/schemas/manifest.schema.json.
+    for field in ("schema_version", "package_id", "site_package_version", "generated_at"):
+        if not data.get(field):
+            report.add_error(f"{proposal_dir}/manifest.json: {field} must be present per manifest.schema.json")
+    if not isinstance(data.get("agent"), dict) or not data["agent"].get("agent_id"):
+        report.add_error(
+            f"{proposal_dir}/manifest.json: agent must be an object with agent_id per manifest.schema.json"
+        )
     files = data.get("files")
     listed_paths: set[str] = set()
     if not isinstance(files, list) or not files:
@@ -1086,7 +1094,6 @@ def validate_self_check_file(
     report: ValidationReport,
     path: Path,
     display_path: str,
-    stage: str,
 ) -> None:
     data = load_json_file(report, path, display_path)
     if not isinstance(data, dict):
@@ -1281,7 +1288,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     self_check_path = base / "self_check.json"
     if self_check_path.exists():
         validate_self_check_file(
-            report, self_check_path, f"{proposal_dir}/self_check.json", stage
+            report, self_check_path, f"{proposal_dir}/self_check.json"
         )
 
     metrics_path = base / "metrics.json"

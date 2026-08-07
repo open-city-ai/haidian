@@ -510,23 +510,10 @@ def format_markdown(report: SpatialReport) -> str:
     return "\n".join(lines)
 
 
-def stage_from_manifest(submission_dir: Path) -> str:
-    path = submission_dir / "manifest.json"
-    if not path.exists():
-        return "formal"
-    try:
-        data = load_json(path)
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        return "formal"
-    stage = data.get("submission_stage")
-    return stage if stage == "formal" else "formal"
-
-
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("submission_dir")
     parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--stage", choices=["formal"])
     output = parser.add_mutually_exclusive_group()
     output.add_argument("--json", action="store_true")
     output.add_argument("--markdown", action="store_true")
@@ -536,7 +523,9 @@ def main() -> int:
     repo_root = Path(args.repo_root)
     if not submission_dir.is_absolute():
         submission_dir = repo_root / submission_dir
-    stage = args.stage or stage_from_manifest(submission_dir)
+    # Spatial review only runs at formal stage; intake gating is handled by the
+    # deterministic validation chain (validate_submission.py).
+    stage = "formal"
     report = review_submission(submission_dir, repo_root, stage)
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))

@@ -209,7 +209,9 @@ def run_maintainer_review(repo_root: Path, submission_dir: Path, pr_author: str,
             "--json",
         ]
     )
-    review_input = build_review_input(repo_root, submission_dir)
+    # Reuse the self-check result above; build_review_input would otherwise run
+    # the whole self-check chain a second time (4 subprocesses each pass).
+    review_input = build_review_input(repo_root, submission_dir, pre_submit=self_check_result)
     summary = build_summary(repo_root, submission_dir, pr_author, self_check_result)
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "review-input.json").write_text(

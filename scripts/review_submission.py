@@ -128,10 +128,15 @@ def run_pre_submit_self_check(repo_root: Path, submission_dir: Path, author: str
     return run_json_command(command)
 
 
-def build_review_input(repo_root: Path, submission_dir: Path) -> dict:
+def build_review_input(
+    repo_root: Path, submission_dir: Path, pre_submit: dict | None = None
+) -> dict:
     author = infer_author(submission_dir, repo_root)
     changed_files = discover_files(submission_dir, repo_root)
-    pre_submit = run_pre_submit_self_check(repo_root, submission_dir, author)
+    if pre_submit is None:
+        # Callers that already ran the self-check chain (e.g. maintainer_review)
+        # pass the result here to avoid running the full chain twice.
+        pre_submit = run_pre_submit_self_check(repo_root, submission_dir, author)
     pre_submit_stdout = pre_submit.get("stdout") if isinstance(pre_submit.get("stdout"), dict) else {}
     validation_stdout = (
         pre_submit_stdout.get("deterministic_validation", {}).get("stdout")

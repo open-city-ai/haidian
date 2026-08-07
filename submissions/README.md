@@ -98,4 +98,4 @@ python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-sl
 
 维护者审核只在 Pull Request comment 中反馈。合并后展示页只显示方案状态和入口链接，不展示 `maintainer_review.py` 生成的 review packet、评分表或中间审核材料；`submissions-data.js` 由维护者合并后生成，参赛者不要修改。
 
-`submissions/codex-final/jingzhang-ai-symbiotic-rail/` 是当前仓库保留的标准示例之一。它展示完整 formal 包的目录、正文、矩阵、图层、图纸和 HTML 可视化写法；虽然使用 provisional boundary，但只要参与者可控制的检查全部通过，仍可标记为 `formal_review_ready`，同时保留精度警示与复算要求。
+`submissions/ttxl314/jingzhang-ai-belt/` 是当前仓库的 formal 提交包示例（早期演练用的 `codex-final/jingzhang-ai-symbiotic-rail` 示例已不再保留，见 `docs/simulations/` 历史记录）。它展示完整 formal 包的目录、正文、矩阵、图层、图纸和 HTML 可视化写法；虽然使用 provisional boundary，但只要参与者可控制的检查全部通过，仍可标记为 `formal_review_ready`，同时保留精度警示与复算要求。

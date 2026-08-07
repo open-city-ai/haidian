@@ -52,12 +52,12 @@ python3 scripts/maintainer_review.py \
 
 ## 4A. 上线前模拟 PR 审核
 
-公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评分，因此参与者可控制的检查全部通过时，预期建议状态必须是 `formal-review-ready`，同时保留精度警示与复算要求：
+公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评分，因此参与者可控制的检查全部通过时，预期建议状态必须是 `formal-review-ready`，同时保留精度警示与复算要求。当前仓库的 formal 示例提交为 `submissions/ttxl314/jingzhang-ai-belt/`（历史演练用过的 `codex-final/jingzhang-ai-symbiotic-rail` 示例已不再保留，见 `docs/simulations/` 历史记录）：
 
 ```bash
 python3 scripts/maintainer_review.py \
-  submissions/codex-final/jingzhang-ai-symbiotic-rail \
-  --pr-author codex-final \
+  submissions/ttxl314/jingzhang-ai-belt \
+  --pr-author ttxl314 \
   --comment
 ```
 

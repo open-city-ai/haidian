@@ -24,6 +24,9 @@ KEY_DOCS = [
     "submissions.html",
 ]
 
+# Opening date of the current intake period. Unlike the deadline, this value is
+# also a content anchor: public pages must display it, so it must be kept in
+# sync with activity-status.json when a new intake period opens.
 OPEN_DATE = "2026-08-07"
 OPEN_DATE_ZH = "2026年8月7日"
 
@@ -118,17 +121,28 @@ def check_activity_open(repo_root: Path, checks: list[dict[str, Any]]) -> None:
         add_check(checks, "public_intake_open", False, "Activity status is unreadable.", str(exc))
         return
     failures = []
-    expected = {
-        "status": "open",
-        "public_intake_open": True,
-        "public_intake_open_date": OPEN_DATE,
-        "submission_deadline": "2026-08-31",
-        "implementation_begins": "2026-09",
-        "timezone": "Asia/Shanghai",
-    }
-    for key, value in expected.items():
-        if status.get(key) != value:
-            failures.append(f"activity-status.json: {key} must be {value!r}")
+    # Structural/lifecycle assertions that hold for any intake period.
+    if status.get("status") != "open":
+        failures.append("activity-status.json: status must be 'open' while the call is live")
+    if status.get("public_intake_open") is not True:
+        failures.append("activity-status.json: public_intake_open must be true")
+    if status.get("timezone") != "Asia/Shanghai":
+        failures.append("activity-status.json: timezone must be Asia/Shanghai")
+    # Dates are config, not constants: validate format and ordering instead of
+    # hard-coding the current intake window (deadline passing is expected).
+    open_date = status.get("public_intake_open_date")
+    deadline = status.get("submission_deadline")
+    begins = status.get("implementation_begins")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(open_date or "")):
+        failures.append(f"activity-status.json: public_intake_open_date must be YYYY-MM-DD, got {open_date!r}")
+    elif open_date != OPEN_DATE:
+        failures.append(f"activity-status.json: public_intake_open_date must match OPEN_DATE {OPEN_DATE!r}")
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(deadline or "")):
+        failures.append(f"activity-status.json: submission_deadline must be YYYY-MM-DD, got {deadline!r}")
+    elif open_date and deadline and str(deadline) < str(open_date):
+        failures.append("activity-status.json: submission_deadline must not precede public_intake_open_date")
+    if not re.fullmatch(r"\d{4}-\d{2}", str(begins or "")):
+        failures.append(f"activity-status.json: implementation_begins must be YYYY-MM, got {begins!r}")
     public_pages = ["index.html", "agent.html", "brief.html", "review.html", "submissions.html", "README.md"]
     forbidden = [
         "当前未开放公共",

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -126,10 +127,32 @@ def build_scorecard(summary: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def validate_scorecard_schema(repo_root: Path, scorecard: dict[str, Any]) -> None:
+    """Validate the generated scorecard against the formal_scorecard schema."""
+    schema_path = repo_root / FORMAL_SCORECARD_SCHEMA_PATH
+    if not schema_path.is_file():
+        print(f"warning: scorecard schema not found at {FORMAL_SCORECARD_SCHEMA_PATH}; skipping validation", file=sys.stderr)
+        return
+    try:
+        import jsonschema
+    except ImportError:
+        print("warning: jsonschema not installed; skipping scorecard schema validation", file=sys.stderr)
+        return
+    try:
+        schema = json.loads(schema_path.read_text(encoding="utf-8"))
+        jsonschema.validate(scorecard, schema)
+        print("formal-scorecard.json matches formal_scorecard.schema.json", file=sys.stderr)
+    except json.JSONDecodeError as exc:
+        print(f"warning: scorecard schema is not valid JSON: {exc}", file=sys.stderr)
+    except jsonschema.ValidationError as exc:
+        print(f"warning: generated scorecard does not match schema: {exc.message}", file=sys.stderr)
+
+
 def run_formal_scorecard(repo_root: Path, submission_dir: Path, pr_author: str, out_dir: Path) -> dict[str, Any]:
     summary = run_maintainer_review(repo_root, submission_dir, pr_author, out_dir)
     scorecard = build_scorecard(summary)
     scorecard["pr_comment_markdown"] = build_comment(scorecard)
+    validate_scorecard_schema(repo_root, scorecard)
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "formal-scorecard.json").write_text(
         json.dumps(scorecard, ensure_ascii=False, indent=2), encoding="utf-8"

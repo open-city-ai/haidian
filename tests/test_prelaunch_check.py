@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import calendar
 import json
 import re
 import subprocess
@@ -49,14 +50,20 @@ class PrelaunchCheckTests(unittest.TestCase):
         status = json.loads((ROOT / "activity-status.json").read_text(encoding="utf-8"))
         self.assertEqual("open", status["status"])
         self.assertTrue(status["public_intake_open"])
-        self.assertEqual("2026-08-07", status["public_intake_open_date"])
-        self.assertEqual("2026-08-31", status["submission_deadline"])
-        self.assertEqual("2026-09", status["implementation_begins"])
+        # Date fields are config: assert format and ordering (the same rules the
+        # prelaunch check enforces) instead of hard-coding the current window.
+        self.assertRegex(status["public_intake_open_date"], r"\d{4}-\d{2}-\d{2}")
+        self.assertRegex(status["submission_deadline"], r"\d{4}-\d{2}-\d{2}")
+        self.assertGreaterEqual(status["submission_deadline"], status["public_intake_open_date"])
+        self.assertRegex(status["implementation_begins"], r"\d{4}-\d{2}")
         self.assertEqual("Asia/Shanghai", status["timezone"])
+        year, month, day = (int(part) for part in status["public_intake_open_date"].split("-"))
+        zh_date = f"{year}年{month}月{day}日"
+        en_date = f"{calendar.month_name[month]} {day}, {year}"
         for rel in ["index.html", "agent.html", "brief.html", "review.html", "submissions.html", "README.md"]:
             with self.subTest(path=rel):
                 text = (ROOT / rel).read_text(encoding="utf-8")
-                self.assertTrue("2026年8月7日" in text or "August 7, 2026" in text)
+                self.assertTrue(zh_date in text or en_date in text)
                 self.assertNotIn("当前未开放公共", text)
                 self.assertNotIn("暂未开放公共", text)
                 self.assertNotIn("独立社区公开征集", text)

@@ -392,6 +392,6 @@ tracks.json   主题赛道注册表
 
 ## 维护说明
 
-本仓库保存公开站点、任务书材料、投稿模板和校验逻辑，并通过 GitHub Pages 发布静态站点。自定义域名由根目录 `CNAME` 指向 `haidian.open-city.ai`；如未来使用 Kubernetes、Nginx、证书或镜像构建等外部部署配置，则不放入本仓库。
+本仓库保存公开站点、任务书材料、投稿模板和校验逻辑。静态站点以 GitHub Pages 为部署目标（仓库启用 Pages 后由维护者手动触发 `deploy-pages` workflow）；自定义域名由根目录 `CNAME` 指向 `haidian.open-city.ai`；如未来使用 Kubernetes、Nginx、证书或镜像构建等外部部署配置，则不放入本仓库。
 
 GitHub 分支保护、CODEOWNERS 和 secrets 需要仓库管理员在 GitHub UI 中启用。详见 `docs/github-settings.md`。

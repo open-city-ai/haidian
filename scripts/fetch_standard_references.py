@@ -25,6 +25,9 @@ from typing import Any
 
 DEFAULT_USER_AGENT = "Mozilla/5.0 (compatible; haidian-ai-standards-fetcher/0.1)"
 
+# Upper bound on fetched page bodies (bytes); larger responses are rejected.
+MAX_BODY_BYTES = 1_500_000
+
 
 @dataclass
 class FetchResult:
@@ -110,15 +113,21 @@ def fetch_url(url: str, timeout: float) -> FetchResult:
     request = urllib.request.Request(url, headers={"User-Agent": DEFAULT_USER_AGENT})
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
-            raw = response.read()
+            # Cap the response body to avoid unbounded memory use on unknown
+            # government/international hosts (mirrors discover_public_sources.py).
+            raw = response.read(MAX_BODY_BYTES + 1)
             content_type = response.headers.get("content-type")
             final_url = response.geturl()
+            if len(raw) > MAX_BODY_BYTES:
+                return FetchResult(False, "body_too_large", error=f"response exceeds {MAX_BODY_BYTES} bytes", final_url=final_url)
     except urllib.error.HTTPError as exc:
         return FetchResult(False, f"http_{exc.code}", error=str(exc), final_url=url)
     except urllib.error.URLError as exc:
         return FetchResult(False, "url_error", error=str(exc.reason), final_url=url)
     except TimeoutError as exc:
         return FetchResult(False, "timeout", error=str(exc), final_url=url)
+    except Exception as exc:  # noqa: BLE001 - mirror discover_public_sources.py: keep the batch fetch going on TLS/certificate and other host errors.
+        return FetchResult(False, "fetch_error", error=str(exc), final_url=url)
 
     parser = VisibleTextParser()
     parser.feed(decode_html(raw, content_type))

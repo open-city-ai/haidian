@@ -180,6 +180,10 @@ class PageMetadata:
     text: str = ""
     meta: dict[str, str] = field(default_factory=dict)
     links: list[tuple[str, str]] = field(default_factory=list)
+    # True when the document ended inside an unclosed script/style/noscript/svg
+    # block, so trailing text and links were discarded (common on government
+    # sites). Title/meta collected before the block remain usable.
+    parse_truncated: bool = False
 
 
 @dataclass
@@ -206,6 +210,8 @@ class Candidate:
 
 
 class MetadataParser(HTMLParser):
+    SKIP_TAGS = {"script", "style", "noscript", "svg"}
+
     def __init__(self, max_text_chars: int = 80_000) -> None:
         super().__init__(convert_charrefs=True)
         self.in_title = False
@@ -215,12 +221,16 @@ class MetadataParser(HTMLParser):
         self.links: list[tuple[str, str]] = []
         self._current_href: str | None = None
         self._current_anchor_text: list[str] = []
+        self._skip_stack: list[str] = []
         self.max_text_chars = max_text_chars
         self._text_len = 0
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attrs_dict = {key.lower(): value or "" for key, value in attrs}
         tag = tag.lower()
+        if tag in self.SKIP_TAGS:
+            self._skip_stack.append(tag)
+            return
         if tag == "title":
             self.in_title = True
         elif tag == "meta":
@@ -239,15 +249,23 @@ class MetadataParser(HTMLParser):
 
     def handle_endtag(self, tag: str) -> None:
         tag = tag.lower()
+        if self._skip_stack and self._skip_stack[-1] == tag:
+            self._skip_stack.pop()
+            return
         if tag == "title":
             self.in_title = False
         elif tag == "a" and self._current_href:
             anchor = normalize_space(" ".join(self._current_anchor_text))
-            self.links.append((self._current_href, anchor))
+            # Drop empty-anchor links (e.g. decorative <a> inside SVG/scripts)
+            # so they never become seed-link candidates.
+            if anchor:
+                self.links.append((self._current_href, anchor))
             self._current_href = None
             self._current_anchor_text = []
 
     def handle_data(self, data: str) -> None:
+        if self._skip_stack:
+            return
         if not data:
             return
         if self.in_title:
@@ -276,6 +294,7 @@ class MetadataParser(HTMLParser):
             text=normalize_space(" ".join(self.text_parts)),
             meta=self.meta,
             links=self.links,
+            parse_truncated=bool(self._skip_stack),
         )
 
 
