@@ -1,0 +1,158 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(geometry/site_boundary.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "采用 provisional 边界，official 边界发布后需复算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3296061.431,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "union_area(geometry/green_space.geojson)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 560873.208,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "union_area(geometry/public_space.geojson)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 216226.892,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "union_area(geometry/buildings.geojson)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.288803,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.049144,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "park_corridor_length_m": {
+   "status": "known",
+   "value": 9604.8,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "length(智脉绿道主轴 centerline)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "ai_scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI场景卡, 见 proposal AI+场景章)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 9,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(更新项目清单, 见 proposal 更新项目章)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(geometry/key_areas.geojson)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "reason": "官方控规容积率与 official 边界未发布，无法复算。",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "待官方数据后复算",
+   "confidence": "unknown"
+  },
+  "building_gross_floor_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": "sqm",
+   "reason": "依赖官方容积率与现状建筑数据，暂缺。",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "待官方数据后复算",
+   "confidence": "unknown"
+  },
+  "avg_building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "reason": "高度控制未发布；概念建筑仅为方向性表达。",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "待官方数据后复算",
+   "confidence": "unknown"
+  }
+ }
+}
