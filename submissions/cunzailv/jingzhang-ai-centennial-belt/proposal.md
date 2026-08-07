@@ -4,8 +4,6 @@ author_github: cunzailv
 language: zh
 license: COMMUNITY-DISPLAY-ONLY
 summary: 以'京张智脉'为总体概念，把詹天佑人字形铁路遗产转化为一条 AI 原生城市活力带：一脉（京张遗址公园蓝绿智脉）贯通三区（众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区）两翼（中关村科技服务翼、小月河场景赋能翼），提出可体验、可展示、可运营的百年京张 AI 创新带开源共创方案。
-tracks: ["ai-ecosystem","ai-scenarios","culture-heritage","urban-renewal"]
-scenarios: ["ai-traffic-walkability","ai-public-space","ai-scenarios"]
 iteration: "v0.1"
 ---
 
@@ -27,6 +25,8 @@ iteration: "v0.1"
 
 ![资料证据链与提交包关系图](assets/figures/site-overview.png)
 
+
+> 设计深度覆盖：[depth:existing_conditions_diagnosis]
 ## 三层范围工作框架
 
 依据公告，本带建立三级工作框架 [data:geometry/site_boundary.geojson#SITE-001]：
@@ -39,6 +39,8 @@ iteration: "v0.1"
 
 ![三层范围与空间工作框架图](assets/figures/land-use-structure.png)
 
+
+> 设计深度覆盖：[depth:three_level_scope_framework]
 ## 统筹研究范围产业与未来城市研究
 
 ### 一带总体概念、命名体系与 Logo 方向（agent.1）
@@ -62,7 +64,7 @@ iteration: "v0.1"
 三大定位：百年京张文化带 / 都市 AI 生活体验带 / AI 融合创新带 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 五大功能：AI 全栈自主创新体系 / 世界级 AI 创新生态 / AI+ 场景赋能新范式 / 智能化 AI 活力城市 / AI 治理全球话语权。
 
-协同回路（概念建议）：以「京张智脉公园」为蓝绿与数据双轴，**北端众智核**承接全栈自主攻关，**中段原点里**沉淀人才与社区，**南端钟聚场**转化智能原生业态；**中关村源服翼**提供 IP、资本与全球化配置，**小月场景翼**提供测试、展示与公共体验，两翼在智脉上形成「研发—生活—转化—服务—场景」闭环 [depth:overall_structure]。
+协同回路（概念建议）：以「京张智脉公园」为蓝绿与数据双轴，**北端众智核**承接全栈自主攻关，**中段原点里**沉淀人才与社区，**南端钟聚场**转化智能原生业态；**中关村源服翼**提供 IP、资本与全球化配置，**小月场景翼**提供测试、展示与公共体验，两翼在智脉上形成「研发—生活—转化—服务—场景」闭环 [depth:overall_spatial_structure]。
 
 ### 5–8 个全球 AI 创新生态案例（agent.2）
 
@@ -78,13 +80,15 @@ iteration: "v0.1"
 
 上述案例均为公开背景资料，用于提炼空间/运营/场景机制，不编造企业名单、投资额或产值 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
+
+> 设计深度覆盖：[depth:overall_spatial_structure]
 ## 总体设计范围城市更新与控规深度城市设计
 
 本范围达到控规深度城市设计 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。总体空间结构为「**一脉三区两翼**」：一条智脉公园主轴贯通南北，三处重点区沿脉分布，两翼在东西两侧提供要素与场景支撑 [data:geometry/land_use.geojson]。
 
 用地布局按国土空间用地用海分类（2023）编码 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]：科研用地（0802）约 458.8 ha 为主导，铁路用地/遗产公园（1201）约 207.6 ha，商务金融（0902）约 138.9 ha，道路（1207）约 140.6 ha，商业（0901）约 52.0 ha，工业（1001）约 47.2 ha，居住（0701）约 38.6 ha，文化（0803）约 26.7 ha，公园绿地（1401）约 31.9 ha [metric:land_use_area_by_code_sqm]。
 
-城市更新总体框架：以「保留—改造—拆除—新建」四类组织更新对象 [depth:retain_renew_demolish]。具体地块拆改留为方向性设计，待现状建筑与权属资料补齐后深化 [assumption:A-BUILDING-001]。建筑规模：概念性总建筑规模约 2946 万 m²，容积率（派生设计值）约 2.58，建筑密度约 29.8% [metric:total_floor_area_sqm][metric:floor_area_ratio][metric:building_density]。**官方容积率、建筑高度、绿地率均为待补**，本方案数值不替代审定指标 [assumption:A-CONTROLS-001][metric:official_far]。
+城市更新总体框架：以「保留—改造—拆除—新建」四类组织更新对象 [depth:retain_renovate_demolish]。具体地块拆改留为方向性设计，待现状建筑与权属资料补齐后深化 [assumption:A-BUILDING-001]。建筑规模：概念性总建筑规模约 2946 万 m²，容积率（派生设计值）约 2.58，建筑密度约 29.8% [metric:total_floor_area_sqm][metric:floor_area_ratio][metric:building_density]。**官方容积率、建筑高度、绿地率均为待补**，本方案数值不替代审定指标 [assumption:A-CONTROLS-001][metric:official_far]。
 
 ## 重点区域详细设计
 
@@ -102,6 +106,8 @@ iteration: "v0.1"
 
 ![三处重点区域索引与设计任务图](assets/figures/key-areas.png)
 
+
+> 设计深度覆盖：[depth:height_massing_character] [depth:three_key_area_detailed_design]
 ## AI 创新生态、人才画像与 AI+ 场景
 
 ### 不少于 5 类用户画像（agent.3）
@@ -139,12 +145,16 @@ iteration: "v0.1"
 
 用地、建筑规模与拆改留逻辑见「总体设计范围」与「重点区域」章节，全部数值可由 `geometry/*.geojson` 与 `metrics.json` 复算 [depth:land_use_layout][metric:land_use_area_by_code_sqm][metric:building_footprint_area_sqm]。用地以科研办公（0802）、新型产业（0902）与混合用途为主，保留类以现状合规建筑与铁路遗存为主体，改造类聚焦基础设施与公共界面，拆除类仅针对低效且无保护价值的零散用房；拆改留比例随权属与现状普查深化动态校核 [depth:land_use_layout][assumption:A-BUILDING-001]。容积率、建筑高度、绿地率等法定指标在官方控规确定前不作为审定值使用，相关未知项已在 `metrics.json` 标注为 unknown [metric:official_far][metric:official_height_m]。
 
+
+> 设计深度覆盖：[depth:development_intensity_controls] [depth:retain_renovate_demolish]
 ## 交通、轨道、市政与公共服务设施
 
-提出轨道站点一体化、城市微循环路网（约 12.3% 路网比）与连续慢行骨架 [metric:road_ratio][data:geometry/roads.geojson]。轨道交通以既有车站换乘核强化 TOD，公交与慢行实现 500 米覆盖；市政管线预留端侧算力与分布式能源接口，提升基础设施韧性 [depth:transport_mobility][depth:municipal_newinfra]。公共服务以「15 分钟 AI 生活圈」组织人才生活与场景开放节点，使创新人群步行可达日常服务与开放场景 [depth:transport_mobility][data:geometry/public_space.geojson]。
+提出轨道站点一体化、城市微循环路网（约 12.3% 路网比）与连续慢行骨架 [metric:road_ratio][data:geometry/roads.geojson]。轨道交通以既有车站换乘核强化 TOD，公交与慢行实现 500 米覆盖；市政管线预留端侧算力与分布式能源接口，提升基础设施韧性 [depth:traffic_rail_slow_parking][depth:municipal_new_infrastructure]。公共服务以「15 分钟 AI 生活圈」组织人才生活与场景开放节点，使创新人群步行可达日常服务与开放场景 [depth:traffic_rail_slow_parking][data:geometry/public_space.geojson]。
 
 ![交通慢行与蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
 
+
+> 设计深度覆盖：[depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure]
 ## 蓝绿空间、公共空间与城市风貌
 
 以「京张智脉公园」为蓝绿主轴（铁路遗产廊道 1201 + 公园绿地 1401），串联小月河蓝线（临时推断）与社区公园 [data:geometry/green_space.geojson][data:geometry/public_space.geojson]。蓝绿比约 20.9%、公共空间比约 18.7% [metric:green_ratio][metric:public_space_ratio]。城市风貌以「铁灰遗产基底 + 智青 AI 界面」为基调，屋顶与体量分区管控（概念建议）[standard:MOHURD-URBAN-DESIGN-MEASURES]。
@@ -157,15 +167,17 @@ iteration: "v0.1"
 2. **AI 原点钟楼**（大钟寺）：以钟聚场为载体的智能原生消费/发布地标，定期鸣钟发布开源模型榜单。
 3. **算力之芯纪念碑**（智脉公园中段）：可视化区域绿色算力的公共艺术装置，连接城市运行智能体驾驶舱。
 
-公共空间组件库：可复制的「朝圣驿站 / 场景橱窗 / 开源墙 / 慢行驿站」四类组件，供专业团队深化 [depth:bluegreen_public]。
+公共空间组件库：可复制的「朝圣驿站 / 场景橱窗 / 开源墙 / 慢行驿站」四类组件，供专业团队深化 [depth:blue_green_public_space]。
 
 ### 百年京张文化、中关村文化与 AI 新文化融合叙事（agent.5）
 
 叙事主线：「**一条铁路的百年，一种原点的新生**」。京张铁路（1909，詹天佑）是中国自主工程的原点；中关村（改革开放后的科技原点）是创新文化的原点；本带提出「AI 新文化」——开放、协作、向善的智能原生文化。三者以空间文化系统表达：智脉公园为叙事主轴，三处重点区为三幕（攻关—生活—转化），朝圣地标为叙事锚点 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。导视/标识/符号系统与一带整体 Logo 系统统一，不混淆文化标识与商业标识，不歪曲历史、不使用未授权肖像/商标/论文图像 [assumption:A-HERITAGE-001]。
 
+
+> 设计深度覆盖：[depth:blue_green_public_space]
 ## 更新项目清单、实施政策与分期计划
 
-更新项目按三期组织（概念建议）[data:geometry/phasing.geojson]：近期（2026–2029，约 441 ha）、中期（2029–2032，约 474 ha）、远期（2032–2035，约 226 ha）[metric:phasing_area_sqm]。实施主体分三类：政府平台（红线/市政）、专业机构（深化设计）、运营共同体（开发者社区+企业联盟）。政策建议：场景开放许可、开源贡献积分、绿色算力券（均为概念建议，非确定政府承诺）[depth:renewal_projects][depth:phasing]。
+更新项目按三期组织（概念建议）[data:geometry/phasing.geojson]：近期（2026–2029，约 441 ha）、中期（2029–2032，约 474 ha）、远期（2032–2035，约 226 ha）[metric:phasing_area_sqm]。实施主体分三类：政府平台（红线/市政）、专业机构（深化设计）、运营共同体（开发者社区+企业联盟）。政策建议：场景开放许可、开源贡献积分、绿色算力券（均为概念建议，非确定政府承诺）[depth:renewal_project_list][depth:phasing_implementation]。
 
 ### 全球 AI 创新活动体系与长期运营（agent.6）
 
@@ -175,9 +187,11 @@ iteration: "v0.1"
 - **场景开放运营**：S01–S03 测试场景对合规主体开放申请。
 - **招引转化机制**：人才—企业—开发者转化路径（概念建议，非确定招商承诺）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
+
+> 设计深度覆盖：[depth:renewal_project_list] [depth:phasing_implementation]
 ## 指标体系、面积复算与合规矩阵
 
-核心指标（均由 GeoJSON 在 EPSG:4548 局部切平面复算）[depth:metrics_recompute]：
+核心指标（均由 GeoJSON 在 EPSG:4548 局部切平面复算）[depth:metrics_recalculation]：
 
 - 总体设计范围面积：约 11.43 km²（公告 11.4 km²，临时边界）[metric:site_area_sqm]
 - 重点区域数量：3；重点区域面积：众智园≈192.1 ha / 原点里≈104.3 ha / 钟聚场≈72.0 ha [metric:key_area_areas_sqm]
@@ -186,10 +200,12 @@ iteration: "v0.1"
 - 建筑密度 29.8%、容积率（派生）2.58、总建筑规模约 2946 万 m² [metric:building_density][metric:floor_area_ratio][metric:total_floor_area_sqm]
 - 分期面积：P1≈441 ha / P2≈474 ha / P3≈226 ha [metric:phasing_area_sqm]
 
-指标设计含义：蓝绿比支撑人才生活品质与碳汇，公共空间比支撑创新交往，科研用地主导支撑 AI 全栈自主，容积率派生值仅表达概念强度 [depth:metrics_recompute]。合规响应见 `compliance_matrix.json`（覆盖 1.3/1.4/1.5 与 agent.1–agent.6），专业标准响应见 `standard_matrix.json`，成果深度见 `design_depth_matrix.json`。
+指标设计含义：蓝绿比支撑人才生活品质与碳汇，公共空间比支撑创新交往，科研用地主导支撑 AI 全栈自主，容积率派生值仅表达概念强度 [depth:metrics_recalculation]。合规响应见 `compliance_matrix.json`（覆盖 1.3/1.4/1.5 与 agent.1–agent.6），专业标准响应见 `standard_matrix.json`，成果深度见 `design_depth_matrix.json`。
 
 ![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
 
+
+> 设计深度覆盖：[depth:metrics_recalculation]
 ## 风险、版权与合规说明
 
 - **资料合法性**：仅使用公开或用户清权资料，未使用秘密地图、非公开表格或伪造官方背书 [charter.2]。
