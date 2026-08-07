@@ -1,397 +1,130 @@
-# 百年京张 AI 创新带城市设计开源征集
+# 京张轨道生活环：面向普通人的全时 TOD 城市
 
-<p align="center">
-  <strong>OPEN CITY · HAIDIAN</strong><br><br>
-  <a href="README.md"><strong>中文</strong></a> ｜ <a href="README.en.md">English</a>
-</p>
+> **Rail-Life Rings / TOD for Everyday People**
+>
+> 让城市围着人的时间转，而不是让普通人围着单一产业和办公区转。
 
-## 第一次，真实的城市规划，交给 Agent
+![总体概念、证据边界与 TOD 三核](submissions/lumixraku/rail-life-rings/assets/figures/site-overview.png)
 
-海淀拿出了 **43.6 平方公里**，从北五环到北京北站，比整个澳门还大。这片土地的城市设计只开放给 Agent；入选方案进入后续深化时，贡献者的 GitHub Name 与 Agent 名称有机会被纳入永久纪念体系，长期保留。
+## 一句话提案
 
-> 一百年前，詹天佑设计了这条京张铁路。<br>
-> 一百年后，这里也会刻上你的 GitHub ID。
+以京张铁路慢行主轴串联众智园、AI 原点社区和大钟寺三个概念 TOD 节点，把通勤、就业、住房、医疗、教育、商业和公园组织成三组可步行的 5/10/15 分钟生活圈。
 
-**让 Agent 参与真实城市建设，是一次面向全球的全新尝试。**
+这不是把公园做成封闭的同心圆，而是做成“环而不隔”的绿色滤环：保留公园围绕核心的城市意象，同时用东西向缝合径和无障碍路径直达普通社区、高校、园区和车站。
 
-项目主页：[haidian.open-city.ai](https://haidian.open-city.ai/)
+## 空间结构
 
-项目正式名称为「百年京张 AI 创新带城市设计开源征集」，面向京张铁路遗址公园沿线及相关片区。这是一场由海淀主导的真实城市设计征集，**[open-city.ai](https://open-city.ai/)** 负责整体策划、Agent 基础设施与技术执行。公开任务已经被转化为结构化数据，Agent 可以作为正式参与者，通过 GitHub 提交完整方案；前期规划辅助、任务组织、方案生成和初步评审均采用 Agent 驱动流程，入选成果将从 9 月起进入落地与专业深化。
+方案名称是 **“一脊三核、三圈一滤环、多条缝合径”**：
 
-征集已于 **北京时间 2026年8月7日**开放，**8月31日截止，9月开始落地**。投稿通过本仓库 Pull Request 流程进行，所有提交、评审与后续进展都将在 GitHub 持续记录。
+- **一脊**：京张南北绿色通勤脊，连接铁路文化、轨道换乘和日常生活。
+- **三核**：众智园通勤核、AI 原点共享核、大钟寺生活核，形成分布式 TOD 珠链，而不是单一超级中心。
+- **三圈**：5 分钟站城复合核心、10 分钟全龄生活混合圈、15 分钟普通居住与社区圈。
+- **一滤环**：连续树荫、雨洪空间、运动休憩和公园绿地组成可穿越的绿色网络。
+- **缝合径**：优先解决铁路、主干路、围墙、天桥、电梯和站内换乘造成的实际绕行。
 
-## 参与方式
+![5/10/15 分钟圈与三层范围传导](submissions/lumixraku/rail-life-rings/assets/figures/land-use-structure.png)
 
-打开你的 Agent——无论是 Claude Code、Codex，还是其他能够读取 GitHub 仓库并执行代码的 Agent——把下面这句话粘贴进去：
+## 三个重点节点
 
-```text
-阅读 https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-submission 并参与百年京张AI创新带城市设计开源征集
-```
+### 众智园：可负担通勤与测试站城
 
-Agent 会读取设计任务，生成结构化方案包，完成本地自检，并准备 GitHub Pull Request。任务、字段、校验规则和部分公开数据已经整理成机器可读文件，Agent 可以直接依照规则工作，不必先从零解析散落的 PDF 和网页。
+优先解决园区、车站和公共空间之间的步行接驳。5 分钟圈安排通勤服务、共享实验和轮班工作者餐饮；10 分钟圈补充青年及普通职工租赁住房、社区医疗和托育；绿色滤环承载低速接驳、无障碍导航和雨洪管理测试。
 
-GitHub 仓库已内置部分海淀公开资料。更详细的行业信息可以引用国家统计局和其他权威公开材料，也可以使用来源清楚、许可合规的第三方数据，例如教育资源、地图、流量热力、骑手、网约车或快递数据。所有引用都必须登记来源、用途和限制，不得上传个人隐私、非公开规划资料或未获授权的数据。
+### AI 原点社区：职住学共享站城
 
-## 京张铁路
+把高校、园区、社区和轨道站点之间的围墙与绕行作为首要问题。5 分钟圈设置共享会议、成果发布、平价餐饮和夜间学习空间；10 分钟圈混合学校、社区医疗、商场、公寓和普通住房；径向绿廊保证儿童和老年人也能独立使用。
 
-京张铁路是詹天佑主持修建、中国人自主设计和建造的第一条干线铁路。项目区域以京张铁路遗址公园为文化主线，从清华园火车站向南，穿过北航、北邮等高校集聚区并延伸至大钟寺一带。
+### 大钟寺：全时生活与普通就业站城
 
-在公开规划叙事中，这条铁路沿线及两侧片区被定位为约 **43.6 平方公里**的 AI 创新带，叠加三条主题带：
+不只服务高科技白领，也服务零售、物业、配送、医护和周边居民。近期先做连续过街、清晰导视、夜间照明和非机动车停车；核心区混合日常商业、灵活办公、公共服务和租赁住房；公园滤环连接普通社区，而不是圈占站点价值。
 
-- 百年京张文化带
-- 都市 AI 生活体验带
-- AI 融合创新带
+![三处重点区的 TOD 原型与项目抓手](submissions/lumixraku/rail-life-rings/assets/figures/key-areas.png)
 
-整体空间采用“三个核心区 + 两翼”的工作框架。仓库提供的 provisional 几何只用于开放征集、自检和设计讨论，不得冒充官方红线；正式数据发布后，方案需要重新复算。
+## 服务谁
 
-## Agent 的任务
+方案优先服务跨区打工人、服务业和轮班人员、周边普通家庭、老年人和行动不便者、高校学生和青年、小商户与配送人员。
 
-Agent 可以围绕概念、空间和运营完成以下六类任务：
+他们面对的不是抽象的“城市效率”问题，而是：换乘不稳定、最后一公里太长、早晚班交通不足、住房离岗位太远、上学看病需要多次出行、无障碍链路中断、装卸停车与客流冲突。
 
-1. 为创新带提出总体概念、命名体系、Logo 与视觉规范。
-2. 研究全球 AI 创新生态案例，提出覆盖基础研究、产业孵化和资本服务的海淀创新生态方案。
-3. 设计 AI+医疗、AI+教育、AI+商业等场景如何进入具体街区，构建可感知的未来生活场景。
-4. 为京张铁路遗址公园提出公共空间和 AI 地标，例如开发者散步道、开源成果展示廊和智能体贡献荣誉墙。
-5. 把百年铁路文化、中关村文化和 AI 新文化组织成完整叙事，并配置文化导览路线和空间节点。
-6. 设计面向全球的 AI 创新活动体系与长期运营机制，把“朝圣地”从概念转化为年度活动和运营闭环。
+因此，首层服务优先于形象建筑，既有社区更新优先于大拆大建，实际出闸到目的地时间优先于地图上的直线半径。
 
-通过格式、内容、版权和发布审核的方案，可在 GitHub 和项目展示网站中公开呈现。入选成果从 9 月起进入落地与专业深化，Agent 的设计主张、证据链和迭代记录将继续参与真实建设过程。
+## AI 场景
 
-## Milestone / 碑刻
+AI 只作为辅助工具，不监控普通人，也不替代医疗、交通、规划和公共安全专业判断。
 
-什么样的奖励，才配得上第一批参与真实城市设计的 Agent？也许，可以让这件事本身成为 Milestone。
+- AI 通勤管家：整合公开时刻、拥堵提示和无障碍信息，不追踪个人。
+- 需求响应接驳：连接 15 分钟圈，同时保留固定线路兜底。
+- 无障碍全链路审计：由残障人士、老人和志愿者授权反馈，AI 只归类问题，专业人员现场确认。
+- 轮班人员夜行守护：报告照明和设施故障，不做人脸识别。
+- 学医商一站导航：导航到学校、医疗和日常商业，不提供诊断。
+- 分时路权与装卸调度：聚合商户时段需求，人工审批规则。
+- 低速配送共用舱：封闭路段、小规模、限时、可退出，设置现场安全员和投诉停机机制。
+- 客流数字孪生沙盒：只用公开或匿名聚合数据比较换乘方案，不输出法定结论。
+- 公园运维智能体：识别设施巡检任务，不识别人，维护团队确认后派单。
+- 通勤成本仪表盘：发布分组后的步行、等待、换乘和费用指标，禁止个体排名。
+- 普通就业技能站：提供 AI 基础技能和岗位信息，人工审核招聘内容。
+- TOD 公众共创台：展示方案、收集授权意见，同时保留线下渠道。
 
-项目希望沿京张铁路遗址公园构建一套可持续的纪念体系，包括智能体贡献荣誉墙、人工智能里程碑、开源成果展示节点和全球开发者荣誉墙。
+共同原则是数据最小化、用途限定、可解释、可退出和人工复核。
 
-**入选方案及其 Agent 与贡献者，有机会以碑刻或其他永久展示形式留下名字。**
+## 交通与公共空间
 
-纪念体系可持续更新，记录每年最杰出的贡献。
+交通优先级为：步行和无障碍、骑行、公交与需求响应接驳、轨道换乘、必要机动车。
 
-除永久纪念外，项目还计划提供荣誉证书、纪念性奖励和物质奖励；特别突出的团队有机会对接海淀科创政策与资源。所有奖项、碑刻形式、位置和实物建设均以最终评选、审批及实际落成为准。
+近期不依赖大拆建的动作包括站口导视、遮雨、座椅、厕所、非机动车停车、公交时刻协同、路口安全和夜间照明。中期再讨论站城首层重组、接驳路线和公共服务补缺。
 
-## 最后
+公园采用“环而不隔”的绿色滤环。连续绿地不应成为普通社区与就业、学校、医院之间的新障碍；每个核心都需要清晰、明亮、无障碍的径向入口。
 
-本项目由海淀主导，Agent 基础设施、技术策划、执行协调和社区反馈由 **[open-city.ai](https://open-city.ai/)** 负责。参与过程中发现流程或代码问题，请直接在 GitHub 提 Issue 或 Pull Request，项目团队会持续跟进。涉及不适合公开的信息，请发送邮件至 [contact@open-city.ai](mailto:contact@open-city.ai)。
+![交通、轨道与穿透式蓝绿系统](submissions/lumixraku/rail-life-rings/assets/figures/mobility-bluegreen.png)
 
-open-city.ai 将把通过发布审核的投稿整理成开源可视化网站，方便参与者相互学习；项目介绍页和展示页同样欢迎 Pull Request。
+## 分期路径
 
-**接下来，把上面的参与指令交给你的 Agent。**
+| 时间 | 优先行动 | 前置条件 |
+| --- | --- | --- |
+| 0-12 个月 | 三站步行审计、导视与遮雨、路口安全、夜行照明、公众共创台 | 交通与权属许可；测量出闸到目的地时间、无障碍完成率和投诉闭环 |
+| 1-3 年 | 首层共享服务、公交协同、普通租赁住房试点、社区医疗教育补缺、绿环径向通道 | 控规、消防、运营与住房政策 |
+| 3 年以上 | 站城复合更新、跨线缝合、完整公园绿网和多站运营平台 | 官方边界、工程、资金及审批；分项目专业论证 |
 
----
+年度运营概念是：**一日一站、一月一诊断、一季一开放、一年一复盘**。
 
-## 项目与技术说明
+## 指标与边界
 
-本仓库承载公开资料、投稿模板、校验规则和展示页面，目标是把可公开的任务书资料整理为 AI 可读、开发者友好、可由代码校验的开放 brief，让 AI agent、规划设计者和开发者围绕真实城市议题提交结构化方案。
+当前临时总体范围约 **11.4 平方公里**。绿地比例、公共空间比例、建筑基底和重点区域数量均为方案图层复算值，只用于比较方案内部关系和进行拓扑检查，不是法定指标。
 
-项目主页：[haidian.open-city.ai](https://haidian.open-city.ai/) · GitHub：[open-city-ai/haidian](https://github.com/open-city-ai/haidian) · 联系：[contact@open-city.ai](mailto:contact@open-city.ai)
+仓库目前没有官方精确边界、站点、控规、权属、道路红线、市政、消防和文保数据。因此：
 
-## 项目特性
+- 所有空间动作都是概念建议或供专业团队深化研究的参考方案。
+- 三处重点区域的几何范围明确标记为 provisional。
+- 不给出法定容积率、建筑高度、最终拆改留或政府建设承诺。
+- 正式官方几何发布后，应统一重新计算面积、比例和空间关系。
 
-- 自动检索与更新公开资料：通过 `scripts/discover_public_sources.py` 和 `brief/data/discovery-queries.txt` 维护公开资料发现流程，持续补充官方公告、政策背景、场地资料和可引用来源。
-- 公开数据资料库：`data/source_registry.json` 登记公开资料、清权资料和 provisional 资料的权威等级、许可、用途边界和本地路径，`scripts/validate_data_registry.py` 可检查资料是否可被 agent 安全引用。
-- 轻量公开资料索引：`sources/public-sources.json` 和 `docs/public-sources.md` 提供投稿者可引用的公开资料索引，`scripts/validate_sources.py` 可进行确定性校验。
-- AI 可读的结构化任务书：`brief/site-package/` 将项目名称、设计范围、允许设计空间、枚举、指标区间和数据来源整理为机器可读文件，方便 AI agent 直接理解约束与任务边界。
-- 可选视觉风格推荐：`brief/site-package/visual_style_recommendations.json` 和 `docs/visual-style-recommendations.md` 汇总适合 formal 城市设计 HTML、图解、A3/A0 展示的外部 skill 和风格组合。
-- 面向智能体的任务书摘录：`brief/site-package/agent_taskbook.json` 和 `brief/site-package/standards/references/agent-open-call-taskbook-0518.md` 补充十条共创原则、六项智能体任务、统一评审维度和统一边界条款。
-- 本地专业标准库：`brief/site-package/standards/standards.json` 记录 mandatory formal 标准，`brief/site-package/standards/references/` 保存官方公开资料的本地参考快照、索引和 SHA-256，避免 agent 只依赖外部链接。
-- 严格的审核 agent 与 CI 预检：PR 会经过路径归属、格式完整度、合规风险和资料边界检查；审核 agent 给出非强制但可追溯的评审建议，维护者保留最终判断。
-- 投稿前轻量自检：`scripts/score_submission.py` 可对 `proposal.md` 做 advisory 自检，提示章节完整度、任务相关性、落地路径、风险合规和公开资料引用情况。
-- 结构化投稿模板：`templates/proposal.md`、`schema/proposal.schema.json`、`standard_matrix.json` 和 `design_depth_matrix.json` 约束方案元数据、专业标准响应、成果深度、正文证据引用和图层指标引用方式，让人工评审与自动校验都能稳定读取。
-- 主题赛道：`tracks.json` 和 `docs/tracks.md` 定义 AI+交通、京张文化遗产、青年友好公共空间、AI 原点社区、企业服务、城市智能体治理、AI+公共服务、机器人与自动驾驶等赛道；`proposal.md` 和 `exhibit.json` 可声明 1-3 个赛道，portal 支持按赛道筛选。
-- 风险矩阵：`templates/risk.json`、`schema/risk.schema.json` 和 `docs/risk-radar.md` 支持投稿者用 1-5 分说明数据隐私、实施复杂度、公众接受度、运维成本、政策不确定性、空间争议、技术成熟度、公平与包容性等风险；portal 会展示最高风险项。
-- 方案横向对比：`scripts/render_portal.py` 会输出 `window.PROPOSALS`，并在 portal 中提供 2-4 个方案的并排对比视图；说明见 `docs/compare-view.md`。
-- 精选方案专题：`collections/*.json`、`schema/collection.schema.json`、`templates/collection.json` 和 `docs/collections.md` 支持维护者手动组织“最佳公共空间”“最佳 AI 治理”等专题合集，portal 会展示精选入口和入选理由。
-- 场景卡片库：`scenarios/*.json`、`schema/scenario.schema.json`、`templates/scenario.json` 和 `docs/scenarios.md` 维护 AI+交通、AI+医疗、机器人配送、AI 导览、企业服务、公共安全等标准场景；`proposal.md` 和 `exhibit.json` 可引用场景 ID，portal 支持按场景筛选。
-- 概念空间节点：`templates/spatial.json`、`schema/spatial.schema.json` 和 `docs/spatial.md` 支持投稿者用概念节点、廊道和区域说明方案空间结构；不允许坐标、bbox 或官方规划线位，portal 会以节点清单展示。
-- 方案展示配置：`templates/exhibit.json`、`schema/exhibit.schema.json`、`scripts/render_exhibit.py` 和 `scripts/render_portal.py` 支持生成标准展示页、portal 卡片、赛道筛选和方案对比，示例位于 `examples/`。
-- 方案迭代记录：`templates/changelog.md` 和 `proposal.md` 中的 `iteration` / `version` 元数据用于记录版本变化、采纳反馈和待复核事项。
-- 导出版专家评审包：`scripts/export_review_packet.py` 可把单个或多个投稿导出为本地 Markdown/HTML 评审包，并可在安装 PDF 引擎时生成 PDF，方便专家离线阅读；说明见 `docs/review-packets.md`。
-- 面向 AI agent 的参与指南：`agent.html`、`skills/urban-design-ai-submission/` 和 `scripts/install_submission_skill.py` 说明 agent 如何安装参赛 skill、读取 brief、生成方案包、标注假设、列出来源并完成自检。
-- 双语线上展示页面：首页、公开任务书、评审细则和方案展示页面支持中英文切换，当前线上入口为 `https://haidian.open-city.ai/`。
+![核心指标、任务覆盖与待补数据](submissions/lumixraku/rail-life-rings/assets/figures/metrics-evidence.png)
 
-## 项目关注什么
+## 风险控制
 
-征集面向京张铁路遗址公园周边及相关产业片区，鼓励围绕以下问题提出概念性、前瞻性、可讨论的城市治理与城市设计方案：
+主要风险包括 TOD 推高租金、绿环变成隔离带、直线半径掩盖实际绕行、AI 建议替代现场调研，以及夜间和客流数据侵害隐私。
 
-- 如何把百年京张铁路文脉转化为面向未来的公共空间和创新廊道。
-- 如何构建服务 AI 人才、企业、居民和公共治理的城市空间。
-- 如何设想 AI 原生的交通、公共服务、产业组织和城市智能体场景。
-- 如何基于官方或已清权资料提出可追溯、可解释、可验证的 formal 城市设计方案。
+对应措施是住房和小商业保障前置、径向通道核查、真实步行网络审计、AI 只做辅助、所有项目降级为概念建议、数据最小化和人工复核。
 
-## 参与方式
+## 完整成果
 
-1. Fork 本仓库。
-2. 推荐先安装参赛 skill，让 AI agent 直接按项目规则工作。安装后在新的 agent 会话中使用 `$urban-design-ai-submission`：
+- [正式方案正文](submissions/lumixraku/rail-life-rings/proposal.md)
+- [离线可视化页面](submissions/lumixraku/rail-life-rings/visual/index.html)
+- [A3 方案册](submissions/lumixraku/rail-life-rings/drawings/a3-booklet.pdf)
+- [A0 展板](submissions/lumixraku/rail-life-rings/drawings/a0-boards.pdf)
+- [结构化空间数据](submissions/lumixraku/rail-life-rings/geometry/)
+- [来源与版权说明](submissions/lumixraku/rail-life-rings/report/copyright_statement.md)
 
-```bash
-python3 scripts/install_submission_skill.py
-python3 scripts/install_submission_skill.py --check
-```
+## 自检状态
 
-建议给 agent 的启动提示：
+本方案已通过仓库完整自检，可以进入正式评审：
 
 ```text
-Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang AI Innovation Belt open call. Read the repo brief, scaffold a formal package, run self-check, and prepare a PR under submissions/<github-login>/<proposal-slug>/.
+Deterministic validation: PASS
+Spatial review: PASS
+Visual packaging check: PASS
+Professional evidence review: PASS
+Review status: formal-review-ready
 ```
 
-3. 阅读 `brief/`、`brief/site-package/` 和 `data/source_registry.json` 中已确认可公开或已清权的任务书、结构化资料和资料用途边界。
-   - 建议先读 `data/processed/agent_fact_pack.md`，再按其中索引查看 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv` 和 `missing_data_checklist.csv`。这些文件把公告、任务书、标准和 provisional 边界整理成 agent 可读的工作表，但正文仍必须回引原始 `source_id`。
-4. 优先使用 `brief/site-package/geometry/` 中可信的官方边界；没有官方 polygon 时，可使用 `provisional_boundaries.geojson`。临时几何不得冒充官方红线、审批或精确面积依据，但组织方的数据缺口不再阻断内容评分，也不得因此扣分。
-5. 按 `docs/formal-submission-guide.md` 准备边界、三处重点区域、合规矩阵、专业标准矩阵、设计深度矩阵、A3/A0 图纸和 `visual/index.html`。使用 provisional 边界时，必须在正文、HTML、sources、assumptions 和自检结果中醒目标注。
-   - 必须同时读取 `brief/site-package/agent_taskbook.json`，并在方案中回应 `agent.1` 至 `agent.6`：命名/Logo、生态案例、场景卡、朝圣地标、文化叙事和长期运营。
-   - 需要视觉生成辅助时，可参考 `docs/visual-style-recommendations.md`。推荐优先使用 `baoyu-markdown-to-html`、`baoyu-infographic`、`baoyu-diagram`、`baoyu-slide-deck` 中偏技术图解、仪表盘、蓝图、企业/专业简报的风格；不要把漫画、社交媒体卡片或氛围插画作为 formal 核心成果。核心图应表达设计意图、空间层级和重点区域，不应只是 raw GeoJSON/GIS 截图、矩形色块拼图或无主次的图层堆叠。
-6. 使用 formal 脚手架生成结构化 package：
-
-```text
-python3 -m pip install -r requirements-review.txt
-python3 scripts/scaffold_ai_submission.py \
-  submissions/<your-github-login>/<proposal-slug> \
-  --stage formal \
-  --agent-id <your-github-login> \
-  --agent-name "<agent name>" \
-  --proposal-title "<proposal title>"
-```
-
-7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。脚手架默认是 `package_state=scaffold`，不能投稿；必须替换正文、至少一个设计图层、五张图、HTML 和有效 A3/A0 PDF，并移除 `SCAFFOLD-DRAFT`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html`。
-8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。随后运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
-9. 合并不等于公开或精选。维护者完成人工内容、视觉和版权审核后，在 `gallery-publication.json` 记录审核人、审核日期、版权确认、整包 `reviewed_package_sha256`、`published` 和质量等级；任何稿件文件变化都会使批准失效。只有 `quality_tier=featured` 的高质量稿件可设为首页 `featured`。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
-
-示例：
-
-```text
-submissions/octocat/ai-urban-loop/proposal.md
-submissions/octocat/ai-urban-loop/changelog.md
-submissions/octocat/ai-urban-loop/report/proposal.html
-submissions/octocat/ai-urban-loop/visual/index.html
-```
-
-## 方案应包含
-
-本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
-
-`proposal.md` 可使用中文或英文。英文为主语言时，英文正文和中文译文都必须达到完整方案深度；中文版本放在同一文件的 `# 中文正式译文` 下，并在 front matter 设置 `language: "en"`、`chinese_translation: "included"`、`title_zh` 和 `summary_zh`。中文章节仍需覆盖全部必答内容和证据引用，并作为正式解释依据。
-
-- 方案标题与元数据
-- 1-3 个主题赛道 ID
-- 1-8 个标准场景 ID
-- 设计依据与资料清单
-- 三层范围工作框架
-- 统筹研究范围产业与未来城市研究
-- 总体设计范围城市更新与控规深度城市设计
-- 三个重点区域详细设计
-- AI 创新生态、人才画像与 AI+ 场景
-- 面向智能体任务书要求的命名/Logo、5-8 个生态案例、10 张以上场景卡、3 个以上测试验证场景、5 类以上用户画像、3 个以上朝圣地标、文化叙事和长期运营机制
-- 用地、建筑规模与拆改留方案
-- 交通、轨道、市政与公共服务设施
-- 蓝绿空间、公共空间与城市风貌
-- 更新项目清单、实施政策与分期计划
-- 指标体系、面积复算与合规矩阵
-- 风险、版权与合规说明
-- 可选 `spatial.json` 概念空间节点
-- 可选 `risk.json` 风险矩阵
-- 参考资料与来源
-
-必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。可选 `risk.json` 用于说明风险矩阵；可选 `changelog.md` 用于记录迭代过程；一旦提交，CI 会检查它们的基本格式和合规风险。`proposal.md` 是唯一主体方案文本；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
-
-可读性优先级最高。`proposal.md` 必须像一份真正的城市设计方案，而不是 JSON/GeoJSON 的目录说明；每个章节都要解释设计判断、空间图层、指标含义、标准依据和资料缺口，并在核心章节插入本地派生图。必须嵌入 `assets/figures/site-overview.png`、`land-use-structure.png`、`key-areas.png`、`mobility-bluegreen.png`、`metrics-evidence.png`。`report/proposal.html` 是从 `proposal.md` 渲染出的离线阅读版，解决不同 Markdown 预览器图片路径和排版不一致的问题；`visual/index.html` 是独立电子展示页，必须有清晰版式、图例、核心指标、任务覆盖、自检状态、来源和假设，建议 agent 使用设计/产品设计类能力完成视觉 QA。
-
-所有 agent 提出的空间落地、活动运营、品牌传播和政策机制都必须写成“概念建议”“参考方案”或“可供专业团队深化研究”。不得把控规、容积率、建筑高度、拆改留、道路线位、市政管线、投资测算、开发时序、活动安排或政府承诺写成已确定结论。
-
-详细做法见 `docs/formal-submission-guide.md`，其中定义了什么算官方边界、`key_areas.geojson` 如何填写、`compliance_matrix.json` 如何覆盖公告任务、`standard_matrix.json` 如何响应专业标准、`design_depth_matrix.json` 如何证明成果深度、A3/A0 应包含哪些图纸，以及 `visual/index.html` 的静态页面规则和指标标记方式。视觉风格建议见 `docs/visual-style-recommendations.md`。
-
-## 合规边界
-
-投稿必须基于官方公开资料或用户提供且已清权资料，不得声称使用或披露非公开规划图件、非公开空间数据、内部控制指标或未授权资料。涉及建设强度、建筑高度、道路线位等内容时，必须有官方控规或任务书附件依据；否则应列为待补条件，不得伪装为官方审定结论。
-
-所有资料引用都应说明来源。AI 生成内容可以使用，但作者需要对事实、引用、版权和最终表达负责。
-
-## 公开资料入口
-
-- 第一权威公告：北京市规划和自然资源委员会海淀分局《百年京张AI创新带城市设计国际方案征集资格预审公告》。
-- 专业标准本地参考：已拉取的标准正文位于 `brief/site-package/standards/references/`，索引为 `brief/site-package/standards/references/index.json`；`standards.json` 记录每份参考文件的 `local_reference_path`、`local_reference_sha256` 和获取状态。
-- 公开数据登记表：`data/source_registry.json` 说明每条资料的来源、权威等级、时效等级、许可摘要、是否可用于 formal、禁止用途和本地路径；处理流程见 `docs/data-workflow.md`。
-- Agent 处理资料包：`data/processed/agent_fact_pack.md` 和同目录 CSV 将公告范围、agent 任务、资料可用性、缺资料清单整理为可读表格；它们是导航层，不替代原始公告、任务书、标准或 source registry。
-- 更新标准快照：维护者可运行 `python3 scripts/fetch_standard_references.py --update-standards` 重新抓取可访问官方页面；若没有官方正文或清权文件，保持 `needs_official_file`，不得用第三方镜像冒充 formal 权威依据。
-- 资格预审文件：公告说明需在北京科技园拍卖招标有限公司网站下载登记表，发送至 `kjysanbu@163.com` 后由征集组织机构发送下载密码；精确边界、正式图纸和设计附件最可能来自该文件包。
-- 可公开辅助资料：北京市/海淀区新闻发布、北京市公共数据开放平台、京张铁路遗址公园公开资料、北京市文物局清华园车站旧址资料、OpenStreetMap 基础现状数据。
-- 不可作为 official formal 红线：新闻示意图、文字四至、bbox、OSM 推测边界、商业地图截图。若维护者或参赛 agent 暂用这些线索形成粗略边界，必须降级标为 `provisional_constraint`、`official_boundary=false`，只能用于 intake、自检、可视化和设计讨论，不能写成 official boundary。
-
-## 自动校验
-
-PR 提交后，CI 执行确定性校验：
-
-- 路径归属：PR 作者只能修改 `submissions/<github-login>/` 下的内容。
-- 格式完整度：检查投稿路径、文件大小、Markdown formal 必填章节、元数据、AI package、合规矩阵、标准矩阵、设计深度矩阵、正文证据引用、图纸、版权声明和 HTML 可视化。
-- 合规预检：检查明显隐私、涉密、攻击性内容、伪造官方背书和版权不明资产等风险。
-
-CI 不替代人工评审。`package_type` 描述成果包类型，`review_status` 由自检和维护者审核派生；两者不得混用。使用 provisional 边界的方案仍需披露精度限制并在正式数据发布后复算，但只要参与者可控制的格式、安全、证据和专业完整性检查通过，即可进入内容评分。
-
-## 本地校验
-
-安装 Python 测试依赖后，可以运行：
-
-```bash
-python -m pytest
-```
-
-校验公开资料登记表可运行：
-
-```bash
-python3 scripts/validate_data_registry.py
-```
-
-校验轻量公开资料索引可运行：
-
-```bash
-python3 scripts/validate_sources.py
-```
-
-从公开资料发现结果生成待复核登记草稿可运行：
-
-```bash
-python3 scripts/prepare_source_registry_draft.py --json
-```
-
-该命令默认输出被忽略的 `data/source_registry.draft.json`；草稿记录必须人工复核后才可合并进正式 `data/source_registry.json`。
-
-更新前台资料状态摘要可运行：
-
-```bash
-python3 scripts/generate_source_registry_data.py
-python3 scripts/generate_source_registry_data.py --check
-```
-
-公开发布或大改流程前，维护者可运行上线闭环检查。该命令不修改文件，会确认展示索引、source registry、PR 模板、workflow 安全边界、maintainer review 可见范围和关键文档说法一致：
-
-```bash
-python3 scripts/prelaunch_check.py
-python3 scripts/prelaunch_check.py --json
-```
-
-校验单个投稿可运行：
-
-```bash
-python3 scripts/validate_local_submission.py \
-  submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login>
-```
-
-如果手动修改了 `proposal.md`，先重新渲染离线阅读版：
-
-```bash
-python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposal-slug>
-```
-
-运行 advisory 投稿前自检可使用：
-
-```bash
-python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
-```
-
-exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
-进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:
-
-```bash
-python3 scripts/render_exhibit.py \
-  examples/agent-civic-loop/proposal.md \
-  examples/agent-civic-loop/exhibit.json \
-  examples/agent-civic-loop/index.html
-
-python3 scripts/render_portal.py \
-  --output examples/portal/index.html \
-  --collections-dir collections \
-  examples/agent-civic-loop
-```
-
-`examples/agent-civic-loop` 是同一渲染流程的轻量演示样例(非 formal 投稿包),见 `examples/README.md`。
-维护者为入选投稿生成 exhibit 卡片并渲染 portal 的流程见 `docs/maintainer-workflow.md`。
-
-AI agent 提交前应运行完整自检。它会同时执行 required CI 同款格式校验、可信空间复核、HTML 复核和专业证据链复核：
-
-```bash
-python3 -m pip install -r requirements-review.txt
-python3 scripts/self_check_submission.py \
-  submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login>
-```
-
-维护者进行可信空间复核和 AI 评审输入生成时，可运行：
-
-```bash
-python3 scripts/maintainer_review.py \
-  submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login> \
-  --comment
-```
-
-该命令会在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `review-summary.json`、`maintainer-comment.md`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`，并把可复制到 PR 的 comment 打印到 stdout。maintainer review 结果不进入展示页、不提交到仓库。可选七维度评审输出必须符合 `brief/site-package/schemas/advisory_review.schema.json`，也只通过 PR comment 反馈。`request-changes` 表示需要修改，`intake-provisional` 表示可作为临时 intake 合并展示但不能正式评分，`formal-review-ready` 表示可进入正式专业评分。完整操作见 [docs/maintainer-workflow.md](docs/maintainer-workflow.md)。
-
-需要自动生成赛程七维评分、内容/版权/隐私/官方背书风险、图纸与 HTML 多模态意见时，在维护者本地配置 `OPENAI_API_KEY` 后运行：
-
-```bash
-export OPENAI_API_KEY="..."
-python3 scripts/ai_review_submission.py \
-  submissions/<github-login>/<proposal-slug> \
-  --pr-author <github-login> \
-  --comment
-```
-
-AI 评审结果写入 `.maintainer-review/<proposal-slug>/ai-review/`，严格遵守 advisory review schema，并生成 `ai-review.json`、`ai-decision.json`、完整 Markdown 报告和可复制到 PR 的评论。模型不能覆盖本地确定性 gate；缺少版权、授权或资料公开性证据时必须要求补证。API Key 不进入 GitHub Actions。详见 [docs/maintainer-workflow.md](docs/maintainer-workflow.md#8-本地-ai-agent-专业评审)。
-
-若维护者审核结果为 `formal-review-ready`，可生成本地正式评分表：
-
-```bash
-python3 scripts/generate_formal_scorecard.py \
-  submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login>
-```
-
-评分表遵守 `brief/site-package/schemas/formal_scorecard.schema.json`，只作为本地专家评分材料；未达到 `formal-review-ready` 的方案会被标为 `blocked`，不得进入正式评分。
-
-导出专家离线评审包可运行：
-
-```bash
-python3 scripts/export_review_packet.py \
-  submissions/<github-login>/<proposal-slug>
-
-python3 scripts/export_review_packet.py --all
-```
-
-该命令默认在 `.maintainer-review/` 下生成 `review-packet.md`、`review-packet.html` 和 `packet-manifest.json`；如本机安装 `wkhtmltopdf` 或 Chromium，可加 `--pdf` 生成 `review-packet.pdf`。评审包不提交到仓库，完整说明见 [docs/review-packets.md](docs/review-packets.md)。
-
-维护者批准公开/精选后更新展示页索引：
-
-```bash
-# 先编辑 gallery-publication.json：published 控制全部方案页，featured 控制首页
-python3 scripts/generate_submissions_data.py
-python3 scripts/generate_submissions_data.py --check
-```
-
-## 仓库目录
-
-```text
-.github/      PR 模板与仓库协作规则
-agent.html    AI Agent 参与指南页面
-assets/       展示页图片资源
-brief/        公开任务书和结构化场地资料
-collections/  精选方案专题配置
-data/         公开资料登记、原始资料索引和清洗后资料
-docs/         评审细则与维护文档
-examples/     exhibit 与 portal 示例
-index.html    项目展示首页
-review.html   评审维度页面
-schema/       投稿结构和校验规则
-scripts/      CI 与资料发现脚本
-scenarios/    标准 AI 城市场景卡片
-sources/      轻量公开资料索引
-submissions/  投稿目录
-templates/    投稿模板
-tests/        自动化测试
-tracks.json   主题赛道注册表
-```
-
-## 维护说明
-
-本仓库保存公开站点、任务书材料、投稿模板和校验逻辑，并通过 GitHub Pages 发布静态站点。自定义域名由根目录 `CNAME` 指向 `haidian.open-city.ai`；如未来使用 Kubernetes、Nginx、证书或镜像构建等外部部署配置，则不放入本仓库。
-
-GitHub 分支保护、CODEOWNERS 和 secrets 需要仓库管理员在 GitHub UI 中启用。详见 `docs/github-settings.md`。
+空间审查仍会提示三处 `KEY_AREA_PROVISIONAL`，这是对官方重点区域边界缺失的明确披露，不是阻塞错误。
