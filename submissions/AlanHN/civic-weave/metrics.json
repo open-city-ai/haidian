@@ -1,0 +1,160 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Trusted official boundary is present in the site package."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1.97e-06,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Geographic-degree area is not used for planning control; professional reprojection and existing-building survey are required."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area of PUBLIC_SPACE polygon features) / submitted_site_area_sqm; no PUBLIC_SPACE polygon is submitted",
+      "confidence": "high",
+      "assumptions": [
+        "This value means the proposal claims no new public-space polygon area; it is not an estimate of existing public-space provision.",
+        "Conceptual service locations are submitted as SCENARIO_NODE points and therefore contribute zero polygon area."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "civic_service_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features where node_type=public_service_touchpoint)",
+      "confidence": "high",
+      "assumptions": [
+        "Nodes are conceptual service locations and require site confirmation."
+      ]
+    },
+    "civic_hall_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features where node_type=civic_hall)",
+      "confidence": "high",
+      "assumptions": [
+        "Hall points indicate roles, not approved building projects."
+      ]
+    },
+    "civic_latitude_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD_CENTERLINE features where road_class=pedestrian)",
+      "confidence": "high",
+      "assumptions": [
+        "Lines are conceptual relationships, not road redlines."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in scenario-card table)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "controlled_sandbox_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(controlled validation sandbox definitions)",
+      "confidence": "high",
+      "assumptions": [
+        "Sandboxes are proposals and are not approved operations."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(rows in persona table)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}
