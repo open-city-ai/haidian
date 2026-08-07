@@ -1,6 +1,6 @@
 ---
 title: "京张共生环：一条会学习的城市公共生活带"
-author_github: "liutc"
+author_github: "LTtt456c"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路记忆为公共骨架，以AI测试验证和日常服务为城市接口，构建一廊、三核、两翼、十场景的开放共创建议。"
