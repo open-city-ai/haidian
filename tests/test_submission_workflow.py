@@ -8,6 +8,7 @@ import hashlib
 import io
 import re
 import urllib.error
+from contextlib import redirect_stderr
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
@@ -29,10 +30,17 @@ from validate_submission import (  # noqa: E402
 from github_pr_validation import (  # noqa: E402
     GitHubClient,
     MAX_DOWNLOAD_BYTES,
+    COMMENT_TRUNCATION_NOTICE,
+    MAX_GITHUB_COMMENT_BYTES,
+    REVIEW_WORKFLOW_LABELS,
     _is_retryable_http_error,
+    bounded_comment_body,
+    build_preflight_failure_comment,
     is_non_submission_pr,
     is_review_queue_candidate,
     main,
+    publish_validation_comment,
+    reconcile_review_labels,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -149,6 +157,129 @@ class GitHubApiResilienceTests(unittest.TestCase):
                     Path(temp_dir) / "asset.bin",
                 )
 
+    def test_comment_body_is_bounded_for_large_validation_reports(self) -> None:
+        body = "前" * MAX_GITHUB_COMMENT_BYTES
+        bounded = bounded_comment_body(body)
+        self.assertLessEqual(len(bounded.encode("utf-8")), MAX_GITHUB_COMMENT_BYTES)
+        self.assertTrue(bounded.endswith(COMMENT_TRUNCATION_NOTICE))
+
+    def test_small_comment_body_is_preserved(self) -> None:
+        body = "<!-- marker -->\n# PASS"
+        self.assertEqual(body, bounded_comment_body(body))
+
+    def test_comment_publication_failure_does_not_raise(self) -> None:
+        class FailingCommentClient:
+            def upsert_comment(self, issue_number: int, body: str) -> None:
+                raise RuntimeError("HTTP 422: body is too large")
+
+        stderr = io.StringIO()
+        with redirect_stderr(stderr):
+            publish_validation_comment(FailingCommentClient(), 624, "report")
+        self.assertIn("unable to publish validation comment", stderr.getvalue())
+        self.assertIn("HTTP 422", stderr.getvalue())
+
+    def test_comment_network_failure_does_not_raise(self) -> None:
+        class OfflineCommentClient:
+            def upsert_comment(self, issue_number: int, body: str) -> None:
+                raise urllib.error.URLError("connection reset")
+
+        stderr = io.StringIO()
+        with redirect_stderr(stderr):
+            publish_validation_comment(OfflineCommentClient(), 624, "report")
+        self.assertIn("unable to publish validation comment", stderr.getvalue())
+        self.assertIn("connection reset", stderr.getvalue())
+
+    def test_download_failure_is_rendered_as_validation_failure(self) -> None:
+        comment = build_preflight_failure_comment(
+            ["submissions/alice/design/drawings/a0-boards.pdf"],
+            RuntimeError(
+                "/tmp/haidian-pr/submissions/alice/design/drawings/a0-boards.pdf: "
+                "file exceeds download cap"
+            ),
+        )
+        self.assertIn("Result: FAIL", comment)
+        self.assertIn("a0-boards.pdf", comment)
+        self.assertIn("file exceeds download cap", comment)
+
+
+class _LabelClient:
+    def __init__(self) -> None:
+        self.removed: list[tuple[int, list[str]]] = []
+        self.added: list[tuple[int, list[str]]] = []
+
+    def remove_labels(self, issue_number: int, labels: list[str]) -> None:
+        self.removed.append((issue_number, labels))
+
+    def add_labels(self, issue_number: int, labels: list[str]) -> None:
+        self.added.append((issue_number, labels))
+
+
+class _FailingLabelClient(_LabelClient):
+    def remove_labels(self, issue_number: int, labels: list[str]) -> None:
+        raise RuntimeError("rate limited")
+
+
+class ReviewLabelReconciliationTests(unittest.TestCase):
+    def test_successful_code_pr_clears_stale_submission_labels(self) -> None:
+        client = _LabelClient()
+        reconcile_review_labels(
+            client,
+            333,
+            validation_ok=True,
+            queue_candidate=False,
+        )
+        self.assertEqual([(333, REVIEW_WORKFLOW_LABELS)], client.removed)
+        self.assertEqual([], client.added)
+
+    def test_successful_submission_requeues_the_current_head(self) -> None:
+        client = _LabelClient()
+        reconcile_review_labels(
+            client,
+            587,
+            validation_ok=True,
+            queue_candidate=True,
+        )
+        self.assertEqual(
+            [
+                (
+                    587,
+                    [
+                        "review/ci-failed",
+                        "review/changes-requested",
+                        "review/low-quality",
+                        "review/intake-accepted",
+                    ],
+                )
+            ],
+            client.removed,
+        )
+        self.assertEqual([(587, ["review/queued"])], client.added)
+
+    def test_non_queueable_failure_is_still_marked_ci_failed(self) -> None:
+        client = _LabelClient()
+        reconcile_review_labels(
+            client,
+            615,
+            validation_ok=False,
+            queue_candidate=False,
+        )
+        self.assertEqual(
+            [(615, ["review/queued", "review/intake-accepted"])],
+            client.removed,
+        )
+        self.assertEqual([(615, ["review/ci-failed"])], client.added)
+
+    def test_label_api_failure_does_not_replace_validation_result(self) -> None:
+        with patch("builtins.print") as print_mock:
+            reconcile_review_labels(
+                _FailingLabelClient(),
+                615,
+                validation_ok=False,
+                queue_candidate=False,
+            )
+        print_mock.assert_called_once()
+        self.assertIn("unable to reconcile review labels", print_mock.call_args.args[0])
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:
@@ -257,6 +388,38 @@ class ManifestHydrationTests(unittest.TestCase):
         client.download_content.assert_not_called()
         comment = client.upsert_comment.call_args.args[1]
         self.assertIn("participant deletion-only PR", comment)
+
+    def test_preflight_failure_reconciles_failed_queue_label(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 639,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/alice/design/drawings/site.pdf", "status": "added"}
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            client.download_content.side_effect = RuntimeError("file exceeds download cap")
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(1, main())
+        self.assertEqual(
+            ["review/ci-failed"],
+            client.add_labels.call_args.args[1],
+        )
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(

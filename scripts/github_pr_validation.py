@@ -34,6 +34,28 @@ RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 # retries bounded and limited to GETs; a permanent missing file still fails
 # with the path and head-specific download error after the retry budget.
 RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
+MAX_GITHUB_COMMENT_BYTES = 60_000
+COMMENT_TRUNCATION_NOTICE = (
+    "\n\n> The validation report was truncated to fit GitHub's comment limit. "
+    "The full report is available in the workflow summary."
+)
+
+
+def bounded_comment_body(body: str) -> str:
+    """Keep bot comments below GitHub's size limit without losing the result."""
+    encoded = body.encode("utf-8")
+    if len(encoded) <= MAX_GITHUB_COMMENT_BYTES:
+        return body
+    budget = MAX_GITHUB_COMMENT_BYTES - len(COMMENT_TRUNCATION_NOTICE.encode("utf-8"))
+    prefix = encoded[:budget].decode("utf-8", errors="ignore")
+    return prefix + COMMENT_TRUNCATION_NOTICE
+REVIEW_WORKFLOW_LABELS = [
+    "review/queued",
+    "review/ci-failed",
+    "review/changes-requested",
+    "review/low-quality",
+    "review/intake-accepted",
+]
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -204,6 +226,7 @@ class GitHubClient:
         return True
 
     def upsert_comment(self, issue_number: int, body: str) -> None:
+        body = bounded_comment_body(body)
         comments = self.paginate(f"/repos/{self.repository}/issues/{issue_number}/comments?per_page=100")
         for comment in comments:
             if COMMENT_MARKER in comment.get("body", ""):
@@ -348,6 +371,69 @@ def write_step_summary(markdown: str) -> None:
         Path(summary_path).write_text(markdown, encoding="utf-8")
 
 
+def publish_validation_comment(
+    client: GitHubClient, issue_number: int, body: str
+) -> None:
+    """Publish feedback without replacing the deterministic validation result."""
+    try:
+        client.upsert_comment(issue_number, body)
+    except (RuntimeError, urllib.error.URLError) as exc:
+        # A comment is useful feedback, but it must not turn a deterministic
+        # validation result into an unrelated CI failure.
+        print(f"warning: unable to publish validation comment: {exc}", file=sys.stderr)
+
+
+def build_validation_comment(validation_markdown: str) -> str:
+    return (
+        f"{COMMENT_MARKER}\n"
+        "# Haidian Submission Validation\n\n"
+        f"{validation_markdown}\n\n"
+        "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+    )
+
+
+def build_preflight_failure_comment(
+    changed_files: list[str], error: Exception
+) -> str:
+    validation = ValidationReport(changed_files=changed_files)
+    validation.add_error(f"pre-validation download failed: {error}")
+    return build_validation_comment(format_report(validation))
+
+def reconcile_review_labels(
+    client: GitHubClient,
+    pr_number: int,
+    *,
+    validation_ok: bool,
+    queue_candidate: bool,
+) -> None:
+    """Align review labels with the current deterministic result.
+
+    Successful non-submission PRs must shed stale submission-review labels,
+    while every deterministic failure must be visible even when an invalid
+    scope or multi-package change is not eligible for the review queue.
+    """
+    try:
+        if validation_ok and queue_candidate:
+            client.remove_labels(
+                pr_number,
+                [
+                    "review/ci-failed",
+                    "review/changes-requested",
+                    "review/low-quality",
+                    "review/intake-accepted",
+                ],
+            )
+            client.add_labels(pr_number, ["review/queued"])
+            return
+        if validation_ok:
+            client.remove_labels(pr_number, REVIEW_WORKFLOW_LABELS)
+            return
+        client.remove_labels(pr_number, ["review/queued", "review/intake-accepted"])
+        client.add_labels(pr_number, ["review/ci-failed"])
+    except (RuntimeError, urllib.error.URLError) as exc:
+        print(f"Warning: unable to reconcile review labels: {exc}", file=sys.stderr)
+
+
 def main() -> int:
     token = os.getenv("GITHUB_TOKEN")
     repository = os.getenv("GITHUB_REPOSITORY")
@@ -377,28 +463,40 @@ def main() -> int:
     ]
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
+    queue_candidate = is_review_queue_candidate(changed_files, pr_author)
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
-        for item in files:
-            filename = item["filename"]
-            if item.get("status") == "removed":
-                continue
-            client.download_content(head_repo, filename, head_sha, worktree / filename)
+        try:
+            for item in files:
+                filename = item["filename"]
+                if item.get("status") == "removed":
+                    continue
+                client.download_content(head_repo, filename, head_sha, worktree / filename)
 
-        for proposal_path in proposal_paths_for(validation_files):
-            destination = worktree / proposal_path
-            if not destination.exists():
-                client.fetch_content(head_repo, proposal_path, head_sha, destination)
-            hydrate_proposal_package(
+            for proposal_path in proposal_paths_for(validation_files):
+                destination = worktree / proposal_path
+                if not destination.exists():
+                    client.fetch_content(head_repo, proposal_path, head_sha, destination)
+                hydrate_proposal_package(
+                    client,
+                    head_repo,
+                    head_sha,
+                    worktree,
+                    proposal_path,
+                )
+        except (RuntimeError, urllib.error.HTTPError) as exc:
+            comment = build_preflight_failure_comment(changed_files, exc)
+            write_step_summary(comment)
+            publish_validation_comment(client, pr_number, comment)
+            reconcile_review_labels(
                 client,
-                head_repo,
-                head_sha,
-                worktree,
-                proposal_path,
+                pr_number,
+                validation_ok=False,
+                queue_candidate=queue_candidate,
             )
+            return 1
 
-        queue_candidate = is_review_queue_candidate(changed_files, pr_author)
         if is_non_submission_pr(files):
             validation = ValidationReport(changed_files=changed_files)
             validation.add_warning(
@@ -421,24 +519,16 @@ def main() -> int:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)
 
-        comment = (
-            f"{COMMENT_MARKER}\n"
-            "# Haidian Submission Validation\n\n"
-            f"{validation_markdown}\n\n"
-            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
-        )
+        comment = build_validation_comment(validation_markdown)
         write_step_summary(comment)
-        client.upsert_comment(pr_number, comment)
+        publish_validation_comment(client, pr_number, comment)
 
-        if validation.ok and queue_candidate:
-            client.remove_labels(
-                pr_number,
-                ["review/ci-failed", "review/changes-requested", "review/low-quality"],
-            )
-            client.add_labels(pr_number, ["review/queued"])
-        elif queue_candidate:
-            client.remove_labels(pr_number, ["review/queued"])
-            client.add_labels(pr_number, ["review/ci-failed"])
+        reconcile_review_labels(
+            client,
+            pr_number,
+            validation_ok=validation.ok,
+            queue_candidate=queue_candidate,
+        )
 
         return 0 if validation.ok else 1
     finally:
