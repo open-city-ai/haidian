@@ -1,0 +1,244 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(project_EPSG4548(site_boundary))",
+      "confidence": "medium",
+      "assumptions": [
+        "临时粗略边界只用于生成与入库自检，official polygon 到位后整体重算。"
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412837.657,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(union(land_use))",
+      "confidence": "medium",
+      "assumptions": [
+        "用地为概念分区，不是法定用地。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 403923.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(concept_building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "仅为可逆建造/适应性改造空间原型，须经现状测绘和权属核查。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.035392,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念原型密度，不构成控规指标。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1870010.725,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "重叠绿地先 union 后计量。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.163852,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念方案比值，official polygon 到位后重算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 192427.25,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "公共空间为概念节点范围。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.016861,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念方案比值，official polygon 到位后重算。"
+      ]
+    },
+    "slow_mobility_length_m": {
+      "status": "known",
+      "value": 15144.51,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(project_EPSG4548(design_slow_mobility_lines)))",
+      "confidence": "medium",
+      "assumptions": [
+        "仅表达连接意图，不等同于道路红线或工程里程。"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(official_road_redlines)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方道路红线；设计文件仅提供概念中心线。"
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方道路红线，不能计算道路用地比例。"
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少现状建筑、审批规模、层数和控规条件。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方红线及已批容积率条件。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards where type=industry_test_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}
