@@ -29,10 +29,12 @@ from validate_submission import (  # noqa: E402
 from github_pr_validation import (  # noqa: E402
     GitHubClient,
     MAX_DOWNLOAD_BYTES,
+    REVIEW_WORKFLOW_LABELS,
     _is_retryable_http_error,
     is_non_submission_pr,
     is_review_queue_candidate,
     main,
+    reconcile_review_labels,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -148,6 +150,69 @@ class GitHubApiResilienceTests(unittest.TestCase):
                     "head-sha",
                     Path(temp_dir) / "asset.bin",
                 )
+
+
+class _LabelClient:
+    def __init__(self) -> None:
+        self.removed: list[tuple[int, list[str]]] = []
+        self.added: list[tuple[int, list[str]]] = []
+
+    def remove_labels(self, issue_number: int, labels: list[str]) -> None:
+        self.removed.append((issue_number, labels))
+
+    def add_labels(self, issue_number: int, labels: list[str]) -> None:
+        self.added.append((issue_number, labels))
+
+
+class ReviewLabelReconciliationTests(unittest.TestCase):
+    def test_successful_code_pr_clears_stale_submission_labels(self) -> None:
+        client = _LabelClient()
+        reconcile_review_labels(
+            client,
+            333,
+            validation_ok=True,
+            queue_candidate=False,
+        )
+        self.assertEqual([(333, REVIEW_WORKFLOW_LABELS)], client.removed)
+        self.assertEqual([], client.added)
+
+    def test_successful_submission_requeues_the_current_head(self) -> None:
+        client = _LabelClient()
+        reconcile_review_labels(
+            client,
+            587,
+            validation_ok=True,
+            queue_candidate=True,
+        )
+        self.assertEqual(
+            [
+                (
+                    587,
+                    [
+                        "review/ci-failed",
+                        "review/changes-requested",
+                        "review/low-quality",
+                        "review/intake-accepted",
+                    ],
+                )
+            ],
+            client.removed,
+        )
+        self.assertEqual([(587, ["review/queued"])], client.added)
+
+    def test_non_queueable_failure_is_still_marked_ci_failed(self) -> None:
+        client = _LabelClient()
+        reconcile_review_labels(
+            client,
+            615,
+            validation_ok=False,
+            queue_candidate=False,
+        )
+        self.assertEqual(
+            [(615, ["review/queued", "review/intake-accepted"])],
+            client.removed,
+        )
+        self.assertEqual([(615, ["review/ci-failed"])], client.added)
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):
