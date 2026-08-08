@@ -294,14 +294,24 @@ class TestSubmissionsGallery(unittest.TestCase):
             "已解析证据",
             "artifact-groups",
             "packageToggle",
+            "packageScrim",
+            "workspace-nav",
+            "方案工作台",
+            "阅读方案",
+            "浏览方案资料",
+            "核对方案证据",
             "activateFilter",
-            "点击下面任意数字筛选证据",
+            "正文中的圆形编号使用同一套编号",
             "proposal-artifact-viewer.js",
             "proposal-artifact-viewer.css",
-            "完整方案资料展厅",
+            "方案资料库",
             "artifactViewerBody",
         ]:
             self.assertIn(required, viewer)
+        self.assertIn("position:fixed;z-index:75", viewer)
+        self.assertIn("document.body.classList.toggle('drawer-open',open)", viewer)
+        self.assertNotIn("package-entry-cta", viewer)
+        self.assertNotIn("panelCollapse", viewer)
         for required in [
             "renderGeoJSON",
             "geoSvg",
