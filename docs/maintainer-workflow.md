@@ -117,6 +117,7 @@ python3 scripts/generate_submissions_data.py --check
 ```
 
 确认 `submissions-data.js` 已更新后，再提交展示索引变更。该提交应由维护者完成，不要求参赛者在 PR 中提供。
+生成器输出的展示项 `id` 使用 `github-login/proposal-slug` 路径键，另保留短 `slug` 供显示和排序；不要把方案 slug 当作跨作者全局唯一键。
 
 提交展示索引时，只提交 `submissions-data.js` 等展示页必要变更，不提交 `.maintainer-review/`、`docs/reviews/` 或任何 review packet。
 
