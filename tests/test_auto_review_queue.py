@@ -12,7 +12,9 @@ from auto_review_queue import (  # noqa: E402
     WorkerError,
     ci_state,
     decide,
+    has_current_review_marker,
     load_cached_review,
+    select_queue_candidates,
     submission_dir_from_files,
 )
 from generate_submissions_data import package_sha256  # noqa: E402
@@ -70,6 +72,59 @@ class AutoReviewQueueTests(unittest.TestCase):
         self.assertEqual("submissions/Alice/plan", submission_dir_from_files(paths, "alice"))
         with self.assertRaises(WorkerError):
             submission_dir_from_files(paths + ["README.md"], "alice")
+
+    def test_current_head_review_marker_is_detected(self) -> None:
+        head = "a" * 40
+        self.assertTrue(
+            has_current_review_marker(
+                [{"body": f"<!-- haidian-auto-review:{head} -->\\nMaintainer intake decision"}],
+                head,
+            )
+        )
+
+    def test_stale_head_review_marker_does_not_block_current_head(self) -> None:
+        current = "b" * 40
+        old = "a" * 40
+        self.assertFalse(
+            has_current_review_marker(
+                [{"body": f"<!-- haidian-auto-review:{old} -->\\nMaintainer intake decision"}],
+                current,
+            )
+        )
+
+    def test_queue_selection_skips_reviewed_heads_and_fills_batch(self) -> None:
+        reviewed = "a" * 40
+        stale_marker = "b" * 40
+        pending = "c" * 40
+        candidates = [
+            {"number": 727, "headRefOid": reviewed},
+            {"number": 728, "headRefOid": stale_marker},
+            {"number": 729, "headRefOid": pending},
+        ]
+        states = {
+            727: {
+                "headRefOid": reviewed,
+                "reviews": [{"body": f"<!-- haidian-auto-review:{reviewed} -->"}],
+            },
+            728: {
+                "headRefOid": stale_marker,
+                "reviews": [{"body": f"<!-- haidian-auto-review:{reviewed} -->"}],
+            },
+            729: {"headRefOid": pending, "reviews": []},
+        }
+        selected = select_queue_candidates(candidates, 2, states.__getitem__)
+        self.assertEqual([728, 729], [item["number"] for item in selected])
+
+    def test_queue_selection_skips_changed_head(self) -> None:
+        old = "a" * 40
+        current = "b" * 40
+        candidates = [{"number": 727, "headRefOid": old}]
+        selected = select_queue_candidates(
+            candidates,
+            1,
+            lambda number: {"headRefOid": current, "reviews": []},
+        )
+        self.assertEqual([], selected)
 
     def test_ci_state(self) -> None:
         self.assertEqual(

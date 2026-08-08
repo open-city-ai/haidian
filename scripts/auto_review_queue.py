@@ -16,6 +16,7 @@ import shutil
 import subprocess
 import sys
 import threading
+from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -39,6 +40,45 @@ class Decision:
     action: str
     score: float | None
     reason: str
+
+
+def has_current_review_marker(reviews: Any, head_sha: str) -> bool:
+    """Return whether this exact PR head already has an auto-review decision."""
+    if not isinstance(reviews, list) or not head_sha:
+        return False
+    marker = REVIEW_MARKER.format(head_sha=head_sha)
+    return any(
+        isinstance(review, dict) and marker in str(review.get("body") or "")
+        for review in reviews
+    )
+
+
+def select_queue_candidates(
+    candidates: list[dict[str, Any]],
+    limit: int,
+    review_loader: Callable[[int], dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Fill the worker batch with unreviewed current heads.
+
+    ``review/queued`` is a durable label, so a completed review can leave a
+    stale queue entry behind.  Selection must inspect the marker for the
+    current head before spending one of the finite batch slots.  A changed or
+    missing head is skipped conservatively rather than risking a decision for
+    a stale event.
+    """
+    selected: list[dict[str, Any]] = []
+    for candidate in sorted(candidates, key=lambda item: int(item["number"])):
+        if len(selected) >= limit:
+            break
+        number = int(candidate["number"])
+        head_sha = str(candidate.get("headRefOid") or "")
+        review = review_loader(number)
+        if review.get("headRefOid") != head_sha:
+            continue
+        if has_current_review_marker(review.get("reviews"), head_sha):
+            continue
+        selected.append(candidate)
+    return selected
 
 
 def run(command: list[str], *, cwd: Path, capture: bool = True) -> subprocess.CompletedProcess[str]:
@@ -129,7 +169,7 @@ def pr_meta(repo: str, number: int, cwd: Path) -> dict[str, Any]:
             "view",
             str(number),
             "--json",
-            "number,author,headRefOid,state,isDraft,mergeable,statusCheckRollup,labels",
+            "number,author,headRefOid,state,isDraft,mergeable,statusCheckRollup,labels,reviews",
         ],
         cwd=cwd,
     )
@@ -433,6 +473,16 @@ def main() -> int:
                     "number": number,
                     "head_sha": live.get("headRefOid"),
                     "result": "changes-requested-conflict" if args.apply else "skipped-conflicting",
+                }
+            )
+            continue
+        head_sha = str(live.get("headRefOid") or "")
+        if has_current_review_marker(live.get("reviews"), head_sha):
+            results.append(
+                {
+                    "number": number,
+                    "head_sha": head_sha,
+                    "result": "skipped-reviewed-head",
                 }
             )
             continue

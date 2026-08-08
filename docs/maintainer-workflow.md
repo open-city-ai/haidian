@@ -257,7 +257,7 @@ python3 scripts/auto_review_queue.py --limit 10
 python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-merge
 ```
 
-固定顺序为：required CI → 单一作者目录 → 固定 head SHA worktree → 本地四项 gate →
+固定顺序为：required CI → 单一作者目录 → 当前 head 的既有 Review Agent marker 过滤 → 固定 head SHA worktree → 本地四项 gate →
 强制退件 → 多模态 100 分评审 → 决策前再次检查 head SHA/CI → review 与标签 →
 合并前最后一次检查 head SHA/CI。低于 60 分标记 `review/low-quality`；CI 未成功的
 PR 不调用模型；draft 不进入队列。合并仅表示仓库 intake，展示、精选、正式评分与
@@ -269,6 +269,9 @@ SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 bas
 `submission-validation` 成功时会自动清除旧的 CI/修改/低质量标签并添加
 `review/queued`；投稿人推送修订后无需维护者手动重新排队。CI 失败时 workflow
 移除 queued 并添加 `review/ci-failed`，因此不会产生付费模型调用。
+队列 worker 在消耗 batch slot 前会读取当前 head 的 review marker；已对同一
+SHA 完成 intake 的 PR 即使仍残留 `review/queued` 也会被跳过，避免历史标签占满
+前 N 个位置。若 API 无法确认当前 head，worker 应保守跳过该候选，不把旧事件送入评审。
 
 审计材料保存在 `.maintainer-review/queue/pr-<number>/<head-sha>/`，worktree 默认在
 `.pr-worktree/auto-review/` 并在单稿完成后删除。建议用 launchd/systemd timer 每
