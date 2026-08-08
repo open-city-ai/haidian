@@ -8,7 +8,13 @@ import hashlib
 import json
 from pathlib import Path
 
-from validate_submission import DISPLAY_BASE_FILES, is_empty_pdf, localized_path, parse_front_matter
+from validate_submission import (
+    DISPLAY_BASE_FILES,
+    is_empty_pdf,
+    localized_path,
+    parse_front_matter,
+    primary_path_from_localized,
+)
 
 
 FIGURES = [
@@ -102,6 +108,8 @@ def main() -> int:
     if translation_language:
         for rel, item in list(listed.items()):
             if rel not in DISPLAY_BASE_FILES and not rel.startswith("assets/figures/"):
+                continue
+            if rel.startswith("assets/figures/") and primary_path_from_localized(rel) is not None:
                 continue
             if rel.startswith("assets/figures/") and item.get("language") == "neutral":
                 continue
