@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "PACKAGE_COMPLETE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submission package",
+      "message": "必交文件结构已生成。"
+    },
+    {
+      "check_id": "GEOMETRY_VALID",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "所有提交几何均为有效 EPSG:4326 GeoJSON。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区共享切割边界、无重叠并覆盖提交边界。"
+    },
+    {
+      "check_id": "METRICS_RECOMPUTED",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "metrics.json",
+      "message": "已使用 EPSG:4548 从提交几何复算 known 指标。"
+    },
+    {
+      "check_id": "STANDARD_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "standard_matrix.json",
+      "message": "五项 mandatory 标准均已响应。"
+    },
+    {
+      "check_id": "DEPTH_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "design_depth_matrix.json",
+      "message": "十五项 formal 深度均有证据链。"
+    },
+    {
+      "check_id": "TASK_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json",
+      "message": "公告与 agent.1-agent.6 共 23 项任务均已覆盖。"
+    },
+    {
+      "check_id": "PROVISIONAL_DISCLOSURE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "正文、图面、来源、假设和 HTML 均醒目标注 provisional 限制。"
+    },
+    {
+      "check_id": "OFFICIAL_BOUNDARY_AVAILABLE",
+      "result": "unknown",
+      "severity": "info",
+      "target": "geometry/site_boundary.geojson",
+      "message": "官方精确 polygon 尚未进入仓库；取得后必须全包复算。"
+    },
+    {
+      "check_id": "PRIVACY_AND_HUMAN_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/constraints.geojson",
+      "message": "十二场景均登记数据最小化与人工复核边界。"
+    },
+    {
+      "check_id": "COPYRIGHT_TRACE",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "图形、图纸和页面均由仓库数据与原创代码生成，未复用外部图片。"
+    },
+    {
+      "check_id": "OFFLINE_VISUAL",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "展示页无远程依赖、表单、iframe、API 或跟踪。"
+    },
+    {
+      "check_id": "PDF_RENDER",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/*.pdf",
+      "message": "A3 共 12 页、A0 共 4 页，均已由 Poppler 逐页渲染并完成版面复核。"
+    }
+  ]
+}
