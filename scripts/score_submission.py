@@ -365,19 +365,22 @@ def package_source_is_eligible(repo_root: Path, source: Any) -> bool:
         return False
     if any(marker in usage_text for marker in ("needs_review", "restricted", "private", "internal")):
         return False
-    disabled_use_text = " ".join(
-        value
+    disabled_use_values = [
+        value.lower().replace("-", "_").replace(" ", "_")
         for field_name in ("not_usable_for", "disabled_uses")
         for value in string_values(source.get(field_name))
-    ).lower().replace("-", "_").replace(" ", "_")
+    ]
+    # A narrow prohibition such as "official redline" or "statutory
+    # planning control" is compatible with a source that is formally useful
+    # for a stated, smaller purpose. Only an explicit whole-source formal
+    # exclusion should keep the registered source unresolved; otherwise a
+    # package that documents the boundary is penalized for documenting it.
     if any(
-        marker in disabled_use_text
-        for marker in (
-            "formal",
-            "official_boundary",
-            "official_redline",
-            "statutory_control",
+        re.search(
+            r"(?:^|_)(?:formal_review|formal_evidence|formal_use|not_for_formal|official_boundary)(?:$|_)",
+            value,
         )
+        for value in disabled_use_values
     ):
         return False
 

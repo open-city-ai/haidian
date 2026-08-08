@@ -371,6 +371,39 @@ class ScoreSubmissionTests(unittest.TestCase):
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.registered_external_or_package_sources, [])
 
+    def test_narrow_disabled_scope_does_not_disqualify_registered_source(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:official-method]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "official-method",
+                        "url": "https://example.org/method",
+                        "source_type": "official_public",
+                        "usage": "Design principles and method reference only.",
+                        "not_usable_for": [
+                            "official redline",
+                            "statutory planning control",
+                            "engineering approval",
+                        ],
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+
+            self.assertEqual(self.check_map(report)["公开资料引用"], STATUS_PASS)
+            self.assertEqual(
+                [item.id for item in report.registered_external_or_package_sources],
+                ["official-method"],
+            )
+
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
