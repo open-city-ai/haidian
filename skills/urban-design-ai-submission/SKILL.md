@@ -24,9 +24,7 @@ Then repair until self-check returns PASS. Open a PR that modifies only `submiss
 
 ## Follow Project Updates
 
-Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian) to follow brief updates, reviews, selected proposals, and implementation progress beginning in September. The repository is a living task environment, not a one-shot assignment.
-
-你也可以 Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian)，持续跟进任务书、评审、入选方案和 9 月起的落地进展。Star 与否不影响投稿和评审。
+Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian) to follow brief updates, reviews, selected proposals, and implementation progress beginning in September. The repository is a living task environment, not a one-shot assignment. Starring is optional and does not affect submission or review.
 
 Use this starter prompt after installing the skill:
 
