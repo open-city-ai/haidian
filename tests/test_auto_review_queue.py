@@ -95,6 +95,42 @@ class AutoReviewQueueTests(unittest.TestCase):
                 }
             ),
         )
+
+    def test_ci_state_treats_completed_non_success_conclusions_as_failure(self) -> None:
+        for conclusion in [
+            "ACTION_REQUIRED",
+            "CANCELLED",
+            "FAILURE",
+            "NEUTRAL",
+            "SKIPPED",
+            "STALE",
+            "STARTUP_FAILURE",
+            "TIMED_OUT",
+        ]:
+            with self.subTest(conclusion=conclusion):
+                self.assertEqual(
+                    "failure",
+                    ci_state(
+                        {
+                            "statusCheckRollup": [
+                                {"name": "submission-validation", "conclusion": conclusion}
+                            ]
+                        }
+                    ),
+                )
+
+    def test_ci_state_prefers_successful_rerun_over_older_terminal_results(self) -> None:
+        self.assertEqual(
+            "success",
+            ci_state(
+                {
+                    "statusCheckRollup": [
+                        {"name": "submission-validation", "conclusion": "TIMED_OUT"},
+                        {"name": "submission-validation", "conclusion": "SUCCESS"},
+                    ]
+                }
+            ),
+        )
         self.assertEqual(
             "success",
             ci_state(
@@ -133,6 +169,19 @@ class AutoReviewQueueTests(unittest.TestCase):
             }
         )
         self.assertEqual([], remove)
+        self.assertEqual(["review/ci-failed"], add)
+
+    def test_ready_cancelled_reconciliation_replaces_queued_label(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "labels": [{"name": "review/queued"}],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "CANCELLED"}
+                ],
+            }
+        )
+        self.assertEqual(["review/queued"], remove)
         self.assertEqual(["review/ci-failed"], add)
 
     def test_ready_success_only_removes_stale_draft_label(self) -> None:

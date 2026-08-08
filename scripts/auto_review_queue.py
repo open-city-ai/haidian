@@ -23,6 +23,18 @@ from typing import Any
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
 PASS = "SUCCESS"
+# Branch protection may allow neutral or skipped checks, but the review worker
+# requires evidence that deterministic submission validation actually ran.
+TERMINAL_NON_SUCCESS_CONCLUSIONS = {
+    "ACTION_REQUIRED",
+    "CANCELLED",
+    "FAILURE",
+    "NEUTRAL",
+    "SKIPPED",
+    "STALE",
+    "STARTUP_FAILURE",
+    "TIMED_OUT",
+}
 REVIEW_DRAFT_LABEL = "review/draft"
 ACTIVE_REVIEW_LABELS = {
     "review/queued",
@@ -73,10 +85,10 @@ def check_conclusions(meta: dict[str, Any]) -> list[str]:
 
 def ci_state(meta: dict[str, Any]) -> str:
     conclusions = check_conclusions(meta)
-    if any(item == "FAILURE" for item in conclusions):
-        return "failure"
     if any(item == PASS for item in conclusions):
         return "success"
+    if any(item in TERMINAL_NON_SUCCESS_CONCLUSIONS for item in conclusions):
+        return "failure"
     return "pending"
 
 
