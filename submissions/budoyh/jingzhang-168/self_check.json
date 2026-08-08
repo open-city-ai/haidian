@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时粗略边界已明确标注 official_boundary=false；官方几何到位后必须全量重算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域均明确为 provisional_constraint，不作为正式地块边界。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "24个用地单元由同一总体边界切分，等待空间审查器复核覆盖和重叠。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态HTML无脚本、表单、iframe或远程资源，核心指标提供机器属性。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "十三节正文引用全部已知指标、来源、标准、深度项和九组几何图层。"
+    }
+  ]
+}

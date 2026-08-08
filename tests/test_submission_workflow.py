@@ -4,7 +4,10 @@ import unittest
 import json
 import subprocess
 import hashlib
+import io
+import urllib.error
 from pathlib import Path
+from unittest.mock import patch
 
 import jsonschema
 
@@ -22,11 +25,95 @@ from validate_submission import (  # noqa: E402
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    GitHubClient,
+    _is_retryable_http_error,
+    is_non_submission_pr,
     is_review_queue_candidate,
     safe_manifest_paths,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
+
+
+class _Response:
+    def __init__(self, body: bytes) -> None:
+        self.body = body
+        self.headers = {}
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+    def read(self, *args):
+        return self.body
+
+
+class GitHubApiResilienceTests(unittest.TestCase):
+    @staticmethod
+    def _error(code: int, body: bytes, headers=None) -> urllib.error.HTTPError:
+        return urllib.error.HTTPError(
+            "https://api.github.com/test",
+            code,
+            "error",
+            headers or {},
+            io.BytesIO(body),
+        )
+
+    def test_secondary_rate_limit_403_is_retryable(self) -> None:
+        error = self._error(
+            403,
+            b'{"message":"You have exceeded a secondary rate limit."}',
+            {"Retry-After": "1"},
+        )
+        self.assertTrue(
+            _is_retryable_http_error(
+                "GET", error, "You have exceeded a secondary rate limit."
+            )
+        )
+
+    def test_permission_403_is_not_retried(self) -> None:
+        error = self._error(403, b'{"message":"Resource not accessible by integration"}')
+        self.assertFalse(
+            _is_retryable_http_error(
+                "GET", error, "Resource not accessible by integration"
+            )
+        )
+
+    def test_mutating_request_is_not_retryable(self) -> None:
+        error = self._error(
+            500,
+            b'{"message":"server error"}',
+        )
+        self.assertFalse(_is_retryable_http_error("POST", error, "server error"))
+
+    def test_request_retries_throttling_then_succeeds(self) -> None:
+        error = self._error(
+            403,
+            b'{"message":"You have exceeded a secondary rate limit."}',
+            {"Retry-After": "1"},
+        )
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[error, _Response(b'{"ok":true}')],
+        ), patch("github_pr_validation.time.sleep") as sleep:
+            payload, _ = client.request("GET", "/test")
+        self.assertEqual({"ok": True}, payload)
+        sleep.assert_called_once_with(1.0)
+
+    def test_request_does_not_retry_mutating_failure(self) -> None:
+        error = self._error(500, b'{"message":"server error"}')
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[error, _Response(b'{"ok":true}')],
+        ) as urlopen, patch("github_pr_validation.time.sleep") as sleep:
+            with self.assertRaisesRegex(RuntimeError, "HTTP 500: server error"):
+                client.request("POST", "/test", {"body": "comment"})
+        self.assertEqual(1, urlopen.call_count)
+        sleep.assert_not_called()
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):
@@ -110,6 +197,25 @@ class ManifestHydrationTests(unittest.TestCase):
                     "submissions/alice/design-b/proposal.md",
                 ],
                 "alice",
+            )
+        )
+
+    def test_non_submission_code_pr_is_not_sent_to_package_validator(self) -> None:
+        self.assertTrue(is_non_submission_pr(["scripts/tool.py", "tests/test_tool.py"]))
+        self.assertTrue(is_non_submission_pr(["docs/design.md"]))
+        self.assertFalse(is_non_submission_pr([]))
+        self.assertFalse(
+            is_non_submission_pr(["submissions/alice/design/proposal.md", "scripts/tool.py"])
+        )
+        self.assertFalse(
+            is_non_submission_pr(
+                [
+                    {
+                        "filename": "scripts/tool.py",
+                        "previous_filename": "submissions/alice/design/proposal.md",
+                        "status": "renamed",
+                    }
+                ]
             )
         )
 
@@ -788,7 +894,16 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.write(root, rel)
             report = validate_submission(root, "alice", [rel])
             self.assertFalse(report.ok)
-            self.assertIn("may not change", "\n".join(report.errors))
+            self.assertIn("must exactly match", "\n".join(report.errors))
+
+    def test_submission_owner_casing_must_match_github_login(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rel = "submissions/Alice/ai-urban-loop/proposal.md"
+            self.write(root, rel)
+            report = validate_submission(root, "alice", [rel])
+            self.assertFalse(report.ok)
+            self.assertIn("including letter case", "\n".join(report.errors))
 
     def test_user_cannot_modify_repo_infrastructure(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

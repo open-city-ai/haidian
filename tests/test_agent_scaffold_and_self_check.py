@@ -190,6 +190,39 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual("proposal.md", items["proposal.en.md"]["translation_of"])
             self.assertEqual("report/proposal.html", items["report/proposal.en.html"]["translation_of"])
 
+    def test_finalize_preserves_localized_figure_language_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "bilingual-figures"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+
+            primary_rel = "assets/figures/site-overview.png"
+            localized_rel = "assets/figures/site-overview.en.png"
+            (output_dir / localized_rel).write_bytes((output_dir / primary_rel).read_bytes())
+            manifest_path = output_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"].append(
+                {
+                    "path": localized_rel,
+                    "role": "figure",
+                    "required": False,
+                    "language": "en",
+                    "translation_of": primary_rel,
+                }
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            completed = complete_scaffold(output_dir)
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            finalized = json.loads(manifest_path.read_text(encoding="utf-8"))
+            items = {item["path"]: item for item in finalized["files"]}
+            self.assertEqual("zh", items[primary_rel]["language"])
+            self.assertEqual("en", items[localized_rel]["language"])
+            self.assertEqual(primary_rel, items[localized_rel]["translation_of"])
+
     def test_generated_scaffold_is_blocked_until_participant_finalizes_it(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

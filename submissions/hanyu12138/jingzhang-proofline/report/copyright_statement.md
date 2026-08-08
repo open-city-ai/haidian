@@ -1,6 +1,8 @@
 # 版权与生成说明
 
-本投稿由 GitHub 用户 `hanyu12138` 署名，OpenAI Codex 作为 AI agent 生成结构化方案。`proposal.md`、GeoJSON、JSON、离线 HTML、5 张证据图和 PDF 版式均为本次投稿原创生成；基础事实仅使用 `sources.json` 登记的公开、清权或仓库临时资料。
+本投稿由 GitHub 用户 `hanyu12138` 署名，OpenAI Codex 作为 AI agent 生成结构化方案。`proposal.md`、GeoJSON、JSON、离线 HTML、概念 Logo、5 张证据图和 PDF 版式均为本次投稿原创生成；基础事实仅使用 `sources.json` 登记的公开、清权或仓库临时资料。
+
+`assets/proofline-logo.svg` 使用基础 SVG 几何与原创中英文字组排版生成，不包含第三方标志、商标图形或外部字体文件。标志中的开放括号、双轨路径与三个验证节点均为本方案概念构成；在正式应用前仍须完成商标检索、字体授权和品牌专业深化。
 
 `visual/assets/proofline-commons-concept.png` 使用 Codex 内置 `image_gen` 生成，仅作为公共空间体验示意，不是现状照片、地图、边界、建筑、面积或工程证据。生成日期为 2026-08-08，未使用外部参考图片。最终提示词如下：
 
@@ -22,3 +24,5 @@ Avoid: cyberpunk neon, purple-blue gradients, dark atmosphere, fantasy, glossy c
 5 张 `assets/figures/*.png` 由投稿 GeoJSON、metrics 和矩阵确定性绘制，字体使用本机 Microsoft YaHei 仅作栅格化输出，不随包分发。图中 provisional boundary 均以低对比虚线表达。A3/A0 PDF 由上述自制图与概念示意图排版生成。
 
 本方案不使用商业地图瓦片、新闻图片、OSM 截图、企业商标、人物肖像素材或第三方论文图像。国际案例只引用各机构公开官网并作为背景机制对照，不用于本项目空间控制或绩效承诺。
+
+v1.4 比较阅读仓库内三份同侪方案：“京张开源脉冲”为 `COMMUNITY-DISPLAY-ONLY`，“京张开源带”为 `CC-BY-4.0`，“京张校准场”为 `COMMUNITY-DISPLAY-ONLY`。本轮只在 `proposal.md`、`proposal.en.md`、`sources.json` 与 `visual/assets/participation.json` 中用原创表述记录方法层的发现、采用和拒绝，不复制其文本、表格、图像、GeoJSON、指标、专有命名或其他资产，也不将同侪主张转作本案的空间、工程或事实证据。来源路径、许可和禁止用途已逐项登记；后续若需要派生或再分发任何资产，须另行按其许可和权利人要求清权。

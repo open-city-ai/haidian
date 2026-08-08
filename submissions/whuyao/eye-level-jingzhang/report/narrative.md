@@ -1,13 +1,14 @@
-
 # 眼平京张 EYE-LEVEL JINGZHANG
 
 ## 执行摘要
 
-**让创新落到眼前，让证据回到日常。** 百年京张的第一种创新用工程把远方变近；AI 时代的下一种创新，应把抽象技术重新放回人的尺度。本方案将 11.4 平方公里总体设计范围理解为“面向人的城市科学街区”：AI 帮助看见差异、比较选择、提前暴露风险和解释证据，但无权自动决定谁被服务、哪里建设或什么成为永久设施。
+**从日常环境出发，用证据比较选择。** 百年京张的第一种创新用工程把远方变近；AI 时代的下一种创新，应把抽象技术重新放回人的尺度。本方案以团队论文持续研究的“环境暴露—公共服务可达—行为响应—福祉结果”为主线，比较不同人群、时段和空间条件下的差异。AI 帮助整理证据、比较场景、提前暴露风险，但无权自动决定谁被服务、哪里建设或什么成为永久设施。
 
-主结构不是另一条“智轨/智脉”，而是**一条日常剖面、三座现场研究院、七项公共承诺**。众智园成为模型/数据/仿真/伦理的“方法院”，AI 原点社区成为居民和创新者共同验证日常服务的“生活院”，大钟寺成为透明采购、采用、维护与退出的“应用院”。最终成绩由儿童、坐姿/轮椅、成人不同视域中的绿蓝、遮阴、无障碍、日夜安全、服务、交往和维护来检验，而不是由巨屏、机器人或平台调用量来检验。[source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
+主结构不是另一条“智轨/智脉”，而是**京张日常观察线和三个分工明确的现场**：众智园负责城市模型与开放实验，AI 原点负责日常环境与公共服务，大钟寺负责成果应用与长期运营。最终成绩由儿童、坐姿/轮椅和成人不同视域中的绿蓝、遮阴、无障碍、日夜安全、服务、交往和维护来检验，而不是由巨屏、机器人或平台调用量来检验。[source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
 
-![公开OSM语境与仓库临时边界的现状证据底图](assets/figures/site-overview.png)
+**作者**：Yao Yao, China University of Geosciences (Wuhan), Histoshibashi University. Github: whuyao
+
+![公开OSM语境与仓库临时边界的现状证据底图](../assets/figures/site-overview.png)
 
 ## 设计依据与资料清单
 
@@ -17,6 +18,12 @@
 
 公开 OSM 道路、建筑、轨道、水系、绿地/游憩和设施只作语境层，已注明 ODbL attribution；不能以映射数量直接认定现实设施缺口。[source:OSM-BASELINE] 所有生成图件由本项目原创绘制，不复制论文图、案例图、商标或人物肖像。
 
+新增 Sentinel-2 L2A 遥感背景：从 Earth Search STAC 检索场地，选择 2025-05-28、瓦片云量约 0.004% 的场景，按 10 m 像元裁切红、绿、蓝和近红外波段，形成真彩色与 NDVI。它只用于校核大尺度绿量连续性、水体/铁路背景、连续硬化区和现场复核顺序；不用于产权、法定边界、微观空间质量、人的活动或健康效应判断。[source:SENTINEL2-L2A] [source:EARTH-SEARCH]
+
+![Sentinel-2 真彩色与 NDVI 场地背景：先看背景，再做现场验证](../assets/remote-sensing/satellite-context-board.png)
+
+遥感和 OSM 共同改变了方案的先后顺序：先沿北部清河—基础设施交织区核查绿蓝连续与安全跨越，再在中南段高密街区核查树荫、座椅、过街和公共服务；所有细部动作仍需三种观察高度实走、专业调查和公众共同验证。这里的“遥感 + 开放地图”是复核线索，不是自动选址器。
+
 ### 边界状态与重大冲突
 
 `geometry/site_boundary.geojson` 与三处 `key_areas` 均为 `provisional_constraint`、`official_boundary=false`；面积只可在 EPSG:4548 下作临时相对复算。[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]
@@ -25,27 +32,27 @@
 
 ## 三层范围工作框架
 
-三层范围共享同一条证据链但承担不同精度：43.6 km² 统筹层只研究产业、知识、公共价值和区域协同；11.4 km² 总体层提出可整体替换/复算的功能意向、日常剖面和分期；368.4 ha 重点层提出三种现场研究院和可迁移场景。任何下层图形都不能反向升级为上层官方范围或法定结论。[source:OFFICIAL-ANNOUNCEMENT] [source:BOUNDARY-SOURCE] [depth:three_level_scope_framework]
+三层范围共享同一条证据链但承担不同精度：43.6 km² 统筹层只研究产业、知识、公共价值和区域协同；11.4 km² 总体层提出可整体替换/复算的功能意向、日常观察线和分期；368.4 ha 重点层提出三个分工明确的现场和可迁移场景。任何下层图形都不能反向升级为上层官方范围或法定结论。[source:OFFICIAL-ANNOUNCEMENT] [source:BOUNDARY-SOURCE] [depth:three_level_scope_framework]
 
 | 层级 | 已知官方文字/面积 | 本方案工作 | 精度边界 |
 |---|---|---|---|
 | 统筹研究范围 | 约 43.6 km² | 产业—知识—公共价值协同与两翼机制 | 无精确 official polygon，不做地块结论 |
-| 总体设计范围 | 约 11.4 km² | 一条日常剖面、断点工具箱、功能意向与分期 | 临时 polygon 约 11.413 km²，仅讨论/复算 |
-| 三重点区 | 192.1/104.3/72.0 ha | 方法院/生活院/应用院及 12 场景 | 三 polygon 均临时；大钟寺另有位置冲突 |
+| 总体设计范围 | 约 11.4 km² | 京张日常观察线、断点工具箱、功能意向与分期 | 临时 polygon 约 11.413 km²，仅讨论/复算 |
+| 三重点区 | 192.1/104.3/72.0 ha | 城市模型与开放实验/日常环境与公共服务/成果应用与长期运营及 12 场景 | 三 polygon 均临时；大钟寺另有位置冲突 |
 
-![功能意向分区：完整但非现状、非控规、非变更建议](assets/figures/land-use-structure.png)
+![功能意向分区：完整但非现状、非控规、非变更建议](../assets/figures/land-use-structure.png)
 
 ## 重点区域详细设计
 
-### 众智园：生态—基础设施张力 → 方法院
+### 众智园：城市模型与开放实验
 
 临时范围约 192.9 ha；OSM 映射建筑基底约 11.3%，高速、五环、匝道与学清路等基础设施密集，同时叠加清河/小月河语境。策略是优先安全跨越、滨水连续、林下研究街和共享研究首层；不以填满低密空间或大拆建换形象。桥隧、蓝线、防洪、道路红线和权属均待专业核验。[data:geometry/key_areas.geojson#PROV-KEY-001]
 
-### AI 原点社区：高密知识—日常界面 → 生活院
+### AI 原点：日常环境与公共服务
 
 临时范围约 104.3 ha；OSM 映射建筑基底约 21.0%，学院路、北四环、成府路与高校界面交织。策略是用微绿荫、可坐边界、时段共享首层、安全夜路和老幼服务，把“物理上很近”变成“日常能相遇”；不预设打开校园/园区权属边界。[data:geometry/key_areas.geojson#PROV-KEY-002]
 
-### 大钟寺：站城—产业—文化采用 → 应用院
+### 大钟寺：成果应用与长期运营
 
 只采用任务书的功能要求：智能体/智能终端/内容消费等新业态、重点企业周边公共环境、规划绿地复合利用、大钟寺站与重点地块步行联系、四象限步行和非机动车组织。当前临时矩形位置冲突，所有设计以可迁移模块表达，待 official polygon 后再落位。[data:geometry/key_areas.geojson#PROV-KEY-003] [depth:three_key_area_detailed_design]
 
@@ -84,7 +91,7 @@
 
 ## 总体设计范围城市更新与控规深度城市设计
 
-总体范围以“眼平公共价值 + 城市科学闭环”组织适应性更新：先补 official boundary、控规和现状资料，再以可撤的座椅/遮阴/导视/服务流程验证假设，只有在多季节、多群体、风险、维护和法定程序均通过后才进入永久更新。功能意向、研究院接口、审计路线、绿蓝/公共空间试验包络和分期图层全部可在官方边界替换后重算，不预判容积率、高度、拆改留、道路红线或工程可行性。[data:geometry/land_use.geojson#LU-001] [depth:land_use_layout]
+总体范围以“眼平公共价值 + 城市科学闭环”组织适应性更新：先补 official boundary、控规和现状资料，再以可撤的座椅/遮阴/导视/服务流程验证假设，只有在多季节、多群体、风险、维护和法定程序均通过后才进入永久更新。功能意向、现场接口、审计路线、绿蓝/公共空间试验包络和分期图层全部可在官方边界替换后重算，不预判容积率、高度、拆改留、道路红线或工程可行性。[data:geometry/land_use.geojson#LU-001] [depth:land_use_layout]
 
 空间结构不是在临时边界上画一张伪精确总图，而是建立可供专业团队继续工作的对象：`land_use` 保持拓扑完整却明确只是功能意向；`roads` 表达要被实走审计的连续体验和东西缝合，不是工程线位；`green_space`/`public_space` 表达临时试验包络；`constraints` 把边界、控规和大钟寺冲突空间化；`phasing` 用阶段门避免尚未验证的动作提前永久化。每个对象有来源、置信度、geometry role、指标与假设，可以在 official polygons 到位后一次性重算。[data:geometry/constraints.geojson#CONSTRAINT-KEY3] [metric:site_area_sqm]
 
@@ -92,23 +99,23 @@
 
 ## 1. 价值主张
 
-**让创新落到眼前，让证据回到日常。**
+**从日常环境出发，用证据比较选择。**
 
-京张创新带不是一条陈列 AI 产品的展廊，而是一座面向人的城市科学街区。AI 的角色是帮助城市看见差异、比较选择、预演风险、解释证据；它不能自动决定谁被服务、哪里建设或什么成为永久设施。最终结果由人在日常尺度上能否更方便地行走、停留、交往、获得服务和安全回家来判断。
+京张创新带不是一条陈列 AI 产品的展廊，而是一座日常环境、公共服务与城市创新的证据型设计。AI 的角色是帮助城市看见差异、比较选择、预演风险、解释证据；它不能自动决定谁被服务、哪里建设或什么成为永久设施。最终结果由人在日常尺度上能否更方便地行走、停留、交往、获得服务和安全回家来判断。
 
-![一条日常剖面、三座现场研究院与边界状态](assets/figures/key-areas.png)
+![京张日常观察线、三个分工明确的现场与边界状态](../assets/figures/key-areas.png)
 
 ## 2. 总体结构
 
-### 一条日常剖面
+### 京张日常观察线
 
 沿京张遗址公园及东西向联系路径，连续记录历史、树荫、雨水、声音、座椅、首层、过街、慢行、服务与人群。它是体验和评估的共同语言，不是需要全段同形同材的景观轴。
 
-### 三座现场研究院
+### 三个分工明确的现场
 
-- **众智园·方法院**：模型、数据、反事实、伦理与标准的共同工作台。
-- **北京 AI 原点·生活院**：居民与创新者共同提出问题、验证日常服务。
-- **大钟寺·应用院**：把通过验证的方案转为透明采购、运营和维护能力。
+- **众智园·城市模型与开放实验**：模型、数据、反事实、伦理与标准的共同工作台。
+- **北京 AI 原点·日常环境与公共服务**：居民与创新者共同提出问题、验证日常服务。
+- **大钟寺·成果应用与长期运营**：把通过验证的方案转为透明采购、运营和维护能力。
 
 ### 两翼协同
 
@@ -118,6 +125,42 @@
 ### 七项公共承诺 7E
 
 Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecological 生态舒适、Explainable 可解释、Experimental 可试可改、Enduring 可维护。
+
+### 八个日常场景效果图
+
+以下图片用于帮助公众理解空间气氛与设计意图，均为 AI 生成的**概念效果图**，不是现状照片、测绘证据、已批准方案或工程承诺。真实建筑、轨道、水系、树木、站口和权属条件须在官方资料与现场调查后重画。[source:IMAGEGEN-DISCLOSURE]
+
+![京张日常观察线：保留铁路记忆，以树荫、座椅、无障碍和步行骑行连续性组织日常体验](../assets/renderings/01-everyday-observation-route.jpg)
+
+*概念效果图 01｜京张日常观察线。*
+
+![众智园：城市模型与开放实验在林下和基础设施边缘展开](../assets/renderings/02-zhongzhiyuan-open-experiment.jpg)
+
+*概念效果图 02｜众智园：城市模型与开放实验。*
+
+![AI 原点：把树荫、雨水花园、座椅、无障碍和实体服务前台放回普通街道](../assets/renderings/03-ai-origin-daily-services.jpg)
+
+*概念效果图 03｜AI 原点：日常环境与公共服务。*
+
+![大钟寺：用候车、维修、小型市集、雨水花园和人工运营形成成果应用场景](../assets/renderings/04-dazhongsi-application-operations.jpg)
+
+*概念效果图 04｜大钟寺：成果应用与长期运营；位置和形态待官方边界核验。*
+
+![儿童、坐姿和成人三种观察高度共同检查遮挡、过街、座椅与导视](../assets/renderings/05-three-eye-heights.jpg)
+
+*概念效果图 05｜三种观察高度；不用于个体识别。*
+
+![不依赖行为识别的安心夜路：均匀照明、清楚视线、活跃首层和可见人工帮助](../assets/renderings/06-calm-night-walk.jpg)
+
+*概念效果图 06｜安心夜路。*
+
+![居民、运营者和研究者围绕实体地图比较不同场景和公共价值](../assets/renderings/07-community-evidence-workshop.jpg)
+
+*概念效果图 07｜共同制图与公开比较。*
+
+![面向老人、儿童和行动不便者的绿蓝照护环：休息、饮水、无障碍和安全亲水并列](../assets/renderings/08-green-blue-care-loop.jpg)
+
+*概念效果图 08｜老幼绿蓝共融环；不承诺健康因果结果。*
 
 ## 3. 八类用户画像与不可平均的需求
 
@@ -138,7 +181,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ### S01｜三视高眼平体检 THREE-HEIGHT STREET SCAN
 
-- **位置**：一条日常剖面的断点样段；先在三片区各选 1 段，精确落位待现场与权属核验。
+- **位置**：京张日常观察线的断点样段；先在三片区各选 1 段，精确落位待现场与权属核验。
 - **用户/问题**：P01—P03；成人街景可能看不见儿童、坐姿与轮椅使用者的遮挡、绿量、标识和过街风险。
 - **空间动作**：以约 0.9m、1.2m、1.6m 三视高完成绿蓝、遮阴、可见性、门槛和停留界面审计，形成可修复清单。
 - **AI 角色**：端侧语义分割；先模糊人脸/车牌，只保留街段级汇总与置信度；人工抽样复核。
@@ -192,7 +235,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ### S07｜节庆与极端日管家 EVENT + EXTREME-DAY STEWARD
 
-- **位置**：总体剖面、站口和公共活动节点。
+- **位置**：京张日常观察线、站口和公共活动节点。
 - **用户/问题**：全体；平日平均不能代表论坛、展会、暴雨、热浪或轨道中断。
 - **空间动作**：弹性排队、可撤临时服务、应急遮蔽、备用无障碍路径和分散活动点。
 - **AI 角色**：用聚合/合成数据做反事实容量测试，给出不确定区间；人类指挥统一负责。
@@ -201,7 +244,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ### S08｜模型门诊 MODEL CLINIC
 
-- **位置**：众智园·方法院，定期巡回到两片区。
+- **位置**：众智园·城市模型与开放实验，定期巡回到两片区。
 - **用户/问题**：P05、P07 与公众代表；模型常在数据来源、漂移、偏差和可解释性上“带病上线”。
 - **空间动作**：公开模型卡墙、冲突证据桌、红队室、公众问题席和修复版本记录。
 - **AI 角色**：自动运行确定性单测、漂移/覆盖检查和引文核验；不能自我批准。
@@ -210,7 +253,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ### S09｜城市反事实桌 URBAN COUNTERFACTUAL TABLE
 
-- **位置**：三座现场研究院和年度证据大会。
+- **位置**：三个分工明确的现场和年度证据大会。
 - **用户/问题**：公众、规划师、运营者、企业；单一预测图会掩盖价值选择与不确定性。
 - **空间动作**：实体可触摸桌 + 无障碍屏幕/纸图，同时比较基准、生态、公平、产业和应急情景。
 - **AI 角色**：整理情景、解释差异；面积、网络、可达和规则由确定性 GIS/脚本计算。
@@ -219,7 +262,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ### S10｜公共服务前台 CIVIC SERVICE FRONT DESK
 
-- **位置**：AI 原点·生活院，连接社区服务与大钟寺应用端。
+- **位置**：AI 原点·日常环境与公共服务，连接社区服务与大钟寺应用端。
 - **用户/问题**：P01—P03、P06—P08；复杂服务信息、语言和数字门槛阻碍获得帮助。
 - **空间动作**：实体服务台、安静咨询位、多语/大字/触觉信息、人工转接与纸本办理指引。
 - **AI 角色**：仅基于核定知识库作带来源的问答、翻译和导航；不决定资格、处罚、医疗或资金。
@@ -228,7 +271,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ### S11｜公开采用台 OPEN ADOPTION DESK
 
-- **位置**：大钟寺·应用院；精确位置待 official boundary。
+- **位置**：大钟寺·成果应用与长期运营；精确位置待 official boundary。
 - **用户/问题**：P05、P07 与企业/公共采购方；PoC 常停在展示或被供应商锁定。
 - **空间动作**：公开问题册、限定期测试位、中立接口、采购/退出/数据删除清单和公众演示时段。
 - **AI 角色**：比较方案证据与互操作性，生成带来源的评审摘要；人类采购和主管部门负责。
@@ -267,7 +310,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 - **通过条件**：100% 权利/健康/资金问题转人工；引用、时效、可访问性和多语测试合格；无账号/纸本等价；供应商可替换与删除证明。
 - **产出**：一张可撤销、可复核的准入证及版本记录，不是政府认证或永久许可。
 
-## 6. 四处“朝圣地标”：纪念共同求证，而非崇拜设备
+## 6. 四处公共观察与展示节点：纪念共同求证，而非崇拜设备
 
 | 地标 | 概念 | 日常功能 | AI/非 AI 边界 |
 |---|---|---|---|
@@ -285,7 +328,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 3. **反事实筛选**：比较多种情景，排除伤害大、不可撤或不可维护的方案。
 4. **限定 PoC**：在清权场地、小范围、短期限内实施，可随时人工接管。
 5. **公开评估**：同时检查平均效益、群体差距、意外伤害、维护成本和公众体验。
-6. **采用/修正/退出**：大钟寺应用院形成中立采用与退出记录，知识回流众智园与原点社区。
+6. **采用/修正/退出**：大钟寺成果应用与长期运营形成中立采用与退出记录，知识回流众智园与原点社区。
 
 ### 七类要素不混为一张招商表
 
@@ -299,7 +342,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 | 数据 | 来源登记、目的限定、最小化、聚合阈值、删除与授权 | 不含非公开空间/个人/企业内部数据 |
 | 场景 | 问题清单、公开准入、限定期测试和退出 | 不把试点写成获批运营 |
 
-![慢行、蓝绿、场景与非AI替代的复合系统](assets/figures/mobility-bluegreen.png)
+![慢行、蓝绿、场景与非AI替代的复合系统](../assets/figures/mobility-bluegreen.png)
 
 ## 8. 公共空间组件库
 
@@ -349,7 +392,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 | 2 适应性更新 | 1—3 年 | 经审批的首层、慢行、蓝绿与存量建筑更新 | 专业设计、法定程序、资金/运营、全寿命评估通过 |
 | 3 网络扩展 | 3—5 年滚动 | 将验证机制扩展到两翼/区域合作 | 新地点重新基线与审查，不机械复制 |
 
-![论文—空间动作—实施检验—回退的证据链](assets/figures/metrics-evidence.png)
+![论文—空间动作—实施检验—回退的证据链](../assets/figures/metrics-evidence.png)
 
 ## 13. 指标：先分“现在能算”和“实施后才能知道”
 
@@ -384,11 +427,11 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
-八类画像、十二场景、三个产业测试和四个公共地标的完整说明见正文第 3—7 节。结构化包核验为 [metric:persona_count]、[metric:scenario_node_count]、[metric:industry_test_scenario_count]、[metric:ai_landmark_count]；十二场景均达到 [metric:human_review_coverage_ratio]、[metric:non_ai_alternative_ratio] 与 [metric:rollback_coverage_ratio] = 1.0。城市智能体只作带来源的检索、解释和候选比较；空间/数值由确定性脚本复算，最终判断由有权限的人类负责。[source:URBANCOMP-LOCAL]
+八类画像、十二场景、三个产业测试和四个公共节点的完整说明见正文第 3—7 节。结构化包核验为 [metric:persona_count]、[metric:scenario_node_count]、[metric:industry_test_scenario_count]、[metric:ai_landmark_count]；十二场景均达到 [metric:human_review_coverage_ratio]、[metric:non_ai_alternative_ratio] 与 [metric:rollback_coverage_ratio] = 1.0。城市智能体只作带来源的检索、解释和候选比较；空间/数值由确定性脚本复算，最终判断由有权限的人类负责。[source:URBANCOMP-LOCAL]
 
 ## 用地、建筑规模与拆改留方案
 
-`land_use.geojson` 是完整拓扑的**功能意向分区**，不是现状用地调查、控规或用地变更；`buildings.geojson` 只有三座现场研究院的符号性接口包络，不是现状建筑、拆改留或建设基底；`roads.geojson` 是体验/审计路线，不是道路红线、桥隧或信号工程。[data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] [data:geometry/roads.geojson#ROAD-001]
+`land_use.geojson` 是完整拓扑的**功能意向分区**，不是现状用地调查、控规或用地变更；`buildings.geojson` 只有三个分工明确的现场的符号性接口包络，不是现状建筑、拆改留或建设基底；`roads.geojson` 是体验/审计路线，不是道路红线、桥隧或信号工程。[data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] [data:geometry/roads.geojson#ROAD-001]
 
 容积率、建筑高度、建筑密度、退线、拆改留、道路红线、站口、市政容量、地下空间、防洪、消防、文保、绿/蓝线、权属与投资均列为 unknown/data gap。正式阶段 0 必须先取得 official polygons、控规与专业资料，由相应专业团队完成现状评估、法定程序和工程论证。[metric:floor_area_ratio] [depth:development_intensity_controls] [depth:municipal_new_infrastructure]
 
@@ -396,7 +439,7 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 
 ## 交通、轨道、市政与公共服务设施
 
-“日常剖面 + 三条东西缝合审计走廊”只用于识别门到门体验、过街、无障碍、遮阴、换乘和夜间断点，长度见 [metric:road_network_length_m]；不替代道路红线、信号、桥隧、停车和站口设计。市政/端侧算力采用分级、低能耗、可断网、可人工接管原则，能源、排水、防洪、消防、地下空间和管线容量在专业资料齐备前保持 unknown。[depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure]
+“京张日常观察线 + 三条东西缝合审计走廊”只用于识别门到门体验、过街、无障碍、遮阴、换乘和夜间断点，长度见 [metric:road_network_length_m]；不替代道路红线、信号、桥隧、停车和站口设计。市政/端侧算力采用分级、低能耗、可断网、可人工接管原则，能源、排水、防洪、消防、地下空间和管线容量在专业资料齐备前保持 unknown。[depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure]
 
 公共服务设施通过实体前台、人工转接、无账号/纸本通道和共享首层表达；AI 不能决定资格、医疗、资金、处罚或采购。[source:AGENT-TASKBOOK]
 
@@ -453,8 +496,10 @@ Eye-level 眼平可感、Everyday 日常可用、Equitable 公平可达、Ecolog
 1. 北京市规划和自然资源委员会海淀分局，《百年京张AI创新带城市设计国际方案征集资格预审公告》，2026。
 2. open-city-ai/haidian，公开任务书、site package、formal submission guide 与 schemas，2026。
 3. OpenStreetMap contributors，ODbL 1.0；Overpass 获取于 2026-08-08。
+4. Copernicus Data Space Ecosystem，Sentinel-2 Level-2A Surface Reflectance 产品说明；场景 S2B_50TMK_20250528_0_L2A。
+5. Element 84 Earth Search STAC API，Sentinel-2 L2A 场景检索与公开 COG 访问，获取于 2026-08-08。
 
-机器可读依据索引：[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:existing_conditions_diagnosis] [depth:metrics_recalculation] [metric:site_area_sqm]
+机器可读依据索引：[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:SENTINEL2-L2A] [source:EARTH-SEARCH] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:existing_conditions_diagnosis] [depth:metrics_recalculation] [metric:site_area_sqm]
 
 ### UrbanComp 关键论文
 

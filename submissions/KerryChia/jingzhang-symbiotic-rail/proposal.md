@@ -7,6 +7,7 @@ summary: "以京张遗址公园为文化主轴、AI产业创新带为数字副�
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 iteration: "v0.3"
+translation_file: "proposal.en.md"
 ---
 
 # 双轨共生：百年京张AI创新带城市设计方案

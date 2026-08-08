@@ -14,6 +14,7 @@ import os
 import shutil
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -25,6 +26,59 @@ from validate_submission import ValidationReport, format_report, validate_submis
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+MAX_API_ATTEMPTS = 4
+MAX_RETRY_DELAY_SECONDS = 30
+RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
+RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
+
+
+def _http_error_message(error: urllib.error.HTTPError) -> str:
+    """Extract GitHub's safe error message without exposing auth headers."""
+    try:
+        raw = error.read().decode("utf-8", errors="replace")
+    except OSError:
+        raw = ""
+    if raw:
+        try:
+            payload = json.loads(raw)
+        except json.JSONDecodeError:
+            payload = None
+        if isinstance(payload, dict) and isinstance(payload.get("message"), str):
+            return payload["message"]
+        return raw[:300].replace("\n", " ")
+    return str(error.reason or "request failed")
+
+
+def _is_retryable_http_error(
+    method: str, error: urllib.error.HTTPError, message: str
+) -> bool:
+    """Retry transient API throttling, but fail fast on permission errors."""
+    if method.upper() not in RETRYABLE_METHODS:
+        return False
+    if error.code in RETRYABLE_STATUS_CODES:
+        return True
+    if error.code != 403:
+        return False
+    headers = {key.lower(): value for key, value in error.headers.items()}
+    remaining = headers.get("x-ratelimit-remaining")
+    return bool(
+        headers.get("retry-after")
+        or remaining == "0"
+        or "rate limit" in message.lower()
+        or "secondary rate limit" in message.lower()
+        or "abuse detection" in message.lower()
+    )
+
+
+def _retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> float:
+    headers = {key.lower(): value for key, value in error.headers.items()}
+    retry_after = headers.get("retry-after")
+    if retry_after:
+        try:
+            return min(MAX_RETRY_DELAY_SECONDS, max(1.0, float(retry_after)))
+        except ValueError:
+            pass
+    return min(MAX_RETRY_DELAY_SECONDS, float(2**attempt))
 
 
 class GitHubClient:
@@ -47,10 +101,24 @@ class GitHubClient:
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
-            raw = response.read().decode("utf-8")
-            parsed = json.loads(raw) if raw else None
-            return parsed, dict(response.headers.items())
+        for attempt in range(MAX_API_ATTEMPTS):
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    raw = response.read().decode("utf-8")
+                    parsed = json.loads(raw) if raw else None
+                    return parsed, dict(response.headers.items())
+            except urllib.error.HTTPError as error:
+                message = _http_error_message(error)
+                if error.code == 404:
+                    raise
+                if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
+                    method, error, message
+                ):
+                    raise RuntimeError(
+                        f"GitHub API {method} {url} failed with HTTP {error.code}: {message}"
+                    ) from error
+                time.sleep(_retry_delay_seconds(error, attempt))
+        raise AssertionError("unreachable")
 
     def paginate(self, path: str) -> list[dict]:
         url = f"{API_ROOT}{path}"
@@ -85,8 +153,24 @@ class GitHubClient:
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
-            content = response.read(max_bytes + 1)
+        for attempt in range(MAX_API_ATTEMPTS):
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    content = response.read(max_bytes + 1)
+                    break
+            except urllib.error.HTTPError as error:
+                message = _http_error_message(error)
+                if error.code == 404:
+                    raise
+                if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
+                    "GET", error, message
+                ):
+                    raise RuntimeError(
+                        f"GitHub API download {path} failed with HTTP {error.code}: {message}"
+                    ) from error
+                time.sleep(_retry_delay_seconds(error, attempt))
+        else:
+            raise AssertionError("unreachable")
         if len(content) > max_bytes:
             raise RuntimeError(f"{destination}: file exceeds download cap")
         destination.parent.mkdir(parents=True, exist_ok=True)
@@ -176,6 +260,22 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
             return False
         roots.add("/".join(parts[:3]))
     return bool(changed_files) and len(roots) == 1
+
+
+def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
+    """Return true only when current and renamed paths are outside submissions/."""
+    paths: list[str] = []
+    for item in files:
+        if isinstance(item, dict):
+            filename = item.get("filename")
+            if isinstance(filename, str):
+                paths.append(filename)
+            previous_filename = item.get("previous_filename")
+            if isinstance(previous_filename, str):
+                paths.append(previous_filename)
+        elif isinstance(item, str):
+            paths.append(item)
+    return bool(paths) and all(filename.split("/", 1)[0] != "submissions" for filename in paths)
 
 
 def safe_manifest_paths(manifest: object) -> set[str]:
@@ -287,7 +387,13 @@ def main() -> int:
                 proposal_path,
             )
 
-        if not validation_files and maintainer_bypass:
+        queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+        if is_non_submission_pr(files):
+            validation = ValidationReport(changed_files=changed_files)
+            validation.add_warning(
+                "non-submission code/docs/test PR; participant package validation was not applicable"
+            )
+        elif not validation_files and maintainer_bypass:
             validation = ValidationReport(
                 changed_files=changed_files,
                 maintainer_bypass=True,
@@ -308,7 +414,6 @@ def main() -> int:
         write_step_summary(comment)
         client.upsert_comment(pr_number, comment)
 
-        queue_candidate = is_review_queue_candidate(changed_files, pr_author)
         if validation.ok and queue_candidate:
             client.remove_labels(
                 pr_number,

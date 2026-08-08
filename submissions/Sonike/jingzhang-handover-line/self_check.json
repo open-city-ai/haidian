@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时范围保留 official_boundary=false 与 provisional_constraint；受边界影响的面积与比例绑定替换触发器，指标置信度按计算可复现性与事实有效性分别标注。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域均明确为临时约束，仅用于概念设计定位，不冒充官方边界。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区由临时场地边界拓扑切分生成，联合覆盖场地，分区间无设计性重叠。"
+    },
+    {
+      "check_id": "GEOMETRY_VALIDITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "全部设计几何有效并位于临时场地范围内；面积与长度采用 EPSG:4548 复算。"
+    },
+    {
+      "check_id": "METRIC_TRACEABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "每个已知指标均列出源文件、公式、置信度与假设；未知法定指标保留 null 和原因。"
+    },
+    {
+      "check_id": "AI_HUMAN_HANDOVER",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "十二个场景节点均设人工接管、无AI等价服务与停用条件；四个产业验证场景按沙盒处理。"
+    },
+    {
+      "check_id": "DUAL_CONTROL_SHIFT_LEDGER",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/shift-ledger.schema.json; visual/assets/governance/example-scn05-shift-ledger.json; visual/assets/governance/validation-report.json",
+      "message": "双联交接账Schema通过Draft 2020-12元模式检查；SCN-05合成沙盒样例结构错误为0，但性能、现场可用性、合规与人工授权状态仍为未验证。"
+    },
+    {
+      "check_id": "VERSIONED_ROLLBACK",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; geometry/buildings.geojson; geometry/phasing.geojson",
+      "message": "12个场景与20个更新单元均具版本、适用范围、责任角色、复核、验收和回滚字段；三期使用差异化进入门、验收门与回滚状态，不承诺固定年份。"
+    },
+    {
+      "check_id": "DELIVERY_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; drawings/a3-booklet.pdf#p03; drawings/a0-boards.pdf#p03",
+      "message": "P01—P06均列出A/R/C-I、KPI、接管SLO、停止/回滚条件与资源开工单；责任主体或持续资源未授权时不得启动或扩张。"
+    },
+    {
+      "check_id": "HONOR_RECORD",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; proposal.md",
+      "message": "四个公共地标可定位且带启用与回滚状态；荣誉记录具有提名、证据、双人复核、异议、纠错、撤回、申诉及实名/化名/匿名选择。"
+    },
+    {
+      "check_id": "SOURCE_PROVENANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "十七条来源逐条登记权威等级、证据类别、采集方法、时空覆盖、许可状态与可用/不可用边界；涉及单位换算的写明原文表述、换算方法与入库值，行政尺度事实标记 not_spatially_allocable=true。"
+    },
+    {
+      "check_id": "BACKGROUND_NOT_SPATIAL",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json; metrics.json",
+      "message": "海淀区2025年统计公报的八项观察值全部停留在 evidence_class=background_only，未进入 metrics.json，未改变任何几何、面积、线位或分期；正文逐条写明其不能证明什么。"
+    },
+    {
+      "check_id": "REGULATORY_BASELINE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; sources.json",
+      "message": "可停用、可投诉、无AI等价服务三条红线分别对应《生成式人工智能服务管理暂行办法》第十四、十五、十七条，《无障碍环境建设法》第三十九条与国办发〔2020〕45号；仅作合规对照，不作法律意见，条款适用由主管部门认定。"
+    },
+    {
+      "check_id": "DRAWING_VERSION_CONSISTENCY",
+      "result": "pass",
+      "severity": "minor",
+      "target": "drawings/",
+      "message": "四套图纸共38页页脚统一为 JING-ZHANG HANDOVER LINE / v1.6 / NN-TT；修复了此前前三页标 v1.5、其余页标 A3 BOOKLET / A0 BOARDS 的分裂标注。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态页面不加载CDN、远程字体、地图瓦片、API、iframe、表单或追踪脚本。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文、矩阵、几何、图纸、指标、来源和假设构成交叉引用的专业证据链。"
+    },
+    {
+      "check_id": "COPYRIGHT_TRACEABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "图件、图标、排版与几何均为本方案程序化原创；外部案例仅作文字转述并逐项列源；Codex与用户操作的Claude Opus 5跨轮次协作已如实披露。"
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>京张交接线｜离线评审台</title>
+  <style>
+    :root{--coal:#161918;--ink:#252a28;--bone:#f1ecdf;--paper:#faf7ef;--grid:#d8d1c2;--muted:#6c716c;--red:#e24a3b;--cyan:#00a7a0;--yellow:#f1c84a;--blue:#3b6486;--green:#6d9b72;--orange:#d88744}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:var(--bone);font-family:"Hiragino Sans GB","PingFang SC","Microsoft YaHei",sans-serif;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}
+    .top{position:sticky;top:0;z-index:20;display:grid;grid-template-columns:290px 1fr auto;align-items:center;min-height:72px;padding:0 32px;background:rgba(22,25,24,.96);color:var(--paper);border-bottom:4px solid var(--red)}.brand{display:flex;gap:18px;align-items:center}.mark{position:relative;width:76px;height:32px}.mark:before,.mark:after{content:"";position:absolute;left:0;right:0;height:4px;background:var(--paper)}.mark:before{top:5px}.mark:after{bottom:5px}.mark i{position:absolute;left:30px;top:0;width:17px;height:32px;border-radius:4px;background:var(--red)}.brand b{letter-spacing:.06em}.brand small{display:block;color:#aeb8b2;font-size:10px;letter-spacing:.18em;margin-top:2px}.nav{display:flex;justify-content:center;gap:20px;font-size:12px;letter-spacing:.08em;color:#c7cec9}.nav a:hover{color:var(--yellow)}.status{padding:8px 12px;border:1px solid var(--cyan);color:var(--cyan);font:700 11px/1 monospace;letter-spacing:.08em}
+    main{overflow:hidden}.hero{min-height:760px;display:grid;grid-template-columns:1.12fr .88fr;padding:58px max(5vw,60px) 46px;background:var(--coal);color:var(--paper);position:relative}.hero:after{content:"JZ—01 / RESPONSIBILITY PROTOCOL";position:absolute;right:-68px;bottom:120px;transform:rotate(-90deg);font:700 12px/1 monospace;letter-spacing:.2em;color:#66706b}.eyebrow{color:var(--red);font:700 13px/1.3 monospace;letter-spacing:.18em}.hero h1{font-size:clamp(64px,8vw,126px);line-height:.9;margin:28px 0 20px;letter-spacing:-.06em}.hero h1 span{display:block;color:var(--red)}.lead{max-width:670px;font-size:24px;line-height:1.7;color:#d7ddd9}.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);max-width:680px;margin-top:34px;border-top:1px solid #636c67}.hero-meta div{padding:18px 20px 0 0}.hero-meta b{display:block;color:var(--yellow);font:700 28px/1.1 monospace}.hero-meta small{color:#9ea7a2}.shift{align-self:center;margin-left:58px}.hero-visual{margin-bottom:10px;padding:6px;border:1px solid #535c57;background:#202523}.hero-visual img{width:100%;max-height:235px;object-fit:cover}.shift-line{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:11px 0;border-top:1px solid #535c57}.shift-line:last-of-type{border-bottom:1px solid #535c57}.shift-line em{display:grid;place-items:center;width:38px;height:38px;background:var(--red);font:700 12px monospace;font-style:normal}.shift-line:nth-of-type(3) em{background:var(--cyan)}.shift-line:nth-of-type(4) em{background:var(--yellow);color:var(--coal)}.shift-line h3{margin:0 0 4px;font-size:18px}.shift-line p{margin:0;color:#aeb8b2;line-height:1.45;font-size:13px}.manual{margin-top:12px;padding:14px;border-left:5px solid var(--red);background:#202523;font-size:17px;font-weight:700;line-height:1.45}
+    .section{padding:88px max(5vw,60px)}.section.dark{background:var(--coal);color:var(--paper)}.kicker{font:700 12px/1 monospace;color:var(--red);letter-spacing:.18em}.section h2{font-size:clamp(40px,5vw,76px);line-height:1.05;margin:18px 0 22px;letter-spacing:-.04em}.intro{max-width:960px;font-size:20px;line-height:1.8;color:var(--muted)}.dark .intro{color:#adb6b1}.figure{margin-top:44px;border:2px solid var(--coal);background:var(--paper);padding:14px}.dark .figure{border-color:#68736d;background:#202523}.caption{display:flex;justify-content:space-between;gap:30px;margin-top:12px;font-size:12px;color:var(--muted);font-family:monospace}.dark .caption{color:#929c96}
+    .scope-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}.scope-card{position:relative;min-height:280px;padding:28px;border:2px solid var(--coal);background:var(--paper)}.scope-card:before{content:attr(data-step);position:absolute;right:22px;top:18px;color:var(--red);font:700 32px monospace}.scope-card h3{font-size:27px;margin:40px 0 16px}.scope-card p{line-height:1.75;color:var(--muted)}.scope-card b{display:block;margin-top:20px;color:var(--blue)}
+    .yard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px}.yard{background:var(--paper);border-top:16px solid var(--red);padding:30px;min-height:390px;color:var(--ink)}.yard:nth-child(2){border-color:var(--cyan)}.yard:nth-child(3){border-color:var(--yellow)}.yard .code{font:700 12px monospace;color:var(--muted);letter-spacing:.12em}.yard h3{font-size:29px;margin:18px 0 8px}.yard h4{font:700 17px monospace;color:var(--red);margin:0 0 24px}.yard:nth-child(2) h4{color:var(--cyan)}.yard:nth-child(3) h4{color:#a47500}.yard ul{padding-left:20px;line-height:1.8}.gate{margin-top:20px;padding-top:18px;border-top:1px solid var(--grid);color:var(--muted);font-size:14px}
+    .systems{display:grid;grid-template-columns:1.2fr .8fr;gap:26px;align-items:start}.legend-stack{display:grid;gap:14px;margin-top:44px}.legend-row{display:grid;grid-template-columns:48px 1fr;gap:16px;align-items:start;padding:18px 0;border-top:1px solid var(--grid)}.legend-row i{height:10px;margin-top:8px;background:var(--red)}.legend-row:nth-child(2) i{background:var(--yellow)}.legend-row:nth-child(3) i{background:var(--green)}.legend-row:nth-child(4) i{background:var(--cyan)}.legend-row b{display:block;font-size:18px;margin-bottom:5px}.legend-row small{color:var(--muted);line-height:1.5}
+    .scenario-head{display:flex;justify-content:space-between;gap:40px;align-items:end}.scenario-head .big{font:700 clamp(70px,10vw,160px)/.8 monospace;color:var(--red)}.scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:48px}.scenario{min-height:250px;padding:24px;background:#202523;border:1px solid #48504c;display:flex;flex-direction:column}.scenario.validation{border-top:8px solid var(--red)}.scenario.public{border-top:8px solid var(--cyan)}.scenario.culture{border-top:8px solid var(--yellow)}.scenario .id{font:700 12px monospace;color:#9aa39e}.scenario h3{font-size:22px;margin:18px 0 10px}.scenario p{color:#adb6b1;font-size:14px;line-height:1.65;margin:0}.scenario .handover{margin-top:auto;padding-top:16px;color:var(--yellow);font-size:12px;border-top:1px solid #3c4440}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:44px}.panel{padding:30px;background:var(--paper);border:2px solid var(--coal)}.panel h3{font-size:28px;margin:0 0 18px}.panel p,.panel li{line-height:1.75;color:var(--muted)}.matrix{width:100%;border-collapse:collapse;margin-top:25px;background:var(--paper)}.matrix th,.matrix td{text-align:left;vertical-align:top;padding:16px;border:1px solid var(--grid)}.matrix th{background:var(--coal);color:var(--paper);font-size:12px;letter-spacing:.08em}.phase{display:grid;grid-template-columns:90px 1fr 180px;gap:20px;padding:22px 0;border-top:2px solid var(--coal);align-items:start}.phase strong{color:var(--red);font:700 18px monospace}.phase h3{margin:0 0 8px}.phase p{margin:0;color:var(--muted);line-height:1.65}.phase small{color:var(--blue);font-weight:700}
+    .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}.metric{min-height:190px;padding:24px;background:var(--paper);border:2px solid var(--coal)}.metric strong{display:block;font:700 clamp(32px,4vw,58px)/1 monospace;color:var(--red);letter-spacing:-.06em}.metric:nth-child(2n) strong{color:var(--cyan)}.metric span{display:block;margin-top:18px;font-weight:700}.metric small{display:block;margin-top:8px;color:var(--muted);line-height:1.45}.unknown{grid-column:span 4;background:var(--coal);color:var(--paper);border-color:var(--red);min-height:auto}.unknown strong{font-size:18px;letter-spacing:.04em}.unknown small{color:#aeb8b2}
+    .ledger{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:42px}.ledger article{padding:28px;background:#202523;border:1px solid #505a55}.ledger h3{font-size:24px;margin:0 0 18px;color:var(--yellow)}.ledger ul{margin:0;padding-left:18px;color:#b4bcb7;line-height:1.8}.check{display:grid;grid-template-columns:180px 1fr auto;gap:18px;padding:16px 0;border-top:1px solid #4f5753;align-items:center}.check b{font:700 12px monospace;color:var(--cyan)}.check span{color:#ccd2ce}.check em{font:700 11px monospace;color:var(--coal);background:var(--cyan);padding:6px 9px;font-style:normal}.end{padding:90px max(5vw,60px);background:var(--red);color:var(--coal)}.end p{max-width:1000px;font-size:clamp(36px,5vw,74px);line-height:1.1;font-weight:800;letter-spacing:-.04em;margin:0}.end small{display:block;margin-top:36px;font:700 12px monospace;letter-spacing:.12em}
+    @media(max-width:980px){.top{grid-template-columns:1fr auto}.nav{display:none}.hero{grid-template-columns:1fr}.shift{margin:50px 0 0}.scope-grid,.yard-grid,.scenario-grid,.metric-grid{grid-template-columns:1fr 1fr}.systems,.two,.ledger{grid-template-columns:1fr}.unknown{grid-column:span 2}}@media(max-width:640px){.section,.hero{padding:60px 22px}.top{padding:0 18px}.status{display:none}.hero h1{font-size:58px}.hero-meta,.scope-grid,.yard-grid,.scenario-grid,.metric-grid{grid-template-columns:1fr}.unknown{grid-column:auto}.phase{grid-template-columns:1fr}.caption{display:block}.metric{min-height:150px}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="#top"><span class="mark"><i></i></span><span><b>京张交接线</b><small>HANDOVER LINE</small></span></a>
+    <nav class="nav"><a href="#overview">总览地图</a><a href="#scope">三层范围</a><a href="#yards">重点区域</a><a href="#scenarios">AI 场景</a><a href="#shift-ledger">双联交接账</a><a href="#metrics">核心指标</a><a href="#evidence">任务覆盖</a></nav>
+    <div class="status">v1.6 / READY FOR HUMAN REVIEW</div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div>
+        <div class="eyebrow">全球人工智能产业高地和朝圣地 / 可复现协议 × 可纠错公共地标</div>
+        <h1>京张<span>交接线</span></h1>
+        <p class="lead">把铁路交接班转化为AI城市协议：六个条件试点包经三道证据门递进；交出与接入必须分开判断，未决项不得在换班中消失。北纬社区等区域接口只在资料与主体获授权后接入。</p>
+        <div class="hero-meta"><div><b>32</b><small>概念接口目录</small></div><div><b>1</b><small>双联交接账Schema</small></div><div><b>0</b><small>合成样例结构错误</small></div></div>
+      </div>
+      <div class="shift">
+        <div class="hero-visual"><img src="../assets/figures/spatial-prototype.png" alt="三座交接场的可逆公共界面与人工接管空间原型"></div>
+        <div class="shift-line"><em>01</em><div><h3>BUILD → VERIFY</h3><p>模型、机器人、算力和数据带着版本、风险、人工负责人和停用办法进入测试。</p></div></div>
+        <div class="shift-line"><em>02</em><div><h3>VERIFY → SHARE</h3><p>结果、许可、失败和适用边界共同公开；开源不等于暴露个人数据。</p></div></div>
+        <div class="shift-line"><em>03</em><div><h3>SHARE → SERVE</h3><p>公共服务保留人工窗口、无AI等价服务、申诉路径与退出记录。</p></div></div>
+        <div class="manual">人工接管不是备用功能，<br>而是公共空间的基础设施。</div>
+      </div>
+    </section>
+
+    <section class="section" id="overview">
+      <span class="kicker">01 / OVERVIEW</span><h2>总览地图</h2>
+      <p class="intro">一条约9.50公里的概念慢行主轴穿过临时总体范围，三座交接场对应研发—验证、验证—开源、开源—服务。八条东西支线表达缝合方向，所有线位都不是道路红线或工程结论。</p>
+      <figure class="figure"><img src="../assets/figures/site-overview.png" alt="京张交接线总体概念、场地边界与三座交接场总览"><figcaption class="caption"><span>geometry/site_boundary.geojson + roads.geojson + key_areas.geojson</span><span>PROVISIONAL BOUNDARY / EPSG:4548</span></figcaption></figure>
+    </section>
+
+    <section class="section" id="scope">
+      <span class="kicker">02 / SCOPE &amp; LAND USE</span><h2>三层范围 · 用地分区</h2>
+      <p class="intro">统筹研究决定生态机制，总体设计把机制落成连续结构，重点区用可运行的场景验证结构。11个拓扑要素完整覆盖临时场地且无设计性重叠；代码使用公开国土空间分类子集，不表达现状权属或审定用地。</p>
+      <div class="scope-grid"><article class="scope-card" data-step="01"><h3>统筹研究范围</h3><p>研究产业、文化、未来城市和三区两翼的协同回路，把研发、验证、开源、服务和复盘组织为共同协议。</p><b>43.6 km² / 战略与机制</b></article><article class="scope-card" data-step="02"><h3>总体设计范围</h3><p>用地、更新、建筑类型、慢行、蓝绿、市政接口、项目与分期共同形成可审查证据。</p><b>约11.4 km² / 空间与实施</b></article><article class="scope-card" data-step="03"><h3>重点区域</h3><p>众智园、AI原点和大钟寺分别承担Build→Verify、Verify→Share和Share→Serve。</p><b>3处 / 详细场景验证</b></article></div>
+      <figure class="figure"><img src="../assets/figures/land-use-structure.png" alt="三层工作范围、用地代码和交接线拓扑结构图"><figcaption class="caption"><span>geometry/land_use.geojson / 11 features / zero intentional gaps</span><span>DESIGN PROPOSAL, NOT STATUTORY LAND USE</span></figcaption></figure>
+    </section>
+
+    <section class="section dark" id="yards">
+      <span class="kicker">03 / KEY AREAS</span><h2>重点区域</h2><p class="intro">三处临时重点区不是三个主题园，而是三次责任转换。每一处都同时设置功能、空间动作、场景、人工接管和实施门槛。</p>
+      <div class="yard-grid"><article class="yard"><span class="code">PROV-KEY-001</span><h3>研制交接场</h3><h4>BUILD → VERIFY</h4><ul><li>公开验证街与共享测试院</li><li>模型红队、机器人路权、端侧能耗沙盒</li><li>试验面与公众参观面安全分离</li><li>版本、风险、停机与责任人公开</li></ul><div class="gate">门槛：企业授权、道路条件、安全论证与现场安全员。</div></article><article class="yard"><span class="code">PROV-KEY-002</span><h3>开源交接场</h3><h4>VERIFY → SHARE</h4><ul><li>公开交接桌与校园成果接力站</li><li>公共翻译、无障碍副驾、社区协作屋</li><li>首层连续、夜间分级、居民界面低扰动</li><li>许可、撤回、人工窗口并列</li></ul><div class="gate">门槛：成果许可、隐私审查、居民协商与空间短期试用。</div></article><article class="yard"><span class="code">PROV-KEY-003</span><h3>城市交接场</h3><h4>SHARE → SERVE</h4><ul><li>城市交接厅、百年值班簿、口述史亭</li><li>智能原生服务不依赖人脸或强制App</li><li>保留非消费通行、休息与人工顾问</li><li>公开投诉、修复和退出记录</li></ul><div class="gate">门槛：轨道、权属、消防、文保与商业公共性核验。</div></article></div>
+      <figure class="figure"><img src="../assets/figures/key-areas.png" alt="众智园、北京AI原点与大钟寺三座交接场详细索引"><figcaption class="caption"><span>geometry/key_areas.geojson / three provisional polygons</span><span>DIRECTIONAL DESIGN FOR PROFESSIONAL DEVELOPMENT</span></figcaption></figure>
+    </section>
+
+    <section class="section" id="systems">
+      <div class="systems"><div><span class="kicker">04 / CIVIC GROUND</span><h2>交通慢行 · 蓝绿公共空间</h2><p class="intro">主轴与八条支线先保证普通通行，再叠加可拔插智能层。概念绿地提供树荫、雨洪与停留；公共交接面容纳人工窗口、测试展示和无AI服务。断电或停用时，照明、导视、触觉地图和求助仍然存在。</p><figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" alt="连续交通慢行、蓝绿公共空间与十二个接管节点图"><figcaption class="caption"><span>roads.geojson + green_space.geojson + public_space.geojson</span><span>CONNECTIVITY INTENT / NO ROAD REDLINE CLAIM</span></figcaption></figure></div><aside class="legend-stack"><div class="legend-row"><i></i><div><b>连续交接线</b><small>约9.5公里步行骑行与责任展示主轴，线位待交通专业核验。</small></div></div><div class="legend-row"><i></i><div><b>八条缝合支线</b><small>标记跨街区连接需求，不判断桥隧、断面或工程可行性。</small></div></div><div class="legend-row"><i></i><div><b>结构性绿地</b><small>约226.5公顷概念基底，不是现状净增量或法定绿地率。</small></div></div><div class="legend-row"><i></i><div><b>公共交接面</b><small>约103.9公顷，保证非消费使用、人工接管和无AI等价服务。</small></div></div></aside></div>
+    </section>
+
+    <section class="section dark" id="scenarios">
+      <div class="scenario-head"><div><span class="kicker">05 / REVERSIBLE SERVICES</span><h2>AI 场景</h2><p class="intro">每个场景都带四张单：最小数据、责任人、人工接管、退出记录。失联、越界、低置信或任何人提出异议时，智能功能停用，基础服务继续。</p></div><div class="big">12</div></div>
+      <div class="scenario-grid">
+        <article class="scenario validation"><span class="id">SCN-01 / INDUSTRY TEST</span><h3>模型红队交接台</h3><p>版本、测试样本与风险条目进入受控评审。</p><div class="handover">人工评审 + 纸面风险登记</div></article>
+        <article class="scenario validation"><span class="id">SCN-02 / INDUSTRY TEST</span><h3>机器人路权沙盒</h3><p>仅在封闭段记录测试轨迹，不进入公开道路。</p><div class="handover">安全员物理停机 + 封闭测试</div></article>
+        <article class="scenario validation"><span class="id">SCN-03 / INDUSTRY TEST</span><h3>端侧能耗试验站</h3><p>独立计量任务负载、能耗和温升。</p><div class="handover">人工停机 + 离线电表</div></article>
+        <article class="scenario validation"><span class="id">SCN-04 / INDUSTRY TEST</span><h3>数据授权演练场</h3><p>只处理自愿授权记录，演练撤回与删除。</p><div class="handover">线下授权单 + 即时删除窗口</div></article>
+        <article class="scenario public"><span class="id">SCN-05 / PUBLIC SERVICE</span><h3>无障碍路径副驾</h3><p>用户主动输入障碍，不连续跟踪个人位置。</p><div class="handover">触觉地图 + 人工问路</div></article>
+        <article class="scenario public"><span class="id">SCN-06 / PUBLIC SERVICE</span><h3>公共服务翻译台</h3><p>翻译现场文本，涉及权益决定时必须交人。</p><div class="handover">人工窗口 + 多语纸本</div></article>
+        <article class="scenario public"><span class="id">SCN-07 / KNOWLEDGE</span><h3>校园成果接力站</h3><p>只展示作者授权的成果元数据与许可。</p><div class="handover">人工策展 + 开放目录</div></article>
+        <article class="scenario public"><span class="id">SCN-08 / OPERATIONS</span><h3>维修可见驿</h3><p>匿名报修、工单状态与维护责任公开可查。</p><div class="handover">电话报修 + 人工派单</div></article>
+        <article class="scenario public"><span class="id">SCN-09 / CARE</span><h3>社区照护排班桌</h3><p>算法建议可拒绝，不影响居民获得服务。</p><div class="handover">工作人员电话排班</div></article>
+        <article class="scenario public"><span class="id">SCN-10 / NIGHT SHIFT</span><h3>城市夜班安全灯</h3><p>只感知设备状态，不采集人脸。</p><div class="handover">固定照明 + 人工巡查</div></article>
+        <article class="scenario culture"><span class="id">SCN-11 / CULTURE</span><h3>京张口述史问答亭</h3><p>基于清权馆藏索引，出处不确定时不生成事实。</p><div class="handover">人工讲解 + 纸本目录</div></article>
+        <article class="scenario culture"><span class="id">SCN-12 / EVENT</span><h3>全球交接周线路</h3><p>串联试验、开源、文化与公共服务。</p><div class="handover">固定导视 + 志愿者服务</div></article>
+      </div>
+    </section>
+
+    <section class="section" id="delivery">
+      <span class="kicker">06 / BUILDINGS &amp; DELIVERY</span><h2>建筑 · 更新项目</h2><p class="intro">二十个建筑要素是类型试验单元，不是现状盘点或拆除清单。先以运营和可移动构件验证需求，再进行适应性修缮；逐栋测绘、结构、权属、消防和文保核验完成前，不形成确定拆改留结论。</p>
+      <div class="two"><article class="panel"><h3>四步判定</h3><ol><li><b>保留 R：</b>继续使用并补齐现状档案。</li><li><b>修缮 A：</b>优先消防、节能、无障碍和首层开放。</li><li><b>插入 I：</b>只用可撤除构件和短期使用验证。</li><li><b>待核 D：</b>等待逐栋调查，不等同于拆除。</li></ol></article><article class="panel"><h3>十二项最小项目</h3><p>交接线基础导视、模型红队台、机器人沙盒、能耗站、公开交接台、成果接力站、无障碍副驾、维修可见驿、城市交接厅、百年值班簿、口述史亭、全球交接周线路。</p><p>每项必须写明责任人、许可、维护、退出、数据删除与基础服务延续。</p></article></div>
+      <div style="margin-top:48px"><div class="phase"><strong>PHASE 01</strong><div><h3>资料基线门</h3><p>官方资料、现状盘点、无障碍基线与三个低风险人工主导试点必须共同通过。</p></div><small>不按年份自动进入</small></div><div class="phase"><strong>PHASE 02</strong><div><h3>权属与协同门</h3><p>继承第一闸正负结果，权属、消防、社区协商、维护与持续预算同时满足。</p></div><small>失败退回第一闸</small></div><div class="phase"><strong>PHASE 03</strong><div><h3>专业与持续门</h3><p>交通、市政、文保、隐私、安全、应急与退出资产全部经专业复核后才讨论扩区。</p></div><small>失败缩回已验证片段</small></div></div>
+      <figure class="figure"><img src="../assets/figures/delivery-contract.png" alt="P01至P06试点交付契约、双联交接账与三道条件合并门"><figcaption class="caption"><span>RACI + BINARY GATES + DUAL-CONTROL SHIFT LEDGER</span><span>CALIBRATION TARGETS NULL UNTIL OWNER AND BASELINE EXIST</span></figcaption></figure>
+    </section>
+
+    <section class="section dark" id="shift-ledger">
+      <span class="kicker">07 / DUAL-CONTROL SHIFT LEDGER</span><h2>一方交出，<br>另一方才能接入</h2><p class="intro">双联交接账 0.3 把同一次换班拆成两次独立判断。交出方不能代替接入方签收；接入方必须复现最小证据后明确接受或拒收。未决项保持开放，智能层默认关闭。</p>
+      <div class="ledger"><article><h3>交出联 / OUTGOING</h3><ul><li>声明对象、版本、适用范围与校验和</li><li>逐项列出已知失败、未决项与回滚动作</li><li>性能目标保持 null，直到主体与基线成立</li><li>交出只证明材料齐备，不证明接入成功</li></ul></article><article><h3>接入联 / INCOMING</h3><ul><li>由不同角色独立复现最小检查</li><li>逐项回应未决项，不得静默消失</li><li>只能明确 ACCEPT 或 REFUSE</li><li>拒收或证据缺失时维持人工服务并关闭智能层</li></ul></article></div>
+      <div class="check"><b>SCHEMA</b><span>Draft 2020-12 元模式校验</span><em>PASS</em></div><div class="check"><b>SCN-05 SAMPLE</b><span>合成、未执行、角色未指派；仅证明结构可解析</span><em>PARSEABLE</em></div><div class="check"><b>OPERATION</b><span>未完成真实复现、接入签收或回滚演练</span><em>NOT VERIFIED</em></div>
+      <p class="intro"><a href="assets/governance/shift-ledger.schema.json">查看 Schema</a> · <a href="assets/governance/example-scn05-shift-ledger.json">查看合成样例</a> · <a href="assets/governance/validation-report.json">查看校验报告</a></p>
+    </section>
+
+    <section class="section" id="metrics">
+      <span class="kicker">08 / RECALCULABLE EVIDENCE</span><h2>核心指标</h2><p class="intro">数字从GeoJSON、公式与假设生成，不从图面抄录。临时边界替换后可重算；法定强度与高度没有公开审定值，因此保持未知。</p>
+      <div class="metric-grid">
+        <article class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>≈11.4</strong><span>km² 临时场地</span><small>EPSG:4548多边形计算；低置信度。</small></article>
+        <article class="metric" data-metric="green_ratio" data-value="0.198434"><strong>≈19.8%</strong><span>概念绿地比例</span><small>结构性绿地，不是现状净增或法定指标。</small></article>
+        <article class="metric" data-metric="public_space_ratio" data-value="0.09106"><strong>≈9.1%</strong><span>公共交接面比例</span><small>支持非消费使用与人工服务。</small></article>
+        <article class="metric"><strong>≈9.5 km</strong><span>连续交接线</span><small>概念慢行主轴，不是道路红线。</small></article>
+        <article class="metric"><strong>≈18.9 km</strong><span>概念线路总长</span><small>主轴加八条东西连接意图。</small></article>
+        <article class="metric"><strong>12 / 4</strong><span>场景 / 产业验证</span><small>全部可逆，四个只在沙盒测试。</small></article>
+        <article class="metric"><strong>20</strong><span>建筑类型单元</span><small>不等于现状建筑或获批规模。</small></article>
+        <article class="metric"><strong>3</strong><span>条件触发分期</span><small>不随日历自动实施。</small></article>
+        <article class="metric"><strong>32</strong><span>概念接口目录</span><small>字段存在不等于部署或逐对象验证。</small></article>
+        <article class="metric"><strong>1</strong><span>机器可读交接协议</span><small>Draft 2020-12 JSON Schema。</small></article>
+        <article class="metric"><strong>0</strong><span>合成样例结构错误</span><small>只证明结构，不证明运行效果。</small></article>
+        <article class="metric"><strong>4</strong><span>可纠错公共地标</span><small>启用闸、异议与退出均可定位。</small></article>
+        <article class="metric unknown"><strong>UNKNOWN BY DESIGN</strong><span>容积率 · 建筑高度 · 权属 · 道路红线 · 市政容量 · 投资 · 产值</span><small>不以模型推断替代审定控制与专业调查。</small></article>
+      </div>
+      <figure class="figure"><img src="../assets/figures/metrics-evidence.png" alt="场地面积、绿地公共空间、交接线和场景指标证据链"><figcaption class="caption"><span>metrics.json × geometry/*.geojson × assumptions.json</span><span>DISPLAY VALUES ROUNDED / SOURCE VALUES PRESERVED</span></figcaption></figure>
+    </section>
+
+    <section class="section dark" id="evidence">
+      <span class="kicker">09 / REVIEW LEDGER</span><h2>任务覆盖 · 自检状态</h2><p class="intro">机器检查证明文件完整、几何有效、指标一致和证据可追溯；它不替代城市规划、建筑、交通、景观、市政、文保、法律与公众的最终判断。</p>
+      <div class="ledger"><article><h3>任务覆盖</h3><ul><li>公告 1.3：世界级生态、新城市形态、人才城区</li><li>公告 1.4：统筹、总体、三处重点区域</li><li>公告 1.5：产业、更新、交通市政、公园与风貌</li><li>agent.1—6：命名、案例、场景、地标、文化、运营</li><li>6项标准 + 15项专业设计深度</li></ul></article><article><h3>自检状态</h3><div class="check"><b>BOUNDARY</b><span>临时属性与重算触发器已保留</span><em>PASS</em></div><div class="check"><b>TOPOLOGY</b><span>用地完整覆盖且无设计重叠</span><em>PASS</em></div><div class="check"><b>METRICS</b><span>面积、比例与数量可追溯</span><em>PASS</em></div><div class="check"><b>TAKEOVER</b><span>十二场景有人工接管与退出</span><em>PASS</em></div><div class="check"><b>OFFLINE</b><span>无CDN、远程字体、API或跟踪</span><em>PASS</em></div></article></div>
+      <div class="ledger"><article><h3>来源</h3><ul><li>征集公告、任务书与仓库场地资料包</li><li>临时边界与重点区只作概念计算</li><li>六个国际案例仅转述机构官网机制</li><li>全部图形、符号与排版程序化原创</li><li>详见 sources.json 与 copyright_statement.md</li></ul></article><article><h3>假设</h3><ul><li>官方边界替换后重算全部图层与指标</li><li>控规、权属、道路、市政、消防、文保待补</li><li>建筑单元不是拆改留结论</li><li>AI场景未获正式部署、采购或运营批准</li><li>详见 assumptions.json 与 constraints.geojson</li></ul></article></div>
+    </section>
+
+    <footer class="end"><p>智能可以流动。<br>责任必须始终可见。</p><small>JING-ZHANG HANDOVER LINE / SONIKE + CODEX (GPT-5) + CLAUDE OPUS 5 / v1.6 / 2026-08-08</small></footer>
+  </main>
+</body>
+</html>

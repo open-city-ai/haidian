@@ -264,14 +264,24 @@ class TestSubmissionsGallery(unittest.TestCase):
             "已解析证据",
             "artifact-groups",
             "packageToggle",
+            "packageScrim",
+            "workspace-nav",
+            "方案工作台",
+            "阅读方案",
+            "浏览方案资料",
+            "核对方案证据",
             "activateFilter",
-            "点击下面任意数字筛选证据",
+            "正文中的圆形编号使用同一套编号",
             "proposal-artifact-viewer.js",
             "proposal-artifact-viewer.css",
-            "完整方案资料展厅",
+            "方案资料库",
             "artifactViewerBody",
         ]:
             self.assertIn(required, viewer)
+        self.assertIn("position:fixed;z-index:75", viewer)
+        self.assertIn("document.body.classList.toggle('drawer-open',open)", viewer)
+        self.assertNotIn("package-entry-cta", viewer)
+        self.assertNotIn("panelCollapse", viewer)
         for required in [
             "renderGeoJSON",
             "geoSvg",
@@ -323,6 +333,21 @@ class TestSubmissionsGallery(unittest.TestCase):
         self.assertIn("不是加载失败", submissions)
         self.assertNotIn("proposal-thumb iframe", index)
         self.assertNotIn("<iframe data-src=", submissions)
+
+    def test_homepage_exposes_copyable_agent_prompt_in_hero(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        hero = index[index.index('<section id="hero">'):index.index("<!-- Stats -->")]
+        self.assertIn("hero-skill-copy", hero)
+        self.assertIn("urban-design-ai-submission", hero)
+        self.assertIn("skill-copy-btn", hero)
+        self.assertIn("hero-skill-head", hero)
+        self.assertIn("复制这句话，交给你的 Agent", hero)
+        self.assertIn('href="submissions.html"', hero)
+        self.assertNotIn('href="#submit"', hero)
+        self.assertEqual(2, index.count('class="skill-copy-row'))
+        self.assertIn("document.querySelectorAll('.skill-copy-btn').forEach", index)
+        self.assertNotIn('id="skillCopyButton"', index)
+        self.assertNotIn('id="skillAddressField"', index)
 
     def test_generated_items_include_github_avatar_metadata(self):
         items = self.load_gallery_items()

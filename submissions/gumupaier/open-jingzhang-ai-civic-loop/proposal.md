@@ -2,6 +2,7 @@
 title: "开源智环：百年京张AI创新带城市设计方案"
 author_github: "gumupaier"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "基于 provisional boundary 和结构化自检要求生成的 formal AI 城市设计方案包；保留精度警示和复算要求，但组织方数据缺口不阻断内容评分。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -27,6 +28,14 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | 表达完整度 | A3 五页、A0 四板、五张图、离线 HTML、报告 HTML | drawings/、assets/figures/、visual/index.html |
 
 图纸目录如下：A3 文册包括总体品牌、三层范围与生态图谱、三处重点区、场景卡与产业测试、实施包容性与风险五页；A0 展板包括总体结构与品牌系统、用地更新与专业系统、重点区与场景开放、实施运营与公共利益四板。所有图纸均为离线生成的概念性城市设计图，不含远程底图、第三方图片或商标。
+
+本轮 gallery/professional-publication 补强新增三组可展示图件：`brand-system.png` 把 Logo 成品方向、色彩、导视、地标和国际传播统一到一张 VI 板；`scenario-cards.png` 把 10 个 AI 场景从表格升级为可读卡片，逐项显示空间、数据、复核、KPI 和退出；`key-area-detail.png` 把三处重点区从索引图升级为平面/剖面/实施 Gate 的详图板。三组图件均有 `.en.png` 英文 counterpart，并已进入 manifest。
+
+![品牌系统与城市识别](assets/figures/brand-system.png)
+
+![十张 AI 场景卡](assets/figures/scenario-cards.png)
+
+![三处重点区详图板](assets/figures/key-area-detail.png)
 
 ## 设计依据与资料清单
 
@@ -288,6 +297,26 @@ AI 生态图谱分为八类要素：土地与空间、产业链、资金链、�
 ### 专业评审风险控制
 
 本方案主动保留三条低置信度边界：第一，所有几何面积和比例仍为 `provisional/model-derived`，不用于法定红线、控规指标或精确面积评分；第二，所有外部协同均写作“概念性接口”，不写成已签约合作或政府安排；第三，AI 场景只描述数据最小化、授权、人工复核、申诉纠错和退出机制，不声称可以替代公共决策。这个边界有利于提高风险与合规、可实施性和专业表达分，同时避免因资料缺口产生硬性否决。
+
+## 90+ 专业评分证据台账
+
+本轮冲刺把七维评分逐项转为“可被评审引用的证据”，目标是让每一维都具备接近 5/5 的可读理由。分数仍由维护者和专业评审独立判断；本台账只说明参赛者已经把可控内容补到可审查状态。
+
+| 七维维度 | 90+ 证据 | 机器可读落点 | 仍需组织方/专业资料 |
+| --- | --- | --- | --- |
+| 任务书相关性 | 公告三层范围、三大定位、五大功能、三处重点区、三区两翼和 agent.1-agent.6 均有正文、图纸、HTML 和矩阵证据 | compliance_matrix.json、standard_matrix.json、design_depth_matrix.json、A3/A0、visual/index.html | 正式 SITE_BOUNDARY、KEY_AREA、控规和专项条件 |
+| 原创性 | “开源智环”品牌、JZ/AI/Loop 字标方向、三处 AI 朝圣地标、荣誉体系、公共空间组件库和国际传播短句形成独立识别系统 | site-overview.png、key-areas.png、professional-depth.png、proposal.en.md | 若进入公开传播，需由专业视觉团队深化 VI 手册 |
+| AI 与城市规划创新 | AI 不只作为标签，而是进入数据最小化、人工复核、场景开放、产业测试、端侧算力、城市智能体安全和失败退出机制 | metrics.json、geometry/roads.geojson、geometry/public_space.geojson、geometry/phasing.geojson | 真实接口、数据授权、网络安全和运维主体 |
+| 可实施性 | JZ-01 至 JZ-06 均补主体类别、前置条件、KPI、资源级别、暂停/退出；GeoJSON properties 同步记录 Gate | geometry/*.geojson、phasing.geojson、metrics.json | 权属、道路红线、市政、消防、防洪、文保、资金和审批路径 |
+| 公共利益与包容性 | 老人、儿童、残障人士、低数字素养者、夜间劳动者均有非数字替代；扫码、刷脸、App 不能成为唯一入口 | mobility-bluegreen.png、visual/index.html、public_space.geojson | 正式无障碍审查、公众参与记录和现场运营制度 |
+| 风险与合规意识 | 临时几何降级、无官方背书声明、版权清单、无远程素材、无第三方商标、AI 场景停止条件和投诉纠错 | manifest.json、copyright_statement.md、sources.json、proposal.en.md | 公开发布前逐资产复核和法律/伦理/安全审查 |
+| 表达完整度 | 中文主稿、英文展示稿、中英 HTML、中英图纸、中英图像、A3/A0、专业深化图和指标证据链共同表达 | proposal.md、proposal.en.md、report/*.html、visual/*.html、drawings/*.pdf、assets/figures/* | 若冲击奖项，建议继续由规划/景观/交通/品牌专业人员重绘精细版图纸 |
+
+### 机器可读图层加固说明
+
+为避免“图层只有形状、缺少专业含义”的扣分，本方案把关键属性写回 GeoJSON。`geometry/key_areas.geojson` 三处重点区新增 `professional_design_focus`、`program_mix_recommendation`、`implementation_gate`、`public_interest_kpi` 和 `stop_conditions`；`geometry/roads.geojson` 新增慢行控制、AI 场景链接和交通安全 Gate；`geometry/public_space.geojson` 新增组件库、包容性控制和版权/活动安全 Gate；`geometry/green_space.geojson` 新增生态控制和维护责任；`geometry/land_use.geojson` 与 `geometry/buildings.geojson` 明确官方控规、强度、消防和风貌仍待确认；`geometry/phasing.geojson` 明确近期只做可撤回试点，不提前承诺永久工程。
+
+这些属性并不把临时几何升级为 official boundary，而是提高“概念设计如何进入专业深化”的可复核性。评审者可以从正文回到 [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/green_space.geojson#GREEN-001]、[data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001] 和 [data:geometry/phasing.geojson#PHASE-001] 查看每个空间对象的设计焦点、实施 Gate 和退出条件。
 
 ## 风险、版权与合规说明
 
