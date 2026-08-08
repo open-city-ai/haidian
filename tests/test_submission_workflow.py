@@ -33,6 +33,7 @@ from github_pr_validation import (  # noqa: E402
     is_non_submission_pr,
     is_review_queue_candidate,
     main,
+    participant_scope_violations,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -302,6 +303,50 @@ class ManifestHydrationTests(unittest.TestCase):
                 ]
             )
         )
+
+    def test_participant_scope_violations_reject_mixed_paths_before_download(self) -> None:
+        self.assertEqual(
+            [],
+            participant_scope_violations(
+                [
+                    "submissions/alice/design/proposal.md",
+                    "submissions/alice/design/manifest.json",
+                ],
+                "alice",
+            ),
+        )
+        violations = participant_scope_violations(
+            [
+                "submissions/alice/design/proposal.md",
+                "submissions/bob/other/proposal.md",
+                "scripts/github_pr_validation.py",
+                "test-connection.txt",
+            ],
+            "alice",
+        )
+        self.assertEqual(
+            {
+                "scripts/github_pr_validation.py",
+                "submissions/bob/other/proposal.md",
+                "test-connection.txt",
+            },
+            set(violations),
+        )
+        self.assertEqual(
+            {"docs/renamed.md"},
+            set(
+                participant_scope_violations(
+                    [
+                        {
+                            "filename": "docs/renamed.md",
+                            "previous_filename": "submissions/alice/design/old.md",
+                        }
+                    ],
+                    "alice",
+                )
+            ),
+        )
+        self.assertEqual([], participant_scope_violations(["scripts/tool.py"], "alice"))
 
     def test_local_full_package_check_ignores_existing_maintainer_feedback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
