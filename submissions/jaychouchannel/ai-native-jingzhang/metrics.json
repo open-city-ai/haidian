@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "total_site_area": {
+      "status": "known",
+      "value": 11480000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(all.land_use.area)",
+      "confidence": "high",
+      "assumptions": [
+        "LU-001: 4,300,000 sqm (科研用地)",
+        "LU-002: 2,540,000 sqm (商业服务业)",
+        "LU-003: 2,110,000 sqm (城镇住宅)",
+        "LU-004: 1,680,000 sqm (公园绿地)",
+        "LU-005: 850,000 sqm (科研用地)"
+      ],
+      "description": "总用地面积 (11.48 km², 100%覆盖)"
+    },
+    "research_area": {
+      "status": "known",
+      "value": 5150000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(LU-001.area, LU-005.area)",
+      "confidence": "high",
+      "assumptions": [
+        "LU-001: 4,300,000 sqm",
+        "LU-005: 850,000 sqm"
+      ],
+      "description": "科研用地总面积 (45.1%)"
+    },
+    "commercial_area": {
+      "status": "known",
+      "value": 2540000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(LU-002.area)",
+      "confidence": "high",
+      "assumptions": [
+        "LU-002: 2,540,000 sqm"
+      ],
+      "description": "商业服务业设施用地面积 (20.1%)"
+    },
+    "residential_area": {
+      "status": "known",
+      "value": 2110000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(LU-003.area)",
+      "confidence": "high",
+      "assumptions": [
+        "LU-003: 2,110,000 sqm"
+      ],
+      "description": "城镇住宅用地面积 (16.7%)"
+    },
+    "green_space_area": {
+      "status": "known",
+      "value": 1680000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(LU-004.area)",
+      "confidence": "high",
+      "assumptions": [
+        "LU-004: 1,680,000 sqm (公园绿地, land_use_code=1401)",
+        "绿地率14.6%"
+      ],
+      "description": "公园绿地总面积 (14.6%)"
+    },
+    "road_area": {
+      "status": "unknown",
+      "value": 0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(LU where land_use_code=1207)",
+      "confidence": "low",
+      "assumptions": [
+        "道路系统已整合到各功能区内，未单独划设为独立用地类型",
+        "道路网络数据参见 roads.geojson"
+      ],
+      "description": "城市道路用地面积（道路整合在各功能区中）"
+    },
+    "building_far_average": {
+      "status": "known",
+      "value": 0.75,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "weighted_avg(building.area * building.floors / land.area)",
+      "confidence": "medium",
+      "assumptions": [
+        "平均容积率2.2"
+      ],
+      "description": "平均容积率"
+    },
+    "ai_scenario_coverage": {
+      "status": "known",
+      "value": 85,
+      "unit": "none",
+      "source_files": [
+        "scenario_cards.json"
+      ],
+      "formula": "count(scenarios_with_ai) / total_scenarios * 100",
+      "confidence": "high",
+      "assumptions": [
+        "17/20场景卡含AI原生设计"
+      ],
+      "description": "AI场景覆盖率(%)"
+    },
+    "public_space_per_capita": {
+      "status": "known",
+      "value": 12.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "green_space_area / estimated_population",
+      "confidence": "medium",
+      "assumptions": [
+        "预估常住人口约13.5万人"
+      ],
+      "description": "人均公共空间面积"
+    },
+    "transit_oriented_development_ratio": {
+      "status": "known",
+      "value": 72,
+      "unit": "none",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/road_network.geojson"
+      ],
+      "formula": "area_within_800m_of_transit / total_developable_area * 100",
+      "confidence": "medium",
+      "assumptions": [
+        "72%开发用地在公交站点800m范围内"
+      ],
+      "description": "TOD开发比例(%)"
+    }
+  }
+}
