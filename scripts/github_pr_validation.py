@@ -392,7 +392,6 @@ def main() -> int:
 
     pr_number = int(pull_request["number"])
     pr_author = pull_request["user"]["login"]
-    head_repo = pull_request["head"]["repo"]["full_name"]
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
 
@@ -401,6 +400,7 @@ def main() -> int:
         print(f"Skipping stale submission-validation event: {stale_reason}")
         return 0
 
+    head_repo = pull_request["head"]["repo"]["full_name"]
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
     changed_files = [item["filename"] for item in files]
     bypass = [

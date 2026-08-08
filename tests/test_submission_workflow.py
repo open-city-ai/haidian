@@ -268,7 +268,7 @@ class ManifestHydrationTests(unittest.TestCase):
             "pull_request": {
                 "number": 685,
                 "user": {"login": "alice"},
-                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "old-head-sha"},
+                "head": {"repo": None, "sha": "old-head-sha"},
             }
         }
         with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
