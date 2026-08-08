@@ -465,7 +465,8 @@ HTML 展示值与 `metrics.json` 不一致会失败。
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --record-pass --json
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --json
 ```
 
 这个命令会依次运行：
@@ -476,6 +477,8 @@ python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-sl
 - professional evidence review
 
 全部 PASS 只说明 package 具备进入机器检查和内容评审的基础条件。provisional boundary 会保留精度警示和复算要求，但不会因组织方数据缺口阻断评分。PASS 不代表方案优秀或获得官方批准。
+
+第一次命令使用可信本地检查结果更新 `self_check.json` 的 `ok`、`can_enter_formal_review`、`review_status` 和检查时间，同时将 `manifest.json` 的 `validation_claim.self_checked` 置为 `true`，并刷新 `self_check.json` 的 sha256。`manifest.json` 本身不纳入自身哈希。第二次不带 `--record-pass` 的命令用于回读；检查失败时不会写入通过状态。
 
 维护者审核 PR 时会运行 `scripts/maintainer_review.py --comment`，并在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `maintainer-comment.md`、`review-summary.json`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`。维护者只把命令输出复制到 PR comment；maintainer review 结果不提交到仓库，也不进入公开展示页。方案合并到 `main` 后自动进入全部方案页；维护者通过 `gallery-publication.json` 明确暂停展示或决定首页精选，再运行 `scripts/generate_submissions_data.py`。参赛者只提交自己的投稿目录，不修改发布清单或 `submissions-data.js`。
 

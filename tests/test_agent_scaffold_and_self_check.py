@@ -576,6 +576,99 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual([], report["professional_issue_ids"])
             self.assertEqual([], report["visual_issue_ids"])
 
+    def test_record_pass_persists_self_check_summary_and_manifest_hash(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_provisional_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "recorded-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(finalized.returncode, 0, finalized.stdout + finalized.stderr)
+
+            recorded = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "self_check_submission.py"),
+                    str(submission_dir),
+                    "--repo-root",
+                    str(root),
+                    "--pr-author",
+                    "alice",
+                    "--record-pass",
+                    "--json",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(0, recorded.returncode, recorded.stdout + recorded.stderr)
+            self.assertTrue(json.loads(recorded.stdout)["recorded"])
+
+            self_check = json.loads((submission_dir / "self_check.json").read_text(encoding="utf-8"))
+            self.assertTrue(self_check["ok"])
+            self.assertTrue(self_check["can_enter_formal_review"])
+            self.assertEqual("formal-review-ready", self_check["review_status"])
+            self.assertEqual("alice", self_check["checked_by"])
+            self.assertIsInstance(self_check["checked_at"], str)
+
+            manifest = json.loads((submission_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertTrue(manifest["validation_claim"]["self_checked"])
+            self_check_item = next(item for item in manifest["files"] if item["path"] == "self_check.json")
+            self.assertEqual(
+                hashlib.sha256((submission_dir / "self_check.json").read_bytes()).hexdigest(),
+                self_check_item["sha256"],
+            )
+
+            reread = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "self_check_submission.py"),
+                    str(submission_dir),
+                    "--repo-root",
+                    str(root),
+                    "--pr-author",
+                    "alice",
+                    "--json",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(0, reread.returncode, reread.stdout + reread.stderr)
+            self.assertNotIn("recorded", json.loads(reread.stdout))
+
+    def test_record_pass_refuses_failed_package_without_writing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_provisional_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "scaffold-only"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
+            manifest_before = (submission_dir / "manifest.json").read_bytes()
+            self_check_before = (submission_dir / "self_check.json").read_bytes()
+
+            recorded = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "self_check_submission.py"),
+                    str(submission_dir),
+                    "--repo-root",
+                    str(root),
+                    "--pr-author",
+                    "alice",
+                    "--record-pass",
+                    "--json",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(2, recorded.returncode)
+            self.assertFalse(json.loads(recorded.stdout)["recorded"])
+            self.assertEqual(manifest_before, (submission_dir / "manifest.json").read_bytes())
+            self.assertEqual(self_check_before, (submission_dir / "self_check.json").read_bytes())
+
     def test_missing_review_dependencies_are_reported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

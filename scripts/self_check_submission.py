@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -255,6 +257,59 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
     return report
 
 
+def record_pass(submission_dir: Path, pr_author: str, report: dict[str, Any]) -> None:
+    """Persist a successful local self-check without hashing manifest.json itself."""
+    if not report.get("ok") or not report.get("can_enter_formal_review"):
+        raise ValueError("only a passing package that can enter formal review may be recorded")
+
+    manifest_path = submission_dir / "manifest.json"
+    self_check_path = submission_dir / "self_check.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        self_check = json.loads(self_check_path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot load manifest.json/self_check.json: {exc}") from exc
+    if not isinstance(manifest, dict) or not isinstance(self_check, dict):
+        raise ValueError("manifest.json and self_check.json must contain JSON objects")
+    if not isinstance(self_check.get("checks"), list):
+        raise ValueError("self_check.json must contain a checks array")
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict):
+        raise ValueError("manifest.json must contain a validation_claim object")
+    files = manifest.get("files")
+    if not isinstance(files, list):
+        raise ValueError("manifest.json must contain a files array")
+    self_check_entry = next(
+        (item for item in files if isinstance(item, dict) and item.get("path") == "self_check.json"),
+        None,
+    )
+    if self_check_entry is None:
+        raise ValueError("manifest.json must list self_check.json")
+
+    checked_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    self_check.update(
+        {
+            "ok": True,
+            "can_enter_formal_review": True,
+            "review_status": "formal-review-ready",
+            "checked_at": checked_at,
+            "checked_by": pr_author,
+            "validator": "scripts/self_check_submission.py",
+        }
+    )
+    self_check_path.write_text(
+        json.dumps(self_check, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    claim["self_checked"] = True
+    self_check_entry["sha256"] = hashlib.sha256(self_check_path.read_bytes()).hexdigest()
+    manifest_path.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+
 def format_markdown(report: dict[str, Any]) -> str:
     lines = ["# Submission self-check", ""]
     lines.append(f"Result: {'PASS' if report.get('ok') else 'FAIL'}")
@@ -269,6 +324,8 @@ def format_markdown(report: dict[str, Any]) -> str:
     lines.append(f"Spatial review: {'PASS' if spatial.get('ok') else 'FAIL'}")
     lines.append(f"Visual packaging check: {'PASS' if visual.get('ok') else 'FAIL'}")
     lines.append(f"Professional evidence review: {'PASS' if professional.get('ok') else 'FAIL'}")
+    if report.get("recorded"):
+        lines.append("Recorded pass: YES")
     if report.get("missing_review_dependencies"):
         lines.extend(["", "Missing review dependencies:"])
         lines.extend(f"- `{item}`" for item in report["missing_review_dependencies"])
@@ -291,6 +348,11 @@ def main() -> int:
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--record-pass",
+        action="store_true",
+        help="Persist a passing self-check to self_check.json and manifest.json.",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -299,6 +361,19 @@ def main() -> int:
         submission_dir = repo_root / submission_dir
 
     report = build_self_check(repo_root, submission_dir, args.pr_author)
+    if args.record_pass:
+        try:
+            record_pass(submission_dir, args.pr_author, report)
+        except ValueError as exc:
+            report["recorded"] = False
+            report["record_error"] = str(exc)
+            if args.json:
+                print(json.dumps(report, ensure_ascii=False, indent=2))
+            else:
+                print(format_markdown(report))
+                print(f"\nCannot record pass: {exc}", file=sys.stderr)
+            return 2
+        report["recorded"] = True
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:
