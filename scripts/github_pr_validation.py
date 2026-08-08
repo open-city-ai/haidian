@@ -463,6 +463,7 @@ def main() -> int:
     ]
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
+    queue_candidate = is_review_queue_candidate(changed_files, pr_author)
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
@@ -488,9 +489,14 @@ def main() -> int:
             comment = build_preflight_failure_comment(changed_files, exc)
             write_step_summary(comment)
             publish_validation_comment(client, pr_number, comment)
+            reconcile_review_labels(
+                client,
+                pr_number,
+                validation_ok=False,
+                queue_candidate=queue_candidate,
+            )
             return 1
 
-        queue_candidate = is_review_queue_candidate(changed_files, pr_author)
         if is_non_submission_pr(files):
             validation = ValidationReport(changed_files=changed_files)
             validation.add_warning(
