@@ -18,6 +18,8 @@ from validate_submission import (  # noqa: E402
     REQUIRED_SECTIONS,
     REQUIRED_SECTIONS_EN,
     REQUIRED_DESIGN_DEPTH_IDS,
+    SOFT_RISK_PATTERNS,
+    has_unnegated_soft_risk,
     is_empty_pdf,
     validate_submission,
 )
@@ -48,6 +50,44 @@ class EmptyPdfDetectionTests(unittest.TestCase):
 
     def test_non_pdf_is_not_flagged(self) -> None:
         self.assertFalse(is_empty_pdf(b"not a pdf"))
+
+
+class SoftRiskDetectionTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.sensitive_pattern = SOFT_RISK_PATTERNS[0][0]
+
+    def test_direct_use_of_internal_data_still_requires_review(self) -> None:
+        self.assertTrue(
+            has_unnegated_soft_risk(
+                self.sensitive_pattern,
+                "本方案使用企业内部数据校准重点区域画像。",
+            )
+        )
+
+    def test_explicit_non_use_statement_does_not_trigger_warning(self) -> None:
+        self.assertFalse(
+            has_unnegated_soft_risk(
+                self.sensitive_pattern,
+                "未使用任何非公开地图、秘密文件、内部数据或个人隐私。",
+            )
+        )
+
+    def test_negative_markdown_list_does_not_trigger_warning(self) -> None:
+        text = """**方案明确不包含以下内容**：
+- 控规调整或法定规划判断
+- 非公开政府数据、企业内部数据、个人隐私数据
+- 未经授权的第三方素材
+"""
+        self.assertFalse(has_unnegated_soft_risk(self.sensitive_pattern, text))
+
+    def test_contrast_after_disclaimer_still_detects_real_promise(self) -> None:
+        promise_pattern = SOFT_RISK_PATTERNS[1][0]
+        self.assertTrue(
+            has_unnegated_soft_risk(
+                promise_pattern,
+                "本方案不保证落地，但后续阶段一定实施。",
+            )
+        )
 
 
 class ManifestHydrationTests(unittest.TestCase):

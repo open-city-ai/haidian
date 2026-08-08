@@ -267,6 +267,34 @@ SOFT_RISK_PATTERNS = [
     (re.compile(r"(无需审批|保证落地|一定实施)"), "可能存在不可执行承诺"),
 ]
 
+SOFT_RISK_NEGATION_RE = re.compile(
+    r"(?:未|不|无|禁止|严禁|不得|不可|避免|拒绝|不应|没有)"
+    r"(?:再|曾|会|应)?"
+    r"(?:使用|采用|提交|上传|包含|涉及|接触|获取|依赖|提供)?"
+    r"[^。！？；;\n]{0,48}$"
+)
+SOFT_RISK_NEGATED_LIST_RE = re.compile(
+    r"(?:明确)?不包含以下内容|"
+    r"(?:禁止|严禁|不得)(?:使用|提交|上传|包含)(?:以下)?(?:内容|资料|数据)?"
+)
+
+
+def has_unnegated_soft_risk(pattern: re.Pattern[str], text: str) -> bool:
+    """Return true only when a soft-risk term is asserted, not explicitly disclaimed."""
+    for match in pattern.finditer(text):
+        line_start = text.rfind("\n", 0, match.start()) + 1
+        line_prefix = text[line_start:match.start()]
+        clause_prefix = re.split(r"(?:但|然而|却|实际(?:上)?|仍(?:然)?)", line_prefix)[-1]
+        if SOFT_RISK_NEGATION_RE.search(clause_prefix):
+            continue
+
+        paragraph_start = text.rfind("\n\n", 0, match.start())
+        paragraph_prefix = text[max(0, paragraph_start):match.start()]
+        if SOFT_RISK_NEGATED_LIST_RE.search(paragraph_prefix):
+            continue
+        return True
+    return False
+
 FORBIDDEN_HTML_PATTERNS = [
     (re.compile(r"<script\b", re.I), "HTML report must not contain scripts"),
     (re.compile(r"<iframe\b", re.I), "HTML report must not contain iframe embeds"),
@@ -1748,7 +1776,7 @@ def validate_proposal_file(
             report.add_error(f"{proposal_path}: {reason}")
 
     for pattern, reason in SOFT_RISK_PATTERNS:
-        if pattern.search(text):
+        if has_unnegated_soft_risk(pattern, text):
             report.add_warning(f"{proposal_path}: {reason}; maintainer review required")
 
 
@@ -1783,7 +1811,7 @@ def validate_changelog_file(
             report.add_error(f"{changelog_path}: {reason}")
 
     for pattern, reason in SOFT_RISK_PATTERNS:
-        if pattern.search(text):
+        if has_unnegated_soft_risk(pattern, text):
             report.add_warning(f"{changelog_path}: {reason}; maintainer review required")
 
 
@@ -1851,7 +1879,7 @@ def validate_risk_file(
             if pattern.search(combined_text):
                 report.add_error(f"{label}: {reason}")
         for pattern, reason in SOFT_RISK_PATTERNS:
-            if pattern.search(combined_text):
+            if has_unnegated_soft_risk(pattern, combined_text):
                 report.add_warning(f"{label}: {reason}; maintainer review required")
 
 
@@ -1946,7 +1974,7 @@ def validate_spatial_file(
             if pattern.search(combined_text):
                 report.add_error(f"{label}: {reason}")
         for pattern, reason in SOFT_RISK_PATTERNS:
-            if pattern.search(combined_text):
+            if has_unnegated_soft_risk(pattern, combined_text):
                 report.add_warning(f"{label}: {reason}; maintainer review required")
 
 
