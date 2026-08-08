@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present and disclosed (official_boundary=false, geometry_role=provisional_constraint); replace with official redline and recalculate when official geometry is published."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; disclosed in proposal.md, sources.json, assumptions.json and visual/index.html. Content scoring remains eligible."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "36 concept land-use polygons derived by topology-safe split fully cover the submitted boundary without gaps or overlaps (spatial_review PASS)."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "Offline static page; no remote resources or active content; data-metric values match metrics.json (visual_review PASS)."
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submission package",
+      "message": "validate_local_submission.py PASS: required files, matrices coverage, proposal sections, evidence references and manifest hashes all valid."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/*.geojson",
+      "message": "spatial_review.py PASS: metrics match recomputation in EPSG:4548; only minor provisional-geometry advisories remain."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "standard_matrix.json, design_depth_matrix.json, proposal.md",
+      "message": "professional_review.py PASS: all mandatory standards, depth items, data refs and known metrics are referenced in proposal.md."
+    }
+  ]
+}
