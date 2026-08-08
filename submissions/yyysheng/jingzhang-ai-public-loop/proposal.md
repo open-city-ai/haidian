@@ -3,10 +3,10 @@ title: "轨迹成环：京张 AI 共生带"
 author_github: "yyysheng"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以京张文化主轴串联三处 AI 创新锚点，用蓝绿慢行和可解释场景节点把研发、开源、产业服务与日常公共生活组织为一条可持续深化的公共回路。"
+summary: "以京张文化主轴串联三处 AI 创新锚点，用蓝绿慢行、大学生生活节律和可解释场景节点把研发、开源、产业服务与日常公共生活组织为一条可持续深化的公共回路。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.2"
+iteration: "v0.3"
 ---
 
 # 轨迹成环：京张 AI 共生带
@@ -76,7 +76,21 @@ iteration: "v0.2"
 
 `roads.geojson` 提出“主轴—支线—横向缝合”参考网络：ROAD-001 是京张文化慢行主轴，ROAD-002 是蓝绿骑行支线，ROAD-003/005 作为轨道站点接驳和东向服务界面，其他支线形成街区微循环。道路长度约 23,456 米，主轴约 9,142 米；这些是设计讨论指标，不是道路红线、断面、桥隧、消防或交通工程结论。[data:geometry/roads.geojson#ROAD-001] [metric:road_network_length_m] [metric:heritage_spine_length_m] [depth:traffic_rail_slow_parking]
 
-交通策略不预设新的轨道线位：以现有站点和公交接口为背景设置步行接驳序列，把非机动车停车、共享出行、无障碍和夜间照明纳入公共节点；用匿名聚合反馈辅助发现慢行断点，由人工确认后再进入更新清单。道路红线、站点接口、停车指标、消防和市政管线均为待补资料。[data:geometry/constraints.geojson#CONSTRAINT-RAIL-001] [source:SOURCE-REGISTRY] [depth:municipal_new_infrastructure]
+交通策略不预设新的轨道线位：以现有站点和公交接口为背景设置步行接驳序列，把非机动车停车、共享出行、无障碍、网约车外围分流和夜间照明纳入公共节点；用 `simulation.json` 的 `demand_geometry` 的概念流线记录主要人流、校园生活接口和路缘分流关系，用匿名聚合反馈辅助发现慢行断点，由人工确认后再进入更新清单。道路红线、站点接口、停车指标、消防和市政管线均为待补资料。[data:geometry/constraints.geojson#CONSTRAINT-RAIL-001] [source:SOURCE-REGISTRY] [depth:municipal_new_infrastructure]
+
+### 人流、大学生生活方式、公共交通与路缘分流参数
+
+本版新增 `simulation.json`（含参数与概念流线 FeatureCollection），把网上可追溯的交通和校园生活资料转换为“背景信号—设计参数—现场回放”三层。五道口公开交通资料记录高峰行人约 10,000 人/小时，晚高峰重点时段为 17:30—18:30，并记录了 8 米人行横道、非机动车左转专用信号和 15 秒四面全绿等治理动作；本稿把这些数值作为压力测试与空间优先级参考，不把它们写成本项目预测。[source:WEB-WUDAOKOU-TRAFFIC-2021] [metric:pedestrian_peak_reference_pph]
+
+公共交通以既有站点和公交接口为骨架：北京地铁13号线公开站间距为大钟寺—知春路约 1,206 米、知春路—五道口约 1,829 米，方案因此把站点、慢行主轴、生活服务和公共节点做成连续换乘序列，不虚构新轨道线位。[source:WEB-SUBWAY-SPACING-13] [source:WEB-QINGHE-STATION-2025] [metric:transit_spacing_dazhongsi_zhichun_m] [metric:transit_spacing_zhichun_wudaokou_m]
+
+共享单车不是附属设施，而是大学生活和最后一公里的高频层。北京市交通委员会披露 2025 年全市日均骑行量 311.64 万人次、车辆日均周转率 3.67 次；海淀公开案例记录工作日早晚高峰需求约为平峰 3.6 倍。方案据此设置 3.6 倍峰值压力参数、0.85 停车占用触发阈值、站口/校园门/公共节点三类停车口袋和潮汐调运闭环；这些是运维测试参数，不是本项目平台订单预测。[source:WEB-BIKE-CITY-2025] [source:WEB-BIKE-HAIDIAN-2021] [metric:shared_bike_peak_multiplier] [metric:shared_bike_daily_trips_beijing_2025]
+
+大学生生活节律采用公开校园服务页面交叉归纳，而不是个人画像：清华公开资料体现自行车短距离移动、食堂/便利店/打印/快递和晚间学习；北大公开资料体现多食堂、咖啡、学习与文化活动；人大公开资料体现宿舍—食堂—生活服务区的邻近关系；北航公开页面体现宿舍、食堂、图书馆和学生服务节点的复合组织。[source:WEB-TSINGHUA-LIFE] [source:WEB-PKU-LIFE] [source:WEB-RUC-LIFE] [source:WEB-BUAA-LIFE] [metric:university_life_anchor_count] [metric:flow_time_window_count]
+
+人流模型分四个时段：07:30—09:30 上课与上班，11:00—13:30 午餐与短时社交，17:00—19:30 下班与课后，20:00—23:30 晚间学习与活动。模型使用 `flow_index = base × time_weight × zone_weight × mode_priority`，仅用于比较不同节点、方式和时段的设计压力；正式深化时用现场计数、15 分钟匿名聚合和人工复核替换先验。三个重点区分别给予大钟寺公共交通/网约车 1.40、AI 原点骑行 1.35、众智园工作日研发 1.15 的概念权重。[data:simulation.json#time_windows] [data:simulation.json#demand_geometry.features/FLOW-NODE-001] [data:simulation.json#demand_geometry.features/FLOW-CORRIDOR-001] [metric:mobility_gateway_count] [metric:pedestrian_flow_corridor_count]
+
+网约车采用“外围落客—短步行—外围上客”分流：大钟寺、AI 原点、众智园各设置 1 个概念分流口袋、每处目标 2 个上客位，合计 3 个口袋、6 个上客位；上客点与共享单车停车口袋错位，等待车辆不进入京张文化慢行主轴，活动日采用预约时段、彩色导视、15 分钟聚合调度和人工引导。北京公开枢纽案例提供了多接驳区、候车区、上车点和彩色导视的组织参照，北京网约车研究则提示需求具有时空节律；两者都不替代本项目实时订单和交通工程设计。[source:WEB-RIDEHAIL-HUB-REFERENCE] [source:WEB-RIDEHAIL-BEIJING-STUDY] [data:simulation.json#demand_geometry.features/RIDE-ZONE-001] [metric:ride_hailing_pickup_pocket_count] [metric:ride_hailing_pickup_bay_target]
 
 ### 蓝绿空间、公共空间和城市风貌
 
@@ -172,7 +186,7 @@ iteration: "v0.2"
 
 ## 指标体系、面积复算与合规矩阵
 
-指标从同一套结构化数据派生：site boundary、land use、buildings、roads、green space、public space、phasing 和 key areas。当前可复算：提交边界 11,412,825.386 平方米、概念建筑基底 685,898.773 平方米、绿地比例 0.072201、公共空间比例 0.003885、主轴 9,141.692 米、网络 23,455.805 米、AI 节点 5 个、更新项目 9 项、重点区 3 个。[metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_ratio] [metric:public_space_ratio] [metric:heritage_spine_length_m] [metric:road_network_length_m] [metric:ai_node_count] [metric:renewal_project_count] [metric:key_area_count]
+指标从同一套结构化数据派生：site boundary、land use、buildings、roads、green space、public space、phasing 和 key areas。当前可复算：提交边界 11,412,825.386 平方米、概念建筑基底 685,898.773 平方米、绿地比例 0.072201、公共空间比例 0.003885、主轴 9,141.692 米、网络 23,455.805 米、AI 节点 5 个、更新项目 9 项、重点区 3 个；新增人流网关 3 个、校园生活接口 4 个、概念人流走廊 3 条、网约车分流口袋 3 个/目标上客位 6 个、时段 4 组。背景校准值包括五道口 10,000 人/小时压力参考、共享单车峰值3.6倍、北京市 2025 年日均共享单车 311.64 万人次和13号线 1,206/1,829 米站间距。[metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_ratio] [metric:public_space_ratio] [metric:heritage_spine_length_m] [metric:road_network_length_m] [metric:ai_node_count] [metric:renewal_project_count] [metric:key_area_count] [metric:pedestrian_peak_reference_pph] [metric:shared_bike_peak_multiplier] [metric:shared_bike_daily_trips_beijing_2025] [metric:transit_spacing_dazhongsi_zhichun_m] [metric:transit_spacing_zhichun_wudaokou_m] [metric:mobility_gateway_count] [metric:university_life_anchor_count] [metric:pedestrian_flow_corridor_count] [metric:ride_hailing_pickup_pocket_count] [metric:ride_hailing_pickup_bay_target] [metric:flow_time_window_count]
 
 FAR、建筑高度为 unknown；它们不是暂定指标，而是明确的数据缺口。[metric:floor_area_ratio] [metric:building_height_m] `compliance_matrix.json` 覆盖公告和 agent.1—agent.6；`standard_matrix.json` 覆盖 mandatory standards；`design_depth_matrix.json` 将正式深度拆为可检查项。[depth:metrics_recalculation] [data:geometry/constraints.geojson#CONSTRAINT-RAIL-001]
 
@@ -188,5 +202,8 @@ AI 场景采用最小化数据、可解释输出、人工复核、可关闭和�
 
 - [source:OFFICIAL-ANNOUNCEMENT] 公告；[source:AGENT-TASKBOOK] agent 任务书；[source:SITE-PACKAGE] 结构化任务包；[source:SOURCE-REGISTRY] 资料用途登记；[source:PROCESSED-FACT-PACK] 事实包。
 - [source:BOUNDARY-SOURCE] 临时三层边界；[source:KEY-AREA-SOURCE] 三处重点区临时几何；比较案例见 `sources.json` 的 AI-CASE 条目。
+- [source:WEB-WUDAOKOU-TRAFFIC-2021]、[source:WEB-QINGHE-STATION-2025]、[source:WEB-BIKE-CITY-2025]、[source:WEB-BIKE-HAIDIAN-2021]、[source:WEB-SUBWAY-SPACING-13]：公共交通、人流与共享单车背景参数。
+- [source:WEB-TSINGHUA-LIFE]、[source:WEB-PKU-LIFE]、[source:WEB-RUC-LIFE]、[source:WEB-BUAA-LIFE]：周边大学生活服务与时间节律的公开参照。
+- [source:WEB-RIDEHAIL-BEIJING-STUDY]、[source:WEB-RIDEHAIL-HUB-REFERENCE]：网约车时空节律与枢纽分流组织参照。
 - 标准：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 - 深度：[depth:existing_conditions_diagnosis] [depth:three_level_scope_framework] [depth:overall_spatial_structure] [depth:land_use_layout] [depth:development_intensity_controls] [depth:height_massing_character] [depth:retain_renovate_demolish] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure] [depth:blue_green_public_space] [depth:three_key_area_detailed_design] [depth:renewal_project_list] [depth:phasing_implementation] [depth:metrics_recalculation] [depth:risk_missing_data]

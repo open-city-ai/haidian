@@ -152,6 +152,149 @@
         "Official height controls are missing."
       ],
       "reason": "No official height-control file is available."
+    },
+    "pedestrian_peak_reference_pph": {
+      "status": "known",
+      "value": 10000,
+      "unit": "count",
+      "source_files": [
+        "mobility_parameters.json"
+      ],
+      "formula": "official Wudaokou reference peak pedestrians per hour; background stress test only",
+      "confidence": "low",
+      "assumptions": [
+        "Not a local OD forecast; requires field count before detailed design."
+      ]
+    },
+    "shared_bike_peak_multiplier": {
+      "status": "known",
+      "value": 3.6,
+      "unit": "index",
+      "source_files": [
+        "mobility_parameters.json"
+      ],
+      "formula": "reported Haidian shared-bike peak demand divided by off-peak demand",
+      "confidence": "low",
+      "assumptions": [
+        "Historical local case used as design stress multiplier, not current platform order data."
+      ]
+    },
+    "shared_bike_daily_trips_beijing_2025": {
+      "status": "known",
+      "value": 3116400,
+      "unit": "count",
+      "source_files": [
+        "mobility_parameters.json"
+      ],
+      "formula": "2025 Beijing daily average internet-rental-bike rides",
+      "confidence": "medium",
+      "assumptions": [
+        "Citywide background reference; not allocated to the submission boundary."
+      ]
+    },
+    "transit_spacing_dazhongsi_zhichun_m": {
+      "status": "known",
+      "value": 1206,
+      "unit": "m",
+      "source_files": [
+        "mobility_parameters.json"
+      ],
+      "formula": "official Beijing Subway Line 13 Dazhongsi—Zhichun Road station spacing",
+      "confidence": "medium",
+      "assumptions": [
+        "Network reference only; no site-specific station catchment inference."
+      ]
+    },
+    "transit_spacing_zhichun_wudaokou_m": {
+      "status": "known",
+      "value": 1829,
+      "unit": "m",
+      "source_files": [
+        "mobility_parameters.json"
+      ],
+      "formula": "official Beijing Subway Line 13 Zhichun Road—Wudaokou station spacing",
+      "confidence": "medium",
+      "assumptions": [
+        "Network reference only; no site-specific station catchment inference."
+      ]
+    },
+    "mobility_gateway_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/mobility_demand.geojson"
+      ],
+      "formula": "count(layer=SCENARIO_NODE, node_type=MOBILITY_GATEWAY)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual gateways to be replaced by verified station/gate geometry."
+      ]
+    },
+    "university_life_anchor_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/mobility_demand.geojson"
+      ],
+      "formula": "count(layer=SCENARIO_NODE, node_type=UNIVERSITY_LIFE_ANCHOR)",
+      "confidence": "low",
+      "assumptions": [
+        "Lifestyle interfaces are design anchors, not official campus boundaries."
+      ]
+    },
+    "pedestrian_flow_corridor_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/mobility_demand.geojson"
+      ],
+      "formula": "count(layer=ROAD_CENTERLINE, mobility_role in pedestrian/campus flow)",
+      "confidence": "low",
+      "assumptions": [
+        "Analysis-helper lines are conceptual desire lines and excluded from road_network_length_m."
+      ]
+    },
+    "ride_hailing_pickup_pocket_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/mobility_demand.geojson"
+      ],
+      "formula": "count(layer=PUBLIC_SPACE, mobility_role=ride_hailing_pickup_dropoff)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual curb pockets; final capacity follows traffic engineering and station management."
+      ]
+    },
+    "ride_hailing_pickup_bay_target": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/mobility_demand.geojson"
+      ],
+      "formula": "sum(pickup_bays_target for ride-hailing pockets)",
+      "confidence": "low",
+      "assumptions": [
+        "Design target only; not an approved curb or parking control."
+      ]
+    },
+    "flow_time_window_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "mobility_parameters.json"
+      ],
+      "formula": "count(time_windows)",
+      "confidence": "medium",
+      "assumptions": [
+        "Time windows are operating parameters for testing and can be revised after local counts."
+      ]
     }
   }
 }

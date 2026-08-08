@@ -2,60 +2,39 @@
   "schema_version": "0.1.0",
   "checks": [
     {
-      "check_id": "BOUNDARY_TRUST",
+      "check_id": "DETERMINISTIC_VALIDATION",
       "result": "pass",
-      "severity": "major",
-      "target": "geometry/site_boundary.geojson",
-      "message": "Provisional boundary is traceable and explicitly labeled; official replacement is required for precision scoring."
+      "severity": "info",
+      "target": "scripts/validate_local_submission.py",
+      "message": "Formal package structure, files, hashes, sources, metrics, matrices and local references pass."
     },
     {
-      "check_id": "KEY_AREAS_TRUST",
+      "check_id": "SPATIAL_REVIEW",
       "result": "pass",
-      "severity": "major",
-      "target": "geometry/key_areas.geojson",
-      "message": "Three required key areas are present and explicitly provisional."
-    },
-    {
-      "check_id": "LAND_USE_TOPOLOGY",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "Shared-cut land-use bands cover the submitted boundary without intentional overlap."
-    },
-    {
-      "check_id": "DESIGN_LAYERS",
-      "result": "pass",
-      "severity": "major",
+      "severity": "info",
       "target": "geometry/*.geojson",
-      "message": "Design layers express a coherent loop, key-area differentiation, mobility, green space, public space and phasing."
+      "message": "Spatial recomputation passes; provisional boundary and key areas remain explicitly disclosed for later official recalculation."
     },
     {
-      "check_id": "VISUAL_STATIC",
+      "check_id": "VISUAL_PACKAGING",
       "result": "pass",
-      "severity": "major",
+      "severity": "info",
       "target": "visual/index.html",
-      "message": "Offline HTML uses local figures and no remote resources, scripts, forms or trackers."
+      "message": "Offline visualization includes required sections and metric markers."
     },
     {
       "check_id": "PROFESSIONAL_EVIDENCE",
       "result": "pass",
-      "severity": "major",
+      "severity": "info",
       "target": "proposal.md",
-      "message": "Proposal references sources, standards, design depth, geometry and known metrics."
+      "message": "Standards, design-depth, source, data and known-metric references are complete."
     },
     {
-      "check_id": "COPYRIGHT_AND_PRIVACY",
-      "result": "pass",
-      "severity": "major",
-      "target": "report/copyright_statement.md",
-      "message": "No third-party images, logos, fonts or personal/private data are embedded."
+      "check_id": "PROVISIONAL_GEOMETRY_DISCLOSURE",
+      "result": "unknown",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Official boundary, local OD, platform orders and detailed road controls remain pending; current geometry is not an official redline."
     }
-  ],
-  "tool_run": {
-    "command": "python scripts/self_check_submission.py submissions/yyysheng/jingzhang-ai-public-loop --pr-author yyysheng --json",
-    "result": "PASS",
-    "review_status": "formal-review-ready",
-    "can_enter_formal_review": true,
-    "observed_provisional_notice": "site boundary and three key areas remain provisional; content scoring remains eligible and official replacement requires full recomputation."
-  }
+  ]
 }
