@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.1.0",
+  "metrics": [
+    {
+      "id": "M-01",
+      "name_zh": "总用地面积",
+      "name_en": "Total Site Area",
+      "status": "official",
+      "value": 4360,
+      "unit": "ha",
+      "source_files": ["agent_taskbook.json"],
+      "formula": "from taskbook",
+      "confidence": "high",
+      "assumptions": "官方任务书公开数据"
+    },
+    {
+      "id": "M-02",
+      "name_zh": "绿地率",
+      "name_en": "Green Space Ratio",
+      "status": "target",
+      "value": 35,
+      "unit": "%",
+      "source_files": ["GB-50137"],
+      "formula": "green_area / total_area * 100",
+      "confidence": "target",
+      "assumptions": "目标值，参照国家标准。实际值待官方边界数据确认后计算"
+    },
+    {
+      "id": "M-03",
+      "name_zh": "创新空间占比",
+      "name_en": "Innovation Space Ratio",
+      "status": "estimated",
+      "value": 17,
+      "unit": "%",
+      "source_files": ["proposal.md Ch.7"],
+      "formula": "innovation_mixed_area / total_area * 100",
+      "confidence": "low",
+      "assumptions": "概念估算。对标波士顿肯德尔广场（~25%）、深圳南山科技园（~18%）"
+    },
+    {
+      "id": "M-04",
+      "name_zh": "慢行覆盖率",
+      "name_en": "Walking/Biking Coverage",
+      "status": "target",
+      "value": 90,
+      "unit": "%",
+      "source_files": ["proposal.md Ch.8"],
+      "formula": "area_within_300m_of_slow_traffic_network / total_area * 100",
+      "confidence": "target",
+      "assumptions": "设计目标，基于全带慢行网络概念规划"
+    },
+    {
+      "id": "M-05",
+      "name_zh": "AI场景节点数",
+      "name_en": "AI Scenario Nodes",
+      "status": "target",
+      "value": 50,
+      "unit": "个",
+      "source_files": ["proposal.md Ch.6"],
+      "formula": "10 scenarios * 5 nodes each",
+      "confidence": "target",
+      "assumptions": "目标值，10类场景各设置约5个空间节点"
+    },
+    {
+      "id": "M-06",
+      "name_zh": "公共空间300m覆盖率",
+      "name_en": "Public Space 300m Coverage",
+      "status": "target",
+      "value": 85,
+      "unit": "%",
+      "source_files": ["GB-50180"],
+      "formula": "residential_area_within_300m_of_public_space / total_residential_area * 100",
+      "confidence": "target",
+      "assumptions": "参照居住区规划设计标准"
+    },
+    {
+      "id": "M-07",
+      "name_zh": "AI核心区就业密度",
+      "name_en": "AI Core Area Employment Density",
+      "status": "estimated",
+      "value": 2.5,
+      "unit": "万人/km²",
+      "source_files": ["proposal.md Ch.5 (case studies)"],
+      "formula": "estimated_ai_employment / core_area",
+      "confidence": "low",
+      "assumptions": "对标肯德尔广场（~3万/km²）。概念估计，待产业规划深化"
+    },
+    {
+      "id": "M-08",
+      "name_zh": "年度国际活动场次",
+      "name_en": "Annual International Events",
+      "status": "target",
+      "value": 30,
+      "unit": "场",
+      "source_files": ["proposal.md Ch.11"],
+      "formula": "count of scheduled events per year",
+      "confidence": "target",
+      "assumptions": "基于活动体系设计：1峰会+1双年展+4季度+12月度+12公众日"
+    },
+    {
+      "id": "M-09",
+      "name_zh": "混合用地比例",
+      "name_en": "Mixed-Use Land Ratio",
+      "status": "target",
+      "value": 40,
+      "unit": "%",
+      "source_files": ["proposal.md Ch.7"],
+      "formula": "mixed_use_land / total_construction_land * 100",
+      "confidence": "target",
+      "assumptions": "设计目标，鼓励垂直混合和水平混合"
+    }
+  ],
+  "notes": "所有estimated和target指标均为概念值。待官方场地数据和正式规划深化后重新计算。M-01为唯一基于任务书的official数据点。"
+}

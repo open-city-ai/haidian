@@ -1,0 +1,29 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASM-01",
+      "category": "spatial",
+      "description_zh": "场地边界基于任务书描述和公开地图推导，标注为provisional_constraint。官方边界数据尚未获取，所有空间分析为临时结果。",
+      "description_en": "Site boundary derived from taskbook description and public maps, marked as provisional_constraint. Official boundary data not yet obtained; all spatial analysis is provisional.",
+      "impact_zh": "面积计算、土地利用分区、指标计算均基于临时几何，需在官方数据可用后重新计算",
+      "mitigation_zh": "所有GeoJSON标注official_boundary=false；所有指标标注status=estimated；proposal.md中明确声明限制"
+    },
+    {
+      "id": "ASM-02",
+      "category": "data",
+      "description_zh": "全球AI创新生态案例数据来自公开行业报告、学术论文和网络调研，可能存在时效性和口径差异",
+      "description_en": "Global AI ecosystem case data from public industry reports, academic papers, and web research; may have timeliness and scope differences",
+      "impact_zh": "对标分析的精度可能受限",
+      "mitigation_zh": "标注source_type=background_only；提供来源链接供独立验证"
+    },
+    {
+      "id": "ASM-03",
+      "category": "design",
+      "description_zh": "所有空间设计、建筑概念、地标方案为概念建议，未经过专业建筑/结构/交通工程可行性验证",
+      "description_en": "All spatial design, architectural concepts, and landmark proposals are conceptual suggestions without professional engineering feasibility verification",
+      "impact_zh": "方案仅提供方向性参考，不直接用于施工或审批",
+      "mitigation_zh": "全部标注为概念建议/参考方案；proposal.md第13章明确法律边界声明"
+    }
+  ]
+}
