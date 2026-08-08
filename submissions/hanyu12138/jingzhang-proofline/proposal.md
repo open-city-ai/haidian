@@ -6,14 +6,27 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路的轨迹、站点与里程语法转译为城市AI公共验证基础设施，以一条主脊、三座智证站、双翼服务和十二个可退出场景连接创新、生活与治理。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v1.1"
 ---
 
 # 京张智证线：一条可验证、可共享、可进化的城市AI公共基础设施
 
-> **边界状态：PROVISIONAL CONSTRAINT。** 本方案使用仓库维护者依据公开公告整理的临时粗略范围，只能用于概念生成、展示和投稿自检。它不是 official redline，不表达地块、权属、道路、文保或工程边界；取得清权 official polygons 后，全部图层、指标、图片、PDF 与 HTML 必须同步重算。[source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001]
+> **边界状态：PROVISIONAL CONSTRAINT。** 本方案使用仓库维护者依据公开公告整理的临时粗略范围，只能用于概念生成、展示和投稿自检。它不是 official redline，不表达地块、权属、道路、文保或工程边界；取得清权 official polygons 后，全部图层、指标、图片、PDF 与 HTML 必须同步重算。[source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001] [self_check:BOUNDARY_TRUST]
 
 “京张智证线 / Jing-Zhang Proofline”不是在城市里多放一批智能设备，而是把 AI 从后台能力变成公众可以看见、质疑、退出和共同改进的城市过程。百年京张铁路留下“轨迹—站点—里程”的空间秩序；本方案将其转译为“问题提出—公开测试—人工裁决—贡献记忆—复用转化”的公共智证回路。众智园负责全栈验证，AI 原点社区负责开放转化，大钟寺负责城市体验；中关村科技服务翼与小月河场景赋能翼分别提供专业要素和真实场景，最终形成一条以公共利益为判断标准、以人工最终负责为底线的创新带。[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+## 一页执行摘要 / Executive Brief
+
+| 评审问题 | 京张智证线的回答 | 可核验成果 |
+| --- | --- | --- |
+| 核心命题 | 把 AI 从设备展示转为可质疑、可退出、可复盘的城市公共验证过程 | 一套六字段场景协议与十二张场景卡 |
+| 空间响应 | 以“一线三站、双翼六接口、十二智证点”连接研发、转化、城市体验与日常公共服务 | 9 类 GeoJSON、5 张证据图、A3/A0 与离线页面 |
+| 实施起点 | 先做协议、导视、问题门诊和低扰动试验段，再以证据门决定继续、调整或停止 | 8 个行动包、3 段分期、概念责任与服务目标 |
+| 公共价值 | 高风险场景必须人工最终负责，基本服务保留非数字路径，公众拥有退出、申诉和纠错入口 | 隐私与人工复核自检 [self_check:PRIVACY_HUMAN_REVIEW] |
+| 证据状态 | 几何与指标可复算，但边界、控规、权属、交通、市政和文保资料仍待专业确认 | 假设、自检、风险矩阵与 90 项可点击证据索引 |
+| 决策边界 | 全部空间、品牌、活动、时限和角色安排均为概念建议，不是法定规划、政府安排或投资承诺 | 风险章节、停止条件与迭代记录 |
+
+**English brief.** Jing-Zhang Proofline turns the historic railway logic of track, station and mile into civic AI infrastructure for public testing, human review, opt-out and reusable evidence. One public spine links three differentiated Proof Stations, two service wings, six cross-connections and twelve governed scenarios. Implementation begins with reversible protocols, wayfinding, service clinics and a low-impact pilot segment; every expansion remains conditional on verified boundaries, professional review and public-value evidence. This is a conceptual reference for further professional work, not an approved plan, delivery commitment or government endorsement.
 
 ## 设计依据与资料清单
 
@@ -37,9 +50,9 @@ iteration: "v1.0"
 
 ### 2. 生成与复核方法
 
-临时边界统一使用 EPSG:4326 交换，在 EPSG:4548 中复算面积与长度。用地由同一组切分线与 site polygon 相交生成，保证完整覆盖、无缝、无重叠；绿地、公共空间、概念建筑、道路、场景节点和分期都从同一边界与用地分区派生。五张图、离线页面和 PDF 只解释结构化数据，不反向产生指标。[data:geometry/land_use.geojson#LU-001] [depth:metrics_recalculation]
+临时边界统一使用 EPSG:4326 交换，在 EPSG:4548 中复算面积与长度。用地由同一组切分线与 site polygon 相交生成，保证完整覆盖、无缝、无重叠；绿地、公共空间、概念建筑、道路、场景节点和分期都从同一边界与用地分区派生。五张图、离线页面和 PDF 只解释结构化数据，不反向产生指标。[data:geometry/land_use.geojson#LU-001] [depth:metrics_recalculation] [self_check:METRIC_RECALCULATION]
 
-当前缺少官方三层范围 polygon、重点区 polygon、控规、道路红线、权属、现状建筑、文保、河道、市政和公共服务设施底数。它们分别登记在 `assumptions.json` 与 `geometry/constraints.geojson` 的 metadata 中；设计采用“能复算的明确复算、不能确认的保持未知、需要深化的设置证据门”三类处理，不以视觉精细度制造确定感。[data:geometry/constraints.geojson#CONSTRAINTS] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+当前缺少官方三层范围 polygon、重点区 polygon、控规、道路红线、权属、现状建筑、文保、河道、市政和公共服务设施底数。它们分别登记在 `assumptions.json` 与 `geometry/constraints.geojson` 的 metadata 中；设计采用“能复算的明确复算、不能确认的保持未知、需要深化的设置证据门”三类处理，不以视觉精细度制造确定感。[data:geometry/constraints.geojson] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 
 ## 三层范围工作框架
 
@@ -67,6 +80,10 @@ iteration: "v1.0"
 
 Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”构成：轨道代表百年延续，节点代表三个重点区，开放括号表示任何结论都可以被补充和复核。视觉系统不用企业商标或现成园区符号，使用矿物灰、铁路信号红、公共服务青、生态绿四类颜色；导视与整体 Logo 分开，导视负责方向与风险，Logo 负责识别。字体仅使用系统字体栅格化输出，不随包分发。[depth:height_massing_character]
 
+![京张智证线概念 Logo 与中英文标准组合](assets/proofline-logo.svg)
+
+概念视觉规范以标志节点直径 `x` 为基准：标志四周至少保留 `1x` 净空；横向中英组合最小建议宽度为 36 mm，数字界面符号最小建议宽度为 24 px；浅色背景使用矿物灰字组，深色背景使用白色单色版。铁路信号红 `#C7463B` 只标记风险、停止与验证状态，公共服务青 `#167C80` 标记可进入服务，生态绿 `#4E7A55` 标记蓝绿系统，三者不作渐变或发光效果。不得拉伸、旋转、添加企业冠名、替换节点数量或把概念标志误作政府机构标识。中英文标准组合用于国际传播，`Proof Station / Proof Mile / Proof Protocol` 可作为下级命名；具体商标检索、字体授权、无障碍对比度和应用物料仍须由品牌与法律专业团队深化。[source:AGENT-TASKBOOK]
+
 ### 2. 六个全球案例，只取机制、不搬数字
 
 案例均来自机构公开官网，只作为 background-only 机制对照。方案不引用其投资额、企业数量、产值或未经核实绩效，也不把外地治理条件直接套入海淀。[source:SOURCE-REGISTRY]
@@ -86,7 +103,17 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 生态图谱以“问题”而非“机构名单”为起点。居民、开发者、企业、高校和专业团队提出公共或产业问题；中关村科技服务翼提供法务、知识产权、资本、人才、标准与国际传播转介；众智园提供模型安全、端侧算力与标准沙盒；AI 原点社区提供开源首发、近校转化和人才服务；小月河翼与京张主脊提供真实场景；大钟寺把成熟度足够且可退出的产品带到城市体验与国际交流。每次验证都产出公开协议、人工裁决、负面结果和可复用组件，而不是只形成宣传案例。[depth:overall_spatial_structure]
 
-区域协同不以未经核实的企业清单表示，而以接口表示：与高校建立成果授权与开放日接口，与企业建立可撤回测试与问题发布接口，与京津冀创新资源建立远程评测和成果互认研究接口。算力、数据、资金、招商和政策均不写成确定承诺，待主管部门、权利主体与专业团队深化。
+区域协同不以未经核实的企业清单表示，而以“可交换的验证成果”作为接口。下表中的节点角色、合作方式和产出均为建议研究方向，不声称已有合作、资源或政策安排。[source:AGENT-TASKBOOK] [assumption:A-OPERATIONS-001]
+
+| 协同节点 | 建议对接能力 | Proofline 接口 | 可回流的公共成果 | 进入条件 |
+| --- | --- | --- | --- | --- |
+| 北纬社区 | 开发者社群、内容共创与日常体验议题 | 开放问题库、城市记忆贡献站、Proofline Week 社群单元 | 经授权的需求清单、体验反馈与开源内容版本 | 社群授权、版权核验、匿名或聚合反馈 |
+| 未来科学城 | 基础研究成果与工程验证需求 | 众智园模型安全、端侧算力和标准沙盒的远程评测接口 | 可复用测试协议、失败记录与转化问题清单 | 成果权属、数据分级、测试责任主体明确 |
+| 怀柔科学城 | 科学设施相关的算法、仪器与交叉研究议题 | AI 原点社区开放首发与专业转介接口 | 面向公众可理解的成果说明、复现实验目录与人才交流议题 | 不触及非公开科研资料，公开范围逐项确认 |
+| 经开区 | 智能终端、机器人与规模化工程反馈 | 大钟寺城市体验站与机器人路权沙盒的“验证—工程反馈”接口 | 城市使用问题、人工接管记录与产品改进证据 | 产品安全、消费者权益、路权和采购边界确认 |
+| 京津冀 | 跨城市应用环境与治理经验 | 统一的 Proof Protocol、验证记录字段和远程复核格式 | 可比较的正负结果、互认研究样本与跨城问题库 | 由相关主体另行协商规则，不自动互认或复制部署 |
+
+协同价值不以签约数或曝光量衡量，而看协议能否复用、负面结果是否公开、需求是否得到回应以及本地基本服务是否改善。算力、数据、资金、招商和政策均不写成确定承诺；任何跨区试点都须由相应主管主体、权利主体和专业团队另行确认。
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -104,13 +131,13 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 3. 控规深度的表达方式
 
-达到控规城市设计深度，不等于由智能体编造控规数值。本包完整表达用地、空间结构、建筑体量方法、交通慢行、市政接口、公共空间、风貌、更新项目、分期、指标与风险，并通过 `standard_matrix.json` 和 `design_depth_matrix.json` 建立证据链；容积率、高度、密度控制、绿地率控制、退线、四线、设施容量和道路红线全部列为待确认。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:development_intensity_controls]
+达到控规城市设计深度，不等于由智能体编造控规数值。本包完整表达用地、空间结构、建筑体量方法、交通慢行、市政接口、公共空间、风貌、更新项目、分期、指标与风险，并通过 `standard_matrix.json` 和 `design_depth_matrix.json` 建立证据链；容积率、高度、密度控制、绿地率控制、退线、四线、设施容量和道路红线全部列为待确认。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:development_intensity_controls] [assumption:A-CONTROLS-001]
 
 公共界面采取“首层可见、技术可关、空间可逆”三条控制建议：研发与服务空间面向主脊设置可预约共享界面；信息屏、传感器和机器人测试不占据连续无障碍通道；轻量构件优先可拆卸、可维修和重复使用。高度、屋顶和体量只给出相邻关系、天际线连续性和遗产界面退让的设计原则，具体数值等待官方控制与视线分析。[standard:MOHURD-URBAN-DESIGN-MEASURES]
 
 ## 重点区域详细设计
 
-三处重点区的公告约面积分别为众智园 192.1 ha、AI 原点社区 104.3 ha、大钟寺 72.0 ha；本包中的矩形 polygon 只是维护者依据名称、南北顺序和约面积整理的粗略替代，不能用于地块、权属、拆改留或精确面积判断。[source:KEY-AREA-SOURCE] [data:geometry/key_areas.geojson#PROV-KEY-001]
+三处重点区的公告约面积分别为众智园 192.1 ha、AI 原点社区 104.3 ha、大钟寺 72.0 ha；本包中的矩形 polygon 只是维护者依据名称、南北顺序和约面积整理的粗略替代，不能用于地块、权属、拆改留或精确面积判断。[source:KEY-AREA-SOURCE] [data:geometry/key_areas.geojson#PROV-KEY-001] [self_check:KEY_AREAS_TRUST]
 
 ![三处重点区域与设计任务图](assets/figures/key-areas.png)
 
@@ -180,13 +207,13 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 | 11 可退出智能终端体验街 | 城市体验；大钟寺 | 消费者、企业与研究者；匿名体验反馈 | 清晰告知、随时退出、人工投诉台；产品按周期轮换 |
 | 12 城市记忆贡献站 | 文化；京张主脊 | 居民、铁路记忆贡献者、开发者；授权文本与图像元数据 | 出处标注、争议下架、权利人撤回；不生成虚构历史 |
 
-场景—空间—运营的共同判断是：先证明公共问题存在，再用最小规模试验验证；通过人工评审后才扩大；出现隐私、安全、公平或公共空间冲突时可以立即停止。`self_check.json` 的 `PRIVACY_HUMAN_REVIEW` 检查对应这一边界。[depth:risk_missing_data]
+场景—空间—运营的共同判断是：先证明公共问题存在，再用最小规模试验验证；通过人工评审后才扩大；出现隐私、安全、公平或公共空间冲突时可以立即停止。`self_check.json` 的 `PRIVACY_HUMAN_REVIEW` 检查对应这一边界。[depth:risk_missing_data] [self_check:PRIVACY_HUMAN_REVIEW]
 
 ## 用地、建筑规模与拆改留方案
 
 ### 1. 完整用地分区
 
-用地由 6×6 概念网格与临时 site polygon 相交形成，实际输出 30 余个有效多边形，全部共享边界坐标。科研、商业、住宅、教育、道路、公园、防护绿地与广场总和等于 site area；任何空白都不以“待定”逃避分类。结构化用地是可替换的测试模型，不是对现状或法定用途的判断。[data:geometry/land_use.geojson#LU-001] [depth:land_use_layout]
+用地由 6×6 概念网格与临时 site polygon 相交形成，实际输出 30 余个有效多边形，全部共享边界坐标。科研、商业、住宅、教育、道路、公园、防护绿地与广场总和等于 site area；任何空白都不以“待定”逃避分类。结构化用地是可替换的测试模型，不是对现状或法定用途的判断。[data:geometry/land_use.geojson#LU-001] [depth:land_use_layout] [self_check:LAND_USE_TOPOLOGY]
 
 复算面积分别为：科研约 360.31 ha、商业服务约 149.49 ha、住宅约 168.08 ha、教育约 95.30 ha、概念道路约 111.34 ha、公园绿地约 189.28 ha、防护绿地约 15.69 ha、广场约 51.79 ha。其证据标签为 [metric:land_use_0804_sqm]、[metric:land_use_1207_sqm]、[metric:land_use_1402_sqm]、[metric:land_use_1403_sqm]；所有数字均受临时边界影响。
 
@@ -198,7 +225,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 3. 拆改留决策树
 
-具体建筑进入深化后依次判断：是否具有历史、社会或公共服务价值；结构、消防和能源改造是否可行；保留改造与替换的全生命周期成本如何；现有使用者如何安置并参与；是否符合控规和权属。结果才可进入“保留修缮、功能改造、局部替换、依法更新”四类。当前包不在图上标注拆除对象，避免把缺资料伪装为果断设计。[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+具体建筑进入深化后依次判断：是否具有历史、社会或公共服务价值；结构、消防和能源改造是否可行；保留改造与替换的全生命周期成本如何；现有使用者如何安置并参与；是否符合控规和权属。结果才可进入“保留修缮、功能改造、局部替换、依法更新”四类。当前包不在图上标注拆除对象，避免把缺资料伪装为果断设计。[standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [assumption:A-BUILDINGS-001]
 
 ## 交通、轨道、市政与公共服务设施
 
@@ -208,13 +235,13 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ![交通慢行与蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
 
-六个横向接口分别服务北端生态与对外联系、众智园、近校协作、AI 原点社区、南段社区服务和大钟寺站城联系。接口不是统一造桥，而是问题清单：缺口在哪里、普通平面路径能否优化、无障碍是否连续、骑行与步行是否冲突、是否需要分时管理。任何跨越五环、轨道或干路的方案，均等待道路红线、交通量、结构、市政、消防和文保资料后比较。[depth:traffic_rail_slow_parking]
+六个横向接口分别服务北端生态与对外联系、众智园、近校协作、AI 原点社区、南段社区服务和大钟寺站城联系。接口不是统一造桥，而是问题清单：缺口在哪里、普通平面路径能否优化、无障碍是否连续、骑行与步行是否冲突、是否需要分时管理。任何跨越五环、轨道或干路的方案，均等待道路红线、交通量、结构、市政、消防和文保资料后比较。[depth:traffic_rail_slow_parking] [assumption:A-TRANSPORT-001]
 
 轨道站点采取“信息与步行连续优先”：五道口、清华东路西口和大钟寺等公告涉及节点只研究出口到公共主脊的转介、导视、无障碍、非机动车停放和首层功能关系，不擅自改变站体、线路或出入口。停车策略以需求管理、共享和分时为研究方向，具体泊位数保持未知。
 
 ### 2. 市政与 AI 新基建接口
 
-新型基础设施不单独做设备走廊，而嵌入传统市政的容量与安全审查：端侧算力驿站需要电力、散热、噪声、碳核算和信息安全接口；场景节点需要网络分级、断网降级和人工接管；雨洪花园需要管网、土壤、地下空间和运维接口；机器人测试需要路权、充电、消防和停止开关。缺少容量数据时只画系统关系，不输出负荷和管线迁改。[data:geometry/constraints.geojson#CONSTRAINTS] [depth:municipal_new_infrastructure]
+新型基础设施不单独做设备走廊，而嵌入传统市政的容量与安全审查：端侧算力驿站需要电力、散热、噪声、碳核算和信息安全接口；场景节点需要网络分级、断网降级和人工接管；雨洪花园需要管网、土壤、地下空间和运维接口；机器人测试需要路权、充电、消防和停止开关。缺少容量数据时只画系统关系，不输出负荷和管线迁改。[data:geometry/constraints.geojson] [depth:municipal_new_infrastructure] [assumption:A-MUNICIPAL-001]
 
 ### 3. 公共服务设施
 
@@ -238,7 +265,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 3. 文化叙事与导视
 
-文化叙事由三条时间线交织：京张铁路代表工程、连接与百年城市变迁；中关村代表开放试验、知识转化与持续创业；AI 新文化强调可验证、可解释、有人负责。导视语法使用里程、分岔、站点和校验章，但不把铁路历史简化为装饰纹样。历史事实与图像需经来源核验和授权，清华园车站等具体保护对象需等待官方文保图层后定位。[depth:risk_missing_data]
+文化叙事由三条时间线交织：京张铁路代表工程、连接与百年城市变迁；中关村代表开放试验、知识转化与持续创业；AI 新文化强调可验证、可解释、有人负责。导视语法使用里程、分岔、站点和校验章，但不把铁路历史简化为装饰纹样。历史事实与图像需经来源核验和授权，清华园车站等具体保护对象需等待官方文保图层后定位。[depth:risk_missing_data] [assumption:A-HERITAGE-001]
 
 城市风貌保持克制、可维护和人本：材料优先砖、钢、石、木与可修复构件；AI 界面以小尺度、低亮度、可关闭为原则；色彩使用信号红标记风险与验证，青色标记公共服务，绿色标记生态，不用大面积赛博霓虹或巨屏制造“未来感”。AI 生成的公共空间图只作体验示意，不是现状或规划证据。[source:IMAGEGEN-CONCEPT]
 
@@ -259,6 +286,20 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 行动包数量为 8，写入指标但不代表政府项目立项。[metric:renewal_project_count] [depth:renewal_project_list]
 
+#### 概念责任、公共价值 KPI 与服务目标
+
+为避免“有项目、无责任人”，行动包采用概念 RACI：`A` 是未来经授权且对结果负责的单一牵头主体，当前不预设具体部门或机构；`R` 是执行所需专业与运营团队；`C` 是必须在决策前参与的权利人、公众和专业监管角色；`I` 是通过公开档案持续获知进展的使用者。下列 KPI 与 SLO 是用于试点校准的设计目标，不是现行服务标准、采购条款、资金承诺或政府时限。[assumption:A-OPERATIONS-001]
+
+| 行动包 | A / R / C-I 概念分工 | 公共价值 KPI（建议） | 试点 SLO（建议校准） |
+| --- | --- | --- | --- |
+| P01 + P08 协议与年度运营 | A：经授权运营牵头方；R：法律、伦理、数据、活动运营；C-I：公众代表、专业人员、所有使用者 | 启用场景六字段完整率 100%；正负结果与规则版本均进入公开档案 | 规则变更经复核后 5 个工作日内发布；每季度公开一次继续、调整或停止结论 |
+| P02 + P06 主脊与无障碍接口 | A：经授权公共空间管理方；R：规划、景观、交通、无障碍与维护团队；C-I：沿线权利人、残障与老年使用者 | 开放前连续无障碍路径审计覆盖率 100%；普通路径不依赖智能设备 | 严重安全缺口立即隔离；一般问题 1 个工作日内回应、5 个工作日内给出处置路径 |
+| P03 众智园安全验证 | A：经授权测试责任方；R：模型安全、能源、机器人与现场安全团队；C-I：行业专家、测试影响人群 | 高风险测试现场人工停止覆盖率 100%；失败与中止原因记录率 100% | 严重风险立即停测；24 小时内形成初步事件记录并启动专业复核 |
+| P04 原点成果转化门诊 | A：经授权服务运营方；R：法务、知识产权、产品、伦理与人才服务；C-I：高校权利人、开发者、初创团队 | 转介意见均标注责任边界；不以投资到账或签约数量替代公共服务质量 | 2 个工作日内确认受理，5 个工作日内给出转介路径；不承诺资金、订单或审批结果 |
+| P05 + P07 体验街与荣誉节点 | A：经授权场地运营方；R：消费者权益、版权、展陈、社区服务；C-I：居民、访客、贡献权利人 | 非数字替代路径覆盖率 100%；贡献来源与撤回入口覆盖率 100% | 投诉或权属争议 1 个工作日内确认；待核内容先隐藏或停止展示，再完成人工复核 |
+
+建议先用一个开放周期校准工单量、人员容量、公众满意度和维护成本，再决定是否调整时限或扩大范围。若 `A` 角色、持续预算、许可、数据责任和退出机制任一项不清楚，相应行动包不得进入常态运营。
+
 ### 2. 三段分期
 
 分期 geometry 以“轻量智证—三站缝合—适应更新”划分并完整覆盖临时 site。近期约 60.67 ha，占 5.3%，优先协议、活动、导视和低扰动节点；中期约 353.93 ha，占 31.0%，在官方数据补齐后深化三站与横向接口；远期约 726.68 ha，占 63.7%，依据运营评估与法定程序推进存量空间适应性更新。[data:geometry/phasing.geojson#PHASE-001] [metric:phase_001_area_sqm] [metric:phase_002_area_sqm] [metric:phase_003_area_sqm]
@@ -267,7 +308,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 3. 长期运营与活动体系
 
-运营节奏分四层：每月一次开放问题门诊；每季度一次行业与公共场景验证日；每半年一次开发者 / 设计师驻留和公众无障碍审计；每年一次 `Proofline Week`，串联三站发布测试、失败档案、贡献表彰和国际机制对话。名称、频率和主体均为概念建议，活动许可、安全、预算和责任须另行确认。[source:AGENT-TASKBOOK]
+运营节奏分四层：每月一次开放问题门诊；每季度一次行业与公共场景验证日；每半年一次开发者 / 设计师驻留和公众无障碍审计；每年一次 `Proofline Week`，串联三站发布测试、失败档案、贡献表彰和国际机制对话。名称、频率和主体均为概念建议，活动许可、安全、预算和责任须另行确认。[source:AGENT-TASKBOOK] [assumption:A-OPERATIONS-001]
 
 开发者社区采用“问题悬赏—透明入选—小规模试验—人工评审—开源复盘—转化转介”路径；企业招引采用“问题匹配—验证记录—专业门诊—空间产品—持续服务”路径；公众体验采用“普通路径可用—自愿进入智能场景—清晰退出—反馈可见”路径。国际传播不只展示成功，而以中英双语协议、可复算指标、失败案例和贡献谱系建立可信度。
 
@@ -299,9 +340,9 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 3. 任务、标准与深度覆盖
 
-`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 的 17 项和 agent.1–agent.6 共 23 项；`standard_matrix.json` 覆盖 5 条 mandatory 标准及 1 条待官方文件的建筑深度参考；`design_depth_matrix.json` 覆盖 15 项 formal 深度。每条记录均指向正文、图层、指标、图纸、来源、假设和自检。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:MOHURD-URBAN-DESIGN-MEASURES]
+`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 的 17 项和 agent.1–agent.6 共 23 项；`standard_matrix.json` 覆盖 5 条 mandatory 标准及 1 条待官方文件的建筑深度参考；`design_depth_matrix.json` 覆盖 15 项 formal 深度。每条记录均指向正文、图层、指标、图纸、来源、假设和自检。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:MOHURD-URBAN-DESIGN-MEASURES] [self_check:PROFESSIONAL_EVIDENCE]
 
-四道自检为：确定性校验检查目录、schema、引用与哈希；空间校验检查几何合法性、边界内、用地覆盖与面积；视觉校验检查离线安全和三项核心指标一致；专业证据校验检查标准、设计深度、图层和 known 指标引用。PASS 只表示包具备进入机器与内容评审的基础，不代表官方批准、精确红线或工程可行。
+四道自检为：确定性校验检查目录、schema、引用与哈希；空间校验检查几何合法性、边界内、用地覆盖与面积；视觉校验检查离线安全和三项核心指标一致；专业证据校验检查标准、设计深度、图层和 known 指标引用。PASS 只表示包具备进入机器与内容评审的基础，不代表官方批准、精确红线或工程可行。[self_check:VISUAL_STATIC]
 
 设计深度证据还包括：[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。这些标签对应矩阵条目，不替代正文判断。
 
@@ -327,9 +368,9 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 3. 版权与生成披露
 
-正文、GeoJSON、JSON、HTML、五张证据图和 PDF 为本次投稿原创生成。五张图由结构化数据确定性绘制；`visual/assets/proofline-commons-concept.png` 使用 Codex 内置图像生成工具制作，仅作非证据性体验示意。完整提示词、生成方式、用途和限制记录在 `report/copyright_statement.md`。没有使用外部参考图片、企业标识、人物肖像素材、商业地图或论文图像。[source:IMAGEGEN-CONCEPT]
+正文、GeoJSON、JSON、HTML、概念 Logo、五张证据图和 PDF 为本次投稿原创生成。Logo 由基础矢量几何和原创字组排版生成，五张图由结构化数据确定性绘制；`visual/assets/proofline-commons-concept.png` 使用 Codex 内置图像生成工具制作，仅作非证据性体验示意。完整提示词、生成方式、用途和限制记录在 `report/copyright_statement.md`。没有使用外部参考图片、企业标识、人物肖像素材、商业地图或论文图像。[source:IMAGEGEN-CONCEPT] [self_check:COPYRIGHT_TRACE]
 
-离线 `visual/index.html` 不加载 CDN、远程字体、远程地图、外部脚本、iframe、表单、API 或跟踪代码。国际案例只引用机构公开网页的名称和机制，不复制受版权保护的图片、图表或文本。若来源、授权或争议处理机制不能确认，相应内容不进入永久展示。
+离线 `visual/index.html` 不加载 CDN、远程字体、远程地图、外部脚本、iframe、表单、API 或跟踪代码。国际案例只引用机构公开网页的名称和机制，不复制受版权保护的图片、图表或文本。若来源、授权或争议处理机制不能确认，相应内容不进入永久展示。[self_check:VISUAL_STATIC]
 
 ## 参考资料
 
@@ -349,6 +390,6 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 机器可读数据总索引
 
-本方案逐项引用全部核心数据文件：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-001]、[data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/constraints.geojson#CONSTRAINTS]、[data:geometry/phasing.geojson#PHASE-001]。它们共同构成可替换、可复算、可审计的方案底板；任何图面或叙述与其不一致时，以结构化数据和后续官方资料为准。
+本方案逐项引用全部核心数据文件：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-001]、[data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/constraints.geojson]、[data:geometry/phasing.geojson#PHASE-001]。它们共同构成可替换、可复算、可审计的方案底板；任何图面或叙述与其不一致时，以结构化数据和后续官方资料为准。
 
 设计深度总索引为 [depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。以上引用使评审者可以从文字回到矩阵、几何、指标、图纸、来源与假设完成复核。

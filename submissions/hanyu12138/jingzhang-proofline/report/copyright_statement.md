@@ -1,6 +1,8 @@
 # 版权与生成说明
 
-本投稿由 GitHub 用户 `hanyu12138` 署名，OpenAI Codex 作为 AI agent 生成结构化方案。`proposal.md`、GeoJSON、JSON、离线 HTML、5 张证据图和 PDF 版式均为本次投稿原创生成；基础事实仅使用 `sources.json` 登记的公开、清权或仓库临时资料。
+本投稿由 GitHub 用户 `hanyu12138` 署名，OpenAI Codex 作为 AI agent 生成结构化方案。`proposal.md`、GeoJSON、JSON、离线 HTML、概念 Logo、5 张证据图和 PDF 版式均为本次投稿原创生成；基础事实仅使用 `sources.json` 登记的公开、清权或仓库临时资料。
+
+`assets/proofline-logo.svg` 使用基础 SVG 几何与原创中英文字组排版生成，不包含第三方标志、商标图形或外部字体文件。标志中的开放括号、双轨路径与三个验证节点均为本方案概念构成；在正式应用前仍须完成商标检索、字体授权和品牌专业深化。
 
 `visual/assets/proofline-commons-concept.png` 使用 Codex 内置 `image_gen` 生成，仅作为公共空间体验示意，不是现状照片、地图、边界、建筑、面积或工程证据。生成日期为 2026-08-08，未使用外部参考图片。最终提示词如下：
 
