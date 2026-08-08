@@ -176,6 +176,17 @@ def known_blockers(manifest: Any) -> list[str]:
     return []
 
 
+def explicit_self_checked(manifest: Any) -> bool | None:
+    """Return only an explicit boolean freshness claim from the manifest."""
+    if not isinstance(manifest, dict):
+        return None
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict):
+        return None
+    value = claim.get("self_checked")
+    return value if isinstance(value, bool) else None
+
+
 def feature_collection(path: Path) -> list[dict[str, Any]]:
     data = read_json(path)
     if isinstance(data, dict) and isinstance(data.get("features"), list):
@@ -225,9 +236,15 @@ def classify_submission(submission_dir: Path, manifest: Any) -> str:
         return "legacy_fixture"
     if not package_complete(submission_dir):
         return "needs_revision"
-    if stored_formal_readiness(submission_dir) is True:
+    # An explicit false is newer evidence than a stored self_check.json.  The
+    # hash refresh helper writes it whenever declared artifact bytes change;
+    # only a fresh --record-pass can restore the claim.
+    if explicit_self_checked(manifest) is False:
+        return "needs_revision"
+    stored_readiness = stored_formal_readiness(submission_dir)
+    if stored_readiness is True:
         return "formal_review_ready"
-    if stored_formal_readiness(submission_dir) is False:
+    if stored_readiness is False:
         # Stored results created under the former organizer-data gate are not
         # authoritative. Only participant-controlled validation failures block.
         return "formal_review_ready" if not has_blocking_self_check(submission_dir) else "needs_revision"

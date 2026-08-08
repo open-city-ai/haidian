@@ -19,9 +19,9 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def write_manifest(path: Path, manifest: dict) -> None:
-    """Replace the manifest atomically while preserving its file mode."""
-    serialized = json.dumps(manifest, ensure_ascii=False, indent=2) + "\n"
+def write_json_file(path: Path, data: dict) -> None:
+    """Replace a JSON object atomically while preserving its file mode."""
+    serialized = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
     temporary_path: Path | None = None
     try:
         with tempfile.NamedTemporaryFile(
@@ -43,7 +43,17 @@ def write_manifest(path: Path, manifest: dict) -> None:
             temporary_path.unlink(missing_ok=True)
 
 
-def refresh_manifest(manifest_path: Path, *, check_only: bool = False) -> tuple[int, list[str]]:
+def write_manifest(path: Path, manifest: dict) -> None:
+    """Backward-compatible manifest-specific wrapper."""
+    write_json_file(path, manifest)
+
+
+def refresh_manifest(
+    manifest_path: Path,
+    *,
+    check_only: bool = False,
+    invalidate_self_check: bool = True,
+) -> tuple[int, list[str]]:
     """Refresh hashes and return (changed_count, errors).
 
     Validation happens before writing so an invalid manifest or missing listed
@@ -98,6 +108,11 @@ def refresh_manifest(manifest_path: Path, *, check_only: bool = False) -> tuple[
     if not check_only and changed:
         for item, digest in updates:
             item["sha256"] = digest
+        claim = manifest.get("validation_claim")
+        if invalidate_self_check and isinstance(claim, dict):
+            # New declared artifact bytes require a new four-gate check.  A
+            # hash refresh is not itself proof that those checks were rerun.
+            claim["self_checked"] = False
         try:
             write_manifest(manifest_path, manifest)
         except OSError as exc:

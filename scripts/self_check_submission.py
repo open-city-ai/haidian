@@ -8,8 +8,11 @@ import importlib.util
 import json
 import subprocess
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from refresh_manifest_hashes import refresh_manifest, write_json_file
 
 
 REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
@@ -255,6 +258,86 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
     return report
 
 
+def record_formal_pass(submission_dir: Path, report: dict[str, Any]) -> list[str]:
+    """Persist a successful four-gate result and refresh its declared digest.
+
+    The static ``checks`` array remains contributor-owned package evidence.
+    This function adds only the current formal-gate result alongside it.  Its
+    hash is refreshed before ``validation_claim.self_checked`` is set true so
+    the recorded claim always describes the bytes now in the package.
+    """
+    if report.get("can_enter_formal_review") is not True:
+        return ["cannot record a self-check that is not formal-review-ready"]
+
+    manifest_path = submission_dir / "manifest.json"
+    self_check_path = submission_dir / "self_check.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        self_check = json.loads(self_check_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        return [f"cannot record formal self-check: {exc}"]
+    if not isinstance(manifest, dict) or not isinstance(self_check, dict):
+        return ["cannot record formal self-check: manifest.json and self_check.json must be JSON objects"]
+    if not isinstance(self_check.get("checks"), list):
+        return ["cannot record formal self-check: self_check.json must preserve its checks array"]
+    if any(
+        isinstance(check, dict)
+        and check.get("result") == "fail"
+        and check.get("severity") == "blocking"
+        for check in self_check["checks"]
+    ):
+        return ["cannot record formal self-check while self_check.json has a blocking failed check"]
+
+    claim = manifest.get("validation_claim")
+    if claim is not None and not isinstance(claim, dict):
+        return ["cannot record formal self-check: manifest validation_claim must be an object"]
+    blockers = claim.get("known_blockers") if isinstance(claim, dict) else []
+    if isinstance(blockers, list) and any(str(item).strip() for item in blockers):
+        return ["cannot record formal self-check while validation_claim.known_blockers is non-empty"]
+
+    recorded_at = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+    self_check.update(
+        {
+            "ok": True,
+            "can_enter_formal_review": True,
+            "review_status": "formal-review-ready",
+            "recorded_at": recorded_at,
+            "recorded_by": "scripts/self_check_submission.py --record-pass",
+            "recorded_gate_status": {
+                "deterministic_validation": bool(report["deterministic_validation"]["ok"]),
+                "spatial_review": bool(report["spatial_review"]["ok"]),
+                "visual_review": bool(report["visual_review"]["ok"]),
+                "professional_review": bool(report["professional_review"]["ok"]),
+            },
+        }
+    )
+    try:
+        write_json_file(self_check_path, self_check)
+    except OSError as exc:
+        return [f"cannot record formal self-check: {exc}"]
+
+    _, errors = refresh_manifest(manifest_path, invalidate_self_check=False)
+    if errors:
+        return errors
+    try:
+        refreshed_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        return [f"cannot reload refreshed manifest: {exc}"]
+    refreshed_claim = refreshed_manifest.get("validation_claim")
+    if refreshed_claim is None:
+        refreshed_claim = {}
+        refreshed_manifest["validation_claim"] = refreshed_claim
+    if not isinstance(refreshed_claim, dict):
+        return ["cannot record formal self-check: refreshed validation_claim must be an object"]
+    refreshed_claim["self_checked"] = True
+    refreshed_claim["self_checked_at"] = recorded_at
+    try:
+        write_json_file(manifest_path, refreshed_manifest)
+    except OSError as exc:
+        return [f"cannot record formal self-check: {exc}"]
+    return []
+
+
 def format_markdown(report: dict[str, Any]) -> str:
     lines = ["# Submission self-check", ""]
     lines.append(f"Result: {'PASS' if report.get('ok') else 'FAIL'}")
@@ -291,6 +374,11 @@ def main() -> int:
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--record-pass",
+        action="store_true",
+        help="after all four formal gates pass, persist the current self-check result and manifest freshness claim",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -299,11 +387,18 @@ def main() -> int:
         submission_dir = repo_root / submission_dir
 
     report = build_self_check(repo_root, submission_dir, args.pr_author)
+    record_errors: list[str] = []
+    if args.record_pass:
+        record_errors = record_formal_pass(submission_dir, report)
+        if not record_errors:
+            report["recorded_formal_pass"] = True
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:
         print(format_markdown(report))
-    return 0 if report["ok"] else 1
+    for error in record_errors:
+        print(error, file=sys.stderr)
+    return 0 if report["ok"] and not record_errors else 1
 
 
 if __name__ == "__main__":
