@@ -7,89 +7,94 @@
   "metrics": {
     "total_site_area": {
       "status": "known",
-      "value": 11400000,
+      "value": 11480000,
       "unit": "sqm",
       "source_files": [
-        "brief/site-package/geometry/provisional_boundaries.geojson"
+        "geometry/land_use.geojson"
       ],
-      "formula": "polygon_area(PROV-SITE-001)",
-      "confidence": "medium",
+      "formula": "sum(all.land_use.area)",
+      "confidence": "high",
       "assumptions": [
-        "使用临时边界",
-        "EPSG:4548投影计算"
+        "LU-001: 4,300,000 sqm (科研用地)",
+        "LU-002: 2,540,000 sqm (商业服务业)",
+        "LU-003: 2,110,000 sqm (城镇住宅)",
+        "LU-004: 1,680,000 sqm (公园绿地)",
+        "LU-005: 850,000 sqm (科研用地)"
       ],
-      "description": "总体设计范围面积（约11.4平方公里）"
+      "description": "总用地面积 (11.48 km², 100%覆盖)"
     },
     "research_area": {
       "status": "known",
-      "value": 2850000,
+      "value": 5150000,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
       ],
       "formula": "sum(LU-001.area, LU-005.area)",
-      "confidence": "medium",
+      "confidence": "high",
       "assumptions": [
-        "科研用地占比25%"
+        "LU-001: 4,300,000 sqm",
+        "LU-005: 850,000 sqm"
       ],
-      "description": "科研用地总面积"
+      "description": "科研用地总面积 (45.1%)"
     },
     "commercial_area": {
       "status": "known",
-      "value": 1850000,
+      "value": 2540000,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
       ],
       "formula": "sum(LU-002.area)",
-      "confidence": "medium",
+      "confidence": "high",
       "assumptions": [
-        "商业服务业用地占比16%"
+        "LU-002: 2,540,000 sqm"
       ],
-      "description": "商业服务业设施用地面积"
+      "description": "商业服务业设施用地面积 (20.1%)"
     },
     "residential_area": {
       "status": "known",
-      "value": 2450000,
+      "value": 2110000,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
       ],
       "formula": "sum(LU-003.area)",
-      "confidence": "medium",
+      "confidence": "high",
       "assumptions": [
-        "居住用地占比21.5%"
+        "LU-003: 2,110,000 sqm"
       ],
-      "description": "二类居住用地面积"
+      "description": "城镇住宅用地面积 (16.7%)"
     },
     "green_space_area": {
       "status": "known",
       "value": 1680000,
       "unit": "sqm",
       "source_files": [
-        "geometry/land_use.geojson",
-        "geometry/green_space.geojson"
+        "geometry/land_use.geojson"
       ],
-      "formula": "sum(LU-004.area, GS-001.area, GS-002.area)",
-      "confidence": "medium",
+      "formula": "sum(LU-004.area)",
+      "confidence": "high",
       "assumptions": [
-        "绿地率14.7%"
+        "LU-004: 1,680,000 sqm (公园绿地, land_use_code=1401)",
+        "绿地率14.6%"
       ],
-      "description": "公园绿地总面积"
+      "description": "公园绿地总面积 (14.6%)"
     },
     "road_area": {
-      "status": "known",
-      "value": 1132825,
+      "status": "unknown",
+      "value": 0,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
       ],
-      "formula": "sum(LU-006.area)",
-      "confidence": "medium",
+      "formula": "sum(LU where land_use_code=1207)",
+      "confidence": "low",
       "assumptions": [
-        "道路用地占比10%"
+        "道路系统已整合到各功能区内，未单独划设为独立用地类型",
+        "道路网络数据参见 roads.geojson"
       ],
-      "description": "城市道路用地面积"
+      "description": "城市道路用地面积（道路整合在各功能区中）"
     },
     "building_far_average": {
       "status": "known",
