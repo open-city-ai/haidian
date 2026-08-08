@@ -197,8 +197,10 @@ def check_workflow_trusted_base(repo_root: Path, checks: list[dict[str, Any]]) -
     failures = []
     if "pull_request_target" not in text:
         failures.append("workflow must use pull_request_target")
-    if "github.event.pull_request.base.sha" not in text:
-        failures.append("workflow must checkout the trusted base SHA")
+    if "github.sha" not in text:
+        failures.append("workflow must checkout pull_request_target's current trusted default-branch SHA")
+    if "github.event.pull_request.base.sha" in text:
+        failures.append("workflow must not pin validation to the PR's potentially stale base SHA")
     if "github.event.pull_request.head.sha" in text or "pull_request.head.sha" in text:
         failures.append("workflow must not checkout the PR head SHA")
     if "python3 scripts/github_pr_validation.py" not in text:
