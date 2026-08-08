@@ -4,7 +4,7 @@ author_github: "Grayker007"
 language: "en"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Taking the Jing-Zhang Railway Heritage Park as 'The AI Line' spine, Ren-Form (人) 2.0 reinterprets Zhan Tianyou's spirit of independent innovation: one stroke is the culture axis, one stroke is the AI innovation axis, and the intersection is the human. One line links three stations (Dazhongsi · Origin · Acceleration) with Two Wings, forming a recomputable, self-checked formal urban design package."
+summary: "Beijing's High Line, where China's first self-built railway becomes its AI corridor. One line links three stations (Dazhongsi · Origin · Acceleration) with Two Wings; one stroke culture, one stroke AI, the human at the crossing. Twelve scenario cards, three AI pilgrimage landmarks, recomputable design on an OSM context basemap — a complete bilingual package with a night-mode interactive showcase."
 ---
 
 # The AI Line · Ren-Form (人) 2.0 — Urban Design Proposal for the Centennial Jing-Zhang AI Innovation Belt
