@@ -28,8 +28,12 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v4
 
-      - name: Verify generated data
+      - name: Build and verify generated data
         run: |
+          # Build inside the deploy workspace so rapid main merges cannot make
+          # a committed snapshot stale before the publisher picks it up.
+          python3 scripts/generate_submissions_data.py
+          python3 scripts/generate_source_registry_data.py
           python3 scripts/generate_submissions_data.py --check
           python3 scripts/generate_source_registry_data.py --check
           python3 scripts/validate_data_registry.py --json
