@@ -1,0 +1,197 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "calculation_crs": "EPSG:4548",
+  "calculation_note": "Approximate calculation using shoelace formula at lat ~40N; provisional geometry only.",
+  "metrics": {
+    "official_declared_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "declared_by_official_announcement",
+      "confidence": "high",
+      "assumptions": [
+        "Official text states 11.4 km²"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3281725,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum_of_green_features_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Generated from design, not surveyed"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 227610,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum_of_public_features_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Generated from design"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 48003,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum_of_building_footprints",
+      "confidence": "medium",
+      "assumptions": [
+        "Sample buildings in key areas only"
+      ]
+    },
+    "key_area_total_ha": {
+      "status": "known",
+      "value": 368.4,
+      "unit": "ha",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum_of_3_key_areas",
+      "confidence": "high",
+      "assumptions": [
+        "Official announced values"
+      ]
+    },
+    "ai_scenario_cards_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_pilgrimage_landmarks_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenarios_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "manual_count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "neural_spine_length_m": {
+      "status": "known",
+      "value": 9740,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "lat_diff * 111320",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional spine on provisional boundary"
+      ]
+    },
+    "synapse_connections_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count_of_synapse_links",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phasing_stages": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "shoelace_approx_epsg4326_at_40n",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon, not official redline"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2875,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area / site_area * 100",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0199,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / site_area * 100",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry"
+      ]
+    }
+  }
+}
