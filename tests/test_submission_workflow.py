@@ -6,6 +6,7 @@ import json
 import subprocess
 import hashlib
 from pathlib import Path
+from unittest import mock
 
 import jsonschema
 
@@ -28,6 +29,10 @@ from validate_submission import (  # noqa: E402
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    MAX_TRUSTED_DOWNLOAD_BYTES,
+    DownloadLimitError,
+    GitHubClient,
+    download_for_validation,
     has_submission_changes,
     is_review_queue_candidate,
     safe_manifest_paths,
@@ -95,6 +100,59 @@ class SoftRiskDetectionTests(unittest.TestCase):
 
 
 class ManifestHydrationTests(unittest.TestCase):
+    class ByteResponse:
+        def __init__(self, size: int) -> None:
+            self.size = size
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, traceback) -> None:
+            return None
+
+        def read(self, limit: int) -> bytes:
+            return b"x" * min(self.size, limit)
+
+    def test_trusted_download_accepts_a_valid_drawing_larger_than_old_cap(self) -> None:
+        live_pr_502_size = 6_697_514
+        self.assertLess(live_pr_502_size, MAX_TRUSTED_DOWNLOAD_BYTES)
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "a0-boards.en.pdf"
+            with mock.patch(
+                "urllib.request.urlopen",
+                return_value=self.ByteResponse(live_pr_502_size),
+            ):
+                client.download_content(
+                    "baobao-byte/haidian",
+                    "submissions/baobao-byte/design/drawings/a0-boards.en.pdf",
+                    "head-sha",
+                    destination,
+                )
+
+            self.assertEqual(live_pr_502_size, destination.stat().st_size)
+
+    def test_oversized_download_becomes_validation_error_and_placeholder(self) -> None:
+        class OversizedClient:
+            def download_content(self, repo, path, ref, destination) -> None:
+                raise DownloadLimitError(path, MAX_TRUSTED_DOWNLOAD_BYTES)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            path = "submissions/alice/design/drawings/a0-boards.pdf"
+
+            error = download_for_validation(
+                OversizedClient(),
+                "alice/haidian",
+                "head-sha",
+                root,
+                path,
+            )
+
+            self.assertIn(path, error)
+            self.assertIn(str(MAX_TRUSTED_DOWNLOAD_BYTES), error)
+            self.assertEqual(b"", (root / path).read_bytes())
+
     class LabelClient:
         def __init__(self) -> None:
             self.removed = []
