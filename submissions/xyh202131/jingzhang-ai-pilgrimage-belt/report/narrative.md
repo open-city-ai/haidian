@@ -127,7 +127,7 @@ The record above validates only exact head `e71ff206…` and its raw manifest Gi
 ```powershell
 $pkg = 'submissions/xyh202131/jingzhang-ai-pilgrimage-belt'
 python scripts/score_submission.py "$pkg/proposal.md" --strict --json
-python scripts/spatial_review.py $pkg --json
+python scripts/spatial_review.py $pkg --stage formal --json
 python scripts/visual_review.py $pkg --json
 python scripts/professional_review.py $pkg --json
 python scripts/self_check_submission.py $pkg --pr-author xyh202131 --json

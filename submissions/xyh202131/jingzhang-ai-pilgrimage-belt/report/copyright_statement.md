@@ -13,6 +13,8 @@
 
 本台账可以支持仓库评审中的事实披露，但不构成法律意见、所有权证明或公共发布许可。对外展示、专业深化或其他再利用前，必须完成台账中 `RIGHTS-OPEN-01`—`RIGHTS-OPEN-05` 里适用的事项，并由维护者或权利专业人员确认。
 
+建议按“来源与许可证 → 字体与生成工具 → 地图衍生与署名 → Logo/地标 → 可编辑源与再利用范围”的顺序复核；任一环节未确认时，整体状态继续保持 `not_fully_cleared`，不得用部分完成替代发布许可。
+
 ## English
 
 This package no longer claims that rights clearance is complete. `visual/assets/rights-clearance-ledger.json` groups every one of the 48 manifest paths and records its origin basis, current rights status, limits, and release gate. The number of completed independent file-level clearance audits is **0**, and the overall status is `not_fully_cleared`.
@@ -25,3 +27,5 @@ This package no longer claims that rights clearance is complete. `visual/assets/
 - The JZ geometric logo and landmark names are conceptual proposals pending trademark and production-brand review; they imply no corporate or government authorization.
 
 The ledger supports transparent repository review, but it is not legal advice, proof of ownership, or a public-release license. Before external display, professional deepening, or other reuse, the applicable `RIGHTS-OPEN-01`—`RIGHTS-OPEN-05` items must be completed and confirmed by maintainers or qualified rights professionals.
+
+Review in this order: sources and licenses → fonts and generation tools → map derivatives and attribution → logo and landmarks → editable sources and reuse scope. If any step is unconfirmed, the overall status remains `not_fully_cleared`; partial completion must not be treated as a release license.
