@@ -49,6 +49,7 @@ PDF_RENDER_MAX_EDGE = 1024
 PDF_GRID_SIZE = 12
 PAPER_CHANNEL_THRESHOLD = 245
 MIN_GRID_CELL_INK_RATIO = 0.002
+COLOR_QUANTIZATION_STEP = 32
 # These thresholds intentionally identify only an almost empty rendered page.
 # They are not a general score for visual quality: sparse but usable pages still
 # need a human reviewer, who receives an advisory instead of an automatic fail.
@@ -60,6 +61,12 @@ NEAR_BLANK_MAX_OCCUPIED_CELLS = 36
 # very large interior blank region as an alternative near-blank signal, but
 # only when the whole page also has almost no ink.
 NEAR_BLANK_MIN_LARGEST_BLANK_RECT_RATIO = 0.50
+# A solid-colour page has plenty of non-paper pixels but no readable board
+# content.  Quantize colours to tolerate rendering noise while keeping the
+# guard conservative: conventional paper plus sparse marks remains covered by
+# the ink checks above, and only an almost entirely uniform page is blocked.
+NEAR_UNIFORM_MIN_DOMINANT_COLOR_RATIO = 0.995
+NEAR_UNIFORM_MAX_QUANTIZED_COLORS = 4
 SPARSE_PAGE_MAX_INK_RATIO = 0.09
 SPARSE_PAGE_MAX_BBOX_RATIO = 0.55
 SPARSE_PAGE_MAX_OCCUPIED_CELLS = 54
@@ -178,6 +185,7 @@ def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
     pixels = image.load()
     cell_ink = [0] * (PDF_GRID_SIZE * PDF_GRID_SIZE)
     cell_totals = [0] * (PDF_GRID_SIZE * PDF_GRID_SIZE)
+    quantized_color_counts: dict[tuple[int, int, int], int] = {}
     ink_pixels = 0
     min_x, min_y = width, height
     max_x = max_y = -1
@@ -189,6 +197,12 @@ def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
             cell_index = row * PDF_GRID_SIZE + column
             cell_totals[cell_index] += 1
             red, green, blue = pixels[x, y]
+            quantized_color = (
+                red // COLOR_QUANTIZATION_STEP,
+                green // COLOR_QUANTIZATION_STEP,
+                blue // COLOR_QUANTIZATION_STEP,
+            )
+            quantized_color_counts[quantized_color] = quantized_color_counts.get(quantized_color, 0) + 1
             if min(red, green, blue) >= PAPER_CHANNEL_THRESHOLD:
                 continue
             ink_pixels += 1
@@ -199,12 +213,16 @@ def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
             max_y = max(max_y, y)
 
     total_pixels = width * height
+    dominant_color_ratio = max(quantized_color_counts.values()) / total_pixels
+    quantized_color_count = len(quantized_color_counts)
     if not ink_pixels:
         return {
             "ink_ratio": 0.0,
             "bbox_ratio": 0.0,
             "occupied_cells": 0,
             "largest_blank_rect_ratio": 1.0,
+            "dominant_color_ratio": dominant_color_ratio,
+            "quantized_color_count": quantized_color_count,
         }
     bbox_pixels = (max_x - min_x + 1) * (max_y - min_y + 1)
     occupied_cells = sum(
@@ -238,6 +256,8 @@ def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
         "bbox_ratio": bbox_pixels / total_pixels,
         "occupied_cells": occupied_cells,
         "largest_blank_rect_ratio": largest_blank_cells / (PDF_GRID_SIZE * PDF_GRID_SIZE),
+        "dominant_color_ratio": dominant_color_ratio,
+        "quantized_color_count": quantized_color_count,
     }
 
 
@@ -274,11 +294,15 @@ def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
                     bbox_ratio = float(coverage["bbox_ratio"])
                     occupied_cells = int(coverage["occupied_cells"])
                     largest_blank_rect_ratio = float(coverage["largest_blank_rect_ratio"])
+                    dominant_color_ratio = float(coverage["dominant_color_ratio"])
+                    quantized_color_count = int(coverage["quantized_color_count"])
                     details = (
                         f"page {page_number}: {ink_ratio:.2%} non-paper pixels, "
                         f"{bbox_ratio:.2%} content bounding box, "
                         f"{occupied_cells}/{PDF_GRID_SIZE * PDF_GRID_SIZE} occupied grid cells, "
-                        f"largest blank block {largest_blank_rect_ratio:.2%}"
+                        f"largest blank block {largest_blank_rect_ratio:.2%}, "
+                        f"{dominant_color_ratio:.2%} dominant quantized colour "
+                        f"across {quantized_color_count} colours"
                     )
                     is_near_blank_structure = (
                         bbox_ratio <= NEAR_BLANK_MAX_BBOX_RATIO
@@ -291,6 +315,17 @@ def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
                             "major",
                             display_path,
                             f"Rendered drawing is near blank ({details}). Add substantial readable board content.",
+                        )
+                    elif (
+                        dominant_color_ratio >= NEAR_UNIFORM_MIN_DOMINANT_COLOR_RATIO
+                        and quantized_color_count <= NEAR_UNIFORM_MAX_QUANTIZED_COLORS
+                    ):
+                        report.add(
+                            "DRAWING_PAGE_NEAR_UNIFORM",
+                            "major",
+                            display_path,
+                            f"Rendered drawing is nearly a single-colour page ({details}). "
+                            "Add readable board content rather than a uniform fill.",
                         )
                     elif (
                         ink_ratio <= SPARSE_PAGE_MAX_INK_RATIO
