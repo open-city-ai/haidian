@@ -55,8 +55,6 @@ CONCEPT_SECTION_ALIASES = ["核心概念", "总体设计", "重点区域"]
 AI_SECTION_ALIASES = ["AI 治理与创新场景", "AI 创新生态"]
 LANDING_SECTION_ALIASES = ["落地路径", "更新项目清单", "实施政策", "分期"]
 RISK_SECTION_ALIASES = ["风险与合规", "风险、版权", "风险"]
-REFERENCE_SECTION_ALIASES = ["参考资料"]
-
 TASK_TERMS = ["百年京张", "京张", "海淀", "AI", "人工智能", "创新带", "中关村", "城市"]
 ORIGINALITY_TERMS = ["概念", "机制", "模式", "体系", "网络", "平台", "社区", "场景", "环"]
 AI_TERMS = ["AI", "人工智能", "智能体", "算法", "模型", "机器人", "自动驾驶", "无人", "数据"]
@@ -97,9 +95,13 @@ class SelfCheckReport:
     proposal_path: str
     checks: list[CheckResult]
     matched_sources: list[SourceMatch] = field(default_factory=list)
+    registered_external_or_package_sources: list[SourceMatch] = field(default_factory=list)
     unmatched_reference_lines: list[str] = field(default_factory=list)
     metadata_missing: list[str] = field(default_factory=list)
     required_sections_missing: list[str] = field(default_factory=list)
+    package_source_validation: dict[str, Any] = field(
+        default_factory=lambda: {"status": "not-applicable", "message": ""}
+    )
 
     @property
     def summary(self) -> dict[str, int]:
@@ -125,7 +127,11 @@ class SelfCheckReport:
             "metadata_missing": self.metadata_missing,
             "required_sections_missing": self.required_sections_missing,
             "matched_sources": [item.to_dict() for item in self.matched_sources],
+            "registered_external_or_package_sources": [
+                item.to_dict() for item in self.registered_external_or_package_sources
+            ],
             "unmatched_reference_lines": self.unmatched_reference_lines,
+            "package_source_validation": self.package_source_validation,
             "checks": [check.to_dict() for check in self.checks],
         }
 
@@ -203,6 +209,17 @@ def reference_lines(reference_section: str) -> list[str]:
     return lines
 
 
+def reference_section(sections: dict[str, str]) -> str:
+    """Combine the human reference index and any formal source register."""
+    aliases = ("参考资料", "完整来源", "references")
+    matches = [
+        content
+        for title, content in sections.items()
+        if any(alias.casefold() in title.casefold() for alias in aliases)
+    ]
+    return "\n\n".join(matches)
+
+
 def match_sources(text: str, reference_section: str, sources: list[dict[str, Any]]) -> tuple[list[SourceMatch], list[str]]:
     haystack = f"{text}\n{reference_section}"
     matched: list[SourceMatch] = []
@@ -225,6 +242,115 @@ def match_sources(text: str, reference_section: str, sources: list[dict[str, Any
         if not any(token and token in normalized for token in matched_tokens):
             unmatched.append(line)
     return matched, unmatched
+
+
+def package_source_candidates(source: dict[str, Any]) -> list[str]:
+    """Return conservative stable tokens from a package source record."""
+    candidates: list[str] = []
+    for key in ("id", "title", "citation", "path", "url"):
+        value = source.get(key)
+        if isinstance(value, str) and value.strip():
+            token = value.strip().strip("`")
+            if token and token not in candidates:
+                candidates.append(token)
+    return candidates
+
+
+def match_registered_package_sources(
+    reference_lines_to_match: list[str], sources: list[dict[str, Any]]
+) -> tuple[list[SourceMatch], list[str]]:
+    """Match reference lines to sources registered by a formally valid package.
+
+    This intentionally does not use the package source record to upgrade every
+    citation in a proposal. A source is reported only when a stable ID, title,
+    path, citation, or URL appears in the actual human reference line.
+    """
+    matched: list[SourceMatch] = []
+    matched_ids: set[str] = set()
+    unmatched: list[str] = []
+    for line in reference_lines_to_match:
+        normalized = line.replace("`", "")
+        line_folded = normalized.casefold()
+        line_matches: list[SourceMatch] = []
+        for source in sources:
+            if not isinstance(source, dict):
+                continue
+            source_id = str(source.get("id", "")).strip()
+            if not source_id:
+                continue
+            candidates = package_source_candidates(source)
+            if any(candidate.casefold() in line_folded for candidate in candidates):
+                line_matches.append(
+                    SourceMatch(
+                        source_id,
+                        str(
+                            source.get("title")
+                            or source.get("citation")
+                            or source.get("path")
+                            or source.get("url")
+                            or source_id
+                        ).strip(),
+                    )
+                )
+        if line_matches:
+            for item in line_matches:
+                if item.id not in matched_ids:
+                    matched.append(item)
+                    matched_ids.add(item.id)
+        else:
+            unmatched.append(line)
+    return matched, unmatched
+
+
+def load_formally_validated_package_sources(
+    repo_root: Path, proposal_path: Path, metadata: dict[str, str]
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
+    """Load package sources only after the deterministic formal validator passes."""
+    package_dir = proposal_path.parent
+    manifest_path = package_dir / "manifest.json"
+    sources_path = package_dir / "sources.json"
+    if not manifest_path.is_file() or not sources_path.is_file():
+        return [], {"status": "not-applicable", "message": "proposal is not a formal package"}
+
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        source_data = json.loads(sources_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return [], {"status": "failed", "message": "manifest.json or sources.json is invalid"}
+    if not isinstance(manifest, dict) or manifest.get("submission_stage") != "formal":
+        return [], {"status": "failed", "message": "package is not marked submission_stage=formal"}
+    sources = source_data.get("sources") if isinstance(source_data, dict) else None
+    if not isinstance(sources, list):
+        return [], {"status": "failed", "message": "sources.json must contain a sources list"}
+
+    author = metadata.get("author_github", "").strip()
+    if not author:
+        return [], {"status": "failed", "message": "formal package proposal has no author_github"}
+    try:
+        changed_files = [
+            str(path.relative_to(repo_root))
+            for path in package_dir.rglob("*")
+            if path.is_file()
+        ]
+    except ValueError:
+        return [], {"status": "failed", "message": "package is outside repo root"}
+    if not changed_files:
+        return [], {"status": "failed", "message": "formal package has no files"}
+
+    # Import lazily so ordinary advisory scoring keeps its lightweight import
+    # path and the validator remains the single source of formal eligibility.
+    from validate_submission import validate_submission
+
+    validation = validate_submission(repo_root, author, changed_files)
+    if not validation.ok:
+        return [], {
+            "status": "failed",
+            "message": "deterministic formal validation failed",
+        }
+    return [item for item in sources if isinstance(item, dict)], {
+        "status": "passed",
+        "message": "package sources are registered and passed deterministic formal validation",
+    }
 
 
 def build_check(dimension: str, status: str, *messages: str) -> CheckResult:
@@ -350,17 +476,23 @@ def score_proposal(
         completeness_message = "结构完整，正文长度达到基础自检阈值。"
     checks.append(build_check("表达完整度", completeness_status, completeness_message))
 
-    reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
+    reference_section_text = reference_section(sections)
     sources = load_source_index(repo_root, sources_index_path)
-    matched_sources, unmatched_references = match_sources(text, reference_section, sources)
-    if not reference_section:
+    matched_sources, unmatched_references = match_sources(text, reference_section_text, sources)
+    package_sources, package_validation = load_formally_validated_package_sources(
+        repo_root, proposal_path, metadata
+    )
+    registered_sources, unmatched_references = match_registered_package_sources(
+        unmatched_references, package_sources
+    )
+    if not reference_section_text:
         source_status = STATUS_MISSING
         source_message = "缺少参考资料章节内容。"
-    elif matched_sources:
+    elif matched_sources or registered_sources:
         source_status = STATUS_PASS if not unmatched_references else STATUS_NEEDS_WORK
-        source_message = "已引用公开资料索引内资料。"
+        source_message = "已引用公开资料索引或通过正式校验的投稿来源。"
         if unmatched_references:
-            source_message += " 索引外资料需要说明来源和公开性。"
+            source_message += " 仍有未登记或未通过正式校验的来源需要说明。"
     else:
         source_status = STATUS_NEEDS_WORK
         source_message = "未匹配到公开资料索引内资料；建议至少引用 brief/public-brief.md。"
@@ -371,9 +503,11 @@ def score_proposal(
         proposal_path=display_path,
         checks=ordered_checks,
         matched_sources=matched_sources,
+        registered_external_or_package_sources=registered_sources,
         unmatched_reference_lines=unmatched_references,
         metadata_missing=missing_metadata,
         required_sections_missing=missing_sections,
+        package_source_validation=package_validation,
     )
 
 
@@ -405,6 +539,12 @@ def format_report(report: SelfCheckReport) -> str:
     if report.matched_sources:
         lines.extend(["", "Matched public sources:"])
         lines.extend(f"- {item.id}: {item.citation}" for item in report.matched_sources)
+    if report.registered_external_or_package_sources:
+        lines.extend(["", "Registered external/package sources:"])
+        lines.extend(
+            f"- {item.id}: {item.citation}"
+            for item in report.registered_external_or_package_sources
+        )
     if report.unmatched_reference_lines:
         lines.extend(["", "References needing source/public-status notes:"])
         lines.extend(f"- {item}" for item in report.unmatched_reference_lines)

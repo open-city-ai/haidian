@@ -13,6 +13,7 @@ from score_submission import (  # noqa: E402
     STATUS_NEEDS_WORK,
     STATUS_PASS,
     format_report,
+    match_registered_package_sources,
     score_proposal,
 )
 
@@ -134,6 +135,43 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.matched_sources, [])
+
+    def test_formal_reference_sections_are_combined(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            body = VALID_BODY.replace(
+                "## 参考资料\n",
+                "## 参考资料\n- `brief/public-brief.md`\n\n## 完整来源与证据登记\n- Official source not in the lightweight index\n",
+            )
+            proposal = self.write_proposal(root, body)
+
+            report = score_proposal(root, proposal)
+
+            self.assertEqual(report.matched_sources[0].id, "brief-public-brief")
+            self.assertEqual(report.unmatched_reference_lines, ["Official source not in the lightweight index"])
+            self.assertEqual(
+                {check.dimension: check.status for check in report.checks}["公开资料引用"],
+                STATUS_NEEDS_WORK,
+            )
+
+    def test_registered_package_source_matching_is_conservative(self) -> None:
+        matched, unmatched = match_registered_package_sources(
+            [
+                "Official announcement https://example.test/announcement",
+                "Unregistered source with no stable token",
+            ],
+            [
+                {
+                    "id": "OFFICIAL-ANNOUNCEMENT",
+                    "title": "Official announcement",
+                    "url": "https://example.test/announcement",
+                }
+            ],
+        )
+
+        self.assertEqual([item.id for item in matched], ["OFFICIAL-ANNOUNCEMENT"])
+        self.assertEqual(unmatched, ["Unregistered source with no stable token"])
 
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
