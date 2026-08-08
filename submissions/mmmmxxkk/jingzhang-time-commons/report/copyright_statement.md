@@ -1,8 +1,8 @@
-# 著作权与生成说明
+# 著作权、数据与生成说明
 
-- 方案文字、结构化设计图层、图表、HTML 与 PDF 由 OpenAI Codex 在 GitHub 用户 `mmmmxxkk` 的授权任务中生成。
-- 设计依据仅使用仓库公开/清权资料和 `sources.json` 登记的公开案例页面；外部案例只作机制摘要，不复制图片、商标、字体或版式。
-- 五张核心图、离线 HTML 与 PDF 由 `work/build_submission.py` 从同一 GeoJSON、metrics 与方案文本确定性生成。
-- 使用系统字体和原创基础几何，不含远程图片、商业地图瓦片、秘密地图、个人隐私或非公开企业数据。
-- 总体边界与重点区为仓库 provisional geometry，只用于投稿、可视化和自检，不是官方红线。
-- 本成果依投稿 front matter 的 `COMMUNITY-DISPLAY-ONLY` 条款用于本征集与社区展示；正式知识产权处置以征集规则和维护者说明为准。
+- 方案文字、结构化设计图层、原创图表、离线 HTML 与 PDF 由 OpenAI Codex 在 GitHub 用户 `mmmmxxkk` 的授权任务中生成。
+- OSM 派生数据署名 `© OpenStreetMap contributors`，按 ODbL 1.0 使用；其标签缺失不代表现场设施不存在。
+- 外部案例只作机制摘要，不复制图片、商标、字体或版式。
+- 核心图、HTML 与 PDF 由 `work/build_rooted_v2.py` 从同一 GeoJSON、metrics、OSM 基线和文本确定性生成。
+- 概念渲染若使用内置图像生成工具，将单独标记并保存 prompt；未暴露精确模型 ID 时不声称确定使用 `gpt-image-2`。
+- 总体边界与重点区为 provisional geometry，不是官方红线、审批或征拆依据。

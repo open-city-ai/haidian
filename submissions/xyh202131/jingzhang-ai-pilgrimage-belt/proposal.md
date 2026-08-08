@@ -255,7 +255,7 @@ AI 与公共价值类包括十个服务场景、十二个映射节点、三个�
 4. **AI 与数据风险**：偏差、幻觉、隐私泄露、越权自动化和供应商锁定通过最小数据、源端保留、日志、人工责任、复测、到期和退役控制；不得自动执法、诊断或替代正式审批。
 5. **安全与韧性风险**：机器人、车辆和设备测试只在授权范围；实体急停、现场安全员、离线人工和 L0/L1/L2 降级必须可用。能源和恢复指标未实测时保持未知。
 6. **文化与历史风险**：史实、人物、文物和工程资料需由官方/馆藏/清权来源复核；AI 生成内容显式与元数据标识，争议内容可纠错、下架和追溯 [assumption:A-CULTURE-CONTENT-006]。
-7. **版权与品牌风险**：图片、字体、图标、商标、肖像、论文图和模型输出逐项登记；Logo 使用自有几何语法，三个地标名称不暗示企业或政府授权。
+7. **版权与品牌风险**：新增逐文件权利状态台账，覆盖 manifest 中 48 个路径并区分自述原创、仓库临时资料派生与待审计生成物；当前独立逐文件清权审计完成数为 0，总体状态为 `not_fully_cleared`。`COMMUNITY-DISPLAY-ONLY` 仍缺完整条款，OSM ODbL 义务、PDF 字体、生成工具条款、可编辑源以及 Logo/地标商标均需后续复核，不能声称已经全部清权 [data:visual/assets/rights-clearance-ledger.json#RIGHTS-01] [data:visual/assets/rights-clearance-ledger.json#RIGHTS-GATE-02]。
 8. **外部协同风险**：未来科学城、怀柔科学城、经开区、其他创新街区和京津冀只作为可选复测角色，未经书面确认不得写成合作方、投资方或落地承诺 [assumption:A-EXTERNAL-COLLAB-005]。
 9. **运营与公平风险**：活动热度不能替代居民满意、可达、公平与投诉闭环；贡献荣誉不得用于流量排名、就业筛选或行政评价。
 10. **工具与证据风险**：机器检查只验证结构、拓扑、引用和一致性，不替代规划、建筑、交通、市政、景观、生态、消防、铁路、数据安全、无障碍、社区与法律专业判断 [depth:risk_missing_data]。
@@ -274,4 +274,4 @@ AI 与公共价值类包括十个服务场景、十二个映射节点、三个�
 
 全球案例为 [source:CASE-KENDALL]、[source:CASE-ONE-NORTH]、[source:CASE-22AT]、[source:CASE-KINGS-CROSS]、[source:CASE-STATION-F] 与 [source:CASE-MARS]。现状方向背景为 [source:OSM-CONTEXT]，其 ODbL 数据只用于道路、铁路和水系识别，不能作为官方边界或工程依据。
 
-生成方法：空间设计由公开临时边界、项目枚举、OSM 背景和确定性脚本派生；面积与长度在 EPSG:4548 中复算；场景护照、服务区、公共空间模式和阶段门以 GeoJSON 属性记录；PNG、A3/A0 与离线 HTML 是解释层，`geometry/*.geojson`、`metrics.json`、三类矩阵和 `self_check.json` 是证据层。许可为 `COMMUNITY-DISPLAY-ONLY`，完整版权和使用限制见 `report/copyright_statement.md`。
+生成方法：空间设计由公开临时边界、项目枚举、OSM 背景和确定性脚本派生；面积与长度在 EPSG:4548 中复算；场景护照、服务区、公共空间模式和阶段门以 GeoJSON 属性记录；PNG、A3/A0 与离线 HTML 是解释层，`geometry/*.geojson`、`metrics.json`、三类矩阵和 `self_check.json` 是证据层。`COMMUNITY-DISPLAY-ONLY` 仅作为当前许可标签记录，其完整条款未随包提供；逐文件状态、未完成事项与使用限制见 `visual/assets/rights-clearance-ledger.json` 和 `report/copyright_statement.md`。

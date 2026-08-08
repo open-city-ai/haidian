@@ -29,6 +29,152 @@
       "confidence": "high",
       "assumptions": []
     },
+    "land_use_feature_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 24,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(concept BUILDING_FOOTPRINT features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 30435.463,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(ROAD_CENTERLINE length)",
+      "confidence": "low",
+      "assumptions": [
+        "A-ROAD-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(R01..R12 scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industrial_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(R01..R03 industry validation scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(right-holder groups)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ROOTED pilgrimage landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "osm_walk_node_count": {
+      "status": "known",
+      "value": 3049,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/osm-baseline.json"
+      ],
+      "formula": "OSMnx walk graph node count within provisional boundary",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OSM-001"
+      ]
+    },
+    "osm_walk_edge_count": {
+      "status": "known",
+      "value": 8300,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/osm-baseline.json"
+      ],
+      "formula": "OSMnx directed walk graph edge count",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OSM-001"
+      ]
+    },
+    "osm_selected_facility_count": {
+      "status": "known",
+      "value": 497,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/osm-baseline.json"
+      ],
+      "formula": "count(filtered OSM facility objects)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OSM-001"
+      ]
+    },
+    "osm_local_shop_candidate_count": {
+      "status": "known",
+      "value": 96,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/osm-baseline.json"
+      ],
+      "formula": "count(filtered OSM objects carrying shop tags)",
+      "confidence": "low",
+      "assumptions": [
+        "A-OSM-001"
+      ]
+    },
+    "osm_all_five_access_1200_ratio": {
+      "status": "known",
+      "value": 0.665792,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/osm-baseline.json"
+      ],
+      "formula": "walk nodes reaching all five OSM service categories within 1200m / all walk nodes",
+      "confidence": "low",
+      "assumptions": [
+        "A-OSM-001"
+      ]
+    },
     "key_area_zhongzhiyuan_area_sqm": {
       "status": "known",
       "value": 1929201.877,
@@ -68,116 +214,9 @@
         "A-BOUNDARY-001"
       ]
     },
-    "land_use_feature_count": {
-      "status": "known",
-      "value": 6,
-      "unit": "count",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "count(LAND_USE features)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "land_use_05_area_sqm": {
-      "status": "known",
-      "value": 1717046.553,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=05)",
-      "confidence": "low",
-      "assumptions": [
-        "A-BOUNDARY-001",
-        "A-CONTROLS-001"
-      ]
-    },
-    "land_use_0701_area_sqm": {
-      "status": "known",
-      "value": 1660823.74,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0701)",
-      "confidence": "low",
-      "assumptions": [
-        "A-BOUNDARY-001",
-        "A-CONTROLS-001"
-      ]
-    },
-    "land_use_0702_area_sqm": {
-      "status": "known",
-      "value": 2010372.867,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0702)",
-      "confidence": "low",
-      "assumptions": [
-        "A-BOUNDARY-001",
-        "A-CONTROLS-001"
-      ]
-    },
-    "land_use_0802_area_sqm": {
-      "status": "known",
-      "value": 3814520.883,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=0802)",
-      "confidence": "low",
-      "assumptions": [
-        "A-BOUNDARY-001",
-        "A-CONTROLS-001"
-      ]
-    },
-    "land_use_1401_area_sqm": {
-      "status": "known",
-      "value": 2210078.934,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/land_use.geojson"
-      ],
-      "formula": "sum(area where land_use_code=1401)",
-      "confidence": "low",
-      "assumptions": [
-        "A-BOUNDARY-001",
-        "A-CONTROLS-001"
-      ]
-    },
-    "building_count": {
-      "status": "known",
-      "value": 24,
-      "unit": "count",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "count(BUILDING_FOOTPRINT features)",
-      "confidence": "medium",
-      "assumptions": [
-        "A-EXISTING-001"
-      ]
-    },
-    "building_footprint_area_sqm": {
-      "status": "known",
-      "value": 1386505.057,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
-      "formula": "sum(concept_building_footprint_area)",
-      "confidence": "low",
-      "assumptions": [
-        "A-EXISTING-001"
-      ]
-    },
     "green_space_area_sqm": {
       "status": "known",
-      "value": 1202423.817,
+      "value": 1190077.727,
       "unit": "sqm",
       "source_files": [
         "geometry/green_space.geojson"
@@ -190,7 +229,7 @@
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.105357,
+      "value": 0.104275,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -209,7 +248,7 @@
       "source_files": [
         "geometry/public_space.geojson"
       ],
-      "formula": "sum(PUBLIC_SPACE area)",
+      "formula": "union(PUBLIC_SPACE area)",
       "confidence": "low",
       "assumptions": [
         "A-BOUNDARY-001"
@@ -229,99 +268,77 @@
         "A-BOUNDARY-001"
       ]
     },
-    "road_network_length_m": {
-      "status": "known",
-      "value": 30464.05,
-      "unit": "m",
-      "source_files": [
-        "geometry/roads.geojson"
-      ],
-      "formula": "sum(ROAD_CENTERLINE length)",
-      "confidence": "low",
-      "assumptions": [
-        "A-ROAD-001"
-      ]
-    },
-    "phasing_area_sqm": {
-      "status": "known",
-      "value": 11412842.302,
-      "unit": "sqm",
-      "source_files": [
-        "geometry/phasing.geojson"
-      ],
-      "formula": "sum(non_overlapping_phase_area)",
-      "confidence": "low",
-      "assumptions": [
-        "A-BOUNDARY-001"
-      ]
-    },
-    "scenario_card_count": {
-      "status": "known",
-      "value": 12,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(T01..T12 scenario cards)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "industrial_validation_scenario_count": {
-      "status": "known",
-      "value": 3,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(industry testing scenarios marked *)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "persona_count": {
-      "status": "known",
-      "value": 6,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(persona rows)",
-      "confidence": "high",
-      "assumptions": []
-    },
-    "landmark_count": {
-      "status": "known",
-      "value": 4,
-      "unit": "count",
-      "source_files": [
-        "proposal.md"
-      ],
-      "formula": "count(pilgrimage and honor nodes)",
-      "confidence": "high",
-      "assumptions": []
-    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
       "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
+        "visual/assets/retention-data-contract.json"
       ],
       "formula": "total_floor_area / official_site_area",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "Approved FAR controls, official boundary and floor-area data are unavailable."
+      "reason": "Official boundary, controls and floor-area data are unavailable."
     },
-    "time_dividend_minutes_per_user_week": {
+    "resident_retention_rate": {
       "status": "unknown",
       "value": null,
-      "unit": "none",
+      "unit": "ratio",
       "source_files": [
-        "proposal.md"
+        "visual/assets/retention-data-contract.json"
       ],
-      "formula": "observed_minutes_saved - new_coordination_minutes",
+      "formula": "eligible baseline residents remaining / eligible baseline residents",
       "confidence": "unknown",
       "assumptions": [],
-      "reason": "No real baseline, user study or controlled pilot has been completed; targets must not be presented as observed benefits."
+      "reason": "No lawful longitudinal resident or tenure baseline exists."
+    },
+    "rent_burden_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/retention-data-contract.json"
+      ],
+      "formula": "household rent / household income",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No privacy-preserving housing-cost and income sample exists."
+    },
+    "local_shop_retention_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/retention-data-contract.json"
+      ],
+      "formula": "baseline local shops still operating / eligible baseline local shops",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "OSM shop tags are not a verified business census or contract baseline."
+    },
+    "essential_worker_access_equity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/retention-data-contract.json"
+      ],
+      "formula": "minimum-group access / best-group access",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No representative shift, commute, safety or service-use study exists."
+    },
+    "representative_participation_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/retention-data-contract.json"
+      ],
+      "formula": "represented right-holder groups / required right-holder groups",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No public participation has yet been conducted."
     }
   }
 }
