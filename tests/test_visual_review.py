@@ -4,6 +4,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import fitz
+
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
@@ -40,6 +42,19 @@ def write_valid_visual_package(root: Path) -> Path:
         encoding="utf-8",
     )
     return submission
+
+
+def write_drawing_pdf(path: Path, *, sparse: bool) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    if sparse:
+        page.insert_text((32, 40), "Minimal board label", fontsize=12, color=(0, 0, 0))
+    else:
+        page.draw_rect(fitz.Rect(40, 40, 802, 1151), color=(0, 0, 0), fill=(0.15, 0.35, 0.55))
+        page.insert_text((80, 120), "Substantial board content", fontsize=30, color=(1, 1, 1))
+    document.save(path)
+    document.close()
 
 
 class VisualReviewTests(unittest.TestCase):
@@ -170,6 +185,21 @@ class VisualReviewTests(unittest.TestCase):
 
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_NONFINITE_VALUE", {issue.check_id for issue in report.issues})
+
+    def test_near_blank_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_drawing_pdf(submission / "drawings" / "a0-boards.pdf", sparse=True)
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
+
+    def test_substantial_drawing_page_passes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_drawing_pdf(submission / "drawings" / "a0-boards.pdf", sparse=False)
+            report = review_visual(submission)
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
 
 
 if __name__ == "__main__":

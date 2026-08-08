@@ -13,10 +13,12 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 HAS_REVIEW_DEPS = all(
-    importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
+    importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema", "PIL", "fitz"]
 )
 
 if HAS_REVIEW_DEPS:
+    import fitz
+
     from self_check_submission import build_self_check  # noqa: E402
     from pyproj import Transformer  # noqa: E402
     from shapely.geometry import shape  # noqa: E402
@@ -86,9 +88,14 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
         path.write_bytes(path.read_bytes() + b"participant-revision")
     geometry = output_dir / "geometry" / "land_use.geojson"
     geometry.write_text(geometry.read_text(encoding="utf-8") + "\n", encoding="utf-8")
-    drawing = b"%PDF-1.4\n3 0 obj<</Type/Page/Parent 2 0 R>>endobj\n" + b"0" * 4096
     for rel in ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"]:
-        (output_dir / rel).write_bytes(drawing)
+        path = output_dir / rel
+        document = fitz.open()
+        page = document.new_page(width=842, height=1191)
+        page.draw_rect(fitz.Rect(40, 40, 802, 1151), color=(0, 0, 0), fill=(0.15, 0.35, 0.55))
+        page.insert_text((80, 120), "Participant-authored drawing", fontsize=30, color=(1, 1, 1))
+        document.save(path)
+        document.close()
 
     primary_text = proposal.read_text(encoding="utf-8")
     translated_proposal = output_dir / "proposal.en.md"

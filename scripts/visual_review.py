@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Check a submission's static visual packaging and safety requirements.
+"""Check a submission's static visual packaging, rendering, and safety requirements.
 
 The page is treated as a presentation artifact. This script never executes
-contributor JavaScript; it only checks static safety markers and consistency
-with machine-readable metrics.
+contributor JavaScript; it checks static safety markers, consistency with
+machine-readable metrics, and whether submitted drawing PDFs render with
+more than a near-blank amount of visible content.
 """
 
 from __future__ import annotations
@@ -17,6 +18,13 @@ from dataclasses import dataclass, field
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
+
+try:
+    import fitz
+    from PIL import Image
+except ImportError:  # pragma: no cover - covered by the self-check dependency gate.
+    fitz = None
+    Image = None
 
 
 REQUIRED_TEXT_MARKERS = [
@@ -36,6 +44,20 @@ REQUIRED_TEXT_MARKERS = [
     "假设",
 ]
 REQUIRED_METRICS = ["site_area_sqm", "green_ratio", "public_space_ratio"]
+DRAWINGS_DIRECTORY = "drawings"
+PDF_RENDER_MAX_EDGE = 1024
+PDF_GRID_SIZE = 12
+PAPER_CHANNEL_THRESHOLD = 245
+MIN_GRID_CELL_INK_RATIO = 0.002
+# These thresholds intentionally identify only an almost empty rendered page.
+# They are not a general score for visual quality: sparse but usable pages still
+# need a human reviewer, who receives an advisory instead of an automatic fail.
+NEAR_BLANK_MAX_INK_RATIO = 0.04
+NEAR_BLANK_MAX_BBOX_RATIO = 0.40
+NEAR_BLANK_MAX_OCCUPIED_CELLS = 36
+SPARSE_PAGE_MAX_INK_RATIO = 0.09
+SPARSE_PAGE_MAX_BBOX_RATIO = 0.55
+SPARSE_PAGE_MAX_OCCUPIED_CELLS = 54
 FORBIDDEN_PATTERNS = [
     (re.compile(r"<iframe\b", re.I), "HTML must not contain iframe embeds"),
     (re.compile(r"<form\b", re.I), "HTML must not contain form submission UI"),
@@ -127,6 +149,129 @@ def extract_visual_metrics(text: str) -> dict[str, float]:
     return parser.metrics
 
 
+def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
+    """Measure non-paper coverage from a bounded low-resolution PDF render."""
+    if fitz is None or Image is None:
+        raise RuntimeError("PyMuPDF and Pillow are required to inspect drawing PDFs.")
+
+    longest_edge = max(float(page.rect.width), float(page.rect.height))
+    if longest_edge <= 0:
+        raise ValueError("PDF page has no renderable size.")
+    scale = min(1.0, PDF_RENDER_MAX_EDGE / longest_edge)
+    pixmap = page.get_pixmap(
+        matrix=fitz.Matrix(scale, scale),
+        colorspace=fitz.csRGB,
+        alpha=False,
+    )
+    image = Image.frombytes("RGB", (pixmap.width, pixmap.height), pixmap.samples)
+    width, height = image.size
+    pixels = image.load()
+    cell_ink = [0] * (PDF_GRID_SIZE * PDF_GRID_SIZE)
+    cell_totals = [0] * (PDF_GRID_SIZE * PDF_GRID_SIZE)
+    ink_pixels = 0
+    min_x, min_y = width, height
+    max_x = max_y = -1
+
+    for y in range(height):
+        row = min(PDF_GRID_SIZE - 1, y * PDF_GRID_SIZE // height)
+        for x in range(width):
+            column = min(PDF_GRID_SIZE - 1, x * PDF_GRID_SIZE // width)
+            cell_index = row * PDF_GRID_SIZE + column
+            cell_totals[cell_index] += 1
+            red, green, blue = pixels[x, y]
+            if min(red, green, blue) >= PAPER_CHANNEL_THRESHOLD:
+                continue
+            ink_pixels += 1
+            cell_ink[cell_index] += 1
+            min_x = min(min_x, x)
+            min_y = min(min_y, y)
+            max_x = max(max_x, x)
+            max_y = max(max_y, y)
+
+    total_pixels = width * height
+    if not ink_pixels:
+        return {"ink_ratio": 0.0, "bbox_ratio": 0.0, "occupied_cells": 0}
+    bbox_pixels = (max_x - min_x + 1) * (max_y - min_y + 1)
+    occupied_cells = sum(
+        ink / total >= MIN_GRID_CELL_INK_RATIO
+        for ink, total in zip(cell_ink, cell_totals)
+        if total
+    )
+    return {
+        "ink_ratio": ink_pixels / total_pixels,
+        "bbox_ratio": bbox_pixels / total_pixels,
+        "occupied_cells": occupied_cells,
+    }
+
+
+def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
+    drawings_dir = submission_dir / DRAWINGS_DIRECTORY
+    pdf_paths = sorted(drawings_dir.rglob("*.pdf")) if drawings_dir.exists() else []
+    if not pdf_paths:
+        return
+    if fitz is None or Image is None:
+        report.add(
+            "DRAWING_PDF_REVIEW_UNAVAILABLE",
+            "blocking",
+            DRAWINGS_DIRECTORY,
+            "PyMuPDF and Pillow are required to inspect rendered drawing PDFs. "
+            "Install with: python3 -m pip install -r requirements-review.txt",
+        )
+        return
+
+    for pdf_path in pdf_paths:
+        display_path = str(pdf_path.relative_to(submission_dir))
+        try:
+            with fitz.open(pdf_path) as document:
+                if not len(document):
+                    report.add(
+                        "DRAWING_PDF_NO_PAGES",
+                        "major",
+                        display_path,
+                        "Drawing PDF has no renderable pages.",
+                    )
+                    continue
+                for page_number, page in enumerate(document, start=1):
+                    coverage = measure_rendered_page_content(page)
+                    ink_ratio = float(coverage["ink_ratio"])
+                    bbox_ratio = float(coverage["bbox_ratio"])
+                    occupied_cells = int(coverage["occupied_cells"])
+                    details = (
+                        f"page {page_number}: {ink_ratio:.2%} non-paper pixels, "
+                        f"{bbox_ratio:.2%} content bounding box, "
+                        f"{occupied_cells}/{PDF_GRID_SIZE * PDF_GRID_SIZE} occupied grid cells"
+                    )
+                    if (
+                        ink_ratio <= NEAR_BLANK_MAX_INK_RATIO
+                        and bbox_ratio <= NEAR_BLANK_MAX_BBOX_RATIO
+                        and occupied_cells <= NEAR_BLANK_MAX_OCCUPIED_CELLS
+                    ):
+                        report.add(
+                            "DRAWING_PAGE_NEAR_BLANK",
+                            "major",
+                            display_path,
+                            f"Rendered drawing is near blank ({details}). Add substantial readable board content.",
+                        )
+                    elif (
+                        ink_ratio <= SPARSE_PAGE_MAX_INK_RATIO
+                        and bbox_ratio <= SPARSE_PAGE_MAX_BBOX_RATIO
+                        and occupied_cells <= SPARSE_PAGE_MAX_OCCUPIED_CELLS
+                    ):
+                        report.add(
+                            "DRAWING_PAGE_SPARSE_LAYOUT",
+                            "minor",
+                            display_path,
+                            f"Rendered drawing is unusually sparse ({details}); human review should confirm layout readability.",
+                        )
+        except Exception as exc:  # MuPDF uses format-specific exception subclasses.
+            report.add(
+                "DRAWING_PDF_UNREADABLE",
+                "major",
+                display_path,
+                f"Drawing PDF could not be rendered: {exc}",
+            )
+
+
 def review_visual(submission_dir: Path) -> VisualReport:
     report = VisualReport()
     index_path = submission_dir / "visual" / "index.html"
@@ -208,6 +353,7 @@ def review_visual(submission_dir: Path) -> VisualReport:
     for name in REQUIRED_METRICS:
         if name not in declared:
             report.add("VISUAL_METRIC_MISSING", "major", display_path, f"Missing data-metric `{name}`.")
+    review_drawing_pdfs(submission_dir, report)
     return report
 
 

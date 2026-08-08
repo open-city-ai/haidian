@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 
-REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
+REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema", "PIL", "fitz")
 INSTALL_HINT = "python3 -m pip install -r requirements-review.txt"
 SCRIPT_DIR = Path(__file__).resolve().parent
 
@@ -204,6 +204,12 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
             "stdout": {},
             "stderr": f"Missing review dependencies: {', '.join(missing)}. Install with: {INSTALL_HINT}",
         }
+        visual = {
+            "returncode": 2,
+            "ok": False,
+            "stdout": {},
+            "stderr": f"Missing review dependencies: {', '.join(missing)}. Install with: {INSTALL_HINT}",
+        }
     else:
         spatial = run_json_command(
             [
@@ -215,14 +221,14 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
                 "--json",
             ]
         )
-    visual = run_json_command(
-        [
-            sys.executable,
-            str(script_path(repo_root, "visual_review.py")),
-            str(submission_dir),
-            "--json",
-        ]
-    )
+        visual = run_json_command(
+            [
+                sys.executable,
+                str(script_path(repo_root, "visual_review.py")),
+                str(submission_dir),
+                "--json",
+            ]
+        )
     professional = run_json_command(
         [
             sys.executable,
