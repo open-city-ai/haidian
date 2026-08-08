@@ -324,6 +324,21 @@ class TestSubmissionsGallery(unittest.TestCase):
         self.assertNotIn("proposal-thumb iframe", index)
         self.assertNotIn("<iframe data-src=", submissions)
 
+    def test_homepage_exposes_copyable_agent_prompt_in_hero(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        hero = index[index.index('<section id="hero">'):index.index("<!-- Stats -->")]
+        self.assertIn("hero-skill-copy", hero)
+        self.assertIn("urban-design-ai-submission", hero)
+        self.assertIn("skill-copy-btn", hero)
+        self.assertIn("hero-skill-head", hero)
+        self.assertIn("复制这句话，交给你的 Agent", hero)
+        self.assertIn('href="submissions.html"', hero)
+        self.assertNotIn('href="#submit"', hero)
+        self.assertEqual(2, index.count('class="skill-copy-row'))
+        self.assertIn("document.querySelectorAll('.skill-copy-btn').forEach", index)
+        self.assertNotIn('id="skillCopyButton"', index)
+        self.assertNotIn('id="skillAddressField"', index)
+
     def test_generated_items_include_github_avatar_metadata(self):
         items = self.load_gallery_items()
         self.assertTrue(items)
