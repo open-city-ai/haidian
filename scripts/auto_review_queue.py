@@ -71,6 +71,21 @@ def ci_state(meta: dict[str, Any]) -> str:
     return "pending"
 
 
+def has_current_head_review_marker(meta: dict[str, Any]) -> bool:
+    head_sha = str(meta.get("headRefOid") or "")
+    if not head_sha:
+        return False
+    marker = REVIEW_MARKER.format(head_sha=head_sha)
+    reviews = meta.get("reviews")
+    if not isinstance(reviews, list):
+        return False
+    return any(
+        marker in str(review.get("body") or "")
+        for review in reviews
+        if isinstance(review, dict)
+    )
+
+
 def submission_dir_from_files(paths: list[str], author: str) -> str:
     roots: set[str] = set()
     prefix = f"submissions/{author.casefold()}/"
@@ -109,7 +124,13 @@ def decide(review: dict[str, Any], decision: dict[str, Any], threshold: float) -
 def pr_meta(repo: str, number: int, cwd: Path) -> dict[str, Any]:
     return gh_json(
         repo,
-        ["pr", "view", str(number), "--json", "number,author,headRefOid,state,isDraft,statusCheckRollup,labels"],
+        [
+            "pr",
+            "view",
+            str(number),
+            "--json",
+            "number,author,headRefOid,state,isDraft,statusCheckRollup,labels,reviews",
+        ],
         cwd=cwd,
     )
 
@@ -184,6 +205,8 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
     state = ci_state(meta)
     if meta.get("isDraft"):
         return {"number": number, "result": "skipped-draft"}
+    if has_current_head_review_marker(meta):
+        return {"number": number, "head_sha": head_sha, "result": "skipped-current-head-reviewed"}
     if state != "success":
         return {"number": number, "head_sha": head_sha, "result": f"skipped-ci-{state}"}
 
@@ -312,10 +335,11 @@ def main() -> int:
             "--limit",
             "1000",
             "--json",
-            "number,author,headRefOid,state,isDraft,statusCheckRollup,labels",
+            "number,author,headRefOid,state,isDraft,statusCheckRollup,labels,reviews",
         ],
         cwd=repo_root,
     )
+    candidates = [item for item in candidates if not has_current_head_review_marker(item)]
     selected = sorted(candidates, key=lambda item: int(item["number"]))[: args.limit]
     results = []
     with ThreadPoolExecutor(max_workers=args.concurrency) as executor:

@@ -6,7 +6,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from auto_review_queue import WorkerError, ci_state, decide, submission_dir_from_files  # noqa: E402
+from auto_review_queue import (  # noqa: E402
+    REVIEW_MARKER,
+    WorkerError,
+    ci_state,
+    decide,
+    has_current_head_review_marker,
+    submission_dir_from_files,
+)
 
 
 class AutoReviewQueueTests(unittest.TestCase):
@@ -96,6 +103,35 @@ class AutoReviewQueueTests(unittest.TestCase):
                     ]
                 }
             ),
+        )
+
+    def test_current_head_review_marker_is_detected(self) -> None:
+        head_sha = "a" * 40
+        self.assertTrue(
+            has_current_head_review_marker(
+                {
+                    "headRefOid": head_sha,
+                    "reviews": [{"body": f"{REVIEW_MARKER.format(head_sha=head_sha)}\nscore: 91"}],
+                }
+            )
+        )
+
+    def test_stale_head_review_marker_is_not_detected(self) -> None:
+        head_sha = "a" * 40
+        old_sha = "b" * 40
+        self.assertFalse(
+            has_current_head_review_marker(
+                {
+                    "headRefOid": head_sha,
+                    "reviews": [{"body": REVIEW_MARKER.format(head_sha=old_sha)}],
+                }
+            )
+        )
+
+    def test_missing_reviews_are_not_treated_as_reviewed(self) -> None:
+        self.assertFalse(has_current_head_review_marker({"headRefOid": "a" * 40}))
+        self.assertFalse(
+            has_current_head_review_marker({"headRefOid": "a" * 40, "reviews": None})
         )
 
 
