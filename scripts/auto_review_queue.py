@@ -171,11 +171,6 @@ def review_label_changes(meta: dict[str, Any]) -> tuple[list[str], list[str]]:
                 remove.add("review/queued")
             if "review/ci-failed" not in existing:
                 add.add("review/ci-failed")
-        elif meta.get("reviewDecision") == "CHANGES_REQUESTED":
-            if "review/queued" in existing:
-                remove.add("review/queued")
-            if "review/changes-requested" not in existing:
-                add.add("review/changes-requested")
 
     return sorted(remove), sorted(add)
 
@@ -379,7 +374,7 @@ def main() -> int:
                 "--limit",
                 "1000",
                 "--json",
-                "number,isDraft,reviewDecision,statusCheckRollup,labels",
+                "number,isDraft,statusCheckRollup,labels",
             ],
             cwd=repo_root,
         )

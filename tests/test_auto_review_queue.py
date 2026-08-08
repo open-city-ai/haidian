@@ -148,20 +148,6 @@ class AutoReviewQueueTests(unittest.TestCase):
         self.assertEqual(["review/draft"], remove)
         self.assertEqual([], add)
 
-    def test_human_change_request_replaces_stale_queue_label(self) -> None:
-        remove, add = review_label_changes(
-            {
-                "isDraft": False,
-                "reviewDecision": "CHANGES_REQUESTED",
-                "labels": [{"name": "review/queued"}],
-                "statusCheckRollup": [
-                    {"name": "submission-validation", "conclusion": "SUCCESS"}
-                ],
-            }
-        )
-        self.assertEqual(["review/queued"], remove)
-        self.assertEqual(["review/changes-requested"], add)
-
     def test_reconciliation_is_noop_when_labels_already_match(self) -> None:
         self.assertEqual(
             ([], []),
