@@ -1,0 +1,29 @@
+name: public-site-parity
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-site-parity
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: check-public-gallery
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+
+      - name: Build current gallery data
+        run: python3 scripts/generate_submissions_data.py
+
+      - name: Compare public gallery with main
+        env:
+          PUBLIC_GALLERY_URL: https://haidian.open-city.ai/submissions-data.js
+        run: python3 scripts/check_public_gallery.py --url "$PUBLIC_GALLERY_URL"
