@@ -243,11 +243,11 @@ def proposal_paths_for(changed_files: list[str]) -> set[str]:
 
 
 def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str]:
-    """Exclude maintainer-authorized removals from content validation."""
+    """Exclude removed paths from content validation for every author."""
     return [
         item["filename"]
         for item in files
-        if not (maintainer_bypass and item.get("status") == "removed")
+        if item.get("status") != "removed"
     ]
 
 

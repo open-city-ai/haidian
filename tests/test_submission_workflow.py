@@ -168,12 +168,9 @@ class ManifestHydrationTests(unittest.TestCase):
         ]
         self.assertEqual(["docs/note.md"], validation_paths_for(files, True))
 
-    def test_participant_removals_remain_in_validation_scope(self) -> None:
+    def test_participant_removals_are_not_revalidated_as_missing_files(self) -> None:
         files = [{"filename": "submissions/alice/design/proposal.md", "status": "removed"}]
-        self.assertEqual(
-            ["submissions/alice/design/proposal.md"],
-            validation_paths_for(files, False),
-        )
+        self.assertEqual([], validation_paths_for(files, False))
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(
