@@ -21,6 +21,7 @@ import urllib.request
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+from schema_provenance_review import format_similarity_warning, review_changed_schema_files
 from validate_submission import (
     PARTICIPANT_PROTECTED_GLOBAL_FILES,
     PROTECTED_REVIEW_ARTIFACT_PREFIXES,
@@ -483,6 +484,13 @@ def main() -> int:
                 )
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
+        trusted_repo_root = Path(__file__).resolve().parents[1]
+        for finding in review_changed_schema_files(
+            worktree,
+            trusted_repo_root,
+            validation_files,
+        ):
+            validation.add_warning(format_similarity_warning(finding))
         validation_markdown = format_report(validation)
 
         if not is_current_pull_request_head(client, pr_number, head_sha):
