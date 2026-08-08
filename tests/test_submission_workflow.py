@@ -1,6 +1,7 @@
 import sys
 import tempfile
 import unittest
+import base64
 import json
 import subprocess
 import hashlib
@@ -10,6 +11,9 @@ import jsonschema
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+VALID_PNG = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+)
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from validate_submission import (  # noqa: E402
@@ -768,10 +772,10 @@ class SubmissionWorkflowTests(unittest.TestCase):
 </main></body></html>""",
         )
         for figure in figure_assets:
-            self.write(
+            self.write_bytes(
                 root,
                 f"{base}/{figure}",
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>Figure</title><rect width="10" height="10"/></svg>',
+                VALID_PNG,
             )
         return [proposal] + [f"{base}/{item}" for item in required]
 
@@ -1013,6 +1017,24 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertFalse(report.ok)
             self.assertIn("embedded image `assets/figures/site-overview.png` is missing", "\n".join(report.errors))
+
+    def test_required_png_must_have_valid_chunk_checksum(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            image = root / base / "assets/figures/mobility-bluegreen.png"
+            payload = bytearray(image.read_bytes())
+            payload[payload.index(b"IDAT") + 4] ^= 0x01
+            image.write_bytes(payload)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "mobility-bluegreen.png: unreadable required PNG",
+                "\n".join(report.errors),
+            )
 
     def test_proposal_embedded_image_must_be_declared_in_manifest(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

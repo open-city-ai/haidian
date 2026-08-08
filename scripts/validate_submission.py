@@ -12,7 +12,9 @@ import hashlib
 import json
 import os
 import re
+import struct
 import sys
+import zlib
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
@@ -204,6 +206,49 @@ REQUIRED_PROPOSAL_IMAGE_PATHS = {
     "assets/figures/mobility-bluegreen.png",
     "assets/figures/metrics-evidence.png",
 }
+
+
+def png_integrity_error(path: Path) -> str | None:
+    """Return a deterministic PNG structure/CRC/decompression error, if any."""
+    try:
+        payload = path.read_bytes()
+    except OSError as exc:
+        return f"cannot read PNG: {exc}"
+    if not payload.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "invalid PNG signature"
+    offset = 8
+    chunk_types: list[bytes] = []
+    idat = bytearray()
+    while offset < len(payload):
+        if len(payload) - offset < 12:
+            return "truncated PNG chunk header or checksum"
+        length = struct.unpack(">I", payload[offset : offset + 4])[0]
+        chunk_type = payload[offset + 4 : offset + 8]
+        end = offset + 12 + length
+        if end > len(payload):
+            return f"truncated PNG {chunk_type.decode('ascii', 'replace')} chunk"
+        chunk_data = payload[offset + 8 : offset + 8 + length]
+        expected_crc = struct.unpack(">I", payload[offset + 8 + length : end])[0]
+        actual_crc = zlib.crc32(chunk_data, zlib.crc32(chunk_type)) & 0xFFFFFFFF
+        if actual_crc != expected_crc:
+            return f"invalid PNG {chunk_type.decode('ascii', 'replace')} checksum"
+        chunk_types.append(chunk_type)
+        if chunk_type == b"IDAT":
+            idat.extend(chunk_data)
+        offset = end
+        if chunk_type == b"IEND":
+            break
+    if not chunk_types or chunk_types[0] != b"IHDR":
+        return "PNG must start with IHDR"
+    if b"IDAT" not in chunk_types:
+        return "PNG has no IDAT image data"
+    if not chunk_types or chunk_types[-1] != b"IEND":
+        return "PNG has no complete IEND chunk"
+    try:
+        zlib.decompress(bytes(idat))
+    except zlib.error as exc:
+        return f"invalid PNG IDAT stream: {exc}"
+    return None
 FALLBACK_REQUIRED_STANDARD_IDS = {
     "PROJECT-OFFICIAL-ANNOUNCEMENT",
     "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
@@ -1590,6 +1635,14 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     if not (base / "manifest.json").exists():
         return
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
+
+    for rel_path in sorted(REQUIRED_PROPOSAL_IMAGE_PATHS):
+        image_path = base / rel_path
+        if not image_path.is_file():
+            continue
+        error = png_integrity_error(image_path)
+        if error:
+            report.add_error(f"{proposal_dir}/{rel_path}: unreadable required PNG: {error}")
 
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
