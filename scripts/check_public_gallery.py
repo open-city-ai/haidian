@@ -36,15 +36,25 @@ def parse_gallery_data(text: str) -> list[dict[str, Any]]:
 
 
 def source_urls(items: list[dict[str, Any]]) -> set[str]:
-    urls: set[str] = set()
+    return set(items_by_source_url(items))
+
+
+def items_by_source_url(items: list[dict[str, Any]]) -> dict[str, str]:
+    """Return a canonical payload indexed by its stable gallery source URL."""
+    indexed_items: dict[str, str] = {}
     for index, item in enumerate(items):
         value = item.get("sourceUrl")
         if not isinstance(value, str) or not value.strip():
             raise GalleryDataError(f"entry {index} has no non-empty sourceUrl")
-        if value in urls:
+        if value in indexed_items:
             raise GalleryDataError(f"duplicate sourceUrl: {value}")
-        urls.add(value)
-    return urls
+        indexed_items[value] = json.dumps(
+            item,
+            ensure_ascii=False,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+    return indexed_items
 
 
 def fetch_public_data(url: str, timeout: int = 30) -> str:
@@ -56,10 +66,14 @@ def fetch_public_data(url: str, timeout: int = 30) -> str:
         return response.read().decode("utf-8")
 
 
-def compare_gallery_data(expected_text: str, public_text: str) -> tuple[set[str], set[str]]:
-    expected = source_urls(parse_gallery_data(expected_text))
-    public = source_urls(parse_gallery_data(public_text))
-    return expected - public, public - expected
+def compare_gallery_data(
+    expected_text: str, public_text: str
+) -> tuple[set[str], set[str], set[str]]:
+    expected = items_by_source_url(parse_gallery_data(expected_text))
+    public = items_by_source_url(parse_gallery_data(public_text))
+    shared_urls = expected.keys() & public.keys()
+    changed = {url for url in shared_urls if expected[url] != public[url]}
+    return expected.keys() - public.keys(), public.keys() - expected.keys(), changed
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -80,7 +94,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         expected_text = args.expected.read_text(encoding="utf-8")
         public_text = fetch_public_data(args.url, timeout=args.timeout)
-        missing, unexpected = compare_gallery_data(expected_text, public_text)
+        missing, unexpected, changed = compare_gallery_data(expected_text, public_text)
     except (OSError, UnicodeDecodeError, GalleryDataError, ValueError) as exc:
         print(f"public gallery parity check failed: {exc}", file=sys.stderr)
         return 2
@@ -88,12 +102,18 @@ def main(argv: list[str] | None = None) -> int:
     expected_count = len(source_urls(parse_gallery_data(expected_text)))
     public_count = len(source_urls(parse_gallery_data(public_text)))
     print(f"expected_entries={expected_count} public_entries={public_count}")
-    print(f"missing_on_public={len(missing)} unexpected_on_public={len(unexpected)}")
+    print(
+        "missing_on_public="
+        f"{len(missing)} unexpected_on_public={len(unexpected)} "
+        f"changed_on_public={len(changed)}"
+    )
     for path in sorted(missing):
         print(f"MISSING_ON_PUBLIC {path}")
     for path in sorted(unexpected):
         print(f"UNEXPECTED_ON_PUBLIC {path}")
-    return 1 if missing or unexpected else 0
+    for path in sorted(changed):
+        print(f"CHANGED_ON_PUBLIC {path}")
+    return 1 if missing or unexpected or changed else 0
 
 
 if __name__ == "__main__":

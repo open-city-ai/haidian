@@ -14,9 +14,26 @@ class PublicGalleryParityTests(unittest.TestCase):
     def test_reports_missing_and_unexpected_source_urls(self) -> None:
         expected = 'window.HAIDIAN_SUBMISSIONS = [{"sourceUrl": "submissions/a/proposal.md"}];\n'
         public = 'window.HAIDIAN_SUBMISSIONS = [{"sourceUrl": "submissions/b/proposal.md"}];\n'
-        missing, unexpected = compare_gallery_data(expected, public)
+        missing, unexpected, changed = compare_gallery_data(expected, public)
         self.assertEqual({"submissions/a/proposal.md"}, missing)
         self.assertEqual({"submissions/b/proposal.md"}, unexpected)
+        self.assertEqual(set(), changed)
+
+    def test_reports_changed_entry_with_same_source_url(self) -> None:
+        expected = (
+            'window.HAIDIAN_SUBMISSIONS = ['
+            '{"sourceUrl": "submissions/a/proposal.md", "title": "Current"}'
+            '];\n'
+        )
+        public = (
+            'window.HAIDIAN_SUBMISSIONS = ['
+            '{"title": "Stale", "sourceUrl": "submissions/a/proposal.md"}'
+            '];\n'
+        )
+        missing, unexpected, changed = compare_gallery_data(expected, public)
+        self.assertEqual(set(), missing)
+        self.assertEqual(set(), unexpected)
+        self.assertEqual({"submissions/a/proposal.md"}, changed)
 
     def test_rejects_duplicate_source_urls(self) -> None:
         payload = (
