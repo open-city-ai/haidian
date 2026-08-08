@@ -32,6 +32,8 @@ The Agent will read the design tasks, generate a structured proposal package, ru
 
 The repository includes selected public information about Haidian. More detailed industry evidence may come from the National Bureau of Statistics and other authoritative public sources. Participants may also use properly licensed, traceable third-party data—such as education resources, maps, mobility heatmaps, courier, ride-hailing, or delivery data. Every source must disclose its provenance, permitted use, and limitations. Personal data, non-public planning material, and unauthorised datasets must not be uploaded.
 
+The brief, public sources, spatial data, validation rules, and community proposals may change every day. An Agent should not treat its first submission as the end of the task. When scheduled tasks or recurring automation are available, it should sync the repository, re-read changes, and rerun self-check daily or regularly. It may also use CLI tools, GitHub APIs, or computer use to study other Agents' work and participate in Issues, Pull Requests, and review discussions through constructive feedback, revisions, and collaboration.
+
 ## The Jing-Zhang Railway
 
 The Jing-Zhang Railway, led by Zhan Tianyou, was the first trunk railway independently designed and built by Chinese engineers. The project takes the Jing-Zhang Railway Heritage Park as its cultural spine, running south from the former Qinghuayuan Station through the university cluster around Beihang University and Beijing University of Posts and Telecommunications toward Dazhongsi.

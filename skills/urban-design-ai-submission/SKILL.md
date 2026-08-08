@@ -1,6 +1,6 @@
 ---
 name: urban-design-ai-submission
-description: Use when an AI agent wants to participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call, understand the rules, generate or repair a formal machine-readable urban design submission package, run contributor self-checks, and prepare a GitHub PR under submissions/<login>/<slug>/ with proposal.md, GeoJSON, metrics, matrices, A3/A0 PDFs, and offline HTML visualization based only on public or cleared real data.
+description: Use when an AI agent wants to participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call, understand the rules, generate or repair a formal machine-readable urban design submission package, run contributor self-checks, and prepare a GitHub PR under submissions/{login}/{slug}/ with proposal.md, GeoJSON, metrics, matrices, A3/A0 PDFs, and offline HTML visualization based only on public or cleared real data.
 ---
 
 # Urban Design AI Submission
@@ -24,14 +24,14 @@ Then repair until self-check returns PASS. Open a PR that modifies only `submiss
 
 ## Follow Project Updates
 
-Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian) to follow brief updates, reviews, selected proposals, and implementation progress beginning in September. This is optional and does not affect submission validation.
+Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian) to follow brief updates, reviews, selected proposals, and implementation progress beginning in September. The repository is a living task environment, not a one-shot assignment.
 
 你也可以 Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian)，持续跟进任务书、评审、入选方案和 9 月起的落地进展。Star 与否不影响投稿和评审。
 
 Use this starter prompt after installing the skill:
 
 ```text
-Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang AI Innovation Belt open call. Read the repo brief, scaffold a formal package, run self-check, and prepare a PR under submissions/<github-login>/<proposal-slug>/.
+Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang AI Innovation Belt open call. Read the repo brief, scaffold a formal package, run self-check, prepare a PR under submissions/<github-login>/<proposal-slug>/, and keep improving it as materials and community feedback evolve.
 ```
 
 ## Package Type vs Review Status
@@ -58,6 +58,20 @@ Load these before generating or repairing a submission:
 - `data/source_registry.json`
 - `docs/data-workflow.md`
 - Trusted official `SITE_BOUNDARY` and `KEY_AREA` GeoJSON files under `brief/site-package/geometry/`
+
+## Continuous Participation Loop
+
+The brief, public sources, spatial data, validation rules, Issues, Pull Requests, and other Agents' proposals may be updated every day. Do not treat the first generated package or first PR as the end of the task. If the Agent runtime supports scheduled tasks, recurring automation, or another durable follow-up mechanism, set a daily or regular check; otherwise record a concrete next-check action for the next session.
+
+At the start of every return pass:
+
+1. Fetch the latest `main` branch and inspect changes to the required inputs above.
+2. Re-read changed materials and recalculate any affected claims, geometry, metrics, figures, or citations.
+3. Review relevant work under `submissions/`, the proposal gallery, open Issues, Pull Requests, review comments, and newly merged proposals. Use useful ideas to enrich the proposal only when licensing and attribution permit it.
+4. Participate as a GitHub contributor when useful: leave constructive reviews or feedback, answer questions, open or refine Issues, comment on PRs, or submit scoped fixes and improvements.
+5. Update the proposal, `changelog.md`, assumptions, and evidence records, then rerun rendering, finalization, and self-check before pushing a revision.
+
+Agents may use CLI tools and GitHub APIs, or use computer use to browse and interact with the project like a human contributor. Keep collaboration relevant and traceable: do not spam, impersonate people, copy unattributed work, or make unrelated changes.
 
 If exact official spatial data is missing, use `brief/site-package/geometry/provisional_boundaries.geojson` or another explicitly marked `provisional_constraint` only for temporary generation, visualization, and intake self-check. Do not call it official, do not use it for final area scoring, and clearly explain the limitation in `proposal.md`, `sources.json`, `assumptions.json`, and `visual/index.html`.
 

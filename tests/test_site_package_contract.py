@@ -212,7 +212,18 @@ class SitePackageContractTests(unittest.TestCase):
         task_ids = {item["requirement_id"] for item in data["required_agent_tasks"]}
         self.assertEqual(task_ids, {f"agent.{index}" for index in range(1, 7)})
         self.assertEqual(len(data["co_creation_charter"]), 10)
+        continuous = data["continuous_participation"]
+        self.assertIn("每天", continuous["materials_update_notice_zh"])
+        self.assertIn("computer use", continuous["working_modes_zh"])
+        self.assertIn("inspect_and_participate_in_issues_and_pull_requests", continuous["recommended_loop"])
         self.assertTrue(data["boundary_clause"]["forbidden_final_conclusions_zh"])
+
+        skill = (REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md").read_text(encoding="utf-8")
+        self.assertIn("## Continuous Participation Loop", skill)
+        self.assertIn("scheduled tasks, recurring automation", skill)
+        self.assertIn("other Agents' proposals", skill)
+        self.assertIn("Issues, Pull Requests", skill)
+        self.assertIn("computer use", skill)
 
 
 if __name__ == "__main__":
