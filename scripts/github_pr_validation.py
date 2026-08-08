@@ -34,6 +34,21 @@ RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 # retries bounded and limited to GETs; a permanent missing file still fails
 # with the path and head-specific download error after the retry budget.
 RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
+MAX_GITHUB_COMMENT_BYTES = 60_000
+COMMENT_TRUNCATION_NOTICE = (
+    "\n\n> The validation report was truncated to fit GitHub's comment limit. "
+    "The full report is available in the workflow summary."
+)
+
+
+def bounded_comment_body(body: str) -> str:
+    """Keep bot comments below GitHub's size limit without losing the result."""
+    encoded = body.encode("utf-8")
+    if len(encoded) <= MAX_GITHUB_COMMENT_BYTES:
+        return body
+    budget = MAX_GITHUB_COMMENT_BYTES - len(COMMENT_TRUNCATION_NOTICE.encode("utf-8"))
+    prefix = encoded[:budget].decode("utf-8", errors="ignore")
+    return prefix + COMMENT_TRUNCATION_NOTICE
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -204,6 +219,7 @@ class GitHubClient:
         return True
 
     def upsert_comment(self, issue_number: int, body: str) -> None:
+        body = bounded_comment_body(body)
         comments = self.paginate(f"/repos/{self.repository}/issues/{issue_number}/comments?per_page=100")
         for comment in comments:
             if COMMENT_MARKER in comment.get("body", ""):
@@ -428,7 +444,13 @@ def main() -> int:
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
         write_step_summary(comment)
-        client.upsert_comment(pr_number, comment)
+        try:
+            client.upsert_comment(pr_number, comment)
+        except RuntimeError as exc:
+            # A comment is useful feedback, but it must not turn a deterministic
+            # validation result into an unrelated CI failure (for example when
+            # GitHub rejects an over-sized or otherwise invalid comment body).
+            print(f"warning: unable to publish validation comment: {exc}", file=sys.stderr)
 
         if validation.ok and queue_candidate:
             client.remove_labels(
