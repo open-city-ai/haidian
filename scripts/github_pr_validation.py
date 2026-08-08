@@ -28,6 +28,7 @@ COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
 MAX_API_ATTEMPTS = 4
 MAX_RETRY_DELAY_SECONDS = 30
+RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
 
 
@@ -48,8 +49,12 @@ def _http_error_message(error: urllib.error.HTTPError) -> str:
     return str(error.reason or "request failed")
 
 
-def _is_retryable_http_error(error: urllib.error.HTTPError, message: str) -> bool:
+def _is_retryable_http_error(
+    method: str, error: urllib.error.HTTPError, message: str
+) -> bool:
     """Retry transient API throttling, but fail fast on permission errors."""
+    if method.upper() not in RETRYABLE_METHODS:
+        return False
     if error.code in RETRYABLE_STATUS_CODES:
         return True
     if error.code != 403:
@@ -106,7 +111,9 @@ class GitHubClient:
                 message = _http_error_message(error)
                 if error.code == 404:
                     raise
-                if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(error, message):
+                if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
+                    method, error, message
+                ):
                     raise RuntimeError(
                         f"GitHub API {method} {url} failed with HTTP {error.code}: {message}"
                     ) from error
@@ -155,7 +162,9 @@ class GitHubClient:
                 message = _http_error_message(error)
                 if error.code == 404:
                     raise
-                if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(error, message):
+                if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
+                    "GET", error, message
+                ):
                     raise RuntimeError(
                         f"GitHub API download {path} failed with HTTP {error.code}: {message}"
                     ) from error

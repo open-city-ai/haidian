@@ -66,11 +66,26 @@ class GitHubApiResilienceTests(unittest.TestCase):
             b'{"message":"You have exceeded a secondary rate limit."}',
             {"Retry-After": "1"},
         )
-        self.assertTrue(_is_retryable_http_error(error, "You have exceeded a secondary rate limit."))
+        self.assertTrue(
+            _is_retryable_http_error(
+                "GET", error, "You have exceeded a secondary rate limit."
+            )
+        )
 
     def test_permission_403_is_not_retried(self) -> None:
         error = self._error(403, b'{"message":"Resource not accessible by integration"}')
-        self.assertFalse(_is_retryable_http_error(error, "Resource not accessible by integration"))
+        self.assertFalse(
+            _is_retryable_http_error(
+                "GET", error, "Resource not accessible by integration"
+            )
+        )
+
+    def test_mutating_request_is_not_retryable(self) -> None:
+        error = self._error(
+            500,
+            b'{"message":"server error"}',
+        )
+        self.assertFalse(_is_retryable_http_error("POST", error, "server error"))
 
     def test_request_retries_throttling_then_succeeds(self) -> None:
         error = self._error(
