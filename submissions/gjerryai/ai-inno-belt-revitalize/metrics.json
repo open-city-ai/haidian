@@ -1,0 +1,337 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.3856,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "green_area_sqm": {
+      "status": "known",
+      "value": 1943539.848,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(area of GREEN_SPACE features in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2086187.3718,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area of PUBLIC_SPACE features in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1703,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.1828,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1258632.3748,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 118.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 35273.2176,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 105.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use parcels)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.0051,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(area of 3 key areas in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design decision (scenario cards in proposal.md)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "design decision (renewal project list in proposal.md)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 3300906.1013,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area of PHASE-1 polygons in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 4646785.3826,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area of PHASE-2 polygons in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3465133.9016,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area of PHASE-3 polygons in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.8774,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of KEY-001 in EPSG:4548 (provisional)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.9087,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of KEY-002 in EPSG:4548 (provisional)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.2189,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area of KEY-003 in EPSG:4548 (provisional)",
+      "confidence": "medium",
+      "assumptions": [
+        "Geometry is provisional; recalculate when official polygons are supplied.",
+        "Value computed in EPSG:4548 from submitted GeoJSON."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official regulatory controls (not available in public registry)",
+      "confidence": "unknown",
+      "reason": "官方控规容积率条件未在公开资料中发布；待资格预审文件/控规附件补充后更新。",
+      "assumptions": [
+        "No official regulatory-plan conditions available; listed as pending-control, not a design conclusion."
+      ]
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "pending official regulatory controls (not available in public registry)",
+      "confidence": "unknown",
+      "reason": "官方建筑高度控制（含航空/景观/文保约束）未发布；待官方附件补充。",
+      "assumptions": [
+        "No official regulatory-plan conditions available; listed as pending-control, not a design conclusion."
+      ]
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official regulatory controls (not available in public registry)",
+      "confidence": "unknown",
+      "reason": "官方建筑密度控制条件未发布；待官方附件补充。",
+      "assumptions": [
+        "No official regulatory-plan conditions available; listed as pending-control, not a design conclusion."
+      ]
+    },
+    "green_ratio_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "pending official regulatory controls (not available in public registry)",
+      "confidence": "unknown",
+      "reason": "官方绿地率控制标准未发布；待控规条件补充。",
+      "assumptions": [
+        "No official regulatory-plan conditions available; listed as pending-control, not a design conclusion."
+      ]
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "pending official regulatory controls (not available in public registry)",
+      "confidence": "unknown",
+      "reason": "官方退线（道路红线/建筑控制线/消防与市政约束）未发布；待官方附件补充。",
+      "assumptions": [
+        "No official regulatory-plan conditions available; listed as pending-control, not a design conclusion."
+      ]
+    }
+  }
+}

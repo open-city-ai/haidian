@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/site_boundary.geojson",
+      "message": "总体设计边界为 provisional_constraint（official_boundary=false）；官方红线发布后须统一复算，组织方数据缺口不阻断内容评分。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域均为 provisional_constraint；仅用于生成、展示与自检，不得作为 official 重点区红线或精确面积依据。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "105 个用地单元由共享切割曲线的条带分区派生，覆盖提交边界、无缝隙无重叠，空间复核（EPSG:4548）通过。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态 HTML，无 CDN、远程瓦片、外部脚本、iframe、表单与 API；data-metric 值与 metrics.json 一致。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文覆盖 5 项强制标准与 1 项深度参照标准、15 项设计深度、9 个 GeoJSON 图层、全部 known 指标与 7 个来源引用；章节、场景卡、画像、地标与运营机制可读展开。"
+    }
+  ]
+}
