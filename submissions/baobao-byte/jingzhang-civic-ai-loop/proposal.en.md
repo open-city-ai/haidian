@@ -7,15 +7,17 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A public-interest proving ground where urban AI must earn trust before it scales."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "1.4"
-iteration: 5
+version: "1.5"
+iteration: 6
 ---
 
 # Jing-Zhang Civic AI Loop: An Open Belt for Verifiable Urban Agents
 
-> **v1.4 executable-verification status.** Package-level checks have passed, while all spatial figures still use repository provisional geometry with low aggregate confidence. They support conceptual review only—not official redlines, statutory controls, property, engineering, or precise-area claims. Official geometry must trigger coordinated recalculation.
+> **v1.5 taskbook-visualisation status.** Package-level checks have passed, while all spatial figures still use repository provisional geometry with low aggregate confidence. They support conceptual review only—not official redlines, statutory controls, property, engineering, or precise-area claims. Official geometry must trigger coordinated recalculation.
 
 **Motto: Every urban intelligence must withstand public scrutiny.**
+
+![Civic AI Loop concept mark](assets/figures/civic-loop-logo.en.svg)
 
 ## Executive brief: a public acceptance line, not another “AI park”
 The scarce asset is not another closed compute room but a walkable public infrastructure where residents, researchers, firms, operators and regulators can decide whether an urban intelligence deserves to enter the city. Zhongzhiyuan tests the stack and safety; the AI Origin Community turns research prototypes into participatory neighbourhood services; Dazhongsi tests public experience and consumer rights. The two wings provide professional support and bounded real-world tasks.
@@ -23,6 +25,27 @@ The scarce asset is not another closed compute room but a walkable public infras
 The six Taskbook agents become one delivery contract: 12 scenario cards, three falsifiable pilot protocols, AP0—AP7 action packages, G0—G4 gates, five resource ledgers and a civic-agent receipt. The first 90 days prepare evidence, repair one accessible public chain, establish staffed/paper/phone fallback and run synthetic-data rehearsals. Only P1 may begin after G0—G2 evidence is complete; any unresolved severe safety, rights or data issue stops the trial. Boundaries, title, statutory controls, cost, procurement, real operators and performance baselines remain **unknown/pending** until lawfully verified.
 
 Four machine-readable artefacts make the proposal handover-ready: `visual/assets/delivery-matrix.json`, `pilot-protocols.json`, `civic-agent-receipt.schema.json` and `asset-rights.json`. The included receipt is a synthetic example, not evidence of a live project.
+
+## Taskbook at a glance: three positions, five functions, three areas and two wings
+
+- **Three positions:** heritage belt becomes a continuous public narrative; AI life-experience belt becomes optional everyday tasks; AI-integrated innovation belt requires verification before translation.
+- **Five functions:** full-stack autonomy maps to Zhongzhiyuan validation; world-class ecology to AI Origin open translation; AI+ scenarios to bounded Xiaoyue River trials; vibrant intelligent city to Dazhongsi public experience; global governance voice to bilingual open protocols and annual review.
+- **Spatial loop:** the three areas perform stack verification—open translation—urban experience, while the two wings provide professional services—real-world scenarios; each function has a first acceptance item.
+
+|Taskbook intent|Spatial–operating translation|First acceptance item|
+|---|---|---|
+|Centennial Jing-Zhang cultural belt|Rail alignment, stations and mileage form a continuous public narrative|Three-time-layer wayfinding and fact review|
+|Urban AI life-experience belt|AI is optional within walking, service, retail and cultural tasks|Accessible task chain, staffed fallback and appeal|
+|AI-integrated innovation belt|Research prototypes must pass spatial safety, public co-testing and independent evaluation|Open challenge library, P1–P3 protocols and Run Receipts|
+|Full-stack autonomous AI system|Zhongzhiyuan validates tools, models, agents and robots together|Versioned test plan and hard stop lines|
+|World-class AI innovation ecology|AI Origin Community links universities, open source, small teams and civic needs|Translation clinic and open task passport|
+|New AI+ scenario paradigm|Xiaoyue River Wing provides bounded, timed and takeover-ready tests|Baseline, comparison and human fallback|
+|Vibrant intelligent city|Dazhongsi and the public spine embed understandable experiences in daily life|Experience street, honour node and non-digital route|
+|Global voice in AI governance|Publish bilingual protocols, failures, templates and contribution lineage|Annual public review and reusable open components|
+
+The three areas perform **stack verification—open translation—urban experience**; the two wings provide **professional services—real-world scenarios**. Cross-regional task passports may connect nearby communities, the Future Science City, Huairou Science City, Beijing E-Town and Beijing–Tianjin–Hebei partners, but only through voluntary agreements that name data permission, site responsibility, stop conditions and output licences. Unconfirmed organisations are never presented as committed partners.
+
+**Brand system.** The concept mark uses twin rails, three nodes and an open gap: continuity plus dual human-machine verification, the three areas, and public entry into review. Colours are Rail Blue `#173B57`, Verification Green `#2D7D6E` and Heritage Copper `#B46A3C`. Naming scales from Civic AI Loop to Proof Hub, Civic Test Point and Run Receipt. The original mark is `assets/figures/civic-loop-logo.en.svg`; it must not imitate government identity, accept corporate naming rights or cover risk signage. International message: **A century-old railway becomes a civic proving ground where urban AI must earn public trust before it scales.**
 
 ## Evidence and method
 This open co-creation proposal does not replace statutory planning, government approval, engineering design, or accountable human judgment. It relies on the official announcement, Agent Taskbook, public site package, processed fact pack, and source registry [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:PROCESSED-FACT-PACK] [source:SOURCE-REGISTRY]. Its method binds evidence, assumptions, design action, metric, responsible role, and exit trigger. Urban agents follow data minimisation, meaningful choice, appeal, human review, version logs, and independent evaluation.

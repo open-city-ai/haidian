@@ -7,15 +7,17 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共价值主轴，建立城市AI上线前评测、上线中监督、上线后复盘的开放创新带。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "1.4"
-iteration: 5
+version: "1.5"
+iteration: 6
 ---
 
 # 京张共智环：可验证城市智能体开放带
 
-> **v1.4 可执行验证版｜状态口径**：四项包级自检已通过；空间数值与图形仍基于仓库 provisional geometry，聚合数据置信度为 **low**。可用于概念内容复审，不是官方红线、法定控制或精确面积依据。逐资产权利与生成链见 `report/copyright_statement.md`，整改差异见 `changelog.md`。
+> **v1.5 任务书可视化复审版｜状态口径**：四项包级自检已通过；空间数值与图形仍基于仓库 provisional geometry，聚合数据置信度为 **low**。可用于概念内容复审，不是官方红线、法定控制或精确面积依据。逐资产权利与生成链见 `report/copyright_statement.md`，整改差异见 `changelog.md`。
 
 **英文名：Jing-Zhang Civic AI Loop；口号：让每一次城市智能，都经得起公众检验。**
+
+![京张共智环概念标志](assets/figures/civic-loop-logo.svg)
 
 ## 一页执行摘要：不是“AI园区”，而是城市智能的公共验收线
 
@@ -34,6 +36,29 @@ iteration: 5
 |如何实施|先AP0—AP3，再P1—P3；每包有依赖、验收、停止与复原|已有预算、场地、采购与运营主体|
 |谁获得公共利益|六类用户以真实任务共同验收，最差组与申诉优先于平均值|已完成真实用户测试|
 |如何面对失败|拒答、接管、暂停、删除、复原和少数意见均留收据|零风险或性能保证|
+
+### 任务书一眼可核对：三大定位、五大功能、三区两翼
+
+- **三大定位**：百年京张文化带→连续公共叙事；都市AI生活体验带→可选择的日常任务；AI融合创新带→原型先验证再转化。
+- **五大功能**：全栈自主创新→众智园联合验证；世界级生态→AI原点社区开放转化；AI+场景→小月河限域试验；智能活力城市→大钟寺公众体验；全球治理话语→双语开放协议与年度复盘。
+- **空间回路**：三区承担全栈验证—开放转化—城市体验，两翼承担专业要素服务—真实场景赋能，每项均绑定首期验收物。
+
+|任务书原词|共智环的空间—运营翻译|首期可验收物|
+|---|---|---|
+|百年京张文化带|铁路轨迹、站点和里程语法成为连续公共叙事，不把遗产当装饰背景|三时导视、史实审校、贡献者档案|
+|都市AI生活体验带|居民在日常慢行、服务、消费和文化场景中可选择体验AI，普通路径始终可用|无障碍任务链、人工台、退出与申诉入口|
+|AI融合创新带|科研原型必须经过空间安全、公众共测和独立评估才能转化|公开问题库、P1—P3协议、城市智能体收据|
+|AI全栈自主创新体系|众智园“工具链—模型—智能体—机器人”联合验证栈|版本化测试计划与停止线|
+|世界级AI创新生态|AI原点社区连接高校、开源社区、中小团队与居民议题|转化门诊与开放任务护照|
+|AI+场景赋能新范式|小月河翼提供限域、限时、可接管的真实场景|场景基线、对照组、人工兜底|
+|智能化AI活力城市|大钟寺和公共主轴把可理解、可进入的体验嵌入日常|体验街、荣誉节点、非数字替代路径|
+|AI治理全球话语权|输出双语协议、失败案例、评测模板与贡献谱系，而非只办展示活动|年度公开复盘与可复用开放组件|
+
+三区分别承担**全栈验证—开放转化—城市体验**，两翼分别承担**专业要素服务—真实场景赋能**；五大功能在同一回路中流动，不是五个互不相干的园区标签。[source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
+
+**区域协同接口。** 北纬社区提供近邻公共议题与社区共测；未来科学城、怀柔科学城以自愿合作方式交换评测方法与科研原型；北京经开区对接机器人和产业场景的安全验证；京津冀伙伴可复用协议、测试集与培训，不转移未经授权的数据。每次跨区协作均使用任务护照，记录问题所有者、场地责任、数据许可、试验期限、停止条件与成果许可；未签署的主体不写成合作承诺。
+
+**品牌不是一句名称。** 概念标志以“双轨—三节点—开放缺口”构成：双轨代表百年延续与人机双重校验，三节点对应三区，开放缺口表示公众可进入、结论可复核。主色为深轨蓝 #173B57、验证绿 #2D7D6E、历史铜 #B46A3C；命名层级为 Civic AI Loop（全带）— Proof Hub（三区）— Civic Test Point（场景点）— Run Receipt（运行证据）。概念标志文件为 assets/figures/civic-loop-logo.svg，不得加企业冠名、冒充政府标识或覆盖风险导视。国际传播以一句话统一：**A century-old railway becomes a civic proving ground where urban AI must earn public trust before it scales.**
 
 ## 设计依据与资料清单
 本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告、智能体任务书、公开场地包、事实导航包及仓库登记资料 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:PROCESSED-FACT-PACK] [source:SOURCE-REGISTRY]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。

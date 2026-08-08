@@ -7,7 +7,7 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 summary: "A public spatial-intelligence commons built from an open 3D semantic city model, reproducible experiments, controlled field validation, and public audit. Three key areas support benchmark validation, open co-creation, and everyday service while keeping AI understandable, simulatable, accountable, and reversible."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
-iteration: "v1.1"
+iteration: "v1.2"
 ---
 
 # Jing-Zhang City Model Commons
@@ -198,6 +198,35 @@ The mapping also defines privacy and human-review boundaries. The public layer k
 ### From scenarios to an industry ecosystem
 
 Each scenario produces a city-algorithm model card: problem, user, spatial extent, training/runtime data, confidence, known failures, human owner, non-AI path, appeal, incident, sunset date, and expansion conditions. Companies receive a trusted route into a real scenario rather than unrestricted city data; the city receives replaceable, comparable, withdrawable services rather than black boxes. The annual Jing-Zhang Spatial Intelligence Open Benchmark publishes strong results as well as failure modes and unresolved questions. [assumption:A-SCENARIO-001] [depth:risk_missing_data]
+
+### First Proof Package, Use Envelopes, and 2035 Success Conditions
+
+The proposal does not launch all fourteen scenario cards at once. It first uses two minimum viable proof paths—one public and one industry path—to demonstrate public and innovation value. Both are conceptual recommendations, not approved projects.
+
+| First proof path | Users / space | Minimum operating chain | First evidence and exit condition |
+| --- | --- | --- | --- |
+| A Public Pilot: Version Line All-Ages Co-Pilot | Older adults, disabled users, child caregivers, and commuters; railway-heritage park—green spine—Dazhongsi service nodes | Physical map, seat, shade, and human help → user-initiated AI route suggestion → public-space operator review → heat-safety and accessibility follow-up | Report accessibility breaks, heat risk, help response, and non-AI use; stop on continuous tracking, default face capture, no human channel, or unexplained advice |
+| B Industry Pilot: Zhongzhiyuan Last-500-Metre Validation | Robotics / edge-model teams, observing public, and independent evaluators; low-speed loop—validation workshop—observation walk | Digital replay → safety / permission gate → speed-capped field test → incident / discrepancy report → expansion decision | Pass reproducibility, human takeover, emergency stop, incident, and sunset drills; any critical failure returns to simulation |
+
+#### Operating and economic loop
+
+| Layer | Candidate cost bearer (not a commitment) | Use return | Expansion gate |
+| --- | --- | --- | --- |
+| Public base | Urban renewal, park operations, and public-service packages | Continuous accessibility, heat safety, dwell time, and public understanding | Low-cost components remain maintainable; non-AI path works |
+| Shared validation facility | Universities, companies, and research platforms share use or pay by scenario; public-interest scenarios may be waived | Lower real-world validation cost, reusable benchmarks, and safety evidence | Independent evaluation, named responsibility, operations and exit budget |
+| Everyday runtime market | Merchants / service operators participate against actual use return; no single-vendor lock-in | Less waiting and waste, better access and night service | Merchants and users can exit; no differential pricing |
+| Governance and evaluation | Maintenance, audit, and exit costs are itemized in each project package | Lower long-term lock-in and failure externality | Model card, version, appeal, incident, and sunset records complete |
+
+#### Population use envelopes
+
+Total population is not a growth assumption. Validate first by time and user envelope: weekday commute / school peaks, weekday research / care / visitor daytime, resident / commerce evenings, and family / event weekends. The first phase records person-hours, service requests, accessibility breaks, human-fallback use, and trial count—not invented long-range footfall.
+
+#### 2035 pass conditions (design targets, not government commitments)
+
+- **Public.** Every high-impact AI scenario has a readable model card, human channel, appeal, emergency stop, and exit.
+- **Innovation.** At least two reproducible “model-to-street” benchmark chains remain available; failures are as searchable as successes.
+- **Economics.** Every expansion publishes construction cost, annual operations, exit cost, cost per validation, and actual use.
+- **Space.** Reuse existing parks, ground floors, under-bridge space, and adaptable buildings first; public space remains safe when AI fails.
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 

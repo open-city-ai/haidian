@@ -135,7 +135,7 @@
       "source_files": [
         "geometry/public_space.geojson"
       ],
-      "formula": "count(layer=SCENARIO_NODE)",
+      "formula": "count(layer=SCENARIO_NODE where id matches SCN-*)",
       "confidence": "high",
       "assumptions": [
         "A-OPERATIONS-001"
@@ -152,6 +152,20 @@
       "confidence": "high",
       "assumptions": [
         "A-OPERATIONS-001"
+      ]
+    },
+    "civic_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(layer=SCENARIO_NODE where node_role=CIVIC_LANDMARK)",
+      "confidence": "low",
+      "assumptions": [
+        "A-OPERATIONS-001",
+        "A-BOUNDARY-001"
       ]
     },
     "key_area_count": {
@@ -206,6 +220,268 @@
         "A-CONTROLS-001"
       ]
     },
+    "land_use_05_sqm": {
+      "status": "known",
+      "value": 2133693.511,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=05), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_0701_sqm": {
+      "status": "known",
+      "value": 1459314.115,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=0701), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_0702_sqm": {
+      "status": "known",
+      "value": 1332004.101,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=0702), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_0802_sqm": {
+      "status": "known",
+      "value": 1899736.874,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=0802), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_0803_sqm": {
+      "status": "known",
+      "value": 1038498.555,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=0803), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_0804_sqm": {
+      "status": "known",
+      "value": 1284882.427,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=0804), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_1401_sqm": {
+      "status": "known",
+      "value": 2264695.802,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area(land_use where land_use_code=1401), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "conceptual_building_coverage_ratio": {
+      "status": "known",
+      "value": 0.019365,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_typology_cell_footprint_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BUILDING-001"
+      ]
+    },
+    "versioned_asset_count": {
+      "status": "known",
+      "value": 32,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE with protocol_version) + count(BUILDING_FOOTPRINT with protocol_version)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4837401.583,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3545776.934,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3029646.869,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(official_or_approved_floor_area_by_building_or_parcel)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "缺少现状建筑普查、层数、许可建筑面积与审定规划条件；概念类型单元不能外推总建筑面积。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_or_surveyed_building_footprint / official_site_or_parcel_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "当前 buildings.geojson 是类型试验单元而非现状建筑清单，不能充当法定或现状建筑密度。"
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(official_road_redline_polygons, EPSG:4548)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-TRANSPORT-001"
+      ],
+      "reason": "当前 roads.geojson 只有概念连接线，缺少官方道路红线与断面宽度，不能把线长换算为道路面积。"
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "official_road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-TRANSPORT-001"
+      ],
+      "reason": "道路面积与官方场地面积均须由正式红线复算；概念中心线不足以计算道路率。"
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,
@@ -241,6 +517,14 @@
       "unit": "index",
       "source_files": [],
       "formula": "weighted_index(public_code_contributions, reproducible_validation_records, scenario_exit_and_repair_records, open_interface_count)",
+      "weights": {
+        "public_code_contributions": 0.25,
+        "reproducible_validation_records": 0.25,
+        "scenario_exit_and_repair_records": 0.25,
+        "open_interface_count": 0.25
+      },
+      "normalization": "Each sub-index is normalized to 0-100 against a published first-year baseline and annual target range; the index is withheld until both are authorised.",
+      "reference_period": "calendar_year",
       "confidence": "unknown",
       "assumptions": [
         "A-BASELINE-001",
@@ -254,6 +538,8 @@
       "unit": "index",
       "source_files": [],
       "formula": "ai_related_workforce_and_students / employment_land_area",
+      "measurement_unit": "persons_per_hectare_of_authorised_employment_land",
+      "reference_period": "annual_average",
       "confidence": "unknown",
       "assumptions": [
         "A-BASELINE-001"
@@ -266,6 +552,8 @@
       "unit": "none",
       "source_files": [],
       "formula": "annual_output_of_ai_and_ai_plus_industries(statistical_scope)",
+      "measurement_unit": "CNY_per_calendar_year_at_published_constant_price",
+      "statistical_boundary": "official enterprise register and statistical classification within the authorised belt boundary",
       "confidence": "unknown",
       "assumptions": [
         "A-BASELINE-001"

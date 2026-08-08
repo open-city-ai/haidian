@@ -943,7 +943,17 @@
         "name_en": "Model red-team desk",
         "scenario_type": "industry_validation",
         "human_fallback": "人工评审与纸面风险登记",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "重大风险未闭环、版本或样本边界不清即停测并回到人工评审与纸面风险登记。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "模型红队交接台概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权模型测试责任方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "人工评审与纸面风险登记"
       },
       "geometry": {
         "type": "Point",
@@ -966,7 +976,17 @@
         "name_en": "Robot right-of-way sandbox",
         "scenario_type": "industry_validation",
         "human_fallback": "现场安全员封闭测试段",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "越界、失联、近失事件或安全员提出异议即物理停机并封闭测试段。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "机器人路权沙盒概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权机器人测试责任方与现场安全员（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "现场安全员封闭测试段"
       },
       "geometry": {
         "type": "Point",
@@ -989,7 +1009,17 @@
         "name_en": "Edge compute energy test",
         "scenario_type": "industry_validation",
         "human_fallback": "独立电表与人工停机",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "温升、能耗或消防阈值触发即人工停机并保留离线计量。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "端侧算力能耗试验站概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权能源与设备运维方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "独立电表与人工停机"
       },
       "geometry": {
         "type": "Point",
@@ -1012,7 +1042,17 @@
         "name_en": "Data consent rehearsal",
         "scenario_type": "industry_validation",
         "human_fallback": "线下授权单与即时删除",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "授权无法撤回、数据超范围或删除失败即停止演练并切回线下授权。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "数据授权演练场概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权数据责任方与公共服务方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "线下授权单与即时删除"
       },
       "geometry": {
         "type": "Point",
@@ -1035,7 +1075,17 @@
         "name_en": "Accessible route copilot",
         "scenario_type": "public_service",
         "human_fallback": "触觉地图与人工问路",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "路线未经人工复核、出现新断点或用户提出异议即下线副驾并启用触觉地图与人工问路。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "无障碍路径副驾概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权公共空间维护方与无障碍复核者（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "触觉地图与人工问路"
       },
       "geometry": {
         "type": "Point",
@@ -1058,7 +1108,17 @@
         "name_en": "Public service translation desk",
         "scenario_type": "public_service",
         "human_fallback": "人工窗口与多语纸本",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "置信度不足、涉及权益判断或翻译被质疑即交回人工窗口与多语纸本。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "公共服务翻译台概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权公共服务运营方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "人工窗口与多语纸本"
       },
       "geometry": {
         "type": "Point",
@@ -1081,7 +1141,17 @@
         "name_en": "Campus research relay",
         "scenario_type": "knowledge_exchange",
         "human_fallback": "人工策展与开放目录",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "许可不清、安全未审或权利人撤回即撤下成果并保留开放目录。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "校园成果接力站概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权成果权利人与策展责任方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "人工策展与开放目录"
       },
       "geometry": {
         "type": "Point",
@@ -1104,7 +1174,17 @@
         "name_en": "Visible maintenance stop",
         "scenario_type": "urban_operations",
         "human_fallback": "值班簿与人工报修",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "自动派单冲突、工单遗漏或居民提出异议即切回电话报修与人工派单。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "维修可见驿概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权设施维护方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "值班簿与人工报修"
       },
       "geometry": {
         "type": "Point",
@@ -1127,7 +1207,17 @@
         "name_en": "Community care roster",
         "scenario_type": "public_service",
         "human_fallback": "社区工作人员电话排班",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "当事人拒绝算法分配、排班冲突或照护风险出现即切回工作人员电话排班。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "社区照护排班桌概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权社区与照护服务方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "社区工作人员电话排班"
       },
       "geometry": {
         "type": "Point",
@@ -1150,7 +1240,17 @@
         "name_en": "Night-shift safety light",
         "scenario_type": "urban_operations",
         "human_fallback": "固定照明与人工巡查",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "感知异常、照明故障或隐私边界被突破即退回常亮模式与人工巡查。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "城市夜班安全灯概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权市政照明维护方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "固定照明与人工巡查"
       },
       "geometry": {
         "type": "Point",
@@ -1173,7 +1273,17 @@
         "name_en": "Jing-Zhang oral history booth",
         "scenario_type": "culture",
         "human_fallback": "馆藏索引与人工讲解",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "出处、授权或历史事实不确定即停止生成回答，只保留人工讲解与纸本索引。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "京张口述史问答亭概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权文化与版权责任方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "馆藏索引与人工讲解"
       },
       "geometry": {
         "type": "Point",
@@ -1196,7 +1306,17 @@
         "name_en": "Global Handover Week route",
         "scenario_type": "event",
         "human_fallback": "固定导视与志愿者服务",
-        "exit_condition": "达到预设风险阈值、人工提出异议或系统失联时立即停用智能功能，并保留等价基础服务。"
+        "exit_condition": "拥挤、安全、无障碍或应急条件不足即暂停互动，保留固定导视并恢复日常通行。",
+        "protocol_version": "0.2-concept",
+        "applicability_scope": "全球交接周线路概念节点；最终位置与开放范围待官方资料和现场调查确认",
+        "accountable_role": "经授权活动与公共安全责任方（启用前指派）",
+        "next_review_trigger": "每次启用前；发生事件、投诉、权限或模型/空间范围变化后；以及每个运营周期结束时",
+        "acceptance_gate": [
+          "场地权利与责任主体获授权",
+          "人工接管、物理停用与无AI等价服务演练通过",
+          "数据最小化、许可、安全、无障碍与公共利益评估通过"
+        ],
+        "rollback_state": "固定导视与志愿者服务"
       },
       "geometry": {
         "type": "Point",
@@ -1205,6 +1325,78 @@
           39.945
         ]
       }
+    },
+    {
+      "type": "Feature",
+      "id": "LANDMARK-01",
+      "properties": {
+        "id": "LANDMARK-01",
+        "layer": "SCENARIO_NODE",
+        "node_role": "CIVIC_LANDMARK",
+        "source_type": "agent_generated_design",
+        "confidence": "low",
+        "geometry_role": "design_proposal",
+        "name_zh": "交接钟",
+        "name_en": "Handover Bell",
+        "honor_role": "每次公开交接由责任双方共同确认版本、边界与停用状态，不记录声量排名",
+        "enablement_gate": "场地权利、公共安全、无障碍与运营责任获得授权后方可设置",
+        "rollback_state": "撤除装置并保留纸面交接记录"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.34805, 40.0218]}
+    },
+    {
+      "type": "Feature",
+      "id": "LANDMARK-02",
+      "properties": {
+        "id": "LANDMARK-02",
+        "layer": "SCENARIO_NODE",
+        "node_role": "CIVIC_LANDMARK",
+        "source_type": "agent_generated_design",
+        "confidence": "low",
+        "geometry_role": "design_proposal",
+        "name_zh": "公开交接台",
+        "name_en": "Public Handover Table",
+        "honor_role": "展示可复现方法、正负结果、许可、异议与下一责任角色",
+        "enablement_gate": "成果许可、隐私审查、居民协商和短期空间试用均通过后方可启用",
+        "rollback_state": "恢复普通公共桌面与人工公告栏"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3479, 39.986]}
+    },
+    {
+      "type": "Feature",
+      "id": "LANDMARK-03",
+      "properties": {
+        "id": "LANDMARK-03",
+        "layer": "SCENARIO_NODE",
+        "node_role": "CIVIC_LANDMARK",
+        "source_type": "agent_generated_design",
+        "confidence": "low",
+        "geometry_role": "design_proposal",
+        "name_zh": "百年值班簿",
+        "name_en": "Century Logbook",
+        "honor_role": "以可纠错凭证记录贡献、修复、撤回与未解决争议，允许实名、化名或匿名",
+        "enablement_gate": "清权、纠错、异议、撤回、保存期限和人工复核机制全部建立后方可公开",
+        "rollback_state": "隐藏争议荣誉标识，保留最小审计链并提供纸本索引"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.34745, 39.947]}
+    },
+    {
+      "type": "Feature",
+      "id": "LANDMARK-04",
+      "properties": {
+        "id": "LANDMARK-04",
+        "layer": "SCENARIO_NODE",
+        "node_role": "CIVIC_LANDMARK",
+        "source_type": "agent_generated_design",
+        "confidence": "low",
+        "geometry_role": "design_proposal",
+        "name_zh": "零号接管亭",
+        "name_en": "Takeover Booth Zero",
+        "honor_role": "让人工窗口、无AI等价服务、申诉与停用记录在空间中保持可见",
+        "enablement_gate": "人员资质、持续值守、服务等价、隐私和无障碍检查通过后方可运行",
+        "rollback_state": "保留人工服务、固定导视、电话与纸面表单"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.34785, 39.9925]}
     }
   ]
 }

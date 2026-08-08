@@ -1,5 +1,12 @@
 # 方案迭代记录
 
+## v1.2 - 2026-08-08
+
+- Added a bounded first-proof package with one public accessibility/heat-safety pilot and one Zhongzhiyuan industry validation pilot.
+- Added an explicit candidate operating and economic loop with cost bearer, use return, expansion gate, and exit-cost requirements; no funding or implementation commitment is implied.
+- Added time-and-user population use envelopes and four measurable 2035 design targets covering public continuity, reproducibility, cost transparency, and adaptive reuse.
+- Updated both language proposals, the offline reports, and the visual indexes so the refinement is reviewable without opening the source markdown.
+
 ## v1.1 - 2026-08-08
 
 - Added an explicit crosswalk for the taskbook's three positionings, five functions and three-areas/two-wings loop.

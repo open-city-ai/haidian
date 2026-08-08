@@ -5,7 +5,7 @@ author_github: "147228"
 author_name: "许丙南"
 language: "en"
 translation_of: "proposal.md"
-iteration: "v1.7"
+iteration: "v1.8"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An evidence-led urban design proposal that turns the century-old railway corridor into a reversible, human-first and auditable AI innovation public belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -149,6 +149,50 @@ This iteration directly repairs review gaps found in high-scoring repository sub
 - `proposal.md`, this English translation, two offline report pages, the offline visual index and `changelog.md` keep the bilingual review surface aligned.
 
 These are reviewable design deliverables, not claims that a project has been commissioned. Their value is that a reviewer can find the requirement, inspect the evidence, test the stop gate and identify what must be confirmed before implementation.
+
+## v1.8 Reviewer-Visible Evidence Layer
+
+The v1.8 revision places the highest-impact taskbook evidence directly in `proposal.md` so a reviewer can audit it without opening every JSON attachment. The following crosswalk is an exact reading of the taskbook, not a new statutory claim.
+
+| Taskbook layer | Jing-Zhang answer | Reviewable proof |
+| --- | --- | --- |
+| Three positions | Century Jing-Zhang culture belt; urban AI life-experience belt; AI-integrated innovation belt | Two-rail identity, no-app service, research → public test → evidence loop |
+| Five functions | Full-stack autonomy; world-class ecosystem; AI+ scene paradigm; intelligent active city; global AI-governance voice | Zhongzhi Garden test gate, Origin open room, 14 scenarios, Dazhongsi public sequence, red-team and responsibility desk |
+| Three areas / two wings | AI Origin Community; Zhongzhi Garden; Dazhongsi; Zhongguancun technology-service wing; Xiaoyuehe scene-empowerment wing | Provisional key-area geometry, node plans, regional ecology, blue-green and operations records |
+
+The regional chain explicitly includes the **Beijing North Latitude Community / Haidian universities and institutes**, Huairou Science City, Future Science City, Beijing E-Town and the Beijing-Tianjin-Hebei network. Each interface has an input, an output, a future owner and evidence required before activation. All are conceptual suggestions; no partnership, funding, land allocation or government commitment is asserted.
+
+### Node and operations table
+
+| Node | Human sequence | Embodied-intelligence boundary | Gate and acceptance test |
+| --- | --- | --- | --- |
+| Zhongzhi Garden | arrival → status board → stitch threshold → rain tree pit → booked test → park return | low-speed, booked window; visible emergency stop; never blocks the accessible chain | river/flood/traffic/ownership/fire review; a resident crosses, reads and leaves without an account |
+| AI Origin Community | campus edge → open room → rights desk → contribution wall → learning → quiet residential edge | contributions can be attributed or withdrawn; data stays in a sandbox | parcel/heritage/displacement review; an older resident can use the route and service offline |
+| Dazhongsi | rail arrival → four-quadrant crossing → quiet seat → short exhibition → international route → daily retail | event capacity can fall to zero; public broadcast and withdrawal bay remain visible | station/road/fire/crowd review; the route remains open and the space returns to ordinary use |
+
+The 14-row matrix gives every scenario a spatial carrier, trigger, minimum data, RACI, response/recovery SLA, relative cost band, retention, non-AI equivalent and stop condition. In review shorthand: the walking and accessibility group pauses on a broken route; robot testing exits on a serious conflict or failed stop; red-team testing rejects unclear provenance; public publishing removes uncleared material; health navigation never diagnoses; events reduce to zero if fire, quiet or resident-access gates fail; rain and quiet-chain pilots freeze on overdue drains or threshold breaches.
+
+### Public-interest and case-comparison evidence
+
+The baseline is deliberately **unknown until surveyed**. Older residents, disabled people, carers, night workers, children and guardians, visitors, small businesses and maintenance crews are named participants. Step-free continuity, service without an app, complaint response, group differences and night light/noise are audited through paired walks, staffed tests, stratified listening and public status boards. A conflict pauses the scenario, shows the disputed evidence, offers a non-AI equivalent and publishes remedy or withdrawal.
+
+The case file compares six mechanism patterns—station-as-public-room, bounded living lab, blue-green service street, developer commons, quiet night network and heritage-as-method—rather than inventing international project facts. Each pattern says what to borrow, what not to copy, the Jing-Zhang test interface and what must be sourced before a formal citation. This preserves international communication while keeping the rights and evidence boundary auditable.
+
+### Acceptance rule
+
+The proposal is not considered implemented because it is written. It is reviewable because each task can be traced to a section, a spatial or operational artifact, a source/assumption, an acceptance test and a stop/rollback path. Official polygons, planning controls, ownership, municipal, heritage, traffic, weather, drainage and measured-experience data must replace the provisional and unknown fields before professional implementation.
+
+## Cultural “Feng Shui” Narrative and the Wind–Water–Health Evidence Gate
+
+The expressions *cang feng ju qi* (藏风聚气) and *feng shui* may be used only as cultural landscape narratives linked to spatial memory. They are not medical findings, public-health causation, air-quality evidence, hydrological rules, engineering models or approval criteria. The narrative is therefore translated into six separate, auditable indicators whose current baselines remain `unknown`:
+
+- pedestrian wind-comfort acceptable-area ratio, to be tested across seasonal wind directions and leaf-on/leaf-off states with calibrated pedestrian-level CFD and field wind measurements; [metric:pedestrian_wind_comfort_acceptable_area_ratio] [source:LIU-URBAN-VENTILATION-2017]
+- pollutant-stagnation hotspot count, requiring an emissions inventory, boundary conditions, PM2.5 observations and a professionally accepted air-age or ventilation-effectiveness method; [metric:pollutant_stagnation_hotspot_count] [source:MENG-WIND-HEAT-PM25-2022] [source:NOSEK-STREET-CANYON-2025]
+- mean-radiant-temperature baseline and continuous shaded accessible-route ratio, requiring seasonal solar/tree-canopy modelling, MRT measurements and accompanied-route tests; [metric:mean_radiant_temperature_baseline_c] [metric:continuous_shaded_accessible_route_ratio]
+- blue-green accessible-route overlap, requiring field verification of entrances, gradients, continuity, safety, water quality and maintenance, with no direct inference of physical or mental-health improvement from proximity; [metric:blue_green_accessible_route_overlap_ratio] [source:WHO-URBAN-HEALTH-AND-GREEN]
+- water-risk exceedance-route verification, requiring a DEM, drainage network, outfalls, soils, groundwater, water quality, design storms and calibrated surface-flow modelling before any flood-free claim. [metric:water_risk_exceedance_route_verified_ratio] [assumption:A-DRAINAGE-SYSTEM-001]
+
+The `design_target` entries in `visual/assets/evidence-ledger.json` are future review gates; the six `unknown` entries in `metrics.json` are the present evidence state. None of the three cited research cases is represented as Jing-Zhang CFD, monitoring or health evidence, and no published case percentage is transferred to this site. [assumption:A-AIR-WIND-001]
 
 ## References
 
