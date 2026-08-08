@@ -61,6 +61,33 @@ summary: "离线阅读版"
             with self.assertRaisesRegex(ValueError, "remote or unsafe image source"):
                 render_html(submission_dir)
 
+    def test_render_html_preserves_tables_and_strong_emphasis(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                """---
+title: "Table proposal"
+summary: "Offline table rendering"
+---
+
+# Table proposal
+
+**Known** values stay visible.
+
+| Evidence | Result |
+| --- | --- |
+| Geometry | PASS |
+""",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn('<table class="proposal-table">', html)
+            self.assertIn('<strong>Known</strong>', html)
+            self.assertIn('<th>Evidence</th>', html)
+            self.assertIn('<td>PASS</td>', html)
+
     def test_render_english_proposal_marks_both_languages(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)

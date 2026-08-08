@@ -13,6 +13,7 @@ from pathlib import Path, PurePosixPath
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
+STRONG_RE = re.compile(r"\*\*(.+?)\*\*")
 
 
 def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -47,6 +48,7 @@ def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
 def render_inline(text: str) -> str:
     escaped = html.escape(text)
     escaped = INLINE_CODE_RE.sub(lambda m: f"<code>{html.escape(m.group(1))}</code>", escaped)
+    escaped = STRONG_RE.sub(lambda m: f"<strong>{m.group(1)}</strong>", escaped)
 
     def replace_ref(match: re.Match[str]) -> str:
         kind = match.group(1)
@@ -56,10 +58,43 @@ def render_inline(text: str) -> str:
     return REFERENCE_RE.sub(replace_ref, escaped)
 
 
+def split_table_row(line: str) -> list[str] | None:
+    """Split a pipe-table row, returning None for ordinary prose."""
+    stripped = line.strip()
+    if "|" not in stripped:
+        return None
+    if stripped.startswith("|"):
+        stripped = stripped[1:]
+    if stripped.endswith("|"):
+        stripped = stripped[:-1]
+    cells = [cell.strip() for cell in stripped.split("|")]
+    return cells if len(cells) >= 2 else None
+
+
+def is_table_separator(cells: list[str]) -> bool:
+    return bool(cells) and all(re.fullmatch(r":?-{3,}:?", cell.replace(" ", "")) for cell in cells)
+
+
+def render_table(submission_dir: Path, lines: list[str]) -> str:
+    rows = [split_table_row(line) for line in lines]
+    if not rows or rows[0] is None:
+        return ""
+    header = rows[0]
+    body = [row for row in rows[2:] if row is not None]
+    head_html = "".join(f"<th>{render_inline(cell)}</th>" for cell in header)
+    body_html = "".join(
+        "<tr>" + "".join(f"<td>{render_inline(cell)}</td>" for cell in row) + "</tr>"
+        for row in body
+    )
+    return f'<table class="proposal-table"><thead><tr>{head_html}</tr></thead><tbody>{body_html}</tbody></table>'
+
+
 def render_markdown_body(submission_dir: Path, markdown: str) -> str:
     blocks: list[str] = []
     paragraph: list[str] = []
     in_list = False
+    lines = markdown.splitlines()
+    line_index = 0
 
     def flush_paragraph() -> None:
         nonlocal paragraph
@@ -73,12 +108,31 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             blocks.append("</ul>")
             in_list = False
 
-    for raw_line in markdown.splitlines():
+    while line_index < len(lines):
+        raw_line = lines[line_index]
         line = raw_line.rstrip()
         if not line.strip():
             flush_paragraph()
             close_list()
+            line_index += 1
             continue
+
+        table_header = split_table_row(line)
+        if table_header is not None and line_index + 1 < len(lines):
+            table_separator = split_table_row(lines[line_index + 1])
+            if table_separator is not None and is_table_separator(table_separator):
+                flush_paragraph()
+                close_list()
+                table_lines = [line, lines[line_index + 1]]
+                line_index += 2
+                while line_index < len(lines):
+                    table_row = split_table_row(lines[line_index])
+                    if table_row is None:
+                        break
+                    table_lines.append(lines[line_index])
+                    line_index += 1
+                blocks.append(render_table(submission_dir, table_lines))
+                continue
 
         image_match = IMAGE_RE.fullmatch(line.strip())
         if image_match:
@@ -92,6 +146,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 f"<figcaption>{alt}</figcaption>"
                 "</figure>"
             )
+            line_index += 1
             continue
 
         if line.startswith("#"):
@@ -100,6 +155,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             level = min(len(line) - len(line.lstrip("#")), 4)
             title = line[level:].strip()
             blocks.append(f"<h{level}>{render_inline(title)}</h{level}>")
+            line_index += 1
             continue
 
         if line.startswith("- "):
@@ -108,9 +164,11 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 blocks.append("<ul>")
                 in_list = True
             blocks.append(f"<li>{render_inline(line[2:].strip())}</li>")
+            line_index += 1
             continue
 
         paragraph.append(line.strip())
+        line_index += 1
 
     flush_paragraph()
     close_list()
@@ -222,6 +280,10 @@ code {{
   padding: 0.03em 0.32em;
   font-size: 0.92em;
 }}
+.proposal-table {{ width: 100%; border-collapse: collapse; margin: 20px 0 28px; font-size: 15px; }}
+.proposal-table th, .proposal-table td {{ border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }}
+.proposal-table th {{ color: var(--accent); background: #f3f7fa; font-weight: 700; }}
+.proposal-table tr:nth-child(even) td {{ background: #fbfcfd; }}
 @media (max-width: 720px) {{
   main {{ padding: 26px 16px 52px; }}
   h1 {{ font-size: 26px; }}
