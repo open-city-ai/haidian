@@ -273,6 +273,28 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     return bool(changed_files) and len(roots) == 1
 
 
+def participant_scope_violations(
+    files: list[dict] | list[str], pr_author: str
+) -> list[str]:
+    """Return paths that make a participant PR cross its owned submission scope."""
+    paths: set[str] = set()
+    for item in files:
+        if isinstance(item, dict):
+            filename = item.get("filename")
+            if isinstance(filename, str):
+                paths.add(filename)
+            previous_filename = item.get("previous_filename")
+            if isinstance(previous_filename, str):
+                paths.add(previous_filename)
+        elif isinstance(item, str):
+            paths.add(item)
+
+    if not any(path.split("/", 1)[0] == "submissions" for path in paths):
+        return []
+    allowed_prefix = f"submissions/{pr_author}/"
+    return sorted(path for path in paths if not path.startswith(allowed_prefix))
+
+
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
     """Return true only when current and renamed paths are outside submissions/."""
     paths: list[str] = []
@@ -380,30 +402,17 @@ def main() -> int:
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
-        for item in files:
-            filename = item["filename"]
-            if item.get("status") == "removed":
-                continue
-            client.download_content(head_repo, filename, head_sha, worktree / filename)
-
-        for proposal_path in proposal_paths_for(validation_files):
-            destination = worktree / proposal_path
-            if not destination.exists():
-                client.fetch_content(head_repo, proposal_path, head_sha, destination)
-            hydrate_proposal_package(
-                client,
-                head_repo,
-                head_sha,
-                worktree,
-                proposal_path,
-            )
-
         queue_candidate = is_review_queue_candidate(changed_files, pr_author)
-        if is_non_submission_pr(files):
+        scope_violations = []
+        if not maintainer_bypass:
+            scope_violations = participant_scope_violations(files, pr_author)
+
+        if scope_violations:
             validation = ValidationReport(changed_files=changed_files)
-            validation.add_warning(
-                "non-submission code/docs/test PR; participant package validation was not applicable"
-            )
+            for path in scope_violations:
+                validation.add_error(
+                    f"{path}: participant PRs may only change submissions/{pr_author}/"
+                )
         elif not validation_files and (maintainer_bypass or queue_candidate):
             validation = ValidationReport(
                 changed_files=changed_files,
@@ -418,7 +427,39 @@ def main() -> int:
                     "participant deletion-only PR; removed files were not content-validated"
                 )
         else:
-            validation = validate_submission(worktree, pr_author, validation_files, bypass)
+            for item in files:
+                filename = item["filename"]
+                if item.get("status") == "removed":
+                    continue
+                client.download_content(head_repo, filename, head_sha, worktree / filename)
+
+            for proposal_path in proposal_paths_for(validation_files):
+                destination = worktree / proposal_path
+                if not destination.exists():
+                    client.fetch_content(head_repo, proposal_path, head_sha, destination)
+                hydrate_proposal_package(
+                    client,
+                    head_repo,
+                    head_sha,
+                    worktree,
+                    proposal_path,
+                )
+
+            if is_non_submission_pr(files):
+                validation = ValidationReport(changed_files=changed_files)
+                validation.add_warning(
+                    "non-submission code/docs/test PR; participant package validation was not applicable"
+                )
+            elif not validation_files and maintainer_bypass:
+                validation = ValidationReport(
+                    changed_files=changed_files,
+                    maintainer_bypass=True,
+                )
+                validation.add_warning(
+                    "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
+                )
+            else:
+                validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)
 
         comment = (
