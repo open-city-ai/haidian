@@ -18,6 +18,7 @@ from ai_review_submission import (  # noqa: E402
     ReviewError,
     collect_visual_inputs,
     content_preflight,
+    render_html_previews,
     run_ai_review,
     validate_base_url,
     validate_output_dir,
@@ -228,6 +229,35 @@ class AIReviewSubmissionTests(unittest.TestCase):
             self.assertIn("request-changes", comment)
             self.assertIn("视觉与文件可读性：**FAIL**", comment)
             self.assertNotIn("结论：可进入正式专业评分", comment)
+
+    def test_html_preview_uses_isolated_chromium_profile(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submission"
+            rendered = root / "rendered"
+            submission.mkdir()
+            rendered.mkdir()
+            (submission / "visual.html").write_text("<h1>preview</h1>", encoding="utf-8")
+            executable = root / "chromium"
+            executable.write_text("", encoding="utf-8")
+            captured: list[str] = []
+
+            def fake_run(command: list[str], **kwargs):
+                captured.extend(command)
+                screenshot_arg = next(item for item in command if item.startswith("--screenshot="))
+                Path(screenshot_arg.split("=", 1)[1]).write_bytes(b"png")
+                return mock.Mock(returncode=0, stderr="")
+
+            with mock.patch("ai_review_submission.HTML_PATHS", ["visual.html"]), mock.patch(
+                "ai_review_submission.shutil.which", return_value=str(executable)
+            ), mock.patch("ai_review_submission.subprocess.run", side_effect=fake_run):
+                warnings: list[str] = []
+                previews = render_html_previews(submission, rendered, warnings)
+
+            self.assertEqual([rendered / "html-1.png"], previews)
+            self.assertEqual([], warnings)
+            self.assertIn("--disable-dev-shm-usage", captured)
+            self.assertIn(f"--user-data-dir={rendered / 'chromium-profile-1'}", captured)
 
     def test_wrong_model_path_and_required_repairs_are_enforced(self) -> None:
         review = valid_review()
