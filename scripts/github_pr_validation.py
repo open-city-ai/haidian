@@ -126,6 +126,65 @@ def _safe_diff_path(value: str) -> str:
     return normalized
 
 
+def _safe_public_ref(value: object) -> str | None:
+    """Return a conservative branch ref suitable for an argument-vector git call."""
+    if not isinstance(value, str) or not value:
+        return None
+    if (
+        value.startswith("/")
+        or value.endswith("/")
+        or ".." in value
+        or "//" in value
+        or "@{" in value
+    ):
+        return None
+    allowed = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-/")
+    if any(character not in allowed for character in value):
+        return None
+    return value
+
+
+def _safe_public_repository(value: object) -> str | None:
+    """Return an owner/repository name that is safe to interpolate into a URL."""
+    if not isinstance(value, str):
+        return None
+    parts = value.split("/")
+    if len(parts) != 2 or not all(parts):
+        return None
+    allowed = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-")
+    if any(character not in allowed for part in parts for character in part):
+        return None
+    return value
+
+
+def public_event_head_is_current(head_repo: object, head_ref: object, head_sha: object) -> bool:
+    """Confirm an event head still resolves before a no-API validation fallback.
+
+    The public diff is always for the current PR.  When the authenticated API
+    is rate limited we cannot otherwise prove that it still represents this
+    workflow event, so use the public git ref as a read-only exact-head guard.
+    """
+    repository = _safe_public_repository(head_repo)
+    ref = _safe_public_ref(head_ref)
+    if not repository or not ref or not isinstance(head_sha, str) or len(head_sha) != 40:
+        return False
+    expected_ref = f"refs/heads/{ref}"
+    try:
+        result = subprocess.run(
+            ["git", "ls-remote", "--refs", f"https://github.com/{repository}.git", expected_ref],
+            capture_output=True,
+            check=False,
+            text=True,
+            timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    if result.returncode != 0:
+        return False
+    lines = [line.split() for line in result.stdout.splitlines() if line.strip()]
+    return len(lines) == 1 and lines[0] == [head_sha, expected_ref]
+
+
 def parse_pull_diff(diff: str) -> list[dict[str, str]]:
     """Parse file metadata from a public PR diff without reading patch content."""
     files: list[dict[str, str]] = []
@@ -237,6 +296,8 @@ class GitHubClient:
 
     def fetch_pull_files(self, issue_number: int) -> list[dict[str, str]]:
         """List PR files, falling back to the public diff if API quota is exhausted."""
+        if self.prefer_public_fallback:
+            return self.fetch_pull_files_from_public_diff(issue_number)
         try:
             return self.paginate(f"/repos/{self.repository}/pulls/{issue_number}/files?per_page=100")
         except RuntimeError as exc:
@@ -710,24 +771,56 @@ def main() -> int:
     pr_number = int(pull_request["number"])
     pr_author = pull_request["user"]["login"]
     head_repo = pull_request["head"]["repo"]["full_name"]
+    head_ref = pull_request["head"].get("ref")
     head_sha = pull_request["head"]["sha"]
     base = pull_request.get("base") or {}
     base_repo = (base.get("repo") or {}).get("full_name") or repository
     base_sha = base.get("sha")
     client = GitHubClient(token, repository)
 
-    if not is_current_pull_request_head(client, pr_number, head_sha):
+    # A queued event can refer to a superseded head.  Do not hydrate a mixed
+    # set of paths from the current PR against the old event SHA.
+    side_effects_allowed = True
+    try:
+        current_pr, _ = client.request("GET", f"/repos/{repository}/pulls/{pr_number}")
+    except RuntimeError as exc:
+        if not _is_rate_limit_error(exc):
+            raise
+        if not public_event_head_is_current(head_repo, head_ref, head_sha):
+            print(
+                f"Skipping validation for PR #{pr_number}: GitHub API is rate limited and "
+                "the public branch ref cannot confirm this event head is current"
+            )
+            return 0
+        client.prefer_public_fallback = True
+        side_effects_allowed = False
         print(
-            f"Skipping stale validation event for PR #{pr_number}: "
-            f"event head {head_sha} no longer matches the current PR head."
+            "GitHub API rate limit reached before PR state lookup; validating the confirmed "
+            "public event head without PR comments or labels",
+            file=sys.stderr,
         )
-        return 0
+    else:
+        if isinstance(current_pr, dict) and (
+            current_pr.get("state") != "open" or current_pr.get("draft") is True
+        ):
+            state = current_pr.get("state", "unknown")
+            draft = "draft" if current_pr.get("draft") is True else "not draft"
+            print(f"Skipping validation for PR #{pr_number}: state={state}, {draft}")
+            return 0
+        current_head = current_pr.get("head") if isinstance(current_pr, dict) else None
+        current_head_sha = current_head.get("sha") if isinstance(current_head, dict) else None
+        if current_head_sha and current_head_sha != head_sha:
+            print(
+                f"Skipping stale validation event for PR #{pr_number}: "
+                f"event_head={head_sha}, current_head={current_head_sha}"
+            )
+            return 0
 
     files = client.fetch_pull_files(pr_number)
-    if not is_current_pull_request_head(client, pr_number, head_sha):
+    if not side_effects_allowed and not public_event_head_is_current(head_repo, head_ref, head_sha):
         print(
-            f"Skipping stale validation event for PR #{pr_number}: "
-            f"the PR head changed while its file list was being read."
+            f"Skipping validation for PR #{pr_number}: public branch ref changed while "
+            "retrieving the fallback diff"
         )
         return 0
     changed_files = [item["filename"] for item in files]
@@ -851,17 +944,23 @@ def main() -> int:
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
         write_step_summary(comment)
-        client.upsert_comment(pr_number, comment)
+        if side_effects_allowed:
+            client.upsert_comment(pr_number, comment)
 
-        if validation.ok and queue_candidate:
+        if side_effects_allowed and validation.ok and queue_candidate:
             client.remove_labels(
                 pr_number,
                 ["review/ci-failed", "review/changes-requested", "review/low-quality"],
             )
             client.add_labels(pr_number, ["review/queued"])
-        elif queue_candidate:
+        elif side_effects_allowed and queue_candidate:
             client.remove_labels(pr_number, ["review/queued"])
             client.add_labels(pr_number, ["review/ci-failed"])
+        elif not side_effects_allowed:
+            print(
+                f"Validated public fallback for PR #{pr_number} without comments or labels; "
+                "a normal API-backed event will publish review state when quota recovers"
+            )
 
         return 0 if validation.ok else 1
     finally:
