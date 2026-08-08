@@ -1,0 +1,446 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 19,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE features)",
+      "confidence": "high",
+      "assumptions": [
+        "用地为概念方案划分，无缝无叠覆盖 provisional 总体设计范围。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 249257.051,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area_EPSG4548(building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑基底为三重点区概念示意布局（共29栋）。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.02184,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "仅统计三重点区内概念建筑基底，非全范围现状建筑密度。"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(floor_area per building)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规容积率/建筑高度缺失（planning_limits.json 标记 missing），无法推算总建筑面积。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls are missing from the public site package (floor_area_ratio status=missing); 待控规确认。"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408605.255,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area_EPSG4548(green_space)",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地图层与 LAND_USE 中 14 类用地位置对应，为设计重点绿地范围。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836343.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area_EPSG4548(public_space)",
+      "confidence": "medium",
+      "assumptions": [
+        "含4处朝圣地标节点与9处AI场景节点广场。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 1428722.838,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=1207)",
+      "confidence": "medium",
+      "assumptions": [
+        "道路用地按两纵四横走廊概念划分。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.125186,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 50680.1,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length_EPSG4548(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "15条概念道路中心线（含主次干路、微循环、绿道与接驳通道）。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "三个重点区均为 provisional_constraint 粗略范围（official_boundary=false），面积不可作为精确依据。"
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area_EPSG4548(key_areas))",
+      "confidence": "low",
+      "assumptions": [
+        "provisional 粗略范围复算值；公告面积约 368.4 公顷。"
+      ]
+    },
+    "renewal_parcel_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE parcels with renewal_action=renewal)",
+      "confidence": "medium",
+      "assumptions": [
+        "城市更新概念地块（三核科研更新、沿线更新、大钟寺商业更新），拆改留比例为概念建议。"
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE features with ai_scenario_node=true)",
+      "confidence": "medium",
+      "assumptions": [
+        "含人字门、开源长廊、原点灯塔、智汇客厅4处地标节点，满足12+场景节点结构。"
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 1009376.759,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2059512.276,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 82425.095,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 3032116.687,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 216299.978,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0803)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1450785.347,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0804)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0805_sqm": {
+      "status": "known",
+      "value": 75809.855,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0805)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_0806_sqm": {
+      "status": "known",
+      "value": 58484.968,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=0806)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_1207_sqm": {
+      "status": "known",
+      "value": 1428722.838,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=1207)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1187969.109,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_1402_sqm": {
+      "status": "known",
+      "value": 487977.378,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=1402)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "land_use_area_16_sqm": {
+      "status": "known",
+      "value": 323347.429,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE parcels with land_use_code=16)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "phasing_area_phase_1_sqm": {
+      "status": "known",
+      "value": 7493850.991,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(PHASE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "分期：近期（2026-2028），概念建议。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "phasing_area_phase_2_sqm": {
+      "status": "known",
+      "value": 2701209.198,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(PHASE-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "分期：中期（2029-2030），概念建议。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "phasing_area_phase_3_sqm": {
+      "status": "known",
+      "value": 1217766.584,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(PHASE-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "分期：远期（2031-），概念建议。",
+        "边界为 provisional 粗略替代边界（official_boundary=false），面积为 EPSG:4548 投影复算值，精度受临时边界限制，待官方红线确认。"
+      ]
+    },
+    "building_height_m_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official building height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方高度控制缺失（building_height_m status=missing）；无批复控规与航空/景观限高数据。"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "总体设计范围仍为 provisional 粗略替代边界（official_boundary=false），面积 11,412,825 sqm 为 EPSG:4548 复算值，不可作为官方红线或精确面积依据；待官方红线发布后替换。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三个重点详细设计区域（众智园/原点社区/大钟寺）均为 provisional_constraint 粗略范围（official_boundary=false），已在 geometry_role 与 official_boundary 属性中如实标注；不作为官方片区边界。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "LAND_USE 由 provisional SITE_BOUNDARY 经网格切分+裁剪生成19个地块，相邻地块共享切分线坐标，并集等于总体设计范围、无重叠；用地比例符合设计概念第4节区间（0802约26.6%、0804约12.7%、07约18.8%、05约8.8%、14约14.7%、1207约12.5%、0803/0805/0806合计约3.1%、16约2.8%）。"
+    },
+    {
+      "check_id": "METRICS_REPRODUCIBLE",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "全部已知指标由 geometry 图层在 EPSG:4548 下复算（绿地率0.123423、公共空间率0.073281、路网长50,680m、场景节点13个）；floor_area_ratio、total_floor_area_sqm、building_height_m_control 因官方控规缺失保持 status=unknown 并附 reason。"
+    },
+    {
+      "check_id": "PROVISIONAL_DISCLOSURE",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/constraints.geojson",
+      "message": "清华园车站文保（待确认）、控规指标待确认范围等约束要素以 provisional_constraint/existing_condition 标注且 official_boundary=false；全部设计图层为 design_proposal 概念方案，待控规与官方数据确认。"
+    }
+  ]
+}
