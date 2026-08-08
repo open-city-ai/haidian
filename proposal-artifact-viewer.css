@@ -23,8 +23,13 @@
 .preview-grid{background:linear-gradient(140deg,#0d1724,#080b11)}
 .preview-grid::before{content:"";position:absolute;inset:6px;background-image:linear-gradient(#65b7ff17 1px,transparent 1px),linear-gradient(90deg,#65b7ff17 1px,transparent 1px);background-size:11px 11px}
 .preview-grid::after{content:"";position:absolute;left:8%;right:7%;top:52%;height:2px;background:linear-gradient(90deg,transparent,#ffc46b,#65b7ff,transparent);transform:rotate(-9deg);box-shadow:0 0 16px #65b7ff}
-.preview-data{display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(3,1fr);gap:2px;padding:8px;background:#0a1017}
-.preview-data span{border:1px solid #65b7ff20;background:var(--data-color,#172435);opacity:var(--data-opacity,.7)}
+.preview-data{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:8px 8px 8px 17px;background:linear-gradient(145deg,#0b121b,#080c12)}
+.preview-data::before{content:"{";position:absolute;z-index:2;left:5px;top:50%;transform:translateY(-52%);color:#ffc46b96;font:18px/1 var(--mono)}
+.preview-data::after{content:"";position:absolute;inset:5px;background-image:linear-gradient(#65b7ff0a 1px,transparent 1px),linear-gradient(90deg,#65b7ff0a 1px,transparent 1px);background-size:9px 9px;pointer-events:none}
+.preview-data .data-line{position:relative;z-index:1;display:block;width:var(--data-width);height:2px;margin-left:var(--data-indent);border:0;background:linear-gradient(90deg,#65b7ffb8,#65b7ff24);box-shadow:none}
+.preview-data .data-line::after{content:"";position:absolute;right:-2px;top:-1px;width:4px;height:4px;background:#65b7ff;border-radius:50%;box-shadow:0 0 7px #65b7ff66}
+.preview-data .data-line.accent{background:linear-gradient(90deg,#ffc46bd4,#ffc46b28)}
+.preview-data .data-line.accent::after{background:#ffc46b;box-shadow:0 0 7px #ffc46b66}
 .preview-document{padding:9px 10px;background:#edf2f6}
 .preview-document::before{content:"";display:block;width:52%;height:5px;margin-bottom:7px;background:#203650}
 .preview-document span{display:block;height:2px;margin:5px 0;background:#91a0b1}

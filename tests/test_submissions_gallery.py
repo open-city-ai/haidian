@@ -10,7 +10,13 @@ from urllib.parse import urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
-from generate_submissions_data import build_data, discover_submissions, load_publication_registry, package_sha256  # noqa: E402
+from generate_submissions_data import (  # noqa: E402
+    build_data,
+    build_item,
+    discover_submissions,
+    load_publication_registry,
+    package_sha256,
+)
 DATA_FILE = ROOT / "submissions-data.js"
 INDEX_FILE = ROOT / "index.html"
 SUBMISSIONS_FILE = ROOT / "submissions.html"
@@ -205,7 +211,7 @@ class TestSubmissionsGallery(unittest.TestCase):
     def test_gallery_paths_exist(self):
         data = DATA_FILE.read_text(encoding="utf-8")
         paths = re.findall(
-            r'"(?:thumbnailUrl|visualUrl|proposalUrl|sourceUrl)"\s*:\s*"([^"]+)"',
+            r'"(?:thumbnailUrl|visualUrl|proposalUrl|sourceUrl)(?:Zh|En)?"\s*:\s*"([^"]+)"',
             data,
         )
         missing = [path for path in paths if not (ROOT / urlsplit(path).path).exists()]
@@ -274,6 +280,8 @@ class TestSubmissionsGallery(unittest.TestCase):
             "parseDelimited",
             'sandbox="allow-scripts allow-forms allow-modals allow-popups"',
             "hydratePreviews",
+            "data-line",
+            "--data-width",
             "window.ProposalArtifactViewer",
             "点击后绘制空间图层",
             "点击后读取结构化内容",
@@ -283,6 +291,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             ".artifact-card",
             "grid-template-columns:62px minmax(0,1fr)",
             "width:62px;height:66px",
+            ".preview-data .data-line.accent",
             ".artifact-viewer",
             ".artifact-map-canvas",
             ".artifact-document",
@@ -291,6 +300,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             self.assertIn(required, artifact_styles)
         self.assertNotIn(".artifact-preview{height:105px}", artifact_styles)
         self.assertNotIn(".artifact-preview{height:132px}", artifact_styles)
+        self.assertNotIn("--data-color", artifact_styles)
 
     def test_gallery_pages_explain_review_statuses(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
@@ -335,6 +345,29 @@ class TestSubmissionsGallery(unittest.TestCase):
             "50 proposals per page",
         ]:
             self.assertIn(required, submissions)
+
+    def test_gallery_item_exposes_language_specific_urls(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "bilingual-design"
+            (submission / "report").mkdir(parents=True)
+            (submission / "visual").mkdir()
+            (submission / "proposal.md").write_text(
+                '---\ntitle: "中文方案"\nsummary: "中文摘要"\nlanguage: "zh"\n---\n', encoding="utf-8"
+            )
+            (submission / "proposal.en.md").write_text(
+                '---\ntitle: "English Proposal"\nsummary: "English summary"\nlanguage: "en"\ntranslation_of: "proposal.md"\n---\n', encoding="utf-8"
+            )
+            for rel in ["report/proposal.html", "report/proposal.en.html", "visual/index.html", "visual/index.en.html"]:
+                (submission / rel).write_text("<!doctype html>", encoding="utf-8")
+            (submission / "manifest.json").write_text("{}", encoding="utf-8")
+            (submission / "agent.json").write_text("{}", encoding="utf-8")
+            item = build_item(root, submission, {})
+            self.assertEqual("English Proposal", item["titleEn"])
+            self.assertEqual(item["proposalUrl"], item["proposalUrlZh"])
+            self.assertTrue(item["proposalUrlEn"].endswith("report/proposal.en.html"))
+            self.assertTrue(item["thumbnailUrlZh"].endswith("report/proposal.html"))
+            self.assertTrue(item["visualUrlEn"].endswith("visual/index.en.html"))
 
 
 if __name__ == "__main__":

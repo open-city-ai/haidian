@@ -3,7 +3,10 @@ import tempfile
 import unittest
 import json
 import subprocess
+import hashlib
 from pathlib import Path
+
+import jsonschema
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -12,6 +15,8 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 from validate_submission import (  # noqa: E402
     ALL_REQUIRED_TASK_IDS,
     FALLBACK_REQUIRED_STANDARD_IDS,
+    REQUIRED_SECTIONS,
+    REQUIRED_SECTIONS_EN,
     REQUIRED_DESIGN_DEPTH_IDS,
     is_empty_pdf,
     validate_submission,
@@ -153,6 +158,25 @@ class ManifestHydrationTests(unittest.TestCase):
             )
 
 
+class ProposalSchemaTests(unittest.TestCase):
+    def test_english_contract_accepts_english_section_headings(self) -> None:
+        schema = json.loads((REPO_ROOT / "schema" / "proposal.schema.json").read_text(encoding="utf-8"))
+        payload = {
+            "metadata": {
+                "title": "English Proposal",
+                "author_github": "alice",
+                "language": "en",
+                "license": "CC-BY-4.0",
+                "summary": "A complete English urban design proposal.",
+            },
+            "sections": REQUIRED_SECTIONS_EN,
+        }
+        jsonschema.validate(payload, schema)
+        payload["sections"] = REQUIRED_SECTIONS
+        with self.assertRaises(jsonschema.ValidationError):
+            jsonschema.validate(payload, schema)
+
+
 REFERENCE_BLOCK = (
     "证据引用 [source:SITE-PACKAGE] [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] "
     "[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] "
@@ -167,6 +191,22 @@ REFERENCE_BLOCK = (
     "[metric:public_space_ratio]"
 )
 REFERENCE_BLOCK += " " + " ".join(f"[depth:{item_id}]" for item_id in sorted(REQUIRED_DESIGN_DEPTH_IDS))
+
+
+def english_primary(text: str) -> str:
+    text = text.replace(
+        'language: "zh"',
+        'language: "en"\ntranslation_file: "proposal.zh.md"',
+        1,
+    )
+    for chinese, english in zip(REQUIRED_SECTIONS, REQUIRED_SECTIONS_EN):
+        text = text.replace(f"## {chinese}", f"## {english}")
+    marker = "# AI Urban Loop\n"
+    return text.replace(
+        marker,
+        marker + "\n" + ("English design evidence, spatial strategy, metrics, and implementation. " * 45),
+        1,
+    )
 
 FIGURE_BLOCK = """
 ![资料证据链与提交包关系图](assets/figures/site-overview.png)
@@ -1261,56 +1301,215 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("language must be zh or en", "\n".join(report.errors))
 
-    def test_english_submission_requires_chinese_translation_metadata(self) -> None:
+    def test_english_submission_without_chinese_counterpart_only_warns(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             base = "submissions/alice/ai-urban-loop"
             changed = self.write_minimal_ai_package(root, base)
             path = root / base / "proposal.md"
-            path.write_text(
-                path.read_text(encoding="utf-8").replace('language: "zh"', 'language: "en"'),
-                encoding="utf-8",
-            )
-            report = validate_submission(root, "alice", changed)
-            self.assertFalse(report.ok)
-            errors = "\n".join(report.errors)
-            self.assertIn("chinese_translation=included", errors)
-            self.assertIn("`title_zh`", errors)
-            self.assertIn("`summary_zh`", errors)
-
-    def test_english_submission_with_complete_chinese_translation_passes(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            base = "submissions/alice/ai-urban-loop"
-            changed = self.write_minimal_ai_package(root, base)
-            path = root / base / "proposal.md"
-            original = path.read_text(encoding="utf-8").replace(
-                    'language: "zh"',
-                    'language: "en"\nchinese_translation: "included"\ntitle_zh: "人工智能城市环线"\nsummary_zh: "本文件同时包含完整中文正式译文。"',
-                )
-            front_end = original.find("\n---", 4) + 4
-            english = "\n\n# English Proposal\n\n" + ("English design evidence and spatial strategy. " * 180)
-            bilingual = original[:front_end] + english + "\n\n# 中文正式译文\n" + original[front_end:]
-            path.write_text(bilingual, encoding="utf-8")
+            path.write_text(english_primary(path.read_text(encoding="utf-8")), encoding="utf-8")
+            self.promote_package_to_formal(root, base)
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
+            self.assertIn("proposal.zh.md", "\n".join(report.warnings))
+            self.assertIn("submission and review remain allowed", "\n".join(report.warnings))
 
-    def test_english_submission_cannot_claim_translation_without_translation_section(self) -> None:
+    def test_complete_bilingual_display_mapping_has_no_bilingual_warning(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             base = "submissions/alice/ai-urban-loop"
             changed = self.write_minimal_ai_package(root, base)
-            path = root / base / "proposal.md"
-            path.write_text(
-                path.read_text(encoding="utf-8").replace(
-                    'language: "zh"',
-                    'language: "en"\nchinese_translation: "included"\ntitle_zh: "人工智能城市环线"\nsummary_zh: "声称包含中文译文但实际没有独立译文。"',
+            primary = root / base / "proposal.md"
+            primary.write_text(
+                primary.read_text(encoding="utf-8").replace(
+                    'language: "zh"', 'language: "zh"\ntranslation_file: "proposal.en.md"', 1
                 ),
                 encoding="utf-8",
             )
+            translated = primary.read_text(encoding="utf-8").replace(
+                'language: "zh"\ntranslation_file: "proposal.en.md"',
+                'language: "en"\ntranslation_of: "proposal.md"',
+                1,
+            )
+            (root / base / "proposal.en.md").write_text(translated, encoding="utf-8")
+            display_paths = [
+                "proposal.md",
+                "report/proposal.html",
+                "visual/index.html",
+                "drawings/a3-booklet.pdf",
+                "drawings/a0-boards.pdf",
+                "assets/figures/site-overview.png",
+                "assets/figures/land-use-structure.png",
+                "assets/figures/key-areas.png",
+                "assets/figures/mobility-bluegreen.png",
+                "assets/figures/metrics-evidence.png",
+            ]
+            companion_paths = []
+            for rel in display_paths[1:]:
+                source = root / base / rel
+                target = source.with_name(f"{source.stem}.en{source.suffix}")
+                target.write_bytes(source.read_bytes())
+                companion_paths.append(target.relative_to(root / base).as_posix())
+            companion_paths.insert(0, "proposal.en.md")
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            by_path = {item["path"]: item for item in manifest["files"]}
+            if "proposal.md" not in by_path:
+                proposal_item = {"path": "proposal.md", "role": "narrative", "required": True}
+                manifest["files"].append(proposal_item)
+                by_path["proposal.md"] = proposal_item
+            for primary_rel, companion_rel in zip(display_paths, companion_paths):
+                by_path[primary_rel]["language"] = "zh"
+                if primary_rel != "manifest.json":
+                    by_path[primary_rel]["sha256"] = hashlib.sha256((root / base / primary_rel).read_bytes()).hexdigest()
+                companion = root / base / companion_rel
+                manifest["files"].append({
+                    "path": companion_rel,
+                    "role": by_path[primary_rel]["role"],
+                    "required": False,
+                    "language": "en",
+                    "translation_of": primary_rel,
+                    "sha256": hashlib.sha256(companion.read_bytes()).hexdigest(),
+                })
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            changed.extend(f"{base}/{path}" for path in companion_paths)
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+            bilingual_warnings = [
+                warning for warning in report.warnings
+                if "bilingual" in warning or "counterpart" in warning or "should declare language" in warning
+            ]
+            self.assertEqual([], bilingual_warnings)
+
+    def test_machine_data_only_update_does_not_trigger_bilingual_warning(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            report = validate_submission(root, "alice", [f"{base}/metrics.json"])
+            self.assertTrue(report.ok, report.errors)
+            self.assertNotIn("bilingual", "\n".join(report.warnings))
+            self.assertNotIn("counterpart", "\n".join(report.warnings))
+
+    def test_language_neutral_cannot_bypass_primary_display_pair(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"].append({
+                "path": "proposal.md",
+                "role": "narrative",
+                "required": True,
+                "language": "neutral",
+            })
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("proposal.en.md", "\n".join(report.warnings))
+
+    def test_localized_visual_html_receives_static_safety_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            localized = root / base / "visual" / "index.en.html"
+            localized.write_text(
+                '<!doctype html><html><body><iframe src="https://example.com"></iframe></body></html>',
+                encoding="utf-8",
+            )
+            changed.append(f"{base}/visual/index.en.html")
             report = validate_submission(root, "alice", changed)
             self.assertFalse(report.ok)
-            self.assertIn("# 中文正式译文", "\n".join(report.errors))
+            self.assertIn("visual/index.en.html", "\n".join(report.errors))
+            self.assertIn("iframe", "\n".join(report.errors))
+
+    def test_stale_translation_manifest_hash_is_non_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            translated_path = root / base / "proposal.en.md"
+            translated_path.write_text(
+                '---\ntitle: "English"\nauthor_github: "alice"\nlanguage: "en"\ntranslation_of: "proposal.md"\nlicense: "CC-BY-4.0"\nsummary: "English translation summary."\n---\n',
+                encoding="utf-8",
+            )
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"].append({
+                "path": "proposal.en.md",
+                "role": "narrative",
+                "required": False,
+                "language": "en",
+                "translation_of": "proposal.md",
+                "sha256": "0" * 64,
+            })
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            changed.extend([f"{base}/proposal.en.md", f"{base}/manifest.json"])
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("sha256 mismatch for `proposal.en.md`", "\n".join(report.warnings))
+
+    def test_removed_translation_file_is_non_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            self.write_minimal_ai_package(root, base)
+            report = validate_submission(root, "alice", [f"{base}/proposal.en.md"])
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("was removed or is missing", "\n".join(report.warnings))
+
+    def test_orphan_localized_display_file_only_warns(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            self.write_minimal_ai_package(root, base)
+            orphan = root / base / "assets" / "figures" / "extra.en.png"
+            orphan.write_bytes(b"translated image")
+            report = validate_submission(root, "alice", [f"{base}/assets/figures/extra.en.png"])
+            self.assertTrue(report.ok, report.errors)
+            warnings = "\n".join(report.warnings)
+            self.assertIn("has no primary display file `assets/figures/extra.png`", warnings)
+            self.assertIn("list bilingual counterpart `assets/figures/extra.en.png`", warnings)
+
+    def test_incomplete_translation_pdf_and_html_only_warn(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            pdf_path = root / base / "drawings" / "a3-booklet.en.pdf"
+            pdf_path.write_bytes(b"%PDF-1.4\n%%EOF\n")
+            html_path = root / base / "report" / "proposal.en.html"
+            html_path.write_text("<p>Incomplete translation</p>", encoding="utf-8")
+            changed.extend([
+                f"{base}/drawings/a3-booklet.en.pdf",
+                f"{base}/report/proposal.en.html",
+            ])
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+            warnings = "\n".join(report.warnings)
+            self.assertIn("bilingual drawing PDF has no pages", warnings)
+            self.assertIn("bilingual completeness does not block review", warnings)
+
+    def test_non_utf8_translation_html_only_warns(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            report_path = root / base / "report" / "proposal.en.html"
+            visual_path = root / base / "visual" / "index.en.html"
+            report_path.write_bytes(b"\xff\xfe")
+            visual_path.write_bytes(b"\xff\xfe")
+            changed.extend([
+                f"{base}/report/proposal.en.html",
+                f"{base}/visual/index.en.html",
+            ])
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+            warnings = "\n".join(report.warnings)
+            self.assertIn("report/proposal.en.html: proposal HTML report must be UTF-8 text", warnings)
+            self.assertIn("visual/index.en.html: visual HTML must be UTF-8 text", warnings)
 
     def test_missing_formal_deliverables_fail(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

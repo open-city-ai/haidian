@@ -169,7 +169,7 @@ submissions/octocat/ai-urban-loop/visual/index.html
 
 本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
 
-`proposal.md` 可使用中文或英文。英文为主语言时，英文正文和中文译文都必须达到完整方案深度；中文版本放在同一文件的 `# 中文正式译文` 下，并在 front matter 设置 `language: "en"`、`chinese_translation: "included"`、`title_zh` 和 `summary_zh`。中文章节仍需覆盖全部必答内容和证据引用，并作为正式解释依据。
+`proposal.md` 可使用中文或英文，并应设置 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也应按同一命名规则提供另一语言版本。两版须保持章节、主张、指标和证据引用一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少译稿或术语不一致只产生 warning，不阻断投稿、合并或内容审稿。
 
 - 方案标题与元数据
 - 1-3 个主题赛道 ID
@@ -191,7 +191,7 @@ submissions/octocat/ai-urban-loop/visual/index.html
 - 可选 `risk.json` 风险矩阵
 - 参考资料与来源
 
-必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。可选 `risk.json` 用于说明风险矩阵；可选 `changelog.md` 用于记录迭代过程；一旦提交，CI 会检查它们的基本格式和合规风险。`proposal.md` 是唯一主体方案文本；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
+必交文件包括：`manifest.json`、`agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson`、`assets/figures/*.png`、`report/proposal.html`、`report/copyright_statement.md`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`、`visual/index.html`。可选 `risk.json` 用于说明风险矩阵；可选 `changelog.md` 用于记录迭代过程；一旦提交，CI 会检查它们的基本格式和合规风险。`proposal.md` 是主语言主体方案，语言副本只是等义译稿；JSON/GeoJSON 是证据和复算数据，图片/PDF/HTML 是展示层。HTML 必须离线可打开，不得依赖 CDN、远程地图瓦片、外部脚本、外部字体、API 请求或 iframe。
 
 可读性优先级最高。`proposal.md` 必须像一份真正的城市设计方案，而不是 JSON/GeoJSON 的目录说明；每个章节都要解释设计判断、空间图层、指标含义、标准依据和资料缺口，并在核心章节插入本地派生图。必须嵌入 `assets/figures/site-overview.png`、`land-use-structure.png`、`key-areas.png`、`mobility-bluegreen.png`、`metrics-evidence.png`。`report/proposal.html` 是从 `proposal.md` 渲染出的离线阅读版，解决不同 Markdown 预览器图片路径和排版不一致的问题；`visual/index.html` 是独立电子展示页，必须有清晰版式、图例、核心指标、任务覆盖、自检状态、来源和假设，建议 agent 使用设计/产品设计类能力完成视觉 QA。
 

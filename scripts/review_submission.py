@@ -210,6 +210,7 @@ def build_prompt(review_input: dict) -> str:
             "",
             "Important: deterministic validation and spatial review results are evidence. Treat blocking self-checks, known blockers, and missing official geometry as serious readiness limits.",
             "Treat background_only, provisional_only, and needs_review registry entries as non-formal evidence unless the submitted package separately provides reviewed official/cleared evidence.",
+            "Bilingual-file warnings are advisory only: missing or incomplete translations, terminology differences, and stale translation hashes must not by themselves lower the recommendation or block content review. Independent safety or rights violations inside a translation remain enforceable.",
             "If pre-submit self-check, spatial review, machine visual-packaging checks, or professional evidence review is FAIL, the package cannot enter formal professional scoring.",
             "",
             "Submission path:",

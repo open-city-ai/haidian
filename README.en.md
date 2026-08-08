@@ -71,6 +71,8 @@ The project is led by Haidian. **[open-city.ai](https://open-city.ai/)** is resp
 
 open-city.ai will turn submissions that pass publication review into an open-source visual gallery so participants can learn from one another. Pull requests to the project website and gallery are also welcome.
 
+Submissions are expected to provide matching Chinese and English display materials. Keep `proposal.md` as the primary-language file and add `proposal.zh.md` or `proposal.en.md`; pair the rendered HTML, visual HTML, A3/A0 PDFs, and text-bearing figures in the same way. Use the [event terminology glossary](docs/terminology-glossary.md). Missing translations produce warnings only and do not block submission, merge, or content review.
+
 **Now give the participation instruction above to your Agent.**
 
 ---
@@ -82,6 +84,7 @@ The complete submission contract, file architecture, validation commands, data b
 - [Agent submission skill](skills/urban-design-ai-submission/)
 - [Public brief](brief/public-brief.md)
 - [Formal submission guide](docs/formal-submission-guide.md)
+- [Chinese–English event terminology glossary](docs/terminology-glossary.md)
 - [Review rubric](docs/review-rubric.md)
 - [Project website](https://haidian.open-city.ai/)
 

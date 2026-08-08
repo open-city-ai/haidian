@@ -154,6 +154,42 @@ def write_provisional_site_package(root: Path) -> None:
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")
 class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
+    def test_finalize_registers_existing_language_counterparts(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "bilingual-finalize"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+            translated = (output_dir / "proposal.md").read_text(encoding="utf-8").replace(
+                'language: "zh"\ntranslation_file: "proposal.en.md"',
+                'language: "en"\ntranslation_of: "proposal.md"',
+                1,
+            )
+            (output_dir / "proposal.en.md").write_text(translated, encoding="utf-8")
+            (output_dir / "report" / "proposal.en.html").write_bytes(
+                (output_dir / "report" / "proposal.html").read_bytes()
+            )
+            manifest_path = output_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"].append({
+                "path": "proposal.en.md",
+                "role": "narrative",
+                "required": False,
+                "language": "neutral",
+                "translation_of": "wrong.md",
+            })
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            completed = complete_scaffold(output_dir)
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            manifest = json.loads((output_dir / "manifest.json").read_text(encoding="utf-8"))
+            items = {item["path"]: item for item in manifest["files"]}
+            self.assertEqual("zh", items["proposal.md"]["language"])
+            self.assertEqual("en", items["proposal.en.md"]["language"])
+            self.assertEqual("proposal.md", items["proposal.en.md"]["translation_of"])
+            self.assertEqual("report/proposal.html", items["report/proposal.en.html"]["translation_of"])
+
     def test_generated_scaffold_is_blocked_until_participant_finalizes_it(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

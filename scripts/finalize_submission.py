@@ -8,7 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 
-from validate_submission import is_empty_pdf
+from validate_submission import DISPLAY_BASE_FILES, is_empty_pdf, localized_path, parse_front_matter
 
 
 FIGURES = [
@@ -54,6 +54,7 @@ def main() -> int:
     errors: list[str] = []
 
     proposal_text = (root / "proposal.md").read_text(encoding="utf-8")
+    proposal_metadata, _ = parse_front_matter(proposal_text)
     if "SCAFFOLD-DRAFT" in proposal_text:
         errors.append("proposal.md still contains the SCAFFOLD-DRAFT marker")
 
@@ -90,7 +91,36 @@ def main() -> int:
             item for item in claim.get("known_blockers", [])
             if "Generated scaffold is not a submission" not in str(item)
         ]
-    for item in manifest.get("files", []):
+    primary_language = proposal_metadata.get("language")
+    translation_language = "en" if primary_language == "zh" else "zh" if primary_language == "en" else None
+    manifest_files = manifest.get("files", [])
+    listed = {
+        str(item.get("path")): item
+        for item in manifest_files
+        if isinstance(item, dict) and item.get("path")
+    }
+    if translation_language:
+        for rel, item in list(listed.items()):
+            if rel not in DISPLAY_BASE_FILES and not rel.startswith("assets/figures/"):
+                continue
+            if rel.startswith("assets/figures/") and item.get("language") == "neutral":
+                continue
+            item["language"] = primary_language
+            translated_rel = localized_path(rel, translation_language)
+            translated_path = root / translated_rel
+            if translated_path.is_file():
+                translated_item = listed.get(translated_rel)
+                if translated_item is None:
+                    translated_item = {
+                        "path": translated_rel,
+                        "role": item.get("role", "narrative"),
+                        "required": False,
+                    }
+                    manifest_files.append(translated_item)
+                    listed[translated_rel] = translated_item
+                translated_item["language"] = translation_language
+                translated_item["translation_of"] = rel
+    for item in manifest_files:
         if not isinstance(item, dict):
             continue
         rel = item.get("path")

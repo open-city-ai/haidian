@@ -269,16 +269,43 @@ def build_item(repo_root: Path, submission_dir: Path, publication: dict[str, Any
         else f"{rel_dir}/proposal.md"
     )
     primary_language = front.get("language", "zh")
+    translation_language = "en" if primary_language == "zh" else "zh"
+    translation_md = submission_dir / f"proposal.{translation_language}.md"
+    translation_front = load_front_matter(translation_md) if translation_md.exists() else {}
     if primary_language == "en":
-        title_zh = front.get("title_zh") or front.get("title") or slug
+        title_zh = translation_front.get("title") or front.get("title_zh") or front.get("title") or slug
         title_en = front.get("title") or slug
-        summary_zh = front.get("summary_zh") or front.get("summary") or ""
+        summary_zh = translation_front.get("summary") or front.get("summary_zh") or front.get("summary") or ""
         summary_en = front.get("summary") or ""
     else:
         title_zh = front.get("title") or slug
-        title_en = front.get("title_en") or title_zh
+        title_en = translation_front.get("title") or front.get("title_en") or title_zh
         summary_zh = front.get("summary") or ""
-        summary_en = front.get("summary_en") or summary_zh
+        summary_en = translation_front.get("summary") or front.get("summary_en") or summary_zh
+
+    source_urls = {primary_language: f"{rel_dir}/proposal.md"}
+    proposal_urls = {primary_language: proposal_url}
+    visual_urls: dict[str, str] = {}
+    thumbnail_urls: dict[str, str] = {}
+    if proposal_html.exists():
+        thumbnail_urls[primary_language] = f"{rel_dir}/report/proposal.html"
+    elif visual_html.exists():
+        thumbnail_urls[primary_language] = f"{rel_dir}/visual/index.html"
+    if visual_html.exists():
+        visual_urls[primary_language] = f"{rel_dir}/visual/index.html"
+    if translation_md.exists():
+        source_urls[translation_language] = f"{rel_dir}/proposal.{translation_language}.md"
+        proposal_urls[translation_language] = source_urls[translation_language]
+    translated_report = submission_dir / "report" / f"proposal.{translation_language}.html"
+    if translated_report.exists():
+        url = f"{rel_dir}/report/proposal.{translation_language}.html"
+        proposal_urls[translation_language] = url
+        thumbnail_urls[translation_language] = url
+    translated_visual = submission_dir / "visual" / f"index.{translation_language}.html"
+    if translated_visual.exists():
+        url = f"{rel_dir}/visual/index.{translation_language}.html"
+        visual_urls[translation_language] = url
+        thumbnail_urls.setdefault(translation_language, url)
     item: dict[str, Any] = {
         "id": slug,
         "title": title_zh,
@@ -298,6 +325,10 @@ def build_item(repo_root: Path, submission_dir: Path, publication: dict[str, Any
         "tags": status["tags"],
         "proposalUrl": proposal_url,
         "sourceUrl": f"{rel_dir}/proposal.md",
+        "proposalUrlZh": proposal_urls.get("zh", proposal_url),
+        "proposalUrlEn": proposal_urls.get("en", proposal_url),
+        "sourceUrlZh": source_urls.get("zh", f"{rel_dir}/proposal.md"),
+        "sourceUrlEn": source_urls.get("en", f"{rel_dir}/proposal.md"),
         "featured": bool(publication.get("featured", False)),
         "selectionReason": str(publication.get("selection_reason_zh", "")),
         "selectionReasonEn": str(publication.get("selection_reason_en", "")),
@@ -308,6 +339,10 @@ def build_item(repo_root: Path, submission_dir: Path, publication: dict[str, Any
         item["thumbnailUrl"] = f"{rel_dir}/visual/index.html"
     if visual_html.exists():
         item["visualUrl"] = f"{rel_dir}/visual/index.html"
+    item["thumbnailUrlZh"] = thumbnail_urls.get("zh", item.get("thumbnailUrl", ""))
+    item["thumbnailUrlEn"] = thumbnail_urls.get("en", item.get("thumbnailUrl", ""))
+    item["visualUrlZh"] = visual_urls.get("zh", item.get("visualUrl", ""))
+    item["visualUrlEn"] = visual_urls.get("en", item.get("visualUrl", ""))
     return item
 
 

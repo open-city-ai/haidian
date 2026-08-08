@@ -156,6 +156,111 @@
       "reason": "No project-specific resident baseline survey has been completed.",
       "pilot_target_min": 80,
       "pilot_target_scale": "0-100"
+    },
+    "resilience_v13_candidate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count(explicit design alternatives S0 through S4)",
+      "confidence": "high",
+      "assumptions": [
+        "Alternatives are normalized decision-support archetypes, not construction schemes or approved projects."
+      ]
+    },
+    "resilience_v13_monte_carlo_draws": {
+      "status": "known",
+      "value": 50000,
+      "unit": "draws",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "deterministic Monte Carlo draws with seed 147228 across five stakeholder profiles, uncertain weights and score noise",
+      "confidence": "high",
+      "assumptions": [
+        "The draw count and seed are reproducible; the response functions remain explicit design assumptions."
+      ]
+    },
+    "resilience_v13_selected_mean_score": {
+      "status": "known",
+      "value": 72.518,
+      "unit": "normalized_score_0_100",
+      "source_files": [
+        "report/narrative.md",
+        "assumptions.json"
+      ],
+      "formula": "mean(0.70*stakeholder_weighted_criteria + 0.30*second_worst_of_eight_stress_scores) across 50000 draws for S4_balanced_adaptive",
+      "confidence": "low",
+      "assumptions": [
+        "This is a comparative decision score, not a measured climate, drainage, safety or resident outcome."
+      ]
+    },
+    "resilience_v13_selected_p05_score": {
+      "status": "known",
+      "value": 70.252,
+      "unit": "normalized_score_0_100",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "fifth_percentile(Monte Carlo robust scores for S4_balanced_adaptive)",
+      "confidence": "low",
+      "assumptions": [
+        "The percentile represents model uncertainty only and excludes unknown site geometry, utility, soil, climate and behavioural uncertainty."
+      ]
+    },
+    "resilience_v13_selected_win_rate": {
+      "status": "known",
+      "value": 0.78862,
+      "unit": "ratio",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count(draws where S4_balanced_adaptive has highest robust score) / 50000",
+      "confidence": "low",
+      "assumptions": [
+        "S2_ecology_intensive wins the remaining 21.138% of draws and wins the deterministic climate-first profile."
+      ]
+    },
+    "resilience_v13_selected_mean_regret": {
+      "status": "known",
+      "value": 0.314,
+      "unit": "normalized_score_points",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "mean(best_candidate_score_per_draw - S4_balanced_adaptive_score_per_draw)",
+      "confidence": "low",
+      "assumptions": [
+        "Low regret supports S4 as a robust compromise; it does not imply S4 is optimal under every climate-only objective."
+      ]
+    },
+    "resilience_v13_selected_min_stress_score": {
+      "status": "known",
+      "value": 67.194,
+      "unit": "normalized_score_0_100",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "min(eight deterministic design stress scores for S4_balanced_adaptive)",
+      "confidence": "low",
+      "assumptions": [
+        "Eight stress increments are design tests rather than site-specific forecasts."
+      ]
+    },
+    "resilience_v13_hard_gates_passed": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "report/narrative.md"
+      ],
+      "formula": "count(pass among minimum core score >=60, minimum stress score >=55, capital intensity <=85, privacy >=80, human score >=75)",
+      "confidence": "low",
+      "assumptions": [
+        "Gates are pre-field design-screening rules and must be replaced by approved engineering and participatory acceptance criteria."
+      ]
     }
   }
 }

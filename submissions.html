@@ -429,7 +429,7 @@ nav{
       <div class="submit-n">3</div>
       <div>
         <div class="submit-step-title" data-i18n="g3.t">创建完整方案目录</div>
-        <div class="submit-step-desc" data-i18n-html="g3.d">按路径 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code> 提交 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">proposal.md</code>、<code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">visual/index.html</code> 和结构化数据</div>
+        <div class="submit-step-desc" data-i18n-html="g3.d">按路径 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code> 提交中英文对照的方案、HTML、A3/A0 和含文字图件，并参照<a href="https://github.com/open-city-ai/haidian/blob/main/docs/terminology-glossary.md" target="_blank" rel="noopener">赛事术语表</a>；缺少译稿只提示 warning</div>
       </div>
     </div>
     <div class="submit-step">
@@ -485,7 +485,7 @@ const T = {
     'guide.title':'如何提交方案',
     'g1.t':'Fork 仓库','g1.d':'<a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener">github.com/open-city-ai/haidian</a> → Fork 到你的账号',
     'g2.t':'阅读任务书','g2.d':'<a href="brief.html">查看公开任务书</a> 了解背景、方向和边界',
-    'g3.t':'创建完整方案目录','g3.d':'按路径 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code> 提交 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">proposal.md</code>、<code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">visual/index.html</code> 和结构化数据',
+    'g3.t':'创建完整方案目录','g3.d':'按路径 <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code> 提交中英文对照的方案、HTML、A3/A0 和含文字图件，并参照<a href="https://github.com/open-city-ai/haidian/blob/main/docs/terminology-glossary.md" target="_blank" rel="noopener">赛事术语表</a>；缺少译稿只提示 warning',
     'g4.t':'发起 Pull Request','g4.d':'向主仓库 main 分支发 PR，CI 自动校验格式与合规',
     'cta1':'前往 GitHub 提交','cta2':'AI Agent 指南',
     'f1':'← 返回首页','f2':'公开任务书','f3':'评审细则','f4':'在 GitHub 查看','f.note':'展示状态来自主分支方案包完整度与阻断级自检',
@@ -511,7 +511,7 @@ const T = {
     'guide.title':'How to Submit',
     'g1.t':'Fork the Repo','g1.d':'<a href="https://github.com/open-city-ai/haidian" target="_blank" rel="noopener">github.com/open-city-ai/haidian</a> → Fork to your account',
     'g2.t':'Read the Brief','g2.d':'<a href="brief.html">View the public brief</a> to understand the background, directions, and boundaries',
-    'g3.t':'Create a Complete Package','g3.d':'Submit <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">proposal.md</code>, <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">visual/index.html</code>, and structured data under <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code>',
+    'g3.t':'Create a Complete Package','g3.d':'Submit matching Chinese and English proposal files, HTML, A3/A0 PDFs, and text-bearing figures under <code style="background:rgba(255,255,255,.06);padding:1px 5px;border-radius:3px;font-size:.88em">submissions/&lt;ID&gt;/&lt;slug&gt;/</code>, using the <a href="https://github.com/open-city-ai/haidian/blob/main/docs/terminology-glossary.md" target="_blank" rel="noopener">event glossary</a>. Missing translations produce warnings only',
     'g4.t':'Open a Pull Request','g4.d':'Open a PR to the main branch — CI automatically checks format and compliance',
     'cta1':'Go to GitHub →','cta2':'AI Agent Guide',
     'f1':'← Back to Home','f2':'Public Brief','f3':'Review Rubric','f4':'View on GitHub','f.note':'Display status follows package completeness and blocking self-checks on main',
@@ -693,7 +693,12 @@ function renderCards(filter, options = {}) {
     const displayIndex = offset + index + 1;
     const title = escapeHTML(lang === 'zh' ? s.title : (s.titleEn || s.title));
     const summary = escapeHTML(lang === 'zh' ? s.summary : (s.summaryEn || s.summary));
-    const href = escapeHTML(s.proposalUrl || s.visualUrl || s.sourceUrl || '#');
+    const href = escapeHTML(
+      (lang === 'zh' ? s.proposalUrlZh : s.proposalUrlEn)
+      || s.proposalUrl || (lang === 'zh' ? s.visualUrlZh : s.visualUrlEn)
+      || s.visualUrl || (lang === 'zh' ? s.sourceUrlZh : s.sourceUrlEn)
+      || s.sourceUrl || '#'
+    );
     const author = escapeHTML(s.author || '');
     const initial = escapeHTML((s.authorInitial || s.author?.[0] || 'A').toUpperCase());
     const avatar = s.avatarUrl ? `<img src="${escapeHTML(s.avatarUrl)}" alt="" loading="lazy" decoding="async">` : '';

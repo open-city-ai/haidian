@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import html
+import os
 import re
 from pathlib import Path, PurePosixPath
 
@@ -116,8 +117,12 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
     return "\n".join(blocks)
 
 
-def render_html(submission_dir: Path) -> str:
-    proposal_path = submission_dir / "proposal.md"
+def render_html(
+    submission_dir: Path,
+    proposal_name: str = "proposal.md",
+    translation_href: str | None = None,
+) -> str:
+    proposal_path = submission_dir / proposal_name
     metadata, body = parse_front_matter(proposal_path.read_text(encoding="utf-8"))
     title = metadata.get("title") or submission_dir.name
     summary = metadata.get("summary", "")
@@ -134,6 +139,14 @@ def render_html(submission_dir: Path) -> str:
         )
     else:
         rendered_body = render_markdown_body(submission_dir, body)
+    translation_link = ""
+    if translation_href:
+        link_label = "Read in English" if language == "zh" else "阅读中文版本"
+        translation_link = (
+            '<p class="translation-link">'
+            f'<a href="{html.escape(translation_href)}">{link_label}</a>'
+            "</p>"
+        )
     return f"""<!doctype html>
 <html lang="{document_lang}">
 <head>
@@ -181,6 +194,7 @@ code {{
   border-radius: 4px;
 }}
 .summary {{ color: var(--muted); font-size: 17px; }}
+.translation-link a {{ color: var(--accent); font-weight: 700; }}
 .proposal-figure {{
   margin: 22px 0 28px;
   border: 1px solid var(--line);
@@ -220,6 +234,7 @@ code {{
 <section class="hero">
 <h1>{html.escape(title)}</h1>
 <p class="summary">{html.escape(summary)}</p>
+{translation_link}
 </section>
 {rendered_body}
 </main>
@@ -238,10 +253,30 @@ def main() -> int:
     out_path = submission_dir / args.out
     if not (submission_dir / "proposal.md").exists():
         raise SystemExit(f"{submission_dir}/proposal.md is missing")
-    html_text = render_html(submission_dir)
+    primary_path = submission_dir / "proposal.md"
+    metadata, _ = parse_front_matter(primary_path.read_text(encoding="utf-8"))
+    translation_name = metadata.get("translation_file", "")
+    translation_path = submission_dir / translation_name if translation_name else None
+    translation_output = None
+    if translation_path and translation_path.is_file() and translation_name in {"proposal.zh.md", "proposal.en.md"}:
+        language = "zh" if translation_name == "proposal.zh.md" else "en"
+        translation_output = submission_dir / f"report/proposal.{language}.html"
+
+    primary_translation_href = None
+    if translation_output:
+        primary_translation_href = os.path.relpath(translation_output, out_path.parent)
+    html_text = render_html(submission_dir, translation_href=primary_translation_href)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html_text, encoding="utf-8")
     print(out_path)
+    if translation_output and translation_path:
+        translation_output.parent.mkdir(parents=True, exist_ok=True)
+        primary_href = os.path.relpath(out_path, translation_output.parent)
+        translation_output.write_text(
+            render_html(submission_dir, translation_name, translation_href=primary_href),
+            encoding="utf-8",
+        )
+        print(translation_output)
     return 0
 
 

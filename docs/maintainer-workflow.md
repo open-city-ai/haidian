@@ -72,6 +72,8 @@ Review Agent 采用 100 分制，**低于 60 分不得合并**；达到 60 分�
 通过最低线但仍有改进空间的稿件，可以作为 intake 合并并把建议写入维护者专属
 `FEEDBACK.md`；intake 仍不代表公开展示或正式评分。
 
+维护者还应人工打开 `proposal.md` 与其 `.zh.md` / `.en.md` 副本，并抽查 HTML、A3/A0 和含文字图件是否保持章节、主张、指标、证据引用与图件位置一致。双语文件缺失、不完整、术语偏差或 manifest 哈希过期只能作为 PR warning 和改进建议，不能单独把建议状态降为 `request-changes`、`reject` 或阻止内容审稿；但译稿中出现远程加载、主动网络请求、隐私、涉密、违法或其他独立安全问题时，仍按原安全规则处理。
+
 ## 4A. 上线前模拟 PR 审核
 
 公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评分，因此参与者可控制的检查全部通过时，预期建议状态必须是 `formal-review-ready`，同时保留精度警示与复算要求：
@@ -101,7 +103,7 @@ python3 scripts/prelaunch_check.py
 - `published=true`：记录已完成人工内容、视觉和版权复核的具体版本。
 - `featured=true`：同时进入首页精选；它必须以 `published=true` 为前提。
 - `selection_reason_zh`、`selection_reason_en` 和 `selected_at` 记录双语入选理由与日期。
-- 公开前必须由维护者人工检查内容表达、图纸可读性、来源与版权，并填写 `review_status=approved_for_publication`、`reviewed_by`、`reviewed_at` 和 `rights_reviewed=true`。
+- 公开前必须由维护者人工检查内容表达、双语对应关系、图纸可读性、来源与版权，并填写 `review_status=approved_for_publication`、`reviewed_by`、`reviewed_at` 和 `rights_reviewed=true`。
 - 审核完成后运行 `python3 scripts/generate_submissions_data.py --package-sha submissions/<github-login>/<proposal-slug>`，把结果写入 `reviewed_package_sha256`。投稿任何文件变化都会使批准失效，必须重新审核并更新摘要。
 - 普通公开稿使用 `quality_tier=qualified`；只有人工确认具有较高内容与展示质量的稿件才使用 `quality_tier=featured` 和 `featured=true`。
 

@@ -1,6 +1,8 @@
 import sys
 import tempfile
 import unittest
+import subprocess
+import sys
 from pathlib import Path
 
 
@@ -87,6 +89,58 @@ English content.
             self.assertIn('<html lang="en">', html)
             self.assertIn('<section lang="en">', html)
             self.assertIn('<section lang="zh-CN"><h1>中文正式译文</h1>', html)
+
+    def test_cli_renders_primary_and_standalone_translation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                '---\ntitle: "中文方案"\nsummary: "中文摘要"\nlanguage: "zh"\ntranslation_file: "proposal.en.md"\n---\n\n# 中文方案\n',
+                encoding="utf-8",
+            )
+            (submission_dir / "proposal.en.md").write_text(
+                '---\ntitle: "English Proposal"\nsummary: "English summary"\nlanguage: "en"\ntranslation_of: "proposal.md"\n---\n\n# English Proposal\n',
+                encoding="utf-8",
+            )
+            completed = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "render_proposal_html.py"), str(submission_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            primary = (submission_dir / "report" / "proposal.html").read_text(encoding="utf-8")
+            translated = (submission_dir / "report" / "proposal.en.html").read_text(encoding="utf-8")
+            self.assertIn('href="proposal.en.html"', primary)
+            self.assertIn('href="proposal.html"', translated)
+
+    def test_cli_uses_relative_language_links_for_custom_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                '---\ntitle: "中文方案"\nsummary: "中文摘要"\nlanguage: "zh"\ntranslation_file: "proposal.en.md"\n---\n\n# 中文方案\n',
+                encoding="utf-8",
+            )
+            (submission_dir / "proposal.en.md").write_text(
+                '---\ntitle: "English Proposal"\nsummary: "English summary"\nlanguage: "en"\ntranslation_of: "proposal.md"\n---\n\n# English Proposal\n',
+                encoding="utf-8",
+            )
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "render_proposal_html.py"),
+                    str(submission_dir),
+                    "--out",
+                    "public/custom.html",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            primary = (submission_dir / "public" / "custom.html").read_text(encoding="utf-8")
+            translated = (submission_dir / "report" / "proposal.en.html").read_text(encoding="utf-8")
+            self.assertIn('href="../report/proposal.en.html"', primary)
+            self.assertIn('href="../public/custom.html"', translated)
 
 
 if __name__ == "__main__":

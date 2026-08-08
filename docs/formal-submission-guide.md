@@ -4,7 +4,27 @@
 
 百年京张 AI 创新带城市设计开源征集由海淀主导，已于北京时间 **2026年8月7日**开放，**8月31日截止，9月开始落地**。投稿通过本仓库 Pull Request 流程进行。
 
-`proposal.md` 可以中文或英文书写。英文投稿的英文正文和中文译文都必须达到完整方案深度；中文版本放在同一文件的 `# 中文正式译文` 下，并设置 `language: "en"`、`chinese_translation: "included"`、`title_zh` 和 `summary_zh`。中文译文必须覆盖全部必答章节、图表和证据引用，并作为正式解释依据。
+`proposal.md` 可以中文或英文书写，并应通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版应保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验只检查文件与语言映射并给出 warning，翻译一致性由维护者人工核对；缺少翻译不阻断投稿、合并或内容审稿。
+
+无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；无文字资产可声明 `language: "neutral"` 并由两版共用。
+
+英文主稿必须使用以下正式章节标题；中文译稿保持对应顺序。这样英文正文可独立通过结构校验，不依赖同一文件中的中文章节。
+
+| 中文章节 | 英文正式章节 |
+| --- | --- |
+| 设计依据与资料清单 | Design Basis and Source List |
+| 三层范围工作框架 | Three-Level Scope Framework |
+| 统筹研究范围产业与未来城市研究 | Coordinated Research Area: Industry and Future City Research |
+| 总体设计范围城市更新与控规深度城市设计 | Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design |
+| 重点区域详细设计 | Detailed Design of Key Areas |
+| AI 创新生态、人才画像与 AI+ 场景 | AI Innovation Ecosystem, Personas, and AI+ Scenarios |
+| 用地、建筑规模与拆改留方案 | Land Use, Building Scale, and Retain-Renovate-Demolish Strategy |
+| 交通、轨道、市政与公共服务设施 | Transport, Rail, Municipal Infrastructure, and Public Services |
+| 蓝绿空间、公共空间与城市风貌 | Blue-Green Network, Public Space, and Urban Character |
+| 更新项目清单、实施政策与分期计划 | Renewal Projects, Implementation Policy, and Phasing |
+| 指标体系、面积复算与合规矩阵 | Metrics, Area Recalculation, and Compliance Matrix |
+| 风险、版权与合规说明 | Risk, Copyright, and Compliance |
+| 参考资料 | References |
 
 ## 1. 先确认资料是否足够
 
@@ -260,7 +280,7 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 
 ## 6. `proposal.md` 的可读证据引用
 
-`proposal.md` 是唯一主体方案文本。JSON/GeoJSON 证明 agent 真的生成了可复算数据，但人类评审需要在正文中读懂这些数据如何支撑设计判断。
+`proposal.md` 是主语言主体方案文本，`.zh.md` / `.en.md` 是与其等义的语言副本。JSON/GeoJSON 证明 agent 真的生成了可复算数据，但人类评审需要在正文中读懂这些数据如何支撑设计判断。
 
 正文必须使用这些引用格式：
 

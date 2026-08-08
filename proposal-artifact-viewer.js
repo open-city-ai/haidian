@@ -34,10 +34,12 @@
 
   function dataPattern(path) {
     const seed = hash(path);
-    return Array.from({length: 15}, (_, index) => {
-      const color = palette[(seed + index * 7) % palette.length];
-      const opacity = (.24 + ((seed >>> (index % 16)) % 62) / 100).toFixed(2);
-      return `<span style="--data-color:${color};--data-opacity:${opacity}"></span>`;
+    const accentLine = seed % 5;
+    return Array.from({length: 5}, (_, index) => {
+      const width = 48 + ((seed >>> (index * 3)) % 40);
+      const indent = ((seed >>> (index * 2 + 1)) % 3) * 4;
+      const tone = index === accentLine ? 'accent' : 'blue';
+      return `<span class="data-line ${tone}" style="--data-width:${width}%;--data-indent:${indent}px"></span>`;
     }).join('');
   }
 
