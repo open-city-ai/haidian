@@ -17,6 +17,7 @@ from backfill_bilingual_artifacts import (  # noqa: E402
 )
 from backfill_bilingual_submissions import (  # noqa: E402
     LocalTranslator,
+    backfill_proposal,
     extract_legacy_translation,
     parse_front_matter,
     set_front_fields,
@@ -319,6 +320,69 @@ class BilingualBackfillTests(unittest.TestCase):
             self.assertEqual("proposal.md", items["proposal.en.md"]["translation_of"])
             expected = hashlib.sha256((directory / "proposal.en.md").read_bytes()).hexdigest()
             self.assertEqual(expected, items["proposal.en.md"]["sha256"])
+
+    def test_proposal_backfill_refreshes_manifest_and_invalidates_self_check(self) -> None:
+        class StubTranslator:
+            batch_size = 4
+
+            translations = {
+                "示例": "Example",
+                "摘要": "Summary",
+                "正文": "Body",
+            }
+
+            def translate(self, text: str) -> str:
+                return self.translations.get(text, text)
+
+            def translate_many(self, texts: list[str]) -> list[str]:
+                return [self.translate(text) for text in texts]
+
+        with tempfile.TemporaryDirectory() as tmp:
+            directory = Path(tmp) / "submissions" / "alice" / "example"
+            directory.mkdir(parents=True)
+            (directory / "proposal.md").write_text(
+                "---\ntitle: \"示例\"\nsummary: \"摘要\"\nlanguage: \"zh\"\n---\n# 示例\n正文\n",
+                encoding="utf-8",
+            )
+            (directory / "manifest.json").write_text(
+                json.dumps(
+                    {
+                        "files": [
+                            {
+                                "path": "manifest.json",
+                                "role": "manifest",
+                                "required": True,
+                            },
+                            {
+                                "path": "proposal.md",
+                                "role": "narrative",
+                                "required": True,
+                                "sha256": "stale",
+                            },
+                        ],
+                        "validation_claim": {"self_checked": True},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            changed, message = backfill_proposal(
+                directory,
+                {("zh", "en"): StubTranslator()},
+                force=False,
+            )
+
+            self.assertTrue(changed)
+            self.assertEqual("created proposal.en.md", message)
+            manifest = json.loads((directory / "manifest.json").read_text(encoding="utf-8"))
+            items = {item["path"]: item for item in manifest["files"]}
+            self.assertEqual("zh", items["proposal.md"]["language"])
+            self.assertEqual("en", items["proposal.en.md"]["language"])
+            self.assertEqual("proposal.md", items["proposal.en.md"]["translation_of"])
+            for relative_path in ["proposal.md", "proposal.en.md"]:
+                expected = hashlib.sha256((directory / relative_path).read_bytes()).hexdigest()
+                self.assertEqual(expected, items[relative_path]["sha256"])
+            self.assertFalse(manifest["validation_claim"]["self_checked"])
 
 
 if __name__ == "__main__":

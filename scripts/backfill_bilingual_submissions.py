@@ -11,9 +11,13 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter
+import hashlib
 import json
+import os
 import re
+import stat
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any, Callable, Iterable
 
@@ -163,6 +167,97 @@ def set_front_fields(
 def render_document(front: list[str], body: str) -> str:
     ending = "" if body.endswith("\n") else "\n"
     return "---\n" + "\n".join(front) + "\n---\n" + body + ending
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def write_json_file(path: Path, data: dict[str, Any]) -> None:
+    """Replace a JSON object atomically while preserving its file mode."""
+    serialized = json.dumps(data, ensure_ascii=False, indent=2) + "\n"
+    temporary_path: Path | None = None
+    try:
+        with tempfile.NamedTemporaryFile(
+            "w",
+            encoding="utf-8",
+            dir=path.parent,
+            prefix=f".{path.name}.",
+            suffix=".tmp",
+            delete=False,
+        ) as handle:
+            temporary_path = Path(handle.name)
+            handle.write(serialized)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.chmod(temporary_path, stat.S_IMODE(path.stat().st_mode))
+        os.replace(temporary_path, path)
+    finally:
+        if temporary_path is not None:
+            temporary_path.unlink(missing_ok=True)
+
+
+def refresh_manifest_after_proposal_backfill(
+    submission_dir: Path,
+    source_language: str,
+    target_language: str,
+    translation_name: str,
+) -> None:
+    """Record the files changed by a proposal backfill.
+
+    A bilingual backfill changes the primary proposal and creates a sibling
+    translation.  Those bytes must be represented in the manifest before a
+    later validator can trust the package again.  The content edit also
+    invalidates any previously recorded self-check; refreshing hashes alone is
+    not evidence that the four validation gates were rerun.
+    """
+    manifest_path = submission_dir / "manifest.json"
+    if not manifest_path.is_file():
+        raise RuntimeError(f"manifest.json is required for bilingual backfill: {submission_dir}")
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if not isinstance(manifest, dict):
+        raise RuntimeError(f"manifest.json must contain an object: {submission_dir}")
+    items = manifest.get("files")
+    if not isinstance(items, list):
+        raise RuntimeError(f"manifest.json files must be an array: {submission_dir}")
+
+    by_path = {
+        str(item.get("path")): item
+        for item in items
+        if isinstance(item, dict) and item.get("path")
+    }
+    primary_item = by_path.get("proposal.md")
+    if primary_item is None:
+        primary_item = {"path": "proposal.md", "role": "narrative", "required": True}
+        items.append(primary_item)
+        by_path["proposal.md"] = primary_item
+    primary_item["language"] = source_language
+
+    translation_item = by_path.get(translation_name)
+    if translation_item is None:
+        translation_item = {
+            "path": translation_name,
+            "role": primary_item.get("role", "narrative"),
+            "required": False,
+        }
+        items.append(translation_item)
+        by_path[translation_name] = translation_item
+    translation_item["language"] = target_language
+    translation_item["translation_of"] = "proposal.md"
+
+    for relative_path, item in (
+        ("proposal.md", primary_item),
+        (translation_name, translation_item),
+    ):
+        file_path = submission_dir / relative_path
+        if not file_path.is_file():
+            raise RuntimeError(f"backfilled file is missing: {submission_dir / relative_path}")
+        item["sha256"] = sha256(file_path)
+
+    claim = manifest.get("validation_claim")
+    if isinstance(claim, dict):
+        claim["self_checked"] = False
+    write_json_file(manifest_path, manifest)
 
 
 def load_glossary(path: Path) -> tuple[dict[str, str], dict[str, str]]:
@@ -1222,6 +1317,12 @@ def backfill_proposal(
         remove={"translation_of"},
     )
     proposal_path.write_text(render_document(primary_front, body), encoding="utf-8")
+    refresh_manifest_after_proposal_backfill(
+        submission_dir,
+        source_language,
+        target_language,
+        translation_name,
+    )
     return True, f"created {translation_name}"
 
 
