@@ -2,11 +2,10 @@
 title: 京张智脉 2.0 / Knowledge Weave
 author_github: XXXXXQ-0206
 language: zh
+translation_file: proposal.en.md
 license: CC-BY-4.0
 summary: 以证据线和公共线组织三核两翼，在临时 geometry 约束下提出可核验、可退出、可全量重算的 AI 创新带城市设计方法。
 ---
-
-# 京张智脉 2.0 / Knowledge Weave
 
 ## 设计依据与资料清单
 

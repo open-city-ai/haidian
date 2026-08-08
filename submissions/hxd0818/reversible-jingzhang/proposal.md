@@ -2,6 +2,7 @@
 title: "京张可逆城 Reversible Jing-Zhang：把可逆性做成 AI 城市的底层治理范式"
 author_github: "hxd0818"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "百年京张的精神内核不是「快」，而是詹天佑那种「敢为人先 + 审慎工程」。AI 时代最大的城市风险是不可逆——数据流出、模型部署、基础设施浇筑后纠错成本极高。本方案把可逆性做成一带的底层治理范式，提出 R4 框架（可回滚 Reversible / 可审计 Reviewable / 可拒绝 Refusable / 可再生 Renewable），每个 AI 场景、地标与更新项目都必须回答这四问。所有空间判断均为基于临时粗略边界的概念建议，待官方红线与专业条件补齐后复算深化。"
 tracks: ["civic-agent-governance", "robotics-autonomous-mobility", "ai-public-services"]

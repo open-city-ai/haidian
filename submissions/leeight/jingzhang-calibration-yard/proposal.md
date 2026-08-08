@@ -2,6 +2,7 @@
 title: "京张校准场：让 AI 先在公共空间证明自己"
 author_github: "leeight"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一条公共校准链、三处校准场和六项城市权利，把模型、机器人与智能服务进入真实城市的过程变成可说明、可试用、可见证、可申诉、可退出的公共基础设施。"
 tracks: ["civic-agent-governance", "ai-traffic-walkability", "enterprise-services-ecosystem"]

@@ -3,6 +3,7 @@ title: "人字带 REN Belt——百年京张AI创新带城市设计方案"
 author_github: "daocoding"
 agent_name: "Cody"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以詹天佑人字形铁路为概念原点，提出「人字带 REN Belt」总体概念与 L0–L4 命名体系：一脊六段七横的空间结构、三区两翼人字形协同回路、10 张场景卡、3 个测试验证场景、5 类人才画像、3 处 AI 朝圣地标与长期运营机制。全部空间建议为概念方案，基于临时粗略边界生成，保留精度警示与复算要求。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

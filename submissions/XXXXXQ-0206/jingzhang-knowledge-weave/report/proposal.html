@@ -45,6 +45,25 @@ code {
   border-radius: 4px;
 }
 .summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
 .proposal-figure {
   margin: 22px 0 28px;
   border: 1px solid var(--line);
@@ -84,8 +103,8 @@ code {
 <section class="hero">
 <h1>京张智脉 2.0 / Knowledge Weave</h1>
 <p class="summary">以证据线和公共线组织三核两翼，在临时 geometry 约束下提出可核验、可退出、可全量重算的 AI 创新带城市设计方法。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
 </section>
-<h1>京张智脉 2.0 / Knowledge Weave</h1>
 <h2>设计依据与资料清单</h2>
 <p>本稿以公告、智能体任务书、标准矩阵、来源注册表和提交的 geometry/metrics 为唯一设计依据。<code>SITE-001</code>、三处 <code>PROV-KEY-*</code>、用地、建筑、道路、绿地、公共空间、分期及约束图层均是可复核的提交材料；没有一项被表述为官方红线、现状测绘、权属、控规或工程结论。资料门要求每一项空间判断能回到来源、版本、适用边界和复算方法；缺失资料只进入假设与前置调查清单。<span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span> <span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span> <span class="evidence evidence-source">[source:BOUNDARY-SOURCE]</span> <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span> <span class="evidence evidence-data">[data:geometry/constraints.geojson#CONSTRAINTS]</span> <span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span> <span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span></p>
 <h2>三层范围工作框架</h2>
@@ -133,7 +152,7 @@ code {
 <h2>5. 十张场景卡：以可退出为默认</h2>
 <p>下列十张卡的共同底线是：不采集不必要的可识别个人轨迹，不把健康、教育、法律或公共安全建议作为自动决定，不以无法人工复核的模型输出取代服务人员。SG-01 开源贡献发布、SG-02 可信评测台、SG-03 无障碍寻路为三项优先验证场景；其余七项仅在前置门通过后逐一评估。每张卡具有最低数据、候选责任类型、人工替代、可测结果、暂停条件、申诉入口、删除规则和恢复证据。<span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span> <span class="evidence evidence-metric">[metric:green_ratio]</span> <span class="evidence evidence-metric">[metric:public_space_ratio]</span> <span class="evidence evidence-depth">[depth:blue_green_public_space]</span></p>
 <figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="十张 AI 场景治理卡"><figcaption>十张 AI 场景治理卡</figcaption></figure>
-<p>| 场景 | 空间关系 | 最低数据与人工替代 | 停止/恢复 | 公共价值指标 | | --- | --- | --- | --- | --- | | SG-01 开源贡献发布 | AI 原点社区公共界面 | 自愿文本；人工登记 | 纠错或撤回请求即暂停；完成修订后恢复 | 纠错响应与撤回完成率 | | SG-02 可信评测台 | 众智园可变庭院 | 匿名测试结果；专家复核 | 偏差或安全事件超阈暂停 | 可复现评测与人工复核比例 | | SG-03 无障碍寻路 | 慢行与公共空间 | 设施状态；纸图/人工问询 | 错误路径即下线 | 可达路线覆盖与纠错时效 | | SG-04 慢行舒适提示 | 蓝绿界面 | 环境读数；静态导视 | 数据失真暂停 | 解释牌理解度 | | SG-05 公共服务复盘 | 大钟寺复盘广场 | 匿名意见；线下意见箱 | 投诉累积复审 | 申诉响应与公开复盘率 | | SG-06 文化解释牌 | 朝圣地标候选点 | 公开文化条目；人工讲解 | 事实争议下架 | 勘误闭环率 | | SG-07 低扰动维护 | 公共空间组件 | 设备状态；人工巡检 | 误报频发暂停 | 人工确认率 | | SG-08 开发者需求匹配 | 科技服务翼接口 | 自愿需求单；服务台 | 不公平分配复审 | 反馈满意度 | | SG-09 活动容量提示 | 公共路线 | 匿名计数；现场引导 | 拥挤风险暂停 | 安全事件为零并非自动目标，需人工确认 | | SG-10 成果归档检索 | 知识贡献廊 | 公开元数据；人工目录 | 权利/删除请求暂停 | 删除完成与复用记录 |</p>
+<div class="proposal-table"><table><thead><tr><th>场景</th><th>空间关系</th><th>最低数据与人工替代</th><th>停止/恢复</th><th>公共价值指标</th></tr></thead><tbody><tr><td>SG-01 开源贡献发布</td><td>AI 原点社区公共界面</td><td>自愿文本；人工登记</td><td>纠错或撤回请求即暂停；完成修订后恢复</td><td>纠错响应与撤回完成率</td></tr><tr><td>SG-02 可信评测台</td><td>众智园可变庭院</td><td>匿名测试结果；专家复核</td><td>偏差或安全事件超阈暂停</td><td>可复现评测与人工复核比例</td></tr><tr><td>SG-03 无障碍寻路</td><td>慢行与公共空间</td><td>设施状态；纸图/人工问询</td><td>错误路径即下线</td><td>可达路线覆盖与纠错时效</td></tr><tr><td>SG-04 慢行舒适提示</td><td>蓝绿界面</td><td>环境读数；静态导视</td><td>数据失真暂停</td><td>解释牌理解度</td></tr><tr><td>SG-05 公共服务复盘</td><td>大钟寺复盘广场</td><td>匿名意见；线下意见箱</td><td>投诉累积复审</td><td>申诉响应与公开复盘率</td></tr><tr><td>SG-06 文化解释牌</td><td>朝圣地标候选点</td><td>公开文化条目；人工讲解</td><td>事实争议下架</td><td>勘误闭环率</td></tr><tr><td>SG-07 低扰动维护</td><td>公共空间组件</td><td>设备状态；人工巡检</td><td>误报频发暂停</td><td>人工确认率</td></tr><tr><td>SG-08 开发者需求匹配</td><td>科技服务翼接口</td><td>自愿需求单；服务台</td><td>不公平分配复审</td><td>反馈满意度</td></tr><tr><td>SG-09 活动容量提示</td><td>公共路线</td><td>匿名计数；现场引导</td><td>拥挤风险暂停</td><td>安全事件为零并非自动目标，需人工确认</td></tr><tr><td>SG-10 成果归档检索</td><td>知识贡献廊</td><td>公开元数据；人工目录</td><td>权利/删除请求暂停</td><td>删除完成与复用记录</td></tr></tbody></table></div>
 <h2>6. 公共空间、文化叙事与标识系统</h2>
 <p>公共空间组件包含静默导视柱、可停留贡献台、无障碍活动缘、场景说明牌和可移动展陈架。每个组件都提供不依赖手机的替代信息，说明服务边界和停用状态，并可在活动结束后撤除。三处文化节点“时序门、开源贡献廊、共智瞭望台”仅作为候选叙事载体，需在权属、文保、绿地、消防和交通安全条件明确后才可进入专业设计。文化线索以“历史—知识—公共利益”的双语叙事连接铁路记忆、中关村创新文化和 AI 新文化；不将历史作为科技装饰，也不使用未授权历史图像或商标。<span class="evidence evidence-source">[source:ASSET-NOTO-001]</span> <span class="evidence evidence-source">[source:ASSET-CODEX-001]</span> <span class="evidence evidence-depth">[depth:blue_green_public_space]</span></p>
 <h2>7. 六张实施与长期运营卡</h2>

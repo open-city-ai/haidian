@@ -32,7 +32,7 @@ The proposal is organised as **one public axis + three test yards + two safety n
 
 Autonomous driving is a constrained service layer over walking, cycling, rail, transit, emergency and maintenance systems. Every vehicle or robot yields to the continuous human route. Curbs register who may stop, when, for how long and who clears the space [standard:BEIJING-ACCESSIBILITY-REGULATION] [standard:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS].
 
-![Overview of the autonomous public belt](assets/figures/site-overview.png)
+![Overview of the autonomous public belt](assets/figures/site-overview.en.png)
 
 ## 3. Three key areas
 
@@ -54,7 +54,7 @@ The three detailed points are stored in `visual/assets/autonomy_nodes.json`; the
 
 **Data is collected only to complete the service.** Read the authorised curb state, obstacle class, accessible route and emergency message; do not build resident profiles or publish continuous camera streams. Public records show aggregate events, responsibility and corrections; retention and deletion require professional and legal confirmation [source:CASE-HELSINKI-AI-REGISTER] [source:CASE-UK-ATRS] [source:NIST-HUMAN-CENTERED-AI].
 
-![Curb states, human takeover and ecological rollback](assets/figures/mobility-bluegreen.png)
+![Curb states, human takeover and ecological rollback](assets/figures/mobility-bluegreen.en.png)
 
 ## 5. Twelve scenario cards
 
@@ -76,7 +76,9 @@ The package retains the provisional base layers for land use, buildings, roads, 
 
 Phasing is: **P0 legible curbs and accessibility audit**; **P1 approved, low-speed, reversible tests**; **P2 conditional expansion only after safety, traffic, ecology, privacy, participation and liability gates pass**. Automated vehicles are a service layer, never an assumed new road capacity. Climate, drainage, microclimate and ecology outcomes remain unknown without local observations and professional models [source:BEIJING-VENTILATION-NETWORK-2035] [source:BEIJING-FLOOD-PLAN-2021-2025] [source:BEIJING-BIRD-BIODIVERSITY-2024].
 
-![Stage gates, metrics and rollback](assets/figures/metrics-evidence.png)
+![Stage gates, metrics and rollback](assets/figures/metrics-evidence.en.png)
+
+![Autonomy readiness: scenarios, nodes, gates, evidence routes and metric status](assets/figures/autonomy-readiness.en.png)
 
 ## 9. Compliance, risks and future recalculation
 

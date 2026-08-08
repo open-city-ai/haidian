@@ -6,7 +6,7 @@ The package expresses two parallel concept lines: an evidence line for traceable
 
 ## Render Method
 
-The five PNG evidence boards are original programmatic technical schematics rendered with Pillow from the committed GeoJSON, `metrics.json`, matrices, and authored labels. Chinese labels use Noto Sans SC. `a3-booklet.pdf` is five A3 landscape pages (420 × 297 mm at 150 dpi); `a0-boards.pdf` is five A0 landscape pages (1189 × 841 mm at 75 dpi). The local-only `visual/index.html` mirrors the same metrics and evidence boundaries.
+The five PNG evidence boards are original programmatic technical schematics rendered with Pillow from the committed GeoJSON, `metrics.json`, matrices, and authored labels. Chinese labels use Noto Sans SC. `drawings/a3-booklet.pdf` is five A3 landscape pages (420 × 297 mm at 150 dpi); `drawings/a0-boards.pdf` is five A0 landscape pages (1189 × 841 mm at 75 dpi). The local-only `visual/index.html` mirrors the same metrics and evidence boundaries. Matching English display files use separately authored English labels and narrative; they are translation companions, not duplicate byte copies.
 
 ## Provisional Geometry Rule
 

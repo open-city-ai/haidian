@@ -2,6 +2,7 @@
 title: "人字带 REN BELT：百年京张AI创新带城市设计方案"
 author_github: "Jannhsu"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "京张铁路遗址公园 9 公里绿廊已于 2026 年 8 月 6 日全线贯通，官方「三线织锦」中的历史线与生活线随之落地，创新线仍停留在概念层。本方案不重画绿廊，而是为已建成的主轴补上创新线：以「人字带」为总体概念与命名体系，用一轴（已建成主轴）、两翼（要素翼与场景翼）、三折返点（三处重点区域）组织空间，把 43.6 平方公里的产业叙事收敛为 11.4 平方公里的可实施缝合动作，并以 120 个无缝覆盖的用地单元、9 个 GeoJSON 图层、可复算指标和四段式证据链支撑每一句结论。"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative"]

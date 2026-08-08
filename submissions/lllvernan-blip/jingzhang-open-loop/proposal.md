@@ -2,6 +2,7 @@
 title: "开源回路：百年京张AI创新带的可验证城市"
 author_github: "lllvernan-blip"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为公共主轴，以众智园、北京AI原点社区、大钟寺为三处创新锚点，构建一条可步行、可体验、可复核的AI城市开源回路。空间建议全部保留概念属性，临时边界仅用于本次 intake 和后续复算。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "ai-origin-community"]

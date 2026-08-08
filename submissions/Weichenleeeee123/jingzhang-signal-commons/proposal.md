@@ -2,6 +2,7 @@
 title: "京张驿脉 / Jing-Zhang Signal Commons"
 author_github: "Weichenleeeee123"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以铁路信号、站点和联络为设计语法，把京张遗址公园转译为连接三处重点区、两翼服务和十二个 AI 场景的公共创新网络。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]

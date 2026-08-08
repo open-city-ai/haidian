@@ -2,6 +2,7 @@
 title: "京张智环 2.0：城市可验证协议"
 author_github: "sddai"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共知识脊柱，把众智园的研发、AI原点社区的转译与大钟寺的城市验证组织为可追溯、可退出、可复盘的城市协议。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]

@@ -2,6 +2,7 @@
 title: "智脉：百年京张AI创新带城市设计方案"
 author_github: "xiayuzizhuo666"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「一线两纪——从铁脉到智脉」为总体概念，构建一带三核多点场景的AI创新带城市设计方案；依托京张铁路遗址公园主轴，联动众智园、北京AI原点社区、大钟寺三处重点区域与中关村科技服务翼、小月河场景赋能翼，形成高校策源-开源协作-企业转化-公共体验-国际传播的创新闭环。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

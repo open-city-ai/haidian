@@ -2,12 +2,12 @@
 title: "双轨共生：百年京张AI创新带城市设计方案"
 author_github: "KerryChia"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为文化主轴、AI产业创新带为数字副轴，提出「双轨共生」总体概念：双轨不是两条平行线，而是历史承诺与未来承诺的空间叠加——让 AI 的每一次决策，像京张铁轨一样可被后人站在原地复核。提出「标准轨距」机制作为双轨互操作的底线，把众智园、北京AI原点社区、大钟寺锚定为三核，并落地为可复算的用地、蓝绿、交通、公共空间、分期图层与指标体系；当前采用 provisional 边界，保留精度警示与复算要求。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 iteration: "v0.3"
-translation_file: "proposal.en.md"
 ---
 
 # 双轨共生：百年京张AI创新带城市设计方案

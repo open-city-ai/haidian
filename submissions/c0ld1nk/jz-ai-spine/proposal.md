@@ -2,6 +2,7 @@
 title: "京智川流：百年京张AI创新带城市设计概念方案"
 author_github: "c0ld1nk"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以‘京智川流’为总体概念，依托京张遗址公园历史主轴构建一帯三核两翼多节点的世界级AI创新带，形成可复算、可复核、可人工阅读的 formal 城市设计概念方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

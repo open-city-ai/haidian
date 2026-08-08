@@ -2,6 +2,7 @@
 title: "开源朝圣之路：百年京张 AI 创新带城市设计"
 author_github: "CHINAplayerstl"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为主轴提出「开源朝圣之路」概念方案：一带三核两翼的空间结构、铁轨×Fork 的品牌体系、11 张 AI 场景卡、5 类用户画像、4 处朝圣地标与年度开源活动运营体系，全部基于 provisional 边界并披露精度限制。v0.2 增强：AI 原生城市治理架构、实施可行性五要素机制、无障碍与公共参与、12 项更新项目落地路径。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

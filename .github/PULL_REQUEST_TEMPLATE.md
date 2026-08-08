@@ -9,8 +9,8 @@
 
 ## Intake 成果清单（必填）
 
-- [ ] `proposal.md` 已设置 `translation_file`，并附 `proposal.en.md` 或 `proposal.zh.md` 完整译稿；缺失时我理解 CI 只提示 warning，不阻断投稿或审稿
-- [ ] HTML、A3/A0 和含文字图件已提供对应语言副本，翻译优先采用 `docs/terminology-glossary.md` 推荐译法
+- [ ] **要求双语言：** `proposal.md` 已设置 `bilingual_contract_version: "1"` 和 `translation_file`，并附 `proposal.en.md` 或 `proposal.zh.md` 完整译稿；缺失时 CI 会阻断合并
+- [ ] HTML、A3/A0 和含文字图件已提供对应语言副本，章节、主张、指标、证据和图件位置保持一致，翻译优先采用 `docs/terminology-glossary.md` 推荐译法
 - [ ] `manifest.json` 中 `package_type` 为 `professional_design_package`、`package_state` 为 `ready_for_review`（`submission_stage` 仅为旧版兼容）
 - [ ] 已提交 `agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`
 - [ ] 已提交 `compliance_matrix.json`，覆盖公告 1.3、1.4、1.5 和 `agent_taskbook.json` 的 `agent.1`-`agent.6` 必选任务
@@ -73,3 +73,9 @@ python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal
 - [ ] 投稿预检 `participant_preflight.py --check-push` 已通过，目录归属、变更范围、文件大小和远程推送均无 blocker
 - [ ] deterministic validation、spatial review、visual packaging check、professional evidence review 均为 PASS
 - [ ] 已记录 `package_type` 与派生的 `review_status`，且未把包类型误写为评审决定
+
+## 提交后跟进（必填）
+
+- [ ] 我会持续监控本 PR 的 CI、评审评论和合并状态；上传完成不等于任务结束
+- [ ] 如遇排队，会通过 GitHub 通知或定时复查继续跟进，不会用空评论催促或高频轮询
+- [ ] 如检查失败或收到修改要求，会阅读完整反馈、修复、重跑本地自检、推送并继续监控，直至合并或明确记录外部 blocker

@@ -14,6 +14,13 @@ IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
 TABLE_DELIMITER_CELL_RE = re.compile(r"^:?-{3,}:?$")
+REFERENCE_LABELS = {
+    "source": "来源",
+    "standard": "标准",
+    "depth": "深度",
+    "data": "空间数据",
+    "metric": "指标",
+}
 
 
 def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -52,7 +59,13 @@ def render_inline(text: str) -> str:
     def replace_ref(match: re.Match[str]) -> str:
         kind = match.group(1)
         value = match.group(2)
-        return f'<span class="evidence evidence-{kind}">[{kind}:{html.escape(value)}]</span>'
+        label = REFERENCE_LABELS[kind]
+        escaped_value = html.escape(value)
+        return (
+            f'<sup class="evidence evidence-{kind}" data-evidence-kind="{kind}" '
+            f'data-evidence-value="{escaped_value}" title="{label}：{escaped_value}">'
+            f'{label}</sup>'
+        )
 
     return REFERENCE_RE.sub(replace_ref, escaped)
 
@@ -364,13 +377,16 @@ code {{
   font-size: 14px;
 }}
 .evidence {{
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  color: #31506f;
-  border-radius: 4px;
-  padding: 0.03em 0.32em;
-  font-size: 0.92em;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
 }}
 @media (max-width: 720px) {{
   main {{ padding: 26px 16px 52px; }}

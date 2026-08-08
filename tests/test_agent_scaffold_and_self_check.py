@@ -33,6 +33,15 @@ class AgentFacingDocsTests(unittest.TestCase):
         self.assertIn("scripts/self_check_submission.py", docs)
         self.assertIn("requirements-review.txt", docs)
 
+    def test_agent_docs_require_bilingual_v2_and_post_submission_monitoring(self) -> None:
+        skill = (REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertIn("Chinese and English are required for every new submission", skill)
+        self.assertIn("Post-Submission Monitoring", skill)
+        self.assertIn("gh pr checks", skill)
+        self.assertIn("Uploading is not completion", skill)
+
 
 def run_scaffold(output_dir: Path, stage: str = "formal", cwd: Path = REPO_ROOT) -> subprocess.CompletedProcess:
     return subprocess.run(
@@ -80,6 +89,36 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
     drawing = b"%PDF-1.4\n3 0 obj<</Type/Page/Parent 2 0 R>>endobj\n" + b"0" * 4096
     for rel in ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"]:
         (output_dir / rel).write_bytes(drawing)
+
+    primary_text = proposal.read_text(encoding="utf-8")
+    translated_proposal = output_dir / "proposal.en.md"
+    if not translated_proposal.exists():
+        translated_proposal.write_text(
+            primary_text.replace(
+                'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
+                'language: "en"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_of: "proposal.md"',
+                1,
+            ),
+            encoding="utf-8",
+        )
+    for rel in ["report/proposal.html", "visual/index.html"]:
+        source = output_dir / rel
+        target = source.with_name(f"{source.stem}.en{source.suffix}")
+        if not target.exists():
+            target.write_bytes(source.read_bytes())
+    for rel in [
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf",
+        "assets/figures/site-overview.png",
+        "assets/figures/land-use-structure.png",
+        "assets/figures/key-areas.png",
+        "assets/figures/mobility-bluegreen.png",
+        "assets/figures/metrics-evidence.png",
+    ]:
+        source = output_dir / rel
+        target = source.with_name(f"{source.stem}.en{source.suffix}")
+        if not target.exists():
+            target.write_bytes(source.read_bytes())
     return subprocess.run(
         [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
         capture_output=True,
@@ -154,14 +193,52 @@ def write_provisional_site_package(root: Path) -> None:
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")
 class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
+    def test_finalize_blocks_v2_package_without_required_bilingual_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "missing-bilingual"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+            proposal = output_dir / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace("SCAFFOLD-DRAFT", "PARTICIPANT-DESIGN")
+                + "\nParticipant-authored design decisions.\n",
+                encoding="utf-8",
+            )
+            for rel in ["report/proposal.html", "visual/index.html"]:
+                path = output_dir / rel
+                path.write_text(path.read_text(encoding="utf-8") + "\n<!-- participant revision -->\n", encoding="utf-8")
+            for rel in [
+                "assets/figures/site-overview.png",
+                "assets/figures/land-use-structure.png",
+                "assets/figures/key-areas.png",
+                "assets/figures/mobility-bluegreen.png",
+                "assets/figures/metrics-evidence.png",
+            ]:
+                path = output_dir / rel
+                path.write_bytes(path.read_bytes() + b"participant-revision")
+            geometry = output_dir / "geometry" / "land_use.geojson"
+            geometry.write_text(geometry.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+            drawing = b"%PDF-1.4\n3 0 obj<</Type/Page/Parent 2 0 R>>endobj\n" + b"0" * 4096
+            for rel in ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"]:
+                (output_dir / rel).write_bytes(drawing)
+
+            finalized = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, finalized.returncode)
+            self.assertIn("required bilingual counterpart is missing", finalized.stdout)
+
     def test_finalize_registers_existing_language_counterparts(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "bilingual-finalize"
             scaffold = run_scaffold(output_dir)
             self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
             translated = (output_dir / "proposal.md").read_text(encoding="utf-8").replace(
-                'language: "zh"\ntranslation_file: "proposal.en.md"',
-                'language: "en"\ntranslation_of: "proposal.md"',
+                'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
+                'language: "en"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_of: "proposal.md"',
                 1,
             )
             (output_dir / "proposal.en.md").write_text(translated, encoding="utf-8")

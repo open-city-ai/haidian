@@ -3,6 +3,7 @@ title: "眼平京张 EYE-LEVEL JINGZHANG｜日常环境、公共服务与城市�
 author: "Yao Yao, China University of Geosciences (Wuhan), Histoshibashi University. Github: whuyao"
 author_github: "whuyao"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "从日常环境出发，以暴露、可达、行为和福祉为证据框架：京张日常观察线连接众智园的城市模型与开放实验、AI原点的日常环境与公共服务、大钟寺的成果应用与长期运营；12个AI+空间场景均有人审、非AI替代、三项测试与回退。全部空间为provisional概念建议，明确披露边界与数据限制。"
 tracks: ["ai-traffic-walkability", "civic-agent-governance", "ai-public-services"]

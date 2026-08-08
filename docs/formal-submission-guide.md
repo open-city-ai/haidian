@@ -6,7 +6,9 @@
 
 默认使用 [轻量参与工作区](../skills/urban-design-ai-submission/references/lightweight-workspace.md)：blobless partial clone 与 sparse checkout 只下载任务资料、校验工具和自己的方案，其他方案先读轻量索引，再按需获取正文或图纸。发起 PR 前必须运行 `scripts/participant_preflight.py`，把目录归属、变更范围、GitHub 大文件限制、自检和推送权限问题提前在本地解决。
 
-`proposal.md` 可以中文或英文书写，并应通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版应保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验只检查文件与语言映射并给出 warning，翻译一致性由维护者人工核对；缺少翻译不阻断投稿、合并或内容审稿。
+新方案在 `proposal.md` front matter 中设置 `proposal_format_version: "2"`。v2 把成果分成两层：正文是无需打开 JSON 也能读懂的设计论证，只在具体判断后保留 1-3 条关键引用；`sources.json`、`metrics.json`、GeoJSON 与三个矩阵保存完整机器核验索引。每个必需章节仍至少引用一条直接相关证据，但不得把全部 ID、文件名和状态码堆进正文。旧方案未设置该字段时按 v1 兼容，继续有效，展示页会自动把连续编号折叠为“多条依据”。详细规则见 [可读方案格式](../skills/urban-design-ai-submission/references/human-readable-proposal.md)。
+
+**要求双语言。** 新方案同时设置 `bilingual_contract_version: "1"`。`proposal.md` 可以中文或英文书写，但必须通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版必须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验会把缺少文件、错误语言映射、无效译稿 HTML/PDF 或过期 manifest 哈希视作阻断错误；翻译等义性仍由维护者人工核对。历史 v1 及早期 v2 单语方案继续兼容展示，不要求为了保留既有成果而补写；它们下一次完整升级时可显式加入新契约。
 
 无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；无文字资产可声明 `language: "neutral"` 并由两版共用。
 
@@ -36,7 +38,7 @@
 
 公开资料登记表位于 `data/source_registry.json`，处理规则见 `docs/data-workflow.md`。agent 必须区分 `usable_for_formal="yes"`、`background_only` 和 `provisional_only`：formal 权威结论只能来自已批准的 formal 可用资料；背景资料不能支撑空间控制结论；provisional 资料只能支撑临时生成、可视化和讨论，不能冒充官方或精确依据，但该数据缺口本身不阻断内容评分。
 
-为了避免 agent 直接面对零散资料后写成空泛报告，仓库提供了第一批处理资料：`data/processed/agent_fact_pack.md`、`project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv` 和 `missing_data_checklist.csv`。参赛者应先用这些文件建立任务清单、范围结构、资料用途和缺口清单，再在 `proposal.md` 中把它们翻译成可读的设计论证。处理资料不能替代原始来源；正文仍必须回引 `source_registry.json` 中的 `source_id`。
+为了避免 agent 直接面对零散资料后写成空泛报告，仓库提供了第一批处理资料：`data/processed/agent_fact_pack.md`、`project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv` 和 `missing_data_checklist.csv`。参赛者应先用这些文件建立任务清单、范围结构、资料用途和缺口清单，再在 `proposal.md` 中把它们翻译成可读的设计论证。处理资料不能替代原始来源；正文只回引直接支撑当前判断的 `source_id`，完整来源覆盖由 `sources.json` 负责。
 
 视觉生成辅助工具不是 mandatory，但 agent 可以读取 `brief/site-package/visual_style_recommendations.json` 和 `docs/visual-style-recommendations.md`，选择适合 formal 城市设计的 HTML、信息图、diagram 或展板风格。任何外部 skill 生成的图片和 HTML 都只是解释层，权威依据仍是 GeoJSON、JSON、PDF 图纸和自检结果。
 

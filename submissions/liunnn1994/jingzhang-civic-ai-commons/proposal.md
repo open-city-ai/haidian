@@ -2,6 +2,7 @@
 title: "京张共智脉：可审计的城市AI公共设施网络"
 author_github: "liunnn1994"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗产轴为公共空间骨架，构建可审计、低侵入、人工复核的城市 AI 公共设施网络；当前采用 provisional boundary，待官方 polygon 发布后统一复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

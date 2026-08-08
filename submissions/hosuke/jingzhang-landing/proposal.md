@@ -2,6 +2,7 @@
 title: "京张入城：让每一次抵达成为共同建设的开始"
 author_github: "hosuke"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以四程三驿两网，把人才、技术与居民由抵达、理解、试用、归属导向持续回馈；以十二个可退出、可人工复核的场景将全球创新生态落实为公共空间。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

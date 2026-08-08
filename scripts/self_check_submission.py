@@ -129,7 +129,7 @@ def next_actions(report: dict[str, Any]) -> list[str]:
                     "front matter should set language",
                 ]
             ):
-                actions.append(f"Add recommended bilingual display material (non-blocking): {warning}")
+                actions.append(f"Review legacy bilingual compatibility warning: {warning}")
     # Surface a hard crash (non-zero exit with no parsed errors), e.g. the
     # submission directory living outside the repo root.
     if isinstance(deterministic, dict) and not deterministic.get("ok") and not reported_errors:

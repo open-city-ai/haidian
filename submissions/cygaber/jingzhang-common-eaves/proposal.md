@@ -2,6 +2,7 @@
 title: "共檐京张 / JINGZHANG COMMON EAVES：把园区边界变成 AI 公共界面"
 author_github: "cygaber"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以内核有界、檐下共益为原则，把京张遗址公园作为共同前庭与地址系统，把园区、校园、企业、车站和社区之间的候选边界转化为 P0—P3 分级开放、可人工降级的 AI 公共界面；三处重点区域分别形成验檐、创檐与用檐。"
 tracks: ["ai-traffic-walkability"]

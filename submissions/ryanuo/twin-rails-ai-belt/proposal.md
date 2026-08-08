@@ -2,6 +2,7 @@
 title: "双轨之城 Twin Rails：百年京张 AI 创新带总体概念与城市设计"
 author_github: "ryanuo"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「物质铁轨（遗产记忆）与算力轨道（AI 未来）双轨并行」为核心隐喻，沿京张遗址公园构建一轴双轨三核两翼多点的 AI 创新带总体概念：众智园全栈加速、AI 原点社区生态源头、大钟寺原生消费，配以开发者散步道、智能体贡献荣誉墙等朝圣地标与全球 AI 活动运营体系。全部空间建议为概念方案，供专业团队深化。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]

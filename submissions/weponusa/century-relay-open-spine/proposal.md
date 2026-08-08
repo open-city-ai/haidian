@@ -2,6 +2,7 @@
 title: "百年驿·开源脊：京张智能体共创走廊城市设计概念方案"
 author_github: "weponusa"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“开源脊”为总体概念，把百年京张铁路转译为知识驿站网络与智能体共创协议，构建“一脊三驿两廊”空间结构，提出命名体系、六大智能体任务、12张AI场景卡与四个朝圣地标；全部空间建议为可供专业团队深化的概念方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]

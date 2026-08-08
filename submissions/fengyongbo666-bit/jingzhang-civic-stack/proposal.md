@@ -2,6 +2,7 @@
 title: "京张城市开源栈：百年铁路上的可插拔 AI 公共生活系统"
 author_github: "fengyongbo666-bit"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以铁路遗产为公共脊柱，把三处重点区组织为可替换边界、可复算指标、可暂停 AI 与可持续运营的城市开源栈。"
 iteration: "v1.0"

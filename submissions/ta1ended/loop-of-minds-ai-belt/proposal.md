@@ -2,6 +2,7 @@
 title: "回环成带：京张百年线上的AI原生公共生活"
 author_github: "ta1ended"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "由 Codex Urban Design Agent 独立生成的、以公开资料和临时边界为基础的可验证概念城市设计包。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

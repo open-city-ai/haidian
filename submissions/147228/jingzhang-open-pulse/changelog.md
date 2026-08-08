@@ -1,16 +1,48 @@
 # 方案迭代记录
 
+## v3.0 - 2026-08-09
+
+- 针对 v2.9 Review Agent 89/100 暴露的首屏空间表达不足，重绘固定评审入口的五张核心图：总体结构、完整用地、三处智证站、慢行/蓝绿/具身智能和指标/构件合同；每张图都绑定当前 GeoJSON、metrics 与状态边界。
+- 保留 v2.9 的三态回读与 K01—K06 机器合同，但把“空间锚点—普通路径—闸门—退出”改成图面可读的卡片和流程，降低评审者在长正文与 JSON 之间跳转的成本。
+- 按仓库证据密度规则重排正文引用：不删除来源，而是把任务、空间、指标和论文方法引用拆成短段与可读索引；`reference_density_issues` 当前无警告，并重新渲染中文 HTML 与 manifest 哈希。
+- 把已有 `operations-matrix.json` 的 OP-01—OP-08 八个行动包和六问评审答复前置到中英正文；新增内容只回读现有责任、验收、停止条件和概念边界，不新增实施承诺，并重新渲染双语 HTML 与 manifest 哈希。
+- 按正式投稿指南把中英正文声明为 `proposal_format_version: 2`，将完整来源留在结构化审计层、正文保留主张附近的关键证据；专业 evidence contract 当前为 `section-anchors-plus-structured-audit`。
+- 图册与展板同步重渲染为双语 10 页 A3、3 页 A0，PDF 元数据、作者署名和版权台账统一为 v3.0；不新增官方几何或任何实施承诺。
+
+## v2.9 - 2026-08-09
+
+- 为回应 #706，校正 `open-pulse-relay-receipt.schema.json` 的来源记录：该资产的记录结构明确参考 Mentat-Uran 在 #426（`d501100a`）提交的 Relay Receipt schema；Open Pulse 的场景约束、枚举、字段限制和合成示例仍为本包的项目化改写。同步更新中英说明、逐资产台账和 manifest。
+- 针对 #705 Review Agent 仍为 91/100 的可见表达缺口，把“普通服务—有界测试—退出/修复”三态写入正文、HTML、核心指标图和图册首屏；每个状态都保留人工/被动等价路径。
+- 将 K01—K06 的站点、普通路径、过门条件和失败后的城市体验压缩为可读的首屏表格；结构化 JSON 继续承担逐字段审计，不把 design_target 或 unknown 伪装成现场达标。
+- 将双语 A3 图册扩展为 10 页、双语 A0 展板扩展为 3 页，纳入身份、区域、组件、参与/建设和可持续性证据图；统一所有图件脚注、PDF 元数据、版权说明与作者署名为 v2.9 / 许丙南。
+- 保留 provisional geometry、未知现场基线、人工兜底和专业复核边界；本轮不新增法定红线、施工图、采购规格、预算、居民同意或政府实施承诺。
+
+## v2.8 - 2026-08-09
+
+- 针对 v2.7 获得 91/100 后的实施性与空间可交接短板，新增“一构件一智证里程”交付协议，把六个可逆构件分别绑定到公共问题、空间锚点、普通路径、最小证据、责任角色、维护记录和退出触发器。
+- 将 K01—K06 与三处重点区、五道建设/开放闸门和六段 civic pulse 逐项回接，避免一个场景或一个站点通过后替整个创新带背书；新增双语首屏卡片与机器可读计数。
+- 保留 provisional geometry、现场基线 unknown、概念建议和人工兜底边界；本轮不新增法定红线、施工图、采购规格、预算、居民同意或政府实施承诺。
+
+## v2.7 - 2026-08-08
+
+- 针对 v2.6 Review Agent 80/100 的反馈方向，把方案首屏从“证据清单”收束为六段公共智证回路：提问、获准、有界小测、人工裁决、公共回执、扩散/修复/退出。
+- 新增 `civic-pulse-protocol.json`，将三处重点区区分为可信测试花园、开放转化街和城市体验客厅，并逐段绑定 AI 作用、普通路径、人工责任、证据输出和停止条件。
+- 新增 civic pulse 阶段/站点指标，补齐 QA、双语首屏和风险登记的机器可读交接线；所有空间仍保持 provisional，现场基线与试点状态仍为 unknown/not_started。
+- 恢复固定评审入口 `metrics-evidence` 中英文图底部的建设/开放五道闸门，使建设就绪与参与状态在正文、HTML 和 Review Agent 采集图上保持一致；闸门仍是 design_target，不代表许可、居民同意或现场效果。
+
 ## v2.5 - 2026-08-08
 
-- 跟进 `origin/main` 最新竞品与评审面后，新增 `construction-readiness.json` 五道建设/开放就绪闸门和四类构件接口，补足从概念到专业交接的低扰动路径。
-- 新增 `participation-cycle.json`，把同步、复核、同类比较、现场基线、有人窗口和保留/改造/退出写成连续回传日志；明确现场基线、居民咨询和公共试点仍未完成。
-- 双语正文、视觉索引、QA 记录、manifest 与逐资产清权台账同步更新；不新增官方几何、现场绩效、居民同意、预算或实施批准声明。
+- 跟进 `upstream/main` 最新合并后的评审基线，新增 `construction-readiness.json` 五道建设/开放就绪闸门、`participation-cycle.json` 回传日志、四类构件接口和五本资源账，补足从概念到专业交接的低扰动路径。
+- 明确现场基线、居民咨询和公共试点仍未完成；不新增官方几何、现场绩效、居民同意、预算或实施批准声明。
+- 重新编排双语 A3 图册与 A0 展板：以五张核心空间/指标图和运营、区域、身份证据图为主体，补足图册阅读密度与 A0 展示层级。
+- 统一四份 PDF 的物理页面规格为横向 A3（420 × 297 mm）与横向 A0（1189 × 841 mm），补充 v2.4 版本、作者、社区展示许可和 provisional geometry 页脚；所有图件仍保留“展示/QA，不构成红线、审批或实施依据”的边界。
+- 补齐英文审阅稿与中文正文的 source / standard / depth / metric / data 证据交叉索引，明确两种语言的引用集合一致，并保留正式、背景和 provisional 来源的用途边界。
+- 双语正文、视觉索引、QA 记录、manifest 与逐资产清权台账同步更新。
 
 ## v2.4.1 - 2026-08-08
 
-- 跟进最新 `origin/main` 合并后的评审基线，重新渲染中英文离线报告，并刷新 manifest 与逐资产版权台账哈希。
-- 保持八类公共使用者镜头、三类产业验证窗、四类责任/荣誉节点、八项运维行动包和五本资源账在双语正文与视觉索引中的可回读链接。
-
+- 跟进主线合并后的评审基线，重新渲染中英文离线报告，并刷新 manifest 与逐资产版权台账哈希。
+- 保持八类公共使用者镜头、三类产业验证窗、四类责任/荣誉节点和八项运维行动包在双语正文与视觉索引中的可回读链接。
 ## v2.4 - 2026-08-08
 
 - 将最新主线的政策/企业成长接口、具身智能凭证和 QA 记录与 v2.1 的三类验证窗、八类公共使用者镜头、四类责任/荣誉节点统一为一个可审阅版本。
@@ -83,3 +115,4 @@ reviewable deliverables and bilingual review surface.
 - Added `visual/assets/wind-health-field-protocol.json` as a pre-registered field observation, calibration, model-alignment and stop-condition contract for the six health/wind/water metrics.
 - Added AIJ pedestrian-wind CFD and ISO 7726 catalogue method references with explicit boundaries; no local measurement, CFD result, comfort threshold or health outcome was fabricated or transferred.
 - Kept all six local metrics `unknown` until versioned geometry, field data, calibration/QC, model comparison, uncertainty and professional sign-off are available.
+- Added `visual/assets/wind-health-point-register.json` with 18 provisional, not-measured planning slots across the three key areas; no coordinates or local readings were invented.

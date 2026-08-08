@@ -2,6 +2,7 @@
 title: "京张智脉共生带：百年铁路文脉与AI创新生态的城市设计方案"
 author_github: "lilexi-bot"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "基于临时边界和结构化自检要求生成的 formal AI 城市设计方案包；保留精度警示和复算要求，组织方数据缺口不阻断内容评分。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

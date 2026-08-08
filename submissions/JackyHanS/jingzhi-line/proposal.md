@@ -2,6 +2,7 @@
 title: "京智线 JING·ZHI LINE——百年京张AI创新带总体概念与城市设计"
 author_github: "JackyHanS"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「代码×铁轨」同构隐喻提出「京智线」总体概念：把百年京张铁路遗址公园转化为面向AI世纪的创新主轴，以一条文化线（京张遗址公园活力带）、一座原点站（北京AI原点社区）、一座加速站（众智园）、一座应用站（大钟寺）和两翼（中关村科技服务翼、小月河场景赋能翼）组织11.4平方公里的总体设计范围，配套10张AI场景卡、4处朝圣地标与年度活动运营体系，形成可供专业团队深化的概念性城市设计方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

@@ -2,7 +2,7 @@
   "schema_version": "0.1.0",
   "proposal_id": "hanyu12138/jingzhang-proofline",
   "artifact_path": "visual/assets/construction-readiness.json",
-  "iteration": "v1.4",
+  "iteration": "v1.6",
   "status": "conceptual_delivery_framework",
   "purpose": {
     "zh": "把八个概念行动包转译为可供后续专业团队复核的低扰动建设闸门和构件接口。",
@@ -53,6 +53,69 @@
       "en": "Register before observing: fix the geometry version, environmental conditions, actual route, missing-data treatment and professional acceptance criteria; one visit cannot establish microclimate performance."
     }
   ],
+  "proof_mile_delivery_protocol": {
+    "identity": "one_component_one_proof_mile",
+    "name_zh": "一构件一智证里程",
+    "name_en": "One Component, One Proof-Mile",
+    "purpose": {
+      "zh": "把京张铁路的站、里程与交接语法转译为逐构件的空间交付单元，避免用一份泛化流程替整条线路笼统过关。",
+      "en": "Translate the railway grammar of station, mile and handoff into a spatial delivery unit for each component, preventing one generic process from advancing the whole line by assertion."
+    },
+    "spatial_layers": [
+      {
+        "id": "L1",
+        "name_zh": "普通服务基座",
+        "name_en": "Ordinary-service base",
+        "rule": "Passage, wayfinding, rest or staffed help remains usable without a model, power or network."
+      },
+      {
+        "id": "L2",
+        "name_zh": "可逆试验口袋",
+        "name_en": "Reversible test pocket",
+        "rule": "Only an authorized, demountable test occupies this layer; it never narrows accessible clear width or makes participation compulsory."
+      },
+      {
+        "id": "L3",
+        "name_zh": "公共证据轨",
+        "name_en": "Public evidence rail",
+        "rule": "An on-site marker exposes the component, current gate, operator, non-AI baseline, negative findings, stop condition and removal route."
+      }
+    ],
+    "station_handoffs": [
+      {
+        "station": "Zhongzhiyuan Proof Station",
+        "role_zh": "接收技术、安全与失效证据",
+        "role_en": "Receive technical, safety and failure evidence"
+      },
+      {
+        "station": "AI Origin Proof Station",
+        "role_zh": "接收权利、维护、责任与成果转移证据",
+        "role_en": "Receive rights, maintenance, accountability and transfer evidence"
+      },
+      {
+        "station": "Dazhongsi Proof Station",
+        "role_zh": "接收真实使用、非参与者影响、退出与投诉证据",
+        "role_en": "Receive real-use, non-participant impact, opt-out and complaint evidence"
+      }
+    ],
+    "minimum_record": [
+      "component_id",
+      "action_packages",
+      "current_gate",
+      "public_problem",
+      "non_ai_baseline",
+      "geometry_version",
+      "authorized_location",
+      "accountable_operator",
+      "positive_and_negative_evidence",
+      "stop_owner",
+      "removal_and_reinstatement_state",
+      "retain_modify_remove_decision"
+    ],
+    "advance_rule": "A gate advances one named component only. Evidence from another component, location or public problem cannot be substituted, and no gate pass replaces statutory design or approval.",
+    "public_marker": "The public evidence rail must remain readable without an account, QR code or personal device and must identify a staffed or telephone route for question, complaint and opt-out.",
+    "derivation_boundary": "The Proof-Mile protocol is derived from Proofline's own railway identity, public-interest objective, component gates and three differentiated station handoffs."
+  },
   "readiness_gates": [
     {
       "id": "CR0",
@@ -136,6 +199,7 @@
         "P01",
         "P02"
       ],
+      "proof_mile_role": "Establish the ordinary-service base and the public evidence rail before any digital interface is enabled.",
       "purpose_zh": "在任何数字界面启用前提供可读方向、距离、开放状态、人工转介与退出入口。",
       "purpose_en": "Provide readable direction, distance, opening status, staffed referral and exit before any digital interface is enabled.",
       "professional_prerequisites": [
@@ -156,6 +220,7 @@
         "P02",
         "P06"
       ],
+      "proof_mile_role": "Test the three-layer construction bay while preserving a continuous ordinary accessible route outside the test pocket.",
       "purpose_zh": "把连续通行、树荫、不同坐姿、轮椅并坐空间和人工服务组合为不依赖智能设备的基础节点。",
       "purpose_en": "Combine continuous passage, shade, varied seating, wheelchair companion space and staffed service as a non-digital base node.",
       "professional_prerequisites": [
@@ -177,6 +242,7 @@
         "P02",
         "P03"
       ],
+      "proof_mile_role": "Prove passive water behavior and reinstatement at component scale before any sensor-assisted extension.",
       "purpose_zh": "用可观察的小尺度雨水花园、树池或生态边缘验证遮荫、径流管理和维护接口。",
       "purpose_en": "Use an observable small rain garden, tree pit or ecological edge to test shade, runoff management and maintenance interfaces.",
       "professional_prerequisites": [
@@ -198,6 +264,7 @@
         "P03",
         "P05"
       ],
+      "proof_mile_role": "Make the current gate, evidence boundary, operator, negative findings and removal route publicly legible on site.",
       "purpose_zh": "展示试点目的、责任人、数据边界、正负结果、申诉和退出，不把广告或设备数量当作公共价值。",
       "purpose_en": "Show purpose, accountability, data boundary, positive and negative results, appeal and exit without treating advertising or device quantity as public value.",
       "professional_prerequisites": [
@@ -217,6 +284,7 @@
       "action_packages": [
         "P03"
       ],
+      "proof_mile_role": "Confine automated testing to the reversible test pocket and expose emergency stop ownership on the evidence rail.",
       "purpose_zh": "只在获授权控制场地内建立低速、分时、物理分隔、现场监护和一键急停的测试边界。",
       "purpose_en": "Create a low-speed, time-slotted, physically separated, supervised and emergency-stoppable test boundary only in an authorized controlled site.",
       "professional_prerequisites": [
@@ -237,6 +305,7 @@
       "action_packages": [
         "P07"
       ],
+      "proof_mile_role": "Carry railway memory and the component's full evidence lineage across the three differentiated station handoffs.",
       "purpose_zh": "以可逆、可维护的独立展架并列呈现铁路记忆、贡献来源、失败试验和撤回入口。",
       "purpose_en": "Use a reversible, maintainable free-standing frame to present railway memory, contribution provenance, failed trials and withdrawal routes together.",
       "professional_prerequisites": [
@@ -284,5 +353,5 @@
       "responsibility": "accountable operator, staff, inspection, cleaning, spares, budget, incident response, removal and material recovery"
     }
   ],
-  "handoff_rule": "A component may advance only when the current gate's evidence is complete, every applicable professional domain records proceed or revise, affected users can inspect the non-AI baseline, and an accountable party can stop and remove it. A gate pass is not permission to skip statutory design, approval, funding or procurement."
+  "handoff_rule": "Under One Component, One Proof-Mile, a named component may advance only when its own current-gate evidence is complete, every applicable professional domain records proceed or revise, affected users can inspect the non-AI baseline, and an accountable party can stop and remove it. A pass is component- and location-specific and is not permission to skip statutory design, approval, funding or procurement."
 }

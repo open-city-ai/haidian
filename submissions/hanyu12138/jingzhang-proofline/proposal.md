@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路的轨迹、站点与里程语法转译为城市AI公共验证基础设施，以一条主脊、三座智证站、双翼服务、十二个可退出场景和分级数据门连接创新、生活与治理。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.4"
+iteration: "v1.6"
 ---
 
 # 京张智证线：一条可验证、可共享、可进化的城市AI公共基础设施
@@ -15,6 +15,8 @@ iteration: "v1.4"
 > **边界状态：PROVISIONAL CONSTRAINT。** 本方案使用仓库维护者依据公开公告整理的临时粗略范围，只能用于概念生成、展示和投稿自检。它不是 official redline，不表达地块、权属、道路、文保或工程边界；取得清权 official polygons 后，全部图层、指标、图片、PDF 与 HTML 必须同步重算。[source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001] [self_check:BOUNDARY_TRUST]
 
 “京张智证线 / Jing-Zhang Proofline”不是在城市里多放一批智能设备，而是把 AI 从后台能力变成公众可以看见、质疑、退出和共同改进的城市过程。百年京张铁路留下“轨迹—站点—里程”的空间秩序；本方案将其转译为“问题提出—公开测试—人工裁决—贡献记忆—复用转化”的公共智证回路。众智园负责全栈验证，AI 原点社区负责开放转化，大钟寺负责城市体验；中关村科技服务翼与小月河场景赋能翼分别提供专业要素和真实场景，最终形成一条以公共利益为判断标准、以人工最终负责为底线的创新带。[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+v1.6 将“里程”确立为本案自身的建设交付语法：一构件一智证里程。普通服务基座、可逆试验口袋和公共证据轨组成一个建设湾；K01—K06 每个构件只能凭自己的现场、问题和正负证据通过 CR0—CR4，再由三座智证站分别交接技术安全、权利维护与真实使用证据。它让“可实施”同时包含可停止、可拆除和可恢复，而不是设备越多越先进。
 
 ## 一页执行摘要 / Executive Brief
 
@@ -348,21 +350,21 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 4. 持续参与与开放复核
 
-本轮不是把已入库成果重新包装，而是按仓库最新 README 的“返回式参与”要求，从 `upstream/main@3cd31ef3` 重新建立证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，查看当前 Issues、既往 PR 与同侪方案，再只修改能够说明来源、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK] PR #429 的 Review Agent 得分为 96/100，结论仍只表示 repository intake，不代表画廊发布、奖项、实施批准或政府背书。
+本轮按仓库 README 的“返回式参与”要求，从 `upstream/main@d400d48d` 重新建立证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，核查当前 Issues 与工具变化，再只修改能够说明来源、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK]
 
-同侪阅读采用“发现—采用—拒绝”三栏判断，不复制图像、几何、指标、表格或原文：
+持续参与采用本案内部的“触发—证据—决策—输出”记录：资料变化先锁定受影响图层和指标；现场观察前固定几何版本、环境条件、实际无障碍路线、未覆盖情形和专业接受标准；每次试验同时登记正面、负面和中止结果；三站证据链以非 AI 基线和“保留—修改—拆除”结论完成交接。上述规则直接服务京张智证线的空间、构件和运营深化，不改变任何未经证实的场地事实。
 
-- “京张开源脉冲”的状态账本与最新现场协议分别启发了返回式审计和微气候证据门；本案采用“触发—证据—决策—输出”逻辑，并在观察前固定几何版本、环境条件、实际无障碍路线和专业接受标准，不采用其数量模型、协议表结构、阈值、空间方案或视觉资产。[source:PEER-OPEN-PULSE]
-- “京张开源带”把负面结果和回滚视为开放过程的一部分；本案据此记录被拒绝的数据与改动，不采用其 Git 空间隐喻、项目命名或设计量。[source:PEER-OPEN-BELT]
-- “京张校准场”与本案同样要求 AI 先接受公共检验，因此成为差异化校核：本案进一步把三站证据链、非 AI 基线和“保留—修改—拆除”建设闸门连成一体，不沿用其六项权利命名与节点计划。[source:PEER-CALIBRATION-YARD]
-
-仓库协作也进入方案证据：针对 Issue #485，已提交可复现说明，区分“包内已登记来源”与轻量索引的词面匹配，拒绝为提高建议分数而添加无关登记；Issue #446 已由上游提交 `7964352b` 完成修复，本轮据此用仓库标准渲染器重生成中英文报告，各 13 张 GFM 表均成为语义表格，不保留本地脚本分叉。Issue #430 的语言元数据风险和 Issue #420 的 Windows 编码风险分别以“不重跑 finalizer”和 UTF-8 preflight 规避。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
+仓库协作也进入方案证据：Issue #485 的公开任务索引问题已修复，本包继续区分“完整来源登记”与轻量索引的词面匹配，不增加无关登记；Issue #446 的表格渲染修复已用于重生成中英文报告，两版各 13 张 GFM 表均为语义表格；Issue #430 与 #420 的双语图件元数据和 Windows UTF-8 修复已进入上游，本包逐项复核 manifest 与预检结果；Issue #588 只影响仓库合并后的官网部署时效，不改变方案内容或本地校验。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
 
 下一轮不虚构定时任务，而由事件触发：official polygons、控规、道路轨道、权属、文保、市政或河道资料变化时，全量复算；获得有许可、方法、覆盖和偏差说明的走廊或平台数据时，重开相应数据门；居民、无障碍使用者、运营者或权利人报告实质风险时，先暂停再人工复核；仓库规则、schema、渲染器、Issue 或评审变化时，先同步上游再局部更新。每轮都保留“采用、调整、停止”结果并重跑自检与 participant preflight。[depth:phasing_implementation]
 
-### 5. 建设就绪与低扰动构件
+### 5. 一构件一智证里程：从概念到可撤回建设
 
-建设优化的起点不是增加设备，而是让普通路径先可用、每项技术可退场、每个构件有人维护。`visual/assets/construction-readiness.json` 将八个行动包转译为五道闸门；它是专业深化的交接框架，不是施工图、清单计价、采购技术规格、工期或审批结论：
+建设优化的起点不是增加设备，而是让普通路径先可用、每项技术可退场、每个构件有人维护。为避免五道闸门沦为任何项目都能套用的流程，本案把京张铁路的“站—里程—交接”语法进一步转译为独有的 **一构件一智证里程（One Component, One Proof-Mile）**：K01—K06 每个构件都拥有自己的里程记录，没有依附某一构件、某一位置和某一公共问题的证据，不得推动整条线路笼统“过关”。`visual/assets/construction-readiness.json` 是专业深化的交接框架，不是施工图、清单计价、采购技术规格、工期或审批结论。
+
+每个建设湾由三层组成：**普通服务基座**在断网、断电和无模型时仍保证通行、导视、休息或人工帮助；**可逆试验口袋**只在授权范围内安放可拆样机，不得侵占无障碍净宽，也不得把普通路线变成被迫参加的测试区；**公共证据轨**在现场标明构件编号、当前 CR 闸门、责任人、非 AI 基线、负面结果、停止条件和拆除入口。这样，“智证”不只是一份后台文档，而成为公众在路径上可读、专业团队在节点间可交接的空间界面。
+
+每个智证里程仍依次经过五道建设闸门：
 
 - **CR0 证据锁定与现场勘察：** 先取得 official polygons、权属、地形与现状、文保、道路轨道、无障碍、树木、土壤、排水、市政、消防和运营约束，并预登记与实际无障碍路线绑定的行人风热、遮荫观察方案；重大冲突或责任人不清时不进入样机。
 - **CR1 授权场地 1:1 可逆样机：** 先用离线、被动、可拆的全尺度构件完成轮椅、低视力、老年使用者与维护人员走查，同时记录几何版本、观察条件和未覆盖情形；绊倒、眩光、积水、风热、消防、文保或检修风险未消除就返工或停止。
@@ -372,13 +374,15 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 六类低扰动构件与既有行动包一一衔接：K01 普通导视与人工帮助点、K02 无障碍树荫休息与服务湾，先保障 P01、P02、P06 的基本公共服务；K02 的遮荫和行人风热须按几何版本、季节 / 叶态、实际路线与专业接受标准观察，不能由一次舒适体验或树木数量推定。K03 蓝绿雨水边缘样机先核验土壤、入渗、污染、溢流和维护，服务 P02、P03；K04 可关闭智证信息亭以被动信息板为基线，服务 P01、P03、P05；K05 机器人边界与急停构件只允许进入 P03 的授权控制场地；K06 贡献谱系与铁路记忆展架采用独立、可逆结构，服务 P07，未经文保和权利清理不得附着遗产本体。[depth:municipal_new_infrastructure] [depth:blue_green_public_space]
 
-每个构件均登记专业前提、非 AI 基线、巡检项、失效方式和拆除条件。进入下一闸门前，规划城市设计、测绘权属、文保、交通无障碍、景观水务、市政结构消防电气、数据隐私与权利、运营维护退役八个专业域须分别给出“继续、修改或不实施”。在缺少官方底板和现场勘察时，本轮不新增构件数量、固定尺寸、材料强度、建筑量、线位、工期或造价，避免把概念可实施性冒充工程可行性。[assumption:A-OPERATIONS-001]
+三座智证站不是重复的展示节点，而是智证里程的分工交接站：众智园接收技术、安全和失效证据；AI 原点接收权利、维护、责任与成果转移证据；大钟寺接收真实使用、非参与者影响、退出与投诉证据。每个构件最少登记构件编号、行动包、当前闸门、公共问题、非 AI 基线、几何版本、授权位置、责任运营者、正负证据、停止责任人、拆除复原状态以及“保留 / 修改 / 拆除”结论。进入下一闸门前，八个专业域须分别给出“继续、修改或不实施”；一个构件通过不得替代另一构件的证据，也不得替代法定审批。[depth:phasing_implementation]
+
+在缺少官方底板和现场勘察时，本轮不新增构件数量、固定尺寸、材料强度、建筑量、线位、工期或造价，避免把概念可实施性冒充工程可行性。[assumption:A-OPERATIONS-001]
 
 ## 指标体系、面积复算与合规矩阵
 
 ### 1. 核心复算指标
 
-![核心指标、分期与证据链图](assets/figures/metrics-evidence.png)
+![核心指标与一构件一智证里程交付链](assets/figures/metrics-evidence.png)
 
 | 指标 | 本包值 | 解释边界 |
 | --- | ---: | --- |
@@ -438,13 +442,23 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 离线 `visual/index.html` 不加载 CDN、远程字体、远程地图、外部脚本、iframe、表单、API 或跟踪代码。国际案例只引用机构公开网页的名称和机制，不复制受版权保护的图片、图表或文本。若来源、授权或争议处理机制不能确认，相应内容不进入永久展示。[self_check:VISUAL_STATIC]
 
-## 参考资料
+## 参考资料：公开任务索引
+
+- 公开任务书 `brief/public-brief.md`：用于任务背景、发展愿景、重点方向、参与流程和成果状态边界。[source:PUBLIC-BRIEF]
+- 公开资料边界 `brief/README.md`：用于区分可公开、不可公开和仍需复核的资料，不替代正式公开性审查。[source:REPOSITORY-README]
+
+以上两项对应 `sources/public-sources.json` 的轻量公开索引；该索引只负责公开任务匹配，不替代本包 `sources.json` 对正式依据、官方统计、案例、版权与生成资产的完整登记。
+
+这一层索引回答的是“公开任务如何进入设计判断”，而不是把两份仓库文件包装成场地证据。`brief/public-brief.md` 只用于校准百年京张、AI 创新带、持续参与和成果状态等任务方向；`brief/README.md` 只用于约束资料公开边界。两者共同支持本案把智能展示转向可退出、可复核的公共过程，但不证明走廊需求、客流、权属、现状建筑、道路轨道、文保、市政或工程条件。
+
+因此，公开任务索引不会进入面积和长度计算，也不改变 GeoJSON、`metrics.json` 或分期。空间指标仍来自包内 provisional geometry 的 EPSG:4548 复算，并须在 official polygons 到来后整体重算；行业与公共服务背景仍由下节完整来源登记逐项限定统计尺度和不可空间分配属性；所有建设构件仍等待测绘、权属、文保、交通无障碍、景观水务、市政消防和运营维护资料。缺口保持 unknown，不由公开任务书替代。
+
+## 完整来源与证据登记
 
 ### 正式任务、标准与数据
 
 - 北京市规划和自然资源委员会海淀分局，《百年京张AI创新带城市设计国际方案征集资格预审公告》：[source:OFFICIAL-ANNOUNCEMENT]
 - 用户提供且已清权的智能体任务书摘录：[source:AGENT-TASKBOOK]
-- 仓库 README 与公开任务说明，仅用于持续参与、审阅流程和成果状态边界：[source:REPOSITORY-README] [source:PUBLIC-BRIEF]
 - 仓库资料登记与处理导航：[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
 - 临时总体边界与三处重点区：[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 - 城市设计、控规和用地分类官方参考：[source:URBAN-DESIGN-MEASURES] [source:CONTROL-DETAILED-PLANNING] [source:LAND-USE-CLASSIFICATION]
@@ -455,7 +469,6 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 ### 背景案例与生成资产
 
 - one-north、MaRS、Kendall Square、Cornell Tech、STATION F、Berlin Adlershof 的机构公开官网只用于机制对照：[source:CASE-ONE-NORTH] [source:CASE-MARS] [source:CASE-KENDALL] [source:CASE-CORNELL-TECH] [source:CASE-STATION-F] [source:CASE-ADLERSHOF]
-- 三份仓库同侪方案只用于方法比较与差异化复核，不作为本案空间、指标或工程依据：[source:PEER-OPEN-PULSE] [source:PEER-OPEN-BELT] [source:PEER-CALIBRATION-YARD]
 - AI 生成公共空间概念示意：[source:IMAGEGEN-CONCEPT]
 
 ### 机器可读数据总索引

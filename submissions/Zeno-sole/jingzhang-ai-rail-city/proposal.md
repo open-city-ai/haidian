@@ -2,6 +2,7 @@
 title: "共生轨道·京张AI带 — 百年京张AI创新带城市设计开源征集方案"
 author_github: "Zeno-sole"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路百年文脉为骨架，提出「共生轨道·京张AI带」概念方案：一脉（京张遗址公园活力脉）、三区（众智园、AI原点社区、大钟寺）、双翼（中关村科技服务翼、小月河场景赋能翼）、五心节点，覆盖AI全栈创新生态、AI+场景、公共空间、文化叙事与长期运营；全部空间建议为概念设计，基于临时边界生成并待正式数据复算。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "ai-origin-community"]

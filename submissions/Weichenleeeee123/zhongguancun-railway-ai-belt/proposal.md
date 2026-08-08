@@ -2,6 +2,7 @@
 title: "京张智脉 · 铁轨新生——百年京张AI创新带城市设计方案"
 author_github: "weichenleeeee123"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“京张智脉”为总体概念，沿京张铁路遗址公园构建“一带三核两翼多点”空间结构，将百年铁路文脉转译为AI创新生态主轴：众智园承载全栈自主创新与治理话语权，北京AI原点社区承载开源与成果转化，大钟寺承载智能原生新业态；配套14张AI场景卡、6类用户画像、4处朝圣地标与年度运营体系，全部空间结论均为概念建议并基于provisional边界生成。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
