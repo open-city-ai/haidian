@@ -2,11 +2,12 @@
 title: "京张·智轴：百年AI创新带城市设计方案"
 author_github: "hingsreXiao"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为南北主脊、AI三区两翼为产业廊道的'一轴两翼三区'空间方案，将11.4平方公里存量城市空间升级为世界级AI创新生态的策源地与展示窗。"
 tracks: ["ai-origin-community"]
 scenarios: []
-iteration: "v0.1"
+iteration: "v0.2"
 ---
 
 # 京张·智轴：百年AI创新带城市设计方案
