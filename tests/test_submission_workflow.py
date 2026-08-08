@@ -974,6 +974,31 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("embedded image `assets/figures/site-overview.png` is missing", "\n".join(report.errors))
 
+    def test_proposal_embedded_image_must_be_declared_in_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            extra_rel = "assets/figures/extra-analysis.png"
+            self.write_bytes(root, f"{base}/{extra_rel}", b"analysis figure")
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8")
+                + f"\n![补充分析图展示空间策略与指标关系]({extra_rel})\n",
+                encoding="utf-8",
+            )
+            changed.extend([f"{base}/proposal.md", f"{base}/{extra_rel}"])
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn(
+                f"embedded image `{extra_rel}` must be listed in manifest.json files",
+                errors,
+            )
+            self.assertNotIn(f"embedded image `{extra_rel}` is missing", errors)
+
     def test_proposal_embedded_image_cannot_be_remote(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

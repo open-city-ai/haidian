@@ -1244,6 +1244,20 @@ def validate_proposal_embedded_images(
 ) -> None:
     images = extract_markdown_images(body)
     normalized_images: set[str] = set()
+    declared_paths: set[str] | None = None
+    manifest_path = repo_root / proposal_dir / "manifest.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError):
+        # Manifest validation reports the primary error. Avoid cascading
+        # declaration errors when there is no usable files inventory.
+        manifest = None
+    if isinstance(manifest, dict) and isinstance(manifest.get("files"), list):
+        declared_paths = {
+            str(item["path"])
+            for item in manifest["files"]
+            if isinstance(item, dict) and isinstance(item.get("path"), str)
+        }
     for alt_text, raw_path in images:
         normalized = normalize_proposal_image_path(raw_path)
         if normalized is None:
@@ -1267,6 +1281,14 @@ def validate_proposal_embedded_images(
             report.add_error(
                 f"{proposal_dir}/proposal.md: embedded image `{normalized}` needs descriptive alt text"
             )
+        if declared_paths is not None and normalized not in declared_paths:
+            report.add_error(
+                f"{proposal_dir}/proposal.md: embedded image `{normalized}` must be listed in manifest.json files"
+            )
+            # Trusted PR validation intentionally hydrates only changed and
+            # manifest-declared files. Do not misreport an undeclared image as
+            # missing merely because it was not downloaded for a follow-up PR.
+            continue
         if not (repo_root / proposal_dir / normalized).exists():
             report.add_error(
                 f"{proposal_dir}/proposal.md: embedded image `{normalized}` is missing"
