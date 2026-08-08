@@ -56,6 +56,13 @@ AI_SECTION_ALIASES = ["AI 治理与创新场景", "AI 创新生态"]
 LANDING_SECTION_ALIASES = ["落地路径", "更新项目清单", "实施政策", "分期"]
 RISK_SECTION_ALIASES = ["风险与合规", "风险、版权", "风险"]
 REFERENCE_SECTION_ALIASES = ["参考资料"]
+SOURCE_REGISTER_SECTION_ALIASES = [
+    "完整来源",
+    "来源与证据",
+    "complete sources",
+    "evidence register",
+    "source register",
+]
 
 TASK_TERMS = ["百年京张", "京张", "海淀", "AI", "人工智能", "创新带", "中关村", "城市"]
 ORIGINALITY_TERMS = ["概念", "机制", "模式", "体系", "网络", "平台", "社区", "场景", "环"]
@@ -172,6 +179,17 @@ def find_section(sections: dict[str, str], aliases: list[str]) -> str:
         if any(alias in title for alias in aliases):
             return content
     return ""
+
+
+def reference_content(sections: dict[str, str]) -> str:
+    """Combine lightweight references with an explicit package source register."""
+    aliases = [*REFERENCE_SECTION_ALIASES, *SOURCE_REGISTER_SECTION_ALIASES]
+    contents = [
+        content
+        for title, content in sections.items()
+        if any(alias.lower() in title.lower() for alias in aliases)
+    ]
+    return "\n\n".join(contents)
 
 
 def status_from_term_count(count: int, pass_at: int = 3, needs_at: int = 1) -> str:
@@ -510,7 +528,7 @@ def score_proposal(
         completeness_message = "结构完整，正文长度达到基础自检阈值。"
     checks.append(build_check("表达完整度", completeness_status, completeness_message))
 
-    reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
+    reference_section = reference_content(sections)
     sources = load_source_index(repo_root, sources_index_path)
     matched_sources, unmatched_references = match_sources(text, reference_section, sources)
     registered_package_sources, registered_tokens = match_registered_package_sources(

@@ -186,6 +186,40 @@ class ScoreSubmissionTests(unittest.TestCase):
             )
             self.assertEqual(report.unmatched_reference_lines, [])
 
+    def test_complete_source_register_is_scanned_with_references(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:external-standard]",
+            )
+            body += "\n## 完整来源与证据登记\n\n- [source:external-standard]\n"
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "external-standard",
+                        "title": "Official public standard snapshot",
+                        "publisher": "Public standards body",
+                        "accessed_date": "2026-08-08",
+                        "url": "https://example.org/standard",
+                        "usable_for": ["Design principles only"],
+                        "not_usable_for": ["Project approval"],
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
+            self.assertEqual(
+                [item.id for item in report.registered_external_or_package_sources],
+                ["external-standard"],
+            )
+            self.assertEqual(report.unmatched_reference_lines, [])
+
     def test_package_source_schema_variants_are_normalized(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
