@@ -6,6 +6,7 @@ import subprocess
 import hashlib
 import io
 import urllib.error
+from contextlib import redirect_stderr
 from pathlib import Path
 from unittest.mock import patch
 
@@ -32,6 +33,7 @@ from github_pr_validation import (  # noqa: E402
     bounded_comment_body,
     is_non_submission_pr,
     is_review_queue_candidate,
+    publish_validation_comment,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -127,6 +129,17 @@ class GitHubApiResilienceTests(unittest.TestCase):
     def test_small_comment_body_is_preserved(self) -> None:
         body = "<!-- marker -->\n# PASS"
         self.assertEqual(body, bounded_comment_body(body))
+
+    def test_comment_publication_failure_does_not_raise(self) -> None:
+        class FailingCommentClient:
+            def upsert_comment(self, issue_number: int, body: str) -> None:
+                raise RuntimeError("HTTP 422: body is too large")
+
+        stderr = io.StringIO()
+        with redirect_stderr(stderr):
+            publish_validation_comment(FailingCommentClient(), 624, "report")
+        self.assertIn("unable to publish validation comment", stderr.getvalue())
+        self.assertIn("HTTP 422", stderr.getvalue())
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):

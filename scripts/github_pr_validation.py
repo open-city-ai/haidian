@@ -353,6 +353,18 @@ def write_step_summary(markdown: str) -> None:
         Path(summary_path).write_text(markdown, encoding="utf-8")
 
 
+def publish_validation_comment(
+    client: GitHubClient, issue_number: int, body: str
+) -> None:
+    """Publish feedback without replacing the deterministic validation result."""
+    try:
+        client.upsert_comment(issue_number, body)
+    except RuntimeError as exc:
+        # A comment is useful feedback, but it must not turn a deterministic
+        # validation result into an unrelated CI failure.
+        print(f"warning: unable to publish validation comment: {exc}", file=sys.stderr)
+
+
 def main() -> int:
     token = os.getenv("GITHUB_TOKEN")
     repository = os.getenv("GITHUB_REPOSITORY")
@@ -428,13 +440,7 @@ def main() -> int:
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
         write_step_summary(comment)
-        try:
-            client.upsert_comment(pr_number, comment)
-        except RuntimeError as exc:
-            # A comment is useful feedback, but it must not turn a deterministic
-            # validation result into an unrelated CI failure (for example when
-            # GitHub rejects an over-sized or otherwise invalid comment body).
-            print(f"warning: unable to publish validation comment: {exc}", file=sys.stderr)
+        publish_validation_comment(client, pr_number, comment)
 
         if validation.ok and queue_candidate:
             client.remove_labels(
