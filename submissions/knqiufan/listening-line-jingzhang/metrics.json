@@ -181,6 +181,120 @@
       "confidence": "high",
       "assumptions": []
     },
+    "listening_contract_required_field_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/listening-contract.schema.json"
+      ],
+      "formula": "count(required_fields_in_listening_contract_schema)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "listening_contract_state_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/listening-contract.schema.json"
+      ],
+      "formula": "count(primary_contract_states)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "field_pilot_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/pilot-register.json"
+      ],
+      "formula": "count(site_specific_pilots)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PILOT-001",
+        "A-PILOT-002",
+        "A-PILOT-003"
+      ]
+    },
+    "pilot_stage_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/pilot-register.json"
+      ],
+      "formula": "count(baseline_limited_pilot_adopt_or_exit_stages)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "pilot_baseline_period_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "day",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/pilot-register.json"
+      ],
+      "formula": "conceptual_minimum_baseline_period",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "human_review_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/listening-contract.schema.json"
+      ],
+      "formula": "scenario_cards_requiring_human_owner / scenario_count",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "note": "Design admission-rule coverage, not implemented service performance."
+    },
+    "non_ai_fallback_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/listening-contract.schema.json"
+      ],
+      "formula": "scenario_cards_requiring_non_ai_fallback / scenario_count",
+      "confidence": "high",
+      "assumptions": [
+        "A-PRIVACY-001",
+        "A-OPERATIONS-001"
+      ],
+      "note": "Design admission-rule coverage, not implemented service performance."
+    },
+    "stop_condition_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/listening-contract.schema.json"
+      ],
+      "formula": "scenario_cards_requiring_stop_and_rollback / scenario_count",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "note": "Design admission-rule coverage, not implemented service performance."
+    },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,

@@ -209,9 +209,11 @@ Agent.1—Agent.6 不是六个自动决策者，而是六张可审计的工作�
 
 **区域协同矩阵（agent.2/agent.6）**：面向外围创新节点与京津冀提出概念接口——与北纬社区联动人才服务与青年场景；与未来科学城联动基础研究与成果转化；与怀柔科学城联动大科学装置与算力协同；与经开区联动智能硬件与场景测试；与京津冀城市群联动产业梯度、人才通勤与标准互认。所有接口均为概念建议，不构成跨区域政策或投资承诺 [source:DATA-SRC-AGENT-TASKBOOK-20260518] [source:ZHONGGUANCUN-ZGC]。
 
-长期运营称为“京张 OPEN 四季”（agent.6）：春季 Open Call 发布年度可测试问题与数据缺口；夏季 Bug Bash 与无障碍挑战；秋季 Release Day 年度版本发布与评审；冬季 Retrospective 公开失败档案、修复结果与下一年度路线图。运营组织由公共部门、社区、专业机构、高校、企业与独立评测角色共同组成，任何单一平台不得同时拥有规则、数据、评测与申诉最终权。活动、品牌、资金与场地均需责任主体后续确认，当前不视为既定安排。[metric:renewal_project_count] [depth:renewal_project_list] [source:CASE-BARCELONA-DECIDIM] [source:CASE-AMSTERDAM-ALGORITHM]
+长期运营称为“京张 OPEN 四季”（agent.6）：第一季度“城市 Issue 季”公开征题与数据缺口清单；第二季度“Branch Sprint”组队开发与无障碍挑战；第三季度“Open Bench Week”集中测试、公众复核与国际互操作；第四季度“Merge Festival”发布年度合并清单、拒绝清单与《京张 Changelog》。开发者社区采用 RFC、Issue 标签、场景负责人、维护者轮值、双人 Review、可复现包与版本归档；原点社区承担线下入门、配对与公众解释。贡献荣誉分为首提者、维护者、复核者、公共守门人与长期贡献者五类，不以资本规模排序，贡献进入百年版本墙与机器可读履历；失败项目进入“未合并未来档案”，保存失败假设、风险原因、退出过程与可复用教训，不把下线包装为成功。运营组织由公共部门、社区、专业机构、高校、企业与独立评测角色共同组成，任何单一平台不得同时拥有规则、数据、评测与申诉最终权。活动、品牌、资金与场地均需责任主体后续确认，当前不视为既定安排。[metric:renewal_project_count] [depth:renewal_project_list] [source:CASE-BARCELONA-DECIDIM] [source:CASE-AMSTERDAM-ALGORITHM]
 
-**运营机制细化（agent.6）**。服务护照字段冻结为 15 项：owner、purpose、data、retention、model/version、evaluation、human review、non-AI channel、appeal、release trigger、rollback trigger、incident、audit、retirement、budget envelope [metric:service_passport_field_count]。年度运营账本（概念）：Open Call 发布问题库与数据缺口清单 → Bug Bash 开放免费挑战席位并记录可复现包 → Release Day 评审合并提案并发布版本说明 → Retrospective 公开失败档案与年度路线图；每季度输出责任班表、未结申诉数与资源覆盖表，无 Owner 或退役资源时对应场景保持 Hold。开发者社区运营（概念）：开源协议贡献积分、贡献者荣誉墙（S12）、年度贡献者报告；积分只记录公开贡献行为，不采集个人隐私。国际招引转化（概念）：以互操作周（S14）为入口，链接国际开发者、标准机构与高校；招引转化指标（概念）包括互操作测试参与数、联合评测报告数与长期协作备忘录数，全部为建议指标，不构成招商承诺。[source:DATA-SRC-AGENT-TASKBOOK-20260518]
+**运营机制细化（agent.6）**。实施责任采用七席人审单元：Scenario Owner（用途与资源）、Data Controller / Steward（数据清单与删除）、Technical Owner（版本、工具权限与回滚）、Domain Professional（只签对应专业意见）、Affected-group Steward（代表受影响群体并持有红牌暂停权）、Incident Commander / Operations Owner（现场接管、值班与退役）、Independent Appeal Officer（不参与初审、开发或运营）。concept / simulation 至少由场景与技术 Owner 签字；进入 limited sandbox 还必须增加数据、专业与受影响群体三席；利益冲突未披露或初审人与申诉人未隔离时只能 Hold；事故责任始终归实际提交、运营与签字的人类或组织，不归于 AI Agent。
+
+场景开放采用六级状态：观察、模拟、封闭沙盒、预约试用、有限开放、正式建议；升级必须同时满足证据、无障碍、隐私、人工接管与退出测试。服务护照字段冻结为 15 项：owner、purpose、data、retention、model/version、evaluation、human review、non-AI channel、appeal、release trigger、rollback trigger、incident、audit、retirement、budget envelope [metric:service_passport_field_count]。年度运营账本（概念）：Open Call 发布问题库与数据缺口清单 → Bug Bash 开放免费挑战席位并记录可复现包 → Release Day 评审合并提案并发布版本说明 → Retrospective 公开失败档案与年度路线图；每季度输出责任班表、未结申诉数与资源覆盖表，无 Owner 或退役资源时对应场景保持 Hold。开发者社区运营（概念）：开源协议贡献积分、贡献者荣誉墙（S12）、年度贡献者报告；积分只记录公开贡献行为，不采集个人隐私。国际招引转化（概念）：以互操作周（S14）为入口，链接国际开发者、标准机构与高校；招引转化指标（概念）包括互操作测试参与数、联合评测报告数与长期协作备忘录数，全部为建议指标，不构成招商承诺。[source:DATA-SRC-AGENT-TASKBOOK-20260518]
 
 ## 指标体系、面积复算与合规矩阵
 
@@ -259,6 +261,21 @@ compliance_matrix.json 覆盖公告 1.3/1.4/1.5 全部条目与 agent.1–agent.
 本案判断：最高风险不是模型“不够聪明”，而是责任、边界与退出不可见。本方案以八类风险治理登记（risk.json）结构化呈现，每类含等级、成因、缓释措施与人工复核：**数据与隐私**（数据最小化、端侧优先、分开授权、不做人脸识别；非必要原始数据会话后删除，日志建议 30 天聚合或删除）；**实施复杂度**（观察、模拟、封闭沙盒、有限开放的分级闸门；证据、Owner、值班与退出责任缺失即 Hold）；**公众接受**（以公共问题为起点，采用通俗状态、自愿参与、人工等价通道与红牌暂停，公开 Changelog）；**长期运营成本**（先验证共用协议，再按年度证据决定保留、扩展或退役；付费不得购买通过，必须预留人工等价通道）；**政策不确定**（所有结论降级为概念建议，法定与工程指标保持 unknown，取得正式资料后整体复算）；**空间边界争议**（五处一致披露、图面虚线表达、官方几何到位后替换全部图层）；**技术成熟度**（使用合成数据与封闭测试，记录复现、失败阈值、接管与回滚，安全事件卷宗建议 180 天留存）；**公平与包容**（保留人工等价服务、无障碍体验官与低技术入口；拒绝授权不降低服务，个人申诉材料结案不传播）。
 
 空间风险还包括 official polygon、道路、地块、现状建筑、文保、市政与设施底数缺失 [data:geometry/constraints.geojson#GAP-BOUNDARY]；AI 风险包括目的漂移、过度采集、差异性错误、供应商锁定、无法申诉与退出后仍保留数据。对应控制是 fail closed：资料不足则标 unknown 或 provisional，测试不达门则停在沙盒，运行异常则转人工或回滚。[depth:risk_missing_data]
+
+**Risk Governance Register（供专业深化，risk.json 为兼容 schema 的摘要）**。L/I 为方案内部可能性与影响等级，不是保险或法定评级；状态均保持 open / monitoring，不把缓解建议写成风险已解决：
+
+| 风险 ID（L/I） | Owner 角色与受影响群体 | 触发器与当前状态 | 人工签字、申诉、留存与剩余风险 |
+| --- | --- | --- | --- |
+| data_privacy（3/4） | Data Steward；居民、商户、未成年人 | 未授权字段、用途漂移、身份或完整轨迹外泄即 P0 Hold；open | Steward + 受影响群体代表；独立申诉；非必要原始数据会话后删除，运行日志建议 30 天聚合/删除；剩余 2/5 |
+| implementation_complexity（4/4） | Scenario Owner + Domain Professional；使用者和现场人员 | 权属、消防、交通、市政、值班任一责任未闭合不得升级；open | 规划、工程、运营与社区联合签字；争议 10 个工作日内独立复核；证据卷宗随阶段保留；剩余 3/5 |
+| public_acceptance（3/3） | Affected-group Steward；居民、小商户与非技术用户 | 被实验化、说明不可懂、退出受罚或投诉持续上升即 Hold；monitoring | 场景 Owner 与受影响群体共同复核；线下/线上/代理/无障碍申诉；公开 Changelog 只留去标识结论；剩余 2/5 |
+| operations_cost（3/4） | Operations Owner；人工服务人员与所有使用者 | 连续两个评估周期无法覆盖值守、无障碍、事故响应与退役资源即停止扩展；open | 运营与财务角色核验资源包络；不得用付费购买通过；成本表按年度留存；剩余 3/5 |
+| policy_uncertainty（4/4） | Domain Professional；产权人、运营者与公众 | 无控规、许可、采购或数据处理依据仍试图现场部署即 Reject；open | 规划与法律合规人员重核；对行政结论的异议走有权机关正式渠道；剩余 3/5 |
+| spatial_dispute（3/4） | Belt Steward + 测绘专业人员；相邻主体与公众 | official polygon 替换后拓扑、面积或重点区关系不一致即全链快速失败；monitoring | 维护者与专业测绘人员签字；公开变更范围与复算结果；旧 provisional 版本归档不作红线；剩余 2/5 |
+| technology_maturity（4/3） | Technical Owner + Incident Commander；测试者与现场人员 | 越权、不可复现、无法接管、关键评测不通过或回滚超时即 Hold；open | 技术与安全人员独立复现后方可重开；安全事件卷宗结案后建议 180 天删除或匿名化；剩余 2/5 |
+| equity_inclusion（3/4） | Affected-group Steward + 公共服务负责人；老人、残障者、未成年人、小商户 | 人工等价服务缺失、路径不可达、差异待遇或投诉受报复即即时暂停；open | 无障碍体验官与受影响群体代表共同签字；初审人不得复核申诉；个人材料结案后删除或匿名化；剩余 2/5 |
+
+**投诉与事故服务目标（方案建议的运营基线，非法定时限）**：P0 人身安全、隐私泄露或自动越权——立即暂停并在 15 分钟内完成现场接管目标，1 小时确认、24 小时初报、72 小时形成人工处置决定；P1 歧视、服务剥夺或高影响错误——4 小时确认、1 个工作日临时缓解、3 个工作日复核；P2 一般解释与体验问题——1 个工作日确认、3 个工作日初答、7 个工作日决定。对 Hold、Merge 或初审不服，建议 2 个工作日受理、10 个工作日由未参与初审且无利益冲突的人员独立决定；复杂事项最多延长一次并说明理由。任何人都可请求人工解释、更正、删除、退出或暂停 Branch，投诉与拒绝授权不降低非 AI 服务质量。
 
 隐私控制遵循最小必要、明确目的、最短留存、分级访问与可撤回原则 [source:PIPL]。明确禁止人脸识别式全域识别、社会评分、儿童持续追踪、基于脆弱特征的商业引导，以及模型单独作出高影响公共决定。公开指标只使用聚合或确定性几何；场景如需个体信息，必须由未来责任主体另行完成合法性、敏感信息、自动化决策与安全评估。本方案不是法律意见，也不声明任何具体系统已合规。
 

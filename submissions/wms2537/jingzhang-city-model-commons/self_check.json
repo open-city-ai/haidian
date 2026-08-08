@@ -62,7 +62,7 @@
       "result": "pass",
       "severity": "info",
       "target": "scripts/self_check_submission.py",
-      "message": "已在上游 main ed1ab7008117fe3a89fa5940c70b1eca8df4ce2f 上运行官方 self_check_submission.py；deterministic、spatial、visual 与 professional 四项检查均 PASS，Can enter formal review: YES。"
+      "message": "已在当前上游 main 5c9d9fb6b22fa1f799cfbd64c170e8e787ae2580 上运行官方 self_check_submission.py；deterministic、spatial、visual 与 professional 四项检查均 PASS，Can enter formal review: YES。"
     },
     {
       "check_id": "FIGURE_DIMENSIONS",
@@ -75,29 +75,36 @@
       "check_id": "OFFLINE_HTML",
       "result": "pass",
       "severity": "blocking",
-      "target": "report/proposal.html + visual/index.html",
-      "message": "HTML 不含远程资源、iframe、表单、网络请求、跟踪代码或外部字体。"
+      "target": "report/proposal*.html + visual/index*.html",
+      "message": "中英文 HTML 均不含远程资源、iframe、表单、网络请求、跟踪代码或外部字体。"
     },
     {
       "check_id": "REPORT_READABILITY",
       "result": "pass",
       "severity": "major",
-      "target": "report/proposal.html",
-      "message": "报告中的九组 Markdown 表格已转为可读 HTML 表格，粗体证据提示已转换，图件和来源标记保持离线可读。"
+      "target": "report/proposal.html + report/proposal.en.html",
+      "message": "中英文报告中的 Markdown 表格均已转为可读 HTML 表格，粗体证据提示已转换，图件和来源标记保持离线可读。"
+    },
+    {
+      "check_id": "BILINGUAL_DISPLAY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md + report/proposal.en.html + visual/index.en.html + drawings/*.en.pdf",
+      "message": "英文译稿、离线报告、静态视觉页和 A3/A0 展示副本均已提供；manifest 的 language 与 translation_of 关系已登记，指标、证据标签和临时边界说明保持一致。"
     },
     {
       "check_id": "PDF_PREFLIGHT",
       "result": "pass",
       "severity": "major",
-      "target": "drawings/a3-booklet.pdf + drawings/a0-boards.pdf",
-      "message": "A3 方案册 9 页、A0 展板 3 页按正确纸张尺寸生成并逐页渲染复核；未发现裁切、重叠、乱码或黑块。"
+      "target": "drawings/a3-booklet*.pdf + drawings/a0-boards*.pdf",
+      "message": "中英文 A3 方案册均 12 页、中英文 A0 展板均 3 页，按正确纸张尺寸生成并逐页渲染复核；未发现裁切、重叠、乱码或黑块。"
     },
     {
       "check_id": "VISUAL_METRIC_HOOKS",
       "result": "pass",
       "severity": "major",
-      "target": "visual/index.html",
-      "message": "视觉页包含总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、更新项目、假设和三项机器可读核心指标。"
+      "target": "visual/index*.html",
+      "message": "中英文视觉页均包含总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、更新项目、假设和三项机器可读核心指标。"
     }
   ]
 }
