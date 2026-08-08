@@ -1582,6 +1582,27 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("v2 bilingual submission requires", "\n".join(report.errors))
 
+    def test_v2_manifest_only_update_still_enforces_bilingual_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8").replace(
+                    'language: "zh"',
+                    'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                    1,
+                ),
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", [f"{base}/manifest.json"])
+
+            self.assertFalse(report.ok)
+            self.assertIn("proposal.en.md", "\n".join(report.errors))
+            self.assertIn("a3-booklet.en.pdf", "\n".join(report.errors))
+
     def test_complete_bilingual_display_mapping_has_no_bilingual_warning(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

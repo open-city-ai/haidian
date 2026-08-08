@@ -1489,8 +1489,6 @@ def validate_bilingual_display(
         for path in report.changed_files
         if path.startswith(proposal_dir.rstrip("/") + "/")
     }
-    if not any(is_display_material(path) for path in changed_rel):
-        return
 
     base = repo_root / proposal_dir
     proposal_path = base / "proposal.md"
@@ -1506,6 +1504,12 @@ def validate_bilingual_display(
     translation_language = "en" if primary_language == "zh" else "zh"
     translation_file = localized_path("proposal.md", translation_language)
     strict_bilingual = proposal_format_version(metadata) == PROPOSAL_FORMAT_VERSION
+
+    # v2 is a package contract, so metadata/data-only maintenance must not
+    # bypass the display-pair checks. Keep v1's advisory-only behavior for
+    # machine-data updates.
+    if not strict_bilingual and not any(is_display_material(path) for path in changed_rel):
+        return
 
     def report_bilingual_problem(message: str) -> None:
         if strict_bilingual:
@@ -1528,6 +1532,19 @@ def validate_bilingual_display(
         }
 
     display_files = {path for path in DISPLAY_BASE_FILES if (base / path).is_file()}
+    if strict_bilingual:
+        # Finalized v2 packages may carry figures that are only referenced by
+        # report/visual output rather than proposal.md. The manifest is the
+        # package's authoritative file inventory, so enforce counterparts for
+        # every non-neutral primary figure listed there as well.
+        for path, item in manifest_items.items():
+            if (
+                path.startswith("assets/figures/")
+                and primary_path_from_localized(path) is None
+                and item.get("language") != "neutral"
+                and (base / path).is_file()
+            ):
+                display_files.add(path)
     for match in MARKDOWN_IMAGE_RE.finditer(body):
         raw = match.group(2).split("#", 1)[0].split("?", 1)[0]
         image_path = PurePosixPath(raw)
