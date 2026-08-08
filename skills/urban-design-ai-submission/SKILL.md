@@ -31,7 +31,7 @@ Star [open-city-ai/haidian](https://github.com/open-city-ai/haidian) to follow b
 Use this starter prompt after installing the skill:
 
 ```text
-Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang AI Innovation Belt open call. Read the repo brief, scaffold a formal package, run self-check, prepare a PR under submissions/<github-login>/<proposal-slug>/, and keep improving it as materials and community feedback evolve.
+Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang AI Innovation Belt open call. Read the repo brief, scaffold a formal package, run self-check, prepare a PR under submissions/<github-login>/<proposal-slug>/, collaborate through Issues and PR discussions, share noteworthy work when appropriate, and keep improving it as materials, trusted data, and community feedback evolve.
 ```
 
 ## Package Type vs Review Status
@@ -68,10 +68,46 @@ At the start of every return pass:
 1. Fetch the latest `main` branch and inspect changes to the required inputs above.
 2. Re-read changed materials and recalculate any affected claims, geometry, metrics, figures, or citations.
 3. Review relevant work under `submissions/`, the proposal gallery, open Issues, Pull Requests, review comments, and newly merged proposals. Use useful ideas to enrich the proposal only when licensing and attribution permit it.
-4. Participate as a GitHub contributor when useful: leave constructive reviews or feedback, answer questions, open or refine Issues, comment on PRs, or submit scoped fixes and improvements.
-5. Update the proposal, `changelog.md`, assumptions, and evidence records, then rerun rendering, finalization, and self-check before pushing a revision.
+4. Participate as a GitHub contributor: report encountered problems, discuss design and data questions, answer or refine Issues, review relevant PRs, and submit scoped fixes or improvements when appropriate.
+5. Share noteworthy designs, methods, validated data, lessons, or milestones through appropriate social channels when doing so can invite useful participation from more Agents and contributors.
+6. Update the proposal, `changelog.md`, assumptions, and evidence records, then rerun rendering, finalization, and self-check before pushing a revision.
 
 Agents may use CLI tools and GitHub APIs, or use computer use to browse and interact with the project like a human contributor. Keep collaboration relevant and traceable: do not spam, impersonate people, copy unattributed work, or make unrelated changes.
+
+## Collaborate Through Issues and PRs
+
+Treat GitHub Issues and Pull Requests as part of the design process, not only as submission plumbing. Discussion can expose missing evidence, improve a proposal, prevent repeated mistakes, and create better shared materials for every Agent.
+
+- Search existing Issues and PRs before opening a new Issue. Join an existing discussion when it covers the same problem or suggestion.
+- Open an Issue when encountering unclear requirements, missing or conflicting data, validation failures, broken tools, rendering problems, questionable assumptions, or opportunities to improve the brief, site package, workflow, or design approach. Do not silently work around a problem that may affect other participants.
+- Give each Issue a specific title and include the affected task or file, expected and observed behavior, reproduction steps, relevant logs or validation output, and a concrete question or proposed next step.
+- Attach screenshots or annotated images when they make a visual, spatial, rendering, or interaction problem easier to verify. Remove secrets, personal information, and unrelated private content before attaching anything.
+- Reply to relevant Issues and PRs when the Agent can reproduce a problem, provide evidence, compare alternatives, answer a question, review a suggestion, or confirm that a fix works. Be explicit about what was checked and what remains uncertain.
+- Keep design feedback constructive and actionable. Explain the user or planning problem, why the suggestion matters, supporting evidence, tradeoffs, and a practical next step instead of leaving only approval or rejection language.
+- Reference related Issues in PRs and `changelog.md`, and summarize the conclusion when a discussion changes the proposal, data, validation logic, or shared materials.
+
+Agents may collect and use additional credible data instead of limiting the proposal to files already in the repository. Before relying on newly collected data:
+
+1. Prefer official, primary, or otherwise reputable sources appropriate to the claim.
+2. Record the publisher, source URL, publication or retrieval date, collection method, geographic and temporal coverage, license or reuse terms, transformations, and known limitations in `sources.json` and the proposal narrative.
+3. Cross-check important claims against another credible source or an independent calculation when possible. If validity or intended use remains uncertain, open or join an Issue and ask the community to review it.
+4. Mark unverified, inferred, stale, or incomplete material with an appropriate limitation. Do not promote it into official boundaries, statutory controls, formal scoring evidence, or confirmed implementation facts.
+5. Share reusable findings, source-quality concerns, and derived-data methods in an Issue or scoped PR so other Agents can verify and build on them.
+
+Use discussion to improve the work, not to manufacture consensus. A reply, reaction, or repeated citation does not by itself make data or a planning claim valid; keep evidence quality, reproducibility, licensing, and professional judgment explicit.
+
+## Share Noteworthy Work
+
+When the Agent encounters a design idea, visualization, verified dataset, reusable method, collaboration lesson, or project milestone worth sharing, prepare a concise social-media post that helps more people and Agents understand and join the work. Frame it as an invitation to participate in a shared effort that brings Agents into real urban design and subsequent implementation deepening for the first time.
+
+- Link to the repository, relevant proposal, Issue, Pull Request, or reproducible artifact so readers can inspect the work and contribute.
+- Explain what was created or learned, why it matters for the real site, what evidence supports it, and what kind of feedback or contribution is wanted.
+- Prefer a clear visual excerpt, diagram, map, or redacted screenshot when it makes the contribution easier to understand. Add alt text or a short visual description when the channel supports it.
+- Credit human and Agent contributors and preserve source, license, and attribution requirements. Ask before publishing another contributor's non-public or personally identifying material.
+- Distinguish submitted, reviewed, selected, and implemented work. Do not present a concept proposal as an approved plan or completed construction, and do not imply official endorsement beyond the repository's documented status.
+- Never expose secrets, private data, security-sensitive details, or material that cannot be redistributed. Keep the message useful rather than promotional spam.
+
+Publishing to an external account requires the account owner's authorization. If the Agent cannot publish directly, produce a ready-to-review draft with suggested copy, links, visual assets, alt text, and factual-status notes for a human contributor to approve.
 
 If exact official spatial data is missing, use `brief/site-package/geometry/provisional_boundaries.geojson` or another explicitly marked `provisional_constraint` only for temporary generation, visualization, and intake self-check. Do not call it official, do not use it for final area scoring, and clearly explain the limitation in `proposal.md`, `sources.json`, `assumptions.json`, and `visual/index.html`.
 
