@@ -772,9 +772,9 @@ def make_visual_html(title: str, metrics: dict[str, Any], boundary_mode: str, ke
     readiness_text = (
         "official geometry ready for formal professional scoring"
         if boundary_mode == "official" and key_area_mode == "official"
-        else "provisional geometry: PASS intake only, replace with official polygons before formal professional scoring"
+        else "provisional geometry: content scoring remains eligible with a precision warning; recalculate when official polygons are supplied"
     )
-    readiness_label = "正式评分就绪" if boundary_mode == "official" and key_area_mode == "official" else "临时边界 intake"
+    readiness_label = "正式评分就绪" if boundary_mode == "official" and key_area_mode == "official" else "临时边界与复算"
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>
@@ -787,7 +787,7 @@ def make_visual_html(title: str, metrics: dict[str, Any], boundary_mode: str, ke
 </style>
 </head>
 <body>
-<header><div class="wrap hero"><div><div class="eyebrow">方案可视化总览 / Centennial Jing-Zhang AI Innovation Belt</div><h1>{title}</h1><p class="hero-copy">离线电子展示成果。权威数据仍以 GeoJSON、metrics.json、矩阵和自检结果为准；本页把总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源与假设转成人类可读的视觉说明。</p><div class="pill-row"><span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">AI 场景</span><span class="pill">任务覆盖</span><span class="pill">自检状态</span></div></div><aside class="status-box"><strong>{readiness_label}</strong><p>{readiness_text}</p><p>使用 provisional 边界时，本页仅支持 intake 展示、讨论和返修，不作为正式专业评分图纸。</p></aside></div></header>
+<header><div class="wrap hero"><div><div class="eyebrow">方案可视化总览 / Centennial Jing-Zhang AI Innovation Belt</div><h1>{title}</h1><p class="hero-copy">离线电子展示成果。权威数据仍以 GeoJSON、metrics.json、矩阵和自检结果为准；本页把总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源与假设转成人类可读的视觉说明。</p><div class="pill-row"><span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">AI 场景</span><span class="pill">任务覆盖</span><span class="pill">自检状态</span></div></div><aside class="status-box"><strong>{readiness_label}</strong><p>{readiness_text}</p><p>使用 provisional 边界时，须保留资料精度边界，并在官方多边形提供后复算；该组织方数据缺口本身不阻断内容评分。</p></aside></div></header>
 <main class="wrap">
 <section class="sheet"><div class="sheet-head"><div><h2>总览地图</h2><p>总览地图将用地分区、交通慢行、蓝绿公共空间、建筑与更新项目、AI 场景节点放在同一张证据图中，便于评审快速理解空间主线。</p></div><span class="tag">geometry + metrics</span></div><div class="map-grid"><div><div class="map-frame" aria-label="总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑与更新项目">
 <svg viewBox="0 0 1120 680" role="img" aria-label="专业城市设计总览地图">

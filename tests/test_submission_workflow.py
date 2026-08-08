@@ -37,6 +37,7 @@ from github_pr_validation import (  # noqa: E402
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
+from self_check_submission import next_actions  # noqa: E402
 
 
 class _Response:
@@ -1623,6 +1624,35 @@ class SubmissionWorkflowTests(unittest.TestCase):
             path.write_text(readable, encoding="utf-8")
             report = validate_submission(root, "alice", [f"{base}/manifest.json"])
             self.assertTrue(report.ok, report.errors)
+
+    def test_known_limitations_are_nonblocking_and_preserved_for_review(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.update_json(
+                root,
+                f"{base}/manifest.json",
+                lambda data: data["validation_claim"].update(
+                    {
+                        "known_limitations": [
+                            "Provisional boundary; recalculate when organizer publishes official polygons."
+                        ]
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+        self.assertTrue(report.ok, report.errors)
+        warnings = "\n".join(report.warnings)
+        self.assertIn("known_limitations present", warnings)
+        self.assertIn("Organizer-owned data gaps alone do not block", warnings)
+        actions = next_actions(
+            {"deterministic_validation": {"stdout": {"warnings": report.warnings}}}
+        )
+        self.assertTrue(any("Preserve nonblocking" in action for action in actions))
+        self.assertFalse(any("Resolve formal-readiness" in action for action in actions))
 
     def test_bilingual_contract_manifest_only_update_rechecks_full_package(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

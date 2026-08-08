@@ -1075,7 +1075,13 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
         known_blockers = validation_claim.get("known_blockers")
         if isinstance(known_blockers, list) and known_blockers:
             report.add_warning(
-                f"{proposal_dir}/manifest.json: known_blockers present; submission may pass intake but cannot enter formal professional scoring until resolved"
+                f"{proposal_dir}/manifest.json: known_blockers present; resolve participant-controlled blockers before formal professional scoring"
+            )
+        known_limitations = validation_claim.get("known_limitations")
+        if isinstance(known_limitations, list) and known_limitations:
+            report.add_warning(
+                f"{proposal_dir}/manifest.json: known_limitations present; preserve the stated data/precision boundary for review. "
+                "Organizer-owned data gaps alone do not block content scoring"
             )
     return data, stage
 

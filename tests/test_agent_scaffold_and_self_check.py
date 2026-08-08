@@ -533,6 +533,10 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             props = site["features"][0]["properties"]
             self.assertEqual(props["geometry_role"], "provisional_constraint")
             self.assertFalse(props["official_boundary"])
+            visual = (submission_dir / "visual" / "index.html").read_text(encoding="utf-8")
+            self.assertIn("content scoring remains eligible", visual)
+            self.assertIn("该组织方数据缺口本身不阻断内容评分", visual)
+            self.assertNotIn("PASS intake only", visual)
 
     def test_formal_scaffold_fails_without_any_boundary_fixture(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -115,7 +115,13 @@ def next_actions(report: dict[str, Any]) -> list[str]:
         for error in stdout.get("errors", []) or []:
             actions.append(f"Fix deterministic validation error: {error}")
         for warning in stdout.get("warnings", []) or []:
-            if "cannot enter formal" in warning or "non-official" in warning:
+            if "known_blockers present" in warning:
+                actions.append(f"Resolve formal-readiness warning: {warning}")
+            elif "known_limitations present" in warning:
+                actions.append(
+                    f"Preserve nonblocking data/precision limitation for maintainer review: {warning}"
+                )
+            elif "cannot enter formal" in warning or "non-official" in warning:
                 actions.append(f"Resolve formal-readiness warning: {warning}")
             elif any(
                 marker in warning

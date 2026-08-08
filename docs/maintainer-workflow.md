@@ -53,7 +53,7 @@ python3 scripts/maintainer_review.py \
 - `formal-review-ready`：可进入正式专业评分。
 - `reject`：触发强制拒绝条件，关闭或拒绝 PR。
 
-`package_type` 描述提交物种类，`review_status` 描述审核决定。组织方缺少 official boundary/key areas 只能形成精度与复算警示，不得阻断内容评分或导致扣分。
+`package_type` 描述提交物种类，`review_status` 描述审核决定。组织方缺少 official boundary/key areas 只能形成精度与复算警示，不得阻断内容评分或导致扣分。`known_blockers` 只记录投稿者可修复、应在正式评分前处理的事项；`known_limitations` 记录组织方资料缺口、临时边界与复算要求，必须保留给评审但不应被当作自动阻断。
 
 ### Intake 最低质量门槛
 

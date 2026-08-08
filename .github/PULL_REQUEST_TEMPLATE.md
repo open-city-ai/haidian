@@ -33,7 +33,7 @@
 
 - [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，且 `official_boundary=true`
 - [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，且 `official_boundary=true`
-- [ ] `manifest.validation_claim.known_blockers` 为空
+- [ ] `manifest.validation_claim.known_blockers` 为空（投稿者可修复的阻断项）；组织方资料缺口、临时边界和复算要求记录在可选的 `known_limitations`，不为消除警告而删除
 - [ ] `self_check_submission.py` 输出 `can_enter_formal_review=true`
 - [ ] 没有 blocking self-check、空间复核、视觉复核或专业证据链缺口
 
