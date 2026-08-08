@@ -1,0 +1,864 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>有机智城：京张有机AI创新带 · Organic AI Polis</title>
+<style>
+:root{
+  --blue:#1a3a5c;        /* 结构主色 · 神经脊骨 */
+  --blue-2:#234e78;
+  --blue-ink:#0f2740;
+  --terra:#c75b3c;       /* 陶土 · 双手/产业 */
+  --terra-2:#a8492f;
+  --sage:#7a9b6e;        /* 鼠尾草绿 · 蓝绿网络 */
+  --sage-2:#5f7d54;
+  --sand:#d4b896;        /* 暖砂 · 纸面温度 */
+  --sand-2:#e6d4b8;
+  --sand-3:#f2e8d6;
+  --charcoal:#2c2c2c;    /* 墨色 */
+  --ink:#1f1f1f;
+  --muted:#6b6b6b;
+  --line:#c9bfa8;
+  --line-2:#d8cfb8;
+  --paper:#ffffff;
+  --paper-2:#fbf8f1;
+  --pass:#7a9b6e;
+  --warn:#c79838;
+  --shadow:0 10px 30px rgba(26,58,92,.10);
+  --shadow-2:0 4px 14px rgba(44,44,44,.08);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei','PingFang SC',sans-serif;
+  background:var(--sand-3);
+  color:var(--charcoal);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--blue);text-decoration:none}
+.wrap{max-width:1320px;margin:0 auto;padding:0 22px}
+
+/* ============ 顶部水印几何带（赖特式水平线条） ============ */
+.topband{
+  background:var(--blue);
+  color:#fff;
+  border-bottom:6px solid var(--terra);
+  position:relative;
+  overflow:hidden;
+}
+.topband::before{
+  content:"";position:absolute;inset:0;
+  background-image:repeating-linear-gradient(90deg,transparent 0,transparent 78px,rgba(255,255,255,.05) 78px,rgba(255,255,255,.05) 80px);
+  pointer-events:none;
+}
+.topband::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:3px;
+  background:repeating-linear-gradient(90deg,var(--sand) 0 22px,transparent 22px 30px);
+  opacity:.7;
+}
+.hero{
+  position:relative;display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:30px;
+  padding:42px 0 36px;align-items:end;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--sand);margin-bottom:16px;font-weight:600;
+}
+.eyebrow .dot{width:8px;height:8px;background:var(--terra);border-radius:50%}
+h1{
+  font-size:clamp(28px,4.4vw,46px);line-height:1.1;margin:0 0 14px;font-weight:800;
+  letter-spacing:.01em;
+}
+h1 .sub{display:block;font-size:.42em;font-weight:500;color:var(--sand-2);letter-spacing:.06em;margin-top:8px}
+.hero-copy{max-width:780px;color:#d8e2ec;font-size:15.5px;margin:0}
+.hero-copy b{color:#fff;font-weight:600}
+.status-card{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);
+  border-radius:10px;padding:18px;backdrop-filter:blur(2px);
+}
+.status-card .lab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--sand);margin-bottom:6px}
+.status-card .big{font-size:19px;font-weight:700;color:#fff;margin-bottom:10px;line-height:1.3}
+.status-card p{font-size:12.5px;color:#c7d4e0;margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:5px 12px;font-size:11.5px;color:#e8eef5}
+.pill i{width:7px;height:7px;border-radius:50%}
+
+/* ============ 主体 ============ */
+main{padding:30px 0 50px}
+.sheet{
+  background:var(--paper);border:1px solid var(--line-2);border-radius:10px;
+  margin:0 auto 26px;box-shadow:var(--shadow);overflow:hidden;
+}
+.sheet-head{
+  display:flex;justify-content:space-between;gap:18px;align-items:flex-start;
+  padding:22px 26px;border-bottom:1px solid var(--line-2);
+  background:linear-gradient(180deg,var(--paper-2),#fff);
+  position:relative;
+}
+.sheet-head::before{
+  content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--blue);
+}
+.sheet-head h2{font-size:20px;margin:0 0 6px;color:var(--blue-ink);font-weight:700;letter-spacing:.01em}
+.sheet-head p{margin:0;color:var(--muted);font-size:13.5px;max-width:820px}
+.sheet-num{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;
+  color:var(--blue);background:var(--sand-3);border:1px solid var(--line);
+  border-radius:5px;padding:5px 9px;white-space:nowrap;letter-spacing:.04em;
+}
+.sheet-body{padding:24px 26px}
+
+/* ============ 概念总览 ============ */
+.concept-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:26px;align-items:start}
+.concept-lead{font-size:15px;color:var(--ink)}
+.concept-lead p{margin:0 0 14px}
+.concept-lead b{color:var(--blue)}
+.principle-list{display:grid;gap:12px}
+.principle{
+  display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start;
+  padding:14px 16px;border:1px solid var(--line-2);border-radius:8px;background:var(--paper-2);
+}
+.principle .ico{
+  width:44px;height:44px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+  background:var(--blue);color:#fff;font-size:18px;font-weight:700;
+}
+.principle.t .ico{background:var(--terra)}
+.principle.g .ico{background:var(--sage)}
+.principle.s .ico{background:var(--sand);color:var(--charcoal)}
+.principle h4{margin:0 0 4px;font-size:14.5px;color:var(--blue-ink)}
+.principle p{margin:0;font-size:12.5px;color:var(--muted)}
+
+/* ============ 地图 ============ */
+.map-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(280px,.5fr);gap:24px}
+.map-frame{
+  border:1px solid var(--line);border-radius:8px;background:#fbfaf6;overflow:hidden;position:relative;
+}
+.map-frame svg{display:block;width:100%;height:auto}
+.legend{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 14px;padding:14px 0 0}
+.legend span{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink)}
+.sw{width:15px;height:15px;border-radius:3px;flex-shrink:0;border:1px solid rgba(0,0,0,.12)}
+.map-side h3{font-size:14px;margin:0 0 10px;color:var(--blue-ink)}
+.map-note{font-size:11.5px;color:var(--muted);border-left:3px solid var(--sand);padding:8px 12px;background:var(--paper-2);border-radius:0 6px 6px 0;margin-top:14px}
+.map-note b{color:var(--terra-2)}
+
+/* ============ 重点区域 / 器官 ============ */
+.organs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.organ{
+  border:1px solid var(--line-2);border-radius:10px;overflow:hidden;background:#fff;
+  display:flex;flex-direction:column;
+}
+.organ .cap{padding:16px 18px;color:#fff;position:relative}
+.organ .cap .tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.85;font-weight:600}
+.organ .cap h3{margin:6px 0 4px;font-size:18px}
+.organ .cap .meta{font-size:12px;opacity:.9}
+.organ.brain .cap{background:var(--blue)}
+.organ.heart .cap{background:var(--sage)}
+.organ.hands .cap{background:var(--terra)}
+.organ .body{padding:16px 18px;flex:1;display:flex;flex-direction:column;gap:10px}
+.organ .body p{margin:0;font-size:13px;color:var(--ink)}
+.organ .stats{display:flex;gap:14px;margin-top:auto;padding-top:10px;border-top:1px dashed var(--line-2)}
+.organ .stats div{font-size:11px;color:var(--muted)}
+.organ .stats div b{display:block;font-size:16px;color:var(--blue-ink);font-variant-numeric:tabular-nums}
+.organ ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--muted)}
+.organ ul li{margin-bottom:4px}
+
+/* ============ 场景卡 ============ */
+.scenario-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.sc-card{
+  border:1px solid var(--line-2);border-radius:8px;padding:14px;background:#fff;
+  position:relative;transition:transform .15s,box-shadow .15s;
+  display:flex;flex-direction:column;gap:8px;
+}
+.sc-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-2)}
+.sc-card .num{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;font-weight:700;
+  color:var(--terra);letter-spacing:.05em;
+}
+.sc-card h4{margin:0;font-size:13.5px;color:var(--blue-ink);line-height:1.3}
+.sc-card p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.5}
+.sc-card .loc{font-size:10.5px;color:var(--sage-2);font-weight:600;margin-top:auto;padding-top:6px;border-top:1px dotted var(--line-2)}
+
+/* ============ 人物画像 ============ */
+.persona-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.persona{
+  border:1px solid var(--line-2);border-radius:10px;padding:18px 16px;text-align:center;background:#fff;
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.persona .av{
+  width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-size:22px;color:#fff;font-weight:700;
+}
+.persona:nth-child(1) .av{background:var(--blue)}
+.persona:nth-child(2) .av{background:var(--terra)}
+.persona:nth-child(3) .av{background:var(--sage)}
+.persona:nth-child(4) .av{background:var(--sand);color:var(--charcoal)}
+.persona:nth-child(5) .av{background:var(--blue-2)}
+.persona h4{margin:0;font-size:13.5px;color:var(--blue-ink)}
+.persona p{margin:0;font-size:11.5px;color:var(--muted);line-height:1.5}
+.persona .need{font-size:10.5px;color:var(--terra-2);font-weight:600;margin-top:auto}
+
+/* ============ 朝圣地标 ============ */
+.landmark-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.landmark{
+  border:1px solid var(--line-2);border-radius:10px;overflow:hidden;background:#fff;
+  display:flex;flex-direction:column;
+}
+.landmark .lm-svg{background:var(--paper-2);border-bottom:1px solid var(--line-2);height:130px;display:flex;align-items:center;justify-content:center}
+.landmark .lm-svg svg{width:100%;height:100%}
+.landmark .lm-body{padding:16px 18px}
+.landmark .lm-body .lm-no{font-family:ui-monospace,monospace;font-size:11px;color:var(--terra);font-weight:700;letter-spacing:.06em}
+.landmark .lm-body h4{margin:4px 0 8px;font-size:15px;color:var(--blue-ink)}
+.landmark .lm-body p{margin:0;font-size:12.5px;color:var(--muted)}
+.landmark .lm-loc{font-size:11px;color:var(--sage-2);font-weight:600;margin-top:10px;padding-top:8px;border-top:1px dotted var(--line-2)}
+
+/* ============ 指标仪表盘 ============ */
+.metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.metric{
+  border:1px solid var(--line-2);border-radius:8px;padding:16px;background:#fff;position:relative;
+}
+.metric .mlab{font-size:11px;color:var(--muted);letter-spacing:.04em;font-family:ui-monospace,monospace}
+.metric .mval{font-size:26px;font-weight:800;color:var(--blue-ink);font-variant-numeric:tabular-nums;margin-top:6px;line-height:1}
+.metric .munit{font-size:12px;color:var(--muted);font-weight:500;margin-left:4px}
+.metric .mbar{height:4px;background:var(--sand-3);border-radius:2px;margin-top:10px;overflow:hidden}
+.metric .mbar i{display:block;height:100%;background:var(--blue);border-radius:2px}
+.metric.t .mbar i{background:var(--terra)}
+.metric.g .mbar i{background:var(--sage)}
+.metric.s .mbar i{background:var(--sand)}
+.metric .msrc{font-size:10px;color:var(--muted);margin-top:8px;font-family:ui-monospace,monospace}
+
+/* 用地构成 */
+.landuse-wrap{margin-top:24px;display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:start}
+.landuse-bar{display:flex;height:46px;border-radius:6px;overflow:hidden;border:1px solid var(--line-2)}
+.landuse-bar div{display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;font-weight:600;white-space:nowrap;overflow:hidden}
+.landuse-legend{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:11.5px}
+.landuse-legend span{display:flex;align-items:center;gap:7px;color:var(--ink)}
+.landuse-legend b{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600}
+
+/* ============ 分期 ============ */
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.phase{
+  border:1px solid var(--line-2);border-radius:10px;padding:18px;background:#fff;
+  border-top:5px solid var(--blue);position:relative;
+}
+.phase.mid{border-top-color:var(--sage)}
+.phase.long{border-top-color:var(--terra)}
+.phase .ph-no{font-family:ui-monospace,monospace;font-size:11px;color:var(--muted);letter-spacing:.08em}
+.phase h4{margin:4px 0 10px;font-size:16px;color:var(--blue-ink)}
+.phase .ph-val{font-size:24px;font-weight:800;color:var(--blue-ink);font-variant-numeric:tabular-nums}
+.phase .ph-val .u{font-size:13px;color:var(--muted);font-weight:500}
+.phase .ph-bar{height:6px;background:var(--sand-3);border-radius:3px;margin:12px 0;overflow:hidden}
+.phase .ph-bar i{display:block;height:100%;border-radius:3px}
+.phase.near .ph-bar i{background:var(--blue);width:27.6%}
+.phase.mid .ph-bar i{background:var(--sage);width:39.4%}
+.phase.long .ph-bar i{background:var(--terra);width:33.0%}
+.phase p{margin:0;font-size:12.5px;color:var(--muted)}
+.phase .ph-pct{font-size:12px;font-weight:700;color:var(--blue);margin-top:8px}
+
+/* ============ 任务覆盖矩阵 ============ */
+.cov-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.cov-table th,.cov-table td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line-2);vertical-align:top}
+.cov-table th{background:var(--paper-2);color:var(--blue-ink);font-weight:700;font-size:11.5px;letter-spacing:.03em;position:sticky;top:0}
+.cov-table td.code{font-family:ui-monospace,monospace;color:var(--terra-2);font-weight:700;white-space:nowrap}
+.cov-table .st{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700}
+.cov-table .st.pass{color:var(--pass)}
+.cov-table .st.pass::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--pass)}
+.cov-table tr:hover{background:var(--paper-2)}
+
+/* ============ 自检状态 ============ */
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.check{
+  display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:start;
+  border:1px solid var(--line-2);border-left:5px solid var(--sage);border-radius:8px;padding:14px 16px;background:#fff;
+}
+.check .ck-ic{width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.check .ck-body h4{margin:0 0 4px;font-size:13.5px;color:var(--blue-ink);font-family:ui-monospace,monospace;letter-spacing:.03em}
+.check .ck-body p{margin:0;font-size:12px;color:var(--muted)}
+.check .ck-st{font-size:11px;font-weight:700;color:var(--pass);background:#eef4ea;border:1px solid var(--sage);border-radius:5px;padding:4px 10px;white-space:nowrap}
+
+/* ============ 来源与假设 ============ */
+.src-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.src-list{display:grid;gap:8px}
+.src-item{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 12px;border:1px solid var(--line-2);border-radius:6px;background:var(--paper-2);font-size:12px}
+.src-item .sid{font-family:ui-monospace,monospace;color:var(--blue-ink);font-weight:700}
+.src-item .stype{font-size:10px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:4px;padding:2px 7px}
+.assump{border:1px solid var(--line-2);border-left:5px solid var(--warn);border-radius:8px;padding:16px;background:#fffdf5;font-size:12.5px}
+.assump h4{margin:0 0 8px;color:var(--warn);font-size:13px;font-family:ui-monospace,monospace}
+.assump p{margin:0 0 8px;color:var(--ink)}
+.assump p:last-child{margin:0}
+.assump .impact{font-size:11.5px;color:var(--terra-2);font-weight:600;background:var(--sand-3);padding:8px 10px;border-radius:5px;margin-top:10px}
+
+/* ============ 页脚 ============ */
+footer{
+  background:var(--blue-ink);color:#aebfd0;padding:28px 0;font-size:12px;
+  border-top:5px solid var(--terra);
+}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer .ftr-l b{color:#fff}
+footer .ftr-r{font-family:ui-monospace,monospace;font-size:11px;color:#7e90a8}
+
+/* ============ 响应式 ============ */
+@media(max-width:1080px){
+  .concept-grid,.map-grid,.landuse-wrap,.src-grid{grid-template-columns:1fr}
+  .organs,.scenario-grid,.persona-grid,.landmark-grid,.phase-grid{grid-template-columns:repeat(2,1fr)}
+  .metric-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:720px){
+  .hero{grid-template-columns:1fr;align-items:start}
+  .organs,.scenario-grid,.persona-grid,.landmark-grid,.phase-grid,.check-grid,.metric-grid{grid-template-columns:1fr}
+  .sheet-body{padding:18px 16px}
+  .sheet-head{flex-direction:column;padding:18px 16px}
+  .landuse-legend{grid-template-columns:1fr}
+  h1{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== 顶部 ===================== -->
+<div class="topband">
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow"><span class="dot"></span>城市设计方案可视化 · URBAN DESIGN SUBMISSION BOARD</div>
+      <h1>有机智城：京张有机AI创新带<span class="sub">Organic AI Polis — Frank Lloyd Wright 有机建筑原则 × AI 城市主义</span></h1>
+      <p class="hero-copy">以 <b>京张铁路遗存为"神经脊骨"</b>，三处重点区域为"器官"（脑/心/手），<b>蓝绿网络为首要结构</b>，<b>分布式水平创新</b> 为组织逻辑——将赖特有机建筑原则转译为 AI 城市主义。本页为<b>完全离线静态电子展示</b>，权威数据以 GeoJSON、metrics.json、矩阵与自检结果为准。</p>
+      <div class="pills">
+        <span class="pill"><i style="background:var(--blue)"></i>三层范围</span>
+        <span class="pill"><i style="background:var(--sage)"></i>三区器官</span>
+        <span class="pill"><i style="background:var(--terra)"></i>12 AI 场景</span>
+        <span class="pill"><i style="background:var(--sand)"></i>5 用户画像</span>
+        <span class="pill"><i style="background:#fff"></i>3 朝圣地标</span>
+      </div>
+    </div>
+    <aside class="status-card">
+      <div class="lab">PACKAGE STATE</div>
+      <div class="big">ready_for_review</div>
+      <p>临时边界（provisional）已通过 intake 自检；正式专业评分前须替换为官方红线与官方多边形。本页仅作展示与讨论用途。</p>
+    </aside>
+  </div>
+</div>
+
+<main class="wrap">
+
+  <!-- ============ 01 概念总览 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>01 · 概念总览</h2><p>将赖特有机建筑的六条原则映射为 AI 城市主义的组织逻辑：脊骨、器官、首要结构、水平分布。</p></div>
+      <span class="sheet-num">CONCEPT / 01</span>
+    </div>
+    <div class="sheet-body">
+      <div class="concept-grid">
+        <div class="concept-lead">
+          <p>"有机智城"把京张铁路遗存视为城市的 <b>神经脊骨（neural spine）</b>——它既是百年工业文脉的实体留痕，也是 AI 创新要素流动的中央通道。沿线三处重点区域被理解为三个 <b>器官</b>：北段"脑"负责全栈研发，中段"心"负责社区与近校转化，南段"手"负责产业应用。</p>
+          <p>不同于传统中心化的科技园，本方案追求 <b>分布式水平创新</b>：创新不集中于单一地标，而是沿脊骨水平展开、由蓝绿网络串联，使每个器官既独立运作又彼此供养。赖特"消灭方盒子"的开放空间理念，在此转译为打破园区围墙、让公共空间与创新空间交融的城市策略。</p>
+          <p>蓝绿网络不是附属景观，而是 <b>首要结构</b>——它先于建筑确定城市的生态骨架，正如赖特让建筑从场地中"生长"而出。</p>
+        </div>
+        <div class="principle-list">
+          <div class="principle"><div class="ico">脊</div><div><h4>神经脊骨 · Neural Spine</h4><p>京张铁路遗存（2.49 km² 铁路公园）作为中央通道与文脉轴，串联三器官。</p></div></div>
+          <div class="principle t"><div class="ico">器</div><div><h4>三区器官 · Brain / Heart / Hands</h4><p>脑（研发）—心（转化）—手（应用），功能分化又彼此供养。</p></div></div>
+          <div class="principle g"><div class="ico">绿</div><div><h4>蓝绿首要结构 · Blue-Green Primary</h4><p>3.66 km² 绿地先于建筑确定生态骨架，绿地率 32.1%。</p></div></div>
+          <div class="principle s"><div class="ico">横</div><div><h4>水平分布创新 · Horizontal Distribution</h4><p>创新沿脊骨水平展开，消灭园区围墙，公共与创新空间交融。</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 02 总览地图 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>02 · 总览地图</h2><p>示意图展示走廊、神经脊骨、三区器官、蓝绿公共空间、朝圣地标与路网结构。北朝上，非按比例，权威几何以 GeoJSON 为准。</p></div>
+      <span class="sheet-num">SITE MAP / 02</span>
+    </div>
+    <div class="sheet-body">
+      <div class="map-grid">
+        <div>
+          <div class="map-frame">
+            <svg viewBox="0 0 920 720" role="img" aria-label="有机智城总览示意图：神经脊骨、三区器官、蓝绿网络、朝圣地标">
+              <defs>
+                <pattern id="greenpat" patternUnits="userSpaceOnUse" width="14" height="14">
+                  <circle cx="7" cy="7" r="2" fill="#7a9b6e" opacity="0.3"/>
+                </pattern>
+              </defs>
+              <rect x="0" y="0" width="920" height="720" fill="#fbfaf6"/>
+
+              <!-- 外框 / 图框 -->
+              <rect x="30" y="30" width="860" height="660" fill="none" stroke="#1a3a5c" stroke-width="2.5"/>
+              <rect x="38" y="38" width="844" height="644" fill="none" stroke="#1a3a5c" stroke-width="0.8"/>
+
+              <!-- 指北针 -->
+              <g transform="translate(820,90)">
+                <circle cx="0" cy="0" r="26" fill="#fff" stroke="#1a3a5c" stroke-width="1.5"/>
+                <path d="M0,-22 L7,8 L0,2 L-7,8 Z" fill="#c75b3c"/>
+                <text x="0" y="-30" text-anchor="middle" font-size="13" font-weight="700" fill="#1a3a5c">N</text>
+              </g>
+
+              <!-- 比例尺 -->
+              <g transform="translate(60,660)">
+                <line x1="0" y1="0" x2="120" y2="0" stroke="#2c2c2c" stroke-width="2"/>
+                <line x1="0" y1="-5" x2="0" y2="5" stroke="#2c2c2c" stroke-width="2"/>
+                <line x1="60" y1="-4" x2="60" y2="4" stroke="#2c2c2c" stroke-width="1.5"/>
+                <line x1="120" y1="-5" x2="120" y2="5" stroke="#2c2c2c" stroke-width="2"/>
+                <text x="0" y="18" font-size="10" fill="#6b6b6b">0</text>
+                <text x="60" y="18" font-size="10" fill="#6b6b6b" text-anchor="middle">1km</text>
+                <text x="120" y="18" font-size="10" fill="#6b6b6b" text-anchor="middle">2km</text>
+                <text x="0" y="-9" font-size="9" fill="#6b6b6b">示意比例 · schematic</text>
+              </g>
+
+              <!-- 用地分区底色（40地块抽象） -->
+              <g opacity="0.55">
+                <rect x="110" y="100" width="300" height="200" fill="#d4b896" rx="4"/>
+                <rect x="110" y="310" width="300" height="120" fill="#e6d4b8" rx="4"/>
+                <rect x="510" y="100" width="280" height="160" fill="#d4b896" rx="4"/>
+                <rect x="510" y="270" width="280" height="160" fill="#e6d4b8" rx="4"/>
+                <rect x="110" y="440" width="240" height="170" fill="#e6d4b8" rx="4"/>
+                <rect x="360" y="440" width="430" height="170" fill="#d4b896" rx="4"/>
+              </g>
+
+              <!-- 蓝绿网络（首要结构） -->
+              <g fill="none" stroke="#7a9b6e" stroke-width="14" opacity="0.35" stroke-linecap="round">
+                <path d="M120,180 Q300,150 460,200 T800,170"/>
+                <path d="M150,400 Q400,440 620,390 T810,420"/>
+                <path d="M200,560 Q400,530 560,570 T790,540"/>
+              </g>
+              <g fill="none" stroke="#7a9b6e" stroke-width="3" opacity="0.7" stroke-linecap="round" stroke-dasharray="2 4">
+                <path d="M120,180 Q300,150 460,200 T800,170"/>
+                <path d="M150,400 Q400,440 620,390 T810,420"/>
+                <path d="M200,560 Q400,530 560,570 T790,540"/>
+              </g>
+
+              <!-- 神经脊骨（铁路公园） -->
+              <g>
+                <path d="M460,90 L460,620" fill="none" stroke="#1a3a5c" stroke-width="26" opacity="0.18" stroke-linecap="round"/>
+                <path d="M460,90 L460,620" fill="none" stroke="#1a3a5c" stroke-width="14" opacity="0.55" stroke-linecap="round"/>
+                <path d="M460,90 L460,620" fill="none" stroke="#f2e8d6" stroke-width="2" stroke-dasharray="10 8"/>
+                <path d="M452,90 L452,620" fill="none" stroke="#1a3a5c" stroke-width="1.5" opacity="0.6"/>
+                <path d="M468,90 L468,620" fill="none" stroke="#1a3a5c" stroke-width="1.5" opacity="0.6"/>
+              </g>
+
+              <!-- 三区器官 -->
+              <!-- 脑 Brain (北) -->
+              <g>
+                <rect x="120" y="95" width="300" height="155" fill="#1a3a5c" opacity="0.12" stroke="#1a3a5c" stroke-width="2.5" stroke-dasharray="6 4" rx="6"/>
+                <circle cx="460" cy="172" r="34" fill="#1a3a5c"/>
+                <text x="460" y="167" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">脑</text>
+                <text x="460" y="183" text-anchor="middle" fill="#fff" font-size="9">Brain</text>
+                <text x="270" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#1a3a5c">众智园 · 自主创新加速区</text>
+                <text x="270" y="166" text-anchor="middle" font-size="10" fill="#6b6b6b">KEY-001 · 北段 · 192.9 ha</text>
+                <text x="270" y="182" text-anchor="middle" font-size="9.5" fill="#6b6b6b">全栈AI研发 · 花园校园</text>
+              </g>
+
+              <!-- 心 Heart (中) -->
+              <g>
+                <rect x="360" y="270" width="290" height="160" fill="#7a9b6e" opacity="0.14" stroke="#7a9b6e" stroke-width="2.5" stroke-dasharray="6 4" rx="6"/>
+                <circle cx="460" cy="350" r="34" fill="#7a9b6e"/>
+                <text x="460" y="345" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">心</text>
+                <text x="460" y="361" text-anchor="middle" fill="#fff" font-size="9">Heart</text>
+                <text x="640" y="325" text-anchor="middle" font-size="14" font-weight="700" fill="#5f7d54">北京AI原点社区</text>
+                <text x="640" y="343" text-anchor="middle" font-size="10" fill="#6b6b6b">KEY-002 · 中段 · 104.3 ha</text>
+                <text x="640" y="359" text-anchor="middle" font-size="9.5" fill="#6b6b6b">社区创新 · 近校转化</text>
+              </g>
+
+              <!-- 手 Hands (南) -->
+              <g>
+                <rect x="360" y="455" width="290" height="150" fill="#c75b3c" opacity="0.12" stroke="#c75b3c" stroke-width="2.5" stroke-dasharray="6 4" rx="6"/>
+                <circle cx="460" cy="530" r="34" fill="#c75b3c"/>
+                <text x="460" y="525" text-anchor="middle" fill="#fff" font-size="13" font-weight="700">手</text>
+                <text x="460" y="541" text-anchor="middle" fill="#fff" font-size="9">Hands</text>
+                <text x="640" y="500" text-anchor="middle" font-size="14" font-weight="700" fill="#a8492f">大钟寺 · AI产业聚集区</text>
+                <text x="640" y="518" text-anchor="middle" font-size="10" fill="#6b6b6b">KEY-003 · 南段 · 72.0 ha</text>
+                <text x="640" y="534" text-anchor="middle" font-size="9.5" fill="#6b6b6b">产业应用 · 商业复合</text>
+              </g>
+
+              <!-- 朝圣地标 -->
+              <g>
+                <polygon points="460,80 452,66 468,66" fill="#c75b3c"/>
+                <circle cx="460" cy="60" r="7" fill="#fff" stroke="#c75b3c" stroke-width="2.5"/>
+                <text x="486" y="64" font-size="10" font-weight="700" fill="#c75b3c">L3 开发者散步道起点</text>
+                <rect x="398" y="316" width="14" height="14" fill="#fff" stroke="#c75b3c" stroke-width="2.5" transform="rotate(45 405 323)"/>
+                <text x="384" y="328" text-anchor="end" font-size="10" font-weight="700" fill="#c75b3c">L2 智能体荣誉墙</text>
+                <rect x="448" y="470" width="24" height="10" fill="#fff" stroke="#c75b3c" stroke-width="2"/>
+                <text x="486" y="479" font-size="10" font-weight="700" fill="#c75b3c">L1 开源成果展示廊</text>
+              </g>
+
+              <!-- 路网 -->
+              <g fill="none" stroke="#2c2c2c" stroke-width="1.2" opacity="0.35">
+                <path d="M110,250 L810,250"/>
+                <path d="M110,440 L810,440"/>
+                <path d="M250,90 L250,620"/>
+                <path d="M680,90 L680,620"/>
+              </g>
+
+              <!-- 建筑足印示意 (39栋抽象) -->
+              <g fill="#2c2c2c" opacity="0.28">
+                <rect x="150" y="110" width="16" height="12"/><rect x="175" y="110" width="14" height="12"/><rect x="196" y="112" width="18" height="10"/>
+                <rect x="150" y="200" width="14" height="14"/><rect x="172" y="202" width="16" height="12"/><rect x="195" y="200" width="12" height="14"/>
+                <rect x="540" y="115" width="16" height="12"/><rect x="562" y="113" width="14" height="14"/><rect x="585" y="115" width="18" height="12"/>
+                <rect x="540" y="300" width="14" height="12"/><rect x="560" y="302" width="16" height="10"/><rect x="582" y="300" width="14" height="14"/>
+                <rect x="150" y="465" width="16" height="12"/><rect x="172" y="467" width="14" height="10"/><rect x="192" y="465" width="18" height="12"/>
+                <rect x="540" y="475" width="14" height="14"/><rect x="560" y="477" width="16" height="10"/><rect x="582" y="475" width="14" height="12"/>
+                <rect x="150" y="560" width="16" height="12"/><rect x="172" y="562" width="14" height="10"/>
+                <rect x="700" y="120" width="14" height="12"/><rect x="720" y="118" width="16" height="14"/>
+                <rect x="700" y="300" width="16" height="12"/><rect x="722" y="302" width="14" height="10"/>
+                <rect x="700" y="480" width="14" height="14"/><rect x="722" y="482" width="16" height="10"/>
+              </g>
+
+              <!-- 标注 -->
+              <text x="60" y="60" font-size="11" font-weight="700" fill="#1a3a5c" font-family="ui-monospace,monospace">FIG.02 — 有机智城总览示意</text>
+              <text x="60" y="74" font-size="9.5" fill="#6b6b6b">site_area 11.4 km² · railway_park 2.49 km² · green 3.66 km² · 3 organs · 3 landmarks</text>
+              <text x="460" y="640" text-anchor="middle" font-size="10" fill="#6b6b6b" font-style="italic">神经脊骨（京张铁路公园）· Neural Spine</text>
+            </svg>
+          </div>
+          <div class="legend">
+            <span><i class="sw" style="background:#1a3a5c"></i>神经脊骨 / 铁路公园</span>
+            <span><i class="sw" style="background:#7a9b6e"></i>蓝绿网络（首要结构）</span>
+            <span><i class="sw" style="background:#1a3a5c;opacity:.5"></i>脑 · 研发器官</span>
+            <span><i class="sw" style="background:#7a9b6e;opacity:.5"></i>心 · 转化器官</span>
+            <span><i class="sw" style="background:#c75b3c;opacity:.5"></i>手 · 应用器官</span>
+            <span><i class="sw" style="background:#d4b896"></i>用地分区（40地块）</span>
+            <span><i class="sw" style="background:#c75b3c"></i>朝圣地标</span>
+            <span><i class="sw" style="background:#2c2c2c;opacity:.4"></i>建筑足印（39栋）</span>
+          </div>
+        </div>
+        <div class="map-side">
+          <h3>读图说明</h3>
+          <p style="font-size:12.5px;color:var(--ink);margin:0 0 10px">本图为<b>示意性总览</b>，北朝上，非按比例绘制。权威几何以 GeoJSON 与 metrics.json 派生为准。</p>
+          <div class="map-note">
+            <b>神经脊骨</b>：京张铁路遗存南北纵贯，转化为 2.49 km² 铁路公园，是文脉轴与创新要素通道。
+          </div>
+          <div class="map-note">
+            <b>三器官</b>沿脊骨分布：脑（北·研发）→ 心（中·转化）→ 手（南·应用），形成"思考—转化—实践"的有机闭环。
+          </div>
+          <div class="map-note">
+            <b>蓝绿网络</b>先于建筑确定生态骨架，绿地率 32.1%，体现"建筑从场地生长"的有机原则。</div>
+          <div class="map-note">
+            <b>交通慢行</b>系统沿脊骨布局，包括绿道、步行通道和自行车道，形成轨道+慢行出行模式。
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 03 三区器官 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>03 · 三区器官 · Brain / Heart / Hands</h2><p>三处重点区域被理解为三个器官，各有功能定位、空间策略与交通接口，沿神经脊骨形成有机闭环。</p></div>
+      <span class="sheet-num">KEY AREAS / 03</span>
+    </div>
+    <div class="sheet-body">
+      <div class="organs">
+        <article class="organ brain">
+          <div class="cap">
+            <div class="tag">KEY-001 · 北段 · THE BRAIN</div>
+            <h3>众智园AI自主创新加速区</h3>
+            <div class="meta">192.9 ha · 全栈AI研发 · 花园校园</div>
+          </div>
+          <div class="body">
+            <p>花园型自主创新街区。承接国家平台、产业展示与清河文化，以低密度花园校园组织全栈 AI 研发，对外交通与低碳交往空间为骨架。</p>
+            <ul>
+              <li>国家 AI 平台与产业展示</li>
+              <li>花园校园型研发组团</li>
+              <li>清河文化带与低碳交往</li>
+              <li>对外交通枢纽接口</li>
+            </ul>
+            <div class="stats">
+              <div>面积<b>192.9</b>ha</div>
+              <div>置信度<b>medium</b></div>
+            </div>
+          </div>
+        </article>
+        <article class="organ heart">
+          <div class="cap">
+            <div class="tag">KEY-002 · 中段 · THE HEART</div>
+            <h3>北京AI原点社区</h3>
+            <div class="meta">104.3 ha · 社区创新 · 近校转化</div>
+          </div>
+          <div class="body">
+            <p>近校型成果转化街区。承接高校源头创新与开源社区，以人才服务、拆改留和站点一体化组织社区创新生态，是方案的"心脏"。</p>
+            <ul>
+              <li>高校源头创新接口</li>
+              <li>开源社区与人才服务</li>
+              <li>拆改留更新策略</li>
+              <li>站点一体化 TOD</li>
+            </ul>
+            <div class="stats">
+              <div>面积<b>104.3</b>ha</div>
+              <div>置信度<b>medium</b></div>
+            </div>
+          </div>
+        </article>
+        <article class="organ hands">
+          <div class="cap">
+            <div class="tag">KEY-003 · 南段 · THE HANDS</div>
+            <h3>大钟寺AI产业聚集区</h3>
+            <div class="meta">72.0 ha · 产业应用 · 商业复合</div>
+          </div>
+          <div class="body">
+            <p>城市型智能经济街区。承接领军企业与智能体新业态，以商业服务、绿地复合与路口四象限连通组织产业应用，是方案的"双手"。</p>
+            <ul>
+              <li>领军企业与智能体业态</li>
+              <li>商业服务复合</li>
+              <li>绿地复合利用</li>
+              <li>路口四象限连通</li>
+            </ul>
+            <div class="stats">
+              <div>面积<b>72.0</b>ha</div>
+              <div>置信度<b>medium</b></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 04 AI场景 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>04 · AI 场景卡 · 12 Scenarios</h2><p>每个场景说明服务对象、空间位置与运营逻辑，拒绝口号化；场景沿脊骨与三器官分布。</p></div>
+      <span class="sheet-num">SCENARIOS / 04</span>
+    </div>
+    <div class="sheet-body">
+      <div class="scenario-grid">
+        <article class="sc-card"><div class="num">01</div><h4>开源发布厅</h4><p>面向开发者、企业与高校的成果发布与模型评测节点。</p><div class="loc">脑 · 众智园</div></article>
+        <article class="sc-card"><div class="num">02</div><h4>安全治理沙盒</h4><p>可控公共空间内测试智能体，展示标准与可信评测能力。</p><div class="loc">脊骨 · 沿铁路公园</div></article>
+        <article class="sc-card"><div class="num">03</div><h4>端侧算力驿站</h4><p>分布式能源、端侧算力与公共服务设施的融合节点。</p><div class="loc">脊骨 · 分布式</div></article>
+        <article class="sc-card"><div class="num">04</div><h4>AI慢行导航</h4><p>用公开数据与人工复核识别遗址公园慢行断点并导引。</p><div class="loc">蓝绿网络</div></article>
+        <article class="sc-card"><div class="num">05</div><h4>大钟寺国际路演客厅</h4><p>领军企业路演、智能体新业态展示与国际会客厅。</p><div class="loc">手 · 大钟寺</div></article>
+        <article class="sc-card"><div class="num">06</div><h4>清河低碳创新廊</h4><p>清河沿线低碳技术与创新文化展示廊，串联研发组团。</p><div class="loc">脑 · 清河带</div></article>
+        <article class="sc-card"><div class="num">07</div><h4>近校成果转化街</h4><p>支撑清华、北大、中科院成果转化会客与路演的街道。</p><div class="loc">心 · AI原点</div></article>
+        <article class="sc-card"><div class="num">08</div><h4>数据要素会客厅</h4><p>数据资产、智能终端与内容消费的展示与会客厅。</p><div class="loc">手 · 大钟寺</div></article>
+        <article class="sc-card"><div class="num">09</div><h4>AI生活服务样板街</h4><p>连接居住、学习、消费、运动与社交的人才生活管家。</p><div class="loc">心 · 社区</div></article>
+        <article class="sc-card"><div class="num">10</div><h4>全球AI活动周路线</h4><p>开发者节、场景开放日、竞赛路演与城市体验路线。</p><div class="loc">全域 · 脊骨</div></article>
+        <article class="sc-card"><div class="num">11</div><h4>有机智能实验室</h4><p>将有机建筑原则与 AI 城市主义结合的开放式实验平台。</p><div class="loc">脑 · 花园校园</div></article>
+        <article class="sc-card"><div class="num">12</div><h4>共生数字孪生平台</h4><p>全域数字孪生底座，支撑规划、运营与公众参与。</p><div class="loc">全域 · 平台</div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 05 用户画像 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>05 · 用户画像 · 5 Personas</h2><p>五类核心使用者定义场景需求与空间接口，确保"有机智城"服务于真实的人而非抽象的产业。</p></div>
+      <span class="sheet-num">PERSONAS / 05</span>
+    </div>
+    <div class="sheet-body">
+      <div class="persona-grid">
+        <article class="persona"><div class="av">码</div><h4>开源开发者</h4><p>需要发布空间、评测节点与低成本算力。</p><div class="need">→ 场景 01/03/11</div></article>
+        <article class="persona"><div class="av">创</div><h4>初创团队</h4><p>需要路演客厅、转化街与会客空间。</p><div class="need">→ 场景 05/07/08</div></article>
+        <article class="persona"><div class="av">企</div><h4>头部企业访客</h4><p>需要国际会客厅、展示廊与活动周路线。</p><div class="need">→ 场景 05/10/12</div></article>
+        <article class="persona"><div class="av">居</div><h4>周边居民</h4><p>需要慢行导航、生活服务与铁路公园。</p><div class="need">→ 场景 04/09</div></article>
+        <article class="persona"><div class="av">学</div><h4>高校师生</h4><p>需要近校转化街、实验室与开源社区。</p><div class="need">→ 场景 07/11/01</div></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 06 朝圣地标 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>06 · AI 朝圣地标 · 3 Landmarks</h2><p>三处朝圣地标锚定神经脊骨与三器官，构成可步行、可叙事的 AI 文化 pilgrimage 路线。</p></div>
+      <span class="sheet-num">LANDMARKS / 06</span>
+    </div>
+    <div class="sheet-body">
+      <div class="landmark-grid">
+        <article class="landmark">
+          <div class="lm-svg"><svg viewBox="0 0 200 120"><rect x="20" y="40" width="160" height="14" fill="#1a3a5c" opacity=".15"/><rect x="20" y="40" width="160" height="14" fill="none" stroke="#1a3a5c" stroke-width="1.5"/><rect x="30" y="56" width="140" height="10" fill="#1a3a5c" opacity=".25"/><rect x="30" y="56" width="140" height="10" fill="none" stroke="#1a3a5c" stroke-width="1"/><g stroke="#c75b3c" stroke-width="2"><line x1="50" y1="75" x2="50" y2="100"/><line x1="100" y1="75" x2="100" y2="100"/><line x1="150" y1="75" x2="150" y2="100"/></g><circle cx="50" cy="100" r="4" fill="#c75b3c"/><circle cx="100" cy="100" r="4" fill="#c75b3c"/><circle cx="150" cy="100" r="4" fill="#c75b3c"/></svg></div>
+          <div class="lm-body"><div class="lm-no">LANDMARK L1</div><h4>开源成果展示廊</h4><p>沿铁路公园设置的线性展示廊，呈现开源模型、智能体与社区贡献的可视化档案。</p><div class="lm-loc">位置 · 沿铁路公园（神经脊骨）</div></div>
+        </article>
+        <article class="landmark">
+          <div class="lm-svg"><svg viewBox="0 0 200 120"><rect x="60" y="30" width="80" height="70" fill="#7a9b6e" opacity=".12" stroke="#7a9b6e" stroke-width="1.5"/><g fill="#c75b3c" opacity=".8"><rect x="72" y="44" width="10" height="10"/><rect x="88" y="44" width="10" height="10"/><rect x="104" y="44" width="10" height="10"/><rect x="120" y="44" width="10" height="10"/><rect x="72" y="60" width="10" height="10"/><rect x="88" y="60" width="10" height="10"/><rect x="104" y="60" width="10" height="10"/><rect x="120" y="60" width="10" height="10"/><rect x="80" y="76" width="10" height="10"/><rect x="96" y="76" width="10" height="10"/><rect x="112" y="76" width="10" height="10"/></g><text x="100" y="106" text-anchor="middle" font-size="9" fill="#6b6b6b">贡献矩阵</text></svg></div>
+          <div class="lm-body"><div class="lm-no">LANDMARK L2</div><h4>智能体贡献荣誉墙</h4><p>位于 AI 原点社区的实体荣誉墙，铭刻智能体与开发者的贡献，是社区的"心"之锚点。</p><div class="lm-loc">位置 · AI原点社区（心）</div></div>
+        </article>
+        <article class="landmark">
+          <div class="lm-svg"><svg viewBox="0 0 200 120"><circle cx="100" cy="60" r="30" fill="#c75b3c" opacity=".12" stroke="#c75b3c" stroke-width="1.5"/><circle cx="100" cy="60" r="18" fill="#c75b3c" opacity=".2"/><circle cx="100" cy="60" r="6" fill="#c75b3c"/><g stroke="#1a3a5c" stroke-width="2" fill="none"><path d="M100,30 L100,15"/><path d="M130,60 L150,60"/><path d="M100,90 L100,105"/><path d="M70,60 L50,60"/></g><g fill="#1a3a5c"><circle cx="100" cy="15" r="3"/><circle cx="150" cy="60" r="3"/><circle cx="100" cy="105" r="3"/><circle cx="50" cy="60" r="3"/></g></svg></div>
+          <div class="lm-body"><div class="lm-no">LANDMARK L3</div><h4>开发者散步道起点</h4><p>铁路公园北入口的朝圣起点，标记 pilgrimage 路线开端，向南串联三器官与两座地标。</p><div class="lm-loc">位置 · 铁路公园北入口</div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 07 指标仪表盘 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>07 · 核心指标仪表盘</h2><p>所有指标由 GeoJSON 与 metrics.json 派生，附公式、来源文件与置信度；FAR 与建筑高度待官方控规。</p></div>
+      <span class="sheet-num">METRICS / 07</span>
+    </div>
+    <div class="sheet-body">
+      <div class="metric-grid">
+        <div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><div class="mlab">site_area_sqm</div><div class="mval">11.41<span class="munit">km²</span></div><div class="mbar"><i style="width:100%"></i></div><div class="msrc">site_boundary · EPSG:4548 · high</div></div>
+        <div class="metric g" data-metric="green_ratio" data-value="0.320856"><div class="mlab">green_ratio</div><div class="mval">32.1<span class="munit">%</span></div><div class="mbar"><i style="width:32.1%"></i></div><div class="msrc">green / site · medium</div></div>
+        <div class="metric t" data-metric="public_space_ratio" data-value="0.007611"><div class="mlab">public_space_ratio</div><div class="mval">0.76<span class="munit">%</span></div><div class="mbar"><i style="width:8%"></i></div><div class="msrc">public_space / site · medium</div></div>
+        <div class="metric s"><div class="mlab">key_area_count</div><div class="mval">3<span class="munit">organs</span></div><div class="mbar"><i style="width:100%"></i></div><div class="msrc">key_areas.geojson · high</div></div>
+        <div class="metric"><div class="mlab">building_count</div><div class="mval">39<span class="munit">栋</span></div><div class="mbar"><i style="width:40%"></i></div><div class="msrc">buildings.geojson · medium</div></div>
+        <div class="metric t"><div class="mlab">building_footprint</div><div class="mval">101,634<span class="munit">m²</span></div><div class="mbar"><i style="width:30%"></i></div><div class="msrc">sum(footprints) · medium</div></div>
+        <div class="metric g"><div class="mlab">green_space_area</div><div class="mval">3.66<span class="munit">km²</span></div><div class="mbar"><i style="width:32%"></i></div><div class="msrc">green_space.geojson · medium</div></div>
+        <div class="metric"><div class="mlab">railway_park_area</div><div class="mval">2.49<span class="munit">km²</span></div><div class="mbar"><i style="width:22%"></i></div><div class="msrc">land_use railway_park · medium</div></div>
+        <div class="metric s"><div class="mlab">land_use_parcel_count</div><div class="mval">40<span class="munit">地块</span></div><div class="mbar"><i style="width:100%"></i></div><div class="msrc">land_use.geojson · medium</div></div>
+        <div class="metric t"><div class="mlab">road_length_m</div><div class="mval">46,888<span class="munit">m</span></div><div class="mbar"><i style="width:60%"></i></div><div class="msrc">roads centerlines · low</div></div>
+        <div class="metric"><div class="mlab">floor_area_ratio</div><div class="mval" style="font-size:20px;color:var(--warn)">待官方<span class="munit">—</span></div><div class="mbar"><i style="width:0;background:var(--warn)"></i></div><div class="msrc">planning_limits · unknown</div></div>
+        <div class="metric t"><div class="mlab">building_height_m</div><div class="mval" style="font-size:20px;color:var(--warn)">待官方<span class="munit">—</span></div><div class="mbar"><i style="width:0;background:var(--warn)"></i></div><div class="msrc">planning_limits · unknown</div></div>
+      </div>
+
+      <!-- 用地构成 -->
+      <div class="landuse-wrap">
+        <div>
+          <h3 style="font-size:14px;color:var(--blue-ink);margin:0 0 12px">用地构成 · Land Use Composition（40地块 · 100%覆盖）</h3>
+          <div class="landuse-bar">
+            <div style="background:#1a3a5c;width:30.4%">居住 30.4%</div>
+            <div style="background:#c75b3c;width:21.8%">铁路公园 21.8%</div>
+            <div style="background:#7a9b6e;width:13.0%">科教 13.0%</div>
+            <div style="background:#d4b896;width:13.8%">商业 13.8%</div>
+            <div style="background:#5f7d54;width:10.3%">道路 10.3%</div>
+            <div style="background:#a8492f;width:5.1%">公服 5.1%</div>
+            <div style="background:#6b6b6b;width:4.3%">工业 4.3%</div>
+            <div style="background:#c79838;width:1.3%">绿地 1.3%</div>
+          </div>
+        </div>
+        <div class="landuse-legend">
+          <span><i class="sw" style="background:#1a3a5c"></i>居住 <b>3,472,582 m²</b></span>
+          <span><i class="sw" style="background:#c75b3c"></i>铁路公园 <b>2,489,748 m²</b></span>
+          <span><i class="sw" style="background:#7a9b6e"></i>科研教育 <b>1,483,899 m²</b></span>
+          <span><i class="sw" style="background:#d4b896"></i>商业商务 <b>1,570,271 m²</b></span>
+          <span><i class="sw" style="background:#5f7d54"></i>道路交通 <b>1,172,907 m²</b></span>
+          <span><i class="sw" style="background:#a8492f"></i>公共设施 <b>580,962 m²</b></span>
+          <span><i class="sw" style="background:#6b6b6b"></i>工业研发 <b>490,217 m²</b></span>
+          <span><i class="sw" style="background:#c79838"></i>绿地 <b>152,273 m²</b></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 08 分期 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>08 · 更新项目与实施分期 · Phasing</h2><p>更新项目清单涵盖8个项目，近/中/远三阶段分期为设计提案，非实施计划；面积基于 phasing.geojson 派生。</p></div>
+      <span class="sheet-num">PHASING / 08</span>
+    </div>
+    <div class="sheet-body">
+      <div class="phase-grid">
+        <article class="phase near">
+          <div class="ph-no">PHASE · NEAR</div>
+          <h4>近期</h4>
+          <div class="ph-val">3,148,225<span class="u"> m²</span></div>
+          <div class="ph-bar"><i></i></div>
+          <p>优先启动神经脊骨（铁路公园）骨架与脑器官（众智园）核心研发组团，建立创新带结构基座。</p>
+          <div class="ph-pct">占总面积 27.6%</div>
+        </article>
+        <article class="phase mid">
+          <div class="ph-no">PHASE · MID</div>
+          <h4>中期</h4>
+          <div class="ph-val">4,500,920<span class="u"> m²</span></div>
+          <div class="ph-bar"><i></i></div>
+          <p>推进心器官（AI原点社区）近校转化与社区更新，完善蓝绿网络与慢行系统，扩大创新生态。</p>
+          <div class="ph-pct">占总面积 39.4%</div>
+        </article>
+        <article class="phase long">
+          <div class="ph-no">PHASE · LONG</div>
+          <h4>远期</h4>
+          <div class="ph-val">3,763,691<span class="u"> m²</span></div>
+          <div class="ph-bar"><i></i></div>
+          <p>完成手器官（大钟寺）产业聚集与商业复合，实现三器官有机闭环与全域数字孪生运营。</p>
+          <div class="ph-pct">占总面积 33.0%</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 09 任务覆盖矩阵 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>09 · 任务覆盖矩阵</h2><p>compliance_matrix.json 覆盖公告 1.3/1.4/1.5 与 agent.1–agent.6；standard_matrix 与 design_depth_matrix 证明专业标准与成果深度。</p></div>
+      <span class="sheet-num">COVERAGE / 09</span>
+    </div>
+    <div class="sheet-body">
+      <table class="cov-table">
+        <thead><tr><th>任务编号</th><th>任务名称</th><th>对应成果</th><th>状态</th></tr></thead>
+        <tbody>
+          <tr><td class="code">ANNOUNCE 1.3</td><td>三层范围（统筹研究 / 总体设计 / 重点区域）</td><td>project_scope_summary · 三层范围 sheet</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">ANNOUNCE 1.4</td><td>三处重点区域详细设计</td><td>key_areas.geojson · 器官 sheet 03</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">ANNOUNCE 1.5</td><td>AI 场景与品牌叙事</td><td>12 场景卡 · 3 朝圣地标</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">AGENT.1</td><td>边界与范围可信度</td><td>site_boundary.geojson · BOUNDARY_TRUST</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">AGENT.2</td><td>重点区域可信度</td><td>key_areas.geojson · KEY_AREAS_TRUST</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">AGENT.3</td><td>用地拓扑完整性</td><td>land_use.geojson · 40地块 100%覆盖</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">AGENT.4</td><td>指标派生与自检</td><td>metrics.json · LAND_USE_TOPOLOGY</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">AGENT.5</td><td>静态可视化打包</td><td>visual/index.html · VISUAL_STATIC</td><td><span class="st pass">PASS</span></td></tr>
+          <tr><td class="code">AGENT.6</td><td>专业证据审查</td><td>proposal.md · PROFESSIONAL_EVIDENCE</td><td><span class="st pass">PASS</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 10 自检状态 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>10 · 自检状态 · Self-check</h2><p>self_check.json 五项检查全部通过；临时边界以 intake 讨论为限，正式评分前须替换官方数据。</p></div>
+      <span class="sheet-num">SELF-CHECK / 10</span>
+    </div>
+    <div class="sheet-body">
+      <div class="check-grid">
+        <div class="check"><div class="ck-ic">✓</div><div class="ck-body"><h4>BOUNDARY_TRUST</h4><p>临时边界已存在；正式专业评分前须替换为官方红线。（severity: major）</p></div><div class="ck-st">PASS</div></div>
+        <div class="check"><div class="ck-ic">✓</div><div class="ck-body"><h4>KEY_AREAS_TRUST</h4><p>三处重点区域为临时多边形；正式评分前须替换官方多边形。（severity: major）</p></div><div class="ck-st">PASS</div></div>
+        <div class="check"><div class="ck-ic">✓</div><div class="ck-body"><h4>LAND_USE_TOPOLOGY</h4><p>初始用地多边形由场地边界划分派生，40 地块 100% 覆盖。（severity: major）</p></div><div class="ck-st">PASS</div></div>
+        <div class="check"><div class="ck-ic">✓</div><div class="ck-body"><h4>VISUAL_STATIC</h4><p>静态 HTML 可视化已生成，无任何外部依赖。（severity: info）</p></div><div class="ck-st">PASS</div></div>
+        <div class="check"><div class="ck-ic">✓</div><div class="ck-body"><h4>PROFESSIONAL_EVIDENCE</h4><p>方案引用标准、设计深度项、几何、指标、来源与假设。（severity: major）</p></div><div class="ck-st">PASS</div></div>
+        <div class="check" style="border-left-color:var(--warn)"><div class="ck-ic" style="background:var(--warn)">!</div><div class="ck-body"><h4>PACKAGE_STATE</h4><p>ready_for_review（finalize 后）。临时数据仅支持 intake 展示与返修。</p></div><div class="ck-st" style="color:var(--warn);background:#fff8e6;border-color:var(--warn)">REVIEW</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 11 来源与假设 ============ -->
+  <section class="sheet">
+    <div class="sheet-head">
+      <div><h2>11 · 来源与假设 · Sources & Assumptions</h2><p>所有结论可溯源至已登记来源；待补控规与工程条件已在假设中列明并解释影响。</p></div>
+      <span class="sheet-num">SOURCES / 11</span>
+    </div>
+    <div class="sheet-body">
+      <div class="src-grid">
+        <div>
+          <h3 style="font-size:14px;color:var(--blue-ink);margin:0 0 12px">已登记来源 · Sources</h3>
+          <div class="src-list">
+            <div class="src-item"><span class="sid">SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT</span><span class="stype">official_public</span></div>
+            <div class="src-item"><span class="sid">SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</span><span class="stype">user_cleared</span></div>
+            <div class="src-item"><span class="sid">SRC-PROVISIONAL-BOUNDARIES-2026</span><span class="stype">agent_inferred</span></div>
+            <div class="src-item"><span class="sid">SRC-2026-BJ-KW-THREE-AREAS-WINGS</span><span class="stype">official_public</span></div>
+            <div class="src-item"><span class="sid">SRC-2026-HAIDIAN-1X1</span><span class="stype">official_public</span></div>
+            <div class="src-item"><span class="sid">SITE-PACKAGE · brief/site-package/</span><span class="stype">official_public</span></div>
+            <div class="src-item"><span class="sid">SOURCE-REGISTRY · data/source_registry.json</span><span class="stype">registry</span></div>
+            <div class="src-item"><span class="sid">PROCESSED-FACT-PACK · agent_fact_pack.md</span><span class="stype">processed_ref</span></div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:14px;color:var(--blue-ink);margin:0 0 12px">关键假设 · Assumptions</h3>
+          <div class="assump">
+            <h4>A-CONTROLS-001 · pending_professional_confirmation</h4>
+            <p>详细的规划控制条件、道路红线、权属、市政公用、文保与工程约束，须从官方附件确认后方可用于法定用途。</p>
+            <div class="impact">影响：本方案仅就可提供的官方边界与已提交设计图层作为正式 AI 提案评审；法定控制指标仍需专业确认。FAR 与建筑高度因此标记为 unknown。</div>
+          </div>
+          <div class="assump" style="margin-top:12px;border-left-color:var(--blue)">
+            <h4 style="color:var(--blue)">METRICS NOTE</h4>
+            <p>所有面积由 GeoJSON 多边形在 EPSG:4548 投影下计算；置信度分级（high/medium/low）标注于每个指标。建筑数量（39 栋）与道路长度（46,888 m）为设计提案，非现状调查。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ftr-l">
+      <b>有机智城：京张有机AI创新带 · Organic AI Polis</b><br>
+      完全离线静态电子展示 · 无 CDN / 远程脚本 / 远程字体 / 地图瓦片 / iframe / API / 追踪<br>
+      权威数据以 GeoJSON · metrics.json · 矩阵 · 自检结果为准
+    </div>
+    <div class="ftr-r">
+      visual/index.html<br>
+      package_state: ready_for_review<br>
+      generated: 2026-08-08
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
