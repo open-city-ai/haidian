@@ -21,8 +21,8 @@ Constraints: AI technology must feel subtle, supervised, and publicly accountabl
 Avoid: cyberpunk neon, purple-blue gradients, dark atmosphere, fantasy, glossy corporate campus, giant screens, flying vehicles, autonomous-car spectacle, excessive holograms, decorative bokeh, implausible towers, tourist-poster styling
 ```
 
-5 张 `assets/figures/*.png` 由投稿 GeoJSON、metrics、矩阵和本案交付规则确定性绘制，字体使用本机 Microsoft YaHei 仅作栅格化输出，不随包分发。图中 provisional boundary 均以低对比虚线表达。v1.5 为 `metrics-evidence.png` 与英文对照图新增同目录 SVG 矢量源，完整呈现“一构件一智证里程”，不使用外部图形资产。A3/A0 PDF 由上述自制图与原创排版生成；v1.5 仅更新中英文 A3 第 3、9 页及 A0 第 3 板，未改变空间几何或指标。
+5 张 `assets/figures/*.png` 由投稿 GeoJSON、metrics、矩阵和本案交付规则确定性绘制，字体使用本机 Microsoft YaHei 仅作栅格化输出，不随包分发。图中 provisional boundary 均以低对比虚线表达。`metrics-evidence.png` 与英文对照图具有同目录 SVG 矢量源，完整呈现“一构件一智证里程”，不使用外部图形资产。A3/A0 PDF 由上述自制图与原创排版生成；v1.6 未改变空间几何或指标。
 
 本方案不使用商业地图瓦片、新闻图片、OSM 截图、企业商标、人物肖像素材或第三方论文图像。国际案例只引用各机构公开官网并作为背景机制对照，不用于本项目空间控制或绩效承诺。
 
-v1.4 比较阅读仓库内三份同侪方案：“京张开源脉冲”为 `COMMUNITY-DISPLAY-ONLY`，“京张开源带”为 `CC-BY-4.0`，“京张校准场”为 `COMMUNITY-DISPLAY-ONLY`。本轮只在 `proposal.md`、`proposal.en.md`、`sources.json` 与 `visual/assets/participation.json` 中用原创表述记录方法层的发现、采用和拒绝，不复制其文本、表格、图像、GeoJSON、指标、专有命名或其他资产，也不将同侪主张转作本案的空间、工程或事实证据。v1.5 的“一构件一智证里程”从本案既有“智证线—智证站—里程—交接”身份推导，不复制同侪命名、schema、阈值或视觉资产。来源路径、许可和禁止用途已逐项登记；后续若需要派生或再分发任何资产，须另行按其许可和权利人要求清权。
+v1.6 的设计推导仅使用公开任务、已登记资料、本包结构化数据和“轨迹—站点—里程”的自有空间语法。“触发—证据—决策—输出”、现场观察前置登记、负面结果与回滚、三站证据交接和“一构件一智证里程”均以本包原创文字、表格、JSON、图形与版式表达。来源路径、许可和禁止用途已逐项登记；后续若需要派生或再分发外部资产，须另行按许可和权利人要求清权。

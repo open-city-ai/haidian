@@ -3,7 +3,7 @@ title: "道钉带 · 百年京张AI创新带总体概念与重点区域城市设
 author_github: "cssMV"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以詹天佑折返展线的工程机制——以空间换能力——为原型，把 9.7 公里京张遗址公园走廊组织为「一轴一支、三处折返、两翼配置」的创新回路：上行轴为南北贯通的遗址公园主轴，验证轴为自北京AI原点社区分出的东南向支轴，三处折返台完成东西缝合；以「道钉」为贡献单元与荣誉体系，把「贡献可记忆」做成可进入的公共空间。方案提交 187 个用地地块（三处重点区域细分至 90 个街坊）、320 处建筑基底（重点区域内 308 处）、19 条道路与 19 处公共空间的可复算几何，16 项已知指标与 4 项写明缺口的待补指标，并完整回应公告 1.3–1.5 与面向智能体任务书 agent.1–agent.6。全部空间落地建议均为概念建议，边界为临时粗略边界。"
+summary: "以詹天佑折返展线的工程机制——以空间换能力——为原型，把 9.7 公里京张遗址公园走廊组织为「一轴一支、三处折返、两翼配置」的创新回路：上行轴为南北贯通的遗址公园主轴，验证轴为自北京AI原点社区分出的东南向支轴，三处折返台完成东西缝合；以「道钉」为贡献单元与荣誉体系，把「贡献可记忆」做成可进入的公共空间。方案提交 187 个用地地块（三处重点区域细分至 90 个街坊）、320 处建筑基底（重点区域内 308 处）、19 条道路与 19 处公共空间的可复算几何，18 项已知指标与 4 项写明缺口的待补指标，并完整回应公告 1.3–1.5 与面向智能体任务书 agent.1–agent.6。全部空间落地建议均为概念建议，边界为临时粗略边界。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
 ---
@@ -55,7 +55,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ![图 F2 空间结构与用地布局：从结构判断传导到 187 个用地地块](assets/figures/land-use-structure.png)
 
-验证轴值得单独说明一次，因为它是本方案与多数「一轴两翼」方案在结构上真正分岔的地方：多数方案把两翼理解为方向性关系，用一个箭头指出去就结束了；本方案把它画成一条真实的线性廊带，于是它有了拓扑后果——支轴把东侧带一分为二，围合出一块两轴之间的楔形街区（用地图层中 `band=WG` 的四个功能带即由此产生）。删掉这条轴，东侧带就退回一整块，功能分侧只能靠文字声明；留下它，功能分侧就成为可在图层里验证的空间事实。
+验证轴值得单独说明一次，因为它是本方案与多数「一轴两翼」方案在结构上真正分岔的地方：多数方案把两翼理解为方向性关系，用一个箭头指出去就结束了；本方案把它画成一条真实的线性廊带，于是它有了拓扑后果——支轴把东侧带一分为二，围合出一块两轴之间的楔形街区（用地图层中 `band=WG` 的四个功能带即由此产生，在重点区域内进一步细分为 18 个街坊级地块）。删掉这条轴，东侧带就退回一整块，功能分侧只能靠文字声明；留下它，功能分侧就成为可在图层里验证的空间事实。
 
 ![图 F7 验证轴与楔形街区：画出这条支轴前后的东侧带对照](assets/figures/validation-axis.png)
 
@@ -214,7 +214,7 @@ Logo 方向：以一枚道钉的顶视与侧视构成基本符号——钉帽为
 
 ## 蓝绿空间、公共空间与城市风貌
 
-绿地图层 [data:geometry/green_space.geojson#GREEN-001] 共 18 个要素，全部由用地表中 1401 公园绿地与 1402 防护绿地地块派生，因此 [metric:green_ratio] 16.49% 可以从两条独立路径复核 [depth:blue_green_public_space]。公共空间图层 [data:geometry/public_space.geojson#PUBLIC-010] 共 19 个要素，[metric:public_space_ratio] 为 7.23%。
+绿地图层 [data:geometry/green_space.geojson#GREEN-001] 共 58 个要素，全部由用地表中 1401 公园绿地与 1402 防护绿地地块派生，因此 [metric:green_ratio] 16.49% 可以从两条独立路径复核 [depth:blue_green_public_space]。公共空间图层 [data:geometry/public_space.geojson#PUBLIC-010] 共 19 个要素，[metric:public_space_ratio] 为 7.23%。
 
 必须明确的一条复算规则：绿地与公共空间在遗址公园主轴内存在空间叠加（主轴步行带「信道」同时位于公园绿地之内），两个比例分别对各自图层合并去重后独立计算，不可简单相加。这一条已写入 `metrics.json` 的 assumptions 字段。
 

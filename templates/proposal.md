@@ -2,6 +2,7 @@
 title: "方案标题"
 author_github: "your-github-login"
 language: "zh"
+proposal_format_version: "2"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "用 1-2 句话概括 formal 城市设计方案、核心空间策略和 AI 场景。"
@@ -14,11 +15,11 @@ iteration: "v0.1"
 
 ## 设计依据与资料清单
 
-说明本方案引用的官方公告、资格预审/任务书附件、面向智能体任务书、公开政策、公开数据、用户提供且已清权资料。必须读取 `data/source_registry.json`，明确哪些资料是 formal-ready，哪些只可用于背景，哪些只是 provisional intake 线索。列出 `sources.json`、`assumptions.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json` 的对应关系。
+说明本方案引用的官方公告、资格预审/任务书附件、面向智能体任务书、公开政策、公开数据、用户提供且已清权资料。必须读取 `data/source_registry.json`，明确哪些资料是 formal-ready，哪些只可用于背景，哪些只是 provisional intake 线索。完整来源、指标、标准、设计深度和任务覆盖放在 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`，不要把这些机器索引逐条抄进正文。
 
-正文必须使用可校验引用格式，例如 `[source:SITE-PACKAGE]`、`[standard:MOHURD-URBAN-DESIGN-MEASURES]`、`[depth:land_use_layout]`、`[data:geometry/land_use.geojson#LU-001]`、`[metric:green_ratio]`。每个 required section 至少引用一条证据。
+正文在关键判断后使用可校验引用格式，例如 `[source:SITE-PACKAGE]`、`[standard:MOHURD-URBAN-DESIGN-MEASURES]`、`[depth:land_use_layout]`、`[data:geometry/land_use.geojson#LU-001]`、`[metric:green_ratio]`。每个 required section 至少引用一条与该节判断直接相关的证据；同一处连续引用通常不超过 3 条。删除引用标记后，句子仍必须自然、完整、可读。
 
-写作要求：`proposal.md` 是主语言主体方案，语言副本必须保持等义；人类评审者不打开 JSON 也应能理解方案。每个章节都要回答四件事：设计判断是什么、为什么这样判断、对应哪个图层/指标/标准、还有什么资料缺口。不得只写愿景口号、不得只列矩阵、不得把 GeoJSON 当作正文解释的替代品。面向智能体任务书的六项任务必须在正文中被实际展开：命名/Logo、生态案例、场景卡、朝圣地标、文化叙事、长期运营，不能只在 `compliance_matrix.json` 中打勾。
+写作要求：`proposal.md` 是主语言主体方案，语言副本必须保持等义；人类评审者不打开 JSON 也应能理解方案。每个章节都要回答四件事：设计判断是什么、为什么这样判断、对应哪个图层/指标/标准、还有什么资料缺口。正文写给人，结构化文件用于机器复核；不得只写愿景口号、不得只列矩阵、不得堆叠引用编号、不得把 GeoJSON 当作正文解释的替代品。面向智能体任务书的六项任务必须在正文中被实际展开：命名/Logo、生态案例、场景卡、朝圣地标、文化叙事、长期运营，不能只在 `compliance_matrix.json` 中打勾。
 
 图文要求：正文必须插入由 GeoJSON、metrics 和矩阵派生的本地图片，至少包括 `assets/figures/site-overview.png`、`assets/figures/land-use-structure.png`、`assets/figures/key-areas.png`、`assets/figures/mobility-bluegreen.png`、`assets/figures/metrics-evidence.png`。图片必须使用 Markdown 本地引用，不得使用远程图片、data URI、外部地图截图或未清权素材。图片是人类可读解释层，不能替代 GeoJSON/metrics 的权威数据。
 
@@ -100,11 +101,4 @@ iteration: "v0.1"
 
 ## 参考资料
 
-- `brief/site-package/design_brief.json`
-- `brief/site-package/allowed_design_space.json`
-- `brief/site-package/agent_taskbook.json`
-- `brief/site-package/sources.json`
-- `data/source_registry.json`
-- `brief/site-package/schemas/compliance_matrix.schema.json`
-- `brief/site-package/schemas/standard_matrix.schema.json`
-- `brief/site-package/schemas/design_depth_matrix.schema.json`
+用 5-12 条人类可读的书目信息列出真正影响方案判断的主要材料。完整机器索引以 `sources.json` 和三个矩阵文件为准，不在这里复制文件名或 ID 清单。

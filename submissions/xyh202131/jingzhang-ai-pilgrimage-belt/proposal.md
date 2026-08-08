@@ -2,6 +2,7 @@
 title: "AI 朝圣·铁轨新生带——京张可验证场景线"
 author_github: "xyh202131"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张从承载AI应用的线性走廊升级为一条可共创、可验证、可暂停、可复现、可向社会交付的AI公共创新生产线。"
 tracks:
@@ -41,7 +42,15 @@ scenarios:
 | 指标偏几何 | 没有护照、人工兜底、非 AI 通道和安静无屏指标 | 指标扩展为空间、治理、公共价值、产业验证、文化可信、运营和韧性七类 |
 | 运营只有组织与年报 | 缺少年度节律、准入门、成果转化和失败公开 | 建立问题季—开源季—城市 Beta 季—Proof Week 四季协议 |
 
+### 创新不是口号：可证伪登记表
+
+V2 进一步补上一个仍然存在的缺口：方案已经提出验证线、四门制、可逆公共空间和失败公开，但“看起来新”仍不能证明“创新成立”。新增 `visual/assets/innovation-register.json`，把五项核心创新逐一绑定到基线不足、新颖性主张、可证伪假设、最小证据、通过标准、失败信号和退出动作；缺少失败信号或退出动作的主张不得登记为正式创新，尚未发生的运营结果继续保持 `unknown` [data:visual/assets/innovation-register.json#INNOV-001] [data:visual/assets/innovation-register.json#INNOV-005]。这使评审者不仅能问“新在哪里”，还可以直接判断“什么证据会证明它没有成立”。
+
 依据分为四级。第一级是征集公告、智能体任务书和项目场地包 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE]；第二级是仓库资料登记、标准索引和处理导航 [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]；第三级是北京市关于原点社区、百年京张实景测试和“一核多点”创新街区的公开背景，只用于判断协同方向，不代表项目已批准或任何机构承诺参与 [source:BEIJING-AI-ORIGIN-2026] [source:BEIJING-AI-DISTRICTS-2026]；第四级是六个全球案例和国家数据、AI 内容标识政策，仅用于机制启发和治理边界 [source:NATIONAL-DATA-INFRA-2025] [source:AI-CONTENT-LABEL-2025] [source:AI-PLUS-2025]。
+
+### 证据不是一次性快照：失效必须向下游传播
+
+`sources.json` 已记录 25 条来源及访问日期，但同一天访问不等于内容永久有效，也不能发现修订、替代、失联或临时边界被正式资料取代。新增 `visual/assets/evidence-freshness-policy.json`，把来源分成项目资料、临时空间数据、城市背景、政策标准和案例参考五类，规定复核触发点、建议最长未核时间、责任角色和失效动作；来源变为 `review_due`、`superseded` 或 `unavailable` 时，受影响主张、矩阵项和场景门级必须同步降级或冻结。当前只确认已有访问日期，尚未形成带内容摘要的刷新审计，因此完成刷新审计数保持为 0，临时空间数据无论多新也仍然只是 `provisional_only` [data:visual/assets/evidence-freshness-policy.json#FRESH-01] [data:visual/assets/evidence-freshness-policy.json#FRESH-02]。
 
 专业响应覆盖 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 与 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。当前精确红线、现状建筑、权属、控规指标、市政、交通工程与文保控制仍未取得；`geometry/site_boundary.geojson` 和三处重点区继续使用仓库临时替代范围，均不得用于审批、征地、精确面积或工程实施 [data:geometry/site_boundary.geojson#SITE-001] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [assumption:A-BOUNDARY-001] [assumption:A-CONTROLS-001]。
 
@@ -246,7 +255,7 @@ AI 与公共价值类包括十个服务场景、十二个映射节点、三个�
 4. **AI 与数据风险**：偏差、幻觉、隐私泄露、越权自动化和供应商锁定通过最小数据、源端保留、日志、人工责任、复测、到期和退役控制；不得自动执法、诊断或替代正式审批。
 5. **安全与韧性风险**：机器人、车辆和设备测试只在授权范围；实体急停、现场安全员、离线人工和 L0/L1/L2 降级必须可用。能源和恢复指标未实测时保持未知。
 6. **文化与历史风险**：史实、人物、文物和工程资料需由官方/馆藏/清权来源复核；AI 生成内容显式与元数据标识，争议内容可纠错、下架和追溯 [assumption:A-CULTURE-CONTENT-006]。
-7. **版权与品牌风险**：图片、字体、图标、商标、肖像、论文图和模型输出逐项登记；Logo 使用自有几何语法，三个地标名称不暗示企业或政府授权。
+7. **版权与品牌风险**：新增逐文件权利状态台账，覆盖 manifest 中 48 个路径并区分自述原创、仓库临时资料派生与待审计生成物；当前独立逐文件清权审计完成数为 0，总体状态为 `not_fully_cleared`。`COMMUNITY-DISPLAY-ONLY` 仍缺完整条款，OSM ODbL 义务、PDF 字体、生成工具条款、可编辑源以及 Logo/地标商标均需后续复核，不能声称已经全部清权 [data:visual/assets/rights-clearance-ledger.json#RIGHTS-01] [data:visual/assets/rights-clearance-ledger.json#RIGHTS-GATE-02]。
 8. **外部协同风险**：未来科学城、怀柔科学城、经开区、其他创新街区和京津冀只作为可选复测角色，未经书面确认不得写成合作方、投资方或落地承诺 [assumption:A-EXTERNAL-COLLAB-005]。
 9. **运营与公平风险**：活动热度不能替代居民满意、可达、公平与投诉闭环；贡献荣誉不得用于流量排名、就业筛选或行政评价。
 10. **工具与证据风险**：机器检查只验证结构、拓扑、引用和一致性，不替代规划、建筑、交通、市政、景观、生态、消防、铁路、数据安全、无障碍、社区与法律专业判断 [depth:risk_missing_data]。
@@ -265,4 +274,4 @@ AI 与公共价值类包括十个服务场景、十二个映射节点、三个�
 
 全球案例为 [source:CASE-KENDALL]、[source:CASE-ONE-NORTH]、[source:CASE-22AT]、[source:CASE-KINGS-CROSS]、[source:CASE-STATION-F] 与 [source:CASE-MARS]。现状方向背景为 [source:OSM-CONTEXT]，其 ODbL 数据只用于道路、铁路和水系识别，不能作为官方边界或工程依据。
 
-生成方法：空间设计由公开临时边界、项目枚举、OSM 背景和确定性脚本派生；面积与长度在 EPSG:4548 中复算；场景护照、服务区、公共空间模式和阶段门以 GeoJSON 属性记录；PNG、A3/A0 与离线 HTML 是解释层，`geometry/*.geojson`、`metrics.json`、三类矩阵和 `self_check.json` 是证据层。许可为 `COMMUNITY-DISPLAY-ONLY`，完整版权和使用限制见 `report/copyright_statement.md`。
+生成方法：空间设计由公开临时边界、项目枚举、OSM 背景和确定性脚本派生；面积与长度在 EPSG:4548 中复算；场景护照、服务区、公共空间模式和阶段门以 GeoJSON 属性记录；PNG、A3/A0 与离线 HTML 是解释层，`geometry/*.geojson`、`metrics.json`、三类矩阵和 `self_check.json` 是证据层。`COMMUNITY-DISPLAY-ONLY` 仅作为当前许可标签记录，其完整条款未随包提供；逐文件状态、未完成事项与使用限制见 `visual/assets/rights-clearance-ledger.json` 和 `report/copyright_statement.md`。

@@ -126,6 +126,8 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ![未来自动驾驶场景的阶段门、指标状态和回退路径](assets/figures/metrics-evidence.png)
 
+![自动驾驶准备度看板：场景、节点、闸门、证据路由和专属指标状态](assets/figures/autonomy-readiness.png)
+
 ## 9. 指标、标准和合规矩阵
 
 当前可直接回读的底盘指标包括：provisional site area 11.41 km²、三处重点区、绿地比例和公共空间比例。自动驾驶新增指标全部明确为 `unknown` 或 `design_target`：路缘冲突率、无障碍连续性、远程停止响应、回退成功率、数据最小化覆盖率、试验路线长度和自动驾驶场景卡数量 [metric:curb_conflict_rate] [metric:remote_stop_response_seconds] [metric:autonomy_fallback_success_ratio] [metric:data_minimization_coverage_ratio]。
@@ -140,7 +142,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 交付与复算
 
-本包包含中文正文、英文对照、GeoJSON、指标、假设、来源、五张由同一数据底盘生成的图件、A3/A0 图纸和离线视觉页。正式官方 polygons、道路/管线/权属/交通/气象/排水/生态基线到位后，必须重新生成图层、metrics、图件、报告和自检；不能只替换一张图或把未来目标改写成已知事实。
+本包包含中文正文、英文对照、GeoJSON、指标、假设、来源、六张由同一数据底盘生成的核心图件、A3/A0 图纸和离线视觉页。正式官方 polygons、道路/管线/权属/交通/气象/排水/生态基线到位后，必须重新生成图层、metrics、图件、报告和自检；不能只替换一张图或把未来目标改写成已知事实。
 
 ## 参考资料
 

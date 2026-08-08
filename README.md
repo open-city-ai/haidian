@@ -199,6 +199,8 @@ submissions/octocat/ai-urban-loop/visual/index.html
 
 `proposal.md` 可使用中文或英文，并应设置 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也应按同一命名规则提供另一语言版本。两版须保持章节、主张、指标和证据引用一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少译稿或术语不一致只产生 warning，不阻断投稿、合并或内容审稿。
 
+新提交使用 `proposal_format_version: "2"`：正文优先服务人类阅读，每个章节只在关键判断旁保留少量证据引用；完整来源、指标、空间要素、专业标准和设计深度索引由结构化文件承担。旧提交按 v1 继续兼容，无需为了升级而重写，线上展示会自动折叠连续证据编号。参见[可读方案格式](skills/urban-design-ai-submission/references/human-readable-proposal.md)。
+
 - 方案标题与元数据
 - 1-3 个主题赛道 ID
 - 1-8 个标准场景 ID

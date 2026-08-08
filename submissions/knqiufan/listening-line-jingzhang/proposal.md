@@ -1,26 +1,41 @@
 ---
-title: "听见京张 v1.2 / THE LISTENING LINE：可审计的城市倾听与公共修复基础设施"
-title_en: "The Listening Line v1.2: Auditable Urban Listening and Public Repair Infrastructure"
+title: "听见京张 v1.3 / THE LISTENING LINE：可审计的城市倾听与公共修复基础设施"
+title_en: "The Listening Line v1.3: Auditable Urban Listening and Public Repair Infrastructure"
 author_github: "knqiufan"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "CC-BY-SA-4.0"
-summary: "以京张铁路遗址公园为公共倾听主线，用《倾听合约 1.2》《倾听回执 1.2》、四道准入门和三套现场基线协议，把地方声景、公众问题、AI故障、专业复核、运维修复与退出组织成可审计、可移交、可从真实小试点开始的城市基础设施。"
+summary: "以京张铁路遗址公园为公共修复主线，把《倾听合约》落实为众智园责任水岸测试廊、AI原点静声共译庭和大钟寺四象限缝合修补台三种空间原型，并用十项E3开场包、五个区域开放接口和可审计的人机决策差异支持专业团队接手。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.2-evidence-handoff"
-version: "1.2.0"
+iteration: "v1.3-spatial-proof-and-start-pack"
+version: "1.3.0"
 ---
 
-# 听见京张 v1.2 / THE LISTENING LINE
+# 听见京张 v1.3 / THE LISTENING LINE
 
-**证据与专业移交版 1.2.0：不增加未经验证的“大概念”，而把三项试点推进到可授权、可采样、可签注、可暂停、可移交的最小工作深度。**
+**空间证据与启动包版 1.3.0：把同一条‘倾听线’拆成三种在地空间原型，并把授权后的第一轮现场工作预装成可审计、可暂停、可移交的 E3 开场包。**
 
 > **城市不缺会说话的 AI，缺的是一套让地方、公众和系统故障都能被听见，并把回应变成修复的公共基础设施。**
 
-“听见”不是在公园里布满麦克风，也不是另造一个科技展陈主题。它包括三层：**听见地方**——铁路、钟声、水岸、树木与日常交往构成的场所声景；**听见人**——居民、通勤者、维护者、开发者和访客对空间与服务的真实问题；**听见系统**——AI、机器人、导视、照明和公共设施的错误、接管、修复与退役。三层由《倾听合约 1.2》与《倾听回执 1.2》连接：前者是公众能读懂的 14 项准入清单，后者是每一次试点运行都必须留下的授权、证据、人工决定、运维与退出记录。
+“听见”不是在公园里布满麦克风，也不是另造一个科技展陈主题。它包括三层：**听见地方**——铁路、钟声、水岸、树木与日常交往构成的场所声景；**听见人**——居民、通勤者、维护者、开发者和访客对空间与服务的真实问题；**听见系统**——AI、机器人、导视、照明和公共设施的错误、接管、修复与退役。三层由《倾听合约 1.3》与《倾听回执 1.3》连接：前者是公众能读懂的 14 项准入清单，后者是每一次试点运行都必须留下的授权、证据、人工决定、运维与退出记录。
 
-本 v1.2 保留“一线、三室、六站、两翼”品牌骨架，新增 E0—E5 六级证据梯、四道共同准入门、三套专业基线协议、责任分权矩阵和一份可复现但明确 `performance_results=null` 的合成回执。它没有现场授权、真实样本或实施绩效；P1、P2、P3 的 Accountable 机构仍为 `null`。这是诚实的专业起点，不是缺陷掩饰。[assumption:A-AUTHORIZATION-001] [assumption:A-BASELINE-001] 所有空间均为开放共创建议和可供专业团队深化研究的参考方案，不替代正式规划，不构成政府审定、工程可行性、资金或实施承诺。
+本 v1.3 保留“一线、三室、六站、两翼”品牌骨架，新增 E0—E5 六级证据梯、四道共同准入门、三套专业基线协议、责任分权矩阵和一份可复现但明确 `performance_results=null` 的合成回执。它没有现场授权、真实样本或实施绩效；P1、P2、P3 的 Accountable 机构仍为 `null`。这是诚实的专业起点，不是缺陷掩饰。[assumption:A-AUTHORIZATION-001] [assumption:A-BASELINE-001] 所有空间均为开放共创建议和可供专业团队深化研究的参考方案，不替代正式规划，不构成政府审定、工程可行性、资金或实施承诺。
+
+
+## 执行摘要：一条公共修复线，三种空间证据
+
+v1.3 不把“倾听”继续留在协议层，而把它翻译成三种能够被城市设计、交通、声景、资产与运营团队直接接手的**平面—剖面—启动包**。三个原型共享《倾听合约》《倾听回执》和 G1—G4，但空间语言不再相同：[metric:spatial_prototype_count] 个原型分别对应 [metric:prototype_section_count] 组平面/剖面接口，并各有一份专业移交包 [metric:professional_handoff_package_count]。
+
+| 重点区与空间原型 | 看得见的空间构件 | 第一份真实现场证据（授权后） | 谁接手 / 谁能暂停 |
+| --- | --- | --- | --- |
+| P3 众智园“责任水岸测试廊” | 生态缓冲、人行带、设备责任柜、低速试验庭、断网基本服务 | 真实资产—依赖—责任台账、故障基线、人工接管与退役演练 | 资产/水务生态/电气网络/采购运维/数据；安全、生态、维护和无障碍角色可暂停 |
+| P2 AI 原点—清华园“静声共译庭” | 遗产线、安静边、共译长桌、多通道解释、实体关闭控制 | 设备—内容—权利台账，“人—声环境—情境”基线与安静冲突图 | 声学/文保口述史/无障碍/权利/运营；权利人、维护者和受影响者可触发复核 |
+| P1 大钟寺“四象限缝合修补台” | 四象限路径、修补前廊、实体导视、休息点、人工窗口 | 至少 30 次角色—任务同行走查、障碍表、方案比较和闭环核验 | 交通轨道/园林/无障碍/安全/社区协作；危险路径、无权介入或无替代通道即暂停 |
+
+本版同时交付一个含 [metric:e3_commissioning_artifact_count] 项的 **E3 开场包**：授权记录、场地许可清单、专业角色名册、参与招募说明、角色—任务采样矩阵、障碍/证据数据规范、非手机现场表、方案比较矩阵、事件/暂停表和公众披露板。它让获授权团队可以直接开始 E3 基线，但**可启动不等于已授权，已授权不等于有效，更不等于成功**。[assumption:A-E3-START-PACK-001]
+
+品牌也从文字方向变成一项原创、可移交的视觉资产 [metric:brand_identity_asset_count]：两条铁路平行线弯成开放耳廓，末端断点代表退出权，修复绿点代表经核验后的公共行动。标记见 `visual/assets/listening-line-logo.svg`，首轮审稿图和 A3/A0 均应用同一色标与六个公众动作。正式采用仍需商标、字体和无障碍审查。
 
 ## 设计依据与资料清单
 
@@ -52,9 +67,9 @@ version: "1.2.0"
 
 ### 差异化核心：把“会倾听”做成城市级产品规格
 
-高水平 AI 城区的竞争不应只比模型、屏幕和机器人数量，还要比公共问题转化为安全试点的速度、错误被修复的速度、服务退出时留下的知识以及非 AI 基本服务是否继续可用。“听见京张”因此提供两层开放规格。**Listening Contract 1.2 / 倾听合约 1.2** 是 14 项公众准入清单：目的、场所/人群、触发、最小数据、告知/选择、留存/删除、系统限制、人工责任、解释、申诉、修复、非 AI 路径、公共价值和停止/回滚。[metric:listening_contract_required_field_count] 它既适用于具身机器人和公共服务代理，也适用于声音装置、照明、导视和普通设施工单，避免把治理缩窄成算法伦理。
+高水平 AI 城区的竞争不应只比模型、屏幕和机器人数量，还要比公共问题转化为安全试点的速度、错误被修复的速度、服务退出时留下的知识以及非 AI 基本服务是否继续可用。“听见京张”因此提供两层开放规格。**Listening Contract 1.3 / 倾听合约 1.3** 是 14 项公众准入清单：目的、场所/人群、触发、最小数据、告知/选择、留存/删除、系统限制、人工责任、解释、申诉、修复、非 AI 路径、公共价值和停止/回滚。[metric:listening_contract_required_field_count] 它既适用于具身机器人和公共服务代理，也适用于声音装置、照明、导视和普通设施工单，避免把治理缩窄成算法伦理。
 
-**Listening Receipt 1.2 / 倾听回执 1.2** 则把一次具体运行封装为 20 个顶层必填字段：[metric:listening_receipt_required_field_count] 唯一回执/场景 ID、证据等级、问题与公共利益、GeoJSON 引用与精度、授权与许可、系统版本/哈希/允许和禁止动作、数据与权利、四道人工签署、服务窗/值守/维护/备件/费用状态、基线/样本/结果/不确定性、专业移交、生命周期、事件流和时间戳。机器模式见 `visual/assets/listening-receipt.schema.json`；`minimum-reproducible-slice.json` 是 P3 的合成非运营示例，责任机构为 `null`、四门为 `pending`、绩效为 `null`，只证明格式和交接链可复现。[metric:reproducible_slice_count] [assumption:A-BASELINE-001]
+**Listening Receipt 1.3 / 倾听回执 1.3** 则把一次具体运行封装为 20 个顶层必填字段：[metric:listening_receipt_required_field_count] 唯一回执/场景 ID、证据等级、问题与公共利益、GeoJSON 引用与精度、授权与许可、系统版本/哈希/允许和禁止动作、数据与权利、四道人工签署、服务窗/值守/维护/备件/费用状态、基线/样本/结果/不确定性、专业移交、生命周期、事件流和时间戳。机器模式见 `visual/assets/listening-receipt.schema.json`；`minimum-reproducible-slice.json` 是 P3 的合成非运营示例，责任机构为 `null`、四门为 `pending`、绩效为 `null`，只证明格式和交接链可复现。[metric:reproducible_slice_count] [assumption:A-BASELINE-001]
 
 证据从 **E0 方案主张、E1 公开来源、E2 包内复算/合成复现、E3 按协议现场观察、E4 专业人员与受影响者共同签注，到 E5 限期试点与独立复核**逐级升级。[metric:evidence_level_count] 没有授权、样本、方法和签名就不能越级。四道共同门是 **G1 专业可行与安全、G2 公共利益与包容、G3 数据/隐私/内容权利、G4 运维/费用/退出**。[metric:professional_gate_count] 责任分权遵循“一项试点只有一个合法授权的 Accountable 机构；提案者不能独自评估；运营者不能独自批准扩展；安全、维护、数据和无障碍角色可以暂停”。职责矩阵见 `visual/assets/pilot-operations-matrix.json`。[assumption:A-AUTHORIZATION-001] [assumption:A-PROFESSIONAL-HANDOFF-001]
 
@@ -67,6 +82,27 @@ one-north 提供工作—生活—学习—游憩与试验共存的参考 [sourc
 产业生态由八类接口构成：土地/空间提供可逆载体；产业/资金支持限期试点但不获得默认数据权；人才/高校提供问题、原型和同行评议；算力/模型提供版本与限制；数据只按目的最小化；场景由真实使用者和一线运营者共同结项；中关村科技服务翼提供法务、标准、IP、资本和国际合作接口；小月河场景赋能翼提供水岸、社区、运动、照护和维护问题。未来城市形态因此强调开放首层、安静工作、共享长桌、可拆设备带、实体导视和人工窗口，而不是永久巨构。[standard:MOHURD-URBAN-DESIGN-MEASURES]
 
 品牌中文名“听见京张”，英文 **THE LISTENING LINE**。标识方向由两条铁路平行线在中部形成开放耳廓，并以一处断开表示“可退出”；铜色对应铁路记忆，水青对应清河/小月河与解释，修复绿对应公共行动，深蓝对应人工责任。导视使用中英文字、图形和触觉层级，正式采用前需完成商标、字体与无障碍审查。
+
+
+### 区域协同：五个开放接口，不制造五份合作承诺
+
+任务书把区域协同性明确列为评审维度。本方案据此建立 [metric:regional_collaboration_interface_count] 个**潜在开放接口**，但不把任何机构写成已参与、已背书或已投入：[source:AGENT-TASKBOOK] [assumption:A-REGIONAL-INTERFACE-001]
+
+| 潜在接口 | 京张可以开放什么 | 可回流什么 | 证据与治理边界 |
+| --- | --- | --- | --- |
+| 北纬社区 | 真实社区问题、无手机路径、共同评议方法 | 包容性走查与社区修复语言 | 只在取得授权、招募和数据计划后开展，不把居民意见等同机构同意 |
+| 未来科学城 | 可复现的场景准入与失败回执 | 科研设施—城市服务的测试方法比较 | 不预设跨区政策、数据共享或采购 |
+| 怀柔科学城 | 铁路/科学文化的公众解释接口 | 科学传播、口述史与安静体验方法 | 不复制版权内容，不把文化合作写成确定安排 |
+| 北京经开区 | 具身设备、智能终端的生命周期问题单 | 工业验证、维护和退役经验 | 不指定供应商，不允许企业自证安全或扩展 |
+| 京津冀 | 开放字段、可迁移回执与公共服务底线 | 跨区域可达性、运维与退出案例 | 只交换去标识知识资产，不交换个人或敏感运营数据 |
+
+协同的最小单位不是“签约照片”，而是一份可复现问题、一套共同字段、一个独立复核结论和一次采用/退出记录。五个接口进入总体图与 A0 第三板，可供后续专业/运营团队逐项发出合作邀请；在回复到来之前状态统一为 `open_interface_no_commitment`。
+
+### AI 原生规划：四智能体做证据整理，人类保留空间决定
+
+AI 不替代规划师画一张更像“未来”的图，而是把每次空间变更的输入、比较和差异公开：Accessibility Agent 整理角色—任务障碍，Soundscape Agent 检查“人—声环境—情境”字段，Asset Agent 对照资产—依赖—责任，Evidence Auditor 检查来源、空值、版本和越级主张。四者只生成候选问题、冲突图和证据缺口；G1—G4 的实名人类角色决定是否基线、限期试验、修改、暂停或退出。
+
+P1 的五类选项——不行动、维护、导视、出入口优化、工程研究——均保持 `not_evaluated`，直到 official 站口/标高、30 次角色任务、风险、维护与权限证据齐全。每次人类决定必须记录“AI 建议是什么、最终决定是什么、为什么不同”。这使 AI 创新成为可审计的规划工作流，而不是贴在传统空间上的功能标签。[metric:listening_receipt_required_field_count] [metric:professional_gate_count]
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -103,6 +139,17 @@ one-north 提供工作—生活—学习—游憩与试验共存的参考 [sourc
 P1 先比较“不行动/维护/导视/出入口优化/工程研究”而不是先画桥。进入永久工程研究的条件是 official redline、站口、客流、标高、消防与道路资料齐全，交通/轨道/园林/无障碍/安全专业门通过，非手机路径不更差且不同角色没有安全或可达性恶化；否则保留低风险修补并退出工程叙事。当前 Accountable 机构、授权和结果均未确定。[source:LOCAL-LINE13-RESPONSE] [assumption:A-PILOT-001] [assumption:A-AUTHORIZATION-001]
 
 三处重点区临时面积只用于包内一致性，不能替代公告约值或 official polygons。[metric:key_area_count] [depth:three_key_area_detailed_design] 三室共享同一套合约、开放日历和失败档案，形成“问题南上—验证北上—结果南回—规则全线回写”的协同，而不是三个技术园区孤岛。
+
+
+### 三种原型的空间深度：从“协议在哪里”到“人站在哪里”
+
+**P3 责任水岸测试廊**采用“水体（位置待 official 蓝线）—生态缓冲—步行带—责任柜/人工窗口—低速试验庭—园区界面”的关系剖面。设备责任柜不是新屏幕，而是耐候责任卡、实体断电/求助指引、备件状态与纸本工单入口；低速庭只有在物理边界、人工急停、断网行为和退出计划通过后开放。剖面不规定尺寸，水务、防洪、生态、消防和无障碍专业需要在现场重画。[assumption:A-SPATIAL-PROTOTYPE-001]
+
+**P2 静声共译庭**采用“遗产实物线—安静观看边—可移动共译长桌—开放但不强迫播放的解释带—社区/校区界面”的院落平面。长桌同时容纳纸笔、手语、多语文字、触觉和人工解释；音频是经授权的可选层，不是进入空间的前提。安静边和活动带分时、分区，任何内容都必须有来源、权利、撤回和关闭状态。
+
+**P1 四象限缝合修补台**采用“站点四象限—现有路径—人工服务前廊—实体导视/休息—待比较连接”的回路平面。它不画一座未经论证的桥，而把不行动、维护、导视、出入口优化、工程研究放在同一矩阵；只先做在现有权力内可逆、低风险、可撤回的修补。四象限每个入口必须同时检查轮椅/助行、老年、推车、低视力夜间、骑行和无手机路径。
+
+三张原型图在 `assets/figures/key-areas.png`、A3 第 3 页和 A0 第 2 板同步出现，保证评审首先看到的是城市空间，而不是协议附件。[depth:three_key_area_detailed_design] [metric:spatial_prototype_count] [metric:prototype_section_count]
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
@@ -175,6 +222,13 @@ RACI 不是“多部门一起负责”。每项试点只能有一个实名授权
 
 在取得现场权力前，本包只提供一份 **P3 合成最小可复现切片**：从一张纸本设施责任卡出发，演示“提出—四门待签—人工接管—专业移交—退出”数据结构，真实资产、责任机构、样本与绩效全部为空。若后续三个试点条件相同，P3 可优先从资产盘点和纸本工单开始；但真正的先行项不是作者偏好，而是**谁先取得合法 Accountable 主体、许可、专业负责人和数据计划，谁先进入 E3**。这把“快速落地”从抢设备改为抢先完成责任与证据。[metric:reproducible_slice_count]
 
+
+### E3 开场包：授权后十个工作日如何开始
+
+开场包不是现场成果，而是把“谁来、带什么、先产出什么”预先固定。授权和场地许可完成后，建议的十个工作日顺序为：D0 由单一 Accountable 机构和 G1—G4 首次签署；D1—D3 完成培训、无障碍演练与非数字通道测试；D4—D7 采集小范围基线并每日质检；D8 由受影响者和专业人员共同阅读冲突；D9—D10 发布第一版问题图、空值、风险和是否继续的人工决定。它只是进入 90 天基线的启动序列，不缩短样本和季节窗口，也不承诺任何建设日期。[metric:e3_commissioning_artifact_count]
+
+十项工件均有接收角色：授权/许可给 Accountable 主体；采样矩阵和现场表给领域专业负责人；障碍 GeoJSON 与证据索引给数据保管者；事件/暂停表给安全、维护、权利和无障碍角色；公众披露板与最终移交包给独立复核者和受影响者。任何必填角色为空、风险无法控制、非 AI 基本服务失败或机构拒绝公开负面结果，开场包结论就是 `DO_NOT_START`。[assumption:A-E3-START-PACK-001]
+
 八个原项目包重组为四个工作包：W1 官方数据、授权与基线；W2 三试点和六站可移动界面；W3 倾听合约/回执、双语公开台账、四门签注与独立评估；W4 official data 到位后的整体空间重算和专业深化。[depth:renewal_project_list] 分期几何 [data:geometry/phasing.geojson#PHASE-001] 仍表达近期—中期—远期三层空间覆盖，[metric:phase_count] 只验证包内结构，不代表批准时序。[depth:phasing_implementation]
 
 季度发布问题、事件、修复与未解决项；年度举办“Listening Line Review / 京张倾听公开评议”，同时公布正负结果、样本与不确定性、分组差异、人工决定差异、修复时长、删除/撤回、暂停和退出。E5 结项必须由独立复核者签注，并把专业接手件、可迁移数据和退役记录交还 Accountable 主体。开发者得到可信真实问题和可复现失败，城市得到可替换服务与知识资产；任何具体主办、预算、招商、政策、日期仍需另行协商。
@@ -186,6 +240,8 @@ RACI 不是“多部门一起负责”。每项试点只能有一个实名授权
 几何指标全部从 EPSG:4548 下的提交图层复算：临时总体边界 [metric:site_area_sqm]；用地总和 [metric:land_use_area_total_sqm]；概念建筑基底 [metric:building_footprint_area_sqm]；绿地面积/比例 [metric:green_space_area_sqm] [metric:green_ratio]；公共空间面积/比例 [metric:public_space_area_sqm] [metric:public_space_ratio]；概念线网 [metric:road_length_m]；三处重点区 [metric:key_area_count]。边界替换后这些指标和所有展示整体重算。[depth:metrics_recalculation]
 
 内容计数和治理覆盖由文本与机器文件交叉检查：12 张场景 [metric:scenario_count]、4 项产业测试 [metric:industry_test_scenario_count]、6 类角色 [metric:persona_count]、4 处荣誉节点 [metric:landmark_count]、3 期 [metric:phase_count]、14 个合约维度 [metric:listening_contract_required_field_count]、20 个回执顶层字段 [metric:listening_receipt_required_field_count]、9 个机器生命周期状态 [metric:listening_receipt_lifecycle_state_count]、E0—E5 六级证据 [metric:evidence_level_count]、4 道准入门 [metric:professional_gate_count]、3 套试点协议 [metric:pilot_protocol_count]、1 个合成可复现切片 [metric:reproducible_slice_count]、3 个在地试点 [metric:field_pilot_count]、3 个试点阶段 [metric:pilot_stage_count]、授权后 90 天基线 [metric:pilot_baseline_period_days]、100% 人工复核/非 AI 路径/停止条件准入覆盖 [metric:human_review_coverage_ratio] [metric:non_ai_fallback_coverage_ratio] [metric:stop_condition_coverage_ratio]。这些是方案结构、协议与准入覆盖，不是运营绩效或成功率。
+
+本版新增的可移交结构指标全部来自实际提交物，而非主观评分：三种空间原型 [metric:spatial_prototype_count]、三组平面/剖面接口 [metric:prototype_section_count]、三份专业接手包 [metric:professional_handoff_package_count]、五个区域开放接口 [metric:regional_collaboration_interface_count]、一项原创品牌资产 [metric:brand_identity_asset_count] 和十项 E3 开场工件 [metric:e3_commissioning_artifact_count]。它们可由正文、五图、Logo、试点登记和 A3/A0 相互核验；它们证明的是方案可读、可接手和可启动，不是现场绩效。
 
 FAR、总建筑面积、建筑高度继续 unknown：[metric:floor_area_ratio] [metric:total_floor_area_sqm] [metric:building_height_m]。`compliance_matrix.json` 覆盖公告与 agent.1—agent.6；`standard_matrix.json` 连接项目依据、城市设计、控规、用地和建筑深度；`design_depth_matrix.json` 覆盖诊断、三层范围、总体结构、用地、强度缺口、风貌、拆改留、交通、市政、蓝绿、重点区、项目、分期、复算和风险。完整深度索引为 [depth:existing_conditions_diagnosis] [depth:three_level_scope_framework] [depth:overall_spatial_structure] [depth:land_use_layout] [depth:development_intensity_controls] [depth:height_massing_character] [depth:retain_renovate_demolish] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure] [depth:blue_green_public_space] [depth:three_key_area_detailed_design] [depth:renewal_project_list] [depth:phasing_implementation] [depth:metrics_recalculation] [depth:risk_missing_data]。
 
@@ -204,6 +260,8 @@ FAR、总建筑面积、建筑高度继续 unknown：[metric:floor_area_ratio] [
 **运维、费用与锁定。** 每件数字设施同步提交责任人、版本/哈希、依赖、开放导出、服务窗、备件、人工替代、费用状态和退役/删除记录；公共知识可迁移，个人/商业/安全敏感数据不进入公开层。三项试点可从纸本台账和既有资产盘点起步，但扩大前仍需产权、许可、安全、预算、主体和生命周期费用确认。[source:ISO-55001-2024] [assumption:A-PILOT-001] [assumption:A-PILOT-002] [assumption:A-PILOT-003]
 
 **合成证据被误读为成效。** E2 最小切片只证明 schema、空值与交接逻辑可复现；它不含真实资产、参与者、现场或表现。机器回执以 `record_status=synthetic_non_operational`、四门 `pending`、机构 `null`、`performance_results=null` 明示边界；任何传播不得移除这些字段。[assumption:A-BASELINE-001]
+
+**区域协同与品牌被误读为背书。** 北纬社区、未来科学城、怀柔科学城、北京经开区和京津冀只作为任务书要求的潜在开放接口；没有联系记录、回复、协议、数据共享或投入承诺。Logo 是投稿原创方向而非已注册/已采用官方标识。任何后续传播必须保留 `open_interface_no_commitment` 与概念状态。[assumption:A-REGIONAL-INTERFACE-001]
 
 文字、图标、信息图、结构化设计、机器合约/回执、离线 HTML 和 PDF 由本次 AI 辅助工作流原创生成并以 CC-BY-SA-4.0 提交；公开网页只用于事实与方法引用，不复制图片、版式、商标、肖像、同行资产或受保护标准正文。逐类权利登记见 `visual/assets/asset-rights.json`，详细声明见 `report/copyright_statement.md`。本提案不声称政府批准、资金落实、土地权属、法定规模、机构同意或已实施成效；结构化风险另见 `risk.json`。
 

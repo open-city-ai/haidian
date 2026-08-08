@@ -2,13 +2,15 @@ import sys
 import tempfile
 import unittest
 import json
+import os
 import subprocess
 import hashlib
 import io
+import re
 import urllib.error
 from contextlib import redirect_stderr
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import jsonschema
 
@@ -29,12 +31,14 @@ from github_pr_validation import (  # noqa: E402
     GitHubClient,
     COMMENT_TRUNCATION_NOTICE,
     MAX_GITHUB_COMMENT_BYTES,
+    MAX_DOWNLOAD_BYTES,
     _is_retryable_http_error,
     bounded_comment_body,
     build_preflight_failure_comment,
     is_non_submission_pr,
     is_review_queue_candidate,
     publish_validation_comment,
+    main,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -165,6 +169,36 @@ class GitHubApiResilienceTests(unittest.TestCase):
         self.assertIn("a0-boards.pdf", comment)
         self.assertIn("file exceeds download cap", comment)
 
+    def test_download_404_retries_then_succeeds(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        not_found = self._error(404, b'{"message":"Not Found"}')
+        with tempfile.TemporaryDirectory() as temp_dir, patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[not_found, _Response(b"payload")],
+        ), patch("github_pr_validation.time.sleep") as sleep:
+            destination = Path(temp_dir) / "asset.bin"
+            client.download_content("fork/repo", "asset.bin", "head-sha", destination)
+            self.assertEqual(b"payload", destination.read_bytes())
+        sleep.assert_called_once_with(1.0)
+
+    def test_download_404_exhaustion_reports_path(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        errors = [self._error(404, b'{"message":"Not Found"}') for _ in range(4)]
+        with tempfile.TemporaryDirectory() as temp_dir, patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=errors,
+        ), patch("github_pr_validation.time.sleep"):
+            with self.assertRaisesRegex(
+                RuntimeError,
+                r"GitHub API download submissions/alice/design/asset.bin failed with HTTP 404",
+            ):
+                client.download_content(
+                    "fork/repo",
+                    "submissions/alice/design/asset.bin",
+                    "head-sha",
+                    Path(temp_dir) / "asset.bin",
+                )
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:
@@ -186,6 +220,29 @@ class EmptyPdfDetectionTests(unittest.TestCase):
 
 
 class ManifestHydrationTests(unittest.TestCase):
+    def test_download_content_accepts_ten_mib_file(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "artifact.pdf"
+            with patch(
+                "github_pr_validation.urllib.request.urlopen",
+                return_value=_Response(b"x" * MAX_DOWNLOAD_BYTES),
+            ):
+                client.download_content("owner/repo", "artifact.pdf", "sha", destination)
+            self.assertEqual(MAX_DOWNLOAD_BYTES, destination.stat().st_size)
+
+    def test_download_content_rejects_file_over_ten_mib(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "artifact.pdf"
+            with patch(
+                "github_pr_validation.urllib.request.urlopen",
+                return_value=_Response(b"x" * (MAX_DOWNLOAD_BYTES + 1)),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "file exceeds download cap"):
+                    client.download_content("owner/repo", "artifact.pdf", "sha", destination)
+            self.assertFalse(destination.exists())
+
     def test_accepts_only_safe_relative_manifest_paths(self) -> None:
         manifest = {
             "files": [
@@ -217,12 +274,39 @@ class ManifestHydrationTests(unittest.TestCase):
         ]
         self.assertEqual(["docs/note.md"], validation_paths_for(files, True))
 
-    def test_participant_removals_remain_in_validation_scope(self) -> None:
+    def test_removed_paths_are_excluded_from_validation_scope(self) -> None:
         files = [{"filename": "submissions/alice/design/proposal.md", "status": "removed"}]
-        self.assertEqual(
-            ["submissions/alice/design/proposal.md"],
-            validation_paths_for(files, False),
-        )
+        self.assertEqual([], validation_paths_for(files, False))
+
+    def test_participant_deletion_only_pr_is_warning_not_missing_file_failure(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 647,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/alice/design/obsolete.png", "status": "removed"}
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.download_content.assert_not_called()
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("participant deletion-only PR", comment)
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(
@@ -299,6 +383,21 @@ class ProposalSchemaTests(unittest.TestCase):
         payload["sections"] = REQUIRED_SECTIONS
         with self.assertRaises(jsonschema.ValidationError):
             jsonschema.validate(payload, schema)
+
+    def test_contract_accepts_human_readable_v2_metadata(self) -> None:
+        schema = json.loads((REPO_ROOT / "schema" / "proposal.schema.json").read_text(encoding="utf-8"))
+        payload = {
+            "metadata": {
+                "title": "可读方案",
+                "author_github": "alice",
+                "language": "zh",
+                "proposal_format_version": "2",
+                "license": "CC-BY-4.0",
+                "summary": "将人类可读正文与完整机器核验索引分层组织。",
+            },
+            "sections": REQUIRED_SECTIONS,
+        }
+        jsonschema.validate(payload, schema)
 
 
 REFERENCE_BLOCK = (
@@ -1765,6 +1864,51 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertFalse(report.ok)
             self.assertIn("missing data reference [data:geometry/land_use.geojson#...]", "\n".join(report.errors))
+
+    def test_v2_uses_section_anchors_without_repeating_complete_index(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal_path = root / base / "proposal.md"
+            text = proposal_path.read_text(encoding="utf-8")
+            text = text.replace('language: "zh"', 'language: "zh"\nproposal_format_version: "2"', 1)
+            text = re.sub(r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]", "", text)
+            readable_explanation = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                FORMAL_PARAGRAPH,
+            )
+            for heading in REQUIRED_SECTIONS:
+                text = text.replace(
+                    f"## {heading}\n",
+                    f"## {heading}\n\n本节关键判断依据 [source:SITE-PACKAGE]。{readable_explanation}\n",
+                    1,
+                )
+            proposal_path.write_text(text, encoding="utf-8")
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, "\n".join(report.errors))
+            self.assertNotIn("missing known metric reference", "\n".join(report.errors))
+
+    def test_v2_rejects_dense_inline_evidence_dump(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal_path = root / base / "proposal.md"
+            text = proposal_path.read_text(encoding="utf-8")
+            text = text.replace('language: "zh"', 'language: "zh"\nproposal_format_version: "2"', 1)
+            text = text.replace(
+                "## 设计依据与资料清单\n",
+                "## 设计依据与资料清单\n\n完整索引 "
+                "[source:SITE-PACKAGE] [source:OFFICIAL-ANNOUNCEMENT] "
+                "[source:AGENT-TASKBOOK] [source:BOUNDARY-SOURCE]\n",
+                1,
+            )
+            proposal_path.write_text(text, encoding="utf-8")
+            report = validate_submission(root, "alice", changed)
+            self.assertFalse(report.ok)
+            self.assertIn("consecutive evidence markers", "\n".join(report.errors))
 
     def test_non_formal_stage_fails_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

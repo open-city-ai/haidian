@@ -49,6 +49,9 @@ summary: "离线阅读版"
             self.assertIn('<main>', html)
             self.assertIn('../assets/figures/site-overview.png', html)
             self.assertIn('class="evidence evidence-source"', html)
+            self.assertIn('data-evidence-kind="source"', html)
+            self.assertIn('data-evidence-value="SITE-PACKAGE"', html)
+            self.assertIn('>来源</sup>', html)
 
     def test_render_html_renders_markdown_tables(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

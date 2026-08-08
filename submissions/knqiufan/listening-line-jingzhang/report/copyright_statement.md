@@ -7,3 +7,5 @@
 总体范围与三处重点区域均为 `official_boundary=false` 的 provisional geometry。公开报道和政府回应只用于在地问题锚定，不构成法定红线、控规、权属、工程线位、审批、采购、投资或实施依据。任何后续工程使用必须取得 official CAD/GIS、完成现场调查、版权/许可核验和相应专业及法定程序。
 
 逐类权利和来源登记见 `visual/assets/asset-rights.json`。机器文件 `visual/assets/listening-contract.example.json` 与 `visual/assets/minimum-reproducible-slice.json` 明确标记为合成、非运营示例；机构、授权和绩效为空，不包含真实个人、真实资产/工单、非公开数据或实际机构承诺。三项试点在取得权利、许可、专业复核和合法责任主体前不得进行真实采集或发布。
+
+- `visual/assets/listening-line-logo.svg` 为本次 v1.3 原创概念标记：未复制既有商标或外部图形，尚未注册或获官方采用；正式使用前须完成商标、字体和无障碍审查。

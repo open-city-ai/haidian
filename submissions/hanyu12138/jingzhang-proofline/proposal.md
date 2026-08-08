@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路的轨迹、站点与里程语法转译为城市AI公共验证基础设施，以一条主脊、三座智证站、双翼服务、十二个可退出场景和分级数据门连接创新、生活与治理。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.5"
+iteration: "v1.6"
 ---
 
 # 京张智证线：一条可验证、可共享、可进化的城市AI公共基础设施
@@ -16,7 +16,7 @@ iteration: "v1.5"
 
 “京张智证线 / Jing-Zhang Proofline”不是在城市里多放一批智能设备，而是把 AI 从后台能力变成公众可以看见、质疑、退出和共同改进的城市过程。百年京张铁路留下“轨迹—站点—里程”的空间秩序；本方案将其转译为“问题提出—公开测试—人工裁决—贡献记忆—复用转化”的公共智证回路。众智园负责全栈验证，AI 原点社区负责开放转化，大钟寺负责城市体验；中关村科技服务翼与小月河场景赋能翼分别提供专业要素和真实场景，最终形成一条以公共利益为判断标准、以人工最终负责为底线的创新带。[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
-v1.5 又把“里程”从叙事推进为建设交付规则：一构件一智证里程。普通服务基座、可逆试验口袋和公共证据轨组成一个建设湾；K01—K06 每个构件只能凭自己的现场、问题和正负证据通过 CR0—CR4，再由三座智证站分别交接技术安全、权利维护与真实使用证据。它让“可实施”同时包含可停止、可拆除和可恢复，而不是设备越多越先进。
+v1.6 将“里程”确立为本案自身的建设交付语法：一构件一智证里程。普通服务基座、可逆试验口袋和公共证据轨组成一个建设湾；K01—K06 每个构件只能凭自己的现场、问题和正负证据通过 CR0—CR4，再由三座智证站分别交接技术安全、权利维护与真实使用证据。它让“可实施”同时包含可停止、可拆除和可恢复，而不是设备越多越先进。
 
 ## 一页执行摘要 / Executive Brief
 
@@ -350,15 +350,11 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 4. 持续参与与开放复核
 
-本轮不是把已入库成果重新包装，而是按仓库最新 README 的“返回式参与”要求，从 `upstream/main@3cd31ef3` 重新建立证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，查看当前 Issues、既往 PR 与同侪方案，再只修改能够说明来源、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK] PR #429 的 Review Agent 得分为 96/100，结论仍只表示 repository intake，不代表画廊发布、奖项、实施批准或政府背书。
+本轮按仓库 README 的“返回式参与”要求，从 `upstream/main@d400d48d` 重新建立证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，核查当前 Issues 与工具变化，再只修改能够说明来源、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK]
 
-同侪阅读采用“发现—采用—拒绝”三栏判断，不复制图像、几何、指标、表格或原文：
+持续参与采用本案内部的“触发—证据—决策—输出”记录：资料变化先锁定受影响图层和指标；现场观察前固定几何版本、环境条件、实际无障碍路线、未覆盖情形和专业接受标准；每次试验同时登记正面、负面和中止结果；三站证据链以非 AI 基线和“保留—修改—拆除”结论完成交接。上述规则直接服务京张智证线的空间、构件和运营深化，不改变任何未经证实的场地事实。
 
-- “京张开源脉冲”的状态账本与最新现场协议分别启发了返回式审计和微气候证据门；本案采用“触发—证据—决策—输出”逻辑，并在观察前固定几何版本、环境条件、实际无障碍路线和专业接受标准，不采用其数量模型、协议表结构、阈值、空间方案或视觉资产。[source:PEER-OPEN-PULSE]
-- “京张开源带”把负面结果和回滚视为开放过程的一部分；本案据此记录被拒绝的数据与改动，不采用其 Git 空间隐喻、项目命名或设计量。[source:PEER-OPEN-BELT]
-- “京张校准场”与本案同样要求 AI 先接受公共检验，因此成为差异化校核：本案进一步把三站证据链、非 AI 基线和“保留—修改—拆除”建设闸门连成一体，不沿用其六项权利命名与节点计划。[source:PEER-CALIBRATION-YARD]
-
-仓库协作也进入方案证据：针对 Issue #485，已提交可复现说明，区分“包内已登记来源”与轻量索引的词面匹配，拒绝为提高建议分数而添加无关登记；Issue #446 已由上游提交 `7964352b` 完成修复，本轮据此用仓库标准渲染器重生成中英文报告，各 13 张 GFM 表均成为语义表格，不保留本地脚本分叉。Issue #430 的语言元数据风险和 Issue #420 的 Windows 编码风险分别以“不重跑 finalizer”和 UTF-8 preflight 规避。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
+仓库协作也进入方案证据：Issue #485 的公开任务索引问题已修复，本包继续区分“完整来源登记”与轻量索引的词面匹配，不增加无关登记；Issue #446 的表格渲染修复已用于重生成中英文报告，两版各 13 张 GFM 表均为语义表格；Issue #430 与 #420 的双语图件元数据和 Windows UTF-8 修复已进入上游，本包逐项复核 manifest 与预检结果；Issue #588 只影响仓库合并后的官网部署时效，不改变方案内容或本地校验。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
 
 下一轮不虚构定时任务，而由事件触发：official polygons、控规、道路轨道、权属、文保、市政或河道资料变化时，全量复算；获得有许可、方法、覆盖和偏差说明的走廊或平台数据时，重开相应数据门；居民、无障碍使用者、运营者或权利人报告实质风险时，先暂停再人工复核；仓库规则、schema、渲染器、Issue 或评审变化时，先同步上游再局部更新。每轮都保留“采用、调整、停止”结果并重跑自检与 participant preflight。[depth:phasing_implementation]
 
@@ -451,7 +447,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 - 公开任务书 `brief/public-brief.md`：用于任务背景、发展愿景、重点方向、参与流程和成果状态边界。[source:PUBLIC-BRIEF]
 - 公开资料边界 `brief/README.md`：用于区分可公开、不可公开和仍需复核的资料，不替代正式公开性审查。[source:REPOSITORY-README]
 
-以上两项对应 `sources/public-sources.json` 的轻量公开索引；该索引只负责本地建议评分的公开任务匹配，不替代本包 `sources.json` 对正式依据、官方统计、案例、同侪许可与生成资产的完整登记。
+以上两项对应 `sources/public-sources.json` 的轻量公开索引；该索引只负责公开任务匹配，不替代本包 `sources.json` 对正式依据、官方统计、案例、版权与生成资产的完整登记。
 
 这一层索引回答的是“公开任务如何进入设计判断”，而不是把两份仓库文件包装成场地证据。`brief/public-brief.md` 只用于校准百年京张、AI 创新带、持续参与和成果状态等任务方向；`brief/README.md` 只用于约束资料公开边界。两者共同支持本案把智能展示转向可退出、可复核的公共过程，但不证明走廊需求、客流、权属、现状建筑、道路轨道、文保、市政或工程条件。
 
@@ -473,7 +469,6 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 ### 背景案例与生成资产
 
 - one-north、MaRS、Kendall Square、Cornell Tech、STATION F、Berlin Adlershof 的机构公开官网只用于机制对照：[source:CASE-ONE-NORTH] [source:CASE-MARS] [source:CASE-KENDALL] [source:CASE-CORNELL-TECH] [source:CASE-STATION-F] [source:CASE-ADLERSHOF]
-- 三份仓库同侪方案只用于方法比较与差异化复核，不作为本案空间、指标或工程依据：[source:PEER-OPEN-PULSE] [source:PEER-OPEN-BELT] [source:PEER-CALIBRATION-YARD]
 - AI 生成公共空间概念示意：[source:IMAGEGEN-CONCEPT]
 
 ### 机器可读数据总索引

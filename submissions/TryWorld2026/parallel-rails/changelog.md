@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v0.2.1 - 2026-08-08
+
+- **机器工件补齐（对抗式审查定位：零 schema 差距）**：对标全池 top peers（147228/seanSaxcy3/baobao/knqiufan 均有 .schema.json/ledger/register），新增 3 项机器可读资产并双语同步——①`visual/assets/gauge-contract.schema.json`（标准权契约状态机：DRAFT/REVIEW/MERGE/RELEASE/ROLLBACK/SUPERSEDED + 人类 gate + 证据梯字段 + 四条公共承诺枚举；`evidence.synthetic`/`unmeasured_fields` 明确概念示例与未测量记资产）；②`visual/assets/gauge-gates.json`（G0-G3 轨距门绑定 E0-E5 证据梯，`min_evidence_level` 逐门可校验，`authority_boundary` 六项 false，`unmeasured_are_assets:true`）；③`visual/assets/gauge-equivalence-index.json`（轨距等价指数 GEI = 0.4×覆盖率+0.3×可达性+0.3×时差平价，回应 peer 7annnnnnn 的 CEI 超越）。
+- **命名撞车显式化（权力层 vs 内容层）**：识别 cynixway `jingzhang-new-gauge` 同用「轨距」母题（含治理语言）——在标准权契约开头点破区分："标准"的内容层（用什么标准互通）vs 权力层（谁定义/接受/更改/撤销），本方案主张权力层才是 AI 时代通行权来源，保住唯一性叙事。
+- **首期 90 日低后悔行动包（implementation_feasibility 补齐）**：近期从概念年份（2026–2028）细化为首个 90 日三段行动包——0-30 日资料替换清单/现场走测/非AI基线、31-60 日双轨碑一期+道岔广场概念/标准权契约首个议题/端侧算力柜选址、61-90 日 1 个测试验证场景试点协议/轨距日预热/SLO 基线；每段绑定 G0-G2 轨距门、明确"不做什么"列、保持可回滚，不构成工程/投资/采购/审批承诺。
+- **表达层**：执行摘要证据状态行补 3 项机器资产；轨距门表增加"最低证据等级"列并说明四门为独立并行检查；manifest 45→48 文件。
+- **自检**：四项 gate 全部 PASS（formal-review-ready）；CI PASS（run 31268437015）；双语同步、LF 归一化、哈希与 git blob 一致。
+
 ## v0.2.0 - 2026-08-08
 
 - **对抗式审查定位（竞争格局 184 方案摸底）**：确认「轨距=标准权」元隐喻为全池唯一差异化资产，而 planning-as-code/开源工作流已成红海（至少 4 家 peer 同时使用 TRUNK/COMMIT/PR/merge 语言）。本轮升级重心钉在"标准权"的制度化表达，不与 peer 撞车。

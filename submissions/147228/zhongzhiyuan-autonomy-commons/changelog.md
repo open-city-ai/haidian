@@ -56,3 +56,10 @@ reviewable deliverables and bilingual review surface.
 - Replaced the coral “known coverage 36.36%” bar with “unknown share 63.64%” (`7 ÷ 11`) in both languages.
 - Aligned the ring, status cards, ratio bar and legend so coral consistently means pending field evidence.
 - Confirmed the dashboard hierarchy at tablet and 390-pixel mobile widths; no metric value or project claim changed.
+
+## v2.4 - 2026-08-09
+
+- Added a bilingual 2400 × 1700 autonomy-readiness data plate, rendered from the package's machine-readable metrics, scenario, node, field-gate and evidence-route registers.
+- Made the chart compute the autonomy-only status mix from the 11 named metric keys (4 `known`, 7 `unknown`) and localized all three stop conditions; no performance, permit or deployment claim was added.
+- Embedded the Chinese and English plates in both proposals, rendered reports and visual evidence ledgers, and corrected the English proposal/report to use the existing English figure variants.
+- Refreshed `generated_at` only after this substantive package update and regenerated the manifest and copyright-ledger hashes.

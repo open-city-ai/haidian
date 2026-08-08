@@ -72,13 +72,6 @@
       "message": "四个公共地标可定位且带启用与回滚状态；荣誉记录具有提名、证据、双人复核、异议、纠错、撤回、申诉及实名/化名/匿名选择。"
     },
     {
-      "check_id": "GENERATIVE_IMAGE_DISCLOSURE",
-      "result": "pass",
-      "severity": "major",
-      "target": "assets/figures/handover-scene.jpg; report/copyright_statement.md; sources.json",
-      "message": "全包仅一张生成式图像，已登记为 IMAGEGEN-CONCEPT-SCENE：工具、模型、完整提示词、后处理、用途与不可用边界均已披露；图纸与正文就地标注为概念表现，非现状照片、非测绘成果、非批准方案；人物为虚构形象，画面不含真实地点、单位或商标。"
-    },
-    {
       "check_id": "SOURCE_PROVENANCE",
       "result": "pass",
       "severity": "major",
@@ -119,6 +112,34 @@
       "severity": "major",
       "target": "proposal.md",
       "message": "正文、矩阵、几何、图纸、指标、来源和假设构成交叉引用的专业证据链。"
+    },
+    {
+      "check_id": "ROLE_SPEC_TRANSFERABLE",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/role-spec.json; visual/assets/governance/role-spec.schema.json",
+      "message": "八个角色写明最低资质、可决定与不可决定事项、值守方式、无人值守兜底、启停权、双人复核及其独立第二复核角色、分歧升级路径、交班证据与缺岗禁止条件。assignment_status 在 schema 中约束为常量 unassigned；停用权分散于多个角色，第二复核角色不得指向自身，升级路径末端一律交回人类专业团队。未指名任何单位或个人，不声称任何合作或已签约关系。"
+    },
+    {
+      "check_id": "MEASUREMENT_PROTOCOL_COMPLETE",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/measurement-protocol.json; metrics.json",
+      "message": "metrics.json 中 11 项非 known 指标全部具备测量协议：定义、数据源类型、采集角色、采样单元与范围、频率或触发、分母、缺失值处理、质量检查、争议复核、隐私与留存、发布门槛。baseline 与 target 的 schema 类型被约束为 null，缺失值处理禁止插值与区级平均替代；发布门槛任一条不成立即保持未赋值。公布协议不等于公布目标。"
+    },
+    {
+      "check_id": "GOVERNANCE_SCHEMA_VALIDATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/validation-report.json",
+      "message": "三对 schema 与实例（双联交接账、角色规格、测量协议）通过 Draft 2020-12 元模式与实例校验，并通过一项跨文件引用完整性检查（角色号可解析、指标覆盖无缺项、baseline/target 仍为 null、assignment_status 仍为 unassigned），共 7 项检查全部通过。校验只证明可解析与引用完整，不证明任何角色已任命、任何指标已有数值或任何做法已获许可。"
+    },
+    {
+      "check_id": "NO_GENERATIVE_IMAGE_ASSET",
+      "result": "pass",
+      "severity": "major",
+      "target": "assets/figures/",
+      "message": "包内 26 张图件全部为 PIL/reportlab 程序化绘制，无生成式图像素材。v1.6.2—v1.6.3 曾包含一张 gpt-image-2 概念表现图，自 v1.6.4 起其内容已整体替换为程序化绘制的《交接断面》；路径保留而非删除，是因为参赛者 PR 无法删除文件（Issue #647，修复 PR #668/#671 未合并）。"
     },
     {
       "check_id": "COPYRIGHT_TRACEABILITY",

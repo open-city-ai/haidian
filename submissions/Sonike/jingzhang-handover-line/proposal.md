@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把铁路交接班转化为AI城市治理协议：一条连续交接线串联研发、验证、开源与公共服务，十二个可逆场景都设置人工接管、无AI等价服务与退出条件。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.6.2"
+iteration: "v1.7"
 ---
 
 # 京张交接线 / JING-ZHANG HANDOVER LINE
@@ -15,10 +15,6 @@ iteration: "v1.6.2"
 > 把智能交给城市，把责任交到人手中。
 
 本方案把京张铁路最朴素也最重要的制度——交接班——转译为AI时代的城市空间协议。研究把模型交给验证，验证把能力交给开源社区，社区把服务交给市民；当系统不确定、失联、越界或被人质疑时，控制权必须清楚地交回人手中。因此“一条交接线、三座交接场、两翼支撑、十二个可逆场景”既是空间结构，也是公共责任结构。所有精准几何均为可复算的概念建议，所有法定控制均等待专业团队和政府部门确认。
-
-![交接线公共界面概念表现：值班人员当面交接、步道旁的物理停用柱、限定在专用道内的配送机器人、连续无障碍路径与人工窗口并存](assets/figures/handover-scene.jpg)
-
-上图是**AI 生成的概念表现图** [source:IMAGEGEN-CONCEPT-SCENE]，不是现状照片、测绘成果或批准方案，画面中的人物为虚构形象，不指认任何真实地点、单位或品牌；它只用来说明一件事——当人工接管、物理停用入口、机器人专用道与无障碍路径必须同时存在时，公共界面大致是什么样子。生成模型、完整提示词、用途与限制记录在 report/copyright_statement.md 与 sources.json。所有可复算的空间结论仍以九类几何与 metrics.json 为准，不以任何图面为准。
 
 ![三座交接场的可逆公共界面、人工接管与无AI等价通行空间原型；概念表现，非现状照片或批准方案](assets/figures/spatial-prototype.png)
 
@@ -34,7 +30,7 @@ iteration: "v1.6.2"
 | 证据状态 | 几何与指标在 EPSG:4548 可复算；区级公开统计只校准问题，不进入指标 | [metric:site_area_sqm]、[source:HAIDIAN-2025-STATISTICAL-BULLETIN] |
 | 决策边界 | 全部空间、品牌、活动、时限与角色安排均为概念建议，不是法定规划或政府承诺 | 风险章节、退出条件、assumptions.json |
 
-**English brief.** Jing-Zhang Handover Line translates the railway shift-handover — the most ordinary and most rigorous institution the line ever produced — into an urban protocol for AI. Capability may move from research to validation, from validation to open source, and from open source to daily public service; accountability may not move without a named person signing for it. One continuous handover line links three Handover Grounds, two supporting wings and twelve reversible scenarios, each carrying human takeover, a non-AI equivalent service and an exit condition. Every geometry is a recomputable conceptual proposal; every statutory control awaits confirmation by qualified professionals and government bodies.
+English brief — Jing-Zhang Handover Line translates the railway shift-handover — the most ordinary and most rigorous institution the line ever produced — into an urban protocol for AI. Capability may move from research to validation, from validation to open source, and from open source to daily public service; accountability may not move without a named person signing for it. One continuous handover line links three Handover Grounds, two supporting wings and twelve reversible scenarios, each carrying human takeover, a non-AI equivalent service and an exit condition. Every geometry is a recomputable conceptual proposal; every statutory control awaits confirmation by qualified professionals and government bodies.
 
 ## 设计依据与资料清单
 
@@ -317,6 +313,10 @@ iteration: "v1.6.2"
 
 蓝绿系统以2,264,695.802平方米概念绿地 [metric:green_space_area_sqm] 形成0.198434的结构性绿地比例 [metric:green_ratio]，公共交接面1,039,257.211平方米 [metric:public_space_area_sqm]，占比0.091060 [metric:public_space_ratio]。两者分别见 [data:geometry/green_space.geojson#GREEN-01] 与 [data:geometry/public_space.geojson#PUBLIC-01]。这些是基于临时范围的设计面积，并非现状绿地率或审定控规指标；它们用于验证连续树荫、雨洪、休息、慢行和公共测试是否有足够空间承载。空间策略响应 [depth:blue_green_public_space]。
 
+公共界面的成立与否，不取决于任何一件设施做得多好，而取决于要素的次序。人工窗口、连续无障碍步道与物理停用入口三者必须连续可达，机器专用道不得插入其间；保留铁轨齐平嵌入铺装，是线索而不是障碍。下面的断面只固定这一层——次序与相邻规则。宽度、标高与工程做法取决于道路红线和现状测绘，公开资料包尚未提供，因此本图不标注任何尺寸，道路面积与道路率在 metrics.json 中继续保持 [metric:road_area_sqm]、[metric:road_ratio] 未赋值。
+
+![交接断面：首层交接台—无障碍步道—零号接管亭—保留铁轨—机器专用道—绿化休憩带的次序与相邻规则；不表达尺寸](assets/figures/handover-scene.jpg)
+
 公共空间不靠一次性定制，而靠一套可复制、可撤除、可维护的组件库。十个组件共用煤黑—信号红—电气青—米白四色语汇与同一套标识规则，任何一处都能在不改动周边的前提下增设或撤除；组件本身不含摄像与人脸能力，智能层一律作为可拔插附件。
 
 | 组件 | 功能 | 材料与尺度原则 | 可撤除性 | 主要部署位置 |
@@ -346,16 +346,16 @@ iteration: "v1.6.2"
 
 ### 试点交付契约：把“谁负责、怎样验收、何时交回”写在同一行
 
-以下是获授权后才能校准的指标口径，不是现行政府服务标准、采购条款、预算承诺或已确定时限。在真实运营主体、服务时段和基线未确认前，KPI与响应时间的目标值均为 `null`；表中只保留“缺一不开放”的二元门槛与回滚状态。`A` 是未来经授权且对结果负责的唯一牵头角色；`R` 是执行角色；`C-I` 是必须事前参与并持续获知结果的权利人、专业人员与使用者。任何包缺少场地、主体、许可、持续资源、维护或退出资产处置之一，均不得上线或扩区。
+以下是获授权后才能校准的指标口径，不是现行政府服务标准、采购条款、预算承诺或已确定时限。在真实运营主体、服务时段和基线未确认前，KPI与响应时间的目标值均为 `null`；表中只保留“缺一不开放”的二元门槛与回滚状态。`A` 是未来经授权且对结果负责的唯一牵头角色，写作 `R-` 前缀的角色号，其资质、权限与缺岗禁止条件见 [data:visual/assets/governance/role-spec.json]；`R` 是执行角色；`C-I` 是必须事前参与并持续获知结果的权利人、专业人员与使用者。任何包缺少场地、主体、许可、持续资源、维护或退出资产处置之一，均不得上线或扩区。
 
 | 行动包与空间ID | 最小交付；概念 RACI | KPI口径与开放门槛 | SLO待校准项与回滚 |
 | --- | --- | --- | --- |
-| P01 公共交接底座；ROAD-001、SCN-05/10 | 连续无障碍路径、固定导视、人工求助；A：经授权公共空间管理方；R：交通、景观、无障碍、照明、维护；C-I：沿线使用者 | 逐段记录无AI路径审计；缺任一开放段记录或发现任一严重断点即不开放 | 人工求助时限待主体与值守基线确定；断点隔离，回到固定导视、常亮照明与人工服务 |
-| P02 北部验证交接；SCN-01/02/03 | 版本卡、权限隔离、物理急停、独立计量与失败记录；A：经授权测试责任方；R：模型、机器人、能源、现场安全；C-I：受影响人群与独立复核者 | 责任、版本、范围、急停演练和正负结果缺一则该批不接收 | 记录时限待安全主体校准；严重风险停测，未复核不恢复，回到封闭院落或普通设备位 |
-| P03 中部开源转译；SCN-04/06/07 | 授权、许可、撤回、人工窗口与成果接力；A：经授权服务运营方；R：开源维护、法务、翻译、产品与伦理；C-I：作者、居民、开发者 | 来源、许可、责任、撤回入口与无AI服务缺一则不发布 | 受理与转介时限待运营基线校准；权利不清即撤下，恢复普通信息服务 |
-| P04 维修与照护；SCN-08/09 | 电话/纸面报修、人工派单与照护排班；A：经授权社区服务方；R：维护与照护人员；C-I：居民、老人、照护者 | 拒绝算法不减少基础服务；公布人工服务时段、备用渠道与中断告知 | 投诉响应待服务基线校准；自动派单冲突即切回人工电话与纸面排班 |
-| P05 南部文化与体验；SCN-11及城市交接厅 | 清权索引、纸本目录、人工投诉与非消费通行；A：经授权文化/场地责任方；R：文保、版权、展陈、消费者权益；C-I：贡献权利人和公众 | 来源、授权、争议与撤回入口缺一则不展示；普通通行不以消费或App为条件 | 受理即标记争议并暂停推荐；依法核实后隐藏或恢复，必要时恢复普通公共空间 |
-| P06 全球交接周；SCN-12 | 问题征集、受控演练、正负结果发布、志愿服务与事后撤场；A：经授权年度运营方；R：活动、安全、社区、开发者、维护；C-I：所有参与者 | 继续、调整、停止三类结论同时公开；无障碍、应急与撤场检查覆盖全部活动段 | 主体、许可、持续预算、安全、值守或撤场任一不清即缩小/取消；结束后恢复日常通行 |
+| P01 公共交接底座；ROAD-001、SCN-05/10 | 连续无障碍路径、固定导视、人工求助；A：R-PUBLIC-SPACE；R：交通、景观、无障碍、照明、维护；C-I：沿线使用者 | 逐段记录无AI路径审计；缺任一开放段记录或发现任一严重断点即不开放 | 人工求助时限待主体与值守基线确定；断点隔离，回到固定导视、常亮照明与人工服务 |
+| P02 北部验证交接；SCN-01/02/03 | 版本卡、权限隔离、物理急停、独立计量与失败记录；A：R-TEST-SAFETY；R：模型、机器人、能源、现场安全；C-I：受影响人群与 R-INDEPENDENT-REVIEW | 责任、版本、范围、急停演练和正负结果缺一则该批不接收 | 记录时限待安全主体校准；严重风险停测，未复核不恢复，回到封闭院落或普通设备位 |
+| P03 中部开源转译；SCN-04/06/07 | 授权、许可、撤回、人工窗口与成果接力；A：R-SERVICE-OPS；R：开源维护、法务、翻译、产品与伦理；C-I：作者、居民、开发者 | 来源、许可、责任、撤回入口与无AI服务缺一则不发布 | 受理与转介时限待运营基线校准；权利不清即撤下，恢复普通信息服务 |
+| P04 维修与照护；SCN-08/09 | 电话/纸面报修、人工派单与照护排班；A：R-COMMUNITY-CARE；R：维护与照护人员；C-I：居民、老人、照护者 | 拒绝算法不减少基础服务；公布人工服务时段、备用渠道与中断告知 | 投诉响应待服务基线校准；自动派单冲突即切回人工电话与纸面排班 |
+| P05 南部文化与体验；SCN-11及城市交接厅 | 清权索引、纸本目录、人工投诉与非消费通行；A：R-CULTURE-VENUE；R：文保、版权、展陈、消费者权益；C-I：贡献权利人和公众 | 来源、授权、争议与撤回入口缺一则不展示；普通通行不以消费或App为条件 | 受理即标记争议并暂停推荐；依法核实后隐藏或恢复，必要时恢复普通公共空间 |
+| P06 全球交接周；SCN-12 | 问题征集、受控演练、正负结果发布、志愿服务与事后撤场；A：R-EVENT-OPS；R：活动、安全、社区、开发者、维护；C-I：所有参与者 | 继续、调整、停止三类结论同时公开；无障碍、应急与撤场检查覆盖全部活动段 | 主体、许可、持续预算、安全、值守或撤场任一不清即缩小/取消；结束后恢复日常通行 |
 
 ![P01—P06试点交付契约、版本状态机与三道条件合并门](assets/figures/delivery-contract.png)
 
@@ -363,7 +363,20 @@ iteration: "v1.6.2"
 
 品牌与IP不是一张Logo，而是一套可延展、可授权、可撤回的系统。基础层是名称与标识：中文“京张交接线”、英文 JING-ZHANG HANDOVER LINE，Logo 由两条平行铁轨、一个交接棒与一枚信号括号组成，煤黑代表可审计责任、信号红代表必须停下并由人判断的阈值、电气青代表开放接口、米白代表可阅读的公共记录。应用层是导视、组件库与出版物共用同一套标识规则：站号、班次、版本、责任人、更新时间五项信息必须同时出现，缺一项即视为标识不完整。活动层是四个季节性IP——开源交班、夜班维护者之夜、全球交接周、年度复盘班，各自有固定视觉母题但共用同一标识系统。授权层规定：标识可供非商业的公共传播、学术与社区活动使用，商业使用须另行授权；文化标识系统与一带整体Logo系统分列，不互相替代；任何使用都不得暗示政府背书或实施承诺。
 
-实施主体按“谁受益、谁维护、谁能停用”确定，而不是按项目大小分配。公共界面与导视由市政与公园管理方维护；验证类场景由发起团队承担安全与保险并接受第三方评审；社区服务类场景由社区与公共服务方运营并保留人工窗口；文化与活动类由文化机构联合志愿者承担。每一项都必须写明公共责任人和最迟接管响应时间，否则不得上线。以上为建议分工，具体主体须由主管部门确定。
+实施主体按“谁受益、谁维护、谁能停用”确定，而不是按项目大小分配。但“待主管部门确定”不该是一句空话——一份交不出去的分工等于没有分工。本轮把八个角色写成可交接的岗位规格 [data:visual/assets/governance/role-spec.json]，每个角色写明最低资质、能决定什么、不能决定什么、值守方式、无人值守时的兜底、启动权与停用权、需双人复核的事项及其独立第二复核角色、分歧升级路径、交班时必须移交的证据，以及缺岗时什么不得开放。
+
+| 角色 | 停用权 | 需双人复核的事项 | 缺岗时的禁止条件 |
+| --- | --- | --- | --- |
+| R-PUBLIC-SPACE 公共空间管理 | 可单方停用 | 无障碍整改验收、断点解除隔离 | 该段不得开放智能层，仅留固定导视、常亮照明与人工求助 |
+| R-TEST-SAFETY 受控测试安全 | 可单方停测 | 急停演练确认、严重风险后恢复 | 任何受控测试不得启动，机器专用道回到封闭状态 |
+| R-SERVICE-OPS 公共服务运营 | 可单方切回人工 | 许可与撤回入口核验、争议下架 | 不得只提供智能界面；无人工窗口则该服务不上线 |
+| R-COMMUNITY-CARE 社区服务照护 | 可单方切回人工派单 | 涉居民权益的服务变更 | 不得以自动派单单独运行 |
+| R-CULTURE-VENUE 文化与场地 | 可单方隐藏争议条目 | 荣誉条目证据是否足以记录 | 不得展示来源或授权不清的对象 |
+| R-EVENT-OPS 年度活动运营 | 可单方缩小或取消 | 无障碍与应急覆盖、撤场完成 | 不得举办；临时设施须先撤除 |
+| R-INDEPENDENT-REVIEW 独立复核 | 可单方否决恢复 | 自身复核意见的归档 | 任何需双人复核的合并、发布或恢复均不得进行 |
+| R-DISSENT 异议与被忽略人群代表 | 可单方触发停用 | 单方停用后的公开说明 | 不得新增面向公众的智能场景，也不得扩大既有场景 |
+
+八个角色的 `assignment_status` 一律为 `unassigned`，且该字段在 schema 中被约束为常量——规格不是任命。方案不指名任何单位或个人，不声称任何合作、委托或已签约关系；角色归属由主管部门确定。三条结构性约束由校验而非声明保证：停用权分散在多个角色而不集中于运营方，双人复核的第二复核角色不得指向自身，任一升级路径的最后一步都必须把判断交回人类专业团队。
 
 年度运营形成四季班表：春季“开源交班”发布城市问题与公共代码；夏季“夜班维护者之夜”展示维修和可靠性；秋季“全球交接周”组织模型、机器人与公共服务的可解释演练；冬季“年度复盘班”公布停用、投诉、修复和下一年退出清单。开发者社区按“问题票—公开遴选—最小复现—受控验证—维护者接班—可复用成果”运行，每一步都留下责任角色和许可证；居民通过问题发布、场景陪审和无AI服务测试持续参与。人才与企业转化不以签约为终点，而采用“参观—问题配对—受控试验—正负结果公开—专业转介—本地合作或明确退出”，不承诺招商金额、补贴或政府采购。国际传播除口号外固定输出双语协议卡、90秒无障碍路线说明与年度失败/修复摘要，使“全球人工智能产业高地和朝圣地”目标可被外部复核而不只可被拍摄。
 
@@ -407,15 +420,17 @@ iteration: "v1.6.2"
 
 公告要求研提“AI创新指数、人才密度、产值规模”等规划指标体系。本方案给出口径而不给出数值——但这不是“找不到数据”。区级公开统计确实存在且已逐条登记 [source:HAIDIAN-2025-STATISTICAL-BULLETIN]：备案上线大模型 123 款、全国重点实验室 92 家、每万人口高价值发明专利 599 件、技术合同成交额 4053.1 亿元。问题在于它们的统计单元是海淀全区，无法分配到 43.6 平方公里的走廊；把区级数字直接写成本带指标，得到的是不可复核的伪精度，反而削弱指标体系的用途。因此这些数值全部停留在 `background_only`，只用来定义口径与判断瓶颈。下表定义计算口径、数据前置条件和赋值触发，官方数据到位后由同一模型一次性赋值并进入 metrics.json，与几何类指标共用同一套复算规则。
 
-| 规划指标 | 口径定义 | 数据前置条件 | 当前状态 |
+| 规划指标 | 采样单元与分母 | 频率或触发 | 赋值前置条件 |
 | --- | --- | --- | --- |
-| AI创新指数 | 由可公开验证的子项加权：公共代码贡献数、可复现验证记录数、场景退出与修复记录数、开放接口数 | 需一带范围内的公开贡献台账与场景运行记录 | [metric:ai_innovation_index] 未赋值 |
-| 人才密度 | 单位就业用地上的AI相关从业与在学人口 | 需官方就业、学籍统计与用地权属数据 | [metric:talent_density] 未赋值 |
-| 产值规模 | 统计口径内AI及“AI+”融合产业年度产值 | 需统计部门口径与企业名录 | [metric:output_scale] 未赋值 |
-| 更新后区域建筑总规模 | 更新实施后范围内规划建筑面积总量 | 需现状建筑普查、控规与许可数据 | [metric:renewed_building_scale_sqm] 未赋值 |
-| AI企业聚集目标 | 范围内AI企业与研发机构的数量目标 | 需产业主管部门目标与企业名录 | [metric:ai_enterprise_target_count] 未赋值 |
+| AI创新指数 [metric:ai_innovation_index] | 单个场景的一个运行周期／当期已授权运行的场景数 | 每季度，且任一场景停用时即时补记 | 公开贡献台账与含正负结果的场景运行记录 |
+| 人才密度 [metric:talent_density] | 一个统计小区／该小区就业用地面积 | 官方统计年度发布后一次性赋值 | 官方就业与学籍统计、用地权属数据 |
+| 产值规模 [metric:output_scale] | 一个统计年度／无分母 | 官方统计年度发布后一次性赋值 | 统计部门口径与企业名录 |
+| 更新后区域建筑总规模 [metric:renewed_building_scale_sqm] | 一个更新单元／无分母 | 各单元规划条件核发后累加更新 | 更新单元规划条件与现状建筑面积 |
+| AI企业聚集目标 [metric:ai_enterprise_target_count] | 一家企业或研发机构／无分母 | 主管部门设定目标后记录 | 主管部门公开目标值与企业名录 |
 
-这五项与容积率、建筑高度同属“有口径、无数值”一类：它们不是遗漏，而是把赋值权交还给掌握官方数据的主体，同时保证一旦数据到位就能被同一套方法复算和质疑。
+这张表此前只写“口径定义”与“数据前置条件”，读者无从判断数值将来由谁、按什么单元、多久采一次。本轮把十一项未赋值指标（含容积率、建筑高度、总建筑面积、建筑密度、道路面积与道路率）升级为一份机器可读的测量协议 [data:visual/assets/governance/measurement-protocol.json]：每项写明定义、数据源类型、采集角色、采样单元与范围、频率或触发、分母、缺失值处理、质量检查、争议复核、隐私与留存，以及发布门槛。
+
+三条边界写进了 schema 而不只是写在正文里：`baseline` 与 `target` 的类型被约束为 `null`，任何数值都无法在不修改 schema 的前提下悄悄写入；缺失值处理一律禁止插值与用区级平均值替代；发布门槛任一条不成立，指标即保持未赋值。所以这不是“把赋值推给别人”，而是把赋值方法交出来接受质疑——公布测量协议不等于公布目标，口径与频率属于方法，目标值属于主管部门决策。
 
 compliance_matrix.json逐条覆盖公告1.3、1.4、1.5和agent.1—agent.6；standard_matrix.json覆盖六项标准；design_depth_matrix.json覆盖十五项专业深度。确定性、空间、视觉和专业检查共同验证机器可读包，人工评审仍拥有最终判断。建筑强度与高度保持unknown，是合规结果而非遗漏。整个矩阵由 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 和 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 统领。
 

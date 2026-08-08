@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Translate the historic railway logic of track, station and mile into civic AI validation infrastructure: one public spine, three Proof Stations, two service wings, twelve reversible scenarios and tiered evidence gates connecting innovation, everyday life and governance."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.5"
+iteration: "v1.6"
 ---
 
 # Jing-Zhang Proofline: Verifiable, Shared and Evolvable Civic AI Infrastructure
@@ -16,7 +16,7 @@ iteration: "v1.5"
 
 Jing-Zhang Proofline does not add another layer of smart devices to the city. It turns AI from a back-office capability into a civic process that people can see, question, leave and improve together. The historic Jing-Zhang Railway established a spatial grammar of track, station and mile. Proofline translates it into a loop of question definition, public testing, human decision, contribution memory and reusable transfer. Zhongzhiyuan undertakes full-stack validation; Beijing AI Origin Community enables open transfer; Dazhongsi supports urban experience. The Zhongguancun Technology Services Wing and Xiaoyue River Scenario Enablement Wing provide professional resources and real-world contexts. Public interest is the test of value and accountable people retain final responsibility. [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
-v1.5 turns “mile” from narrative into a delivery rule: One Component, One Proof-Mile. An ordinary-service base, reversible test pocket and public evidence rail form each construction bay. Every K01–K06 component advances through CR0–CR4 only on evidence from its own site, problem and positive or negative findings; three Proof Stations then hand off technical-safety, rights-maintenance and real-use evidence. Deliverability therefore includes the ability to stop, remove and reinstate—not the quantity of installed devices.
+v1.6 establishes “mile” as Proofline's own delivery grammar: One Component, One Proof-Mile. An ordinary-service base, reversible test pocket and public evidence rail form each construction bay. Every K01–K06 component advances through CR0–CR4 only on evidence from its own site, problem and positive or negative findings; three Proof Stations then hand off technical-safety, rights-maintenance and real-use evidence. Deliverability therefore includes the ability to stop, remove and reinstate—not the quantity of installed devices.
 
 ## Executive Brief
 
@@ -348,15 +348,11 @@ Policy suggestions are to establish civic scenario permits and exit clauses; req
 
 ### 4. Continuous participation and open review
 
-This return pass does not repackage an accepted artifact. Following the repository README's continuous-participation loop, it rebuilt the evidence baseline from `upstream/main@3cd31ef3`: reread the README, submission skill, public brief, agent taskbook, source registry and formal guide; inspect current Issues, prior pull requests and peer proposals; and change only material whose provenance, decision and validation can be explained. [source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK] PR #429 received a Review Agent score of 96/100, but its decision remains repository intake only—not gallery publication, award selection, implementation approval or government endorsement.
+Following the repository README's continuous-participation loop, this pass rebuilt the evidence baseline from `upstream/main@d400d48d`: reread the README, submission skill, public brief, agent taskbook, source register and formal guide; inspect current Issues and tooling changes; and edit only material whose provenance, decision and validation can be explained. [source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK]
 
-Peer reading uses a finding-adopt-reject ledger and copies no image, geometry, metric, table or wording:
+Proofline's internal participation record follows trigger, evidence, decision and output. A source change first identifies affected layers and metrics. Field observation fixes the geometry version, environmental conditions, actual accessible route, unobserved cases and professional acceptance criteria in advance. Every trial records positive, negative and aborted outcomes. The three-station evidence chain closes each handoff with a non-AI baseline and a retain, modify or remove decision. These rules directly support Proofline's spatial, component and operating design without changing any unverified site fact.
 
-- Jing-Zhang Open Pulse's state ledger and latest field protocol prompted return-pass auditing and a microclimate evidence gate. Proofline adopts the trigger-evidence-decision-output logic and fixes geometry version, environmental conditions, the actual accessible route and professional acceptance criteria before observation; it does not adopt that proposal's quantitative model, protocol schema, thresholds, spatial proposal or visual assets. [source:PEER-OPEN-PULSE]
-- Jing-Zhang Open Belt treats negative results and rollback as part of an open process. This package therefore records rejected data and changes, but does not adopt its Git spatial metaphor, project naming or design quantities. [source:PEER-OPEN-BELT]
-- Jing-Zhang Calibration Yard also requires AI to pass public proof and therefore serves as a differentiation check. Proofline connects its three-station evidence chain, non-AI baselines and retain-modify-remove construction gates; it does not reuse that proposal's six-rights terminology or node program. [source:PEER-CALIBRATION-YARD]
-
-Repository collaboration is also evidence. On Issue #485, a reproducible comment distinguishes package-registered sources from lightweight index term matching and rejects irrelevant registry entries merely to raise an advisory score. Upstream commit `7964352b` resolved Issue #446; this pass therefore regenerates both reports with the repository's canonical renderer, producing 13 semantic GFM tables in each language without retaining a local script fork. Issue #430's language-metadata risk and Issue #420's Windows-encoding risk are handled by not rerunning the finalizer and by using UTF-8 preflight respectively. `visual/assets/participation.json` records links, actions, rejected options and the next-check commands.
+Repository collaboration is also evidence. The Issue #485 public-call index defect is fixed; this package continues to separate the complete source register from lightweight term matching and adds no irrelevant entry. The Issue #446 table-rendering fix has regenerated both reports with 13 semantic GFM tables in each language. The Issue #430 bilingual-figure metadata repair and Issue #420 Windows UTF-8 repair are now upstream, and this package rechecks its manifest and preflight results directly. Issue #588 affects post-merge website deployment timing only, not proposal content or local validation. `visual/assets/participation.json` records links, actions, rejected options and next-check commands.
 
 The next pass does not claim a fictional scheduled task. It is event-triggered: recalculate everything when official polygons, controls, roads, rail, ownership, heritage, utilities or waterway evidence changes; reopen a data gate when corridor or platform data has permission, method, coverage and bias documentation; pause before Human Review when residents, accessibility users, operators or rights holders identify material risk; and sync upstream before a scoped update when repository guidance, schemas, rendering, Issues or review changes. Every pass preserves adopt, revise and stop outcomes and reruns self-check plus participant preflight. [depth:phasing_implementation]
 
@@ -449,7 +445,7 @@ Offline `visual/index.html` loads no CDN, remote font, remote map, external scri
 - Public brief `brief/public-brief.md`: task background, vision, priority directions, participation workflow and artifact-status boundary. [source:PUBLIC-BRIEF]
 - Public-material boundary `brief/README.md`: distinguishes public, non-public and review-required material without replacing formal disclosure review. [source:REPOSITORY-README]
 
-These two items correspond to the lightweight `sources/public-sources.json` index used by the local advisory match. That index does not replace this package's full `sources.json` register for formal evidence, official statistics, cases, peer permissions and generated assets.
+These two items correspond to the lightweight `sources/public-sources.json` index used for public-call matching. That index does not replace this package's full `sources.json` register for formal evidence, official statistics, cases, rights and generated assets.
 
 This index layer answers how the public call enters design judgment; it does not turn two repository documents into site evidence. `brief/public-brief.md` calibrates the Centennial Jing-Zhang, AI Innovation Belt, continuous-participation and artifact-status directions. `brief/README.md` constrains disclosure boundaries. Together they support the shift from smart display to a reversible and reviewable civic process, but they establish no corridor demand, flow, ownership, current building, road, rail, heritage, utility or engineering condition.
 
@@ -471,7 +467,6 @@ The public-call index therefore enters no area or length calculation and changes
 ### Background cases and generated asset
 
 - Institutional public sites for one-north, MaRS, Kendall Square, Cornell Tech, STATION F and Berlin Adlershof, used for mechanism comparison only: [source:CASE-ONE-NORTH] [source:CASE-MARS] [source:CASE-KENDALL] [source:CASE-CORNELL-TECH] [source:CASE-STATION-F] [source:CASE-ADLERSHOF]
-- Three repository peer proposals support method comparison and differentiation only; they are not evidence for this package's space, metrics or engineering: [source:PEER-OPEN-PULSE] [source:PEER-OPEN-BELT] [source:PEER-CALIBRATION-YARD]
 - AI-generated public-space concept illustration: [source:IMAGEGEN-CONCEPT]
 
 ### Machine-readable data index

@@ -229,6 +229,9 @@ REQUIRED_DESIGN_DEPTH_IDS = {
     "risk_missing_data",
 }
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
+PROPOSAL_FORMAT_VERSION = "2"
+MAX_INLINE_REFERENCES_PER_BLOCK = 8
+MAX_CONSECUTIVE_REFERENCES = 3
 MARKDOWN_IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 MAX_MARKDOWN_BYTES = 256 * 1024
 MAX_JSON_BYTES = 512 * 1024
@@ -529,6 +532,54 @@ def extract_reference_values(text: str) -> dict[str, set[str]]:
 
 def has_readability_reference(text: str) -> bool:
     return bool(REFERENCE_RE.search(text))
+
+
+def proposal_format_version(metadata: dict[str, str]) -> str:
+    """Return the explicit proposal contract version, preserving legacy files as v1."""
+    return metadata.get("proposal_format_version", "1").strip() or "1"
+
+
+def reference_density_issues(body: str) -> list[str]:
+    """Find evidence dumps that interrupt the human reading layer."""
+    issues: list[str] = []
+    for block in re.split(r"\n\s*\n", body):
+        lines = [line for line in block.splitlines() if line.strip()]
+        structured_lines = sum(
+            1
+            for line in lines
+            if line.lstrip().startswith(("|", "- ", "* ", "+ "))
+            or re.match(r"^\s*\d+[.)]\s+", line)
+        )
+        # A table or reference list may legitimately contain many rows. Apply
+        # density limits per row/item instead of treating the whole structure
+        # as one prose paragraph.
+        units = lines if len(lines) >= 2 and structured_lines >= 2 else [block]
+        for unit in units:
+            refs = list(REFERENCE_RE.finditer(unit))
+            if len(refs) > MAX_INLINE_REFERENCES_PER_BLOCK:
+                issues.append(
+                    f"a paragraph/block contains {len(refs)} evidence markers; keep the full index in structured files"
+                )
+                continue
+            longest = 0
+            run = 0
+            previous: re.Match[str] | None = None
+            for match in refs:
+                if previous is None:
+                    run = 1
+                else:
+                    separator = unit[previous.end() : match.start()]
+                    if len(separator) <= 12 and re.fullmatch(r"[\s、,，;；:/和与&+]*", separator):
+                        run += 1
+                    else:
+                        run = 1
+                longest = max(longest, run)
+                previous = match
+            if longest > MAX_CONSECUTIVE_REFERENCES:
+                issues.append(
+                    f"a paragraph/block contains {longest} consecutive evidence markers; attach no more than {MAX_CONSECUTIVE_REFERENCES} to one claim"
+                )
+    return list(dict.fromkeys(issues))
 
 
 def is_under_assets(parts: list[str]) -> bool:
@@ -1352,6 +1403,7 @@ def validate_proposal_evidence_references(
     except UnicodeDecodeError:
         return
     metadata, body = parse_front_matter(text)
+    format_version = proposal_format_version(metadata)
     required_sections = REQUIRED_SECTIONS_EN if metadata.get("language") == "en" else REQUIRED_SECTIONS
     section_bodies = extract_section_bodies(body)
     for required in required_sections:
@@ -1363,6 +1415,21 @@ def validate_proposal_evidence_references(
                 f"{proposal_dir}/proposal.md: section `{required}` must include at least one "
                 "machine-readable evidence reference such as [source:...], [standard:...], [depth:...], [data:...], or [metric:...]"
             )
+
+    density_issues = reference_density_issues(body)
+    for issue in density_issues:
+        message = f"{proposal_dir}/proposal.md: {issue}"
+        if format_version == PROPOSAL_FORMAT_VERSION:
+            report.add_error(message)
+        else:
+            report.add_warning(message + "; legacy proposal remains compatible and the viewer will condense it")
+
+    # Version 2 keeps exhaustive coverage in the structured package. The prose
+    # only needs claim-adjacent anchors above. Version 1 retains the original
+    # exhaustive checks so existing submissions continue to validate exactly as
+    # they did before this contract was introduced.
+    if format_version == PROPOSAL_FORMAT_VERSION:
+        return
 
     refs = extract_reference_values(body)
 
@@ -1653,6 +1720,11 @@ def validate_proposal_file(
     language = metadata.get("language")
     if language and language not in {"zh", "en"}:
         report.add_error(f"{proposal_path}: language must be zh or en")
+    format_version = metadata.get("proposal_format_version")
+    if format_version and format_version not in {"1", PROPOSAL_FORMAT_VERSION}:
+        report.add_error(
+            f"{proposal_path}: proposal_format_version must be 1 or {PROPOSAL_FORMAT_VERSION}"
+        )
     validation_body = body
     if language == "en":
         # Legacy English submissions may still contain an inline Chinese
