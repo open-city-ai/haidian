@@ -55,6 +55,11 @@ MIN_GRID_CELL_INK_RATIO = 0.002
 NEAR_BLANK_MAX_INK_RATIO = 0.04
 NEAR_BLANK_MAX_BBOX_RATIO = 0.40
 NEAR_BLANK_MAX_OCCUPIED_CELLS = 36
+# A page with only an outer frame can span nearly the entire bounding box and
+# occupy the grid perimeter while still carrying no board content.  Treat a
+# very large interior blank region as an alternative near-blank signal, but
+# only when the whole page also has almost no ink.
+NEAR_BLANK_MIN_LARGEST_BLANK_RECT_RATIO = 0.50
 SPARSE_PAGE_MAX_INK_RATIO = 0.09
 SPARSE_PAGE_MAX_BBOX_RATIO = 0.55
 SPARSE_PAGE_MAX_OCCUPIED_CELLS = 54
@@ -275,11 +280,12 @@ def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
                         f"{occupied_cells}/{PDF_GRID_SIZE * PDF_GRID_SIZE} occupied grid cells, "
                         f"largest blank block {largest_blank_rect_ratio:.2%}"
                     )
-                    if (
-                        ink_ratio <= NEAR_BLANK_MAX_INK_RATIO
-                        and bbox_ratio <= NEAR_BLANK_MAX_BBOX_RATIO
-                        and occupied_cells <= NEAR_BLANK_MAX_OCCUPIED_CELLS
-                    ):
+                    is_near_blank_structure = (
+                        bbox_ratio <= NEAR_BLANK_MAX_BBOX_RATIO
+                        or occupied_cells <= NEAR_BLANK_MAX_OCCUPIED_CELLS
+                        or largest_blank_rect_ratio >= NEAR_BLANK_MIN_LARGEST_BLANK_RECT_RATIO
+                    )
+                    if ink_ratio <= NEAR_BLANK_MAX_INK_RATIO and is_near_blank_structure:
                         report.add(
                             "DRAWING_PAGE_NEAR_BLANK",
                             "major",

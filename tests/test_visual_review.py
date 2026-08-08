@@ -67,6 +67,15 @@ def write_top_heavy_drawing_pdf(path: Path) -> None:
     document.close()
 
 
+def write_border_only_drawing_pdf(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    page.draw_rect(fitz.Rect(20, 20, 822, 1171), color=(0, 0, 0), width=1)
+    document.save(path)
+    document.close()
+
+
 class VisualReviewTests(unittest.TestCase):
     def test_valid_static_visual_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -208,6 +217,14 @@ class VisualReviewTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             submission = write_valid_visual_package(Path(tmp))
             write_drawing_pdf(submission / "drawings" / "a0-boards.en.pdf", sparse=True)
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
+
+    def test_border_only_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_border_only_drawing_pdf(submission / "drawings" / "a0-boards.pdf")
             report = review_visual(submission)
             self.assertFalse(report.ok)
             self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
