@@ -87,6 +87,7 @@ class PrelaunchCheckTests(unittest.TestCase):
         workflow = (ROOT / ".github" / "workflows" / "submission-validation.yml").read_text(encoding="utf-8")
         self.assertIn("pull_request_target", workflow)
         self.assertIn("converted_to_draft", workflow)
+        self.assertIn("uses: actions/checkout@v6", workflow)
         self.assertIn("github.event.pull_request.base.sha", workflow)
         self.assertNotIn("github.event.pull_request.head.sha", workflow)
         self.assertNotIn("if: github.event.pull_request.draft == false", workflow)
