@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/site_boundary.geojson",
+      "message": "边界明确标注 provisional_constraint、official_boundary=false 和使用限制。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地在 EPSG:4548 下由同一临时边界切分，内部无重叠且覆盖边界。"
+    },
+    {
+      "check_id": "METRIC_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "面积和长度由提交几何在 EPSG:4548 下复算，公式、来源和假设完整。"
+    },
+    {
+      "check_id": "CLAIM_BOUNDARY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "未把容积率、高度、密度、退线、逐栋拆改留、工程线位、投资和时序写成审定结论。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文覆盖三层尺度、三区两翼、国际案例、14场景、7画像、4地标、运营、风险和专业证据标签。"
+    },
+    {
+      "check_id": "OFFICIAL_REPO_VALIDATOR",
+      "result": "pass",
+      "severity": "info",
+      "target": "scripts/self_check_submission.py",
+      "message": "已在上游 main 提交 3a917847 的可信脚本上运行官方 self_check_submission.py；deterministic、spatial、visual 与 professional 四项检查均 PASS，Can enter formal review: YES。"
+    },
+    {
+      "check_id": "FIGURE_DIMENSIONS",
+      "result": "pass",
+      "severity": "major",
+      "target": "assets/figures",
+      "message": "五张核心专业图均为原创生成，高分辨率、含图例、设计判断、临时边界声明和专业可读标签。"
+    },
+    {
+      "check_id": "OFFLINE_HTML",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "report/proposal.html + visual/index.html",
+      "message": "HTML 不含远程资源、iframe、表单、网络请求、跟踪代码或外部字体。"
+    },
+    {
+      "check_id": "PDF_PREFLIGHT",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/a3-booklet.pdf + drawings/a0-boards.pdf",
+      "message": "A3 方案册 12 页、A0 展板 3 页均按正确纸张尺寸生成并逐页渲染复核；未发现裁切、重叠、乱码或黑块。"
+    }
+  ]
+}
