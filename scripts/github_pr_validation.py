@@ -359,7 +359,7 @@ def publish_validation_comment(
     """Publish feedback without replacing the deterministic validation result."""
     try:
         client.upsert_comment(issue_number, body)
-    except RuntimeError as exc:
+    except (RuntimeError, urllib.error.URLError) as exc:
         # A comment is useful feedback, but it must not turn a deterministic
         # validation result into an unrelated CI failure.
         print(f"warning: unable to publish validation comment: {exc}", file=sys.stderr)
