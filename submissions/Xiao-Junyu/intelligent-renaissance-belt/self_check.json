@@ -1,0 +1,153 @@
+{
+  "schema_version": "0.1.0",
+  "check_date": "2026-08-08",
+  "check_type": "contributor_self_check",
+  "checks": [
+    {
+      "check_id": "CHK-001",
+      "name": "package_type",
+      "result": "pass",
+      "severity": "info",
+      "details": "manifest.json package_type=professional_design_package"
+    },
+    {
+      "check_id": "CHK-002",
+      "name": "submission_type",
+      "result": "pass",
+      "severity": "info",
+      "details": "manifest.json submission_type=ai_agent"
+    },
+    {
+      "check_id": "CHK-003",
+      "name": "project_id",
+      "result": "pass",
+      "severity": "info",
+      "details": "manifest.json project_id=centennial-jingzhang-ai-belt"
+    },
+    {
+      "check_id": "CHK-004",
+      "name": "package_state",
+      "result": "pass",
+      "severity": "info",
+      "details": "manifest.json package_state=ready_for_review"
+    },
+    {
+      "check_id": "CHK-005",
+      "name": "proposal_md_front_matter",
+      "result": "pass",
+      "severity": "info",
+      "details": "proposal.md 含 title/author_github/language/license/summary 前置元数据，author_github=Xiao-Junyu 与 PR 作者一致"
+    },
+    {
+      "check_id": "CHK-006",
+      "name": "required_sections",
+      "result": "pass",
+      "severity": "info",
+      "details": "proposal.md 覆盖全部 13 个必填章节"
+    },
+    {
+      "check_id": "CHK-007",
+      "name": "agent_tasks_coverage",
+      "result": "pass",
+      "severity": "info",
+      "details": "agent.1~agent.6 与公告 1.3/1.4/1.5 任务全部覆盖，见 compliance_matrix.json"
+    },
+    {
+      "check_id": "CHK-008",
+      "name": "scenario_cards",
+      "result": "pass",
+      "severity": "info",
+      "details": "12 张场景卡（≥10），含 4 个产业测试场景（≥3）"
+    },
+    {
+      "check_id": "CHK-009",
+      "name": "persona_count",
+      "result": "pass",
+      "severity": "info",
+      "details": "6 类用户画像（≥5）"
+    },
+    {
+      "check_id": "CHK-010",
+      "name": "landmarks",
+      "result": "pass",
+      "severity": "info",
+      "details": "5 个 AI 朝圣地标（≥3）"
+    },
+    {
+      "check_id": "CHK-011",
+      "name": "case_studies",
+      "result": "pass",
+      "severity": "info",
+      "details": "7 个全球 AI 生态案例（5-8）"
+    },
+    {
+      "check_id": "CHK-012",
+      "name": "geometry_files",
+      "result": "pass",
+      "severity": "minor",
+      "details": "9 个 GeoJSON 均标注 provisional 状态，land_use 完整覆盖临时 site 边界，要素均在 site 内"
+    },
+    {
+      "check_id": "CHK-013",
+      "name": "boundary_status",
+      "result": "pass",
+      "severity": "minor",
+      "details": "全部边界均为临时边界（provisional_constraint），已在 proposal.md 与 metadata 中醒目标注，非官方红线，不用于精确面积复算"
+    },
+    {
+      "check_id": "CHK-014",
+      "name": "figures",
+      "result": "pass",
+      "severity": "info",
+      "details": "assets/figures/ 含 5 张核心图（site-overview, land-use-structure, key-areas, mobility-bluegreen, metrics-evidence），均在 proposal.md 以本地 Markdown 引用嵌入"
+    },
+    {
+      "check_id": "CHK-015",
+      "name": "drawings",
+      "result": "pass",
+      "severity": "info",
+      "details": "drawings/a3-booklet.pdf 与 drawings/a0-boards.pdf 已生成（概念展板，非法定图纸）"
+    },
+    {
+      "check_id": "CHK-016",
+      "name": "visual_index_html",
+      "result": "pass",
+      "severity": "info",
+      "details": "visual/index.html 为离线静态页面，不加载远程资源/CDN/外部字体/追踪代码"
+    },
+    {
+      "check_id": "CHK-017",
+      "name": "copyright_statement",
+      "result": "pass",
+      "severity": "info",
+      "details": "report/copyright_statement.md 存在，CC BY 4.0 授权，已披露 AI 生成方式"
+    },
+    {
+      "check_id": "CHK-018",
+      "name": "translation",
+      "result": "pass",
+      "severity": "info",
+      "details": "proposal.en.md 为独立英文翻译版本"
+    },
+    {
+      "check_id": "CHK-019",
+      "name": "sources_json",
+      "result": "pass",
+      "severity": "info",
+      "details": "sources.json 含 6 个数据来源记录，覆盖官方公告、任务书、临时边界、OSM 等"
+    },
+    {
+      "check_id": "CHK-020",
+      "name": "fabricated_certainty",
+      "result": "pass",
+      "severity": "info",
+      "details": "所有空间建议表述为概念建议/参考方案，无法定规划结论，不含非公开或隐私数据"
+    }
+  ],
+  "summary": {
+    "total": 20,
+    "passed": 20,
+    "blocking_failures": 0,
+    "notes": "确定性自检全部通过。两条 minor 提示为临时边界状态，属征集允许的 provisional intake，不影响内容完整性与 intake 资格；待官方边界发布后迭代更新几何与精度。"
+  }
+}
