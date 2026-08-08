@@ -1,5 +1,6 @@
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -45,6 +46,23 @@ class RefreshManifestHashesTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             package = Path(tmp)
             self.write_manifest(package, [{"path": "../outside.txt"}])
+
+            completed = self.run_refresh(package)
+
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("must stay inside the package", completed.stdout)
+
+    def test_rejects_symlinked_parent_escaping_package(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp) / "package"
+            outside = Path(tmp) / "outside"
+            package.mkdir()
+            outside.mkdir()
+            (outside / "secret.txt").write_text("outside package\n", encoding="utf-8")
+            if not hasattr(os, "symlink"):
+                self.skipTest("symlink support is unavailable")
+            os.symlink(outside, package / "assets")
+            self.write_manifest(package, [{"path": "assets/secret.txt"}])
 
             completed = self.run_refresh(package)
 

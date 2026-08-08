@@ -17,6 +17,12 @@ def manifest_file_path(root: Path, raw_path: object) -> tuple[str, Path]:
     if pure_path.is_absolute() or ".." in pure_path.parts:
         raise ValueError(f"manifest path must stay inside the package: {relative}")
     path = root / pure_path.as_posix()
+    try:
+        resolved_root = root.resolve()
+        resolved_path = path.resolve()
+        resolved_path.relative_to(resolved_root)
+    except (OSError, RuntimeError, ValueError) as exc:
+        raise ValueError(f"manifest path must stay inside the package: {relative}") from exc
     if path.is_symlink() or not path.is_file():
         raise ValueError(f"manifest file is missing or not a regular file: {relative}")
     return pure_path.as_posix(), path
