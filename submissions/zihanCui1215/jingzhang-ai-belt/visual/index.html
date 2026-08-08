@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张AI脊 — 离线可视化面板</title>
+<style>
+:root{--bg:#FAFBFC;--card:#fff;--border:#D0D7DE;--txt:#212529;--txt-l:#6C757D;--accent:#3D5A80;--green:#52B788;--red:#E63946;--yellow:#FFD93D;--teal:#4ECDC4;--orange:#F77F00}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei','SimHei',sans-serif;background:var(--bg);color:var(--txt);line-height:1.6}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.header{text-align:center;padding:30px 20px;border-bottom:2px solid var(--border);margin-bottom:20px}
+.header h1{font-size:24px;color:var(--accent)}
+.header .sub{font-size:14px;color:var(--txt-l);margin-top:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px;margin-bottom:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px}
+.card h3{font-size:13px;color:var(--txt-l);margin-bottom:8px;font-weight:normal}
+.card .val{font-size:28px;font-weight:bold;color:var(--accent)}
+.card .unit{font-size:12px;color:var(--txt-l);margin-left:4px}
+.card .note{font-size:11px;color:#ADB5BD;margin-top:4px}
+.section{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px;margin-bottom:20px}
+.section h2{font-size:16px;color:var(--accent);border-left:4px solid var(--accent);padding-left:10px;margin-bottom:14px}
+.task-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px}
+.task-item{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:6px;background:#F0FFF4;border:1px solid var(--green)}
+.task-item .check{color:var(--green);font-weight:bold}
+.figures{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.figure-item{text-align:center}
+.figure-item img{width:100%;border:1px solid var(--border);border-radius:8px}
+.figure-item .cap{font-size:12px;color:var(--txt-l);margin-top:6px}
+.status-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:bold}
+.status-pass{background:#D4EDDA;color:#155724;border:1px solid #C3E6CB}
+.status-warn{background:#FFF3CD;color:#856404;border:1px solid #FFE69C}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:8px 10px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:#F8F9FA;color:var(--txt-l);font-weight:normal}
+.src-list{list-style:none}
+.src-list li{padding:8px 0;border-bottom:1px solid #F0F0F0;font-size:12px}
+.src-list .src-id{font-weight:bold;color:var(--accent)}
+.footer{text-align:center;padding:20px;color:var(--txt-l);font-size:11px;border-top:1px solid var(--border)}
+@media(max-width:768px){.grid{grid-template-columns:repeat(2,1fr)}.figures{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>京张AI脊 — 百年铁路文脉驱动的全球人工智能创新走廊</h1>
+    <div class="sub">百年京张AI创新带城市设计开源征集 | WorkBuddy AI | 2026-08-08</div>
+    <div style="margin-top:10px">
+      <span class="status-badge status-pass">package_state: ready_for_review</span>
+      <span class="status-badge status-warn" style="margin-left:8px">provisional boundary</span>
+    </div>
+  </div>
+
+  <!-- Core Metrics -->
+  <div class="grid">
+    <div class="card"><h3>总体设计面积</h3><div class="val">11.41<span class="unit">km2</span></div><div class="note">临时计算 (公告 11.4 km2)</div></div>
+    <div class="card"><h3>绿地率</h3><div class="val">43.6<span class="unit">%</span></div><div class="note">概念参考，非控规指标</div></div>
+    <div class="card"><h3>综合容积率</h3><div class="val">0.90<span class="unit"></span></div><div class="note">概念参考，非控规指标</div></div>
+    <div class="card"><h3>建筑密度</h3><div class="val">6.9<span class="unit">%</span></div><div class="note">概念参考</div></div>
+    <div class="card"><h3>建筑数量</h3><div class="val">55<span class="unit">栋</span></div><div class="note">概念生成</div></div>
+    <div class="card"><h3>用地地块</h3><div class="val">14<span class="unit">块</span></div><div class="note">无缝覆盖临时边界</div></div>
+    <div class="card"><h3>公共空间</h3><div class="val">30.4<span class="unit">万㎡</span></div><div class="note">8处节点</div></div>
+    <div class="card"><h3>估算总GFA</h3><div class="val">1023<span class="unit">万㎡</span></div><div class="note">概念估算</div></div>
+  </div>
+
+  <!-- Task Coverage -->
+  <div class="section">
+    <h2>任务覆盖 — 六大Agent任务</h2>
+    <div class="task-grid">
+      <div class="task-item"><span class="check">[OK]</span> agent.1 总体概念与功能统筹</div>
+      <div class="task-item"><span class="check">[OK]</span> agent.2 AI全栈创新体系与生态</div>
+      <div class="task-item"><span class="check">[OK]</span> agent.3 AI+场景赋能新范式</div>
+      <div class="task-item"><span class="check">[OK]</span> agent.4 AI公共空间与朝圣地标</div>
+      <div class="task-item"><span class="check">[OK]</span> agent.5 文化融合叙事</div>
+      <div class="task-item"><span class="check">[OK]</span> agent.6 全球AI创新活动与运营</div>
+    </div>
+    <div style="margin-top:12px;font-size:12px;color:var(--txt-l)">
+      公告任务覆盖: 1.3节(3项) [OK] | 1.4节(2项) [OK] | 1.5节(5项) [OK] — 全部covered
+    </div>
+  </div>
+
+  <!-- Self-Check -->
+  <div class="section">
+    <h2>自检状态</h2>
+    <table>
+      <tr><th>检查项</th><th>状态</th><th>说明</th></tr>
+      <tr><td>proposal.md 存在且完整</td><td><span class="status-badge status-pass">PASS</span></td><td>18个章节全部覆盖</td></tr>
+      <tr><td>9个GeoJSON文件</td><td><span class="status-badge status-pass">PASS</span></td><td>site/key/land/buildings/roads/green/public/constraints/phasing</td></tr>
+      <tr><td>用地覆盖边界</td><td><span class="status-badge status-pass">PASS</span></td><td>用地面积 = 边界面积 (无缝覆盖)</td></tr>
+      <tr><td>合规矩阵</td><td><span class="status-badge status-pass">PASS</span></td><td>agent.1-6 全部covered</td></tr>
+      <tr><td>设计深度矩阵</td><td><span class="status-badge status-pass">PASS</span></td><td>18项全部complete</td></tr>
+      <tr><td>临时边界已标注</td><td><span class="status-badge status-pass">PASS</span></td><td>所有几何标注为provisional</td></tr>
+      <tr><td>证据引用标签</td><td><span class="status-badge status-pass">PASS</span></td><td>[source:] [depth:] [data:] [metric:] 存在</td></tr>
+      <tr><td>5张图件</td><td><span class="status-badge status-pass">PASS</span></td><td>5张PNG已生成</td></tr>
+      <tr><td>PDF文件</td><td><span class="status-badge status-warn">WARN</span></td><td>A3/A0 PDF待生成</td></tr>
+      <tr><td>翻译文件</td><td><span class="status-badge status-warn">WARN</span></td><td>非阻断式，不影响提交</td></tr>
+    </table>
+    <div style="margin-top:10px">
+      <span class="status-badge status-pass">Overall: PASS (with warnings)</span>
+    </div>
+  </div>
+
+  <!-- Figures Gallery -->
+  <div class="section">
+    <h2>方案图件 — 5张核心图</h2>
+    <div class="figures">
+      <div class="figure-item">
+        <img src="../assets/figures/site-overview.png" alt="总体空间结构">
+        <div class="cap">图1 总体空间结构 — 京张AI脊走廊与三区两翼布局</div>
+      </div>
+      <div class="figure-item">
+        <img src="../assets/figures/land-use-structure.png" alt="用地结构">
+        <div class="cap">图2 用地结构 — 14个用地地块分区</div>
+      </div>
+      <div class="figure-item">
+        <img src="../assets/figures/key-areas.png" alt="重点区域设计">
+        <div class="cap">图3 三个重点区域详细设计</div>
+      </div>
+      <div class="figure-item">
+        <img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿系统">
+        <div class="cap">图4 交通与蓝绿系统</div>
+      </div>
+      <div class="figure-item">
+        <img src="../assets/figures/metrics-evidence.png" alt="指标与分期">
+        <div class="cap">图5 分期建设与指标证据</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="section">
+    <h2>资料来源</h2>
+    <ul class="src-list">
+      <li><span class="src-id">SRC-2026-0518</span> 面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录 — user_provided_cleared_summary — usable_for_formal: yes</li>
+      <li><span class="src-id">SRC-2026-BJ-GH</span> 北京市海淀区公告—资格预审 — official_text_area_and_boundary_description — usable_for_formal: yes</li>
+      <li><span class="src-id">SRC-2026-BJ-KW</span> 三区两翼工作框架 — official_conceptual_framework — usable_for_formal: yes</li>
+      <li><span class="src-id">DATA-SRC-PROV</span> 临时粗略替代边界 — maintainer_defined_provisional — usable_for_formal: provisional_only</li>
+      <li><span class="src-id">DATA-SRC-OFF</span> 官方公告(自然资源和规划委员会) — official_text — usable_for_formal: yes</li>
+    </ul>
+  </div>
+
+  <!-- Assumptions -->
+  <div class="section">
+    <h2>关键假设</h2>
+    <table>
+      <tr><th>编号</th><th>类别</th><th>假设</th><th>置信度</th></tr>
+      <tr><td>ASM-001</td><td>boundary</td><td>临时粗略边界作为场地边界</td><td>medium</td></tr>
+      <tr><td>ASM-002</td><td>planning_control</td><td>容积率/高度/绿地率为概念参考值</td><td>low</td></tr>
+      <tr><td>ASM-003</td><td>building_layout</td><td>建筑足迹为网格布局概念生成</td><td>low</td></tr>
+      <tr><td>ASM-004</td><td>land_use</td><td>用地分区遵循南北功能梯度</td><td>medium</td></tr>
+      <tr><td>ASM-005</td><td>road_network</td><td>路网沿铁路走廊布置</td><td>low</td></tr>
+      <tr><td>ASM-006</td><td>green_space</td><td>绿地含铁路遗址公园走廊和防护绿带</td><td>low</td></tr>
+      <tr><td>ASM-007</td><td>phasing</td><td>南向北分期(大钟寺先启动)</td><td>low</td></tr>
+      <tr><td>ASM-008</td><td>ai_ecosystem</td><td>AI生态案例基于公开知识</td><td>medium</td></tr>
+      <tr><td>ASM-009</td><td>cultural</td><td>京张铁路遗产为核心文化主线</td><td>high</td></tr>
+      <tr><td>ASM-010</td><td>floor_height</td><td>平均层高假定3.5m</td><td>low</td></tr>
+    </table>
+  </div>
+
+  <!-- Data Gaps -->
+  <div class="section" style="border-color:#E76F51">
+    <h2 style="color:#E76F51;border-color:#E76F51">数据缺口与限制</h2>
+    <table>
+      <tr><th>缺口</th><th>影响</th><th>缓解</th></tr>
+      <tr><td>官方精确边界缺失</td><td>面积计算为临时值</td><td>临时边界已标注; 待官方入库后重算</td></tr>
+      <tr><td>控规指标缺失(容积率/高度/密度/绿地率/退线)</td><td>所有规划指标为概念参考</td><td>明确标注非法定; 须以官方控规为准</td></tr>
+      <tr><td>官方标准文件缺失</td><td>标准回应为概念方向</td><td>标注needs_official_file; 待官方文件入库</td></tr>
+      <tr><td>建筑/地块实测数据缺失</td><td>建筑布局为概念生成</td><td>标注low confidence; 须专业团队深化</td></tr>
+    </table>
+    <div style="margin-top:10px;padding:10px;background:#FFF5F5;border:1px solid #E76F51;border-radius:6px;font-size:12px;color:#E76F51">
+      所有空间落地建议均为"概念建议"、"参考方案"或"可供专业团队深化研究"，不替代正式规划，不构成政府审定结论。
+    </div>
+  </div>
+
+  <div class="footer">
+    京张AI脊 — JingZhang AI Spine | WorkBuddy AI | 2026-08-08 | 临时边界(provisional_rough)仅用于AI生成与展示
+  </div>
+</div>
+</body>
+</html>
