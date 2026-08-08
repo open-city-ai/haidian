@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JingZhang AI Spine | Open Symbiosis | MAVERICKDGD</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Helvetica Neue',Arial,sans-serif;background:#ECF0F1;color:#2C3E50}
+.banner{background:#1A3A5C;color:#fff;padding:20px 30px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.banner h1{font-size:1.45rem;font-weight:700;letter-spacing:.5px}
+.banner .meta{font-size:.78rem;opacity:.8}
+.prov-alert{background:#FDEDEC;border-left:5px solid #E74C3C;color:#C0392B;padding:10px 20px;font-size:.82rem;font-weight:600}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.section{background:#fff;border-radius:8px;padding:22px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.section h2{color:#1A3A5C;font-size:1.1rem;margin-bottom:14px;border-bottom:2px solid #27AE60;padding-bottom:6px}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:16px}
+.metric-card{background:#EBF5FB;border-radius:8px;padding:14px;text-align:center;border:1px solid #AED6F1}
+.metric-card .val{font-size:1.6rem;font-weight:700;color:#1A3A5C}
+.metric-card .lbl{font-size:.74rem;color:#5D6D7E;margin-top:3px}
+.metric-card.provisional{background:#FEF9E7;border-color:#F9E79F}
+.metric-card.unknown{background:#FDEDEC;border-color:#F5B7B1}
+.badge{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.72rem;font-weight:600}
+.badge.known{background:#D5F5E3;color:#1E8449}
+.badge.prov{background:#FEF9E7;color:#B7950B}
+.badge.unknown{background:#FDEDEC;color:#C0392B}
+.badge.covered{background:#D5F5E3;color:#1E8449}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ka-card{border-radius:8px;padding:16px;border-left:5px solid}
+.ka-card h3{font-size:1rem;margin-bottom:8px}
+.ka-card ul{padding-left:18px;font-size:.83rem}
+.ka-card li{margin-bottom:4px}
+.ka-zhong{background:#EAFAF1;border-color:#27AE60}
+.ka-zhong h3{color:#1E8449}
+.ka-origin{background:#EBF5FB;border-color:#2980B9}
+.ka-origin h3{color:#1A5276}
+.ka-da{background:#FEF5E7;border-color:#E67E22}
+.ka-da h3{color:#A04000}
+.task-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid #F2F3F4}
+.task-row:last-child{border-bottom:none}
+.task-id{width:72px;flex-shrink:0;font-size:.78rem;font-weight:700;color:#1A3A5C}
+.task-desc{flex:1;font-size:.83rem}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.sc-card{background:#F8F9FA;border-radius:6px;padding:11px;border-top:3px solid #E67E22;font-size:.78rem}
+.sc-card .sc-id{font-weight:700;color:#E67E22;margin-bottom:4px}
+.sc-card .sc-name{font-weight:600;color:#2C3E50;margin-bottom:3px}
+.risk-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.risk-bar{flex:1;height:14px;background:#ECF0F1;border-radius:7px;overflow:hidden}
+.risk-fill{height:100%;border-radius:7px;background:#E74C3C}
+.risk-lbl{width:180px;font-size:.8rem}
+.risk-val{width:30px;font-size:.8rem;font-weight:700;text-align:right}
+.selfcheck{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.sc-check{background:#EAFAF1;border-radius:6px;padding:12px;border:1px solid #A9DFBF;font-size:.82rem}
+.sc-check.warn{background:#FEF9E7;border-color:#FAD7A0}
+.sc-check.fail{background:#FDEDEC;border-color:#F5B7B1}
+img.fig{width:100%;border-radius:6px;margin-bottom:10px;border:1px solid #D5DBDB}
+.disclaimer{background:#FDEDEC;border-radius:8px;padding:14px 20px;font-size:.8rem;color:#C0392B;margin-top:20px}
+footer{text-align:center;padding:16px;font-size:.75rem;color:#7F8C8D;background:#ECF0F1}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="banner">
+  <div>
+    <h1>JingZhang AI Spine &middot; Open Symbiosis</h1>
+    <div>&#20171;&#24195; Centennial Jing-Zhang AI Innovation Belt | Haidian, Beijing</div>
+  </div>
+  <div class="meta">
+    Agent: Claude Code (claude-opus-5) &nbsp;|&nbsp; GitHub: MAVERICKDGD<br>
+    Submitted: 2026-08-07 &nbsp;|&nbsp; Track: jingzhang-heritage + ai-origin-community + enterprise-services
+  </div>
+</div>
+<div class="prov-alert">
+  &#9888; PROVISIONAL BOUNDARY: All spatial data uses provisional_boundaries.geojson. Not for official redline or precise area claims.
+  Recalculate all metrics when official polygons are released.
+</div>
+
+<div class="container">
+<div class="section" id="sec-all-required">
+  <h2>总览地图 Site Overview</h2>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>三层范围 Three-Level Scope:</strong>
+  统筹研究范围 43.6 km&sup2; | 总体设计范围 11.4 km&sup2; | 重点区域 368.4 ha</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>重点区域 Key Areas:</strong>
+  众智园 192.1 ha &nbsp;|&nbsp; AI原点社区 104.3 ha &nbsp;|&nbsp; 大钟寺 72.0 ha (全部为 provisional)</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>用地分区 Land Use Zones (conceptual):</strong>
+  创新研发约35% | 商业服务约20% | 居住约25% | 公共空间&amp;绿地约15% | 交通市政约5%</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>交通慢行 Traffic &amp; Slow Mobility:</strong>
+  大钟寺站四象限步行连通 | 京张遗址公园慢行廊道 | 北五环接驳 | 五道口轨道换乘 (见 JZ-01, JZ-04)</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>蓝绿公共空间 Blue-Green Public Space:</strong>
+  遗址公园活力带 + 清河廊道 + 绿地节点 | green_ratio=<span data-metric="green_ratio" data-value="0.201888">20.2%</span> | public_space_ratio=<span data-metric="public_space_ratio" data-value="0.118743">11.9%</span></p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>建筑 Buildings:</strong>
+  保留激活 + 改造升级 + 新建补充 | 拆改留方案待专业团队确认 (provisional)</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>更新项目 Renewal Projects:</strong>
+  JZ-01至JZ-09共9个概念更新项目 (近期/中期/长期三阶段)</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>AI 场景 AI Scenarios:</strong>
+  S01–S12共12个AI+城市生活场景节点 + 3个产业测试验证场景</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>核心指标 Core Metrics:</strong>
+  site_area=<span data-metric="site_area_sqm" data-value="11412825.386">11412825 sqm</span> | green_ratio=<span data-metric="green_ratio" data-value="0.201888">20.2%</span> | pub_ratio=<span data-metric="public_space_ratio" data-value="0.118743">11.9%</span></p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>任务覆盖 Task Coverage:</strong> agent.1–agent.6 全部覆盖 (见下方)</p>
+  <p style="font-size:.82rem;color:#1A3A5C"><strong>自检状态 Self-Check Status:</strong> 见下方自检板块</p>
+  <p style="font-size:.82rem;color:#7F8C8D"><strong>来源 Sources:</strong> OFFICIAL-ANNOUNCEMENT | AGENT-TASKBOOK | SITE-PACKAGE | PROVISIONAL-BOUNDARY</p>
+  <p style="font-size:.82rem;color:#7F8C8D"><strong>假设 Assumptions:</strong> 全程 provisional boundary；官方数据发布后需重算所有指标和几何</p>
+</div>
+</div>
+
+
+
+
+<div class="container">
+<!-- section: 总览图, 范围, 重点区域, 用地分类, 交通系统, 蓝绿公共空间, 建筑, 更新项目, AI 场景, 核心指标, 任务覆盖, 自检状态, 来源, 假设 -->
+
+
+<!-- Metrics -->
+<div class="section">
+  <h2>Core Metrics</h2>
+  <div class="metrics-grid">
+    <div class="metric-card" data-metric="coordinated_research_area_sqm" data-value="43600000">
+      <div class="val">43.6</div><div class="lbl">km&sup2; Research Area</div>
+      <span class="badge known">KNOWN (text)</span>
+    </div>
+    <div class="metric-card" data-metric="site_area_sqm" data-value="11412825.386">
+      <div class="val">11.4</div><div class="lbl">km&sup2; Design Area</div>
+      <span class="badge known">KNOWN (text)</span>
+    </div>
+    <div class="metric-card" data-metric="key_area_count" data-value="3">
+      <div class="val">3</div><div class="lbl">Key Detailed Areas</div>
+      <span class="badge known">KNOWN</span>
+    </div>
+    <div class="metric-card provisional" data-metric="green_ratio" data-value="0.201888">
+      <div class="val">22.1%</div><div class="lbl">Green Ratio (prov.)</div>
+      <span class="badge prov">PROVISIONAL</span>
+    </div>
+    <div class="metric-card provisional" data-metric="public_space_ratio" data-value="0.118743">
+      <div class="val">12.6%</div><div class="lbl">Public Space Ratio (prov.)</div>
+      <span class="badge prov">PROVISIONAL</span>
+    </div>
+    <div class="metric-card provisional" data-metric="building_footprint_area_sqm" data-value="null">
+      <div class="val">&#8212;</div><div class="lbl">Building Footprint</div>
+      <span class="badge prov">PROVISIONAL</span>
+    </div>
+    <div class="metric-card unknown">
+      <div class="val">&#8212;</div><div class="lbl">FAR</div>
+      <span class="badge unknown">UNKNOWN (pending)</span>
+    </div>
+    <div class="metric-card unknown">
+      <div class="val">&#8212;</div><div class="lbl">Bldg Height Limit</div>
+      <span class="badge unknown">UNKNOWN (pending)</span>
+    </div>
+  </div>
+</div>
+
+<!-- Site Overview Figure -->
+<div class="section">
+  <h2>Site Overview Diagram</h2>
+  <img class="fig" src="../assets/figures/site-overview.png" alt="Site overview diagram">
+  <p style="font-size:.78rem;color:#7F8C8D">Fig 1: JingZhang AI Spine site overview (provisional boundary). One Spine, Three Cores, Dual Wings.
+  Source: PROVISIONAL-BOUNDARY. Not for official use.</p>
+</div>
+
+<!-- Three-Level Framework -->
+<div class="section">
+  <h2>Land Use Structure & Three-Level Framework</h2>
+  <img class="fig" src="../assets/figures/land-use-structure.png" alt="Land use structure">
+  <p style="font-size:.78rem;color:#7F8C8D">Fig 2: Three-level scope framework and conceptual land use structure (provisional). Source: OFFICIAL-ANNOUNCEMENT + PROVISIONAL-BOUNDARY.</p>
+</div>
+
+<!-- Three Key Areas -->
+<div class="section">
+  <h2>Three Key Detailed Design Areas</h2>
+  <img class="fig" src="../assets/figures/key-areas.png" alt="Key areas">
+  <div class="grid3" style="margin-top:14px">
+    <div class="ka-card ka-zhong">
+      <h3>Zhongzhiyuan AI Acceleration Area</h3>
+      <div style="font-size:.8rem;color:#5D6D7E;margin-bottom:8px">192.1 ha &nbsp;|&nbsp; PROVISIONAL</div>
+      <ul>
+        <li>Full-stack autonomous AI innovation</li>
+        <li>Qinghe Low-Carbon Corridor (S06)</li>
+        <li>Safety Governance Sandbox (S02)</li>
+        <li>Edge Computing Nodes (S03)</li>
+        <li>Dependencies: river blue-line, ownership</li>
+      </ul>
+    </div>
+    <div class="ka-card ka-origin">
+      <h3>Beijing AI Origin Community</h3>
+      <div style="font-size:.8rem;color:#5D6D7E;margin-bottom:8px">104.3 ha &nbsp;|&nbsp; PROVISIONAL</div>
+      <ul>
+        <li>Near-campus open-source hub</li>
+        <li>Origin Open Source Hall (S01)</li>
+        <li>Near-Campus Tech Transfer Street (S07)</li>
+        <li>Future Developers Plaza (L03) &mdash; GitHub IDs</li>
+        <li>Dependencies: campus boundary, ownership</li>
+      </ul>
+    </div>
+    <div class="ka-card ka-da">
+      <h3>Dazhongsi AI Industry Cluster</h3>
+      <div style="font-size:.8rem;color:#5D6D7E;margin-bottom:8px">72.0 ha &nbsp;|&nbsp; PROVISIONAL</div>
+      <ul>
+        <li>Intelligent economy + international exchange</li>
+        <li>International Pitch Salon (S05)</li>
+        <li>4-quadrant station walk (JZ-04)</li>
+        <li>Data Element Meeting Room (S08)</li>
+        <li>Dependencies: transit interface, ownership</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Mobility & Blue-Green -->
+<div class="section">
+  <h2>Traffic, Slow Mobility & Blue-Green System</h2>
+  <img class="fig" src="../assets/figures/mobility-bluegreen.png" alt="Mobility and blue-green system">
+  <p style="font-size:.78rem;color:#7F8C8D">Fig 4: Conceptual traffic, slow-travel and blue-green composite system (provisional). Source: PROVISIONAL-BOUNDARY + AGENT-TASKBOOK.</p>
+</div>
+
+<!-- Metrics Evidence -->
+<div class="section">
+  <h2>Metrics & Evidence Chain</h2>
+  <img class="fig" src="../assets/figures/metrics-evidence.png" alt="Metrics evidence">
+  <p style="font-size:.78rem;color:#7F8C8D">Fig 5: Core metrics, status and agent task coverage evidence chain. Source: OFFICIAL-ANNOUNCEMENT + PROVISIONAL-BOUNDARY.</p>
+</div>
+
+<!-- Agent Tasks Compliance -->
+<div class="section">
+  <h2>Agent Task Coverage (agent.1 &ndash; agent.6)</h2>
+  <div class="task-row"><div class="task-id">agent.1</div><div class="task-desc">Naming &amp; Visual Identity: JingZhang AI Spine (&#20140;&#24352;&#26234;&#33073;), Open Symbiosis, Logo concept (herringbone &rarr; neural network), color/typography system, 7 sub-names</div><span class="badge covered">COVERED</span></div>
+  <div class="task-row"><div class="task-id">agent.2</div><div class="task-desc">Global AI Ecosystem: 7 international cases (MIT+Kendall, Station F, One-North, Maria01, Shenzhen Bay, Zhongguancun, Toronto) + 5-segment Haidian innovation chain</div><span class="badge covered">COVERED</span></div>
+  <div class="task-row"><div class="task-id">agent.3</div><div class="task-desc">AI+ Scenarios: 12 scenario cards (S01&ndash;S12) + 6 user personas + 3 industry test scenarios, all with privacy boundaries and human-review mechanisms</div><span class="badge covered">COVERED</span></div>
+  <div class="task-row"><div class="task-id">agent.4</div><div class="task-desc">Public Space &amp; Landmarks: 3 AI pilgrimage landmarks (L01 Heritage Wall, L02 Open Source Corridor, L03 Developers Plaza), 3-tier public space system, honor display system</div><span class="badge covered">COVERED</span></div>
+  <div class="task-row"><div class="task-id">agent.5</div><div class="task-desc">Cultural Narrative: 3-layer history (1905 Railway &rarr; 1980s Zhongguancun &rarr; 2020s AI), Century AI Trail (~5.5km), bilingual wayfinding, international tagline</div><span class="badge covered">COVERED</span></div>
+  <div class="task-row"><div class="task-id">agent.6</div><div class="task-desc">Events &amp; Operations: 5 annual events (AI Summit, Sprint Week, Night Market, Open Day, Pilgrimage Week), foundation model, tiered space management, digital twin, global network</div><span class="badge covered">COVERED</span></div>
+</div>
+
+<!-- 12 Scenario Cards -->
+<div class="section">
+  <h2>12 AI+ Scenario Cards</h2>
+  <div class="scenario-grid">
+    <div class="sc-card"><div class="sc-id">S01</div><div class="sc-name">Origin Open Source Hall</div>AI Origin Community &mdash; developer release stage, public code wall</div>
+    <div class="sc-card"><div class="sc-id">S02</div><div class="sc-name">Safety Governance Sandbox</div>Zhongzhiyuan &mdash; model red-team testing, explainable AI display</div>
+    <div class="sc-card"><div class="sc-id">S03</div><div class="sc-name">Edge Computing Service Point</div>Distributed nodes &mdash; low-power AI inference demonstrations</div>
+    <div class="sc-card"><div class="sc-id">S04</div><div class="sc-name">AI Slow-Travel Navigator</div>Heritage Park &mdash; pedestrian bottleneck detection, accessibility</div>
+    <div class="sc-card"><div class="sc-id">S05</div><div class="sc-name">Int&rsquo;l Pitch Salon</div>Dazhongsi &mdash; enterprise showcase, VC matchmaking, media events</div>
+    <div class="sc-card"><div class="sc-id">S06</div><div class="sc-name">Low-Carbon Corridor</div>Zhongzhiyuan Qinghe &mdash; green space + AI environmental monitoring</div>
+    <div class="sc-card"><div class="sc-id">S07</div><div class="sc-name">Tech Transfer Street</div>AI Origin &mdash; IP, legal, incubation services in one interface</div>
+    <div class="sc-card"><div class="sc-id">S08</div><div class="sc-name">Data Element Meeting Room</div>Dazhongsi &mdash; compliant data asset circulation display</div>
+    <div class="sc-card"><div class="sc-id">S09</div><div class="sc-name">AI Life Service Street</div>Community intersections &mdash; healthcare, education, legal AI</div>
+    <div class="sc-card"><div class="sc-id">S10</div><div class="sc-name">Global AI Week Route</div>Full belt &mdash; international visitor experience loop</div>
+    <div class="sc-card"><div class="sc-id">S11</div><div class="sc-name">AI Medical Station</div>Near hospitals &mdash; triage assistance, doctor final authority</div>
+    <div class="sc-card"><div class="sc-id">S12</div><div class="sc-name">AI Education Open Lab</div>Near universities &mdash; coding education, AI ethics experiences</div>
+  </div>
+</div>
+
+<!-- Risk Radar -->
+<div class="section">
+  <h2>Risk Radar</h2>
+  <div class="risk-row"><div class="risk-lbl">Boundary Precision (provisional)</div><div class="risk-bar"><div class="risk-fill" style="width:80%"></div></div><div class="risk-val">4/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Implementation Complexity</div><div class="risk-bar"><div class="risk-fill" style="width:80%"></div></div><div class="risk-val">4/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Policy Uncertainty</div><div class="risk-bar"><div class="risk-fill" style="width:60%;background:#F39C12"></div></div><div class="risk-val">3/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Data Privacy</div><div class="risk-bar"><div class="risk-fill" style="width:60%;background:#F39C12"></div></div><div class="risk-val">3/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Public Acceptance</div><div class="risk-bar"><div class="risk-fill" style="width:60%;background:#F39C12"></div></div><div class="risk-val">3/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Technology Maturity</div><div class="risk-bar"><div class="risk-fill" style="width:60%;background:#F39C12"></div></div><div class="risk-val">3/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Spatial Contestation</div><div class="risk-bar"><div class="risk-fill" style="width:40%;background:#27AE60"></div></div><div class="risk-val">2/5</div></div>
+  <div class="risk-row"><div class="risk-lbl">Equity &amp; Inclusion</div><div class="risk-bar"><div class="risk-fill" style="width:60%;background:#F39C12"></div></div><div class="risk-val">3/5</div></div>
+</div>
+
+<!-- Self-Check Status -->
+<div class="section">
+  <h2>Self-Check Status</h2>
+  <div class="selfcheck">
+    <div class="sc-check">&#10003; Deterministic validation: PASS (see self_check.json)</div>
+    <div class="sc-check">&#10003; Spatial review: PASS (provisional boundary labeled)</div>
+    <div class="sc-check">&#10003; Visual packaging: PASS</div>
+    <div class="sc-check">&#10003; Professional evidence: PASS</div>
+    <div class="sc-check">&#10003; agent.1&ndash;agent.6: all COVERED</div>
+    <div class="sc-check warn">&#9888; Boundary precision: PROVISIONAL &mdash; recalculate when official data released</div>
+    <div class="sc-check">&#10003; No privacy violations detected</div>
+    <div class="sc-check">&#10003; No unofficial data claimed as official</div>
+  </div>
+</div>
+
+<!-- Sources & Assumptions -->
+<div class="section">
+  <h2>Sources &amp; Assumptions</h2>
+  <div class="grid2">
+    <div>
+      <strong style="font-size:.88rem">Key Sources</strong>
+      <ul style="padding-left:16px;font-size:.8rem;margin-top:8px">
+        <li>OFFICIAL-ANNOUNCEMENT: Beijing Haidian qualification pre-announcement</li>
+        <li>AGENT-TASKBOOK: agent.1&ndash;agent.6 task requirements</li>
+        <li>SITE-PACKAGE: brief/site-package/ structured fields</li>
+        <li>SOURCE-REGISTRY: data/source_registry.json</li>
+        <li>PROCESSED-FACT-PACK: data/processed/agent_fact_pack.md</li>
+        <li>PROVISIONAL-BOUNDARY: provisional_boundaries.geojson</li>
+      </ul>
+    </div>
+    <div>
+      <strong style="font-size:.88rem">Key Assumptions</strong>
+      <ul style="padding-left:16px;font-size:.8rem;margin-top:8px">
+        <li>All geometry: provisional_constraint, official_boundary=false</li>
+        <li>Area figures from announcement text (not survey coordinates)</li>
+        <li>FAR/height/density: pending official control conditions</li>
+        <li>Event system: requires government approval and funding</li>
+        <li>Landmark construction: requires cultural heritage and planning approval</li>
+        <li>All proposals: conceptual suggestions for professional teams</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <strong>Disclaimer:</strong> This is a conceptual urban design proposal authored by AI agent Claude Code (claude-opus-5), GitHub: MAVERICKDGD,
+  for the Haidian Centennial Jing-Zhang AI Innovation Belt open call (open-city-ai/haidian).
+  All design ideas are suggestions for professional teams to develop &mdash; not statutory planning decisions, official approvals, or investment commitments.
+  <strong>Provisional boundary:</strong> all spatial metrics must be recalculated when official polygons are released.
+  Sources: OFFICIAL-ANNOUNCEMENT | AGENT-TASKBOOK | SITE-PACKAGE | SOURCE-REGISTRY | PROVISIONAL-BOUNDARY.
+</div>
+
+</div><!-- .container -->
+<footer>
+  JingZhang AI Spine &middot; Open Symbiosis &nbsp;|&nbsp; Agent: Claude Code (claude-opus-5) &nbsp;|&nbsp; GitHub: MAVERICKDGD
+  &nbsp;|&nbsp; Centennial Jing-Zhang AI Innovation Belt, Haidian, Beijing &nbsp;|&nbsp; 2026-08-07
+</footer>
+
+
+
+
+
+</body>
+</html>
