@@ -9,7 +9,7 @@
  "metrics": {
   "site_area_sqm": {
    "status": "known",
-   "value": 11412825.4,
+   "value": 11412743.2,
    "unit": "sqm",
    "source_files": [
     "geometry/site_boundary.geojson"
@@ -17,7 +17,7 @@
    "formula": "polygon_area(site_boundary) in EPSG:4548",
    "confidence": "medium",
    "assumptions": [
-    "基于 provisional 边界（provisional_rough），官方 polygon 缺失，非正式红线"
+    "provisional 边界（provisional_rough）"
    ]
   },
   "land_use_area_by_code": {
@@ -29,33 +29,33 @@
    "formula": "sum polygon_area per land_use_code in EPSG:4548",
    "confidence": "medium",
    "assumptions": [
-    "概念性分区建议，非控规结论"
+    "V2 中轴对称重划方案"
    ],
    "values": {
-    "05": 2827738.5,
-    "0701": 1712459.6,
-    "0802": 2325427.4,
-    "0803": 1698952.0,
-    "1401": 2848272.7
+    "0802": 3069797.4,
+    "0803": 1372411.1,
+    "0701": 1423300.7,
+    "05": 3403172.7,
+    "1401": 2143073.2
    },
-   "value": 11412850.2
+   "value": 11411755.1
   },
   "total_floor_area_sqm": {
    "status": "known",
-   "value": 8305761.7,
+   "value": 3956083.2,
    "unit": "sqm",
    "source_files": [
     "geometry/buildings.geojson"
    ],
-   "formula": "building_footprint_area * average_floors(3.2 concept)",
+   "formula": "sum(building_footprint_area * floors_concept)",
    "confidence": "low",
    "assumptions": [
-    "层数为概念假设（5-10层），非工程结论"
+    "层数为概念值，南低北高满足日照"
    ]
   },
   "floor_area_ratio": {
    "status": "known",
-   "value": 0.7278,
+   "value": 0.3466,
    "unit": "ratio",
    "source_files": [
     "geometry/buildings.geojson",
@@ -64,12 +64,12 @@
    "formula": "total_floor_area / site_area",
    "confidence": "low",
    "assumptions": [
-    "概念容积率，官方控规条件缺失（planning_limits.json 标记 missing）"
+    "概念容积率，V2 对称方案 ≤1.0"
    ]
   },
   "building_density": {
    "status": "known",
-   "value": 0.2274,
+   "value": 0.0401,
    "unit": "ratio",
    "source_files": [
     "geometry/buildings.geojson",
@@ -78,25 +78,22 @@
    "formula": "building_footprint_area / site_area",
    "confidence": "low",
    "assumptions": [
-    "概念建筑密度，非控规结论"
+    "概念建筑密度"
    ]
   },
   "building_footprint_area_sqm": {
    "status": "known",
-   "value": 2595550.5,
+   "value": 457087.0,
    "unit": "sqm",
    "source_files": [
     "geometry/buildings.geojson"
    ],
-   "formula": "sum polygon_area(buildings) in EPSG:4548",
-   "confidence": "medium",
-   "assumptions": [
-    "概念建筑基底，非现状测绘"
-   ]
+   "formula": "sum(building_footprint_area)",
+   "confidence": "low"
   },
   "green_ratio": {
    "status": "known",
-   "value": 0.2496,
+   "value": 0.1872,
    "unit": "ratio",
    "source_files": [
     "geometry/green_space.geojson",
@@ -105,12 +102,12 @@
    "formula": "green_space_area / site_area",
    "confidence": "medium",
    "assumptions": [
-    "绿地面积含京张遗址公园带概念范围"
+    "V2 中轴绿带三段（京张遗址公园）"
    ]
   },
   "public_space_ratio": {
    "status": "known",
-   "value": 0.0132,
+   "value": 0.0145,
    "unit": "ratio",
    "source_files": [
     "geometry/public_space.geojson",
@@ -124,16 +121,26 @@
   },
   "road_length_m": {
    "status": "known",
-   "value": 24761.9,
+   "value": 37185.6,
    "unit": "m",
    "source_files": [
     "geometry/roads.geojson"
    ],
-   "formula": "sum linestring_length(roads) in EPSG:4548",
+   "formula": "sum(line_length) in EPSG:4548",
    "confidence": "medium",
    "assumptions": [
-    "道路中心线为概念骨架，非道路红线"
+    "V2 中轴+双翼纵路+六横轴"
    ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 110,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(features)",
+   "confidence": "high"
   },
   "phasing_area_sqm": {
    "status": "known",
@@ -141,17 +148,14 @@
    "source_files": [
     "geometry/phasing.geojson"
    ],
-   "formula": "polygon_area per phase in EPSG:4548",
+   "formula": "polygon_area per phase_code in EPSG:4548",
    "confidence": "medium",
-   "assumptions": [
-    "分期为概念建议"
-   ],
    "values": {
-    "phase1_near": 3743692.9,
-    "phase2_mid": 4701615.6,
-    "phase3_far": 2967534.7
+    "phase1_near": 3462843.2,
+    "phase2_mid": 3795664.9,
+    "phase3_far": 4145381.6
    },
-   "value": 11412843.2
+   "value": 11403889.7
   },
   "key_area_count": {
    "status": "known",
@@ -160,39 +164,139 @@
    "source_files": [
     "geometry/key_areas.geojson"
    ],
-   "formula": "count(key_area features)",
-   "confidence": "high",
-   "assumptions": []
+   "formula": "count(features)",
+   "confidence": "high"
   },
   "key_area_details": {
    "status": "known",
+   "value": 11403889.6,
    "unit": "sqm",
    "source_files": [
     "geometry/key_areas.geojson"
    ],
-   "formula": "polygon_area per key area in EPSG:4548",
+   "formula": "sum key area polygon area in EPSG:4548",
    "confidence": "medium",
-   "assumptions": [
-    "重点区为 provisional 边界"
-   ],
    "values": [
     {
      "id": "PROV-KEY-001",
-     "area_id": "zhongzhiyuan_ai_acceleration_area",
-     "area_sqm": 1929201.9
+     "name": "众智园AI自主创新加速区（对称双翼+中轴）",
+     "area_sqm": 3462843.2
     },
     {
      "id": "PROV-KEY-002",
-     "area_id": "beijing_ai_origin_community",
-     "area_sqm": 1043236.9
+     "name": "北京AI原点社区（对称双翼+中轴）",
+     "area_sqm": 3795664.9
     },
     {
      "id": "PROV-KEY-003",
-     "area_id": "dazhongsi_ai_industry_cluster",
-     "area_sqm": 720454.2
+     "name": "大钟寺AI产业聚集区（对称双翼+中轴）",
+     "area_sqm": 4145381.6
     }
-   ],
-   "value": 3692893.0
+   ]
   }
+ },
+ "v3_plan_summary": {
+  "axis": "x=0 城市中轴线，左右镜像对称",
+  "parcel_pairs": 6,
+  "sunlight_rule": "居住地块纯住宅（无教育/底商/点式）：统一60×14m板楼5排南低北高（10-15层/30-45m，参照万柳书院/使馆壹号院/融创北京壹号院），全部以中轴x=0左右镜像（两翼楼栋严格对称），每排栋数按两翼边界较窄者自适应、外端离边界5m贴紧，排距380m≈8.4×最高楼高（北京大寒日≥2h），层高3.0m",
+  "building_strategy": "科研地块点式超高层(180-288m/参考中国尊/正大中心/国贸三期)，商业综合体(95m/参考朝阳大悦城)，文化馆(30-40m/参考首博/科技馆)，配建中小学(4-5层/参考北京四中/中关村三小)，底商≤3层",
+  "parcel_stats": [
+   {
+    "id": "LU-001",
+    "code": "0802",
+    "name": "科研用地",
+    "area_ha": 53.4,
+    "coverage_pct": 10.4,
+    "buildings": 11
+   },
+   {
+    "id": "LU-002",
+    "code": "0802",
+    "name": "科研用地",
+    "area_ha": 84.5,
+    "coverage_pct": 6.6,
+    "buildings": 11
+   },
+   {
+    "id": "LU-003",
+    "code": "0803",
+    "name": "文化用地",
+    "area_ha": 63.8,
+    "coverage_pct": 4.7,
+    "buildings": 3
+   },
+   {
+    "id": "LU-004",
+    "code": "0803",
+    "name": "文化用地",
+    "area_ha": 73.4,
+    "coverage_pct": 4.1,
+    "buildings": 3
+   },
+   {
+    "id": "LU-005",
+    "code": "0701",
+    "name": "居住用地",
+    "area_ha": 76.6,
+    "coverage_pct": 2.5,
+    "buildings": 24
+   },
+   {
+    "id": "LU-006",
+    "code": "0701",
+    "name": "居住用地",
+    "area_ha": 65.7,
+    "coverage_pct": 2.9,
+    "buildings": 24
+   },
+   {
+    "id": "LU-007",
+    "code": "05",
+    "name": "商业用地",
+    "area_ha": 87.6,
+    "coverage_pct": 3.9,
+    "buildings": 3
+   },
+   {
+    "id": "LU-008",
+    "code": "05",
+    "name": "商业用地",
+    "area_ha": 78.5,
+    "coverage_pct": 4.3,
+    "buildings": 3
+   },
+   {
+    "id": "LU-009",
+    "code": "05",
+    "name": "商业用地",
+    "area_ha": 84.6,
+    "coverage_pct": 4.0,
+    "buildings": 3
+   },
+   {
+    "id": "LU-010",
+    "code": "05",
+    "name": "商业用地",
+    "area_ha": 89.7,
+    "coverage_pct": 3.8,
+    "buildings": 3
+   },
+   {
+    "id": "LU-011",
+    "code": "0802",
+    "name": "科研用地",
+    "area_ha": 79.0,
+    "coverage_pct": 7.1,
+    "buildings": 11
+   },
+   {
+    "id": "LU-012",
+    "code": "0802",
+    "name": "科研用地",
+    "area_ha": 90.1,
+    "coverage_pct": 6.2,
+    "buildings": 11
+   }
+  ]
  }
 }
