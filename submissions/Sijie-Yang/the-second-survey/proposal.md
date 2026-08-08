@@ -2,6 +2,7 @@
 title: "我，百年京张铁路，今天觉醒了感知系统——第二次测量：可感京张感知基线带"
 author_github: "Sijie-Yang"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "一部关于「第二次测量」的规划纪事：一百多年前，京张铁路测量的是这座城市能通向多远；这一次，我们测量的是人走在这条线上是否好走、好停、好用。全篇以故事推进、以规划落地，形成「一脊、三区、十八断面」的空间结构，用遮阴、绿视、驻留与夜间安全四项可复算指标决定更新顺序，把人工智能与低速智能设备放进明确的空间位置与运行规则，并建立公众调研、建设后评估与年度监测的回写机制。全套成果含 13 张规划图、13 张概念效果图与 1 张文化主视觉，每章各有一图一景。"
 tracks: ["youth-friendly-public-space", "ai-public-services", "ai-traffic-walkability"]

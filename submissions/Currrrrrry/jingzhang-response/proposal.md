@@ -2,6 +2,7 @@
 title: "京张应答：可审计的城市照护信号系统"
 author_github: "Currrrrrry"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以百年铁路的联锁与应答精神组织公共AI服务：每次自动化都留下可见责任信号，并可声明、沙盒、放行、观察和回滚。"
 tracks: ["ai-public-services", "robotics-autonomous-mobility", "youth-friendly-public-space"]

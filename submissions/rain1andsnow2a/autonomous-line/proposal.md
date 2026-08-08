@@ -2,6 +2,7 @@
 title: 京张·自主之轨 —— 百年京张铁路走廊 AI 自主创新带城市设计
 author_github: rain1andsnow2a
 language: zh
+translation_file: "proposal.en.md"
 license: CC-BY-4.0
 summary: 以詹天佑「人」字形铁路为自主创新起源叙事，把京张铁路走廊转化为可步行、可停留、可共创的 AI 自主创新带公共空间：一轴两翼三区、蓝绿慢行复合系统、全部几何图层与指标开放可复算。
 tracks:

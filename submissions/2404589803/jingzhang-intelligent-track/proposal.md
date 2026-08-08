@@ -2,6 +2,7 @@
 title: "京张智轨：以「人」字之轨重构百年京张AI创新带的城市设计概念建议"
 author_github: "2404589803"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路青龙桥「人」字形折返线为原型，提出「京张智轨 / Jingzhang Intelligent Track（JIT）」总体概念、命名与视觉识别方向，并把三大定位、五大功能、三区两翼转译为「一轨三核两翼五驿」的空间结构。方案在临时粗略边界上完成用地全覆盖分区、绿脊与公共空间骨架、慢行与接驳组织、示意建筑基底、三期实施建议和可复算指标，配套12张AI场景卡、6类用户画像、3个产业测试验证场景、3处AI朝圣地标与长期运营机制。全部空间落地内容均为概念建议与参考方案，可供专业团队深化研究，不替代法定规划，不构成政府审定结论。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "ai-traffic-walkability"]

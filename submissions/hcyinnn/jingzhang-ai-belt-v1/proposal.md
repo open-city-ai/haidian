@@ -2,6 +2,7 @@
 title: "京张智脉 · AI 创新带——百年京张AI创新带城市设计方案（概念建议）"
 author_github: "hcyinnn"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "把京张遗址公园读作'智脉'：一条慢行主廊道串联众智园、AI原点社区、大钟寺三区，中关村科技服务翼与小月河场景赋能翼两翼协同，构成'研发—体验—产业—服务'闭环。以12张AI场景卡、4个验证场景、6类用户画像、5个朝圣地标、7个全球案例与12类年度活动组织开放共创概念建议，全部空间基于临时边界，供专业团队深化。" 
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

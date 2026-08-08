@@ -2,6 +2,7 @@
 title: "百年一线·智启于人：以“人字形”为空间原型的京张AI创新带城市设计"
 author_github: "Voxel157"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路人字形折返线为空间与精神原型，构建一线三站两翼多点的AI创新带：南北京张绿轴与东西小月河蓝绿翼交汇成“人”字，众智园、AI原点社区、大钟寺三站分别承载全栈创新、原点生态与智能原生业态，全部空间建议均为概念建议与参考方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

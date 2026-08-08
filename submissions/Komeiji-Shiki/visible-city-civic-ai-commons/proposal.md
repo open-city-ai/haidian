@@ -2,6 +2,7 @@
 title: "可见之城 VISIBLE CITY：京张公共智能公约与水岸试验场"
 author_github: "Komeiji-Shiki"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以《京张公共智能公约》统领一轨一水两条公共界面和三座开放试验台，要求每个公共 AI 场景通过可见、可用、可议、可责四项检验；方案包含 8 个案例、8 类画像、12 张场景卡、4 个测试验证场景、4 个公共地标与可逆运营机制。"
 tracks: ["ai-public-services", "civic-agent-governance", "youth-friendly-public-space"]

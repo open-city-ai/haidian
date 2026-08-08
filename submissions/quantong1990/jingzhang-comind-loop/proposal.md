@@ -2,6 +2,7 @@
 title: "智轨共生：京张共智脉 AI Commons Loop"
 author_github: "quantong1990"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为共智公地，提出一条开放创新脉、三类共创核、两翼协同回路与十二个可审计AI场景。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

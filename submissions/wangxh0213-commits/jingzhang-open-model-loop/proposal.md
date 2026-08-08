@@ -3,6 +3,7 @@ title: "京张智轨开放模型回路：遗址公园驱动的AI验证城市"
 author_github: "wangxh0213-commits"
 author_display_name: "XHioiMX_"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共主轴，用1+5+8责任骨架、容量六步决策、场景准入退出和可替换模块，把三区组织成高容量、可治理、可人工接管的开放模型回路。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

@@ -2,6 +2,7 @@
 title: "毛细京张：以窄马路、密路网、贴线街墙重组百年京张AI创新带"
 author_github: "RanchoGoose"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 version: "1.0.0"
 iteration: "v1.0.0"

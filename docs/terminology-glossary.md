@@ -9,13 +9,19 @@
 | 百年京张 AI 创新带城市设计开源征集 | Centennial Jing-Zhang AI Innovation Belt Open Call for Urban Design | — | 项目正式名称，标题和首次出现时使用全称 | AI Belt Competition |
 | 京张铁路遗址公园 | Jing-Zhang Railway Heritage Park | JZRHP | 指京张铁路遗产廊道及公园空间 | Jingzhang Park |
 | 百年京张 AI 创新带 | Centennial Jing-Zhang AI Innovation Belt | JZ-AI Belt | 项目和空间品牌简称 | Jing-Zhang Smart Belt |
+| 海淀区 | Haidian District | — | 行政区全称；首次出现时使用 | Haidian Area |
+| 海淀 | Haidian | — | 已有行政区语境明确时可使用简称 | Haidian County |
+| 京张 | Jing-Zhang | — | 项目名称和京张铁路相关复合词中的固定写法 | Jingzhang、Jing Chang |
 | 统筹研究范围 | Coordinated Research Area | CRA | 三层范围中的战略研究层 | Coordination Zone |
 | 总体设计范围 | Overall Design Area | ODA | 城市更新与总体城市设计工作层 | General Planning Area |
 | 重点区域范围 | Key-Area Detailed Design Area | KDA | 三个重点片区的详细设计层 | Key Zone |
 | 三区两翼 | Three Zones and Two Wings | — | 使用任务书定义的整体产业空间结构 | Three Areas, Two Sides |
 | 众智园 AI 自主创新加速区 | Zhongzhiyuan AI Independent Innovation Acceleration Area | ZY-AIIA | 三个重点片区之一；首次出现使用全称 | AI Accelerator Park |
+| 众智园 | Zhongzhiyuan | — | 重点片区简称；专名不按字面拆译 | Wisdom Garden / Public Garden |
 | 北京 AI 原点社区 | Beijing AI Origin Community | BAIOC | 三个重点片区之一 | Beijing AI Source Community |
+| AI 原点 | AI Origin | — | “北京 AI 原点社区”的简称 | AI Source |
 | 大钟寺 AI 产业聚集区 | Dazhongsi AI Industry Cluster | DSAIC | 三个重点片区之一；“聚集区”统一译为 Industry Cluster | Dazhong Temple AI Zone |
+| 大钟寺 | Dazhongsi | — | 片区及站点专名，使用拼音 | Great Bell Temple / Daguxin Temple |
 | 中关村科技服务翼 | Zhongguancun Technology Services Wing | ZTSW | “两翼”之一 | Technology Side |
 | 小月河场景赋能翼 | Xiaoyue River Scenario Enablement Wing | XRSEW | “两翼”之一 | Scenario Side |
 
@@ -27,10 +33,12 @@
 | 城市更新 | Urban Renewal | UR | 既有城区、建筑和公共空间的持续改善 | Urban Reconstruction |
 | 控制性详细规划 | Regulatory Detailed Planning | RDP | 中国法定规划语境；可在首次出现时解释 | Control Plan |
 | 规划综合实施方案 | Integrated Planning Implementation Plan | IPIP | 指面向综合实施的规划成果层级 | Comprehensive Execution Scheme |
+| 用地方案 | Land-Use Plan | — | 指用地分类、布局、比例与边界表达形成的方案 | Local Plan |
 | 用地布局 | Land-Use Layout | — | 表达用途、比例和空间组织 | Land Arrangement |
 | 开发强度 | Development Intensity | — | 统称容积率、建筑密度、高度等控制指标 | Development Strength |
 | 容积率 | Floor Area Ratio | FAR | 总建筑面积与用地面积之比 | Plot Ratio（除引用原标准外） |
 | 建筑密度 | Building Coverage Ratio | BCR | 建筑基底面积占用地面积的比例 | Building Density（可能与人口/数量混淆） |
+| 建筑基底 | Building Footprint | — | 指建筑在地面的投影范围 | Basement |
 | 建筑高度 | Building Height | — | 缺少官方依据时标注为概念建议或待确认 | Skyline Level |
 | 拆改留 | Demolish–Renovate–Retain Strategy | DRR | 分类说明拆除、改造和保留 | Tear-Change-Keep |
 | 慢行系统 | Walking and Cycling Network | WCN | 包括步行、骑行和无障碍连续性 | Slow-Traffic System |
@@ -50,6 +58,7 @@
 | 城市智能体 | Urban Agent | UA | 可读取公开资料、辅助推演并接受人工复核的 agent | City Robot |
 | AI 创新生态 | AI Innovation Ecosystem | AIIE | 企业、高校、人才、服务、场景和治理的协同体系 | AI Ecology |
 | AI 全栈自主创新体系 | Full-Stack Independent AI Innovation System | FSIAIS | 使用任务书正式概念 | Autonomous AI Stack |
+| 开放共创 | Open Co-Creation | — | 指参赛者、社区、专业团队和智能体共同参与的开放协作过程 | Open Joint Creation |
 | AI+ 场景 | AI-Enabled Scenario | — | AI 与交通、医疗、教育、治理等真实场景结合 | AI Plus Scene |
 | 场景开放 | Scenario Access | — | 向测试、验证和合作主体开放场景与规则 | Scene Opening |
 | 测试验证场景 | Testing and Validation Scenario | TVS | 必须说明边界、运营主体和风险控制 | Test Scene |

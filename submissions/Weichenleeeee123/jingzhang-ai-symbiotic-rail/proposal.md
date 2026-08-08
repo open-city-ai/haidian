@@ -2,6 +2,7 @@
 title: "京张AI共生轨道：百年铁路与智能体共创的城市叙事带"
 author_github: "Weichenleeeee123"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「智脉共生带」为总体概念，把京张铁路的百年自主精神与AI时代的开源共创精神对接为一条可体验的城市叙事带：一带三核、两翼协同、蓝绿复合环、AI朝圣地标与长期运营机制。基于 provisional boundary 生成，保留精度警示与复算要求。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]

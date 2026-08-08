@@ -2,6 +2,7 @@
 title: "京张智脉：百年京张AI创新带城市设计方案"
 author_github: "chking82"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为文化主轴、三处重点片区为创新锚点，构建'一带三核、多点场景、蓝绿慢行复合环'的AI创新带城市设计方案；以'智脉'三级命名体系统一片区/节点/事件，覆盖组件库、荣誉展示、导视符号、AI生态案例、10张场景卡、朝圣地标、文化叙事与全球运营机制，全部基于公开/清权资料与可复算的几何、指标证据链，并附 English Summary 供国际传播。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "jingzhang-heritage-narrative"]

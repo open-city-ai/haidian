@@ -2,6 +2,7 @@
 title: "京张智脉：开源共创环带——百年京张AI创新带城市设计概念方案"
 author_github: "wsqstar"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“开源共创环带”为总体概念，把百年京张铁路遗址转化为AI创新主线，构建“一脉三珠两翼”空间结构，提出命名体系、六大智能体任务、12张AI场景卡与三个朝圣地标，全部空间建议为可供专业团队深化的概念方案。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "ai-origin-community"]

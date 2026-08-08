@@ -2,6 +2,7 @@
 title: "京张智链：一脊三庭·双翼十景"
 author_github: "windgeek"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为开放智能公域的轨脊，以众智园、AI原点社区、大钟寺为三座差异化创新庭，通过科技服务翼与场景赋能翼，把全栈研发、成果转化、城市体验和长期运营织成可验证、可撤回、可持续学习的城市系统。"
 tracks: ["ai-traffic-walkability", "youth-friendly-public-space", "civic-agent-governance"]

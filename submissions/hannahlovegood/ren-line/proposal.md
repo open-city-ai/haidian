@@ -2,6 +2,7 @@
 title: "人字带 The REN Line——百年京张AI创新带总体城市设计概念方案"
 author_github: "hannahlovegood"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以青龙桥「人字形」线路为总概念原点，把 11.4 平方公里的京张走廊组织为「一线两岸三站五缝十二台」：遗址公园绿脊纵贯南北，东西两岸功能织补，众智园、原点、大钟寺三站分坡爬升，五条缝合街道重新缝合被铁路割裂的城市，十二个场景站台让 AI 可感可用——百年前以「人」字翻山，今天以「人」字写城。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "ai-origin-community"]

@@ -2,6 +2,7 @@
 title: "京张智带·零号智轨——百年京张AI创新带城市设计开源方案"
 author_github: "heiyouhu"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以「一轨一脉、三芯两翼、多站互联」为空间框架，提出京张智带（JZ·AI Belt）与零号智轨（TRACK-0）品牌体系，通过生态换乘站、双轨进化、人字回路治理和零号轨道公共接口四项原创机制，把百年京张铁路史转化为 AI 时代可生长的带状城市智能体方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

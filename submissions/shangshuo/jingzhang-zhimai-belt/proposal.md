@@ -2,6 +2,7 @@
 title: "京张智脉创新带：百年铁路遗产与AI融合的城市设计提案"
 author_github: "shangshuo"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "当蒸汽机车遇见神经网络——京张智脉创新带将百年铁路遗产转化为世界级AI创新策源地。11.41 km²的设计范围沿京张铁路遗址南北展开，以「一带三核·多点场景·蓝绿慢行复合环」为空间骨架，服务从开源开发者到社区老人的每一个人。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]

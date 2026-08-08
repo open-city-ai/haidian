@@ -2,6 +2,7 @@
 title: "京张智环｜Jing-Zhang AI Loop"
 author_github: "liberty-z"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路廊道升级为城市级 AI 操作系统总线：一脉（京张文化·智能主脉）、三核（众智园验证核／AI原点开源核／大钟寺交往核）、双翼（中关村科技服务翼／小月河场景赋能翼）、十二环站，形成验证—开源—交往—实测的开放创新回路。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

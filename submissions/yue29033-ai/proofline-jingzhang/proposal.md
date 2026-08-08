@@ -2,6 +2,7 @@
 title: "共证京张｜Proofline Jing-Zhang"
 author_github: "yue29033-ai"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路的工程验证精神为文化母题，将遗址公园转化为连接科研、产业与市民生活的公共 AI 共证基础设施。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

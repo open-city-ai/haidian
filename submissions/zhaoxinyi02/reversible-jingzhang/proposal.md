@@ -2,6 +2,7 @@
 title: "京张可逆城｜REVERSIBLE JINGZHANG — Every Future Needs a Return Path"
 author_github: "zhaoxinyi02"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张转化为全球第一条可撤回、可复原、可申诉、可再学习的城市AI试验带：每个未来都必须带一张回程票。"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "ai-traffic-walkability"]

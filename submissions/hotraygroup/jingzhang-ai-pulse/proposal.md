@@ -2,6 +2,7 @@
 title: "京张智脉——百年京张AI创新带城市设计概念方案"
 author_github: "hotraygroup"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以'京张智脉'为总体概念，沿京张铁路遗址公园塑造一条贯穿南北的AI创新活力带：众智园全栈自主创新、AI原点社区策源转化、大钟寺智能原生新业态、中关村科技服务翼与小月河场景赋能翼协同，构建百年京张文化带、都市AI生活体验带与AI融合创新带。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

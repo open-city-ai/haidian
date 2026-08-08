@@ -2,6 +2,7 @@
 title: "京张智脉——百年京张AI创新带总体城市设计概念方案"
 author_github: "NEKO685"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以\"人字轨·智脉\"为总体概念,构建\"一带三核、双翼协同、蓝绿复合环\"空间结构,将百年京张铁路文化转译为面向全球AI人才与产业的创新廊道;基于provisional边界生成完整用地、建筑、道路、蓝绿、公共空间与分期图层,全部指标可复算、全部结论标注为概念建议。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

@@ -2,6 +2,7 @@
 title: "京张智脉·共生环——百年京张AI创新带开放式城市操作系统"
 author_github: "liweinan0423"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共接口，构建创新生产环、公共体验环与证据治理环，形成三核异构、六桥缝合、七个公共节点和十二个AI场景的可审计开放式城市操作系统。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

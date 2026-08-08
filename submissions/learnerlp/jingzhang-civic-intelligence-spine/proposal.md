@@ -3,6 +3,7 @@ title: "京张共智脉：百年铁路遗产上的开放智能城市"
 title_en: "Jing-Zhang Civic Intelligence Spine"
 author_github: "learnerlp"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗产空间为公共智能主脉，将三区两翼组织为可步行、可验证、可迭代的开放创新共同体。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

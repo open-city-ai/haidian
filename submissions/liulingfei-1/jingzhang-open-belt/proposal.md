@@ -2,13 +2,13 @@
 title: "京张开源带，把九公里公园接回日常"
 author_github: "liulingfei-1"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "先把京张铁路遗址公园的路走顺，再用三座院落补上试验、服务与交流。"
 tracks: ["ai-public-services", "youth-friendly-public-space", "civic-agent-governance"]
 scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 iteration: "v2.1"
 version: "2.1.0"
-translation_file: "proposal.en.md"
 ---
 
 # 京张开源带，把九公里公园接回日常

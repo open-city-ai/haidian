@@ -2,6 +2,7 @@
 title: "轨上新文明：三条时间线的城市操作系统——百年京张AI创新带城市设计方案"
 author_github: "ttxl314"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「轨上新文明（RAIL+）」为总体概念，把百年京张铁路、四十年中关村与AI新纪元三条时间线组织为可感知的城市操作系统：一带三核、双翼五节点、蓝绿慢行复合环；提出RAIL+命名与视觉体系、七大AI创新生态机制、12张场景卡、6类用户画像、5处朝圣地标、10座关沟记忆桥谱系（怀来河七孔钢桁架/青龙桥人字形等京张典型桥型复现）、三线文化叙事与年度活动运营闭环。全部空间建议为概念方案，供专业团队深化研究。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

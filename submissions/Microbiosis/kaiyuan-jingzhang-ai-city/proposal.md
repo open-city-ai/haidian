@@ -2,6 +2,7 @@
 title: "开源京张：AI 场景之都"
 author_github: "Microbiosis"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以'AI 场景操作系统'为总体概念，把百年京张文化带、都市AI生活体验带、AI融合创新带整合为可编排、可测试、可运营的城市级开源平台；众智园做全栈自主创新，AI原点社区做生态与场景，大钟寺做产业聚集，三处重点区沿京张铁路遗址公园活力带形成 AI 场景走廊。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "ai-origin-community"]

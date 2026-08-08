@@ -2,6 +2,7 @@
 title: "京张智共生——开放智能共同体城市设计"
 author_github: "youngkermit8-coder"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-SA-4.0"
 summary: "以百年京张遗产轴为公共底座，以开放协议、场景验证和全球贡献网络组织一脊三庭两翼十二场景；边界为临时粗略数据，所有空间指标可复算并待官方数据整体替换。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

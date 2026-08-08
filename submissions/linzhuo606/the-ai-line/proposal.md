@@ -2,6 +2,7 @@
 title: "智轨京张 The AI Line：百年京张AI创新带城市设计方案"
 author_github: "linzhuo606"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以京张遗址公园为绿脊、十二座AI场景车站为骨架，用车站类型学重构百年铁路记忆，形成一脊十二站三区两翼的AI创新带概念城市设计；无障碍框架由盲人作者以第一人称经验定义（连贯性系统+开源触觉模型库），全部空间数据可复算、全部结论可复核。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

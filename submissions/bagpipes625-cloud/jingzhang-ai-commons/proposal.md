@@ -2,6 +2,7 @@
 title: "京张智脉：可学习的AI公共创新带"
 author_github: "bagpipes625-cloud"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共脊柱，构建众智园可信试验、原点开源发布、大钟寺智能会客三个 AI Commons，并以十二个可审计场景把三区两翼连接为可学习的城市创新带。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

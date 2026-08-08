@@ -2,6 +2,7 @@
 title: "原点京张：一公里AI创新服务圈"
 author_github: "rexding0711-Rex"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「原点」为命名核心，把百年京张铁路（中国自主创新原点）与 AI 原点社区（下一个原点）连接为一带多点的创新服务圈；提出「Meta-Agent 可编程城市」范式——Origin Node 动态生长算法使空间从静态终态图演化为可计算、可迭代的代码库；沿京张遗址公园组织一公里创新服务前台网络，46 个概念地块全部绑定海淀生态锚点（智源研究院/海淀数据特区/北京人工智能公共算力平台/清华北大），覆盖从基础研究、产业孵化到资本服务的全链路。"
 tracks: ["enterprise-services-ecosystem", "ai-origin-community"]
