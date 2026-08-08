@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "total_site_area": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/geometry/provisional_boundaries.geojson"],
+      "formula": "polygon_area(PROV-SITE-001)",
+      "confidence": "medium",
+      "assumptions": ["使用临时边界", "EPSG:4548投影计算"],
+      "description": "总体设计范围面积（约11.4平方公里）"
+    },
+    "research_area": {
+      "status": "known",
+      "value": 2850000,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "sum(LU-001.area, LU-005.area)",
+      "confidence": "medium",
+      "assumptions": ["科研用地占比25%"],
+      "description": "科研用地总面积"
+    },
+    "commercial_area": {
+      "status": "known",
+      "value": 1850000,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "sum(LU-002.area)",
+      "confidence": "medium",
+      "assumptions": ["商业服务业用地占比16%"],
+      "description": "商业服务业设施用地面积"
+    },
+    "residential_area": {
+      "status": "known",
+      "value": 2450000,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "sum(LU-003.area)",
+      "confidence": "medium",
+      "assumptions": ["居住用地占比21.5%"],
+      "description": "二类居住用地面积"
+    },
+    "green_space_area": {
+      "status": "known",
+      "value": 1680000,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson", "geometry/green_space.geojson"],
+      "formula": "sum(LU-004.area, GS-001.area, GS-002.area)",
+      "confidence": "medium",
+      "assumptions": ["绿地率14.7%"],
+      "description": "公园绿地总面积"
+    },
+    "road_area": {
+      "status": "known",
+      "value": 1132825,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "sum(LU-006.area)",
+      "confidence": "medium",
+      "assumptions": ["道路用地占比10%"],
+      "description": "城市道路用地面积"
+    },
+    "building_far_average": {
+      "status": "known",
+      "value": 2.2,
+      "unit": "ratio",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "weighted_avg(building.area * building.floors / land.area)",
+      "confidence": "medium",
+      "assumptions": ["平均容积率2.2"],
+      "description": "平均容积率"
+    },
+    "ai_scenario_coverage": {
+      "status": "known",
+      "value": 85,
+      "unit": "none",
+      "source_files": ["scenario_cards.json"],
+      "formula": "count(scenarios_with_ai) / total_scenarios * 100",
+      "confidence": "high",
+      "assumptions": ["17/20场景卡含AI原生设计"],
+      "description": "AI场景覆盖率(%)"
+    },
+    "public_space_per_capita": {
+      "status": "known",
+      "value": 12.5,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "green_space_area / estimated_population",
+      "confidence": "medium",
+      "assumptions": ["预估常住人口约13.5万人"],
+      "description": "人均公共空间面积"
+    },
+    "transit_oriented_development_ratio": {
+      "status": "known",
+      "value": 72,
+      "unit": "none",
+      "source_files": ["geometry/land_use.geojson", "geometry/road_network.geojson"],
+      "formula": "area_within_800m_of_transit / total_developable_area * 100",
+      "confidence": "medium",
+      "assumptions": ["72%开发用地在公交站点800m范围内"],
+      "description": "TOD开发比例(%)"
+    }
+  }
+}
