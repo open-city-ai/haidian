@@ -1,0 +1,76 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon area, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary; official redline pending."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.2433,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Green corridor follows Jing-Zhang park spine; widths are design suggestions."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0394,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Plaza carved from large green parcels; design suggestion only."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 986425,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint area)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual footprints for structure testing; not statutory."
+   ]
+  },
+  "land_use_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(land_use) / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Should approach 1.0 minus roads/water; verified by spatial review."
+   ]
+  }
+ }
+}

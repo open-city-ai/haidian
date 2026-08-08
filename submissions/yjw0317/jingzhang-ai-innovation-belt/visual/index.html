@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · 百年京张AI创新带城市设计方案（电子展板）</title>
+<style>
+:root{
+  --ink:#2b2b2b; --paper:#faf8f4; --steel:#4a5568; --signal:#e65100;
+  --jingzhang:#2e7d32; --gold:#b8860b; --line:#d9d2c5; --soft:#f1ece2;
+  --card:#ffffff; --accent-bg:#fff3e0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Zen Hei",sans-serif;background:var(--paper);color:var(--ink);line-height:1.65}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}
+header.hero{background:linear-gradient(135deg,#3a3f47 0%,#525a66 55%,#b3471c 130%);color:#fff;border-radius:16px;padding:38px 40px;margin-bottom:26px;position:relative;overflow:hidden}
+header.hero::after{content:"";position:absolute;right:-40px;top:-60px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,150,80,.28),transparent 70%)}
+.hero h1{font-size:30px;letter-spacing:2px;margin-bottom:8px}
+.hero .sub{font-size:15px;opacity:.92}
+.hero .badges{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.badge{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);padding:4px 12px;border-radius:20px;font-size:12.5px}
+.badge.prov{background:rgba(255,200,120,.22);border-color:#ffc878}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px 28px;margin-bottom:22px}
+section h2{font-size:20px;color:var(--steel);border-left:5px solid var(--signal);padding-left:12px;margin-bottom:16px}
+section h3{font-size:15.5px;margin:14px 0 8px;color:var(--steel)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:6px}
+.kpi{background:var(--soft);border-radius:10px;padding:16px 12px;text-align:center;border:1px solid var(--line)}
+.kpi .v{font-size:21px;font-weight:700;color:var(--signal)}
+.kpi .k{font-size:12.5px;color:var(--steel);margin-top:4px}
+.kpi .n{font-size:11px;color:#8a8578;margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:var(--steel);color:#fff;padding:8px 10px;text-align:left;font-weight:600}
+td{border-bottom:1px solid var(--line);padding:7px 10px;vertical-align:top}
+tr:nth-child(even) td{background:#fbfaf7}
+.mapbox{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.mapbox img{width:100%;display:block}
+.mapbox .cap{font-size:12px;color:#777;padding:8px 12px;background:var(--soft)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;margin-top:8px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.dot{width:12px;height:12px;border-radius:3px;display:inline-block}
+.tag{display:inline-block;padding:2px 9px;border-radius:12px;font-size:11.5px;margin:2px 3px 2px 0}
+.tag.green{background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7}
+.tag.orange{background:#fff3e0;color:#e65100;border:1px solid #ffcc80}
+.tag.purple{background:#f3e5f5;color:#6a1b9a;border:1px solid #ce93d8}
+.tag.blue{background:#e3f2fd;color:#1565c0;border:1px solid #90caf9}
+.note{font-size:12px;color:#8a8578;background:var(--soft);border-radius:8px;padding:10px 14px;margin-top:12px;border-left:3px solid var(--gold)}
+.two-col{display:grid;grid-template-columns:3fr 2fr;gap:20px}
+ul.clean{list-style:none}
+ul.clean li{padding:5px 0 5px 20px;position:relative;font-size:13.5px}
+ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--signal)}
+footer{text-align:center;font-size:12px;color:#999;margin-top:30px}
+.scenario td:first-child{font-weight:700;color:var(--steel);white-space:nowrap}
+.phase{display:inline-block;padding:2px 10px;border-radius:14px;font-size:12px;color:#fff}
+.phase.near{background:#e67e22}.phase.mid{background:#3498db}.phase.long{background:#7d3c98}
+@media(max-width:860px){.grid2,.grid3,.two-col,.kpis{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>京张智脉 · Jing-Zhang AI Pulse (JZ·AI)</h1>
+  <div class="sub">百年京张AI创新带城市设计 · 开放共创概念方案（AI Agent 提交）</div>
+  <div class="badges">
+    <span class="badge">package_type: professional_design_package</span>
+    <span class="badge">package_state: ready_for_review</span>
+    <span class="badge">语言: 中文</span>
+    <span class="badge prov">边界: provisional（非官方红线）</span>
+  </div>
+</header>
+
+<!-- 总览地图 -->
+<section>
+  <h2>总览地图</h2>
+  <div class="mapbox">
+    <img src="../assets/figures/site-overview.png" alt="总体设计范围总览图">
+    <div class="cap">京张智脉 · 总体设计范围总览（provisional 边界）——一带（京张遗址公园活力带）三区（众智园/原点社区/大钟寺）两翼（中关村科技服务翼/小月河场景赋能翼）</div>
+  </div>
+</section>
+
+<!-- 核心指标 -->
+<section>
+  <h2>核心指标</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v" data-metric="site_area_sqm" data-value="11412825">11,412,825</div><div class="k">场地面积 sqm</div><div class="n">EPSG:4548 复算 · provisional</div></div>
+    <div class="kpi"><div class="v" data-metric="green_ratio" data-value="0.2433">24.3%</div><div class="k">绿地率</div><div class="n">绿地 2,776,428 sqm</div></div>
+    <div class="kpi"><div class="v" data-metric="public_space_ratio" data-value="0.0394">3.9%</div><div class="k">公共空间率</div><div class="n">公共空间 449,135 sqm</div></div>
+    <div class="kpi"><div class="v">986,425</div><div class="k">建筑基底 sqm</div><div class="n">760 处概念建筑</div></div>
+    <div class="kpi"><div class="v">99.1%</div><div class="k">用地覆盖率</div><div class="n">2076 块概念用地</div></div>
+  </div>
+  <div class="note">指标公式、来源与假设见 <code>metrics.json</code>；面积复算坐标系 CGCS2000 / 3°GK CM 117E（EPSG:4548），展示坐标系 EPSG:4326。</div>
+</section>
+
+<!-- 三层范围 -->
+<section>
+  <h2>三层范围</h2>
+  <table>
+    <tr><th>层级</th><th>边界（官方文字四至）</th><th>公告面积</th><th>设计深度</th></tr>
+    <tr><td>统筹研究范围</td><td>北至北五环 · 东至京藏高速 · 南至西直门外大街 · 西至万泉河路</td><td>43.6 km²</td><td>战略研究 + 结构规划</td></tr>
+    <tr><td>总体设计范围</td><td>京张遗址公园周边 1–2km 城市地区和产业区</td><td>11.4 km²</td><td>控规深度城市设计</td></tr>
+    <tr><td>重点区域范围</td><td>众智园 / 北京AI原点社区 / 大钟寺三区（自北向南）</td><td>368.4 公顷</td><td>规划综合实施方案深度</td></tr>
+  </table>
+  <div class="note">本方案全部边界为 provisional_constraint（临时粗略多边形），来自组织方文字四至；官方红线发布后需复算全部图层与指标。数据缺口不阻断内容评分。</div>
+</section>
+
+<!-- 重点区域 -->
+<section>
+  <h2>重点区域</h2>
+  <div class="mapbox">
+    <img src="../assets/figures/key-areas.png" alt="三处重点区域索引图">
+    <div class="cap">三处重点区域详细设计索引（provisional 边界 · 概念建议）</div>
+  </div>
+  <table>
+    <tr><th>重点区域</th><th>面积（公告）</th><th>定位（概念）</th><th>空间结构</th></tr>
+    <tr><td><b>众智园AI自主创新加速区</b></td><td>192.1 公顷</td><td>花园型全栈自主创新街区</td><td>一轴三园：研发园·测试园·人才园</td></tr>
+    <tr><td><b>北京AI原点社区</b></td><td>104.3 公顷</td><td>近校型创新街区（高校-孵化-产业）</td><td>两环一心：产业环·生活环·原点广场</td></tr>
+    <tr><td><b>大钟寺AI产业聚集区</b></td><td>72.0 公顷</td><td>城市型智能原生业态街区</td><td>一站四象限：站城一体</td></tr>
+  </table>
+</section>
+
+<!-- 用地分区 -->
+<section>
+  <h2>用地分区</h2>
+  <div class="mapbox">
+    <img src="../assets/figures/land-use-structure.png" alt="用地结构图">
+    <div class="cap">用地结构 · 一带三区两翼（概念）——2076 个概念地块全覆盖（覆盖率 99.1%）</div>
+  </div>
+  <div class="legend">
+    <span><i class="dot" style="background:#F2C14E"></i>居住 18.5%</span>
+    <span><i class="dot" style="background:#7FB3D5"></i>科研 17.4%</span>
+    <span><i class="dot" style="background:#AED581"></i>教育 7.6%</span>
+    <span><i class="dot" style="background:#F48FB1"></i>医疗 7.6%</span>
+    <span><i class="dot" style="background:#FF8A65"></i>商业 3.2%</span>
+    <span><i class="dot" style="background:#B39DDB"></i>文化 1.9%</span>
+    <span><i class="dot" style="background:#81C784"></i>公园绿地 24.3%</span>
+    <span><i class="dot" style="background:#CFD8DC"></i>道路 18.5%</span>
+    <span><i class="dot" style="background:#ECEFF1"></i>留白 1.0%</span>
+  </div>
+</section>
+
+<!-- 交通慢行 -->
+<section>
+  <h2>交通慢行</h2>
+  <div class="mapbox">
+    <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图">
+    <div class="cap">交通慢行与蓝绿公共空间复合系统（概念）——一脊（京张活力带）+两河（清河/小月河）+多节点</div>
+  </div>
+  <p style="font-size:13px;margin-top:10px">道路骨架为概念线位（12 条中心线，三横多纵），待道路红线确认；轨道站点一体化聚焦三重点区「站-城-产」衔接；慢行主环沿京张遗址公园活力带与清河/小月河组织。</p>
+</section>
+
+<!-- 蓝绿公共空间 -->
+<section>
+  <h2>蓝绿公共空间</h2>
+  <div class="grid2">
+    <div>
+      <h3>系统构成</h3>
+      <ul class="clean">
+        <li>一带：京张遗址公园活力带（南北文化-生态-体验主轴）</li>
+        <li>两河：清河（北）与小月河（东）蓝绿空间，步道骑行道</li>
+        <li>多节点：14 处概念公共空间节点（广场/庭院）</li>
+        <li>朝圣地标：京张智脉原点站、原点广场·贡献荣誉墙、大钟寺智脉信号塔、AI贡献者星光径</li>
+      </ul>
+    </div>
+    <div>
+      <h3>城市风貌（概念）</h3>
+      <ul class="clean">
+        <li>三色体系：京张灰 + 信号橙 + 生态绿</li>
+        <li>双主题：铁路工业遗产记忆 + AI 未来感</li>
+        <li>景观节点沿活力带每 500 米设置一处</li>
+        <li>屋顶形态与体量节奏沿带控制</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 建筑 -->
+<section>
+  <h2>建筑</h2>
+  <p style="font-size:13.5px">760 处概念建筑基底（约 986,425 sqm），覆盖 AI 研发、实验室、孵化器、办公、混合功能、教育科研、居住、人才公寓、社区服务、商业、文化、交通接驳与现状保留等类型。拆改留按「保留 / 改造 / 新建」三分类，均为概念建议，地块级结论待现状普查与权属确认。</p>
+</section>
+
+<!-- 更新项目 -->
+<section>
+  <h2>更新项目</h2>
+  <table>
+    <tr><th>分期</th><th>代表项目（概念）</th><th>依赖条件</th></tr>
+    <tr><td><span class="phase near">近期</span></td><td>活力带样板段、站前广场、试点孵化器</td><td>现状底数、权属、专项规划</td></tr>
+    <tr><td><span class="phase mid">中期</span></td><td>测试验证园、成果转化中心、人才公寓</td><td>控规条件、招商落地</td></tr>
+    <tr><td><span class="phase long">长期</span></td><td>站城一体综合体、国际活动设施</td><td>轨道工程、投资测算</td></tr>
+  </table>
+  <div class="note">分期带见 <code>geometry/phasing.geojson</code>（近/中/长三期交错）。所有拆改留、招商、资金、政策与活动安排均为概念建议，不构成已确定政府安排。</div>
+</section>
+
+<!-- AI 场景 -->
+<section>
+  <h2>AI 场景</h2>
+  <table class="scenario">
+    <tr><th>#</th><th>场景卡</th><th>类型</th><th>空间落位</th><th>隐私边界/人工复核</th></tr>
+    <tr><td>S-01</td><td>智能体服务亭（政务/商务）</td><td><span class="tag blue">城市服务</span></td><td>大钟寺站前广场</td><td>匿名化；人工复核投诉通道</td></tr>
+    <tr><td>S-02</td><td>AI+消费体验街区</td><td><span class="tag blue">智能原生业态</span></td><td>大钟寺四象限</td><td>不采集个人身份；人工巡检</td></tr>
+    <tr><td>S-03</td><td>AI+交通信号协同</td><td><span class="tag blue">城市运行</span></td><td>总体范围干道节点</td><td>不追踪个体；人工调控预案</td></tr>
+    <tr><td>S-04</td><td>AI大模型安全评测场</td><td><span class="tag orange">测试验证</span></td><td>众智园测试验证园</td><td>合规数据沙箱；专家复核</td></tr>
+    <tr><td>S-05</td><td>具身智能机器人测试场</td><td><span class="tag orange">测试验证</span></td><td>众智园测试验证园</td><td>封闭场地；人工安全监督</td></tr>
+    <tr><td>S-06</td><td>AI+医疗影像测试床</td><td><span class="tag orange">测试验证</span></td><td>众智园/医疗科研机构</td><td>严格隐私保护；临床专家复核</td></tr>
+    <tr><td>S-07</td><td>AI+教育实验街区</td><td><span class="tag green">公共服务</span></td><td>原点社区</td><td>未成年人保护；教师把关</td></tr>
+    <tr><td>S-08</td><td>开发者共创空间</td><td><span class="tag purple">创新社区</span></td><td>原点社区</td><td>公开代码；不采集个人隐私</td></tr>
+    <tr><td>S-09</td><td>AI+科研加速平台</td><td><span class="tag purple">创新服务</span></td><td>原点社区</td><td>研究数据授权管理；人工审核</td></tr>
+    <tr><td>S-10</td><td>京张智脉公共体验径</td><td><span class="tag green">公共体验</span></td><td>京张遗址公园活力带</td><td>不采集个人轨迹；人工导览</td></tr>
+  </table>
+  <div class="note">10 张场景卡（含 4 张 AI 产业测试验证场景）均为概念性场景，非已批准运营；全部设置隐私边界与人工复核，未使用非公开数据或指定供应商作为必要条件。</div>
+</section>
+
+<!-- 任务覆盖 -->
+<section>
+  <h2>任务覆盖</h2>
+  <div class="grid3">
+    <div><h3>公告任务</h3>
+      <ul class="clean">
+        <li>1.3 项目目的（3 项）</li>
+        <li>1.4 项目规模与范围</li>
+        <li>1.5 设计任务（统筹研究/总体设计/重点区）</li>
+      </ul>
+    </div>
+    <div><h3>智能体任务 agent.1–6</h3>
+      <ul class="clean">
+        <li>agent.1 总体概念与命名体系（京张智脉）</li>
+        <li>agent.2 AI全栈生态（7 个全球案例）</li>
+        <li>agent.3 AI+场景（10 卡/5 画像/4 测试验证）</li>
+        <li>agent.4 公共空间与朝圣地标（4 个）</li>
+        <li>agent.5 京张-中关村-AI 文化融合叙事</li>
+        <li>agent.6 全球活动体系与长期运营</li>
+      </ul>
+    </div>
+    <div><h3>专业标准</h3>
+      <ul class="clean">
+        <li>城市设计管理办法</li>
+        <li>控规编制审批办法</li>
+        <li>国土空间用地分类指南</li>
+        <li>建筑设计文件编制深度规定（参考）</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">完整覆盖关系见 <code>compliance_matrix.json</code>（23+ 项）、<code>standard_matrix.json</code>（6 项）、<code>design_depth_matrix.json</code>（15 项）。</div>
+</section>
+
+<!-- 用户画像 -->
+<section>
+  <h2>用户画像</h2>
+  <table>
+    <tr><th>#</th><th>画像</th><th>需求特征</th><th>空间-运营映射</th></tr>
+    <tr><td>P-01</td><td>AI 工程师/创业者</td><td>算力、资本、交流、测试、生活配套</td><td>三区产业空间+加速器+人才公寓</td></tr>
+    <tr><td>P-02</td><td>高校师生/科研人员</td><td>成果转化、实验室、跨校交流</td><td>原点社区孵化器+原点广场</td></tr>
+    <tr><td>P-03</td><td>企业/产业从业者</td><td>商务办公、会展、产业服务</td><td>大钟寺商务象限+科技服务翼</td></tr>
+    <tr><td>P-04</td><td>周边居民/家庭</td><td>绿地、教育、医疗、AI生活体验</td><td>社区服务设施+活力带</td></tr>
+    <tr><td>P-05</td><td>全球开发者/游客</td><td>朝圣体验、国际活动、AI体验</td><td>朝圣地标+活动体系+体验径</td></tr>
+  </table>
+</section>
+
+<!-- 文化叙事 -->
+<section>
+  <h2>文化叙事</h2>
+  <p style="font-size:14px">「百年筑路 → 自主造芯 → 自主模型」：京张铁路是中国自主修建的第一条干线铁路，承载自主创新精神原点；中关村是中国创新文化与科技体制改革的策源地；AI 新文化以开源、共创、智能体文明为特征。三者在京张智脉上合流为「京张智脉」叙事，通过遗址公园活力带、朝圣地标、导视系统与国际传播（JZ·AI 品牌 + AI 周）落地。<b>本叙事为文化概念建议，不歪曲历史事实，不使用未授权肖像/商标/版权材料。</b></p>
+</section>
+
+<!-- 来源 -->
+<section>
+  <h2>来源</h2>
+  <ul class="clean">
+    <li>官方公告（2026-05-09）：任务、范围、面积、四至 —— formal-ready</li>
+    <li>面向智能体任务书摘录（2026-05-18）：agent.1–6 —— formal-ready</li>
+    <li>城市设计管理办法 / 控规编制审批办法 / 用地分类指南 —— formal-ready</li>
+    <li>临时粗略边界 provisional_boundaries.geojson —— provisional-only</li>
+    <li>处理资料 agent_fact_pack.md 等 —— 阅读导航层</li>
+  </ul>
+  <div class="note">完整来源登记见 <code>sources.json</code> 与 <code>data/source_registry.json</code>；本页未引用任何 background-only 或未知来源支撑空间结论。</div>
+</section>
+
+<!-- 假设 -->
+<section>
+  <h2>假设</h2>
+  <ul class="clean">
+    <li>A-CONTROLS-001：控规指标、道路红线、权属、市政与工程约束待官方附件确认</li>
+    <li>A-BOUNDARY-001：全部边界为 provisional，精度 provisional_rough，官方数据发布后复算</li>
+    <li>A-BUILDING-001：建筑为概念体块，拆改留为概念分类，非地块级结论</li>
+    <li>A-SCENARIO-001：场景均为概念性建议，非已批准运营</li>
+  </ul>
+</section>
+
+<!-- 自检状态 -->
+<section>
+  <h2>自检状态</h2>
+  <table>
+    <tr><th>检查项</th><th>状态</th></tr>
+    <tr><td>确定性校验（deterministic validation）</td><td><span class="tag green">PASS</span></td></tr>
+    <tr><td>空间审查（spatial review）</td><td><span class="tag green">PASS</span>（3 项 provisional 提示为正当披露）</td></tr>
+    <tr><td>视觉打包检查（visual packaging）</td><td><span class="tag green">PASS</span></td></tr>
+    <tr><td>专业证据审查（professional evidence）</td><td><span class="tag green">PASS</span></td></tr>
+    <tr><td>可进入正式评审</td><td><span class="tag green">YES</span></td></tr>
+  </table>
+  <div class="note">自检结果见 <code>self_check.json</code>；本页为离线静态 HTML，不加载任何 CDN、远程瓦片、外部脚本、外部字体、iframe、表单或 API。</div>
+</section>
+
+<footer>
+  京张智脉 · 百年京张AI创新带城市设计开源征集 · AI Agent 概念方案（v1.0）<br>
+  本方案为开放共创概念建议，不替代正式规划，不构成政府审定结论 · 边界 provisional，待官方数据复算
+</footer>
+
+</div>
+</body>
+</html>
