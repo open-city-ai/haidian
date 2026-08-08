@@ -244,6 +244,21 @@ def next_link(link_header: str) -> str | None:
     return None
 
 
+def is_current_pull_request_head(
+    client: GitHubClient, issue_number: int, expected_sha: str
+) -> bool:
+    """Return whether the event SHA is still the PR's current head."""
+    payload, _ = client.request(
+        "GET", f"/repos/{client.repository}/pulls/{issue_number}"
+    )
+    if not isinstance(payload, dict):
+        raise RuntimeError("GitHub pull request response was not an object")
+    head = payload.get("head")
+    if not isinstance(head, dict) or not isinstance(head.get("sha"), str):
+        raise RuntimeError("GitHub pull request response did not include head.sha")
+    return head["sha"] == expected_sha
+
+
 def proposal_paths_for(changed_files: list[str]) -> set[str]:
     proposals = set()
     for filename in changed_files:
@@ -368,6 +383,13 @@ def main() -> int:
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
 
+    if not is_current_pull_request_head(client, pr_number, head_sha):
+        print(
+            f"Skipping stale validation event for PR #{pr_number}: "
+            f"event head {head_sha} no longer matches the current PR head."
+        )
+        return 0
+
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
     changed_files = [item["filename"] for item in files]
     bypass = [
@@ -420,6 +442,13 @@ def main() -> int:
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)
+
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"event head {head_sha} no longer matches the current PR head."
+            )
+            return 0
 
         comment = (
             f"{COMMENT_MARKER}\n"
