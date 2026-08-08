@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v1.1 - 2026-08-08
+
+- 内容深化：三处重点区补充「空间具体性」段落（面宽、轴园结构、概念高度控制）；新增区域协同维度（未来科学城/怀柔科学城/亦庄/京津冀四接口）；P1 项目 RACI 责任矩阵；10 项概念 KPI 框架。全部标注概念建议/待确认。
+- 风险治理：新增 risk.json（8 维风险、评分与缓解措施），替代仓库级 missing_data_checklist.csv 引用（proposal.md / copyright_statement.md 同步更新）。
+- 英文配套升级：proposal.en.md + report/proposal.en.html 为完整对照译文；figures_gen.py / pdf_gen.py 新增英文渲染模式（L() 双语字典），重新生成 5 张英文图（含术语表译法、bbox 零越界零重叠校验）与英文 A3 文册/A0 展板（reportlab 表格自动换行，文本零出界）；visual/index.en.html 全文翻译并引用英文图件。
+- 图件 v2 微调：两翼标注内移避免出界，图内文字字号按语言适配。
+- manifest.json 更新：新增 .en 条目（language/translation_of），全部 sha256 与实际一致；self_checked 置 true（自检含双语资产完整性检查）。
+
 ## v1.0 - 2026-08-08
 
 - 首次正式提交：京张缝合带 JINGZHANG STITCH BELT 完整 formal 包。
