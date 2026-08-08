@@ -376,6 +376,23 @@ def publish_validation_comment(
         print(f"warning: unable to publish validation comment: {exc}", file=sys.stderr)
 
 
+def build_validation_comment(validation_markdown: str) -> str:
+    return (
+        f"{COMMENT_MARKER}\n"
+        "# Haidian Submission Validation\n\n"
+        f"{validation_markdown}\n\n"
+        "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+    )
+
+
+def build_preflight_failure_comment(
+    changed_files: list[str], error: Exception
+) -> str:
+    validation = ValidationReport(changed_files=changed_files)
+    validation.add_error(f"pre-validation download failed: {error}")
+    return build_validation_comment(format_report(validation))
+
+
 def main() -> int:
     token = os.getenv("GITHUB_TOKEN")
     repository = os.getenv("GITHUB_REPOSITORY")
@@ -408,23 +425,29 @@ def main() -> int:
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
-        for item in files:
-            filename = item["filename"]
-            if item.get("status") == "removed":
-                continue
-            client.download_content(head_repo, filename, head_sha, worktree / filename)
+        try:
+            for item in files:
+                filename = item["filename"]
+                if item.get("status") == "removed":
+                    continue
+                client.download_content(head_repo, filename, head_sha, worktree / filename)
 
-        for proposal_path in proposal_paths_for(validation_files):
-            destination = worktree / proposal_path
-            if not destination.exists():
-                client.fetch_content(head_repo, proposal_path, head_sha, destination)
-            hydrate_proposal_package(
-                client,
-                head_repo,
-                head_sha,
-                worktree,
-                proposal_path,
-            )
+            for proposal_path in proposal_paths_for(validation_files):
+                destination = worktree / proposal_path
+                if not destination.exists():
+                    client.fetch_content(head_repo, proposal_path, head_sha, destination)
+                hydrate_proposal_package(
+                    client,
+                    head_repo,
+                    head_sha,
+                    worktree,
+                    proposal_path,
+                )
+        except (RuntimeError, urllib.error.HTTPError) as exc:
+            comment = build_preflight_failure_comment(changed_files, exc)
+            write_step_summary(comment)
+            publish_validation_comment(client, pr_number, comment)
+            return 1
 
         queue_candidate = is_review_queue_candidate(changed_files, pr_author)
         if is_non_submission_pr(files):
@@ -449,12 +472,7 @@ def main() -> int:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)
 
-        comment = (
-            f"{COMMENT_MARKER}\n"
-            "# Haidian Submission Validation\n\n"
-            f"{validation_markdown}\n\n"
-            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
-        )
+        comment = build_validation_comment(validation_markdown)
         write_step_summary(comment)
         publish_validation_comment(client, pr_number, comment)
 
