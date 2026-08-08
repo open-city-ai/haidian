@@ -1,4 +1,10 @@
-# 方案叙事摘要与验收清单 / Narrative and acceptance checklist
+# 投稿包内验收参考 / Package-local acceptance reference
+
+> 本文件只服务于 `submissions/xyh202131/jingzhang-ai-pilgrimage-belt/`，是投稿内可复制参考，不是仓库级 reusable template、公共 PR template 或维护者规范。复制到其他提交或后续 PR 时，不得继承任何 `[x]`。
+>
+> This file applies only to `submissions/xyh202131/jingzhang-ai-pilgrimage-belt/`. It is a package-local copy reference, not a repository-level reusable template, public PR template, or maintainer policy. No `[x]` may be inherited when it is copied into another submission or later PR.
+
+## 方案叙事摘要 / Narrative summary
 
 AI 朝圣·铁轨新生带 V2 将百年京张定义为一条可审计的 AI 公共创新生产线。小月河场景赋能翼提出真实问题，AI 原点社区共创，众智园验证，大钟寺发布与服务，中关村科技服务翼提供建议性的合规与转化支持，公众反馈和失败证据回流下一年度。
 
@@ -6,17 +12,33 @@ AI 朝圣·铁轨新生带 V2 将百年京张定义为一条可审计的 AI 公�
 
 Jing-Zhang V2 treats the corridor as an auditable public AI innovation production line: problems enter from the Xiaoyue River wing, co-creation occurs in the AI Origin Community, validation occurs at Zhongzhi Garden, release and staffed service occur at Dazhongsi, and public feedback returns to the next annual cycle. All nodes remain G0 concepts; provisional geometry and design outputs are not approval or engineering evidence.
 
+## 不可变验证证据 / Immutable validation evidence
+
+| Field | Immutable value |
+|---|---|
+| `validated_commit` | `e71ff206800fbd154cbcb8a3b9b139e600f1bd97` |
+| `validation_run_id` | `31273071020` |
+| `validation_run_url` | [submission-validation Run 31273071020](https://github.com/open-city-ai/haidian/actions/runs/31273071020) |
+| `validation_status` | `SUCCESS` |
+| `validation_completed_at_utc` | `2026-08-08T18:55:03Z` |
+| `validated_manifest_sha256` | `4b7fc901c06065872b496f8f481914ec9fc6044d23f248946793b17c3445f506` |
+| `snapshot_generated_at_utc` | `2026-08-08T19:02:52Z` |
+
+上述记录只证明 exact head `e71ff206…` 及其 manifest 原始 Git blob。任何后续提交都会使这些 `[x]` 对新 head 失去自动继承资格；新 head 是否通过，以 GitHub 上绑定该 head 的可信 check 为准。包内 Markdown 无法在不制造新提交的情况下自证“当前最终 commit”，因此这里保留上一份已完成验证的不可变指针，不把未来运行写成既成事实。
+
+The record above validates only exact head `e71ff206…` and its raw manifest Git blob. A later commit cannot inherit these `[x]` automatically; the trusted GitHub check attached to that later head is authoritative. A package-local Markdown file cannot self-record its own final commit without creating another commit, so this section preserves the last completed immutable pointer and does not claim a future run as completed.
+
 ## 状态语义 / Status semantics
 
-- `[x]`：已由当前 Git/manifest 快照或可复现命令验证。
+- `[x]`：已由上方 exact commit/run 快照或可复现命令验证，只适用于该不可变快照。
 - `[ ]`：尚待人工决定、正式资料或现实测试；不自动等于本地 gate 失败。
-- 任一内容文件变化后，必须重新核验本清单与 manifest 哈希。
+- 任一内容文件变化后，必须把准备复制的所有 `[x]` 重置为 `[ ]`，重新核验 manifest 哈希并等待新 head 的可信验证。
 
-- `[x]`: verified by the current Git/manifest snapshot or a reproducible command.
+- `[x]`: verified by the exact commit/run snapshot above or a reproducible command, and valid only for that immutable snapshot.
 - `[ ]`: pending a human decision, official material, or real-world testing; it is not automatically a local-gate failure.
-- Revalidate this checklist and all manifest hashes after any content-file change.
+- After any content-file change, reset every checkbox intended for copying from `[x]` to `[ ]`, revalidate all manifest hashes, and wait for the trusted check on the new head.
 
-## 当前验收快照 / Current acceptance snapshot
+## 已验证快照（仅对应 `e71ff206…`）/ Validated snapshot (`e71ff206…` only)
 
 ### 范围与完整性 / Scope and integrity
 
@@ -78,9 +100,9 @@ Jing-Zhang V2 treats the corridor as an auditable public AI innovation productio
 
 ## 下次 PR 可复制模板 / Copyable checklist for the next PR
 
-> 以下项目故意保持未勾选。开始下一次增量时复制到 PR 描述，完成一项再勾选一项。
+> 以下项目故意保持未勾选。开始下一次增量时，只复制本节并保持全部 `[ ]`；不得复制或继承上方任何 `[x]`、commit、run、manifest SHA 或生成时间。完成一项再勾选一项。
 >
-> The items below are intentionally unchecked. Copy them into the next PR description and check each item only after completion.
+> The items below are intentionally unchecked. For the next increment, copy only this section and keep every item at `[ ]`. Do not copy or inherit any `[x]`, commit, run, manifest SHA, or timestamp above. Check each item only after completion.
 
 - [ ] 从最新 `origin/main` 创建独立分支，确认前一个投稿 PR 已合并或关闭。
 - [ ] 只实现一个可命名、可验证的小增量，只修改自己的投稿目录。
