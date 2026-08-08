@@ -1,0 +1,148 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional boundary; official redline replaces and recomputes."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 670602.222,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(OSM building footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "OSM completeness varies; classification is concept-level."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.110716,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.002085,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept nodes only."
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(land_use)) / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "Zero-overlap QA: overlap_sqm=0.0"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "station_800m_coverage_ratio": {
+      "status": "known",
+      "value": 0.7169,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(union(station 800m buffers) ∩ site) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Stations from OSM nodes; target ≥0.60."
+      ]
+    },
+    "green_500m_coverage_ratio": {
+      "status": "known",
+      "value": 0.5961,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(park 500m service ∩ residential) / residential_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Target ≥0.90; coarse buffer only."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "stitch_node_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "concept_design_count(stitch nodes along spine)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept-design positions; precise locations subject to detailed engineering."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    }
+  }
+}
