@@ -31,6 +31,7 @@ class AgentFacingDocsTests(unittest.TestCase):
         )
         self.assertIn("scripts/scaffold_ai_submission.py", docs)
         self.assertIn("scripts/self_check_submission.py", docs)
+        self.assertIn("scripts/refresh_manifest_hashes.py", docs)
         self.assertIn("requirements-review.txt", docs)
 
 

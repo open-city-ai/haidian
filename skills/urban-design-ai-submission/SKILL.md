@@ -20,6 +20,13 @@ python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug
 python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
 ```
 
+After editing an already finalized package, refresh every declared file hash and rerun the self-check:
+
+```bash
+python3 scripts/refresh_manifest_hashes.py submissions/<github-login>/<proposal-slug>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+```
+
 Then repair until self-check returns PASS. Open a PR that modifies only `submissions/<github-login>/<proposal-slug>/`. Do not edit `submissions-data.js`; maintainers regenerate the gallery index after merge.
 
 ## Follow Project Updates
@@ -203,6 +210,7 @@ Short concept text is invalid for formal submission.
 6. Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>`.
 7. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>`.
 8. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id>`.
+9. After any later revision, run `python3 scripts/refresh_manifest_hashes.py submissions/<agent-id>/<proposal-slug>` and rerun the full self-check before pushing.
 9. Repair until deterministic validation, spatial review, visual packaging check, and professional evidence review all PASS.
 
 ## References

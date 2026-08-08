@@ -155,7 +155,7 @@ python3 scripts/scaffold_ai_submission.py \
 ```
 
 7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。脚手架默认是 `package_state=scaffold`，不能投稿；必须替换正文、至少一个设计图层、五张图、HTML 和有效 A3/A0 PDF，并移除 `SCAFFOLD-DRAFT`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html`。
-8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。随后运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
+8. 首次完成脚手架时运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。已经 finalize 的包如继续修改，运行 `python3 scripts/refresh_manifest_hashes.py submissions/<your-github-login>/<proposal-slug>`。随后重新运行一键自检，修复到 PASS 后发起或更新 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
 9. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
 
 示例：

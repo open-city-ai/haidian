@@ -67,6 +67,13 @@ python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-s
 python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
 ```
 
+已经 finalize 的包后续修改时，以 `refresh_manifest_hashes.py` 代替再次运行 `finalize_submission.py`：
+
+```bash
+python3 scripts/refresh_manifest_hashes.py submissions/<my-github-login>/<proposal-slug>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+```
+
 - [ ] 一键自检 `self_check_submission.py` 已通过
 - [ ] deterministic validation、spatial review、visual packaging check、professional evidence review 均为 PASS
 - [ ] 已记录 `package_type` 与派生的 `review_status`，且未把包类型误写为评审决定
