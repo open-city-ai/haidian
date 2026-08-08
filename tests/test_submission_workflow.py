@@ -2,13 +2,14 @@ import sys
 import tempfile
 import unittest
 import json
+import os
 import subprocess
 import hashlib
 import io
 import re
 import urllib.error
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import jsonschema
 
@@ -31,6 +32,7 @@ from github_pr_validation import (  # noqa: E402
     _is_retryable_http_error,
     is_non_submission_pr,
     is_review_queue_candidate,
+    main,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -189,6 +191,36 @@ class ManifestHydrationTests(unittest.TestCase):
         )
         self.assertTrue(report.ok)
         self.assertIn("maintainer-authorized deletion-only PR", report.warnings[0])
+
+    def test_participant_cannot_delete_another_author_package_as_warning_only(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 668,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/bob/design/obsolete.png", "status": "removed"}
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(1, main())
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("Result: FAIL", comment)
+        client.add_labels.assert_not_called()
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(

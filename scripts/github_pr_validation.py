@@ -410,7 +410,7 @@ def main() -> int:
             validation.add_warning(
                 "non-submission code/docs/test PR; participant package validation was not applicable"
             )
-        elif not validation_files:
+        elif not validation_files and (maintainer_bypass or queue_candidate):
             validation = deletion_only_report(changed_files, maintainer_bypass)
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
