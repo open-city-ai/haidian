@@ -11,6 +11,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from participant_preflight import run as run_preflight_command  # noqa: E402
+from bootstrap_participant_workspace import run as run_bootstrap_command  # noqa: E402
 
 
 class LightweightParticipantFlowTests(unittest.TestCase):
@@ -57,6 +58,17 @@ class LightweightParticipantFlowTests(unittest.TestCase):
             completed = run_preflight_command(command, REPO_ROOT)
         self.assertEqual(0, completed.returncode, completed.stderr)
         self.assertEqual("路径：中文\n", completed.stdout)
+
+    def test_bootstrap_decodes_utf8_output_and_replaces_invalid_bytes(self) -> None:
+        command = [
+            sys.executable,
+            "-c",
+            "import sys; sys.stdout.buffer.write(b'\\xff' + '路径：中文\\n'.encode('utf-8'))",
+        ]
+
+        output = run_bootstrap_command(command)
+
+        self.assertEqual("�路径：中文", output)
 
     def test_bootstrap_defaults_fork_to_case_preserving_login(self) -> None:
         completed = self.run_command(
