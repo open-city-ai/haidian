@@ -14,6 +14,7 @@ import os
 import shutil
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -25,12 +26,48 @@ from validate_submission import ValidationReport, format_report, validate_submis
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+RETRYABLE_METHODS = {"GET", "HEAD", "OPTIONS"}
+RETRYABLE_HTTP_STATUS_CODES = {403, 429, 500, 502, 503, 504}
+MAX_HTTP_RETRIES = 3
 
 
 class GitHubClient:
     def __init__(self, token: str, repository: str) -> None:
         self.token = token
         self.repository = repository
+
+    @staticmethod
+    def _retry_delay(error: urllib.error.HTTPError, attempt: int) -> float:
+        retry_after = error.headers.get("Retry-After") if error.headers else None
+        if retry_after:
+            try:
+                return max(0.0, min(float(retry_after), 60.0))
+            except ValueError:
+                pass
+        return float(min(2**attempt, 30))
+
+    def _open(self, request: urllib.request.Request):
+        """Open a safe read request with bounded retries for transient API denials."""
+        for attempt in range(MAX_HTTP_RETRIES + 1):
+            try:
+                return urllib.request.urlopen(request, timeout=60)
+            except urllib.error.HTTPError as exc:
+                retryable = (
+                    request.method in RETRYABLE_METHODS
+                    and exc.code in RETRYABLE_HTTP_STATUS_CODES
+                    and attempt < MAX_HTTP_RETRIES
+                )
+                if not retryable:
+                    raise
+                delay = self._retry_delay(exc, attempt)
+                print(
+                    f"GitHub API {request.method} returned HTTP {exc.code}; "
+                    f"retrying in {delay:g}s ({attempt + 1}/{MAX_HTTP_RETRIES})",
+                    file=sys.stderr,
+                )
+                exc.close()
+                time.sleep(delay)
+        raise AssertionError("unreachable")
 
     def request(self, method: str, url: str, data: dict | None = None) -> tuple[Any, dict[str, str]]:
         if url.startswith("/"):
@@ -47,7 +84,7 @@ class GitHubClient:
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
+        with self._open(request) as response:
             raw = response.read().decode("utf-8")
             parsed = json.loads(raw) if raw else None
             return parsed, dict(response.headers.items())
@@ -85,7 +122,7 @@ class GitHubClient:
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
+        with self._open(request) as response:
             content = response.read(max_bytes + 1)
         if len(content) > max_bytes:
             raise RuntimeError(f"{destination}: file exceeds download cap")
