@@ -31,6 +31,18 @@ iteration: "v0.4"
 
 最后是反馈断裂。现行规划以年为单位运行但AI技术以月或周迭代，需要更短周期更多参与方更透明的反馈机制让空间供给跟上创新速度。
 
+
+
+## 设计依据与资料清单
+
+本方案引用的核心资料包括[source:OFFICIAL-ANNOUNCEMENT]资格预审公告[source:AGENT-TASKBOOK]智能体任务书[source:HAIDIAN-1X1]产业政策[source:THREE-AREAS-WINGS]区域战略。空间数据来自[source:PROVISIONAL-BOUNDARIES][source:SITE-PACKAGE]。专业标准引用[standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
+
+证据文件包括manifest.json, metrics.json, sources.json, assumptions.json, compliance_matrix.json, standard_matrix.json, design_depth_matrix.json。
+
+所有指标基于临时边界计算，待官方精确多边形发布后用EPSG:4548重算。
+
+![资料证据链与提交包关系图](assets/figures/site-overview.png)
+
 ## 三层范围工作框架
 
 本方案严格依据公告中的三段式层次体系构建工作框架[source:OFFICIAL-ANNOUNCEMENT]：
@@ -550,3 +562,5 @@ AI创新生态系统以`基础研究→技术研发→产品化→场景应用�
 - www.mohurd.gov.cn—— 住建部城市设计管理办法（2017）[standard:MOHURD-URBAN-DESIGN-MEASURES]
 
 [data:geometry/buildings.geojson#...]
+
+[standard:MOHURD-CONTROL-DETAILED-PLANNING]
