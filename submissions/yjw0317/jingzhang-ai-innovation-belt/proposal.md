@@ -118,6 +118,24 @@ iteration: "v1.0"
 
 要素层：算力（端侧+区域算力节点）、数据（公共数据开放场景）、算法（开源模型与全栈体系）、人才（高校+开发者社区）、资本（中关村创投）、场景（测试验证场景开放）。空间层：众智园＝全栈自主创新（芯片-框架-模型-应用）；原点社区＝成果转化（高校-孵化-产业）；大钟寺＝智能原生业态（智能体、智能终端、内容消费）。治理层：AI 治理全球话语权节点（朝圣地标+国际活动）。生态图谱以 `design_depth_matrix.json` 中 `ai_ecosystem_map` 项完整登记。[agent.2] [source:AGENT-TASKBOOK] [depth:ai_ecosystem_map]
 
+### 3.5 区域协同框架（概念建议）
+
+京张智脉并非孤岛，需嵌入北京 AI 创新版图的区域协同网络。本框架为概念性协同机制建议，所有表述均为深化方向，不涉及已确定政府安排。
+
+**与北中轴与北纬社区协同**：京张智脉作为北中轴 AI 创新带的南部节点，与北纬社区在人才流动、场景互补上形成「研发-转化-生活」梯度——北纬社区侧重生活与社区场景，京张智脉侧重产业测试与成果转化，两者以轨道通勤与公共数据开放接口衔接（概念）。
+
+**与未来科学城协同**：未来科学城侧重基础研究与原始创新，京张智脉侧重应用研发与场景落地，形成「实验室→原型→测试→产品」接力链；联合场景测试园与数据沙箱接口（概念）。
+
+**与怀柔科学城协同**：怀柔科学城聚焦大科学装置与前沿交叉研究，京张智脉承接其成果的 AI 化转化与产业孵化，通过研发飞地与联合实验室机制衔接（概念）。
+
+**与北京经济技术开发区（亦庄）协同**：亦庄侧重先进制造与智能工厂，京张智脉侧重算法、模型与智能体软件层，形成「硬件-软件-系统集成」的产业链协同，共享测试验证设施（概念）。
+
+**与京津冀协同**：以京张高铁为纽带，与张家口算力节点、廊坊数据产业形成「研发在京张、算力在张北、制造在津冀」的梯度布局；京张智脉承担创新策源与标准输出角色（概念）。
+
+**空间载体与接口**：区域协同通过以下空间机制落地——①轨道站点一体化节点作为协同接口；②公共数据开放与场景沙箱作为机制接口；③开发者社区与开源生态作为组织接口；④年度活动体系（AI周/开发者大会）作为传播接口。具体合作框架、协议与投资安排均待专业团队与相关部门深化。
+
+[agent.5] [source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 ### 4.1 总体判断
@@ -142,7 +160,7 @@ iteration: "v1.0"
 
 ### 4.4 建筑总规模与控规条件
 
-本方案不设定容积率、建筑高度、建筑密度、绿地率、退线等法定控规指标——`planning_limits.json` 已明确这些 `official_planning_controls` 状态为 `missing`，须待官方任务书附件或审批控规条件确认。[standard:MOHURD-CONTROL-DETAILED-PLANNING] 本方案仅提供建筑基底布局（935 处概念建筑，基底面积约 1,234,619 sqm，其中产业与科研类占主导），作为空间结构表达与后续控规编制的讨论基础。[data:geometry/buildings.geojson] [metric:building_footprint_area_sqm] [depth:building_scale_concept]
+本方案不设定容积率、建筑高度、建筑密度、绿地率、退线等法定控规指标——`planning_limits.json` 已明确这些 `official_planning_controls` 状态为 `missing`，须待官方任务书附件或审批控规条件确认。[standard:MOHURD-CONTROL-DETAILED-PLANNING] 本方案仅提供建筑基底布局（760 处概念建筑，基底面积约 986,425 sqm，其中产业与科研类占主导），作为空间结构表达与后续控规编制的讨论基础。[data:geometry/buildings.geojson] [metric:building_footprint_area_sqm] [depth:building_scale_concept]
 
 ## 重点区域详细设计
 
@@ -223,7 +241,7 @@ AI 场景沿「一带」（体验）、「三区」（产业与测试）、「�
 
 ### 7.2 建筑规模与拆改留
 
-- **建筑基底**：935 处概念建筑，总基底约 1,234,619 sqm；类型覆盖 AI 研发、实验室、孵化器、办公、混合、教育科研、居住、人才公寓、社区服务、商业、文化、交通接驳与现状保留。[data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]
+- **建筑基底**：760 处概念建筑，总基底约 986,425 sqm；类型覆盖 AI 研发、实验室、孵化器、办公、混合、教育科研、居住、人才公寓、社区服务、商业、文化、交通接驳与现状保留。[data:geometry/buildings.geojson] [metric:building_footprint_area_sqm]
 - **拆改留分类**（概念建议）：保留=现状科研院所/高校/文保/优质楼宇；改造=低效厂房与楼宇功能置换；新建=站点上盖与重点区增量空间。**地块级拆改留结论需待现状建筑普查、权属与控规条件确认，本方案不预设。** [depth:retain_redevelop_new_logic]
 - **空间供给策略**：全生命周期供给——孵化器（早期）→加速器（成长期）→总部楼宇（成熟期），配套人才公寓与社区服务。[agent.2]
 
@@ -297,7 +315,7 @@ AI 场景沿「一带」（体验）、「三区」（产业与测试）、「�
 | site_area_sqm | 11,412,825 | Σ边界面积 | 总体设计范围规模 |
 | green_ratio | 0.2433 | 绿地/场地 | 生态本底与人才吸引力 |
 | public_space_ratio | 0.0394 | 公共空间/场地 | 创新交往与公共生活载体 |
-| building_footprint_area_sqm | 1,234,619 | Σ建筑基底 | 产业空间供给规模 |
+| building_footprint_area_sqm | 986,425 | Σ建筑基底 | 产业空间供给规模 |
 | land_use_coverage_ratio | 0.991 | Σ用地/场地 | 用地全覆盖一致性 |
 
 全部指标公式、来源文件与假设见 `metrics.json`；指标设计含义说明：绿地率支撑人才生活品质，公共空间率支撑创新交往，建筑基底回应产业空间供给。[metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio] [metric:building_footprint_area_sqm] [metric:land_use_coverage_ratio]
