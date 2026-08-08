@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Promote a materially edited scaffold to a review-ready submission package."""
+"""Finalize a scaffold or refresh a ready package's declared artifact hashes."""
 
 from __future__ import annotations
 
@@ -41,16 +41,69 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def refresh_manifest_hashes(root: Path, manifest: dict) -> int:
+    """Refresh only declared artifacts, never the manifest itself."""
+    files = manifest.get("files")
+    if not isinstance(files, list):
+        raise ValueError("manifest.json: files must be a list before hashes can be refreshed")
+
+    declared: list[tuple[dict, Path]] = []
+    errors: list[str] = []
+    for index, item in enumerate(files):
+        if not isinstance(item, dict):
+            errors.append(f"manifest.json: files[{index}] must be an object")
+            continue
+        rel = item.get("path")
+        if not isinstance(rel, str) or not rel.strip():
+            errors.append(f"manifest.json: files[{index}].path must be a non-empty string")
+            continue
+        relative_path = Path(rel)
+        if relative_path.is_absolute() or ".." in relative_path.parts:
+            errors.append(f"manifest.json: files[{index}].path must stay inside the submission package")
+            continue
+        if rel == "manifest.json":
+            continue
+        artifact = root / relative_path
+        if not artifact.is_file():
+            errors.append(f"manifest.json: declared artifact is missing: {rel}")
+            continue
+        declared.append((item, artifact))
+
+    if errors:
+        raise ValueError("\n".join(errors))
+    for item, artifact in declared:
+        item["sha256"] = digest(artifact)
+    return len(declared)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("submission_dir")
+    parser.add_argument(
+        "--refresh-manifest",
+        action="store_true",
+        help="refresh hashes for a ready_for_review package after its declared artifacts change",
+    )
     args = parser.parse_args()
     root = Path(args.submission_dir).resolve()
     manifest_path = root / "manifest.json"
     if not manifest_path.is_file():
         parser.error(f"manifest.json not found under {root}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("package_state") != "scaffold":
+    package_state = manifest.get("package_state")
+    if args.refresh_manifest:
+        if package_state != "ready_for_review":
+            parser.error("--refresh-manifest requires package_state=ready_for_review")
+        try:
+            refreshed = refresh_manifest_hashes(root, manifest)
+        except ValueError as exc:
+            parser.error(str(exc))
+        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"Refreshed {refreshed} manifest artifact hashes: {root}")
+        print("Run self_check_submission.py now. Refreshing hashes does not validate package content.")
+        return 0
+
+    if package_state != "scaffold":
         parser.error("package_state must be scaffold before finalization")
 
     declared = {
@@ -166,12 +219,10 @@ def main() -> int:
                 translated_item["language"] = translation_language
                 translated_item["translation_of"] = rel
                 translated_item["required"] = strict_bilingual
-    for item in manifest_files:
-        if not isinstance(item, dict):
-            continue
-        rel = item.get("path")
-        if rel and rel != "manifest.json" and (root / rel).is_file():
-            item["sha256"] = digest(root / rel)
+    try:
+        refresh_manifest_hashes(root, manifest)
+    except ValueError as exc:
+        parser.error(str(exc))
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Review-ready package: {root}")
     print("Run self_check_submission.py now. Any later file edit requires refreshed manifest hashes and another full validation.")

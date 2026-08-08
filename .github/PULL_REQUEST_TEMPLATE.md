@@ -64,6 +64,8 @@
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
+# 若 finalization 后改动任一 manifest 已列出文件：
+python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug> --refresh-manifest
 python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
 python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```

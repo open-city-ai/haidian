@@ -127,6 +127,20 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
     )
 
 
+def refresh_manifest(output_dir: Path) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+            str(output_dir),
+            "--refresh-manifest",
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
 def projected_area(geometry: dict) -> float:
     transformer = Transformer.from_crs("EPSG:4326", "EPSG:4548", always_xy=True)
     return float(transform(transformer.transform, shape(geometry)).area)
@@ -349,6 +363,48 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             )
             self.assertEqual(rerun.returncode, 0, rerun.stdout + rerun.stderr)
             self.assertTrue(json.loads(rerun.stdout)["can_enter_formal_review"])
+
+    def test_ready_package_can_refresh_declared_artifact_hashes_after_a_revision(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(finalized.returncode, 0, finalized.stdout + finalized.stderr)
+
+            proposal = submission_dir / "proposal.md"
+            proposal.write_text(proposal.read_text(encoding="utf-8") + "\nRevision after review.\n", encoding="utf-8")
+            refreshed = refresh_manifest(submission_dir)
+            self.assertEqual(refreshed.returncode, 0, refreshed.stdout + refreshed.stderr)
+
+            rerun = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "self_check_submission.py"),
+                    str(submission_dir),
+                    "--repo-root",
+                    str(root),
+                    "--pr-author",
+                    "alice",
+                    "--json",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(rerun.returncode, 0, rerun.stdout + rerun.stderr)
+            self.assertTrue(json.loads(rerun.stdout)["can_enter_formal_review"])
+
+    def test_refresh_manifest_rejects_a_scaffold(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "topology-pass"
+            self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
+            refreshed = refresh_manifest(submission_dir)
+            self.assertNotEqual(refreshed.returncode, 0)
+            self.assertIn("requires package_state=ready_for_review", refreshed.stderr)
 
     def test_scaffold_does_not_emit_contributor_exhibit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
