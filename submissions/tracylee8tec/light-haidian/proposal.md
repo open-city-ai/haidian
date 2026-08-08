@@ -1,6 +1,6 @@
 ---
 title: "京张智脉共生带：百年京张AI创新带城市设计方案"
-author_github: "teacy"
+author_github: "tracylee8tec"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「京张智脉共生带」为总体概念，围绕百年京张文化带、都市AI生活体验带、AI融合创新带三大定位轴，覆盖众智园AI自主创新加速区、北京AI原点社区和大钟寺AI产业聚集区三处重点片区，提出AI全栈自主创新体系、10+AI场景赋能、3个朝圣地标、全球AI活动体系和长期运营机制的城市设计方案。"
