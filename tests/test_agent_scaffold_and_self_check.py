@@ -1,6 +1,7 @@
 import hashlib
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -11,6 +12,8 @@ from unittest import mock
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
+
+import self_check_submission  # noqa: E402
 
 HAS_REVIEW_DEPS = all(
     importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
@@ -150,6 +153,41 @@ def write_provisional_site_package(root: Path) -> None:
     geometry_dir.mkdir(parents=True, exist_ok=True)
     source = REPO_ROOT / "brief" / "site-package" / "geometry" / "provisional_boundaries.geojson"
     (geometry_dir / "provisional_boundaries.geojson").write_bytes(source.read_bytes())
+
+
+class SelfCheckLocaleSafetyTests(unittest.TestCase):
+    """The self-check must survive a locale that cannot encode the Chinese report."""
+
+    CHINESE_SECTION = "设计依据与资料清单"
+
+    def test_child_validators_are_launched_in_utf8(self) -> None:
+        with mock.patch("self_check_submission.subprocess.run") as runner:
+            runner.return_value = subprocess.CompletedProcess([], 0, "{}", "")
+            self_check_submission.run_json_command([sys.executable, "-c", "pass"])
+        kwargs = runner.call_args.kwargs
+        self.assertEqual(kwargs["encoding"], "utf-8")
+        self.assertEqual(kwargs["env"]["PYTHONUTF8"], "1")
+        self.assertEqual(kwargs["env"]["PYTHONIOENCODING"], "utf-8")
+
+    @unittest.skipIf(sys.platform == "win32", "LC_ALL does not select the Windows code page")
+    def test_report_prints_chinese_under_non_utf8_locale(self) -> None:
+        script = (
+            f"import sys; sys.path.insert(0, {ascii(str(REPO_ROOT / 'scripts'))});"
+            "import self_check_submission as module;"
+            "module.force_utf8_output();"
+            f"print({ascii(self.CHINESE_SECTION)})"
+        )
+        environment = os.environ.copy()
+        environment.update({"LC_ALL": "C", "PYTHONUTF8": "0", "PYTHONCOERCECLOCALE": "0"})
+        completed = subprocess.run(
+            [sys.executable, "-c", script],
+            capture_output=True,
+            encoding="utf-8",
+            env=environment,
+            check=False,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr)
+        self.assertIn(self.CHINESE_SECTION, completed.stdout)
 
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")

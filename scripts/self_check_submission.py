@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -24,7 +25,18 @@ def script_path(repo_root: Path, name: str) -> Path:
 
 
 def run_json_command(command: list[str]) -> dict[str, Any]:
-    completed = subprocess.run(command, capture_output=True, text=True, check=False)
+    environment = os.environ.copy()
+    environment["PYTHONUTF8"] = "1"
+    environment["PYTHONIOENCODING"] = "utf-8"
+    completed = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        env=environment,
+        check=False,
+    )
     parsed: Any = {}
     if completed.stdout.strip():
         try:
@@ -285,7 +297,16 @@ def format_markdown(report: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def force_utf8_output() -> None:
+    """Keep the report printable when the locale encoding cannot hold Chinese text."""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            reconfigure(encoding="utf-8", errors="replace")
+
+
 def main() -> int:
+    force_utf8_output()
     parser = argparse.ArgumentParser()
     parser.add_argument("submission_dir")
     parser.add_argument("--pr-author", required=True)
