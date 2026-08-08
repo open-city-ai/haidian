@@ -65,6 +65,11 @@ def main() -> int:
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--check-generated-reports",
+        action="store_true",
+        help="require report/proposal*.html to match the current trusted renderer",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -73,7 +78,12 @@ def main() -> int:
         submission_dir = repo_root / submission_dir
 
     changed_files = discover_submission_files(submission_dir, repo_root)
-    report = validate_submission(repo_root, args.pr_author, changed_files)
+    report = validate_submission(
+        repo_root,
+        args.pr_author,
+        changed_files,
+        check_generated_reports=args.check_generated_reports,
+    )
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
     else:

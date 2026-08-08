@@ -53,6 +53,31 @@ summary: "离线阅读版"
             self.assertIn('data-evidence-value="SITE-PACKAGE"', html)
             self.assertIn('>来源</sup>', html)
 
+    def test_render_html_accepts_a_leading_blank_line_before_front_matter(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                '\n---\ntitle: "测试方案"\nsummary: "离线阅读版"\n---\n\n# 测试方案\n',
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<h1>测试方案</h1>", html)
+            self.assertNotIn("<p>---", html)
+
+    def test_render_html_does_not_repeat_a_leading_title_in_the_body(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                '---\ntitle: "测试方案"\nsummary: "离线阅读版"\n---\n\n# 测试方案\n\n正文。\n',
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertEqual(1, html.count("<h1>测试方案</h1>"))
+
     def test_render_html_renders_markdown_tables(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)

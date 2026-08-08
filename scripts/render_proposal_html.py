@@ -24,6 +24,7 @@ REFERENCE_LABELS = {
 
 
 def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
+    text = text.lstrip("\ufeff\n")
     if not text.startswith("---\n"):
         return {}, text
     end = text.find("\n---\n", 4)
@@ -37,6 +38,21 @@ def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
         key, value = line.split(":", 1)
         metadata[key.strip()] = value.strip().strip('"').strip("'")
     return metadata, text[end + 5 :]
+
+
+def strip_redundant_leading_title(markdown: str, title: str) -> str:
+    """Keep one title in the hero when Markdown repeats the front-matter title."""
+    if not title.strip():
+        return markdown
+    lines = markdown.splitlines(keepends=True)
+    for index, line in enumerate(lines):
+        if not line.strip():
+            continue
+        heading = re.fullmatch(r"\s*#\s+(.+?)\s*(?:\n)?", line)
+        if heading and heading.group(1).strip() == title.strip():
+            del lines[index]
+        break
+    return "".join(lines)
 
 
 def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
@@ -272,6 +288,7 @@ def render_html(
     title = metadata.get("title") or submission_dir.name
     summary = metadata.get("summary", "")
     language = metadata.get("language", "zh")
+    body = strip_redundant_leading_title(body, title)
     document_lang = "en" if language == "en" else "zh-CN"
     translation_match = re.search(r"(?m)^# 中文正式译文\s*$", body) if language == "en" else None
     if translation_match:

@@ -17,6 +17,8 @@ from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
 
+from render_proposal_html import render_html
+
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
 
@@ -1425,6 +1427,71 @@ def validate_proposal_html_file(
             report.add_error(message)
 
 
+def validate_generated_report_freshness(
+    report: ValidationReport, proposal_dir: str, base: Path
+) -> None:
+    """Require changed rendered reports to match the trusted Markdown renderer.
+
+    This is intentionally a forward-only rule: historic reports may have been
+    produced by earlier renderer versions, but a PR that changes a proposal
+    source or its corresponding report must leave that report reproducible.
+    """
+    changed_rel = {
+        relative_to_proposal(path, proposal_dir)
+        for path in report.changed_files
+        if path.startswith(proposal_dir.rstrip("/") + "/")
+    }
+    primary_path = base / "proposal.md"
+    if not primary_path.is_file():
+        return
+    try:
+        metadata, _ = parse_front_matter(primary_path.read_text(encoding="utf-8"))
+    except UnicodeDecodeError:
+        return
+
+    translation_name = metadata.get("translation_file", "")
+    translation_report = None
+    if translation_name in {"proposal.zh.md", "proposal.en.md"} and (
+        base / translation_name
+    ).is_file():
+        language = "zh" if translation_name == "proposal.zh.md" else "en"
+        translation_report = f"report/proposal.{language}.html"
+
+    candidates = [
+        (
+            "proposal.md",
+            "report/proposal.html",
+            f"proposal.{translation_name.split('.')[1]}.html"
+            if translation_report
+            else None,
+        )
+    ]
+    if translation_report:
+        candidates.append((translation_name, translation_report, "proposal.html"))
+
+    for source_name, report_name, translation_href in candidates:
+        if {source_name, report_name}.isdisjoint(changed_rel):
+            continue
+        source_path = base / source_name
+        report_path = base / report_name
+        if not source_path.is_file() or not report_path.is_file():
+            continue
+        display_path = f"{proposal_dir}/{report_name}"
+        try:
+            expected = render_html(base, source_name, translation_href=translation_href)
+            actual = report_path.read_text(encoding="utf-8")
+        except Exception as exc:
+            report.add_error(
+                f"{display_path}: trusted renderer could not reproduce the report: {exc}"
+            )
+            continue
+        if actual != expected:
+            report.add_error(
+                f"{display_path}: does not match the trusted renderer output; rerun "
+                f"`python3 scripts/render_proposal_html.py {proposal_dir}` and refresh manifest hashes"
+            )
+
+
 def validate_visual_html_safety(
     report: ValidationReport,
     path: Path,
@@ -1673,7 +1740,12 @@ def validate_bilingual_display(
                 )
 
 
-def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_dir: str) -> None:
+def validate_ai_package_dir(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_dir: str,
+    check_generated_reports: bool = False,
+) -> None:
     base = repo_root / proposal_dir
     for required in sorted(REQUIRED_AI_PACKAGE_FILES):
         if not (base / required).exists():
@@ -1731,6 +1803,9 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
                 require_primary_figures=False,
                 translation_advisory=not strict_bilingual,
             )
+
+    if check_generated_reports:
+        validate_generated_report_freshness(report, proposal_dir, base)
 
     for visual_name in ["index.html", "index.zh.html", "index.en.html"]:
         visual_path = base / "visual" / visual_name
@@ -2090,6 +2165,8 @@ def validate_submission(
     pr_author: str,
     changed_files: Iterable[str],
     maintainer_bypass_logins: Iterable[str] = (),
+    *,
+    check_generated_reports: bool = False,
 ) -> ValidationReport:
     report = ValidationReport()
     repo_root = repo_root.resolve()
@@ -2316,7 +2393,12 @@ def validate_submission(
     for proposal_dir in sorted(ai_package_dirs):
         if proposal_dir in unsafe_submission_dirs:
             continue
-        validate_ai_package_dir(report, repo_root, proposal_dir)
+        validate_ai_package_dir(
+            report,
+            repo_root,
+            proposal_dir,
+            check_generated_reports=check_generated_reports,
+        )
 
     for changelog_path in sorted(changelog_files):
         if str(PurePosixPath(changelog_path).parent) in unsafe_submission_dirs:
@@ -2373,12 +2455,19 @@ def main() -> int:
     parser.add_argument("--changed-file", action="append")
     parser.add_argument("--changed-files-list")
     parser.add_argument("--maintainer-bypass-logins", default=os.getenv("MAINTAINER_BYPASS_LOGINS", ""))
+    parser.add_argument("--check-generated-reports", action="store_true")
     parser.add_argument("--json", action="store_true")
     args = parser.parse_args()
 
     changed_files = load_changed_files(args)
     bypass_logins = [item for item in args.maintainer_bypass_logins.split(",") if item.strip()]
-    report = validate_submission(Path(args.repo_root), args.pr_author, changed_files, bypass_logins)
+    report = validate_submission(
+        Path(args.repo_root),
+        args.pr_author,
+        changed_files,
+        bypass_logins,
+        check_generated_reports=args.check_generated_reports,
+    )
 
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))

@@ -37,6 +37,7 @@ from github_pr_validation import (  # noqa: E402
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
+from render_proposal_html import parse_front_matter, render_html  # noqa: E402
 
 
 class _Response:
@@ -580,6 +581,50 @@ class SubmissionWorkflowTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(content)
 
+    def render_reports(self, root: Path, base: str) -> None:
+        package = root / base
+        metadata, _ = parse_front_matter(
+            (package / "proposal.md").read_text(encoding="utf-8")
+        )
+        translation_name = metadata.get("translation_file", "")
+        translation_report = None
+        if translation_name in {"proposal.zh.md", "proposal.en.md"} and (
+            package / translation_name
+        ).is_file():
+            language = "zh" if translation_name == "proposal.zh.md" else "en"
+            translation_report = f"report/proposal.{language}.html"
+
+        self.write(
+            root,
+            f"{base}/report/proposal.html",
+            render_html(
+                package,
+                translation_href=(
+                    f"proposal.{translation_name.split('.')[1]}.html"
+                    if translation_report
+                    else None
+                ),
+            ),
+        )
+        if translation_report:
+            self.write(
+                root,
+                f"{base}/{translation_report}",
+                render_html(package, translation_name, translation_href="proposal.html"),
+            )
+
+        manifest_path = package / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        for item in manifest.get("files", []):
+            if not isinstance(item, dict) or "sha256" not in item:
+                continue
+            path = package / str(item.get("path", ""))
+            if path.is_file():
+                item["sha256"] = hashlib.sha256(path.read_bytes()).hexdigest()
+        manifest_path.write_text(
+            json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+        )
+
     def write_minimal_ai_package(self, root: Path, base: str) -> list[str]:
         proposal = f"{base}/proposal.md"
         self.write(root, proposal)
@@ -896,23 +941,13 @@ class SubmissionWorkflowTests(unittest.TestCase):
 <span data-metric="public_space_ratio" data-value="0.1">0.1</span>
 </body></html>""",
         )
-        self.write(
-            root,
-            f"{base}/report/proposal.html",
-            """<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>Proposal</title></head><body><main>
-<figure><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"></figure>
-<figure><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"></figure>
-<figure><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"></figure>
-<figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图"></figure>
-<figure><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"></figure>
-</main></body></html>""",
-        )
         for figure in figure_assets:
             self.write(
                 root,
                 f"{base}/{figure}",
                 '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>Figure</title><rect width="10" height="10"/></svg>',
             )
+        self.render_reports(root, base)
         return [proposal] + [f"{base}/{item}" for item in required]
 
     def add_bilingual_v2_display(self, root: Path, base: str, changed: list[str]) -> None:
@@ -1327,6 +1362,39 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
 
+    def test_changed_report_must_match_trusted_renderer(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            report_path = root / base / "report/proposal.html"
+            report_path.write_text(
+                report_path.read_text(encoding="utf-8") + "\n<!-- stale -->\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(
+                root, "alice", changed, check_generated_reports=True
+            )
+
+            self.assertFalse(report.ok)
+            self.assertIn("does not match the trusted renderer output", "\n".join(report.errors))
+
+    def test_local_full_package_check_keeps_legacy_report_compatibility(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            report_path = root / base / "report/proposal.html"
+            report_path.write_text(
+                report_path.read_text(encoding="utf-8") + "\n<!-- legacy report -->\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
     def test_changelog_submission_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -1340,6 +1408,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            self.render_reports(root, base)
             changelog = f"{base}/changelog.md"
             self.write(root, changelog, VALID_CHANGELOG)
             changed.append(changelog)
@@ -1485,6 +1554,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            self.render_reports(root, base)
 
             report = validate_submission(root, "alice", changed)
 
@@ -1504,6 +1574,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            self.render_reports(root, base)
 
             report = validate_submission(root, "alice", changed)
 
@@ -1560,6 +1631,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 ),
                 encoding="utf-8",
             )
+            self.render_reports(root, base)
 
             report = validate_submission(root, "alice", changed)
 
@@ -1605,6 +1677,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             changed = self.write_minimal_ai_package(root, base)
             path = root / base / "proposal.md"
             path.write_text(english_primary(path.read_text(encoding="utf-8")), encoding="utf-8")
+            self.render_reports(root, base)
             self.promote_package_to_formal(root, base)
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
@@ -1783,6 +1856,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 })
             manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             changed.extend(f"{base}/{path}" for path in companion_paths)
+            self.render_reports(root, base)
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
             bilingual_warnings = [
@@ -2065,6 +2139,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 )
             proposal_path.write_text(text, encoding="utf-8")
             self.add_bilingual_v2_display(root, base, changed)
+            self.render_reports(root, base)
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, "\n".join(report.errors))
             self.assertNotIn("missing known metric reference", "\n".join(report.errors))

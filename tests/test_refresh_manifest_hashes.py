@@ -1,0 +1,52 @@
+import hashlib
+import json
+import subprocess
+import sys
+import tempfile
+import unittest
+from pathlib import Path
+
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SCRIPT = REPO_ROOT / "scripts" / "refresh_manifest_hashes.py"
+
+
+class RefreshManifestHashesTests(unittest.TestCase):
+    def write_manifest(self, package: Path, files: list[dict]) -> None:
+        (package / "manifest.json").write_text(
+            json.dumps({"files": files}, ensure_ascii=False), encoding="utf-8"
+        )
+
+    def run_refresh(self, package: Path) -> subprocess.CompletedProcess:
+        return subprocess.run(
+            [sys.executable, str(SCRIPT), str(package)],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+    def test_refreshes_only_manifest_listed_files(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp)
+            proposal = package / "proposal.md"
+            proposal.write_text("proposal body\n", encoding="utf-8")
+            self.write_manifest(package, [{"path": "proposal.md", "sha256": "old"}])
+
+            completed = self.run_refresh(package)
+
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            manifest = json.loads((package / "manifest.json").read_text(encoding="utf-8"))
+            self.assertEqual(
+                hashlib.sha256(proposal.read_bytes()).hexdigest(),
+                manifest["files"][0]["sha256"],
+            )
+
+    def test_rejects_paths_outside_the_package(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp)
+            self.write_manifest(package, [{"path": "../outside.txt"}])
+
+            completed = self.run_refresh(package)
+
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("must stay inside the package", completed.stdout)

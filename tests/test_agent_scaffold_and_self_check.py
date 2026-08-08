@@ -119,6 +119,18 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
         target = source.with_name(f"{source.stem}.en{source.suffix}")
         if not target.exists():
             target.write_bytes(source.read_bytes())
+    rendered = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "render_proposal_html.py"),
+            str(output_dir),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if rendered.returncode:
+        return rendered
     return subprocess.run(
         [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
         capture_output=True,
