@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "官方控规条件（容积率、建筑高度、建筑密度、绿地率控制、退线、道路红线、市政容量）尚未取得，全部列为待确认事项；方案中的相关表述均为方向性设计建议，不构成审定结论。",
+      "impact": "metrics.json 中 floor_area_ratio、building_height_m、building_density、green_ratio_control、setback_m 全部为 status=unknown；正式深化前不得引用为规划控制依据。"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "本方案使用 brief/site-package/geometry/provisional_boundaries.geojson 的临时粗略边界（provisional_constraint, official_boundary=false），仅用于生成、自检与设计讨论。",
+      "impact": "官方红线发布后，site_boundary、key_areas、land_use、buildings、roads、green_space、public_space、phasing 与全部面积/比例指标须统一复算；当前面积不用于审批或正式评分依据。"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_official_data",
+      "statement": "现状建筑底数、权属边界、文保控制线、道路红线与市政管线资料暂缺，现状诊断为基于公开资料的概念断点清单，不构成现状调查结论。",
+      "impact": "buildings.geojson 中 renewal_measure 全部标注 pending_control；拆改留仅为方向性建议，待专业调查补充。"
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "status": "concept_proposal",
+      "statement": "全部 AI 场景卡、测试验证场景、朝圣地标、活动体系与运营机制均为概念建议/参考方案，供专业团队深化；测试验证场景不视为已批准运营。",
+      "impact": "不声称官方实施安排或招商承诺；场景落地需另行完成许可、授权与安全评估。"
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "verified",
+      "statement": "空间指标（面积、比例、长度、数量）由提交的 geometry/*.geojson 在 EPSG:4548 下复算，与 metrics.json、图面、HTML、A3/A0 图纸保持一致。",
+      "impact": "自检（spatial_review）对 site_area_sqm、green_ratio、public_space_ratio 进行复算比对，全部通过。"
+    },
+    {
+      "id": "A-CASES-001",
+      "status": "public_knowledge_summary",
+      "statement": "全球 AI 创新生态案例（沙丘路、以色列创新区、纬壹科技城、奥斯汀 ATX、深圳湾、涩谷）为公开知识的概念性归纳，用于机制借鉴，不构成对任何企业或地区经验的官方断言。",
+      "impact": "案例表述保持一般化，不引用企业内部数据或投资额。"
+    }
+  ]
+}
