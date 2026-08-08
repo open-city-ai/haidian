@@ -90,21 +90,24 @@ class ScoreSubmissionTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
 
-    def write_package_source_index(self, proposal: Path) -> None:
-        index = {
-            "schema_version": "0.1.0",
-            "package_id": "ai-urban-loop",
-            "sources": [
-                {
-                    "id": "OFFICIAL-ANNOUNCEMENT",
-                    "registry_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-                    "title": "公开征集公告",
-                    "url": "https://example.com/announcement",
-                }
-            ],
-        }
-        (proposal.parent / "sources.json").write_text(
-            json.dumps(index, ensure_ascii=False), encoding="utf-8"
+    def write_package_sources(self, root: Path, sources: list[dict]) -> None:
+        package_dir = root / "submissions" / "alice" / "ai-urban-loop"
+        package_dir.mkdir(parents=True, exist_ok=True)
+        for source in sources:
+            locations = []
+            for field_name in ("path", "local_paths"):
+                value = source.get(field_name)
+                if isinstance(value, str):
+                    locations.append(value)
+                elif isinstance(value, list):
+                    locations.extend(value)
+            for location in locations:
+                source_path = root / location
+                source_path.parent.mkdir(parents=True, exist_ok=True)
+                source_path.write_text("registered source", encoding="utf-8")
+        (package_dir / "sources.json").write_text(
+            json.dumps({"schema_version": "0.1.0", "sources": sources}, ensure_ascii=False),
+            encoding="utf-8",
         )
 
     def check_map(self, report):
@@ -152,25 +155,118 @@ class ScoreSubmissionTests(unittest.TestCase):
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.matched_sources, [])
 
-    def test_formal_package_source_registry_is_used_for_v2_markers(self) -> None:
+    def test_registered_package_source_is_reported_separately(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             body = VALID_BODY.replace(
                 "- `brief/public-brief.md`\n- `brief/README.md`",
-                "- `[source:OFFICIAL-ANNOUNCEMENT]`\n- `[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]`",
+                "- [source:external-weather]",
             )
             proposal = self.write_proposal(root, body)
-            self.write_package_source_index(proposal)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "external-weather",
+                        "url": "https://example.org/weather",
+                        "source_type": "official_public",
+                        "usage": "Background context only; no site-specific values are claimed.",
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
+            self.assertEqual(report.matched_sources, [])
+            self.assertEqual(
+                [item.id for item in report.registered_external_or_package_sources],
+                ["external-weather"],
+            )
+            self.assertEqual(report.unmatched_reference_lines, [])
+
+    def test_package_source_schema_variants_are_normalized(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+                        "url": "brief/site-package/standards/references/official.md",
+                        "local_paths": ["brief/site-package/standards/references/official.md"],
+                        "allowed_uses": ["project_name", "design_tasks"],
+                        "review_status": "approved",
+                        "usable_for_formal": "yes",
+                    }
+                ],
+            )
 
             report = score_proposal(root, proposal)
             checks = self.check_map(report)
 
             self.assertEqual(checks["公开资料引用"], STATUS_PASS)
             self.assertEqual(
-                [item.id for item in report.matched_sources],
-                ["OFFICIAL-ANNOUNCEMENT"],
+                [item.id for item in report.registered_external_or_package_sources],
+                ["DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"],
             )
-            self.assertEqual(report.unmatched_reference_lines, [])
+
+    def test_package_source_without_use_boundary_is_not_upgraded(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:external-weather]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "external-weather",
+                        "url": "https://example.org/weather",
+                        "source_type": "official_public",
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
+            self.assertEqual(report.registered_external_or_package_sources, [])
+
+    def test_provisional_package_source_remains_unresolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:provisional-map]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "provisional-map",
+                        "path": "brief/provisional-map.geojson",
+                        "source_kind": "provisional_repository_data",
+                        "usage": "Temporary design geometry only.",
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
+            self.assertEqual(report.registered_external_or_package_sources, [])
 
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -197,21 +293,7 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertIn("Proposal self-check", markdown)
             self.assertIn("advisory", markdown)
-            self.assertIn("Formal readiness: not assessed", markdown)
-            self.assertIn("scripts/self_check_submission.py", markdown)
-            self.assertIn("Matched indexed sources", markdown)
-
-    def test_json_marks_formal_readiness_as_not_assessed(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            self.write_source_index(root)
-            proposal = self.write_proposal(root)
-
-            payload = score_proposal(root, proposal).to_dict()
-
-            self.assertEqual(payload["check_scope"], "advisory_proposal_only")
-            self.assertEqual(payload["formal_readiness"], "not_assessed")
-            self.assertEqual(payload["next_required_check"], "scripts/self_check_submission.py")
+            self.assertIn("Matched public sources", markdown)
 
 
 if __name__ == "__main__":

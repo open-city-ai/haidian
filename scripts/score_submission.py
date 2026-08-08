@@ -12,7 +12,7 @@ import argparse
 import json
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 from validate_submission import PLACEHOLDERS, extract_headings, parse_front_matter
@@ -97,6 +97,7 @@ class SelfCheckReport:
     proposal_path: str
     checks: list[CheckResult]
     matched_sources: list[SourceMatch] = field(default_factory=list)
+    registered_external_or_package_sources: list[SourceMatch] = field(default_factory=list)
     unmatched_reference_lines: list[str] = field(default_factory=list)
     metadata_missing: list[str] = field(default_factory=list)
     required_sections_missing: list[str] = field(default_factory=list)
@@ -119,15 +120,15 @@ class SelfCheckReport:
 
     def to_dict(self) -> dict[str, Any]:
         return {
-            "check_scope": "advisory_proposal_only",
-            "formal_readiness": "not_assessed",
-            "next_required_check": "scripts/self_check_submission.py",
             "proposal_path": self.proposal_path,
             "ready": self.ready,
             "summary": self.summary,
             "metadata_missing": self.metadata_missing,
             "required_sections_missing": self.required_sections_missing,
             "matched_sources": [item.to_dict() for item in self.matched_sources],
+            "registered_external_or_package_sources": [
+                item.to_dict() for item in self.registered_external_or_package_sources
+            ],
             "unmatched_reference_lines": self.unmatched_reference_lines,
             "checks": [check.to_dict() for check in self.checks],
         }
@@ -195,40 +196,17 @@ def load_source_index(repo_root: Path, index_path: Path | None = None) -> list[d
     return sources if isinstance(sources, list) else []
 
 
-def load_package_source_index(proposal_path: Path) -> list[dict[str, Any]]:
-    """Load the formal package-local source registry when one is present.
-
-    Proposal format v2 keeps the human-readable proposal beside a package
-    ``sources.json``.  The advisory score should recognize those citations in
-    addition to the repository-wide lightweight index; otherwise a valid
-    formal package is reported as having no source coverage.
-    """
-    package_index_path = proposal_path.parent / "sources.json"
-    if not package_index_path.exists():
+def load_submission_source_index(proposal_path: Path) -> list[dict[str, Any]]:
+    """Load the proposal package's own source register when it is present."""
+    source_path = proposal_path.parent / "sources.json"
+    if not source_path.is_file():
         return []
     try:
-        index_data = json.loads(package_index_path.read_text(encoding="utf-8"))
+        source_data = json.loads(source_path.read_text(encoding="utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError):
         return []
-    raw_sources = index_data.get("sources") if isinstance(index_data, dict) else []
-    if not isinstance(raw_sources, list):
-        return []
-
-    sources: list[dict[str, Any]] = []
-    for source in raw_sources:
-        if not isinstance(source, dict):
-            continue
-        normalized = dict(source)
-        if not normalized.get("id") and normalized.get("registry_source_id"):
-            normalized["id"] = normalized["registry_source_id"]
-        if not normalized.get("citation"):
-            for key in ("url", "path", "title"):
-                value = normalized.get(key)
-                if isinstance(value, str) and value.strip():
-                    normalized["citation"] = value.strip()
-                    break
-        sources.append(normalized)
-    return sources
+    sources = source_data.get("sources") if isinstance(source_data, dict) else []
+    return sources if isinstance(sources, list) else []
 
 
 def reference_lines(reference_section: str) -> list[str]:
@@ -242,25 +220,163 @@ def reference_lines(reference_section: str) -> list[str]:
     return lines
 
 
+def string_values(value: Any) -> list[str]:
+    if isinstance(value, str):
+        return [value.strip()] if value.strip() else []
+    if isinstance(value, list):
+        return [str(item).strip() for item in value if str(item).strip()]
+    return []
+
+
+def source_id_value(source: dict[str, Any]) -> str:
+    for field_name in ("id", "source_id"):
+        values = string_values(source.get(field_name))
+        if values:
+            return values[0]
+    return ""
+
+
+def source_candidates(source: dict[str, Any]) -> list[str]:
+    values: list[str] = []
+    for field_name in ("id", "source_id", "citation", "path", "url", "local_paths"):
+        for value in string_values(source.get(field_name)):
+            if value not in values:
+                values.append(value)
+    return values
+
+
+def source_use_values(source: dict[str, Any]) -> list[str]:
+    values: list[str] = []
+    for field_name in ("usage", "usage_note", "use_boundary", "usable_for", "allowed_uses"):
+        for value in string_values(source.get(field_name)):
+            if value not in values:
+                values.append(value)
+    return values
+
+
+def source_location_values(source: dict[str, Any]) -> tuple[list[str], list[str]]:
+    """Return safe local paths and HTTPS URLs declared by a package source."""
+    local_paths: list[str] = []
+    https_urls: list[str] = []
+    for field_name in ("path", "local_paths"):
+        for value in string_values(source.get(field_name)):
+            if value not in local_paths:
+                local_paths.append(value)
+    for value in string_values(source.get("url")):
+        if value.startswith("https://"):
+            if value not in https_urls:
+                https_urls.append(value)
+        elif value not in local_paths:
+            # Some packages use `url` for a repository-local snapshot path.
+            local_paths.append(value)
+    return local_paths, https_urls
+
+
+def valid_package_path(repo_root: Path, value: str) -> bool:
+    normalized = value.strip().replace("\\", "/")
+    pure_path = PurePosixPath(normalized)
+    candidate = repo_root / pure_path
+    return bool(
+        normalized
+        and "://" not in normalized
+        and not pure_path.is_absolute()
+        and ".." not in pure_path.parts
+        and candidate.exists()
+        and candidate.resolve().is_relative_to(repo_root)
+    )
+
+
+def package_source_is_eligible(repo_root: Path, source: Any) -> bool:
+    """Require identity, traceability, and an explicit positive use boundary."""
+    if not isinstance(source, dict):
+        return False
+    source_id = source_id_value(source)
+    if not source_id or not source_use_values(source):
+        return False
+
+    local_paths, https_urls = source_location_values(source)
+    if not https_urls and not any(valid_package_path(repo_root, path) for path in local_paths):
+        return False
+
+    source_kind = " ".join(
+        value
+        for field_name in ("source_type", "source_kind")
+        for value in string_values(source.get(field_name))
+    ).lower()
+    if any(marker in source_kind for marker in ("provisional", "inferred", "private", "internal")):
+        return False
+
+    for field_name in (
+        "review_status",
+        "usable_for_formal",
+        "formal_status",
+        "public_status",
+        "status",
+        "availability",
+        "public_access_status",
+    ):
+        for value in string_values(source.get(field_name)):
+            normalized = value.lower().replace("-", "_").replace(" ", "_")
+            if normalized in {
+                "no",
+                "disabled",
+                "rejected",
+                "needs_review",
+                "review_pending",
+                "background_only",
+                "provisional_only",
+                "restricted",
+                "private",
+                "unknown",
+            }:
+                return False
+    return True
+
+
+def match_registered_package_sources(
+    repo_root: Path,
+    proposal_path: Path,
+    reference_section: str,
+) -> tuple[list[SourceMatch], set[str]]:
+    """Match only eligible package registrations against the reference section."""
+    lines = reference_lines(reference_section)
+    reference_text = reference_section.replace("`", "")
+    matched: list[SourceMatch] = []
+    matched_tokens: set[str] = set()
+    for source in load_submission_source_index(proposal_path):
+        if not package_source_is_eligible(repo_root, source):
+            continue
+        candidates = source_candidates(source)
+        matching_tokens = {
+            candidate
+            for candidate in candidates
+            if candidate in reference_text
+        }
+        if not matching_tokens:
+            continue
+        source_id = source_id_value(source)
+        citation_values = string_values(source.get("citation"))
+        local_paths, https_urls = source_location_values(source)
+        fallback = (citation_values + local_paths + https_urls + candidates)[0]
+        matched.append(SourceMatch(source_id, citation_values[0] if citation_values else fallback))
+        matched_tokens.update(matching_tokens)
+    return matched, matched_tokens
+
+
 def match_sources(text: str, reference_section: str, sources: list[dict[str, Any]]) -> tuple[list[SourceMatch], list[str]]:
     haystack = f"{text}\n{reference_section}"
     matched: list[SourceMatch] = []
-    matched_ids: set[str] = set()
     matched_tokens: set[str] = set()
     for source in sources:
         if not isinstance(source, dict):
             continue
-        source_id = str(source.get("id") or "").strip()
-        registry_source_id = str(source.get("registry_source_id") or "").strip()
+        source_id = str(source.get("id", "")).strip()
         citation = str(source.get("citation", "")).strip()
         path = str(source.get("path", "")).strip()
         url = str(source.get("url", "")).strip()
-        candidates = [item for item in [source_id, registry_source_id, citation, path, url] if item]
+        candidates = [item for item in [source_id, citation, path, url] if item]
         if any(candidate in haystack for candidate in candidates):
-            match_id = source_id or registry_source_id or citation or path or url
-            if match_id not in matched_ids:
-                matched.append(SourceMatch(match_id, citation or path or url))
-                matched_ids.add(match_id)
+            matched.append(SourceMatch(source_id, citation or path or url))
             matched_tokens.update(candidates)
 
     unmatched = []
@@ -396,19 +512,27 @@ def score_proposal(
 
     reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
     sources = load_source_index(repo_root, sources_index_path)
-    sources.extend(load_package_source_index(proposal_path))
     matched_sources, unmatched_references = match_sources(text, reference_section, sources)
+    registered_package_sources, registered_tokens = match_registered_package_sources(
+        repo_root, proposal_path, reference_section
+    )
+    if registered_tokens:
+        unmatched_references = [
+            line
+            for line in unmatched_references
+            if not any(token and token in line.replace("`", "") for token in registered_tokens)
+        ]
     if not reference_section:
         source_status = STATUS_MISSING
         source_message = "缺少参考资料章节内容。"
-    elif matched_sources:
+    elif matched_sources or registered_package_sources:
         source_status = STATUS_PASS if not unmatched_references else STATUS_NEEDS_WORK
-        source_message = "已引用全局或方案包来源索引内资料。"
+        source_message = "已引用公开资料索引内资料或投稿包已登记来源。"
         if unmatched_references:
-            source_message += " 未匹配的资料需要说明来源和公开性。"
+            source_message += " 未登记的索引外资料需要说明来源和公开性。"
     else:
         source_status = STATUS_NEEDS_WORK
-        source_message = "未匹配到来源索引内资料；轻量方案建议引用 brief/public-brief.md，正式 v2 包建议提供可匹配的 sources.json。"
+        source_message = "未匹配到公开资料索引内资料；建议至少引用 brief/public-brief.md。"
     checks.append(build_check("公开资料引用", source_status, source_message))
 
     ordered_checks = sorted(checks, key=lambda item: DIMENSION_ORDER.index(item.dimension))
@@ -416,6 +540,7 @@ def score_proposal(
         proposal_path=display_path,
         checks=ordered_checks,
         matched_sources=matched_sources,
+        registered_external_or_package_sources=registered_package_sources,
         unmatched_reference_lines=unmatched_references,
         metadata_missing=missing_metadata,
         required_sections_missing=missing_sections,
@@ -434,15 +559,7 @@ def format_report(report: SelfCheckReport) -> str:
         f"{summary.get(STATUS_MANUAL_REVIEW, 0)} manual-review"
     )
     lines.append("")
-    lines.append(
-        "> This is advisory only: `pass` and a zero `--strict` exit code apply only to this "
-        "proposal-level check. They do not assess formal readiness."
-    )
-    lines.append(
-        "> Formal readiness: not assessed. Next run "
-        "`scripts/self_check_submission.py <submission-dir> --pr-author <github-login>` "
-        "for deterministic, spatial, visual, and professional evidence validation."
-    )
+    lines.append("> This self-check is advisory. It does not replace maintainer or expert review.")
 
     if report.metadata_missing:
         lines.extend(["", "Missing metadata:"])
@@ -456,8 +573,13 @@ def format_report(report: SelfCheckReport) -> str:
         lines.append(f"- [{check.status}] {check.dimension}: {' '.join(check.messages)}")
 
     if report.matched_sources:
-        lines.extend(["", "Matched indexed sources:"])
+        lines.extend(["", "Matched public sources:"])
         lines.extend(f"- {item.id}: {item.citation}" for item in report.matched_sources)
+    if report.registered_external_or_package_sources:
+        lines.extend(["", "Registered external or package sources:"])
+        lines.extend(
+            f"- {item.id}: {item.citation}" for item in report.registered_external_or_package_sources
+        )
     if report.unmatched_reference_lines:
         lines.extend(["", "References needing source/public-status notes:"])
         lines.extend(f"- {item}" for item in report.unmatched_reference_lines)
@@ -474,7 +596,7 @@ def main() -> int:
     parser.add_argument(
         "--strict",
         action="store_true",
-        help="Exit non-zero when an advisory self-check dimension is missing; formal readiness is not assessed.",
+        help="Exit non-zero when any self-check dimension is missing.",
     )
     args = parser.parse_args()
 
