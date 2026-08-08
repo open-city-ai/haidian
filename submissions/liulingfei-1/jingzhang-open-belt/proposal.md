@@ -140,6 +140,8 @@ land_use.geojson 由同一临时 SITE_BOUNDARY 在 EPSG:4548 中切分后再交�
 - 0902 二类工业用地：北部门户约 98.9 公顷；表达 AI 研发制造中试的功能倾向。
 - 1401 公园绿地：京张主线绿带约 258.8 公顷 [metric:green_space_area_sqm]；表达城市主线与公共空间的功能倾向。
 
+其余分项面积指标：[metric:land_use_0701_area_sqm]（中部宜居）、[metric:land_use_0702_area_sqm]（社区服务过渡带）、[metric:land_use_0803_area_sqm]（文化用地两处）、[metric:land_use_0804_area_sqm]（教育集群）、[metric:land_use_0902_area_sqm]（北部门户，代码 0802 表达）、[metric:land_use_0802_area_sqm]（科研两处）。分期分项面积：[metric:phase_01_area_sqm]、[metric:phase_02_area_sqm]、[metric:phase_03_area_sqm]、[metric:phase_04_area_sqm]；各阶段为证据闸门概念，非开发时序。重点区分项面积：[metric:key_area_zhongzhiyuan_area_sqm]、[metric:key_area_ai_origin_area_sqm]、[metric:key_area_dazhongsi_area_sqm]。朝圣地标计数：[metric:landmark_count]。
+
 建筑层不使用虚构的现状底数。buildings.geojson 中的 9 个原型表达“什么类型的空间接口可能需要”：AI 研发、实验室、孵化器、文化中心、教育、社区服务、混合功能、人才公寓与交通接驳；总基底工作值 [metric:building_footprint_area_sqm] [metric:building_footprint_ratio]。每个原型标注 `conceptual_only=true`、`geometry_role=design_proposal`，不对应具体建筑、产权或层数。[data:geometry/buildings.geojson#BLDG-RD-1]
 
 拆改留使用“证据—公共价值—授权”三门，不用一张颜色图预先决定命运。保留优先核对历史、社区和碳价值；改造优先检验结构安全、消防、无障碍与适应性再利用；新建只在功能缺口、专业条件和法定程序同时满足时讨论。容积率、总建筑面积、建筑高度和法定建筑密度均保持 unknown，原因与解锁条件写入 metrics 与 assumptions。[depth:development_intensity_controls] [depth:retain_renovate_demolish]
@@ -166,6 +168,8 @@ land_use.geojson 由同一临时 SITE_BOUNDARY 在 EPSG:4548 中切分后再交�
 
 城市风貌以“铁路秩序 + 北京砖色 + 中关村开源文化”为方向，融合百年京张文化、中关村创新文化与 AI 新文化：炭黑表达轨道与责任，砖红表达历史与公共行动，信号色表达开放状态。清华园车站旧址与遗址公园相关节点必须轻触、可逆并经文物专业审查；历史叙事回引国家铁路局史料 [source:JINGZHANG-HISTORY-NRA]，不复制未授权图片。[standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:height_massing_character]
 
+**品牌 IP 系统与导视规范（agent.1/agent.5 强化）**。品牌架构分三级：一带主品牌「京张开源带 JINGZHANG OPEN BELT（JZ·OPEN）」、空间命名族（TRUNK/COMMIT/PR/FORK/ISSUE/CHANGELOG）、活动品牌（京张 OPEN 四季：Open Call / Bug Bash / Release Day / Retrospective）。Logo 使用规范草案：主标志为“人”字形铁轨分支（正形 + 负形两版），三色信号灯状态点（红/黄/绿）作为状态徽章可独立使用；最小尺寸、安全区、明暗底版与禁止事项（拉伸、加阴影、改色、叠加照片）需由专业品牌团队在深化阶段冻结，本方案只给出方向与色值参考。导视系统：主线导视牌采用“信号语言 + 中文主文 + 英文次文”三级排版；状态徽章（评审中/已合并/已回滚）用于公共节点与服务护照展示。国际传播叙事（agent.6）：核心句“From the self-reliant railway to the open-source city”（从自主铁路到开源城市），配套三幕叙事——1909 自主技术、1988 产业开源、2026 城市开源——适用于国际会议、开发者社区与城市品牌传播；所有传播物料须经事实与版权复核，不发布未授权肖像或商标。[source:DATA-SRC-AGENT-TASKBOOK-20260518] [source:ZHONGGUANCUN-ZGC]
+
 ## 更新项目清单、实施政策与分期计划
 
 phasing.geojson 把临时范围切成四个可重算阶段，但阶段不是确定开发时序 [data:geometry/phasing.geojson#PHASE-01]。第一阶段“协议与共识”（v0.x，2026-2027）建立边界替换、设施调查、服务护照与公众问题库；第二阶段“沙盒试验”（v1.0，2027-2028）在可控空间开展互操作、无障碍与极端天气测试；第三阶段“条件放行”（v2.0，2028-2030）要求责任主体、数据合法性、评测、人工接管与保险等门槛齐备；第四阶段“观察与演进”（v3.0+，长期）公开事件、申诉、修复与退出记录。[depth:phasing_implementation]
@@ -188,6 +192,8 @@ phasing.geojson 把临时范围切成四个可重算阶段，但阶段不是确�
 
 长期运营称为“京张 OPEN 四季”（agent.6）：春季 Open Call 发布年度可测试问题与数据缺口；夏季 Bug Bash 与无障碍挑战；秋季 Release Day 年度版本发布与评审；冬季 Retrospective 公开失败档案、修复结果与下一年度路线图。运营组织由公共部门、社区、专业机构、高校、企业与独立评测角色共同组成，任何单一平台不得同时拥有规则、数据、评测与申诉最终权。活动、品牌、资金与场地均需责任主体后续确认，当前不视为既定安排。[metric:renewal_project_count] [depth:renewal_project_list] [source:CASE-BARCELONA-DECIDIM] [source:CASE-AMSTERDAM-ALGORITHM]
 
+**运营机制细化（agent.6）**。服务护照字段冻结为 15 项：owner、purpose、data、retention、model/version、evaluation、human review、non-AI channel、appeal、release trigger、rollback trigger、incident、audit、retirement、budget envelope [metric:service_passport_field_count]。年度运营账本（概念）：Open Call 发布问题库与数据缺口清单 → Bug Bash 开放免费挑战席位并记录可复现包 → Release Day 评审合并提案并发布版本说明 → Retrospective 公开失败档案与年度路线图；每季度输出责任班表、未结申诉数与资源覆盖表，无 Owner 或退役资源时对应场景保持 Hold。开发者社区运营（概念）：开源协议贡献积分、贡献者荣誉墙（S12）、年度贡献者报告；积分只记录公开贡献行为，不采集个人隐私。国际招引转化（概念）：以互操作周（S14）为入口，链接国际开发者、标准机构与高校；招引转化指标（概念）包括互操作测试参与数、联合评测报告数与长期协作备忘录数，全部为建议指标，不构成招商承诺。[source:DATA-SRC-AGENT-TASKBOOK-20260518]
+
 ## 指标体系、面积复算与合规矩阵
 
 所有几何在 GeoJSON 中以 EPSG:4326 交换，在 EPSG:4548 中量算。当前 site_area_sqm 工作值 [metric:site_area_sqm] 约 11,412,603 平方米，来源是临时 boundary；land_use 分区面积复算 [metric:land_use_partition_area_sqm] 与 phasing 面积 [metric:phasing_area_sqm] 均与 site 一致；green_ratio [metric:green_ratio] 约 0.2267，public_space_ratio [metric:public_space_ratio] 约 0.0440，分别由 union 后面积除以 site 面积。数字保留是为了复算与发现错误，不意味着边界达到测绘精度。[metric:green_space_area_sqm] [metric:public_space_area_sqm] [depth:metrics_recalculation]
@@ -196,21 +202,32 @@ phasing.geojson 把临时范围切成四个可重算阶段，但阶段不是确�
 
 - [metric:site_area_sqm]：约 11,412,603 sqm；area(submitted_site_boundary) in EPSG:4548；置信度 medium。
 - [metric:land_use_partition_area_sqm]：与 site_area 一致；sum(area(land_use_features))；置信度 medium。
-- [metric:building_footprint_area_sqm]：约 121,000 sqm；sum(area(concept_building_footprints))；置信度 medium。
-- [metric:building_footprint_ratio]：约 0.0106；building_footprint_area_sqm / site_area_sqm；置信度 medium。
+- [metric:land_use_05_area_sqm]：约 87.2 万 sqm；sum(area(land_use code 05))；置信度 medium。
+- [metric:land_use_0802_area_sqm]：约 241.2 万 sqm；sum(area(land_use code 0802))；置信度 medium。
+- [metric:land_use_1401_area_sqm]：约 258.8 万 sqm；sum(area(land_use code 1401))；置信度 medium。
+- [metric:building_footprint_area_sqm]：约 121,500 sqm；sum(area(concept_building_footprints))；置信度 medium。
+- [metric:building_density]：约 0.0106；building_footprint_area_sqm / site_area_sqm；置信度 medium。
 - [metric:green_space_area_sqm]：约 2,588,000 sqm；area(union(green_space))；置信度 medium。
 - [metric:green_ratio]：约 0.2267；green_space_area_sqm / site_area_sqm；置信度 medium。
 - [metric:public_space_area_sqm]：约 502,000 sqm；area(union(public_space))；置信度 medium。
 - [metric:public_space_ratio]：约 0.0440；public_space_area_sqm / site_area_sqm；置信度 medium。
 - [metric:road_centerline_length_m]：约 12,820 m；sum(length(concept_road_centerlines))；置信度 medium。
+- [metric:road_area_ratio]：unknown；ROAD_AREA 图层未生成（仅概念中心线）。
+- [metric:phase_01_area_sqm] 至 [metric:phase_04_area_sqm]：四阶段各自面积，area(union(phasing features))；置信度 medium。
+- [metric:key_area_zhongzhiyuan_area_sqm]：约 192.9 万 sqm；area(key area)；置信度 medium。
+- [metric:key_area_ai_origin_area_sqm]：约 104.3 万 sqm；area(key area)；置信度 medium。
+- [metric:key_area_dazhongsi_area_sqm]：约 72.0 万 sqm；area(key area)；置信度 medium。
 - [metric:phasing_area_sqm]：与 site_area 一致；area(union(phasing))；置信度 medium。
 - [metric:key_area_count]：3 count；count(required_key_areas)；置信度 high。
 - [metric:land_use_unit_count]：11 count；count(land_use_features)；置信度 high。
-- [metric:renewal_project_count]：8 count；count(unique conceptual project_ids)；置信度 high。
-- [metric:scenario_count]：12 count；count(S01..S12 scenario cards)；置信度 high。
-- [metric:test_scenario_count]：4 count；count(T01..T04 test scenarios)；置信度 high。
-- [metric:persona_count]：6 count；count(synthetic personas)；置信度 high。
+- [metric:landmark_count]：4 count；count(L01..L04 AI pilgrimage landmarks)；置信度 high。
+- [metric:renewal_project_count]：9 count；count(unique conceptual project_ids)；置信度 high。
+- [metric:scenario_count]：14 count；count(S01..S14 frozen scenario cards)；置信度 high。
+- [metric:test_scenario_count]：6 count；count(T01..T06 test scenarios)；置信度 high。
+- [metric:persona_count]：8 count；count(synthetic personas)；置信度 high。
 - [metric:global_case_count]：8 count；count(formal positive international cases)；置信度 high。
+- [metric:service_passport_field_count]：15 count；count(required service passport fields)；置信度 high。
+- [metric:floor_area_ratio] / [metric:building_height_m] / [metric:total_floor_area_sqm]：unknown；待官方控规附件。
 
 compliance_matrix.json 覆盖公告 1.3/1.4/1.5 全部条目与 agent.1–agent.6 六项任务；standard_matrix.json 覆盖五项 mandatory 标准并保留一项 non-mandatory data gap；design_depth_matrix.json 覆盖十五项 formal 深度。矩阵的每一行都回到正文、GeoJSON、指标、图纸、来源、假设与 self-check，而不是把“complete”作为自证。A3 文册与 A0 展板是解释层，结构化数据仍是复算权威。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:risk_missing_data]
 
@@ -259,3 +276,4 @@ AI 输出边界参照 [source:NIST-AI-RMF] 与 [source:UNESCO-AI-ETHICS]：模�
 - [source:PIPL] 中华人民共和国个人信息保护法。用途：隐私与个人信息处理边界。
 - [source:WCAG22] WCAG 2.2 无障碍指南。用途：公共界面无障碍要求。
 - [source:TSINGHUAYUAN-HERITAGE] 清华园车站旧址等文物保护公开信息。用途：文保节点轻触式设计约束。
+<!-- batch 1786170670 -->
