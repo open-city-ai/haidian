@@ -29,7 +29,10 @@ from validate_submission import (  # noqa: E402
 from github_pr_validation import (  # noqa: E402
     GitHubClient,
     MAX_DOWNLOAD_BYTES,
+    COMMENT_TRUNCATION_NOTICE,
+    MAX_GITHUB_COMMENT_BYTES,
     _is_retryable_http_error,
+    bounded_comment_body,
     is_non_submission_pr,
     is_review_queue_candidate,
     main,
@@ -148,6 +151,16 @@ class GitHubApiResilienceTests(unittest.TestCase):
                     "head-sha",
                     Path(temp_dir) / "asset.bin",
                 )
+
+    def test_comment_body_is_bounded_for_large_validation_reports(self) -> None:
+        body = "前" * MAX_GITHUB_COMMENT_BYTES
+        bounded = bounded_comment_body(body)
+        self.assertLessEqual(len(bounded.encode("utf-8")), MAX_GITHUB_COMMENT_BYTES)
+        self.assertTrue(bounded.endswith(COMMENT_TRUNCATION_NOTICE))
+
+    def test_small_comment_body_is_preserved(self) -> None:
+        body = "<!-- marker -->\n# PASS"
+        self.assertEqual(body, bounded_comment_body(body))
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):
