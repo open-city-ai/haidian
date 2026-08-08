@@ -264,14 +264,14 @@ def main() -> int:
 
     primary_translation_href = None
     if translation_output:
-        primary_translation_href = os.path.relpath(translation_output, out_path.parent)
+        primary_translation_href = Path(os.path.relpath(translation_output, out_path.parent)).as_posix()
     html_text = render_html(submission_dir, translation_href=primary_translation_href)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(html_text, encoding="utf-8")
     print(out_path)
     if translation_output and translation_path:
         translation_output.parent.mkdir(parents=True, exist_ok=True)
-        primary_href = os.path.relpath(out_path, translation_output.parent)
+        primary_href = Path(os.path.relpath(out_path, translation_output.parent)).as_posix()
         translation_output.write_text(
             render_html(submission_dir, translation_name, translation_href=primary_href),
             encoding="utf-8",

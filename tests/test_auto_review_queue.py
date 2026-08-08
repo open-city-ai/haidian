@@ -1,15 +1,52 @@
+import argparse
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from auto_review_queue import WorkerError, ci_state, decide, submission_dir_from_files  # noqa: E402
+from auto_review_queue import (  # noqa: E402
+    WorkerError,
+    acquire_worker_lock,
+    ci_state,
+    decide,
+    main,
+    submission_dir_from_files,
+)
 
 
 class AutoReviewQueueTests(unittest.TestCase):
+    @mock.patch("auto_review_queue.run_queue", side_effect=RuntimeError("boom"))
+    @mock.patch("auto_review_queue.acquire_worker_lock")
+    @mock.patch("auto_review_queue.parse_args")
+    def test_main_releases_worker_lock_when_queue_fails(self, parse_args, acquire_lock, _run_queue) -> None:
+        parse_args.return_value = argparse.Namespace(
+            repo="open-city-ai/haidian",
+            audit_root=Path("audit"),
+            worktree_root=Path("worktrees"),
+            apply=False,
+            concurrency=1,
+        )
+        with self.assertRaisesRegex(RuntimeError, "boom"):
+            main()
+        acquire_lock.return_value.close.assert_called_once_with()
+
+    def test_worker_lock_is_exclusive_and_released_on_close(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            lock_path = Path(tmp) / "worker.lock"
+            first = acquire_worker_lock(lock_path)
+            try:
+                with self.assertRaisesRegex(WorkerError, "already running"):
+                    acquire_worker_lock(lock_path)
+            finally:
+                first.close()
+            reacquired = acquire_worker_lock(lock_path)
+            reacquired.close()
+
     def test_accepts_score_at_threshold_when_all_gates_pass(self) -> None:
         review = {
             "mandatory_rejection": {"result": "pass"},

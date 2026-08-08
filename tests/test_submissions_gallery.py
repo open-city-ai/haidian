@@ -38,7 +38,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             for path in discover_submissions(ROOT)
             if path.relative_to(ROOT).as_posix() not in held
         }
-        source_paths = {str(Path(item["sourceUrl"]).parent) for item in self.load_gallery_items()}
+        source_paths = {Path(item["sourceUrl"]).parent.as_posix() for item in self.load_gallery_items()}
         self.assertEqual(expected, source_paths)
 
     def test_homepage_featured_state_comes_from_publication_registry(self):

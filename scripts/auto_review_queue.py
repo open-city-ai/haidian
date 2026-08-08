@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import fcntl
 import json
 import os
 import shutil
@@ -18,7 +17,7 @@ import sys
 import threading
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
+from typing import Any, BinaryIO
 
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
@@ -29,6 +28,30 @@ GITHUB_WRITE_LOCK = threading.Lock()
 
 class WorkerError(RuntimeError):
     pass
+
+
+def acquire_worker_lock(path: Path) -> BinaryIO:
+    """Acquire a non-blocking process lock on POSIX and Windows."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    lock_file = path.open("a+b")
+    try:
+        if os.name == "nt":
+            import msvcrt
+
+            lock_file.seek(0, os.SEEK_END)
+            if lock_file.tell() == 0:
+                lock_file.write(b"\0")
+                lock_file.flush()
+            lock_file.seek(0)
+            msvcrt.locking(lock_file.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+
+            fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except (BlockingIOError, OSError) as exc:
+        lock_file.close()
+        raise WorkerError("another auto-review worker is already running") from exc
+    return lock_file
 
 
 @dataclass(frozen=True)
@@ -279,27 +302,7 @@ def parse_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def main() -> int:
-    args = parse_args()
-    repo_root = Path(__file__).resolve().parents[1]
-    args.audit_root = args.audit_root.expanduser()
-    args.worktree_root = args.worktree_root.expanduser()
-    if not args.audit_root.is_absolute():
-        args.audit_root = repo_root / args.audit_root
-    if not args.worktree_root.is_absolute():
-        args.worktree_root = repo_root / args.worktree_root
-    args.audit_root = args.audit_root.resolve()
-    args.worktree_root = args.worktree_root.resolve()
-    if args.apply and not os.getenv("OPENAI_API_KEY"):
-        raise WorkerError("OPENAI_API_KEY is required with --apply")
-    if args.concurrency < 1:
-        raise WorkerError("--concurrency must be at least 1")
-    args.audit_root.mkdir(parents=True, exist_ok=True)
-    lock_file = (args.audit_root / ".worker.lock").open("w", encoding="utf-8")
-    try:
-        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
-    except BlockingIOError as exc:
-        raise WorkerError("another auto-review worker is already running") from exc
+def run_queue(args: argparse.Namespace, repo_root: Path) -> int:
     candidates = gh_json(
         args.repo,
         [
@@ -330,6 +333,28 @@ def main() -> int:
     results.sort(key=lambda item: int(item.get("number") or 0))
     print(json.dumps(results, ensure_ascii=False, indent=2))
     return 1 if any(item.get("result") == "error" for item in results) else 0
+
+
+def main() -> int:
+    args = parse_args()
+    repo_root = Path(__file__).resolve().parents[1]
+    args.audit_root = args.audit_root.expanduser()
+    args.worktree_root = args.worktree_root.expanduser()
+    if not args.audit_root.is_absolute():
+        args.audit_root = repo_root / args.audit_root
+    if not args.worktree_root.is_absolute():
+        args.worktree_root = repo_root / args.worktree_root
+    args.audit_root = args.audit_root.resolve()
+    args.worktree_root = args.worktree_root.resolve()
+    if args.apply and not os.getenv("OPENAI_API_KEY"):
+        raise WorkerError("OPENAI_API_KEY is required with --apply")
+    if args.concurrency < 1:
+        raise WorkerError("--concurrency must be at least 1")
+    lock_file = acquire_worker_lock(args.audit_root / ".worker.lock")
+    try:
+        return run_queue(args, repo_root)
+    finally:
+        lock_file.close()
 
 
 if __name__ == "__main__":
