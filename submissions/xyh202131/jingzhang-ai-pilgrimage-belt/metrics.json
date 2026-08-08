@@ -1,0 +1,142 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area_EPSG_4548(submitted_provisional_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Boundary is a maintainer-defined provisional rough substitute, not an official redline."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 106281.938004,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(concept_building_footprint_area_EPSG_4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept massing only; not an existing-building survey or approved development quantum."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.106428,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_green_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.002361,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union_public_space_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_area_features)",
+      "confidence": "medium",
+      "assumptions": [
+        "All three key-area polygons are provisional rough substitutes."
+      ]
+    },
+    "design_road_length_m": {
+      "status": "known",
+      "value": 27566.90044,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(design_centerline_length_EPSG_4548)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official boundary and floor-area survey are unavailable."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Building storeys and approved floor areas are unavailable."
+    },
+    "average_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "weighted_average(approved_height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height controls and surveyed heights are unavailable."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "union(approved_road_redlines)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines are unavailable."
+    }
+  }
+}

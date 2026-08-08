@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is explicitly identified as low-confidence and non-statutory; official geometry is still required before precision or approval use."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "All three required key areas are present and explicitly marked as provisional rough substitutes."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Twelve land-use units form a complete, non-overlapping partition of the submitted provisional site."
+    },
+    {
+      "check_id": "SPATIAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "Design geometry includes 62 concept building units, 10 mobility lines, four green spaces, three public nodes and attributed OSM context."
+    },
+    {
+      "check_id": "METRIC_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Known spatial metrics are recalculated in EPSG:4548; unsupported FAR, floor area, height and road area remain unknown."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Offline HTML includes all required sections and matching metrics without remote dependencies, forms or tracking."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal references all six standards, 15 design-depth items, seven known metrics and all required machine-readable layers."
+    },
+    {
+      "check_id": "RISK_AND_SOURCE_BOUNDARIES",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "Each primary, provisional, OSM and case-study source records usable and prohibited purposes; governance assumptions require human review."
+    }
+  ]
+}

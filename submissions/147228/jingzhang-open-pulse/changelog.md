@@ -13,3 +13,6 @@ reviewable deliverables and bilingual review surface.
 - Replaced the short copyright note with a path-level clearance protocol and ledger.
 - Added offline English visual index links and bilingual manifest metadata.
 - Preserved provisional geometry warnings, official-source attribution, quantitative-model caveats and human fallback requirements.
+- Rebuilt all five required evidence boards from the submitted GeoJSON and metrics; removed stale v1.1–v1.3 footers and unsupported percentage claims.
+- Added the explicit `building_footprint_ratio` metric and clarified that 2.72% is a provisional geometry ratio, not a statutory control.
+- Re-rendered the Chinese and English offline reports with semantic tables retained for reviewer readability; no remote runtime dependency was added.
