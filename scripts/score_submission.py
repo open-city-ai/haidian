@@ -97,7 +97,6 @@ class SelfCheckReport:
     proposal_path: str
     checks: list[CheckResult]
     matched_sources: list[SourceMatch] = field(default_factory=list)
-    registered_external_or_package_sources: list[SourceMatch] = field(default_factory=list)
     unmatched_reference_lines: list[str] = field(default_factory=list)
     metadata_missing: list[str] = field(default_factory=list)
     required_sections_missing: list[str] = field(default_factory=list)
@@ -126,9 +125,6 @@ class SelfCheckReport:
             "metadata_missing": self.metadata_missing,
             "required_sections_missing": self.required_sections_missing,
             "matched_sources": [item.to_dict() for item in self.matched_sources],
-            "registered_external_or_package_sources": [
-                item.to_dict() for item in self.registered_external_or_package_sources
-            ],
             "unmatched_reference_lines": self.unmatched_reference_lines,
             "checks": [check.to_dict() for check in self.checks],
         }
@@ -196,24 +192,6 @@ def load_source_index(repo_root: Path, index_path: Path | None = None) -> list[d
     return sources if isinstance(sources, list) else []
 
 
-def load_submission_source_index(proposal_path: Path) -> list[dict[str, Any]]:
-    """Load only the proposal package's own source registrations.
-
-    This is deliberately separate from the repository-wide lightweight public
-    index. A package registration is advisory evidence of traceability, not an
-    automatic upgrade of every repository registry entry to formal-ready.
-    """
-    source_path = proposal_path.parent / "sources.json"
-    if not source_path.exists():
-        return []
-    try:
-        source_data = json.loads(source_path.read_text(encoding="utf-8"))
-    except (UnicodeDecodeError, json.JSONDecodeError):
-        return []
-    sources = source_data.get("sources") if isinstance(source_data, dict) else []
-    return sources if isinstance(sources, list) else []
-
-
 def reference_lines(reference_section: str) -> list[str]:
     lines = []
     for raw_line in reference_section.splitlines():
@@ -225,75 +203,28 @@ def reference_lines(reference_section: str) -> list[str]:
     return lines
 
 
-def source_candidates(source: dict[str, Any]) -> list[str]:
-    return [
-        str(source.get(field_name, "")).strip()
-        for field_name in ["id", "citation", "path", "url"]
-        if str(source.get(field_name, "")).strip()
-    ]
-
-
-def matching_source_records(
-    haystack: str,
-    sources: list[dict[str, Any]],
-    *,
-    require_package_registration: bool = False,
-) -> tuple[list[SourceMatch], set[str]]:
+def match_sources(text: str, reference_section: str, sources: list[dict[str, Any]]) -> tuple[list[SourceMatch], list[str]]:
+    haystack = f"{text}\n{reference_section}"
     matched: list[SourceMatch] = []
+    matched_tokens: set[str] = set()
     for source in sources:
         if not isinstance(source, dict):
             continue
         source_id = str(source.get("id", "")).strip()
         citation = str(source.get("citation", "")).strip()
-        candidates = source_candidates(source)
-        if require_package_registration:
-            # Keep this gate intentionally small and conservative. The formal
-            # validator separately checks the package's source-reference
-            # closure; the advisory scorer only recognizes records that carry
-            # an identity, a retraceable path/URL, a use note, and a cited ID.
-            if (
-                not source_id
-                or not str(source.get("usage", "")).strip()
-                or not any(str(source.get(field_name, "")).strip() for field_name in ["path", "url"])
-                or f"[source:{source_id}]" not in haystack
-            ):
-                continue
+        path = str(source.get("path", "")).strip()
+        url = str(source.get("url", "")).strip()
+        candidates = [item for item in [source_id, citation, path, url] if item]
         if any(candidate in haystack for candidate in candidates):
-            matched.append(SourceMatch(source_id, citation or candidates[0]))
-    matched_tokens = {
-        candidate
-        for source in sources
-        if isinstance(source, dict)
-        for candidate in source_candidates(source)
-        if any(
-            match.id == str(source.get("id", "")).strip()
-            for match in matched
-        )
-    }
-    return matched, matched_tokens
-
-
-def match_sources(
-    text: str,
-    reference_section: str,
-    sources: list[dict[str, Any]],
-    package_sources: list[dict[str, Any]] | None = None,
-) -> tuple[list[SourceMatch], list[SourceMatch], list[str]]:
-    haystack = f"{text}\n{reference_section}"
-    matched, matched_tokens = matching_source_records(haystack, sources)
-    registered, registered_tokens = matching_source_records(
-        haystack,
-        package_sources or [],
-        require_package_registration=True,
-    )
-    matched_tokens.update(registered_tokens)
+            matched.append(SourceMatch(source_id, citation or path or url))
+            matched_tokens.update(candidates)
 
     unmatched = []
     for line in reference_lines(reference_section):
         normalized = line.replace("`", "")
         if not any(token and token in normalized for token in matched_tokens):
             unmatched.append(line)
-    return matched, registered, unmatched
+    return matched, unmatched
 
 
 def build_check(dimension: str, status: str, *messages: str) -> CheckResult:
@@ -421,13 +352,7 @@ def score_proposal(
 
     reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
     sources = load_source_index(repo_root, sources_index_path)
-    package_sources = load_submission_source_index(proposal_path)
-    matched_sources, registered_sources, unmatched_references = match_sources(
-        text,
-        reference_section,
-        sources,
-        package_sources,
-    )
+    matched_sources, unmatched_references = match_sources(text, reference_section, sources)
     if not reference_section:
         source_status = STATUS_MISSING
         source_message = "缺少参考资料章节内容。"
@@ -436,11 +361,6 @@ def score_proposal(
         source_message = "已引用公开资料索引内资料。"
         if unmatched_references:
             source_message += " 索引外资料需要说明来源和公开性。"
-    elif registered_sources:
-        source_status = STATUS_PASS if not unmatched_references else STATUS_NEEDS_WORK
-        source_message = "已由投稿包 sources.json 登记外部或包内来源；这不等同于将 registry 条目升级为 formal-ready。"
-        if unmatched_references:
-            source_message += " 仍有未登记或用途说明不足的引用。"
     else:
         source_status = STATUS_NEEDS_WORK
         source_message = "未匹配到公开资料索引内资料；建议至少引用 brief/public-brief.md。"
@@ -454,7 +374,6 @@ def score_proposal(
         unmatched_reference_lines=unmatched_references,
         metadata_missing=missing_metadata,
         required_sections_missing=missing_sections,
-        registered_external_or_package_sources=registered_sources,
     )
 
 
@@ -486,11 +405,6 @@ def format_report(report: SelfCheckReport) -> str:
     if report.matched_sources:
         lines.extend(["", "Matched public sources:"])
         lines.extend(f"- {item.id}: {item.citation}" for item in report.matched_sources)
-    if report.registered_external_or_package_sources:
-        lines.extend(["", "Registered external/package sources:"])
-        lines.extend(
-            f"- {item.id}: {item.citation}" for item in report.registered_external_or_package_sources
-        )
     if report.unmatched_reference_lines:
         lines.extend(["", "References needing source/public-status notes:"])
         lines.extend(f"- {item}" for item in report.unmatched_reference_lines)

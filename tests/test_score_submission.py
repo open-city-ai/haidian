@@ -90,27 +90,6 @@ class ScoreSubmissionTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
 
-    def write_submission_source_index(self, root: Path) -> None:
-        path = root / "submissions" / "alice" / "ai-urban-loop" / "sources.json"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(
-            json.dumps(
-                {
-                    "schema_version": "0.1.0",
-                    "sources": [
-                        {
-                            "id": "external-weather",
-                            "url": "https://example.org/weather",
-                            "source_type": "official_public",
-                            "usage": "Background context only; no site-specific values are claimed.",
-                        }
-                    ],
-                },
-                ensure_ascii=False,
-            ),
-            encoding="utf-8",
-        )
-
     def check_map(self, report):
         return {check.dimension: check.status for check in report.checks}
 
@@ -155,78 +134,6 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.matched_sources, [])
-
-    def test_registered_package_source_is_reported_separately(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            self.write_source_index(root)
-            self.write_submission_source_index(root)
-            body = VALID_BODY.replace(
-                "- `brief/public-brief.md`\n- `brief/README.md`",
-                "- [source:external-weather]",
-            )
-            proposal = self.write_proposal(root, body)
-
-            report = score_proposal(root, proposal)
-            checks = self.check_map(report)
-
-            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
-            self.assertEqual(report.matched_sources, [])
-            self.assertEqual(
-                [item.id for item in report.registered_external_or_package_sources],
-                ["external-weather"],
-            )
-            self.assertEqual(report.unmatched_reference_lines, [])
-
-    def test_unregistered_reference_remains_needs_work(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            self.write_source_index(root)
-            self.write_submission_source_index(root)
-            body = VALID_BODY.replace(
-                "- `brief/public-brief.md`\n- `brief/README.md`",
-                "- [source:external-weather]\n- unregistered-method-note.pdf",
-            )
-            proposal = self.write_proposal(root, body)
-
-            report = score_proposal(root, proposal)
-            checks = self.check_map(report)
-
-            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
-            self.assertIn("unregistered-method-note.pdf", report.unmatched_reference_lines)
-
-    def test_package_source_without_usage_note_is_not_upgraded(self) -> None:
-        with tempfile.TemporaryDirectory() as tmp:
-            root = Path(tmp)
-            self.write_source_index(root)
-            path = root / "submissions" / "alice" / "ai-urban-loop" / "sources.json"
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(
-                json.dumps(
-                    {
-                        "schema_version": "0.1.0",
-                        "sources": [
-                            {
-                                "id": "external-weather",
-                                "url": "https://example.org/weather",
-                                "source_type": "official_public",
-                            }
-                        ],
-                    }
-                ),
-                encoding="utf-8",
-            )
-            body = VALID_BODY.replace(
-                "- `brief/public-brief.md`\n- `brief/README.md`",
-                "- [source:external-weather]",
-            )
-            proposal = self.write_proposal(root, body)
-
-            report = score_proposal(root, proposal)
-            checks = self.check_map(report)
-
-            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
-            self.assertEqual(report.registered_external_or_package_sources, [])
 
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
