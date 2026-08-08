@@ -37,7 +37,7 @@ class AgentFacingDocsTests(unittest.TestCase):
         skill = (REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md").read_text(
             encoding="utf-8"
         )
-        self.assertIn("Chinese and English are required for every v2 submission", skill)
+        self.assertIn("Chinese and English are required for every package enrolled in the v2 bilingual contract", skill)
         self.assertIn("Post-Submission Monitoring", skill)
         self.assertIn("gh pr checks", skill)
         self.assertIn("Uploading is not completion", skill)
@@ -95,7 +95,7 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
     if not translated_proposal.exists():
         translated_proposal.write_text(
             primary_text.replace(
-                'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                 'language: "en"\nproposal_format_version: "2"\ntranslation_of: "proposal.md"',
                 1,
             ),
@@ -237,7 +237,7 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             scaffold = run_scaffold(output_dir)
             self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
             translated = (output_dir / "proposal.md").read_text(encoding="utf-8").replace(
-                'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                 'language: "en"\nproposal_format_version: "2"\ntranslation_of: "proposal.md"',
                 1,
             )

@@ -6,9 +6,9 @@
 
 默认使用 [轻量参与工作区](../skills/urban-design-ai-submission/references/lightweight-workspace.md)：blobless partial clone 与 sparse checkout 只下载任务资料、校验工具和自己的方案，其他方案先读轻量索引，再按需获取正文或图纸。发起 PR 前必须运行 `scripts/participant_preflight.py`，把目录归属、变更范围、GitHub 大文件限制、自检和推送权限问题提前在本地解决。
 
-新方案在 `proposal.md` front matter 中设置 `proposal_format_version: "2"`。v2 把成果分成两层：正文是无需打开 JSON 也能读懂的设计论证，只在具体判断后保留 1-3 条关键引用；`sources.json`、`metrics.json`、GeoJSON 与三个矩阵保存完整机器核验索引。每个必需章节仍至少引用一条直接相关证据，但不得把全部 ID、文件名和状态码堆进正文。旧方案未设置该字段时按 v1 兼容，继续有效，展示页会自动把连续编号折叠为“多条依据”。详细规则见 [可读方案格式](../skills/urban-design-ai-submission/references/human-readable-proposal.md)。
+新脚手架在 `proposal.md` front matter 中设置 `proposal_format_version: "2"` 与 `bilingual_contract_version: "1"`。v2 把成果分成两层：正文是无需打开 JSON 也能读懂的设计论证，只在具体判断后保留 1-3 条关键引用；`sources.json`、`metrics.json`、GeoJSON 与三个矩阵保存完整机器核验索引。每个必需章节仍至少引用一条直接相关证据，但不得把全部 ID、文件名和状态码堆进正文。旧方案未设置格式字段时按 v1 兼容；既有 v2 未加入双语合同前也可维护，展示页会自动把连续编号折叠为“多条依据”。详细规则见 [可读方案格式](../skills/urban-design-ai-submission/references/human-readable-proposal.md)。
 
-**要求双语言。** `proposal.md` 可以中文或英文书写，但 v2 方案必须通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版必须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验会把缺少文件、错误语言映射、无效译稿 HTML/PDF 或过期 manifest 哈希视作 v2 阻断错误；翻译等义性仍由维护者人工核对。历史 v1 单语方案继续兼容展示，不要求为了保留既有成果而补写。
+**加入双语合同的方案要求双语言。** 新脚手架在 v2 主稿中写入 `bilingual_contract_version: "1"`；主稿可以中文或英文书写，但必须通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版必须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验会把已加入合同的方案缺少文件、错误语言映射、无效译稿 HTML/PDF 或过期 manifest 哈希视作阻断错误；翻译等义性仍由维护者人工核对。历史 v1 与未加入合同的既有 v2 包继续兼容展示，作者补齐材料后可显式加入合同。
 
 无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；无文字资产可声明 `language: "neutral"` 并由两版共用。
 

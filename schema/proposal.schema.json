@@ -42,10 +42,17 @@
           ],
           "description": "Version 2 separates human-readable narrative citations from the complete machine-audit index. Missing values remain valid legacy version 1 submissions."
         },
+        "bilingual_contract_version": {
+          "type": "string",
+          "enum": [
+            "1"
+          ],
+          "description": "Opt-in package-level bilingual display contract. New scaffolds set version 1; historical version 2 packages can add it when they complete the migration."
+        },
         "translation_file": {
           "type": "string",
           "pattern": "^proposal\\.(zh|en)\\.md$",
-          "description": "Required for version 2. Points to the complete Chinese or English translation of proposal.md."
+          "description": "Required when bilingual_contract_version is set. Points to the complete Chinese or English translation of proposal.md."
         },
         "translation_of": {
           "type": "string",
@@ -125,8 +132,11 @@
       "if": {
         "properties": {
           "metadata": {
-            "properties": {"proposal_format_version": {"const": "2"}},
-            "required": ["proposal_format_version"]
+            "properties": {
+              "proposal_format_version": {"const": "2"},
+              "bilingual_contract_version": {"const": "1"}
+            },
+            "required": ["proposal_format_version", "bilingual_contract_version"]
           }
         }
       },

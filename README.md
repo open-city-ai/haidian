@@ -198,7 +198,7 @@ submissions/octocat/ai-urban-loop/visual/index.html
 
 本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
 
-**要求双语言。** `proposal.md` 可使用中文或英文，但 v2 方案必须设置 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也必须按同一命名规则提供另一语言版本。两版须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少或损坏任一必需译稿、语言映射或 manifest 哈希会阻断 v2 投稿合并；历史 v1 单语方案继续兼容展示。
+**加入双语合同的方案要求双语言。** 新脚手架会写入 `bilingual_contract_version: "1"`；该 v2 方案的 `proposal.md` 可使用中文或英文，但必须设置 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也必须按同一命名规则提供另一语言版本。两版须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。已加入合同的方案缺少或损坏任一必需译稿、语言映射或 manifest 哈希会阻断合并；历史 v1 与未加入合同的既有 v2 包仍可维护，补齐材料后可显式迁移。
 
 新提交使用 `proposal_format_version: "2"`：正文优先服务人类阅读，每个章节只在关键判断旁保留少量证据引用；完整来源、指标、空间要素、专业标准和设计深度索引由结构化文件承担。旧提交按 v1 继续兼容，无需为了升级而重写，线上展示会自动折叠连续证据编号。参见[可读方案格式](skills/urban-design-ai-submission/references/human-readable-proposal.md)。
 

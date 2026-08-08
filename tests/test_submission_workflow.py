@@ -342,6 +342,7 @@ class ProposalSchemaTests(unittest.TestCase):
                 "author_github": "alice",
                 "language": "zh",
                 "proposal_format_version": "2",
+                "bilingual_contract_version": "1",
                 "translation_file": "proposal.en.md",
                 "license": "CC-BY-4.0",
                 "summary": "将人类可读正文与完整机器核验索引分层组织。",
@@ -352,6 +353,8 @@ class ProposalSchemaTests(unittest.TestCase):
         del payload["metadata"]["translation_file"]
         with self.assertRaises(jsonschema.ValidationError):
             jsonschema.validate(payload, schema)
+        del payload["metadata"]["bilingual_contract_version"]
+        jsonschema.validate(payload, schema)
 
 
 REFERENCE_BLOCK = (
@@ -918,18 +921,24 @@ class SubmissionWorkflowTests(unittest.TestCase):
         if 'proposal_format_version: "2"' not in text:
             text = text.replace(
                 'language: "zh"',
-                'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                 1,
             )
-        elif 'translation_file: "proposal.en.md"' not in text:
+        elif 'bilingual_contract_version: "1"' not in text:
             text = text.replace(
                 'proposal_format_version: "2"',
-                'proposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                'proposal_format_version: "2"\nbilingual_contract_version: "1"',
+                1,
+            )
+        if 'translation_file: "proposal.en.md"' not in text:
+            text = text.replace(
+                'bilingual_contract_version: "1"',
+                'bilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                 1,
             )
         primary.write_text(text, encoding="utf-8")
         translated = text.replace(
-            'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+            'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
             'language: "en"\nproposal_format_version: "2"\ntranslation_of: "proposal.md"',
             1,
         )
@@ -1562,7 +1571,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
             self.assertIn("proposal.zh.md", "\n".join(report.warnings))
-            self.assertIn("legacy v1 package remains compatible", "\n".join(report.warnings))
+            self.assertIn("not enrolled in the bilingual contract", "\n".join(report.warnings))
 
     def test_v2_submission_without_bilingual_counterparts_is_blocked(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1573,14 +1582,43 @@ class SubmissionWorkflowTests(unittest.TestCase):
             path.write_text(
                 path.read_text(encoding="utf-8").replace(
                     'language: "zh"',
-                    'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                    'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                     1,
                 ),
                 encoding="utf-8",
             )
             report = validate_submission(root, "alice", changed)
             self.assertFalse(report.ok)
-            self.assertIn("v2 bilingual submission requires", "\n".join(report.errors))
+            self.assertIn("bilingual contract requires", "\n".join(report.errors))
+
+    def test_pre_contract_v2_manifest_update_remains_compatible(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            readable = proposal.read_text(encoding="utf-8").replace(
+                'language: "zh"',
+                'language: "zh"\nproposal_format_version: "2"',
+                1,
+            )
+            readable = re.sub(r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]", "", readable)
+            readable_explanation = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                FORMAL_PARAGRAPH,
+            )
+            for heading in REQUIRED_SECTIONS:
+                readable = readable.replace(
+                    f"## {heading}\n",
+                    f"## {heading}\n\n本节关键判断依据 [source:SITE-PACKAGE]。{readable_explanation}\n",
+                    1,
+                )
+            proposal.write_text(readable, encoding="utf-8")
+
+            report = validate_submission(root, "alice", [f"{base}/manifest.json"])
+
+            self.assertTrue(report.ok, report.errors)
 
     def test_v2_manifest_only_update_still_enforces_bilingual_gate(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1591,7 +1629,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             proposal.write_text(
                 proposal.read_text(encoding="utf-8").replace(
                     'language: "zh"',
-                    'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                    'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                     1,
                 ),
                 encoding="utf-8",
@@ -1612,7 +1650,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             primary.write_text(
                 primary.read_text(encoding="utf-8").replace(
                     'language: "zh"',
-                    'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                    'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                     1,
                 ),
                 encoding="utf-8",
@@ -1635,7 +1673,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 )
             primary.write_text(readable, encoding="utf-8")
             translated = primary.read_text(encoding="utf-8").replace(
-                'language: "zh"\nproposal_format_version: "2"\ntranslation_file: "proposal.en.md"',
+                'language: "zh"\nproposal_format_version: "2"\nbilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
                 'language: "en"\nproposal_format_version: "2"\ntranslation_of: "proposal.md"',
                 1,
             )

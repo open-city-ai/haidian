@@ -9,7 +9,7 @@
 
 ## Intake 成果清单（必填）
 
-- [ ] **要求双语言：** `proposal.md` 已设置 `translation_file`，并附 `proposal.en.md` 或 `proposal.zh.md` 完整译稿；v2 缺失时 CI 会阻断合并
+- [ ] **双语合同：** 新脚手架的 `proposal.md` 保留 `bilingual_contract_version: "1"` 并设置 `translation_file`，附 `proposal.en.md` 或 `proposal.zh.md` 完整译稿；加入合同的 v2 包缺失时 CI 会阻断合并，既有未加入的 v2 包可先维护并在补齐后显式迁移
 - [ ] HTML、A3/A0 和含文字图件已提供对应语言副本，章节、主张、指标、证据和图件位置保持一致，翻译优先采用 `docs/terminology-glossary.md` 推荐译法
 - [ ] `manifest.json` 中 `package_type` 为 `professional_design_package`、`package_state` 为 `ready_for_review`（`submission_stage` 仅为旧版兼容）
 - [ ] 已提交 `agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`
