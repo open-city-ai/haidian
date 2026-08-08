@@ -223,6 +223,7 @@ class ManifestHydrationTests(unittest.TestCase):
         protected_paths = [
             "submissions-data.js",
             "gallery-publication.json",
+            "submissions/README.md",
             ".maintainer-review/alice/review-summary.json",
             "docs/reviews/alice.md",
         ]
