@@ -31,6 +31,7 @@ from github_pr_validation import (  # noqa: E402
     MAX_GITHUB_COMMENT_BYTES,
     _is_retryable_http_error,
     bounded_comment_body,
+    build_preflight_failure_comment,
     is_non_submission_pr,
     is_review_queue_candidate,
     publish_validation_comment,
@@ -151,6 +152,18 @@ class GitHubApiResilienceTests(unittest.TestCase):
             publish_validation_comment(OfflineCommentClient(), 624, "report")
         self.assertIn("unable to publish validation comment", stderr.getvalue())
         self.assertIn("connection reset", stderr.getvalue())
+
+    def test_download_failure_is_rendered_as_validation_failure(self) -> None:
+        comment = build_preflight_failure_comment(
+            ["submissions/alice/design/drawings/a0-boards.pdf"],
+            RuntimeError(
+                "/tmp/haidian-pr/submissions/alice/design/drawings/a0-boards.pdf: "
+                "file exceeds download cap"
+            ),
+        )
+        self.assertIn("Result: FAIL", comment)
+        self.assertIn("a0-boards.pdf", comment)
+        self.assertIn("file exceeds download cap", comment)
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):
