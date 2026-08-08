@@ -69,6 +69,14 @@ def render_inline(text: str) -> str:
     return REFERENCE_RE.sub(replace_ref, escaped)
 
 
+HTML_COMMENT_RE = re.compile(r"<!--.*?-->", re.DOTALL)
+
+
+def strip_html_comments(text: str) -> str:
+    """Remove HTML comment blocks from a string."""
+    return HTML_COMMENT_RE.sub("", text).strip()
+
+
 def render_table(rows: list[str]) -> str:
     """Render a GFM table block to HTML."""
     lines: list[str] = []
@@ -87,13 +95,15 @@ def render_table(rows: list[str]) -> str:
     lines.append('<table class="proposal-table">')
     lines.append("<thead><tr>")
     for cell in header:
-        lines.append(f"<th>{render_inline(cell)}</th>")
+        clean = strip_html_comments(cell)
+        lines.append(f"<th>{render_inline(clean)}</th>")
     lines.append("</tr></thead>")
     lines.append("<tbody>")
     for row in body_rows:
         lines.append("<tr>")
         for cell in row:
-            lines.append(f"<td>{render_inline(cell)}</td>")
+            clean = strip_html_comments(cell)
+            lines.append(f"<td>{render_inline(clean)}</td>")
         lines.append("</tr>")
     lines.append("</tbody></table>")
     return "\n".join(lines)
@@ -131,6 +141,10 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
 
     for raw_line in markdown.splitlines():
         line = raw_line.rstrip()
+
+        # Skip HTML comment lines (machine-readable evidence tokens hidden from readers)
+        if line.strip().startswith("<!--") and line.strip().endswith("-->"):
+            continue
 
         # Table detection: a line starting with | and the next line is a separator
         if TABLE_ROW_RE.match(line):
