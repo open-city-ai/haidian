@@ -90,6 +90,19 @@ class ScoreSubmissionTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
 
+    def write_package_sources(self, root: Path, sources: list[dict[str, str]]) -> None:
+        package_dir = root / "submissions" / "alice" / "ai-urban-loop"
+        for source in sources:
+            path = source.get("path")
+            if path:
+                source_path = root / path
+                source_path.parent.mkdir(parents=True, exist_ok=True)
+                source_path.write_text("registered source", encoding="utf-8")
+        (package_dir / "sources.json").write_text(
+            json.dumps({"schema_version": "0.1.0", "sources": sources}, ensure_ascii=False),
+            encoding="utf-8",
+        )
+
     def check_map(self, report):
         return {check.dimension: check.status for check in report.checks}
 
@@ -134,6 +147,73 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.matched_sources, [])
+
+    def test_registered_package_source_can_satisfy_public_reference_without_lightweight_index(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- `brief/official-policy.md`",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "PACKAGE-OFFICIAL-POLICY",
+                        "path": "brief/official-policy.md",
+                        "source_type": "official_public",
+                        "usage": "Public policy source and boundary note.",
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
+            self.assertEqual(report.matched_sources, [])
+            self.assertEqual(
+                {item.id for item in report.registered_external_or_package_sources},
+                {"PACKAGE-OFFICIAL-POLICY"},
+            )
+            self.assertEqual(report.unmatched_reference_lines, [])
+
+    def test_provisional_package_source_remains_unresolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- `brief/official-policy.md`\n- `brief/provisional-map.geojson`",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "PACKAGE-OFFICIAL-POLICY",
+                        "path": "brief/official-policy.md",
+                        "source_type": "official_public",
+                        "usage": "Public policy source and boundary note.",
+                    },
+                    {
+                        "id": "PACKAGE-PROVISIONAL-MAP",
+                        "path": "brief/provisional-map.geojson",
+                        "source_type": "provisional_repository_data",
+                        "usage": "Temporary design geometry only.",
+                    },
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
+            self.assertEqual(
+                {item.id for item in report.registered_external_or_package_sources},
+                {"PACKAGE-OFFICIAL-POLICY"},
+            )
+            self.assertEqual(report.unmatched_reference_lines, ["`brief/provisional-map.geojson`"])
 
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

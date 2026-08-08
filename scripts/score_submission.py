@@ -12,7 +12,7 @@ import argparse
 import json
 import re
 from dataclasses import dataclass, field
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 from typing import Any
 
 from validate_submission import PLACEHOLDERS, extract_headings, parse_front_matter
@@ -97,6 +97,7 @@ class SelfCheckReport:
     proposal_path: str
     checks: list[CheckResult]
     matched_sources: list[SourceMatch] = field(default_factory=list)
+    registered_external_or_package_sources: list[SourceMatch] = field(default_factory=list)
     unmatched_reference_lines: list[str] = field(default_factory=list)
     metadata_missing: list[str] = field(default_factory=list)
     required_sections_missing: list[str] = field(default_factory=list)
@@ -125,6 +126,9 @@ class SelfCheckReport:
             "metadata_missing": self.metadata_missing,
             "required_sections_missing": self.required_sections_missing,
             "matched_sources": [item.to_dict() for item in self.matched_sources],
+            "registered_external_or_package_sources": [
+                item.to_dict() for item in self.registered_external_or_package_sources
+            ],
             "unmatched_reference_lines": self.unmatched_reference_lines,
             "checks": [check.to_dict() for check in self.checks],
         }
@@ -190,6 +194,134 @@ def load_source_index(repo_root: Path, index_path: Path | None = None) -> list[d
         return []
     sources = index_data.get("sources") if isinstance(index_data, dict) else []
     return sources if isinstance(sources, list) else []
+
+
+def load_submission_source_index(proposal_path: Path) -> list[dict[str, Any]]:
+    """Load the proposal package's own source register when it is present.
+
+    This advisory fallback does not replace formal validation. It only uses
+    entries that carry a usable path/URL, a source type, and a stated use
+    boundary, while rejecting explicit provisional, background-only, disabled,
+    or review-pending states.
+    """
+    source_path = proposal_path.parent / "sources.json"
+    if not source_path.is_file():
+        return []
+    try:
+        data = json.loads(source_path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return []
+    sources = data.get("sources") if isinstance(data, dict) else []
+    return sources if isinstance(sources, list) else []
+
+
+def source_candidates(source: dict[str, Any]) -> list[str]:
+    values = [
+        source.get("id"),
+        source.get("citation"),
+        source.get("path"),
+        source.get("url"),
+    ]
+    return [str(value).strip() for value in values if isinstance(value, str) and value.strip()]
+
+
+def source_use_values(source: dict[str, Any]) -> list[str]:
+    values: list[str] = []
+    for key in ("usage", "usage_note", "use_boundary", "allowed_uses", "prohibited_uses"):
+        value = source.get(key)
+        if isinstance(value, str) and value.strip():
+            values.append(value.strip())
+        elif isinstance(value, list):
+            values.extend(str(item).strip() for item in value if str(item).strip())
+    return values
+
+
+def package_source_is_eligible(repo_root: Path, source: Any) -> bool:
+    """Return whether a package source is safe to count as registered evidence."""
+    if not isinstance(source, dict):
+        return False
+    source_id = source.get("id")
+    source_type = source.get("source_type") or source.get("type")
+    if not isinstance(source_id, str) or not source_id.strip():
+        return False
+    if not isinstance(source_type, str) or not source_type.strip():
+        return False
+    if not source_candidates(source) or not source_use_values(source):
+        return False
+
+    source_type_text = source_type.strip().lower()
+    if any(marker in source_type_text for marker in ("provisional", "inferred", "private", "internal")):
+        return False
+    for key in (
+        "review_status",
+        "usable_for_formal",
+        "formal_status",
+        "public_status",
+        "status",
+        "availability",
+    ):
+        value = source.get(key)
+        if not isinstance(value, str):
+            continue
+        normalized = value.strip().lower().replace("-", "_")
+        if normalized in {
+            "no",
+            "disabled",
+            "rejected",
+            "needs_review",
+            "background_only",
+            "provisional_only",
+            "restricted",
+            "private",
+            "unknown",
+        }:
+            return False
+
+    path_value = source.get("path")
+    if path_value:
+        if not isinstance(path_value, str):
+            return False
+        normalized_path = path_value.strip().replace("\\", "/")
+        pure_path = PurePosixPath(normalized_path)
+        if (
+            not normalized_path
+            or "://" in normalized_path
+            or pure_path.is_absolute()
+            or ".." in pure_path.parts
+            or not (repo_root / pure_path).exists()
+        ):
+            return False
+    url_value = source.get("url")
+    if url_value and (not isinstance(url_value, str) or not url_value.startswith("https://")):
+        return False
+    return bool(path_value or url_value)
+
+
+def match_registered_package_sources(
+    repo_root: Path,
+    proposal_path: Path,
+    reference_section: str,
+) -> tuple[list[SourceMatch], set[str]]:
+    """Match reference lines against eligible sources.json entries only."""
+    lines = reference_lines(reference_section)
+    matched: list[SourceMatch] = []
+    matched_tokens: set[str] = set()
+    for source in load_submission_source_index(proposal_path):
+        if not package_source_is_eligible(repo_root, source):
+            continue
+        candidates = source_candidates(source)
+        matching_tokens = {
+            candidate
+            for candidate in candidates
+            if any(candidate in line.replace("`", "") for line in lines)
+        }
+        if matching_tokens:
+            source_id = str(source.get("id", "")).strip()
+            citation = str(source.get("citation", "")).strip()
+            fallback = candidates[1] if len(candidates) > 1 else candidates[0]
+            matched.append(SourceMatch(source_id, citation or fallback))
+            matched_tokens.update(matching_tokens)
+    return matched, matched_tokens
 
 
 def reference_lines(reference_section: str) -> list[str]:
@@ -353,14 +485,23 @@ def score_proposal(
     reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
     sources = load_source_index(repo_root, sources_index_path)
     matched_sources, unmatched_references = match_sources(text, reference_section, sources)
+    registered_package_sources, registered_tokens = match_registered_package_sources(
+        repo_root, proposal_path, reference_section
+    )
+    if registered_tokens:
+        unmatched_references = [
+            line
+            for line in unmatched_references
+            if not any(token and token in line.replace("`", "") for token in registered_tokens)
+        ]
     if not reference_section:
         source_status = STATUS_MISSING
         source_message = "缺少参考资料章节内容。"
-    elif matched_sources:
+    elif matched_sources or registered_package_sources:
         source_status = STATUS_PASS if not unmatched_references else STATUS_NEEDS_WORK
-        source_message = "已引用公开资料索引内资料。"
+        source_message = "已引用公开资料索引内资料或投稿包已登记来源。"
         if unmatched_references:
-            source_message += " 索引外资料需要说明来源和公开性。"
+            source_message += " 未登记的索引外资料需要说明来源和公开性。"
     else:
         source_status = STATUS_NEEDS_WORK
         source_message = "未匹配到公开资料索引内资料；建议至少引用 brief/public-brief.md。"
@@ -371,6 +512,7 @@ def score_proposal(
         proposal_path=display_path,
         checks=ordered_checks,
         matched_sources=matched_sources,
+        registered_external_or_package_sources=registered_package_sources,
         unmatched_reference_lines=unmatched_references,
         metadata_missing=missing_metadata,
         required_sections_missing=missing_sections,
@@ -405,6 +547,11 @@ def format_report(report: SelfCheckReport) -> str:
     if report.matched_sources:
         lines.extend(["", "Matched public sources:"])
         lines.extend(f"- {item.id}: {item.citation}" for item in report.matched_sources)
+    if report.registered_external_or_package_sources:
+        lines.extend(["", "Registered external or package sources:"])
+        lines.extend(
+            f"- {item.id}: {item.citation}" for item in report.registered_external_or_package_sources
+        )
     if report.unmatched_reference_lines:
         lines.extend(["", "References needing source/public-status notes:"])
         lines.extend(f"- {item}" for item in report.unmatched_reference_lines)
