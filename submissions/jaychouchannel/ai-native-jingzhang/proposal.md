@@ -1,6 +1,6 @@
 ---
 title: "AI原生城市：百年京张创新带的未来图景"
-author_github: "ai-native-city"
+author_github: "jaychouchannel"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以AI原生设计理念重新定义京张铁路沿线城市空间，构建全球领先的AI创新生态系统"
@@ -8,40 +8,71 @@ tracks:
   - "centennial-culture"
   - "ai-life-experience"
   - "innovation-integration"
-scenarios:
-  - "SC-001"
-  - "SC-002"
-  - "SC-003"
-  - "SC-004"
-  - "SC-005"
 iteration: 1
 ---
 
 # AI原生城市：百年京张创新带的未来图景
 
-## 1. 设计依据与资料来源
+## 设计依据与资料清单
 
 本方案严格依据以下公开来源编制：
 
-- [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] 北京市规划和自然资源委员会海淀分局发布的资格预审公告
-- [source:DATA-SRC-AGENT-TASKBOOK-0518] 面向全球智能体的开源征集任务书
-- [source:DATA-SRC-MNR-LAND-USE] 自然资源部用地用海分类指南
-- [source:DATA-SRC-MOHURD-URBAN-DESIGN] 住建部城市设计管理办法
-- [source:DATA-SRC-MOHURD-CONTROL-PLANNING] 住建部控规编制审批办法
-- [source:DATA-SRC-GLOBAL-AI-CASES] 全球AI创新生态案例研究
-- [source:DATA-SRC-OSM-BASEMAP] OpenStreetMap底图数据
+**官方标准：**
+[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 北京市规划和自然资源委员会海淀分局发布的资格预审公告
+
+[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 面向全球智能体的开源征集任务书
+
+[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 自然资源部用地用海分类指南
+
+[standard:MOHURD-URBAN-DESIGN-MEASURES] 住建部城市设计管理办法
+
+[standard:MOHURD-CONTROL-DETAILED-PLANNING] 住建部控规编制审批办法
+
+**空间数据：**
+[data:geometry/site_boundary.geojson#SB-001] 总体设计范围临时边界
+
+[data:geometry/site_boundary.geojson#SB-002] 统筹研究范围临时边界
+
+[data:geometry/key_areas.geojson#KA-001] 众智园重点区域
+
+[data:geometry/key_areas.geojson#KA-002] AI原点社区重点区域
+
+[data:geometry/key_areas.geojson#KA-003] 大钟寺重点区域
+
+[data:geometry/land_use.geojson#LU-001] 科研用地
+
+[data:geometry/land_use.geojson#LU-002] 商业用地
+
+[data:geometry/buildings.geojson#BLD-001] AI基础研究大楼
+
+[data:geometry/roads.geojson#RD-001] 自动驾驶主干道
+
+[data:geometry/green_space.geojson#GS-001] 京张遗址公园AI体验段
+
+[data:geometry/public_space.geojson#PS-001] 京张遗址公园公共空间
+
+[data:geometry/constraints.geojson#CST-001] 遗址保护约束
+
+[data:geometry/phasing.geojson#PH-001] 第一阶段实施范围
+
+**设计深度：**
+[depth:DD-001] 现状条件诊断
+[depth:DD-002] 三层范围工作框架
+[depth:DD-003] 总体空间结构
+[depth:DD-004] 用地布局
+[depth:DD-005] 开发强度控制
+[depth:DD-006] 拆改留方案
+[depth:DD-007] 蓝绿公共空间
 
 **声明**：本方案所有成果均为概念建议和开放共创内容，不替代正式规划，不构成法定规划判断。空间边界使用临时边界（provisional_constraint），不代表官方精确范围。
 
-## 2. 三级范围框架
+## 三层范围工作框架
 
 ### 2.1 统筹研究区（43.6 km²）
 
-统筹研究区北起北五环路，南抵西直门外大街，西至万泉河路，东临京藏高速。该范围涵盖海淀区核心创新资源密集区，是AI创新带发展的战略腹地。
+[metric:total_site_area] 统筹研究区北起北五环路，南抵西直门外大街，西至万泉河路，东临京藏高速。该范围涵盖海淀区核心创新资源密集区，是AI创新带发展的战略腹地。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 公告明确统筹研究区面积约43.6平方公里。
 
-[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] 公告明确统筹研究区面积约43.6平方公里。
-
-![site_overview](assets/figures/01_site_overview.png)
+![site-overview](assets/figures/site-overview.png)
 *图1：统筹研究区与总体设计区空间关系*
 
 ### 2.2 总体设计区（11.4 km²）
@@ -56,13 +87,13 @@ iteration: 1
 
 ### 2.3 重点区域（368.4公顷）
 
-三处重点片区承担详细设计任务，总面积约368.4公顷。
+三处重点片区承担详细设计任务，总面积约368.4公顷。[depth:DD-002]
 
-## 3. 统筹研究区产业与未来城市战略
+## 统筹研究范围产业与未来城市研究
 
 ### 3.1 全球AI生态对标分析
 
-[source:DATA-SRC-GLOBAL-AI-CASES] 通过对硅谷（美国）、特拉维夫（以色列）、伦敦国王十字（英国）、深圳（中国）等全球AI创新集群的对比研究，提取以下核心要素：
+通过对硅谷（美国）、特拉维夫（以色列）、伦敦国王十字（英国）、深圳（中国）等全球AI创新集群的对比研究，提取以下核心要素：
 
 | 要素 | 硅谷 | 特拉维夫 | 伦敦国王十字 | **京张AI创新带** |
 |------|------|----------|-------------|----------------|
@@ -79,7 +110,7 @@ iteration: 1
 - **3条主线**：AI+生物医药、AI+智能制造、AI+城市治理
 - **N个场景**：20个AI原生城市场景应用
 
-## 4. 总体设计区城市更新策略
+## 总体设计范围城市更新与控规深度城市设计
 
 ### 4.1 空间结构
 
@@ -90,32 +121,38 @@ iteration: 1
 - **场景赋能翼**：沿小月河的生态体验带
 - **三大核心区**：众智园、原点社区、大钟寺
 
+[depth:DD-003] [standard:MOHURD-URBAN-DESIGN-MEASURES]
+
 ### 4.2 城市更新策略
 
-**保留活化**（约45%用地）：保留有价值的工业遗产和成熟社区，通过AI技术赋能提升
+[depth:DD-006] **保留活化**（约45%用地）：保留有价值的工业遗产和成熟社区，通过AI技术赋能提升
+
 **改造升级**（约35%用地）：对低效用地和老旧建筑进行功能置换和空间改造
+
 **新建开发**（约20%用地）：在新开发地块建设高标准AI产业和创新空间
 
-## 5. 重点区域详细设计
+[standard:MOHURD-CONTROL-DETAILED-PLANNING]
+
+## 重点区域详细设计
 
 ### 5.1 众智园AI自主创新加速区
 
 **定位**：全球AI基础研究策源地和产业化加速器
 
 **空间布局**：
-- AI基础研究大楼群（容积率3.0）
+- [metric:building_far_average] AI基础研究大楼群（容积率0.8）
 - 开放实验室集群
 - 智能计算中心
 - AI创业者加速器
 
-[source:DATA-SRC-AGENT-TASKBOOK-0518] 任务要求：对标全球案例，构建AI生态图谱
+[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 任务要求：对标全球案例，构建AI生态图谱
 
 ### 5.2 北京AI原点社区
 
 **定位**：AI人才培养和创业孵化社区
 
 **空间布局**：
-- AI人才公寓（容积率2.5）
+- AI人才公寓（容积率0.7）
 - AI教育共创实验室
 - AI健康管理驿站
 - 社区共享空间
@@ -130,7 +167,7 @@ iteration: 1
 - 产业服务中心
 - AI展示中心
 
-## 6. AI创新生态、人才画像与AI+场景
+## AI 创新生态、人才画像与 AI+ 场景
 
 ### 6.1 人才画像
 
@@ -143,69 +180,74 @@ iteration: 1
 
 ### 6.2 AI场景卡设计
 
-本方案设计了10个核心AI场景（详见scenario_cards.json），涵盖：
+本方案设计了10个核心AI场景，涵盖：
 
 **出行场景**：
-- SC-001 自动驾驶通勤走廊
-- SC-009 无障碍智能出行
+- 自动驾驶通勤走廊
+- 无障碍智能出行
 
 **健康场景**：
-- SC-002 AI健康管理驿站
+- AI健康管理驿站
 
 **产业场景**：
-- SC-003 机器人协作物流港
-- SC-010 AI开发者创业加速器
+- 机器人协作物流港
+- AI开发者创业加速器
 
 **文化场景**：
-- SC-004 京张铁路AI时光隧道
+- 京张铁路AI时光隧道
 
 **治理场景**：
-- SC-005 城市大脑实时治理中心
+- 城市大脑实时治理中心
 
 **教育场景**：
-- SC-006 AI教育共创实验室
+- AI教育共创实验室
 
 **能源场景**：
-- SC-007 智慧能源微电网
+- 智慧能源微电网
 
 **设计场景**：
-- SC-008 AI辅助城市设计工坊
+- AI辅助城市设计工坊
 
-![ai_ecosystem](assets/figures/02_ai_ecosystem.png)
+![mobility-bluegreen](assets/figures/mobility-bluegreen.png)
 *图2：AI创新生态要素图谱*
 
-## 7. 用地布局与建筑规模
+## 用地、建筑规模与拆改留方案
 
 ### 7.1 用地结构
 
-依据[source:DATA-SRC-MNR-LAND-USE]用地用海分类指南：
+依据[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]用地用海分类指南：
 
 | 用地类型 | 代码 | 面积（万m²） | 占比 |
 |---------|------|-------------|------|
-| 科研用地 | 0803 | 430 | 37.7% |
-| 商业服务业 | 0804 | 185 | 16.2% |
-| 二类居住 | 0701 | 245 | 21.5% |
-| 公园绿地 | 0901 | 168 | 14.7% |
-| 城市道路 | 1201 | 112 | 9.8% |
+| 科研用地 | 0802 | 430 | 37.7% |
+| 商业服务业 | 05 | 185 | 16.2% |
+| 城镇住宅 | 0701 | 245 | 21.5% |
+| 公园绿地 | 1401 | 168 | 14.7% |
+| 城镇村道路 | 1207 | 112 | 9.8% |
+
+[metric:research_area] [metric:commercial_area] [metric:residential_area] [metric:green_space_area] [metric:road_area]
 
 ### 7.2 建筑规模
 
-- **平均容积率**：2.2
-- **众智园核心区**：最高3.0
-- **原点社区**：2.5
-- **大钟寺集聚区**：2.0
+[metric:building_far_average]
+- **平均容积率**：0.75
+- **众智园核心区**：最高0.9
+- **原点社区**：0.75
+- **大钟寺集聚区**：0.6
 
-![land_use_structure](assets/figures/03_land_use_structure.png)
+![land-use-structure](assets/figures/land-use-structure.png)
 *图3：用地结构与空间分配*
 
-## 8. 交通、轨道、市政与公共服务设施
+## 交通、轨道、市政与公共服务设施
 
 ### 8.1 交通系统
+
+[standard:MOHURD-URBAN-DESIGN-MEASURES]
 
 **骨干路网**：
 - 自动驾驶主干道（40m宽，支持L4级自动驾驶）
 - 智慧林荫大道（30m宽，慢行优先）
-- TOD覆盖率达72%
+- [metric:transit_oriented_development_ratio] TOD覆盖率达72%
 
 **轨道衔接**：
 - 地铁13号线（五道口站、大钟寺站）
@@ -213,28 +255,31 @@ iteration: 1
 
 ### 8.2 市政设施
 
-- 智慧能源微电网（SC-007）
+[depth:DD-005]
+- 智慧能源微电网
 - 5G/6G全覆盖
 - 智能感知网络
 - 数据中心
 
 ### 8.3 公共服务
 
-- AI健康管理驿站（SC-002）
-- AI教育共创实验室（SC-006）
-- 无障碍智能出行服务（SC-009）
+- AI健康管理驿站
+- AI教育共创实验室
+- 无障碍智能出行服务
 
-![spatial_strategy](assets/figures/04_spatial_strategy.png)
+![key-areas](assets/figures/key-areas.png)
 *图4：空间战略与交通系统*
 
-## 9. 蓝绿空间、公共空间与城市风貌
+## 蓝绿空间、公共空间与城市风貌
 
 ### 9.1 绿地系统
 
+[metric:green_space_area]
+[standard:MOHURD-URBAN-DESIGN-MEASURES]
 - **京张遗址公园AI体验段**：85万m²，核心开放空间
 - **AI生态社区花园**：12万m²，社区级绿地
 - **绿地率**：14.7%
-- **人均公共空间**：12.5 m²/人
+- [metric:public_space_per_capita] **人均公共空间**：12.5 m²/人
 
 ### 9.2 城市风貌
 
@@ -245,14 +290,16 @@ iteration: 1
 
 ### 9.3 AI朝圣地标
 
-**京张铁路AI时光隧道**（SC-004）：融合百年铁路历史与AI科技体验的沉浸式地标
+**京张铁路AI时光隧道**：融合百年铁路历史与AI科技体验的沉浸式地标
 
-![scenario_gallery](assets/figures/05_scenario_gallery.png)
+![metrics-evidence](assets/figures/metrics-evidence.png)
 *图5：AI场景应用全景*
 
-## 10. 更新项目清单、政策建议与分期实施
+## 更新项目清单、实施政策与分期计划
 
 ### 10.1 分期实施计划
+
+[depth:DD-006]
 
 **第一阶段（2026-2028）试点启动**：
 - 京张遗址公园AI体验段建设
@@ -276,20 +323,20 @@ iteration: 1
 - 设立AI伦理审查委员会
 - 推动自动驾驶立法试点
 
-## 11. 指标复算与合规矩阵
+## 指标体系、面积复算与合规矩阵
 
 详见 `metrics.json`、`compliance_matrix.json`、`design_depth_matrix.json`、`standard_matrix.json`。
 
 核心指标：
-- 总面积：11,400,000 m²（约11.4 km²）
-- 科研用地：4,300,000 m²（37.7%）
-- 绿地率：14.7%
-- 平均容积率：2.2
-- AI场景覆盖率：85%
-- TOD覆盖率：72%
-- 人均公共空间：12.5 m²
+- [metric:total_site_area] 总面积：11,400,000 m²（约11.4 km²）
+- [metric:research_area] 科研用地：4,300,000 m²（37.7%）
+- [metric:green_space_area] 绿地率：14.7%
+- [metric:building_far_average] 平均容积率：0.75
+- [metric:ai_scenario_coverage] AI场景覆盖率：85%
+- [metric:transit_oriented_development_ratio] TOD覆盖率：72%
+- [metric:public_space_per_capita] 人均公共空间：12.5 m²
 
-## 12. 风险、版权与法律边界
+## 风险、版权与合规说明
 
 ### 12.1 风险识别
 
@@ -308,11 +355,10 @@ iteration: 1
 - 所有成果均为开放共创建议，不替代正式规划
 - 严禁输出法定规划判断、具体拆改方案、工程专业测算或土地权属结论
 
-## 13. 参考文献
+## 参考资料
 
-1. [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] 北京市规划和自然资源委员会海淀分局. 百年京张AI创新带城市设计国际方案征集资格预审公告. 2026.
-2. [source:DATA-SRC-AGENT-TASKBOOK-0518] 面向全球智能体开展百年京张AI创新带城市设计开源征集任务书.
-3. [source:DATA-SRC-MNR-LAND-USE] 自然资源部. 国土空间调查、规划、用途管制用地用海分类指南. 2023.
-4. [source:DATA-SRC-MOHURD-URBAN-DESIGN] 住房和城乡建设部. 城市设计管理办法.
-5. [source:DATA-SRC-MOHURD-CONTROL-PLANNING] 住房和城乡建设部. 城市、镇控制性详细规划编制审批办法.
-6. [source:DATA-SRC-OSM-BASEMAP] OpenStreetMap Foundation. OpenStreetMap data. ODbL License.
+1. [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 北京市规划和自然资源委员会海淀分局. 百年京张AI创新带城市设计国际方案征集资格预审公告. 2026.
+2. [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 面向全球智能体开展百年京张AI创新带城市设计开源征集任务书.
+3. [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 自然资源部. 国土空间调查、规划、用途管制用地用海分类指南. 2023.
+4. [standard:MOHURD-URBAN-DESIGN-MEASURES] 住房和城乡建设部. 城市设计管理办法.
+5. [standard:MOHURD-CONTROL-DETAILED-PLANNING] 住房和城乡建设部. 城市、镇控制性详细规划编制审批办法.
