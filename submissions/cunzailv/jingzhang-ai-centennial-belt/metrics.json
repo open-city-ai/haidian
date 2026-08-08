@@ -1,0 +1,271 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11425255,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "shoelace_area(project_to_local_EPSG4548_plane(site_boundary))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于仓库临时粗略边界；official polygon 补齐后需复算。",
+        "面积采用 EPSG:4548 局部切平面近似，误差<0.5%。"
+      ]
+    },
+    "research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "official text area (coordinated_research_area)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_areas_sqm": {
+      "status": "known",
+      "value": 3697671,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "shoelace_area(project(key_area))",
+      "confidence": "medium",
+      "assumptions": [
+        "临时 rough polygon，非官方面积。"
+      ],
+      "breakdown": {
+        "zhongzhiyuan_ai_acceleration_area": 1932300,
+        "beijing_ai_origin_community": 1044486,
+        "dazhongsi_ai_industry_cluster": 720885
+      }
+    },
+    "land_use_area_by_code_sqm": {
+      "status": "known",
+      "value": 11413386.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(cell_area per land_use_code)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分区由临时边界派生产生，仅概念示意。"
+      ],
+      "breakdown": {
+        "0802": 4583585.5,
+        "1207": 1404549.1,
+        "1001": 472107.8,
+        "0701": 386270.0,
+        "1401": 319043.1,
+        "1201": 2073780.0,
+        "0902": 1387837.4,
+        "0901": 519584.4,
+        "0803": 266628.9
+      }
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 1404549,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "cells(road)*cell_area",
+      "confidence": "medium",
+      "assumptions": [
+        "路网为概念性微循环，非道路红线。"
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.1229,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "概念性路网。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2392823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "cells(green)*cell_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.2094,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2137589,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "cells(public)*cell_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.1871,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_area/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3398948,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "cells(building)*cell_area",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑底图为概念性生成。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.2975,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 29463628,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(cell_area * floors)",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑层数/高度为概念假设，缺控规。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 2.579,
+      "unit": "far",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "派生设计值，非官方容积率；official FAR 补齐后需复算。"
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 11413386.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "cells(phase)*cell_area",
+      "confidence": "medium",
+      "assumptions": [],
+      "breakdown": {
+        "P1": 4414188.8,
+        "P2": 4736650.2,
+        "P3": 2262547.1
+      }
+    },
+    "official_far": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved regulatory planning FAR",
+      "confidence": "n/a",
+      "assumptions": [
+        "官方容积率未取得，列为待补；不得伪装为审定指标。"
+      ],
+      "reason": "Exact official FAR was not included in the cleared site package."
+    },
+    "official_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height controls",
+      "confidence": "n/a",
+      "assumptions": [
+        "建筑高度未取得，列为待补。"
+      ],
+      "reason": "Exact official building height was not included in the cleared site package."
+    },
+    "official_green_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved green-space standard",
+      "confidence": "n/a",
+      "assumptions": [
+        "官方绿地率未取得；本方案 green_ratio 为概念设计值。"
+      ],
+      "reason": "Exact official green ratio was not included in the cleared site package."
+    }
+  }
+}
