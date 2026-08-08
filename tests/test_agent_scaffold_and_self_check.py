@@ -170,12 +170,30 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             )
             manifest_path = output_dir / "manifest.json"
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            figure_primary = output_dir / "assets" / "figures" / "site-overview.png"
+            figure_primary.parent.mkdir(parents=True, exist_ok=True)
+            figure_primary.write_bytes(b"primary figure")
+            figure_translated = output_dir / "assets" / "figures" / "site-overview.en.png"
+            figure_translated.write_bytes(b"translated figure")
             manifest["files"].append({
                 "path": "proposal.en.md",
                 "role": "narrative",
                 "required": False,
                 "language": "neutral",
                 "translation_of": "wrong.md",
+            })
+            manifest["files"].append({
+                "path": "assets/figures/site-overview.png",
+                "role": "figure",
+                "required": False,
+                "language": "zh",
+            })
+            manifest["files"].append({
+                "path": "assets/figures/site-overview.en.png",
+                "role": "figure",
+                "required": False,
+                "language": "en",
+                "translation_of": "assets/figures/site-overview.png",
             })
             manifest_path.write_text(
                 json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
@@ -189,6 +207,12 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual("en", items["proposal.en.md"]["language"])
             self.assertEqual("proposal.md", items["proposal.en.md"]["translation_of"])
             self.assertEqual("report/proposal.html", items["report/proposal.en.html"]["translation_of"])
+            self.assertEqual("zh", items["assets/figures/site-overview.png"]["language"])
+            self.assertEqual("en", items["assets/figures/site-overview.en.png"]["language"])
+            self.assertEqual(
+                "assets/figures/site-overview.png",
+                items["assets/figures/site-overview.en.png"]["translation_of"],
+            )
 
     def test_generated_scaffold_is_blocked_until_participant_finalizes_it(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
