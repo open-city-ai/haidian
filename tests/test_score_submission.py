@@ -3,6 +3,8 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from types import SimpleNamespace
+from unittest.mock import patch
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +15,7 @@ from score_submission import (  # noqa: E402
     STATUS_NEEDS_WORK,
     STATUS_PASS,
     format_report,
+    load_formally_validated_package_sources,
     match_registered_package_sources,
     score_proposal,
 )
@@ -172,6 +175,53 @@ class ScoreSubmissionTests(unittest.TestCase):
 
         self.assertEqual([item.id for item in matched], ["OFFICIAL-ANNOUNCEMENT"])
         self.assertEqual(unmatched, ["Unregistered source with no stable token"])
+
+    def test_formal_validation_uses_manifest_files_not_maintainer_feedback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            package = root / "submissions" / "alice" / "ai-urban-loop"
+            package.mkdir(parents=True)
+            proposal = package / "proposal.md"
+            proposal.write_text("# Proposal\n", encoding="utf-8")
+            (package / "FEEDBACK.md").write_text("# Maintainer feedback\n", encoding="utf-8")
+            (package / "manifest.json").write_text(
+                json.dumps(
+                    {
+                        "submission_stage": "formal",
+                        "files": [
+                            {"path": "manifest.json"},
+                            {"path": "proposal.md"},
+                            {"path": "sources.json"},
+                            {"path": "FEEDBACK.md"},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (package / "sources.json").write_text('{"sources": []}', encoding="utf-8")
+
+            with patch(
+                "validate_submission.validate_submission",
+                return_value=SimpleNamespace(ok=True),
+            ) as validate:
+                sources, status = load_formally_validated_package_sources(
+                    root, proposal, {"author_github": "alice"}
+                )
+
+            self.assertEqual(sources, [])
+            self.assertEqual(status["status"], "passed")
+            self.assertNotIn(
+                "submissions/alice/ai-urban-loop/FEEDBACK.md",
+                validate.call_args.args[2],
+            )
+            self.assertEqual(
+                validate.call_args.args[2],
+                [
+                    "submissions/alice/ai-urban-loop/manifest.json",
+                    "submissions/alice/ai-urban-loop/proposal.md",
+                    "submissions/alice/ai-urban-loop/sources.json",
+                ],
+            )
 
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -306,7 +306,8 @@ def load_formally_validated_package_sources(
     repo_root: Path, proposal_path: Path, metadata: dict[str, str]
 ) -> tuple[list[dict[str, Any]], dict[str, str]]:
     """Load package sources only after the deterministic formal validator passes."""
-    package_dir = proposal_path.parent
+    repo_root = repo_root.resolve()
+    package_dir = proposal_path.resolve().parent
     manifest_path = package_dir / "manifest.json"
     sources_path = package_dir / "sources.json"
     if not manifest_path.is_file() or not sources_path.is_file():
@@ -327,15 +328,29 @@ def load_formally_validated_package_sources(
     if not author:
         return [], {"status": "failed", "message": "formal package proposal has no author_github"}
     try:
-        changed_files = [
-            str(path.relative_to(repo_root))
-            for path in package_dir.rglob("*")
-            if path.is_file()
-        ]
+        package_rel = package_dir.resolve().relative_to(repo_root)
     except ValueError:
         return [], {"status": "failed", "message": "package is outside repo root"}
-    if not changed_files:
-        return [], {"status": "failed", "message": "formal package has no files"}
+
+    # Validate the package files declared by its manifest. A filesystem glob
+    # would incorrectly turn maintainer-owned FEEDBACK.md files that predate
+    # the participant PR into contributor changes and fail an otherwise valid
+    # package before its registered sources can be scored.
+    manifest_files = manifest.get("files")
+    if not isinstance(manifest_files, list) or not manifest_files:
+        return [], {"status": "failed", "message": "formal package manifest has no files list"}
+    changed_files: list[str] = []
+    for item in manifest_files:
+        if not isinstance(item, dict) or not isinstance(item.get("path"), str):
+            return [], {"status": "failed", "message": "formal package manifest has an invalid files entry"}
+        relative_path = item["path"].strip()
+        if not relative_path:
+            return [], {"status": "failed", "message": "formal package manifest has an empty file path"}
+        if relative_path == "FEEDBACK.md":
+            # This file may be listed by a maintainer after the participant PR
+            # was accepted, but it is never a participant-owned package input.
+            continue
+        changed_files.append(f"{package_rel.as_posix()}/{relative_path}")
 
     # Import lazily so ordinary advisory scoring keeps its lightweight import
     # path and the validator remains the single source of formal eligibility.
