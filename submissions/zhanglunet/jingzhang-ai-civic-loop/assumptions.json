@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.1.0",
+  "package_id": "jingzhang-ai-civic-loop",
+  "generated_at": "2026-08-07T06:46:00Z",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "category": "boundary",
+      "assumption_zh": "设计范围边界为临时粗略边界（provisional），基于公告文字四至和面积约束推断，非官方红线。",
+      "impact": "所有面积计算、用地划分和空间分析均基于此临时边界，formal提交前需获取官方红线。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-002",
+      "category": "far_control",
+      "assumption_zh": "尚未获取该片区控制性详细规划的容积率（FAR）控制指标，GFA估算基于建筑类型经验值。",
+      "impact": "estimated_gfa_sqm为粗略估算，不作为开发强度控制依据。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-003",
+      "category": "land_use",
+      "assumption_zh": "用地分类基于公开数据和国土空间分类指南推断，实际用地权属和规划用途需以官方控规为准。",
+      "impact": "land_use.geojson为设计提案性质，非法定用地分类。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-004",
+      "category": "heritage",
+      "assumption_zh": "京张铁路遗址保护范围和建控地带基于历史线位推断，具体保护边界需文物部门确认。",
+      "impact": "constraints.geojson中的遗产保护范围为建议性质。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-005",
+      "category": "transportation",
+      "assumption_zh": "道路网基于现有城市道路和公开规划信息，建议道路为设计提案。",
+      "impact": "proposed道路不作为工程可行性承诺。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-006",
+      "category": "building_height",
+      "assumption_zh": "建筑高度估算基于周边同类建筑经验值，未取得航空限高和控规高度控制。",
+      "impact": "height_estimate_m为设计参考值。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-007",
+      "category": "phasing",
+      "assumption_zh": "分期方案基于设计提案，实际建设时序需以实施计划为准。",
+      "impact": "phasing.geojson为概念性分期。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-008",
+      "category": "data_source",
+      "assumption_zh": "空间数据基于公开地理信息和OSM数据生成，未进行现场勘察。",
+      "impact": "所有geometry文件标注source_type=agent_generated_from_public_data。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-009",
+      "category": "area_calculation",
+      "assumption_zh": "面积计算采用球面近似方法，与EPSG:4548投影平面面积存在约0.1-0.3%偏差。",
+      "impact": "面积指标为近似值，不用于精确复算。",
+      "confidence": "high"
+    },
+    {
+      "id": "ASM-010",
+      "category": "water_system",
+      "assumption_zh": "小月河水系走向基于公开地图数据，实际蓝线需水务部门确认。",
+      "impact": "蓝绿网络设计需进一步对接水务规划。",
+      "confidence": "medium"
+    }
+  ]
+}
