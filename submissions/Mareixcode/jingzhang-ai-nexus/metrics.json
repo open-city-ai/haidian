@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "基于官方公告四至与约11.4平方公里控制区间在EPSG:4548下精准复算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 469480.135,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "high",
+      "assumptions": [
+        "汇总核心组团重点建筑基底面积。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.409255,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "综合京张遗址公园绿色廊道与小月河滨水带生态绿地率。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.050703,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "high",
+      "assumptions": [
+        "公共广场、慢行漫步道与开放微客厅占地比率。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved statutory FAR controls are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "涵盖众智园、AI原点社区和大钟寺三大重点片区。"
+      ]
+    }
+  }
+}
