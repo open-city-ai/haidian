@@ -18,7 +18,9 @@ jobs:
       - name: Checkout trusted base branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          # pull_request_target's github.sha is the current default-branch tip.
+          # A PR's base.sha can stay pinned to an old commit after main advances.
+          ref: ${{ github.sha }}
 
       - name: Run deterministic submission validation
         env:
