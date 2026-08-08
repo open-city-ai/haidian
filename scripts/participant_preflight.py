@@ -77,11 +77,12 @@ def file_inventory(submission_dir: Path) -> tuple[list[dict[str, Any]], int]:
     return files, total
 
 
-def check_push(repo_root: Path, branch: str) -> dict[str, Any]:
-    completed = run(["git", "push", "--dry-run", "origin", f"HEAD:refs/heads/{branch}"], repo_root)
+def check_push(repo_root: Path, branch: str, remote: str = "origin") -> dict[str, Any]:
+    command = ["git", "push", "--dry-run", remote, f"HEAD:refs/heads/{branch}"]
+    completed = run(command, repo_root)
     return {
         "ok": completed.returncode == 0,
-        "command": f"git push --dry-run origin HEAD:refs/heads/{branch}",
+        "command": " ".join(command),
         "stdout": completed.stdout.strip(),
         "stderr": completed.stderr.strip(),
     }
@@ -141,12 +142,21 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
 
     origin_url = git_output(repo_root, "remote", "get-url", "origin", allow_failure=True)
     upstream_url = git_output(repo_root, "remote", "get-url", "upstream", allow_failure=True)
-    if not origin_url:
+    push_remote_url = git_output(
+        repo_root,
+        "remote",
+        "get-url",
+        args.push_remote,
+        allow_failure=True,
+    )
+    if not origin_url and args.push_remote == "origin":
         blockers.append("origin remote is missing")
-    elif "open-city-ai/haidian" in origin_url and not args.allow_canonical_origin:
+    if not push_remote_url:
+        blockers.append(f"push remote '{args.push_remote}' is missing")
+    elif "open-city-ai/haidian" in push_remote_url and not args.allow_canonical_origin:
         warnings.append(
-            "origin points to the canonical repository; contributors without write access "
-            "should clone their fork as origin"
+            f"{args.push_remote} points to the canonical repository; contributors without "
+            "write access should select their writable fork remote"
         )
     if origin_url and "open-city-ai/haidian" not in origin_url and not upstream_url:
         warnings.append("fork workspace has no upstream remote for syncing open-city-ai/haidian")
@@ -205,10 +215,13 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
             blockers.append("submission self-check failed; repair the reported issues before pushing")
 
     push_check: dict[str, Any] | None = None
-    if args.check_push and branch and origin_url:
-        push_check = check_push(repo_root, branch)
+    if args.check_push and branch and push_remote_url:
+        push_check = check_push(repo_root, branch, args.push_remote)
         if not push_check["ok"]:
-            blockers.append("origin push dry-run failed; authenticate or use a writable fork before uploading")
+            blockers.append(
+                f"{args.push_remote} push dry-run failed; authenticate or select a writable "
+                "fork remote before uploading"
+            )
 
     return {
         "ok": not blockers,
@@ -218,6 +231,8 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         "branch": branch,
         "origin_url": origin_url,
         "upstream_url": upstream_url,
+        "push_remote": args.push_remote,
+        "push_remote_url": push_remote_url,
         "workspace": {
             "partial_clone_filter": partial_filter or None,
             "sparse_checkout": sparse,
@@ -235,7 +250,7 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         "next_commands": [
             f"git add {submission_rel}",
             f'git commit -m "Submit {parts[-1] if parts else "proposal"}"',
-            "git push -u origin HEAD",
+            f"git push -u {args.push_remote} HEAD",
             "gh pr create --repo open-city-ai/haidian --base main",
         ],
     }
@@ -269,7 +284,16 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--skip-self-check", action="store_true")
-    parser.add_argument("--check-push", action="store_true", help="Authenticate with origin using git push --dry-run")
+    parser.add_argument(
+        "--check-push",
+        action="store_true",
+        help="Authenticate with the selected push remote using git push --dry-run",
+    )
+    parser.add_argument(
+        "--push-remote",
+        default="origin",
+        help="Remote used by --check-push and the suggested upload command (default: origin)",
+    )
     parser.add_argument(
         "--allow-canonical-origin",
         action="store_true",

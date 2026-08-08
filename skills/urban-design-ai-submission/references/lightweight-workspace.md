@@ -120,4 +120,20 @@ python3 scripts/participant_preflight.py \
   --check-push
 ```
 
+Legacy checkouts may name the canonical repository `origin` and the writable
+participant fork `fork`. Keep that layout if other tooling depends on it and
+select the upload target explicitly:
+
+```bash
+python3 scripts/participant_preflight.py \
+  submissions/<github-login>/<proposal-slug> \
+  --pr-author <github-login> \
+  --check-push \
+  --push-remote fork
+```
+
+`--push-remote` controls both the dry-run authentication check and the upload
+command printed after a successful preflight. It defaults to `origin` for
+workspaces created by the current bootstrap helper.
+
 The preflight checks the branch, proposal ownership, PR file scope, GitHub's 100 MiB per-file limit, package size, partial/sparse workspace configuration, fork/upstream remotes, contributor self-check, and optional push authentication. Repair every blocker before uploading.
