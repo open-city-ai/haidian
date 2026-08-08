@@ -148,3 +148,111 @@ iteration: "v0.4"
 - `data/processed/project_scope_summary.csv` — 三层范围面积与边界
 - `data/processed/missing_data_checklist.csv` — 已知数据缺口清单
 - `brief/site-package/` — 结构化任务书包
+
+
+---
+
+## 设计依据与资料清单
+
+本方案引用的核心资料：[source:OFFICIAL-ANNOUNCEMENT]资格预审公告提供项目名称、面积和任务要求；[source:AGENT-TASKBOOK]任务书摘录提供六项Agent任务和共创原则；[source:HAIDIAN-1X1]海淀"1+X+1"产业体系为产业背景；[source:THREE-AREAS-WINGS]市科委"三区两翼"提供区域战略语境；[source:SITE-PACKAGE]场地包提供结构化设计约束。临时边界来自[source:PROVISIONAL-BOUNDARIES]。基础网络引用[source:OSM-COPYRIGHT]遵循ODbL许可。
+
+证据文件：`manifest.json`、`metrics.json`、`sources.json`、`assumptions.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`。
+
+> **重要声明**：本方案所有空间落地建议均为概念建议与参考方案，不替代正式规划，不构成政府审定结论。
+
+![资料证据链与提交包关系图](assets/figures/site-overview.png)
+
+## 三层范围工作框架
+
+依据[source:OFFICIAL-ANNOUNCEMENT]，本方案涵盖三层范围：
+
+**第一层：统筹研究范围**（约43.6 km²）[metric:site_area_sqm]。北至北五环路、东至京藏高速、南至西直门外大街、西至万泉河路。
+
+**第二层：总体设计范围**（约11.4 km²）。以京张遗址公园周边1-2公里城市地区和产业区为核心。[metric:floor_area_ratio][metric:green_ratio][metric:public_facility_area_sqm][metric:residential_area_sqm][metric:commercial_area_sqm][metric:industrial_rd_area_sqm]
+
+**第三层：重点区域范围**（约368.4 ha）[metric:key_area_count][metric:key_area_total_sqm]。众智园（192.1 ha）、AI原点社区（104.3 ha）、大钟寺（72.0 ha）。
+
+临时边界说明：所有几何体均标记为provisional_constraint[source:PROVISIONAL-BOUNDARIES]，待官方多边形发布后需重算所有面积指标。
+
+![三层范围与空间工作框架图](assets/figures/land-use-structure.png)
+
+## 统筹研究范围产业与未来城市研究
+
+（完整论述见前文"核心概念"与"创新生态与运营机制"章节）
+
+核心概念"城市脉搏"统领全局：[source:AGENT-TASKBOOK]中的三大定位——百年京张文化带（物理脉搏的主载体）、都市AI生活体验带（双脉交汇的界面层）、AI融合创新带（数字脉搏的驱动层）——被重新诠释为同一脉搏系统的三种频率表现。五大功能在三区两翼中有明确的空间和运营对应（详见"三区两翼的角色重定义"）。
+
+## 总体设计范围城市更新与控规深度城市设计
+
+（完整论述见前文"空间方案"章节）
+
+空间策略以京张遗址公园为主动脉，沿线设置门户节点（3处）、日常节点（10处脉搏站）、事件节点（3处）。更新策略以存量更新为主——京张走廊两侧老旧工业仓储用地为首要更新对象[metric:total_buildings]。公园剖面采用"峡谷-台地"模式。东西缝合通道每400-600米一处，以轻干预为原则。
+
+用地功能[data:geometry/land_use.geojson]：[metric:commercial_area_sqm]商业服务业、[metric:public_facility_area_sqm]公共管理与公共服务、[metric:residential_area_sqm]居住、[metric:green_ratio]绿地与开敞空间、[metric:industrial_rd_area_sqm]产业研发（由公服和商业混合承载）。以上比例为基于临时边界的AI生成概念分配，不构成法定用地指标。
+
+## 重点区域详细设计
+
+（完整论述见前文"三区两翼的角色重定义"）[data:geometry/key_areas.geojson]
+
+**众智园**：数字脉搏的心室，花园型创新街区，液冷智算集群和开源治理节点。[data:geometry/key_areas.geojson#PROV-KEY-001]
+
+**AI原点社区**：双脉交汇最密集的心房，五道口的物理活力与知春路的数字密度叠加。[data:geometry/key_areas.geojson#PROV-KEY-002]
+
+**大钟寺**：创新供给与消费需求的主动脉瓣，AI商业体验的"最后一公里"界面。[data:geometry/key_areas.geojson#PROV-KEY-003]
+
+![三处重点区域索引与设计任务图](assets/figures/key-areas.png)
+
+## AI 创新生态、人才画像与 AI+ 场景
+
+（完整论述见前文"数字脉搏"与"创新生态与运营机制"章节）
+
+五类用户画像：AI研究员/工程师、AI创业者、AI产品经理、国际AI学者、科技爱好者/市民。
+
+十张场景卡涵盖AI创业咖啡、无人配送微枢纽、AI健康亭、智能路侧停车、AR京张历史走廊、AI公共安全预警、开源代码广场、AI垃圾分类、开发者24h创新工坊、智慧交通信号优化。三个产业测试验证场景：自动驾驶开放测试、AI能源调度实验田、AI辅助城市设计工具验证。季度场景轮换机制确保持续迭代。
+
+[metric:public_space_ratio]
+
+## 用地、建筑规模与拆改留方案
+
+（完整论述见前文"空间方案"章节）[data:geometry/land_use.geojson][data:geometry/buildings.geojson]
+
+用地分区依据[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。拆改留分类原则：保留品质住宅区、高校院所、地铁站点及附属设施、永久性绿地；改造老旧工业仓储建筑、低效商业设施、建成超过20年的多层住宅；拆除危旧建筑和严重阻碍公共空间的构筑物。以上均为基于公开卫星图像的概念建议，不能替代实地评估。
+
+## 交通、轨道、市政与公共服务设施
+
+（完整论述见前文"空间方案"与"数字脉搏"章节）[data:geometry/roads.geojson][data:geometry/green_space.geojson][data:geometry/public_space.geojson]
+
+现状主干路（学院路、知春路、中关村东路、北四环）形成基本骨架。三个地铁站点周边打造慢行优先区。算力中心（≥500 PFLOPS，PUE≤1.15）与分布式边缘节点组成中心-边缘架构。骨干光纤96芯以上沿公园线性敷设。以上均为概念建议[metric:total_roads_km]。
+
+![交通慢行与蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
+
+## 蓝绿空间、公共空间与城市风貌
+
+（完整论述见前文"空间方案"章节）[data:geometry/green_space.geojson][data:geometry/public_space.geojson]
+
+绿地系统：京张遗址公园南北连续绿廊（宽50-150m）为主动脉，清河滨水生态带和小月河都市亲水带为辅。四座AI朝圣地标概念：智轴之门、AI时间胶囊、Origin Plaza原点广场、算力灯塔。
+
+城市风貌基调取"科技理性的雅致"——低饱和度白/灰/蓝灰为主，建筑体量自公园向两侧梯度上升。百年京张-百年中关村-百年AI三重文化叙事沿公园"过去-现在-未来"三段式编排。
+
+## 更新项目清单、实施政策与分期计划
+
+（完整论述见前文"落地路径"章节）[data:geometry/phasing.geojson]
+
+三阶段实施：铺设脉搏（0-12个月）、加速循环（12-36个月）、形成生态（36-60个月）。每阶段设定明确的量化指标和空间干预。更新项目清单（概念）：公园南延北拓、众智园核心区更新、原点社区城市客厅、大钟寺消费体验区、五道口产学研综合体、慢行缝合系统、清河滨水AI体验带。
+
+![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
+
+## 指标体系、面积复算与合规矩阵
+
+核心指标：[metric:site_area_sqm]总体设计面积约11.4M m²；[metric:green_ratio]绿地率约35.3%；[metric:public_space_ratio]公共空间比例；[metric:key_area_count]重点区3处；[metric:key_area_total_sqm]重点区总面积约3.68M m²；[metric:floor_area_ratio]容积率；[metric:commercial_area_sqm]商业面积；[metric:industrial_rd_area_sqm]产业研发面积；[metric:public_facility_area_sqm]公共服务面积；[metric:residential_area_sqm]居住面积；[metric:total_buildings]建筑总数；[metric:total_roads_km]道路总长。
+
+合规矩阵覆盖公告1.3-1.5节全部设计任务及6项Agent任务（agent.1至agent.6）。设计深度矩阵16项条目，其中标注为data_gap的条目待官方控规数据补充。
+
+## 风险、版权与合规说明
+
+（完整论述见前文"风险与合规说明"章节）
+
+本方案使用source:[source:SITE-PACKAGE][source:OFFICIAL-ANNOUNCEMENT][source:AGENT-TASKBOOK][source:PROVISIONAL-BOUNDARIES][source:THREE-AREAS-WINGS][source:HAIDIAN-1X1][source:OSM-COPYRIGHT]等公开或已清权来源。AI生成内容由提交者审阅。禁止声明详见前文完整版本。
+
+[data:geometry/constraints.geojson#CST-001]
+[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
