@@ -244,6 +244,35 @@ def next_link(link_header: str) -> str | None:
     return None
 
 
+def stale_pull_request_event_reason(
+    client: GitHubClient, issue_number: int, expected_sha: str
+) -> str | None:
+    """Return why a queued PR event must not validate its no-longer-live head."""
+    try:
+        payload, _ = client.request(
+            "GET", f"/repos/{client.repository}/pulls/{issue_number}"
+        )
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            return f"PR #{issue_number} no longer exists"
+        raise
+    if not isinstance(payload, dict):
+        raise RuntimeError("GitHub pull request response was not an object")
+    if payload.get("state") != "open":
+        return f"PR #{issue_number} is no longer open"
+    if payload.get("draft") is True:
+        return f"PR #{issue_number} is now a draft"
+    head = payload.get("head")
+    if not isinstance(head, dict) or not isinstance(head.get("sha"), str):
+        raise RuntimeError("GitHub pull request response did not include head.sha")
+    if head["sha"] != expected_sha:
+        return (
+            f"PR #{issue_number} head advanced from {expected_sha[:12]} "
+            f"to {head['sha'][:12]}"
+        )
+    return None
+
+
 def proposal_paths_for(changed_files: list[str]) -> set[str]:
     proposals = set()
     for filename in changed_files:
@@ -364,10 +393,15 @@ def main() -> int:
 
     pr_number = int(pull_request["number"])
     pr_author = pull_request["user"]["login"]
-    head_repo = pull_request["head"]["repo"]["full_name"]
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
 
+    stale_reason = stale_pull_request_event_reason(client, pr_number, head_sha)
+    if stale_reason:
+        print(f"Skipping stale validation event: {stale_reason}")
+        return 0
+
+    head_repo = pull_request["head"]["repo"]["full_name"]
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
     changed_files = [item["filename"] for item in files]
     bypass = [
@@ -420,6 +454,11 @@ def main() -> int:
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)
+
+        stale_reason = stale_pull_request_event_reason(client, pr_number, head_sha)
+        if stale_reason:
+            print(f"Skipping stale validation side effects: {stale_reason}")
+            return 0
 
         comment = (
             f"{COMMENT_MARKER}\n"
