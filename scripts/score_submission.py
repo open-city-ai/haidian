@@ -234,6 +234,19 @@ def reference_lines(reference_section: str) -> list[str]:
         if line.startswith("- "):
             value = line[2:].strip()
             if value:
+                # Structured package anchors are evidence pointers, not
+                # public-source citations. Keep a line when it also names a
+                # [source:...] record, but do not turn data/metric/standard/
+                # depth anchors into false public-source needs-work findings.
+                if (
+                    not re.search(r"\[source:\s*[^\]]+\]", value, re.IGNORECASE)
+                    and re.search(
+                        r"\[(?:standard|depth|data|metric):\s*[^\]]+\]",
+                        value,
+                        re.IGNORECASE,
+                    )
+                ):
+                    continue
                 lines.append(value)
     return lines
 
@@ -316,12 +329,56 @@ def package_source_is_eligible(repo_root: Path, source: Any) -> bool:
     if not https_urls and not any(valid_package_path(repo_root, path) for path in local_paths):
         return False
 
-    source_kind = " ".join(
+    source_class_text = " ".join(
         value
-        for field_name in ("source_type", "source_kind")
+        for field_name in (
+            "source_type",
+            "source_kind",
+        )
         for value in string_values(source.get(field_name))
-    ).lower()
-    if any(marker in source_kind for marker in ("provisional", "inferred", "private", "internal")):
+    ).lower().replace("-", "_").replace(" ", "_")
+    if any(
+        marker in source_class_text
+        for marker in (
+            "provisional",
+            "inferred",
+            "agent_generated",
+            "agent_inferred",
+            "private",
+            "internal",
+            "needs_review",
+            "restricted",
+            "background_only",
+            "provisional_only",
+            "not_for_formal",
+        )
+    ):
+        return False
+    usage_text = " ".join(
+        value
+        for field_name in ("usage", "usage_note", "use_boundary")
+        for value in string_values(source.get(field_name))
+    ).lower().replace("-", "_").replace(" ", "_")
+    if "does_not_upgrade_provisional" not in usage_text and "provisional" in usage_text and any(
+        marker in usage_text for marker in ("boundary", "geometry", "source", "only")
+    ):
+        return False
+    if any(marker in usage_text for marker in ("needs_review", "restricted", "private", "internal")):
+        return False
+    disabled_use_text = " ".join(
+        value
+        for field_name in ("not_usable_for", "disabled_uses")
+        for value in string_values(source.get(field_name))
+    ).lower().replace("-", "_").replace(" ", "_")
+    if any(
+        marker in disabled_use_text
+        for marker in (
+            "formal",
+            "official_boundary",
+            "official_redline",
+            "statutory_control",
+        )
+    ):
         return False
 
     for field_name in (

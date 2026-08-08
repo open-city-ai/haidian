@@ -129,6 +129,22 @@ class ScoreSubmissionTests(unittest.TestCase):
             self.assertEqual(checks["公开资料引用"], STATUS_PASS)
             self.assertEqual({item.id for item in report.matched_sources}, {"brief-public-brief", "brief-public-boundary"})
 
+    def test_structured_evidence_anchor_is_not_public_source_unmatched(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            body = VALID_BODY + (
+                "\n- [standard:PROJECT-STANDARD]\n"
+                "- [depth:metrics_recalculation] [data:geometry/site_boundary.geojson#SITE-001] "
+                "[metric:site_area_sqm]\n"
+            )
+            proposal = self.write_proposal(root, body)
+
+            report = score_proposal(root, proposal)
+
+            self.assertEqual(self.check_map(report)["公开资料引用"], STATUS_PASS)
+            self.assertEqual(report.unmatched_reference_lines, [])
+
     def test_missing_required_section_is_reported(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -292,6 +308,59 @@ class ScoreSubmissionTests(unittest.TestCase):
                         "path": "brief/provisional-map.geojson",
                         "source_kind": "provisional_repository_data",
                         "usage": "Temporary design geometry only.",
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
+            self.assertEqual(report.registered_external_or_package_sources, [])
+
+    def test_inferred_boundary_source_type_remains_unresolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:inferred-boundary]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "inferred-boundary",
+                        "path": "brief/inferred-boundary.geojson",
+                        "source_type": "agent_inferred_from_public_data",
+                        "usage": "Submitted site boundary geometry source (provisional); not an official redline.",
+                    }
+                ],
+            )
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
+            self.assertEqual(report.registered_external_or_package_sources, [])
+
+    def test_source_disabled_for_formal_use_remains_unresolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:background-map]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_sources(
+                root,
+                [
+                    {
+                        "id": "background-map",
+                        "url": "https://example.org/map",
+                        "source_type": "official_public",
+                        "usage": "Public context only.",
+                        "not_usable_for": ["formal review", "official boundary"],
                     }
                 ],
             )
