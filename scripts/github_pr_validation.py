@@ -14,6 +14,7 @@ import os
 import shutil
 import sys
 import tempfile
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -25,6 +26,8 @@ from validate_submission import ValidationReport, format_report, validate_submis
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+RETRYABLE_CODES = {403, 429, 500, 502, 503, 504}
+RETRY_MAX_ATTEMPTS = 3
 
 
 class GitHubClient:
@@ -47,10 +50,26 @@ class GitHubClient:
                 "X-GitHub-Api-Version": "2022-11-28",
             },
         )
-        with urllib.request.urlopen(request, timeout=60) as response:
-            raw = response.read().decode("utf-8")
-            parsed = json.loads(raw) if raw else None
-            return parsed, dict(response.headers.items())
+        # GET requests are idempotent; retry transient API denials (rate limits,
+        # intermittent 403s seen on pull_request_target) with exponential backoff.
+        # Writes (POST/PATCH/DELETE) are never retried to avoid duplicate side effects.
+        attempt = 0
+        while True:
+            try:
+                with urllib.request.urlopen(request, timeout=60) as response:
+                    raw = response.read().decode("utf-8")
+                    parsed = json.loads(raw) if raw else None
+                    return parsed, dict(response.headers.items())
+            except urllib.error.HTTPError as exc:
+                retryable = method == "GET" and exc.code in RETRYABLE_CODES
+                if not retryable or attempt >= RETRY_MAX_ATTEMPTS:
+                    raise
+                attempt += 1
+                delay = min(2**attempt, 8)
+                retry_after = exc.headers.get("Retry-After") if exc.headers else None
+                if retry_after and retry_after.isdigit():
+                    delay = max(delay, min(int(retry_after), 30))
+                time.sleep(delay)
 
     def paginate(self, path: str) -> list[dict]:
         url = f"{API_ROOT}{path}"
