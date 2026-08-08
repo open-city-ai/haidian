@@ -175,6 +175,17 @@ class GitHubApiResilienceTests(unittest.TestCase):
         self.assertIn("unable to publish validation comment", stderr.getvalue())
         self.assertIn("HTTP 422", stderr.getvalue())
 
+    def test_comment_network_failure_does_not_raise(self) -> None:
+        class OfflineCommentClient:
+            def upsert_comment(self, issue_number: int, body: str) -> None:
+                raise urllib.error.URLError("connection reset")
+
+        stderr = io.StringIO()
+        with redirect_stderr(stderr):
+            publish_validation_comment(OfflineCommentClient(), 624, "report")
+        self.assertIn("unable to publish validation comment", stderr.getvalue())
+        self.assertIn("connection reset", stderr.getvalue())
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:
