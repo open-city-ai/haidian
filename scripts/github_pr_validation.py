@@ -187,8 +187,24 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
 
 
 def has_submission_changes(changed_files: list[str]) -> bool:
-    """Return true when a PR touches the participant submission namespace."""
-    return any(filename.startswith("submissions/") for filename in changed_files)
+    """Return true when a PR touches or clearly attempts a submission package.
+
+    A misplaced package can contain no ``submissions/`` path at all. Requiring
+    both canonical anchors in the same directory identifies that submission
+    intent without classifying ordinary project-file changes as submissions.
+    """
+    if any(filename.startswith("submissions/") for filename in changed_files):
+        return True
+    anchors_by_parent: dict[PurePosixPath, set[str]] = {}
+    for filename in changed_files:
+        path = PurePosixPath(filename)
+        if path.name not in {"proposal.md", "manifest.json"}:
+            continue
+        anchors_by_parent.setdefault(path.parent, set()).add(path.name)
+    return any(
+        {"proposal.md", "manifest.json"} <= anchors
+        for anchors in anchors_by_parent.values()
+    )
 
 
 def sync_draft_review_labels(client: GitHubClient, pr_number: int, is_draft: bool) -> bool:

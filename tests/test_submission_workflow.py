@@ -189,6 +189,18 @@ class ManifestHydrationTests(unittest.TestCase):
         self.assertFalse(is_review_queue_candidate(files, "different-author"))
         self.assertFalse(has_submission_changes(["README.md", "scripts/check.py"]))
 
+    def test_misplaced_submission_package_still_counts_for_failure_labeling(self) -> None:
+        files = ["proposal.md", "manifest.json", "assets/figures/site-overview.png"]
+        self.assertTrue(has_submission_changes(files))
+        self.assertFalse(is_review_queue_candidate(files, "alice"))
+
+    def test_single_project_anchor_does_not_imply_submission_intent(self) -> None:
+        self.assertFalse(has_submission_changes(["docs/proposal.md", "scripts/check.py"]))
+        self.assertFalse(has_submission_changes(["manifest.json", "README.md"]))
+
+    def test_misplaced_submission_anchors_must_share_a_directory(self) -> None:
+        self.assertFalse(has_submission_changes(["docs/proposal.md", "examples/manifest.json"]))
+
     def test_local_full_package_check_ignores_existing_maintainer_feedback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
