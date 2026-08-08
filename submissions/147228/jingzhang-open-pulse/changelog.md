@@ -1,5 +1,10 @@
 # 方案迭代记录
 
+## v3.2 provenance cleanup - 2026-08-09
+
+- Responding to #706, remove the unresolved peer-derived Relay Receipt schema and S02 fixture; attribution is not treated as adaptation permission.
+- Replace them with an independently designed Open Pulse bounded test-window record and synchronize the package's narrative, rights ledger, risk evidence, and manifest references.
+
 ## v3.0 - 2026-08-09
 
 - 针对 v2.9 Review Agent 89/100 暴露的首屏空间表达不足，重绘固定评审入口的五张核心图：总体结构、完整用地、三处智证站、慢行/蓝绿/具身智能和指标/构件合同；每张图都绑定当前 GeoJSON、metrics 与状态边界。
