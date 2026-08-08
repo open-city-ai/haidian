@@ -1,13 +1,14 @@
 ---
 title: "京张万象工场｜文化生产驱动的AI城市采用带"
-title_en: "JING-ZHANG CIVIC FOUNDRY｜A CULTURAL PRODUCTION BELT FOR CIVIC AI ADOPTION"
+title_en: "JING-ZHANG CIVIC FOUNDRY | A CULTURAL PRODUCTION BELT FOR CIVIC AI ADOPTION"
 author_github: "kingyfleo"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-SA-4.0"
 summary: "以文化生产为中介，解决AI从技术能力走向城市意义、公众信任和持续采用的问题；以城市委托生产链连接AI原点共同作者工场、众智园安全验证院与大钟寺城市首发场，形成可复用文化内容包、可部署公共体验模块和可持续城市服务。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.0"
+iteration: "v2.1"
 ---
 
 # 京张万象工场｜文化生产驱动的AI城市采用带

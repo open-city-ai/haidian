@@ -30,7 +30,10 @@ MAX_API_ATTEMPTS = 4
 MAX_DOWNLOAD_BYTES = 10 * 1024 * 1024
 MAX_RETRY_DELAY_SECONDS = 30
 RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
-RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
+# A fork's Contents API can briefly lag the PR event's head commit. Keep 404
+# retries bounded and limited to GETs; a permanent missing file still fails
+# with the path and head-specific download error after the retry budget.
+RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -80,6 +83,15 @@ def _retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> float:
         except ValueError:
             pass
     return min(MAX_RETRY_DELAY_SECONDS, float(2**attempt))
+
+
+def _is_download_not_found(error: Exception, path: str) -> bool:
+    """Recognize an optional manifest asset that is still absent after retries."""
+    if isinstance(error, urllib.error.HTTPError):
+        return error.code == 404
+    return isinstance(error, RuntimeError) and str(error).startswith(
+        f"GitHub API download {path} failed with HTTP 404:"
+    )
 
 
 class GitHubClient:
@@ -161,8 +173,6 @@ class GitHubClient:
                     break
             except urllib.error.HTTPError as error:
                 message = _http_error_message(error)
-                if error.code == 404:
-                    raise
                 if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
                     "GET", error, message
                 ):
@@ -244,11 +254,11 @@ def proposal_paths_for(changed_files: list[str]) -> set[str]:
 
 
 def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str]:
-    """Exclude maintainer-authorized removals from content validation."""
+    """Return paths present in the PR checkout for content validation."""
     return [
         item["filename"]
         for item in files
-        if not (maintainer_bypass and item.get("status") == "removed")
+        if item.get("status") != "removed"
     ]
 
 
@@ -327,8 +337,8 @@ def hydrate_proposal_package(
                 head_sha,
                 destination,
             )
-        except urllib.error.HTTPError as exc:
-            if exc.code != 404:
+        except (urllib.error.HTTPError, RuntimeError) as exc:
+            if not _is_download_not_found(exc, f"{proposal_dir}/{relative}"):
                 raise
 
 
@@ -394,14 +404,19 @@ def main() -> int:
             validation.add_warning(
                 "non-submission code/docs/test PR; participant package validation was not applicable"
             )
-        elif not validation_files and maintainer_bypass:
+        elif not validation_files and (maintainer_bypass or queue_candidate):
             validation = ValidationReport(
                 changed_files=changed_files,
-                maintainer_bypass=True,
+                maintainer_bypass=maintainer_bypass,
             )
-            validation.add_warning(
-                "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
-            )
+            if maintainer_bypass:
+                validation.add_warning(
+                    "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
+                )
+            else:
+                validation.add_warning(
+                    "participant deletion-only PR; removed files were not content-validated"
+                )
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)

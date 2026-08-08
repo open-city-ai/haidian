@@ -2,13 +2,14 @@ import sys
 import tempfile
 import unittest
 import json
+import os
 import subprocess
 import hashlib
 import io
 import re
 import urllib.error
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import MagicMock, patch
 
 import jsonschema
 
@@ -31,6 +32,7 @@ from github_pr_validation import (  # noqa: E402
     _is_retryable_http_error,
     is_non_submission_pr,
     is_review_queue_candidate,
+    main,
     safe_manifest_paths,
     validation_paths_for,
 )
@@ -117,6 +119,36 @@ class GitHubApiResilienceTests(unittest.TestCase):
         self.assertEqual(1, urlopen.call_count)
         sleep.assert_not_called()
 
+    def test_download_404_retries_then_succeeds(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        not_found = self._error(404, b'{"message":"Not Found"}')
+        with tempfile.TemporaryDirectory() as temp_dir, patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[not_found, _Response(b"payload")],
+        ), patch("github_pr_validation.time.sleep") as sleep:
+            destination = Path(temp_dir) / "asset.bin"
+            client.download_content("fork/repo", "asset.bin", "head-sha", destination)
+            self.assertEqual(b"payload", destination.read_bytes())
+        sleep.assert_called_once_with(1.0)
+
+    def test_download_404_exhaustion_reports_path(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        errors = [self._error(404, b'{"message":"Not Found"}') for _ in range(4)]
+        with tempfile.TemporaryDirectory() as temp_dir, patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=errors,
+        ), patch("github_pr_validation.time.sleep"):
+            with self.assertRaisesRegex(
+                RuntimeError,
+                r"GitHub API download submissions/alice/design/asset.bin failed with HTTP 404",
+            ):
+                client.download_content(
+                    "fork/repo",
+                    "submissions/alice/design/asset.bin",
+                    "head-sha",
+                    Path(temp_dir) / "asset.bin",
+                )
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:
@@ -192,12 +224,39 @@ class ManifestHydrationTests(unittest.TestCase):
         ]
         self.assertEqual(["docs/note.md"], validation_paths_for(files, True))
 
-    def test_participant_removals_remain_in_validation_scope(self) -> None:
+    def test_removed_paths_are_excluded_from_validation_scope(self) -> None:
         files = [{"filename": "submissions/alice/design/proposal.md", "status": "removed"}]
-        self.assertEqual(
-            ["submissions/alice/design/proposal.md"],
-            validation_paths_for(files, False),
-        )
+        self.assertEqual([], validation_paths_for(files, False))
+
+    def test_participant_deletion_only_pr_is_warning_not_missing_file_failure(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 647,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/alice/design/obsolete.png", "status": "removed"}
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.download_content.assert_not_called()
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("participant deletion-only PR", comment)
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(

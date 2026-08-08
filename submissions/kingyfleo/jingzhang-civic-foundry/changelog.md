@@ -19,3 +19,10 @@
 - 明确四项不可购买权利与有界品牌合作，避免公共空间、遗产和个人数据被商业化吞噬。
 - 生成五张原创方案图、离线展示、A3文册、A0展板、九类GeoJSON和全套可追溯矩阵。
 - 目录和作者身份更新为GitHub账号 kingyfleo；边界与重点区仍为临时粗略范围。
+
+## v2.1 - Complete bilingual review package
+
+- Added a complete standalone English proposal and linked it from the Chinese primary file.
+- Added five English evidence figures, an English offline visual, a 14-page English A3 booklet, and four English A0 boards.
+- Preserved provisional geometry as `official_boundary=false`; no official planning boundary is claimed.
+- Re-rendered all bilingual human-readable artifacts and refreshed formal-package hashes and checks.

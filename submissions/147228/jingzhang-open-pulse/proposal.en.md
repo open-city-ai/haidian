@@ -5,7 +5,7 @@ author_github: "147228"
 author_name: "许丙南"
 language: "en"
 translation_of: "proposal.md"
-iteration: "v2.6"
+iteration: "v2.7"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An evidence-led urban design proposal that turns the century-old railway corridor into a reversible, human-first and auditable AI innovation public belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -14,23 +14,25 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 # Jing-Zhang Open Pulse: A Verifiable AI Innovation Public Belt
 
-> **One-page conclusion:** Turn the century-old railway's track, nodes and mile logic into a public AI belt organized as public question → bounded window → human review → evidence return → scale/redesign/retire. The package has passed its local package gates and entered repository intake; provisional geometry, field baselines, resident consultation and public pilots remain respectively `provisional`, `unknown` or `not_started`. This is not a statutory plan, engineering approval, procurement, budget, award or government endorsement.
+> **v2.7 design declaration:** Jing-Zhang does not treat AI as a set of glowing objects. It treats AI as a public protocol in which people come before models, evidence comes before scale, and an ordinary route always remains available. The railway's track, stations and mile markers become a six-part civic loop: question, permission, bounded test, human decision, public receipt, then scale/repair/retire.
 
-## One-page Execution Brief
+## One-page civic operating system
 
-| Review question | Jing-Zhang Open Pulse answer | Reviewable outputs |
-| --- | --- | --- |
-| Core proposition | AI is not a device count; it is a visible, challengeable, withdrawable and reviewable civic process, with human service before model service | 14-row scenario–space–operation matrix, relay receipt and public state board |
-| Spatial response | One belt, three nodes and two service wings with a blue-green walking loop; Zhongzhi Garden, AI Origin Community and Dazhongsi carry different public capabilities | 9 GeoJSON layers, bilingual figures, A3/A0, offline HTML and visual indexes |
-| Implementation start | Lock official/ownership evidence, build a passive mock-up, coordinate wind/heat/water/lifelines, run a staffed time-limited window, then publish retain/redesign/retire | 8 operations packages, 5 construction-readiness gates and 5 resource accounts |
-| Public value | Older people, disabled users, carers, night workers, visitors, developers and maintenance crews have paper/staffed/no-app routes; group harm cannot be hidden by an average | 8 public-user lenses, 7 participation lenses and public-interest audit |
-| Evidence state | Structured geometry and historical series are reproducible; wind, heat, air, blue-green access, water risk, accessibility and resident experience stay `unknown` without field evidence | metrics, assumptions, wind-health protocols and risk register |
-| Decision boundary | S4 is a low-regret model candidate, not a field promise that every metric is 90+; every expansion re-enters professional, rights, safety, maintenance and public-interest gates | 50,000 draws, risk register, construction/participation logs and full clearance ledger |
+| Civic loop | Spatial move | What AI may do | Human and ordinary route | Stop when |
+| --- | --- | --- | --- | --- |
+| 1 Question | Public issue wall, open publishing room and paper entry points | Organise questions and surface evidence gaps | Staffed intake, paper, phone and walk-in routes | Source, owner or privacy boundary is unclear |
+| 2 Permission | Status boards and booking gates at the three stations | Show minimum data, boundary, duration and owner | Staff explanation, refusal and withdrawal | Rights, accessibility, fire, privacy or maintenance gate is absent |
+| 3 Bounded test | Safety Garden, Transfer Street and City Experience Segment | Explain or assist inside a sandbox; low-speed sensing only | Static wayfinding, paper maps and staffed service remain | Stop/takeover fails, ordinary route is blocked, or climate/water gate is unknown |
+| 4 Human decision | Accountable desks and quiet review rooms | Produce traceable advice, never a statutory or professional decision | Two independent reviewers, correction and appeal | Evidence is not reproducible or responsibility is broken |
+| 5 Receipt | Public receipt wall, contribution archive and bilingual offline page | Version receipts, failures and reusable components | Contributor can be credited, anonymous or withdrawn | Rights, limitations, deletion or retention is unresolved |
+| 6 Scale/repair/retire | Reversible components, maintenance ledger and seasonal review point | Compare scale-up, redesign, ordinary fallback or retirement | Staffed maintenance, passive mode, paper service and manual close-down | Maintenance, climate/rule change, incident or complaint loop is unresolved |
 
-**Author: 许丙南.** This is a revisable concept for professional, operational, public and maintenance review. Repository intake, Review Agent scores and local self-checks are not award selection, publication, implementation or government approval.
+The three key areas are intentionally different: Zhongzhi Garden is a **trusted testing garden** for models, embodied systems, energy and climate gates; AI Origin Community is an **open transfer street** for results, rights, learning and talent life; Dazhongsi is a **city experience room** for station walking, public services, culture and quiet daily use. The five call functions map to five accountable chains—autonomous assurance, innovation ecology, scenario enablement, active public space and governance voice—while agent.1–agent.6 are carried by the overall structure, ecosystem map, scenario protocol, public-space/landmark system, cultural wayfinding and annual operating system.[source:AGENT-TASKBOOK] [data:visual/assets/civic-pulse-protocol.json#CIVIC-PULSE]
+
+This is not an approved digital-city project. Its value is a common handoff surface: who asked, where, what minimum data, who is present, what ordinary alternative exists, when to stop, who maintains it and how the result returns to the public. `civic-pulse-protocol.json` is the machine-readable handoff; `risk.json`, `construction-readiness.json` and `participation-cycle.json` are its release ledgers. The protocol currently contains [metric:civic_pulse_stage_count] stages and [metric:civic_pulse_station_count] differentiated stations; the risk ledger contains [metric:risk_class_count] dimensions.
 
 **Author:** 许丙南 / GitHub `147228`  
-**Review copy:** English translation of `proposal.md`, v2.6
+**Review copy:** English translation of `proposal.md`, v2.7
 **Status:** formal submission package; all new spatial interfaces remain provisional concepts until official polygons, professional safety review and community review are available.
 
 ## Design Basis and Source List
@@ -38,13 +40,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 This proposal follows the official open-call announcement, the repository site package and the agent taskbook. The machine-readable evidence chain is registered in `sources.json`, `standard_matrix.json`, `design_depth_matrix.json`, `compliance_matrix.json`, and `visual/assets/evidence-ledger.json`. The most important source IDs are `[source:OFFICIAL-ANNOUNCEMENT]`, `[source:AGENT-TASKBOOK]`, `[source:SITE-PACKAGE]`, `[source:SOURCE-REGISTRY]`, `[source:PROCESSED-FACT-PACK]`, `[source:BOUNDARY-SOURCE]`, and `[source:KEY-AREA-SOURCE]`.
 
 The package uses the repository's maintained provisional geometry where official boundary polygons are not available. `geometry/site_boundary.geojson` and `geometry/key_areas.geojson` therefore remain `official_boundary=false` and `provisional_constraint`. They are suitable for design discussion, visualisation and self-checking, but not for a statutory red line, approval, precise land-area claim or government commitment. When official polygons arrive, all land use, roads, buildings, green space, public space, phasing and metrics must be recalculated.
-
-### Generation and Review Method
-
-1. **Read task and evidence boundaries first.** The announcement, agent taskbook, site package, source registry, maintained standards and missing-data checklist define the allowed evidence. Unregistered web pages, maps, personal data, enterprise material and remote runtime assets do not enter the package.
-2. **Generate space and metrics second.** One provisional geometry set derives land use, buildings, roads, green space, public space and phasing; areas and lengths are recalculated in EPSG:4548. Computable values enter `metrics.json`; unsupported values remain `unknown` and are never inferred from a render.
-3. **Run state experiments third.** S0–S4, five weighting profiles, eight stresses and 50,000 fixed-seed draws compare low regret. Offline, unpowered, emergency-stop, capacity-reduction, overdue-maintenance, post-rain recovery and retirement states are triggers, not forecasts.
-4. **Review the handoff last.** Every scenario returns to RACI, SLA, minimum data, non-AI equivalent, stop condition, maintenance and rights record. Reports, visual indexes, manifest, clearance ledger and local gates are refreshed together; field survey, public participation, professional sign-off and statutory process remain external next-stage evidence.
 
 ## Three-Level Scope Framework
 
@@ -238,8 +233,6 @@ Once official polygons replace the provisional geometry, the package must rerun 
 
 ## Risk, Copyright, and Compliance
 
-`risk.json` registers eight validated risk dimensions [metric:risk_class_count]—policy/climate/rule uncertainty; wind/heat/air and embodied intelligence; drainage and implementation; equity/inclusion; privacy and rights; event acceptance; operations cost; and spatial interfaces—with state, trigger, evidence, mitigation, stop condition and accountable role. It is a release-gate register, not a safety case, engineering calculation, insurance document or approval.
-
 The package includes a path-level `visual/assets/copyright-ledger.json` and an expanded `report/copyright_statement.md`. Text, geometry, diagrams, offline HTML and figures are authored or derived in this worktree by 许丙南 / Codex. Official public data retain their source attribution. No third-party images, maps or remote runtime assets are embedded; local system fonts are used only for rendering and are not redistributed. The identity mark is a concept direction, not a registered trademark.
 
 The rights ledger records authorship, source inputs, license scope, hashes and review limits for each asset. It is not a legal opinion. Any future team member adding an image, font, map, logo, data extract or event content must add a source, permission and hash before publication. Historical interpretation is expressed with text and self-generated diagrams unless a rights-cleared source is explicitly registered.
@@ -278,10 +271,6 @@ The implementation handoff is deliberately inspectable: `operations-matrix.json`
 The package now separates “ready to discuss” from “ready to build or open”. `visual/assets/construction-readiness.json` applies five gates: evidence/site lock; a public-route and passive-component mock-up; wind, heat, water and lifeline coordination; a bounded, staffed and time-limited window; and a public retain/redesign/retire decision [metric:construction_readiness_gate_count]. Each gate names entry evidence, outputs, pass and stop conditions, an ordinary non-AI baseline and a maintenance response. It explicitly rejects construction drawings, statutory plans, procurement specifications, cost estimates and implementation approval.
 
 `visual/assets/participation-cycle.json` makes the return pass inspectable: synchronize inputs, reread changed requirements, compare peers, validate the package, publish a bounded review draft, establish field and public baselines, run a staffed window, return negative and distributional evidence, then retain, redesign or retire. Seven participant lenses [metric:participation_lens_count] have paper, staffed, multilingual or no-app routes. The current package records repository sync, local validation and peer comparison as known review activities, while field baseline, resident consultation and public pilot remain `unknown` or `not_started`; no consent, microclimate result or health outcome is inferred.
-
-![Construction gates and participation state](assets/figures/construction-participation.en.png)
-
-This fixed evidence figure puts the five gates and the participation state on one review surface: `known` is limited to repository sync, local validation and peer comparison; field baseline, resident consultation and public pilot remain `unknown` / `not_started`. It is a visual index of the JSON records, not a construction drawing, permit, resident-consent record or field-performance result.
 
 ## v1.8 Reviewer-Visible Evidence Layer
 
