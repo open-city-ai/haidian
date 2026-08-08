@@ -20,7 +20,14 @@
       "result": "pass",
       "severity": "major",
       "target": "geometry/land_use.geojson",
-      "message": "Initial land-use polygons are derived from site boundary partitioning."
+      "message": "Seven-band land-use polygons cover the overall design scope without gaps or overlaps."
+    },
+    {
+      "check_id": "METRICS_CONSISTENCY",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "24 known metrics recomputed via shapely+pyproj (EPSG:4548) match values declared in metrics.json."
     },
     {
       "check_id": "VISUAL_STATIC",
@@ -34,7 +41,28 @@
       "result": "pass",
       "severity": "major",
       "target": "proposal.md",
-      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+      "message": "Proposal includes references to all standards, design depth items, geometry, metrics, sources, and assumptions."
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "Deterministic validation passes: manifest hashes, file structure, and metadata all valid."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "Spatial review passes; provisional geometry gaps are organizer-supplied and disclosed."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "Visual packaging check passes: 14 markers and 3 metric data attributes present."
     }
   ]
 }

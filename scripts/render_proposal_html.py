@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
-"""Render a submission proposal.md into an offline readable HTML report."""
+"""Render a submission proposal.md into an offline readable HTML report.
+
+Supports GFM-style tables, ATX headings, ordered/unordered lists, code spans,
+image figures, and machine-readable evidence references.
+"""
 
 from __future__ import annotations
 
@@ -8,10 +12,17 @@ import html
 import re
 from pathlib import Path, PurePosixPath
 
+try:
+    import markdown as md_lib
+except ImportError:  # pragma: no cover
+    md_lib = None
+
 
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
+TABLE_ROW_RE = re.compile(r"^\|(.+)\|\s*$")
+TABLE_SEPARATOR_RE = re.compile(r"^\|?[\s:]*-{3,}[\s:|-]*\|?\s*$")
 
 
 def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -44,7 +55,10 @@ def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
 
 
 def render_inline(text: str) -> str:
+    """Render inline markdown: escape HTML, restore code spans and evidence refs."""
     escaped = html.escape(text)
+    # Restore inline code (escaped backticks become part of text, handle before escaping issues)
+    # Since html.escape doesn't touch backticks, INLINE_CODE_RE still works on escaped text.
     escaped = INLINE_CODE_RE.sub(lambda m: f"<code>{html.escape(m.group(1))}</code>", escaped)
 
     def replace_ref(match: re.Match[str]) -> str:
@@ -55,10 +69,43 @@ def render_inline(text: str) -> str:
     return REFERENCE_RE.sub(replace_ref, escaped)
 
 
+def render_table(rows: list[str]) -> str:
+    """Render a GFM table block to HTML."""
+    lines: list[str] = []
+    parsed_rows: list[list[str]] = []
+    for row in rows:
+        m = TABLE_ROW_RE.match(row)
+        if m:
+            cells = [c.strip() for c in m.group(1).split("|")]
+            parsed_rows.append(cells)
+    if len(parsed_rows) < 2:
+        return "\n".join(f"<p>{render_inline(r)}</p>" for r in rows)
+
+    header = parsed_rows[0]
+    body_rows = parsed_rows[2:]  # skip separator row at index 1
+
+    lines.append('<table class="proposal-table">')
+    lines.append("<thead><tr>")
+    for cell in header:
+        lines.append(f"<th>{render_inline(cell)}</th>")
+    lines.append("</tr></thead>")
+    lines.append("<tbody>")
+    for row in body_rows:
+        lines.append("<tr>")
+        for cell in row:
+            lines.append(f"<td>{render_inline(cell)}</td>")
+        lines.append("</tr>")
+    lines.append("</tbody></table>")
+    return "\n".join(lines)
+
+
 def render_markdown_body(submission_dir: Path, markdown: str) -> str:
     blocks: list[str] = []
     paragraph: list[str] = []
-    in_list = False
+    ol_counter = 0
+    ul_open = False
+    ol_open = False
+    table_lines: list[str] = []
 
     def flush_paragraph() -> None:
         nonlocal paragraph
@@ -67,13 +114,38 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             paragraph = []
 
     def close_list() -> None:
-        nonlocal in_list
-        if in_list:
+        nonlocal ul_open, ol_open, ol_counter
+        if ul_open:
             blocks.append("</ul>")
-            in_list = False
+            ul_open = False
+        if ol_open:
+            blocks.append("</ol>")
+            ol_open = False
+            ol_counter = 0
+
+    def flush_table() -> None:
+        nonlocal table_lines
+        if table_lines:
+            blocks.append(render_table(table_lines))
+            table_lines = []
 
     for raw_line in markdown.splitlines():
         line = raw_line.rstrip()
+
+        # Table detection: a line starting with | and the next line is a separator
+        if TABLE_ROW_RE.match(line):
+            flush_paragraph()
+            close_list()
+            table_lines.append(line)
+            continue
+        if table_lines:
+            # If we were collecting table lines and this line is a separator or another table row, keep collecting
+            if TABLE_SEPARATOR_RE.match(line) or TABLE_ROW_RE.match(line):
+                table_lines.append(line)
+                continue
+            # Otherwise flush the table
+            flush_table()
+
         if not line.strip():
             flush_paragraph()
             close_list()
@@ -101,11 +173,30 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             blocks.append(f"<h{level}>{render_inline(title)}</h{level}>")
             continue
 
+        # Ordered list: "1. text"
+        ol_match = re.match(r"^(\d+)\.\s+(.*)", line)
+        if ol_match:
+            flush_paragraph()
+            if ul_open:
+                blocks.append("</ul>")
+                ul_open = False
+            if not ol_open:
+                blocks.append("<ol>")
+                ol_open = True
+                ol_counter = 0
+            ol_counter += 1
+            blocks.append(f"<li>{render_inline(ol_match.group(2).strip())}</li>")
+            continue
+
         if line.startswith("- "):
             flush_paragraph()
-            if not in_list:
+            if ol_open:
+                blocks.append("</ol>")
+                ol_open = False
+                ol_counter = 0
+            if not ul_open:
                 blocks.append("<ul>")
-                in_list = True
+                ul_open = True
             blocks.append(f"<li>{render_inline(line[2:].strip())}</li>")
             continue
 
@@ -113,6 +204,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
 
     flush_paragraph()
     close_list()
+    flush_table()
     return "\n".join(blocks)
 
 
@@ -173,7 +265,9 @@ main {{
 h1 {{ font-size: 34px; line-height: 1.22; margin: 0 0 10px; }}
 h2 {{ font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }}
 h3 {{ font-size: 20px; margin: 26px 0 10px; }}
+h4 {{ font-size: 17px; margin: 22px 0 8px; }}
 p, li {{ font-size: 16px; }}
+ul, ol {{ padding-left: 1.6em; }}
 code {{
   background: #eef2f7;
   color: #1d4f7a;
@@ -199,6 +293,35 @@ code {{
   border-top: 1px solid var(--line);
   font-size: 14px;
 }}
+.proposal-table {{
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0 26px;
+  font-size: 15px;
+  box-shadow: 0 1px 0 var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}}
+.proposal-table thead {{
+  background: #eef3f9;
+}}
+.proposal-table th, .proposal-table td {{
+  border: 1px solid var(--line);
+  padding: 9px 13px;
+  text-align: left;
+  vertical-align: top;
+}}
+.proposal-table th {{
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+}}
+.proposal-table tbody tr:nth-child(even) {{
+  background: #fafcfe;
+}}
+.proposal-table td code, .proposal-table th code {{
+  white-space: nowrap;
+}}
 .evidence {{
   white-space: nowrap;
   border: 1px solid #cbd5e1;
@@ -212,6 +335,8 @@ code {{
   main {{ padding: 26px 16px 52px; }}
   h1 {{ font-size: 26px; }}
   h2 {{ font-size: 21px; }}
+  .proposal-table {{ font-size: 14px; }}
+  .proposal-table th, .proposal-table td {{ padding: 7px 9px; }}
 }}
 </style>
 </head>
