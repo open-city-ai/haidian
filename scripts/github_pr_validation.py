@@ -413,6 +413,19 @@ def main() -> int:
                 validation.add_error(
                     f"{path}: participant PRs may only change submissions/{pr_author}/"
                 )
+        elif not validation_files and (maintainer_bypass or queue_candidate):
+            validation = ValidationReport(
+                changed_files=changed_files,
+                maintainer_bypass=maintainer_bypass,
+            )
+            if maintainer_bypass:
+                validation.add_warning(
+                    "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
+                )
+            else:
+                validation.add_warning(
+                    "participant deletion-only PR; removed files were not content-validated"
+                )
         else:
             for item in files:
                 filename = item["filename"]
