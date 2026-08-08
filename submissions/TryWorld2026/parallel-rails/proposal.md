@@ -7,7 +7,7 @@ translation_file: "proposal.en.md"
 summary: "以「轨距即标准权」为第一性原理的概念方案：京张铁路以1435mm标准轨距接入世界标准网络，AI创新带以算力/数据/开源/治理标准定义智能时代轨距。空间转译一基双轨三站——主脊为路基、两翼为双轨、三站为节点；配套拓扑完整用地剖分、EPSG:4548复算指标、12张场景卡、6类画像、5处朝圣地标与轨距日运营体系。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-copilot", "robot-delivery-low-speed"]
-iteration: "v0.1.4"
+iteration: "v0.1.6"
 ---
 
 # 双轨·百年：从铁轨到智轨 The Parallel Rails
@@ -18,7 +18,7 @@ iteration: "v0.1.4"
 
 ## 设计依据与资料清单
 
-本包的事实基座由三类资料构成，用途边界经来源登记表逐一厘清 [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]：第一类为 formal 任务依据——北京市规划和自然资源委员会海淀分局发布的资格预审公告 [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] 提供项目名称、三层范围文字四至、公告面积与设计任务；面向智能体的开源征集任务书 [source:DATA-SRC-AGENT-TASKBOOK-20260518] 提供三大定位、五大功能、三区两翼与六项任务；第二类为专业标准依据——城市设计管理办法 [source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-URBAN-DESIGN-MEASURES]、控规编制审批办法 [source:DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-CONTROL-DETAILED-PLANNING]、国土空间用地用海分类指南 [source:DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；第三类为 provisional 几何——三层范围与三处重点区粗略 polygon，仅用于生成、展示与自检，不得升级为官方红线、审批依据或精确面积依据。
+本包的事实基座由三类资料构成，用途边界经来源登记表逐一厘清 [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]：第一类为 formal 任务依据——北京市规划和自然资源委员会海淀分局发布的资格预审公告 [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] 提供项目名称、三层范围文字四至、公告面积与设计任务；面向智能体的开源征集任务书 [source:DATA-SRC-AGENT-TASKBOOK-20260518] 提供三大定位、五大功能、三区两翼与六项任务；第二类为专业标准依据——城市设计管理办法 [source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-URBAN-DESIGN-MEASURES]、控规编制审批办法 [source:DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-CONTROL-DETAILED-PLANNING]、国土空间用地用海分类指南 [source:DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]；第三类为 provisional 几何——三层范围与三处重点区粗略 polygon，仅用于生成、展示与自检，不得升级为官方红线、审批依据或精确面积依据。此外，公开任务书草案 [source:DATA-SRC-PUBLIC-BRIEF-2026]（brief/public-brief.md）作为背景语境（background_only）补充项目背景与重点方向。
 
 方案以面向全球智能体的开源征集任务书为共创章程 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]，以资格预审公告为第一主控依据 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。证据链按"来源登记→空间几何→指标复算→矩阵映射→正文解释→呈现层"流转：`sources.json` 管来源，`geometry/*.geojson` 管空间，`metrics.json` 在 EPSG:4548 下复算，三张矩阵把任务/标准/深度钉在证据上，`proposal.md` 承担人类可读的解释，HTML 与图纸只是呈现层。生成前已核对现状诊断的资料缺口 [depth:existing_conditions_diagnosis]：官方精确边界、控规条件、现状建筑底数、道路红线、文保与蓝线范围均未公开，全部列入 `assumptions.json`，正文结论不越过缺口。
 
@@ -119,6 +119,9 @@ iteration: "v0.1.4"
 ### 众智站（对应公告"众智园AI自主创新加速区"）· AI 全栈自主创新加速区（公告约 192.1 ha，复算 192.9 ha）
 
 [data:geometry/key_areas.geojson#PROV-KEY-001] **定位**：标准场北端枢纽，承载全栈自主创新体系与智能标准制定、安全治理功能。**空间结构**：西侧全栈研发带（实验室群、众智加速塔、标准与安全治理中心、算力数据枢纽），中部清河绿谷，东侧国际人才社区与战略留白 [data:geometry/land_use.geojson#LU-014]。**建筑更新**：低效空间置换新建为主、保留现状骨架为辅。**交通慢行**：上跨北五环步道概念 [data:geometry/constraints.geojson#CONS-004] 破解北端衔接。**公共空间**：双轨碑·标准之源与全球贡献者荣誉墙 [data:geometry/public_space.geojson#PUB-004]，承接征集碑刻纪念体系。**AI 场景**：全栈技术展示与低速接驳封闭测试环（留白区）。**实施风险**：五环衔接工程与清河蓝线未确认，均为概念方案。
+
+**示范单元概念深化：众智站西轨·全栈研发带**（方案级样例，概念建议）：选取西轨研发带与主脊之间的示范单元（约 3–4 ha，示意）表达从"方向性"到"可深化"的衔接：**概念总平面**——两排 8 层研发楼围合中央实验庭院，临主脊一侧降为 3 层裙房并开放为技术展示界面，端侧算力便民柜设于庭院节点；**标准断面**——研发楼沿主脊退台（3→8 层），地下 1 层布置共享实验室与机房；**分期动作**——近期以界面开放与共享实验室试点启动（低争议 quick win），中期新建研发楼，远期接入算力枢纽。该样例仅表达深化方向，具体地块边界、指标与工程以专业深化与控规条件为准。
+
 
 ### 原点站（对应公告"北京AI原点社区"）· 北京 AI 原点社区（公告约 104.3 ha，复算 104.3 ha）
 
@@ -250,6 +253,9 @@ iteration: "v0.1.4"
 
 **民生与包容性安排**（概念建议）：①社区服务设施按 15 分钟生活圈配置标准，结合 0702 用地落实，优先补齐东轨中段更新住区；②每站设想 1 处非智能替代服务点（人工服务亭、非智能导览），保障不擅数字工具的居民与访客；③就业联动——科技服务业岗位与社区服务岗位结合，更新项目建议纳入本地就业优先机制方向；④既有居民更新利益保障——"协议开放+运营补偿"基础上，建议补充回迁/安置与租金稳定方向的研究，具体以专业深化与政策安排为准。以上均为机制建议。
 
+**包容性可计数指标（概念目标）**：①每站 1 处非智能替代服务点，共 3 处（众智/原点/大钟）；②无障碍出行伴随覆盖全线慢行网络；③15 分钟生活圈社区服务设施覆盖东轨中段更新住区（现状设施底数待补，概念目标为全覆盖）；④公共空间与地标全部免费开放、设无障碍动线。以上为机制建议，具体以专业深化与政策安排为准。
+
+
 **分期计划** [depth:phasing_implementation]：近期"三站先行"（2026–2028，概念年份）[data:geometry/phasing.geojson#PHASE-001-1] 约 406.3 万 m² [metric:phase1_area_sqm]——三站与主脊公共空间同步启动，优先落地双轨碑一期、道岔广场等低争议 quick win，产业载体随控规条件成熟分批启动；中期"走廊缝合"（2029–2031）约 606.2 万 m² [metric:phase2_area_sqm]——科教走廊、东西连通、荣誉带贯通；远期"门户织补"（2032–2035）约 128.8 万 m² [metric:phase3_area_sqm]——南端源点门户与过渡段。年份区间为概念节奏示意，实施时序以政府安排为准。实施政策四条（机制建议）：更新项目与场景开放捆绑供给；留白用地年度评审滚动激活；校区界面"协议开放+运营补偿"；公众参与嵌入城市 issue 机制全程公开。运营维护：公共空间与地标由统一主体维护（建议），记录纳入数字荣誉档案公开。
 
 **长期运营体系（agent.6）**：以**开源标准场**为运行框架，把征集机制固化为城市的标准演化系统。年度议程按轨历组织四段：**开题季**（Q4–Q1 发布下一年度标准议题，Open Standard Issues）→ **提案季**（Q1–Q2 全球智能体与团队提交方案，Global PRs）→ **评审季**（Q3 专业与社区双评审，人类最终判断）→ **合轨日**（9 月轨距日·鸣钟合并：标准共识发布、碑刻揭幕、深化开工、全球直播）。品牌矩阵：主品牌轨距日、治理品牌轨距论坛、社区品牌 Parallel Rails Builders。开发者社区三级：**同行者**（Contributor，方案被 merge）→**共建者**（Maintainer，参与深化）→**执标者**（Core，进入年度标准共识评审），荣誉资产全部空间化（双轨碑、轨枕荣誉带、Logo 年轮）。AI 场景开放运营：测试验证场景经城市 issue 立项、专业监管、结果公开。公共体验路线：文化导览线兼作年度活动主动线。国际传播与招引转化：轨距论坛发布治理与标准议程，轨距日沉淀共创成果，入选团队与海淀科创政策资源的对接以官方安排为准，落地企业引入三站载体。所有活动、招商、资金与政策安排均为概念建议，不表述为已确定政府安排。
@@ -281,4 +287,5 @@ iteration: "v0.1.4"
 - `brief/site-package/sources.json`、`data/source_registry.json` — 来源登记
 - `brief/site-package/schemas/*.json` — 校验 schema
 - `data/processed/agent_fact_pack.md` — 事实包导航
+- `brief/public-brief.md` — 公开任务书草案（背景语境）
 - 本包证据文件：`geometry/*.geojson`、`metrics.json`、`sources.json`、`assumptions.json`、`compliance_matrix.json`、`standard_matrix.json`、`design_depth_matrix.json`、`visual/index.html`、`drawings/a3-booklet.pdf`、`drawings/a0-boards.pdf`
