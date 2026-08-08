@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "官方红线（official redline）和三处重点区域 polygon 尚未提供；当前使用的 provisional_boundaries.geojson 仅为临时粗略边界，精度有限，所有基于该边界的面积和空间位置结论均为近似值。",
+      "impact": "方案的空间分区、建筑位置、交通组织和指标复算均受 provisional boundary 精度限制；官方 boundary 更新后须整体重算，不得将临时值作为正式审批依据。",
+      "affected_metrics": ["site_area_sqm", "key_area_*_sqm", "green_ratio", "public_space_ratio", "land_use_*_sqm", "building_footprint_area_sqm", "phase*_area_sqm"]
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "经批准的容积率（FAR）、建筑高度、建筑密度、退线和设施标准等控制指标尚未进入已清权资料包；本方案中的强度指标均为概念性建议，不代表任何审定控制条件。",
+      "impact": "official_floor_area_ratio_control、official_building_height_control_m、official_building_density_control、official_green_ratio_control 均保持 unknown 状态；正式控规条件到位后，方案的建筑规模和空间布局须依规调整。",
+      "affected_metrics": ["official_floor_area_ratio_control", "official_building_height_control_m", "official_building_density_control", "official_green_ratio_control", "proposed_total_floor_area_sqm"]
+    },
+    {
+      "id": "A-OWNERSHIP-001",
+      "status": "pending_professional_confirmation",
+      "statement": "土地权属、产权边界、地块内建筑所有权和拆改留结论尚未经权属调查确认；本方案提出的拆改留建议仅为概念方向，不构成任何法定权属判断。",
+      "impact": "JZ-03（原点社区近校成果转化街）等涉及权属的更新项目，须在权属调查完成后重新评估可行性和实施路径，不得将方案结论作为征地或拆迁依据。",
+      "affected_metrics": []
+    },
+    {
+      "id": "A-CULTURAL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "京张铁路文物保护单位的保护范围和控制地带边界尚未经文物主管部门确认；K标纪念系统（L1）和开发者荣誉墙（L2）的具体位置受文保边界约束。",
+      "impact": "京张遗址公园范围内的空间设计方案（L1、L2、AI里程碑刻碑场L3）须待文保边界确认后调整；清华园火车站历史建筑的活化利用方式须经文物部门审批。",
+      "affected_metrics": []
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "市政管网现状数据（给水、排水、电力、通信、燃气等）、市政容量和消防条件尚未获得正式资料；方案中涉及市政管线的结论均为概念性建议。",
+      "impact": "JZ-04（大钟寺站四象限步行连通）等涉及地下空间的更新项目，须待市政资料完备后进行工程可行性评估；不得将市政结论作为审批依据。",
+      "affected_metrics": []
+    },
+    {
+      "id": "A-RAIL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "京张遗址公园跨北五环和京藏高速的节点、清华东路西口和大钟寺站的轨道线位与站点配置方案尚未获得轨道主管部门确认；方案中相关一体化设计为概念性建议。",
+      "impact": "京张遗址公园跨环路节点和大钟寺站一体化设计方案须待轨道线位确认后深化；JZ-01（慢行断点缝合）和JZ-04（步行连通）的具体工程方案须与轨道方案协调。",
+      "affected_metrics": []
+    },
+    {
+      "id": "A-GFA-001",
+      "status": "conceptual_estimate",
+      "statement": "建筑基底面积（building_footprint_area_sqm）和总建筑面积（proposed_total_floor_area_sqm）基于本方案提出的概念性建筑组团布局，属于估算值，不代表实际建筑总量或审批依据。",
+      "impact": "building_footprint_area_sqm、building_footprint_ratio 和 proposed_total_floor_area_sqm 均属概念估算，official FAR 确认前不得作为开发强度依据。",
+      "affected_metrics": ["building_footprint_area_sqm", "building_footprint_ratio", "proposed_total_floor_area_sqm"]
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "conceptual_estimate",
+      "statement": "道路网络长度（road_network_length_m）基于本方案提出的概念性道路和慢行网络布局，属于估算值，不代表实际道路长度或交通工程依据。",
+      "impact": "road_network_length_m 属于概念估算；JZ-01 等交通类更新项目的具体道路工程须待交通主管部门确认道路红线后实施。",
+      "affected_metrics": ["road_network_length_m"]
+    },
+    {
+      "id": "A-EVENT-001",
+      "status": "conceptual_proposal",
+      "statement": "年度活动体系（全球开发者大会、开源之夏共创营、AI艺术与城市节、模型发布季）为本方案提出的概念性运营建议，具体举办时间、规模、场地须由一带运营联盟和相关主管部门确认。",
+      "impact": "所有年度活动均为概念建议，不代表政府已批准或已纳入预算；国际传播招引转化路径的效果须通过实际运营数据持续跟踪评估。",
+      "affected_metrics": []
+    },
+    {
+      "id": "A-BRAND-001",
+      "status": "conceptual_proposal",
+      "statement": "「京张智脉共生带」名称和视觉识别方向为本方案提出的概念命名，不代表已注册商标；Logo和视觉识别系统须在专业深化后进行商标清查和版权确认。",
+      "impact": "主名称和视觉识别方向不得作为已注册的知识产权使用；后续深化须进行商标检索和专业设计审查。",
+      "affected_metrics": []
+    }
+  ]
+}
