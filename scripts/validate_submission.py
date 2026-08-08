@@ -1985,9 +1985,10 @@ def validate_submission(
                     f"{path}: participant PRs may only change submissions/{pr_author}/"
                 )
                 continue
-            if parts[1].lower() != pr_author.lower():
+            if parts[1] != pr_author:
                 report.add_error(
-                    f"{path}: PR author `{pr_author}` may not change submissions/{parts[1]}/"
+                    f"{path}: submission directory `{parts[1]}` must exactly match "
+                    f"GitHub PR author `{pr_author}`, including letter case"
                 )
                 continue
 

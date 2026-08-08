@@ -26,7 +26,7 @@
         "geometry/buildings.geojson"
       ],
       "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
+      "confidence": "low",
       "assumptions": [
         "Concept-only design geometry; no cadastral or approved building data."
       ]
@@ -40,7 +40,7 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
+      "confidence": "low",
       "assumptions": [
         "Concept-only layer over provisional boundary; not a statutory target."
       ]
@@ -54,7 +54,7 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
+      "confidence": "low",
       "assumptions": [
         "Concept-only layer over provisional boundary; not a statutory target."
       ]
@@ -79,8 +79,10 @@
         "geometry/key_areas.geojson"
       ],
       "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Count is reproducible in submitted provisional geometry; identities and polygons still require official confirmation."
+      ]
     },
     "independent_ai_evaluation_coverage": {
       "status": "unknown",

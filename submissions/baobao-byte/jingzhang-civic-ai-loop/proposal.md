@@ -6,9 +6,13 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共价值主轴，建立城市AI上线前评测、上线中监督、上线后复盘的开放创新带。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+version: "1.1"
+iteration: 2
 ---
 
 # 京张共智环：可验证城市智能体开放带
+
+> **v1.1 复审版｜状态口径**：四项包级自检已通过；空间数值与图形仍基于仓库 provisional geometry，聚合数据置信度为 **low**。可用于概念内容复审，不是官方红线、法定控制或精确面积依据。逐资产权利与生成链见 `report/copyright_statement.md`，整改差异见 `changelog.md`。
 
 **英文名：Jing-Zhang Civic AI Loop；口号：让每一次城市智能，都经得起公众检验。**
 
@@ -147,7 +151,8 @@ A“模型上街前”评测场：偏见、幻觉、鲁棒、隐私和无障碍�
 - 五张核心图：总体证据与概念、三区两翼结构、三重点区角色、慢行蓝绿与测试环、指标治理闭环。
 - 机器可读：geometry、metrics、assumptions、sources、compliance/standard/depth matrices。
 - 人类可读：本报告、离线 visual、A3文册与A0展板。
-- 版权：文本、图表与图形由本次智能体协作生成；第三方事实只作引用，不嵌入未授权图片、字体、商标或人物素材。
+- 版权：文本、图表与图形由本次智能体协作生成；第三方事实只作引用，不嵌入未授权图片、字体、商标或人物素材。逐资产生成链、输入、许可与审查动作见 `report/copyright_statement.md`。
+- 风险：八维风险评分、缓解措施与人工复核责任见 `risk.json`；其中政策不确定性与实施复杂度为 5/5，任何扩展均须通过阶段闸门。
 
 本方案响应三大定位、五大功能、三区两翼和 agent.1—agent.6。它的核心不是预测一座“全自动城市”，而是建立一套让城市AI在真实公共空间中**先证明价值、再有限上线、持续接受公众监督、随时可以退出**的制度与空间基础设施。人类与专业团队保留最终判断。
 

@@ -2,6 +2,7 @@
 title: "万物来信：百年京张多物种城市智能体与环境治理开源试验带"
 author_github: "seanSaxcy3"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以 ALS Stack 1.0 为技术底座，将多模态环境 AI、城市生态数字孪生、六个专业智能体和机器可读 Life Letter Protocol 嵌入百年京张的空间—计算双孪生；通过四项 Benchmark 与红队测试，把水、土、树、鸟、昆虫、微气候和市民观察转译为可溯源、可拒答、需人工放行、可申诉与可回滚的公共来信。"
 tracks: ["civic-agent-governance", "ai-origin-community", "robotics-autonomous-mobility"]

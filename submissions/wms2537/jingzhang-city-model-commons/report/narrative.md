@@ -24,9 +24,9 @@ iteration: "v1.0"
 
 ## 设计依据与资料清单
 
-本方案依据官方资格预审公告、面向智能体的开源任务书、仓库 site package、正式专业标准及公开国际案例编制。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:PLANNING-LIMITS] 任务依据支持三层尺度、三区两翼、六项开放征集任务、场景与运营要求；专业依据支持公共空间、城市风貌、控规边界及用地分类术语。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+本方案依据官方资格预审公告、面向智能体的开源任务书、仓库 site package、正式专业标准及公开国际案例编制。[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] [source:DATA-SRC-AGENT-TASKBOOK-20260518] [source:PLANNING-LIMITS] 任务依据支持三层尺度、三区两翼、六项开放征集任务、场景与运营要求；专业依据支持公共空间、城市风貌、控规边界及用地分类术语。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 
-**资料可信度分三级管理。** 第一层是官方公告、清权任务书和正式标准，可用于定义任务、公开事实与专业方法；第二层是仓库维护者明确标注的临时边界，只能用于生成、可视化和自检；第三层是尚缺的官方 polygon、控规、道路红线、现状建筑、权属、文保、消防和市政容量，必须作为数据缺口，不由 AI 猜测补齐。[source:BOUNDARY-SOURCE] [assumption:A-BOUNDARY-001] [assumption:A-CONTROLS-001]
+**资料可信度分三级管理。** 第一层是官方公告、清权任务书和正式标准，可用于定义任务、公开事实与专业方法；第二层是仓库维护者明确标注的临时边界，只能用于生成、可视化和自检；第三层是尚缺的官方 polygon、控规、道路红线、现状建筑、权属、文保、消防和市政容量，必须作为数据缺口，不由 AI 猜测补齐。[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605] [assumption:A-BOUNDARY-001] [assumption:A-CONTROLS-001]
 
 提交采用 EPSG:4326 交换 GeoJSON，并在 EPSG:4548 下复算面积和长度。当前临时总体边界复算约 **11.413 km²**，与公告约 11.4 km² 的差异约 0.11%；该吻合只说明临时几何可支持概念工作，不能升级为官方红线或审定面积。[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:site_area_deviation_ratio]
 
@@ -54,7 +54,7 @@ iteration: "v1.0"
 
 当前 AI 产业的关键瓶颈之一，是数字模型与复杂真实空间之间缺少稳定的中间层：二维识别可以指出“这是一台冰箱”，但城市运行需要同时知道它在哪里、与谁相邻、能否通行、受什么规则约束、发生风险时如何模拟。京张创新带可把海淀的模型、机器人、软件、城市治理和高校优势组织成一条完整链条：**开放空间数据—语义标注—仿真基准—安全评测—受控部署—运营反馈—标准输出**。
 
-这使产业目标从“招商多少 AI 公司”转向三个可验证成果：第一，是否形成跨模型、跨设备、跨年份可复用的空间语义与基准；第二，企业能否用较低成本证明产品在真实城区的安全性、可达性和公共价值；第三，失败试验是否也能沉淀为公开知识，而不是被宣传系统删除。众智园负责硬核验证，原点社区负责开放协作，大钟寺负责真实日常价值，两翼负责要素与问题输入。[source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
+这使产业目标从“招商多少 AI 公司”转向三个可验证成果：第一，是否形成跨模型、跨设备、跨年份可复用的空间语义与基准；第二，企业能否用较低成本证明产品在真实城区的安全性、可达性和公共价值；第三，失败试验是否也能沉淀为公开知识，而不是被宣传系统删除。众智园负责硬核验证，原点社区负责开放协作，大钟寺负责真实日常价值，两翼负责要素与问题输入。[source:DATA-SRC-AGENT-TASKBOOK-20260518] [depth:overall_spatial_structure]
 
 ### 2. 七个全球案例：借机制，不复制包装
 
@@ -219,7 +219,7 @@ iteration: "v1.0"
 
 运营主体建议采用“公共任务发布者—城模公地受托机构—场景运营者—独立评估者—公众陪审/反馈网络”五方结构。城市只开放完成任务所必需的数据和空间；运营者承担维护、事故、人工接管和退出成本；独立评估者发布公共价值、安全、包容与运维报告。
 
-年度活动不是一次科技节，而是四个互相约束的制度：**京张空间智能开放基准**比较模型能力和失败；**Model-to-Street Week**展示从仿真到街道的证据链；**百年提交节**邀请全球智能体、学生和居民提交空间问题与改进；**城市算法听证日**公开高影响场景的模型卡、争议、事故与日落决定。任何招商、资金、具体日期和政府实施均不在本方案中作确定承诺。[source:AGENT-TASKBOOK] [assumption:A-OPERATIONS-001] [depth:renewal_project_list]
+年度活动不是一次科技节，而是四个互相约束的制度：**京张空间智能开放基准**比较模型能力和失败；**Model-to-Street Week**展示从仿真到街道的证据链；**百年提交节**邀请全球智能体、学生和居民提交空间问题与改进；**城市算法听证日**公开高影响场景的模型卡、争议、事故与日落决定。任何招商、资金、具体日期和政府实施均不在本方案中作确定承诺。[source:DATA-SRC-AGENT-TASKBOOK-20260518] [assumption:A-OPERATIONS-001] [depth:renewal_project_list]
 
 ## 指标体系、面积复算与合规矩阵
 
@@ -251,7 +251,7 @@ iteration: "v1.0"
 
 ## 参考资料
 
-正式任务与专业依据：北京市规划和自然资源委员会海淀分局资格预审公告、仓库清权任务书、临时边界说明、规划控制缺口登记、《城市设计管理办法》《城市、镇控制性详细规划编制审批办法》和《国土空间调查、规划、用途管制用地用海分类指南》。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:BOUNDARY-SOURCE] [source:PLANNING-LIMITS] [source:MOHURD-URBAN-DESIGN] [source:MOHURD-CONTROL-PLANNING] [source:MNR-LAND-USE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+正式任务与专业依据：北京市规划和自然资源委员会海淀分局资格预审公告、仓库清权任务书、临时边界说明、规划控制缺口登记、《城市设计管理办法》《城市、镇控制性详细规划编制审批办法》和《国土空间调查、规划、用途管制用地用海分类指南》。[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509] [source:DATA-SRC-AGENT-TASKBOOK-20260518] [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605] [source:PLANNING-LIMITS] [source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES] [source:DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING] [source:DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 
 国际机制案例：Punggol Digital District、Seoul S-Map Open Lab、Smart Kalasatama、Toyota Woven City、SHIFT London、Barcelona 22@ 与 Toronto Quayside。[source:CASE-PUNGGOL] [source:CASE-SEOUL-SMAP] [source:CASE-KALASATAMA] [source:CASE-WOVEN-CITY] [source:CASE-SHIFT-LONDON] [source:CASE-BARCELONA-22AT] [source:CASE-QUAYSIDE]
 

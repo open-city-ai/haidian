@@ -65,8 +65,10 @@ python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```
 
 - [ ] 一键自检 `self_check_submission.py` 已通过
+- [ ] 投稿预检 `participant_preflight.py --check-push` 已通过，目录归属、变更范围、文件大小和远程推送均无 blocker
 - [ ] deterministic validation、spatial review、visual packaging check、professional evidence review 均为 PASS
 - [ ] 已记录 `package_type` 与派生的 `review_status`，且未把包类型误写为评审决定

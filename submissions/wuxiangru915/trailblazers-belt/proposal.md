@@ -73,6 +73,18 @@ iteration: "v1.0"
 
 协同回路：高校群把原始创新送进启源站 → 启源站把可验证问题交给加速站 → 加速站把成熟能力导入转化站 → 转化站与体验翼把场景反馈回馈给启源站与高校 → 服务翼为全程提供要素，并把成果输出到全球。区域协同以开放接口而非机构名单堆叠：北纬社区、未来科学城、怀柔科学城、经开区及京津冀伙伴可接入"拓路者场景护照"，但合作安排均为概念建议，需后续协商。[depth:overall_spatial_structure]
 
+### 区域协同矩阵（概念建议）
+
+面向公告要求的区域协同，本方案提出开放接口式协同矩阵：以"问题—数据—场景—人才"四类接口而非机构名单建立互补关系。合作内容、权责与数据/知识产权边界均待后续协商，不构成已确定安排：[source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+| 协同伙伴 | 互补能力 | 建议接口 | 数据与 IP 边界（概念） |
+| --- | --- | --- | --- |
+| 北纬社区 | 职住平衡与社区服务经验 | 人才驿站服务标准、社区场景共同设计 | 社区数据本地处理、脱敏后聚合 |
+| 未来科学城 | 基础研究与重大设施 | 联合实验室、中试平台预约通道 | 研究数据分权、成果按贡献署名 |
+| 怀柔科学城 | 大科学装置与交叉学科 | 算力/数据共享目录、青年学者互访 | 数据使用许可、出口审查 |
+| 经开区 | 制造与供应链落地 | 机器人/端侧硬件中试—量产接力 | 供应链数据脱敏、商业秘密保护 |
+| 京津冀 | 场景与市场腹地 | 场景护照互认、测试结果互认 | 跨域数据合规、隐私保护协议 |
+
 ### 六个全球 AI 创新生态案例与可转化机制
 
 围绕"人才全生命周期"这一机制主轴，选择六个案例作比较研究。案例只支撑机制比较，不作为本项目空间控制依据：[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
@@ -161,6 +173,16 @@ iteration: "v1.0"
 
 场景卡的机器可读字段与风险边界见 `compliance_matrix.json` 与 `sources.json`，空间位置见各 GeoJSON 图层与 `visual/index.html`。[depth:overall_spatial_structure]
 
+### 公共利益保障机制（概念建议）
+
+方案以公共利益优先为原则，为弱势群体与公众提供明确保障：[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+- **非数字替代**：所有 AI 场景均保留人工窗口、线下服务与非数字替代路径，任何人可绕过 AI 服务完成事项。
+- **老年人与儿童友好**：字体、音量、时长与无障碍标准前置；AI 助教、健康小屋等场景设置监护人/子女知情与退出入口。
+- **残障与无障碍**：慢行系统、导视与场景入口按无障碍标准设计；信息以多模态（文字/语音/触觉）提供。
+- **隐私与数据最小化**：不采集个人敏感信息，仅使用公开、授权与聚合数据；拒绝采集权与匿名申诉渠道明确。
+- **公众参与**：社区议事桌、问题亭与公开复盘构成反馈闭环；试点前公开边界、试点后公开指标与退出决定。
+
 ## 用地、建筑规模与拆改留方案
 
 用地布局以科研、商业服务、绿地、教育、居住与留白六类构成分区，功能比例从 `geometry/land_use.geojson` 复算，见 `metrics.json`。[data:geometry/land_use.geojson#LU-001] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:land_use_layout] 建筑基底仅表达可开发的"建筑原型"占位，不代表现状建筑或拆改留分类结论；拆改留、建筑规模与开发强度均列为待控规与现状普查确认事项。[depth:retain_renovate_demolish] [depth:development_intensity_controls]
@@ -200,6 +222,19 @@ iteration: "v1.0"
 | 中期 2028–2031 | 三站建设 | 启源站开源发布厅、加速站中试共享庭院、转化站应用客厅 |
 | 远期 2031–2035 | 两翼织补 | 体验翼场景街区、服务翼国际交往基地、全域慢行与蓝绿成网 |
 
+### 最小可行试点卡（概念建议）
+
+为使方案可被专业团队继续深化，本方案对 3 个产业测试验证场景与 3 个近期项目给出最小可行试点（MVP）框架：试点范围、参与主体（RACI）、人工接管、退出条件与 KPI 均为概念建议，不构成运营承诺。[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:renewal_project_list]
+
+| 试点 | 试点范围 | 参与主体（RACI） | 人工接管/退出条件 | KPI（概念） |
+| --- | --- | --- | --- | --- |
+| S1 AI安全红队测试舱 | 加速站封闭测试庭院 | 模型团队（R）· 安全专家（A）· 园区运营（C）· 标准机构（I） | 任一安全红线触发即中止；专家否决权 | 测试用例数、漏洞闭环率、人工复核覆盖率 |
+| S2 低速机器人混行测试环 | 加速站—公园段限定时段/路段 | 机器人团队（R）· 交管（A）· 公园运营（C）· 公众代表（I） | 异常即人工接管；90天评估后决定续/停 | 事故率=0、误闯率、公众投诉响应时长 |
+| S3 开源模型众测擂台 | 启源站开源发布厅 | 开源社区（R）· 评审委员会（A）· 合规（C）· 高校（I） | 规则公开、人工仲裁；数据最小化 | 参赛数、评测可复现率、仲裁透明度 |
+| 纪念墙+荣誉墙 | 公园北端 | 维护者（R）· 社区（A）· 艺术家（C）· 公众（I） | 内容人工校审；刻名需本人同意 | 首年收录数、维护周期、公众满意度 |
+| 慢行断点缝合试点 | 拓路者之路 1–2 处断点 | 规划（R）· 交通（A）· 公园（C）· 周边社区（I） | 试点期后评估保留/调整/撤除 | 慢行通过率、绕行距离、安全投诉 |
+| 启源站开源发布厅 | 原点社区近校街 | 运营团队（R）· 高校（A）· 合规（C）· 社区（I） | 预约制+人工客服；内容合规拦截 | 发布场次、成果转化对接数、合规率 |
+
 ### 全球 AI 创新活动体系与长期运营（概念建议）
 
 - **年度品牌：拓路节（TRAILBLAZER FESTIVAL）**——每年 8 月（京张铁路建成纪念季）举办，含国际开发者大会、开源成果展、智能体竞技与公众开放日。
@@ -219,6 +254,18 @@ iteration: "v1.0"
 - **building_footprint_area_sqm**：建筑原型占位面积，支撑产业空间供给讨论，不代表现状建筑。[metric:building_footprint_area_sqm]
 - **key_area_count**：三处重点详细设计区域数量。[metric:key_area_count]
 - 容积率、建筑密度、建筑高度、绿地率法定值与退线均为 `unknown`（待官方控规），见 `metrics.json` 与 `assumptions.json`。
+
+### 任务对应表与绩效指标框架
+
+公告 1.5 设计任务与本方案章节、图层、指标的对应关系如下（可追溯性证据见 compliance/standard/design_depth 三份矩阵）：[source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:metrics_recalculation]
+
+| 公告任务 | 本方案章节 | 空间/数据落点 |
+| --- | --- | --- |
+| 1.5(1) 统筹研究：生态体系/未来城市形态 | 统筹研究范围产业与未来城市研究 | 命名体系、区域协同矩阵、六个案例 |
+| 1.5(2) 总体设计：产业目标/更新框架/交通市政/公园活力带/城市风貌 | 总体设计、用地、交通、蓝绿、更新项目各章 | land_use/roads/green_space/phasing 图层 |
+| 1.5(3) 重点区域详细设计（必选） | 重点区域详细设计 | key_areas 三区 + 三站详设 |
+
+**AI 创新指数与人才密度目标框架（概念建议，非承诺）**：方案建议以"人才密度（创新人才/建成区 km²）""AI 创新指数（专利-论文-开源贡献-场景落地综合）""场景活跃度"作为长期监测指标框架；因缺官方基数与统计口径，本方案不给出目标数值，仅提出可继续深化的指标体系方向，正式口径待官方数据发布后校准。
 
 全部 known 指标证据索引：site_area_sqm / green_space_area_sqm / public_space_area_sqm / building_footprint_area_sqm / building_density / road_length_m / key_area_count / key_area_zhongzhiyuan_sqm / key_area_origin_community_sqm / key_area_dazhongsi_sqm / phasing_recent_area_sqm / phasing_midterm_area_sqm / phasing_longterm_area_sqm / land_use_research_area_sqm / land_use_commercial_services_area_sqm / land_use_residential_area_sqm / land_use_community_service_area_sqm / land_use_education_area_sqm / land_use_park_green_area_sqm / land_use_plaza_area_sqm / land_use_reserve_area_sqm。
 

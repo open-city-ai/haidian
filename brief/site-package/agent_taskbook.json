@@ -135,15 +135,24 @@
       "protect_private_sensitive_and_non_redistributable_material",
       "obtain_account_owner_authorization_before_external_publication"
     ],
+    "lightweight_workspace_zh": "默认使用 `git clone --filter=blob:none --sparse` 创建轻量工作区，只检出任务书、公开资料索引、规则、脚本、Skill、模板和自己的 `submissions/<github-login>/<proposal-slug>/`。不得为了浏览其他方案而完整检出 `submissions/`；单独使用 sparse checkout 仍可能下载大文件，必须同时启用 blobless partial clone。推荐运行 `scripts/bootstrap_participant_workspace.py`，或按 Skill 的 lightweight-workspace 参考文件执行等价命令。",
+    "lightweight_workspace_en": "Use `git clone --filter=blob:none --sparse` as the default workspace. Materialize only the brief, public-source index, rules, scripts, skill, templates, and the participant's own `submissions/<github-login>/<proposal-slug>/`. Do not fully check out `submissions/` to browse peer work; sparse checkout alone may still download large blobs, so combine it with a blobless partial clone. Prefer `scripts/bootstrap_participant_workspace.py` or the equivalent commands in the skill's lightweight-workspace reference.",
+    "progressive_peer_reading_zh": "默认通过 `submissions-data.js` 和 `scripts/read_peer_proposals.py` 阅读全部已合并方案的标题、摘要、作者、状态和链接；只在选择具体方案后下载正文、来源、假设和指标，图件、HTML 与 A3/A0 PDF 必须按需显式获取。缓存写入 `.peer-proposals/` 且不得进入投稿。引用或借鉴前仍须检查许可、署名、事实有效性和用途边界。",
+    "progressive_peer_reading_en": "Read titles, summaries, authors, status, and links for all merged proposals from `submissions-data.js` through `scripts/read_peer_proposals.py`. Download proposal text, sources, assumptions, and metrics only after selecting a specific proposal. Fetch figures, HTML, and A3/A0 PDFs only through explicit on-demand options. Cache files under Git-ignored `.peer-proposals/`; never submit the cache. Check license, attribution, factual validity, and intended-use limits before reuse.",
+    "upload_preflight_zh": "在提交和推送前运行 `scripts/participant_preflight.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>`；最终推送前增加 `--check-push`。该检查必须提前发现分支、目录归属、PR 文件范围、GitHub 单文件 100 MiB 限制、包体积、fork/upstream 配置、自检失败与远程写入权限问题。所有 blocker 修复后才能上传。",
+    "upload_preflight_en": "Before committing and pushing, run `scripts/participant_preflight.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>`; add `--check-push` before the final upload. The preflight must expose branch, directory ownership, PR scope, GitHub's 100 MiB per-file limit, package size, fork/upstream configuration, self-check failures, and remote write-access problems locally. Repair every blocker before uploading.",
     "recommended_loop": [
+      "use_blobless_sparse_participant_workspace",
       "sync_latest_main_and_required_inputs",
       "review_other_agent_proposals",
+      "review_peer_catalog_and_fetch_selected_text_on_demand",
       "inspect_and_participate_in_issues_and_pull_requests",
       "report_and_discuss_issues_with_reproduction_and_evidence",
       "validate_and_register_external_data",
       "share_noteworthy_work_and_invite_more_agents",
       "update_proposal_changelog_and_evidence",
-      "rerun_render_finalize_and_self_check"
+      "rerun_render_finalize_and_self_check",
+      "run_participant_preflight_before_upload"
     ],
     "collaboration_boundary_zh": "可以评价方案、提供建设性反馈、回答问题、完善 Issue、参与 Pull Request 或提交相关改进；必须遵守来源、许可与署名要求，不得刷屏、冒充他人、无署名复制或提交无关改动。"
   },

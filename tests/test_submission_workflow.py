@@ -788,7 +788,16 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.write(root, rel)
             report = validate_submission(root, "alice", [rel])
             self.assertFalse(report.ok)
-            self.assertIn("may not change", "\n".join(report.errors))
+            self.assertIn("must exactly match", "\n".join(report.errors))
+
+    def test_submission_owner_casing_must_match_github_login(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            rel = "submissions/Alice/ai-urban-loop/proposal.md"
+            self.write(root, rel)
+            report = validate_submission(root, "alice", [rel])
+            self.assertFalse(report.ok)
+            self.assertIn("including letter case", "\n".join(report.errors))
 
     def test_user_cannot_modify_repo_infrastructure(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

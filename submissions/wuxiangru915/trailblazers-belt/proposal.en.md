@@ -75,6 +75,20 @@ The three positionings are translated into operable relations: the **Centennial 
 
 Synergy loop: university clusters feed original innovation into the Genesis Station → the Genesis Station hands verifiable problems to the Acceleration Station → the Acceleration Station imports mature capabilities into the Conversion Station → the Conversion Station and Experience Wing feed scenario feedback back to the Genesis Station and universities → the Service Wing provides factors throughout and exports results globally. Regional synergy uses open interfaces rather than stacked institutional names: Beiwei Community, Future Science City, Huairou Science City, Economic-Technological Development Area and Beijing-Tianjin-Hebei partners may connect via a "Trailblazer Scenario Passport", but all cooperation arrangements are conceptual suggestions to be negotiated later.[depth:overall_spatial_structure]
 
+### Regional Synergy Matrix (conceptual)
+
+For the regional synergy required by the announcement, this proposal proposes an open-interface synergy matrix: complementarity is built through four interfaces (problem – data – scenario – talent) rather than institutional name lists. Cooperation content, responsibilities and data/IP boundaries all await negotiation and are not confirmed arrangements:[source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+| Partner | Complementary capability | Suggested interface | Data and IP boundary (conceptual) |
+| --- | --- | --- | --- |
+| Beiwei Community | Work-residence balance and community service experience | Talent station service standards, co-design of community scenarios | Local processing of community data, aggregated after anonymization |
+| Future Science City | Basic research and major facilities | Joint labs, pilot platform booking channel | Shared research data, authorship by contribution |
+| Huairou Science City | Large science facilities, interdisciplinary work | Computing/data sharing catalog, young scholar exchange | Data use licensing, export review |
+| Economic-Technological Development Area | Manufacturing and supply chain landing | Robot/edge-hardware pilot-to-production relay | Supply chain anonymization, trade secret protection |
+| Beijing-Tianjin-Hebei | Scenario and market hinterland | Scenario passport mutual recognition, test-result recognition | Cross-region compliance, privacy protection agreements |
+
+### Six Global AI Innovation Ecosystem Cases and Transferable Mechanisms
+
 ### Six Global AI Innovation Ecosystem Cases and Transferable Mechanisms
 
 Six cases are selected around the "talent full-lifecycle" mechanism axis. Cases support mechanism comparison only and are not spatial control basis for this project:[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
@@ -163,6 +177,16 @@ Each card maps spatial anchor, served users, data boundary, human review and ope
 
 Machine-readable fields and risk boundaries of the scenario cards are in `compliance_matrix.json` and `sources.json`; spatial anchors are in the GeoJSON layers and `visual/index.html`.[depth:overall_spatial_structure]
 
+### Public Interest Safeguards (conceptual)
+
+Following the public-interest-first principle, the proposal provides explicit safeguards for vulnerable groups and the public:[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+- **Non-digital alternatives**: every AI scenario keeps human service windows, offline services and non-digital paths; anyone can complete a matter without the AI service.
+- **Elderly- and child-friendly**: font, volume, duration and accessibility standards are front-loaded; guardian/parental knowledge and exit entries are provided for scenarios such as AI tutoring and health cabins.
+- **Disability and accessibility**: slow-traffic, signage and scenario entrances follow accessibility standards; information is multimodal (text/voice/tactile).
+- **Privacy and data minimization**: no sensitive personal data is collected; only public, authorized and aggregated data is used; the right to refuse collection and anonymous appeal channels are explicit.
+- **Public participation**: community discussion tables, problem kiosks and public review form a feedback loop; boundaries are published before pilots and indicators and exit decisions after.
+
 ## Land Use, Building Scale and Renewal Classification
 
 Land use is composed of research, commercial service, green, education, residential and reserve categories; functional proportions are recomputed from `geometry/land_use.geojson` into `metrics.json`.[data:geometry/land_use.geojson#LU-001] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:land_use_layout] Building footprints express only developable "building prototype" placeholders and do not represent existing buildings or demolition/renovation/new-build classifications; demolition/renovation, building scale and development intensity are all pending regulatory planning and survey confirmation.[depth:retain_renovate_demolish] [depth:development_intensity_controls]
@@ -202,6 +226,21 @@ All renewal projects are conceptual suggestions; implementers, policies and fund
 | Mid 2028–2031 | Three stations | Genesis Station open-source hall, Acceleration Station shared pilot courtyard, Conversion Station application living room |
 | Far 2031–2035 | Two wings | Experience Wing scenario block, Service Wing international exchange base, full slow-traffic and blue-green network |
 
+### Minimum Viable Pilot Cards (conceptual)
+
+So professional teams can deepen the proposal, minimum viable pilot (MVP) frameworks are given for the three industry test/validation scenarios and three near-term projects: pilot scope, participants (RACI), human takeover, exit conditions and KPIs are all conceptual, not operation commitments.[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:renewal_project_list]
+
+| Pilot | Pilot scope | Participants (RACI) | Human takeover / exit | KPIs (conceptual) |
+| --- | --- | --- | --- | --- |
+| S1 AI safety red-team cabin | Acceleration Station closed test courtyard | Model team (R) · safety experts (A) · park operator (C) · standards body (I) | Stop on any safety red line; expert veto | Test cases, vulnerability closure rate, human review coverage |
+| S2 Low-speed robot mixed-traffic test loop | Acceleration Station–park, limited time/section | Robot team (R) · traffic authority (A) · park operator (C) · citizen reps (I) | Human takeover on anomaly; 90-day review for continue/stop | Zero incidents, intrusion rate, complaint response time |
+| S3 Open-source model crowd-testing arena | Genesis Station open-source hall | Open-source community (R) · review committee (A) · compliance (C) · universities (I) | Public rules, human arbitration, data minimization | Participation, reproducibility, arbitration transparency |
+| Memorial wall + honor wall | Park north | Maintainer (R) · community (A) · artist (C) · public (I) | Human content review; name inscription requires consent | First-year entries, maintenance cadence, satisfaction |
+| Slow-traffic gap stitching pilot | 1–2 gaps on the Trailblazers' Way | Planning (R) · transport (A) · park (C) · communities (I) | Evaluate keep/adjust/remove after pilot | Passage rate, detour distance, safety complaints |
+| Genesis Station open-source hall | Near-campus street, Origin Community | Operator (R) · universities (A) · compliance (C) · community (I) | Booking + human service; confidential content blocked | Sessions, conversion match-ups, compliance rate |
+
+### Global AI Innovation Event System and Long-Term Operation (conceptual)
+
 ### Global AI Innovation Event System and Long-Term Operation (conceptual)
 
 - **Annual brand: TRAILBLAZER FESTIVAL** — every August (Jing-Zhang railway completion season): international developer conference, open-source results exhibition, agent competition, public open day.
@@ -221,6 +260,18 @@ Core indicators are recomputed from `geometry/*.geojson` (EPSG:4548); formulas, 
 - **building_footprint_area_sqm**: prototype footprint area supporting space-supply discussion, not existing buildings.[metric:building_footprint_area_sqm]
 - **key_area_count**: number of required key detailed-design areas.[metric:key_area_count]
 - FAR, building density, building height, statutory green ratio and setbacks are `unknown` (pending official regulatory planning), see `metrics.json` and `assumptions.json`.
+
+### Task Mapping and Performance Indicator Framework
+
+The mapping of announcement task 1.5 to proposal sections, layers and metrics is as follows (traceability evidence in the compliance/standard/design-depth matrices):[source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:metrics_recalculation]
+
+| Announcement task | Proposal section | Spatial / data anchor |
+| --- | --- | --- |
+| 1.5(1) Coordinated research: ecosystem / future-city form | Coordinated research section | Naming system, regional synergy matrix, six cases |
+| 1.5(2) Overall design: industry targets / renewal framework / transport municipal / park vitality belt / character | Overall design, land use, transport, blue-green, renewal sections | land_use / roads / green_space / phasing layers |
+| 1.5(3) Key area detailed design (mandatory) | Key area detailed design | three key_areas + three-station design |
+
+**AI innovation index and talent density target framework (conceptual, not commitment)**: the proposal suggests "talent density (innovation talent / built-up km²)", "AI innovation index (composite of patents-papers-open-source-scenario landing)" and "scenario activity" as long-term monitoring indicators; because official baselines and statistical calibers are missing, no target values are given — only a framework direction to be calibrated after official data is released.
 
 All known metrics evidence index: site_area_sqm / green_space_area_sqm / public_space_area_sqm / building_footprint_area_sqm / building_density / road_length_m / key_area_count / key_area_zhongzhiyuan_sqm / key_area_origin_community_sqm / key_area_dazhongsi_sqm / phasing_recent_area_sqm / phasing_midterm_area_sqm / phasing_longterm_area_sqm / land_use_research_area_sqm / land_use_commercial_services_area_sqm / land_use_residential_area_sqm / land_use_community_service_area_sqm / land_use_education_area_sqm / land_use_park_green_area_sqm / land_use_plaza_area_sqm / land_use_reserve_area_sqm.
 
