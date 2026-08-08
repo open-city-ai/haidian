@@ -11,6 +11,8 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from submission_policy import partition_known_blockers
+
 
 REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
 INSTALL_HINT = "python3 -m pip install -r requirements-review.txt"
@@ -177,11 +179,26 @@ def next_actions(report: dict[str, Any]) -> list[str]:
     return actions
 
 
+def manifest_blocker_partition(submission_dir: Path) -> tuple[list[str], list[str]]:
+    """Read declared blockers without treating organizer geometry as participant debt."""
+    try:
+        manifest = json.loads((submission_dir / "manifest.json").read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return [], []
+    claim = manifest.get("validation_claim")
+    blockers = claim.get("known_blockers") if isinstance(claim, dict) else None
+    return partition_known_blockers(blockers)
+
+
 def can_enter_formal_review(stage: str, report: dict[str, Any]) -> bool:
     # Organizer-supplied geometry gaps must not disqualify an otherwise valid
     # package. Provisional geometry remains prominently disclosed and may limit
     # precision, but eligibility is based on participant-controlled checks.
-    return stage == "formal" and bool(report.get("ok"))
+    return (
+        stage == "formal"
+        and bool(report.get("ok"))
+        and not report.get("participant_controlled_known_blockers")
+    )
 
 
 def record_passing_self_check(submission_dir: Path, report: dict[str, Any]) -> None:
@@ -265,6 +282,7 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
         ]
     )
 
+    participant_blockers, organizer_geometry_gaps = manifest_blocker_partition(submission_dir)
     report: dict[str, Any] = {
         "ok": bool(validation["ok"] and spatial["ok"] and visual["ok"] and professional["ok"]),
         "submission_dir": str(submission_dir.relative_to(repo_root)) if submission_dir.is_relative_to(repo_root) else str(submission_dir),
@@ -278,6 +296,8 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
         "visual_issue_ids": visual_issue_ids(visual),
         "professional_issue_ids": professional_issue_ids(professional),
         "missing_review_dependencies": missing,
+        "participant_controlled_known_blockers": participant_blockers,
+        "organizer_geometry_data_gaps": organizer_geometry_gaps,
     }
     report["can_enter_formal_review"] = can_enter_formal_review(stage, report)
     report["package_type"] = "professional_design_package" if stage == "formal" else "unknown"

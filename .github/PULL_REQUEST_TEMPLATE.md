@@ -31,9 +31,9 @@
 
 ## Formal scoring readiness（可选，未满足也可作为 intake 提交）
 
-- [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，且 `official_boundary=true`
-- [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，且 `official_boundary=true`
-- [ ] `manifest.validation_claim.known_blockers` 为空
+- [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，或明确标注 provisional boundary 及精度/重算责任
+- [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，或明确标注 provisional key areas 及精度/重算责任
+- [ ] `manifest.validation_claim.known_blockers` 中不含参赛者可控的未完成阻断项（组织方未提供正式几何数据只作精度提示）
 - [ ] `self_check_submission.py` 输出 `can_enter_formal_review=true`
 - [ ] 没有 blocking self-check、空间复核、视觉复核或专业证据链缺口
 
