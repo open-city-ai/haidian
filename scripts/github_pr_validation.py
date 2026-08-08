@@ -25,6 +25,14 @@ from validate_submission import ValidationReport, format_report, validate_submis
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+REVIEW_WORKFLOW_LABELS = [
+    "review/queued",
+    "review/ci-failed",
+    "review/changes-requested",
+    "review/low-quality",
+    "review/formal-ready",
+    "review/intake-accepted",
+]
 
 
 class GitHubClient:
@@ -178,6 +186,21 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     return bool(changed_files) and len(roots) == 1
 
 
+def sync_draft_review_labels(client: GitHubClient, pr_number: int, is_draft: bool) -> bool:
+    """Keep review workflow labels aligned with the live GitHub draft state.
+
+    Draft PRs are paused before validation and must not retain a review outcome
+    label. Ready PRs shed the draft label before normal validation selects the
+    next state.
+    """
+    if is_draft:
+        client.remove_labels(pr_number, REVIEW_WORKFLOW_LABELS)
+        client.add_labels(pr_number, ["review/draft"])
+        return False
+    client.remove_labels(pr_number, ["review/draft"])
+    return True
+
+
 def safe_manifest_paths(manifest: object) -> set[str]:
     """Return inert, proposal-relative file paths declared by a manifest."""
     if not isinstance(manifest, dict) or not isinstance(manifest.get("files"), list):
@@ -256,6 +279,10 @@ def main() -> int:
     head_repo = pull_request["head"]["repo"]["full_name"]
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
+
+    if not sync_draft_review_labels(client, pr_number, bool(pull_request.get("draft"))):
+        print(f"PR #{pr_number} is draft; review automation paused")
+        return 0
 
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
     changed_files = [item["filename"] for item in files]

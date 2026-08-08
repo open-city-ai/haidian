@@ -2,7 +2,7 @@ name: submission-validation
 
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 permissions:
   contents: read
@@ -13,7 +13,6 @@ jobs:
   submission-validation:
     name: submission-validation
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
     steps:
       - name: Checkout trusted base branch
         uses: actions/checkout@v4

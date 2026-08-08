@@ -19,6 +19,7 @@ from validate_submission import (  # noqa: E402
 from github_pr_validation import (  # noqa: E402
     is_review_queue_candidate,
     safe_manifest_paths,
+    sync_draft_review_labels,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
@@ -44,6 +45,30 @@ class EmptyPdfDetectionTests(unittest.TestCase):
 
 
 class ManifestHydrationTests(unittest.TestCase):
+    class LabelClient:
+        def __init__(self) -> None:
+            self.removed = []
+            self.added = []
+
+        def remove_labels(self, number, labels) -> None:
+            self.removed.append((number, labels))
+
+        def add_labels(self, number, labels) -> None:
+            self.added.append((number, labels))
+
+    def test_draft_pr_pauses_review_and_replaces_active_labels(self) -> None:
+        client = self.LabelClient()
+        self.assertFalse(sync_draft_review_labels(client, 42, True))
+        self.assertEqual([(42, ["review/draft"])], client.added)
+        self.assertIn("review/queued", client.removed[0][1])
+        self.assertIn("review/changes-requested", client.removed[0][1])
+
+    def test_ready_pr_removes_stale_draft_label_and_continues(self) -> None:
+        client = self.LabelClient()
+        self.assertTrue(sync_draft_review_labels(client, 42, False))
+        self.assertEqual([(42, ["review/draft"])], client.removed)
+        self.assertEqual([], client.added)
+
     def test_accepts_only_safe_relative_manifest_paths(self) -> None:
         manifest = {
             "files": [
