@@ -6,7 +6,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from auto_review_queue import WorkerError, ci_state, decide, submission_dir_from_files  # noqa: E402
+from auto_review_queue import (  # noqa: E402
+    WorkerError,
+    ci_state,
+    decide,
+    review_label_changes,
+    submission_dir_from_files,
+)
 
 
 class AutoReviewQueueTests(unittest.TestCase):
@@ -94,6 +100,76 @@ class AutoReviewQueueTests(unittest.TestCase):
                         {"name": "submission-validation", "conclusion": "SKIPPED"},
                         {"name": "submission-validation", "conclusion": "SUCCESS"},
                     ]
+                }
+            ),
+        )
+
+    def test_draft_reconciliation_replaces_active_review_labels(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": True,
+                "labels": [
+                    {"name": "review/queued"},
+                    {"name": "review/changes-requested"},
+                    {"name": "unrelated"},
+                ],
+                "statusCheckRollup": [],
+            }
+        )
+        self.assertEqual(["review/changes-requested", "review/queued"], remove)
+        self.assertEqual(["review/draft"], add)
+
+    def test_ready_failure_reconciliation_adds_ci_label_without_erasing_review(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "labels": [{"name": "review/changes-requested"}],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "FAILURE"}
+                ],
+            }
+        )
+        self.assertEqual([], remove)
+        self.assertEqual(["review/ci-failed"], add)
+
+    def test_ready_success_only_removes_stale_draft_label(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "labels": [
+                    {"name": "review/draft"},
+                    {"name": "review/changes-requested"},
+                ],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "SUCCESS"}
+                ],
+            }
+        )
+        self.assertEqual(["review/draft"], remove)
+        self.assertEqual([], add)
+
+    def test_human_change_request_replaces_stale_queue_label(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "reviewDecision": "CHANGES_REQUESTED",
+                "labels": [{"name": "review/queued"}],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "SUCCESS"}
+                ],
+            }
+        )
+        self.assertEqual(["review/queued"], remove)
+        self.assertEqual(["review/changes-requested"], add)
+
+    def test_reconciliation_is_noop_when_labels_already_match(self) -> None:
+        self.assertEqual(
+            ([], []),
+            review_label_changes(
+                {
+                    "isDraft": True,
+                    "labels": [{"name": "review/draft"}],
+                    "statusCheckRollup": [],
                 }
             ),
         )

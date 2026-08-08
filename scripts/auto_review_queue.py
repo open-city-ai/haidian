@@ -23,6 +23,15 @@ from typing import Any
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
 PASS = "SUCCESS"
+REVIEW_DRAFT_LABEL = "review/draft"
+ACTIVE_REVIEW_LABELS = {
+    "review/queued",
+    "review/ci-failed",
+    "review/changes-requested",
+    "review/low-quality",
+    "review/formal-ready",
+    "review/intake-accepted",
+}
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
 
@@ -130,6 +139,65 @@ def label_args(remove: list[str], add: list[str]) -> list[str]:
     for label in add:
         args.extend(["--add-label", label])
     return args
+
+
+def review_label_changes(meta: dict[str, Any]) -> tuple[list[str], list[str]]:
+    """Return the minimal label changes needed to match live PR state.
+
+    The trusted pull-request workflow handles each new event, but older PRs can
+    retain a stale label when the workflow was skipped or the labeling rules
+    changed. The queue worker sees every open PR, so it reconciles only the
+    state that can be derived without reading or executing contributor code:
+    draft state and the required deterministic CI conclusion. Human review
+    outcomes are preserved on ready PRs.
+    """
+    existing = {
+        str(item.get("name"))
+        for item in meta.get("labels", [])
+        if isinstance(item, dict) and item.get("name")
+    }
+    remove: set[str] = set()
+    add: set[str] = set()
+
+    if meta.get("isDraft"):
+        remove.update(existing & ACTIVE_REVIEW_LABELS)
+        if REVIEW_DRAFT_LABEL not in existing:
+            add.add(REVIEW_DRAFT_LABEL)
+    else:
+        if REVIEW_DRAFT_LABEL in existing:
+            remove.add(REVIEW_DRAFT_LABEL)
+        if ci_state(meta) == "failure":
+            if "review/queued" in existing:
+                remove.add("review/queued")
+            if "review/ci-failed" not in existing:
+                add.add("review/ci-failed")
+        elif meta.get("reviewDecision") == "CHANGES_REQUESTED":
+            if "review/queued" in existing:
+                remove.add("review/queued")
+            if "review/changes-requested" not in existing:
+                add.add("review/changes-requested")
+
+    return sorted(remove), sorted(add)
+
+
+def reconcile_review_labels(
+    repo: str,
+    pull_requests: list[dict[str, Any]],
+    cwd: Path,
+) -> list[dict[str, Any]]:
+    """Apply minimal trusted label repairs across all open pull requests."""
+    results: list[dict[str, Any]] = []
+    for meta in pull_requests:
+        remove, add = review_label_changes(meta)
+        if not remove and not add:
+            continue
+        number = int(meta["number"])
+        run(
+            ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(remove, add)],
+            cwd=cwd,
+        )
+        results.append({"number": number, "removed": remove, "added": add})
+    return results
 
 
 def apply_review(
@@ -300,6 +368,23 @@ def main() -> int:
         fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError as exc:
         raise WorkerError("another auto-review worker is already running") from exc
+    if args.apply:
+        open_pull_requests = gh_json(
+            args.repo,
+            [
+                "pr",
+                "list",
+                "--state",
+                "open",
+                "--limit",
+                "1000",
+                "--json",
+                "number,isDraft,reviewDecision,statusCheckRollup,labels",
+            ],
+            cwd=repo_root,
+        )
+        for repair in reconcile_review_labels(args.repo, open_pull_requests, repo_root):
+            print(json.dumps({"label_reconciliation": repair}, ensure_ascii=False), flush=True)
     candidates = gh_json(
         args.repo,
         [
