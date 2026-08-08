@@ -1,6 +1,7 @@
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -10,6 +11,8 @@ from auto_review_queue import (  # noqa: E402
     WorkerError,
     ci_state,
     decide,
+    edit_review_labels_verified,
+    reconcile_merged_review_labels,
     review_label_changes,
     submission_dir_from_files,
 )
@@ -159,6 +162,44 @@ class AutoReviewQueueTests(unittest.TestCase):
                 }
             ),
         )
+
+    def test_merged_queued_pr_is_reconciled_as_intake_accepted(self) -> None:
+        with mock.patch("auto_review_queue.edit_review_labels_verified") as edit:
+            result = reconcile_merged_review_labels(
+                "open-city-ai/haidian",
+                [{"number": 346, "labels": [{"name": "review/queued"}]}],
+                ROOT,
+            )
+        edit.assert_called_once_with(
+            "open-city-ai/haidian",
+            346,
+            ["review/queued"],
+            ["review/intake-accepted"],
+            ROOT,
+        )
+        self.assertEqual(
+            [{"number": 346, "removed": ["review/queued"], "added": ["review/intake-accepted"]}],
+            result,
+        )
+
+    def test_label_write_retries_when_first_result_does_not_persist(self) -> None:
+        states = [
+            {"labels": [{"name": "review/queued"}]},
+            {"labels": [{"name": "review/queued"}]},
+            {"labels": [{"name": "review/queued"}]},
+            {"labels": [{"name": "review/intake-accepted"}]},
+        ]
+        with mock.patch("auto_review_queue.pr_meta", side_effect=states), mock.patch(
+            "auto_review_queue.run"
+        ) as run_mock:
+            edit_review_labels_verified(
+                "open-city-ai/haidian",
+                346,
+                ["review/queued"],
+                ["review/intake-accepted"],
+                ROOT,
+            )
+        self.assertEqual(2, run_mock.call_count)
 
 
 if __name__ == "__main__":

@@ -141,6 +141,54 @@ def label_args(remove: list[str], add: list[str]) -> list[str]:
     return args
 
 
+def label_names(meta: dict[str, Any]) -> set[str]:
+    return {
+        str(item.get("name"))
+        for item in meta.get("labels", [])
+        if isinstance(item, dict) and item.get("name")
+    }
+
+
+def edit_review_labels_verified(
+    repo: str,
+    number: int,
+    remove: list[str],
+    add: list[str],
+    cwd: Path,
+    *,
+    attempts: int = 2,
+) -> None:
+    """Apply label changes and verify them, retrying one GitHub race."""
+    last_error: WorkerError | None = None
+    for _ in range(attempts):
+        current = label_names(pr_meta(repo, number, cwd))
+        pending_remove = sorted(current & set(remove))
+        pending_add = sorted(set(add) - current)
+        if not pending_remove and not pending_add:
+            return
+        try:
+            run(
+                [
+                    "gh",
+                    "pr",
+                    "edit",
+                    str(number),
+                    "--repo",
+                    repo,
+                    *label_args(pending_remove, pending_add),
+                ],
+                cwd=cwd,
+            )
+        except WorkerError as exc:
+            last_error = exc
+        current = label_names(pr_meta(repo, number, cwd))
+        if not (current & set(remove)) and set(add) <= current:
+            return
+    if last_error is not None:
+        raise last_error
+    raise WorkerError(f"PR #{number} review labels did not persist after {attempts} attempts")
+
+
 def review_label_changes(meta: dict[str, Any]) -> tuple[list[str], list[str]]:
     """Return the minimal label changes needed to match live PR state.
 
@@ -151,11 +199,7 @@ def review_label_changes(meta: dict[str, Any]) -> tuple[list[str], list[str]]:
     draft state and the required deterministic CI conclusion. Human review
     outcomes are preserved on ready PRs.
     """
-    existing = {
-        str(item.get("name"))
-        for item in meta.get("labels", [])
-        if isinstance(item, dict) and item.get("name")
-    }
+    existing = label_names(meta)
     remove: set[str] = set()
     add: set[str] = set()
 
@@ -187,10 +231,26 @@ def reconcile_review_labels(
         if not remove and not add:
             continue
         number = int(meta["number"])
-        run(
-            ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(remove, add)],
-            cwd=cwd,
-        )
+        edit_review_labels_verified(repo, number, remove, add, cwd)
+        results.append({"number": number, "removed": remove, "added": add})
+    return results
+
+
+def reconcile_merged_review_labels(
+    repo: str,
+    pull_requests: list[dict[str, Any]],
+    cwd: Path,
+) -> list[dict[str, Any]]:
+    """Repair accepted merged PRs left queued by a post-merge label race."""
+    results: list[dict[str, Any]] = []
+    for meta in pull_requests:
+        existing = label_names(meta)
+        remove = ["review/queued"] if "review/queued" in existing else []
+        add = ["review/intake-accepted"] if "review/intake-accepted" not in existing else []
+        if not remove and not add:
+            continue
+        number = int(meta["number"])
+        edit_review_labels_verified(repo, number, remove, add, cwd)
         results.append({"number": number, "removed": remove, "added": add})
     return results
 
@@ -219,12 +279,12 @@ def apply_review(
         if admin_merge:
             merge.append("--admin")
         run(merge, cwd=cwd)
-        run(
-            ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(
-                ["review/queued"],
-                ["review/intake-accepted"],
-            )],
-            cwd=cwd,
+        edit_review_labels_verified(
+            repo,
+            number,
+            ["review/queued"],
+            ["review/intake-accepted"],
+            cwd,
         )
         return
 
@@ -234,10 +294,7 @@ def apply_review(
     add = ["review/changes-requested"]
     if outcome.action == "low-quality":
         add.append("review/low-quality")
-    run(
-        ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(["review/queued"], add)],
-        cwd=cwd,
-    )
+    edit_review_labels_verified(repo, number, ["review/queued"], add, cwd)
 
 
 def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) -> dict[str, Any]:
@@ -364,6 +421,24 @@ def main() -> int:
     except BlockingIOError as exc:
         raise WorkerError("another auto-review worker is already running") from exc
     if args.apply:
+        merged_queued = gh_json(
+            args.repo,
+            [
+                "pr",
+                "list",
+                "--state",
+                "merged",
+                "--label",
+                "review/queued",
+                "--limit",
+                "1000",
+                "--json",
+                "number,labels",
+            ],
+            cwd=repo_root,
+        )
+        for repair in reconcile_merged_review_labels(args.repo, merged_queued, repo_root):
+            print(json.dumps({"merged_label_reconciliation": repair}, ensure_ascii=False), flush=True)
         open_pull_requests = gh_json(
             args.repo,
             [
