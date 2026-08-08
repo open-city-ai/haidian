@@ -22,6 +22,17 @@ from urllib.parse import quote
 
 
 PUBLICATION_FILE = "gallery-publication.json"
+COPYRIGHT_LEDGER_PATH = Path("visual/assets/copyright-ledger.json")
+
+# These values are explicit disclosure states, not a license classifier.  A
+# package that records one of them has already told us that a human clearance
+# decision remains open, so it must not enter the default public gallery.
+UNRESOLVED_RIGHTS_CLEARANCE_STATUSES = {
+    "peer_attributed_structural_adaptation",
+    "pending_rightsholder_confirmation",
+    "rights_clearance_pending",
+    "source_license_unresolved",
+}
 
 
 REQUIRED_PACKAGE_FILES = {
@@ -162,6 +173,36 @@ def stored_formal_readiness(submission_dir: Path) -> bool | None:
     if isinstance(data, dict) and isinstance(data.get("can_enter_formal_review"), bool):
         return bool(data["can_enter_formal_review"])
     return None
+
+
+def unresolved_rights_assets(submission_dir: Path) -> list[str]:
+    """Return explicitly unresolved asset paths from an optional rights ledger.
+
+    Most established packages predate the optional ledger, so its absence is
+    not itself a publication hold.  When a package does supply one, only the
+    documented unresolved statuses below block the automatic gallery path;
+    this preserves human rights review rather than attempting to infer a
+    license from prose or a source URL.
+    """
+    ledger_path = submission_dir / COPYRIGHT_LEDGER_PATH
+    if not ledger_path.exists():
+        return []
+    ledger = read_json(ledger_path)
+    if not isinstance(ledger, dict) or not isinstance(ledger.get("assets"), list):
+        return [f"{COPYRIGHT_LEDGER_PATH.as_posix()} (invalid ledger)"]
+
+    unresolved: list[str] = []
+    for index, asset in enumerate(ledger["assets"]):
+        if not isinstance(asset, dict):
+            unresolved.append(f"{COPYRIGHT_LEDGER_PATH.as_posix()}#assets[{index}] (invalid asset)")
+            continue
+        status = asset.get("clearance_status")
+        if status not in UNRESOLVED_RIGHTS_CLEARANCE_STATUSES:
+            continue
+        asset_path = asset.get("path")
+        label = asset_path if isinstance(asset_path, str) and asset_path.strip() else f"assets[{index}]"
+        unresolved.append(f"{label} ({status})")
+    return unresolved
 
 
 def known_blockers(manifest: Any) -> list[str]:
@@ -438,11 +479,19 @@ def build_data(repo_root: Path) -> list[dict[str, Any]]:
     for path in discover_submissions(repo_root):
         rel = path.relative_to(repo_root).as_posix()
         publication = registry.get(rel, {})
+        unresolved_assets = unresolved_rights_assets(path)
         # A merged proposal is public by default. A full registry entry with
         # published=false is an explicit maintainer hold; published=true keeps
         # the stricter package/version checks and may opt the item into the
         # homepage feature set.
         if publication and publication.get("published") is False:
+            continue
+        if unresolved_assets:
+            if publication.get("published") is True:
+                raise SystemExit(
+                    f"{PUBLICATION_FILE}: cannot publish {rel}; unresolved rights clearance for "
+                    f"{', '.join(unresolved_assets)}. Record a maintainer and rightsholder decision first."
+                )
             continue
         if publication.get("published") is True:
             manifest = read_json(path / "manifest.json")

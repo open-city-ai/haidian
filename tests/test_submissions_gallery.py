@@ -16,6 +16,7 @@ from generate_submissions_data import (  # noqa: E402
     discover_submissions,
     load_publication_registry,
     package_sha256,
+    unresolved_rights_assets,
 )
 DATA_FILE = ROOT / "submissions-data.js"
 INDEX_FILE = ROOT / "index.html"
@@ -30,13 +31,13 @@ class TestSubmissionsGallery(unittest.TestCase):
         self.assertIsNotNone(match)
         return json.loads(match.group(1))
 
-    def test_every_merged_submission_is_listed_unless_explicitly_held(self):
+    def test_every_merged_submission_is_listed_unless_explicitly_or_rights_held(self):
         registry = json.loads((ROOT / "gallery-publication.json").read_text(encoding="utf-8"))
         held = {entry["path"] for entry in registry["entries"] if not entry["published"]}
         expected = {
             path.relative_to(ROOT).as_posix()
             for path in discover_submissions(ROOT)
-            if path.relative_to(ROOT).as_posix() not in held
+            if path.relative_to(ROOT).as_posix() not in held and not unresolved_rights_assets(path)
         }
         source_paths = {str(Path(item["sourceUrl"]).parent) for item in self.load_gallery_items()}
         self.assertEqual(expected, source_paths)
@@ -48,6 +49,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             path.name: publication.get(path.relative_to(ROOT).as_posix(), {}).get("featured", False)
             for path in discover_submissions(ROOT)
             if publication.get(path.relative_to(ROOT).as_posix(), {}).get("published", True)
+            and not unresolved_rights_assets(path)
         }
         actual = {item["id"]: item["featured"] for item in self.load_gallery_items()}
         self.assertEqual(expected, actual)
@@ -104,6 +106,72 @@ class TestSubmissionsGallery(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual([], build_data(root))
+
+    def test_unresolved_rights_ledger_holds_default_gallery_entry(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "example"
+            ledger = submission / "visual" / "assets" / "copyright-ledger.json"
+            ledger.parent.mkdir(parents=True)
+            (submission / "proposal.md").write_text("# Example\n", encoding="utf-8")
+            ledger.write_text(
+                json.dumps(
+                    {
+                        "assets": [
+                            {
+                                "path": "visual/assets/adapted-schema.json",
+                                "clearance_status": "peer_attributed_structural_adaptation",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            (root / "gallery-publication.json").write_text('{"version": 1, "entries": []}\n', encoding="utf-8")
+            self.assertEqual([], build_data(root))
+
+    def test_explicit_publication_rejects_unresolved_rights_ledger(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "example"
+            ledger = submission / "visual" / "assets" / "copyright-ledger.json"
+            ledger.parent.mkdir(parents=True)
+            (submission / "proposal.md").write_text("# Example\n", encoding="utf-8")
+            (submission / "manifest.json").write_text(
+                json.dumps({"files": [{"path": "proposal.md"}]}), encoding="utf-8"
+            )
+            ledger.write_text(
+                json.dumps(
+                    {
+                        "assets": [
+                            {
+                                "path": "visual/assets/adapted-schema.json",
+                                "clearance_status": "peer_attributed_structural_adaptation",
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            entry = {
+                "path": "submissions/alice/example",
+                "published": True,
+                "featured": False,
+                "review_status": "approved_for_publication",
+                "quality_tier": "qualified",
+                "reviewed_by": "maintainer",
+                "reviewed_at": "2026-08-09",
+                "rights_reviewed": True,
+                "reviewed_package_sha256": package_sha256(submission),
+                "selection_reason_zh": "维护者已完成内容与权利审核",
+                "selection_reason_en": "Maintainer completed content and rights review",
+                "selected_at": "2026-08-09",
+            }
+            (root / "gallery-publication.json").write_text(
+                json.dumps({"version": 1, "entries": [entry]}), encoding="utf-8"
+            )
+            with self.assertRaisesRegex(SystemExit, "unresolved rights clearance"):
+                build_data(root)
 
     def test_publication_registry_rejects_missing_selection_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -234,6 +302,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             1
             for path in discover_submissions(ROOT)
             if publication.get(path.relative_to(ROOT).as_posix(), {}).get("published", True)
+            and not unresolved_rights_assets(path)
         )
         self.assertEqual(expected, len(self.load_gallery_items()))
 
