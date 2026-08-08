@@ -4,9 +4,13 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+
+from participant_preflight import run as run_preflight_command  # noqa: E402
 
 
 class LightweightParticipantFlowTests(unittest.TestCase):
@@ -42,6 +46,17 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertIn("submissions/octocat/agent-city", flattened)
         self.assertIn("submission/octocat/agent-city", flattened)
         self.assertIn("upstream", flattened)
+
+    def test_preflight_decodes_git_output_as_utf8_independent_of_locale(self) -> None:
+        command = [
+            sys.executable,
+            "-c",
+            "import sys; sys.stdout.buffer.write('路径：中文\\n'.encode('utf-8'))",
+        ]
+        with mock.patch("locale.getpreferredencoding", return_value="ascii"):
+            completed = run_preflight_command(command, REPO_ROOT)
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertEqual("路径：中文\n", completed.stdout)
 
     def test_bootstrap_defaults_fork_to_case_preserving_login(self) -> None:
         completed = self.run_command(
