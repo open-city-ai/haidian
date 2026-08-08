@@ -21,7 +21,13 @@ import urllib.request
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from validate_submission import ValidationReport, format_report, validate_submission
+from validate_submission import (
+    PARTICIPANT_PROTECTED_GLOBAL_FILES,
+    PROTECTED_REVIEW_ARTIFACT_PREFIXES,
+    ValidationReport,
+    format_report,
+    validate_submission,
+)
 
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
@@ -263,7 +269,11 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
 
 
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
-    """Return true only when current and renamed paths are outside submissions/."""
+    """Return true only for ordinary non-submission paths.
+
+    Maintainer-controlled gallery data and local review artifacts must still
+    enter the strict validator even though they live outside submissions/.
+    """
     paths: list[str] = []
     for item in files:
         if isinstance(item, dict):
@@ -275,7 +285,12 @@ def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
                 paths.append(previous_filename)
         elif isinstance(item, str):
             paths.append(item)
-    return bool(paths) and all(filename.split("/", 1)[0] != "submissions" for filename in paths)
+    return bool(paths) and all(
+        filename.split("/", 1)[0] != "submissions"
+        and filename not in PARTICIPANT_PROTECTED_GLOBAL_FILES
+        and not filename.startswith(PROTECTED_REVIEW_ARTIFACT_PREFIXES)
+        for filename in paths
+    )
 
 
 def safe_manifest_paths(manifest: object) -> set[str]:

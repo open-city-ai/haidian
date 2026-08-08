@@ -219,6 +219,41 @@ class ManifestHydrationTests(unittest.TestCase):
             )
         )
 
+    def test_maintainer_controlled_paths_are_not_treated_as_code_only(self) -> None:
+        protected_paths = [
+            "submissions-data.js",
+            "gallery-publication.json",
+            "submissions/README.md",
+            ".maintainer-review/alice/review-summary.json",
+            "docs/reviews/alice.md",
+        ]
+        for path in protected_paths:
+            with self.subTest(path=path):
+                self.assertFalse(is_non_submission_pr([path]))
+
+        self.assertFalse(
+            is_non_submission_pr(
+                [
+                    {
+                        "filename": "scripts/generated-gallery.js",
+                        "previous_filename": "submissions-data.js",
+                        "status": "renamed",
+                    }
+                ]
+            )
+        )
+        self.assertFalse(
+            is_non_submission_pr(
+                [
+                    {
+                        "filename": "submissions-data.js",
+                        "previous_filename": "scripts/generated-gallery.js",
+                        "status": "renamed",
+                    }
+                ]
+            )
+        )
+
     def test_local_full_package_check_ignores_existing_maintainer_feedback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
