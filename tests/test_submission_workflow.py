@@ -125,6 +125,18 @@ class GitHubApiResilienceTests(unittest.TestCase):
             self.assertEqual(b"payload", destination.read_bytes())
             sleep.assert_called_once_with(1.0)
 
+    def test_request_does_not_retry_mutating_failure(self) -> None:
+        error = self._error(500, b'{"message":"server error"}')
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[error, _Response(b'{"ok":true}')],
+        ) as urlopen, patch("github_pr_validation.time.sleep") as sleep:
+            with self.assertRaisesRegex(RuntimeError, "HTTP 500: server error"):
+                client.request("POST", "/test", {"body": "comment"})
+        self.assertEqual(1, urlopen.call_count)
+        sleep.assert_not_called()
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:
