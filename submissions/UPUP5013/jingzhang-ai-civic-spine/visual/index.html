@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轨迹智环 | Jing-Zhang AI Civic Spine</title>
+<style>
+:root {
+  --ink:#18202a; --muted:#5f6875; --paper:#f7f4ec; --rail:#2a6f73;
+  --ai:#d64f38; --blue:#3f7fbf; --green:#5f8f4e; --gold:#c8952f; --line:#d7d1c4;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:"Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; color:var(--ink); background:var(--paper); }
+main { min-height:100vh; display:grid; grid-template-columns:minmax(300px, 410px) 1fr; }
+aside { padding:28px; border-right:1px solid var(--line); background:#fffdf8; overflow:auto; }
+h1 { margin:0 0 8px; font-size:32px; line-height:1.1; }
+h2 { margin:24px 0 10px; font-size:18px; }
+p { line-height:1.65; margin:0 0 14px; color:var(--muted); }
+.tag { display:inline-block; border:1px solid var(--line); padding:5px 9px; margin:0 6px 6px 0; font-size:12px; background:white; }
+.metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
+.metric { border:1px solid var(--line); background:white; padding:11px; min-height:76px; }
+.metric b { display:block; font-size:23px; color:var(--ai); }
+.metric span { font-size:12px; color:var(--muted); }
+.stage { margin-top:14px; display:flex; gap:8px; flex-wrap:wrap; }
+button { border:1px solid var(--line); background:white; padding:9px 12px; cursor:pointer; font:inherit; }
+button.active { background:var(--ink); color:white; }
+section.map { position:relative; min-height:100vh; overflow:hidden; }
+svg { width:100%; height:100%; position:absolute; inset:0; }
+.panel { position:absolute; right:26px; top:26px; width:min(390px, calc(100% - 52px)); background:rgba(255,253,248,.94); border:1px solid var(--line); padding:18px; }
+.legend { position:absolute; left:26px; bottom:26px; background:rgba(255,253,248,.94); border:1px solid var(--line); padding:14px; font-size:13px; }
+.legend i { display:inline-block; width:18px; height:4px; vertical-align:middle; margin-right:8px; }
+.warning { color:#7c4b00; font-size:12px; line-height:1.5; margin-top:16px; }
+@media (max-width: 860px) {
+  main { grid-template-columns:1fr; }
+  aside { border-right:0; border-bottom:1px solid var(--line); }
+  section.map { min-height:720px; }
+  .panel { position:static; width:auto; margin:16px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <aside>
+    <h1>轨迹智环</h1>
+    <p>百年京张 AI 创新公共脊，将遗址公园、三大重点片区、轨道站点、人才生活和低碳算力节点组织成可实施的开源城市更新网络。</p>
+    <span class="tag">heritage AI spine</span><span class="tag">slow loop</span><span class="tag">three AI districts</span><span class="tag">offline visual</span>
+    <div class="metrics">
+      <div class="metric"><b>43.6</b><span>km² 统筹研究</span></div>
+      <div class="metric"><b>11.4</b><span>km² 总体设计</span></div>
+      <div class="metric"><b>368.4</b><span>ha 重点区域</span></div>
+      <div class="metric"><b>18</b><span>AI 城市服务节点</span></div>
+    </div>
+    <h2>阶段视图</h2>
+    <div class="stage">
+      <button class="active" data-stage="all">全部</button>
+      <button data-stage="0-2">0-2年</button>
+      <button data-stage="3-5">3-5年</button>
+      <button data-stage="5-10">5-10年</button>
+    </div>
+    <p class="warning">注：所有边界采用开源仓库临时约束边界，不能替代法定红线。正式报批前必须替换官方 CAD/GIS/PDF 边界并重新自检。</p>
+  </aside>
+  <section class="map">
+    <svg viewBox="0 0 1200 920" aria-label="轨迹智环方案图">
+      <defs>
+        <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
+          <path d="M54 0H0V54" fill="none" stroke="#e8e1d5" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="1200" height="920" fill="url(#grid)"/>
+      <g id="geo"></g>
+    </svg>
+    <div class="panel">
+      <h2 id="panelTitle">一条遗产创新脊，三个 AI 城市样板</h2>
+      <p id="panelText">点击节点查看片区策略。方案优先修复南北遗产空间和东西向慢行联系，再以可分期项目包导入产业、人才、公共服务和低碳基础设施。</p>
+    </div>
+    <div class="legend">
+      <div><i style="background:var(--rail)"></i>京张遗产 AI 公共脊</div>
+      <div><i style="background:var(--blue)"></i>慢行智环与东西补链</div>
+      <div><i style="background:var(--gold)"></i>重点片区临时范围</div>
+      <div><i style="background:var(--ai)"></i>AI 城市服务节点</div>
+    </div>
+  </section>
+</main>
+<script>
+const boundaries = {"type": "FeatureCollection", "name": "provisional_jingzhang_ai_belt_boundaries", "metadata": {"boundary_status": "maintainer_defined_provisional", "official_boundary_available_in_repository": false, "official_basis_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509", "coordinate_reference_system": "EPSG:4326", "usage_note": "All boundary geometry is provisional and must be replaced by official CAD/GIS/PDF boundaries before regulatory use."}, "features": [{"type": "Feature", "id": "PROV-SITE-001", "properties": {"id": "PROV-SITE-001", "layer": "SITE_BOUNDARY", "scope_id": "overall_design_area", "name_zh": "总体设计范围粗略替代边界", "geometry_role": "provisional_constraint", "official_boundary": false, "area_sqm_declared": 11400000, "area_sqm_calculated": 11412825.386, "confidence": "medium"}, "geometry": {"type": "Polygon", "coordinates": [[[116.3407, 39.939], [116.3553, 39.939], [116.3553, 39.965], [116.3533, 39.99], [116.3553, 40.0265], [116.3427, 40.0265], [116.3417, 40.006], [116.3397, 39.975], [116.3407, 39.939]]]}}, {"type": "Feature", "id": "PROV-RESEARCH-001", "properties": {"id": "PROV-RESEARCH-001", "layer": "SITE_BOUNDARY", "scope_id": "coordinated_research_area", "name_zh": "统筹研究范围粗略替代边界", "geometry_role": "provisional_constraint", "official_boundary": false, "area_sqm_declared": 43600000, "area_sqm_calculated": 43609232.558, "confidence": "medium"}, "geometry": {"type": "Polygon", "coordinates": [[[116.31885, 39.938], [116.36615, 39.938], [116.37215, 39.965], [116.37215, 40.027], [116.33285, 40.027], [116.32085, 40.0], [116.31285, 39.965], [116.31885, 39.938]]]}}, {"type": "Feature", "id": "PROV-KEY-001", "properties": {"id": "PROV-KEY-001", "layer": "KEY_AREA", "area_id": "zhongzhiyuan_ai_acceleration_area", "name_zh": "众智园AI自主创新加速区粗略范围", "geometry_role": "provisional_constraint", "official_boundary": false, "announced_area_sqm": 1921000, "area_sqm_calculated": 1929201.877}, "geometry": {"type": "Polygon", "coordinates": [[[116.343, 40.0075], [116.354, 40.0075], [116.354, 40.026], [116.343, 40.026], [116.343, 40.0075]]]}}, {"type": "Feature", "id": "PROV-KEY-002", "properties": {"id": "PROV-KEY-002", "layer": "KEY_AREA", "area_id": "beijing_ai_origin_community", "name_zh": "北京AI原点社区粗略范围", "geometry_role": "provisional_constraint", "official_boundary": false, "announced_area_sqm": 1043000, "area_sqm_calculated": 1043236.909}, "geometry": {"type": "Polygon", "coordinates": [[[116.342, 39.9835], [116.353, 39.9835], [116.353, 39.9935], [116.342, 39.9935], [116.342, 39.9835]]]}}, {"type": "Feature", "id": "PROV-KEY-003", "properties": {"id": "PROV-KEY-003", "layer": "KEY_AREA", "area_id": "dazhongsi_ai_industry_cluster", "name_zh": "大钟寺AI产业集聚区粗略范围", "geometry_role": "provisional_constraint", "official_boundary": false, "announced_area_sqm": 720000, "area_sqm_calculated": 720454.221}, "geometry": {"type": "Polygon", "coordinates": [[[116.342, 39.944], [116.355, 39.944], [116.355, 39.94984], [116.342, 39.94984], [116.342, 39.944]]]}}]};
+const network = {"type": "FeatureCollection", "name": "jingzhang_ai_civic_spine_strategy_network", "features": [{"type": "Feature", "id": "NET-RAIL-SPINE-001", "properties": {"name_zh": "京张遗址AI创新公共脊", "layer": "heritage_ai_spine", "length_km_target": 10.8, "priority": 1}, "geometry": {"type": "LineString", "coordinates": [[116.348, 39.94], [116.347, 39.965], [116.348, 39.988], [116.3485, 40.012], [116.3486, 40.026]]}}, {"type": "Feature", "id": "NET-SLOW-LOOP-001", "properties": {"name_zh": "AI人才慢行智环", "layer": "slow_mobility_loop", "length_km_target": 16.2, "priority": 1}, "geometry": {"type": "LineString", "coordinates": [[116.338, 39.946], [116.361, 39.953], [116.362, 39.997], [116.356, 40.022], [116.335, 40.018], [116.332, 39.974], [116.338, 39.946]]}}, {"type": "Feature", "id": "NET-EW-LINKS-001", "properties": {"name_zh": "东西向校区园区社区补链", "layer": "east_west_links", "count_target": 12, "priority": 2}, "geometry": {"type": "MultiLineString", "coordinates": [[[116.333, 40.018], [116.361, 40.018]], [[116.334, 39.989], [116.361, 39.989]], [[116.336, 39.949], [116.361, 39.949]]]}}]};
+const nodes = {"type": "FeatureCollection", "name": "jingzhang_ai_civic_spine_nodes", "features": [{"type": "Feature", "id": "NODE-001", "properties": {"name_zh": "众智园全栈开源会客厅", "program": "foundation-model lab, standard testbed, innovation plaza", "phase": "0-2"}, "geometry": {"type": "Point", "coordinates": [116.348, 40.018]}}, {"type": "Feature", "id": "NODE-002", "properties": {"name_zh": "AI原点转化街坊", "program": "near-campus incubator, talent services, demo street", "phase": "0-2"}, "geometry": {"type": "Point", "coordinates": [116.347, 39.989]}}, {"type": "Feature", "id": "NODE-003", "properties": {"name_zh": "大钟寺智能经济会客厅", "program": "agent economy, consumer AI, metro-integrated public room", "phase": "3-5"}, "geometry": {"type": "Point", "coordinates": [116.349, 39.947]}}, {"type": "Feature", "id": "NODE-004", "properties": {"name_zh": "清河低碳算力驿站", "program": "edge compute, heat recovery, waterfront services", "phase": "3-5"}, "geometry": {"type": "Point", "coordinates": [116.344, 40.012]}}, {"type": "Feature", "id": "NODE-005", "properties": {"name_zh": "京张记忆发布广场", "program": "heritage exhibition, AI launch events", "phase": "0-2"}, "geometry": {"type": "Point", "coordinates": [116.3475, 39.982]}}]};
+const minLon=116.312, maxLon=116.373, minLat=39.936, maxLat=40.028;
+function xy(c) { return [80+(c[0]-minLon)/(maxLon-minLon)*1040, 840-(c[1]-minLat)/(maxLat-minLat)*760]; }
+function pathFor(coords) { return coords.map((c,i)=>`${i?'L':'M'}${xy(c)[0].toFixed(1)} ${xy(c)[1].toFixed(1)}`).join(' ') + ' Z'; }
+function lineFor(coords) { return coords.map((c,i)=>`${i?'L':'M'}${xy(c)[0].toFixed(1)} ${xy(c)[1].toFixed(1)}`).join(' '); }
+const g = document.getElementById('geo');
+function add(el) { g.appendChild(el); return el; }
+for (const f of boundaries.features) {
+  const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+  p.setAttribute('d', pathFor(f.geometry.coordinates[0]));
+  p.setAttribute('fill', f.properties.layer === 'KEY_AREA' ? '#fff4cf' : (f.id.includes('RESEARCH') ? '#e9f1ed' : '#f7eee7'));
+  p.setAttribute('stroke', f.properties.layer === 'KEY_AREA' ? 'var(--gold)' : (f.id.includes('RESEARCH') ? 'var(--green)' : 'var(--ai)'));
+  p.setAttribute('stroke-width', f.properties.layer === 'KEY_AREA' ? 3 : 4);
+  p.setAttribute('opacity', f.properties.layer === 'KEY_AREA' ? .82 : .54);
+  add(p);
+}
+for (const f of network.features) {
+  if (f.geometry.type === 'LineString') {
+    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d', lineFor(f.geometry.coordinates));
+    p.setAttribute('fill','none'); p.setAttribute('stroke', f.properties.layer === 'heritage_ai_spine' ? 'var(--rail)' : 'var(--blue)');
+    p.setAttribute('stroke-width', f.properties.layer === 'heritage_ai_spine' ? 12 : 5);
+    p.setAttribute('stroke-linecap','round'); p.setAttribute('stroke-linejoin','round'); add(p);
+  } else {
+    for (const line of f.geometry.coordinates) {
+      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
+      p.setAttribute('d', lineFor(line)); p.setAttribute('fill','none'); p.setAttribute('stroke','var(--blue)'); p.setAttribute('stroke-width','4'); p.setAttribute('stroke-dasharray','8 8'); add(p);
+    }
+  }
+}
+function visibleForStage(feature, stage) { return stage === 'all' || feature.properties.phase === stage; }
+function renderNodes(stage='all') {
+  [...g.querySelectorAll('.node,.node-label')].forEach(n=>n.remove());
+  for (const f of nodes.features.filter(n=>visibleForStage(n, stage))) {
+    const [x,y]=xy(f.geometry.coordinates);
+    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('class','node'); c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',18); c.setAttribute('fill','var(--ai)'); c.setAttribute('stroke','white'); c.setAttribute('stroke-width','4');
+    c.style.cursor='pointer';
+    c.addEventListener('click',()=>{ document.getElementById('panelTitle').textContent=f.properties.name_zh; document.getElementById('panelText').textContent=f.properties.program + ' / phase ' + f.properties.phase + ' years'; });
+    add(c);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('class','node-label'); t.setAttribute('x',x+24); t.setAttribute('y',y+6); t.setAttribute('font-size','18'); t.setAttribute('fill','var(--ink)'); t.textContent=f.properties.name_zh; add(t);
+  }
+}
+renderNodes();
+document.querySelectorAll('button[data-stage]').forEach(btn=>btn.addEventListener('click',()=>{
+  document.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); renderNodes(btn.dataset.stage);
+}));
+</script>
+</body>
+</html>
