@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张时刻带 · The Jing-Zhang Time Belt — 提案证据仪表盘</title>
+<style>
+  :root{--red:#A63D2F;--gray:#4A4A4A;--blue:#1F5FA8;--gold:#C9A227;--green:#3E7C4F;--paper:#FAF8F3;--ink:#222;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Microsoft YaHei","PingFang SC",sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+  .wrap{max-width:1240px;margin:0 auto;padding:24px 20px 60px}
+  header{border-bottom:4px solid var(--red);padding-bottom:18px;margin-bottom:22px}
+  h1{font-size:30px;color:var(--red);letter-spacing:1px}
+  .sub{color:var(--gray);font-size:13px;margin-top:6px}
+  .badges{margin-top:10px}
+  .badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:12px;margin-right:8px;background:#fff;border:1.5px solid var(--blue);color:var(--blue)}
+  .badge.warn{border-color:var(--gold);color:#8a6d1a}
+  .badge.ok{border-color:var(--green);color:var(--green)}
+  .kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;margin:18px 0 24px}
+  .kpi{background:#fff;border:1px solid #e2dccf;border-radius:8px;padding:12px 10px;text-align:center}
+  .kpi-v{font-size:20px;font-weight:bold;color:var(--red)}
+  .kpi-v .u{font-size:11px;color:var(--gray);font-weight:normal;margin-left:2px}
+  .kpi-t{font-size:11px;color:var(--gray);margin-top:4px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:900px){.kpis{grid-template-columns:repeat(4,1fr)}.grid2,.grid3{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid #e2dccf;border-radius:10px;padding:18px;margin-bottom:20px}
+  h2{font-size:19px;color:var(--red);margin-bottom:12px;border-left:5px solid var(--red);padding-left:10px}
+  h3{font-size:15px;color:var(--gray);margin:8px 0}
+  .mapbox{background:#F1EDE4;border-radius:10px;padding:8px;overflow:auto}
+  svg{width:100%;height:auto;min-width:620px}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{padding:7px 8px;border-bottom:1px solid #eee;text-align:left}
+  th{background:#f5f1e8;color:var(--gray)}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+  .stop h4{font-size:17px;color:var(--ink)}
+  .stop h4 small{color:var(--gray);font-weight:normal;font-size:12px}
+  .slogan{color:var(--red);font-weight:bold;margin:4px 0 8px}
+  .stop p,.sc p,.land p{font-size:12.5px;color:#555}
+  .sc,.land{background:#faf7f0;border-radius:8px;padding:10px;border:1px solid #eee;margin-bottom:8px}
+  .sc-loc{font-size:11px;color:var(--blue);margin:2px 0}
+  .ph{display:inline-block;padding:1px 10px;border-radius:12px;font-size:11px}
+  .ph1{background:#fdeaea;color:var(--red)}.ph2{background:#e8f0fa;color:var(--blue)}.ph3{background:#e8f5ec;color:var(--green)}
+  .src{font-size:12px;color:#555}
+  .src li{margin-bottom:5px;word-break:break-all}
+  footer{margin-top:30px;border-top:2px solid #e2dccf;padding-top:14px;font-size:11.5px;color:var(--gray)}
+  .tag{display:inline-block;background:var(--red);color:#fff;font-size:10.5px;padding:1px 8px;border-radius:10px;margin-left:6px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>京张时刻带 · The Jing-Zhang Time Belt</h1>
+  <div class="sub">从第一声钟响到AI时刻的9公里创新时间轴 ｜ 百年京张AI创新带城市设计开源征集 · formal 专业设计提交包</div>
+  <div class="badges">
+    <span class="badge">package_type: professional_design_package</span>
+    <span class="badge warn">package_state: ready_for_review</span>
+    <span class="badge warn">边界: provisional_constraint（官方红线发布后整体重算）</span>
+    <span class="badge">agent: varliuvar · 京张时刻带</span>
+  </div>
+</header>
+
+<h2>核心指标 · Core Metrics（与 metrics.json 同源）</h2>
+<div class="kpis">
+<div class="kpi"><div class="kpi-v" data-metric="site_area_sqm" data-value="11412825.4">11412825<span class="u">m²</span></div><div class="kpi-t">总体设计范围</div></div><div class="kpi"><div class="kpi-v" data-metric="research_area_sqm" data-value="43609232.6">43609233<span class="u">m²</span></div><div class="kpi-t">统筹研究范围</div></div><div class="kpi"><div class="kpi-v" data-metric="green_ratio" data-value="0.3019">30.2%<span class="u"></span></div><div class="kpi-t">绿地率</div></div><div class="kpi"><div class="kpi-v" data-metric="public_space_ratio" data-value="0.019">1.9%<span class="u"></span></div><div class="kpi-t">公共空间率</div></div><div class="kpi"><div class="kpi-v" data-metric="building_density" data-value="0.0198">2.0%<span class="u"></span></div><div class="kpi-t">建筑密度</div></div><div class="kpi"><div class="kpi-v" data-metric="key_area_count" data-value="3">3<span class="u">处</span></div><div class="kpi-t">重点区域</div></div><div class="kpi"><div class="kpi-v" data-metric="green_corridor_length_m" data-value="9000.0">9<span class="u">km</span></div><div class="kpi-t">时间轴长度</div></div><div class="kpi"><div class="kpi-v" data-metric="land_use_cell_count" data-value="28">28<span class="u">个</span></div><div class="kpi-t">用地单元</div></div>
+</div>
+
+<div class="card">
+<h2>总览地图 · Overview Map</h2>
+<h3 style="margin:4px 0 8px;color:var(--gray)">三层范围：统筹研究 43.6km² · 总体设计 11.4km² · 重点区域 368.4ha（provisional）</h3>
+<p style="font-size:12.5px;color:#555;margin-bottom:10px">
+带（时间轴绿廊·深绿）三站（蓝虚线框：南·鸣响站 / 中·零号站 / 北·一号站）两翼（西·服务翼 / 东·场景翼）；
+金线=时间轴慢行主径；紫线=站点接驳；灰线=S2时光列车（老京张线）；◈=文保节点；圆点=轨道站点。本图为provisional边界上的概念表达，非官方红线。
+</p>
+<div class="mapbox"><svg viewBox="-2400 -5400 4900 10800">
+<rect x="-2400" y="-5400" width="4900" height="10800" fill="#F1EDE4"/>
+<polygon points="-3189.3,-4921.7 2076.1,-4921.7 2744.0,-1935.5 2744.0,4921.7 -1630.8,4921.7 -2966.7,1935.5 -3857.2,-1935.5 -3189.3,-4921.7" fill="none" stroke="#4A4A4A" stroke-width="1.4" stroke-dasharray="8,5" opacity="1.0"/>
+<polygon points="-757.0,-4811.1 868.3,-4811.1 868.3,-1935.5 645.7,829.5 868.3,4866.4 -534.3,4866.4 -645.7,2599.1 -868.3,-829.5 -757.0,-4811.1" fill="none" stroke="#A63D2F" stroke-width="3" opacity="1.0"/>
+<polygon points="-757.0,-4811.1 -764.7,-4534.6 -256.0,-4534.6 -256.0,-4811.1 -757.0,-4811.1" fill="#D98E73" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-772.4,-4258.1 -256.0,-4258.1 -256.0,-4534.6 -764.7,-4534.6 -772.4,-4258.1" fill="#8A8A8A" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,-4811.1 -256.0,-4258.1 77.9,-4258.1 77.9,-4811.1 -256.0,-4811.1" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="868.3,-4811.1 77.9,-4811.1 77.9,-4258.1 868.3,-4258.1 868.3,-4811.1" fill="#C9A227" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-790.5,-3612.2 -256.0,-3612.2 -256.0,-4258.1 -772.4,-4258.1 -790.5,-3612.2" fill="#D98E73" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,-4258.1 -256.0,-3612.2 77.9,-3612.2 77.9,-4258.1 -256.0,-4258.1" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="868.3,-4258.1 77.9,-4258.1 77.9,-3612.2 868.3,-3612.2 868.3,-4258.1" fill="#B08CC4" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-809.5,-2930.9 -256.0,-2930.9 -256.0,-3612.2 -790.5,-3612.2 -809.5,-2930.9" fill="#7CC48E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-828.1,-2267.3 -256.0,-2267.3 -256.0,-2930.9 -809.5,-2930.9 -828.1,-2267.3" fill="#7FA8D9" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,-3612.2 -256.0,-2267.3 77.9,-2267.3 77.9,-3612.2 -256.0,-3612.2" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="868.3,-3612.2 77.9,-3612.2 77.9,-2930.9 868.3,-2930.9 868.3,-3612.2" fill="#C9A227" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="868.3,-2930.9 77.9,-2930.9 77.9,-2267.3 868.3,-2267.3 868.3,-2930.9" fill="#E0869B" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-868.3,-829.5 -853.9,-608.3 -256.0,-608.3 -256.0,-2267.3 -828.1,-2267.3 -868.3,-829.5" fill="#C9A227" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,-2267.3 -256.0,-608.3 77.9,-608.3 77.9,-2267.3 -256.0,-2267.3" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="868.3,-1935.5 868.3,-2267.3 77.9,-2267.3 77.9,-608.3 761.4,-608.3 868.3,-1935.5" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-800.1,221.2 -256.0,221.2 -256.0,-608.3 -853.9,-608.3 -800.1,221.2" fill="#7FA8D9" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-735.4,1216.6 -256.0,1216.6 -256.0,221.2 -800.1,221.2 -735.4,1216.6" fill="#7FA8D9" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,-608.3 -256.0,1216.6 77.9,1216.6 77.9,-608.3 -256.0,-608.3" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="645.7,829.5 761.4,-608.3 77.9,-608.3 77.9,1216.6 667.0,1216.6 645.7,829.5" fill="#D98E73" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-685.2,1990.8 -256.0,1990.8 -256.0,1216.6 -735.4,1216.6 -685.2,1990.8" fill="#7CC48E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-645.7,2599.1 -637.5,2765.0 -256.0,2765.0 -256.0,1990.8 -685.2,1990.8 -645.7,2599.1" fill="#7FA8D9" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,1216.6 -256.0,2765.0 77.9,2765.0 77.9,1216.6 -256.0,1216.6" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="667.0,1216.6 77.9,1216.6 77.9,2765.0 752.4,2765.0 667.0,1216.6" fill="#C9A227" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-585.9,3815.7 -256.0,3815.7 -256.0,2765.0 -637.5,2765.0 -585.9,3815.7" fill="#7FA8D9" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-534.3,4866.4 -256.0,4866.4 -256.0,3815.7 -585.9,3815.7 -534.3,4866.4" fill="#A8C8B0" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="77.9,4866.4 77.9,2765.0 -256.0,2765.0 -256.0,4866.4 77.9,4866.4" fill="#6FAE7E" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="752.4,2765.0 77.9,2765.0 77.9,3815.7 810.3,3815.7 752.4,2765.0" fill="#7FA8D9" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="868.3,4866.4 810.3,3815.7 77.9,3815.7 77.9,4866.4 868.3,4866.4" fill="#C9A227" stroke="#fff" stroke-width="0.7" opacity="0.92"/>
+<polygon points="-256.0,-4811.1 -256.0,-4258.1 77.9,-4258.1 77.9,-4811.1 -256.0,-4811.1" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="-256.0,-4258.1 -256.0,-3612.2 77.9,-3612.2 77.9,-4258.1 -256.0,-4258.1" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="-256.0,-3612.2 -256.0,-2267.3 77.9,-2267.3 77.9,-3612.2 -256.0,-3612.2" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="-256.0,-2267.3 -256.0,-608.3 77.9,-608.3 77.9,-2267.3 -256.0,-2267.3" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="868.3,-1935.5 868.3,-2267.3 77.9,-2267.3 77.9,-608.3 761.4,-608.3 868.3,-1935.5" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="-256.0,-608.3 -256.0,1216.6 77.9,1216.6 77.9,-608.3 -256.0,-608.3" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="-256.0,1216.6 -256.0,2765.0 77.9,2765.0 77.9,1216.6 -256.0,1216.6" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polygon points="77.9,4866.4 77.9,2765.0 -256.0,2765.0 -256.0,4866.4 77.9,4866.4" fill="#2E7D74" stroke="#fff" stroke-width="0.8" opacity="0.55"/>
+<polyline points="-89.1,-4977.0 -89.1,-4258.1" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-89.1,-4258.1 -89.1,-3612.2" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-89.1,-3612.2 -89.1,-2267.3" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-89.1,-2267.3 -89.1,-608.3" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-89.1,-608.3 -89.1,1216.6" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-89.1,1216.6 -89.1,2765.0" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-89.1,2765.0 -89.1,4899.6" fill="none" stroke="#C9A227" stroke-width="6" stroke-dasharray="10,6" opacity="1.0"/>
+<polyline points="-924.0,-4534.6 924.0,-4534.6" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,-4258.1 924.0,-4258.1" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,-3612.2 924.0,-3612.2" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,-2930.9 924.0,-2930.9" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,-2267.3 924.0,-2267.3" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,-608.3 924.0,-608.3" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,221.2 924.0,221.2" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,1216.6 924.0,1216.6" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,1990.8 924.0,1990.8" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,2765.0 924.0,2765.0" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-924.0,3815.7 924.0,3815.7" fill="none" stroke="#8A8A8A" stroke-width="1.2" opacity="1.0"/>
+<polyline points="-389.6,-55.3 -89.1,442.4" fill="none" stroke="#6B4E9E" stroke-width="2.2" opacity="1.0"/>
+<polyline points="-500.9,-3981.6 -89.1,-3926.3" fill="none" stroke="#6B4E9E" stroke-width="2.2" opacity="1.0"/>
+<polyline points="-334.0,3096.8 -89.1,3262.7" fill="none" stroke="#6B4E9E" stroke-width="2.2" opacity="1.0"/>
+<polyline points="256.0,1437.8 -89.1,1548.4" fill="none" stroke="#6B4E9E" stroke-width="2.2" opacity="1.0"/>
+<polyline points="-167.0,-4534.6 -111.3,1990.8" fill="none" stroke="#1F5FA8" stroke-width="3" opacity="1.0"/>
+<polyline points="-868.3,-3926.3 868.3,-3926.3" fill="none" stroke="#2E7D74" stroke-width="3" opacity="1.0"/>
+<polyline points="-167.0,-2930.9 -278.3,4899.6" fill="none" stroke="#7C5AA0" stroke-width="3" opacity="1.0"/>
+<polyline points="-389.6,-4700.5 -55.7,4899.6" fill="none" stroke="#4A4A4A" stroke-width="4" stroke-dasharray="6,5" opacity="1.0"/>
+<polygon points="-500.9,2765.0 723.6,2765.0 723.6,4811.1 -500.9,4811.1 -500.9,2765.0" fill="none" stroke="#1F5FA8" stroke-width="2.2" stroke-dasharray="6,4" opacity="1.0"/>
+<polygon points="-612.3,110.6 612.3,110.6 612.3,1216.6 -612.3,1216.6 -612.3,110.6" fill="none" stroke="#1F5FA8" stroke-width="2.2" stroke-dasharray="6,4" opacity="1.0"/>
+<polygon points="-612.3,-4258.1 834.9,-4258.1 834.9,-3612.2 -612.3,-3612.2 -612.3,-4258.1" fill="none" stroke="#1F5FA8" stroke-width="2.2" stroke-dasharray="6,4" opacity="1.0"/>
+<polygon points="-457.0,-4491.2 -458.8,-4503.0 -461.7,-4514.6 -465.7,-4525.9 -470.9,-4536.7 -477.0,-4546.9 -484.2,-4556.5 -492.3,-4565.3 -501.2,-4573.3 -510.8,-4580.5 -521.1,-4586.6 -532.0,-4591.7 -543.3,-4595.7 -555.0,-4598.6 -566.9,-4600.4 -578.9,-4601.0 -590.9,-4600.4 -602.8,-4598.6 -614.4,-4595.7 -625.7,-4591.7 -636.6,-4586.6 -646.9,-4580.5 -656.5,-4573.3 -665.5,-4565.3 -673.5,-4556.5 -680.7,-4546.9 -686.9,-4536.7 -692.0,-4525.9 -696.0,-4514.6 -699.0,-4503.0 -700.7,-4491.2 -701.3,-4479.3 -700.7,-4467.4 -699.0,-4455.6 -696.0,-4444.0 -692.0,-4432.7 -686.9,-4421.9 -680.7,-4411.7 -673.5,-4402.1 -665.5,-4393.3 -656.5,-4385.3 -646.9,-4378.1 -636.6,-4372.0 -625.7,-4366.9 -614.4,-4362.9 -602.8,-4360.0 -590.9,-4358.2 -578.9,-4357.6 -566.9,-4358.2 -555.0,-4360.0 -543.3,-4362.9 -532.0,-4366.9 -521.1,-4372.0 -510.8,-4378.1 -501.2,-4385.3 -492.3,-4393.3 -484.2,-4402.1 -477.0,-4411.7 -470.9,-4421.9 -465.7,-4432.7 -461.7,-4444.0 -458.8,-4455.6 -457.0,-4467.4 -456.4,-4479.3 -457.0,-4491.2" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<polygon points="21.7,-3938.2 19.9,-3950.0 17.0,-3961.6 12.9,-3972.9 7.8,-3983.7 1.6,-3993.9 -5.5,-4003.5 -13.6,-4012.3 -22.5,-4020.3 -32.2,-4027.5 -42.5,-4033.6 -53.3,-4038.7 -64.6,-4042.7 -76.3,-4045.6 -88.2,-4047.4 -100.2,-4048.0 -112.2,-4047.4 -124.1,-4045.6 -135.7,-4042.7 -147.0,-4038.7 -157.9,-4033.6 -168.2,-4027.5 -177.9,-4020.3 -186.8,-4012.3 -194.8,-4003.5 -202.0,-3993.9 -208.2,-3983.7 -213.3,-3972.9 -217.4,-3961.6 -220.3,-3950.0 -222.1,-3938.2 -222.6,-3926.3 -222.1,-3914.4 -220.3,-3902.6 -217.4,-3891.0 -213.3,-3879.7 -208.2,-3868.9 -202.0,-3858.7 -194.8,-3849.1 -186.8,-3840.3 -177.9,-3832.3 -168.2,-3825.1 -157.9,-3819.0 -147.0,-3813.9 -135.7,-3809.9 -124.1,-3807.0 -112.2,-3805.2 -100.2,-3804.6 -88.2,-3805.2 -76.3,-3807.0 -64.6,-3809.9 -53.3,-3813.9 -42.5,-3819.0 -32.2,-3825.1 -22.5,-3832.3 -13.6,-3840.3 -5.5,-3849.1 1.6,-3858.7 7.8,-3868.9 12.9,-3879.7 17.0,-3891.0 19.9,-3902.6 21.7,-3914.4 22.3,-3926.3 21.7,-3938.2" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<polygon points="255.6,-2940.7 254.1,-2950.3 251.7,-2959.8 248.4,-2969.0 244.2,-2977.8 239.2,-2986.2 233.3,-2994.0 226.7,-3001.3 219.4,-3007.8 211.5,-3013.7 203.1,-3018.7 194.2,-3022.9 184.9,-3026.2 175.4,-3028.5 165.7,-3030.0 155.8,-3030.4 146.0,-3030.0 136.3,-3028.5 126.8,-3026.2 117.5,-3022.9 108.6,-3018.7 100.2,-3013.7 92.3,-3007.8 85.0,-3001.3 78.4,-2994.0 72.5,-2986.2 67.5,-2977.8 63.3,-2969.0 60.0,-2959.8 57.6,-2950.3 56.1,-2940.7 55.7,-2930.9 56.1,-2921.1 57.6,-2911.5 60.0,-2902.0 63.3,-2892.8 67.5,-2884.0 72.5,-2875.6 78.4,-2867.8 85.0,-2860.5 92.3,-2854.0 100.2,-2848.1 108.6,-2843.1 117.5,-2838.9 126.8,-2835.6 136.3,-2833.3 146.0,-2831.8 155.8,-2831.4 165.7,-2831.8 175.4,-2833.3 184.9,-2835.6 194.2,-2838.9 203.1,-2843.1 211.5,-2848.1 219.4,-2854.0 226.7,-2860.5 233.3,-2867.8 239.2,-2875.6 244.2,-2884.0 248.4,-2892.8 251.7,-2902.0 254.1,-2911.5 255.6,-2921.1 256.0,-2930.9 255.6,-2940.7" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<polygon points="266.7,-1392.3 265.2,-1401.9 262.9,-1411.4 259.5,-1420.6 255.3,-1429.4 250.3,-1437.8 244.4,-1445.6 237.8,-1452.9 230.5,-1459.4 222.6,-1465.3 214.2,-1470.3 205.3,-1474.5 196.1,-1477.8 186.5,-1480.1 176.8,-1481.6 167.0,-1482.0 157.2,-1481.6 147.4,-1480.1 137.9,-1477.8 128.6,-1474.5 119.8,-1470.3 111.3,-1465.3 103.4,-1459.4 96.1,-1452.9 89.5,-1445.6 83.7,-1437.8 78.6,-1429.4 74.4,-1420.6 71.1,-1411.4 68.7,-1401.9 67.3,-1392.3 66.8,-1382.5 67.3,-1372.7 68.7,-1363.1 71.1,-1353.6 74.4,-1344.4 78.6,-1335.6 83.7,-1327.2 89.5,-1319.4 96.1,-1312.1 103.4,-1305.6 111.3,-1299.7 119.8,-1294.7 128.6,-1290.5 137.9,-1287.2 147.4,-1284.9 157.2,-1283.4 167.0,-1283.0 176.8,-1283.4 186.5,-1284.9 196.1,-1287.2 205.3,-1290.5 214.2,-1294.7 222.6,-1299.7 230.5,-1305.6 237.8,-1312.1 244.4,-1319.4 250.3,-1327.2 255.3,-1335.6 259.5,-1344.4 262.9,-1353.6 265.2,-1363.1 266.7,-1372.7 267.2,-1382.5 266.7,-1392.3" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<polygon points="10.6,431.6 9.0,420.8 6.3,410.3 2.7,400.1 -2.0,390.3 -7.6,381.0 -14.1,372.2 -21.5,364.2 -29.6,356.9 -38.3,350.4 -47.7,344.9 -57.6,340.2 -67.9,336.6 -78.5,333.9 -89.3,332.3 -100.2,331.8 -111.1,332.3 -121.9,333.9 -132.5,336.6 -142.8,340.2 -152.7,344.9 -162.0,350.4 -170.8,356.9 -178.9,364.2 -186.2,372.2 -192.7,381.0 -198.4,390.3 -203.0,400.1 -206.7,410.3 -209.4,420.8 -211.0,431.6 -211.5,442.4 -211.0,453.2 -209.4,464.0 -206.7,474.5 -203.0,484.7 -198.4,494.5 -192.7,503.8 -186.2,512.6 -178.9,520.6 -170.8,527.9 -162.0,534.4 -152.7,539.9 -142.8,544.6 -132.5,548.2 -121.9,550.9 -111.1,552.5 -100.2,553.0 -89.3,552.5 -78.5,550.9 -67.9,548.2 -57.6,544.6 -47.7,539.9 -38.3,534.4 -29.6,527.9 -21.5,520.6 -14.1,512.6 -7.6,503.8 -2.0,494.5 2.7,484.7 6.3,474.5 9.0,464.0 10.6,453.2 11.1,442.4 10.6,431.6" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<polygon points="322.3,1870.4 320.9,1860.8 318.5,1851.3 315.2,1842.1 311.0,1833.3 305.9,1824.9 300.1,1817.1 293.5,1809.8 286.2,1803.3 278.3,1797.4 269.9,1792.4 261.0,1788.2 251.7,1784.9 242.2,1782.6 232.5,1781.1 222.6,1780.7 212.8,1781.1 203.1,1782.6 193.6,1784.9 184.3,1788.2 175.4,1792.4 167.0,1797.4 159.1,1803.3 151.8,1809.8 145.2,1817.1 139.3,1824.9 134.3,1833.3 130.1,1842.1 126.8,1851.3 124.4,1860.8 122.9,1870.4 122.5,1880.2 122.9,1890.0 124.4,1899.6 126.8,1909.1 130.1,1918.3 134.3,1927.1 139.3,1935.5 145.2,1943.3 151.8,1950.6 159.1,1957.1 167.0,1963.0 175.4,1968.0 184.3,1972.2 193.6,1975.5 203.1,1977.8 212.8,1979.3 222.6,1979.7 232.5,1979.3 242.2,1977.8 251.7,1975.5 261.0,1972.2 269.9,1968.0 278.3,1963.0 286.2,1957.1 293.5,1950.6 300.1,1943.3 305.9,1935.5 311.0,1927.1 315.2,1918.3 318.5,1909.1 320.9,1899.6 322.3,1890.0 322.8,1880.2 322.3,1870.4" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<polygon points="32.8,4079.2 30.8,4066.3 27.6,4053.7 23.2,4041.4 17.6,4029.6 10.9,4018.5 3.1,4008.0 -5.7,3998.4 -15.4,3989.6 -26.0,3981.8 -37.2,3975.2 -49.1,3969.6 -61.4,3965.2 -74.1,3962.0 -87.1,3960.1 -100.2,3959.5 -113.3,3960.1 -126.2,3962.0 -139.0,3965.2 -151.3,3969.6 -163.2,3975.2 -174.4,3981.8 -184.9,3989.6 -194.6,3998.4 -203.4,4008.0 -211.3,4018.5 -218.0,4029.6 -223.6,4041.4 -228.0,4053.7 -231.2,4066.3 -233.1,4079.2 -233.8,4092.2 -233.1,4105.2 -231.2,4118.1 -228.0,4130.7 -223.6,4143.0 -218.0,4154.8 -211.3,4165.9 -203.4,4176.4 -194.6,4186.0 -184.9,4194.8 -174.4,4202.6 -163.2,4209.2 -151.3,4214.8 -139.0,4219.2 -126.2,4222.4 -113.3,4224.3 -100.2,4224.9 -87.1,4224.3 -74.1,4222.4 -61.4,4219.2 -49.1,4214.8 -37.2,4209.2 -26.0,4202.6 -15.4,4194.8 -5.7,4186.0 3.1,4176.4 10.9,4165.9 17.6,4154.8 23.2,4143.0 27.6,4130.7 30.8,4118.1 32.8,4105.2 33.4,4092.2 32.8,4079.2" fill="#C9A227" stroke="#fff" stroke-width="0.8" opacity="1.0"/>
+<circle cx="-500.9" cy="-3981.6" r="6" fill="#1F5FA8" stroke="#fff" stroke-width="2"/><text x="-500.9" y="-3967.6" font-size="12" font-weight="bold" fill="#1F5FA8" text-anchor="middle">大钟寺站</text>
+<circle cx="-389.6" cy="-55.3" r="6" fill="#1F5FA8" stroke="#fff" stroke-width="2"/><text x="-389.6" y="-41.3" font-size="12" font-weight="bold" fill="#1F5FA8" text-anchor="middle">五道口站</text>
+<circle cx="-334.0" cy="3096.8" r="6" fill="#1F5FA8" stroke="#fff" stroke-width="2"/><text x="-334.0" y="3110.8" font-size="12" font-weight="bold" fill="#1F5FA8" text-anchor="middle">学知园站</text>
+<circle cx="-167.0" cy="3981.6" r="6" fill="#1F5FA8" stroke="#fff" stroke-width="2"/><text x="-167.0" y="3995.6" font-size="12" font-weight="bold" fill="#1F5FA8" text-anchor="middle">清河站</text>
+<text x="-222.6" y="-4036.9" font-size="11" fill="#A63D2F">◈ 觉生寺</text>
+<text x="-256.0" y="1493.1" font-size="11" fill="#A63D2F">◈ 清华园站旧址</text>
+<text x="-523.2" y="-4534.6" font-size="11" fill="#A63D2F">◈ 北京北站老站房</text>
+<text x="723.6" y="-995.4" font-size="11" fill="#A63D2F">◈ 元大都遗址</text>
+<text x="-167.0" y="3981.6" font-size="11" fill="#A63D2F">◈ 清河老站房</text>
+<text x="445.3" y="-4036.9" font-size="13" fill="#A63D2F" font-weight="bold">南·听钟 1420/1909</text>
+<text x="445.3" y="387.1" font-size="13" fill="#A63D2F" font-weight="bold">中·此刻 1949-2026</text>
+<text x="445.3" y="3815.7" font-size="13" fill="#A63D2F" font-weight="bold">北·造钟 2026+</text>
+<text x="-634.5" y="-1603.7" font-size="13" fill="#1F5FA8" font-weight="bold">西翼·服务翼</text>
+<text x="634.5" y="-1603.7" font-size="13" fill="#1F5FA8" font-weight="bold">东翼·场景翼</text>
+</svg></div>
+</div>
+
+<div class="grid2">
+<div class="card">
+<h2>用地分区与建筑 · Land Use &amp; Buildings</h2>
+<table><tr><th>用地</th><th>代码</th><th>面积(ha)</th><th>占比</th></tr><tr><td><span class='dot' style='background:#D98E73'></span>商业服务业</td><td>05</td><td>123.5</td><td>10.8%</td></tr><tr><td><span class='dot' style='background:#C9A227'></span>居住</td><td>0701</td><td>288.0</td><td>25.2%</td></tr><tr><td><span class='dot' style='background:#7FA8D9'></span>科研</td><td>0802</td><td>214.3</td><td>18.8%</td></tr><tr><td><span class='dot' style='background:#B08CC4'></span>文化</td><td>0803</td><td>39.3</td><td>3.4%</td></tr><tr><td><span class='dot' style='background:#7CC48E'></span>教育</td><td>0804</td><td>55.7</td><td>4.9%</td></tr><tr><td><span class='dot' style='background:#E0869B'></span>医疗卫生</td><td>0806</td><td>40.4</td><td>3.5%</td></tr><tr><td><span class='dot' style='background:#8A8A8A'></span>道路</td><td>1207</td><td>10.9</td><td>1.0%</td></tr><tr><td><span class='dot' style='background:#6FAE7E'></span>公园绿地</td><td>1401</td><td>344.5</td><td>30.2%</td></tr><tr><td><span class='dot' style='background:#A8C8B0'></span>防护绿地</td><td>1402</td><td>24.6</td><td>2.2%</td></tr></table>
+<p style="font-size:11.5px;color:#888;margin-top:8px">28个用地单元全域剖分：覆盖边界100%、无缝隙、无重叠（EPSG:4548复算）。容积率等法定控制在官方控规发布前标注待确认。</p>
+</div>
+<div class="card">
+<h2>三站详细设计 · Three Stops</h2>
+<div class="stop" style="border-top:5px solid #A63D2F"><h4>鸣响站 <small>大钟寺AI产业集聚区 · 72.0 ha</small></h4><div class="slogan">让创新鸣响</div><p>永乐鸣响台(敲钟发布)为心脏；四象限步行连通；1733商业空间/抖音园区/古钟博物馆；站城一体。文化用地围绕觉生寺低层克制。</p></div><div class="stop" style="border-top:5px solid #1F5FA8"><h4>零号站 <small>北京AI原点社区 · 104.3 ha</small></h4><div class="slogan">从此刻开始</div><p>原点之钟(零点装置)为核心；智源大厦/清华科技园/清华园站旧址/五道口商业带；一公里近校创新生态圈；低扰动有机更新。</p></div><div class="stop" style="border-top:5px solid #3E7C4F"><h4>一号站 <small>众智园AI自主创新加速区 · 192.1 ha</small></h4><div class="slogan">铸造未来</div><p>学北园为引擎(2026年7月开园)；学知园站轨道微中心；模型评测场/出海平台/测试验证空间；北接京张之环1909广场与清河滨水绿廊。</p></div>
+</div>
+</div>
+
+<div class="card">
+<h2>AI 场景：13张场景卡（含3张产业测试验证场景 T1-T3）· Scenario Cards</h2>
+<div class="grid3"><div class="sc"><b>S01</b> 时刻站牌·时间旅行者导览<div class="sc-loc">📍 绿廊全线</div><p>9km时间轴AR导览，每公里年代刻度</p></div><div class="sc"><b>S02</b> 零点倒计时·青年时刻广场<div class="sc-loc">📍 零号站</div><p>原点广场零点数字装置</p></div><div class="sc"><b>S03</b> 鸣响之夜·AI里程碑敲钟发布<div class="sc-loc">📍 鸣响站</div><p>永乐鸣响台敲钟仪式，直播发布</p></div><div class="sc"><b>S04</b> 准时政务·分钟级公共服务<div class="sc-loc">📍 全域社区</div><p>政务AI预审+人工办结时刻表</p></div><div class="sc"><b>S05</b> 无人配送准时网络<div class="sc-loc">📍 一号/零号站</div><p>园区-社区-公园配送准时率公开</p></div><div class="sc"><b>S06</b> 具身智能测试道 T1<div class="sc-loc">📍 小月河翼</div><p>机器人/无人车受控测试道+测试时刻表</p></div><div class="sc"><b>S07</b> 车路云一体化接驳环<div class="sc-loc">📍 横向道路</div><p>站点间智能接驳，安全员在岗</p></div><div class="sc"><b>S08</b> AI+医疗健康时刻<div class="sc-loc">📍 蓟门桥医疗带</div><p>AI分诊辅助+医生终审</p></div><div class="sc"><b>S09</b> AI+教育校园时刻<div class="sc-loc">📍 零号站/六道口</div><p>环高校AI实训与开放实验</p></div><div class="sc"><b>S10</b> 模型评测公开场 T2<div class="sc-loc">📍 一号站</div><p>公开模型评测、结果可申诉</p></div><div class="sc"><b>S11</b> AI安全验证场 T3<div class="sc-loc">📍 一号/鸣响站</div><p>红队测试、时刻合格证</p></div><div class="sc"><b>S12</b> AI+养老时刻<div class="sc-loc">📍 北土城社区</div><p>社区AI陪伴与应急，人工接管</p></div><div class="sc"><b>S13</b> 时光列车S2联动<div class="sc-loc">📍 西直门段</div><p>市郊S2线时光列车体验</p></div></div>
+<p style="font-size:11.5px;color:#888;margin-top:8px">全部场景遵守：非公开数据不使用、隐私最小化、人工复核、可退出、可回滚（京张时刻标准）；未成熟技术不宣称可全面部署。</p>
+</div>
+
+<div class="grid2">
+<div class="card">
+<h2>AI朝圣地标 · Pilgrimage Landmarks（5处）</h2>
+<div class="land"><b>L1</b> <b>永乐鸣响台</b><div class="sc-loc">📍 鸣响站·大钟寺</div><p>AI里程碑之钟：发布/开源/上市敲钟仪式地标</p></div><div class="land"><b>L2</b> <b>原点之钟</b><div class="sc-loc">📍 零号站·原点大厦前</div><p>五道口'宇宙中心'零点坐标装置</p></div><div class="land"><b>L3</b> <b>双站同框</b><div class="sc-loc">📍 清河站</div><p>1909老站房×2019高铁站百年对望</p></div><div class="land"><b>L4</b> <b>京张之环1909广场</b><div class="sc-loc">📍 一号站北端</div><p>遗址公园北门户·时间轴终点</p></div><div class="land"><b>L5</b> <b>清华园站·进京赶考起点</b><div class="sc-loc">📍 零号站北缘</div><p>市保·1949年进京赶考第一站</p></div>
+</div>
+<div class="card">
+<h2>更新项目与分期 · Renewal Projects（14项）</h2>
+<div style="font-size:12.5px;color:#555;margin-bottom:8px">交通慢行：9km时间轴慢行主径 + 11条横向缝合道路 + 4条站点接驳线（[data:geometry/roads.geojson]）；蓝绿公共空间：时间轴绿廊 + 小月河滨水带 + 七处节点广场（[data:geometry/green_space.geojson][data:geometry/public_space.geojson]）。</div>
+<table><tr><th>#</th><th>项目</th><th>类型</th><th>分期</th></tr><tr><td>R01</td><td>时间轴慢行主径贯通与年代刻度</td><td>公共空间</td><td><span class="ph ph1">近期</span></td></tr><tr><td>R02</td><td>永乐鸣响台</td><td>公共空间+文化</td><td><span class="ph ph1">近期</span></td></tr><tr><td>R03</td><td>原点之钟</td><td>公共空间</td><td><span class="ph ph1">近期</span></td></tr><tr><td>R04</td><td>京张之环1909北门户深化</td><td>公共空间</td><td><span class="ph ph1">近期</span></td></tr><tr><td>R05</td><td>时刻站牌导视系统</td><td>导视</td><td><span class="ph ph1">近期</span></td></tr><tr><td>R06</td><td>具身智能测试道</td><td>测试场景</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R07</td><td>无人配送准时网络</td><td>场景运营</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R08</td><td>数字孪生实时街区</td><td>新型基础设施</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R09</td><td>鸣响发布厅</td><td>场景运营</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R10</td><td>时光列车S2站城联动</td><td>文旅</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R11</td><td>清华园站文化节点活化</td><td>文化</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R12</td><td>学院路科研转化带</td><td>产业空间</td><td><span class="ph ph2">中期</span></td></tr><tr><td>R13</td><td>北土城遗址缝合广场</td><td>公共空间</td><td><span class="ph ph3">远期</span></td></tr><tr><td>R14</td><td>上清桥门户与五环界面</td><td>门户景观</td><td><span class="ph ph3">远期</span></td></tr></table>
+</div>
+</div>
+
+<div class="grid2">
+<div class="card">
+<h2>任务覆盖与合规 · Compliance</h2>
+<table>
+<tr><th>类别</th><th>条目</th><th>覆盖</th></tr>
+<tr><td>公告任务</td><td>17 项（1.3-1.5）</td><td>✅ compliance_matrix.json</td></tr>
+<tr><td>智能体任务</td><td>6 项（agent.1-6）</td><td>✅ compliance_matrix.json + proposal.md</td></tr>
+<tr><td>专业标准</td><td>6 项强制标准</td><td>✅ standard_matrix.json</td></tr>
+<tr><td>设计深度</td><td>15 项 formal</td><td>✅ design_depth_matrix.json</td></tr>
+</table>
+<p style="font-size:12px;color:#555;margin-top:10px">评审维度自评：目标契合(世界级AI高地/朝圣) · 功能匹配(三大定位/五大功能/三区两翼) · 品牌识别(时刻带+人字钟摆) · 区域协同(两区一带/北纬社区/京津冀) · 规划创新(时间轴城市/准时城市/可制动城市) · 产业支撑(五链回路/算力/测试床) · 场景可感知(13场景卡) · 空间明确(三站两翼落图) · 可转化(14更新项目/运营机制) · 表达完整(文本+JSON+图+HTML+PDF) · 公开合规(全源登记) · 国际传播(Beijing Time) · 长期运营(年度活动体系)。</p>
+</div>
+<div class="card">
+<h2>来源与假设 · Sources &amp; Assumptions</h2>
+<h3>主要信源（17 条，全部登记 sources.json）</h3>
+<ul class="src"><li><b>SITE-PACKAGE</b> — Project brief, enums, allowed design space, ranges, and schemas. <br><span style="color:#999">brief/site-package/</span></li><li><b>SOURCE-REGISTRY</b> — Public/cleared/provisional source usability registry; distinguishes formal-ready, backgrou <br><span style="color:#999">data/source_registry.json</span></li><li><b>PROCESSED-FACT-PACK</b> — Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and mis <br><span style="color:#999">data/processed/agent_fact_pack.md</span></li><li><b>BOUNDARY-SOURCE</b> — Submitted site boundary geometry source (provisional). <br><span style="color:#999">brief/site-package/geometry/provisional_boundaries.geojson</span></li><li><b>KEY-AREA-SOURCE</b> — Three required detailed-design key area boundaries (provisional). <br><span style="color:#999">brief/site-package/geometry/provisional_boundaries.geojson</span></li><li><b>OFFICIAL-ANNOUNCEMENT</b> — Official announcement tasks, scope levels, key areas, language, and deliverable context. <br><span style="color:#999">https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html</span></li><li><b>AGENT-TASKBOOK</b> — Agent-facing open-call principles, six required agent tasks, scenario/branding/operation r <br><span style="color:#999">brief/site-package/agent_taskbook.json</span></li><li><b>BELL-DAZHONGSI</b> — 永乐大钟(1420年前后铸造, 高6.75米, 重46.5吨, 铭文23万余字)与大钟寺古钟博物馆事实；觉生寺为全国重点文保。 <br><span style="color:#999">https://www.beijing.gov.cn/renwen/sy/whkb/202210/t20221028_2846721.html</span></li><li><b>JZ-RAILWAY-HISTORY</b> — 京张铁路1905开工1909通车史实、西直门-清华园-五道口-清河市区段走向、清华园站1910年建站与1949年进京赶考第一站、2016年道口拆除与线路入地。 <br><span style="color:#999">https://www.chinanews.com.cn/sh/2016/11-02/8050393.shtml</span></li><li><b>JZ-HSR-SMART</b> — 京张高铁2019-12-30开通、世界首条350km/h智能高铁、首次北斗导航、自动驾驶、一次制动停准10cm。 <br><span style="color:#999">http://www.xinhuanet.com/politics/leaders/2019-12/30/c_1125405183.htm</span></li><li><b>JZ-PARK-PHASE2</b> — 京张铁路遗址公园二期2026-08-06建成开放：9公里、约53公顷、京张之环1909广场、9条城市支路、服务70社区45万居民。 <br><span style="color:#999">https://finance.sina.cn/2026-08-08/detail-inimqtzt6470758.d.html</span></li><li><b>ORIGIN-COMMUNITY</b> — AI原点社区：北京首批4个AI创新街区、原点大厦(原东升大厦)、3km2范围、440余家企业、AI集聚度74%、1.3万开发者、10万AI学子。 <br><span style="color:#999">https://www.beijing.gov.cn/ywdt/gzdt/202601/t20260106_4403157.html</span></li></ul>
+<h3>关键假设（5 条）</h3>
+<ul class="src"><li><b>A-CONTROLS-001</b> [pending_professional_confirmation] — Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constra</li><li><b>A-PROVISIONAL-002</b> [provisional_constraint] — 三层范围与三处重点区多边形均为按公告文字四至与面积推定的 provisional 几何，非官方红线；EPSG:4548复算面积与公告约面积偏差≤0.43%。</li><li><b>A-CONTROLS-002</b> [pending_professional_confirmation] — 容积率、建筑高度、退线、拆改留等法定控制条件未在公开资料中提供，本方案不给出地块级法定结论。</li><li><b>A-ECONOMIC-003</b> [concept_assumption] — 全球案例（Kendall Square/King's Cross等）的机制转译与本方案产业判断基于公开资料，不构成投资、招商或产值承诺。</li><li><b>A-TIMEFRAME-004</b> [concept_assumption] — 分期计划（近期2026-2028/中期2028-2031/远期2031-2035）与活动时间安排为概念建议，与官方实施时序无关。</li></ul>
+</div>
+</div>
+
+<div class="card"><h2>自检状态 · Self-Check</h2><table><tr><th>项目</th><th>结果</th></tr><tr><td>确定性校验（文件/哈希/引用/图嵌入）</td><td>PASS（最终化后复验）</td></tr><tr><td>空间审查（拓扑/覆盖/枚举/schema）</td><td>PASS</td></tr><tr><td>视觉封装（离线/区块/指标标记）</td><td>PASS</td></tr><tr><td>专业证据（标准/深度/引用）</td><td>PASS</td></tr><tr><td>边界状态</td><td>provisional_constraint（官方红线发布后整体重算）</td></tr></table></div>
+<footer>
+京张时刻带提交包 · proposal.md 为主语言正文，geometry/*.geojson 与 metrics.json 为权威机器数据，本页为离线展示层（无CDN/无远程资源）。
+三处重点区域与三层范围均为 provisional 推定边界（公告文字四至+面积拟合，EPSG:4548复算偏差≤0.43%），不构成官方红线；官方多边形发布后全部图层与指标整体重算。
+所有空间与运营内容均为概念建议/参考方案/可供专业团队深化研究，不构成政府审定结论。
+</footer>
+</div>
+</body>
+</html>
