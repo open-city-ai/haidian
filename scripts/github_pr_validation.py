@@ -14,6 +14,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import shlex
 import shutil
 import subprocess
 import sys
@@ -36,7 +37,10 @@ from validate_submission import (
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+PUBLIC_WEB_ROOT = "https://github.com"
+PUBLIC_RAW_ROOT = "https://raw.githubusercontent.com"
 MAX_API_ATTEMPTS = 4
+MAX_DIFF_BYTES = 25 * 1024 * 1024
 MAX_DOWNLOAD_BYTES = 10 * 1024 * 1024
 MAX_RETRY_DELAY_SECONDS = 30
 RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
@@ -100,15 +104,93 @@ def _is_download_not_found(error: Exception, path: str) -> bool:
     """Recognize an optional manifest asset that is still absent after retries."""
     if isinstance(error, urllib.error.HTTPError):
         return error.code == 404
-    return isinstance(error, RuntimeError) and str(error).startswith(
-        f"GitHub API download {path} failed with HTTP 404:"
+    return isinstance(error, RuntimeError) and (
+        str(error).startswith(f"GitHub API download {path} failed with HTTP 404:")
+        or str(error).startswith(f"GitHub raw download {path} failed with HTTP 404:")
     )
+
+
+def _is_rate_limit_error(error: Exception) -> bool:
+    """Recognize an exhausted GitHub API quota for safe public fallbacks."""
+    message = str(error).lower()
+    return "rate limit" in message or "abuse detection" in message
+
+
+def _safe_diff_path(value: str) -> str:
+    candidate = PurePosixPath(value)
+    if candidate.is_absolute() or not candidate.parts or ".." in candidate.parts:
+        raise RuntimeError(f"PR diff contained an unsafe path: {value!r}")
+    normalized = candidate.as_posix()
+    if normalized in {"", "."}:
+        raise RuntimeError(f"PR diff contained an empty path: {value!r}")
+    return normalized
+
+
+def parse_pull_diff(diff: str) -> list[dict[str, str]]:
+    """Parse file metadata from a public PR diff without reading patch content."""
+    files: list[dict[str, str]] = []
+    current: dict[str, str] | None = None
+
+    def finish() -> None:
+        if current is None:
+            return
+        old_path = current.pop("_old_path", "")
+        new_path = current.pop("_new_path", "")
+        if current.get("status") == "removed":
+            current["filename"] = old_path
+        elif current.get("status") == "added":
+            current["filename"] = new_path
+        else:
+            current["filename"] = new_path
+        if current.get("status") == "renamed":
+            current["previous_filename"] = old_path
+        if not current.get("filename"):
+            raise RuntimeError("PR diff contained a file entry without a filename")
+        files.append(current)
+
+    for line in diff.splitlines():
+        if line.startswith("diff --git "):
+            finish()
+            try:
+                paths = shlex.split(line[len("diff --git ") :])
+            except ValueError as exc:
+                raise RuntimeError(f"could not parse PR diff header: {line!r}") from exc
+            if len(paths) != 2:
+                raise RuntimeError(f"could not parse PR diff header: {line!r}")
+            old_raw, new_raw = paths
+            old_path = "" if old_raw == "/dev/null" else _safe_diff_path(old_raw.removeprefix("a/"))
+            new_path = "" if new_raw == "/dev/null" else _safe_diff_path(new_raw.removeprefix("b/"))
+            current = {
+                "_old_path": old_path,
+                "_new_path": new_path,
+                "status": "added" if not old_path else "modified",
+            }
+            if not new_path:
+                current["status"] = "removed"
+            continue
+        if current is None:
+            continue
+        if line.startswith("new file mode "):
+            current["status"] = "added"
+        elif line.startswith("deleted file mode "):
+            current["status"] = "removed"
+        elif line.startswith("rename from "):
+            current["status"] = "renamed"
+            current["_old_path"] = _safe_diff_path(line[len("rename from ") :])
+        elif line.startswith("rename to "):
+            current["status"] = "renamed"
+            current["_new_path"] = _safe_diff_path(line[len("rename to ") :])
+    finish()
+    if not files:
+        raise RuntimeError("public PR diff contained no file entries")
+    return files
 
 
 class GitHubClient:
     def __init__(self, token: str, repository: str) -> None:
         self.token = token
         self.repository = repository
+        self.prefer_public_fallback = False
 
     def request(self, method: str, url: str, data: dict | None = None) -> tuple[Any, dict[str, str]]:
         if url.startswith("/"):
@@ -153,7 +235,43 @@ class GitHubClient:
             url = next_link(headers.get("Link", ""))
         return results
 
-    def download_content(
+    def fetch_pull_files(self, issue_number: int) -> list[dict[str, str]]:
+        """List PR files, falling back to the public diff if API quota is exhausted."""
+        try:
+            return self.paginate(f"/repos/{self.repository}/pulls/{issue_number}/files?per_page=100")
+        except RuntimeError as exc:
+            if not _is_rate_limit_error(exc):
+                raise
+            self.prefer_public_fallback = True
+            print(
+                "GitHub API rate limit reached; using the public PR diff and raw artifact fallback",
+                file=sys.stderr,
+            )
+            return self.fetch_pull_files_from_public_diff(issue_number)
+
+    def fetch_pull_files_from_public_diff(self, issue_number: int) -> list[dict[str, str]]:
+        url = f"{PUBLIC_WEB_ROOT}/{self.repository}/pull/{issue_number}.diff"
+        request = urllib.request.Request(
+            url,
+            method="GET",
+            headers={
+                "Accept": "text/plain",
+                "User-Agent": "haidian-submission-validation",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                raw = response.read(MAX_DIFF_BYTES + 1)
+        except urllib.error.HTTPError as error:
+            message = _http_error_message(error)
+            raise RuntimeError(
+                f"GitHub public PR diff {url} failed with HTTP {error.code}: {message}"
+            ) from error
+        if len(raw) > MAX_DIFF_BYTES:
+            raise RuntimeError(f"GitHub public PR diff exceeds {MAX_DIFF_BYTES} byte cap")
+        return parse_pull_diff(raw.decode("utf-8", errors="replace"))
+
+    def download_raw_content(
         self,
         repo: str,
         path: str,
@@ -161,10 +279,40 @@ class GitHubClient:
         destination: Path,
         max_bytes: int = MAX_DOWNLOAD_BYTES,
     ) -> None:
-        # Fetch raw bytes through the Contents API on api.github.com. Unlike the
-        # github.com raw_url, this honors the Bearer token on private repos (the
-        # raw_url redirects to raw.githubusercontent.com, which drops the header
-        # and 404s).
+        """Download inert bytes from a public fork without consuming API quota."""
+        encoded_path = urllib.parse.quote(path, safe="/")
+        encoded_ref = urllib.parse.quote(ref, safe="")
+        url = f"{PUBLIC_RAW_ROOT}/{repo}/{encoded_ref}/{encoded_path}"
+        request = urllib.request.Request(
+            url,
+            method="GET",
+            headers={
+                "Accept": "application/octet-stream",
+                "User-Agent": "haidian-submission-validation",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                content = response.read(max_bytes + 1)
+        except urllib.error.HTTPError as error:
+            message = _http_error_message(error)
+            raise RuntimeError(
+                f"GitHub raw download {path} failed with HTTP {error.code}: {message}"
+            ) from error
+        if len(content) > max_bytes:
+            raise RuntimeError(f"{destination}: file exceeds download cap")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(content)
+
+    def _download_content_from_api(
+        self,
+        repo: str,
+        path: str,
+        ref: str,
+        destination: Path,
+        max_bytes: int,
+    ) -> None:
+        """Download one file through the authenticated Contents API."""
         encoded_path = urllib.parse.quote(path)
         encoded_ref = urllib.parse.quote(ref)
         url = f"{API_ROOT}/repos/{repo}/contents/{encoded_path}?ref={encoded_ref}"
@@ -198,7 +346,34 @@ class GitHubClient:
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(content)
 
+    def download_content(
+        self,
+        repo: str,
+        path: str,
+        ref: str,
+        destination: Path,
+        max_bytes: int = MAX_DOWNLOAD_BYTES,
+    ) -> None:
+        if self.prefer_public_fallback:
+            self.download_raw_content(repo, path, ref, destination, max_bytes)
+            return
+        try:
+            self._download_content_from_api(repo, path, ref, destination, max_bytes)
+        except RuntimeError as exc:
+            if not _is_rate_limit_error(exc):
+                raise
+            self.prefer_public_fallback = True
+            self.download_raw_content(repo, path, ref, destination, max_bytes)
+
     def fetch_content(self, repo: str, path: str, ref: str, destination: Path) -> bool:
+        if self.prefer_public_fallback:
+            try:
+                self.download_raw_content(repo, path, ref, destination)
+            except RuntimeError as exc:
+                if _is_download_not_found(exc, path):
+                    return False
+                raise
+            return True
         encoded_path = urllib.parse.quote(path)
         encoded_ref = urllib.parse.quote(ref)
         try:
@@ -207,6 +382,17 @@ class GitHubClient:
             if exc.code == 404:
                 return False
             raise
+        except RuntimeError as exc:
+            if not _is_rate_limit_error(exc):
+                raise
+            self.prefer_public_fallback = True
+            try:
+                self.download_raw_content(repo, path, ref, destination)
+            except RuntimeError as raw_exc:
+                if _is_download_not_found(raw_exc, path):
+                    return False
+                raise
+            return True
         if isinstance(data, list) or data.get("type") != "file":
             return False
         content = base64.b64decode(data.get("content", ""))
@@ -537,7 +723,7 @@ def main() -> int:
         )
         return 0
 
-    files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
+    files = client.fetch_pull_files(pr_number)
     if not is_current_pull_request_head(client, pr_number, head_sha):
         print(
             f"Skipping stale validation event for PR #{pr_number}: "
