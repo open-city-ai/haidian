@@ -12,6 +12,22 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 本方案以“开源智环 Open Jing-Zhang AI Civic Loop”为参赛主概念：把京张铁路遗产线索、中关村创新文化、AI 开源协作和日常城市服务编织成一条可步行、可展示、可测试、可运营的公共创新回路。方案的核心不是新造一个封闭园区，而是在现有城市肌理中组织三类可深化动作：以众智园承接全栈自主创新和治理展示，以北京 AI 原点社区承接高校近邻转化和开发者社区，以大钟寺片区承接智能体消费、国际路演和轨道站城融合。所有空间落位均为概念建议和参考方案，须在官方红线、控规、交通、市政、文保和权属资料补齐后由专业团队校核深化。
 
+## 成果索引与评审回应摘要
+
+本次优化把原先偏“自检包”的成果，补强为可被专业评审阅读的城市设计包。主要回应七维评审中的阻断项：一是把 agent.1-agent.6 从矩阵映射转为正文、图纸、HTML 与版权清单中的实质成果；二是把临时几何指标从 high confidence 降级为 low/provisional/model-derived；三是把 A3/A0 和五张图从模板页改为承载总图、生态图谱、重点区、交通蓝绿、分期指标的设计表达；四是补足公共利益、无障碍、非数字替代、风险退出和年度运营机制。
+
+| 评审维度 | 本次成果落点 | 证据文件 |
+| --- | --- | --- |
+| 任务书相关性 | 三大定位、五大功能、三区两翼、北纬/未来科学城/怀柔/经开区/京津冀接口 | proposal.md、site-overview.png、compliance_matrix.json |
+| 原创性 | “开源智环”品牌、JZ/AI/Loop 字标方向、三处 AI 朝圣地标、公共空间组件库 | proposal.md、site-overview.png、key-areas.png |
+| AI 与规划创新 | 6 个案例、8 类生态要素、10 张场景卡、3 个产业测试验证 | proposal.md、land-use-structure.png、visual/index.html |
+| 可实施性 | JZ-01 至 JZ-06 项目矩阵、主体类别、资源级别、KPI、退出条件 | proposal.md、metrics-evidence.png、phasing.geojson |
+| 公共利益 | 老人、儿童、残障人士、低数字素养者、夜间劳动者与人工服务入口 | proposal.md、mobility-bluegreen.png、visual/index.html |
+| 风险与合规 | 临时几何降级、逐资产版权清单、数据最小化、人工复核、停止条件 | metrics.json、copyright_statement.md、sources.json |
+| 表达完整度 | A3 五页、A0 四板、五张图、离线 HTML、报告 HTML | drawings/、assets/figures/、visual/index.html |
+
+图纸目录如下：A3 文册包括总体品牌、三层范围与生态图谱、三处重点区、场景卡与产业测试、实施包容性与风险五页；A0 展板包括总体结构与品牌系统、用地更新与专业系统、重点区与场景开放、实施运营与公共利益四板。所有图纸均为离线生成的概念性城市设计图，不含远程底图、第三方图片或商标。
+
 ## 设计依据与资料清单
 
 本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。AI agent 在生成方案前必须读取 `design_brief.json`、`allowed_design_space.json`、`sources.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 和 `data/processed/agent_fact_pack.md`，并用 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途和缺口清单。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。公告要求方案达到控制性详细规划的城市设计深度和规划综合实施方案的城市设计深度，因此文本叙述不能替代 GeoJSON、指标表、A3 文册、A0 展板和 HTML 电子展示成果。
