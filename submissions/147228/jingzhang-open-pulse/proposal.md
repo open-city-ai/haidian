@@ -366,6 +366,8 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 
 政策工具与企业发展接口进一步写入 `visual/assets/case-policy-enterprise-crosswalk.json`：每个案例绑定一个政策工具、一个企业发展问题、本地场景、验收证据和不照搬边界。`visual/assets/policy-enterprise-playbook.json` 再把接口拆成 42 张可执行的成长阶段卡 [metric:policy_enterprise_playbook_card_count]，先落一张公共 AI 登记与反馈卡；`visual/assets/industry-validation-cases.json` 补出模型安全、企业服务数据合规和低速具身智能三条产业测试验证窗；`visual/assets/landmark-honor-crosswalk.json` 把责任台、贡献档案和安全治理节点绑定到政策与企业接口。六种模式仍保留在 `case-mechanism-matrix.json` 的 `rows` 中，案例来源、访问日期和用途边界回到 `sources.json`。
 
+`visual/assets/operations-matrix.json` 将后续工作拆成八个有责任人的行动包：官方边界替换、现场基线、风热水验证、具身智能窗口、开源清权、活动降容复原、雨洪/安静链维护，以及年度扩散/重做/退出复盘；`visual/assets/resource-accounts.json` 为五类前置资源记账：空间权属、气候水务生态、算力模型与数据权利、人类体验参与、资产备件维护。这些是释放窗口前的审查条件，不是预算、资金或采购承诺。
+
 ### 2. 十四条场景—空间—运营矩阵
 
 新增的 `visual/assets/scenario-operation-matrix.json` 将原有十张场景卡扩展为 14 行，并为每行补齐空间载体、触发器、最小数据、RACI、SLA、相对成本带、留存期限、非 AI 等价服务、停止条件、成功指标和阶段。场景包括慢行断点诊断、低速配送机器人、自主慢行辅助、模型安全红队、开源发布厅、京张文化导视、AI 医疗导航、企业服务柜台、数据要素会客厅、智能原生零售街、公共安全复盘、全球 AI 周路线、雨洪树池维护和夜间低照度安静链。
@@ -406,6 +408,14 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 本版的可见 QA 记录在 `visual/assets/qa-readiness.json`：报告表格已语义化、双语图件和 A3/A0 成果均为本地资源、离线页面无远程运行依赖；同时把临时边界和现场基线未知作为已知限制，不将本地预检误写成现场、无障碍或专业批准。
 
 本轮成果的目标不是用更多效果图制造“完成感”，而是让评审者可以沿着一条路径工作：任务 → 章节 → 图件/JSON → 指标/来源 → acceptance test → 停止或回滚。官方边界和控规资料发布后，仍需重算面积、连通、雨洪、交通、维护和量化指标，再进入专业深化。
+
+实施交接由 `operations-matrix.json`、`resource-accounts.json`、十四条场景矩阵和 Relay Receipt 一起呈现：每个行动包都有责任、依赖、验收、停止、维护和相对成本带；每本资源账都说明释放窗口前必须补齐的资料与能力。
+
+### 6. 建设就绪与连续参与
+
+本包进一步把“可以讨论”与“可以建设/开放”分开。`visual/assets/construction-readiness.json` 设置五道闸门：资料与场地锁定、公共路径与被动构件样机、风热水与生命线协调、有界有人限时开放窗口、保留/改造/退出决策。[metric:construction_readiness_gate_count] 每道闸门都有进入证据、交付物、通过条件、停止条件、普通非 AI 基线和维护响应；文件明确不构成施工图、法定规划、采购规格、造价或实施批准。
+
+`visual/assets/participation-cycle.json` 把回传循环写成可读日志：同步输入—重读变化—比较同类—验证包体—发布可审阅草案—建立现场与公共基线—有人值守窗口—回传负面和分布差异—保留、改造或退出。七类参与镜头均提供纸面、人工、多语种或无 App 路径。[metric:participation_lens_count] 本包目前只把主干同步、本地校验和同类比较记为已知的审阅活动；现场基线、居民咨询和公共试点仍为 `unknown` 或 `not_started`，不推断居民同意、微气候结果或健康收益。
 
 ## v1.8 评审可见证据层：定位、功能、节点与公共性一页回读
 

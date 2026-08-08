@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把铁路交接班转化为AI城市治理协议：一条连续交接线串联研发、验证、开源与公共服务，十二个可逆场景都设置人工接管、无AI等价服务与退出条件。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.6"
+iteration: "v1.6.1"
 ---
 
 # 京张交接线 / JING-ZHANG HANDOVER LINE
@@ -159,6 +159,8 @@ iteration: "v1.6"
 ### 双联交接账：交出与接入必须是两次独立判断
 
 为了让“交接”不停在字段数量上，v1.6新增原创的《双联交接账 0.3》：交出班必须登记适用范围、版本、输入、已知故障和无AI服务底线；接入班必须独立复现并明确选择“接收”或“拒收”，任何未决项都不能在换班中消失。机器可读契约见 [data:visual/assets/governance/shift-ledger.schema.json]，最小样例选择低风险的SCN-05无障碍路径副驾，只用合成障碍卡，不含个人数据、不连接真实服务，`deployment_mode=sandbox_only`、人工角色待授权、性能结果保持 `null` [data:visual/assets/governance/example-scn05-shift-ledger.json]。该样例已通过JSON Schema结构校验 [metric:machine_readable_shift_protocol_count] [metric:schema_valid_synthetic_shift_count] [metric:shift_protocol_validation_error_count]，校验记录见 [data:visual/assets/governance/validation-report.json]；“0个结构错误”只证明这份合成样例可被机器解析，不证明路径正确、服务可用、法律合规或可以投入现场。
+
+![双联交接账：交出班与接入班分别判断，未决项不得在换班中消失](assets/figures/shift-ledger.png)
 
 三期不是时间表，而是三道合并门槛——资料、权属与专业评估通过才允许合并，未通过就回滚到上一个可用状态。可进化的前提是可回滚，这正是组件库要求全部可撤除、建筑四步判定里“可逆插入 I”必须排在“待核 D”之前的原因。一座不能撤销自己决定的城市，不可能自适应。
 
