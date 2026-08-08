@@ -17,6 +17,7 @@
    - 外部案例事实：仅引用公开一般性经验，检索入口登记于 sources.json（GLOBAL-CASE-PUBLIC-REFS）。
    许可分层（总括关系）：CC-BY-4.0 仅覆盖上述原创内容；EX-OSM-* 现状要素与 visual/assets/osm-context.json 为 ODbL 1.0 衍生数据、单独许可；PROV-* 转录要素沿仓库条款。NOTICE：OSM 数据经 Overpass API 提取（2026-08-07），查询语句与坐标存档于 visual/assets/osm-context.json，© OpenStreetMap contributors（ODbL 1.0）。
    字体报告（可复核）：两份 PDF 文字以 matplotlib Type 3 矢量轮廓呈现——经检核 FontFile 计数为 0、无 TrueType/Type0 嵌入，即不含任何可安装字体文件（可用文本检索 /FontFile 与 /Type3 复核）；PNG 为位图渲染；HTML 使用系统字体栈、不加载字体文件。
+   逐资产权利抽查记录（2026-08-08）：5张PNG图、2套PDF、visual/index.html 及内联SVG、9个GeoJSON图层、metrics与三矩阵、3个 visual/assets JSON 附件逐项复核——全部由本包确定性管道生成，无第三方素材混入；OSM衍生层与PROV转录层按分层许可标注无误。
    无障碍与可读性自查记录（2026-08-08，自查而非第三方认证）：HTML 语言标签 zh-CN、SVG 均含 role/aria-label 与 title 替代文本、纯静态页面无键盘陷阱；对比度实测（WCAG 相对亮度法）——正文 12.7:1、品牌绿 4.8:1、辅助灰由 4.15:1 调深至 5.6:1（#57666F），均达 AA；正文最小字号 12.5px。A0/A3 实尺打印可读性与屏幕阅读器实测仍待人工专项检查。
 4. 临时粗略边界来自本仓库 brief/site-package/geometry/provisional_boundaries.geojson，仅用于生成、展示与自检，不作为官方红线或精确面积依据。
 5. 本方案以 CC-BY-4.0 许可在社区平台公开：允许署名转载、评价与二次研究；署名方式为“REN AXIS 方案（AI 生成，submissions/Abreto/ren-axis-jingzhang-ai-belt）”。
