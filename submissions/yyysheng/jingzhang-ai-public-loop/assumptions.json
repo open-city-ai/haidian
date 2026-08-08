@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional",
+      "statement": "公开资料尚未提供 official SITE_BOUNDARY 与三处 KEY_AREA 精确 polygon；本包沿用仓库 provisional geometry。",
+      "impact": "空间面积、长度和图面只用于 intake；official file 到位后全量复算。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "FAR、建筑高度、密度、退线、道路红线、停车、市政、消防、文保、蓝线和绿地控制条件缺失。",
+      "impact": "只给概念结构和待确认工作包，不生成法定控制或工程结论。"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_professional_confirmation",
+      "statement": "现状建筑、地块、权属、站点接口、交通断面和设施容量未提供。",
+      "impact": "建筑 lifecycle、道路和节点均为参考层，不等同现状调查或改造同意。"
+    },
+    {
+      "id": "A-DATA-001",
+      "status": "design_guardrail",
+      "statement": "AI 场景只使用公开、授权或合成/聚合数据，不采集个人身份、持续轨迹或未授权内部资料。",
+      "impact": "所有输出保留人工复核、解释、撤回和关闭机制。"
+    },
+    {
+      "id": "A-COPYRIGHT-001",
+      "status": "design_guardrail",
+      "statement": "图表、GeoJSON、PDF、HTML 和文字由本 agent 生成；比较案例只引用公开机构页面，不嵌入第三方图片、Logo、字体或远程资源。",
+      "impact": "发布前仍需人工完成版权、引用和内容复核。"
+    },
+    {
+      "id": "A-MOB-001",
+      "status": "background_reference",
+      "statement": "五道口官方交通改造资料记录高峰行人流量约1万人/小时，晚高峰17:30—18:30；本包将其作为压力测试参考，不外推为提交范围的局部预测。",
+      "impact": "高流量节点采用过街优先、非机动车左转等待区和人车分时组织，正式设计仍需现场断面调查。",
+      "source_ids": [
+        "WEB-WUDAOKOU-TRAFFIC-2021"
+      ],
+      "parameters": {
+        "pedestrian_peak_reference_pph": 10000,
+        "evening_peak_reference": "17:30-18:30",
+        "crosswalk_reference_width_m": 8,
+        "all_green_reference_s": 15
+      }
+    },
+    {
+      "id": "A-MOB-002",
+      "status": "background_reference",
+      "statement": "海淀公开共享单车案例记录工作日早晚高峰需求约为平峰3.6倍；本包将其作为共享单车潮汐调运的压力倍数。",
+      "impact": "共享单车停车口袋、电子围栏和调运力量按峰值压力校验，不把该历史案例当作本项目当前订单数据。",
+      "source_ids": [
+        "WEB-BIKE-HAIDIAN-2021",
+        "WEB-BIKE-CITY-2025"
+      ],
+      "parameters": {
+        "shared_bike_peak_multiplier": 3.6,
+        "parking_occupancy_trigger": 0.85
+      }
+    },
+    {
+      "id": "A-MOB-003",
+      "status": "design_parameter",
+      "statement": "大学生生活方式以公开校园服务页面提取为四类节律：短距离步行/骑行、餐饮与便利服务、图书馆/自习/社团、快递与夜间活动。",
+      "impact": "AI原点社区增加学习—生活—成果转化的复合首层和四个校园生活接口，不使用个人轨迹或身份数据。",
+      "source_ids": [
+        "WEB-TSINGHUA-LIFE",
+        "WEB-PKU-LIFE",
+        "WEB-RUC-LIFE",
+        "WEB-BUAA-LIFE"
+      ],
+      "parameters": {
+        "time_windows": [
+          "07:30-09:30",
+          "11:00-13:30",
+          "17:00-19:30",
+          "20:00-23:30"
+        ],
+        "university_life_anchor_count": 4
+      }
+    },
+    {
+      "id": "A-MOB-004",
+      "status": "design_parameter",
+      "statement": "网约车采用“外围落客—短步行—外围上客”的概念分流，设置大钟寺、AI原点、众智园三个分流口袋，每处目标2个上客位。",
+      "impact": "网约车等待和掉头不进入京张文化慢行主轴；活动日以预约时段、彩色导视、15分钟聚合调度和人工引导控制路缘冲突。",
+      "source_ids": [
+        "WEB-RIDEHAIL-HUB-REFERENCE",
+        "WEB-RIDEHAIL-BEIJING-STUDY"
+      ],
+      "parameters": {
+        "ride_hailing_pickup_pocket_count": 3,
+        "ride_hailing_pickup_bay_target": 6,
+        "per_pocket_staging_vehicle_equivalent": 6
+      }
+    },
+    {
+      "id": "A-MOB-005",
+      "status": "background_reference",
+      "statement": "地铁13号线公开站间距资料显示大钟寺—知春路约1206米、知春路—五道口约1829米；本包以站点序列组织步行、骑行和公交接驳，不新增轨道线位。",
+      "impact": "三处重点区采用“站点识别—慢行主轴—公共节点—生活服务”的连续换乘序列，站口和路缘条件待官方资料补齐。",
+      "source_ids": [
+        "WEB-SUBWAY-SPACING-13",
+        "WEB-QINGHE-STATION-2025"
+      ],
+      "parameters": {
+        "transit_spacing_dazhongsi_zhichun_m": 1206,
+        "transit_spacing_zhichun_wudaokou_m": 1829
+      }
+    },
+    {
+      "id": "A-MOB-006",
+      "status": "design_guardrail",
+      "statement": "人流参数只保留区域、时段、方式和聚合事件，不采集个人身份、单人连续轨迹、平台订单明细或未授权校园数据。",
+      "impact": "所有参数通过现场计数、15分钟聚合、人工复核和月度回放更新；数据缺口不转译为法定交通控制。",
+      "source_ids": [
+        "WEB-RIDEHAIL-BEIJING-STUDY",
+        "WEB-BIKE-CITY-2025"
+      ],
+      "parameters": {
+        "aggregation_interval_min": 15,
+        "individual_tracking": false,
+        "manual_review": true
+      }
+    }
+  ]
+}

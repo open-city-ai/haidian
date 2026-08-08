@@ -1,0 +1,814 @@
+{
+  "schema_version": "0.1.0",
+  "model_version": "v0.3",
+  "title_zh": "人流—校园生活—公共交通—共享单车—网约车分流参数",
+  "scope_note": "公开网页资料用于背景校准和概念参数，不替代组织方提供的局部OD、手机信令、网约车订单、公交断面或官方道路红线。",
+  "evidence_signals": [
+    {
+      "id": "SIG-WUDAOKOU-PEDESTRIAN",
+      "source_id": "WEB-WUDAOKOU-TRAFFIC-2021",
+      "observation": "五道口路口高峰行人流量达到每小时约1万人；晚高峰重点时段为17:30—18:30。",
+      "value": 10000,
+      "unit": "person_per_hour_reference",
+      "status": "background_reference",
+      "design_use": "作为高流量路口压力测试上限，不外推为本项目预测。"
+    },
+    {
+      "id": "SIG-HAIDIAN-BIKE-PEAK",
+      "source_id": "WEB-BIKE-HAIDIAN-2021",
+      "observation": "海淀街道公开案例记录工作日早晚高峰共享单车需求约为平峰3.6倍。",
+      "value": 3.6,
+      "unit": "peak_to_offpeak_index",
+      "status": "background_reference",
+      "design_use": "作为潮汐运维和停车容量的压力倍数，不替代当前现场计数。"
+    },
+    {
+      "id": "SIG-BEIJING-BIKE-2025",
+      "source_id": "WEB-BIKE-CITY-2025",
+      "observation": "2025年北京市互联网租赁自行车日均骑行量为311.64万人次，车辆日均周转率为3.67次。",
+      "value": 3116400,
+      "unit": "person_per_day_city_reference",
+      "status": "background_reference",
+      "design_use": "说明共享单车是城市级高频接驳系统，方案采用停车、电子围栏和调运闭环。"
+    },
+    {
+      "id": "SIG-SUBWAY-SPACING",
+      "source_id": "WEB-SUBWAY-SPACING-13",
+      "observation": "北京地铁13号线大钟寺—知春路站间距约1206米，知春路—五道口站间距约1829米。",
+      "value": [
+        1206,
+        1829
+      ],
+      "unit": "m",
+      "status": "official_network_reference",
+      "design_use": "把三处重点区之间的步行、骑行和公交接驳设置为连续层级，不虚构新轨道线位。"
+    }
+  ],
+  "campus_life_signals": [
+    {
+      "id": "CAMPUS-ROUTINE-01",
+      "pattern": "自行车/步行优先的短距离日常移动",
+      "evidence": [
+        "WEB-TSINGHUA-LIFE",
+        "WEB-BIKE-CITY-2025"
+      ],
+      "design_response": "近校接口设置连续慢行、可视化停车、遮荫和可修理节点。"
+    },
+    {
+      "id": "CAMPUS-ROUTINE-02",
+      "pattern": "早餐—午餐—晚餐形成重复的校园生活潮汐",
+      "evidence": [
+        "WEB-TSINGHUA-LIFE",
+        "WEB-PKU-LIFE",
+        "WEB-RUC-LIFE"
+      ],
+      "design_response": "把食堂、咖啡、便利服务和公共客厅布置为时间错峰的生活服务串。"
+    },
+    {
+      "id": "CAMPUS-ROUTINE-03",
+      "pattern": "图书馆、自习、社团、讲座和运动在晚间延续",
+      "evidence": [
+        "WEB-TSINGHUA-LIFE",
+        "WEB-PKU-LIFE",
+        "WEB-RUC-LIFE",
+        "WEB-BUAA-LIFE"
+      ],
+      "design_response": "设置20:00—23:30低扰动学习/活动时段，叠加照明、座椅、卫生间和夜间安全。"
+    },
+    {
+      "id": "CAMPUS-ROUTINE-04",
+      "pattern": "校园服务节点集成餐饮、快递、打印、生活维修和社交空间",
+      "evidence": [
+        "WEB-TSINGHUA-LIFE",
+        "WEB-PKU-LIFE",
+        "WEB-RUC-LIFE",
+        "WEB-BUAA-LIFE"
+      ],
+      "design_response": "AI原点社区采用“学习—生活—成果转化”复合首层，而非单一办公园区。"
+    }
+  ],
+  "time_windows": [
+    {
+      "id": "TW-AM",
+      "label_zh": "早高峰 / 上课与上班",
+      "time": "07:30-09:30",
+      "time_weight": 1.0,
+      "dominant_modes": [
+        "walk",
+        "bike",
+        "transit"
+      ],
+      "design_action": "打开校园门—站点—主轴连续通道，提前整理共享单车和落客。"
+    },
+    {
+      "id": "TW-MIDDAY",
+      "label_zh": "午餐与短时社交",
+      "time": "11:00-13:30",
+      "time_weight": 0.88,
+      "dominant_modes": [
+        "walk",
+        "bike"
+      ],
+      "design_action": "释放首层灰空间、餐饮外摆和短暂停留，不把外卖/配送压入主步行线。"
+    },
+    {
+      "id": "TW-PM",
+      "label_zh": "晚高峰 / 下班与课后",
+      "time": "17:00-19:30",
+      "time_weight": 1.25,
+      "dominant_modes": [
+        "walk",
+        "bike",
+        "transit",
+        "ride_hailing"
+      ],
+      "design_action": "重点保证过街、非机动车左转等待和网约车分流，套用五道口压力测试。"
+    },
+    {
+      "id": "TW-LATE",
+      "label_zh": "晚间学习与活动",
+      "time": "20:00-23:30",
+      "time_weight": 0.55,
+      "dominant_modes": [
+        "walk",
+        "ride_hailing",
+        "bike"
+      ],
+      "design_action": "保留低亮度连续照明、夜间服务和可关闭数字界面，降低机动车穿越。"
+    }
+  ],
+  "zone_parameters": [
+    {
+      "zone_id": "dazhongsi_ai_industry_cluster",
+      "label_zh": "大钟寺城市交往界面",
+      "pedestrian_weight": 1.35,
+      "bike_weight": 1.05,
+      "transit_weight": 1.4,
+      "ride_hailing_curb_allocation": 0.55,
+      "priority": "station_to_public_room"
+    },
+    {
+      "zone_id": "beijing_ai_origin_community",
+      "label_zh": "AI原点近校转化界面",
+      "pedestrian_weight": 1.25,
+      "bike_weight": 1.35,
+      "transit_weight": 1.15,
+      "ride_hailing_curb_allocation": 0.3,
+      "priority": "campus_life_to_open_source"
+    },
+    {
+      "zone_id": "zhongzhiyuan_ai_acceleration_area",
+      "label_zh": "众智园研发与低碳界面",
+      "pedestrian_weight": 1.1,
+      "bike_weight": 1.15,
+      "transit_weight": 1.0,
+      "ride_hailing_curb_allocation": 0.15,
+      "priority": "green_loop_to_test_lab"
+    }
+  ],
+  "mode_parameters": {
+    "pedestrian": {
+      "priority": 1,
+      "design_rule": "主轴连续、过街优先、公共节点可读"
+    },
+    "public_transit": {
+      "priority": 1,
+      "design_rule": "站点—公交—步行—公共空间四段连续"
+    },
+    "shared_bike": {
+      "priority": 2,
+      "peak_stress_multiplier": 3.6,
+      "parking_occupancy_trigger": 0.85,
+      "design_rule": "站口和校园门外设电子围栏/停车口袋，潮汐调运"
+    },
+    "ride_hailing": {
+      "priority": 3,
+      "pickup_pocket_count": 3,
+      "pickup_bays_total": 6,
+      "per_pocket_staging_vehicle_equivalent": 6,
+      "design_rule": "落客、候车、上客三段分离，不占主轴和消防通道"
+    }
+  },
+  "ride_hailing_diversion": {
+    "evidence_note": "北京公开交通枢纽案例采用多个网约车区、候车区、上车点和彩色导视；本方案借鉴组织逻辑，不复制其容量。",
+    "source_ids": [
+      "WEB-RIDEHAIL-HUB-REFERENCE",
+      "WEB-RIDEHAIL-BEIJING-STUDY"
+    ],
+    "pockets": [
+      {
+        "id": "RIDE-ZONE-001",
+        "area": "大钟寺",
+        "role": "station_event_pickup",
+        "pickup_bays_target": 2,
+        "staging_vehicle_equivalent": 6,
+        "main_spine_crossing": false
+      },
+      {
+        "id": "RIDE-ZONE-002",
+        "area": "AI原点社区",
+        "role": "campus_life_pickup",
+        "pickup_bays_target": 2,
+        "staging_vehicle_equivalent": 6,
+        "main_spine_crossing": false
+      },
+      {
+        "id": "RIDE-ZONE-003",
+        "area": "众智园",
+        "role": "workday_event_pickup",
+        "pickup_bays_target": 2,
+        "staging_vehicle_equivalent": 6,
+        "main_spine_crossing": false
+      }
+    ],
+    "routing_rules": [
+      "落客优先靠近外围道路，步行进入公共节点；",
+      "上客点与共享单车停车口袋错位布置，避免短时堆积；",
+      "等待车辆不得进入京张文化慢行主轴，活动日采用预约时段和人工引导；",
+      "以匿名聚合的订单热区和现场排队长度每15分钟调整导视与调度。"
+    ]
+  },
+  "flow_model": {
+    "formula": "flow_index(zone,time,mode) = base_index * time_weight * zone_weight * mode_priority",
+    "base_index": 1.0,
+    "calibration_status": "design_parameter_not_local_OD",
+    "update_loop": "现场计数 + 15分钟匿名聚合 + 人工复核 + 月度参数回放",
+    "privacy_boundary": "不采集个人身份、单人连续轨迹或未授权平台订单；只保留聚合计数和运营事件。"
+  },
+  "demand_geometry": {
+    "format": "GeoJSON FeatureCollection",
+    "source_note": "概念流线与节点数据；由公开背景参数校准，不代表官方OD、网约车订单、道路红线或工程边界。",
+    "type": "FeatureCollection",
+    "name": "jingzhang_ai_public_loop_mobility_demand",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-001",
+        "properties": {
+          "id": "FLOW-NODE-001",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_inferred_from_public_data",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "node_type": "MOBILITY_GATEWAY",
+          "mobility_mode": "walk_transit",
+          "zone_id": "dazhongsi_ai_industry_cluster",
+          "time_windows": [
+            "TW-AM",
+            "TW-PM"
+          ],
+          "name_zh": "大钟寺站—路演客厅换乘门"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.347968,
+            39.946
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-002",
+        "properties": {
+          "id": "FLOW-NODE-002",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_inferred_from_public_data",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "node_type": "MOBILITY_GATEWAY",
+          "mobility_mode": "walk_bike_transit",
+          "zone_id": "beijing_ai_origin_community",
+          "time_windows": [
+            "TW-AM",
+            "TW-MIDDAY",
+            "TW-PM"
+          ],
+          "name_zh": "AI原点社区近校生活门"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.348124,
+            39.983625
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-003",
+        "properties": {
+          "id": "FLOW-NODE-003",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_inferred_from_public_data",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "node_type": "UNIVERSITY_LIFE_ANCHOR",
+          "mobility_mode": "walk_bike",
+          "zone_id": "beijing_ai_origin_community",
+          "time_windows": [
+            "TW-AM",
+            "TW-MIDDAY",
+            "TW-LATE"
+          ],
+          "name_zh": "校园学习—餐饮—社团接口"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.3475,
+            39.9915
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-004",
+        "properties": {
+          "id": "FLOW-NODE-004",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_inferred_from_public_data",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "node_type": "MOBILITY_GATEWAY",
+          "mobility_mode": "walk_bike_transit",
+          "zone_id": "zhongzhiyuan_ai_acceleration_area",
+          "time_windows": [
+            "TW-AM",
+            "TW-PM"
+          ],
+          "name_zh": "众智园工作日换乘门"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.348124,
+            40.01775
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-005",
+        "properties": {
+          "id": "FLOW-NODE-005",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_inferred_from_public_data",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "node_type": "UNIVERSITY_LIFE_ANCHOR",
+          "mobility_mode": "walk_bike",
+          "zone_id": "beijing_ai_origin_community",
+          "time_windows": [
+            "TW-MIDDAY",
+            "TW-LATE"
+          ],
+          "name_zh": "近校咖啡—自习—公共客厅接口"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.3449,
+            39.9905
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-006",
+        "properties": {
+          "id": "FLOW-NODE-006",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_inferred_from_public_data",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "node_type": "UNIVERSITY_LIFE_ANCHOR",
+          "mobility_mode": "walk_bike",
+          "zone_id": "beijing_ai_origin_community",
+          "time_windows": [
+            "TW-PM",
+            "TW-LATE"
+          ],
+          "name_zh": "夜间生活与快递服务接口"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.3512,
+            39.9875
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-NODE-007",
+        "properties": {
+          "id": "FLOW-NODE-007",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "node_type": "UNIVERSITY_LIFE_ANCHOR",
+          "mobility_mode": "walk_bike",
+          "zone_id": "zhongzhiyuan_ai_acceleration_area",
+          "time_windows": [
+            "TW-MIDDAY",
+            "TW-LATE"
+          ],
+          "name_zh": "研发园区共享客厅接口"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.34835,
+            40.021
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-POINT-001",
+        "properties": {
+          "id": "RIDE-POINT-001",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "node_type": "RIDE_HAIL_PICKUP",
+          "mobility_mode": "ride_hailing",
+          "zone_id": "dazhongsi_ai_industry_cluster",
+          "pocket_id": "RIDE-ZONE-001",
+          "name_zh": "大钟寺网约车上客点"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.34925,
+            39.94595
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-POINT-002",
+        "properties": {
+          "id": "RIDE-POINT-002",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "node_type": "RIDE_HAIL_PICKUP",
+          "mobility_mode": "ride_hailing",
+          "zone_id": "beijing_ai_origin_community",
+          "pocket_id": "RIDE-ZONE-002",
+          "name_zh": "AI原点网约车上客点"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.34925,
+            39.98975
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-POINT-003",
+        "properties": {
+          "id": "RIDE-POINT-003",
+          "layer": "SCENARIO_NODE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "node_type": "RIDE_HAIL_PICKUP",
+          "mobility_mode": "ride_hailing",
+          "zone_id": "zhongzhiyuan_ai_acceleration_area",
+          "pocket_id": "RIDE-ZONE-003",
+          "name_zh": "众智园网约车上客点"
+        },
+        "geometry": {
+          "type": "Point",
+          "coordinates": [
+            116.34925,
+            40.01775
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-ZONE-001",
+        "properties": {
+          "id": "RIDE-ZONE-001",
+          "layer": "PUBLIC_SPACE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "mobility_role": "ride_hailing_pickup_dropoff",
+          "zone_id": "dazhongsi_ai_industry_cluster",
+          "pickup_bays_target": 2,
+          "staging_vehicle_equivalent": 6,
+          "name_zh": "大钟寺外围网约车分流口袋"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.3489,
+                39.9456
+              ],
+              [
+                116.3496,
+                39.9456
+              ],
+              [
+                116.3496,
+                39.9463
+              ],
+              [
+                116.3489,
+                39.9463
+              ],
+              [
+                116.3489,
+                39.9456
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-ZONE-002",
+        "properties": {
+          "id": "RIDE-ZONE-002",
+          "layer": "PUBLIC_SPACE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "mobility_role": "ride_hailing_pickup_dropoff",
+          "zone_id": "beijing_ai_origin_community",
+          "pickup_bays_target": 2,
+          "staging_vehicle_equivalent": 6,
+          "name_zh": "AI原点外围网约车分流口袋"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.3489,
+                39.9894
+              ],
+              [
+                116.3496,
+                39.9894
+              ],
+              [
+                116.3496,
+                39.9901
+              ],
+              [
+                116.3489,
+                39.9901
+              ],
+              [
+                116.3489,
+                39.9894
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-ZONE-003",
+        "properties": {
+          "id": "RIDE-ZONE-003",
+          "layer": "PUBLIC_SPACE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "design_proposal",
+          "mobility_role": "ride_hailing_pickup_dropoff",
+          "zone_id": "zhongzhiyuan_ai_acceleration_area",
+          "pickup_bays_target": 2,
+          "staging_vehicle_equivalent": 6,
+          "name_zh": "众智园外围网约车分流口袋"
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.3489,
+                40.0174
+              ],
+              [
+                116.3496,
+                40.0174
+              ],
+              [
+                116.3496,
+                40.0181
+              ],
+              [
+                116.3489,
+                40.0181
+              ],
+              [
+                116.3489,
+                40.0174
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-CORRIDOR-001",
+        "properties": {
+          "id": "FLOW-CORRIDOR-001",
+          "layer": "ROAD_CENTERLINE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "mobility_role": "pedestrian_transit_spine",
+          "mode": "walk_transit",
+          "zone_sequence": [
+            "dazhongsi_ai_industry_cluster",
+            "beijing_ai_origin_community"
+          ],
+          "name_zh": "大钟寺—AI原点公共换乘流线"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              116.347968,
+              39.946
+            ],
+            [
+              116.348124,
+              39.983625
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-CORRIDOR-002",
+        "properties": {
+          "id": "FLOW-CORRIDOR-002",
+          "layer": "ROAD_CENTERLINE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "mobility_role": "pedestrian_bike_spine",
+          "mode": "walk_bike",
+          "zone_sequence": [
+            "beijing_ai_origin_community",
+            "zhongzhiyuan_ai_acceleration_area"
+          ],
+          "name_zh": "AI原点—众智园慢行流线"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              116.348124,
+              39.983625
+            ],
+            [
+              116.348124,
+              40.01775
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "FLOW-CORRIDOR-003",
+        "properties": {
+          "id": "FLOW-CORRIDOR-003",
+          "layer": "ROAD_CENTERLINE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "mobility_role": "campus_life_feeder",
+          "mode": "walk_bike",
+          "zone_sequence": [
+            "beijing_ai_origin_community"
+          ],
+          "name_zh": "近校生活接入支线"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              116.3449,
+              39.9905
+            ],
+            [
+              116.348124,
+              39.983625
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-DIVERSION-001",
+        "properties": {
+          "id": "RIDE-DIVERSION-001",
+          "layer": "ROAD_CENTERLINE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "mobility_role": "ride_hailing_diversion",
+          "mode": "ride_hailing",
+          "pocket_id": "RIDE-ZONE-001",
+          "name_zh": "大钟寺网约车短接驳"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              116.347968,
+              39.946
+            ],
+            [
+              116.34925,
+              39.94595
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-DIVERSION-002",
+        "properties": {
+          "id": "RIDE-DIVERSION-002",
+          "layer": "ROAD_CENTERLINE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "mobility_role": "ride_hailing_diversion",
+          "mode": "ride_hailing",
+          "pocket_id": "RIDE-ZONE-002",
+          "name_zh": "AI原点网约车短接驳"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              116.348124,
+              39.983625
+            ],
+            [
+              116.34925,
+              39.98975
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "RIDE-DIVERSION-003",
+        "properties": {
+          "id": "RIDE-DIVERSION-003",
+          "layer": "ROAD_CENTERLINE",
+          "source_type": "agent_generated_design",
+          "confidence": "low",
+          "geometry_role": "analysis_helper",
+          "mobility_role": "ride_hailing_diversion",
+          "mode": "ride_hailing",
+          "pocket_id": "RIDE-ZONE-003",
+          "name_zh": "众智园网约车短接驳"
+        },
+        "geometry": {
+          "type": "LineString",
+          "coordinates": [
+            [
+              116.348124,
+              40.01775
+            ],
+            [
+              116.34925,
+              40.01775
+            ]
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "note": "公开资料校准的概念人流、公共交通、共享单车和网约车分流参数；不是官方OD、道路红线或平台订单。",
+      "coordinate_reference": "WGS84 longitude/latitude as used by submission GeoJSON",
+      "design_status": "conceptual_reference_scheme"
+    }
+  },
+  "data_contract": {
+    "authoritative_for": "本投稿的概念人流、公交接驳、共享单车停车与网约车路缘分流参数",
+    "not_authoritative_for": "法定红线、交通工程断面、实时平台订单、个人轨迹、校园内部数据",
+    "update_path": "现场计数 -> 15分钟匿名聚合 -> 人工复核 -> 月度参数回放"
+  }
+}
