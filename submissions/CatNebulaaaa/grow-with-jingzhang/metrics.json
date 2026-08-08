@@ -1,0 +1,110 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Boundary is provisional_rough and not an official redline."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 112896.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual_building_footprints, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual massing only; no existing-building or ownership survey is available."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.189523,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_green_space_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design proposition, not an approved green-space control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.021912,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_public_room_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "May overlap the conceptual green armature; not a land-use balance."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR controls, parcels and building survey are absent."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Locations are provisional; announced area values remain the official textual facts."
+      ]
+    },
+    "growth_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(PUBLIC_SPACE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}
