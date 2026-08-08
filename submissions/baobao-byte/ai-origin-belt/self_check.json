@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "边界为组织方临时粗略范围（provisional_rough），已在 proposal.md、assumptions.json 与 metrics.json 中标注不得作为官方红线或精确面积依据；官方红线下发后须复算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "众智园、AI 原点社区、大钟寺三个重点区域均为临时边界（provisional_constraint），面积以公告口径为准，正式控规条件下发后须替换。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区在总体设计范围内不重叠、均使用 MNR 2023 分类允许子集代码，面积声明与 metrics.json 复算一致。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态看板不含 iframe、表单、远程脚本、CDN、地图瓦片与任何网络请求，data-metric 数值与 metrics.json 完全一致。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文完整引用 [source:]/[standard:]/[depth:]/[data:]/[metric:] 证据链，覆盖 6 项专业标准、15 项成果深度项与 9 个 GeoJSON 图层。"
+    }
+  ]
+}
