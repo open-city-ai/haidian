@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any
 
 
-REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
+REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema", "fitz")
 INSTALL_HINT = "python3 -m pip install -r requirements-review.txt"
 SCRIPT_DIR = Path(__file__).resolve().parent
 

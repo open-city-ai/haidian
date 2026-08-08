@@ -16,6 +16,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
+try:
+    import fitz
+except ImportError:  # pragma: no cover - exercised through the dependency report
+    fitz = None
+
 
 REQUIRED_TEXT_MARKERS = [
     "总览地图",
@@ -34,6 +39,10 @@ REQUIRED_TEXT_MARKERS = [
     "假设",
 ]
 REQUIRED_METRICS = ["site_area_sqm", "green_ratio", "public_space_ratio"]
+DRAWING_COVERAGE_THRESHOLDS = {
+    "a0-boards.pdf": 0.05,
+    "a3-booklet.pdf": 0.03,
+}
 FORBIDDEN_PATTERNS = [
     (re.compile(r"<iframe\b", re.I), "HTML must not contain iframe embeds"),
     (re.compile(r"<form\b", re.I), "HTML must not contain form submission UI"),
@@ -102,6 +111,74 @@ def extract_visual_metrics(text: str) -> dict[str, float]:
     return metrics
 
 
+def page_nonwhite_ratio(page: Any, scale: float = 0.2) -> float:
+    """Estimate how much of a PDF page contains visible ink or artwork.
+
+    This is intentionally a coarse screening signal, not a legibility score.
+    Rendering at a small scale keeps the check bounded while still catching a
+    valid PDF whose board is effectively blank.
+    """
+    pixmap = page.get_pixmap(matrix=fitz.Matrix(scale, scale), alpha=False)
+    samples = pixmap.samples
+    channels = pixmap.n
+    visible = 0
+    for offset in range(0, len(samples), channels):
+        if min(samples[offset : offset + channels]) < 245:
+            visible += 1
+    total = pixmap.width * pixmap.height
+    return visible / total if total else 0.0
+
+
+def review_drawing_coverage(submission_dir: Path, report: VisualReport) -> None:
+    """Reject only clearly under-filled drawing pages, leaving fine legibility to human review."""
+    drawing_dir = submission_dir / "drawings"
+    drawing_paths = sorted(drawing_dir.glob("*.pdf"))
+    if not drawing_paths:
+        return
+    if fitz is None:
+        report.add(
+            "VISUAL_PDF_COVERAGE_UNAVAILABLE",
+            "advisory",
+            "drawings",
+            "Install PyMuPDF from requirements-review.txt to run the coarse PDF page-coverage check.",
+        )
+        return
+
+    for path in drawing_paths:
+        threshold = next(
+            (
+                value
+                for name, value in DRAWING_COVERAGE_THRESHOLDS.items()
+                if path.name.endswith(name)
+            ),
+            None,
+        )
+        if threshold is None:
+            continue
+        try:
+            document = fitz.open(path)
+        except Exception as exc:  # pragma: no cover - malformed-PDF handling varies by fitz version
+            report.add(
+                "VISUAL_PDF_READ_ERROR",
+                "major",
+                path.relative_to(submission_dir).as_posix(),
+                f"Unable to render PDF for page-coverage review: {exc}",
+            )
+            continue
+        try:
+            for index, page in enumerate(document, start=1):
+                ratio = page_nonwhite_ratio(page)
+                if ratio < threshold:
+                    report.add(
+                        "VISUAL_DRAWING_PAGE_COVERAGE",
+                        "major",
+                        path.relative_to(submission_dir).as_posix(),
+                        f"Page {index} has only {ratio:.1%} visible coverage; expand the board's maps, diagrams, and explanatory modules before review (minimum coarse threshold {threshold:.1%}).",
+                    )
+        finally:
+            document.close()
+
+
 def review_visual(submission_dir: Path) -> VisualReport:
     report = VisualReport()
     index_path = submission_dir / "visual" / "index.html"
@@ -153,6 +230,7 @@ def review_visual(submission_dir: Path) -> VisualReport:
                 display_path,
                 f"HTML metric `{name}` value {declared[name]} does not match metrics.json value {expected}.",
             )
+    review_drawing_coverage(submission_dir, report)
     return report
 
 

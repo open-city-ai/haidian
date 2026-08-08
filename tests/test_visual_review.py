@@ -1,4 +1,5 @@
 import json
+import importlib.util
 import sys
 import tempfile
 import unittest
@@ -9,6 +10,11 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from visual_review import review_visual  # noqa: E402
+
+
+HAS_FITZ = importlib.util.find_spec("fitz") is not None
+if HAS_FITZ:
+    import fitz  # noqa: E402
 
 
 VALID_HTML = """<!doctype html>
@@ -83,6 +89,23 @@ class VisualReviewTests(unittest.TestCase):
             report = review_visual(submission)
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_MISMATCH", {issue.check_id for issue in report.issues})
+
+    @unittest.skipUnless(HAS_FITZ, "PyMuPDF is required for PDF coverage checks")
+    def test_sparse_a0_board_fails_coarse_coverage_check(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            drawings = submission / "drawings"
+            drawings.mkdir()
+            document = fitz.open()
+            page = document.new_page(width=2384, height=3370)
+            page.draw_rect(fitz.Rect(40, 40, 120, 120), color=(0, 0, 0), fill=(0, 0, 0))
+            document.save(drawings / "a0-boards.pdf")
+            document.close()
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_DRAWING_PAGE_COVERAGE", {issue.check_id for issue in report.issues})
 
 
 if __name__ == "__main__":
