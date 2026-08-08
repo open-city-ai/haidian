@@ -90,6 +90,24 @@ class ScoreSubmissionTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
 
+    def write_sources_index(self, path: Path, source_id: str) -> Path:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(
+            json.dumps(
+                {
+                    "sources": [
+                        {
+                            "id": source_id,
+                            "citation": f"https://example.org/{source_id.lower()}",
+                        }
+                    ]
+                },
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        return path
+
     def check_map(self, report):
         return {check.dimension: check.status for check in report.checks}
 
@@ -134,6 +152,49 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.matched_sources, [])
+
+    def test_v2_uses_package_source_index_by_default(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            body = VALID_BODY.replace(
+                'license: "CC-BY-4.0"',
+                'license: "CC-BY-4.0"\nproposal_format_version: "2"',
+            ).replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:PACKAGE-PRIMARY]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_sources_index(proposal.parent / "sources.json", "PACKAGE-PRIMARY")
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
+            self.assertEqual({item.id for item in report.matched_sources}, {"PACKAGE-PRIMARY"})
+
+    def test_explicit_source_index_overrides_v2_package_index(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            body = VALID_BODY.replace(
+                'license: "CC-BY-4.0"',
+                'license: "CC-BY-4.0"\nproposal_format_version: "2"',
+            ).replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- [source:EXPLICIT-PRIMARY]",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_sources_index(proposal.parent / "sources.json", "PACKAGE-PRIMARY")
+            explicit_index = self.write_sources_index(
+                root / "custom-sources.json", "EXPLICIT-PRIMARY"
+            )
+
+            report = score_proposal(root, proposal, explicit_index)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
+            self.assertEqual({item.id for item in report.matched_sources}, {"EXPLICIT-PRIMARY"})
 
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -15,7 +15,12 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
 
-from validate_submission import PLACEHOLDERS, extract_headings, parse_front_matter
+from validate_submission import (
+    PLACEHOLDERS,
+    PROPOSAL_FORMAT_VERSION,
+    extract_headings,
+    parse_front_matter,
+)
 
 
 STATUS_PASS = "pass"
@@ -67,6 +72,7 @@ METRIC_TERMS = ["指标", "评估", "满意度", "数量", "比例", "时长", "
 PUBLIC_TERMS = ["居民", "青年", "学生", "企业", "高校", "游客", "无障碍", "包容", "公共", "弱势"]
 RISK_TERMS = ["公开", "非公开", "隐私", "版权", "授权", "复核", "风险", "合规", "涉密", "边界"]
 MANUAL_REVIEW_TERMS = ["内部资料", "内部数据", "非公开空间数据", "未公开图件", "无需审批", "保证落地", "一定实施"]
+DEFAULT_SOURCES_INDEX = Path("sources/public-sources.json")
 
 
 @dataclass
@@ -179,7 +185,7 @@ def status_from_term_count(count: int, pass_at: int = 3, needs_at: int = 1) -> s
 
 
 def load_source_index(repo_root: Path, index_path: Path | None = None) -> list[dict[str, Any]]:
-    index_path = index_path or repo_root / "sources" / "public-sources.json"
+    index_path = index_path or repo_root / DEFAULT_SOURCES_INDEX
     if not index_path.is_absolute():
         index_path = repo_root / index_path
     if not index_path.exists():
@@ -190,6 +196,29 @@ def load_source_index(repo_root: Path, index_path: Path | None = None) -> list[d
         return []
     sources = index_data.get("sources") if isinstance(index_data, dict) else []
     return sources if isinstance(sources, list) else []
+
+
+def resolve_source_index_path(
+    repo_root: Path,
+    proposal_path: Path,
+    metadata: dict[str, str],
+    index_path: Path | None = None,
+) -> Path:
+    """Select the canonical source index without overriding an explicit choice.
+
+    Proposal format v2 stores its complete machine-readable source inventory in
+    the submission package. Earlier formats retain the repository-wide public
+    source index for advisory checks.
+    """
+    if index_path is not None:
+        return index_path
+
+    if metadata.get("proposal_format_version") == PROPOSAL_FORMAT_VERSION:
+        package_index = proposal_path.parent / "sources.json"
+        if package_index.is_file():
+            return package_index
+
+    return repo_root / DEFAULT_SOURCES_INDEX
 
 
 def reference_lines(reference_section: str) -> list[str]:
@@ -351,7 +380,10 @@ def score_proposal(
     checks.append(build_check("表达完整度", completeness_status, completeness_message))
 
     reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
-    sources = load_source_index(repo_root, sources_index_path)
+    sources = load_source_index(
+        repo_root,
+        resolve_source_index_path(repo_root, proposal_path, metadata, sources_index_path),
+    )
     matched_sources, unmatched_references = match_sources(text, reference_section, sources)
     if not reference_section:
         source_status = STATUS_MISSING
@@ -416,7 +448,10 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("proposal", help="Path to proposal.md")
     parser.add_argument("--repo-root", default=".")
-    parser.add_argument("--sources-index", default="sources/public-sources.json")
+    parser.add_argument(
+        "--sources-index",
+        help="Override the automatically selected source index.",
+    )
     parser.add_argument("--json", action="store_true")
     parser.add_argument(
         "--strict",
@@ -425,7 +460,8 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    report = score_proposal(Path(args.repo_root), Path(args.proposal), Path(args.sources_index))
+    sources_index = Path(args.sources_index) if args.sources_index else None
+    report = score_proposal(Path(args.repo_root), Path(args.proposal), sources_index)
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
     else:

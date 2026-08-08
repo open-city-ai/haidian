@@ -318,6 +318,10 @@ python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposa
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
 
+对 `proposal_format_version: "2"` 的投稿，脚本会自动读取同一投稿目录的
+`sources.json`；可通过 `--sources-index <path>` 显式覆盖。旧格式继续使用
+仓库的公开资料索引。
+
 exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
 进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:
 
