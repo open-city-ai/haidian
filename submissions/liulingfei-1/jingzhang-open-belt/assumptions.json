@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional",
+      "statement": "All submitted boundaries and key-area polygons are provisional rough geometry from the repository site package (provisional_boundaries.geojson), not official redlines. Areas and ratios are work values for recomputation only.",
+      "impact": "When official polygons arrive, site_boundary.geojson, key_areas.geojson, land_use.geojson and all derived metrics, figures, PDFs and HTML must be regenerated and updated.",
+      "trigger": "official_geometry_available"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (FAR, building height, density, green ratio, road redlines, ownership, municipal utilities, heritage protection lines) must be confirmed from official attachments before statutory use. No statutory control value is claimed.",
+      "impact": "floor_area_ratio, building_height_m, total_floor_area_sqm remain status=unknown; all height/massing statements are conceptual suggestions.",
+      "trigger": "official_controls_available"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_survey",
+      "statement": "Existing-building footprints, age, structure, use and conservation status are not verified; buildings.geojson contains conceptual interface prototypes only and identifies no existing building.",
+      "impact": "No demolition/renovation conclusion is made; building_footprint_area_sqm is a design-layer work value, not an existing-conditions baseline.",
+      "trigger": "existing_conditions_survey"
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Road redlines, sections, station boundaries, flows and parking supply are not verified; roads.geojson contains conceptual slow-mobility lines only.",
+      "impact": "road_centerline_length_m is a conceptual work value; no road alignment, bridge or tunnel conclusion is made.",
+      "trigger": "transport_specialist_input"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_authority_confirmation",
+      "statement": "Heritage protection extents and construction-control zones (e.g. Tsinghuayuan station site) must be confirmed with heritage authorities; landmarks are light-touch, reversible conceptual proposals.",
+      "impact": "Heritage nodes are marked as to-be-confirmed; no construction or intervention near heritage is proposed.",
+      "trigger": "heritage_authority_confirmation"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "pending_data",
+      "statement": "Utilities, drainage, flood, fire, energy and data infrastructure capacities are not available; municipal strategy is an interface checklist, not a capacity commitment.",
+      "impact": "No load, capacity or equipment-count calculations are made; GAP-MUNICIPAL marks the data gap.",
+      "trigger": "municipal_data_available"
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "status": "conceptual",
+      "statement": "Land-use partition expresses conceptual functional tendencies of the OPEN BELT spatial grammar (TRUNK/COMMIT/PR), partitioned deterministically from the provisional boundary; it is not a statutory land-use plan.",
+      "impact": "Land-use codes follow the MNR classification guide for terminology only.",
+      "trigger": "professional_planning_review"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "conceptual",
+      "statement": "Building footprints are conceptual interface prototypes only; they do not identify existing buildings, ownership, floor counts or demolition/renovation conclusions.",
+      "impact": "building_footprint_area_sqm and building_density are design-layer work values.",
+      "trigger": "existing_conditions_survey"
+    },
+    {
+      "id": "A-CASES-001",
+      "status": "background_reference",
+      "statement": "International cases are used for mechanism comparison only (open data, tiered testing, participatory governance, algorithm transparency, daily accessibility, negative governance lessons); no case is used as boundary authority or area basis.",
+      "impact": "Case references support mechanism design, not spatial facts.",
+      "trigger": "none"
+    },
+    {
+      "id": "A-GOVERNANCE-001",
+      "status": "conceptual",
+      "statement": "All AI scenarios require opt-in participation, data minimization, human review gates, non-AI equivalent channels and rollback/exit conditions; scenario states never claim deployed or approved.",
+      "impact": "Scenario cards, service passports and the five-state lifecycle are governance suggestions, not existing administrative processes.",
+      "trigger": "authority_confirmation"
+    },
+    {
+      "id": "A-PHASING-001",
+      "status": "conceptual",
+      "statement": "The four phases are evidence and readiness gates, not confirmed development timing, investment or approval.",
+      "impact": "phasing.geojson expresses conceptual sequencing only; no development schedule or investment commitment is made.",
+      "trigger": "professional_planning_review"
+    },
+    {
+      "id": "A-EVENTS-001",
+      "status": "conceptual",
+      "statement": "All renewal projects, annual events, brand assets and operation mechanisms are conceptual suggestions; none are confirmed government decisions, funded programs or approved arrangements.",
+      "impact": "No investment, timing or commitment claim is made.",
+      "trigger": "authority_confirmation"
+    }
+  ]
+}

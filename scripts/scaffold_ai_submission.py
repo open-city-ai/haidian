@@ -391,6 +391,7 @@ def make_proposal(
 title: "{title}"
 author_github: "{author}"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "{summary_phrase}"
 tracks: {json.dumps(DEFAULT_TRACKS, ensure_ascii=False)}
@@ -529,7 +530,7 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 
 ## 风险、版权与合规说明
 
-方案文件可使用中文或英文；英文为主语言时，必须在同一 `proposal.md` 中附完整中文正式译文，并设置双语元数据。所有图片、图纸、图标、数据和代码资产必须在 `sources.json` 或 `report/copyright_statement.md` 中说明来源、许可和授权状态。HTML 页面不得加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不得跟踪评审者行为。
+方案主文件可使用中文或英文，并应通过 `proposal.en.md` 或 `proposal.zh.md` 提供完整对照译文；缺少译文只产生 non-blocking warning，不阻断投稿、合并或内容审稿。A3/A0、HTML 和含文字图件也应提供对应语言副本，并优先使用 `docs/terminology-glossary.md` 的赛事推荐译法。所有图片、图纸、图标、数据和代码资产必须在 `sources.json` 或 `report/copyright_statement.md` 中说明来源、许可和授权状态。HTML 页面不得加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不得跟踪评审者行为。
 
 风险和缺资料清单由 [depth:risk_missing_data] 管理，并与 [data:geometry/constraints.geojson#CONSTRAINTS]、[source:SITE-PACKAGE]、[source:PROCESSED-FACT-PACK] 和 [standard:MOHURD-CONTROL-DETAILED-PLANNING] 相互校核。`missing_data_checklist.csv` 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，必须进入 `assumptions.json`、自检和正文风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，都必须降级为待确认事项。
 
@@ -1145,6 +1146,14 @@ def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: st
     manifest_files = []
     for rel_path, role, required in files:
         item = {"path": rel_path, "role": role, "required": required}
+        if rel_path in {
+            "proposal.md",
+            "report/proposal.html",
+            "drawings/a3-booklet.pdf",
+            "drawings/a0-boards.pdf",
+            "visual/index.html",
+        } or rel_path in proposal_figures:
+            item["language"] = "zh"
         if rel_path != "manifest.json":
             item["sha256"] = sha256(submission_dir / rel_path)
         manifest_files.append(item)

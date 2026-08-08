@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张合流带｜Jingzhang Merge Belt —— 一条铁路汇出一座开源城市 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  white-space: nowrap;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #31506f;
+  border-radius: 4px;
+  padding: 0.03em 0.32em;
+  font-size: 0.92em;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张合流带｜Jingzhang Merge Belt —— 一条铁路汇出一座开源城市</h1>
+<p class="summary">以 Git 合流(Merge)为总体隐喻,把百年京张铁路的合流精神转译为城市开源共建机制:上游(众智园)开源释放、维护者社区(原点社区)成果转化、发行区(大钟寺)场景分发,京张走廊为主干,中关村科技服务翼为基础设施、小月河场景赋能翼为集成测试;合流是选择而非强制,保留支流(人工/离线/无账户路径),以冲突裁决厅承载人类最终判断。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张合流带｜Jingzhang Merge Belt —— 一条铁路汇出一座开源城市</h1>
+<p>&gt; 口号:**之字前行,开源致远**。之字,是用最少的资源克服最陡的坡;开源,是让每一条支流的贡献汇入主线、留下名字。 &gt; 本案核心判断:未来城市的先进性,不取决于铺了多少传感器,而取决于**多少条支流愿意并能够汇入主线**——合流必须是选择,不是强制;合流必须可评审、可驳回、可回滚,并且**保留完整可用的支流**(人工、离线、无账户路径)。</p>
+<h2>设计依据与资料清单</h2>
+<p>本方案以北京市规划和自然资源委员会海淀分局 2026-05-09 发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 <span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span>，以仓库 <code>brief/site-package/</code> 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据 <span class="evidence evidence-source">[source:SITE-PACKAGE]</span>。生成前已读取 <code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>agent_taskbook.json</code>、<code>sources.json</code>、<code>ranges/planning_limits.json</code>、<code>schemas/</code> 与 <code>data/source_registry.json</code>，并依据 <code>data/processed/</code> 的 <code>project_scope_summary.csv</code>、<code>agent_task_requirements.csv</code>、<code>source_use_matrix.csv</code>、<code>missing_data_checklist.csv</code> 建立任务、范围、资料用途与缺口清单。所有设计判断均拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。</p>
+<p>本节证据链引用 <span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span>、<span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>、<span class="evidence evidence-source">[source:SITE-PACKAGE]</span>、<span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span>、<span class="evidence evidence-source">[source:PROCESSED-FACT-PACK]</span>、<span class="evidence evidence-source">[source:BOUNDARY-SOURCE]</span>、<span class="evidence evidence-source">[source:KEY-AREA-SOURCE]</span>，以及 <span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span>、<span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span>、<span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span>、<span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span>、<span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span>、<span class="evidence evidence-standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span>，由 <span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span> 检查现状诊断与资料缺口。</p>
+<p>资料登记表使用边界：<code>data/source_registry.json</code> 中 <code>usable_for_formal=&amp;quot;yes&amp;quot;</code> 的资料可用于正式证据；<code>provisional_only</code> 资料仅用于生成、可视化与 intake 自检。本方案**未使用**任何非公开规划图件、非公开空间数据或个人隐私信息。</p>
+<p>官方 <code>SITE_BOUNDARY</code> 与三处 <code>KEY_AREA</code> polygon 截至 2026-08-08 仍未发布（资格预审文件需密码下载，公开渠道无可验证坐标系的精确红线 <span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span>），本方案采用 <code>brief/site-package/geometry/provisional_boundaries.geojson</code> 的临时边界：<code>geometry/site_boundary.geojson#SITE-001</code> 为 <code>official_boundary=false</code>、<code>geometry_role=&amp;quot;provisional_constraint&amp;quot;</code>、<code>boundary_precision=&amp;quot;provisional_rough&amp;quot;</code>；三处重点区同源标注。该临时边界仅用于方案生成、自检、可视化与设计讨论，**不是**官方红线、审批依据或精确面积依据；官方 polygon 发布后，land use、buildings、roads、green space、public space、phasing 与全部面积指标必须按同一脚本重算，而非只替换单个文件。组织方数据缺口不阻断内容评分。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"><figcaption>资料证据链与提交包关系图</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>三层范围采用&quot;**流域—主线—合流节点**&quot;的递进，而非把一张总图按比例放大 <span class="evidence evidence-depth">[depth:three_level_scope_framework]</span>：</p>
+<ul>
+<li>**统筹研究范围（43.6 km²，流域层）**：回答 AI 产业链、人才链、公共服务链与文化传播链在海淀如何发源、分流、汇合；明确三区两翼的合流回路与要素机制。</li>
+<li>**总体设计范围（11.4 km²，主线层）**：以京张遗址走廊为**主线 Mainline**，把合流关系落到用地、慢行、蓝绿、更新与公共服务骨架；东西向支流在此并入主线，20 个用地分区完整覆盖 <span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span>。</li>
+<li>**重点区域范围（368.4 公顷，合流节点层）**：众智园=上游、原点社区=维护者社区、大钟寺=发行区，以可运营空间原型检验研发、转化、交往与居民日常能否共存 <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span>。</li>
+</ul>
+<p>三层共用同一底线：**合流可拒绝**。任何 AI 服务的合并都须满足&quot;提交可评审、运行可分流、退出可回滚、支流不降级&quot;，因此治理原则不是附录，而是总体结构的一部分。</p>
+<p>当前提交按临时几何计算总体设计范围面积约 11,412,825 平方米 <span class="evidence evidence-metric">[metric:site_area_sqm]</span>，重点区数量为 3 <span class="evidence evidence-metric">[metric:key_area_count]</span>；因边界为 provisional，置信度 medium，不写入新的审定结论 <span class="evidence evidence-depth">[depth:metrics_recalculation]</span>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>**总体概念与命名体系（agent.1）**：本方案将一带命名为&quot;**京张合流带 / Jingzhang Merge Belt (JZ-MB)**&quot;，采用 Git 工作流语义构成完整命名体系，可延展、可记忆、可国际传播：</p>
+<p>| 空间/对象 | 命名 | 语义 | | --- | --- | --- | | 一带主名 | 京张合流带 / Jingzhang Merge Belt | 所有支流汇入的城市主线 | | 统筹研究范围 | 流域 / Watershed Scope | 43.6 km² 战略层 | | 总体设计范围 | 主线 / Mainline Scope | 11.4 km² 结构层 | | 京张遗址走廊 | 主线 / Mainline | 南北贯通、东西缝合 | | 众智园 | 上游 / Upstream | 模型、算力、标准、安全治理 | | AI 原点社区 | 维护者社区 / Maintainers | 高校原始创新与成果转化 | | 大钟寺 | 发行区 / Release | 智能体、内容消费与分发 | | 中关村科技服务翼 | 基础设施 / Infra | 资本、IP、要素配置 | | 小月河场景赋能翼 | 集成测试 / Integration | 场景验证与集成测试 | | 更新项目 | 合并请求 / Merge Requests | 可评审、可驳回、可回滚 | | 公众参与 | 合流公议 / Public Merge Review | 市民像评审 PR 一样评议提案 |</p>
+<p>**Logo 方向**：两条支线（蓝=AI 技术流、绿=开源人文流）渐近汇成一条主线（橙=城市公共线），形态同时暗含铁路道岔与 <code>git merge</code> 分支合一；以&quot;之字&quot;折线角标致敬青龙桥展线。三色体系：上游蓝 / 开源绿 / 人文橙。命名与视觉均服务于&quot;百年京张文化带、都市AI生活体验带、AI融合创新带&quot;三大定位 <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/logo-concept.png" alt="Logo 概念示意(自绘,无版权风险)"><figcaption>Logo 概念示意(自绘,无版权风险)</figcaption></figure>
+<p>**三区两翼协同回路（agent.1/agent.2）**：<code>上游(众智园) 开源释放 → 维护者社区(原点社区) 维护转化 → 发行区(大钟寺) 场景分发 → 需求信号(issue) 反馈回上游</code>，形成迭代回路；中关村科技服务翼（Infra：资本/IP/要素全球化配置）与小月河场景赋能翼（Integration：场景集成测试环境）保证回路运转。五大功能（AI全栈自主创新体系、世界级AI创新生态、AI+场景赋能新范式、智能化AI活力城市、AI治理全球话语权）分别落在上游、维护、发行、支流与裁决环节 <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>。</p>
+<p>**生态案例 6 个（只抽机制，不复制形态）**：<span class="evidence evidence-source">[source:LINUX-FOUNDATION]</span>（开源治理与长期维护机制）、<span class="evidence evidence-source">[source:APACHE-FOUNDATION]</span>（社区自治与贡献者阶梯）、<span class="evidence evidence-source">[source:HUGGINGFACE]</span>（模型公地与治理）、<span class="evidence evidence-source">[source:MOZILLA]</span>（公共数字基础设施）、<span class="evidence evidence-source">[source:SINGAPORE-AI-VERIFY]</span>（上线前可重复评测）、<span class="evidence evidence-source">[source:PUBLIC-PARTICIPATION-CASES]</span>（城市更新冲突协商与裁决）。以上为背景研究，不代表本项目已采用相应制度，限制记录于 assumptions.json 的 A-CASES-001。</p>
+<p>**区域协同（agent.2，合流不停留在带内）**：合流向更大区域&quot;放行&quot;而非&quot;吞并&quot;，与本带&quot;策源与原点&quot;角色一致（概念建议 <span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span>）：北纬社区与科教走廊（北航、北邮等）界面开放，与原点社区的高校源创新同链，构成&quot;上游释放&quot;的高校回路；未来科学城与怀柔科学城承接上游（众智园）的基础研究与人才输出，形成&quot;上游开源释放 → 科学城放大&quot;；经开区承接中试与制造转化，形成&quot;维护者转化 → 制造落地&quot;；京津冀输出场景、标准与治理经验，形成&quot;发行区分发 → 全国采用&quot;。四段梯度与三区两翼同构：上游释放、维护转化、发行分发各有一处区域出口，主线因此不是闭环，而是向外持续合流的开放系统。</p>
+<p>未来城市形态不是高密传感器景观，而是&quot;**主线不断供、支流不强制**&quot;：地面层优先连续步行、骑行、遮阴与人工服务；可选智能层通过合流公议进入；运营层记录模型版本、服务中断、人工接管、驳回与回滚。产业评价看三个公共绩效：合流吞吐（贡献如何进入主线）、冲突解决率（分歧如何被裁决）、支流可用性（不汇入主线者是否得到同等服务）；后两者在无运营样本前保持 unknown <span class="evidence evidence-depth">[depth:risk_missing_data]</span>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体结构把狭长的京张走廊视作**合流主干**：南北贯通为&quot;主线&quot;，东西向街区、绿廊、轨道接驳为&quot;支流&quot;，支流在六个&quot;合流节点&quot;（对应场景与公共服务锚点）并入主线。用地分区在临时 site polygon 内直接分割、完整覆盖且互不叠压 <span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span>；用地代码全部来自资料包允许集合 <span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span>，由 <span class="evidence evidence-depth">[depth:land_use_layout]</span> 约束。</p>
+<p>建筑层采用&quot;**可逆催化项目包**&quot;而非现状结论：七处示范项目（众智加速塔 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-001]</span>、上游发布厅、开源转化实验楼、静默共享厅、大钟寺智能客厅、合流公议中心、国际人才公寓 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-007]</span>）只用于检验公共空间、慢行与功能混合的承载关系，<code>intervention_status=capacity_test_only</code>、<code>demolition_decision=false</code>，联合基底面积见 <span class="evidence evidence-metric">[metric:building_footprint_area_sqm]</span>，示范项目数量 <span class="evidence evidence-metric">[metric:catalyst_building_count]</span>；按假设层数（A-DEMO-FLOORS-001）估算示范总规模仅表达&quot;催化项目包&quot;强度，**不是**全域建筑总量。容积率、建筑高度、建筑密度、退线均保持 unknown，由 <span class="evidence evidence-depth">[depth:development_intensity_controls]</span>、<span class="evidence evidence-depth">[depth:height_massing_character]</span> 记录&quot;已响应深度、结论待控规资料&quot;，响应 <span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span> 与 <span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span>。</p>
+<p>更新方法是&quot;**小单元、可逆、先公共后建设**&quot;：先用地面标线、导视、树阵、可移动人工柜台测试合流节点；再在三重点区推进首层公共性、慢行断点与服务设施更新；最后依据正式控规、交通、市政、消防、文保与产权条件决定建筑实施。每个更新单元都是一次&quot;合并请求&quot;，须过评审、可驳回、可回滚 <span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="用地分区、功能结构与可逆容量测试"><figcaption>用地分区、功能结构与可逆容量测试</figcaption></figure>
+<h2>重点区域详细设计</h2>
+<p>三处重点区均基于 provisional 重点区 polygon 开展方向性设计 <span class="evidence evidence-depth">[depth:three_key_area_detailed_design]</span>，统一按&quot;定位—空间结构—建筑更新—交通慢行—公共空间—AI 场景—实施风险&quot;七要素组织；由于边界为临时推定，全部结论为概念建议、可供专业团队深化，不构成地块级审定内容。</p>
+<p>**众智园 = 上游 Upstream（约 192.1 ha）** <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span></p>
+<ul>
+<li>**定位**：花园型全栈自主创新与验证街区，承载模型评测、标准制定、算力服务与安全治理；</li>
+<li>**空间结构**：西侧全栈研发带（评测场/标准工作坊/算力服务/上游发布厅），中部清河绿谷主脊，东侧国际人才社区与战略留白 <span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-003]</span>；</li>
+<li>**建筑更新**：低效空间置换为研发载体为主、保留现状骨架为辅，示范项目众智加速塔 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-001]</span> 与上游发布厅 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-002]</span>，<code>capacity_test_only</code>、不构成拆改留结论；</li>
+<li>**交通慢行**：清河侧连续绿荫与无感支流通道，内侧合流选择阈值，北端上跨环路节点设之字形观景桥（见朝圣地标）；</li>
+<li>**公共空间**：上游发布广场、合流选择阈值标识，产业展示沿主脊布置；</li>
+<li>**AI 场景**：合流测试场、低速配送共路、上游评测场、合流公议站（SCENE-01/02/03/04）；</li>
+<li>**实施风险**：五环衔接工程与清河蓝线范围未确认，相关建议均为概念方案。</li>
+</ul>
+<p>**AI 原点社区 = 维护者社区 Maintainers（约 104.3 ha）** <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-002]</span></p>
+<ul>
+<li>**定位**：近校型成果转化街区，围绕高校原始创新构建&quot;开源发布—转化—服务&quot;生态；</li>
+<li>**空间结构**：西侧成果转化带（开源转化实验楼 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-003]</span>），中部街道上的实验室，东侧创新消费与社区服务；</li>
+<li>**建筑更新**：校区园区界面开放优先、低扰动有机更新，示范项目开源转化实验楼与静默共享厅 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-004]</span>；</li>
+<li>**交通慢行**：校区—园区—社区全天候步行与骑行缝合，站点步行、骑行与无障碍断点整治（MR-05）；</li>
+<li>**公共空间**：**静默共享厅**——纸质预约、人工问询与无账户服务，检验&quot;技术帮助协作而不把参与门槛变成装应用&quot;；开源草坪；</li>
+<li>**AI 场景**：AI+文化导览、企业服务助手（SCENE-06/08）；</li>
+<li>**实施风险**：高校用地权属与文保范围未确认，界面开放需协议协商。</li>
+</ul>
+<p>**大钟寺 = 发行区 Release（约 72.0 ha）** <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-003]</span></p>
+<ul>
+<li>**定位**：城市级智能产品客厅，承载智能体、内容消费、国际交流与分发；</li>
+<li>**空间结构**：西侧智能原生消费区（大钟寺智能客厅 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-005]</span>），东侧企业展示与路演，南端衔接文化展示带；</li>
+<li>**建筑更新**：存量商业载体升级为主，示范项目大钟寺智能客厅与合流公议中心 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-006]</span>，不指认地块拆改留结论；</li>
+<li>**交通慢行**：站前四象限步行连续、接驳通道直连重点地块，保留普通票务与人工通道；</li>
+<li>**公共空间**：**首次合流石**与**合流纪念碑**设于站前，任何个性化讲解均为选择项；**冲突裁决厅**（遗址公园南端，见朝圣地标）；</li>
+<li>**AI 场景**：年度合流日演练、无人配送·末端共配（SCENE-12/16）；</li>
+<li>**实施风险**：文保范围与站点边界未获取，四象限连通为概念方案。</li>
+</ul>
+<p>三处原型均回答功能、建筑接口、交通慢行、蓝绿公共空间、AI 场景、人工接管、实施依赖与退出方式，通过主线 <span class="evidence evidence-data">[data:geometry/roads.geojson#ROAD-001]</span> 与东西向公共支线相连；图面均带 provisional 标签，避免矩形临时范围被误读为街坊或红线。</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="众智园、原点社区与大钟寺三处空间原型"><figcaption>众智园、原点社区与大钟寺三处空间原型</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>六类需求画像 <span class="evidence evidence-metric">[metric:persona_count]</span> 不描述具体个人：上游贡献者（研发/算法）需要可预约测试与安静专注；AI 创业者需要低成本合规、算力与首个城市客户；维护者（高校师生）需要跨校协作、成果发布与日常慢行；支流居民需要低扰动休闲、社区服务与明确投诉通道；一线运维需要可解释工单、断网手动操作与责任边界；国际访客需要多语导览、普通票务与人工服务。画像只用于空间需求，不用于行为追踪或商业推荐。</p>
+<p>十六张场景卡 <span class="evidence evidence-metric">[metric:scenario_card_count]</span> 均写入 <span class="evidence evidence-data">[data:geometry/constraints.geojson#SCENE-01]</span> 至 SCENE-16，逐卡标注空间位置、服务对象、类型与数据隐私边界：其中 <span class="evidence evidence-metric">[metric:scenario_health_navigation]</span> 张 AI+医疗、<span class="evidence evidence-metric">[metric:scenario_education]</span> 张 AI+教育、<span class="evidence evidence-metric">[metric:scenario_autonomous]</span> 张自动驾驶、<span class="evidence evidence-metric">[metric:scenario_lastmile]</span> 张无人配送场景，覆盖任务书点名的 AI 应用方向（AI+交通/医疗/教育、机器人、自动驾驶、无人配送）。</p>
+<p>| # | 场景 | 位置 | 服务对象 | 类型 | 数据与隐私边界 · 人工复核 | | --- | --- | --- | --- | --- | --- | | 01 | 合流测试场（集成测试环境） | 众智园留白区 [SCENE-01] | 产业团队 | ★ 产业测试验证 | 公开时段/设备范围/退出路线；接入前人工评审 | | 02 | 低速配送共路测试 | 走廊中段支路 [SCENE-02] | 产业团队 | ★ 产业测试验证 | 限时限速；现场停止员；事件全量回放复核 | | 03 | 上游评测场（模型/安全/标准公开评测） | 众智园西带 [SCENE-03] | 开发者/监管 | ★ 产业测试验证 | 匿名评测输入；结果脱敏后公开；评测清单人工审定 | | 04 | 合流公议站（市民提交合并请求，人工评审） | 众智园 [SCENE-04] | 市民/共创者 | 公共服务 | 仅公开议题与意见摘要，无个人追踪；采纳人工决定 | | 05 | 冲突裁决厅开放日（多方协商与仲裁演练） | 遗址公园南端 [SCENE-05] | 多方利益相关者 | 公共服务 | 影像依规管理；裁决由人工终裁台作出 | | 06 | AI+文化导览（京张记忆沉浸导览） | 全线地标 [SCENE-06] | 访客 | 城市体验 | 匿名交互、不留存对话；讲解词人工审定 | | 07 | AI+交通慢行评估（慢行断点诊断） | 主线慢行网 [SCENE-07] | 居民/规划者 | 城市体验 | 只处理聚合统计，不追踪个人；诊断结果人工复核 | | 08 | 企业服务助手 | 原点社区 [SCENE-08] | 企业 | 产业服务 | 实名信息双向授权；争议交易人工复核 | | 09 | 静默共享厅（无账户、人工柜台兜底） | 原点社区 [SCENE-09] | 全体公众 | 支流保障 | 无账户即用；纸质记录最小化；人工柜台兜底 | | 10 | 夜间安静时窗监测 | 走廊全线 [SCENE-10] | 沿线居民 | 城市运维 | 只测环境分贝等聚合值，不采集声纹；告警人工确认 | | 11 | 无障碍路径协同（支流优先） | 全线慢行 [SCENE-11] | 行动不便者 | 支流保障 | 自愿开启、端侧处理优先；客服人工兜底 | | 12 | 年度合流日演练（全城&quot;非合流&quot;运行验证） | 全线 [SCENE-12] | 全体公众 | 城市运维 | 关闭非必要 AI 后验证普通导视/人工服务/应急；结果公开复盘 | | 13 | AI+医疗·社区健康导航 | 原点社区 [SCENE-13] | 居民/患者 | 公共服务 | 只导航不诊断；不采集健康数据；人工转接医院/门诊 | | 14 | AI+教育·开源课堂 | 原点社区 [SCENE-14] | 学生/教师 | 公共服务 | 未成年人不建档；课堂内容人工审定；家长可退出 | | 15 | 自动驾驶·主脊接驳测试 | 主脊限定路段 [SCENE-15] | 游客/通勤 | ★ 产业测试验证 | 人工安全员随车；限时/限路段；异常人工接管 | | 16 | 无人配送·末端共配 | 大钟寺 [SCENE-16] | 居民/商户 | 城市体验 | 末端柜实名取件；配送路径限时；异常停止人工处置 |</p>
+<p>每个合流（场景准入）须通过&quot;**合流协议 Merge Protocol**&quot;六步，否则不进入开放运营 <span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span>：①**申报**——运营者提交合流申请书：公共目的、最小数据、责任人、测试环境、人工替代、申诉渠道、停止阈值、维护预算与退出日期；②**校验**——通过证据、安全、用户、运营、公共回报五项验收（对应&quot;合流五可&quot;的可见、可用、可议、可责、可回）；③**挂牌**——现场说明牌公开用途、输入、输出、风险、责任人、运行状态与日落日期；④**运行**——合流令牌互锁、公开时刻表、等价非数字通道与无障碍路径同时到位（&quot;支流不降级&quot;）；⑤**复核**——异议入口、合流公议与**四类公共回执**（已采纳/部分采纳/不采纳/待核实，每条附理由、负责人、复核节点与申诉渠道），人工终审、急停与日落条款（试点不自动续期）；⑥**退场**——令牌到期归还、撤场时间窗、数据删除证据与年度 Undo 演练，失败案例进入复盘档案墙。每张卡在五要素外补充&quot;准入闸门—暂停阈值—退出条件&quot;三字段，统一走合流协议与回程预算。</p>
+<p>临时 AI 占用公共空间实行&quot;**合流令牌**&quot;预约互锁（借鉴单线铁路令牌闭塞制度）：令牌授予具名运营者一个区段、一个时段，附数据边界与人工复核点，到期强制归还；同一区段同时仅一枚令牌，不得圈占整座站前广场或连续全天运行；异议挂起预约待人工审查，防止&quot;开放区&quot;悄然变永久占用。</p>
+<p>**合流时隙表 Merge Timeslot**（时间层，概念建议）：把&quot;何时合流&quot;与&quot;何处合流&quot;同等设计——每区段每日设 <span class="evidence evidence-metric">[metric:merge_timeslot_count]</span> 类可预约时隙：晨间照护、日间研发、傍晚共学、夜间文化、安静时窗与合流日演练；合流令牌按&quot;一区段一时段&quot;互锁，时刻表公开张贴并同步发布。任何活动不中断普通通行；没有智能设备也能获得等价服务；结束时刻、责任人与恢复方式在开始前公开。支流保障要求每日至少 <span class="evidence evidence-metric">[metric:quiet_hours_per_day]</span> 小时安静时窗，非必要 AI 降噪运行，普通通行与服务不受影响；官方边界与控规条件到位后，时隙表按实际运营与审批口径复算。</p>
+<p>每张卡共用&quot;三段证明&quot;：**Before**——在摄像头、扫码或账户发生前，以地面标识说明数据种类、目的、时长与普通路径；**During**——显示系统正在运行、模型/运营方、人工柜台位置与紧急停止；**After**——提供退出、删除、纠错或恢复回执。若支流路径的等待时间、价格或无障碍条件明显劣于主线，则不算&quot;可合流&quot;；运营期以 <code>tributary_parity_index</code> 测量归一化服务等价差，当前缺运营样本保持 unknown。对应场景深度与风险由 <span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span>、<span class="evidence evidence-depth">[depth:risk_missing_data]</span> 约束。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>用地以 <span class="evidence evidence-metric">[metric:land_use_zone_count]</span> 个概念分区构成拓扑完整剖分，完整覆盖总体设计范围、无缝隙无叠压（空间审查已验证）<span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span>；分类全部来自国土空间用地用海分类允许集合 <span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span>，不用&quot;AI 用地&quot;等自造类别替代法定分类接口。构成（EPSG:4548 复算）：科研用地约 <span class="evidence evidence-metric">[metric:landuse_research_area_sqm]</span> m²、居住与社区服务约 <span class="evidence evidence-metric">[metric:landuse_residential_area_sqm]</span> m²、商业服务业约 <span class="evidence evidence-metric">[metric:landuse_commercial_area_sqm]</span> m²、教育用地约 <span class="evidence evidence-metric">[metric:landuse_education_area_sqm]</span> m²、文化用地约 <span class="evidence evidence-metric">[metric:landuse_culture_area_sqm]</span> m²、公园绿地约 <span class="evidence evidence-metric">[metric:landuse_green_open_area_sqm]</span> m²、战略留白约 <span class="evidence evidence-metric">[metric:landuse_reserved_white_area_sqm]</span> m²。布局逻辑：主脊连续（公园绿地贯穿全线）、科研两端强（上游与维护者两芯）、职住内嵌（走廊中段与东侧）、消费在钟（发行区与站前）、留白可进化（承接年度合流公议滚动激活）。当前用地为概念分区，不改变既有土地权属与用途；正式深化须将官方地块、现状用地与控规图则叠加后，逐块形成&quot;保持、微更新、功能置换、综合更新、留白&quot;建议，并记录依据与审批路径。</p>
+<p>拆改留采用&quot;**合并请求四道门槛**&quot;：第一道产权与现状调查；第二道结构、消防、节能与历史价值评估；第三道公共利益与全寿命碳比较；第四道法定程序与公众合流公议。任一门槛缺失不进入拆除清单 <span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span>。因此 <span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-001]</span> 只表达可逆容量块，用于检验街廓开敞关系，不是批准建设规模；&quot;拆改留&quot;的完成含义是&quot;方法与证据门槛已明确&quot;，不是&quot;逐栋决定已完成&quot;。</p>
+<p>风貌控制强调&quot;**轨道尺度、安静界面、可读技术**&quot;：首层优先连续檐下、可开闭公共房间与人工服务；传感状态以低眩光、可理解的标识表达；面向遗址与绿廊的体量分段通透。具体高度、贴线率、间距与天际线待正式控规、视廊、文保与日照分析确定 <span class="evidence evidence-standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>交通体系以**主线—支流**组织：主线提供慢行优先的南北连续通道与轨道接驳，网络概念长度见 <span class="evidence evidence-metric">[metric:road_network_length_m]</span>；支流提供进入各街区的普通路径；六个合流节点设在数据采集之前，而非用户进入感知区后再给退出按钮 <span class="evidence evidence-data">[data:geometry/roads.geojson#ROAD-001]</span>。轨道站点与重点路口落实&quot;到站—过街—停放—入口—人工台&quot;连续链；自行车停放靠近入口但不挤占盲道；低速机器人限时、限速、让人优先并配备现场停止员。因缺少完整客流、出入口、停车与路网模型，本方案不写道路红线宽度、停车配建或通行能力定值 <span class="evidence evidence-depth">[depth:traffic_rail_slow_parking]</span>。</p>
+<p>市政与新型基础设施采用&quot;**断网仍安全**&quot;原则：照明、雨洪、能源、充电、边缘计算与设施巡检均需本地手动模式、故障可见、数据最小化与明确维护主体；公共服务设人工柜台、电话/纸质渠道、普通支付与无障碍替代。社区健康场景只做导航与转接，不作自动诊断；法律与知识产权场景只做材料辅助；公共安全场景只做信息汇总，不自动作出处置决定。设施落点见 <span class="evidence evidence-data">[data:geometry/constraints.geojson#SCENE-06]</span>、<span class="evidence evidence-data">[data:geometry/constraints.geojson#SCENE-10]</span>，由 <span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span> 管理深化。</p>
+<p>空间形态以&quot;**支流尺度**&quot;为设计律（概念建议，待官方路网与控规条件后按同一口径复算 <span class="evidence evidence-depth">[depth:traffic_rail_slow_parking]</span>）：主脊保持慢行优先的连续公共界面；支流巷宽度建议 11–18 m、贴线率建议 ≥70%（重点区 ≥85%）、禁连续围墙超 30 m、每街区至少一条 24 小时公共穿越通道——用街道密度支撑&quot;偶遇密度&quot;，让合流发生在人的尺度，而非仅发生在数据层。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="S/Q 双轨、东西向支线、蓝绿网络与选择阈值"><figcaption>S/Q 双轨、东西向支线、蓝绿网络与选择阈值</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿结构以京张连续公园、清河低碳花园、原点社区开源草坪与大钟寺雨洪静园组成，联合概念面积 <span class="evidence evidence-metric">[metric:green_space_area_sqm]</span> 与比例 <span class="evidence evidence-metric">[metric:green_ratio]</span>（相对临时总范围的估算值，不作为审定绿地率）<span class="evidence evidence-data">[data:geometry/green_space.geojson#GREEN-001]</span>。公共空间以主线廊道、六个合流节点广场与三处共享公厅构成 <span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC-001]</span>，联合概念面积 <span class="evidence evidence-metric">[metric:public_space_area_sqm]</span>、比例 <span class="evidence evidence-metric">[metric:public_space_ratio]</span>；每处均有连续遮阴、座椅、饮水、卫生间导向、无障碍信息与人工帮助，AI 装置必须可绕行、可关闭、可说明。夜间&quot;安静时窗&quot;降低屏幕、播报与试验频率。</p>
+<p>**朝圣地标（agent.4，<span class="evidence evidence-metric">[metric:pilgrimage_landmark_count]</span> 处）**： 1. **合流纪念碑 Merge Monument**——支线并入主线的雕塑与碑刻，镌刻全部贡献者 GitHub 名（呼应主办方&quot;NAME IN STONE&quot;；扫码可见合并历史）； 2. **首次合流石 First-Merge Stone**——大钟寺站前，城市&quot;第一次合并提交&quot;纪念物； 3. **冲突裁决厅 Review Chamber**——遗址公园南端，多方利益协商室+人工终裁台+裁决档案墙，&quot;人类最终判断&quot;的空间化，也是&quot;AI 治理全球话语权&quot;的落点； 4. **之字形观景桥**——上跨环路节点，致敬青龙桥展线，俯瞰合流全景。</p>
+<p>城市风貌识别不靠发光屏，而靠&quot;合流&quot;语言：主线=连续公共界面、支线=街区尺度、节点=道岔式汇聚。**上游蓝 / 开源绿 / 人文橙**三色贯穿导视、地面标识与装置；所有关键图纸显示图例、来源与 provisional 提示，防止设计图被截取后脱离语境 <span class="evidence evidence-depth">[depth:blue_green_public_space]</span>。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>更新项目形成 <span class="evidence evidence-metric">[metric:merge_request_count]</span> 项&quot;合并请求&quot;工作包，逐项列出主要依赖条件：</p>
+<p>| # | 工作包 | 位置 | 主要依赖条件 | | --- | --- | --- | --- | | MR-01 | 主线地面标识与普通导视 | 走廊全线 | 公园既有实施范围衔接 | | MR-02 | 六处合流节点与人工服务台 | 走廊节点 | 公共空间运营主体确定 | | MR-03 | 三处重点区首层公共界面微更新 | 三重点区 | 用地与控规条件 | | MR-04 | 清河—京张连续蓝绿修补 | 北段至中段 | 清河蓝线范围确认 | | MR-05 | 轨道站点步行、骑行与无障碍断点整治 | 五道口/大钟寺站 | 站点与路口改造条件 | | MR-06 | 三类产业验证场景（合流测试场/配送共路/上游评测） | 上游留白区 | 测试立项与监管主体 | | MR-07 | 算法/设备/服务公开登记页与现场告示 | 全线 | 数据政策衔接 | | MR-08 | 年度合流日（全城非合流运行验证） | 全线 | 年度运营预算与应急方案 |</p>
+<p>位置对应 <span class="evidence evidence-data">[data:geometry/phasing.geojson#PHASE-001]</span>，由 <span class="evidence evidence-depth">[depth:renewal_project_list]</span> 检查证据完整性。</p>
+<p>三期策略 <span class="evidence evidence-metric">[metric:phase_count]</span> 不是固定建设承诺：近期做可逆公共设施、支流基线普查、纸质/人工渠道与两类路线标识；中期在三重点区同步推进公共界面、交通断点、雨洪与产业服务，经合流公议决定保留哪些智能功能；长期形成年度运营、模型/设备更新、等价审计与空间适应性改造。每一期开始前满足相应官方边界、控规、权属、交通、市政、消防与文保条件 <span class="evidence evidence-depth">[depth:phasing_implementation]</span>。</p>
+<p>长效运营（agent.6）采用&quot;**一个月度合流日志、四个季度动作、一个年度合流日**&quot;：月度公开合并/驳回/回滚记录、人工接管次数、服务中断、投诉与支流可用性；一季度审场景合同，二季度做无障碍与服务等价走查，三季度做公共活动与产业测试，四季度审模型/设备续期；年度&quot;合流日&quot;关闭非必要 AI，验证普通导视、人工服务与应急机制能否独立运行——若支流失效，先修复基线再扩展主线。治理工具箱再补四项：**公共回执**——合流公议每条意见生成&quot;已采纳/部分采纳/不采纳/待核实&quot;回执，附理由、负责人、复核节点与申诉渠道；**回程预算**——临时设施立项前登记撤场时间窗、数据删除证据、恢复责任人、人工替代能力与未结申诉，无预算不进入试验；**失败复盘夜**——每月公开合并/驳回/回滚案例，冲突裁决厅的驳回档案墙同步更新，失败案例同样上墙（&quot;可驳回&quot;不是失败，是治理的日常）；**支流台账**——每台 AI 设备登记责任人、能耗、断网行为、人工替代与退役日期，公开&quot;为何停止、谁受影响、如何修复&quot;。年度**合流日**升级为&quot;非合流运行验证 + Undo 演练&quot;：关闭非必要 AI，实际演练服务降级、数据删除、版本回滚、设备撤场与空间复原，再决定继续/调整/退役——若支流失效，先修复基线再扩展主线。配套**贡献者阶梯**（<span class="evidence evidence-metric">[metric:contribution_ladder_stage_count]</span> 级：游客→贡献者→维护者→核心维护者，映射人才引进-成长-落户路径）与**行为准则**（公共空间礼仪+AI 服务公约），治理先于技术。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>指标分三组。**空间已知组**由当前 GeoJSON 直接计算：范围 <span class="evidence evidence-metric">[metric:site_area_sqm]</span>、绿地 <span class="evidence evidence-metric">[metric:green_space_area_sqm]</span> 与绿比 <span class="evidence evidence-metric">[metric:green_ratio]</span>、公共空间 <span class="evidence evidence-metric">[metric:public_space_area_sqm]</span> 与比例 <span class="evidence evidence-metric">[metric:public_space_ratio]</span>、建筑容量基底 <span class="evidence evidence-metric">[metric:building_footprint_area_sqm]</span>、重点区数量 <span class="evidence evidence-metric">[metric:key_area_count]</span>，以及数据层扩展的 20 分区与分用途面积（科研/居住/商业/教育/文化/绿地/留白 <span class="evidence evidence-metric">[metric:landuse_research_area_sqm]</span>）、三期面积（<span class="evidence evidence-metric">[metric:phase1_area_sqm]</span>/<span class="evidence evidence-metric">[metric:phase2_area_sqm]</span>/<span class="evidence evidence-metric">[metric:phase3_area_sqm]</span>）、路网长度 <span class="evidence evidence-metric">[metric:road_network_length_m]</span>、示范建筑数 <span class="evidence evidence-metric">[metric:catalyst_building_count]</span>、场景卡数 <span class="evidence evidence-metric">[metric:scenario_card_count]</span>、画像数 <span class="evidence evidence-metric">[metric:persona_count]</span>、朝圣地标数、分期数 <span class="evidence evidence-metric">[metric:phase_count]</span>；**方案计数组**由结构化成果统计（工作包数 <span class="evidence evidence-metric">[metric:merge_request_count]</span>、贡献者阶梯数 <span class="evidence evidence-metric">[metric:contribution_ladder_stage_count]</span>）；**法定或运营未知组**保持 null，包括容积率 <span class="evidence evidence-metric">[metric:floor_area_ratio]</span>、高度、密度、退线、批准拆除、总建筑面积与支流等价差。任何 known 值均有 source_files、formula、confidence 与 assumptions；任何 unknown 值均有 reason。</p>
+<p>复算顺序（<span class="evidence evidence-depth">[depth:metrics_recalculation]</span>）：先验证 site 与 key area 的来源角色 → 投影至 EPSG:4548 → 检查用地完整覆盖与重叠 → 对绿地、公共空间、建筑取 union 后面积 → 对中心线求长度 → 结果回写 metrics 与 HTML data attributes。边界面积约 11,412,825 平方米，置信度 medium，不写成精确官方统计。</p>
+<p>合规链由 <code>compliance_matrix.json</code> 覆盖公告 1.3、1.4、1.5 与 agent.1–agent.6 全部必选任务，<code>standard_matrix.json</code> 覆盖六项专业标准响应，<code>design_depth_matrix.json</code> 覆盖十五个专业深度项。评审可从正文任一结论回到 geometry、metrics、sources、assumptions、自检、A3 文册、A0 展板与离线 HTML，避免&quot;只能看图、无法复核&quot;。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<p>主要风险六类：其一，临时边界可能造成面积与位置误读，所有图面反复标注 provisional；其二，缺控规与逐栋资料可能造成实施误读，建筑只做容量测试、法定指标保持 unknown；其三，合流可能形成隐性强迫，故设置合流前分流、支流路径、普通支付与人工服务；其四，算法错误与设备中断可能影响安全，保留人工接管、停止权限与断网手动模式；其五，运营成本可能使支流退化，故持续审计结果、时间、价格与无障碍等价；其六，展示与品牌素材可能有版权问题，所有图表由本案生成、案例只作文字机制研究。假设与缺口编号记录于 assumptions.json（A-BOUNDARY-001、A-CONTROLS-001、A-BUILDING-001、A-MOBILITY-001、A-PARITY-001、A-CASES-001）<span class="evidence evidence-depth">[depth:risk_missing_data]</span>。</p>
+<p>本方案不声称获得审批、土地权属、建设规模或实施承诺；所有空间动作均为&quot;概念建议/参考方案/供专业团队深化&quot;。隐私采用最小必要、明确目的、短期保存、现场告知、可撤回与人工复核；涉及健康、法律、公共安全与无障碍的高影响服务不得只由模型决定。文本、GeoJSON、图表、离线 HTML 与 PDF 由声明的 AI agent 为本次开源征集生成，采用 CC-BY-4.0 <span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span>；来源事实与标准权利归各发布机构；图表本地排版，不嵌入远程资源；网页不含外部脚本、远程地图、追踪器、表单或联网调用。详细说明见 <code>report/copyright_statement.md</code>。</p>
+<h2>参考资料</h2>
+<p>机器可读来源索引：<span class="evidence evidence-source">[source:SITE-PACKAGE]</span>、<span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span>、<span class="evidence evidence-source">[source:PROCESSED-FACT-PACK]</span>、<span class="evidence evidence-source">[source:BOUNDARY-SOURCE]</span>、<span class="evidence evidence-source">[source:KEY-AREA-SOURCE]</span>、<span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span>、<span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>、<span class="evidence evidence-source">[source:LINUX-FOUNDATION]</span>、<span class="evidence evidence-source">[source:APACHE-FOUNDATION]</span>、<span class="evidence evidence-source">[source:HUGGINGFACE]</span>、<span class="evidence evidence-source">[source:MOZILLA]</span>、<span class="evidence evidence-source">[source:SINGAPORE-AI-VERIFY]</span>、<span class="evidence evidence-source">[source:PUBLIC-PARTICIPATION-CASES]</span>。</p>
+<p>专业标准索引：<span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span>、<span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span>、<span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span>、<span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span>、<span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span>、<span class="evidence evidence-standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span>。</p>
+<p>空间数据索引：<span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span>、<span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span>、<span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span>、<span class="evidence evidence-data">[data:geometry/buildings.geojson#BLDG-001]</span>、<span class="evidence evidence-data">[data:geometry/roads.geojson#ROAD-001]</span>、<span class="evidence evidence-data">[data:geometry/green_space.geojson#GREEN-001]</span>、<span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC-001]</span>、<span class="evidence evidence-data">[data:geometry/constraints.geojson#SCENE-01]</span>、<span class="evidence evidence-data">[data:geometry/phasing.geojson#PHASE-001]</span>。</p>
+<p>设计深度索引：<span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span>、<span class="evidence evidence-depth">[depth:three_level_scope_framework]</span>、<span class="evidence evidence-depth">[depth:overall_spatial_structure]</span>、<span class="evidence evidence-depth">[depth:land_use_layout]</span>、<span class="evidence evidence-depth">[depth:development_intensity_controls]</span>、<span class="evidence evidence-depth">[depth:height_massing_character]</span>、<span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span>、<span class="evidence evidence-depth">[depth:traffic_rail_slow_parking]</span>、<span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span>、<span class="evidence evidence-depth">[depth:blue_green_public_space]</span>、<span class="evidence evidence-depth">[depth:three_key_area_detailed_design]</span>、<span class="evidence evidence-depth">[depth:renewal_project_list]</span>、<span class="evidence evidence-depth">[depth:phasing_implementation]</span>、<span class="evidence evidence-depth">[depth:metrics_recalculation]</span>、<span class="evidence evidence-depth">[depth:risk_missing_data]</span>。</p>
+<p>本案还读取 <code>brief/site-package/design_brief.json</code>、<code>allowed_design_space.json</code>、<code>agent_taskbook.json</code>、<code>ranges/planning_limits.json</code>、<code>standards/standards.json</code>、<code>data/source_registry.json</code>、<code>data/processed/agent_fact_pack.md</code> 与 <code>docs/terminology-glossary.md</code>。最终交付包括 proposal.md（含 en 译稿）、九类 GeoJSON、metrics/assumptions/sources/三类矩阵、自检、五张核心图、A3 文册、A0 展板、离线报告与离线总览页。</p>
+</main>
+</body>
+</html>

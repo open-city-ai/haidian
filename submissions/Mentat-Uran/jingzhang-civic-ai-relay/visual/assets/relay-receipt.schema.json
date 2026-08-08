@@ -1,0 +1,371 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/jingzhang/relay-receipt.schema.json",
+  "title": "Jing-Zhang Civic AI Relay Receipt",
+  "description": "Concept governance record for one bounded AI scenario handoff; not an official system or deployment approval.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "scenario_id",
+    "status",
+    "problem",
+    "place",
+    "data",
+    "system",
+    "human_gate",
+    "rights",
+    "operations",
+    "evaluation",
+    "handoff",
+    "disclaimer"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.2.0"
+    },
+    "receipt_id": {
+      "type": "string",
+      "pattern": "^RR-[A-Z0-9-]{6,64}$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^SC-[0-9]{2}$"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "screened",
+        "sandboxed",
+        "limited_trial",
+        "paused",
+        "rejected",
+        "adopted",
+        "retired",
+        "rolled_back"
+      ]
+    },
+    "problem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "statement",
+        "public_interest",
+        "proposer_role",
+        "evidence_refs"
+      ],
+      "properties": {
+        "statement": {
+          "type": "string"
+        },
+        "public_interest": {
+          "type": "string"
+        },
+        "proposer_role": {
+          "type": "string"
+        },
+        "evidence_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "place": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "geometry_ref",
+        "geometry_status",
+        "space_mode",
+        "non_ai_path"
+      ],
+      "properties": {
+        "geometry_ref": {
+          "type": "string"
+        },
+        "geometry_status": {
+          "enum": [
+            "provisional",
+            "official",
+            "not_applicable"
+          ]
+        },
+        "space_mode": {
+          "type": "string"
+        },
+        "non_ai_path": {
+          "type": "string"
+        }
+      }
+    },
+    "data": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "minimum_fields",
+        "personal_data",
+        "retention",
+        "deletion_verification"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "minimum_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "personal_data": {
+          "enum": [
+            "none",
+            "possible",
+            "required"
+          ]
+        },
+        "retention": {
+          "type": "string"
+        },
+        "deletion_verification": {
+          "type": "string"
+        }
+      }
+    },
+    "system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deployment_status",
+        "model_or_ruleset",
+        "version",
+        "artifact_hash",
+        "tool_permissions",
+        "forbidden_actions",
+        "abstention_conditions"
+      ],
+      "properties": {
+        "deployment_status": {
+          "enum": [
+            "concept_only",
+            "sandbox_only",
+            "limited_trial",
+            "operational"
+          ]
+        },
+        "model_or_ruleset": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "artifact_hash": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tool_permissions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "forbidden_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "abstention_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "human_gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "accountable_role",
+        "reviewer_roles",
+        "decision",
+        "signed_at",
+        "decision_diff"
+      ],
+      "properties": {
+        "accountable_role": {
+          "type": "string"
+        },
+        "reviewer_roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "decision": {
+          "enum": [
+            "pending",
+            "allow_sandbox",
+            "allow_limited_trial",
+            "pause",
+            "reject",
+            "retire",
+            "rollback"
+          ]
+        },
+        "signed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "decision_diff": {
+          "type": "string"
+        }
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "notice",
+        "opt_out",
+        "appeal",
+        "accessibility",
+        "deletion"
+      ],
+      "properties": {
+        "notice": {
+          "type": "string"
+        },
+        "opt_out": {
+          "type": "string"
+        },
+        "appeal": {
+          "type": "string"
+        },
+        "accessibility": {
+          "type": "string"
+        },
+        "deletion": {
+          "type": "string"
+        }
+      }
+    },
+    "operations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "service_window",
+        "on_call_role",
+        "fallback",
+        "maintenance_owner",
+        "cost_status",
+        "exit_asset_plan"
+      ],
+      "properties": {
+        "service_window": {
+          "type": "string"
+        },
+        "on_call_role": {
+          "type": "string"
+        },
+        "fallback": {
+          "type": "string"
+        },
+        "maintenance_owner": {
+          "type": "string"
+        },
+        "cost_status": {
+          "enum": [
+            "unknown",
+            "bounded_concept",
+            "verified"
+          ]
+        },
+        "exit_asset_plan": {
+          "type": "string"
+        }
+      }
+    },
+    "evaluation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "baseline_status",
+        "candidate_metrics",
+        "performance_results",
+        "stop_conditions",
+        "review_cycle"
+      ],
+      "properties": {
+        "baseline_status": {
+          "enum": [
+            "missing",
+            "partial",
+            "verified"
+          ]
+        },
+        "candidate_metrics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "performance_results": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "review_cycle": {
+          "type": "string"
+        }
+      }
+    },
+    "handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "from_role",
+        "to_role",
+        "output_object",
+        "next_gate"
+      ],
+      "properties": {
+        "from_role": {
+          "type": "string"
+        },
+        "to_role": {
+          "type": "string"
+        },
+        "output_object": {
+          "type": "string"
+        },
+        "next_gate": {
+          "type": "string"
+        }
+      }
+    },
+    "disclaimer": {
+      "type": "string"
+    }
+  }
+}

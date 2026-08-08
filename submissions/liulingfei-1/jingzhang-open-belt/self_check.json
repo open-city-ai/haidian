@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present and marked official_boundary=false / geometry_role=provisional_constraint; replace with official redline before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; work areas match announcement values within tolerance; replace with official polygons before professional scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use polygons are derived from the same site boundary by deterministic partitioning: full coverage, zero gaps, zero overlaps, shared edges."
+    },
+    {
+      "check_id": "METRICS_RECALCULATED",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "All known metrics are recalculated from submitted geometry in EPSG:4548; per-code land-use, per-phase and per-key-area breakdowns are provided."
+    },
+    {
+      "check_id": "SOURCE_TRACEABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "Every source id cited in proposal.md is registered in sources.json with type, usage and limitation; provisional sources are not upgraded to official authority."
+    },
+    {
+      "check_id": "SCENARIO_GOVERNANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "14 frozen scenario cards carry user/space, AI mechanism + human review, data boundary + failure exit, suggested human owner, minimum success evidence and red-card pause/exit; states never claim deployed or approved."
+    },
+    {
+      "check_id": "PROVISIONAL_DISCLOSURE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Provisional boundary precision limits are disclosed in proposal.md, visual/index.html, sources.json, assumptions.json and this self-check."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML visualization is generated without external dependencies, remote tiles, scripts, fonts, iframes or tracking."
+    },
+    {
+      "check_id": "PDF_RENDERING",
+      "result": "pass",
+      "severity": "info",
+      "target": "drawings/a3-booklet.pdf",
+      "message": "A3 booklet (12 pages) and A0 boards (2 pages, 8 boards) render with CJK text layer; verified via pdftotext."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources and assumptions; matrices are not self-justifying."
+    },
+    {
+      "check_id": "COPYRIGHT_CLEARANCE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "report/copyright_statement.md",
+      "message": "Original content is CC-BY-4.0; no photos, map screenshots, trademarks or remote assets are embedded; third-party rights are preserved."
+    }
+  ]
+}

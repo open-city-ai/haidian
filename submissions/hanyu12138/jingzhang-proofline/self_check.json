@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时边界已如实披露，不冒充 official redline；官方数据补齐后须全量复算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区完整且不重叠，均明确标注 provisional。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地由同一网格与 site intersection 生成，完整覆盖、无缝、无重叠。"
+    },
+    {
+      "check_id": "METRIC_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "面积与长度由 EPSG:4548 投影几何复算，已写明公式、来源和假设。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "离线 HTML 不含远程资源、脚本、表单、API 或追踪。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "标准、设计深度、图层、指标、来源与假设均在正文可读引用。"
+    },
+    {
+      "check_id": "PRIVACY_HUMAN_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "12 个场景均设置数据最小化、退出机制与人工最终判断。"
+    },
+    {
+      "check_id": "COPYRIGHT_TRACE",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "自制图、AI 生成概念图和公开来源均记录工具、用途与限制。"
+    }
+  ]
+}

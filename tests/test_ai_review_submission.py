@@ -333,6 +333,16 @@ class AIReviewSubmissionTests(unittest.TestCase):
                     "https://api.openai.com/v1", "high", 7, 1024 * 1024, True,
                 )
 
+    def test_submission_path_author_match_is_case_insensitive(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp, mock.patch(
+            "ai_review_submission.collect_visual_inputs", return_value=([], [], [])
+        ):
+            result = run_ai_review(
+                ROOT, SUBMISSION, "ALICE", Path(tmp), None, "gpt-test",
+                "https://api.openai.com/v1", "high", 7, 1024 * 1024, True,
+            )
+            self.assertTrue(result["dry_run"])
+
 
 if __name__ == "__main__":
     unittest.main()

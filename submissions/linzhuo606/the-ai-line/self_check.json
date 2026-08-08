@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "使用临时粗略边界并全程披露；官方红线补齐后整体复算，不作为官方红线使用。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区为provisional_constraint，互不重叠且位于范围内；公告面积对照披露。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "统一线网polygonize分区：全覆盖、无缝隙、无重叠（spatial_review验证通过）。"
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "site_area/green_ratio/public_space_ratio等与空间复算一致（EPSG:4548）。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "scripts/spatial_review.py 通过，仅存provisional提示性issue。"
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/linzhuo606/the-ai-line",
+      "message": "scripts/validate_local_submission.py 结构、引用与矩阵校验通过。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态HTML，无远程资源；data-metric与metrics.json一致。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "标准、深度、数据、指标引用链完整（professional_review.py 通过）。"
+    }
+  ]
+}

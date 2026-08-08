@@ -216,7 +216,7 @@ def check_pr_template(repo_root: Path, checks: list[dict[str, Any]]) -> None:
     text = read_text(repo_root / ".github" / "PULL_REQUEST_TEMPLATE.md")
     required = [
         "本 PR 不修改 `gallery-publication.json` 或 `submissions-data.js`",
-        "公开展示和首页精选由维护者决定",
+        "已合并方案自动进入展示页，首页精选由维护者决定",
         "本 PR 只修改 `submissions/<my-github-login>/`",
         "已记录 `package_type` 与派生的 `review_status`",
     ]

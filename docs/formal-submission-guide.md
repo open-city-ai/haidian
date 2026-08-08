@@ -4,13 +4,35 @@
 
 百年京张 AI 创新带城市设计开源征集由海淀主导，已于北京时间 **2026年8月7日**开放，**8月31日截止，9月开始落地**。投稿通过本仓库 Pull Request 流程进行。
 
-`proposal.md` 可以中文或英文书写。英文投稿的英文正文和中文译文都必须达到完整方案深度；中文版本放在同一文件的 `# 中文正式译文` 下，并设置 `language: "en"`、`chinese_translation: "included"`、`title_zh` 和 `summary_zh`。中文译文必须覆盖全部必答章节、图表和证据引用，并作为正式解释依据。
+默认使用 [轻量参与工作区](../skills/urban-design-ai-submission/references/lightweight-workspace.md)：blobless partial clone 与 sparse checkout 只下载任务资料、校验工具和自己的方案，其他方案先读轻量索引，再按需获取正文或图纸。发起 PR 前必须运行 `scripts/participant_preflight.py`，把目录归属、变更范围、GitHub 大文件限制、自检和推送权限问题提前在本地解决。
+
+`proposal.md` 可以中文或英文书写，并应通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版应保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验只检查文件与语言映射并给出 warning，翻译一致性由维护者人工核对；缺少翻译不阻断投稿、合并或内容审稿。
+
+无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；无文字资产可声明 `language: "neutral"` 并由两版共用。
+
+英文主稿必须使用以下正式章节标题；中文译稿保持对应顺序。这样英文正文可独立通过结构校验，不依赖同一文件中的中文章节。
+
+| 中文章节 | 英文正式章节 |
+| --- | --- |
+| 设计依据与资料清单 | Design Basis and Source List |
+| 三层范围工作框架 | Three-Level Scope Framework |
+| 统筹研究范围产业与未来城市研究 | Coordinated Research Area: Industry and Future City Research |
+| 总体设计范围城市更新与控规深度城市设计 | Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design |
+| 重点区域详细设计 | Detailed Design of Key Areas |
+| AI 创新生态、人才画像与 AI+ 场景 | AI Innovation Ecosystem, Personas, and AI+ Scenarios |
+| 用地、建筑规模与拆改留方案 | Land Use, Building Scale, and Retain-Renovate-Demolish Strategy |
+| 交通、轨道、市政与公共服务设施 | Transport, Rail, Municipal Infrastructure, and Public Services |
+| 蓝绿空间、公共空间与城市风貌 | Blue-Green Network, Public Space, and Urban Character |
+| 更新项目清单、实施政策与分期计划 | Renewal Projects, Implementation Policy, and Phasing |
+| 指标体系、面积复算与合规矩阵 | Metrics, Area Recalculation, and Compliance Matrix |
+| 风险、版权与合规说明 | Risk, Copyright, and Compliance |
+| 参考资料 | References |
 
 ## 1. 先确认资料是否足够
 
 `formal` 方案优先使用可信官方边界和三处重点区域边界。当前仓库仍未取得官方精确红线，因此提供 `brief/site-package/geometry/provisional_boundaries.geojson` 作为临时粗略边界。它可以用于 AI agent 生成、可视化和提交入口自检，但不能作为官方红线、审批依据、精确面积复算依据或正式专业评分依据。
 
-面向智能体的开源征集任务书已整理为 `brief/site-package/agent_taskbook.json`，本地参考摘录见 `brief/site-package/standards/references/agent-open-call-taskbook-0518.md`。它补充了十条智能体共创原则、三大定位、五大功能、三区两翼、六项智能体任务、统一评审维度和统一边界条款。agent 必须把这些要求写入 `proposal.md`、`compliance_matrix.json`、`standard_matrix.json`、HTML 和图纸，不得只在 JSON 中形式覆盖。
+面向智能体的开源征集任务书已整理为 `brief/site-package/agent_taskbook.json`，本地参考摘录见 `brief/site-package/standards/references/agent-open-call-taskbook-0518.md`。它补充了十条智能体共创原则、持续参与与协作循环、三大定位、五大功能、三区两翼、六项智能体任务、统一评审维度和统一边界条款。agent 必须把这些要求写入 `proposal.md`、`compliance_matrix.json`、`standard_matrix.json`、HTML 和图纸，不得只在 JSON 中形式覆盖；任务书、资料或社区反馈更新后，应重新同步、复核并迭代方案。
 
 公开资料登记表位于 `data/source_registry.json`，处理规则见 `docs/data-workflow.md`。agent 必须区分 `usable_for_formal="yes"`、`background_only` 和 `provisional_only`：formal 权威结论只能来自已批准的 formal 可用资料；背景资料不能支撑空间控制结论；provisional 资料只能支撑临时生成、可视化和讨论，不能冒充官方或精确依据，但该数据缺口本身不阻断内容评分。
 
@@ -260,7 +282,7 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 
 ## 6. `proposal.md` 的可读证据引用
 
-`proposal.md` 是唯一主体方案文本。JSON/GeoJSON 证明 agent 真的生成了可复算数据，但人类评审需要在正文中读懂这些数据如何支撑设计判断。
+`proposal.md` 是主语言主体方案文本，`.zh.md` / `.en.md` 是与其等义的语言副本。JSON/GeoJSON 证明 agent 真的生成了可复算数据，但人类评审需要在正文中读懂这些数据如何支撑设计判断。
 
 正文必须使用这些引用格式：
 
@@ -453,7 +475,7 @@ python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-sl
 
 全部 PASS 只说明 package 具备进入机器检查和内容评审的基础条件。provisional boundary 会保留精度警示和复算要求，但不会因组织方数据缺口阻断评分。PASS 不代表方案优秀或获得官方批准。
 
-维护者审核 PR 时会运行 `scripts/maintainer_review.py --comment`，并在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `maintainer-comment.md`、`review-summary.json`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`。维护者只把命令输出复制到 PR comment；maintainer review 结果不提交到仓库，也不进入公开展示页。合并不自动公开：维护者通过 `gallery-publication.json` 的 `published` 决定全部方案页，通过 `featured` 决定首页精选，再运行 `scripts/generate_submissions_data.py`。参赛者只提交自己的投稿目录，不修改发布清单或 `submissions-data.js`。
+维护者审核 PR 时会运行 `scripts/maintainer_review.py --comment`，并在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `maintainer-comment.md`、`review-summary.json`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`。维护者只把命令输出复制到 PR comment；maintainer review 结果不提交到仓库，也不进入公开展示页。方案合并到 `main` 后自动进入全部方案页；维护者通过 `gallery-publication.json` 明确暂停展示或决定首页精选，再运行 `scripts/generate_submissions_data.py`。参赛者只提交自己的投稿目录，不修改发布清单或 `submissions-data.js`。
 
 ## 11. 缺资料时怎么办
 

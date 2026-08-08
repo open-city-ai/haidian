@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "receipt_id": "RR-S02-SYNTHETIC-001",
+  "scenario_id": "S02",
+  "status": "sandboxed",
+  "problem": {
+    "statement": "Test whether a low-speed delivery robot can yield to pedestrians and return to a marked bay without blocking the accessible route.",
+    "public_interest": "Protect walking continuity, emergency access and the right to refuse an embodied-device test.",
+    "evidence_refs": [
+      "proposal.md#v1.8 评审可见证据层：定位、功能、节点与公共性一页回读",
+      "visual/assets/scenario-operation-matrix.json#S02",
+      "visual/assets/component-library.json#C08"
+    ]
+  },
+  "place": {
+    "geometry_ref": "geometry/roads.geojson#ROAD-001",
+    "geometry_status": "provisional",
+    "non_ai_path": "ordinary walking route, paper notice and human delivery alternative"
+  },
+  "data": {
+    "purpose": "synthetic fixture for a bounded safety rehearsal; no real delivery transaction",
+    "minimum_fields": ["synthetic_run_id", "route_window", "yield_event", "stop_event", "bay_return"],
+    "personal_data": "none; no face, voice, device identifier or individual trajectory",
+    "retention": "delete the synthetic event log after the human review packet is reproduced"
+  },
+  "system": {
+    "deployment_status": "sandbox_only",
+    "tool_permissions": ["read a bundled synthetic route", "write a sandbox event log", "display a visible stop state"],
+    "forbidden_actions": ["enter a live public route", "identify a person", "send a message", "make a delivery", "alter traffic control"],
+    "abstention_conditions": ["missing accessible-route audit", "unclear bay boundary", "human spotter unavailable", "stop signal not visible"]
+  },
+  "human_gate": {
+    "accountable_role": "future authorized test-responsible entity",
+    "reviewer_roles": ["accessibility reviewer", "site safety reviewer", "maintenance representative", "resident observer"],
+    "decision": "allow_sandbox",
+    "signed_at": null
+  },
+  "rights": {
+    "notice": "SANDBOX / SYNTHETIC DATA / NO LIVE DELIVERY",
+    "opt_out": "the ordinary walking route remains open and a person can ask for the test to stop",
+    "appeal": "report the event record to the human reviewer; no automated decision affects a person",
+    "accessibility": "paper notice, visible stop state and non-digital route are mandatory",
+    "deletion": "delete the synthetic log without deleting any public-service record"
+  },
+  "operations": {
+    "service_window": "one pre-booked rehearsal window",
+    "on_call_role": "human spotter with authority to stop",
+    "fallback": "hand cart and human delivery; the accessible route always wins",
+    "maintenance_owner": "unassigned concept role; must be named before any trial",
+    "exit_asset_plan": "remove the device, restore the ordinary bay, retain only schema and review note"
+  },
+  "evaluation": {
+    "baseline_status": "missing",
+    "candidate_metrics": ["yield success", "visible stop response", "accessible-route continuity", "bay-return completeness"],
+    "performance_results": null,
+    "stop_conditions": ["any pedestrian conflict", "stop failure", "route obstruction", "human spotter loses sight", "return bay unavailable"]
+  },
+  "handoff": {
+    "from_role": "north / validate",
+    "to_role": "middle / translate",
+    "output_object": "EmbodiedSafetyEvidence: synthetic run log plus human comparison",
+    "next_gate": "independent accessibility and safety review before any limited trial"
+  },
+  "disclaimer": "Synthetic concept-only example. It demonstrates a reversible evidence contract, not robot performance, public acceptance, legal compliance or deployment approval."
+}

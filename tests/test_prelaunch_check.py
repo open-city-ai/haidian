@@ -96,7 +96,7 @@ class PrelaunchCheckTests(unittest.TestCase):
         index_page = (ROOT / "index.html").read_text(encoding="utf-8")
 
         self.assertIn("本 PR 不修改 `gallery-publication.json` 或 `submissions-data.js`", template)
-        self.assertIn("公开展示和首页精选由维护者决定", template)
+        self.assertIn("已合并方案自动进入展示页，首页精选由维护者决定", template)
         self.assertIn("PR comment", submissions_page)
         self.assertIn("不展示维护者审核正文", submissions_page)
 

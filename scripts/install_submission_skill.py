@@ -16,9 +16,10 @@ from typing import Any
 
 SKILL_NAME = "urban-design-ai-submission"
 STARTER_PROMPT = (
-    "Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang "
-    "AI Innovation Belt open call. Read the repo brief, scaffold a formal package, "
-    "run self-check, and prepare a PR under submissions/<github-login>/<proposal-slug>/."
+    "Use $urban-design-ai-submission to create a lightweight sparse workspace, "
+    "participate in the Centennial Jing-Zhang AI Innovation Belt open call, read "
+    "peer work progressively, prepare a verifiable proposal package, and pass local "
+    "PR preflight before uploading."
 )
 
 

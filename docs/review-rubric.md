@@ -67,6 +67,6 @@
 
 ## 输出边界
 
-七维度评审可由 `scripts/ai_review_submission.py` 在维护者本地调用多模态模型生成，也可交由独立专业评审复核。仓库不在 GitHub Actions 中调用模型，也不允许评审 agent 自动 merge。最终对参赛者可见的内容应是 `pr-comment.md`，而不是公开展示页的一部分。
+七维度评审可由 `scripts/ai_review_submission.py` 在维护者本地调用多模态模型生成，也可交由独立专业评审复核。仓库不在 GitHub Actions 中调用模型；受信任的外部 worker 可按维护者 intake 政策自动 review，并仅在强制退件检查、四项本地 gate 和 60/100 分门槛全部通过后自动 merge。merge 只代表仓库 intake，不代表展示、精选、正式评分、实施批准或政府背书。最终对参赛者可见的内容应是 `pr-comment.md`，而不是公开展示页的一部分。
 
 正式评分表同样是本地维护者材料。若专家组希望向参赛者反馈正式评分摘要，只复制 `formal-scorecard-comment.md` 或整理后的 PR comment；不要把评分 JSON、专家分歧或中间评审材料提交到仓库。

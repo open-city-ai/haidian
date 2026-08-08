@@ -1,0 +1,101 @@
+{
+  "schema_version": "0.2.0",
+  "receipt_id": "RR-SC04-SYNTHETIC-001",
+  "scenario_id": "SC-04",
+  "status": "sandboxed",
+  "problem": {
+    "statement": "Test whether four synthetic service requests preserve status and reach the correct human queue.",
+    "public_interest": "Prevent silent loss or unsafe auto-routing of public-service requests.",
+    "proposer_role": "concept service design team",
+    "evidence_refs": [
+      "proposal.md#接力凭证协议与最小可复现切片"
+    ]
+  },
+  "place": {
+    "geometry_ref": "geometry/public_space.geojson#SC-04",
+    "geometry_status": "provisional",
+    "space_mode": "simulated counter; no real service transaction",
+    "non_ai_path": "printed service directory and staffed referral script"
+  },
+  "data": {
+    "purpose": "schema and handoff demonstration only",
+    "minimum_fields": [
+      "synthetic_ticket_id",
+      "synthetic_topic",
+      "synthetic_urgency",
+      "expected_human_queue"
+    ],
+    "personal_data": "none",
+    "retention": "delete the four synthetic records after the review packet is reproduced",
+    "deletion_verification": "human reviewer records count before and after deletion"
+  },
+  "system": {
+    "deployment_status": "sandbox_only",
+    "model_or_ruleset": "deterministic synthetic routing fixture",
+    "version": "0.1.0",
+    "artifact_hash": null,
+    "tool_permissions": [
+      "read four bundled synthetic tickets",
+      "write sandbox-only route log"
+    ],
+    "forbidden_actions": [
+      "connect to a real service system",
+      "identify a person",
+      "send a message",
+      "approve or reject a real request"
+    ],
+    "abstention_conditions": [
+      "topic outside the four synthetic fixtures",
+      "missing expected queue",
+      "route log unavailable"
+    ]
+  },
+  "human_gate": {
+    "accountable_role": "future authorized service supervisor",
+    "reviewer_roles": [
+      "service worker",
+      "accessibility reviewer",
+      "data steward"
+    ],
+    "decision": "allow_sandbox",
+    "signed_at": null,
+    "decision_diff": "Concept record permits schema-only sandbox reproduction and forbids any real transaction."
+  },
+  "rights": {
+    "notice": "SANDBOX / SYNTHETIC DATA / NOT A PUBLIC SERVICE",
+    "opt_out": "no participation is required; printed directory remains available",
+    "appeal": "not applicable to synthetic tickets; report a schema issue to the human reviewer",
+    "accessibility": "plain-language printed fixture and keyboard-readable JSON are required",
+    "deletion": "all synthetic logs are deletable without loss of a public service record"
+  },
+  "operations": {
+    "service_window": "one bounded review session",
+    "on_call_role": "human fixture reviewer",
+    "fallback": "manual comparison with expected queue table",
+    "maintenance_owner": "unassigned concept role; must be named before any trial",
+    "cost_status": "unknown",
+    "exit_asset_plan": "delete sandbox log; retain only schema, empty fixture and review note"
+  },
+  "evaluation": {
+    "baseline_status": "missing",
+    "candidate_metrics": [
+      "route log completeness",
+      "human handoff completeness",
+      "unsafe auto-action count"
+    ],
+    "performance_results": null,
+    "stop_conditions": [
+      "any synthetic high-risk ticket is routed away from the expected human queue",
+      "route log is incomplete",
+      "human fallback cannot complete the fixture"
+    ],
+    "review_cycle": "single sandbox review; a new receipt is required for every version"
+  },
+  "handoff": {
+    "from_role": "middle / translate",
+    "to_role": "south / adopt review",
+    "output_object": "SandboxEvidence: schema-valid route log with human comparison",
+    "next_gate": "independent human review before any limited trial"
+  },
+  "disclaimer": "Synthetic, concept-only example. Schema validity is not evidence of service accuracy, legal compliance, public acceptance or deployment safety."
+}

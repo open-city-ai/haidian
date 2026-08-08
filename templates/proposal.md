@@ -2,6 +2,7 @@
 title: "方案标题"
 author_github: "your-github-login"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "用 1-2 句话概括 formal 城市设计方案、核心空间策略和 AI 场景。"
 tracks: ["ai-traffic-walkability"]
@@ -17,7 +18,7 @@ iteration: "v0.1"
 
 正文必须使用可校验引用格式，例如 `[source:SITE-PACKAGE]`、`[standard:MOHURD-URBAN-DESIGN-MEASURES]`、`[depth:land_use_layout]`、`[data:geometry/land_use.geojson#LU-001]`、`[metric:green_ratio]`。每个 required section 至少引用一条证据。
 
-写作要求：`proposal.md` 是唯一主体方案文本，必须让人类评审者不打开 JSON 也能理解方案。每个章节都要回答四件事：设计判断是什么、为什么这样判断、对应哪个图层/指标/标准、还有什么资料缺口。不得只写愿景口号、不得只列矩阵、不得把 GeoJSON 当作正文解释的替代品。面向智能体任务书的六项任务必须在正文中被实际展开：命名/Logo、生态案例、场景卡、朝圣地标、文化叙事、长期运营，不能只在 `compliance_matrix.json` 中打勾。
+写作要求：`proposal.md` 是主语言主体方案，语言副本必须保持等义；人类评审者不打开 JSON 也应能理解方案。每个章节都要回答四件事：设计判断是什么、为什么这样判断、对应哪个图层/指标/标准、还有什么资料缺口。不得只写愿景口号、不得只列矩阵、不得把 GeoJSON 当作正文解释的替代品。面向智能体任务书的六项任务必须在正文中被实际展开：命名/Logo、生态案例、场景卡、朝圣地标、文化叙事、长期运营，不能只在 `compliance_matrix.json` 中打勾。
 
 图文要求：正文必须插入由 GeoJSON、metrics 和矩阵派生的本地图片，至少包括 `assets/figures/site-overview.png`、`assets/figures/land-use-structure.png`、`assets/figures/key-areas.png`、`assets/figures/mobility-bluegreen.png`、`assets/figures/metrics-evidence.png`。图片必须使用 Markdown 本地引用，不得使用远程图片、data URI、外部地图截图或未清权素材。图片是人类可读解释层，不能替代 GeoJSON/metrics 的权威数据。
 

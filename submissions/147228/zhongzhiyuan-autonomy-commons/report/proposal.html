@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>智行京张：自动驾驶普及后的公共带 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  white-space: nowrap;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #31506f;
+  border-radius: 4px;
+  padding: 0.03em 0.32em;
+  font-size: 0.92em;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>智行京张：自动驾驶普及后的公共带</h1>
+<p class="summary">把自动驾驶当作一项需要被城市约束的公共基础设施：人行与无障碍连续、路缘可读、低速试点可回退、数据可解释，官方边界与现场基线到位后可复算。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>智行京张：自动驾驶普及后的公共带</h1>
+<p>&gt; **一句话判断**：未来自动驾驶越普及，城市越不能只为车设计。京张带要先把“人、轮椅、儿童、骑行者和维护人员的连续通行权”写进路缘、节点、运营和回退，再讨论车辆进入哪里。</p>
+<p>本方案是一个独立的自动驾驶公共性迭代，不是对“京张开源脉冲”原方案的换名复制。它沿用同一份 provisional 空间底盘，新增自动驾驶路缘、低速接驳、无障碍服务、远程接管、数据最小化和故障回退的机器可读证据层。所有空间仍是概念建议；不声称海淀已经开放某条自动驾驶道路，也不声称任何企业、车辆或监管许可已经落地。</p>
+<h2>1. 设计依据、证据等级与边界</h2>
+<p>官方任务要求回应 AI+交通、机器人、自动驾驶、无人配送等场景，并达到三层空间研究、三处重点区和可审查的城市设计深度 <span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>。本包使用 <code>brief/site-package/</code> 的 provisional boundary、key areas、标准快照和来源注册表；<code>geometry/site_boundary.geojson</code> 与 <code>geometry/key_areas.geojson</code> 均明确 <code>official_boundary=false</code>、<code>geometry_role=provisional_constraint</code> <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span>。</p>
+<p>自动驾驶部分的政策证据采用北京政府公开文件：北京市 2025 年《自动驾驶汽车道路测试与示范应用办法（试行）》将 L3 级及以上道路测试和示范应用纳入联合工作机制，并要求在批准区域和道路范围内活动 <span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span>；北京市 2025 年政策先行区测试道路通告列明指定道路、资格和时段约束 <span class="evidence evidence-source">[source:BEIJING-AV-ROADS-2025]</span>；工信部、公安部、交通运输部管理规范要求测试主体、驾驶人、车辆、测试评价和责任能力具备可审查条件 <span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span>。这些文件证明“存在制度化测试路径”，不证明本项目边界内已有许可、道路或运营数据。</p>
+<p>资料等级分为四类：</p>
+<p>1. <code>known</code>：可由当前 GeoJSON、JSON 或公开文件直接回读；例如 provisional 工作面积和节点数量。 2. <code>design_target</code>：设计门槛或试点验收目标，必须在现场测试、专业复核或正式许可后替换为实测结果。 3. <code>unknown</code>：当前没有本地基线，例如自动驾驶流量、接管时延、路缘冲突率、障碍物误识别率和无障碍连续性。 4. <code>blocked</code>：若没有责任主体、保险/安全评估、人工接管、隐私说明或连续人工路线，不得扩展试点。</p>
+<p>现有论文只提供方法边界：街谷 CFD、风热 PM2.5 联合监测和屋顶/街谷几何研究用于定义未来模型变量 <span class="evidence evidence-source">[source:LIU-URBAN-VENTILATION-2017]</span> <span class="evidence evidence-source">[source:MENG-WIND-HEAT-PM25-2022]</span> <span class="evidence evidence-source">[source:NOSEK-STREET-CANYON-2025]</span>；它们不提供京张的风场、健康因果、事故率或可迁移百分比。</p>
+<h2>2. 核心概念：一条公共轴、三座试验庭、两条安全网</h2>
+<p>总体结构为“**一条公共轴 + 三座试验庭 + 两条安全网 + 十二个场景卡**”。公共轴是京张遗址公园及其慢行/蓝绿联系；三座试验庭分别对应众智园、北京 AI 原点社区、大钟寺 AI 产业聚集区；两条安全网是：</p>
+<ul>
+<li>**人本安全网**：连续无障碍路线、人工服务台、可读路缘、低速限行、紧急停车和人工接管。</li>
+<li>**生态与数据安全网**：雨雪/热浪/断网回退、暗夜和鸟类保护、数据最小化、公开算法记录和可撤销授权。</li>
+</ul>
+<p>自动驾驶不是独立道路系统，而是叠加在步行、骑行、轨道、公交、消防、绿地和维护系统上的“受限服务层”。任何车辆或机器人都必须让位于连续人工路线；路缘空间首先登记谁可以停、何时停、停多久、谁负责清场 <span class="evidence evidence-standard">[standard:BEIJING-ACCESSIBILITY-REGULATION]</span> <span class="evidence evidence-standard">[standard:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS]</span>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="自动驾驶公共带总览：三座试验庭、两条安全网和阶段门槛"><figcaption>自动驾驶公共带总览：三座试验庭、两条安全网和阶段门槛</figcaption></figure>
+<h2>3. 三层范围与三处重点区</h2>
+<p>统筹研究范围回答“北京智能网联汽车政策与产业链如何转成公共空间能力”；总体设计范围回答“路缘、站点、慢行和维护如何形成连续系统”；重点区域回答“每个试验庭如何有小范围、可撤回、可审查的测试场”。空间面积和边界仅使用当前提交 GeoJSON 复算 <span class="evidence evidence-metric">[metric:site_area_sqm]</span> <span class="evidence evidence-metric">[metric:key_area_count]</span>。</p>
+<div class="proposal-table"><table><thead><tr><th>重点区</th><th>自动驾驶公共性角色</th><th>首个可逆测试</th><th>必须守住的边界</th></tr></thead><tbody><tr><td>众智园</td><td>安全评测、仿真、车路云接口与企业服务</td><td>园区内低速接驳/巡检，预约、封闭或明确管理窗口</td><td>未获批准不驶入社会道路；不把仿真结果当真实安全证明</td></tr><tr><td>AI 原点社区</td><td>社区服务、无障碍接送、公众解释和退出机制</td><td>人工陪同的预约接送与无障碍路线审查</td><td>无 App 等价服务；不采集居民连续轨迹；可随时人工完成同一服务</td></tr><tr><td>大钟寺</td><td>轨道换乘、路缘物流、活动日人机分流</td><td>站点周边货运/维护机器人与步行优先路缘试点</td><td>不占用消防、无障碍和应急通道；高峰/雨雪/断网立即回退</td></tr></tbody></table></div>
+<p>三处详细节点落在 <code>visual/assets/autonomy_nodes.json</code>，其坐标只是 provisional 设计标记，不是车辆测试道路或法定站点 <span class="evidence evidence-data">[data:visual/assets/autonomy_nodes.json#AUTO-NODE-001]</span>。</p>
+<h2>4. 自动驾驶普及后的空间规则</h2>
+<h3>4.1 路缘先于车道</h3>
+<p>所有自动驾驶场景先绘制“人行连续带”和“可退出服务带”，再决定车辆路径。路缘登记采用五种状态：<code>open</code>（公共通行）、<code>booked</code>（短时装卸/接送）、<code>service</code>（维护窗口）、<code>restricted</code>（风险天气或活动管制）、<code>human-only</code>（人工与无障碍优先）。状态变更必须有责任人、起止时间、现场标识和恢复条件，不能由模型自动永久锁定。</p>
+<h3>4.2 速度与权利是设计变量</h3>
+<p>本方案不写未经审批的法定速度值，而将低速、让行、停止距离和人工接管写成验收字段 <span class="evidence evidence-metric">[metric:autonomy_trial_speed_limit_status]</span> <span class="evidence evidence-metric">[metric:remote_stop_response_seconds]</span>。试点的成功不是车辆跑得快，而是最慢的行人、轮椅使用者、儿童和维护人员仍能安全完成同一条路线 <span class="evidence evidence-standard">[standard:BEIJING-WALK-CYCLE-DB11-1761]</span>。</p>
+<h3>4.3 “永远有人能接手”</h3>
+<p>每个试点节点配置人工服务点、物理急停、远程停止、现场广播、事件记录和撤场路线。出现感知不确定、通信中断、雨雪/积水、活动拥挤、鸟类保护时段或无障碍受阻，默认降级为人工服务或停止运行，而不是继续扩大自动化范围 <span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span> <span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span>。</p>
+<h3>4.4 数据只为完成服务</h3>
+<p>车辆/机器人只需读取通过授权的路缘状态、障碍物类别、无障碍路线和应急信息；不建立居民画像，不把摄像头连续流作为公共展示，不以个人轨迹换取基本服务。事件记录公开聚合指标、责任链和纠正结果，原始数据保留周期、访问主体和删除机制由专业/法务团队确定 <span class="evidence evidence-source">[source:CASE-HELSINKI-AI-REGISTER]</span> <span class="evidence evidence-source">[source:CASE-UK-ATRS]</span> <span class="evidence evidence-source">[source:NIST-HUMAN-CENTERED-AI]</span>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="路缘状态、人工接管和生态回退的自动驾驶公共性系统图"><figcaption>路缘状态、人工接管和生态回退的自动驾驶公共性系统图</figcaption></figure>
+<h2>5. 十二张场景卡：从可逆试点到可退出服务</h2>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>场景</th><th>空间载体</th><th>通过条件</th><th>停止/回退</th></tr></thead><tbody><tr><td>AV-01</td><td>原点社区无障碍预约接送</td><td>AI 原点社区</td><td>人工陪同、等价人工路径、出行者同意</td><td>任何无障碍阻断即转人工</td></tr><tr><td>AV-02</td><td>众智园低速接驳</td><td>众智园试验庭</td><td>封闭/获批窗口、现场安全员、急停</td><td>识别不确定或人流超阈值即停</td></tr><tr><td>AV-03</td><td>大钟寺站末端换乘</td><td>站点周边路缘</td><td>轨道/步行优先、清晰上下客位</td><td>占用消防/无障碍通道即撤</td></tr><tr><td>AV-04</td><td>夜间维护机器人</td><td>公园维护带</td><td>暗夜照明审查、反光标识、人工巡检</td><td>鸟类/行人风险上升即人工维护</td></tr><tr><td>AV-05</td><td>雨雪低速服务</td><td>蓝绿边界</td><td>水深、能见度、抓地和通信门槛</td><td>超阈值全部人工化</td></tr><tr><td>AV-06</td><td>路缘预约装卸</td><td>大钟寺商业界面</td><td>时窗、货物责任、可清场</td><td>超时或冲突即取消预约</td></tr><tr><td>AV-07</td><td>事件日人机分流</td><td>全球 AI 活动路线</td><td>预案、人工引导、动态封控</td><td>人流拥挤时车辆退出</td></tr><tr><td>AV-08</td><td>断网安全回退</td><td>三处试验庭</td><td>本地安全状态、广播、物理急停</td><td>断网不保持开放运行</td></tr><tr><td>AV-09</td><td>儿童/老人陪同模式</td><td>原点社区</td><td>监护人确认、人工接管</td><td>任一授权撤回即结束</td></tr><tr><td>AV-10</td><td>公共设施巡检</td><td>绿地、排水、照明节点</td><td>资产 ID、巡检清单、人工复核</td><td>误报不触发自动施工</td></tr><tr><td>AV-11</td><td>开源安全审计日</td><td>众智园</td><td>公开测试摘要、第三方/专业复核</td><td>未通过不进入下一阶段</td></tr><tr><td>AV-12</td><td>乘客/居民申诉与退出</td><td>三处公共服务台</td><td>线下、电话、网页三路等价</td><td>申诉未闭环不得扩容</td></tr></tbody></table></div>
+<p>这些场景是设计对象，不是已经存在的运营项目。其机器可读版本为 <code>visual/assets/autonomous-scenarios.json</code>，每张卡都绑定空间、责任、数据最小化和停止条件 <span class="evidence evidence-metric">[metric:autonomy_scenario_card_count]</span>。</p>
+<h2>6. 三个产业测试与六类以上用户</h2>
+<h3>产业测试</h3>
+<p>1. **AV-T01 路缘冲突测试**：在众智园/大钟寺两个候选节点，以人工计数和事件日志核对占道、让行、急停、装卸冲突；不使用未授权视频训练。验收字段为冲突类型、处置时间、人工复核率和连续无障碍路线是否保持 <span class="evidence evidence-metric">[metric:curb_conflict_rate]</span> <span class="evidence evidence-metric">[metric:accessible_route_continuity_ratio]</span>。 2. **AV-T02 无障碍等价服务测试**：AI 原点社区同时提供自动驾驶接送、人工服务和纸面/电话预约，按出行完成率、等待时间、拒绝率和满意度分组比较；任何自动化优势不得以减少人工选项为代价 <span class="evidence evidence-standard">[standard:BEIJING-ACCESSIBILITY-REGULATION]</span>。 3. **AV-T03 断网/极端天气回退测试**：三处试验庭分别模拟通信中断、暴雨积水、热浪和活动拥挤，验证远程停止、现场接管、广播、撤离和恢复。气象和排水是未知输入，不用论文或模拟分数替代现场结果 <span class="evidence evidence-metric">[metric:autonomy_fallback_success_ratio]</span>。</p>
+<h3>用户画像</h3>
+<p>居民、轮椅使用者/照护者、高校师生、园区员工、初创企业、物流/维护人员、老年访客、夜班人员和儿童监护人共同参与。每人都拥有非数字入口、人工帮助、撤回授权和公开申诉路径；不存在“不会用 App 就失去服务”的默认规则 <span class="evidence evidence-source">[source:BEIJING-ACCESSIBILITY-REGULATION]</span>。</p>
+<h2>7. 三座 AI 朝圣地标与城市文化</h2>
+<ul>
+<li>**人字折返·公共接管碑**（原点社区）：记录被人工否决、暂停和修复的自动化建议，把詹天佑以折返解决坡度的工程记忆转译为“拒绝也是城市能力”。</li>
+<li>**路缘灯塔**（众智园）：一座不展示个人数据的可视化灯塔，只显示当前路缘状态、试点阶段、已通过门槛、事故/申诉闭环和下一次复核日期。</li>
+<li>**人机换乘客厅**（大钟寺）：把车、轨道、步行、轮椅、货运和公共服务放在同一张可读地图上，强调“到达权”而不是车辆品牌。</li>
+</ul>
+<p>三处地标均是文化与公共解释建议，不是已批准建筑、雕塑、企业冠名或建设承诺 <span class="evidence evidence-metric">[metric:ai_landmark_count]</span>。</p>
+<h2>8. 用地、交通、蓝绿与更新分期</h2>
+<p>沿用同一 provisional 空间底盘的用地、建筑、道路、绿地和公共空间图层，所有空间量从当前文件复算 <span class="evidence evidence-metric">[metric:site_area_sqm]</span> <span class="evidence evidence-metric">[metric:green_ratio]</span> <span class="evidence evidence-metric">[metric:public_space_ratio]</span>。新增自动驾驶节点不画新的法定红线，只以点位、路缘状态和测试依赖表达设计意图。正式边界发布后，必须重算所有图层和面积，不得把本包坐标当成测试道路。</p>
+<p>分期为：</p>
+<ul>
+<li>**P0（现在—2027）可读路缘**：现场盘点、无障碍审计、人工服务台、路缘登记、公开申诉和数据最小化规则；不需要先部署自动驾驶。</li>
+<li>**P1（2027—2030）受限试验**：只在获批、低速、可回退的候选空间开展 AV-T01—T03；每月公开聚合事件与关闭项。</li>
+<li>**P2（2030 以后）条件扩展**：仅当安全评估、专业交通审查、生态/隐私审查、居民参与和责任保险全部通过，才考虑扩大场景；不通过则保留人工服务和公共空间。</li>
+</ul>
+<p>交通组织遵守步行/骑行优先、轨道换乘、消防和无障碍连续，自动驾驶车辆是服务层，不是新增道路容量。蓝绿系统保留风、雨、热、暗夜和鸟类保护的验证入口；没有 CFD、排水模型、微气候实测和生态基线时，所有效果只写 <code>unknown</code> 或 <code>design_target</code> <span class="evidence evidence-source">[source:BEIJING-VENTILATION-NETWORK-2035]</span> <span class="evidence evidence-source">[source:BEIJING-FLOOD-PLAN-2021-2025]</span> <span class="evidence evidence-source">[source:BEIJING-BIRD-BIODIVERSITY-2024]</span>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="未来自动驾驶场景的阶段门、指标状态和回退路径"><figcaption>未来自动驾驶场景的阶段门、指标状态和回退路径</figcaption></figure>
+<h2>9. 指标、标准和合规矩阵</h2>
+<p>当前可直接回读的底盘指标包括：provisional site area 11.41 km²、三处重点区、绿地比例和公共空间比例。自动驾驶新增指标全部明确为 <code>unknown</code> 或 <code>design_target</code>：路缘冲突率、无障碍连续性、远程停止响应、回退成功率、数据最小化覆盖率、试验路线长度和自动驾驶场景卡数量 <span class="evidence evidence-metric">[metric:curb_conflict_rate]</span> <span class="evidence evidence-metric">[metric:remote_stop_response_seconds]</span> <span class="evidence evidence-metric">[metric:autonomy_fallback_success_ratio]</span> <span class="evidence evidence-metric">[metric:data_minimization_coverage_ratio]</span>。</p>
+<p><code>compliance_matrix.json</code> 覆盖公告 1.3、1.4、1.5 与 agent.1—agent.6；<code>standard_matrix.json</code> 覆盖城市设计、控规深度、步行骑行、无障碍、资产管理、服务机器人和自动驾驶测试边界；<code>design_depth_matrix.json</code> 将每项设计深度绑定正文、图层、指标和回退条件。所有可知数值都带单位、公式、来源文件、置信度和假设 <span class="evidence evidence-metric">[metric:autonomy_metric_count]</span>。</p>
+<h2>10. 风险、责任与公开运营</h2>
+<p>本方案不替代道路测试许可、安全评估、车辆认证、交通组织、消防、保险、隐私影响评估、生态审查或施工图。任何测试主体必须先确定运营责任、现场安全员/远程操作员、应急联络、数据保留、投诉渠道、事故记录和撤场条件 <span class="evidence evidence-source">[source:BEIJING-AV-SAFETY-ASSESSMENT-2025]</span>。</p>
+<p>公开运营采用“登记—小试—复核—扩展/停止”循环：每个节点发布用途、责任人、时间窗、当前状态、已知缺口和下一次复核；居民可在线下服务台提交意见；指标不达标时自动回到人工服务，不允许用宣传活动掩盖失败。年度 AI 活动周只展示已经通过的摘要，不展示未经授权的个人或车辆数据。</p>
+<h3>交付与复算</h3>
+<p>本包包含中文正文、英文对照、GeoJSON、指标、假设、来源、五张由同一数据底盘生成的图件、A3/A0 图纸和离线视觉页。正式官方 polygons、道路/管线/权属/交通/气象/排水/生态基线到位后，必须重新生成图层、metrics、图件、报告和自检；不能只替换一张图或把未来目标改写成已知事实。</p>
+<h2>参考资料</h2>
+<ul>
+<li><code>brief/public-brief.md</code>、<code>brief/site-package/agent_taskbook.json</code>、<code>data/source_registry.json</code></li>
+<li><span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span>、<span class="evidence evidence-source">[source:BEIJING-AV-ROADS-2025]</span>、<span class="evidence evidence-source">[source:BEIJING-AV-SAFETY-ASSESSMENT-2025]</span></li>
+<li><span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span>、<span class="evidence evidence-source">[source:BEIJING-ACCESSIBILITY-REGULATION]</span>、<span class="evidence evidence-source">[source:BEIJING-WALK-CYCLE-DB11-1761]</span></li>
+<li><span class="evidence evidence-source">[source:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS]</span>、<span class="evidence evidence-source">[source:ISO-13482-SERVICE-ROBOT-SAFETY]</span>、<span class="evidence evidence-source">[source:CASE-HELSINKI-AI-REGISTER]</span>、<span class="evidence evidence-source">[source:CASE-UK-ATRS]</span></li>
+<li><span class="evidence evidence-source">[source:LIU-URBAN-VENTILATION-2017]</span>、<span class="evidence evidence-source">[source:MENG-WIND-HEAT-PM25-2022]</span>、<span class="evidence evidence-source">[source:NOSEK-STREET-CANYON-2025]</span></li>
+</ul>
+<p>**最终边界声明**：这是一个可审计的概念与试验框架，不是政府批准的规划、道路开放公告、自动驾驶运营许可、企业合作协议、健康/空气质量证明或建设承诺。</p>
+<h2>设计依据与资料清单</h2>
+<p>本包以征集公告、智能体任务书、provisional 边界、重点区和来源登记为共同依据；官方资料、背景资料、设计目标和未知基线分开管理。<span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span> <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span> <span class="evidence evidence-metric">[metric:site_area_sqm]</span> <span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span>。设计意图是把自动驾驶从单一车辆能力转成公共空间能力：先定义人的连续路线、路缘责任、人工服务和退出权，再定义车辆或机器人可以在哪个时段、以何种受控方式进入。几何上，既有 provisional boundary、key areas、roads、constraints 和 phasing 继续作为底盘，新节点只表达测试关系，不生成法定红线；指标上，面积、绿地、公共空间和交通筛查必须从文件复算，不能由概念图估读。政策来源证明测试路径与批准边界要求，不证明本地道路、车辆或运营已经存在；无障碍基线、权属、交通量、排水、气象、生态、保险和责任主体仍是缺口。正式边界和现场资料到位后，所有图层、指标、报告、图纸和前端证据卡必须一起重生成，不能只换一张效果图。<span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span></p>
+<h2>三层范围工作框架</h2>
+<p>统筹研究范围组织 AI 产业、人才、公共治理与未来城市研究；总体设计范围组织用地、建筑、交通、市政、蓝绿和公共空间；重点区域组织三座试验庭的节点、路缘和运营测试。<span class="evidence evidence-depth">[depth:three_level_scope_framework]</span> <span class="evidence evidence-depth">[depth:overall_spatial_structure]</span> <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span>。三层不是三个互不相干的报告目录：统筹层决定产业与公共利益的边界，总体层把边界翻译成连续慢行、轨道接驳、蓝绿和更新动作，重点区再把这些动作拆成可看见、可停止、可复核的测试庭。几何影响是不同层级共享同一套 boundary、key areas、land use、roads、green_space、public_space 和 phasing 图层，避免总体规划和节点图各画一套线；指标影响是 site area、green ratio、public space ratio、key area count 与慢行关系线必须能回读。当前数据仍是 provisional，不能推出法定范围、道路容量、产权或实施时序；后续要补官方 polygon、站口、路权、管线、现状客流和居民分层体验，再进行统一复算。<span class="evidence evidence-depth">[depth:overall_spatial_structure]</span></p>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>方案将高校、企业、社区、轨道和公共服务视为共同的创新生态，不以单一企业或车辆品牌代表未来城市。<span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span> <span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>。设计意图是把“AI 创新带”从展示性园区转成可被居民日常使用、企业持续维护、学生参与审计的公共网络：高校提供研究与人才，园区提供受控测试和维修能力，社区提供真实需求与申诉，轨道提供换乘入口，公共服务台提供不依赖 App 的人工路径。空间上对应三处试验庭和公共轴，运营上对应登记—小试—复核—扩展/停止的循环，指标上不把车辆数量、模型精度或活动人流当作公共价值，而看无障碍连续性、冲突率、接管、回退、申诉闭环和数据最小化。当前缺少企业责任协议、公共预算、保险、人员技能、设备清单和真实服务需求分布，因此产业链只能作为研究与协同假设；任何合作、品牌、设备和用工都要在正式招标、采购、专业安全和居民参与程序后确认。<span class="evidence evidence-source">[source:UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES]</span></p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>用地、建筑、道路、绿地、公共空间和分期图层共同表达 provisional 结构；自动驾驶节点是试验标记，不是新增法定红线。<span class="evidence evidence-depth">[depth:land_use_layout]</span> <span class="evidence evidence-depth">[depth:development_intensity_controls]</span> <span class="evidence evidence-depth">[depth:height_massing_character]</span> <span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span> <span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span> <span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span> <span class="evidence evidence-data">[data:geometry/buildings.geojson#BUILD-001]</span> <span class="evidence evidence-data">[data:geometry/constraints.geojson#CONSTRAINT-001]</span> <span class="evidence evidence-data">[data:geometry/phasing.geojson#PHASE-001]</span>。本层的设计意图是让自动驾驶服务服从既有城市结构，而不是用“未来交通”掩盖用地、建筑和拆改关系：人行主链、消防净空、绿地暗区、维护通道和居民安静界面先被保留，再讨论路缘和服务窗口。几何上，land_use、buildings、constraints 与 phasing 是共同约束，节点 JSON 不能被解释为新增用地或道路；指标上，building footprint、开发强度、绿地、公共空间和分期面积均保持原始单位、公式和 provisional 置信度。当前没有官方控规、权属、建筑现状、地下管线、消防审查和拆改项目清单，因此本节不提出建设强度、建筑高度、拆除数量或红线承诺；这些数据到位后必须由规划、建筑、市政、消防和交通专业人员复核。<span class="evidence evidence-source">[source:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span></p>
+<h2>重点区域详细设计</h2>
+<p>众智园承担安全测试，AI 原点承担无障碍等价服务，大钟寺承担换乘与活动日分流；每处都绑定场景、责任、数据最小化和停止条件。<span class="evidence evidence-depth">[depth:three_key_area_detailed_design]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-002]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-003]</span>。众智园首先验证急停、视线、低速服务和维护者接管，不把封闭场表现外推到社会道路；AI 原点同时提供自动与人工、电话和纸面入口，验证是否存在真正的无障碍等价服务；大钟寺把轨道、步行、骑行、货运、活动和居民归家放在同一张路缘图上，验证活动日能否保持消防与人行连续。每处节点都在 visual/assets/autonomy_nodes.json 中记录角色和低置信度，场景卡、测试门和证据交叉索引分别记录通过证据与停止动作。当前缺少现场测绘、路口信号、站口无障碍、消防通道、物流时窗和居民分层基线，因此节点是设计标记，不是许可地点；正式深化应逐点补现场照片、人工计数、障碍物清单、访谈、责任人和关闭记录。<span class="evidence evidence-source">[source:BEIJING-ACCESSIBILITY-REGULATION]</span></p>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>居民、轮椅使用者/照护者、学生、园区员工、物流维护人员、老年访客、夜班人员和儿童监护人共同参与；自动化服务必须有线下、电话和人工等价路径。<span class="evidence evidence-source">[source:UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES]</span> <span class="evidence evidence-source">[source:NIST-HUMAN-CENTERED-AI]</span> <span class="evidence evidence-source">[source:CASE-HELSINKI-AI-REGISTER]</span>。画像不是营销标签，而是验收责任：轮椅使用者需要连续坡道、停歇和可替代路线，照护者需要同时处理儿童与行李，夜班人员需要低照度但可理解的归家链，维护人员需要资产 ID、物理急停和明确的清场权，学生和企业需要可公开的安全摘要，居民需要不被迫交出连续轨迹才能获得服务。场景 JSON 因此记录用户、数据最小化、接受条件和停止条件；指标上重点观察分组完成率、等待、拒绝、投诉和等价人工服务，而不是单一平均满意度。当前缺少分层问卷、参与者同意流程、语言/听觉/视觉辅助需求和长期申诉样本，不能宣称公平或满意度提升；正式项目必须由公共服务、无障碍、隐私和社区参与专业人员共同设计测试。<span class="evidence evidence-standard">[standard:AUTONOMY-PUBLIC-INFRASTRUCTURE-BOUNDARY]</span></p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>本包保留既有 provisional 用地和建筑底盘，不借自动驾驶叙事伪造开发强度或拆改承诺；建筑与面积在官方数据发布后复算。<span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span> <span class="evidence evidence-metric">[metric:building_footprint_area_sqm]</span> <span class="evidence evidence-metric">[metric:building_footprint_ratio]</span> <span class="evidence evidence-source">[source:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span>。自动驾驶普及后的空间规划优先使用既有道路、站点、公共建筑、树荫和服务台的可逆改造，不默认新建车库、专用道路、围栏、机房或大型地标。建筑层面的设计意图是把首层入口、无障碍卫生间、等候点、充电/维护和人工接管空间作为公共服务接口，而不是把楼宇外观当作技术证明；几何上要回接 buildings、land_use、public_space 和 constraints，指标上要复核 footprint、面积、用地兼容性、消防和维护距离。当前没有完整建筑现状、权属、结构、设备、地下空间、停车和成本资料，不得提出拆除数量、容积率、建筑高度或投资金额；后续需用正式招标/设计深度资料和现场调查逐栋核查。<span class="evidence evidence-source">[source:PROJECT-OFFICIAL-ANNOUNCEMENT]</span></p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>步行、轮椅、骑行、轨道换乘、消防和维护主链优先，自动化只是路缘服务层；慢行网络、交通筛查和市政设施均不等于工程线位或容量证明。<span class="evidence evidence-depth">[depth:traffic_rail_slow_parking]</span> <span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span> <span class="evidence evidence-data">[data:geometry/roads.geojson#ROAD-001]</span> <span class="evidence evidence-source">[source:BEIJING-SLOW-MOBILITY]</span> <span class="evidence evidence-source">[source:OSM-TRANSPORT-CONTEXT]</span>。设计意图是先找出最后 300—800 米的断点、过街冲突、路缘占用、站口无障碍和活动日溢出，再用人工计数、走行审计和可逆标识决定是否试验；自动化服务不新增社会道路容量，不把北京其他区域的测试速度、事故率或通行时间迁移为海淀结论。几何上，roads、public_space、key areas、constraints 和新节点数据只表达关系和候选审计点；指标上，慢行长度、站点数量、crossing 数量、等待、冲突和连续性必须标注数据来源与置信度。当前缺少官方路权、信号配时、交叉口断面、公共交通客流、停车/装卸、管线和消防核验，后续必须由交通、市政、轨道、无障碍和应急专业团队共同现场确认。<span class="evidence evidence-source">[source:BEIJING-WALK-CYCLE-DB11-1761]</span></p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿系统保留风、雨、热、暗夜、鸟类和公共活动的验证入口，图层用于设计讨论而不是现状健康或生态效果证明。<span class="evidence evidence-depth">[depth:blue_green_public_space]</span> <span class="evidence evidence-data">[data:geometry/green_space.geojson#GREEN-001]</span> <span class="evidence evidence-data">[data:geometry/public_space.geojson#PUBLIC-001]</span> <span class="evidence evidence-source">[source:BEIJING-VENTILATION-NETWORK-2035]</span> <span class="evidence evidence-source">[source:BEIJING-BIRD-BIODIVERSITY-2024]</span> <span class="evidence evidence-source">[source:WHO-URBAN-HEALTH-AND-GREEN]</span></p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>P0 做路缘与无障碍审计，P1 只在批准且有人值守的窗口做低速试验，P2 只有在安全、交通、生态、隐私、参与和保险均通过后才条件扩展。<span class="evidence evidence-depth">[depth:renewal_project_list]</span> <span class="evidence evidence-depth">[depth:phasing_implementation]</span> <span class="evidence evidence-source">[source:BEIJING-ROAD-MAINTENANCE-2026]</span> <span class="evidence evidence-source">[source:JINGZHANG-FUTURE-BELT-2026]</span>。项目清单采用政府招标文件常见的“工作包—成果—验收—责任—缺口”逻辑：P0 交付路缘台账、无障碍路线、人工服务方案、数据与申诉规则；P1 交付批准边界内的测试方案、现场安全员、急停/接管记录、事件日志和月度公开摘要；P2 只在专业评审、居民参与、生态/隐私、保险、成本与维护责任均有书面证据后讨论扩展。几何上每一阶段都应可由节点、路缘状态和 phasing 回读，指标上每一阶段都应有通过门和停止条件，不能以宣传活动或用户数量替代验收。当前缺少招标范围、投资来源、采购方式、运营主体、SLA、维护预算和应急联络，故本包只给出设计任务书级的阶段框架，不给出中标、施工或运营承诺。<span class="evidence evidence-source">[source:ASSET-MANAGEMENT-GBT33172]</span></p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>当前已知与可回读指标包括：<span class="evidence evidence-metric">[metric:site_area_sqm]</span> <span class="evidence evidence-metric">[metric:green_ratio]</span> <span class="evidence evidence-metric">[metric:public_space_ratio]</span> <span class="evidence evidence-metric">[metric:key_area_count]</span> <span class="evidence evidence-metric">[metric:autonomy_scenario_card_count]</span> <span class="evidence evidence-metric">[metric:autonomy_node_count]</span> <span class="evidence evidence-metric">[metric:autonomy_metric_count]</span> <span class="evidence evidence-metric">[metric:design_north_south_spine_length_m]</span> <span class="evidence evidence-metric">[metric:design_east_west_connector_count]</span> <span class="evidence evidence-metric">[metric:design_slow_mobility_network_length_m]</span> <span class="evidence evidence-metric">[metric:osm_mapped_station_names_within_800m_count]</span> <span class="evidence evidence-metric">[metric:osm_mapped_crossing_count]</span> <span class="evidence evidence-metric">[metric:resilience_v13_candidate_count]</span> <span class="evidence evidence-metric">[metric:resilience_v13_monte_carlo_draws]</span> <span class="evidence evidence-metric">[metric:resilience_v13_selected_mean_score]</span> <span class="evidence evidence-metric">[metric:resilience_v13_selected_p05_score]</span> <span class="evidence evidence-metric">[metric:resilience_v13_selected_win_rate]</span> <span class="evidence evidence-metric">[metric:resilience_v13_selected_mean_regret]</span> <span class="evidence evidence-metric">[metric:resilience_v13_selected_min_stress_score]</span> <span class="evidence evidence-metric">[metric:resilience_v13_hard_gates_passed]</span> <span class="evidence evidence-metric">[metric:curb_conflict_rate]</span> <span class="evidence evidence-metric">[metric:accessible_route_continuity_ratio]</span> <span class="evidence evidence-metric">[metric:remote_stop_response_seconds]</span> <span class="evidence evidence-metric">[metric:autonomy_fallback_success_ratio]</span> <span class="evidence evidence-metric">[metric:data_minimization_coverage_ratio]</span>。未知指标不转写为“已达标”。<span class="evidence evidence-depth">[depth:metrics_recalculation]</span> <span class="evidence evidence-standard">[standard:AUTONOMY-PUBLIC-INFRASTRUCTURE-BOUNDARY]</span></p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="核心区域公共性分工与停止条件"><figcaption>核心区域公共性分工与停止条件</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="用地和空间分层及人工回退"><figcaption>用地和空间分层及人工回退</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<p>本包不替代道路测试许可、安全评估、车辆认证、交通组织、消防、保险、隐私影响评估、生态审查或施工图。<span class="evidence evidence-depth">[depth:risk_missing_data]</span> <span class="evidence evidence-standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span> <span class="evidence evidence-source">[source:BEIJING-AV-SAFETY-ASSESSMENT-2025]</span> <span class="evidence evidence-source">[source:BEIJING-CLIMATE-ADAPTATION-2024]</span> <span class="evidence evidence-source">[source:IPCC-AR6-URBAN-RISK]</span></p>
+<p>来源回读清单：<span class="evidence evidence-source">[source:SITE-PACKAGE]</span> <span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span> <span class="evidence evidence-source">[source:PROCESSED-FACT-PACK]</span> <span class="evidence evidence-source">[source:BOUNDARY-SOURCE]</span> <span class="evidence evidence-source">[source:KEY-AREA-SOURCE]</span> <span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span> <span class="evidence evidence-source">[source:BEIJING-SLOW-MOBILITY]</span> <span class="evidence evidence-source">[source:JINGZHANG-PUBLIC-FEEDBACK]</span> <span class="evidence evidence-source">[source:JINGZHANG-PARK-CATALOG]</span> <span class="evidence evidence-source">[source:BEIJING-15-MINUTE-LIFE-CIRCLE]</span> <span class="evidence evidence-source">[source:JINGZHANG-FUTURE-BELT-2026]</span> <span class="evidence evidence-source">[source:OSM-TRANSPORT-CONTEXT]</span> <span class="evidence evidence-source">[source:BEIJING-CLIMATE-ADAPTATION-2024]</span> <span class="evidence evidence-source">[source:BEIJING-FLOOD-PLAN-2021-2025]</span> <span class="evidence evidence-source">[source:BEIJING-WATER-REPORT-2024]</span> <span class="evidence evidence-source">[source:BEIJING-WALK-CYCLE-DB11-1761]</span> <span class="evidence evidence-source">[source:BEIJING-ACCESSIBILITY-REGULATION]</span> <span class="evidence evidence-source">[source:BEIJING-ROAD-MAINTENANCE-2026]</span> <span class="evidence evidence-source">[source:ISO-55001-2024]</span> <span class="evidence evidence-source">[source:ISO-13482-SERVICE-ROBOT-SAFETY]</span> <span class="evidence evidence-source">[source:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS]</span> <span class="evidence evidence-source">[source:NIST-HUMAN-CENTERED-AI]</span> <span class="evidence evidence-source">[source:WHO-URBAN-HEALTH-AND-GREEN]</span> <span class="evidence evidence-source">[source:WHO-HEAT-HEALTH-2026]</span> <span class="evidence evidence-source">[source:IPCC-AR6-URBAN-RISK]</span> <span class="evidence evidence-source">[source:UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES]</span> <span class="evidence evidence-source">[source:BEIJING-METEOROLOGICAL-OPEN-DATA]</span> <span class="evidence evidence-source">[source:HAIDIAN-CLIMATE-NORMS-DATASET-2025]</span> <span class="evidence evidence-source">[source:HAIDIAN-METEOROLOGICAL-NETWORK-2023]</span> <span class="evidence evidence-source">[source:QINGHE-STATION-WIND-MONITORING-2021]</span> <span class="evidence evidence-source">[source:HAIDIAN-SPONGE-CITY-PLAN]</span> <span class="evidence evidence-source">[source:BEIJING-VENTILATION-NETWORK-2035]</span> <span class="evidence evidence-source">[source:BEIJING-EMBODIED-INTELLIGENCE-2025-2027]</span> <span class="evidence evidence-source">[source:SERVICE-ROBOT-INFOSEC-GB45502]</span> <span class="evidence evidence-source">[source:RESILIENT-CITY-INFRASTRUCTURE-2024]</span> <span class="evidence evidence-source">[source:ASSET-MANAGEMENT-GBT33172]</span> <span class="evidence evidence-source">[source:BEIJING-BIRD-BIODIVERSITY-2024]</span> <span class="evidence evidence-source">[source:BEIJING-LIGHTING-GUIDE-2025]</span> <span class="evidence evidence-source">[source:REGIONAL-YEARBOOK-2024-2]</span> <span class="evidence evidence-source">[source:BEIJING-YEARBOOK-2024]</span> <span class="evidence evidence-source">[source:BEIJING-BULLETIN-2024]</span> <span class="evidence evidence-source">[source:BEIJING-BULLETIN-2025]</span> <span class="evidence evidence-source">[source:CASE-HELSINKI-AI-REGISTER]</span> <span class="evidence evidence-source">[source:CASE-AMSTERDAM-ALGORITHM-REGISTER]</span> <span class="evidence evidence-source">[source:CASE-SINGAPORE-AI-VERIFY]</span> <span class="evidence evidence-source">[source:CASE-DECIDIM-BARCELONA]</span> <span class="evidence evidence-source">[source:CASE-UK-ATRS]</span> <span class="evidence evidence-source">[source:CASE-SEOUL-AI-FOUNDATION]</span> <span class="evidence evidence-source">[source:LIU-URBAN-VENTILATION-2017]</span> <span class="evidence evidence-source">[source:MENG-WIND-HEAT-PM25-2022]</span> <span class="evidence evidence-source">[source:NOSEK-STREET-CANYON-2025]</span> <span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span> <span class="evidence evidence-source">[source:BEIJING-AV-ROADS-2025]</span> <span class="evidence evidence-source">[source:BEIJING-AV-SAFETY-ASSESSMENT-2025]</span> <span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span> <span class="evidence evidence-source">[source:AUTONOMY-DESIGN-BASE]</span> <span class="evidence evidence-source">[source:AUTONOMY-SCENARIO-REGISTER]</span> <span class="evidence evidence-source">[source:AUTONOMY-GATE-REGISTER]</span></p>
+<p>标准回读清单：<span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span> <span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span> <span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span> <span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span> <span class="evidence evidence-standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span> <span class="evidence evidence-standard">[standard:AUTONOMY-PUBLIC-INFRASTRUCTURE-BOUNDARY]</span>。深度回读清单：<span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span> <span class="evidence evidence-depth">[depth:three_level_scope_framework]</span> <span class="evidence evidence-depth">[depth:overall_spatial_structure]</span> <span class="evidence evidence-depth">[depth:land_use_layout]</span> <span class="evidence evidence-depth">[depth:development_intensity_controls]</span> <span class="evidence evidence-depth">[depth:height_massing_character]</span> <span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span> <span class="evidence evidence-depth">[depth:traffic_rail_slow_parking]</span> <span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span> <span class="evidence evidence-depth">[depth:blue_green_public_space]</span> <span class="evidence evidence-depth">[depth:renewal_project_list]</span> <span class="evidence evidence-depth">[depth:phasing_implementation]</span> <span class="evidence evidence-depth">[depth:metrics_recalculation]</span> <span class="evidence evidence-depth">[depth:risk_missing_data]</span> <span class="evidence evidence-depth">[depth:three_key_area_detailed_design]</span> <span class="evidence evidence-depth">[depth:autonomy_test_depth]</span>。</p>
+</main>
+</body>
+</html>

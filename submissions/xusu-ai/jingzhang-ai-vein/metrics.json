@@ -1,0 +1,198 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm",
+  "ratio": "ratio",
+  "count": "count"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "基于 provisional 边界（provisional_rough），官方 polygon 缺失，非正式红线"
+   ]
+  },
+  "land_use_area_by_code": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum polygon_area per land_use_code in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念性分区建议，非控规结论"
+   ],
+   "values": {
+    "05": 2827738.5,
+    "0701": 1712459.6,
+    "0802": 2325427.4,
+    "0803": 1698952.0,
+    "1401": 2848272.7
+   },
+   "value": 11412850.2
+  },
+  "total_floor_area_sqm": {
+   "status": "known",
+   "value": 8305761.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "building_footprint_area * average_floors(3.2 concept)",
+   "confidence": "low",
+   "assumptions": [
+    "层数为概念假设（5-10层），非工程结论"
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "known",
+   "value": 0.7278,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "total_floor_area / site_area",
+   "confidence": "low",
+   "assumptions": [
+    "概念容积率，官方控规条件缺失（planning_limits.json 标记 missing）"
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.2274,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area / site_area",
+   "confidence": "low",
+   "assumptions": [
+    "概念建筑密度，非控规结论"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2595550.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum polygon_area(buildings) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "概念建筑基底，非现状测绘"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.2496,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "绿地面积含京张遗址公园带概念范围"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0132,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "广场与公共空间为概念范围"
+   ]
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 24761.9,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum linestring_length(roads) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "道路中心线为概念骨架，非道路红线"
+   ]
+  },
+  "phasing_area_sqm": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area per phase in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "分期为概念建议"
+   ],
+   "values": {
+    "phase1_near": 3743692.9,
+    "phase2_mid": 4701615.6,
+    "phase3_far": 2967534.7
+   },
+   "value": 11412843.2
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_details": {
+   "status": "known",
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area per key area in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "重点区为 provisional 边界"
+   ],
+   "values": [
+    {
+     "id": "PROV-KEY-001",
+     "area_id": "zhongzhiyuan_ai_acceleration_area",
+     "area_sqm": 1929201.9
+    },
+    {
+     "id": "PROV-KEY-002",
+     "area_id": "beijing_ai_origin_community",
+     "area_sqm": 1043236.9
+    },
+    {
+     "id": "PROV-KEY-003",
+     "area_id": "dazhongsi_ai_industry_cluster",
+     "area_sqm": 720454.2
+    }
+   ],
+   "value": 3692893.0
+  }
+ }
+}

@@ -55,6 +55,25 @@ python3 scripts/maintainer_review.py \
 
 `package_type` 描述提交物种类，`review_status` 描述审核决定。组织方缺少 official boundary/key areas 只能形成精度与复算警示，不得阻断内容评分或导致扣分。
 
+### Intake 最低质量门槛
+
+通过 CI 和 mandatory-rejection 检查只是必要条件，不自动获得合并。维护者还必须结合
+真实多模态 Agent review 与人工视觉抽查执行最低质量门槛。出现以下任一情形时不得
+合并，并使用 `review/changes-requested` 或 `review/low-quality` 留下可执行反馈：
+
+- 核心图纸因缺字、损坏、裁切、重叠或字号过小而无法正常阅读；
+- A3/A0、HTML 或关键图件基本空白，或主要内容仍是模板、占位框和重复示意；
+- agent.1—agent.6 的核心成果仅有目录/声明，缺少足以判断方案内容的实际交付；
+- 投稿与任务实质不相关，或整体完成度不足以形成有效稿件。
+
+Review Agent 采用 100 分制，**低于 60 分不得合并**；达到 60 分只是必要条件，
+不自动获得合并。维护者仍必须检查具体可见质量证据，确认稿件完整、可读、非占位且
+足以判断方案内容。达到分数线但人工检查仍触发上述最低质量问题的稿件同样不得合并。
+通过最低线但仍有改进空间的稿件，可以作为 intake 合并并把建议写入维护者专属
+`FEEDBACK.md`；intake 仍不代表公开展示或正式评分。
+
+维护者还应人工打开 `proposal.md` 与其 `.zh.md` / `.en.md` 副本，并抽查 HTML、A3/A0 和含文字图件是否保持章节、主张、指标、证据引用与图件位置一致。双语文件缺失、不完整、术语偏差或 manifest 哈希过期只能作为 PR warning 和改进建议，不能单独把建议状态降为 `request-changes`、`reject` 或阻止内容审稿；但译稿中出现远程加载、主动网络请求、隐私、涉密、违法或其他独立安全问题时，仍按原安全规则处理。
+
 ## 4A. 上线前模拟 PR 审核
 
 公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评分，因此参与者可控制的检查全部通过时，预期建议状态必须是 `formal-review-ready`，同时保留精度警示与复算要求：
@@ -75,21 +94,22 @@ python3 scripts/prelaunch_check.py
 
 若输出不是 `Recommendation: **formal-review-ready**`，或 `prelaunch_check.py` 失败，应先修复审核逻辑、展示索引或公开文档，不要发布新的投稿入口。
 
-## 5. 合并后决定公开展示与首页精选
+## 5. 合并后更新公开展示与首页精选
 
-合并只代表仓库接受该版本，不自动代表公开展示。维护者编辑 `gallery-publication.json`：
+合并到 `main` 的方案会自动进入 `submissions.html`。维护者只在需要首页精选或明确暂停展示时编辑 `gallery-publication.json`：
 
-- `published=true`：进入 `submissions.html` 全部方案页。
+- 未登记：自动进入全部方案页，不进入首页精选。
+- `published=false`：明确暂停该方案的公开展示。
+- `published=true`：记录已完成人工内容、视觉和版权复核的具体版本。
 - `featured=true`：同时进入首页精选；它必须以 `published=true` 为前提。
-- 未登记或 `published=false`：保留在仓库，但不进入公开展示数据。
 - `selection_reason_zh`、`selection_reason_en` 和 `selected_at` 记录双语入选理由与日期。
-- 公开前必须由维护者人工检查内容表达、图纸可读性、来源与版权，并填写 `review_status=approved_for_publication`、`reviewed_by`、`reviewed_at` 和 `rights_reviewed=true`。
+- 公开前必须由维护者人工检查内容表达、双语对应关系、图纸可读性、来源与版权，并填写 `review_status=approved_for_publication`、`reviewed_by`、`reviewed_at` 和 `rights_reviewed=true`。
 - 审核完成后运行 `python3 scripts/generate_submissions_data.py --package-sha submissions/<github-login>/<proposal-slug>`，把结果写入 `reviewed_package_sha256`。投稿任何文件变化都会使批准失效，必须重新审核并更新摘要。
 - 普通公开稿使用 `quality_tier=qualified`；只有人工确认具有较高内容与展示质量的稿件才使用 `quality_tier=featured` 和 `featured=true`。
 
 参赛者不得在自己的 PR 中指定公开或精选状态。
 
-维护者完成发布决定后，在主分支运行：
+每次合并方案或调整精选状态后，在主分支运行：
 
 ```bash
 python3 scripts/generate_submissions_data.py
@@ -199,3 +219,38 @@ python3 scripts/ai_review_submission.py \
 AI 无法仅凭文件内容证明现实世界中的版权归属或资料公开性。缺少授权、来源或权属证据时，prompt 要求返回 `request-changes` 和具体补证清单，而不是臆测“已合规”。
 
 运行该命令会把 `review-input.json` 中的投稿正文、结构化证据及所列视觉预览发送给配置的 AI 服务。维护者只能对公开投稿或已获授权的材料运行；不得用它上传涉密、内部、个人隐私或未获授权的资料。
+
+## 9. 自动处理审核队列
+
+100 个以上 PR 时，在受信任的维护者主机运行队列 worker。它不部署在
+`pull_request_target`，不会执行投稿分支代码，也不会把模型密钥暴露给 fork PR：
+
+```bash
+export OPENAI_API_KEY="..."
+export HAIDIAN_REVIEW_MODEL="gpt-5.6-sol"
+
+# 先评审并生成审计材料，不修改 GitHub
+python3 scripts/auto_review_queue.py --limit 10
+
+# 正式回写 review/label；通过 60 分门槛和四项 gate 的 PR 自动合并
+python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-merge
+```
+
+固定顺序为：required CI → 单一作者目录 → 固定 head SHA worktree → 本地四项 gate →
+强制退件 → 多模态 100 分评审 → 决策前再次检查 head SHA/CI → review 与标签 →
+合并前最后一次检查 head SHA/CI。低于 60 分标记 `review/low-quality`；CI 未成功的
+PR 不调用模型；draft 不进入队列。合并仅表示仓库 intake，展示、精选、正式评分与
+实施决定继续由 `gallery-publication.json` 的独立流程控制。
+worker 每轮按 PR 编号从旧到新处理，避免持续新增投稿使早期稿件饥饿。
+模型调用和本地视觉检查默认三路并行；worktree 创建/清理以及 GitHub review、标签、
+SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 base-branch merge 竞态。
+
+`submission-validation` 成功时会自动清除旧的 CI/修改/低质量标签并添加
+`review/queued`；投稿人推送修订后无需维护者手动重新排队。CI 失败时 workflow
+移除 queued 并添加 `review/ci-failed`，因此不会产生付费模型调用。
+
+审计材料保存在 `.maintainer-review/queue/pr-<number>/<head-sha>/`，worktree 默认在
+`.pr-worktree/auto-review/` 并在单稿完成后删除。建议用 launchd/systemd timer 每
+5–10 分钟运行一次，并以进程锁保证同一时间只有一个 worker。执行账号应使用
+fine-grained token 或 GitHub App，只授予本仓库 Contents/PR 所需权限；若 ruleset
+限定管理员合并，则将该 App/账号加入 bypass list 后使用 `--admin-merge`。

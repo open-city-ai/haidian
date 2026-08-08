@@ -1,0 +1,80 @@
+{
+ "schema_version": "0.1.0",
+ "package_id": "ren-axis-jingzhang-ai-belt",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "title_zh": "临时粗略边界替代官方红线",
+   "description_zh": "总体设计范围、统筹研究范围与三处重点区均使用仓库 provisional_boundaries.geojson 的粗略多边形；全部面积、比例、拓扑与图面均以此为基础。",
+   "impact_zh": "所有面积类指标与官方公告约面积存在最高约0.5%的偏差；空间关系仅为方向性示意。",
+   "mitigation_zh": "官方红线与重点区多边形到位后，重算 geometry/ 全部图层与 metrics.json，并更新图纸与可视化。",
+   "affected_files": [
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "geometry/land_use.geojson",
+    "geometry/buildings.geojson",
+    "geometry/roads.geojson",
+    "geometry/green_space.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/phasing.geojson",
+    "metrics.json"
+   ]
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "title_zh": "官方控规条件缺失",
+   "description_zh": "容积率、建筑高度、建筑密度、绿地率、退线等经批准控制指标未包含在已清权资料中。",
+   "impact_zh": "开发强度、高度体量与绿地率只能表达为待确认事项与引导建议。",
+   "mitigation_zh": "取得经批准控规或正式任务书附件后补入 metrics.json 并复核方案。",
+   "affected_files": [
+    "metrics.json",
+    "proposal.md"
+   ]
+  },
+  {
+   "id": "A-GFA-001",
+   "title_zh": "概念建筑组团规模测算口径",
+   "description_zh": "proposed_total_floor_area_sqm 按概念组团基底面积乘以设定层数测算，仅覆盖方案布局的15处更新组团，不含区内既有建筑总量。",
+   "impact_zh": "该值不代表区域规划建筑总规模，不构成开发强度结论。",
+   "mitigation_zh": "现状建筑底数与控规条件确认后由专业团队重新测算。",
+   "affected_files": [
+    "geometry/buildings.geojson",
+    "metrics.json"
+   ]
+  },
+  {
+   "id": "A-EXISTING-001",
+   "title_zh": "现状建筑与权属底数未核验",
+   "description_zh": "本包未取得经核验的现状建筑、产权与在建项目底数，现状诊断与拆改留为方法框架。",
+   "impact_zh": "逐地块、逐栋结论不可给出。",
+   "mitigation_zh": "以官方现状调查与权属核实为前提再行深化。",
+   "affected_files": [
+    "proposal.md",
+    "geometry/buildings.geojson"
+   ]
+  },
+  {
+   "id": "A-TRANSPORT-001",
+   "title_zh": "轨道站点与道路走廊为示意",
+   "description_zh": "轨道站点与三条东西缝合走廊线位均已按 OSM 公开数据校核（ODbL）：带内实测有西土城、蓟门桥、学院桥、六道口、学知园等站点，带缘紧邻大钟寺、知春路、五道口、清华东路西口；但 OSM 非测绘级精度，断面与工程形式仍未经核验。",
+   "impact_zh": "接驳通道与缝合段仅为概念线位，不构成道路红线或工程方案。",
+   "mitigation_zh": "以轨道运营主体与交通主管部门资料为准开展专业设计。",
+   "affected_files": [
+    "geometry/roads.geojson",
+    "geometry/land_use.geojson"
+   ]
+  },
+  {
+   "id": "A-CULTURE-001",
+   "title_zh": "文保范围线缺失",
+   "description_zh": "清华园车站、大钟寺古钟博物馆等文物保护范围与建设控制地带矢量数据未包含在清权资料中。",
+   "impact_zh": "朝圣地标与文化节点仅为概念选址，须避让文保约束。",
+   "mitigation_zh": "取得文保线后复核全部文化节点与地标位置。",
+   "affected_files": [
+    "geometry/public_space.geojson",
+    "proposal.md"
+   ]
+  }
+ ]
+}

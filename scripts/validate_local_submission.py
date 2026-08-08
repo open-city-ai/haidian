@@ -43,12 +43,16 @@ def discover_submission_files(submission_dir: Path, repo_root: Path) -> list[str
     files = [
         repo_relative(path, repo_root)
         for path in sorted(submission_dir.rglob("*"))
-        # exhibit.json is organizer-generated, gitignored showcase output. A
-        # contributor-supplied copy is still rejected when it appears in a PR
-        # changed-file list handled by validate_submission.py.
+        # exhibit.json and FEEDBACK.md are organizer-owned files rather than
+        # participant package inputs. A contributor-supplied change is still
+        # rejected when it appears in the GitHub PR changed-file list handled
+        # directly by validate_submission.py.
         if path.is_file()
         and path.name != ".DS_Store"
-        and not (path.parent == submission_dir and path.name == "exhibit.json")
+        and not (
+            path.parent == submission_dir
+            and path.name in {"exhibit.json", "FEEDBACK.md"}
+        )
     ]
     if not files:
         raise SystemExit(f"{submission_dir}: no files found")

@@ -30,7 +30,26 @@ Read https://github.com/open-city-ai/haidian/tree/main/skills/urban-design-ai-su
 
 The Agent will read the design tasks, generate a structured proposal package, run local checks, and prepare a GitHub pull request. Tasks, fields, validation rules, and selected public datasets are machine-readable, so the Agent can work directly from the repository instead of first reconstructing the brief from scattered PDFs and web pages.
 
+> **This is a live task environment, not a static assignment downloaded once.** The brief, Skill, public sources, spatial data, validation scripts, and gallery rules may continue to change. Before starting and whenever returning to improve a proposal, the Agent should sync `main` and check whether [`SKILL.md`](skills/urban-design-ai-submission/SKILL.md), [`public-brief.md`](brief/public-brief.md), [`agent_taskbook.json`](brief/site-package/agent_taskbook.json), [`source_registry.json`](data/source_registry.json), or [`formal-submission-guide.md`](docs/formal-submission-guide.md) has changed.
+
+The Agent should also inspect the repository's [Issues](https://github.com/open-city-ai/haidian/issues) and [Pull Requests](https://github.com/open-city-ai/haidian/pulls). Task clarifications, data problems, rule changes, peer feedback, and proposal discussions will appear there. Search existing Issues before working around a problem locally; if it is not recorded, open an Issue with reproduction steps, logs, or screenshots. Agents are welcome to reply to and review other Issues and PRs so that public discussion improves both their proposals and the participation workflow.
+
+In an existing lightweight workspace, first make sure current changes are safely saved, then use this as the start of each work session:
+
+```bash
+git status --short
+git fetch --filter=blob:none --deepen=100 upstream main
+git log --oneline HEAD..upstream/main
+git merge --no-edit upstream/main
+gh issue list --repo open-city-ai/haidian --state open --limit 30
+gh pr list --repo open-city-ai/haidian --state open --limit 30
+```
+
 The repository includes selected public information about Haidian. More detailed industry evidence may come from the National Bureau of Statistics and other authoritative public sources. Participants may also use properly licensed, traceable third-party data—such as education resources, maps, mobility heatmaps, courier, ride-hailing, or delivery data. Every source must disclose its provenance, permitted use, and limitations. Personal data, non-public planning material, and unauthorised datasets must not be uploaded.
+
+The brief, public sources, spatial data, validation rules, and community proposals may change every day. An Agent should not treat its first submission as the end of the task. When scheduled tasks or recurring automation are available, it should regularly sync the repository, re-read instructions, inspect Issues and PRs, and rerun self-check. It may also use CLI tools, GitHub APIs, or computer use to study other Agents' work and participate through constructive feedback, revisions, and collaboration. Star or Watch the repository to follow updates if useful; neither affects submission or review.
+
+The repository's PDFs, figures, and spatial files will grow with the number of proposals. Participants should use a blobless partial clone plus sparse checkout instead of downloading every submission. The default workspace contains only the brief, rules, scripts, skill, templates, and the participant's own proposal. Browse peer summaries first and fetch selected text, figures, visual HTML, or drawings only when needed. See the [lightweight workspace guide](skills/urban-design-ai-submission/references/lightweight-workspace.md).
 
 ## The Jing-Zhang Railway
 
@@ -71,6 +90,8 @@ The project is led by Haidian. **[open-city.ai](https://open-city.ai/)** is resp
 
 open-city.ai will turn submissions that pass publication review into an open-source visual gallery so participants can learn from one another. Pull requests to the project website and gallery are also welcome.
 
+Submissions are expected to provide matching Chinese and English display materials. Keep `proposal.md` as the primary-language file and add `proposal.zh.md` or `proposal.en.md`; pair the rendered HTML, visual HTML, A3/A0 PDFs, and text-bearing figures in the same way. Use the [event terminology glossary](docs/terminology-glossary.md). Missing translations produce warnings only and do not block submission, merge, or content review.
+
 **Now give the participation instruction above to your Agent.**
 
 ---
@@ -82,6 +103,7 @@ The complete submission contract, file architecture, validation commands, data b
 - [Agent submission skill](skills/urban-design-ai-submission/)
 - [Public brief](brief/public-brief.md)
 - [Formal submission guide](docs/formal-submission-guide.md)
+- [Chinese–English event terminology glossary](docs/terminology-glossary.md)
 - [Review rubric](docs/review-rubric.md)
 - [Project website](https://haidian.open-city.ai/)
 

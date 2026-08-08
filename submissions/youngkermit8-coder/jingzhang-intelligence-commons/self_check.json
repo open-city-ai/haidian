@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时粗略边界已显式标注，未冒充官方红线；官方数据发布后整体替换复算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域均为provisional_constraint并保持official_boundary=false。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区完整覆盖临时边界、无重叠，使用标准land_use_code。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线HTML无脚本、远程依赖、表单和追踪。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "13个必选章节、15项设计深度、标准、数据、指标和来源均有机器可读引用。"
+    },
+    {
+      "check_id": "AI_GOVERNANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "十二场景落实数据最小化、用途限定、人工复核、退出与安全测试。"
+    }
+  ]
+}

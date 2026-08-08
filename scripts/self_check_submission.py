@@ -18,9 +18,8 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 
 
 def script_path(repo_root: Path, name: str) -> Path:
-    candidate = repo_root / "scripts" / name
-    if candidate.exists():
-        return candidate
+    # Keep every subprocess on the same trusted validator version as this
+    # entrypoint.  repo_root may be an untrusted or older PR checkout.
     return SCRIPT_DIR / name
 
 
@@ -118,6 +117,16 @@ def next_actions(report: dict[str, Any]) -> list[str]:
         for warning in stdout.get("warnings", []) or []:
             if "cannot enter formal" in warning or "non-official" in warning:
                 actions.append(f"Resolve formal-readiness warning: {warning}")
+            elif any(
+                marker in warning
+                for marker in [
+                    "display counterpart",
+                    "bilingual",
+                    "translation_of",
+                    "front matter should set language",
+                ]
+            ):
+                actions.append(f"Add recommended bilingual display material (non-blocking): {warning}")
     # Surface a hard crash (non-zero exit with no parsed errors), e.g. the
     # submission directory living outside the repo root.
     if isinstance(deterministic, dict) and not deterministic.get("ok") and not reported_errors:

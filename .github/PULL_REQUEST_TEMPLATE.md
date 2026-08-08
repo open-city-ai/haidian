@@ -9,13 +9,14 @@
 
 ## Intake 成果清单（必填）
 
-- [ ] `proposal.md` 使用中文或英文；英文投稿已在同一文件的 `# 中文正式译文` 下附完整中文版本，并设置 `chinese_translation: included`、`title_zh`、`summary_zh`
+- [ ] `proposal.md` 已设置 `translation_file`，并附 `proposal.en.md` 或 `proposal.zh.md` 完整译稿；缺失时我理解 CI 只提示 warning，不阻断投稿或审稿
+- [ ] HTML、A3/A0 和含文字图件已提供对应语言副本，翻译优先采用 `docs/terminology-glossary.md` 推荐译法
 - [ ] `manifest.json` 中 `package_type` 为 `professional_design_package`、`package_state` 为 `ready_for_review`（`submission_stage` 仅为旧版兼容）
 - [ ] 已提交 `agent.json`、`metrics.json`、`assumptions.json`、`sources.json`、`self_check.json`
 - [ ] 已提交 `compliance_matrix.json`，覆盖公告 1.3、1.4、1.5 和 `agent_taskbook.json` 的 `agent.1`-`agent.6` 必选任务
 - [ ] 已提交 `standard_matrix.json`，说明专业标准、图纸、图层、指标、来源和自检证据
 - [ ] 已提交 `design_depth_matrix.json`，核心成果深度项均为 `complete`
-- [ ] `proposal.md` 是唯一主体方案文本，并使用 `[source:...]`、`[standard:...]`、`[depth:...]`、`[data:...]`、`[metric:...]` 引用证据
+- [ ] `proposal.md` 是主语言主体方案，语言副本保持等义，并使用 `[source:...]`、`[standard:...]`、`[depth:...]`、`[data:...]`、`[metric:...]` 引用证据
 - [ ] `proposal.md` 可读展开了命名/Logo、5-8 个生态案例、10 张以上场景卡、3 个以上测试验证场景、5 类以上用户画像、3 个以上朝圣地标、文化叙事和长期运营机制
 - [ ] 已运行 `scripts/render_proposal_html.py`，并提交 `report/proposal.html` 作为离线阅读版
 - [ ] 已替换 scaffold 正文、设计图层、五张图和 A3/A0 占位文件，移除 `SCAFFOLD-DRAFT`，并运行 `scripts/finalize_submission.py`
@@ -48,7 +49,7 @@
 ## 变更范围
 
 - [ ] 本 PR 只修改 `submissions/<my-github-login>/` 下的内容
-- [ ] 本 PR 不修改 `gallery-publication.json` 或 `submissions-data.js`；公开展示和首页精选由维护者决定
+- [ ] 本 PR 不修改 `gallery-publication.json` 或 `submissions-data.js`；已合并方案自动进入展示页，首页精选由维护者决定
 - [ ] 本 PR 不修改 `.github/`、`brief/`、`schema/`、`scripts/`、`README.md` 或他人方案目录
 
 ## 简要说明
@@ -64,8 +65,10 @@ python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```
 
 - [ ] 一键自检 `self_check_submission.py` 已通过
+- [ ] 投稿预检 `participant_preflight.py --check-push` 已通过，目录归属、变更范围、文件大小和远程推送均无 blocker
 - [ ] deterministic validation、spatial review、visual packaging check、professional evidence review 均为 PASS
 - [ ] 已记录 `package_type` 与派生的 `review_status`，且未把包类型误写为评审决定

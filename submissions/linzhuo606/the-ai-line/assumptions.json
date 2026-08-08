@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "topic": "临时粗略边界",
+      "assumption_zh": "总体设计范围与三处重点区采用仓库临时粗略多边形（provisional_rough）生成，全部面积为近似值。",
+      "impact_zh": "全部空间指标与图面为临时口径；官方矢量红线补齐后需整体复算（清单见 proposal.md 第十一章）。",
+      "confidence": "medium",
+      "required_official_data": "资格预审文件图纸包中的官方红线与三区多边形"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "topic": "法定控制条件缺失",
+      "assumption_zh": "批准控规的容积率、建筑高度、密度、绿地率等控制条件未包含在公开资料包中。",
+      "impact_zh": "全部强度、高度结论仅为概念建议，metrics.json 中相应指标为 unknown；不得作为审定指标使用。",
+      "confidence": "high",
+      "required_official_data": "批准控规条件或正式任务书附件"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "topic": "现状底数缺失",
+      "assumption_zh": "现状建筑量、权属、文保建控地带、市政管线等底数无公开清权数据。",
+      "impact_zh": "拆改留分类与更新清单仅为方向性建议，不构成地块级拆改留结论。",
+      "confidence": "high",
+      "required_official_data": "官方测绘、权属普查与文保部门资料"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "topic": "概念建筑体量",
+      "assumption_zh": "buildings.geojson 中573处基底为规模论证用概念体量（网格布点，层数为假设值）。",
+      "impact_zh": "总建筑规模与容积率为量级论证口径，非工程或法定方案。",
+      "confidence": "medium",
+      "required_official_data": "现状建筑普查与控规审定指标"
+    },
+    {
+      "id": "A-ROADS-001",
+      "topic": "道路概念线位",
+      "assumption_zh": "roads.geojson 与用地中的道路走廊按公开道路名称推断的概念线位表达，宽度统一示意。",
+      "impact_zh": "道路面积率为内部概念口径；精确红线、断面与工程线位以官方资料为准。",
+      "confidence": "low",
+      "required_official_data": "道路红线与交通专项资料"
+    },
+    {
+      "id": "A-CASES-001",
+      "topic": "全球案例定性引用",
+      "assumption_zh": "7个全球AI创新生态案例为公开常识性定性概述，不含未经核实的数字。",
+      "impact_zh": "案例仅用于机制转化参考，不作为投资、产值或对标数据依据。",
+      "confidence": "medium",
+      "required_official_data": "无（如需量化对标应另行核实）"
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "topic": "AI场景与运营概念属性",
+      "assumption_zh": "12张场景卡、5处地标、活动与运营机制均为概念建议，隐私边界与人工复核为设计前提。",
+      "impact_zh": "不构成已批准运营、活动安排或政府承诺；测试场景需按主管部门流程申请。",
+      "confidence": "high",
+      "required_official_data": "场景开放主管部门的许可流程与数据管理要求"
+    },
+    {
+      "id": "A-CULTURE-001",
+      "topic": "文化资源位置示意",
+      "assumption_zh": "清华园车站、大钟寺（觉生寺）等文化资源在图面上的位置为公开信息推断的示意点位。",
+      "impact_zh": "文保范围与建控地带以文物部门公布为准；相关设计遵循先保护后利用。",
+      "confidence": "low",
+      "required_official_data": "文物保护单位保护范围与建设控制地带矢量数据"
+    },
+    {
+      "id": "A-ACCESS-001",
+      "topic": "无障碍设施概念属性与案例引用",
+      "assumption_zh": "无障碍之线专章的设施（导引带、APS、安全岛、触觉模型、开源模型库、占用AI监测）均为概念建议，数量由概念路网几何推算；国际案例（马尔堡、日本点字砖体系、NaviLens、Wayfindr、新加坡BCA规范等）为公开常识性定性引用。",
+      "impact_zh": "工程做法以《无障碍环境建设法》、国家与北京市地方标准为准；深化阶段应由残障使用者参与评审与验收；案例不作为量化对标依据。",
+      "confidence": "medium",
+      "required_official_data": "道路红线、交通详勘与无障碍专项设计条件"
+    }
+  ]
+}

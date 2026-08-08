@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing-Zhang Autonomous Commons: A Public Belt After Automated Driving - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  white-space: nowrap;
+  border: 1px solid #cbd5e1;
+  background: #f8fafc;
+  color: #31506f;
+  border-radius: 4px;
+  padding: 0.03em 0.32em;
+  font-size: 0.92em;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>Jing-Zhang Autonomous Commons: A Public Belt After Automated Driving</h1>
+<p class="summary"></p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<h1>Jing-Zhang Autonomous Commons: A Public Belt After Automated Driving</h1>
+<p>&gt; **Core proposition:** the more automated driving spreads, the less the city should be designed around vehicles alone. The Jing-Zhang belt must protect continuous walking, wheelchair, cycling, child, care and maintenance routes before it decides where vehicles may operate.</p>
+<p>This is an independent autonomous-mobility iteration, not a renamed copy of the earlier Jing-Zhang Open Pulse package. It uses the same provisional spatial base and adds machine-readable evidence for autonomous-driving curbs, low-speed shuttles, accessible service, remote intervention, data minimisation and failure rollback. Every spatial move remains a concept proposal; the package does not claim that any road inside the site is open to autonomous driving, nor that a vehicle, vendor or permit already exists.</p>
+<h2>1. Evidence, policy boundary and data status</h2>
+<p>The open call requires AI+transport, robotics, automated driving and unmanned-delivery scenarios, together with three spatial scales, three key areas and auditable urban-design depth <span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span> <span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span>. The package uses the repository&#x27;s provisional boundary, key areas, standards and source registry. Both the site and key-area layers are explicitly <code>official_boundary=false</code> and <code>geometry_role=provisional_constraint</code> <span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span> <span class="evidence evidence-data">[data:geometry/key_areas.geojson#PROV-KEY-001]</span>.</p>
+<p>Beijing&#x27;s 2025 rules for automated-vehicle road testing and demonstration applications place L3+ activities within a joint municipal working mechanism and approved roads/areas <span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span>. The 2025 policy-first-zone notice identifies designated roads, qualifications and time restrictions <span class="evidence evidence-source">[source:BEIJING-AV-ROADS-2025]</span>. The national MIIT/MPS/MOT framework requires an eligible test subject, driver, vehicle, testing evaluation and liability capacity <span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span>. These sources establish a regulated pathway, not a local permit, road opening or operating baseline.</p>
+<p>The package distinguishes <code>known</code> geometry-derived values, <code>design_target</code> trial gates, <code>unknown</code> local performance baselines and <code>blocked</code> conditions that prohibit expansion. The three research papers on street-canyon CFD, wind/heat/PM2.5 monitoring and roof/canyon geometry are method evidence only; they do not provide Jing-Zhang boundary conditions, health causality, accident rates or transferable percentages <span class="evidence evidence-source">[source:LIU-URBAN-VENTILATION-2017]</span> <span class="evidence evidence-source">[source:MENG-WIND-HEAT-PM25-2022]</span> <span class="evidence evidence-source">[source:NOSEK-STREET-CANYON-2025]</span>.</p>
+<h2>2. Spatial structure: one public axis, three test yards, two safety nets</h2>
+<p>The proposal is organised as **one public axis + three test yards + two safety nets + twelve scenario cards**. The public axis is the Jing-Zhang heritage park and its slow-mobility/blue-green connections. The test yards are Zhongzhiyuan, the AI Origin Community and Dazhongsi. The safety nets are:</p>
+<ul>
+<li>a **human safety net**: continuous accessible routes, staffed service, legible curbs, low-speed operation, emergency stop and human takeover;</li>
+<li>an **ecology-and-data safety net**: weather and network rollback, dark-sky and bird protection, data minimisation, public algorithm records and revocable consent.</li>
+</ul>
+<p>Autonomous driving is a constrained service layer over walking, cycling, rail, transit, emergency and maintenance systems. Every vehicle or robot yields to the continuous human route. Curbs register who may stop, when, for how long and who clears the space <span class="evidence evidence-standard">[standard:BEIJING-ACCESSIBILITY-REGULATION]</span> <span class="evidence evidence-standard">[standard:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS]</span>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="Overview of the autonomous public belt"><figcaption>Overview of the autonomous public belt</figcaption></figure>
+<h2>3. Three key areas</h2>
+<div class="proposal-table"><table><thead><tr><th>Key area</th><th>Public role</th><th>First reversible test</th><th>Hard boundary</th></tr></thead><tbody><tr><td>Zhongzhiyuan</td><td>safety evaluation, simulation, vehicle-road-cloud interfaces and enterprise services</td><td>low-speed shuttle or inspection within a managed window</td><td>no social-road operation without approval; simulation is not safety proof</td></tr><tr><td>AI Origin Community</td><td>community service, accessible ride, public explanation and opt-out</td><td>assisted reservation with an equivalent human path</td><td>no app-only access, continuous resident tracking or forced consent</td></tr><tr><td>Dazhongsi</td><td>rail interchange, curb logistics and event-day human-machine separation</td><td>delivery/maintenance robot at a station-edge curb</td><td>no blocking fire, accessible or emergency routes; immediate rollback in rain, crowds or network loss</td></tr></tbody></table></div>
+<p>The three detailed points are stored in <code>visual/assets/autonomy_nodes.json</code>; they are provisional design markers, not designated test roads or statutory station locations <span class="evidence evidence-data">[data:visual/assets/autonomy_nodes.json#AUTO-NODE-001]</span>.</p>
+<h2>4. Design rules for an automated future</h2>
+<p>**Curb before vehicle.** Draw the continuous human route and the exit-capable service zone before drawing a vehicle route. Curb states are <code>open</code>, <code>booked</code>, <code>service</code>, <code>restricted</code> and <code>human-only</code>; every change needs an owner, time window, sign and restoration condition.</p>
+<p>**Speed and rights are gates.** The package does not invent a statutory speed limit. It records low-speed operation, yielding, stopping distance and human intervention as test fields <span class="evidence evidence-metric">[metric:autonomy_trial_speed_limit_status]</span> <span class="evidence evidence-metric">[metric:remote_stop_response_seconds]</span>. A successful trial lets the slowest pedestrian, wheelchair user, child and maintenance worker complete the route safely.</p>
+<p>**Someone can always take over.** Every test yard has staffed service, physical emergency stop, remote stop, broadcast, incident log and withdrawal route. Uncertainty, communication loss, severe weather, crowds, ecological protection or blocked accessibility defaults to human service or shutdown <span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span> <span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span>.</p>
+<p>**Data is collected only to complete the service.** Read the authorised curb state, obstacle class, accessible route and emergency message; do not build resident profiles or publish continuous camera streams. Public records show aggregate events, responsibility and corrections; retention and deletion require professional and legal confirmation <span class="evidence evidence-source">[source:CASE-HELSINKI-AI-REGISTER]</span> <span class="evidence evidence-source">[source:CASE-UK-ATRS]</span> <span class="evidence evidence-source">[source:NIST-HUMAN-CENTERED-AI]</span>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="Curb states, human takeover and ecological rollback"><figcaption>Curb states, human takeover and ecological rollback</figcaption></figure>
+<h2>5. Twelve scenario cards</h2>
+<p>The cards cover accessible rides, low-speed shuttle, rail transfer, night maintenance, rain/snow service, scheduled loading, event separation, network-loss rollback, child/older-adult assistance, public-asset inspection, open safety-audit day and resident complaint/opt-out. Every card has a carrier space, responsible party, data boundary, acceptance gate and stop condition in <code>visual/assets/autonomous-scenarios.json</code> <span class="evidence evidence-metric">[metric:autonomy_scenario_card_count]</span>. They are design objects, not existing services.</p>
+<h2>6. Industry tests and people</h2>
+<p>Three tests make the concept falsifiable: **AV-T01 curb-conflict test** records obstruction, yielding, emergency-stop and loading conflicts; **AV-T02 equivalent accessible service** compares automated, human and paper/phone routes; **AV-T03 network/weather rollback** tests stop, broadcast, takeover, evacuation and recovery across the three yards <span class="evidence evidence-metric">[metric:curb_conflict_rate]</span> <span class="evidence evidence-metric">[metric:accessible_route_continuity_ratio]</span> <span class="evidence evidence-metric">[metric:autonomy_fallback_success_ratio]</span>.</p>
+<p>Residents, wheelchair users and carers, students, park workers, start-ups, logistics and maintenance crews, older visitors, night workers and child guardians are users and reviewers. Each gets an offline entrance, human help, revocable consent and a public complaint route <span class="evidence evidence-source">[source:BEIJING-ACCESSIBILITY-REGULATION]</span>.</p>
+<h2>7. Landmarks and cultural narrative</h2>
+<p>The concept proposes three public landmarks: **the Human-Takeover Monument** at the Origin Community, recording rejected and paused automation; **the Curb Lighthouse** at Zhongzhiyuan, showing aggregate status and review gates without personal data; and **the Human-Machine Transfer Salon** at Dazhongsi, mapping rail, walking, wheelchair, freight and public service as one arrival system. These are cultural and interpretive proposals, not approved structures or sponsorship commitments <span class="evidence evidence-metric">[metric:ai_landmark_count]</span>.</p>
+<h2>8. Spatial layers, phases and evidence</h2>
+<p>The package retains the provisional base layers for land use, buildings, roads, green space and public space and adds <code>visual/assets/autonomy_nodes.json</code>. Existing area values are recomputed from the submitted layers <span class="evidence evidence-metric">[metric:site_area_sqm]</span> <span class="evidence evidence-metric">[metric:green_ratio]</span> <span class="evidence evidence-metric">[metric:public_space_ratio]</span>. The new autonomy metrics are deliberately <code>unknown</code> or <code>design_target</code>: curb conflict rate, accessible-route continuity, remote-stop response, rollback success, data-minimisation coverage and trial-route length <span class="evidence evidence-metric">[metric:curb_conflict_rate]</span> <span class="evidence evidence-metric">[metric:remote_stop_response_seconds]</span> <span class="evidence evidence-metric">[metric:data_minimization_coverage_ratio]</span>.</p>
+<p>Phasing is: **P0 legible curbs and accessibility audit**; **P1 approved, low-speed, reversible tests**; **P2 conditional expansion only after safety, traffic, ecology, privacy, participation and liability gates pass**. Automated vehicles are a service layer, never an assumed new road capacity. Climate, drainage, microclimate and ecology outcomes remain unknown without local observations and professional models <span class="evidence evidence-source">[source:BEIJING-VENTILATION-NETWORK-2035]</span> <span class="evidence evidence-source">[source:BEIJING-FLOOD-PLAN-2021-2025]</span> <span class="evidence evidence-source">[source:BEIJING-BIRD-BIODIVERSITY-2024]</span>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="Stage gates, metrics and rollback"><figcaption>Stage gates, metrics and rollback</figcaption></figure>
+<h2>9. Compliance, risks and future recalculation</h2>
+<p><code>compliance_matrix.json</code> covers announcement sections 1.3–1.5 and agent.1–agent.6. <code>standard_matrix.json</code> covers urban design, detailed planning, walking/cycling, accessibility, asset management, service-robot and automated-driving boundaries. <code>design_depth_matrix.json</code> links every depth item to narrative, layer, metric and rollback condition. No claim substitutes for a permit, vehicle certification, safety assessment, traffic review, insurance, privacy impact assessment, ecological review or construction document <span class="evidence evidence-source">[source:BEIJING-AV-SAFETY-ASSESSMENT-2025]</span>.</p>
+<p>Once official polygons, road/utility/ownership, traffic, weather, drainage and ecology baselines arrive, all layers, metrics, drawings, reports and self-check outputs must be regenerated. A single image must never be changed to turn a future target into a known fact.</p>
+<h2>References</h2>
+<ul>
+<li><code>brief/public-brief.md</code>, <code>brief/site-package/agent_taskbook.json</code>, <code>data/source_registry.json</code></li>
+<li><span class="evidence evidence-source">[source:BEIJING-AV-TEST-2025]</span>, <span class="evidence evidence-source">[source:BEIJING-AV-ROADS-2025]</span>, <span class="evidence evidence-source">[source:BEIJING-AV-SAFETY-ASSESSMENT-2025]</span>, <span class="evidence evidence-source">[source:MIIT-AV-TEST-2021]</span></li>
+<li><span class="evidence evidence-source">[source:BEIJING-ACCESSIBILITY-REGULATION]</span>, <span class="evidence evidence-source">[source:BEIJING-WALK-CYCLE-DB11-1761]</span>, <span class="evidence evidence-source">[source:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS]</span>, <span class="evidence evidence-source">[source:ISO-13482-SERVICE-ROBOT-SAFETY]</span></li>
+<li><span class="evidence evidence-source">[source:CASE-HELSINKI-AI-REGISTER]</span>, <span class="evidence evidence-source">[source:CASE-UK-ATRS]</span>, <span class="evidence evidence-source">[source:NIST-HUMAN-CENTERED-AI]</span></li>
+<li><span class="evidence evidence-source">[source:LIU-URBAN-VENTILATION-2017]</span>, <span class="evidence evidence-source">[source:MENG-WIND-HEAT-PM25-2022]</span>, <span class="evidence evidence-source">[source:NOSEK-STREET-CANYON-2025]</span></li>
+</ul>
+<p>**Boundary statement:** this is an auditable concept and trial framework. It is not a government-approved plan, road-opening notice, autonomous-driving permit, company partnership, health/air-quality proof or construction commitment.</p>
+</main>
+</body>
+</html>

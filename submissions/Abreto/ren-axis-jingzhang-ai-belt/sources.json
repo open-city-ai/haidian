@@ -1,0 +1,407 @@
+{
+ "schema_version": "0.1.0",
+ "package_id": "ren-axis-jingzhang-ai-belt",
+ "note_zh": "来源记录复制并对齐 data/source_registry.json；usable_for_formal 与限制条款以登记表为准。正式/背景两表隔离：正式事实与规范论据仅取自 usable_for_formal=yes 的批准来源；background_only 来源（OSM、全球案例、活动文章、产业报道）仅承担语境与展示，不支撑红线、精确量测、控制指标或承诺性结论。",
+ "sources": [
+  {
+   "id": "OFFICIAL-ANNOUNCEMENT",
+   "registry_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+   "title": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+   "publisher": "北京市规划和自然资源委员会海淀分局",
+   "published_date": "2026-05-09",
+   "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+   "authority_level": "official_public",
+   "usable_for_formal": "yes",
+   "used_for_zh": "三层范围、面积、四至、设计任务、成果深度的主控依据。",
+   "not_usable_for_zh": "不含精确红线与控规条件。"
+  },
+  {
+   "id": "AGENT-TASKBOOK",
+   "registry_source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+   "title": "面向全球智能体开展“百年京张AI创新带城市设计开源征集”任务书摘录",
+   "publisher": "用户提供清权文件（仓库存结构化摘录）",
+   "published_date": "2026-05-18",
+   "url": "brief/site-package/agent_taskbook.json",
+   "authority_level": "user_provided_cleared",
+   "usable_for_formal": "yes",
+   "used_for_zh": "六项智能体任务、共创原则、评审维度与统一边界条款。",
+   "not_usable_for_zh": "不作为官方红线、法定控制或政府实施承诺。"
+  },
+  {
+   "id": "SITE-PACKAGE",
+   "registry_source_id": null,
+   "registry_note_zh": "仓库整理层，无独立登记ID；其内容的权威性以其引用的原始来源为准。",
+   "title": "站点资料包 brief/site-package（design_brief、allowed_design_space、enums、ranges、schemas）",
+   "publisher": "仓库维护者整理",
+   "published_date": "2026-06-05",
+   "url": "brief/site-package/",
+   "authority_level": "maintainer_curated",
+   "usable_for_formal": "yes",
+   "used_for_zh": "坐标策略、图层枚举、用地编码、已知面积事实与校验 schema。",
+   "not_usable_for_zh": "不替代官方原始文件。"
+  },
+  {
+   "id": "SOURCE-REGISTRY",
+   "registry_source_id": null,
+   "registry_note_zh": "登记表本身即登记机制，无独立登记ID。",
+   "title": "公开资料登记表 data/source_registry.json",
+   "publisher": "仓库维护者整理",
+   "published_date": "2026-06-07",
+   "url": "data/source_registry.json",
+   "authority_level": "maintainer_curated",
+   "usable_for_formal": "yes",
+   "used_for_zh": "区分 formal 可用、背景与 provisional 资料的强制上下文。",
+   "not_usable_for_zh": "登记表本身不构成新的官方事实。"
+  },
+  {
+   "id": "PROCESSED-FACT-PACK",
+   "registry_source_id": null,
+   "registry_note_zh": "仓库整理层（导航用途），无独立登记ID；不含国际案例等外部事实。",
+   "title": "处理资料包 data/processed（事实包、范围摘要、任务索引、资料用途矩阵、缺资料清单）",
+   "publisher": "仓库维护者整理",
+   "published_date": "2026-06-07",
+   "url": "data/processed/",
+   "authority_level": "maintainer_curated",
+   "usable_for_formal": "yes",
+   "used_for_zh": "任务清单、范围结构、资料用途与缺口清单的导航层。",
+   "not_usable_for_zh": "不替代原始来源，正文仍回引原始 source id。"
+  },
+  {
+   "id": "PROVISIONAL-BOUNDARIES",
+   "registry_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+   "title": "临时粗略边界与三处重点区多边形 provisional_boundaries.geojson",
+   "publisher": "仓库维护者",
+   "published_date": "2026-06-05",
+   "url": "brief/site-package/geometry/provisional_boundaries.geojson",
+   "authority_level": "provisional",
+   "usable_for_formal": "provisional_only",
+   "used_for_zh": "临时生成边界、可视化与提交自检；全部面积指标的临时计算基础。",
+   "not_usable_for_zh": "不得作为官方红线、法定控制、精确面积或审批依据；官方数据到位后必须重算。"
+  },
+  {
+   "id": "MOHURD-URBAN-DESIGN-MEASURES",
+   "registry_source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+   "title": "城市设计管理办法",
+   "publisher": "中华人民共和国住房和城乡建设部",
+   "published_date": "2017-03-14",
+   "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+   "authority_level": "official_public",
+   "usable_for_formal": "yes",
+   "used_for_zh": "公共空间、风貌、高度体量色彩统筹的原则依据（本地快照见 standards/references）。"
+  },
+  {
+   "id": "MOHURD-CONTROL-DETAILED-PLANNING",
+   "registry_source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+   "title": "城市、镇控制性详细规划编制审批办法",
+   "publisher": "中华人民共和国住房和城乡建设部",
+   "published_date": "2022-01-25",
+   "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+   "authority_level": "official_public",
+   "usable_for_formal": "yes",
+   "used_for_zh": "区分已知控制条件、设计建议与待确认控规事项的依据。"
+  },
+  {
+   "id": "MNR-LAND-USE-CLASSIFICATION",
+   "registry_source_id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+   "title": "国土空间调查、规划、用途管制用地用海分类指南",
+   "publisher": "中华人民共和国自然资源部",
+   "published_date": "2023-11-22",
+   "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+   "authority_level": "official_public",
+   "usable_for_formal": "yes",
+   "used_for_zh": "land_use.geojson 用地编码与指标口径依据。"
+  },
+  {
+   "id": "HAIDIAN-1X1",
+   "registry_source_id": "SRC-2026-HAIDIAN-1X1",
+   "title": "海淀区发布“1+X+1”现代化产业体系建设布局",
+   "publisher": "北京市海淀区人民政府",
+   "published_date": "2026-03-02",
+   "url": "https://www.bjhd.gov.cn/ztzx/2026/2026jjshgzlfzdh/yw/202603/t20260303_4806875.shtml",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "产业体系背景语境。",
+   "not_usable_for_zh": "不用于空间控制结论或指标事实。"
+  },
+  {
+   "id": "GLOBAL-CASE-PUBLIC-REFS",
+   "registry_source_id": null,
+   "registry_note_zh": "八个全球案例的公开检索入口（官方/机构主页级），背景性外部事实来源；深化阶段应补充逐案文献。",
+   "title": "全球AI创新生态案例公开检索入口（8例）",
+   "publisher": "各案例官方/机构主页",
+   "published_date": "2026-08-07",
+   "url": "见 case_refs 列表",
+   "case_refs": [
+    {
+     "case": "波士顿肯德尔广场",
+     "url": "https://kendallsq.org"
+    },
+    {
+     "case": "伦敦国王十字知识区",
+     "url": "https://www.kingscross.co.uk"
+    },
+    {
+     "case": "巴黎 Station F",
+     "url": "https://stationf.co"
+    },
+    {
+     "case": "新加坡纬壹科技城 one-north",
+     "url": "https://www.jtc.gov.sg"
+    },
+    {
+     "case": "深圳南山科技园片区",
+     "url": "https://www.szns.gov.cn"
+    },
+    {
+     "case": "首尔板桥科技谷",
+     "url": "https://www.pangyotechnovalley.org"
+    },
+    {
+     "case": "深港河套合作区",
+     "url": "https://www.szftz.gov.cn"
+    },
+    {
+     "case": "多伦多 MaRS 创新区",
+     "url": "https://www.marsdd.com"
+    }
+   ],
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "案例段落的外部事实检索入口；不用于任何指标事实或空间控制结论。",
+   "not_usable_for_zh": "主页链接为检索入口而非逐条文献；深化阶段须核实并补充正式来源。"
+  },
+  {
+   "id": "OSM-BASE",
+   "registry_source_id": "SRC-OSM-COPYRIGHT",
+   "title": "OpenStreetMap 现状要素参照（北三环/知春路/北四环/北五环/京藏高速/小月河/清河/京张高铁走廊/13号线地面段）",
+   "publisher": "OpenStreetMap contributors",
+   "published_date": "2026-08-07",
+   "url": "https://www.openstreetmap.org/copyright",
+   "authority_level": "open_data_license",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "existing_condition 现状参照层（constraints.geojson EX-OSM-*）；三条缝合走廊线位校核锚定；16处高校校园与9处轨道站点位（因站点资料包图层枚举无教育/站点现状层，点位不入 geometry/，完整上下文存档随包交付于 visual/assets/osm-context.json，含 Overpass 查询、获取日期与 ODbL 署名，可逐点复核）。ODbL 1.0 署名：© OpenStreetMap contributors。",
+   "not_usable_for_zh": "非测绘级精度；不得作为红线、控制线、精确量测或规划控制依据。"
+  },
+  {
+   "id": "OPEN-CALL-LAUNCH-ARTICLE",
+   "registry_source_id": null,
+   "registry_note_zh": "征集活动发布文章（公众号公开文章），未入公开资料登记表；仅作活动机制背景参照。",
+   "title": "全球首次，只许 Agent 参与的城市规划（征集活动发布文章）",
+   "publisher": "金色传说大聪明（活动 Agent 基建技术负责人）",
+   "published_date": "2026-08-07",
+   "url": "https://mp.weixin.qq.com/s/bFR52i8SZghE12fZJL4rpA",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "活动机制背景：Agent 评审、纪念体系（荣誉墙/里程碑/展示节点/开发者荣誉墙、年度刻碑）、开发者散步道任务示例、时间安排（8月31日截止）。",
+   "not_usable_for_zh": "不用于边界、控制或承诺性结论；纪念设施安排以活动方正式文件为准。"
+  },
+  {
+   "id": "CN-LEGAL-INTERFACE-REFS",
+   "registry_source_id": null,
+   "registry_note_zh": "全国性法律法规与部门规章为公开规范文本，未入本仓库公开资料登记表；登记于此作为场景治理台账「法律接口」字段的规范指针，正式文本以国家法律法规数据库为准。",
+   "title": "场景法律接口引用的法律法规清单（公开规范文本指针）",
+   "publisher": "全国人大常委会/国务院及相关主管部门（正式文本见国家法律法规数据库）",
+   "published_date": "各法规以其公布文本与施行日期为准",
+   "url": "https://flk.npc.gov.cn（国家法律法规数据库检索入口）",
+   "statute_refs": [
+    {
+     "name": "中华人民共和国个人信息保护法",
+     "used_for": "涉个人信息场景的最小必要与删除义务指针"
+    },
+    {
+     "name": "中华人民共和国数据安全法",
+     "used_for": "数据处理场景的分类分级义务指针"
+    },
+    {
+     "name": "生成式人工智能服务管理暂行办法",
+     "used_for": "生成内容场景的服务管理义务指针"
+    },
+    {
+     "name": "互联网信息服务深度合成管理规定",
+     "used_for": "合成内容显著标识义务指针"
+    },
+    {
+     "name": "智能网联汽车道路测试与示范应用管理规范（国家及北京市相关规定）",
+     "used_for": "自动驾驶与机器人测试场景的法定测试义务指针"
+    },
+    {
+     "name": "公共安全视频图像信息系统相关管理规定",
+     "used_for": "公共区域影像管理义务指针"
+    }
+   ],
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "仅作场景治理台账「法律接口」字段的义务类别指针：指明各场景在运营阶段应对接的法定义务方向；不构成本方案的规范论据，不据此作出任何合规认定，具体适用性由运营主体依法评估确认。",
+   "not_usable_for_zh": "不用于空间控制、指标事实或合规结论；条文适用与备案义务以主管部门解释及法定程序为准。"
+  },
+  {
+   "id": "JZ-PARK-PHASE2-OPEN",
+   "registry_source_id": null,
+   "registry_note_zh": "公开新闻报道（科技日报/北京商报/千龙网同日），未入登记表；作为既成空间事实的背景锚点。",
+   "title": "京张铁路遗址公共空间改造提升工程（二期）建成开放——西直门至北五环9公里带状文化绿廊全线落成",
+   "publisher": "科技日报等（2026-08-06 多家同日报道）",
+   "published_date": "2026-08-06",
+   "url": "https://www.stdaily.com/web/gdxw/2026-08/06/content_560091.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "主脊底盘的既成事实：二期约53公顷、南段社区活力段/北段自然休闲段、直接服务沿线70个社区约45万人；桥下空间盘活、城市支路打通、与清河绿廊互通。",
+   "not_usable_for_zh": "报道口径非工程档案；面积与范围以官方竣工资料为准。"
+  },
+  {
+   "id": "JZ-PARK-PHASE2-PLAN",
+   "registry_source_id": null,
+   "registry_note_zh": "市发改委官网转载媒体报道，未入登记表。",
+   "title": "京张铁路遗址公园二期年内开工（9条支路、46个出入口、桥下空间活化、带动西郊冷冻厂/明光村更新）",
+   "publisher": "北京市发展和改革委员会官网转载（2024-09）",
+   "published_date": "2024-09-07",
+   "url": "https://fgw.beijing.gov.cn/gzdt/fgzs/mtbdx/bzwlxw/202409/t20240909_3798305.htm",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "缝合走廊与断面选择的规划语境：支路打通、出入口加密、桥下活化、沿线更新项目带动。",
+   "not_usable_for_zh": "规划期口径（约70公顷）不覆盖2026年竣工口径；不作工程结论。"
+  },
+  {
+   "id": "JZ-PARK-PHASE1",
+   "registry_source_id": null,
+   "registry_note_zh": "首都之窗/海淀区政府公开发布，未入登记表。",
+   "title": "京张铁路遗址公园一期建成开放（2023-06，全市公共空间改造提升试点；桥下书店/咖啡/儿童活动/音乐广场）",
+   "publisher": "首都之窗、海淀区人民政府",
+   "published_date": "2023-06-30",
+   "url": "https://www.beijing.gov.cn/renwen/cshd/202306/t20230630_3150675.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "一期2.4公里段既成事实与桥下空间利用先例。",
+   "not_usable_for_zh": "不作为红线或工程依据。"
+  },
+  {
+   "id": "JZ-PARK-COLUMN-GALLERY",
+   "registry_source_id": null,
+   "registry_note_zh": "北京日报/北京旅游网公开报道，未入登记表。",
+   "title": "13号线桥下廊柱历史画廊（西直门—南口—青龙桥站名彩绘序列、'苏州码子'里程记号、风雨跑步道；13号线扩能改造后遗留高架规划高线绿地）",
+   "publisher": "北京日报（打卡大城）、北京旅游网",
+   "published_date": "2025-06-30",
+   "url": "https://s.visitbeijing.com.cn/gallery/25534",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "K标系统的在地既有载体（零号样段）与历史支线的远期高线绿地语境。",
+   "not_usable_for_zh": "高线绿地为报道中的规划设想，非既定工程安排。"
+  },
+  {
+   "id": "JZ-HERRINGBONE-PAPER",
+   "registry_source_id": null,
+   "registry_note_zh": "公开学术文献，未入登记表；作为史实参照。",
+   "title": "《京张铁路'人'字形路线探析》（段海龙，《科学文化评论》2017年第5期，109—116页）",
+   "publisher": "《科学文化评论》",
+   "published_date": "2017",
+   "url": "https://wap.cnki.net/touch/web/Journal/Article/KXWP201705007.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "人字形折返展线位于青龙桥的史实锚点——与本方案所用'西直门北侧双走廊分岔'为两件不同的几何事实，正文已明确区分。",
+   "not_usable_for_zh": "不用于空间量测。"
+  },
+  {
+   "id": "MOHURD-63-NO-MASS-DEMOLITION",
+   "registry_source_id": null,
+   "registry_note_zh": "国务院部门公开政策文件，未入登记表；作为更新方法的方向锚点。",
+   "title": "《关于在实施城市更新行动中防止大拆大建问题的通知》（建科〔2021〕63号）",
+   "publisher": "住房和城乡建设部",
+   "published_date": "2021-08-30",
+   "url": "https://www.gov.cn/zhengce/zhengceku/2021-08/31/content_5634560.htm",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "'运营先行—轻改共享—性能改造—必要更新'四级阶梯与保留利用提升为主的方向依据。",
+   "not_usable_for_zh": "具体适用由实施主体依法定程序确认。"
+  },
+  {
+   "id": "BJ-RENEWAL-REGULATION",
+   "registry_source_id": null,
+   "registry_note_zh": "北京市地方性法规公开文本，未入登记表；作为实施框架指针。",
+   "title": "《北京市城市更新条例》（2023-03-01施行）",
+   "publisher": "北京市人民代表大会常务委员会",
+   "published_date": "2022-11-25",
+   "url": "https://www.beijing.gov.cn/zhengce/zczt/zcwjhb/csgxzchb/sjzc/202212/t20221206_2871600.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "更新方法、条件门推进、公众参与与实施主体安排的法定框架指针。",
+   "not_usable_for_zh": "不据此作合规认定；适用由实施主体依法定程序确认。"
+  },
+  {
+   "id": "BJ-RENEWAL-BANK",
+   "registry_source_id": null,
+   "registry_note_zh": "北京市规范性文件公开文本，未入登记表。",
+   "title": "《北京市城市更新项目库管理办法（试行）》（京建法〔2024〕2号，2024-05-10施行）",
+   "publisher": "北京市住房和城乡建设委员会等",
+   "published_date": "2024-05-10",
+   "url": "https://www.beijing.gov.cn/zhengce/gfxwj/sj/202405/t20240527_3694574.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "18项更新项目接入市、区两级项目库管理（入库申报/动态出库）的机制指针。",
+   "not_usable_for_zh": "入库与否由法定程序确定，本包仅为机制衔接建议。"
+  },
+  {
+   "id": "BJ-RENEWAL-TOOLKIT",
+   "registry_source_id": null,
+   "registry_note_zh": "市级政策文件公开文本，未入登记表。",
+   "title": "《北京市城市更新政策激励工具箱（1.0版）》（京城更办发〔2026〕1号，2026-01-01实施；7方面75项，含轨道一体化更新市级规模指标支持、老旧厂房改造不计容、地下空间复合利用）",
+   "publisher": "市委城工委城市更新专项小组办公室",
+   "published_date": "2026-01-01",
+   "url": "https://zjw.beijing.gov.cn/bjjs/xxgk/zcwj2024/qtzcwj/xxyx13/743895417/index.shtml",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "18项目对应规划土地/审批服务/资金金融/民生运营四类政策工具的衔接指针；轨道一体化更新支持与站城接驳项目直接相关。",
+   "not_usable_for_zh": "工具适用由实施主体按程序申请，本包不作承诺。"
+  },
+  {
+   "id": "HD-RENEWAL-GUIDE-2025",
+   "registry_source_id": null,
+   "registry_note_zh": "海淀区公开发布的导则文本（beijing.gov.cn 挂网），未入登记表。",
+   "title": "《海淀区城市更新导则（2025年版）》（2025-06：重点强化人工智能创新街区、轨道交通站点一体化区域的高效复合利用，以产城融合、站城融合为目标）",
+   "publisher": "北京市海淀区",
+   "published_date": "2025-06",
+   "url": "https://www.beijing.gov.cn/hudong/gfxwjzj/qjzjxx/202506/P020250612409127434588.pdf",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "本方案'AI创新街区+站城融合'方向的区级导则锚点。",
+   "not_usable_for_zh": "不据此推导控制指标。"
+  },
+  {
+   "id": "HD-DISTRICT-PLAN",
+   "registry_source_id": null,
+   "registry_note_zh": "市规自委官网公布的分区规划成果页，未入登记表。",
+   "title": "《海淀分区规划（国土空间规划）（2017年—2035年）》（2019-01公布）",
+   "publisher": "北京市规划和自然资源委员会",
+   "published_date": "2019-01-11",
+   "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/ghcg/fqgh/202002/t20200213_1630027.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "中关村科学城定位与'两心聚一核'结构的上位规划语境。",
+   "not_usable_for_zh": "分区规划控制内容须以官方成果全文为准，本包不引用其控制值。"
+  },
+  {
+   "id": "HD-AI-FACTS-2026",
+   "registry_source_id": null,
+   "registry_note_zh": "官方活动发布与政府网站公开口径（2026中关村论坛年会等），未入登记表。",
+   "title": "海淀AI产业公开口径事实（2026中关村论坛年会：AI企业超2000家、独角兽26家、备案大模型130款、核心产业规模超3500亿元约占全国三成；2026-01口径：1900余家、122款）",
+   "publisher": "北京市科委·中关村管委会、首都之窗等公开发布",
+   "published_date": "2026-04",
+   "url": "https://kw.beijing.gov.cn/ztzl/2026bjlh/202601/t20260128_4472847.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "used_for_zh": "产业底座的公开口径事实：本带服务的是存量最密的AI产业集聚区。",
+   "not_usable_for_zh": "数据以官方最新发布为准，不作为规划控制或承诺依据。"
+  },
+  {
+   "id": "THREE-AREAS-WINGS",
+   "registry_source_id": "SRC-2026-BJ-KW-THREE-AREAS-WINGS",
+   "title": "“三区两翼”打造世界级AI集聚地（公开报道）",
+   "publisher": "北京市科学技术委员会、中关村科技园区管理委员会",
+   "published_date": "2026-04-03",
+   "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html",
+   "authority_level": "background",
+   "usable_for_formal": "background_only",
+   "official_series_note_zh": "首都之窗2026-04官方系列报道《'三区两翼'打造世界级AI集聚地——百年京张AI创新带系列报道之'全球征集'》（beijing.gov.cn/fuwu/lqfw/gggs/202604/t20260403_4574351.html）为同主题官方语境。",
+   "used_for_zh": "三区两翼与区域协同叙事背景。",
+   "not_usable_for_zh": "不用于边界、控制或承诺性结论。"
+  }
+ ]
+}

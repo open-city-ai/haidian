@@ -35,6 +35,21 @@ REQUIRED_SECTIONS = [
     "风险、版权与合规说明",
     "参考资料",
 ]
+REQUIRED_SECTIONS_EN = [
+    "Design Basis and Source List",
+    "Three-Level Scope Framework",
+    "Coordinated Research Area: Industry and Future City Research",
+    "Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design",
+    "Detailed Design of Key Areas",
+    "AI Innovation Ecosystem, Personas, and AI+ Scenarios",
+    "Land Use, Building Scale, and Retain-Renovate-Demolish Strategy",
+    "Transport, Rail, Municipal Infrastructure, and Public Services",
+    "Blue-Green Network, Public Space, and Urban Character",
+    "Renewal Projects, Implementation Policy, and Phasing",
+    "Metrics, Area Recalculation, and Compliance Matrix",
+    "Risk, Copyright, and Compliance",
+    "References",
+]
 
 OFFICIAL_REQUIRED_TASK_IDS = {
     "1.3.1",
@@ -131,7 +146,13 @@ ALLOWED_GEOMETRY_FILES = {
     "constraints.geojson",
     "phasing.geojson",
 }
-ALLOWED_REPORT_FILES = {"proposal.html", "narrative.md", "copyright_statement.md"}
+ALLOWED_REPORT_FILES = {
+    "proposal.html",
+    "proposal.zh.html",
+    "proposal.en.html",
+    "narrative.md",
+    "copyright_statement.md",
+}
 ALLOWED_VISUAL_ASSET_EXTENSIONS = {".css", ".js", ".json", ".svg", ".png", ".jpg", ".jpeg", ".webp"}
 PARTICIPANT_PROTECTED_GLOBAL_FILES = {
     "submissions-data.js",
@@ -216,7 +237,7 @@ MAX_ASSET_BYTES = 5 * 1024 * 1024
 MAX_DRAWING_BYTES = 10 * 1024 * 1024
 MAX_HTML_BYTES = 2 * 1024 * 1024
 MAX_VISUAL_ASSET_BYTES = 5 * 1024 * 1024
-MAX_TOTAL_BYTES = 20 * 1024 * 1024
+MAX_TOTAL_BYTES = 40 * 1024 * 1024
 MIN_FORMAL_PROPOSAL_COMPACT_CHARS = 5000
 MIN_REQUIRED_SECTION_COMPACT_CHARS = 280
 MIN_ENGLISH_PROPOSAL_LETTERS = 2000
@@ -256,6 +277,20 @@ FORBIDDEN_HTML_PATTERNS = [
     (re.compile(r"\bsendBeacon\s*\(", re.I), "HTML report must not send beacon requests"),
     (re.compile(r"(?:src|href)\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML report must not load remote resources"),
     (re.compile(r"url\s*\(\s*['\"]?(?:https?:)?//", re.I), "HTML report CSS must not load remote assets"),
+]
+FORBIDDEN_VISUAL_HTML_PATTERNS = [
+    (re.compile(r"<iframe\b", re.I), "visual HTML must not contain iframe embeds"),
+    (re.compile(r"<form\b", re.I), "visual HTML must not contain form submission UI"),
+    (re.compile(r"\bfetch\s*\(", re.I), "visual HTML must not call fetch()"),
+    (re.compile(r"\bXMLHttpRequest\b", re.I), "visual HTML must not use XMLHttpRequest"),
+    (re.compile(r"\bWebSocket\b", re.I), "visual HTML must not open WebSocket connections"),
+    (re.compile(r"\bEventSource\b", re.I), "visual HTML must not open EventSource connections"),
+    (re.compile(r"\bsendBeacon\s*\(", re.I), "visual HTML must not send beacon requests"),
+    (re.compile(r"@import\s+url\s*\(\s*['\"]?(?:https?:)?//", re.I), "visual HTML/CSS must not import remote styles"),
+    (re.compile(r"url\s*\(\s*['\"]?(?:https?:)?//", re.I), "visual HTML CSS must not load remote assets"),
+    (re.compile(r"<script\b[^>]*\bsrc\s*=\s*['\"]?(?:https?:)?//", re.I), "visual HTML must not load remote scripts"),
+    (re.compile(r"<link\b[^>]*\bhref\s*=\s*['\"]?(?:https?:)?//", re.I), "visual HTML must not load remote linked resources"),
+    (re.compile(r"<(?:img|source|video|audio)\b[^>]*\bsrc\s*=\s*['\"]?(?:https?:)?//", re.I), "visual HTML must not load remote media"),
 ]
 
 
@@ -529,7 +564,11 @@ def is_under_report(parts: list[str]) -> bool:
 
 
 def is_visual_index(parts: list[str]) -> bool:
-    return len(parts) == 5 and parts[3] == "visual" and parts[4] == "index.html"
+    return (
+        len(parts) == 5
+        and parts[3] == "visual"
+        and parts[4] in {"index.html", "index.zh.html", "index.en.html"}
+    )
 
 
 def is_under_visual_assets(parts: list[str]) -> bool:
@@ -541,6 +580,45 @@ def proposal_dir_from_submission_path(path: str) -> str | None:
     if len(parts) >= 3 and parts[0] == "submissions":
         return "/".join(parts[:3])
     return None
+
+
+DISPLAY_BASE_FILES = {
+    "proposal.md",
+    "report/proposal.html",
+    "visual/index.html",
+    "drawings/a3-booklet.pdf",
+    "drawings/a0-boards.pdf",
+}
+
+
+def localized_path(path: str, language: str) -> str:
+    pure = PurePosixPath(path)
+    suffix = pure.suffix
+    return pure.with_name(f"{pure.stem}.{language}{suffix}").as_posix()
+
+
+def is_localized_display_path(path: str) -> bool:
+    return bool(re.search(r"\.(?:zh|en)\.(?:md|html|pdf|png|jpe?g|webp|gif|svg)$", path, re.I))
+
+
+def primary_path_from_localized(path: str) -> tuple[str, str] | None:
+    pure = PurePosixPath(path)
+    match = re.match(r"^(.+)\.(zh|en)(\.[^.]+)$", pure.name, re.I)
+    if not match:
+        return None
+    primary_name = match.group(1) + match.group(3)
+    return pure.with_name(primary_name).as_posix(), match.group(2).lower()
+
+
+def is_display_material(path: str) -> bool:
+    if path in DISPLAY_BASE_FILES or is_localized_display_path(path):
+        return True
+    return path.startswith("assets/figures/") and Path(path).suffix.lower() in ALLOWED_ASSET_EXTENSIONS
+
+
+def relative_to_proposal(path: str, proposal_dir: str) -> str:
+    prefix = proposal_dir.rstrip("/") + "/"
+    return path[len(prefix) :] if path.startswith(prefix) else path
 
 
 def load_json_file(report: ValidationReport, path: Path, display_path: str) -> object | None:
@@ -875,31 +953,40 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
             except ValueError as exc:
                 report.add_error(f"{proposal_dir}/manifest.json: files[{index}] {exc}")
                 continue
+            translation_entry = is_localized_display_path(safe_path)
             if safe_path in listed_paths:
-                report.add_error(
-                    f"{proposal_dir}/manifest.json: duplicate file path `{safe_path}`"
-                )
+                message = f"{proposal_dir}/manifest.json: duplicate file path `{safe_path}`"
+                if translation_entry:
+                    report.add_warning(message + "; bilingual metadata does not block review")
+                else:
+                    report.add_error(message)
                 continue
             listed_paths.add(safe_path)
             listed_file = repo_root / proposal_dir / safe_path
             if not listed_file.is_file():
-                report.add_error(
-                    f"{proposal_dir}/manifest.json: listed file `{safe_path}` is missing"
-                )
+                message = f"{proposal_dir}/manifest.json: listed file `{safe_path}` is missing"
+                if translation_entry:
+                    report.add_warning(message + "; bilingual display remains non-blocking")
+                else:
+                    report.add_error(message)
                 continue
             declared_digest = item.get("sha256")
             if safe_path != "manifest.json" and not declared_digest:
                 message = f"{proposal_dir}/manifest.json: listed file `{safe_path}` needs sha256"
-                if package_type == "professional_design_package":
+                if translation_entry:
+                    report.add_warning(message + "; bilingual metadata does not block review")
+                elif package_type == "professional_design_package":
                     report.add_error(message)
                 else:
                     report.add_warning(message + " (legacy package compatibility)")
             elif declared_digest:
                 actual_digest = hashlib.sha256(listed_file.read_bytes()).hexdigest()
                 if declared_digest != actual_digest:
-                    report.add_error(
-                        f"{proposal_dir}/manifest.json: sha256 mismatch for `{safe_path}`"
-                    )
+                    message = f"{proposal_dir}/manifest.json: sha256 mismatch for `{safe_path}`"
+                    if translation_entry:
+                        report.add_warning(message + "; bilingual metadata does not block review")
+                    else:
+                        report.add_error(message)
         for required in sorted(REQUIRED_AI_PACKAGE_FILES):
             if required not in listed_paths:
                 report.add_error(
@@ -1192,21 +1279,62 @@ def validate_proposal_embedded_images(
             )
 
 
-def validate_proposal_html_file(report: ValidationReport, path: Path, display_path: str) -> None:
+def validate_proposal_html_file(
+    report: ValidationReport,
+    path: Path,
+    display_path: str,
+    require_primary_figures: bool = True,
+    translation_advisory: bool = False,
+) -> None:
     try:
         text = path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
-        report.add_error(f"{display_path}: proposal HTML report must be UTF-8 text")
+        message = f"{display_path}: proposal HTML report must be UTF-8 text"
+        if translation_advisory:
+            report.add_warning(message + "; bilingual completeness does not block review")
+        else:
+            report.add_error(message)
         return
     for pattern, reason in FORBIDDEN_HTML_PATTERNS:
         if pattern.search(text):
             report.add_error(f"{display_path}: {reason}")
-    for required in sorted(REQUIRED_PROPOSAL_IMAGE_PATHS):
-        expected_src = "../" + required
-        if expected_src not in text:
-            report.add_error(f"{display_path}: missing rendered figure reference `{expected_src}`")
+    if require_primary_figures:
+        for required in sorted(REQUIRED_PROPOSAL_IMAGE_PATHS):
+            expected_src = "../" + required
+            if expected_src not in text:
+                report.add_error(f"{display_path}: missing rendered figure reference `{expected_src}`")
     if "<main" not in text or "</html>" not in text:
-        report.add_error(f"{display_path}: proposal HTML report must be a complete HTML document")
+        message = f"{display_path}: proposal HTML report must be a complete HTML document"
+        if translation_advisory:
+            report.add_warning(message + "; bilingual completeness does not block review")
+        else:
+            report.add_error(message)
+
+
+def validate_visual_html_safety(
+    report: ValidationReport,
+    path: Path,
+    display_path: str,
+    translation_advisory: bool = False,
+) -> None:
+    try:
+        text = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        message = f"{display_path}: visual HTML must be UTF-8 text"
+        if translation_advisory:
+            report.add_warning(message + "; bilingual completeness does not block review")
+        else:
+            report.add_error(message)
+        return
+    for pattern, reason in FORBIDDEN_VISUAL_HTML_PATTERNS:
+        if pattern.search(text):
+            report.add_error(f"{display_path}: {reason}")
+    if "<html" not in text.lower() or "</html>" not in text.lower():
+        message = f"{display_path}: visual HTML must be a complete HTML document"
+        if translation_advisory:
+            report.add_warning(message + "; bilingual completeness does not block review")
+        else:
+            report.add_error(message)
 
 
 def validate_proposal_evidence_references(
@@ -1223,9 +1351,10 @@ def validate_proposal_evidence_references(
         text = proposal_path.read_text(encoding="utf-8")
     except UnicodeDecodeError:
         return
-    _metadata, body = parse_front_matter(text)
+    metadata, body = parse_front_matter(text)
+    required_sections = REQUIRED_SECTIONS_EN if metadata.get("language") == "en" else REQUIRED_SECTIONS
     section_bodies = extract_section_bodies(body)
-    for required in REQUIRED_SECTIONS:
+    for required in required_sections:
         matching_bodies = [
             content for heading, content in section_bodies.items() if required in heading
         ]
@@ -1264,6 +1393,137 @@ def validate_proposal_evidence_references(
                 report.add_error(f"{proposal_dir}/proposal.md: missing design depth reference [depth:{item_id}]")
 
 
+def validate_bilingual_display(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_dir: str,
+    manifest: dict | None,
+) -> None:
+    changed_rel = {
+        relative_to_proposal(path, proposal_dir)
+        for path in report.changed_files
+        if path.startswith(proposal_dir.rstrip("/") + "/")
+    }
+    if not any(is_display_material(path) for path in changed_rel):
+        return
+
+    base = repo_root / proposal_dir
+    proposal_path = base / "proposal.md"
+    if not proposal_path.is_file():
+        return
+    try:
+        metadata, body = parse_front_matter(proposal_path.read_text(encoding="utf-8"))
+    except UnicodeDecodeError:
+        return
+    primary_language = metadata.get("language")
+    if primary_language not in {"zh", "en"}:
+        return
+    translation_language = "en" if primary_language == "zh" else "zh"
+    translation_file = localized_path("proposal.md", translation_language)
+    if metadata.get("translation_file") != translation_file:
+        report.add_warning(
+            f"{proposal_dir}/proposal.md: bilingual display requirement recommends "
+            f"translation_file={translation_file}; this does not block submission or review"
+        )
+
+    manifest_items: dict[str, dict] = {}
+    if isinstance(manifest, dict) and isinstance(manifest.get("files"), list):
+        manifest_items = {
+            str(item.get("path")): item
+            for item in manifest["files"]
+            if isinstance(item, dict) and item.get("path")
+        }
+
+    display_files = {path for path in DISPLAY_BASE_FILES if (base / path).is_file()}
+    for match in MARKDOWN_IMAGE_RE.finditer(body):
+        raw = match.group(2).split("#", 1)[0].split("?", 1)[0]
+        image_path = PurePosixPath(raw)
+        if (
+            not image_path.is_absolute()
+            and ".." not in image_path.parts
+            and image_path.as_posix().startswith("assets/figures/")
+        ):
+            display_files.add(image_path.as_posix())
+
+    for changed_path in sorted(changed_rel):
+        localized = primary_path_from_localized(changed_path)
+        if localized is None:
+            continue
+        primary_path, localized_language = localized
+        if (base / primary_path).is_file():
+            continue
+        report.add_warning(
+            f"{proposal_dir}/{changed_path}: bilingual counterpart has no primary display file "
+            f"`{primary_path}`; submission and review remain allowed"
+        )
+        companion_item = manifest_items.get(changed_path)
+        if not companion_item:
+            report.add_warning(f"{proposal_dir}/manifest.json: list bilingual counterpart `{changed_path}`")
+        else:
+            if companion_item.get("language") != localized_language:
+                report.add_warning(
+                    f"{proposal_dir}/manifest.json: `{changed_path}` should declare "
+                    f"language={localized_language}"
+                )
+            if companion_item.get("translation_of") != primary_path:
+                report.add_warning(
+                    f"{proposal_dir}/manifest.json: `{changed_path}` should declare "
+                    f"translation_of={primary_path}"
+                )
+
+    for display_path in sorted(display_files):
+        primary_item = manifest_items.get(display_path)
+        if (
+            display_path.startswith("assets/figures/")
+            and primary_item
+            and primary_item.get("language") == "neutral"
+        ):
+            continue
+        companion_path = localized_path(display_path, translation_language)
+        companion = base / companion_path
+        if not companion.is_file():
+            report.add_warning(
+                f"{proposal_dir}/{display_path}: add non-blocking {translation_language} "
+                f"display counterpart `{companion_path}`; submission and review remain allowed"
+            )
+            continue
+
+        if not primary_item:
+            report.add_warning(f"{proposal_dir}/manifest.json: list bilingual primary file `{display_path}`")
+        elif primary_item.get("language") != primary_language:
+            report.add_warning(
+                f"{proposal_dir}/manifest.json: `{display_path}` should declare language={primary_language}"
+            )
+        companion_item = manifest_items.get(companion_path)
+        if not companion_item:
+            report.add_warning(f"{proposal_dir}/manifest.json: list bilingual counterpart `{companion_path}`")
+        else:
+            if companion_item.get("language") != translation_language:
+                report.add_warning(
+                    f"{proposal_dir}/manifest.json: `{companion_path}` should declare language={translation_language}"
+                )
+            if companion_item.get("translation_of") != display_path:
+                report.add_warning(
+                    f"{proposal_dir}/manifest.json: `{companion_path}` should declare translation_of={display_path}"
+                )
+
+    translated_proposal = base / translation_file
+    if translated_proposal.is_file():
+        try:
+            translated_metadata, _ = parse_front_matter(translated_proposal.read_text(encoding="utf-8"))
+        except UnicodeDecodeError:
+            report.add_warning(f"{proposal_dir}/{translation_file}: translation must be UTF-8 text")
+        else:
+            if translated_metadata.get("language") != translation_language:
+                report.add_warning(
+                    f"{proposal_dir}/{translation_file}: front matter should set language={translation_language}"
+                )
+            if translated_metadata.get("translation_of") != "proposal.md":
+                report.add_warning(
+                    f"{proposal_dir}/{translation_file}: front matter should set translation_of=proposal.md"
+                )
+
+
 def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_dir: str) -> None:
     base = repo_root / proposal_dir
     for required in sorted(REQUIRED_AI_PACKAGE_FILES):
@@ -1272,7 +1532,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
 
     if not (base / "manifest.json").exists():
         return
-    _manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
+    manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
 
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
@@ -1311,6 +1571,26 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     proposal_html_path = base / "report" / "proposal.html"
     if proposal_html_path.exists():
         validate_proposal_html_file(report, proposal_html_path, f"{proposal_dir}/report/proposal.html")
+    for language in ["zh", "en"]:
+        translated_html = base / "report" / f"proposal.{language}.html"
+        if translated_html.exists():
+            validate_proposal_html_file(
+                report,
+                translated_html,
+                f"{proposal_dir}/report/proposal.{language}.html",
+                require_primary_figures=False,
+                translation_advisory=True,
+            )
+
+    for visual_name in ["index.html", "index.zh.html", "index.en.html"]:
+        visual_path = base / "visual" / visual_name
+        if visual_path.exists():
+            validate_visual_html_safety(
+                report,
+                visual_path,
+                f"{proposal_dir}/visual/{visual_name}",
+                translation_advisory=visual_name != "index.html",
+            )
 
     for geometry_name in sorted(ALLOWED_GEOMETRY_FILES):
         geometry_path = base / "geometry" / geometry_name
@@ -1333,6 +1613,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     validate_proposal_evidence_references(
         report, repo_root, proposal_dir, standard_matrix, design_depth_matrix
     )
+    validate_bilingual_display(report, repo_root, proposal_dir, manifest)
 
 
 def validate_proposal_file(
@@ -1372,64 +1653,20 @@ def validate_proposal_file(
     language = metadata.get("language")
     if language and language not in {"zh", "en"}:
         report.add_error(f"{proposal_path}: language must be zh or en")
-    if language == "en" and metadata.get("chinese_translation") != "included":
-        report.add_error(
-            f"{proposal_path}: English submissions must set chinese_translation=included and include the complete Chinese translation in proposal.md"
-        )
+    validation_body = body
     if language == "en":
-        for key in ["title_zh", "summary_zh"]:
-            if not metadata.get(key):
-                report.add_error(f"{proposal_path}: English submissions require front matter field `{key}`")
+        # Legacy English submissions may still contain an inline Chinese
+        # translation. New submissions use proposal.zh.md, and the absence of
+        # that companion is reported only as a non-blocking warning.
         translation_match = re.search(r"(?m)^# 中文正式译文\s*$", body)
-        if translation_match is None:
+        if translation_match is not None:
+            validation_body = body[: translation_match.start()]
+        english_letters = len(re.findall(r"[A-Za-z]", validation_body))
+        if english_letters < MIN_ENGLISH_PROPOSAL_LETTERS:
             report.add_error(
-                f"{proposal_path}: English submissions require a top-level `# 中文正式译文` section"
+                f"{proposal_path}: English primary text is too short; need at least "
+                f"{MIN_ENGLISH_PROPOSAL_LETTERS} English letters"
             )
-        else:
-            english_body = body[: translation_match.start()]
-            translation_body = body[translation_match.end() :]
-            english_compact = len(re.sub(r"\s+", "", english_body))
-            if english_compact < MIN_FORMAL_PROPOSAL_COMPACT_CHARS:
-                report.add_error(
-                    f"{proposal_path}: English primary text is too short; need at least "
-                    f"{MIN_FORMAL_PROPOSAL_COMPACT_CHARS} non-whitespace characters before `# 中文正式译文`"
-                )
-            english_letters = len(re.findall(r"[A-Za-z]", english_body))
-            if english_letters < MIN_ENGLISH_PROPOSAL_LETTERS:
-                report.add_error(
-                    f"{proposal_path}: English primary text is too short; need at least "
-                    f"{MIN_ENGLISH_PROPOSAL_LETTERS} English letters before `# 中文正式译文`"
-                )
-            translation_compact = len(re.sub(r"\s+", "", translation_body))
-            if translation_compact < MIN_FORMAL_PROPOSAL_COMPACT_CHARS:
-                report.add_error(
-                    f"{proposal_path}: Chinese formal translation is too short; need at least "
-                    f"{MIN_FORMAL_PROPOSAL_COMPACT_CHARS} non-whitespace characters"
-                )
-            translation_sections = extract_section_bodies(translation_body)
-            for required in REQUIRED_SECTIONS:
-                matching = [content for heading, content in translation_sections.items() if required in heading]
-                if not matching:
-                    report.add_error(
-                        f"{proposal_path}: Chinese formal translation is missing required section `## {required}`"
-                    )
-                    continue
-                if max(len(re.sub(r"\s+", "", content)) for content in matching) < MIN_REQUIRED_SECTION_COMPACT_CHARS:
-                    report.add_error(
-                        f"{proposal_path}: Chinese translation section `{required}` is too thin"
-                    )
-                if not any(has_readability_reference(content) for content in matching):
-                    report.add_error(
-                        f"{proposal_path}: Chinese translation section `{required}` needs a machine-readable evidence reference"
-                    )
-            translated_images = {
-                PurePosixPath(match.group(2).split("#", 1)[0].split("?", 1)[0]).as_posix()
-                for match in MARKDOWN_IMAGE_RE.finditer(translation_body)
-            }
-            for required in sorted(REQUIRED_PROPOSAL_IMAGE_PATHS - translated_images):
-                report.add_error(
-                    f"{proposal_path}: Chinese formal translation must embed `![]({required})`"
-                )
 
     license_value = metadata.get("license")
     if license_value and license_value not in {"COMMUNITY-DISPLAY-ONLY", "CC-BY-4.0", "CC-BY-SA-4.0"}:
@@ -1445,9 +1682,10 @@ def validate_proposal_file(
     validate_track_metadata(report, repo_root, proposal_path, metadata.get("tracks"))
     validate_scenario_metadata(report, repo_root, proposal_path, metadata.get("scenarios"))
 
-    headings = extract_headings(body)
-    section_bodies = extract_section_bodies(body)
-    for required in REQUIRED_SECTIONS:
+    required_sections = REQUIRED_SECTIONS_EN if language == "en" else REQUIRED_SECTIONS
+    headings = extract_headings(validation_body)
+    section_bodies = extract_section_bodies(validation_body)
+    for required in required_sections:
         if not any(required in heading for heading in headings):
             report.add_error(f"{proposal_path}: missing required section `## {required}`")
             continue
@@ -1467,14 +1705,14 @@ def validate_proposal_file(
         if placeholder in text:
             report.add_error(f"{proposal_path}: remove template placeholder `{placeholder}`")
 
-    compact_len = len(re.sub(r"\s+", "", body))
+    compact_len = len(re.sub(r"\s+", "", validation_body))
     if compact_len < MIN_FORMAL_PROPOSAL_COMPACT_CHARS:
         report.add_error(
             f"{proposal_path}: formal proposal body is too short; need at least {MIN_FORMAL_PROPOSAL_COMPACT_CHARS} non-whitespace characters"
         )
 
     proposal_dir = str(PurePosixPath(proposal_path).parent)
-    validate_proposal_embedded_images(report, repo_root, proposal_dir, body)
+    validate_proposal_embedded_images(report, repo_root, proposal_dir, validation_body)
 
     for pattern, reason in HARD_RISK_PATTERNS:
         if pattern.search(text):
@@ -1747,9 +1985,10 @@ def validate_submission(
                     f"{path}: participant PRs may only change submissions/{pr_author}/"
                 )
                 continue
-            if parts[1].lower() != pr_author.lower():
+            if parts[1] != pr_author:
                 report.add_error(
-                    f"{path}: PR author `{pr_author}` may not change submissions/{parts[1]}/"
+                    f"{path}: submission directory `{parts[1]}` must exactly match "
+                    f"GitHub PR author `{pr_author}`, including letter case"
                 )
                 continue
 
@@ -1776,6 +2015,8 @@ def validate_submission(
 
         if len(parts) == 4 and parts[3] == "proposal.md":
             proposal_files.add(path)
+        elif len(parts) == 4 and parts[3] in {"proposal.zh.md", "proposal.en.md"}:
+            ai_package_dirs.add(proposal_dir)
         elif len(parts) == 4 and parts[3] == "changelog.md":
             changelog_files.add(path)
         elif len(parts) == 4 and parts[3] == "FEEDBACK.md":
@@ -1821,11 +2062,18 @@ def validate_submission(
                 report.add_error(f"{path}: visual assets must use one of {allowed}")
         else:
             report.add_error(
-                f"{path}: each proposal directory may contain proposal.md, changelog.md, maintainer-only FEEDBACK.md, risk.json, spatial.json, simulation.json, AI package files, assets/*, geometry/*, drawings/*, report/*, and visual/index.html plus visual/assets/* only"
+                f"{path}: each proposal directory may contain proposal.md, proposal.zh.md, proposal.en.md, changelog.md, maintainer-only FEEDBACK.md, risk.json, spatial.json, simulation.json, AI package files, assets/*, geometry/*, drawings/*, report/*, and localized visual/index HTML plus visual/assets/* only"
             )
 
         if not full_path.exists():
-            report.add_error(f"{path}: changed file is missing in the PR checkout")
+            rel_path = relative_to_proposal(path, proposal_dir)
+            if is_localized_display_path(rel_path):
+                report.add_warning(
+                    f"{path}: bilingual display file was removed or is missing; "
+                    "submission and review remain allowed"
+                )
+            else:
+                report.add_error(f"{path}: changed file is missing in the PR checkout")
             continue
         if full_path.is_dir():
             report.add_error(f"{path}: directories are not valid changed files")
@@ -1844,9 +2092,15 @@ def validate_submission(
         if is_under_drawings(parts) and size > MAX_DRAWING_BYTES:
             report.add_error(f"{path}: drawings must be <= {MAX_DRAWING_BYTES} bytes")
         if is_under_drawings(parts) and Path(path).suffix.lower() == ".pdf" and is_empty_pdf(full_path.read_bytes()):
-            report.add_error(
-                f"{path}: drawing PDF has no pages; zero-page or placeholder drawings cannot enter review"
-            )
+            if is_localized_display_path(relative_to_proposal(path, proposal_dir)):
+                report.add_warning(
+                    f"{path}: bilingual drawing PDF has no pages; replace the placeholder, "
+                    "but submission and review remain allowed"
+                )
+            else:
+                report.add_error(
+                    f"{path}: drawing PDF has no pages; zero-page or placeholder drawings cannot enter review"
+                )
         if is_visual_index(parts) and size > MAX_HTML_BYTES:
             report.add_error(f"{path}: visual/index.html must be <= {MAX_HTML_BYTES} bytes")
         if is_under_report(parts) and parts[4].endswith(".html") and size > MAX_HTML_BYTES:
