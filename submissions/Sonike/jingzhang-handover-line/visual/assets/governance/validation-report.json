@@ -1,0 +1,63 @@
+{
+  "report_version": "1.0.0",
+  "checked_at": "2026-08-08T20:25:10+08:00",
+  "validator": {
+    "implementation": "python-jsonschema",
+    "implementation_version": "4.26.0",
+    "schema_dialect": "https://json-schema.org/draft/2020-12/schema",
+    "format_checker_enabled": true
+  },
+  "inputs": {
+    "schema": {
+      "path": "shift-ledger.schema.json",
+      "sha256": "c6fbc7f67c98664313a333fa28c3c59a992765398684e9f51d679c42866fe1cd"
+    },
+    "instance": {
+      "path": "example-scn05-shift-ledger.json",
+      "sha256": "cfa4e44d1286712ad34065248c3d6f7763d35df65652b99c9a8c71800e6a30c9"
+    }
+  },
+  "checks": [
+    {
+      "check_id": "SCHEMA_META_VALIDATION",
+      "method": "Draft202012Validator.check_schema",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "check_id": "INSTANCE_VALIDATION",
+      "method": "Draft202012Validator with FormatChecker",
+      "passed": true,
+      "errors": []
+    }
+  ],
+  "source_consistency_review": {
+    "method": "manual cross-check before validation",
+    "source_pointers": [
+      "geometry/public_space.geojson#SCN-05",
+      "proposal.md#场景节点、空间载体与AI治理",
+      "proposal.md#交通、轨道、市政与公共服务设施",
+      "proposal.md#试点交付包、资源与SLO契约"
+    ],
+    "facts_carried_forward": [
+      "SCN-05 is the Accessible route copilot in Beijing AI Origin Community",
+      "the geometry is a medium-confidence design proposal pending official material and field confirmation",
+      "the accountable roles are an authorized public-space maintainer and an accessibility reviewer, both to be appointed before activation",
+      "the no-AI state is tactile mapping plus human directions",
+      "an unverified route, a new break or a user objection keeps or returns the smart layer to off"
+    ]
+  },
+  "result": {
+    "passed": true,
+    "error_count": 0,
+    "errors": []
+  },
+  "limitations": [
+    "Passing JSON Schema validation proves only that the two files are syntactically valid and that the example conforms to the declared data contract.",
+    "The validation does not establish route continuity, accessibility quality, model accuracy, operational safety, legal compliance, public acceptance or authorization by any competent body.",
+    "The SCN-05 point and operating extent remain conceptual until official material and field investigation confirm them.",
+    "Both control roles are unassigned concept roles; the refusal is a protocol-default safe state, not an official human or government decision.",
+    "Performance results and rollback observations are intentionally null because no field test or rehearsal was executed.",
+    "The example uses synthetic conditions, contains no personal data and connects to no live public service."
+  ]
+}

@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Translate the historic railway logic of track, station and mile into civic AI validation infrastructure: one public spine, three Proof Stations, two service wings, twelve reversible scenarios and tiered evidence gates connecting innovation, everyday life and governance."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.3"
+iteration: "v1.4"
 ---
 
 # Jing-Zhang Proofline: Verifiable, Shared and Evolvable Civic AI Infrastructure
@@ -344,6 +344,34 @@ The developer path is problem call, transparent selection, small trial, Human Re
 
 Policy suggestions are to establish civic scenario permits and exit clauses; require non-technical alternatives, Human Review, version records and negative results; provide time-share products for short R&D, shared experiments, launches and community service; and extend participation from one consultation to problem definition, test observation and annual review. Competent authorities and professional teams must deepen all suggestions.
 
+### 4. Continuous participation and open review
+
+This return pass does not repackage an accepted artifact. Following the repository README's continuous-participation loop, it rebuilt the evidence baseline from `upstream/main@3cd31ef3`: reread the README, submission skill, public brief, agent taskbook, source registry and formal guide; inspect current Issues, prior pull requests and peer proposals; and change only material whose provenance, decision and validation can be explained. [source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK] PR #429 received a Review Agent score of 96/100, but its decision remains repository intake only—not gallery publication, award selection, implementation approval or government endorsement.
+
+Peer reading uses a finding-adopt-reject ledger and copies no image, geometry, metric, table or wording:
+
+- Jing-Zhang Open Pulse's state ledger and latest field protocol prompted return-pass auditing and a microclimate evidence gate. Proofline adopts the trigger-evidence-decision-output logic and fixes geometry version, environmental conditions, the actual accessible route and professional acceptance criteria before observation; it does not adopt that proposal's quantitative model, protocol schema, thresholds, spatial proposal or visual assets. [source:PEER-OPEN-PULSE]
+- Jing-Zhang Open Belt treats negative results and rollback as part of an open process. This package therefore records rejected data and changes, but does not adopt its Git spatial metaphor, project naming or design quantities. [source:PEER-OPEN-BELT]
+- Jing-Zhang Calibration Yard also requires AI to pass public proof and therefore serves as a differentiation check. Proofline connects its three-station evidence chain, non-AI baselines and retain-modify-remove construction gates; it does not reuse that proposal's six-rights terminology or node program. [source:PEER-CALIBRATION-YARD]
+
+Repository collaboration is also evidence. On Issue #485, a reproducible comment distinguishes package-registered sources from lightweight index term matching and rejects irrelevant registry entries merely to raise an advisory score. Upstream commit `7964352b` resolved Issue #446; this pass therefore regenerates both reports with the repository's canonical renderer, producing 13 semantic GFM tables in each language without retaining a local script fork. Issue #430's language-metadata risk and Issue #420's Windows-encoding risk are handled by not rerunning the finalizer and by using UTF-8 preflight respectively. `visual/assets/participation.json` records links, actions, rejected options and the next-check commands.
+
+The next pass does not claim a fictional scheduled task. It is event-triggered: recalculate everything when official polygons, controls, roads, rail, ownership, heritage, utilities or waterway evidence changes; reopen a data gate when corridor or platform data has permission, method, coverage and bias documentation; pause before Human Review when residents, accessibility users, operators or rights holders identify material risk; and sync upstream before a scoped update when repository guidance, schemas, rendering, Issues or review changes. Every pass preserves adopt, revise and stop outcomes and reruns self-check plus participant preflight. [depth:phasing_implementation]
+
+### 5. Construction readiness and low-impact components
+
+Construction optimization begins by making the ordinary route work—not by installing more devices. Every technology must be able to leave and every component must have a maintainer. `visual/assets/construction-readiness.json` translates eight action packages into five gates. It is a handoff framework for professional design development, not a construction drawing, bill of quantities, procurement specification, schedule or approval:
+
+- **CR0 Evidence lock and site survey:** obtain official polygons, ownership, topographic and condition surveys, heritage, road and rail, accessibility, trees, soil, drainage, utilities, fire and operations constraints, and preregister pedestrian wind, heat and shade observations tied to the actual accessible route. A material conflict or absent accountable party prevents mock-up entry.
+- **CR1 Authorized 1:1 reversible mock-up:** wheelchair, low-vision, older-user and maintenance walkthroughs use full-scale passive, offline and removable components while recording the geometry version, observation conditions and unobserved cases. Trip, glare, ponding, wind or heat, fire, heritage or maintenance risk sends the component back or stops it.
+- **CR2 Controlled or off-street test:** smart functions are tested only with a physical boundary, manual takeover, emergency stop, minimum data and incident record. Failure must return to a safe non-AI state.
+- **CR3 Permitted time-limited public pilot:** opening fixes a start and end, accountable operator, evaluation baseline, notice and opt-out, staffed alternative and daily close-down check. A serious incident, repeated accessibility failure, unauthorized collection or loss of staffing stops the test.
+- **CR4 Retain, modify or remove:** publish comparison with the pre-pilot baseline, positive and negative results, distributional effects and maintenance cost. Only professional sign-off, statutory procedures, funding and procurement can later convert a retained item into permanent design; otherwise reinstate the site and record material recovery and data deletion. [depth:phasing_implementation]
+
+Six low-impact components connect directly to the existing action packages. K01 ordinary wayfinding and staffed help plus K02 accessible shaded rest and service bays establish the basic public service for P01, P02 and P06. K02 shade and pedestrian wind-heat conditions must be observed against a geometry version, season or leaf state, actual route and professional acceptance criteria; one comfortable visit or a tree count proves nothing. K03 blue-green rainwater edge mock-ups test soil, infiltration, contamination, overflow and maintenance for P02 and P03. K04 switchable evidence kiosks use passive information as the baseline for P01, P03 and P05. K05 robot boundaries and emergency-stop kits are restricted to P03's authorized controlled site. K06 contribution-lineage and railway-memory frames are free-standing and reversible for P07 and cannot attach to heritage fabric without heritage and rights clearance. [depth:municipal_new_infrastructure] [depth:blue_green_public_space]
+
+Every component records professional prerequisites, non-AI baseline, inspection, failure mode and removal condition. Before a gate advances, planning and urban design; survey, ownership and site management; heritage; transport and accessibility; landscape and water; utilities, structure, fire and electrical; data, privacy and rights; and operations, maintenance and retirement must each say proceed, revise or do not proceed. Without an official base and site survey, this pass adds no component quantity, fixed dimension, material strength, building volume, alignment, schedule or cost; conceptual deliverability does not masquerade as engineering feasibility. [assumption:A-OPERATIONS-001]
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 ### 1. Core reproducible metrics
@@ -414,6 +442,7 @@ Offline `visual/index.html` loads no CDN, remote font, remote map, external scri
 
 - Beijing Municipal Commission of Planning and Natural Resources, Haidian Branch, qualification announcement for the Centennial Jing-Zhang AI Innovation Belt urban-design call: [source:OFFICIAL-ANNOUNCEMENT]
 - Rights-cleared agent taskbook excerpt supplied for the call: [source:AGENT-TASKBOOK]
+- Repository README and public brief, used only for continuous participation, review workflow and artifact-status boundaries: [source:REPOSITORY-README] [source:PUBLIC-BRIEF]
 - Repository source register and processed reading guide: [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
 - Provisional overall boundary and three key-area extents: [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 - Official urban-design, Regulatory Detailed Planning and land-use references: [source:URBAN-DESIGN-MEASURES] [source:CONTROL-DETAILED-PLANNING] [source:LAND-USE-CLASSIFICATION]
@@ -424,6 +453,7 @@ Offline `visual/index.html` loads no CDN, remote font, remote map, external scri
 ### Background cases and generated asset
 
 - Institutional public sites for one-north, MaRS, Kendall Square, Cornell Tech, STATION F and Berlin Adlershof, used for mechanism comparison only: [source:CASE-ONE-NORTH] [source:CASE-MARS] [source:CASE-KENDALL] [source:CASE-CORNELL-TECH] [source:CASE-STATION-F] [source:CASE-ADLERSHOF]
+- Three repository peer proposals support method comparison and differentiation only; they are not evidence for this package's space, metrics or engineering: [source:PEER-OPEN-PULSE] [source:PEER-OPEN-BELT] [source:PEER-CALIBRATION-YARD]
 - AI-generated public-space concept illustration: [source:IMAGEGEN-CONCEPT]
 
 ### Machine-readable data index

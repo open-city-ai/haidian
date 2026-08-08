@@ -414,7 +414,8 @@
       "required": true,
       "status": "complete",
       "proposal_sections": [
-        "更新项目清单、实施政策与分期计划"
+        "更新项目清单、实施政策与分期计划",
+        "双联交接账：交出与接入必须是两次独立判断"
       ],
       "drawing_refs": [
         "drawings/a0-boards.pdf#p03",
@@ -431,7 +432,9 @@
       "metric_refs": [
         "renewal_cell_count",
         "scenario_node_count",
-        "versioned_asset_count"
+        "versioned_asset_count",
+        "machine_readable_shift_protocol_count",
+        "schema_valid_synthetic_shift_count"
       ],
       "source_ids": [
         "OFFICIAL-ANNOUNCEMENT",
@@ -442,9 +445,10 @@
         "A-BUILDING-001"
       ],
       "self_check_ids": [
-        "PROFESSIONAL_EVIDENCE"
+        "PROFESSIONAL_EVIDENCE",
+        "DUAL_CONTROL_SHIFT_LEDGER"
       ],
-      "evidence_summary_zh": "P01—P06把12个最低项目重组为可签收试点包，每包列场景、A/R/C-I角色、KPI、接管SLO、停止/回滚；六张资源开工单在场地权利、资质、许可保险、布置、持续预算、维护与删除任一缺失时阻止开工或常态化。"
+      "evidence_summary_zh": "P01—P06把12个最低项目重组为条件性试点包；数值KPI/SLO在主体与基线未确认前保持null，只保留缺一不开放的二元门槛。双联交接账Schema和SCN-05合成样例让交出、复现、拒收和回滚可被机器检查；结构通过不代表现场通过。"
     },
     {
       "item_id": "phasing_implementation",
@@ -532,7 +536,10 @@
         "site_area_sqm",
         "talent_density",
         "total_floor_area_sqm",
-        "versioned_asset_count"
+        "versioned_asset_count",
+        "machine_readable_shift_protocol_count",
+        "schema_valid_synthetic_shift_count",
+        "shift_protocol_validation_error_count"
       ],
       "source_ids": [
         "BOUNDARY-SOURCE",
@@ -544,9 +551,10 @@
         "A-BASELINE-001"
       ],
       "self_check_ids": [
-        "METRIC_TRACEABILITY"
+        "METRIC_TRACEABILITY",
+        "DUAL_CONTROL_SHIFT_LEDGER"
       ],
-      "evidence_summary_zh": "metrics.json逐项登记七类用地面积、概念建筑基底覆盖、32个版本化对象、三期面积和三处重点区面积；总建面、建筑密度、道路面积与道路率因缺逐栋普查和道路红线明确保持unknown，所有已知值由EPSG:4548几何或要素属性复算。"
+      "evidence_summary_zh": "metrics.json逐项登记几何、对象目录和双联交接账的结构校验计数；面积小数是计算可复现性，不等于临时边界具有相同事实精度。总建面、建筑密度、道路面积与道路率继续保持unknown；校验错误为0只证明合成样例结构可解析。"
     },
     {
       "item_id": "risk_missing_data",
@@ -588,9 +596,10 @@
       ],
       "self_check_ids": [
         "PROFESSIONAL_EVIDENCE",
-        "COPYRIGHT_TRACEABILITY"
+        "COPYRIGHT_TRACEABILITY",
+        "DUAL_CONTROL_SHIFT_LEDGER"
       ],
-      "evidence_summary_zh": "constraints.geojson以CONSTRAINTS-DATA-GAP空登记明确表达官方控规、道路红线、权属、市政、消防与文保几何缺失，不伪造位置；每个版本化对象和分期门均把资料到位、投诉、越界、事故或责任变更设为复核/回滚触发。"
+      "evidence_summary_zh": "constraints.geojson以CONSTRAINTS-DATA-GAP空登记明确表达官方控规、道路红线、权属、市政、消防与文保几何缺失，不伪造位置。双联交接账样例把人工角色标为待授权、性能标为null、回滚演练标为已规定但未执行，防止把结构校验冒充为真实部署证明。"
     }
   ]
 }

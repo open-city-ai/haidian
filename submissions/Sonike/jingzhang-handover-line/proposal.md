@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把铁路交接班转化为AI城市治理协议：一条连续交接线串联研发、验证、开源与公共服务，十二个可逆场景都设置人工接管、无AI等价服务与退出条件。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.5"
+iteration: "v1.6.1"
 ---
 
 # 京张交接线 / JING-ZHANG HANDOVER LINE
@@ -17,6 +17,20 @@ iteration: "v1.5"
 本方案把京张铁路最朴素也最重要的制度——交接班——转译为AI时代的城市空间协议。研究把模型交给验证，验证把能力交给开源社区，社区把服务交给市民；当系统不确定、失联、越界或被人质疑时，控制权必须清楚地交回人手中。因此“一条交接线、三座交接场、两翼支撑、十二个可逆场景”既是空间结构，也是公共责任结构。所有精准几何均为可复算的概念建议，所有法定控制均等待专业团队和政府部门确认。
 
 ![三座交接场的可逆公共界面、人工接管与无AI等价通行空间原型；概念表现，非现状照片或批准方案](assets/figures/spatial-prototype.png)
+
+## 一页执行摘要 / Executive Brief
+
+| 评审问题 | 京张交接线的回答 | 可核验成果 |
+| --- | --- | --- |
+| 核心命题 | 把铁路交接班转译为城市AI协议：能力可以流动，责任必须有人签收 | 双联交接账 0.3 与十二张可逆场景卡 |
+| 空间响应 | 一条交接线、三座交接场、两翼支撑、八条缝合支线、二十个更新类型单元 | 九类 GeoJSON、十一张证据图、A3 图册与 A0 展板 |
+| 合规锚点 | “可停用、可投诉、无AI等价服务”不是设计者的善意，而是对现行法规的响应 | [source:GENERATIVE-AI-INTERIM-MEASURES] [source:BARRIER-FREE-ENVIRONMENT-LAW] [source:ELDERLY-SMART-TECH-PLAN] |
+| 实施起点 | 先做协议、导视与低风险人工主导试点；三期是三道合并门槛，不是时间表 | 六个行动包、三道条件闸门、[metric:phase_count] |
+| 公共价值 | 任何人可在不使用AI的前提下获得等价基础服务，并能触发停用与申诉 | 组件库十项、接管亭物理停用入口、公开值班簿 |
+| 证据状态 | 几何与指标在 EPSG:4548 可复算；区级公开统计只校准问题，不进入指标 | [metric:site_area_sqm]、[source:HAIDIAN-2025-STATISTICAL-BULLETIN] |
+| 决策边界 | 全部空间、品牌、活动、时限与角色安排均为概念建议，不是法定规划或政府承诺 | 风险章节、退出条件、assumptions.json |
+
+**English brief.** Jing-Zhang Handover Line translates the railway shift-handover — the most ordinary and most rigorous institution the line ever produced — into an urban protocol for AI. Capability may move from research to validation, from validation to open source, and from open source to daily public service; accountability may not move without a named person signing for it. One continuous handover line links three Handover Grounds, two supporting wings and twelve reversible scenarios, each carrying human takeover, a non-AI equivalent service and an exit condition. Every geometry is a recomputable conceptual proposal; every statutory control awaits confirmation by qualified professionals and government bodies.
 
 ## 设计依据与资料清单
 
@@ -28,9 +42,23 @@ iteration: "v1.5"
 
 ![京张交接线总体概念与证据总览图](assets/figures/site-overview.png)
 
+### 合规基线：本方案的三条红线各有法定或政策出处
+
+本方案反复出现三条红线——可停用、可投诉、无AI等价服务。它们不是设计者的自我约束，而是对现行规范的空间响应；把出处写清楚，评审者才能判断哪些是必须做到的下限，哪些才是本方案的设计主张。
+
+| 本方案红线 | 现行依据 | 依据要点 | 本方案承担的空间与运营后果 |
+| --- | --- | --- | --- |
+| 任何智能服务必须可被停止 | 《生成式人工智能服务管理暂行办法》第十四条（七部门，2023-08-15 施行）[source:GENERATIVE-AI-INTERIM-MEASURES] | 发现违法内容应及时采取停止生成、停止传输、消除等处置措施 | 零号接管亭配置物理停用入口；场景卡必须写明停用触发条件与停用后的回退状态 |
+| 投诉入口必须便捷且有时限 | 同上第十五条 | 应建立健全投诉举报机制，设置便捷入口，公布处理流程和反馈时限 | 公开值班簿承担“公布处理流程与反馈时限”的实体载体；交付契约保留该字段，待运营主体确定后校准 |
+| 涉及舆论属性的服务须先评估 | 同上第十七条 | 具有舆论属性或社会动员能力的服务应开展安全评估 | 四个产业验证场景一律按受控沙盒处理，未完成评估不得进入公共界面 |
+| 公共服务必须保留人工办理 | 《中华人民共和国无障碍环境建设法》第三十九条（2023-09-01 施行，共 8 章 72 条）[source:BARRIER-FREE-ENVIRONMENT-LAW] | 公共服务场所涉及医疗健康、社会保障、金融业务、生活缴费等事项的，应当保留现场指导、人工办理等传统服务方式 | 城市交接场与社区协作屋按“人工窗口先于智能界面”布置；组件库十项均可在智能层撤除后独立运行 |
+| 智能化不得取消传统渠道 | 国办发〔2020〕45号《关于切实解决老年人运用智能技术困难的实施方案》[source:ELDERLY-SMART-TECH-PLAN] | 坚持传统服务方式与智能化服务创新并行，聚焦出行、就医、消费、文娱、办事等高频事项 | 十二个场景的“无AI等价服务”一栏逐条对应到上述高频事项类别，而不是笼统写“照顾老年人” |
+
+这张表也解释了本方案为什么把“可逆”放在“智能”之前：在既有法规下，一个不能停止、不能投诉、不能由人工替代的智能服务，本来就不具备进入公共空间的资格。本包只作合规对照，不作法律意见；条款适用与个案认定由主管部门和法律专业人员负责。
+
 ## 三层范围工作框架
 
-三层范围不是三份彼此独立的图纸，而是一条从战略判断到空间验证的证据链。统筹研究范围回答“海淀如何以公开协作和可信验证形成世界级AI生态”；总体设计范围回答“产业、生活、生态和新基础设施如何落入连续城市结构”；三处重点区域回答“一个具体场所怎样同时容纳功能、建筑、慢行、公共空间、场景治理与实施触发器”。这种逐层收敛的工作法由 [depth:three_level_scope_framework] 约束，临时总体范围计算面积为11,412,825.386平方米 [metric:site_area_sqm]，三处临时重点区域数量为3 [metric:key_area_count]。
+三层范围不是三份彼此独立的图纸，而是一条从战略判断到空间验证的证据链。统筹研究范围回答“海淀如何以公开协作和可信验证形成世界级AI生态”；总体设计范围回答“产业、生活、生态和新基础设施如何落入连续城市结构”；三处重点区域回答“一个具体场所怎样同时容纳功能、建筑、慢行、公共空间、场景治理与实施触发器”。这种逐层收敛的工作法由 [depth:three_level_scope_framework] 约束。按临时几何在 EPSG:4548 中复算的总体范围为11,412,825.386平方米 [metric:site_area_sqm]；保留小数是为了让第三方能用同一几何复现同一结果，不代表该数值具有官方精度——它仅用于当前方案内部比较，不是精确红线或法定面积。三处临时重点区域数量为3 [metric:key_area_count]。
 
 统筹层采用“三区两翼”的协同回路：北部众智园负责 Build→Verify，中央AI原点社区负责 Verify→Share，南部大钟寺负责 Share→Serve；中关村科技服务翼提供法务、知识产权、人才、资金与标准服务，小月河场景赋能翼提供公共服务、环境与生活验证。能力并非单向下放：市民投诉、维护记录和场景退出原因沿交接线逆向返回研发端，构成“研发—验证—开源—服务—反馈”闭环。
 
@@ -53,11 +81,25 @@ iteration: "v1.5"
 | 功能·智能化AI活力城市 | 小月河场景赋能翼承担的公共服务、环境与生活验证 | [depth:blue_green_public_space] |
 | 功能·AI治理全球话语权 | 公开值班簿、四张单与全球交接周构成的可复核治理记录 | [depth:risk_missing_data] |
 
+### 区级公开统计只用来收敛问题，不用来制造目标
+
+本方案此前只写“海淀有丰富创新资源”，这类判断无法核验，也无法据以取舍。本轮纳入一份可追溯到发布机构原页的公开统计，逐条标注统计尺度与不可空间分配，用它收敛设计问题，而不是用它设定绩效目标。[source:HAIDIAN-2025-STATISTICAL-BULLETIN]
+
+| 可核验发现（海淀区，2025） | 改变了哪个设计判断 | 不能证明什么 |
+| --- | --- | --- |
+| 备案上线大模型 123 款，占北京全市 60% | 本带面对的是已进入备案与安全评估流程的真实服务，因此验证场景按“备案—评估—受控上线—退出”组织，而不是泛泛的“模型展示” | 这些模型位于走廊内、愿意参与验证，或能带来客流与产值 |
+| 在区全国重点实验室 92 家，占全市 63.4%、全国 17.9% | 本带不重复建设研究能力，只承担“把研究成果交出去、并被独立验证”的接口，对应众智园研制交接场 | 实验室会使用本带设施，或其成果可被计入本带绩效 |
+| 每万人口高价值发明专利 599 件；登记技术合同 5.79 万项、成交额 4053.1 亿元 | 转化环节的瓶颈不在数量而在“可复现与可追责”，因此开源交接场把版本、许可、责任人和撤回入口作为交付底线 | 转化效率、转化去向或本带能提升多少成交额 |
+| 常住人口 311.1 万人，较上年末减少 1.1 万人 | 更新不以人口增长为前提，二十个更新类型单元一律按“可撤除、可回滚”设计 | 走廊内的人口结构、通勤或居住需求 |
+| 医疗卫生机构 1456 个，其中社区卫生服务中心（站）239 个 | “无AI等价服务”必须挂靠既有社区服务网络而不是另起炉灶，场景 09 只做经核验的既有机构导航与人工转介 | 走廊内的设施分布、可达性、号源或新增设施需求 |
+
+这些数值的统计口径是海淀全区，远大于本方案 43.6 平方公里的统筹研究范围；它们全部登记为 `background_only` 并标记 `not_spatially_allocable=true`，不进入 metrics.json，也不改变任何几何、面积、线位或分期。原文表述、采集方法、单位换算与可用/不可用边界逐项记录在 sources.json。走廊级的客流、OD、设施容量与投诉基线仍然缺失，本轮保持未知，而不是用全区平均值填充。
+
 在此之下，本方案的三条工作主线是全球可信AI的公开验证走廊、AI原生城市生活的人工接管示范带、百年工程文化与开源文化的共同记忆场；五个动作是研发、验证、开源、服务与复盘。任务书提出建设“全球人工智能产业高地和朝圣地”，本方案把“高地”落实为可复用的测试协议、负面结果与转化接口，把“朝圣地”落实为任何人都能进入、质疑并看到责任人的公共制度，而不是楼宇高度、企业数量或一次性打卡流量。品牌Logo由两条平行铁轨、一个交接棒和一枚信号括号组成：煤黑代表可审计责任，信号红代表必须停下并由人判断的阈值，电气青代表开放接口，米白代表可阅读的公共记录。三个节点命名统一为“研制交接场、开源交接场、城市交接场”，小型设施统一称“交接台、接管亭、值班簿”，避免用彼此无关的科技口号堆砌品牌。
 
 ![标识、色彩与品牌应用系统](assets/figures/logo-identity.png)
 
-区域创新协同按“带内—城内—市域—区域”四层写明，而不是只谈一带内部。带内由“三区两翼”组织研发、验证与服务的协同回路；城内联动公告提出的“两区一带”产业发展格局，把中关村科学城的技术供给对接本带的验证、开源和场景需求；市域层面与未来科学城、怀柔科学城和北京经济技术开发区形成“原始创新—工程验证—规模落地”的分工，本带承担公开验证与治理规则的输出端，而不重复建设中试与制造环节；区域层面沿京张方向为张家口等京津冀节点预留算力、能源与场景协作接口。任务书另点名“北纬社区”，但公开资料包未提供其可清权边界、运营主体或既有合作关系，本方案不虚构落点，只预留“社区问题—去标识反馈—限域复测—公开回执”接口，待相关主体确认后方可启用。公告提出的海淀“1+X+1”产业体系由产业主管部门定义，本方案只在其“AI+”融合方向上提供空间接口和验证工具，不代替体系本身。所有协同关系都以“接口、规则和可复核记录”表达，不涉及行政区划调整、指标划转、投资安排或任何一方已作出的承诺，具体可行性须由产业、能源、算力和统计主管部门核实。
+区域创新协同按“带内—城内—市域—区域”四层写明，而不是只谈一带内部。带内由“三区两翼”组织研发、验证与服务的协同回路；城内联动公告提出的“两区一带”产业发展格局，把中关村科学城的技术供给对接本带的验证、开源和场景需求；市域层面只预留与未来科学城、怀柔科学城和北京经济技术开发区的概念接口，候选链条是“原始创新—工程验证—规模应用”，但不声称分工、合作或资源已经成立；区域层面沿京张方向为张家口等京津冀节点预留算力、能源与场景问题的拒收式接口。任务书另点名“北纬社区”，但公开资料包未提供其可清权边界、运营主体或既有合作关系，本方案不虚构落点，只预留“社区问题—去标识反馈—限域复测—公开回执”接口，待相关主体确认后方可启用。公告提出的海淀“1+X+1”产业体系由产业主管部门定义，本方案只在其“AI+”融合方向上提供空间接口和验证工具，不代替体系本身。所有协同关系都以“接口、规则和可复核记录”表达，不涉及行政区划调整、指标划转、投资安排或任何一方已作出的承诺，具体可行性须由产业、能源、算力和统计主管部门核实。
 
 | 任务书点名协同对象 | 本带提出的最小接口 | 可交换的最小成果 | 启用与退出闸门 |
 | --- | --- | --- | --- |
@@ -112,7 +154,15 @@ iteration: "v1.5"
 | 学习与就业周期缩短 | 需要低门槛、可反复进入的学习与转化空间 | 校园成果接力站、社区协作屋 |
 | 模型迭代快于规划编制周期 | 规划成果必须可复算、可回滚，而不是一次定稿 | 版本化更新与条件触发分期 |
 
-自适应、可进化的城市发展模式在此有一个具体定义：把城市更新当作有版本、可回滚的提交，而不是一次性建设。十二个场景与二十个更新类型单元共32个对象 [metric:versioned_asset_count] 已在 [data:geometry/public_space.geojson#SCN-01] 与 [data:geometry/buildings.geojson#BLDG-001] 写入 `protocol_version`、`applicability_scope`、`accountable_role`、`next_review_trigger`、`acceptance_gate` 与 `rollback_state`；责任角色在授权前明确保持待指派，绝不虚构具体单位。三期不是时间表，而是三道合并门槛——资料、权属与专业评估通过才允许合并，未通过就回滚到上一个可用状态。可进化的前提是可回滚，这正是组件库要求全部可撤除、建筑四步判定里“可逆插入 I”必须排在“待核 D”之前的原因。一座不能撤销自己决定的城市，不可能自适应。
+自适应、可进化的城市发展模式在此有一个具体定义：把城市更新当作有版本、可拒收、可回滚的交接，而不是一次性建设。十二个场景与二十个更新类型单元共32个概念对象 [metric:versioned_asset_count]，在 [data:geometry/public_space.geojson#SCN-01] 与 [data:geometry/buildings.geojson#BLDG-001] 中共用最小的版本、范围、责任、复核、验收和回滚字段。这32条是待授权的注册目录，不是32个已独立验证或部署的系统；责任角色保持待指派，相同模板只是失败关闭的入口门槛。
+
+### 双联交接账：交出与接入必须是两次独立判断
+
+为了让“交接”不停在字段数量上，v1.6新增原创的《双联交接账 0.3》：交出班必须登记适用范围、版本、输入、已知故障和无AI服务底线；接入班必须独立复现并明确选择“接收”或“拒收”，任何未决项都不能在换班中消失。机器可读契约见 [data:visual/assets/governance/shift-ledger.schema.json]，最小样例选择低风险的SCN-05无障碍路径副驾，只用合成障碍卡，不含个人数据、不连接真实服务，`deployment_mode=sandbox_only`、人工角色待授权、性能结果保持 `null` [data:visual/assets/governance/example-scn05-shift-ledger.json]。该样例已通过JSON Schema结构校验 [metric:machine_readable_shift_protocol_count] [metric:schema_valid_synthetic_shift_count] [metric:shift_protocol_validation_error_count]，校验记录见 [data:visual/assets/governance/validation-report.json]；“0个结构错误”只证明这份合成样例可被机器解析，不证明路径正确、服务可用、法律合规或可以投入现场。
+
+![双联交接账：交出班与接入班分别判断，未决项不得在换班中消失](assets/figures/shift-ledger.png)
+
+三期不是时间表，而是三道合并门槛——资料、权属与专业评估通过才允许合并，未通过就回滚到上一个可用状态。可进化的前提是可回滚，这正是组件库要求全部可撤除、建筑四步判定里“可逆插入 I”必须排在“待核 D”之前的原因。一座不能撤销自己决定的城市，不可能自适应。
 
 ![可回滚的城市：版本化更新、多智能体制衡与感知边界](assets/figures/adaptive-model.png)
 
@@ -261,7 +311,7 @@ iteration: "v1.5"
 
 ## 蓝绿空间、公共空间与城市风貌
 
-蓝绿系统以约2,264,695.802平方米概念绿地 [metric:green_space_area_sqm] 形成19.8434%的结构性绿地比例 [metric:green_ratio]，公共交接面约1,039,257.211平方米 [metric:public_space_area_sqm]，占9.1060% [metric:public_space_ratio]。两者分别见 [data:geometry/green_space.geojson#GREEN-01] 与 [data:geometry/public_space.geojson#PUBLIC-01]。这些是基于临时范围的设计面积，并非现状绿地率或审定控规指标；它们用于验证连续树荫、雨洪、休息、慢行和公共测试是否有足够空间承载。空间策略响应 [depth:blue_green_public_space]。
+蓝绿系统以2,264,695.802平方米概念绿地 [metric:green_space_area_sqm] 形成0.198434的结构性绿地比例 [metric:green_ratio]，公共交接面1,039,257.211平方米 [metric:public_space_area_sqm]，占比0.091060 [metric:public_space_ratio]。两者分别见 [data:geometry/green_space.geojson#GREEN-01] 与 [data:geometry/public_space.geojson#PUBLIC-01]。这些是基于临时范围的设计面积，并非现状绿地率或审定控规指标；它们用于验证连续树荫、雨洪、休息、慢行和公共测试是否有足够空间承载。空间策略响应 [depth:blue_green_public_space]。
 
 公共空间不靠一次性定制，而靠一套可复制、可撤除、可维护的组件库。十个组件共用煤黑—信号红—电气青—米白四色语汇与同一套标识规则，任何一处都能在不改动周边的前提下增设或撤除；组件本身不含摄像与人脸能力，智能层一律作为可拔插附件。
 
@@ -292,15 +342,15 @@ iteration: "v1.5"
 
 ### 试点交付契约：把“谁负责、怎样验收、何时交回”写在同一行
 
-以下是获授权后用于首个校准周期的设计目标，不是现行政府服务标准、采购条款、预算承诺或已确定时限。`A` 是未来经授权且对结果负责的唯一牵头角色；`R` 是执行角色；`C-I` 是必须事前参与并持续获知结果的权利人、专业人员与使用者。任何包缺少场地、主体、许可、持续资源、维护或退出资产处置之一，均不得上线或扩区。
+以下是获授权后才能校准的指标口径，不是现行政府服务标准、采购条款、预算承诺或已确定时限。在真实运营主体、服务时段和基线未确认前，KPI与响应时间的目标值均为 `null`；表中只保留“缺一不开放”的二元门槛与回滚状态。`A` 是未来经授权且对结果负责的唯一牵头角色；`R` 是执行角色；`C-I` 是必须事前参与并持续获知结果的权利人、专业人员与使用者。任何包缺少场地、主体、许可、持续资源、维护或退出资产处置之一，均不得上线或扩区。
 
-| 行动包与空间ID | 最小交付；概念 RACI | 公共价值 KPI（建议校准） | 响应、停用与回滚 SLO（建议校准） |
+| 行动包与空间ID | 最小交付；概念 RACI | KPI口径与开放门槛 | SLO待校准项与回滚 |
 | --- | --- | --- | --- |
-| P01 公共交接底座；ROAD-001、SCN-05/10 | 连续无障碍路径、固定导视、人工求助；A：经授权公共空间管理方；R：交通、景观、无障碍、照明、维护；C-I：沿线使用者 | 开放前试点段无AI路径审计覆盖率100%；严重安全断点为0 | 值守时段人工求助目标10分钟内确认；严重断点立即隔离，智能层下线后回到固定导视、常亮照明与人工服务 |
-| P02 北部验证交接；SCN-01/02/03 | 版本卡、权限隔离、物理急停、独立计量与失败记录；A：经授权测试责任方；R：模型、机器人、能源、现场安全；C-I：受影响人群与独立复核者 | 每批测试责任人、版本、适用范围、急停演练与正负结果记录完整率100% | 严重风险立即停测，24小时内形成初记；未复核不得恢复，空间回到封闭院落或普通设备位 |
-| P03 中部开源转译；SCN-04/06/07 | 授权、许可、撤回、人工窗口与成果接力；A：经授权服务运营方；R：开源维护、法务、翻译、产品与伦理；C-I：作者、居民、开发者 | 发布对象的来源、许可、责任人和撤回入口完整率100%；无AI服务覆盖率100% | 1个工作日内确认受理、5个工作日内给出人工转介路径；权利不清即撤下并恢复普通信息服务 |
-| P04 维修与照护；SCN-08/09 | 电话/纸面报修、人工派单与照护排班；A：经授权社区服务方；R：维护与照护人员；C-I：居民、老人、照护者 | 拒绝算法不影响服务；人工渠道可用率100%；冲突与遗漏均进入值班簿 | 投诉1个工作日内确认；自动派单冲突即切回人工电话与纸面排班 |
-| P05 南部文化与体验；SCN-11及城市交接厅 | 清权索引、纸本目录、人工投诉与非消费通行；A：经授权文化/场地责任方；R：文保、版权、展陈、消费者权益；C-I：贡献权利人和公众 | 展示来源、授权、争议与撤回入口覆盖率100%；普通通行不以消费或App为条件 | 权属争议1个工作日内先隐藏；不能核实则保持纸本索引或恢复普通公共空间 |
+| P01 公共交接底座；ROAD-001、SCN-05/10 | 连续无障碍路径、固定导视、人工求助；A：经授权公共空间管理方；R：交通、景观、无障碍、照明、维护；C-I：沿线使用者 | 逐段记录无AI路径审计；缺任一开放段记录或发现任一严重断点即不开放 | 人工求助时限待主体与值守基线确定；断点隔离，回到固定导视、常亮照明与人工服务 |
+| P02 北部验证交接；SCN-01/02/03 | 版本卡、权限隔离、物理急停、独立计量与失败记录；A：经授权测试责任方；R：模型、机器人、能源、现场安全；C-I：受影响人群与独立复核者 | 责任、版本、范围、急停演练和正负结果缺一则该批不接收 | 记录时限待安全主体校准；严重风险停测，未复核不恢复，回到封闭院落或普通设备位 |
+| P03 中部开源转译；SCN-04/06/07 | 授权、许可、撤回、人工窗口与成果接力；A：经授权服务运营方；R：开源维护、法务、翻译、产品与伦理；C-I：作者、居民、开发者 | 来源、许可、责任、撤回入口与无AI服务缺一则不发布 | 受理与转介时限待运营基线校准；权利不清即撤下，恢复普通信息服务 |
+| P04 维修与照护；SCN-08/09 | 电话/纸面报修、人工派单与照护排班；A：经授权社区服务方；R：维护与照护人员；C-I：居民、老人、照护者 | 拒绝算法不减少基础服务；公布人工服务时段、备用渠道与中断告知 | 投诉响应待服务基线校准；自动派单冲突即切回人工电话与纸面排班 |
+| P05 南部文化与体验；SCN-11及城市交接厅 | 清权索引、纸本目录、人工投诉与非消费通行；A：经授权文化/场地责任方；R：文保、版权、展陈、消费者权益；C-I：贡献权利人和公众 | 来源、授权、争议与撤回入口缺一则不展示；普通通行不以消费或App为条件 | 受理即标记争议并暂停推荐；依法核实后隐藏或恢复，必要时恢复普通公共空间 |
 | P06 全球交接周；SCN-12 | 问题征集、受控演练、正负结果发布、志愿服务与事后撤场；A：经授权年度运营方；R：活动、安全、社区、开发者、维护；C-I：所有参与者 | 继续、调整、停止三类结论同时公开；无障碍、应急与撤场检查覆盖全部活动段 | 主体、许可、持续预算、安全、值守或撤场任一不清即缩小/取消；结束后恢复日常通行 |
 
 ![P01—P06试点交付契约、版本状态机与三道条件合并门](assets/figures/delivery-contract.png)
@@ -329,14 +379,14 @@ iteration: "v1.5"
 
 | 指标 | 当前值与解释 | 证据 |
 | --- | --- | --- |
-| 临时场地面积 | 11,412,825.386㎡；官方边界替换后重算 | [metric:site_area_sqm] |
-| 概念绿地 | 2,264,695.802㎡；结构性绿地而非现状净增 | [metric:green_space_area_sqm] |
+| 临时场地面积 | 11,412,825.386 ㎡；官方边界到位后按同一算法重算 | [metric:site_area_sqm] |
+| 概念绿地 | 2,264,695.802 ㎡；结构性绿地而非现状净增 | [metric:green_space_area_sqm] |
 | 概念绿地比例 | 0.198434；支撑树荫、雨洪和连续慢行 | [metric:green_ratio] |
-| 公共交接面 | 1,039,257.211㎡；包含连续公共廊道与三节点 | [metric:public_space_area_sqm] |
+| 公共交接面 | 1,039,257.211 ㎡；包含连续公共廊道与三节点 | [metric:public_space_area_sqm] |
 | 公共空间比例 | 0.091060；保证非消费使用与人工服务 | [metric:public_space_ratio] |
-| 建筑类型单元基底 | 221,014.099㎡；仅二十个概念试验单元 | [metric:building_footprint_area_sqm] |
-| 交接线长度 | 9,499.778m；连续慢行与责任展示主轴 | [metric:handover_spine_length_m] |
-| 概念线路总长 | 18,855.117m；含八条东西缝合支线 | [metric:conceptual_movement_length_m] |
+| 建筑类型单元基底 | 221,014.099 ㎡；仅二十个概念试验单元 | [metric:building_footprint_area_sqm] |
+| 交接线长度 | 9,499.778 m；连续慢行与责任展示主轴 | [metric:handover_spine_length_m] |
+| 概念线路总长 | 18,855.117 m；含八条东西缝合支线 | [metric:conceptual_movement_length_m] |
 | 东西支线 | 8条；待交通和工程核验 | [metric:cross_link_count] |
 | AI场景节点 | 12个；均有人工接管与无AI兜底 | [metric:scenario_node_count] |
 | 产业验证场景 | 4个；只允许受控沙盒 | [metric:industry_validation_scenario_count] |
@@ -344,12 +394,14 @@ iteration: "v1.5"
 | 重点区域 | 3处；均为临时边界 | [metric:key_area_count] |
 | 更新类型单元 | 20个；不等于现状建筑清单 | [metric:renewal_cell_count] |
 | 用地要素 | 11个；拓扑联合覆盖场地 | [metric:land_use_zone_count] |
-| 版本化设计对象 | 32个；12个场景与20个更新单元均带复核和回滚字段 | [metric:versioned_asset_count] |
+| 版本接口目录 | 32个；是待授权的概念对象，不是32个已验证系统 | [metric:versioned_asset_count] |
+| 机器可读双联交接账 | 1套JSON Schema + 1份SCN-05合成样例 | [metric:machine_readable_shift_protocol_count] [metric:schema_valid_synthetic_shift_count] |
+| 结构校验错误 | 0个；仅代表样例可解析，不代表真实性能通过 | [metric:shift_protocol_validation_error_count] |
 | 概念分期 | 3期；由条件触发而非自动实施 | [metric:phase_count] |
 
-七类用地面积分别为05商业服务2,133,693.511㎡、0701居住1,459,314.115㎡、0702社区服务1,332,004.101㎡、0802科研1,899,736.874㎡、0803文化1,038,498.555㎡、0804教育1,284,882.427㎡、1401公园绿地2,264,695.802㎡，对应 [metric:land_use_05_sqm]、[metric:land_use_0701_sqm]、[metric:land_use_0702_sqm]、[metric:land_use_0802_sqm]、[metric:land_use_0803_sqm]、[metric:land_use_0804_sqm]、[metric:land_use_1401_sqm]。三道合并门的覆盖面积为4,837,401.583㎡、3,545,776.934㎡、3,029,646.869㎡ [metric:phase_1_area_sqm] [metric:phase_2_area_sqm] [metric:phase_3_area_sqm]；三处临时重点区为1,929,201.877㎡、1,043,236.909㎡、720,454.219㎡ [metric:key_area_zhongzhiyuan_sqm] [metric:key_area_origin_community_sqm] [metric:key_area_dazhongsi_sqm]。概念建筑基底覆盖率为0.019365 [metric:conceptual_building_coverage_ratio]，但总建筑面积、建筑密度、道路面积和道路率因缺少逐栋普查与道路红线继续保持 [metric:total_floor_area_sqm]、[metric:building_density]、[metric:road_area_sqm]、[metric:road_ratio] 未赋值。
+七类用地面积分别为05商业服务2,133,693.511㎡、0701居住1,459,314.115㎡、0702社区服务1,332,004.101㎡、0802科研1,899,736.874㎡、0803文化1,038,498.555㎡、0804教育1,284,882.427㎡、1401公园绿地2,264,695.802㎡，对应 [metric:land_use_05_sqm]、[metric:land_use_0701_sqm]、[metric:land_use_0702_sqm]、[metric:land_use_0802_sqm]、[metric:land_use_0803_sqm]、[metric:land_use_0804_sqm]、[metric:land_use_1401_sqm]。三道合并门的覆盖面积为4,837,401.583㎡、3,545,776.934㎡、3,029,646.869㎡ [metric:phase_1_area_sqm] [metric:phase_2_area_sqm] [metric:phase_3_area_sqm]；三处临时重点区为1,929,201.877㎡、1,043,236.909㎡、720,454.219㎡ [metric:key_area_zhongzhiyuan_sqm] [metric:key_area_origin_community_sqm] [metric:key_area_dazhongsi_sqm]。概念建筑基底覆盖率为0.019365 [metric:conceptual_building_coverage_ratio]，但总建筑面积、建筑密度、道路面积和道路率因缺少逐栋普查与道路红线继续保持 [metric:total_floor_area_sqm]、[metric:building_density]、[metric:road_area_sqm]、[metric:road_ratio] 未赋值。以上小数位表示的是“同一几何可被第三方复现到同一位”，不表示外部事实具有同等精度；官方边界发布后全部数值按同一算法重算。
 
-公告要求研提“AI创新指数、人才密度、产值规模”等规划指标体系。本方案给出口径而不给出数值：在官方统计、权属和企业数据发布之前，任何数值都会变成不可复核的伪精度，反而削弱指标体系的用途。下表定义计算口径、数据前置条件和赋值触发，官方数据到位后由同一模型一次性赋值并进入 metrics.json，与几何类指标共用同一套复算规则。
+公告要求研提“AI创新指数、人才密度、产值规模”等规划指标体系。本方案给出口径而不给出数值——但这不是“找不到数据”。区级公开统计确实存在且已逐条登记 [source:HAIDIAN-2025-STATISTICAL-BULLETIN]：备案上线大模型 123 款、全国重点实验室 92 家、每万人口高价值发明专利 599 件、技术合同成交额 4053.1 亿元。问题在于它们的统计单元是海淀全区，无法分配到 43.6 平方公里的走廊；把区级数字直接写成本带指标，得到的是不可复核的伪精度，反而削弱指标体系的用途。因此这些数值全部停留在 `background_only`，只用来定义口径与判断瓶颈。下表定义计算口径、数据前置条件和赋值触发，官方数据到位后由同一模型一次性赋值并进入 metrics.json，与几何类指标共用同一套复算规则。
 
 | 规划指标 | 口径定义 | 数据前置条件 | 当前状态 |
 | --- | --- | --- | --- |
@@ -367,14 +419,55 @@ compliance_matrix.json逐条覆盖公告1.3、1.4、1.5和agent.1—agent.6；st
 
 ## 风险、版权与合规说明
 
-最大风险不是技术能力不足，而是把临时数据和概念方案误读为官方决定。A-BOUNDARY-001要求官方边界发布后重算；A-CONTROLS-001禁止自造强度和高度；A-TRANSPORT-001禁止把连接意图写成道路或桥隧结论；A-HERITAGE-001要求文保前置；A-MUNICIPAL-001禁止承诺容量；A-BUILDING-001要求逐栋核查；A-OPERATIONS-001要求场景小规模、人工复核和可退出。风险与缺资料深度由 [depth:risk_missing_data] 控制，空的 [data:geometry/constraints.geojson#CONSTRAINTS-DATA-GAP] 正是“没有公开约束几何就不伪造”的证据，而不是声称不存在约束。
+最大风险不是技术能力不足，而是把临时数据和概念方案误读为官方决定。风险与缺资料深度由 [depth:risk_missing_data] 控制，空的 [data:geometry/constraints.geojson#CONSTRAINTS-DATA-GAP] 正是“没有公开约束几何就不伪造”的证据，而不是声称不存在约束。
 
-隐私边界采用数据最小化、自愿参与、目的限定、可撤回、限时保存和人工申诉；不得使用秘密地图、非公开表格、未经授权个人数据、强制人脸识别或无法人工复核的权益决定。公平性以“无智能手机、不会中文、残障、老人和选择不用AI的人仍能获得等价基础服务”为底线。技术失败时先保证照明、通行、求助和公共服务，再处理模型恢复。
+| 风险 | 本轮处理 | 进入深化的必要动作 | 登记编号 |
+| --- | --- | --- | --- |
+| 临时边界被误读为正式红线 | 全包标注 official_boundary=false，图面用低对比虚线表达 | 取得清权 official polygon 后全量重算九类几何与全部指标 | A-BOUNDARY-001 |
+| 概念用地与强度被误读为控规 | 建筑强度与高度保持 unknown，不以视觉精细度制造确定感 | 对接正式控规、规划条件与技术审查 | A-CONTROLS-001 |
+| 连接意图被误读为工程线位 | 八条缝合支线只表达步行、骑行与换乘意图 | 补充道路红线、轨道、交通量、市政与结构资料 | A-TRANSPORT-001 |
+| 文化节点与文保范围冲突 | 不定位保护线，不作永久建筑承诺 | 取得文保范围与保护要求并完成专项审查 | A-HERITAGE-001 |
+| 市政接口被误读为容量承诺 | 只提需求侧接口，不承诺任何容量 | 由市政主管部门核定容量与接入条件 | A-MUNICIPAL-001 |
+| 概念建筑单元被误读为拆改留结论 | 二十个单元为类型试验，不指认具体建筑 | 完成逐栋建筑、权属、结构、消防与社会影响调查 | A-BUILDING-001 |
+| 场景试点长期化、无法退出 | 每个场景写明停用触发、退出条件与退出后空间处置 | 明确主体、许可、预算、维护与数据删除责任 | A-OPERATIONS-001 |
+| 区级统计被误配到走廊 | 公开统计一律标记 not_spatially_allocable，不进入 metrics.json | 完成走廊级客流、OD、设施容量与投诉基线采集 | [source:HAIDIAN-2025-STATISTICAL-BULLETIN] |
+| 智能服务排斥非数字用户 | 十二个场景一律配置无AI等价服务与人工窗口 | 按法定要求完成无障碍与适老化评估验收 | [source:BARRIER-FREE-ENVIRONMENT-LAW] |
+
+隐私边界采用数据最小化、自愿参与、目的限定、可撤回、限时保存和人工申诉；不得使用秘密地图、非公开表格、未经授权个人数据、强制人脸识别或无法人工复核的权益决定。公平性以“无智能手机、不会中文、残障、老人和选择不用AI的人仍能获得等价基础服务”为底线，其下限由 [source:BARRIER-FREE-ENVIRONMENT-LAW] 第三十九条与 [source:ELDERLY-SMART-TECH-PLAN] 设定，本方案在此之上再增加“可停用、可申诉”两项。技术失败时先保证照明、通行、求助和公共服务，再处理模型恢复；停止与投诉入口的配置对应 [source:GENERATIVE-AI-INTERIM-MEASURES] 第十四条与第十五条。
 
 版权声明见 report/copyright_statement.md。本包图形、Logo方向、地图符号、排版、文字、几何与PDF均为本次原创或基于仓库清权数据程序化生成；外部案例只作文字转述，未复制图片、地图、字体、商标或受保护版式。方案是开放共创的概念建议，不替代规划、建筑、交通、景观、市政、消防、文保、法律、隐私与工程专业服务，也不代表政府批准、投资、采购、招商或实施承诺。
 
 ## 参考资料
 
-公开资料索引内的基础依据为 brief/public-brief.md 与 brief/README.md，前者给出本次征集的公开任务说明，后者给出资料公开性与使用边界。在此之上，仓库内依据还包括 brief/site-package/design_brief.json、agent_taskbook.json、allowed_design_space.json、sources.json、geometry/provisional_boundaries.geojson、ranges/planning_limits.json、standards/standards.json、data/source_registry.json、data/processed/agent_fact_pack.md 以及全部schemas与enums。正式来源和用途边界已逐项登记在 sources.json；假设与复算触发器登记在 assumptions.json；版权和生成方式登记在 report/copyright_statement.md。
+全部十七条来源在 sources.json 中逐条登记权威等级、采集方法、时空覆盖、许可状态与可用/不可用边界；凡涉及单位换算的写明原文表述与换算方法，凡属行政尺度背景事实的标记 `not_spatially_allocable=true`。
 
-外部机制对照包括JTC LaunchPad、Forum Virium Helsinki Smart Kalasatama、STATION F、Ajuntament de Barcelona 22@、City of Cambridge Kendall Square K2C2、Knowledge Quarter London六个机构官网或官方报告，检索日期均为2026-08-08。所有案例只作概念机制参考，未将绩效、土地制度、资金政策或治理安排直接移植到海淀。正文的机器可读证据入口覆盖九类几何、全部已知指标、六项标准与十五项专业深度；资料入口以 [source:SITE-PACKAGE] 为索引，人类读者可从正文回到JSON、GeoJSON、HTML与PDF复核每一项关键判断。
+### 一、任务依据
+
+公开资料索引内的基础依据为 brief/public-brief.md 与 brief/README.md，前者给出本次征集的公开任务说明，后者给出资料公开性与使用边界。
+
+- 征集公告，给出三层范围、重点区域与成果要求：[source:OFFICIAL-ANNOUNCEMENT]
+- 面向智能体任务书摘录，给出六项任务、场景、品牌与运营要求：[source:AGENT-TASKBOOK]
+- 仓库场地资料包、资料使用登记与事实导航层：[source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
+- 临时总体边界与三处重点区几何，均标记 official_boundary=false：[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
+- 本地标准矩阵索引：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+
+### 二、法定与政策依据
+
+本方案的三条红线各有出处，只作合规对照，不作法律意见。
+
+- 《生成式人工智能服务管理暂行办法》（七部门，2023-08-15 施行），第十四条停止处置、第十五条投诉与反馈时限、第十七条安全评估：[source:GENERATIVE-AI-INTERIM-MEASURES]
+- 《中华人民共和国无障碍环境建设法》（2023-09-01 施行，共 8 章 72 条），第三十九条要求公共服务场所保留现场指导、人工办理等传统服务方式：[source:BARRIER-FREE-ENVIRONMENT-LAW]
+- 国办发〔2020〕45号《关于切实解决老年人运用智能技术困难的实施方案》，确立传统服务方式与智能化服务创新并行：[source:ELDERLY-SMART-TECH-PLAN]
+
+### 三、背景统计与机制案例
+
+- 海淀区2025年国民经济和社会发展统计公报（海淀统计局队，2026-04-10），仅作行政尺度背景，不进入 metrics.json：[source:HAIDIAN-2025-STATISTICAL-BULLETIN]
+- 六个机构官网或城市官方报告，检索日期均为 2026-08-08，只作机制对照，未将绩效、土地制度、资金政策或治理安排直接移植到海淀：[source:CASE-ONE-NORTH] [source:CASE-KALASATAMA] [source:CASE-STATION-F] [source:CASE-22BARCELONA] [source:CASE-KENDALL] [source:CASE-KNOWLEDGE-QUARTER]
+
+### 四、机器可读数据总索引
+
+九类几何图层构成可替换、可复算、可审计的方案底板；任何图面或叙述与其不一致时，以结构化数据和后续官方资料为准：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-01]、[data:geometry/public_space.geojson#PUBLIC-01]、[data:geometry/constraints.geojson#CONSTRAINTS-DATA-GAP]、[data:geometry/phasing.geojson#PHASE-001]。
+
+十五项专业深度总索引为 [depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。
+
+假设与复算触发器登记在 assumptions.json；版权与生成方式登记在 report/copyright_statement.md；四道自检结论登记在 self_check.json。人类读者可从正文任一处回到 JSON、GeoJSON、HTML 与 PDF 复核每一项关键判断。

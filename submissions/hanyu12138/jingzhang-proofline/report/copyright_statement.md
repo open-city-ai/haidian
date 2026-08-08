@@ -24,3 +24,5 @@ Avoid: cyberpunk neon, purple-blue gradients, dark atmosphere, fantasy, glossy c
 5 张 `assets/figures/*.png` 由投稿 GeoJSON、metrics 和矩阵确定性绘制，字体使用本机 Microsoft YaHei 仅作栅格化输出，不随包分发。图中 provisional boundary 均以低对比虚线表达。A3/A0 PDF 由上述自制图与概念示意图排版生成。
 
 本方案不使用商业地图瓦片、新闻图片、OSM 截图、企业商标、人物肖像素材或第三方论文图像。国际案例只引用各机构公开官网并作为背景机制对照，不用于本项目空间控制或绩效承诺。
+
+v1.4 比较阅读仓库内三份同侪方案：“京张开源脉冲”为 `COMMUNITY-DISPLAY-ONLY`，“京张开源带”为 `CC-BY-4.0`，“京张校准场”为 `COMMUNITY-DISPLAY-ONLY`。本轮只在 `proposal.md`、`proposal.en.md`、`sources.json` 与 `visual/assets/participation.json` 中用原创表述记录方法层的发现、采用和拒绝，不复制其文本、表格、图像、GeoJSON、指标、专有命名或其他资产，也不将同侪主张转作本案的空间、工程或事实证据。来源路径、许可和禁止用途已逐项登记；后续若需要派生或再分发任何资产，须另行按其许可和权利人要求清权。

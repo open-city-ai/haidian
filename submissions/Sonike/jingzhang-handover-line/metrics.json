@@ -334,10 +334,51 @@
         "geometry/public_space.geojson",
         "geometry/buildings.geojson"
       ],
-      "formula": "count(SCENARIO_NODE with protocol_version) + count(BUILDING_FOOTPRINT with protocol_version)",
+      "formula": "count(concept objects exposing the common version-interface fields; this does not assert deployment or object-level validation)",
       "confidence": "high",
       "assumptions": [
         "A-BUILDING-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "machine_readable_shift_protocol_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/shift-ledger.schema.json",
+        "visual/assets/governance/validation-report.json"
+      ],
+      "formula": "count(Draft 2020-12 JSON Schemas that pass metaschema validation)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "schema_valid_synthetic_shift_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/example-scn05-shift-ledger.json",
+        "visual/assets/governance/validation-report.json"
+      ],
+      "formula": "count(synthetic shift-ledger instances with structural error_count = 0)",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "shift_protocol_validation_error_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/governance/validation-report.json"
+      ],
+      "formula": "count(jsonschema validation errors for the bundled synthetic SCN-05 instance)",
+      "confidence": "high",
+      "assumptions": [
         "A-OPERATIONS-001"
       ]
     },
