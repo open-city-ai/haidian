@@ -971,7 +971,14 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                     report.add_error(message)
                 continue
             declared_digest = item.get("sha256")
-            if safe_path != "manifest.json" and not declared_digest:
+            if safe_path == "manifest.json":
+                if declared_digest:
+                    report.add_warning(
+                        f"{proposal_dir}/manifest.json: omit sha256 for `manifest.json`; "
+                        "a manifest cannot contain a stable hash of itself"
+                    )
+                continue
+            if not declared_digest:
                 message = f"{proposal_dir}/manifest.json: listed file `{safe_path}` needs sha256"
                 if translation_entry:
                     report.add_warning(message + "; bilingual metadata does not block review")
@@ -979,7 +986,7 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                     report.add_error(message)
                 else:
                     report.add_warning(message + " (legacy package compatibility)")
-            elif declared_digest:
+            else:
                 actual_digest = hashlib.sha256(listed_file.read_bytes()).hexdigest()
                 if declared_digest != actual_digest:
                     message = f"{proposal_dir}/manifest.json: sha256 mismatch for `{safe_path}`"
