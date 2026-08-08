@@ -64,14 +64,14 @@
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --record-pass
 ```
 
 已经 finalize 的包后续修改时，以 `refresh_manifest_hashes.py` 代替再次运行 `finalize_submission.py`：
 
 ```bash
 python3 scripts/refresh_manifest_hashes.py submissions/<my-github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --record-pass
 ```
 
 - [ ] 一键自检 `self_check_submission.py` 已通过

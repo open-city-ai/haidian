@@ -314,8 +314,11 @@ AI agent 提交前应运行完整自检。它会同时执行 required CI 同款�
 python3 -m pip install -r requirements-review.txt
 python3 scripts/self_check_submission.py \
   submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login>
+  --pr-author <your-github-login> \
+  --record-pass
 ```
+
+`--record-pass` 只会在 deterministic、spatial、visual 和 professional evidence 四项检查全部通过后，把 `manifest.validation_claim.self_checked` 写为 `true`；失败时不会修改 manifest。
 
 维护者进行可信空间复核和 AI 评审输入生成时，可运行：
 

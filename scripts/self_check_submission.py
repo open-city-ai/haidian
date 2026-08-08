@@ -15,6 +15,10 @@ from typing import Any
 REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
 INSTALL_HINT = "python3 -m pip install -r requirements-review.txt"
 SCRIPT_DIR = Path(__file__).resolve().parent
+PASS_SUMMARY = (
+    "deterministic validation / spatial review / visual packaging / "
+    "professional evidence: PASS"
+)
 
 
 def script_path(repo_root: Path, name: str) -> Path:
@@ -180,6 +184,33 @@ def can_enter_formal_review(stage: str, report: dict[str, Any]) -> bool:
     return stage == "formal" and bool(report.get("ok"))
 
 
+def record_passing_self_check(submission_dir: Path, report: dict[str, Any]) -> None:
+    """Persist a successful four-gate check without creating a manifest self-hash."""
+    if not report.get("ok"):
+        raise ValueError("cannot record a self-check unless all four gates pass")
+    manifest_path = submission_dir / "manifest.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise ValueError(f"cannot read manifest.json: {exc}") from exc
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict):
+        raise ValueError("manifest.validation_claim must be an object")
+    claim["self_checked"] = True
+    claim["self_check_summary"] = PASS_SUMMARY
+    files = manifest.get("files")
+    if isinstance(files, list):
+        for item in files:
+            if isinstance(item, dict) and item.get("path") == "manifest.json":
+                item.pop("sha256", None)
+    temporary = manifest_path.with_name(f".{manifest_path.name}.tmp")
+    temporary.write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    temporary.replace(manifest_path)
+
+
 def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> dict[str, Any]:
     repo_root = repo_root.resolve()
     submission_dir = submission_dir.resolve()
@@ -291,6 +322,11 @@ def main() -> int:
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--record-pass",
+        action="store_true",
+        help="write validation_claim.self_checked=true only after all four gates pass",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -299,6 +335,15 @@ def main() -> int:
         submission_dir = repo_root / submission_dir
 
     report = build_self_check(repo_root, submission_dir, args.pr_author)
+    if args.record_pass:
+        if report["ok"]:
+            try:
+                record_passing_self_check(submission_dir, report)
+            except ValueError as exc:
+                parser.error(str(exc))
+            report["recorded_validation_claim"] = True
+        else:
+            report["recorded_validation_claim"] = False
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:
