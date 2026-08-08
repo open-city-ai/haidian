@@ -94,6 +94,34 @@ def _is_download_not_found(error: Exception, path: str) -> bool:
     )
 
 
+def stale_pull_request_event_reason(
+    client: "GitHubClient", repository: str, pr_number: int, event_head_sha: str
+) -> str | None:
+    """Return why a queued PR event must not validate its no-longer-live head."""
+    try:
+        current, _ = client.request("GET", f"/repos/{repository}/pulls/{pr_number}")
+    except urllib.error.HTTPError as exc:
+        if exc.code == 404:
+            return f"PR #{pr_number} no longer exists"
+        raise
+    if not isinstance(current, dict):
+        raise RuntimeError(f"GitHub API PR #{pr_number} metadata response was malformed")
+    if current.get("state") != "open":
+        return f"PR #{pr_number} is no longer open"
+    if current.get("draft") is True:
+        return f"PR #{pr_number} is now a draft"
+    head = current.get("head")
+    live_head_sha = head.get("sha") if isinstance(head, dict) else None
+    if not isinstance(live_head_sha, str):
+        raise RuntimeError(f"GitHub API PR #{pr_number} is missing head.sha")
+    if live_head_sha != event_head_sha:
+        return (
+            f"PR #{pr_number} head advanced from {event_head_sha[:12]} "
+            f"to {live_head_sha[:12]}"
+        )
+    return None
+
+
 class GitHubClient:
     def __init__(self, token: str, repository: str) -> None:
         self.token = token
@@ -367,6 +395,11 @@ def main() -> int:
     head_repo = pull_request["head"]["repo"]["full_name"]
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
+
+    stale_reason = stale_pull_request_event_reason(client, repository, pr_number, head_sha)
+    if stale_reason:
+        print(f"Skipping stale submission-validation event: {stale_reason}")
+        return 0
 
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
     changed_files = [item["filename"] for item in files]

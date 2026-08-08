@@ -34,6 +34,7 @@ from github_pr_validation import (  # noqa: E402
     is_review_queue_candidate,
     main,
     safe_manifest_paths,
+    stale_pull_request_event_reason,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
@@ -243,6 +244,10 @@ class ManifestHydrationTests(unittest.TestCase):
             json.dump(event, event_file)
             event_file.flush()
             client = MagicMock()
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
+                {},
+            )
             client.paginate.return_value = files
             with patch.dict(
                 os.environ,
@@ -257,6 +262,54 @@ class ManifestHydrationTests(unittest.TestCase):
         client.download_content.assert_not_called()
         comment = client.upsert_comment.call_args.args[1]
         self.assertIn("participant deletion-only PR", comment)
+
+    def test_stale_event_skips_before_file_enumeration(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 685,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "old-head-sha"},
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "live-head-sha"}},
+                {},
+            )
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.paginate.assert_not_called()
+        client.download_content.assert_not_called()
+        client.upsert_comment.assert_not_called()
+
+    def test_stale_event_reason_skips_closed_pr(self) -> None:
+        client = MagicMock()
+        client.request.return_value = ({"state": "closed", "head": {"sha": "head-sha"}}, {})
+        self.assertEqual(
+            "PR #685 is no longer open",
+            stale_pull_request_event_reason(client, "open-city-ai/haidian", 685, "head-sha"),
+        )
+
+    def test_stale_event_reason_skips_missing_pr(self) -> None:
+        client = MagicMock()
+        client.request.side_effect = urllib.error.HTTPError(
+            "https://api.github.com/test", 404, "Not Found", {}, io.BytesIO(b"{}")
+        )
+        self.assertEqual(
+            "PR #685 no longer exists",
+            stale_pull_request_event_reason(client, "open-city-ai/haidian", 685, "head-sha"),
+        )
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(
