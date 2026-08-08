@@ -5,7 +5,7 @@ author_github: "147228"
 author_name: "许丙南"
 language: "en"
 translation_of: "proposal.md"
-iteration: "v2.7"
+iteration: "v2.8"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An evidence-led urban design proposal that turns the century-old railway corridor into a reversible, human-first and auditable AI innovation public belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -14,9 +14,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 # Jing-Zhang Open Pulse: A Verifiable AI Innovation Public Belt
 
-> **v2.7 design declaration:** Jing-Zhang does not treat AI as a set of glowing objects. It treats AI as a public protocol in which people come before models, evidence comes before scale, and an ordinary route always remains available. The railway's track, stations and mile markers become a six-part civic loop: question, permission, bounded test, human decision, public receipt, then scale/repair/retire.
+> **v2.8 design declaration:** Jing-Zhang does not treat AI as a set of glowing objects. It treats AI as a public protocol in which people come before models, evidence comes before scale, and an ordinary route always remains available. The railway's track, stations and mile markers become a six-part civic loop: question, permission, bounded test, human decision, public receipt, then scale/repair/retire.
 
-## One-page civic operating system
+## v2.8 One-page civic operating system: public loop and proof-mile
 
 | Civic loop | Spatial move | What AI may do | Human and ordinary route | Stop when |
 | --- | --- | --- | --- | --- |
@@ -31,8 +31,25 @@ The three key areas are intentionally different: Zhongzhi Garden is a **trusted 
 
 This is not an approved digital-city project. Its value is a common handoff surface: who asked, where, what minimum data, who is present, what ordinary alternative exists, when to stop, who maintains it and how the result returns to the public. `civic-pulse-protocol.json` is the machine-readable handoff; `risk.json`, `construction-readiness.json` and `participation-cycle.json` are its release ledgers. The protocol currently contains [metric:civic_pulse_stage_count] stages and [metric:civic_pulse_station_count] differentiated stations; the risk ledger contains [metric:risk_class_count] dimensions.
 
+## v2.8 One Component, One Proof-Mile: a maintainable handoff
+
+The civic pulse answers when AI may work; this iteration also specifies what may be handed over. **One Component, One Proof-Mile** is not a new red line. It is a professional-deepening syntax: each component has its own public question, provisional geometry version, ordinary equivalent, minimum data, accountable owner, maintenance record, positive and negative evidence, and retirement decision. One component passing never clears the belt.[source:AGENT-TASKBOOK] [data:visual/assets/proof-mile-delivery.json#OPEN-PULSE-PROOF-MILE]
+
+| Component | Station and spatial anchor | Ordinary route | Proof left behind | Stop/retire trigger |
+| --- | --- | --- | --- | --- |
+| K01 Ordinary wayfinding and staffed help | All three; `ROAD-001` / `PUBLIC-001` | Physical signs, paper map, phone and staff | Route map, response record, offline fallback check | Misleading sign, blocked clear width or missing staff |
+| K02 Step-free shade, rest and service bay | Origin/Dazhongsi; `GREEN-001` / `PUBLIC-001` | Seat, shade, water, escort and toilet wayfinding | Continuity, heat/glare/noise baseline and tree-pit log | Ponding, trip, glare or unreviewed group difference |
+| K03 Blue-green rainwater edge | Zhongzhi; `GREEN-001` / `CONSTRAINTS` | Visible inlets, manual clearing and exceedance route | Infiltration/pollution/overflow check and before/after-rain work order | Utility, overflow or clearing responsibility unclear |
+| K04 Closable civic-evidence kiosk | Origin/Dazhongsi; `PUBLIC-001` / `PROV-KEY-002` | Paper receipt, noticeboard, staff explanation and complaint box | Version receipt, rights/source card and deletion log | Rights, source or offline equivalent unverifiable |
+| K05 Low-speed embodied-AI boundary and stop node | Zhongzhi; `ROAD-002` / `PUBLIC-001` | Human delivery, human wayfinding and static route | Stop/takeover drill, near-miss log and maintenance receipt | Cannot stop, blocks accessibility or no accountable lead |
+| K06 Contribution lineage and railway-memory rack | Origin/Dazhongsi; `PUBLIC-001` / `PROV-KEY-003` | Paper archive, staff explanation and withdrawable credit | Rights card, positive/negative archive and withdrawal log | Heritage, portrait/copyright or withdrawal path unclear |
+
+The full fields, roles, maintenance rules, five construction/opening gates and six civic-pulse handoffs are in `visual/assets/proof-mile-delivery.json`. The machine-readable counts are [metric:proof_mile_component_count] components and [metric:proof_mile_station_handoff_count] station handoffs. This puts spatial action, public experience, embodied AI, drainage, maintenance and rights on one accountable card without presenting unknown field baselines as achieved results.[data:visual/assets/construction-readiness.json#CR-01] [data:visual/assets/participation-cycle.json#PARTICIPATION-CYCLE]
+
+The release sequence is fixed: ordinary service base first → reversible prototype and bounded test → human decision on positive and negative evidence → public receipt and appeal → maintain, scale or dismantle. Missing official boundary, rights, utilities, accessibility, climate-water, fire or heritage inputs keep a component conceptual; a failed test leaves the ordinary route open and records material, data and temporary-wayfinding return. This strengthens implementation feasibility; it is not a construction drawing, procurement specification, budget or government permit.
+
 **Author:** 许丙南 / GitHub `147228`  
-**Review copy:** English translation of `proposal.md`, v2.7
+**Review copy:** English translation of `proposal.md`, v2.8
 **Status:** formal submission package; all new spatial interfaces remain provisional concepts until official polygons, professional safety review and community review are available.
 
 ## Design Basis and Source List
