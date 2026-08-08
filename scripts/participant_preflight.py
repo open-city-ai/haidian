@@ -17,7 +17,15 @@ LARGE_PACKAGE_WARNING = 200 * 1024 * 1024
 
 
 def run(command: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(command, cwd=cwd, capture_output=True, text=True, check=False)
+    return subprocess.run(
+        command,
+        cwd=cwd,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+    )
 
 
 def git_output(repo_root: Path, *args: str, allow_failure: bool = False) -> str:
