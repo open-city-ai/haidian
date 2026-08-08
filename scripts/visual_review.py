@@ -91,11 +91,13 @@ def load_metrics(path: Path) -> dict[str, Any]:
 
 
 class VisualMetricParser(HTMLParser):
-    """Collect explicit metric declarations without depending on attribute order."""
+    """Collect numeric metric declarations without depending on attribute order."""
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
         self.metrics: dict[str, float] = {}
+        self.declarations: list[tuple[str, float]] = []
+        self.nonfinite_metrics: set[str] = set()
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         attributes = {name.lower(): value for name, value in attrs}
@@ -103,13 +105,16 @@ class VisualMetricParser(HTMLParser):
         raw_value = attributes.get("data-value")
         if not isinstance(name, str) or not isinstance(raw_value, str):
             return
+        name = html.unescape(name)
         try:
-            value = float(raw_value)
+            value = float(html.unescape(raw_value))
         except ValueError:
             return
         if not math.isfinite(value):
+            self.nonfinite_metrics.add(name)
             return
-        self.metrics[html.unescape(name)] = value
+        self.declarations.append((name, value))
+        self.metrics[name] = value
 
     def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         self.handle_starttag(tag, attrs)
@@ -150,29 +155,59 @@ def review_visual(submission_dir: Path) -> VisualReport:
                 f"Visualization must visibly include `{marker}`.",
             )
 
-    declared = extract_visual_metrics(text)
+    parser = VisualMetricParser()
+    parser.feed(text)
+    parser.close()
+    declarations = parser.declarations
+    declared = parser.metrics
     report.metrics_seen = declared
     metrics = load_metrics(submission_dir / "metrics.json")
-    for name in REQUIRED_METRICS:
-        if name not in declared:
-            report.add("VISUAL_METRIC_MISSING", "major", display_path, f"Missing data-metric `{name}`.")
-            continue
+    for name in sorted(parser.nonfinite_metrics):
+        report.add(
+            "VISUAL_METRIC_NONFINITE_VALUE",
+            "major",
+            display_path,
+            f"HTML metric `{name}` must use a finite numeric data-value.",
+        )
+    for name, value in declarations:
         metric = metrics.get(name)
-        if not isinstance(metric, dict) or metric.get("status") != "known":
-            report.add("VISUAL_METRIC_SOURCE_MISSING", "major", display_path, f"`metrics.json` has no known metric `{name}`.")
+        if not isinstance(metric, dict):
+            report.add(
+                "VISUAL_METRIC_SOURCE_MISSING",
+                "major",
+                display_path,
+                f"HTML declares unregistered metric `{name}`; add it to metrics.json before displaying a numeric value.",
+            )
+            continue
+        if metric.get("status") != "known":
+            issue_id = "VISUAL_METRIC_SOURCE_MISSING" if name in REQUIRED_METRICS else "VISUAL_METRIC_NON_KNOWN_CLAIM"
+            report.add(
+                issue_id,
+                "major",
+                display_path,
+                f"HTML declares numeric metric `{name}` but metrics.json status is `{metric.get('status')!r}`; unknown or not_applicable metrics must remain explicitly non-numeric.",
+            )
             continue
         expected = metric.get("value")
         if not isinstance(expected, (int, float)):
-            report.add("VISUAL_METRIC_SOURCE_MISSING", "major", display_path, f"`metrics.json` metric `{name}` has no numeric value.")
+            report.add(
+                "VISUAL_METRIC_SOURCE_MISSING",
+                "major",
+                display_path,
+                f"`metrics.json` metric `{name}` has no numeric value.",
+            )
             continue
         tolerance = max(abs(float(expected)) * 1e-6, 1e-6)
-        if abs(declared[name] - float(expected)) > tolerance:
+        if abs(value - float(expected)) > tolerance:
             report.add(
                 "VISUAL_METRIC_MISMATCH",
                 "major",
                 display_path,
-                f"HTML metric `{name}` value {declared[name]} does not match metrics.json value {expected}.",
+                f"HTML metric `{name}` value {value} does not match metrics.json value {expected}.",
             )
+    for name in REQUIRED_METRICS:
+        if name not in declared:
+            report.add("VISUAL_METRIC_MISSING", "major", display_path, f"Missing data-metric `{name}`.")
     return report
 
 
