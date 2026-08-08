@@ -45,6 +45,16 @@ REQUIRED_TEXT_MARKERS = [
 ]
 REQUIRED_METRICS = ["site_area_sqm", "green_ratio", "public_space_ratio"]
 DRAWINGS_DIRECTORY = "drawings"
+# PDF text is less structured than the HTML display layer.  Restrict this
+# check to standard regulatory-control labels and an immediately adjacent
+# number: a number elsewhere on the page cannot safely be attributed to a
+# metric just by OCR/text order alone.
+PDF_CONTROL_METRIC_ALIASES = {
+    "floor_area_ratio": ("FAR", "容积率"),
+    "building_height": ("建筑高度",),
+    "building_density": ("建筑密度",),
+    "green_ratio": ("绿地率",),
+}
 PDF_RENDER_MAX_EDGE = 1024
 PDF_GRID_SIZE = 12
 PAPER_CHANNEL_THRESHOLD = 245
@@ -166,6 +176,36 @@ def extract_visual_metrics(text: str) -> dict[str, float]:
     return parser.metrics
 
 
+def extract_unknown_pdf_metric_claims(metrics: dict[str, Any], text: str) -> list[tuple[str, str]]:
+    """Find conservative label-plus-number claims for unknown control metrics.
+
+    A drawing can legitimately contain numbers for unrelated geometry or known
+    metrics.  We therefore require a recognised control-metric label followed
+    directly by a number (optionally through a colon, equals sign, or Chinese
+    approximation phrase).  This is intentionally not an OCR-style claim
+    detector and cannot certify rasterised labels.
+    """
+    claims: list[tuple[str, str]] = []
+    number = r"[+-]?\d+(?:[,.]\d+)?\s*(?:%|㎡|m²|米|m)?"
+    for name, aliases in PDF_CONTROL_METRIC_ALIASES.items():
+        metric = metrics.get(name)
+        if not isinstance(metric, dict) or metric.get("status") not in {"unknown", "not_applicable"}:
+            continue
+        label = "|".join(
+            rf"(?<![A-Za-z0-9_]){re.escape(alias)}(?![A-Za-z0-9_])"
+            if alias.isascii()
+            else re.escape(alias)
+            for alias in aliases
+        )
+        pattern = re.compile(
+            rf"(?:{label})\s*(?:[:：=]|为|约为|约)?\s*({number})",
+            re.IGNORECASE,
+        )
+        for match in pattern.finditer(text):
+            claims.append((name, match.group(0).replace("\n", " ").strip()))
+    return claims
+
+
 def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
     """Measure non-paper coverage from a bounded low-resolution PDF render."""
     if fitz is None or Image is None:
@@ -261,7 +301,7 @@ def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
     }
 
 
-def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
+def review_drawing_pdfs(submission_dir: Path, metrics: dict[str, Any], report: VisualReport) -> None:
     drawings_dir = submission_dir / DRAWINGS_DIRECTORY
     pdf_paths = sorted(drawings_dir.rglob("*.pdf")) if drawings_dir.exists() else []
     if not pdf_paths:
@@ -289,6 +329,15 @@ def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
                     )
                     continue
                 for page_number, page in enumerate(document, start=1):
+                    for metric_name, claim in extract_unknown_pdf_metric_claims(metrics, page.get_text("text")):
+                        report.add(
+                            "DRAWING_PDF_UNKNOWN_METRIC_NUMERIC_CLAIM",
+                            "major",
+                            display_path,
+                            f"page {page_number}: drawing declares `{claim}` while metrics.json marks "
+                            f"`{metric_name}` as {metrics[metric_name].get('status')!r}. "
+                            "Use an explicitly non-numeric pending/unknown label until an authoritative value is available.",
+                        )
                     coverage = measure_rendered_page_content(page)
                     ink_ratio = float(coverage["ink_ratio"])
                     bbox_ratio = float(coverage["bbox_ratio"])
@@ -435,7 +484,7 @@ def review_visual(submission_dir: Path) -> VisualReport:
     for name in REQUIRED_METRICS:
         if name not in declared:
             report.add("VISUAL_METRIC_MISSING", "major", display_path, f"Missing data-metric `{name}`.")
-    review_drawing_pdfs(submission_dir, report)
+    review_drawing_pdfs(submission_dir, metrics, report)
     return report
 
 
