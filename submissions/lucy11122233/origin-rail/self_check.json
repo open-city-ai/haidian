@@ -1,0 +1,70 @@
+{
+ "schema_version": "0.1.0",
+ "checks": [
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/site_boundary.geojson",
+   "message": "采用 provisional 临时边界（official_boundary=false, geometry_role=provisional_constraint），全程标注；官方红线发布后整包重算（A-BOUNDARY-001）。"
+  },
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/key_areas.geojson",
+   "message": "三处重点区为 provisional polygon，面积与公告校核（192.1/104.3/72.0ha，偏差<0.5%）；不冒充官方红线。"
+  },
+  {
+   "check_id": "LAND_USE_TOPOLOGY",
+   "result": "pass",
+   "major": true,
+   "severity": "major",
+   "target": "geometry/land_use.geojson",
+   "message": "50 个分区单元无缝（gap 84m² < 容差 1141m²）无叠（0m²）覆盖临时边界，相邻多边形共享边界坐标。"
+  },
+  {
+   "check_id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "info",
+   "target": "visual/index.html",
+   "message": "离线静态 HTML，无 CDN/外部脚本/iframe/fetch；14 个必备内容分区齐全；data-metric 与 metrics.json 一致。"
+  },
+  {
+   "check_id": "DETERMINISTIC_VALIDATION",
+   "result": "pass",
+   "severity": "major",
+   "target": "submissions/lucheng/origin-rail",
+   "message": "self_check_submission.py 确定性校验 PASS（2026-08-08）。"
+  },
+  {
+   "check_id": "SPATIAL_REVIEW",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/*.geojson",
+   "message": "可信空间复核 PASS；仅保留 KEY_AREA_PROVISIONAL 提示（组织方数据缺口，不阻断评分）。"
+  },
+  {
+   "check_id": "VISUAL_PACKAGING",
+   "result": "pass",
+   "severity": "major",
+   "target": "visual/index.html",
+   "message": "可视化打包检查 PASS；site_area_sqm/green_ratio/public_space_ratio 标记一致。"
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "major",
+   "target": "proposal.md",
+   "message": "专业证据链复核 PASS：23 条任务、6 项标准、15 项深度项、19 项指标引用齐全。"
+  },
+  {
+   "check_id": "ADVISORY_SCORE",
+   "result": "pass",
+   "severity": "info",
+   "target": "proposal.md",
+   "message": "score_submission.py 咨询性自检 8 pass / 0 needs-work。"
+  }
+ ],
+ "summary": "2026-08-08 完整自检 Result: PASS，review_status=formal-review-ready，可进入内容评审。"
+}
