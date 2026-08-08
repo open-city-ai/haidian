@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时范围已保留 official_boundary=false 与 provisional_constraint 属性，所有指标均声明低置信度并绑定替换触发器。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域均明确为临时约束，仅用于概念设计定位，不冒充官方边界。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区由临时场地边界拓扑切分生成，联合覆盖场地，分区间无设计性重叠。"
+    },
+    {
+      "check_id": "GEOMETRY_VALIDITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "全部设计几何有效并位于临时场地范围内；面积与长度采用 EPSG:4548 复算。"
+    },
+    {
+      "check_id": "METRIC_TRACEABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "每个已知指标均列出源文件、公式、置信度与假设；未知法定指标保留 null 和原因。"
+    },
+    {
+      "check_id": "AI_HUMAN_HANDOVER",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "十二个场景节点均设人工接管、无AI等价服务与停用条件；四个产业验证场景按沙盒处理。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线静态页面不加载CDN、远程字体、地图瓦片、API、iframe、表单或追踪脚本。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文、矩阵、几何、图纸、指标、来源和假设构成交叉引用的专业证据链。"
+    },
+    {
+      "check_id": "COPYRIGHT_TRACEABILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "图件、图标、排版与几何均为本方案程序化原创；外部案例仅作文字转述并逐项列源。"
+    }
+  ]
+}

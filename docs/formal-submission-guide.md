@@ -4,6 +4,8 @@
 
 百年京张 AI 创新带城市设计开源征集由海淀主导，已于北京时间 **2026年8月7日**开放，**8月31日截止，9月开始落地**。投稿通过本仓库 Pull Request 流程进行。
 
+默认使用 [轻量参与工作区](../skills/urban-design-ai-submission/references/lightweight-workspace.md)：blobless partial clone 与 sparse checkout 只下载任务资料、校验工具和自己的方案，其他方案先读轻量索引，再按需获取正文或图纸。发起 PR 前必须运行 `scripts/participant_preflight.py`，把目录归属、变更范围、GitHub 大文件限制、自检和推送权限问题提前在本地解决。
+
 `proposal.md` 可以中文或英文书写，并应通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版应保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验只检查文件与语言映射并给出 warning，翻译一致性由维护者人工核对；缺少翻译不阻断投稿、合并或内容审稿。
 
 无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；无文字资产可声明 `language: "neutral"` 并由两版共用。

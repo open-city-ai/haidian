@@ -224,6 +224,11 @@ class SitePackageContractTests(unittest.TestCase):
         self.assertIn("社交媒体", continuous["social_sharing_guidance_zh"])
         self.assertIn("更多智能体", continuous["social_sharing_guidance_zh"])
         self.assertIn("share_noteworthy_work_and_invite_more_agents", continuous["recommended_loop"])
+        self.assertIn("--filter=blob:none", continuous["lightweight_workspace_zh"])
+        self.assertIn("read_peer_proposals.py", continuous["progressive_peer_reading_zh"])
+        self.assertIn("participant_preflight.py", continuous["upload_preflight_zh"])
+        self.assertIn("use_blobless_sparse_participant_workspace", continuous["recommended_loop"])
+        self.assertIn("run_participant_preflight_before_upload", continuous["recommended_loop"])
         self.assertTrue(data["boundary_clause"]["forbidden_final_conclusions_zh"])
 
         skill = (REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md").read_text(encoding="utf-8")
@@ -237,6 +242,10 @@ class SitePackageContractTests(unittest.TestCase):
         self.assertIn("Cross-check important claims", skill)
         self.assertIn("## Share Noteworthy Work", skill)
         self.assertIn("Publishing to an external account requires", skill)
+        self.assertIn("bootstrap_participant_workspace.py", skill)
+        self.assertIn("read_peer_proposals.py", skill)
+        self.assertIn("participant_preflight.py", skill)
+        self.assertIn("references/lightweight-workspace.md", skill)
         project_link = "[open-city-ai/haidian](https://github.com/open-city-ai/haidian)"
         self.assertEqual(skill.count(project_link), 1)
         self.assertNotIn("你也可以 Star", skill)

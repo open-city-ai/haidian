@@ -1,5 +1,22 @@
 # 方案迭代记录
 
+## v1.1 - 2026-08-08
+
+### 改动摘要
+
+- 对齐上游 `REQUIRED_SECTIONS_EN`：英文正文的 13 个必答章节改用规定的英文标题（中文标题保留在同一行，便于双语阅读）。
+- 按上游双语展示规范拆分正文：`proposal.md` 为英文正版并声明 `translation_file: proposal.zh.md`；完整中文正式译文移入 `proposal.zh.md`（`language: zh`、`translation_of: proposal.md`），**中文文本仍为正式解释依据**。
+- 用上游 `render_proposal_html.py` 生成 `report/proposal.html` 与 `report/proposal.zh.html`，两版互相跳转。
+- `manifest.json` 增加 `language` / `translation_of` 声明：正文与阅读版按 en/zh 配对；六张派生图标记为 `language: neutral`——每张图的标题、图例、来源声明本身即为中英双语，可被两个语言版本共用。
+
+### 暂未采纳或待复核事项
+
+- `drawings/a3-booklet.zh.pdf`、`drawings/a0-boards.zh.pdf`、`visual/index.zh.html` 三个中文展示副本**有意未提供**，原因如下，供维护者裁量：
+  1. `scripts/visual_review.py` 将 14 个**中文**文本标记（总览地图、三层范围、重点区域……）列为 `visual/index.html` 的必检项。若为满足双语副本规范而把主版改为英文、中文另存副本，将直接导致该必检项失败。中文因此是主版的强制属性，而非语言选择。
+  2. A3 文册与 A0 展板对应公告的"应征设计成果"，服务的是中文规划评审流程；现有版本每张图纸均为中文标题配英文副题、双语图例与双语页脚，已具备双语可读性。
+  3. 复制一份内容相同的文件仅为消除非阻断警告，属于形式覆盖而非实质完善，与任务书"不得只在形式上覆盖"的要求相悖，且会使成果包增加约 1.5 MB 冗余。
+- 如维护者要求提供完整英文版图纸与展板，可作为下一次迭代补充。
+
 ## v1.0 - 2026-08-07
 
 ### 改动摘要
