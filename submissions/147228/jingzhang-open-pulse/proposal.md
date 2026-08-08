@@ -489,6 +489,8 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 
 为了让“场景卡”可以被复核而不是只被阅读，本包新增 `visual/assets/open-pulse-relay-receipt.schema.json` 与 `visual/assets/example-s02-embodied-receipt.json`。前者的记录结构明确参考 Mentat-Uran 在 #426（`d501100a`）提交的 Relay Receipt schema，并按 Open Pulse 的场景约束、枚举、字段限制和合成示例重写；具体来源和许可边界登记在逐资产台账。后者是一个完全合成的 S02 低速配送机器人沙盒凭证：它把临时道路引用、无 App 人工替代、最小字段、急停与人类观察员、清权/申诉/删除、维护责任和退出资产计划放在同一条记录里；`performance_results` 保持 `null`，不把凭证格式冒充为机器人性能或现场验收。任何真实试点都必须重新签发凭证并由无障碍、安全、维护和公众代表共同过门。
 
+Mentat-Uran / PR #426 / commit `d501100a` 仅作为 Relay Receipt 的结构参考；本项目已对场景、字段和示例做项目化改写，署名不等于取得改编许可，后续复用仍需维护者与权利人独立复核。
+
 ![一枚令牌的生命周期](assets/figures/component-operations.png)
 
 ### 3.1 节点级概念计划与公共利益审计

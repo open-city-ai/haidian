@@ -305,6 +305,7 @@ code {
 <p>新增的 <code>visual/assets/scenario-operation-matrix.json</code> 将原有十张场景卡扩展为 14 行，并为每行补齐空间载体、触发器、最小数据、RACI、SLA、相对成本带、留存期限、非 AI 等价服务、停止条件、成功指标和阶段。场景包括慢行断点诊断、低速配送机器人、自主慢行辅助、模型安全红队、开源发布厅、京张文化导视、AI 医疗导航、企业服务柜台、数据要素会客厅、智能原生零售街、公共安全复盘、全球 AI 周路线、雨洪树池维护和夜间低照度安静链。</p>
 <p>每个场景都保留五道公共性门槛：不以数字设备作为服务前提；人工复核不可移除；无障碍主链不断；状态、投诉和责任人可被公众看到；停止与回滚已经演练。矩阵中的 <code>low/medium/high</code> 是相对规划类别，不是预算或采购估算；SLA 是待运营方确认的设计门槛，不是法定服务标准。</p>
 <p>为了让“场景卡”可以被复核而不是只被阅读，本包新增 <code>visual/assets/open-pulse-relay-receipt.schema.json</code> 与 <code>visual/assets/example-s02-embodied-receipt.json</code>。前者的记录结构明确参考 Mentat-Uran 在 #426（<code>d501100a</code>）提交的 Relay Receipt schema，并按 Open Pulse 的场景约束、枚举、字段限制和合成示例重写；具体来源和许可边界登记在逐资产台账。后者是一个完全合成的 S02 低速配送机器人沙盒凭证：它把临时道路引用、无 App 人工替代、最小字段、急停与人类观察员、清权/申诉/删除、维护责任和退出资产计划放在同一条记录里；<code>performance_results</code> 保持 <code>null</code>，不把凭证格式冒充为机器人性能或现场验收。任何真实试点都必须重新签发凭证并由无障碍、安全、维护和公众代表共同过门。</p>
+<p>Mentat-Uran / PR #426 / commit <code>d501100a</code> 仅作为 Relay Receipt 的结构参考；本项目已对场景、字段和示例做项目化改写，署名不等于取得改编许可，后续复用仍需维护者与权利人独立复核。</p>
 <figure class="proposal-figure"><img src="../assets/figures/component-operations.png" alt="一枚令牌的生命周期"><figcaption>一枚令牌的生命周期</figcaption></figure>
 <h3>3.1 节点级概念计划与公共利益审计</h3>
 <p>三处重点区不再只停留在定位口号。<code>visual/assets/key-area-node-plans.json</code> 把众智园、AI 原点和大钟寺分别拆成到达—公共状态板—空间组件—运营窗口—普通公共使用的连续序列，并为每处写出组件、专业前置闸门和 acceptance test。它仍是 <code>provisional_concept_for_professional_refinement</code>，不替代官方地块、权属、道路、消防、生态、文保或市政条件。</p>
