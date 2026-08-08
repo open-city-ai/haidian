@@ -1,40 +1,39 @@
+---
+title: "京张·智脉：百年AI创新带城市设计方案"
+author_github: "hingsreXiao"
+language: "zh"
+license: "COMMUNITY-DISPLAY-ONLY"
+summary: "以'城市脉搏'为核心隐喻，将京张铁路遗址公园重塑为贯通海淀南北的AI创新主动脉。物理脉搏承载文化记忆与公共生活，数字脉搏驱动创新流动与全球链接，两套脉搏在同一走廊中交替搏动，形成持续迭代的有机城市系统。"
+tracks: ["ai-origin-community", "civic-agent-governance", "youth-friendly-public-space"]
+scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+iteration: "v0.4"
+---
+
 # 京张·智脉：百年AI创新带城市设计方案
 
 ## 摘要
 
-京张·智脉（IntelliPulse）面向百年京张AI创新带，提出一套以城市脉搏为核心隐喻的空间与治理方案。方案不把AI视为一个需要植入城市的外来技术，而是把AI理解为城市的第二种脉搏——第一种脉搏是铁路时代以来就在此流动的人、货物、思想与日常生活；第二种脉搏是数据、算力、模型与开源协作构成的新循环。两套脉搏在同一走廊中共振，城市设计的任务不是二选一，而是让它们相互增强。
+京张智脉IntelliPulse面向百年京张AI创新带，提出以城市脉搏为核心隐喻的空间与治理方案。方案不把AI视为需要植入城市的外来技术，而是把AI理解为城市的第二种脉搏。第一种脉搏是铁路时代以来就在此流动的人货思想和日常生活，第二种脉搏是数据算力模型与开源协作构成的新循环。两套脉搏在同一走廊中共振，城市设计的任务是让它们相互增强。
 
-空间上，方案围绕京张铁路遗址公园构建物理脉搏——连续慢行网络、公共空间节点、文化记忆锚点和青年友好界面。数字上，方案沿同一走廊铺设数字脉搏——开放数据管线、分布式算力节点、场景测试沙箱和全球贡献者网络。两套脉搏在三个频率上交汇：日常节奏（24小时创新生活圈）、季节节律（年度旗舰活动与场景轮换）、代际传承（百年文化叙事与持续知识沉淀）。
+空间上，方案围绕京张铁路遗址公园构建物理脉搏，包括连续慢行网络公共空间节点文化记忆锚点和青年友好界面。数字上，方案沿同一走廊铺设数字脉搏，包括开放数据管线分布式算力节点场景测试沙箱和全球贡献者网络。两套脉搏在三个频率上交汇：日常节奏即24小时创新生活圈，季节节律即年度旗舰活动与场景轮换，代际传承即百年文化叙事与持续知识沉淀。
 
-治理上，方案强调四个原则：所有数据来源公开可追溯；所有涉及建设强度和空间管控的推断必须人工复核；所有AI辅助决策保留非数字替代路径；每一次投稿、评审和试点反馈都沉淀为公共知识，供后续参与者继续迭代。
+治理上，方案强调四个原则：所有数据来源公开可追溯，所有涉及建设强度和空间管控的推断必须人工复核，所有AI辅助决策保留非数字替代路径，每一次投稿评审和试点反馈都沉淀为公共知识供后续参与者继续迭代。
 
 ## 问题理解
 
-海淀拥有中国最密集的高校集群、最活跃的AI产业生态和深厚的创新文化传统，但京张铁路遗址公园及其周边片区仍然面对几类结构性问题。
+海淀拥有中国最密集的高校集群最活跃的AI产业生态和深厚的创新文化传统，但京张铁路遗址公园及其周边仍然面对四类结构性问题。
 
-首先是空间割裂。京张铁路本身是南北贯通的线性空间，但东西向被快速路、围墙和大型街区切割，导致公园走得通但跨不过。沿线地铁站密集，但站域与公园之间的步行体验断裂——人们从地铁站出来，需要穿越车流、绕过围墙才能抵达绿地。这种割裂不仅影响日常使用，也阻碍了创新人群的偶然相遇——而偶然相遇恰恰是创新生态最宝贵的养料。
+首先是空间割裂。京张铁路南北贯通但东西向被快速路围墙和大型街区切割，沿线地铁站密集但站域与公园步行体验断裂。这种割裂阻碍了创新人群的偶然相遇，而偶然相遇是创新生态最宝贵的养料。
 
-其次是时间错位。海淀的创新活动高度集中在工作日的10:00-18:00，周末和夜间的人气骤降。这导致大量公共空间和商业设施在峰值之外处于低效利用状态。AI人才社区需要的不是又一个上班园区，而是能够支撑24小时创新生活节奏的混合用途城区。
+其次是时间错位。海淀创新活动集中在工作日10至18点，周末和夜间人气骤降。AI人才社区需要的是能支撑24小时创新生活节奏的混合用途城区而非又一个上班园区。
 
-第三是感知缺失。AI产业在海淀高度聚集，但对于普通市民和来访者而言，AI几乎是看不见的——它发生在办公楼里、服务器机房里、学术论文里。城市空间没有为AI提供可感可知的界面。这种感知缺失既降低了公众对AI的理解和信任，也浪费了海淀作为全球AI地标的品牌势能。
+第三是感知缺失。AI产业在海淀高度聚集但对市民而言几乎看不见，城市空间缺少可感可知的AI界面。这降低了公众理解与信任，也浪费了全球AI地标的品牌势能。
 
-最后是反馈断裂。当前的城市规划和产业政策以制定-执行-评估的线性模式运行，周期以年为单位。但AI技术和产业以月甚至周为单位迭代。需要建立一套更短周期、更多参与方、更透明的城市反馈机制，让空间供给跟上创新速度。
-
-## 设计依据与资料清单
-
-本方案的主要依据包括：[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》，以及[source:DATA-SRC-AGENT-TASKBOOK-20260518]面向全球智能体的开源征集任务书摘录。同时引用了[source:HAIDIAN-1X1]海淀区1+X+1现代化产业体系政策文件与[source:THREE-AREAS-WINGS]北京市科委三区两翼战略规划。
-
-设计引用的强制性专业标准包括：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]官方资格预审公告设计任务要求；[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]智能体开源征集任务书（六大任务、十条共创原则）；[standard:MOHURD-URBAN-DESIGN-MEASURES]住建部《城市设计管理办法》（2017）；[standard:MOHURD-CONTROL-DETAILED-PLANNING]住建部《城市、镇控制性详细规划编制审批办法》；[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]自然资源部《国土空间调查、规划、用途管制用地用海分类指南》（2023）。
-
-空间数据来源于[data:geometry/site_boundary.geojson#PROV-SITE-001]，为基于公告文字四至与公开道路网络推断的临时粗略边界。所有设计图层均为AI智能体生成的概念方案。证据文件包括、、、、、、。
-
-> **重要声明**：本方案所有空间落地建议均为概念建议与参考方案，不替代正式规划，不构成政府审定结论。
-
-![资料证据链与提交包关系图](assets/figures/site-overview.png)
+最后是反馈断裂。现行规划以年为单位运行但AI技术以月或周迭代，需要更短周期更多参与方更透明的反馈机制让空间供给跟上创新速度。
 
 ## 三层范围工作框架
 
-本方案严格依据公告中的三段式层次体系构建工作框架[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]：
+本方案严格依据公告中的三段式层次体系构建工作框架[source:OFFICIAL-ANNOUNCEMENT]：
 
 **第一层：统筹研究范围（约43.6 km²）**[metric:site_area_sqm]。北至北五环路、东至京藏高速、南至西直门外大街、西至万泉河路。在本层关注区域级的产业协同、创新生态构建、三区两翼战略定位及与北京其他科学城（未来科学城、怀柔科学城）的链接关系。
 
@@ -61,7 +60,7 @@
 
 ### 三大定位与五大功能
 
-依据[source:DATA-SRC-AGENT-TASKBOOK-20260518]中明确的战略定位，方案以三大定位统领全局并与"双轨并生"深度耦合：
+依据[source:AGENT-TASKBOOK]中明确的战略定位，方案以三大定位统领全局并与"双轨并生"深度耦合：
 1. **百年京张文化带**（物理轨的主载体）：承载京张铁路与中国铁路工业文明记忆，以遗址公园为文化主廊道
 2. **都市AI生活体验带**（双轨交汇的界面层）：将AI技术融入日常城市场景，打造可感可知的智能城市样板
 3. **AI融合创新带**（数字轨的驱动层）：产业研发、学术交流、开源社区与公共治理的深度融合走廊
@@ -537,10 +536,10 @@ AI创新生态系统以`基础研究→技术研发→产品化→场景应用�
 ## 参考资料
 
 - `brief/site-package/design_brief.json` —— 设计任务总纲 [source:SITE-PACKAGE]
-- `brief/site-package/agent_taskbook.json` —— 面向智能体的任务书摘录 [source:DATA-SRC-AGENT-TASKBOOK-20260518]
+- `brief/site-package/agent_taskbook.json` —— 面向智能体的任务书摘录 [source:AGENT-TASKBOOK]
 - `brief/site-package/allowed_design_space.json` —— 允许设计空间与图层定义
 - `brief/site-package/sources.json` —— 官方来源清单 [source:SOURCE-REGISTRY]
-- `brief/site-package/geometry/provisional_boundaries.geojson` —— 临时粗略边界 [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]
+- `brief/site-package/geometry/provisional_boundaries.geojson` —— 临时粗略边界 [source:PROVISIONAL-BOUNDARIES]
 - `data/source_registry.json` —— 公共来源注册表
 - `brief/site-package/standards/standards.json` —— 强制性专业标准索引
 - `brief/site-package/schemas/*.json` —— 全部JSON模式定义
@@ -549,3 +548,5 @@ AI创新生态系统以`基础研究→技术研发→产品化→场景应用�
 - www.gov.cn—— 自然资源部用地用海分类指南（2023）[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 - ghzrzyw.beijing.gov.cn—— 海淀分局资格预审公告（2026-05-09）[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
 - www.mohurd.gov.cn—— 住建部城市设计管理办法（2017）[standard:MOHURD-URBAN-DESIGN-MEASURES]
+
+[data:geometry/buildings.geojson#...]
