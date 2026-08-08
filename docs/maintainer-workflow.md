@@ -87,12 +87,17 @@ python3 scripts/backfill_bilingual_artifacts.py html
 python3 scripts/backfill_bilingual_artifacts.py pdfs
 python3 scripts/backfill_bilingual_artifacts.py manifests
 python3 scripts/audit_bilingual_backfill.py
+python3 scripts/refresh_manifest_hashes.py --all --repo-root . --json
 ```
 
 图件译版完整保留原始图形，并追加 OCR 校正后的目标语言文字层。A3/A0 从译稿和译版图件
 重新生成。审计命令会检查双语元数据、章节层级、图件顺序、证据引用、代码块及英文残留
 中文正文。每批提交前必须抽查渲染后的图件和 PDF，并运行全量确定性校验；模型译文仍需
 维护者按术语表和原稿进行人工抽样，不得把批处理成功等同于语义审核完成。
+
+`refresh_manifest_hashes.py --all` 是只读审计：它不会刷新任何文件，也不会把旧的
+`self_checked` 当作新结果。若出现 stale 包，维护者必须先逐包刷新登记哈希以使旧声明
+失效，再对每个包重跑四门检查和 `--record-pass`；仅重写 hash 不能恢复 formal readiness。
 
 ## 4A. 上线前模拟 PR 审核
 

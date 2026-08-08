@@ -11,6 +11,7 @@ import stat
 import sys
 import tempfile
 from pathlib import Path
+from typing import Any
 
 from validate_submission import normalize_changed_path
 
@@ -120,15 +121,102 @@ def refresh_manifest(
     return changed, []
 
 
+def discover_manifests(repo_root: Path) -> list[Path]:
+    """Return manifests under the two-level participant submission layout."""
+    submissions_root = repo_root / "submissions"
+    if not submissions_root.is_dir():
+        return []
+    return sorted(path for path in submissions_root.glob("*/*/manifest.json") if path.is_file())
+
+
+def audit_manifests(repo_root: Path) -> dict[str, Any]:
+    """Read every manifest hash without changing package files.
+
+    This is deliberately audit-only: a stale hash can invalidate a stored
+    formal-readiness claim, but an audit must never rewrite that claim or make
+    a package appear newly checked.
+    """
+    repo_root = repo_root.resolve()
+    packages: list[dict[str, Any]] = []
+    stale_packages = 0
+    stale_artifacts = 0
+    error_packages = 0
+    for manifest_path in discover_manifests(repo_root):
+        stale, errors = refresh_manifest(manifest_path, check_only=True)
+        rel_dir = manifest_path.parent.relative_to(repo_root).as_posix()
+        packages.append(
+            {
+                "submission_dir": rel_dir,
+                "stale_artifacts": stale,
+                "errors": errors,
+            }
+        )
+        if stale:
+            stale_packages += 1
+            stale_artifacts += stale
+        if errors:
+            error_packages += 1
+    return {
+        "ok": stale_packages == 0 and error_packages == 0,
+        "packages": packages,
+        "summary": {
+            "packages_scanned": len(packages),
+            "packages_with_stale_hashes": stale_packages,
+            "stale_artifacts": stale_artifacts,
+            "packages_with_errors": error_packages,
+        },
+    }
+
+
+def format_audit(report: dict[str, Any]) -> str:
+    lines = ["# Manifest hash audit", ""]
+    for package in report["packages"]:
+        if package["errors"]:
+            lines.append(f"- ERROR {package['submission_dir']}: {'; '.join(package['errors'])}")
+        elif package["stale_artifacts"]:
+            lines.append(f"- STALE {package['submission_dir']}: {package['stale_artifacts']} artifact(s)")
+    summary = report["summary"]
+    lines.extend(
+        [
+            "",
+            (
+                "Scanned {packages_scanned} package(s); {packages_with_stale_hashes} stale package(s), "
+                "{stale_artifacts} stale artifact(s), {packages_with_errors} error package(s)."
+            ).format(**summary),
+        ]
+    )
+    return "\n".join(lines)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("submission_dir", help="AI submission directory containing manifest.json")
+    parser.add_argument("submission_dir", nargs="?", help="AI submission directory containing manifest.json")
     parser.add_argument(
         "--check",
         action="store_true",
         help="report stale hashes without changing manifest.json",
     )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="audit every submissions/<owner>/<slug>/manifest.json without changing package files",
+    )
+    parser.add_argument("--repo-root", default=".", help="repository root used with --all")
+    parser.add_argument("--json", action="store_true", help="emit machine-readable audit output with --all")
     args = parser.parse_args()
+
+    if args.all:
+        if args.submission_dir:
+            parser.error("submission_dir cannot be used with --all")
+        report = audit_manifests(Path(args.repo_root))
+        if args.json:
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+        else:
+            print(format_audit(report))
+        return 0 if report["ok"] else 1
+    if not args.submission_dir:
+        parser.error("submission_dir is required unless --all is used")
+
     submission_dir = Path(args.submission_dir).resolve()
     manifest_path = submission_dir / "manifest.json"
     changed, errors = refresh_manifest(manifest_path, check_only=args.check)

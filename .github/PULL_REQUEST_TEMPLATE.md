@@ -65,7 +65,8 @@ python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/refresh_manifest_hashes.py submissions/<my-github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --record-pass
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --json
 python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```
 

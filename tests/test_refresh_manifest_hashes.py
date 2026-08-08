@@ -46,6 +46,14 @@ class RefreshManifestHashesTests(unittest.TestCase):
             check=False,
         )
 
+    def run_all_audit(self, repo_root: Path) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            [sys.executable, str(SCRIPT), "--all", "--repo-root", str(repo_root), "--json"],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
     def test_refreshes_stale_hashes_without_hashing_manifest_itself(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             package, manifest_path = self.make_package(Path(tmp))
@@ -133,6 +141,31 @@ class RefreshManifestHashesTests(unittest.TestCase):
             self.assertEqual(0, refreshed.returncode, refreshed.stderr)
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             self.assertFalse(manifest["validation_claim"]["self_checked"])
+
+    def test_all_audit_reports_stale_hashes_without_writing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            package, manifest_path = self.make_package(root)
+            manifest_before = manifest_path.read_bytes()
+
+            audited = self.run_all_audit(root)
+
+            self.assertEqual(1, audited.returncode)
+            report = json.loads(audited.stdout)
+            self.assertFalse(report["ok"])
+            self.assertEqual(
+                {
+                    "packages_scanned": 1,
+                    "packages_with_stale_hashes": 1,
+                    "stale_artifacts": 1,
+                    "packages_with_errors": 0,
+                },
+                report["summary"],
+            )
+            self.assertEqual("submissions/alice/hash-refresh", report["packages"][0]["submission_dir"])
+            self.assertEqual(1, report["packages"][0]["stale_artifacts"])
+            self.assertEqual([], report["packages"][0]["errors"])
+            self.assertEqual(manifest_before, manifest_path.read_bytes())
 
     def make_recordable_package(self, root: Path) -> tuple[Path, Path]:
         package = root / "submissions" / "alice" / "record-pass"
