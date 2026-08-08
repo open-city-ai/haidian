@@ -102,6 +102,28 @@ class GitHubApiResilienceTests(unittest.TestCase):
         self.assertEqual({"ok": True}, payload)
         sleep.assert_called_once_with(1.0)
 
+    def test_download_content_retries_throttling_then_writes(self) -> None:
+        error = self._error(
+            403,
+            b'{"message":"You have exceeded a secondary rate limit."}',
+            {"Retry-After": "1"},
+        )
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "nested" / "asset.bin"
+            with patch(
+                "github_pr_validation.urllib.request.urlopen",
+                side_effect=[error, _Response(b"payload")],
+            ), patch("github_pr_validation.time.sleep") as sleep:
+                client.download_content(
+                    "owner/repo",
+                    "assets/file.bin",
+                    "deadbeef",
+                    destination,
+                )
+            self.assertEqual(b"payload", destination.read_bytes())
+            sleep.assert_called_once_with(1.0)
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:
