@@ -29,6 +29,14 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 图纸目录如下：A3 文册包括总体品牌、三层范围与生态图谱、三处重点区、场景卡与产业测试、实施包容性与风险五页；A0 展板包括总体结构与品牌系统、用地更新与专业系统、重点区与场景开放、实施运营与公共利益四板。所有图纸均为离线生成的概念性城市设计图，不含远程底图、第三方图片或商标。
 
+本轮 gallery/professional-publication 补强新增三组可展示图件：`brand-system.png` 把 Logo 成品方向、色彩、导视、地标和国际传播统一到一张 VI 板；`scenario-cards.png` 把 10 个 AI 场景从表格升级为可读卡片，逐项显示空间、数据、复核、KPI 和退出；`key-area-detail.png` 把三处重点区从索引图升级为平面/剖面/实施 Gate 的详图板。三组图件均有 `.en.png` 英文 counterpart，并已进入 manifest。
+
+![品牌系统与城市识别](assets/figures/brand-system.png)
+
+![十张 AI 场景卡](assets/figures/scenario-cards.png)
+
+![三处重点区详图板](assets/figures/key-area-detail.png)
+
 ## 设计依据与资料清单
 
 本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据。AI agent 在生成方案前必须读取 `design_brief.json`、`allowed_design_space.json`、`sources.json`、`enums/`、`ranges/`、`schemas/`、`data/source_registry.json` 和 `data/processed/agent_fact_pack.md`，并用 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途和缺口清单。所有设计判断都要拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。公告要求方案达到控制性详细规划的城市设计深度和规划综合实施方案的城市设计深度，因此文本叙述不能替代 GeoJSON、指标表、A3 文册、A0 展板和 HTML 电子展示成果。
