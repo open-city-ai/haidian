@@ -6,7 +6,8 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路遗址公园为「智线主轴」，用「人字形2.0」重释詹天佑的自主创新精神：一撇文化轴、一捺创新轴、交点是人。一线串三站（大钟站·原点站·加速站）、两辙翼协同，形成可复算、可自检、可深化的 formal 城市设计包。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "robot-delivery-low-speed", "enterprise-service-copilot", "ai-health-service-navigation"]
-iteration: "v1.0"
+iteration: "v1.1"
+translation_file: "proposal.en.md"
 ---
 
 # 京张智线·人字形2.0——百年京张AI创新带城市设计方案
