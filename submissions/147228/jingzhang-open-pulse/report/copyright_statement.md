@@ -2,7 +2,7 @@
 
 **Submission:** Jing-Zhang Open Pulse / 京张开源脉冲
 **Author:** 许丙南 (`147228`)
-**Iteration:** v2.0
+**Iteration:** v2.4 (including v2.1 evidence closure)
 **Display licence:** `COMMUNITY-DISPLAY-ONLY`
 
 ## Scope of this statement
@@ -27,7 +27,7 @@ The quantitative layer is an explicitly labelled design experiment. Official pub
 
 Before adding any image, map, logo, font, data extract, event content or code dependency, a contributor must record: the exact path, author or provider, source URL or permission record, licence, attribution text, allowed derivative use, retrieval date, intended display, and SHA-256 hash. The contributor must then update `sources.json`, `visual/assets/copyright-ledger.json`, `manifest.json`, and the relevant narrative or figure caption. Unclear material stays out of the public package.
 
-The ledger's `clearance_status` distinguishes self-generated material from official public data with attribution. `third_party_materials` is intentionally empty for the v2.0 package. This is submission evidence, not a legal opinion; rights-holder confirmation remains necessary if the future implementation team introduces new content.
+The ledger's `clearance_status` distinguishes self-generated material from official public data with attribution. `third_party_materials` is intentionally empty for the v2.1/v2.4 package, including the three validation-window records, eight persona design lenses, four honor-marker records and synthetic receipt/QA records. This is submission evidence, not a legal opinion; rights-holder confirmation remains necessary if the future implementation team introduces new content.
 
 ## Privacy, safety, and public-interest boundary
 

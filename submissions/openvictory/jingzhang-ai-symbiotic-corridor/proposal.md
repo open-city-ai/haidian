@@ -8,7 +8,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "五向共生协议：继承共生（铁路遗产→AI测试舞台）、校产共生（转化接口）、人机智共生（人工闭环）、蓝绿共生（4类界面绿地）、昼夜共生（时段护照）。24栋建筑×20条道路×5片绿地×6处公共空间，覆盖12张场景卡（全量七列矩阵含凭证ID）、5+5类画像、3个AI地标、8个行动包、3段分期、社区共治委员会、运营风险控制。全部面积EPSG:4548投影复算，provisional边界标注，自检PASS。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]
 scenarios: ["ai-cultural-guide", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.6"
+iteration: "v0.8"
 ---
 
 # 京张共生走廊：五向共生协议
@@ -56,7 +56,18 @@ iteration: "v0.6"
 
 ### 2. 数据基线与决策翻译
 
-四组行政尺度来源均在2026-08-08通过可见浏览器从发布机构原始页面复核。[source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:BJ-2025-STATISTICAL-COMMUNIQUE] 这些数据在`sources.json`中设置`not_spatially_allocable=true`，不进入`metrics.json`，不改变任何GeoJSON、面积、线位或分期。它们只能校准"问题优先级"，不能替代走廊层级基线调查。
+以下行政尺度统计数据来自海淀区及北京市2025年公开材料，于2026-08-08通过可见浏览器从发布机构原始页面复核。[source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:BEIJING-HAIDIAN-OVERVIEW-2026] 这些数据在`sources.json`中设置`not_spatially_allocable=true`，不进入`metrics.json`，不改变任何GeoJSON、面积、线位或分期。它们只能校准"问题优先级"，不能替代走廊层级基线调查。[assumption:A-STATS-001]
+
+| 来源尺度 | 可核验发现（2025年，官方公开页面） | 改变的设计动作 | 不能证明什么 |
+|---|---|---|---|
+| 海淀经济总量 | 地区生产总值13691.4亿元，增长7.2%；在全市2.6%土地上创造近26%经济总量；人均GDP超6万美元 | 确认走廊产业功能须以AI为核心（"1+X+1"现代化产业体系），共生走廊提供空间接口而非招商拉动 | 具体地块产值、税收、就业或企业入驻路径 |
+| 海淀AI产业 | AI企业超2000家，备案大模型134款（占全市59%），AI2000全球顶尖学者135人次（占全国34%） | 场景卡SC-01~SC-12的"模型能力"列不是愿景——海淀已有可用AI能力池，共生走廊提供测试和展示物理接口 | 具体模型部署位置、算力容量或能源负荷 |
+| 海淀科教资源 | 37所高校（含清华、北大），92家全国重点实验室，96家国家级科研机构，692名两院院士（占全国36.23%），人才资源总量200.58万 | 校产共生不是"概念性可能性"——海淀已有全球最密集的高校-科研资源基底，缺的是转化物理接口 | 校园内部空间可用性、校区边界精确定位 |
+| 海淀创新主体 | 科技型企业14.54万家，新增2.4万家/年，专精特新小巨人463家（占全市38.1%），独角兽49家，上市公司265家 | 行动包JZ-03近校转化街和JZ-05算力驿站的需求来自真实企业存量而非招商承诺 | 具体企业选址意向、租赁价格 |
+| 海淀知识产出 | 每万人高价值发明专利599.05件（全国平均37.4倍），技术合同输出5.792万项（占全市52.5%） | 支撑SC-07近校成果转化街的知识产权诊所与开源贡献者墙设计 | 走廊专利转化数量、金额或具体主体 |
+| 海淀生态文旅 | 公园总数144个（全市第一），PM2.5降至25.7微克/立方米，旅游接待9449.3万人次（全市第一） | 蓝绿共生的生态基底已存在——共生走廊不是新建公园而是让既有公园和AI场景互为界面 | 走廊级生态容量、文保范围精确边界 |
+
+**决策翻译**：以上数字只回答"为什么值得设计这条走廊"与"哪类问题应优先"，不能反推空间量。走廊层级需求（客流、设施底数、土地权属）必须等官方基线发布后再校核。本表不冒充空间指标，也不构成对海淀绩效的类比承诺。[assumption:A-STATS-001] [depth:existing_conditions_diagnosis]
 
 ### 3. 整体情境比选
 
@@ -109,6 +120,19 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 | **人机智共生** Human+AI | AI辅助建议、排序、模拟——但始终由人类确认、放行、申诉和下架。12个场景全部设"人工接管点"；任何AI服务必须有"回退到非AI模式"的物理路径 | [data:geometry/roads.geojson#ROAD-001] 慢行与创新服务廊道 | 场景凭证协议 | [source:AGENT-TASKBOOK agent.3] |
 | **蓝绿共生** Green+Urban | 5片绿地 [metric:green_space_count] 与6处公共空间 [metric:public_space_count] 不是"绿地率"的应付数字，而是四类不同"界面"：遗址界面/清河界面/社区界面/交通界面 | [metric:green_ratio] [metric:public_space_ratio] | 蓝绿空间分层 | [source:AGENT-TASKBOOK agent.4] |
 | **昼夜共生** Day+Night | 京张沿线是高校、居民区、产业园和公园的叠加体。为8栋低楼层建筑和6处公共空间设计"时段护照"：白天研发测试，傍晚开放课程，夜间社区共学，22:00后恢复安静模式 | [data:geometry/phasing.geojson#PHASE-001] | 时段护照机制 | [source:AGENT-TASKBOOK agent.6] |
+
+### 空间形态推导：从铁路遗产推导形态
+
+本方案的空间形态不是通用的"一带+矩形"，而是从京张铁路遗产的四个几何基因转译而来：
+
+| 铁路基因 | 原型 | 空间转译 | 证据落点 |
+|---|---|---|---|
+| 人字坡折线 | 青龙桥1909年人字形折返线把水平推力转为竖向爬升 | "六缝"采用斜向折线步行缝合而非正交网格，以最短斜距连接校园、园区与社区 | [data:geometry/roads.geojson#ROAD-006] |
+| 站间距节奏 | 京张线按补水补煤与坡段节奏设站 | 沿共生主轴按"节奏间距"而非均质密度布置AI场景节点，形成可呼吸的节点序列 | [data:geometry/public_space.geojson#PUBLIC-001] |
+| 路基断面 | 标准铁路路基宽度与道砟放坡 | 慢行主轴的断面比例参照路基宽度控制，保持宜人的线性空间尺度 | [data:geometry/green_space.geojson#GREEN-001] |
+| 里程碑系统 | 铁路里程标标记运行位置 | 共生走廊导视的距离编码叠加历史里程编号，四色导视与里程标对位 | [source:AGENT-TASKBOOK agent.5] |
+
+因此"一带"不是抽象轴线，而是可用铁路工程语言解读的公共空间系统；"六缝"不是任意连线，而是折线分支逻辑的几何转译。该推导保证空间形态与京张遗产存在可解释的谱系关系，而非贴图式的概念拼贴。[standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:overall_spatial_structure]
 
 ### 七个全球生态参照案例
 
@@ -211,8 +235,8 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 | SC-08 | 数据要素会客厅 | 大钟寺(PROV-KEY-003) | 数据产品目录(授权) | 合规审查辅助+供需匹配 | 大数据交易所(参考) | 人工审查交易合规；季度撮合>10宗 | SYM-008 |
 | SC-09 | AI生活服务样板街 | 社区/商业节点 | 公共服务目录(公开) | 服务推荐+可解释回答 | 街区运营机构(拟) | 人工审核推荐；服务满意度>80% | SYM-009 |
 | SC-10 | 全球AI活动周路线 | 一带公共空间 | 活动报名(授权) | 人流预测+安全预警+路线优化 | 区文旅局(拟)+展会公司 | 公安/消防审批；总接待>5000人次 | SYM-010 |
-| SC-11 | 无障碍路径应答 | 多龄用户-慢行线 | 公开道路topology(OSM) | 路径推荐+问题派单 | 区残联+交通部门(拟) | 可匿名反馈；人工确认修复 | SYM-011 |
-| SC-12 | 社区维修图书馆 | 居民-邻里节点 | 维修记录(聚合) | 匹配志愿者+工具预约 | 街道社区服务中心(拟) | 不以算法评价居民信用 | SYM-012 |
+| SC-11 | 无障碍路径应答 | [data:geometry/roads.geojson#ROAD-007] 慢行节点 | 公开道路topology(OSM) | 路径推荐+问题派单 | 区残联+交通部门(拟) | 可匿名反馈；人工确认修复 | SYM-011 |
+| SC-12 | 社区维修图书馆 | [data:geometry/public_space.geojson#PUBLIC-005] 社区空间 | 维修记录(聚合) | 匹配志愿者+工具预约 | 街道社区服务中心(拟) | 不以算法评价居民信用 | SYM-012 |
 
 [metric:scenario_card_count] [metric:user_persona_count]
 
@@ -301,16 +325,33 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 
 ### 八个行动包
 
-| ID | 行动包 | 类型 | 阶段 | 核心依赖 | 退出条件 | 证据引用 |
-|---|---|---|---|---|---|---|
-| JZ-01 | 京张遗址公园慢行断点缝合 | 公共空间/交通 | 近期试点 | 道路红线、桥下空间授权 | 缝合率达90% | [data:geometry/roads.geojson#ROAD-001] |
-| JZ-02 | 众智园清河创新界面 | 蓝绿空间/产业 | 近期试点 | 河道蓝线、生态/防洪条件 | 低扰动测试区安全运营一年 | [data:geometry/green_space.geojson#GREEN-001] |
-| JZ-03 | 原点社区近校成果转化街 | 城市更新/产业 | 近期试点 | 校区边界、权属、首层业态 | 年度签约>20项 | [data:geometry/buildings.geojson#BLDG-001] |
-| JZ-04 | 大钟寺站四象限步行连通 | 交通/慢行 | 中期更新 | 轨道公司、市政管线、交管 | 四象限全步行可10分钟内通达 | [data:geometry/public_space.geojson#PUBLIC-001] |
-| JZ-05 | AI端侧算力与公共服务节点 | 新基建 | 中期更新 | 能源、安全、运营主体 | 3个站点稳定运营6个月 | [data:geometry/constraints.geojson] |
-| JZ-06 | 全球AI活动周公共路线 | 运营/品牌 | 长期治理 | 活动许可、安全、版权清权 | 年度活动周顺利举办3年 | [data:geometry/phasing.geojson#PHASE-001] |
-| JZ-07 | 无障碍路径系统 | 公共利益 | 近期试点 | 道路红线、建筑首层条件 | 无障碍路径连通率>80% | [data:geometry/roads.geojson#ROAD-001] |
-| JZ-08 | 开发者社区理事会与场景开放机制 | 治理/运营 | 长期治理 | 社区共识、法律框架 | 理事会稳定运行2年 | [data:geometry/phasing.geojson#PHASE-001] |
+| ID | 行动包 | 类型 | 阶段 | 概念成本量级 | 概念工期 | 审批前置 | 核心依赖 | 退出条件 | 证据引用 |
+|---|---|---|---|---|---|---|---|---|---|
+| JZ-01 | 慢行断点缝合 | 公共空间/交通 | 近期试点 | 轻量(<100万) | 6-12月 | 道路红线确认、桥下空间许可 | 道路红线、桥下空间授权 | 缝合率达90% | [data:geometry/roads.geojson#ROAD-001] |
+| JZ-02 | 众智园清河创新界面 | 蓝绿空间/产业 | 近期试点 | 轻量-中量 | 8-16月 | 河道蓝线、防洪评价、生态许可 | 河道蓝线、生态/防洪条件 | 低扰动测试区安全运营一年 | [data:geometry/green_space.geojson#GREEN-001] |
+| JZ-03 | 原点社区近校转化街 | 城市更新/产业 | 近期试点 | 中量 | 6-12月 | 权属协商、首层业态许可 | 校区边界、权属、首层业态 | 年度签约>20项 | [data:geometry/buildings.geojson#BLDG-001] |
+| JZ-04 | 大钟寺四象限步行连通 | 交通/慢行 | 中期更新 | 轻量-中量 | 12-24月 | 轨道安全审批、交管许可 | 轨道公司、市政管线、交管 | 四象限全步行可10分钟内通达 | [data:geometry/public_space.geojson#PUBLIC-001] |
+| JZ-05 | AI端侧算力节点 | 新基建 | 中期更新 | 中量-重量 | 12-18月 | 能源审批、消防/安全审批 | 能源、安全、运营主体 | 3个站点稳定运营6个月 | [data:geometry/constraints.geojson] |
+| JZ-06 | 全球AI活动周路线 | 运营/品牌 | 长期治理 | 轻量(运营性) | 持续 | 公安/消防/大型活动审批 | 活动许可、安全、版权清权 | 年度活动周顺利举办3年 | [data:geometry/phasing.geojson#PHASE-001] |
+| JZ-07 | 无障碍路径系统 | 公共利益 | 近期试点 | 轻量 | 6-12月 | 无障碍专项审查 | 道路红线、建筑首层条件 | 无障碍路径连通率>80% | [data:geometry/roads.geojson#ROAD-001] |
+| JZ-08 | 开发者理事会与场景开放 | 治理/运营 | 长期治理 | 轻量(治理性) | 持续 | 社团登记/协议框架 | 社区共识、法律框架 | 理事会稳定运行2年 | [data:geometry/phasing.geojson#PHASE-001] |
+
+上表成本量级与工期为概念参考，不是投资估算或施工排期；正式立项必须以专业造价编制、审批流程和资金落实方案为准。[assumption:A-COST-001]
+
+### 建筑拆改留决策树
+
+所有建筑行动均须在取得清权现状调查、权属确认、结构鉴定、碳与公共利益比较及正式控规等条件后，由专业团队决策。[depth:retain_renovate_demolish]
+
+```
+现状调查 → 是否有清权调查？
+  ├─ 是 → A级：维护优先，不动结构
+  └─ 否 → 是否有结构鉴定？
+    ├─ 是 → B级：先诊断，确认安全后再行动
+    └─ 否 → 是否可先做运营改变？
+      ├─ 是 → C级：先运营（时段护照/共享首层），后讨论改造
+      └─ 否 → D级：仅讨论可逆加建，需专业论证
+  → 任何级别均不判定拆除，除非完成全部前置条件
+```
 
 [metric:renewal_project_count] [metric:action_package_count] [depth:renewal_project_list] [depth:phasing_implementation] 八个行动包全部均需有权主体、正式审批路径和专业工程条件确认后实施。
 
@@ -373,6 +414,10 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 - [standard:MOHURD-CONTROL-DETAILED-PLANNING] 控制性详细规划编制审批管理办法
 - [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 国土利用分类指南
 - [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] 建筑设计文件编制深度规定
+
+### 行政尺度公开统计（来源：政府官方页面；公开性：official_public；均not_spatially_allocable）
+- [source:HAIDIAN-2025-STATISTICAL-BULLETIN] 海淀区人民政府"海淀概况"及2025年国民经济数据，https://zyk.bjhd.gov.cn/；来源：政府官方页面；公开性：official_public；用途：仅校准问题优先级，不进入空间配置
+- [source:BEIJING-HAIDIAN-OVERVIEW-2026] 首都之窗·北京市人民政府门户网站"海淀概况"，2026-08，https://www.beijing.gov.cn/renwen/bjgk/hdgk/；来源：政府官方页面；公开性：official_public；用途：仅校准问题优先级，不进入空间配置
 
 ### 背景案例与生成资产（来源：公开可访问网站；公开性：public）
 - [source:CASE-STATION-F] Station F, Paris, 2017, https://stationf.co/；机制参照

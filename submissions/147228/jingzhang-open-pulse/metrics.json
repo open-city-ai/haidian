@@ -129,15 +129,15 @@
     },
     "user_persona_count": {
       "status": "known",
-      "value": 5,
+      "value": 8,
       "unit": "count",
       "source_files": [
-        "proposal.md"
+        "visual/assets/persona-and-inclusion-matrix.json"
       ],
       "formula": "count(persona rows)",
       "confidence": "medium",
       "assumptions": [
-        "Persona rows are design viewpoints, not individual profiling or automated decisions."
+        "The eight rows are non-identifying design lenses; they are not measured population counts or automated eligibility categories."
       ]
     },
     "ai_landmark_count": {
@@ -240,6 +240,34 @@
     "continuous_shaded_accessible_route_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["geometry/roads.geojson","assumptions.json","proposal.md"],"formula":"length of verified accessible primary route meeting the approved seasonal shade window / total verified accessible primary-route length","confidence":"unknown","assumptions":[],"reason":"The route geometry is provisional and no solar/shade study, tree-crown survey or field accessibility audit has been completed."},
     "blue_green_accessible_route_overlap_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["geometry/green_space.geojson","geometry/public_space.geojson","geometry/roads.geojson","proposal.md"],"formula":"length of field-verified accessible primary route within an approved blue-green service distance / total field-verified accessible primary-route length","confidence":"unknown","assumptions":[],"reason":"Submitted layers are conceptual and no field-verified accessible route, blue-space edge or service-distance criterion is available; no health outcome is inferred from proximity."},
     "water_risk_exceedance_route_verified_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["assumptions.json","proposal.md"],"formula":"length of critical accessible route verified outside approved flood-depth and velocity thresholds / total critical accessible-route length under the specified exceedance event","confidence":"unknown","assumptions":[],"reason":"No verified DEM, drainage network, design storm, flood-depth/velocity model or field calibration is available."},
+    "construction_readiness_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/construction-readiness.json",
+        "proposal.md"
+      ],
+      "formula": "count(explicit construction/opening gates CR-01 through CR-05)",
+      "confidence": "high",
+      "assumptions": [
+        "Gates are a conceptual professional-handoff framework, not construction or approval evidence."
+      ]
+    },
+    "participation_lens_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/participation-cycle.json",
+        "proposal.md"
+      ],
+      "formula": "count(non-identifying participation lenses PC-P01 through PC-P07)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a design-lens count, not a population statistic, consent result or eligibility rule."
+      ]
+    },
     "resilience_v13_candidate_count": {
       "status": "known",
       "value": 5,

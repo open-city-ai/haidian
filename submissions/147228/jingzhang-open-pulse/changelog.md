@@ -1,10 +1,33 @@
 # 方案迭代记录
 
+## v2.5 - 2026-08-08
+
+- 跟进 `origin/main` 最新竞品与评审面后，新增 `construction-readiness.json` 五道建设/开放就绪闸门和四类构件接口，补足从概念到专业交接的低扰动路径。
+- 新增 `participation-cycle.json`，把同步、复核、同类比较、现场基线、有人窗口和保留/改造/退出写成连续回传日志；明确现场基线、居民咨询和公共试点仍未完成。
+- 双语正文、视觉索引、QA 记录、manifest 与逐资产清权台账同步更新；不新增官方几何、现场绩效、居民同意、预算或实施批准声明。
+
+## v2.4.1 - 2026-08-08
+
+- 跟进最新 `origin/main` 合并后的评审基线，重新渲染中英文离线报告，并刷新 manifest 与逐资产版权台账哈希。
+- 保持八类公共使用者镜头、三类产业验证窗、四类责任/荣誉节点、八项运维行动包和五本资源账在双语正文与视觉索引中的可回读链接。
+
+## v2.4 - 2026-08-08
+
+- 将最新主线的政策/企业成长接口、具身智能凭证和 QA 记录与 v2.1 的三类验证窗、八类公共使用者镜头、四类责任/荣誉节点统一为一个可审阅版本。
+- 修复指标文件的重复键风险，明确 `user_persona_count=8` 的唯一来源，并同步双语正文、任务交叉索引、视觉索引、manifest 与版权台账。
+- 保留 provisional geometry、未知现场基线、人工兜底和专业复核边界；本版本不把概念验证写成部署、采购或实施事实。
+
 ## v2.0 - 2026-08-08
 
 - 修复中英文离线报告的 Markdown 表格渲染，改为可滚动的语义 HTML 表格，并同步更新英文版本标识。
 - 增加 `open-pulse-relay-receipt.schema.json` 与完全合成的 S02 具身智能沙盒凭证，把人工接管、无 App 替代、清权、维护和退出写成可复核记录。
 - 增加 `qa-readiness.json`，记录本地 QA 通过项和 provisional/unknown 边界；三项新资产同步进入 manifest 与逐资产清权台账。
+
+## v2.0.1 - 2026-08-08
+
+- 补齐英文主文的全状态城市操作系统：11 项决策维度、S0–S4 与 50,000 次压力抽样、八类气候/运维压力、具身智能分级开放、风水文化边界和六项风热水健康审查门。
+- 将“人—环境—机器—资产”压力测试和断网/断电/急停/维护逾期回退写成可拍摄的五镜头、30 秒导演脚本，并与 evidence ledger 绑定。
+- 新增 `visual/assets/operations-matrix.json` 八项运维行动包，以及 `visual/assets/resource-accounts.json` 五本资源账，补齐责任、依赖、验收、停止、维护、备件和扩散/退出交接链。
 
 ## v1.7 - 2026-08-08
 
@@ -47,6 +70,13 @@ reviewable deliverables and bilingual review surface.
 - Registered three official data-route records for the Haidian climate-normals catalogue, the district meteorological network and Qinghe Station wind monitoring; they are acquisition/context routes only and do not replace local measurements.
 - Added a bilingual, scalable Open Pulse identity-mark concept with explicit trademark, font and accessibility clearance boundaries.
 - Added English counterparts for all review figures and A3/A0 boards, while keeping the Chinese and English surfaces equivalent and offline.
+
+## v2.1 review-gap closure - 2026-08-08
+
+- Added three bounded industry validation windows with inputs, acceptance tests, stop conditions and non-AI equivalents.
+- Added an eight-row non-identifying public-user and inclusion matrix with spatial responses, fallbacks and safeguards.
+- Added a four-node honor/landmark crosswalk and linked it to the taskbook acceptance tests.
+- Added design-target metrics for validation windows, user lenses and public markers; all remain conceptual and require professional, rights, safety and community review.
 
 ## v2.1 - 2026-08-08
 

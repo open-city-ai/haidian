@@ -20,4 +20,4 @@
 - 官方 SITE_BOUNDARY / KEY_AREA 多边形发布后,重算 land_use、buildings、roads、green/public space、phasing 与全部面积指标。
 - 官方控规条件(容积率/建筑高度/退线/绿地率)补齐后更新 development_intensity_controls。
 - 高校权属、文保、蓝线、市政容量与工程可行性专项论证。
-- 可选项:proposal.en.md 等英文对应物与 A3/A0 英文版图纸。
+- v0.2 已补齐全套英文对应物(proposal.en.md、report/proposal.en.html、5 张英文图、英文 A3/A0、visual/index.en.html)。

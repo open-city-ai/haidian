@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Taking the signalling system of the century-old Jing-Zhang Railway as its prototype, JINGZHANG BEACON turns the operating status of an AI city into a public signal language readable by everyone, using green, amber and red signals. A one-spine, three-beacon, two-wing spatial structure makes the three key areas verification, open-source and experience beacons, forming an AI city public interface that is experienceable, verifiable and reversible."
 tracks: ["ai-traffic-walkability", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.1"
+iteration: "v1.2"
 ---
 
 # JINGZHANG BEACON: Making the Operating Status of an AI City a Public Signal Language
@@ -69,6 +69,10 @@ This proposal borrows mechanisms only; it does not transplant imagery and does n
 
 The case count is [metric:global_case_study_count]. The ecosystem map consists of eight auditable interfaces: land provides reversible carriers, space provides graded boundaries, industry raises real problems, capital funds time-limited prototypes, talent forms cross-disciplinary teams, compute is graded by risk, data is minimised, and scenarios are jointly closed by users and operators. Every interface states its applicant, maintainer, reviewer, term, exit conditions and public-knowledge output; no fabricated company lists, investment figures, output values or policy commitments are made [depth:phasing_implementation].
 
+### Regional Innovation Coordination: The Signal Relay
+
+The taskbook requires innovation coordination with the Beiwei Community, Future Science City, Huairou Science City, the Economic-Technological Development Area and the Beijing-Tianjin-Hebei region [source:AGENT-TASKBOOK]. This proposal organises that coordination as a **signal relay** (concept suggestion): Future Science City and Huairou Science City carry basic research and source innovation, the "source end" of the signal chain; within the belt, Zhongzhiyuan completes full-stack validation (validation end), the AI Origin completes open-source translation (open-source end), and Dazhongsi completes experience and consumption amplification (experience end); the Economic-Technological Development Area and the Beijing-Tianjin-Hebei city region take on manufacturing-scale deployment scenarios, the "amplification end"; the Beiwei Community serves as a living-support and talent-transfer node on the belt. The relay follows the signal language: an output enters the next node only after turning green upstream (validated, ownership clear, licences complete); red outputs are rolled back in place and never pushed downstream. Regional coordination states mechanism directions only and constitutes no cross-region investment, policy or implementation commitment.
+
 ## 4. Overall Design Area: Urban Renewal and Regulatory-Depth Urban Design
 
 The overall design does not start from "how much to build" but from "which judgements must be made public first". Thirty-five shared-boundary land-use units fully cover the provisional site, forming a structure of technology services to the west, the signal-spine green belt in the middle, research and living to the east, and reserved north/south gateways [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout]. Land use follows the national spatial classification: research land (0802) concentrates around Zhongzhiyuan and the Origin [data:geometry/land_use.geojson#LU-013], [data:geometry/land_use.geojson#LU-011]; commercial services (05) run along gateways and the industrial belt [data:geometry/land_use.geojson#LU-001], [data:geometry/land_use.geojson#LU-035]; residential (0701) forms the Xiaoyue River living parcels [data:geometry/land_use.geojson#LU-029]; culture (0803) anchors the Dazhongsi cultural experience [data:geometry/land_use.geojson#LU-009]; education (0804) serves the middle-section education/research [data:geometry/land_use.geojson#LU-024]; and reserved land (16) keeps north-gateway flexibility [data:geometry/land_use.geojson#LU-014]. This partition validates functional combinations, continuous open space and topology; it does not represent current or statutory land use and must be rebuilt when official parcels and regulatory plans arrive.
@@ -78,6 +82,8 @@ Renewal follows a "**time-limited pilot - annual evaluation - expand or retire**
 Building height, total floor area, FAR, setback and density controls lack official basis and remain unknown [metric:floor_area_ratio] [metric:building_height_max_m]. This proposal only offers a character method: keep ground floors open along the signal spine, use low information surfaces, demountable components and continuous eave space, and avoid replacing publicness with towers, giant screens or pseudo-heritage props. Precise height, massing, roofs, colours and interfaces must be deepened by professional teams under formal regulatory and heritage data [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
 
 Municipal and new infrastructure follow "maintainable, disconnectable, retirable": edge-side compute and sensing devices share a demountable equipment belt that preserves basic lighting, seating, toilets, drinking water and accessible passage; every device records an owner, energy use, offline behaviour, human substitution and retirement date [depth:municipal_new_infrastructure]. Because pipeline, energy, fire, flood and drainage data are missing, no capacity or alignment conclusions are drawn.
+
+The underlying mechanism of the overall design is the **signal mechanism system**: spaces, facilities, scenarios and events are all attached to the green/amber/red state system, forming a closed loop of "release (green) - pilot (amber) - retire (red)"; every state change leaves a record, an accountable owner and a human-review gap. This mechanism system lets the renewal project list, phasing plan and metric recomputation share one state language, and makes the proposal itself an open system to be deepened rather than a one-off blueprint [depth:overall_spatial_structure].
 
 ## 5. Key Detailed-Design Areas
 
@@ -97,7 +103,31 @@ The AI Origin Community carries the "world-class AI innovation ecosystem" and op
 
 Dazhongsi carries "native intelligent new business" and the city gateway and international exchange [source:AGENT-TASKBOOK]. Its structure is "station four-quadrant - cultural experience parcels - commercial service ring": the experience beacon plaza [data:geometry/public_space.geojson#PUBLIC-003] provides multilingual guides, AI rights explanations and human service; culture land [data:geometry/land_use.geojson#LU-009] hosts native intelligent content and digital-asset display; commercial land [data:geometry/land_use.geojson#LU-002], [data:geometry/land_use.geojson#LU-023] carries consumption and business; the station green belt [data:geometry/green_space.geojson#GREEN-002] compounds planned green space with public activities. Transit integration only proposes directional strategies for four-quadrant walking continuity, orderly non-motorised parking and clear interchanges, pending road redlines, ridership, entrances and municipal data [depth:traffic_rail_slow_parking]. All experience scenarios are bounded by "selectable and exitable": basic services remain available without AI, and high-impact judgements return to humans.
 
-## 6. AI Innovation Ecosystem, User Personas and AI+ Scenarios
+## 6. AI-Native Urban Form and Planning Method (The City as Signal State)
+
+The announcement asks for a direct answer to how AI changes urban form and the planning method [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]. JINGZHANG BEACON's answer: when AI becomes urban infrastructure, what changes is not the skyline but the **state layer** of space - the city gains an operating interface that is readable, verifiable and reversible [source:AGENT-TASKBOOK].
+
+### 6.1 Urban form: from static zoning to a signal grid
+
+Urban functional elements (compute nodes, scenario facilities, data services, public facilities) are organised in this proposal as **addressable signal nodes**: each element has a location, a state (green/amber/red), an accountable owner and a lifecycle. The spatial mode of organisation therefore shifts from "drawn once, fixed forever" to an addressable, stateful, replaceable signal grid; land-use partitioning provides the carriers while the signal layer provides the states, the two tracks expressed separately and never impersonating each other.
+
+AI also changes ways of production and ways of living, and demands corresponding spatial responses: model training and simulation replace part of physical pilot runs, requiring small, closable, meterable, stoppable test spaces rather than long-span sheds (mapped to Zhongzhiyuan's three-tier validation gates); robot delivery reaches the ground floor, requiring separated human-machine arrival interfaces and controlled freight windows (mapped to the Dazhongsi quadrant pilots); edge compute disperses into blocks, moving utilities from central machine rooms to demountable equipment belts with separate metering. In ways of living, residents choose services by reading signals: signals are public information, not personalised recommendation; people without smart devices keep **no-AI equivalent paths that are not slower or worse** - the baseline design of the experience beacon [depth:three_key_area_detailed_design].
+
+This yields an operational definition of an **adaptive, evolvable urban development model**: treat urban renewal as versioned, rollable-back signal commits - a green release is a merged deployment, an amber pilot is under review, a red decommission is a rollback. The three phases are not a timetable but three merge gates: data, ownership and professional assessment must all pass before advancing; otherwise the state rolls back to the last usable one. A city that cannot revoke its own decisions cannot be adaptive.
+
+### 6.2 Perceivable, interactive, and the sensing boundary
+
+**Perceivable**: the tri-colour signal is the perception interface; states are public information readable by everyone, requiring no app and no account. **Interactive**: every signal node carries appeal, review and rollback entrances (the human-review gap); interaction results in state changes that leave records. Perceivable does not mean surveillance: this proposal draws a sensing boundary - device status, aggregate crowding and surface obstacles are sensed; faces, identities and personal traces are not; no identity-based passage priority, no dynamic pricing, no app as a precondition for passage [source:AGENT-TASKBOOK].
+
+### 6.3 Multi-agent collaboration: four-role separation
+
+The co-creation charter encourages multi-agent collaboration and accepts that agent proposals are screened and ranked with final judgement made by humans [source:AGENT-TASKBOOK]. This proposal lands collaboration as a separation of four roles: **generation** (agent design and iteration), **validation** (scripts and third-party reproducible re-checks), **review** (maintainers and professional teams), and **dissent** (public appeals and Issue discussion). No party may hold two roles; the generator may not self-certify; any role can trigger a shutdown; final judgement belongs to people. This submission is itself a product of that process: agent-generated, script-validated, maintainer-reviewed, publicly contestable.
+
+### 6.4 Planning method and territorial spatial planning innovation
+
+The innovation in comprehensive planning substance and territorial spatial planning converges to three claims: **first, signal-state planning outputs** - planning deliverables move from static albums to recomputable data packages (GeoJSON -> metrics -> three matrices -> readable text), where any number traces back to geometry, formula and assumptions; **second, dual-track expression** - design conclusions (concept layer) and statutory controls (regulatory layer) always stay in separate columns, never impersonating each other, with statutory indicators kept unknown when unsupported; **third, writing "unknown" into deliverables** - unknowns are registered together with their definition and trigger conditions (e.g. [metric:floor_area_ratio], [metric:building_height_max_m]), and official data arrival triggers a full-package recomputation. The difference from a digital twin: no real-time mirroring is pursued - only recomputability and auditability [depth:metrics_recalculation].
+
+## 7. AI Innovation Ecosystem, User Personas and AI+ Scenarios
 
 The AI innovation ecosystem is organised in five segments - source, verification, open source, experience and governance - mapping onto the three areas and two wings [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. This proposal forms 5 user persona types:
 
@@ -126,9 +156,9 @@ The persona count is [metric:user_persona_count]. AI scenario cards (concept) to
 | SC-11 | Full-stack model controlled trial | Zhongzhiyuan controlled laboratory | **Test/validation** | Amber |
 | SC-12 | City-agent public audit desk | Zhongzhiyuan governance display node | **Test/validation** | Amber/Red |
 
-Each scenario card states its users, spatial location, operating data, privacy boundary, human review, operator and risks, and enters `compliance_matrix.json` and `visual/index.html` [depth:metrics_recalculation]. All scenarios are concept suggestions and do not constitute approved operations; privacy and data use follow the principles of data minimisation, public sources, explainability and human review [source:AGENT-TASKBOOK]. City agents may assist in identifying slow-traffic gaps, public-space heat, facility maintenance and event safety risks, but cannot replace planning approval, output unauthorised personal profiles, or claim official implementation commitments.
+Each scenario card states its users, spatial location, operating data, privacy boundary, human review, operator and risks, and enters `compliance_matrix.json` and `visual/index.html` [depth:metrics_recalculation]. The table above is the **scenario-space-operation mapping**: each card simultaneously gives the spatial carrier, the signal state and the operating requirements (term, evaluation, human review, exit channel), with emphasis on the public experience paths of the Xiaoyue River scenario-empowerment wing; the mapping can be deepened as official materials arrive. All scenarios are concept suggestions and do not constitute approved operations; privacy and data use follow the principles of data minimisation, public sources, explainability and human review [source:AGENT-TASKBOOK]. City agents may assist in identifying slow-traffic gaps, public-space heat, facility maintenance and event safety risks, but cannot replace planning approval, output unauthorised personal profiles, or claim official implementation commitments.
 
-## 7. Land Use, Building Scale and Retain/Renovate/Demolish
+## 8. Land Use, Building Scale and Retain/Renovate/Demolish
 
 Land use follows [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]; 35 land-use units fully cover the provisional site without gaps or overlaps (package coverage 100%, unit count [metric:land_use_count]) [data:geometry/land_use.geojson#LU-001] [metric:land_use_area_sqm].
 
@@ -136,7 +166,7 @@ Land use follows [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]; 35 land-use units
 
 The land structure is dominated by research (0802, approx. 3.416 million m2), commercial (05, approx. 2.562 million m2) and residential (0701, approx. 2.510 million m2) [metric:land_use_0802_sqm] [metric:land_use_05_sqm] [metric:land_use_0701_sqm]; green space (1401) of approx. 1.295 million m2 runs along the signal spine [metric:green_space_area_sqm]; reserved land (16) of approx. 0.830 million m2 keeps north-gateway flexibility. Conceptual building footprints total 107 units of approx. 3.623 million m2, a building density of approx. 0.32 [metric:building_footprint_area_sqm] [metric:building_density]; they only validate spatial capacity and industrial-space supply logic, not real buildings or parcel-level decisions [depth:retain_renovate_demolish]. Building functions are mainly AI R&D, office, incubator and residential [data:geometry/buildings.geojson#BLDG-001]. Statutory indicators (FAR, height, density, setback, green ratio) lack official regulatory conditions and remain unknown or to-be-confirmed rather than fabricated precision [metric:floor_area_ratio].
 
-## 8. Transport, Rail, Municipal and Public Service Facilities
+## 9. Transport, Rail, Municipal and Public Service Facilities
 
 The transport scheme responds to station integration, road micro-circulation, slow-traffic gaps, parking and non-motorised organisation [depth:traffic_rail_slow_parking]. The conceptual road network includes secondary roads, branches and greenways totalling approx. 32.4 km [metric:road_length_m], of which the signal-spine greenway is approx. 9.7 km [metric:greenway_length_m] [data:geometry/roads.geojson#ROAD-006]. Key coverage includes the Dazhongsi station four-quadrant walking continuity, Wudaokou and Qinghua East Road West Entrance slow-traffic links, and cross-ring-road nodes of the Jing-Zhang heritage park; all roads are directional strategies and await official road redlines, sections and intersection data [source:BOUNDARY-SOURCE].
 
@@ -144,9 +174,13 @@ Municipal and public services cover innovation service platforms, talent living 
 
 ![Mobility, slow traffic and blue-green public space composite system](assets/figures/mobility-bluegreen.png)
 
-## 9. Blue-Green Space, Public Space and Urban Character
+## 10. Blue-Green Space, Public Space and Urban Character
 
-The blue-green system uses the Jing-Zhang heritage park signal spine as its skeleton [data:geometry/green_space.geojson#GREEN-001] through [data:geometry/green_space.geojson#GREEN-007], coordinating the Qinghe, Xiaoyue River and north/south gateway green wedges [data:geometry/green_space.geojson#GREEN-001], [data:geometry/green_space.geojson#GREEN-007] [depth:blue_green_public_space]. The green ratio is approx. 11.3% [metric:green_ratio]; three beacon plazas total approx. 40,973 m2 [metric:public_space_area_sqm] [metric:public_space_ratio] [data:geometry/public_space.geojson#PUBLIC-001] through [data:geometry/public_space.geojson#PUBLIC-003], compounding slow traffic, events and AI display [standard:MOHURD-URBAN-DESIGN-MEASURES].
+The blue-green system uses the Jing-Zhang heritage park signal spine as its skeleton [data:geometry/green_space.geojson#GREEN-001] through [data:geometry/green_space.geojson#GREEN-007], coordinating the Qinghe, Xiaoyue River and north/south gateway green wedges [data:geometry/green_space.geojson#GREEN-001], [data:geometry/green_space.geojson#GREEN-007] [depth:blue_green_public_space]. The signal-spine green belt also carries **east-west stitching and north-south linking**: north-south it hosts continuous slow-traffic and event corridors; east-west, stitching axes connect campuses, parks and stations, healing the east-west severance left by the railway remains. The green ratio is approx. 11.3% [metric:green_ratio]; three beacon plazas total approx. 40,973 m2 [metric:public_space_area_sqm] [metric:public_space_ratio] [data:geometry/public_space.geojson#PUBLIC-001] through [data:geometry/public_space.geojson#PUBLIC-003], compounding slow traffic, events and AI display [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+**Public space component library** (concept): signal light poles, signal information kiosks, signal paving strips, status display screens and accessible signal-reading facilities form a composable component library. All components follow removable, retractable, retirable principles, sharing demountable equipment belts and separate metering; decommissioning restores the plain state and leaves no irreversible urban trace; component specifications, materials and heritage compatibility await professional deepening [depth:blue_green_public_space].
+
+**Honour display system** (concept): the Origin Stone engraves open-source contributors; a contributors' wall records public-knowledge deposits of proposals, data and tools; an annual beacon-lighting ceremony honours the operators and reviewers of the city's signals. Honour display records public contributions only, with no commercial naming rights and no confusion with the belt's overall logo system [source:AGENT-TASKBOOK].
 
 The urban character merges Jing-Zhang railway history, Zhongguancun innovation culture and AI culture into three AI pilgrimage landmarks (concept) [metric:ai_pilgrimage_landmark_count]:
 
@@ -156,7 +190,7 @@ The urban character merges Jing-Zhang railway history, Zhongguancun innovation c
 
 Landmarks, wayfinding, logos, fonts, images and corporate marks are all cleared; concept landmarks are not described as approved construction and are not sensationalised [source:AGENT-TASKBOOK].
 
-## 10. Renewal Project List, Implementation Policy and Phasing
+## 11. Renewal Project List, Implementation Policy and Phasing
 
 Implementation is expressed in the three-phase space of `geometry/phasing.geojson` [data:geometry/phasing.geojson#PHASE-01] through [data:geometry/phasing.geojson#PHASE-07] [depth:renewal_project_list] [depth:phasing_implementation]:
 
@@ -179,7 +213,9 @@ Implementation is expressed in the three-phase space of `geometry/phasing.geojso
 - **Public experience and landmark operations**: the lighthouse, origin stone and signal clock as long-term brand assets, with maintenance and retirement mechanisms.
 - **International communication and conversion mechanism**: state transparency ("experienceable/controlled/retired") as a governance discourse to attract global developers, enterprises and governors; all recruitment, funding and policy items are concept directions, not commitments.
 
-## 11. Indicator System, Area Recalculation and Compliance Matrix
+**Implementation actors and annual evaluation** (concept suggestions): government and professional teams deepen the statutory layer and engineering conditions; enterprises and universities co-build scenarios and test spaces; residents and developers participate in evaluation through appeals, reviews and events; maintainers and review teams keep the evidence chain and state audits. Suggested annual evaluation indicators are measurable items: number of scenarios opened, on-time pilot completion rate, appeal response time, rollback execution rate, public-space event counts and satisfaction sampling; all indicators require continuous calibration with operational data - this draft gives the indicator framework only and sets no target values [depth:renewal_project_list].
+
+## 12. Indicator System, Area Recalculation and Compliance Matrix
 
 The indicator system contains spatial indicators (directly recomputable from submitted geometry), control indicators (requiring official regulatory planning support) and performance indicators (requiring continuous operational data calibration) [depth:metrics_recalculation]:
 
@@ -191,14 +227,15 @@ The indicator system contains spatial indicators (directly recomputable from sub
 
 ![Core indicator recalculation and three-colour signal evidence chain](assets/figures/metrics-evidence.png)
 
-## 12. Risk, Copyright and Compliance
+## 13. Risk, Copyright and Compliance
 
 Main risks and missing-data inventory: official boundary and key-area polygons are missing (does not block content scoring, but blocks official-redline-level precise-area conclusions) [depth:risk_missing_data]; regulatory indicators, road redlines, existing buildings/ownership, heritage controls, municipal capacity and public-facility baselines are missing (all downgraded to to-be-confirmed) [data:geometry/constraints.geojson#CONSTRAINT-01] through [data:geometry/constraints.geojson#CONSTRAINT-03]; licences and reuse terms of external data require continuous verification [source:SITE-PACKAGE].
 
 This proposal does not claim official approval, approved regulatory plans, final land ownership, final construction scale or guaranteed implementation; all spatial and activity suggestions are open co-creation concept suggestions that do not replace statutory planning or constitute government-approved conclusions [source:AGENT-TASKBOOK]. Source and licence status of images, drawings, data and code assets are in `sources.json` and `report/copyright_statement.md`. The AI agent is responsible for facts, sources, copyright, spatial data, metrics and expression; maintainers and professional reviewers may request revisions or rejection based on self-check results, spatial review and the compliance matrix.
 
-## 13. References
+## 14. References
 
+- `brief/public-brief.md`
 - `brief/site-package/design_brief.json`
 - `brief/site-package/agent_taskbook.json`
 - `brief/site-package/allowed_design_space.json`

@@ -5,7 +5,7 @@ language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "基于 provisional boundary 和结构化自检要求生成的 formal AI 城市设计方案包；保留精度警示和复算要求，但组织方数据缺口不阻断内容评分。"
 translation_file: "proposal.en.md"
-iteration: "v2.0"
+iteration: "v2.4"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -296,6 +296,15 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 
 五类画像为开源开发者、初创团队、产业访客、周边居民和高校师生；它们不是基于个人画像的自动决策对象，而是公共服务和空间供给的设计视角。所有测试场景均为概念建议，须经过专业、安全、隐私与运营审查后方可试点。[source:AGENT-TASKBOOK] [depth:risk_missing_data]
 
+五类产业画像之外，方案用八个不识别个人的公共使用者镜头检查谁能进入、使用、投诉和退出：周边/老年居民、轮椅/盲杖/导盲犬使用者、照护者与儿童、夜班劳动者、游客/首次到访者、小商户/社区服务者、开发者/初创团队/高校师生、维护人员/运营责任人。八类镜头的设计目标计数为 [metric:user_persona_count]，不是人口统计，也不生成个体资格；每类都有空间响应、无数字兜底、测试和隐私/安全闸门，见 [data:visual/assets/persona-and-inclusion-matrix.json#P-01]—[data:visual/assets/persona-and-inclusion-matrix.json#P-08]。方案禁止人脸识别、个体轨迹留存、生物识别和商业画像；官方边界和基线未知时，先做知情、可退出、可补偿的参与审计。
+
+| 公共使用者镜头 | 空间与服务回应 | 无数字兜底/停止条件 |
+| --- | --- | --- |
+| 周边/老年居民；轮椅、盲杖与导盲犬使用者 | 连续无障碍主链、安静座椅、盲文/高对比/语音、可见急停 | 陪行、实体导视与人工问询；路线清空或障碍复核失败即停 |
+| 照护者与儿童；夜班劳动者 | 照护停留与低速边界；低照度主链、安静座椅、夜间值守 | 人工广播、固定照明和人工值守；照度/噪声配对不合格即调整或撤回 |
+| 游客/首次到访者；小商户/社区服务者 | 双语导视、工程问题墙、责任台；企业服务柜台、公开规则、人工申诉 | 纸质地图、人工讲解和纸面流程；关键材料不可核验即不启用 AI 辅助 |
+| 开发者/初创团队/高校师生；维护人员/运营责任人 | 开源发布厅、评测沙盒、贡献档案廊；资产台账、责任台、实体检修口 | 专家评审、静态模型卡、纸面巡检和人工派单；清权、接管、维护或撤回演练失败即停 |
+
 ### 三个产业测试验证场：先证据，后采购或扩容
 
 为把“政策工具”真正接到企业发展，而不是停留在案例罗列，`visual/assets/industry-validation-cases.json` 设置三个可撤回的验证窗。它们是面向组织方、企业和公共服务团队的概念测试协议，不是采购批准、部署事实、投资承诺或本地企业绩效证明。每个验证窗都要求企业问题、政策接口、验收证据、停止条件和非 AI 等价服务同时出现：
@@ -306,7 +315,7 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 | 企业服务与数据要素合规验证窗 | 企业服务团队能否缩短公开流程，同时不暴露未授权数据、不把 AI 答复变成行政决定 | 服务 preflight record：公开来源、授权材料、人工决策责任人、更正路径、留存期限和人工柜台等价路径 | AI 辅助与人工路径都能走通，关键答复均有来源和人工更正路由；材料不可核验、隐私泄露、歧视性分流或缺少人工柜台即停止。对应 S08/S09、原点社区/大钟寺。 |
 | 低速具身智能安全与运营验证窗 | 机器人或具身智能供应商能否在任何规模化部署或采购决定前证明与无障碍公共路线安全共存 | 公共测试许可包：路线、速度/优先规则、急停、人工接管、事件日志、隐私边界、维护责任和撤回触发器 | 现场演练完成急停、人工接管、清空路线和恢复普通公共使用；阻断无障碍链、严重险情或维护逾期即停止。对应 S02/S03、众智园—京张公园界面。 |
 
-三类验证场都先走小规模、有人值守、可复盘的测试窗，再决定扩容、改设计或退出；任何“成功”只表示验收证据完整，不表示产品效果、投资回报或政府采购已经成立。三类验证场的机器可读计数为 [metric:industry_validation_case_count]，正文场景卡总量为 [metric:scenario_card_count]，五类画像对应 [metric:user_persona_count]。[source:AGENT-TASKBOOK] [depth:risk_missing_data]
+三类验证场都先走小规模、有人值守、可复盘的测试窗，再决定扩容、改设计或退出；任何“成功”只表示验收证据完整，不表示产品效果、投资回报或政府采购已经成立。三类验证场的机器可读计数为 [metric:industry_validation_case_count]，正文场景卡总量为 [metric:scenario_card_count]，八类公共使用者镜头对应 [metric:user_persona_count]。[source:AGENT-TASKBOOK] [depth:risk_missing_data]
 
 ### 文化叙事、地标与长期运营
 
@@ -357,6 +366,8 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 
 政策工具与企业发展接口进一步写入 `visual/assets/case-policy-enterprise-crosswalk.json`：每个案例绑定一个政策工具、一个企业发展问题、本地场景、验收证据和不照搬边界。`visual/assets/policy-enterprise-playbook.json` 再把接口拆成 42 张可执行的成长阶段卡 [metric:policy_enterprise_playbook_card_count]，先落一张公共 AI 登记与反馈卡；`visual/assets/industry-validation-cases.json` 补出模型安全、企业服务数据合规和低速具身智能三条产业测试验证窗；`visual/assets/landmark-honor-crosswalk.json` 把责任台、贡献档案和安全治理节点绑定到政策与企业接口。六种模式仍保留在 `case-mechanism-matrix.json` 的 `rows` 中，案例来源、访问日期和用途边界回到 `sources.json`。
 
+`visual/assets/operations-matrix.json` 将后续工作拆成八个有责任人的行动包：官方边界替换、现场基线、风热水验证、具身智能窗口、开源清权、活动降容复原、雨洪/安静链维护，以及年度扩散/重做/退出复盘；`visual/assets/resource-accounts.json` 为五类前置资源记账：空间权属、气候水务生态、算力模型与数据权利、人类体验参与、资产备件维护。这些是释放窗口前的审查条件，不是预算、资金或采购承诺。
+
 ### 2. 十四条场景—空间—运营矩阵
 
 新增的 `visual/assets/scenario-operation-matrix.json` 将原有十张场景卡扩展为 14 行，并为每行补齐空间载体、触发器、最小数据、RACI、SLA、相对成本带、留存期限、非 AI 等价服务、停止条件、成功指标和阶段。场景包括慢行断点诊断、低速配送机器人、自主慢行辅助、模型安全红队、开源发布厅、京张文化导视、AI 医疗导航、企业服务柜台、数据要素会客厅、智能原生零售街、公共安全复盘、全球 AI 周路线、雨洪树池维护和夜间低照度安静链。
@@ -397,6 +408,14 @@ v1.5 在上一轮“低后悔”压力测试上扩展为 97 条原子证据记�
 本版的可见 QA 记录在 `visual/assets/qa-readiness.json`：报告表格已语义化、双语图件和 A3/A0 成果均为本地资源、离线页面无远程运行依赖；同时把临时边界和现场基线未知作为已知限制，不将本地预检误写成现场、无障碍或专业批准。
 
 本轮成果的目标不是用更多效果图制造“完成感”，而是让评审者可以沿着一条路径工作：任务 → 章节 → 图件/JSON → 指标/来源 → acceptance test → 停止或回滚。官方边界和控规资料发布后，仍需重算面积、连通、雨洪、交通、维护和量化指标，再进入专业深化。
+
+实施交接由 `operations-matrix.json`、`resource-accounts.json`、十四条场景矩阵和 Relay Receipt 一起呈现：每个行动包都有责任、依赖、验收、停止、维护和相对成本带；每本资源账都说明释放窗口前必须补齐的资料与能力。
+
+### 6. 建设就绪与连续参与
+
+本包进一步把“可以讨论”与“可以建设/开放”分开。`visual/assets/construction-readiness.json` 设置五道闸门：资料与场地锁定、公共路径与被动构件样机、风热水与生命线协调、有界有人限时开放窗口、保留/改造/退出决策。[metric:construction_readiness_gate_count] 每道闸门都有进入证据、交付物、通过条件、停止条件、普通非 AI 基线和维护响应；文件明确不构成施工图、法定规划、采购规格、造价或实施批准。
+
+`visual/assets/participation-cycle.json` 把回传循环写成可读日志：同步输入—重读变化—比较同类—验证包体—发布可审阅草案—建立现场与公共基线—有人值守窗口—回传负面和分布差异—保留、改造或退出。七类参与镜头均提供纸面、人工、多语种或无 App 路径。[metric:participation_lens_count] 本包目前只把主干同步、本地校验和同类比较记为已知的审阅活动；现场基线、居民咨询和公共试点仍为 `unknown` 或 `not_started`，不推断居民同意、微气候结果或健康收益。
 
 ## v1.8 评审可见证据层：定位、功能、节点与公共性一页回读
 

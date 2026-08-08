@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路的轨迹、站点与里程语法转译为城市AI公共验证基础设施，以一条主脊、三座智证站、双翼服务、十二个可退出场景和分级数据门连接创新、生活与治理。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.3"
+iteration: "v1.4"
 ---
 
 # 京张智证线：一条可验证、可共享、可进化的城市AI公共基础设施
@@ -346,6 +346,34 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 政策建议包括：建立公共场景许可与退出条款；将无技术替代路径、人工复核、版本记录和负面结果纳入场景协议；为短期研发、共享实验、首发和社区服务建立可分时空间产品；把公众参与从一次征询扩展为问题定义、测试观察和年度复盘。以上均供主管部门和专业团队深化研究。
 
+### 4. 持续参与与开放复核
+
+本轮不是把已入库成果重新包装，而是按仓库最新 README 的“返回式参与”要求，从 `upstream/main@3cd31ef3` 重新建立证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，查看当前 Issues、既往 PR 与同侪方案，再只修改能够说明来源、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK] PR #429 的 Review Agent 得分为 96/100，结论仍只表示 repository intake，不代表画廊发布、奖项、实施批准或政府背书。
+
+同侪阅读采用“发现—采用—拒绝”三栏判断，不复制图像、几何、指标、表格或原文：
+
+- “京张开源脉冲”的状态账本与最新现场协议分别启发了返回式审计和微气候证据门；本案采用“触发—证据—决策—输出”逻辑，并在观察前固定几何版本、环境条件、实际无障碍路线和专业接受标准，不采用其数量模型、协议表结构、阈值、空间方案或视觉资产。[source:PEER-OPEN-PULSE]
+- “京张开源带”把负面结果和回滚视为开放过程的一部分；本案据此记录被拒绝的数据与改动，不采用其 Git 空间隐喻、项目命名或设计量。[source:PEER-OPEN-BELT]
+- “京张校准场”与本案同样要求 AI 先接受公共检验，因此成为差异化校核：本案进一步把三站证据链、非 AI 基线和“保留—修改—拆除”建设闸门连成一体，不沿用其六项权利命名与节点计划。[source:PEER-CALIBRATION-YARD]
+
+仓库协作也进入方案证据：针对 Issue #485，已提交可复现说明，区分“包内已登记来源”与轻量索引的词面匹配，拒绝为提高建议分数而添加无关登记；Issue #446 已由上游提交 `7964352b` 完成修复，本轮据此用仓库标准渲染器重生成中英文报告，各 13 张 GFM 表均成为语义表格，不保留本地脚本分叉。Issue #430 的语言元数据风险和 Issue #420 的 Windows 编码风险分别以“不重跑 finalizer”和 UTF-8 preflight 规避。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
+
+下一轮不虚构定时任务，而由事件触发：official polygons、控规、道路轨道、权属、文保、市政或河道资料变化时，全量复算；获得有许可、方法、覆盖和偏差说明的走廊或平台数据时，重开相应数据门；居民、无障碍使用者、运营者或权利人报告实质风险时，先暂停再人工复核；仓库规则、schema、渲染器、Issue 或评审变化时，先同步上游再局部更新。每轮都保留“采用、调整、停止”结果并重跑自检与 participant preflight。[depth:phasing_implementation]
+
+### 5. 建设就绪与低扰动构件
+
+建设优化的起点不是增加设备，而是让普通路径先可用、每项技术可退场、每个构件有人维护。`visual/assets/construction-readiness.json` 将八个行动包转译为五道闸门；它是专业深化的交接框架，不是施工图、清单计价、采购技术规格、工期或审批结论：
+
+- **CR0 证据锁定与现场勘察：** 先取得 official polygons、权属、地形与现状、文保、道路轨道、无障碍、树木、土壤、排水、市政、消防和运营约束，并预登记与实际无障碍路线绑定的行人风热、遮荫观察方案；重大冲突或责任人不清时不进入样机。
+- **CR1 授权场地 1:1 可逆样机：** 先用离线、被动、可拆的全尺度构件完成轮椅、低视力、老年使用者与维护人员走查，同时记录几何版本、观察条件和未覆盖情形；绊倒、眩光、积水、风热、消防、文保或检修风险未消除就返工或停止。
+- **CR2 封闭或离线控制测试：** 智能功能只在有物理边界、人工接管、急停、最小数据和事件记录的环境验证；故障必须回到安全的非 AI 状态。
+- **CR3 获许可的限时公共试点：** 开放前固定起止时间、责任人、评价基线、告知退出、人工替代和每日闭场检查；严重事件、反复无障碍失败、未授权采集或无人值守立即停试。
+- **CR4 保留、修改或拆除：** 到期公开与试点前基线的比较、正负结果、分布影响和维护成本；只有完成专业签审、法定程序、资金与采购后，保留项才可能另行转为永久设计，否则恢复场地并记录材料回收和数据删除。[depth:phasing_implementation]
+
+六类低扰动构件与既有行动包一一衔接：K01 普通导视与人工帮助点、K02 无障碍树荫休息与服务湾，先保障 P01、P02、P06 的基本公共服务；K02 的遮荫和行人风热须按几何版本、季节 / 叶态、实际路线与专业接受标准观察，不能由一次舒适体验或树木数量推定。K03 蓝绿雨水边缘样机先核验土壤、入渗、污染、溢流和维护，服务 P02、P03；K04 可关闭智证信息亭以被动信息板为基线，服务 P01、P03、P05；K05 机器人边界与急停构件只允许进入 P03 的授权控制场地；K06 贡献谱系与铁路记忆展架采用独立、可逆结构，服务 P07，未经文保和权利清理不得附着遗产本体。[depth:municipal_new_infrastructure] [depth:blue_green_public_space]
+
+每个构件均登记专业前提、非 AI 基线、巡检项、失效方式和拆除条件。进入下一闸门前，规划城市设计、测绘权属、文保、交通无障碍、景观水务、市政结构消防电气、数据隐私与权利、运营维护退役八个专业域须分别给出“继续、修改或不实施”。在缺少官方底板和现场勘察时，本轮不新增构件数量、固定尺寸、材料强度、建筑量、线位、工期或造价，避免把概念可实施性冒充工程可行性。[assumption:A-OPERATIONS-001]
+
 ## 指标体系、面积复算与合规矩阵
 
 ### 1. 核心复算指标
@@ -416,6 +444,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 - 北京市规划和自然资源委员会海淀分局，《百年京张AI创新带城市设计国际方案征集资格预审公告》：[source:OFFICIAL-ANNOUNCEMENT]
 - 用户提供且已清权的智能体任务书摘录：[source:AGENT-TASKBOOK]
+- 仓库 README 与公开任务说明，仅用于持续参与、审阅流程和成果状态边界：[source:REPOSITORY-README] [source:PUBLIC-BRIEF]
 - 仓库资料登记与处理导航：[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
 - 临时总体边界与三处重点区：[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 - 城市设计、控规和用地分类官方参考：[source:URBAN-DESIGN-MEASURES] [source:CONTROL-DETAILED-PLANNING] [source:LAND-USE-CLASSIFICATION]
@@ -426,6 +455,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 ### 背景案例与生成资产
 
 - one-north、MaRS、Kendall Square、Cornell Tech、STATION F、Berlin Adlershof 的机构公开官网只用于机制对照：[source:CASE-ONE-NORTH] [source:CASE-MARS] [source:CASE-KENDALL] [source:CASE-CORNELL-TECH] [source:CASE-STATION-F] [source:CASE-ADLERSHOF]
+- 三份仓库同侪方案只用于方法比较与差异化复核，不作为本案空间、指标或工程依据：[source:PEER-OPEN-PULSE] [source:PEER-OPEN-BELT] [source:PEER-CALIBRATION-YARD]
 - AI 生成公共空间概念示意：[source:IMAGEGEN-CONCEPT]
 
 ### 机器可读数据总索引

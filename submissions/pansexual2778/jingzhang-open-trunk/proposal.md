@@ -50,9 +50,26 @@ iteration: "v0.1"
 - **三大定位转译为三个发布版本**：百年京张文化带 = "历史版本（Heritage Release）"；都市AI生活体验带 = "体验版本（Experience Release）"；AI融合创新带 = "未来版本（Future Release）"。
 - **三区即三个核心仓库**：众智园 = **全栈分叉（Full-Stack Fork）**——把海淀AI全栈能力"分叉"为可独立演进又回合并主干的自研体系；北京AI原点社区 = **原点仓库（Origin Repo）**——AI创新的"出生地与上游（upstream）"；大钟寺 = **场景市场（Scenario Market）**——AI场景"上架、测试、商用"的交易与体验场。
 - **两翼即两个分支（branch）**：中关村科技服务翼 = 要素全球化分支；小月河场景赋能翼 = 场景赋能分支。
-- **Logo 方向（概念）**：以铁路钢轨的"工字截面"与 git 分支折线叠加，轨枕转化为提交节点（commit dots），整体形似一条向南北延伸并分出三支的主干线。主色用京张铁路的铁锈橙、中关村的科技蓝、AI 新文化的信号绿。
+- **Logo 方向（概念）**：以铁路钢轨的"工字截面"与 git 分支折线叠加，轨枕转化为提交节点（commit dots），整体形似一条向南北延伸并分出三支的主干线。主色用京张铁路的铁锈橙、中关村的科技蓝、AI 新文化的信号绿。方案 Logo 标识（概念版）如下：
+
+![开源干线 OPEN TRUNK Logo（概念）](assets/logo.png)
+
+标识语义：铁轨工字截面代表百年京张铁路的历史干线与"中国自主"精神；从中引出的蓝色分支线代表开源主干线（main branch），三个绿色提交节点对应众智园（全栈分叉）、原点社区（原点仓库）、大钟寺（场景市场）三个核心仓库；上下分叉代表中关村科技服务翼与小月河场景赋能翼两个分支。
 
 **五大功能**：AI全栈自主创新体系、世界级AI创新生态、AI+场景赋能新范式、智能化AI活力城市、AI治理全球话语权——分别落到众智园、原点社区、小月河翼、公共空间网络与治理机制 [source:AGENT-TASKBOOK]。
+
+### 区域协同与全球高地联动（agent.2 拓展，概念）
+
+开源干线不是孤立的线性空间，而是海淀乃至京津冀创新网络中的**中枢主线（trunk）**。方案提出以下区域协同机制（概念建议）：
+
+- **与未来科学城协同**：承接未来科学城的基础研究与大科学装置外溢，众智园定位为"前沿成果的中试验证与转化站"，与未来科学城形成"研发-验证"接力。
+- **与怀柔科学城协同**：面向大科学装置的 AI 算力与数据需求，原点社区建设"开放数据与模型互操作节点"，与怀柔形成"装置-数据-模型"闭环。
+- **与北京经开区协同**：智能网联汽车与机器人产业方面，众智园测试验证场景与经开区量产基地衔接，形成"测试-中试-量产"链。
+- **与北纬社区（中关村北部创新社区）协同**：小月河场景赋能翼与北纬社区软件产业协同，共建开源软件与 AI 场景联合孵化。
+- **与首都国际机场及国际创新城市协同**：通过大钟寺国际传播中心与国际创新周，链接全球 AI 城市网络（对标硅谷、肯德尔广场等），提升一带全球关注度与辨识度。
+- **京津冀协同**：依托京张铁路历史轴与高铁网络，与京张体育文化旅游带、张家口数据产业形成"数据-算力-应用"区域分工；开源干线作为京津冀 AI 协同的主通道。
+
+上述协同均通过 `compliance_matrix.json` 登记为任务书 agent.2 的响应内容，属于方向性概念，具体合作机制需专业团队与各主体深化 [source:AGENT-TASKBOOK][standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
 
 ### 全球 AI 创新生态案例（agent.2）
 
@@ -68,6 +85,16 @@ iteration: "v0.1"
 | 深圳南山科技园 | 龙头带动+产业链完整+快速迭代 | AI+硬件/机器人的测试验证场景 |
 
 上述案例经验转化为可落地的机制：近校策源（原点社区）、全栈自研（众智园）、场景测试与体验交易（大钟寺）、要素全球化配置（中关村翼）、场景开放赋能（小月河翼）[depth:overall_spatial_structure]。
+
+### AI 产业要素保障与制度机制（agent.2 拓展，概念）
+
+支撑 AI 创新生态需要"算力、数据、资本、场景、制度"五类要素的持续供给 [source:AGENT-TASKBOOK]：
+
+- **算力保障（概念）**：众智园设置"公共算力调度节点"，面向中小企业与高校提供普惠算力；依托海淀算力基础设施，形成"集中+边缘+端侧"三级算力网络。具体规模与投资列为待专业测算。
+- **数据要素（概念）**：依托开源成果展示廊建设"开放数据目录"概念，推动公共数据沙盒化开放；大钟寺场景市场作为数据要素的合规交易与场景化应用展示场。
+- **资本与孵化（概念）**：原点社区规划"开源基金 + 天使孵化"联动机制概念，链接海淀创投网络；开发者驻留计划提供"免费工位+算力券+导师"组合（概念）。
+- **场景开放机制（概念）**：以"测试-展示-商用"三态开放为核心，建立场景征集、安全评估、隐私审查、人工复核的标准化流程（概念），保证 AI 场景可感知、可推广 [depth:metrics_recalculation]。
+- **制度与治理（概念）**：AI 治理全球话语权通过开源合规沙盒（S-5）、智能体互操作评测（S-13）与公共安全事件响应（S-10）落地；治理标准建议参照公开的 AI 治理框架并在本地化后实施。
 
 ### 未来 AI 城市形态
 
@@ -93,6 +120,16 @@ iteration: "v0.1"
 1. **主轴活化（概念建议）**：建议推动遗址公园两侧"低效空间释放+公共空间缝合"，重点打通东西向慢行断点。
 2. **存量更新（概念）**：科研用地与商业用地以保留改造为主、适度新建，`geometry/buildings.geojson` 表达五处建筑簇群（全栈创新楼群、孵化楼群、智能商业楼群、科技服务楼群、协同创新楼群）[metric:building_footprint_area_sqm]。
 3. **新建控制**：新建建筑集中在众智园与大钟寺的可更新地块；建筑高度、开发强度、退线均列为**待正式控规条件确认**，不以推测值冒充审定指标 [depth:development_intensity_controls][depth:height_massing_character]。
+
+**开发强度方向性参照（概念，非审定值）**：为便于专业团队后续论证，基于现状基底与同类科技园区案例给出如下**方向性区间**（最终以官方控规为准，本区间不构成建议或审批依据）：
+
+| 重点区 | 容积率方向区间（概念） | 建筑高度方向区间（概念） | 说明 |
+| --- | --- | --- | --- |
+| 众智园 | 2.0–3.0 | 60–100 m（研发塔楼） | 对标科技园区研发地块 |
+| 原点社区 | 1.8–2.5 | 30–60 m（近校尺度） | 控制体量呼应高校环境 |
+| 大钟寺 | 2.5–3.5 | 80–120 m（商业地标） | 站点周边高强度开发 |
+
+该区间仅用于说明空间构想的量级合理性，`floor_area_ratio` 在 `metrics.json` 中仍保持 unknown 状态，待官方控规条件补齐后替换 [metric:floor_area_ratio][depth:development_intensity_controls]。
 4. **拆改留分类**（概念建议，非地块结论）：遗址公园沿线以"留改"为主，重点区内部以"改新"为主，拆除仅限经专业评估的低效、危旧建筑 [depth:retain_renovate_demolish]。
 
 功能比例（基于提交几何复算）：科研 25.9%、商业 16.2%、居住 7.7%、教育 6.6%、道路 6.7%、绿地与开敞空间 36.9% [metric:research_land_ratio][metric:commercial_land_ratio][metric:residential_land_ratio][metric:education_land_ratio][metric:road_land_ratio][metric:green_land_ratio]。该比例支持"工作-生活-社交-学习"一体化城区目标：高绿地支撑创新交往与人才生活，高科研支撑全栈自研，商业支撑场景体验与科技服务。
@@ -179,7 +216,7 @@ iteration: "v0.1"
 
 用地布局与建筑规模全部可由 `geometry/*.geojson` 与 `metrics.json` 复算 [depth:land_use_layout][depth:development_intensity_controls][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]：
 
-- 用地：`land_use.geojson` 共 27 个面要素，完整覆盖提交边界且无缝隙重叠 [metric:land_use_coverage_ratio]。
+- 用地：`land_use.geojson` 共 53 个面要素，完整覆盖提交边界且无缝隙重叠（覆盖率 0.999994）[metric:land_use_coverage_ratio]。
 - 建筑基底：约 32.0 万 m²（概念簇群），占总体设计范围约 2.8% [metric:building_footprint_area_sqm][metric:building_footprint_ratio]。
 - 容积率/建筑高度：官方控规条件缺失，`floor_area_ratio` 状态为 unknown，列为待补条件 [metric:floor_area_ratio]。
 - 拆改留（概念）：遗址公园沿线以留改为主；三处重点区内部"改新结合"；具体地块拆改留结论须待官方数据与专业评估。
@@ -249,6 +286,16 @@ iteration: "v0.1"
 
 深度要求参照《建筑工程设计文件编制深度规定（2016年版）》的专业深度框架登记为参照项，官方文件补齐前不以其作为 formal 权威依据 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
 
+### 试点先行与可核验数据边界（概念）
+
+为提升可实施性，方案提出"**小切口试点—评估—推广**"的实施路径（概念建议）：
+
+- **试点区域（概念）**：以原点社区发布广场周边 0.5 km 范围为首期"场景沙盒"，先试运行"智能体贡献荣誉墙 + 开源成果展示廊 + PR 平台"三件套；以大钟寺站四象限为二期试点，先试运行"智能生活广场 + 机器人低速配送"。
+- **参与主体（概念）**：明确"政府统筹、市场主体运营、开发者社区参与、高校科研支撑"四方协作；每个试点由一家运营主体牵头、一个责任部门监管、一支开发者团队维护。
+- **可核验指标（概念）**：每期试点设定公开可核验的量化目标，例如"试点期内累计场景开放场次 ≥ X 场"、"荣誉墙登记贡献者 ≥ X 人"、"公众满意度 ≥ X%"——具体数值以试点立项时确定，并在 `metrics.json` 中登记为可更新指标。
+- **数据边界（概念）**：每个试点明确数据来源、留存期限、脱敏规则与人工复核节点，形成"一场景一数据卡"，纳入开源合规沙盒（S-5）统一管理；未通过安全与隐私评估的场景不得进入公开试点。
+- **退出机制（概念）**：试点设 6-12 个月评估期，未达标场景按约定退出或转线下，避免"为 AI 而 AI"。
+
 ### 全球AI创新活动体系与长期运营（agent.6）
 
 - **年度活动体系**（概念）：全年 12 项标志活动 [metric:open_source_event_count]，包括：①京张开源大会（主品牌）；②季度 Release Day（每季 1 场，共 4 场）；③年度黑客马拉松；④开源贡献者峰会；⑤AI 测试开放季；⑥开发者驻留计划；⑦国际传播周；⑧AI 场景路演日；⑨开源合规工作坊；⑩智能体互操作评测节；⑪年度荣誉墙揭幕仪式；⑫岁末 Open Trunk 发布盛典。每项活动均需在取得场地、资金与审批后实施，具体排期以运营方执行为准。
@@ -280,20 +327,8 @@ iteration: "v0.1"
 
 ## 参考资料
 
-本方案全部资料与证据引用对应 [source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:PROCESSED-FACT-PACK] 及 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]：
+本方案全部资料与证据引用对应 [source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:PROCESSED-FACT-PACK] 及 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
 
-- `brief/site-package/design_brief.json`
-- `brief/site-package/allowed_design_space.json`
-- `brief/site-package/agent_taskbook.json`
-- `brief/site-package/sources.json`
-- `brief/site-package/geometry/provisional_boundaries.geojson`
-- `brief/site-package/geometry/provisional_boundaries_basis.md`
-- `brief/site-package/standards/standards.json`
-- `brief/site-package/standards/references/project-official-announcement.md`
-- `brief/site-package/standards/references/agent-open-call-taskbook-0518.md`
-- `data/source_registry.json`
-- `data/processed/agent_fact_pack.md`
-- `brief/site-package/schemas/compliance_matrix.schema.json`
-- `brief/site-package/schemas/standard_matrix.schema.json`
-- `brief/site-package/schemas/design_depth_matrix.schema.json`
-- `brief/site-package/schemas/metrics.schema.json`
+核心公开资料：`brief/public-brief.md`（官方任务书核心内容，[source:OFFICIAL-ANNOUNCEMENT] / DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509）与 `brief/README.md`（brief-public-boundary）。
+
+其余仓库内参考路径（均为公开或已清权资料，详见 `sources.json` 与 `data/source_registry.json`）：`brief/site-package/design_brief.json`、`brief/site-package/allowed_design_space.json`、`brief/site-package/agent_taskbook.json`、`brief/site-package/sources.json`、`brief/site-package/geometry/provisional_boundaries.geojson`、`brief/site-package/geometry/provisional_boundaries_basis.md`、`brief/site-package/standards/standards.json`、`brief/site-package/standards/references/project-official-announcement.md`、`brief/site-package/standards/references/agent-open-call-taskbook-0518.md`、`data/source_registry.json`、`data/processed/agent_fact_pack.md`、`brief/site-package/schemas/compliance_matrix.schema.json`、`brief/site-package/schemas/standard_matrix.schema.json`、`brief/site-package/schemas/design_depth_matrix.schema.json`、`brief/site-package/schemas/metrics.schema.json`。

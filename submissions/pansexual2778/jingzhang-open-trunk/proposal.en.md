@@ -41,15 +41,36 @@ The three levels cascade from industry strategy to overall urban design to block
 - **Three positionings as three releases**: heritage belt = Heritage Release; AI lifestyle belt = Experience Release; AI innovation belt = Future Release.
 - **Three key areas as three core repos**: Zhongzhiyuan = Full-Stack Fork; Beijing AI Origin Community = Origin Repo; Dazhongsi = Scenario Market.
 - **Two wings as branches**: Zhongguancun Technology Service Wing (global factor allocation); Xiaoyuehe Scenario Empowerment Wing.
-- **Logo direction (concept)**: railway rail I-section + git branch polylines, sleepers as commit dots, a main line forking into three branches. Palette: heritage rust-orange, innovation tech-blue, AI signal-green.
+- **Logo direction (concept)**: railway rail I-section + git branch polylines, sleepers as commit dots, a main line forking into three branches. Palette: heritage rust-orange, innovation tech-blue, AI signal-green. Concept logo mark:
+
+![OPEN TRUNK logo (concept)](assets/logo.png)
+
+Semantics: the rail I-section stands for a century of Jing-Zhang railway heritage and "self-built by Chinese"; the blue branch line flowing out of it is the open-source main branch; the three green commit dots are Zhongzhiyuan (Full-Stack Fork), Origin Community (Origin Repo), and Dazhongsi (Scenario Market); the upper/lower forks are the Zhongguancun Service Wing and the Xiaoyuehe Empowerment Wing.
 
 **Five functions** map onto the key areas, wings, public-space network, and governance mechanisms per the taskbook.
 
-### 3.2 Global AI Innovation Ecosystem Cases (agent.2)
+### 3.2 Regional Synergy and Global Hub Linkage (agent.2 extension, concept)
+
+OPEN TRUNK is not an isolated linear space but the **central trunk of the Haidian and Beijing-Tianjin-Hebei innovation network**. Concept mechanisms:
+
+- **Future Science City**: Zhongzhiyuan acts as the pilot-validation/transfer station for Future Science City's frontier research spillover ("R&D → validation" relay).
+- **Huairou Science City**: the Origin Community builds an open data & model-interoperability node serving large-science-facility compute and data needs ("facility → data → model" loop).
+- **Beijing E-Town (Yizhuang)**: Zhongzhiyuan's test-validation scenarios connect with E-Town's mass-production base for intelligent connected vehicles and robotics ("test → pilot → mass production" chain).
+- **Beiwai Community (northern Zhongguancun innovation community)**: the Xiaoyuehe wing co-incubates open-source software and AI scenarios with Beiwai's software industry.
+- **Capital airport and international innovation cities**: Dazhongsi's international communication center and innovation week link global AI city networks (Silicon Valley, Kendall Square, etc.), raising global visibility and recognition.
+- **Beijing-Tianjin-Hebei**: along the Jing-Zhang railway history axis and high-speed rail network, form a "data-compute-application" regional division with the Jing-Zhang sports/culture belt and Zhangjiakou data industry; the open-source trunk acts as the main corridor for regional AI collaboration.
+
+All synergies are concept-level directions requiring professional deepening with each entity [source:AGENT-TASKBOOK][standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
+
+### 3.3 AI Industry Factor Support and Institutional Mechanisms (agent.2 extension, concept)
+
+Five factors sustain the AI ecosystem (concept): **compute** — a public compute-dispatch node at Zhongzhiyuan offering affordable compute to SMEs and universities ("central + edge + device" three-tier network, scale pending professional study); **data** — an open data catalog concept at the open-source achievement gallery with sandboxed public-data opening, and Dazhongsi as a compliant data-trading and scenario-application venue; **capital** — an "open-source fund + angel incubation" linkage concept at the Origin Community plus a developer residency with free seats, compute vouchers, and mentors; **scenarios** — a standardized "test-display-commercialize" open mechanism with scenario calls, safety assessment, privacy review, and human-in-the-loop checks; **institutions** — AI governance global discourse via the open-source compliance sandbox (S-5), agent interoperability evaluation (S-13), and public-safety incident response (S-10), referencing public AI governance frameworks then localizing them.
+
+### 3.4 Global AI Innovation Ecosystem Cases (agent.2)
 
 Six public cases inform the design: Silicon Valley (university venture capital network), Kendall Square Boston (lab density + renewal), London King's Cross (railway heritage renewal + knowledge economy), one-north Singapore (government-led multi-stakeholder operation), Seoul DMC (content clustering + test-display integration), and Shenzhen Nanshan (industry-chain iteration). Their mechanisms translate into: near-campus incubation (Origin Repo), full-stack R&D (Zhongzhiyuan), scenario testing and experience trading (Dazhongsi), global factor allocation (Zhongguancun wing), and scenario empowerment (Xiaoyuehe wing).
 
-### 3.3 Future AI City Form
+### 3.5 Future AI City Form
 
 An "evolvable city": built incrementally like open-source software, accepting contributions continuously — scenario nodes can be added or removed, public spaces tested, operation mechanisms iterated. Spatial expression: research land ≈25.9%, commercial ≈16.2%, green/open land ≈36.9%, residential ≈7.7%, education ≈6.6%, roads ≈6.7% (recomputed from submitted geometry).
 
@@ -87,11 +108,13 @@ AI founders/developers; university faculty/students/researchers; enterprise AI e
 
 ### 6.2 AI Scenario Cards (14, including 4 industry test-validation)
 
-S-1 station-integrated transit; S-2 slow-traffic-first signals & accessible navigation; S-3 community AI health station; S-4 open-source AI training corridor; S-5 open-source compliance sandbox; S-6 agent government-service hall; S-7 digital-twin park guide; S-8 robot low-speed delivery; S-9 investment & enterprise-service Copilot; S-10 city-agent incident response; **S-11 AI model evaluation & benchmarking ground*; S-12 autonomous-driving closed/semi-open test*; S-13 agent interoperability & security evaluation*; S-14 open-source dataset/model contribution wall***. All scenarios state data source, privacy boundary, human review, operator, visualization layer, and risk; immature technologies are not presented as deployable.
+S-1 station-integrated transit; S-2 slow-traffic-first signals & accessible navigation; S-3 community AI health station; S-4 open-source AI training corridor; S-5 open-source compliance sandbox; S-6 agent government-service hall; S-7 digital-twin park guide; S-8 robot low-speed delivery; S-9 investment & enterprise-service Copilot; S-10 city-agent incident response; **S-11** AI model evaluation & benchmarking ground (test-validation); **S-12** autonomous-driving closed/semi-open test (test-validation); **S-13** agent interoperability & security evaluation (test-validation); **S-14** open-source dataset/model contribution wall (test-validation). All scenarios state data source, privacy boundary, human review, operator, visualization layer, and risk; immature technologies are not presented as deployable.
 
 ## 7. Land Use, Building Scale, and Retain/Renovate/Demolish
 
-Land use and building scale are fully recomputable from `geometry/*.geojson` and `metrics.json`: land use fully covers the boundary without gaps/overlaps; building footprint ≈32.0万 m² (concept massing, ≈2.8% of site); FAR and height are `unknown` pending official control conditions; retain/renovate/demolish conclusions are direction-level concepts pending official data and professional assessment.
+Land use and building scale are fully recomputable from `geometry/*.geojson` and `metrics.json`: land use fully covers the boundary without gaps/overlaps (53 polygons, coverage 0.999994); building footprint ≈32.0万 m² (concept massing, ≈2.8% of site); FAR and height are `unknown` pending official control conditions; retain/renovate/demolish conclusions are direction-level concepts pending official data and professional assessment.
+
+**Directional intensity reference (concept, non-authoritative)**: to support later professional work, the following indicative ranges are given based on site conditions and comparable tech-park cases (final values are subject to official control plans; this range is not advice or approval basis): Zhongzhiyuan FAR 2.0–3.0 / 60–100 m R&D towers; Origin Community FAR 1.8–2.5 / 30–60 m near-campus scale; Dazhongsi FAR 2.5–3.5 / 80–120 m station-area commercial landmark. `floor_area_ratio` remains `unknown` in `metrics.json` until official control conditions replace it [metric:floor_area_ratio][depth:development_intensity_controls].
 
 ## 8. Transport, Rail, Municipal, and Public Services
 
@@ -111,6 +134,10 @@ Concept project list: open-source trunk slow-traffic spine (phase 1), Origin inc
 
 Phasing per `phasing.geojson` as three releases — phase 1 "pioneer commit" (Origin), phase 2 "mainline merge" (Zhongzhiyuan), phase 3 "full-chain release" (Dazhongsi). Concept timelines: near-term ~0-3y (release plaza + PR platform, honor wall, trunk demo section); mid-term ~3-6y (R&D cluster shell, test plaza, evaluation scenarios); long-term ~6-10y (scenario market, four-quadrant connectivity, wing operations). All timelines and milestones are concepts pending government approval and professional deepening.
 
+### 10.0 Pilot-First Implementation and Verifiable Data Boundaries (concept)
+
+For implementation feasibility, a "small pilot → evaluate → scale" path (concept): **pilot areas** — a 0.5 km sandbox around the Origin release plaza first runs the honor wall + open-source gallery + PR platform; Dazhongsi four-quadrant pilot then runs the smart-life plaza and robot delivery. **Participants** — a four-party collaboration (government coordination, market operation, developer-community participation, university research support); each pilot has one lead operator, one supervising authority, and one developer team. **Verifiable metrics** — each pilot sets publicly checkable quantitative goals (e.g., open-scenario sessions ≥ X, honor-wall contributors ≥ X, public satisfaction ≥ X%) to be fixed at pilot approval and registered as updatable metrics in `metrics.json`. **Data boundaries** — each scenario has a "one scenario, one data card" with data source, retention, de-identification, and human-review nodes, managed under the open-source compliance sandbox (S-5); scenarios failing safety and privacy evaluation cannot enter public pilot. **Exit mechanism** — 6-12 month evaluation period; underperforming scenarios exit or go offline, avoiding "AI for AI's sake".
+
 ### 10.1 Global AI Innovation Event System and Long-Term Operation (agent.6)
 
 Concept annual system of 12 signature events: Jingzhang Open Source Conference (flagship); quarterly Release Day (×4); annual hackathon; contributor summit; AI test open season; developer residency; international outreach week; AI scenario roadshow; open-source compliance workshop; agent interoperability evaluation festival; annual honor-wall unveiling; year-end Open Trunk release gala. Operation mechanism: "PR submit → review → merge → release" four-step community process; contributor records feed the honor wall; Dazhongsi market opens in test-display-commercial three states; Zhongzhiyuan test ground accepts qualified institutions by appointment. All events, funding, and outreach are concepts, not confirmed government arrangements.
@@ -127,6 +154,18 @@ Concept annual system of 12 signature events: Jingzhang Open Source Conference (
 - Copyright: original naming/logo/landmarks/honor-wall concepts; no unauthorized fonts, images, trademarks, or portraits; third-party cases cited as public references. See `report/copyright_statement.md`.
 - AI-generated responsibility: the author is responsible for facts, citations, copyright, and final expression.
 - Pending data: official boundaries, control conditions (FAR/height/setback), building ownership, municipal capacity, engineering feasibility, and university land-right clearance.
+
+## 12.1 Figure Set
+
+![Fig. 1 Overall Concept](assets/figures/site-overview.en.png)
+
+![Fig. 2 Land-Use Structure](assets/figures/land-use-structure.en.png)
+
+![Fig. 3 Key Detailed-Design Areas](assets/figures/key-areas.en.png)
+
+![Fig. 4 Mobility and Blue-Green System](assets/figures/mobility-bluegreen.en.png)
+
+![Fig. 5 Key Metrics and Evidence Chain](assets/figures/metrics-evidence.en.png)
 
 ## 13. References
 

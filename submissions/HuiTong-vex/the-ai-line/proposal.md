@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张百年铁路线为历史脊柱，提出「京张AI创新线（The AI Line）」总体概念：一带三核两翼多点的空间结构、三大重点片区详细设计、10张AI场景卡与3处朝圣地标；全部空间结论基于provisional边界，明确标注精度限制并待官方数据复算。"
 tracks: ["jingzhang-heritage-narrative", "enterprise-services-ecosystem", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v0.3"
+iteration: "v0.4"
 ---
 
 # The AI Line：百年京张AI创新带总体概念与重点区域城市设计
@@ -124,6 +124,8 @@ AI 场景卡共 12 张（10 张以上达标），其中 4 张为产业测试验�
 
 AI 朝圣地标与荣誉展示节点共 3 处（概念）：01「AI 原点纪念碑」—位于原点社区开源发布广场（[data:geometry/public_space.geojson#PUBLIC-005]），以中关村与开源运动叙事为内容，兼作开发者荣誉墙与年度贡献者展示；02「算力灯塔」—位于众智园（[data:geometry/constraints.geojson#SCN-09]），以低碳算力与安全治理为主题的城市地标原型；03「智能站城客厅」—位于大钟寺站上盖（[data:geometry/constraints.geojson#SCN-01]），以智能终端与数据要素展示为内容的站城一体公共界面。三处地标均表述为概念地标，未经授权不使用具体人物肖像、企业商标与版权图像，不写成已批准建设。城市风貌控制方向：以铁青—亮青为色彩基调，建筑体量沿遗址公园带逐级降低，屋顶形态鼓励第五立面绿化与光伏一体化，导视系统统一采用"铁轨—代码"母题，形成可识别的京张 AI 新文化形象 [depth:height_massing_character]。导视系统按三级组织（概念）：区域级（创新带入口标识与总览信息屏）、路径级（遗址公园带沿线路标与 AI 慢行导航节点）、节点级（场景卡入口标识与活动信息牌），统一采用“铁轨—代码”母题，具体造型、点位与内容由专业团队深化，不写入既有建筑与产权边界。
 
+城市设计导则（概念，非控规结论）：街道断面类型——绿道段（带状公园+慢行+骑行，断面宽度按官方道路红线深化）、商业活力段（连续骑楼/挑檐+树池+外摆预留）、社区支路段（窄路密网+口袋绿地）；建筑贴线与退界——沿遗址公园带界面鼓励贴线率 60%—80% 的连续街墙意向（具体以控规为准），沿主干路退界结合绿带缓冲；夜景照明——以"数据脉冲"为主题的灯光分级体系（遗址带暖色慢光、产业区冷色功能光、节点装置色），控制光污染与能耗；标识与家具——统一采用"铁轨—代码"母题的城市家具（座椅、路灯、公交站、井盖）与导视（见三级导视）；所有导则要素均需在官方控规与工程条件下复核。
+
 ## 更新项目清单、实施政策与分期计划
 
 更新项目清单（概念层级，[data:geometry/phasing.geojson#PHASE-1] 起）按三类组织：站城一体类（大钟寺站周边商业文化更新，依赖轨道与权属协调）、街区更新类（原点社区近校街区功能置换，依赖高校合作机制）、产业园区类（众智园低效厂房更新与测试空间加建，依赖现状权属调查）。实施政策建议（均为深化方向）："场景开放备案制"（企业以备案方式在公共空间开展受监管 AI 试验）、"更新容积率奖励与公共空间贡献挂钩"、"人才住房随产业用地同步配建"；所有政策表述为概念建议，不构成政府承诺 [depth:renewal_project_list]。
@@ -188,3 +190,4 @@ AI 朝圣地标与荣誉展示节点共 3 处（概念）：01「AI 原点纪念
 - `data/source_registry.json`、`data/processed/agent_fact_pack.md`（来源分级与事实包）[source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK]
 - `templates/proposal.md`（提案模板）、`docs/terminology-glossary.md`（术语表）[source:SITE-PACKAGE]
 - `scripts/validate_submission.py`（确定性校验规则）、`scripts/spatial_review.py`（空间复核）、`scripts/visual_review.py`（视觉复核）、`scripts/professional_review.py`（专业证据复核）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
