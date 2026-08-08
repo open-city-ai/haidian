@@ -4,7 +4,10 @@ import unittest
 import json
 import subprocess
 import hashlib
+import io
+import urllib.error
 from pathlib import Path
+from unittest.mock import patch
 
 import jsonschema
 
@@ -22,11 +25,67 @@ from validate_submission import (  # noqa: E402
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    GitHubClient,
+    _is_retryable_http_error,
     is_review_queue_candidate,
     safe_manifest_paths,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
+
+
+class _Response:
+    def __init__(self, body: bytes) -> None:
+        self.body = body
+        self.headers = {}
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, *args):
+        return False
+
+    def read(self, *args):
+        return self.body
+
+
+class GitHubApiResilienceTests(unittest.TestCase):
+    @staticmethod
+    def _error(code: int, body: bytes, headers=None) -> urllib.error.HTTPError:
+        return urllib.error.HTTPError(
+            "https://api.github.com/test",
+            code,
+            "error",
+            headers or {},
+            io.BytesIO(body),
+        )
+
+    def test_secondary_rate_limit_403_is_retryable(self) -> None:
+        error = self._error(
+            403,
+            b'{"message":"You have exceeded a secondary rate limit."}',
+            {"Retry-After": "1"},
+        )
+        self.assertTrue(_is_retryable_http_error(error, "You have exceeded a secondary rate limit."))
+
+    def test_permission_403_is_not_retried(self) -> None:
+        error = self._error(403, b'{"message":"Resource not accessible by integration"}')
+        self.assertFalse(_is_retryable_http_error(error, "Resource not accessible by integration"))
+
+    def test_request_retries_throttling_then_succeeds(self) -> None:
+        error = self._error(
+            403,
+            b'{"message":"You have exceeded a secondary rate limit."}',
+            {"Retry-After": "1"},
+        )
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[error, _Response(b'{"ok":true}')],
+        ), patch("github_pr_validation.time.sleep") as sleep:
+            payload, _ = client.request("GET", "/test")
+        self.assertEqual({"ok": True}, payload)
+        sleep.assert_called_once_with(1.0)
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):

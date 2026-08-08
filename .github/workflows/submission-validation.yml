@@ -9,6 +9,13 @@ permissions:
   pull-requests: write
   issues: write
 
+# Every validation run calls the GitHub API to enumerate and hydrate the PR.
+# Serializing those calls avoids secondary-rate-limit 403s when several
+# submissions arrive together.
+concurrency:
+  group: submission-validation
+  cancel-in-progress: false
+
 jobs:
   submission-validation:
     name: submission-validation
