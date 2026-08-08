@@ -27,6 +27,7 @@ from validate_submission import (  # noqa: E402
 from github_pr_validation import (  # noqa: E402
     GitHubClient,
     _is_retryable_http_error,
+    is_non_submission_pr,
     is_review_queue_candidate,
     safe_manifest_paths,
     validation_paths_for,
@@ -206,6 +207,25 @@ class ManifestHydrationTests(unittest.TestCase):
                     "submissions/alice/design-b/proposal.md",
                 ],
                 "alice",
+            )
+        )
+
+    def test_non_submission_code_pr_is_not_sent_to_package_validator(self) -> None:
+        self.assertTrue(is_non_submission_pr(["scripts/tool.py", "tests/test_tool.py"]))
+        self.assertTrue(is_non_submission_pr(["docs/design.md"]))
+        self.assertFalse(is_non_submission_pr([]))
+        self.assertFalse(
+            is_non_submission_pr(["submissions/alice/design/proposal.md", "scripts/tool.py"])
+        )
+        self.assertFalse(
+            is_non_submission_pr(
+                [
+                    {
+                        "filename": "scripts/tool.py",
+                        "previous_filename": "submissions/alice/design/proposal.md",
+                        "status": "renamed",
+                    }
+                ]
             )
         )
 
