@@ -389,6 +389,38 @@ class ManifestHydrationTests(unittest.TestCase):
         comment = client.upsert_comment.call_args.args[1]
         self.assertIn("participant deletion-only PR", comment)
 
+    def test_preflight_failure_reconciles_failed_queue_label(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 639,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/alice/design/drawings/site.pdf", "status": "added"}
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            client.download_content.side_effect = RuntimeError("file exceeds download cap")
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(1, main())
+        self.assertEqual(
+            ["review/ci-failed"],
+            client.add_labels.call_args.args[1],
+        )
+
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(
             is_review_queue_candidate(
