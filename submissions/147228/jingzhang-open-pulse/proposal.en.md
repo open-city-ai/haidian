@@ -6,7 +6,7 @@ author_name: "许丙南"
 language: "en"
 translation_of: "proposal.md"
 proposal_format_version: "2"
-iteration: "v3.0"
+iteration: "v3.1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An evidence-led urban design proposal that turns the century-old railway corridor into a reversible, human-first and auditable AI innovation public belt."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -15,9 +15,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 # Jing-Zhang Open Pulse: A Verifiable AI Innovation Public Belt
 
-> **v3.0 design declaration:** Jing-Zhang does not treat AI as a set of glowing objects. It treats AI as a public protocol in which people come before models, evidence comes before scale, and an ordinary route always remains available. The railway's track, stations and mile markers become a six-part civic loop: question, permission, bounded test, human decision, public receipt, then scale/repair/retire.
+> **v3.1 design declaration:** Jing-Zhang does not treat AI as a set of glowing objects. It treats AI as a public protocol in which people come before models, evidence comes before scale, and an ordinary route always remains available. The railway's track, stations and mile markers become a six-part civic loop: question, permission, bounded test, human decision, public receipt, then scale/repair/retire.
 
-## v3.0 One-page review answers: six questions first
+## v3.1 One-page review answers: six questions first
 
 | Review question | Scorable answer | Verifiable deliverables |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 | Who benefits and who can refuse | Residents, older and disabled users, carers, night workers, visitors, merchants, developers and maintainers each have a design lens; paper, staffed and no-account routes remain, with complaint, correction and withdrawal paths | `persona-and-inclusion-matrix.json`, participation cycle and public-interest audit |
 | What cannot be claimed yet | Provisional geometry, unknown baselines, design targets and background papers are not current facts or approvals; missing ownership, fire, heritage, privacy, maintenance or takeover evidence stops the concept | `sources.json`, `risk.json`, `compliance_matrix.json` and five evidence figures |
 
-## v3.0 One-page civic operating system: public loop and proof-mile
+## v3.1 One-page civic operating system: public loop and proof-mile
 
 | Civic loop | Spatial move | What AI may do | Human and ordinary route | Stop when |
 | --- | --- | --- | --- | --- |
@@ -43,7 +43,7 @@ The three key areas are intentionally different: Zhongzhi Garden is a **trusted 
 
 This is not an approved digital-city project. Its value is a common handoff surface: who asked, where, what minimum data, who is present, what ordinary alternative exists, when to stop, who maintains it and how the result returns to the public. `civic-pulse-protocol.json` is the machine-readable handoff; `risk.json`, `construction-readiness.json` and `participation-cycle.json` are its release ledgers. The protocol currently contains [metric:civic_pulse_stage_count] stages and [metric:civic_pulse_station_count] differentiated stations; the risk ledger contains [metric:risk_class_count] dimensions.
 
-## v3.0 One Component, One Proof-Mile: a maintainable handoff
+## v3.1 One Component, One Proof-Mile: a maintainable handoff
 
 The civic pulse answers when AI may work; this iteration also specifies what may be handed over. **One Component, One Proof-Mile** is not a new red line. It is a professional-deepening syntax: each component has its own public question, provisional geometry version, ordinary equivalent, minimum data, accountable owner, maintenance record, positive and negative evidence, and retirement decision. One component passing never clears the belt.[source:AGENT-TASKBOOK] [data:visual/assets/proof-mile-delivery.json#OPEN-PULSE-PROOF-MILE]
 
@@ -60,7 +60,7 @@ The full fields, roles, maintenance rules, five construction/opening gates and s
 
 The release sequence is fixed: ordinary service base first → reversible prototype and bounded test → human decision on positive and negative evidence → public receipt and appeal → maintain, scale or dismantle. Missing official boundary, rights, utilities, accessibility, climate-water, fire or heritage inputs keep a component conceptual; a failed test leaves the ordinary route open and records material, data and temporary-wayfinding return. This strengthens implementation feasibility; it is not a construction drawing, procurement specification, budget or government permit.
 
-## v3.0 Review-gap repair: make state, space and proof visible on the first read
+## v3.1 Review-gap repair: make state, space and proof visible on the first read
 
 This iteration moves the handoff relationship that previously lived mainly in JSON into a first-read three-state surface: **ordinary service** (walk and ask without power or an account), **bounded test** (named owner, time window, stop control and human takeover), and **exit/repair** (freeze expansion, keep the receipt, restore the passive component). K01–K06 each have their own station anchor, ordinary equivalent and positive/negative evidence; no component inherits a pass from another component, and no station substitutes for another.
 
@@ -73,7 +73,7 @@ This iteration moves the handoff relationship that previously lived mainly in JS
 These three states are now repeated in `visual/assets/proof-mile-delivery.json`, `visual/assets/qa-readiness.json`, the five core evidence figures and the A3/A0 boards. They are design handoff and review interfaces, not field performance claims and not substitutes for official geometry, engineering, fire, heritage or accessibility review.
 
 **Author:** 许丙南 / GitHub `147228`  
-**Review copy:** English translation of `proposal.md`, v3.0
+**Review copy:** English translation of `proposal.md`, v3.1
 **Status:** formal submission package; all new spatial interfaces remain provisional concepts until official polygons, professional safety review and community review are available.
 
 ## Design Basis and Source List
