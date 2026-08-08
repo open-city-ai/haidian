@@ -27,6 +27,7 @@ from validate_submission import ValidationReport, format_report, validate_submis
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
 MAX_API_ATTEMPTS = 4
+MAX_CONTENT_NOT_FOUND_ATTEMPTS = 3
 MAX_RETRY_DELAY_SECONDS = 30
 RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
@@ -79,6 +80,18 @@ def _retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> float:
         except ValueError:
             pass
     return min(MAX_RETRY_DELAY_SECONDS, float(2**attempt))
+
+
+class DownloadNotFoundError(RuntimeError):
+    def __init__(self, repo: str, path: str, ref: str, attempts: int, message: str) -> None:
+        self.repo = repo
+        self.path = path
+        self.ref = ref
+        self.attempts = attempts
+        super().__init__(
+            f"GitHub API download {repo}/{path} at ref {ref} returned HTTP 404 "
+            f"after {attempts} attempts: {message}"
+        )
 
 
 class GitHubClient:
@@ -161,7 +174,16 @@ class GitHubClient:
             except urllib.error.HTTPError as error:
                 message = _http_error_message(error)
                 if error.code == 404:
-                    raise
+                    if attempt + 1 >= MAX_CONTENT_NOT_FOUND_ATTEMPTS:
+                        raise DownloadNotFoundError(
+                            repo,
+                            path,
+                            ref,
+                            attempt + 1,
+                            message,
+                        ) from error
+                    time.sleep(_retry_delay_seconds(error, attempt))
+                    continue
                 if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
                     "GET", error, message
                 ):
@@ -326,6 +348,8 @@ def hydrate_proposal_package(
                 head_sha,
                 destination,
             )
+        except DownloadNotFoundError:
+            pass
         except urllib.error.HTTPError as exc:
             if exc.code != 404:
                 raise

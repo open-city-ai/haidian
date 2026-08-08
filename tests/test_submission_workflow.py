@@ -7,7 +7,7 @@ import hashlib
 import io
 import urllib.error
 from pathlib import Path
-from unittest.mock import patch
+from unittest.mock import call, patch
 
 import jsonschema
 
@@ -25,6 +25,7 @@ from validate_submission import (  # noqa: E402
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    DownloadNotFoundError,
     GitHubClient,
     _is_retryable_http_error,
     is_non_submission_pr,
@@ -114,6 +115,60 @@ class GitHubApiResilienceTests(unittest.TestCase):
                 client.request("POST", "/test", {"body": "comment"})
         self.assertEqual(1, urlopen.call_count)
         sleep.assert_not_called()
+
+    def test_request_404_remains_non_retryable_for_optional_content(self) -> None:
+        error = self._error(404, b'{"message":"Not Found"}')
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=[error, _Response(b'{"ok":true}')],
+        ) as urlopen, patch("github_pr_validation.time.sleep") as sleep:
+            with self.assertRaises(urllib.error.HTTPError):
+                client.request("GET", "/test")
+        self.assertEqual(1, urlopen.call_count)
+        sleep.assert_not_called()
+
+    def test_download_retries_transient_404_then_succeeds(self) -> None:
+        error = self._error(404, b'{"message":"Not Found"}')
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "proposal.md"
+            with patch(
+                "github_pr_validation.urllib.request.urlopen",
+                side_effect=[error, _Response(b"proposal")],
+            ) as urlopen, patch("github_pr_validation.time.sleep") as sleep:
+                client.download_content(
+                    "alice/haidian",
+                    "submissions/alice/design/proposal.md",
+                    "head-sha",
+                    destination,
+                )
+            self.assertEqual(2, urlopen.call_count)
+            sleep.assert_called_once_with(1.0)
+            self.assertEqual(b"proposal", destination.read_bytes())
+
+    def test_download_404_retries_are_bounded_and_include_context(self) -> None:
+        errors = [self._error(404, b'{"message":"Not Found"}') for _ in range(3)]
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "missing.md"
+            with patch(
+                "github_pr_validation.urllib.request.urlopen",
+                side_effect=errors,
+            ) as urlopen, patch("github_pr_validation.time.sleep") as sleep:
+                with self.assertRaisesRegex(
+                    DownloadNotFoundError,
+                    r"alice/haidian/submissions/alice/design/missing\.md.*head-sha.*3 attempts",
+                ):
+                    client.download_content(
+                        "alice/haidian",
+                        "submissions/alice/design/missing.md",
+                        "head-sha",
+                        destination,
+                    )
+            self.assertEqual(3, urlopen.call_count)
+            self.assertEqual([call(1.0), call(2.0)], sleep.call_args_list)
+            self.assertFalse(destination.exists())
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):
