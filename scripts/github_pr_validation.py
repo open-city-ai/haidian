@@ -49,6 +49,13 @@ def bounded_comment_body(body: str) -> str:
     budget = MAX_GITHUB_COMMENT_BYTES - len(COMMENT_TRUNCATION_NOTICE.encode("utf-8"))
     prefix = encoded[:budget].decode("utf-8", errors="ignore")
     return prefix + COMMENT_TRUNCATION_NOTICE
+REVIEW_WORKFLOW_LABELS = [
+    "review/queued",
+    "review/ci-failed",
+    "review/changes-requested",
+    "review/low-quality",
+    "review/intake-accepted",
+]
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -392,6 +399,40 @@ def build_preflight_failure_comment(
     validation.add_error(f"pre-validation download failed: {error}")
     return build_validation_comment(format_report(validation))
 
+def reconcile_review_labels(
+    client: GitHubClient,
+    pr_number: int,
+    *,
+    validation_ok: bool,
+    queue_candidate: bool,
+) -> None:
+    """Align review labels with the current deterministic result.
+
+    Successful non-submission PRs must shed stale submission-review labels,
+    while every deterministic failure must be visible even when an invalid
+    scope or multi-package change is not eligible for the review queue.
+    """
+    try:
+        if validation_ok and queue_candidate:
+            client.remove_labels(
+                pr_number,
+                [
+                    "review/ci-failed",
+                    "review/changes-requested",
+                    "review/low-quality",
+                    "review/intake-accepted",
+                ],
+            )
+            client.add_labels(pr_number, ["review/queued"])
+            return
+        if validation_ok:
+            client.remove_labels(pr_number, REVIEW_WORKFLOW_LABELS)
+            return
+        client.remove_labels(pr_number, ["review/queued", "review/intake-accepted"])
+        client.add_labels(pr_number, ["review/ci-failed"])
+    except (RuntimeError, urllib.error.URLError) as exc:
+        print(f"Warning: unable to reconcile review labels: {exc}", file=sys.stderr)
+
 
 def main() -> int:
     token = os.getenv("GITHUB_TOKEN")
@@ -476,15 +517,12 @@ def main() -> int:
         write_step_summary(comment)
         publish_validation_comment(client, pr_number, comment)
 
-        if validation.ok and queue_candidate:
-            client.remove_labels(
-                pr_number,
-                ["review/ci-failed", "review/changes-requested", "review/low-quality"],
-            )
-            client.add_labels(pr_number, ["review/queued"])
-        elif queue_candidate:
-            client.remove_labels(pr_number, ["review/queued"])
-            client.add_labels(pr_number, ["review/ci-failed"])
+        reconcile_review_labels(
+            client,
+            pr_number,
+            validation_ok=validation.ok,
+            queue_candidate=queue_candidate,
+        )
 
         return 0 if validation.ok else 1
     finally:
