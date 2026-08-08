@@ -10,12 +10,12 @@ permissions:
   issues: write
 
 # Every validation run calls the GitHub API to enumerate and hydrate the PR.
-# Serializing those calls avoids secondary-rate-limit 403s when several
-# submissions arrive together.
+# Keep those calls serial, but retain only one pending run: a burst from one
+# branch must not delay every other contributor's validation for hours.
 concurrency:
   group: submission-validation
   cancel-in-progress: false
-  queue: max
+  queue: single
 
 jobs:
   submission-validation:
