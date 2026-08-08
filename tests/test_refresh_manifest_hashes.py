@@ -209,6 +209,19 @@ class RefreshManifestHashesTests(unittest.TestCase):
             self.assertEqual([], record_formal_pass(package, self.passing_report()))
             self.assertTrue(json.loads(manifest_path.read_text(encoding="utf-8"))["validation_claim"]["self_checked"])
 
+    def test_record_formal_pass_refuses_non_passing_report_without_writing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package, manifest_path = self.make_recordable_package(Path(tmp))
+            self_check_path = package / "self_check.json"
+            manifest_before = manifest_path.read_bytes()
+            self_check_before = self_check_path.read_bytes()
+
+            errors = record_formal_pass(package, {"can_enter_formal_review": False})
+
+            self.assertEqual(["cannot record a self-check that is not formal-review-ready"], errors)
+            self.assertEqual(manifest_before, manifest_path.read_bytes())
+            self.assertEqual(self_check_before, self_check_path.read_bytes())
+
     def test_explicit_false_preempts_stored_formal_readiness(self) -> None:
         manifest = {
             "submission_stage": "formal",
