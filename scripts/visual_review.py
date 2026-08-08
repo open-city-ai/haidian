@@ -58,6 +58,11 @@ NEAR_BLANK_MAX_OCCUPIED_CELLS = 36
 SPARSE_PAGE_MAX_INK_RATIO = 0.09
 SPARSE_PAGE_MAX_BBOX_RATIO = 0.55
 SPARSE_PAGE_MAX_OCCUPIED_CELLS = 54
+# A two-row band in the 12x12 screen is already 16.7% of the page.  Keep this
+# as a minor advisory: paper margins and intentional whitespace must remain a
+# human decision, but a large internal blank band should not disappear behind
+# a healthy whole-page ink ratio.
+LARGE_BLANK_RECT_MIN_RATIO = 0.15
 FORBIDDEN_PATTERNS = [
     (re.compile(r"<iframe\b", re.I), "HTML must not contain iframe embeds"),
     (re.compile(r"<form\b", re.I), "HTML must not contain form submission UI"),
@@ -190,17 +195,44 @@ def measure_rendered_page_content(page: Any) -> dict[str, float | int]:
 
     total_pixels = width * height
     if not ink_pixels:
-        return {"ink_ratio": 0.0, "bbox_ratio": 0.0, "occupied_cells": 0}
+        return {
+            "ink_ratio": 0.0,
+            "bbox_ratio": 0.0,
+            "occupied_cells": 0,
+            "largest_blank_rect_ratio": 1.0,
+        }
     bbox_pixels = (max_x - min_x + 1) * (max_y - min_y + 1)
     occupied_cells = sum(
         ink / total >= MIN_GRID_CELL_INK_RATIO
         for ink, total in zip(cell_ink, cell_totals)
         if total
     )
+    blank_cells = [
+        ink / total < MIN_GRID_CELL_INK_RATIO if total else True
+        for ink, total in zip(cell_ink, cell_totals)
+    ]
+    largest_blank_cells = 0
+    heights = [0] * PDF_GRID_SIZE
+    for row in range(PDF_GRID_SIZE):
+        for column in range(PDF_GRID_SIZE):
+            cell_index = row * PDF_GRID_SIZE + column
+            heights[column] = heights[column] + 1 if blank_cells[cell_index] else 0
+        stack: list[int] = []
+        for column in range(PDF_GRID_SIZE + 1):
+            current_height = heights[column] if column < PDF_GRID_SIZE else 0
+            while stack and current_height < heights[stack[-1]]:
+                height_index = stack.pop()
+                left = stack[-1] + 1 if stack else 0
+                largest_blank_cells = max(
+                    largest_blank_cells,
+                    heights[height_index] * (column - left),
+                )
+            stack.append(column)
     return {
         "ink_ratio": ink_pixels / total_pixels,
         "bbox_ratio": bbox_pixels / total_pixels,
         "occupied_cells": occupied_cells,
+        "largest_blank_rect_ratio": largest_blank_cells / (PDF_GRID_SIZE * PDF_GRID_SIZE),
     }
 
 
@@ -236,10 +268,12 @@ def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
                     ink_ratio = float(coverage["ink_ratio"])
                     bbox_ratio = float(coverage["bbox_ratio"])
                     occupied_cells = int(coverage["occupied_cells"])
+                    largest_blank_rect_ratio = float(coverage["largest_blank_rect_ratio"])
                     details = (
                         f"page {page_number}: {ink_ratio:.2%} non-paper pixels, "
                         f"{bbox_ratio:.2%} content bounding box, "
-                        f"{occupied_cells}/{PDF_GRID_SIZE * PDF_GRID_SIZE} occupied grid cells"
+                        f"{occupied_cells}/{PDF_GRID_SIZE * PDF_GRID_SIZE} occupied grid cells, "
+                        f"largest blank block {largest_blank_rect_ratio:.2%}"
                     )
                     if (
                         ink_ratio <= NEAR_BLANK_MAX_INK_RATIO
@@ -262,6 +296,13 @@ def review_drawing_pdfs(submission_dir: Path, report: VisualReport) -> None:
                             "minor",
                             display_path,
                             f"Rendered drawing is unusually sparse ({details}); human review should confirm layout readability.",
+                        )
+                    elif largest_blank_rect_ratio >= LARGE_BLANK_RECT_MIN_RATIO:
+                        report.add(
+                            "DRAWING_PAGE_LARGE_BLANK_REGION",
+                            "minor",
+                            display_path,
+                            f"Rendered drawing leaves a large contiguous blank region ({details}); human review should confirm that the board is intentionally composed rather than underfilled.",
                         )
         except Exception as exc:  # MuPDF uses format-specific exception subclasses.
             report.add(

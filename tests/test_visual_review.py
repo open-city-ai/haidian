@@ -57,6 +57,16 @@ def write_drawing_pdf(path: Path, *, sparse: bool) -> None:
     document.close()
 
 
+def write_top_heavy_drawing_pdf(path: Path) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    document = fitz.open()
+    page = document.new_page(width=842, height=1191)
+    page.draw_rect(fitz.Rect(40, 40, 802, 470), color=(0, 0, 0), fill=(0.15, 0.35, 0.55))
+    page.insert_text((80, 120), "Top-heavy board content", fontsize=30, color=(1, 1, 1))
+    document.save(path)
+    document.close()
+
+
 class VisualReviewTests(unittest.TestCase):
     def test_valid_static_visual_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -208,6 +218,14 @@ class VisualReviewTests(unittest.TestCase):
             write_drawing_pdf(submission / "drawings" / "a0-boards.pdf", sparse=False)
             report = review_visual(submission)
             self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_large_blank_region_is_human_review_advisory(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_top_heavy_drawing_pdf(submission / "drawings" / "a0-boards.pdf")
+            report = review_visual(submission)
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+            self.assertIn("DRAWING_PAGE_LARGE_BLANK_REGION", {issue.check_id for issue in report.issues})
 
 
 if __name__ == "__main__":
