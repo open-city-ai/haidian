@@ -1,7 +1,11 @@
 name: deploy-pages
 
 on:
-  # GitHub Pages is not enabled for this repo; run manually if it ever is.
+  # Merges to main can change generated gallery data or public site assets.
+  # Keep manual dispatch for an explicit redeploy after Pages/CDN incidents.
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
