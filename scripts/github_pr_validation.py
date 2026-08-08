@@ -251,6 +251,23 @@ def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str
     ]
 
 
+def deletion_only_report(changed_files: list[str], maintainer_bypass: bool) -> ValidationReport:
+    """Report a deletion-only PR without trying to validate absent files."""
+    validation = ValidationReport(
+        changed_files=changed_files,
+        maintainer_bypass=maintainer_bypass,
+    )
+    if maintainer_bypass:
+        validation.add_warning(
+            "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
+        )
+    else:
+        validation.add_warning(
+            "participant deletion-only PR; removed files were not executed or content-validated"
+        )
+    return validation
+
+
 def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     """Return true only for a single participant-owned submission directory."""
     roots: set[str] = set()
@@ -393,14 +410,8 @@ def main() -> int:
             validation.add_warning(
                 "non-submission code/docs/test PR; participant package validation was not applicable"
             )
-        elif not validation_files and maintainer_bypass:
-            validation = ValidationReport(
-                changed_files=changed_files,
-                maintainer_bypass=True,
-            )
-            validation.add_warning(
-                "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
-            )
+        elif not validation_files:
+            validation = deletion_only_report(changed_files, maintainer_bypass)
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)

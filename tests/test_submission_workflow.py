@@ -26,6 +26,7 @@ from validate_submission import (  # noqa: E402
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    deletion_only_report,
     GitHubClient,
     _is_retryable_http_error,
     is_non_submission_pr,
@@ -171,6 +172,23 @@ class ManifestHydrationTests(unittest.TestCase):
     def test_participant_removals_are_not_revalidated_as_missing_files(self) -> None:
         files = [{"filename": "submissions/alice/design/proposal.md", "status": "removed"}]
         self.assertEqual([], validation_paths_for(files, False))
+
+    def test_participant_deletion_only_pr_is_warning_only(self) -> None:
+        report = deletion_only_report(
+            ["submissions/alice/design/obsolete.png"],
+            False,
+        )
+        self.assertTrue(report.ok)
+        self.assertFalse(report.errors)
+        self.assertIn("participant deletion-only PR", report.warnings[0])
+
+    def test_maintainer_deletion_only_pr_keeps_maintainer_warning(self) -> None:
+        report = deletion_only_report(
+            ["submissions/alice/design/obsolete.png"],
+            True,
+        )
+        self.assertTrue(report.ok)
+        self.assertIn("maintainer-authorized deletion-only PR", report.warnings[0])
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(
