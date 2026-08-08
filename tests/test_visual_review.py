@@ -194,6 +194,14 @@ class VisualReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
 
+    def test_near_blank_localized_drawing_page_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            write_drawing_pdf(submission / "drawings" / "a0-boards.en.pdf", sparse=True)
+            report = review_visual(submission)
+            self.assertFalse(report.ok)
+            self.assertIn("DRAWING_PAGE_NEAR_BLANK", {issue.check_id for issue in report.issues})
+
     def test_substantial_drawing_page_passes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission = write_valid_visual_package(Path(tmp))
