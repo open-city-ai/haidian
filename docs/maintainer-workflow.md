@@ -98,7 +98,7 @@ python3 scripts/prelaunch_check.py
 
 合并到 `main` 的方案会自动进入 `submissions.html`。维护者只在需要首页精选或明确暂停展示时编辑 `gallery-publication.json`：
 
-- 未登记：自动进入全部方案页，不进入首页精选。
+- 未登记：自动进入全部方案页，不进入首页精选；但包内 `visual/assets/copyright-ledger.json` 若明确把资产标为待清权（例如 `peer_attributed_structural_adaptation`），生成器会自动暂停展示。该状态必须先由维护者记录权利人结论并更新台账，不能只凭补署名绕过。
 - `published=false`：明确暂停该方案的公开展示。
 - `published=true`：记录已完成人工内容、视觉和版权复核的具体版本。
 - `featured=true`：同时进入首页精选；它必须以 `published=true` 为前提。
