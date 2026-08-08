@@ -1,0 +1,145 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Boundary is provisional (PROV-SITE-001); official polygon pending."
+   ]
+  },
+  "green_corridor_area_sqm": {
+   "status": "known",
+   "value": 2987698.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Green corridor geometry is design proposal."
+   ]
+  },
+  "green_ratio_pct": {
+   "status": "known",
+   "value": 26.2,
+   "unit": "pct",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_corridor_area / site_area * 100",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_blocks": {
+   "status": "known",
+   "value": 30,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building_features)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1377184.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(buildings, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_nodes": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space_features)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "key_areas": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area_features)",
+   "confidence": "high",
+   "assumptions": [
+    "Key areas follow provisional official announcement labels."
+   ]
+  },
+  "phasing_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "count(phasing_features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "rail_corridor_length_km": {
+   "status": "known",
+   "value": 9.72,
+   "unit": "km",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "corridor_bounds_length (EPSG:4548, south-north span of ROAD-BELT)",
+   "confidence": "medium",
+   "assumptions": [
+    "走廊为沿绿脉的纵向长条；长度=投影后边界南北跨距，正式阶段需按线位实测校准"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.02992,
+   "unit": "fraction",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(public_space_area, EPSG:4548) / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "比例为0-1分数（约2.99%）；与公共空间面积复算一致"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.2618,
+   "unit": "fraction",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(green_space_area, EPSG:4548) / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "0-1分数；green_ratio_pct = green_ratio × 100"
+   ]
+  }
+ }
+}
