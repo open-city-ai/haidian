@@ -17,6 +17,8 @@ Open Jing-Zhang AI Civic Loop is a conceptual urban design submission for the Ce
 
 The Chinese proposal remains the authoritative formal text. This English counterpart supports international display and repository review. The package strengthens six review areas: brand identity, regional and two-wing coordination, global case references and AI ecosystem mapping, ten AI scenario cards, three industry validation pilots, three civic AI landmarks, annual operations, accessibility, non-digital alternatives and professional implementation gates.
 
+The gallery polish adds three publication-facing evidence boards: `brand-system.en.png` for the identity system, signage kit and civic AI landmarks; `scenario-cards.en.png` for ten AI scenario cards with space, data, review, KPI and exit fields; and `key-area-detail.en.png` for three key-area detail boards with plan/section logic, implementation gates and public-interest KPIs.
+
 ## Spatial Concept
 
 The structure is one belt, three anchors, multiple scenarios and a blue-green walking loop. Zhongzhi Park focuses on full-stack AI innovation, standards and safety governance. Beijing AI Origin Community focuses on near-campus transfer, open-source release and talent services. Dazhongsi AI Cluster focuses on agent economy, smart terminals, international roadshows and station-city integration.
