@@ -16,6 +16,7 @@ from generate_submissions_data import (  # noqa: E402
     discover_submissions,
     load_publication_registry,
     package_sha256,
+    participant_controlled_known_blockers,
 )
 DATA_FILE = ROOT / "submissions-data.js"
 INDEX_FILE = ROOT / "index.html"
@@ -24,6 +25,35 @@ COVER_FILE = ROOT / "proposal-cover.js"
 
 
 class TestSubmissionsGallery(unittest.TestCase):
+    def test_organizer_geometry_gap_is_not_a_gallery_readiness_blocker(self):
+        manifest = {
+            "validation_claim": {
+                "known_blockers": [
+                    "Provisional boundary and key areas used; official polygons required for formal professional scoring."
+                ]
+            }
+        }
+        self.assertEqual([], participant_controlled_known_blockers(manifest))
+
+    def test_chinese_organizer_geometry_gap_is_not_a_gallery_readiness_blocker(self):
+        manifest = {
+            "validation_claim": {
+                "known_blockers": ["组织方尚未提供官方红线与重点区域几何数据。"]
+            }
+        }
+        self.assertEqual([], participant_controlled_known_blockers(manifest))
+
+    def test_participant_controlled_known_blocker_remains_blocking(self):
+        manifest = {
+            "validation_claim": {
+                "known_blockers": ["Required visual deliverables are still placeholders."]
+            }
+        }
+        self.assertEqual(
+            ["Required visual deliverables are still placeholders."],
+            participant_controlled_known_blockers(manifest),
+        )
+
     def load_gallery_items(self):
         data = DATA_FILE.read_text(encoding="utf-8")
         match = re.search(r"window\.HAIDIAN_SUBMISSIONS = (\[.*\]);\s*$", data, re.S)

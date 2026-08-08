@@ -17,6 +17,7 @@ from typing import Any
 
 from generate_submissions_data import STATUS_META, classify_submission
 from render_proposal_html import parse_front_matter
+from submission_policy import partition_known_blockers
 
 
 DEFAULT_OUTPUT_ROOT = ".maintainer-review"
@@ -313,10 +314,10 @@ def self_check_rows(packet: SubmissionPacket) -> list[list[Any]]:
     return rows
 
 
-def known_blockers(packet: SubmissionPacket) -> list[str]:
+def known_blockers(packet: SubmissionPacket) -> tuple[list[str], list[str]]:
     validation_claim = as_dict(packet.manifest.get("validation_claim"))
     blockers = validation_claim.get("known_blockers")
-    return [text(item) for item in as_list(blockers) if text(item).strip()]
+    return partition_known_blockers(blockers)
 
 
 def metric_rows(packet: SubmissionPacket) -> list[list[Any]]:
@@ -421,10 +422,13 @@ def append_packet_markdown(lines: list[str], packet: SubmissionPacket, index: in
     if packet.summary:
         lines.extend(["", f"> {packet.summary}"])
 
-    blockers = known_blockers(packet)
+    blockers, organizer_geometry_gaps = known_blockers(packet)
     if blockers:
         lines.extend(["", "### 已知阻断项", ""])
         lines.extend(f"- {item}" for item in blockers)
+    if organizer_geometry_gaps:
+        lines.extend(["", "### 组织方几何数据缺口（不阻断内容评分）", ""])
+        lines.extend(f"- {item}" for item in organizer_geometry_gaps)
 
     lines.extend(["", "### 风险与待补条件", ""])
     if packet.risk_dimensions:
@@ -597,11 +601,15 @@ def html_table(headers: list[str], rows: list[list[Any]]) -> str:
 
 
 def render_packet_html_section(packet: SubmissionPacket, output_dir: Path, index: int) -> str:
-    blockers = known_blockers(packet)
+    blockers, organizer_geometry_gaps = known_blockers(packet)
     blocker_html = ""
     if blockers:
         blocker_html = "<h3>已知阻断项</h3><ul>" + "".join(
             f"<li>{html.escape(item)}</li>" for item in blockers
+        ) + "</ul>"
+    if organizer_geometry_gaps:
+        blocker_html += "<h3>组织方几何数据缺口（不阻断内容评分）</h3><ul>" + "".join(
+            f"<li>{html.escape(item)}</li>" for item in organizer_geometry_gaps
         ) + "</ul>"
     summary_html = f"<p class=\"summary\">{html.escape(packet.summary)}</p>" if packet.summary else ""
     return f"""

@@ -769,9 +769,9 @@ def make_visual_html(title: str, metrics: dict[str, Any], boundary_mode: str, ke
     readiness_text = (
         "official geometry ready for formal professional scoring"
         if boundary_mode == "official" and key_area_mode == "official"
-        else "provisional geometry: PASS intake only, replace with official polygons before formal professional scoring"
+        else "provisional geometry: content review allowed; preserve warnings and recalculate after official polygons are supplied"
     )
-    readiness_label = "正式评分就绪" if boundary_mode == "official" and key_area_mode == "official" else "临时边界 intake"
+    readiness_label = "正式评分就绪" if boundary_mode == "official" and key_area_mode == "official" else "临时边界，不阻断内容评分"
     return f"""<!doctype html>
 <html lang="zh-CN">
 <head>

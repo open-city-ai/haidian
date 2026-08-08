@@ -156,6 +156,25 @@ class ExportReviewPacketTests(unittest.TestCase):
             self.assertIn("../submissions/alice/proposal-a/assets/figures/site-overview.png", html)
             self.assertEqual(manifest["submissions"][0]["path"], "submissions/alice/proposal-a")
 
+    def test_organizer_geometry_gap_is_advisory_in_markdown_and_html(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            submission_dir = make_submission(repo_root, "alice", "proposal-a", "AI 慢行网络")
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["validation_claim"]["known_blockers"] = [
+                "Provisional boundary used; official polygons required for formal professional scoring."
+            ]
+            write_json(manifest_path, manifest)
+
+            files = export_review_packet(repo_root, [submission_dir], repo_root / "packet", "测试评审包")
+            markdown = Path(files["markdown"]).read_text(encoding="utf-8")
+            html = Path(files["html"]).read_text(encoding="utf-8")
+
+            self.assertIn("组织方几何数据缺口（不阻断内容评分）", markdown)
+            self.assertIn("组织方几何数据缺口（不阻断内容评分）", html)
+            self.assertNotIn("### 已知阻断项", markdown)
+
     def test_discover_all_submissions_and_export_multi_packet(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             repo_root = Path(tmp)

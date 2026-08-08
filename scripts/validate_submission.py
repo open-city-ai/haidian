@@ -19,6 +19,8 @@ from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
 
+from submission_policy import partition_known_blockers
+
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
 
@@ -1075,9 +1077,16 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
     validation_claim = data.get("validation_claim")
     if isinstance(validation_claim, dict):
         known_blockers = validation_claim.get("known_blockers")
-        if isinstance(known_blockers, list) and known_blockers:
+        blocking, organizer_gaps = partition_known_blockers(known_blockers)
+        if blocking:
             report.add_warning(
-                f"{proposal_dir}/manifest.json: known_blockers present; submission may pass intake but cannot enter formal professional scoring until resolved"
+                f"{proposal_dir}/manifest.json: participant-controlled known_blockers present; "
+                "submission may pass intake but cannot enter formal professional scoring until resolved"
+            )
+        if organizer_gaps:
+            report.add_warning(
+                f"{proposal_dir}/manifest.json: organizer official-geometry data gap disclosed; "
+                "keep provisional warnings and recalculate when supplied, but do not block or lower content scoring"
             )
     return data, stage
 
