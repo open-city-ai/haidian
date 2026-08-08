@@ -1,6 +1,6 @@
 ---
 title: "京智带 JINGZHI-BELT：百年京张AI创新带城市设计开源方案"
-author_github: "upup111"
+author_github: "upup-111"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以开放回路为总体概念，围绕京张遗址公园活力带组织三区两翼，形成可复算的用地、蓝绿、慢行与AI场景系统；本方案为概念建议，基于临时粗略边界生成。"

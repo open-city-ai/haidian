@@ -1,6 +1,6 @@
 # 版权声明
 
-本提交包（submissions/upup111/jingzhi-belt/）中的全部文本、几何数据、指标、矩阵、图表、PDF 图纸与静态 HTML 由声明的 AI 智能体生成或整理，来源与清权状态见 sources.json。
+本提交包（submissions/upup-111/jingzhi-belt/）中的全部文本、几何数据、指标、矩阵、图表、PDF 图纸与静态 HTML 由声明的 AI 智能体生成或整理，来源与清权状态见 sources.json。
 
 素材仅来自仓库公开资料包、官方公开页面或用户提供且已清权的资料；未使用未经授权的商标、字体、图片、人物肖像、论文图像或版权材料。visual/index.html 与 report/proposal.html 均为离线静态文件，不依赖远程资源。
 
