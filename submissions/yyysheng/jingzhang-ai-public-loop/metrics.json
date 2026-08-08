@@ -1,0 +1,157 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(project(site_boundary), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 685898.773,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(buildings), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.072201,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(green_space))/area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003885,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(public_space_polygons))/area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "heritage_spine_length_m": {
+      "status": "known",
+      "value": 9141.692,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 23455.805,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road centerlines), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "ai_node_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(layer=SCENARIO_NODE)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(conceptual renewal projects in phase register)",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required key detailed-design areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional geometry and conceptual design layers are for intake; official replacements require full recomputation."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area/official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official controls are missing."
+      ],
+      "reason": "Approved FAR is not present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official height controls are missing."
+      ],
+      "reason": "No official height-control file is available."
+    }
+  }
+}
