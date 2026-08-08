@@ -4,10 +4,10 @@ author_github: "hingsreXiao"
 language: "en"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A 'One-Axis-Two-Wings-Three-Districts' spatial strategy anchored by the Jing-Zhang Railway Heritage Park as the north-south spine and the AI three-district-two-wing industrial corridor, upgrading 11.4 km² of existing urban fabric into a world-class AI innovation ecosystem testbed and showcase."
+summary: "A 'Dual-Track Co-Evolution' urban design strategy where the physical Jing-Zhang Railway Heritage Park and the digital AI innovation pipeline converge across a century. Physical rails carry cultural memory; digital infrastructure drives global AI flows. Together they transform 11.4 km² into a world-class AI innovation ecosystem."
 tracks: ["ai-origin-community"]
 scenarios: []
-iteration: "v0.1"
+iteration: "v0.3"
 ---
 
 # IntelliAxis: Centennial Jing-Zhang AI Innovation Belt Urban Design Proposal
