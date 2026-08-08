@@ -100,7 +100,7 @@
   },
   "land_use_zone_count": {
    "status": "known",
-   "value": 4,
+   "value": 20,
    "unit": "count",
    "source_files": [
     "geometry/land_use.geojson"
@@ -211,6 +211,127 @@
     "No operating sample yet; keep null."
    ],
    "reason": "No operating sample yet; metric must remain null until community operation data exists (per proposal.md risk section)."
+  },
+  "landuse_research_area_sqm": {
+   "status": "known",
+   "value": 1150761.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['0802'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "landuse_residential_area_sqm": {
+   "status": "known",
+   "value": 3174798.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['0701', '0702'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "landuse_commercial_area_sqm": {
+   "status": "known",
+   "value": 782717.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['05'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "landuse_education_area_sqm": {
+   "status": "known",
+   "value": 1250208.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['0804'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "landuse_culture_area_sqm": {
+   "status": "known",
+   "value": 1169749.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['0803'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "landuse_green_open_area_sqm": {
+   "status": "known",
+   "value": 2589338.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['1401'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "landuse_reserved_white_area_sqm": {
+   "status": "known",
+   "value": 1295279.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area of land_use codes ['16'])",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase1_area_sqm": {
+   "status": "known",
+   "value": 4148906.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-001)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase2_area_sqm": {
+   "status": "known",
+   "value": 3798414.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-002)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "phase3_area_sqm": {
+   "status": "known",
+   "value": 3465514.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-003)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "catalyst_building_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(demo catalyst blocks)",
+   "confidence": "high",
+   "assumptions": []
   }
  }
 }

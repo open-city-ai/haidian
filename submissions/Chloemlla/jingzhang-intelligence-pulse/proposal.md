@@ -6,7 +6,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路为脉、AI全栈自主创新为芯，构建从统筹研究范围到重点区域的AI创新带总体城市设计方案：一带三核两翼的空间结构、概念性用地与建筑方案、12张AI场景卡、6类人才画像与4处朝圣地标，全部成果标注临时边界与待确认事项。"
 tracks: ["jingzhang-heritage-narrative","ai-origin-community","ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability","ai-cultural-guide","ai-health-service-navigation","enterprise-service-copilot","robot-delivery-low-speed","public-safety-operations-review"]
-iteration: "v0.4"
+iteration: "v0.5"
 ---
 
 # 京张智脉：让百年铁轨重新成为城市心跳
@@ -48,6 +48,10 @@ iteration: "v0.4"
 统筹研究范围回应公告 1.5（1）关于世界级 AI 创新生态体系、三区两翼、未来 AI 城市形态、AI 文化、AI+交通和连续绿色空间体系的要求 `[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]`。
 
 **定位与命名（智能体任务一：一带总体概念与功能统筹方案）。** 面向智能体任务书给出三大定位：百年京张文化带、都市AI生活体验带、AI融合创新带 `[source:AGENT-TASKBOOK]`。五大功能包括 AI 全栈自主创新体系、世界级 AI 创新生态、AI+场景赋能新范式、智能化 AI 活力城市、AI 治理全球话语权。方案命名"京张智脉"，取意百年铁轨为城市之脉、AI 为城市之芯，主张"让百年铁轨重新成为城市心跳"。Logo 设计以一组南北贯穿的脉冲曲线叠合轨道断面的等距节奏构成，隐含"铁轨是脉、代码是流"的双重隐喻；Logo、字体、图像等视觉元素在本包中仅作概念示意，均以可替换占位表达，不使用未清权素材。
+
+**命名体系与视觉识别方向（智能体任务一）。** 建立统一命名体系：主品牌"京张智脉 / JINGZHANG Intelligence Pulse"，主口号"让百年铁轨重新成为城市心跳"；次品牌按"地理+功能"规则命名，如北京 AI 原点社区、众智园 AI 自主创新加速区、大钟寺 AI 产业聚集区、智脉节（JINGZHANG Pulse）；功能场景按 SC-01—SC-12 编号统一。视觉识别方向分三层：主 Logo（脉冲曲线×轨道断面）、辅助图形（等距节奏/阀门/桥桁架母题）、使用规则（不与文化标识系统混用、不覆盖权属与历史标识）。命名与视觉元素均为概念占位，不使用未清权字体、图片与商标 `[source:AGENT-TASKBOOK]`。
+
+**AI 治理与规则话语权（五大功能之五）。** 面向公告提出的 AI 治理全球话语权主题 `[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]`，把"治理"作为第五大功能的落点：在智脉带沿线组织 AI 治理实验带，以场景伦理审查、数据最小化、人工复核与公民参与审查机制为内容（见 SC-08 与各场景卡隐私边界 `[source:AGENT-TASKBOOK]`），把治理规则从事后审查转为事前可试点、运行可复核的机制；并以治理规则展示与年度 AI 治理对话等载体形成面向全球的议题场。治理机制与规则展示均为概念方向，不表述为已确立的监管安排或政府决策。
 
 **空间结构判断。** 总体空间结构为"一带、三核、两翼、多点、一环"：一带即京张智脉主轴（约 9.4 公里南北向智脉绿带与慢行脊梁 `[metric:design_north_south_spine_length_m]`）；三核即众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区三处重点区域 `[depth:overall_spatial_structure]`；两翼即中关村科技服务翼与小月河场景赋能翼；多点即 12 张 AI 场景卡在城市界面上的落点；一环即串联三核与滨水绿带的蓝绿慢行环 `[metric:design_slow_mobility_network_length_m]`。这一结构与用地 `[data:geometry/land_use.geojson#LU-001]`、道路 `[data:geometry/roads.geojson#ROAD-001]`、绿地 `[data:geometry/green_space.geojson#GREEN-001]`、公共空间 `[data:geometry/public_space.geojson#PUBLIC-001]` 图层逐一对应。
 
@@ -155,6 +159,8 @@ iteration: "v0.4"
 **导视·标识·符号系统方向（智能体任务五）。** 标识系统沿用"轨、站、桥、阀、码"五文化母题，与一带整体 Logo 体系区分、不混淆 `[source:AGENT-TASKBOOK]`：区域级标识用于智脉主轴与三核入口，路径级标识用于慢行与轨道接驳，节点级标识用于朝圣地标与广场。符号采用"脉冲曲线+轨道等距节奏"的统一语言，双语呈现，并提供视觉与触觉可替代表达。导视方向与智脉主轴 `[data:geometry/roads.geojson#ROAD-001]` 和智脉绿带 `[data:geometry/green_space.geojson#GREEN-001]` 对应，仅作概念方向，不构成品牌授权。
 
 城市风貌采用"沉稳底色、智脉为亮、轻快点缀"的控制逻辑：建筑以暖灰与木色为基调呼应轨道工业记忆，公共界面以现代玻璃与轻金属强调创新属性，避免过度娱乐化。屋顶形态强调沿绿带的第五立面与屋顶公共空间，体量沿脉退让放低，风貌分区与控制逻辑见 `[depth:height_massing_character]`。
+
+**空间文化表达载体（智能体任务五）。** 把"轨、站、桥、阀、码"五母题落实为可运营的空间表达载体：铺装与边界采用轨道等距节奏母题，照明沿智脉主轴采用脉冲曲线光带，公共艺术以站、桥、阀、码为原型分散于节点，标识系统承担导视与叙事双重职能，数字媒介（场景屏、AR 文化导览）作为叠加层连接线上与线下体验 `[data:geometry/roads.geojson#ROAD-001]`。表达载体统一遵循"克制、可替换、不覆盖历史信息"原则，与城市风貌控制一致 `[depth:height_massing_character]` `[depth:blue_green_public_space]`。
 
 ## 更新项目清单、实施政策与分期计划
 
