@@ -164,6 +164,11 @@ class _LabelClient:
         self.added.append((issue_number, labels))
 
 
+class _FailingLabelClient(_LabelClient):
+    def remove_labels(self, issue_number: int, labels: list[str]) -> None:
+        raise RuntimeError("rate limited")
+
+
 class ReviewLabelReconciliationTests(unittest.TestCase):
     def test_successful_code_pr_clears_stale_submission_labels(self) -> None:
         client = _LabelClient()
@@ -213,6 +218,17 @@ class ReviewLabelReconciliationTests(unittest.TestCase):
             client.removed,
         )
         self.assertEqual([(615, ["review/ci-failed"])], client.added)
+
+    def test_label_api_failure_does_not_replace_validation_result(self) -> None:
+        with patch("builtins.print") as print_mock:
+            reconcile_review_labels(
+                _FailingLabelClient(),
+                615,
+                validation_ok=False,
+                queue_candidate=False,
+            )
+        print_mock.assert_called_once()
+        self.assertIn("unable to reconcile review labels", print_mock.call_args.args[0])
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):

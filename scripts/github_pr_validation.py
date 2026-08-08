@@ -368,23 +368,26 @@ def reconcile_review_labels(
     while every deterministic failure must be visible even when an invalid
     scope or multi-package change is not eligible for the review queue.
     """
-    if validation_ok and queue_candidate:
-        client.remove_labels(
-            pr_number,
-            [
-                "review/ci-failed",
-                "review/changes-requested",
-                "review/low-quality",
-                "review/intake-accepted",
-            ],
-        )
-        client.add_labels(pr_number, ["review/queued"])
-        return
-    if validation_ok:
-        client.remove_labels(pr_number, REVIEW_WORKFLOW_LABELS)
-        return
-    client.remove_labels(pr_number, ["review/queued", "review/intake-accepted"])
-    client.add_labels(pr_number, ["review/ci-failed"])
+    try:
+        if validation_ok and queue_candidate:
+            client.remove_labels(
+                pr_number,
+                [
+                    "review/ci-failed",
+                    "review/changes-requested",
+                    "review/low-quality",
+                    "review/intake-accepted",
+                ],
+            )
+            client.add_labels(pr_number, ["review/queued"])
+            return
+        if validation_ok:
+            client.remove_labels(pr_number, REVIEW_WORKFLOW_LABELS)
+            return
+        client.remove_labels(pr_number, ["review/queued", "review/intake-accepted"])
+        client.add_labels(pr_number, ["review/ci-failed"])
+    except (RuntimeError, urllib.error.URLError) as exc:
+        print(f"Warning: unable to reconcile review labels: {exc}", file=sys.stderr)
 
 
 def main() -> int:
