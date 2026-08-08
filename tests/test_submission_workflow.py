@@ -30,11 +30,11 @@ from github_pr_validation import (  # noqa: E402
     GitHubClient,
     MAX_DOWNLOAD_BYTES,
     _is_retryable_http_error,
-    is_current_pull_request_head,
     is_non_submission_pr,
     is_review_queue_candidate,
     main,
     safe_manifest_paths,
+    stale_pull_request_event_reason,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
@@ -157,10 +157,13 @@ class PullRequestHeadGuardTests(unittest.TestCase):
         with patch.object(
             client,
             "request",
-            return_value=({"head": {"sha": "current-sha"}}, {}),
+            return_value=({"state": "open", "draft": False, "head": {"sha": "current-sha"}}, {}),
         ) as request:
-            self.assertTrue(is_current_pull_request_head(client, 627, "current-sha"))
-            self.assertFalse(is_current_pull_request_head(client, 627, "stale-sha"))
+            self.assertIsNone(stale_pull_request_event_reason(client, 627, "current-sha"))
+            self.assertIn(
+                "head advanced",
+                stale_pull_request_event_reason(client, 627, "stale-sha") or "",
+            )
         self.assertEqual(2, request.call_count)
         request.assert_called_with(
             "GET", "/repos/open-city-ai/haidian/pulls/627"
@@ -182,7 +185,10 @@ class PullRequestHeadGuardTests(unittest.TestCase):
             event_file.flush()
             client = unittest.mock.MagicMock()
             client.repository = "open-city-ai/haidian"
-            client.request.return_value = ({"head": {"sha": "current-sha"}}, {})
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "current-sha"}},
+                {},
+            )
             with patch.dict(
                 os.environ,
                 {
@@ -216,8 +222,8 @@ class PullRequestHeadGuardTests(unittest.TestCase):
             client = unittest.mock.MagicMock()
             client.repository = "open-city-ai/haidian"
             client.request.side_effect = [
-                ({"head": {"sha": "event-sha"}}, {}),
-                ({"head": {"sha": "newer-sha"}}, {}),
+                ({"state": "open", "draft": False, "head": {"sha": "event-sha"}}, {}),
+                ({"state": "open", "draft": False, "head": {"sha": "newer-sha"}}, {}),
             ]
             client.paginate.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
@@ -233,6 +239,47 @@ class PullRequestHeadGuardTests(unittest.TestCase):
         client.upsert_comment.assert_not_called()
         client.add_labels.assert_not_called()
         client.remove_labels.assert_not_called()
+
+    def test_missing_pr_is_a_safe_stale_event(self) -> None:
+        client = MagicMock()
+        client.request.side_effect = urllib.error.HTTPError(
+            "https://api.github.com/test", 404, "Not Found", {}, io.BytesIO(b"{}")
+        )
+        self.assertEqual(
+            "PR #627 no longer exists",
+            stale_pull_request_event_reason(client, 627, "event-sha"),
+        )
+
+    def test_stale_event_skips_before_accessing_deleted_fork(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 627,
+                "user": {"login": "147228"},
+                "head": {"repo": None, "sha": "stale-sha"},
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "current-sha"}},
+                {},
+            )
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.paginate.assert_not_called()
+        client.download_content.assert_not_called()
+        client.upsert_comment.assert_not_called()
 
 
 class EmptyPdfDetectionTests(unittest.TestCase):
@@ -329,7 +376,10 @@ class ManifestHydrationTests(unittest.TestCase):
             event_file.flush()
             client = MagicMock()
             client.repository = "open-city-ai/haidian"
-            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
+                {},
+            )
             client.paginate.return_value = files
             with patch.dict(
                 os.environ,
