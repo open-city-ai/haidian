@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v0.6 - 2026-08-08
+
+- 第四轮质量强化：新增 AI 治理与规则话语权（公告五大功能之五展开，agent.2/6）、命名体系与视觉识别方向（agent.1）、空间文化表达载体（agent.5）；proposal 迭代号升至 v0.5。
+- 同步可视化页面任务覆盖清单。
+- 重渲染 report/proposal.html，manifest sha256 与 LF 检出行对齐；self_check 四层 PASS，`formal-review-ready`。
+
 ## v0.5 - 2026-08-08
 
 - 第三轮质量强化：新增东西缝合与南北贯通概念策略（agent.4）、大钟寺智能原生消费与商务场景（agent.4）、开发者社区运营机制（三层结构+双场运营，agent.6）；proposal 迭代号升至 v0.4。
