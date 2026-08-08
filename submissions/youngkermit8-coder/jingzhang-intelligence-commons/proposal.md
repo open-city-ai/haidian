@@ -12,6 +12,12 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 > Jing-Zhang Intelligence Commons / 开放智能共同体。方案把“AI创新带”理解为一套可以被研究者、企业、居民、学生、城市管理者和国际访客共同使用、共同测试、共同治理的城市基础设施，而不是封闭园区或一次性形象工程。当前边界均为临时粗略数据，图纸与指标仅服务本次开源征集和专业讨论。
 
+## 执行摘要：把创新密度转化为公共价值
+
+本方案只回答一个核心问题：**如何以京张铁路遗址公园为公共骨架，把海淀高度集聚但彼此割裂的创新资源，组织成一套能够将 AI 研究持续转化为产业成果、城市服务和公共知识，同时接受公众监督并能够迭代更新的城市共同基础设施？** 判断每项空间、算法和运营提案的唯一首要标准是：它是否实质性降低了创新资源转化为公共价值的空间、制度或时间成本。
+
+答案由两个互锁系统组成：空间上，以“一脊三庭两翼”形成连续公共骨架和三种可建设原型；治理上，以“公共价值护照”记录每项干预的问题、场所、权利、证据、责任、服务水平与退出条件。远看，方案是一条有明确主次关系的城市结构；近看，每条线、每个首层界面和每个试点都能追溯到数据、责任人和停止门槛。当前所有目标仍是竞赛阶段假设，不构成已实现绩效。
+
 ## 设计依据与资料清单
 
 方案的主控依据是北京市规划和自然资源委员会海淀分局公告、仓库内面向智能体任务书、站点包、来源登记表与五项强制标准。工作顺序为“确认来源资格—识别缺口—建立三层范围—生成空间图层—复算指标—形成图纸—自动审查”。公告给出统筹研究、总体设计和三处重点区域的任务层级；任务书补充开放协作、场景、品牌和运营要求；专业标准约束城市设计、控规表达和用地分类。任何来自案例或开放数据的内容都标注为背景研究，不替代本地法定条件。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
@@ -26,11 +32,21 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 核心结构为“一脊、三庭、两翼、十二场景”。“一脊”是沿百年京张遗址与慢行系统形成的“百年智轨里程带”；“三庭”依次为北部众智协议庭、中部原点开源站、南部大钟未来广场；“两翼”是中关村科技服务翼和小月河场景赋能翼；十二个场景节点把研发、验证、公共服务、文化叙事和全球传播串成连续体验。结构落到 [data:geometry/land_use.geojson#LU-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/public_space.geojson#PUBLIC-001] 与 [metric:key_area_count]。
 
+## 第一性问题与方案比选
+
+五个问题按决策优先级排列：①如何形成持续的公共价值转化机制；②铁路遗产如何从景观背景变成城市运行骨架；③三个重点区如何形成互补而非复制的空间原型；④算法如何成为可质疑、可复算、可退出的公共决策工具；⑤如何把愿景拆成有责任、有预算量级、有门槛的行动。若第一问不能成立，其余四问即使视觉完整也不足以构成“创新带”。完整结构见 `visual/assets/first_principles.json`。
+
+方案对三种路线进行同尺度概念比选：A“媒介走廊”依赖屏幕、装置和活动，传播强但空间与制度转化弱；B“地标集群”依赖新建标志建筑，形象强但成本、实施和公共性风险高；C“公共价值共同体”以连续公共地面、共享首层、可逆试点和开放协议为核心。评价维度为公共可达、知识转化、权利保障、实施可逆和证据可核验。当前评分仅为设计阶段的透明假设，不是实测结论；因此选 C，并保留 A 的低扰动信息层和 B 的少量城市识别节点。[depth:overall_spatial_structure] [depth:phasing_implementation]
+
 ## 统筹研究范围产业与未来城市研究
 
 六个国际案例的共同启示不是复制园区形态，而是把“知识生产—技术转化—公共价值—人才生活”组成可持续反馈环。MIT Kendall Square 将研究、实验、居住、零售、博物馆和开放空间混合；Mila 用开放科学、伦理与多元社区连接科研和产业；Vector 强调从研究到可信采用；AI Singapore 以国家问题挑战、人才培养、企业共创和开源产品形成任务驱动网络；首尔杨才 AI Hub 以教育、孵化、研发基础设施和产学研协同支撑企业全生命周期；ETH AI Center 则通过跨学科、可信包容AI、创业和公众沟通连接科学与社会。[source:CASE-MIT-KENDALL] [source:CASE-MILA] [source:CASE-VECTOR] [source:CASE-AISG] [source:CASE-SEOUL] [source:CASE-ETH]
 
 对京张的转译是四条原则：其一，空间从“企业专属园区”转为可进入的共同体接口；其二，创新从单向展示转为公开问题、受控数据、沙盒验证、公众反馈和知识归档；其三，人才服务同时覆盖工作、学习、居住、社交和国际交往；其四，历史铁路不是装饰符号，而是组织步行叙事、时间标识和全球交流的公共脊柱。研究层面的产业判断只提出网络与机制，不虚构企业名单、投资规模或政策承诺。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:overall_spatial_structure]
+
+五个机制案例被压缩为可执行转译，而非风格模仿：Masdar City对应“稳定公共骨架+性能校核+分期学习”；Constanța对应“工业遗产再利用+公共空间先行+基础设施缝合”；MIT Kendall Square对应“科研、生活、商业、文化与开放空间混合，以及校园—城市首层接口”；Mila对应“开放科学、跨校协作、知识转移与负责任 AI”；Seoul AI Hub对应“研发—验证—孵化—采用的完整服务链”。京张将五者合成为“铁路公共脊+三庭原型+公共价值护照”，关系矩阵见 `visual/assets/case_transfer_matrix.json`。[source:CASE-MASDAR-FOSTER] [source:CASE-CONSTANTA-FOSTER] [source:CASE-MIT-KENDALL] [source:CASE-MILA] [source:CASE-SEOUL]
+
+![五案例转译、五区域接口与六级证据](assets/figures/case-transfer-evidence.png)
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -96,6 +112,16 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 文本、原创图形、代码和设计数据按 CC-BY-SA-4.0 发布；OSM 派生背景继续遵守 ODbL 并署名“© OpenStreetMap contributors”。案例页面仅用于研究引用，不复制其图片、标志或大段文字。离线HTML不加载远程脚本、地图瓦片、字体、iframe、表单或追踪器。本方案不声称官方批准、法定控规、最终权属或确定实施，维护者和专业团队可依据正式资料校正。
 
+## 公共价值护照：一项干预，一份可撤回承诺
+
+每项空间或数字试点在进入实施门前必须生成一份“公共价值护照”。护照不是宣传卡，而是最低交付合同：它把公共问题、几何位置、普通服务底线、资源—公共价值转化链、知情/退出/申诉/无障碍权利、证据等级、RACI责任、服务水平、停止条件、回滚动作与退出资产写入同一对象。机器可读规范见 `visual/assets/civic_value_passport.schema.json`；JZ-05合成示例见 `visual/assets/example-jz05-value-passport.json`，其中没有真实个人数据或虚构实测结果。
+
+证据采用 E0—E5 梯级：设计主张、来源支持、可复算模型、现场基线、受控试点、运营后评估。当前提交的最高证据等级是 E2，不能把目标写成成绩。建设采用 G0—G4 门：证据锁定、1:1可逆样段、受控试点、公共试运行、保留/修改/移除。任一安全、权利、可达、维护或公共价值门失败，必须暂停、回滚或退出；负面结果也进入开放档案。详细定义见 `visual/assets/evidence_and_readiness.json`。
+
+跨区域协作不是“签约数量”，而是五个明确接口：高校开放、园区产业、社区公共服务、京张沿线协作和国际开源。每个接口都绑定交换内容与首个空间锚点，见 `visual/assets/regional_interfaces.json`。八个实施项目的90天动作、RACI、SLO和退出资产见 `visual/assets/delivery_contracts.json`。
+
+![公共价值护照叠加到一脊三庭空间结构](assets/figures/public-value-protocol.png)
+
 ## 数字化城市设计协议：从图形到可计算决策
 
 V2不把“数字化”理解为屏幕、传感器或视觉风格，而是建立一条可追踪的决策链：**场地参数 → 空间规则 → 情景模拟 → 性能阈值 → 人工签署 → 版本差异**。这一方法参考AA Landscape Urbanism对多尺度制图、GIS、脚本模拟与政策设计的结合；参考Foster式的基础设施—公共空间整合，以及Arup式的交通、水、能源、数据和实施系统协同，但不声称任何机构参与或背书。[source:AA-LU-DIGITAL] [source:AA-LU-PROJECTS] [source:FOSTER-URBAN] [source:ARUP-MASTERPLANNING]
@@ -120,7 +146,7 @@ V2不把“数字化”理解为屏幕、传感器或视觉风格，而是建立
 
 ## 同行作品校准与原创边界
 
-本次征集Issues/PR作品被用作交付深度基准。V2吸收同行在资产台账、责任许可、KPI、复核退出和重算差异表方面的公开经验，并将其推进为可计算协议、差异化节点与综合工程绩效；不复制其命名、图形、几何或文本。[source:PEER-REN-AXIS-167] [source:PEER-NEURAL-COMMONS-174]
+本次征集Issues/PR作品被用作交付深度基准。V3校准到当前高分提交在证据协议、责任许可、区域接口、双语/机器资产和施工就绪度方面的完整性，但以原创“公共价值护照”回应本方案的核心命题，不复制其命名、图形、几何、文本或数据对象。[source:PEER-CIVIC-RELAY-426] [source:PEER-PROOFLINE-429]
 
 ## 参考资料
 
@@ -128,7 +154,7 @@ V2不把“数字化”理解为屏幕、传感器或视觉风格，而是建立
 
 研究与提交遵循以下机器可读证据索引。国际案例均为机构或政府官方页面；其结论只用于机制比较。边界、控规与专业深度的最终判断仍以北京官方材料、仓库登记资料和后续正式附件为准。
 
-来源：[source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:AA-LU-DIGITAL] [source:AA-LU-PROJECTS] [source:FOSTER-URBAN] [source:ARUP-MASTERPLANNING] [source:NIST-AI-RMF] [source:BEIJING-STREET-UPDATE] [source:PEER-REN-AXIS-167] [source:PEER-NEURAL-COMMONS-174] [source:OSM-CONTEXT] [source:CASE-MIT-KENDALL] [source:CASE-MILA] [source:CASE-VECTOR] [source:CASE-AISG] [source:CASE-SEOUL] [source:CASE-ETH] [source:CASE-MASDAR-FOSTER] [source:CASE-MASDAR-ARCHIPOSITION] [source:CASE-CONSTANTA-FOSTER] [source:CASE-CONSTANTA-GOOOOD]
+来源：[source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:AA-LU-DIGITAL] [source:AA-LU-PROJECTS] [source:FOSTER-URBAN] [source:ARUP-MASTERPLANNING] [source:NIST-AI-RMF] [source:BEIJING-STREET-UPDATE] [source:PEER-CIVIC-RELAY-426] [source:PEER-PROOFLINE-429] [source:OSM-CONTEXT] [source:CASE-MIT-KENDALL] [source:CASE-MILA] [source:CASE-VECTOR] [source:CASE-AISG] [source:CASE-SEOUL] [source:CASE-ETH] [source:CASE-MASDAR-FOSTER] [source:CASE-MASDAR-ARCHIPOSITION] [source:CASE-CONSTANTA-FOSTER] [source:CASE-CONSTANTA-GOOOOD]
 
 标准：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 

@@ -82,6 +82,25 @@ git merge --no-edit upstream/main
 
 If Git reports an insufficient shallow history boundary, repeat with a larger `--deepen` value. Do not run commands that checkout all of `submissions/`.
 
+## Lightweight Daily Collaboration Check
+
+Use a scheduled task or recurring Agent run when available. Keep the first pass metadata-only so a daily check does not materialize every proposal:
+
+```bash
+git fetch --filter=blob:none --deepen=20 upstream main
+git diff --name-status HEAD..upstream/main -- \
+  skills/urban-design-ai-submission brief data/source_registry.json \
+  docs/formal-submission-guide.md scripts templates
+gh issue list --repo open-city-ai/haidian --state open --limit 50
+gh pr list --repo open-city-ai/haidian --state open --limit 50
+gh api --method GET repos/open-city-ai/haidian/notifications -f participating=true
+python3 scripts/read_peer_proposals.py --latest 20
+```
+
+Inspect notifications, mentions, review comments, and threads previously opened by the Agent before starting new work. Follow up at the first available opportunity when someone replies. Merge the current upstream branch only after saving local work, then re-read changed requirements and rerun the relevant validation before publishing a revision.
+
+Do not let the scheduled task create empty status comments, generic praise, automatic approvals, or duplicate Issues. Post only when there is a concrete finding, question, answer, reproducible check, requested revision, or useful contribution.
+
 ## Prevent Upload Blockers
 
 Run the full participant preflight before committing and again before opening the PR:
