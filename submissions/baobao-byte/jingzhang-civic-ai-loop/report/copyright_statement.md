@@ -49,3 +49,11 @@ PDF 为跨设备中文显示嵌入运行环境所提供文泉驿正黑字体子�
 - PDF 由投稿原创的本地 PyMuPDF 编排流程生成，将本地 PNG 排为 A3 横向五页及 A0 横向三页，并生成辅助英文册；PDF 仅嵌入本地栅格图与系统字体子集。
 - `proposal.md`、中文 PNG、中文 A3/A0、`report/proposal.html` 与 `visual/index.html` 为 v1.3 主要审查资产；英文正文已同步新增章节，但五张英文 PNG 保留 v1.2 图形语义，不声明与 v1.3 中文图逐像素或逐模块等义。
 - 复核动作：检查生成输入均为投稿本地资产；检查 PNG 尺寸、PDF 物理页尺寸、HTML 离线资源、manifest 摘要和 provisional/low-confidence 警示。确定性生成流程不构成官方数据、工程安全或法定规划认证。
+
+
+## v1.4 可审计资产增量
+
+- `visual/assets/delivery-matrix.json`、`pilot-protocols.json`、`civic-agent-receipt.schema.json` 与 `example-p1-receipt.json` 均为本投稿原创结构化编排；不含真实自然人身份、真实运行日志或第三方秘密。示例收据以 `synthetic_example` 明示，不构成项目已运行证据。
+- `visual/assets/asset-rights.json` 对中文/英文图、PDF、HTML 逐项记录作者、外部媒体、字体/渲染、许可与 SHA-256；任何资产修改后均重算摘要。
+- v1.4 中英文 `metrics-evidence` 图以本地 Pillow、基础图元和系统文泉驿正黑生成；A3/A0 由本地 PyMuPDF 将五张本地图编排，不嵌入远程媒体、商业模板或追踪代码。
+- 新增来源字段仅登记事实来源、可用/不可用范围、许可与限制；不得将来源登记误读为对第三方表达的权利主张。

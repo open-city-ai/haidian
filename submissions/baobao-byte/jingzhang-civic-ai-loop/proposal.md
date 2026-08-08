@@ -7,20 +7,48 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共价值主轴，建立城市AI上线前评测、上线中监督、上线后复盘的开放创新带。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "1.3"
-iteration: 4
+version: "1.4"
+iteration: 5
 ---
 
 # 京张共智环：可验证城市智能体开放带
 
-> **v1.3 实施证据版｜状态口径**：四项包级自检已通过；空间数值与图形仍基于仓库 provisional geometry，聚合数据置信度为 **low**。可用于概念内容复审，不是官方红线、法定控制或精确面积依据。逐资产权利与生成链见 `report/copyright_statement.md`，整改差异见 `changelog.md`。
+> **v1.4 可执行验证版｜状态口径**：四项包级自检已通过；空间数值与图形仍基于仓库 provisional geometry，聚合数据置信度为 **low**。可用于概念内容复审，不是官方红线、法定控制或精确面积依据。逐资产权利与生成链见 `report/copyright_statement.md`，整改差异见 `changelog.md`。
 
 **英文名：Jing-Zhang Civic AI Loop；口号：让每一次城市智能，都经得起公众检验。**
+
+## 一页执行摘要：不是“AI园区”，而是城市智能的公共验收线
+
+**核心判断。** 百年京张最稀缺的不是更多封闭算力机房，而是一条能让居民、科研团队、企业、运营者和监管者共同判断“这项智能是否值得进入城市”的公共基础设施。共智环因此把铁路遗址公园转译为**一条可步行的验证主线**：北段众智园做全栈与安全评测，中段AI原点社区把科研原型转成可参与的街区服务，南段大钟寺检验公众体验与消费权益；中关村科技服务翼提供法务、资本、标准和人才接口，小月河场景翼提供交通、生态与机器人受控测试。[source:AGENT-TASKBOOK] [depth:three_level_scope_framework]
+
+**六项任务形成一份合同，而非六组口号。** agent.1 输出品牌、区域协作接口与产业支持清单；agent.2 输出一带三区两翼、存量优先规则和概念用地；agent.3 输出三区首层界面、日常运营和验收任务；agent.4 输出12张场景卡、3份首期试验协议与城市智能体收据；agent.5 输出铁路/AI/社区三时叙事和三类公共节点；agent.6 输出AP0—AP7、G0—G4、五本资源账、退出与复原。[metric:scenario_node_count] [metric:pilot_protocol_count] [metric:action_package_count] [metric:decision_gate_count]
+
+**首个90天只做“低后悔准备”，不做大规模上线。** 0—30天完成官方资料替换清单、现场走测、利益相关者与非AI服务基线；31—60天修复一条连续无障碍任务链、搭建人工台和合成数据沙盒；61—90天仅在G0—G2证据齐备后启动P1，P2/P3保留为受控预演。任一重大安全、权益或数据问题未闭环即停止。预算数字、真实主体、采购与建设时点在资料缺失时保持 unknown，不用概念承诺冒充可实施性。[source:CONTROL-DETAILED-PLANNING] [depth:implementation_policy_phasing]
+
+**四个可审计成果让方案可以被别人接手。** `visual/assets/delivery-matrix.json` 记录8个行动包的依赖、责任位、成果、验收和硬停止；`visual/assets/pilot-protocols.json` 锁定三项试验的问题、基线、对照、指标、兜底与停止线；`visual/assets/civic-agent-receipt.schema.json` 要求每次公共运行留下版本、证据、人工责任、申诉、期限和处置；`visual/assets/asset-rights.json` 逐资产记录作者、外部媒体、许可与哈希。示例收据明确为 synthetic，不证明项目已运行。[metric:machine_readable_contract_count] [metric:receipt_required_field_count]
+
+|评审问题|本方案的可核验回答|不得被误读为|
+|---|---|---|
+|与任务书是否贴合|六项任务均落到空间、运营、机器合同与验收物|政府已采纳或机构已承诺|
+|AI与规划如何结合|AI运行必须穿过空间安全、非数字兜底、独立评测和公众决定|“装上传感器”即完成创新|
+|如何实施|先AP0—AP3，再P1—P3；每包有依赖、验收、停止与复原|已有预算、场地、采购与运营主体|
+|谁获得公共利益|六类用户以真实任务共同验收，最差组与申诉优先于平均值|已完成真实用户测试|
+|如何面对失败|拒答、接管、暂停、删除、复原和少数意见均留收据|零风险或性能保证|
 
 ## 设计依据与资料清单
 本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告、智能体任务书、公开场地包、事实导航包及仓库登记资料 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:PROCESSED-FACT-PACK] [source:SOURCE-REGISTRY]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。
 
 方法为“证据—假设—设计—指标—复核”五联单：每项策略绑定来源、空间图层、可复核指标、责任角色与退出条件。所有城市AI遵循最小数据、可选择、可申诉、人工终审、日志留痕和独立评测。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:existing_conditions_diagnosis]
+
+### 证据成熟度与替换触发器
+|等级|本包已有内容|允许支持的结论|升级/替换触发器|
+|---|---|---|---|
+|E3 任务依据|官方公告、任务书、官方标准/政策原文|任务范围、程序要求、原则性约束|发布修订文件时版本化替换|
+|E2 仓库资料|公开场地包、事实导航包、来源登记|研究语境、概念结构、待核问题|获得主管部门资料后逐项校核|
+|E1 可复算示意|provisional geometry、脚本面积/长度、原创图表|概念比较、内部一致性与方案讨论|官方红线/权属/现状测绘到位后全量复算|
+|E0 待调查|法定控制、权属、地下管线、预算、采购价、真实运营主体和绩效基线|只能形成调查清单，不能形成承诺|持证团队现场核验、依法确认并记录审批状态|
+
+机器合同索引：`delivery-matrix.json` 回答“谁在何门槛交什么”；`pilot-protocols.json` 回答“如何对照、何时停止”；`civic-agent-receipt.schema.json` 回答“一次运行如何追责”；`asset-rights.json` 回答“每项视觉如何清权”。四者与 `metrics.json`、`assumptions.json`、`self_check.json` 共同构成可自动检查、可人工复核的最小交付闭环。
 
 ![资料证据链与场地概念总览](assets/figures/site-overview.png)
 
@@ -350,6 +378,10 @@ A“模型上街前”评测场：偏见、幻觉、鲁棒、隐私和无障碍�
 - 风险：八维风险评分、缓解措施与人工复核责任见 `risk.json`；其中政策不确定性与实施复杂度为 5/5，任何扩展均须通过阶段闸门。
 
 本方案响应三大定位、五大功能、三区两翼和 agent.1—agent.6。它的核心不是预测一座“全自动城市”，而是建立一套让城市AI在真实公共空间中**先证明价值、再有限上线、持续接受公众监督、随时可以退出**的制度与空间基础设施。人类与专业团队保留最终判断。
+
+## 机器证据登记
+
+以下标签把正文判断与可复算登记一一对齐。公告总范围与一期概念范围分别登记为 [metric:announced_overall_design_area_sqm] [metric:phase_1_area_sqm]；当前 provisional geometry 的站点差异、重点区合计、概念用地覆盖与面积登记为 [metric:provisional_site_area_difference_ratio] [metric:provisional_key_area_area_sqm] [metric:land_use_coverage_ratio] [metric:land_use_total_area_sqm]。空间基底登记建筑密度、绿地、公共空间和道路中心线 [metric:building_density] [metric:green_space_area_sqm] [metric:public_space_area_sqm] [metric:road_centerline_length_m]；运营设计登记六类任务人物、三处产业测试场与五本资源账 [metric:persona_count] [metric:industry_test_scenario_count] [metric:resource_ledger_count]。这些值的状态、单位、公式、来源文件、置信度与假设以 `metrics.json` 为准；ratio 合同限定为0—1，概念用地原始比值因几何浮点精度为1.00000064，登记值截断为1.0，不把它解释为法定用地平衡。用地与城市设计方法另由 [source:LAND-USE-CLASSIFICATION] [source:URBAN-DESIGN-MEASURES] 登记；二者仅约束分类与设计表达，不替代官方红线或审批。
 
 ## 参考资料
 - `brief/public-brief.md`（百年京张 AI 创新带公开任务书草案；public-draft，正式发布前仍需复核）。

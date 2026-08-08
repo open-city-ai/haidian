@@ -7,15 +7,22 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A public-interest proving ground where urban AI must earn trust before it scales."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "1.3"
-iteration: 4
+version: "1.4"
+iteration: 5
 ---
 
 # Jing-Zhang Civic AI Loop: An Open Belt for Verifiable Urban Agents
 
-> **v1.3 review status.** Package-level checks have passed, while all spatial figures still use repository provisional geometry with low aggregate confidence. They support conceptual review only—not official redlines, statutory controls, property, engineering, or precise-area claims. Official geometry must trigger coordinated recalculation.
+> **v1.4 executable-verification status.** Package-level checks have passed, while all spatial figures still use repository provisional geometry with low aggregate confidence. They support conceptual review only—not official redlines, statutory controls, property, engineering, or precise-area claims. Official geometry must trigger coordinated recalculation.
 
 **Motto: Every urban intelligence must withstand public scrutiny.**
+
+## Executive brief: a public acceptance line, not another “AI park”
+The scarce asset is not another closed compute room but a walkable public infrastructure where residents, researchers, firms, operators and regulators can decide whether an urban intelligence deserves to enter the city. Zhongzhiyuan tests the stack and safety; the AI Origin Community turns research prototypes into participatory neighbourhood services; Dazhongsi tests public experience and consumer rights. The two wings provide professional support and bounded real-world tasks.
+
+The six Taskbook agents become one delivery contract: 12 scenario cards, three falsifiable pilot protocols, AP0—AP7 action packages, G0—G4 gates, five resource ledgers and a civic-agent receipt. The first 90 days prepare evidence, repair one accessible public chain, establish staffed/paper/phone fallback and run synthetic-data rehearsals. Only P1 may begin after G0—G2 evidence is complete; any unresolved severe safety, rights or data issue stops the trial. Boundaries, title, statutory controls, cost, procurement, real operators and performance baselines remain **unknown/pending** until lawfully verified.
+
+Four machine-readable artefacts make the proposal handover-ready: `visual/assets/delivery-matrix.json`, `pilot-protocols.json`, `civic-agent-receipt.schema.json` and `asset-rights.json`. The included receipt is a synthetic example, not evidence of a live project.
 
 ## Evidence and method
 This open co-creation proposal does not replace statutory planning, government approval, engineering design, or accountable human judgment. It relies on the official announcement, Agent Taskbook, public site package, processed fact pack, and source registry [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:PROCESSED-FACT-PACK] [source:SOURCE-REGISTRY]. Its method binds evidence, assumptions, design action, metric, responsible role, and exit trigger. Urban agents follow data minimisation, meaningful choice, appeal, human review, version logs, and independent evaluation.
@@ -157,6 +164,9 @@ The current empty constraints layer means title, heritage, utilities, fire, floo
 Major risks are algorithmic discrimination and digital exclusion, surveillance expansion, robot harm, heritage/engineering conflict, operational abandonment, policy uncertainty and copyright. Controls include staffed/offline alternatives, subgroup tests, no default facial recognition, impact assessment and sunset clauses, physical bounds and takeover, specialist review, named SLA/exit owner, and per-asset provenance. Text, diagrams and layout are generated for this submission; third-party facts are cited, while no external photo, logo, remote script, map tile, font file, personal or confidential dataset is embedded. Full provenance is in `report/copyright_statement.md`; structured risk ownership is in `risk.json`.
 
 The proposal answers the three positionings, five functions, three areas/two wings, and agent.1–agent.6. Its contribution is not an automated-city forecast, but public infrastructure through which urban AI must prove value, remain contestable, and be safely withdrawn. People and accountable professional teams retain final judgment.
+
+## Machine evidence register
+The announced corridor and phase-one concept are registered as [metric:announced_overall_design_area_sqm] [metric:phase_1_area_sqm]. Provisional geometry records the site difference, combined key areas, land-use coverage and land-use total [metric:provisional_site_area_difference_ratio] [metric:provisional_key_area_area_sqm] [metric:land_use_coverage_ratio] [metric:land_use_total_area_sqm]. The spatial baseline records building density, green/public-space area and road centreline length [metric:building_density] [metric:green_space_area_sqm] [metric:public_space_area_sqm] [metric:road_centerline_length_m]; the operating design records six task personas, three industry test fields and five resource ledgers [metric:persona_count] [metric:industry_test_scenario_count] [metric:resource_ledger_count]. Status, units, formulas, source files, confidence and assumptions are controlled by `metrics.json`. Ratio contracts are limited to 0–1: the raw land-use ratio is 1.00000064 because of geometry floating-point precision and is clipped to 1.0, not interpreted as a statutory land balance. Classification and urban-design method are registered under [source:LAND-USE-CLASSIFICATION] [source:URBAN-DESIGN-MEASURES]; neither replaces an official redline or approval.
 
 ## References
 Official announcement; Agent Taskbook; repository source registry; public site package and processed fact pack; local snapshots of the Urban Design Management Measures, Regulatory Detailed Planning Measures and Land-use Classification Guide. See `sources.json`, `standard_matrix.json` and inline source identifiers for traceability.
