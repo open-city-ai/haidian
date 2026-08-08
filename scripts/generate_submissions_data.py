@@ -20,6 +20,8 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import quote
 
+from submission_policy import partition_known_blockers
+
 
 PUBLICATION_FILE = "gallery-publication.json"
 
@@ -176,6 +178,11 @@ def known_blockers(manifest: Any) -> list[str]:
     return []
 
 
+def participant_controlled_known_blockers(manifest: Any) -> list[str]:
+    blocking, _organizer_gaps = partition_known_blockers(known_blockers(manifest))
+    return blocking
+
+
 def feature_collection(path: Path) -> list[dict[str, Any]]:
     data = read_json(path)
     if isinstance(data, dict) and isinstance(data.get("features"), list):
@@ -231,7 +238,7 @@ def classify_submission(submission_dir: Path, manifest: Any) -> str:
         # Stored results created under the former organizer-data gate are not
         # authoritative. Only participant-controlled validation failures block.
         return "formal_review_ready" if not has_blocking_self_check(submission_dir) else "needs_revision"
-    if known_blockers(manifest) or has_blocking_self_check(submission_dir):
+    if participant_controlled_known_blockers(manifest) or has_blocking_self_check(submission_dir):
         return "needs_revision"
     return "formal_review_ready"
 

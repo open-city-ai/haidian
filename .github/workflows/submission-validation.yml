@@ -2,7 +2,7 @@ name: submission-validation
 
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened, ready_for_review]
+    types: [opened, synchronize, reopened, ready_for_review, converted_to_draft]
 
 permissions:
   contents: read
@@ -13,12 +13,13 @@ jobs:
   submission-validation:
     name: submission-validation
     runs-on: ubuntu-latest
-    if: github.event.pull_request.draft == false
     steps:
       - name: Checkout trusted base branch
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          # pull_request_target's github.sha is the current default-branch tip.
+          # A PR's base.sha can stay pinned to an old commit after main advances.
+          ref: ${{ github.sha }}
 
       - name: Run deterministic submission validation
         env:

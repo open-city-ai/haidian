@@ -49,6 +49,7 @@ summary: "离线阅读版"
             self.assertIn('<main>', html)
             self.assertIn('../assets/figures/site-overview.png', html)
             self.assertIn('class="evidence evidence-source"', html)
+            self.assertEqual(1, html.count("<h1>"))
 
     def test_render_html_rejects_remote_images(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

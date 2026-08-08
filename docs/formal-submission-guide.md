@@ -78,7 +78,7 @@
 2. 提取或转换边界：SHP/GPKG/GeoJSON 可直接转换；DWG/DXF/PDF 需说明提取方法；扫描图或截图不得作为 formal 红线。
 3. 统一输出为 EPSG:4326 GeoJSON；面积复算使用 `brief/site-package/design_brief.json` 中指定的 EPSG:4548。
 4. 将转换误差、坐标系不确定、图纸版本差异写入 `assumptions.json`。
-5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行 `scripts/self_check_submission.py`。provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
+5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行 `scripts/self_check_submission.py`。已经 finalize 的包如继续修改，先运行 `scripts/refresh_manifest_hashes.py` 刷新全部已声明文件哈希，再重新自检。provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
 
 ### 专业标准本地参考库
 
@@ -349,7 +349,7 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 
 ```bash
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
-python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
+python3 scripts/refresh_manifest_hashes.py submissions/<github-login>/<proposal-slug>
 ```
 
 规则：
@@ -457,13 +457,13 @@ HTML 展示值与 `metrics.json` 不一致会失败。
 
 ## 10. 提交前自检
 
-提交前运行：
+首次把 scaffold 转为正式包时先运行 `finalize_submission.py`；已是 `ready_for_review` 的包后续修订时运行以下命令刷新哈希并自检：
 
 ```bash
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
-python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/refresh_manifest_hashes.py submissions/<github-login>/<proposal-slug>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --record-pass
 ```
 
 这个命令会依次运行：
@@ -473,7 +473,7 @@ python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-sl
 - visual packaging check
 - professional evidence review
 
-全部 PASS 只说明 package 具备进入机器检查和内容评审的基础条件。provisional boundary 会保留精度警示和复算要求，但不会因组织方数据缺口阻断评分。PASS 不代表方案优秀或获得官方批准。
+`--record-pass` 仅在四项检查全部 PASS 后写回 `manifest.validation_claim.self_checked=true`，失败时不修改 manifest。全部 PASS 只说明 package 具备进入机器检查和内容评审的基础条件。provisional boundary 会保留精度警示和复算要求，但不会因组织方数据缺口阻断评分。PASS 不代表方案优秀或获得官方批准。
 
 维护者审核 PR 时会运行 `scripts/maintainer_review.py --comment`，并在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `maintainer-comment.md`、`review-summary.json`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`。维护者只把命令输出复制到 PR comment；maintainer review 结果不提交到仓库，也不进入公开展示页。方案合并到 `main` 后自动进入全部方案页；维护者通过 `gallery-publication.json` 明确暂停展示或决定首页精选，再运行 `scripts/generate_submissions_data.py`。参赛者只提交自己的投稿目录，不修改发布清单或 `submissions-data.js`。
 

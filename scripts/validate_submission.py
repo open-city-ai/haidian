@@ -12,10 +12,14 @@ import hashlib
 import json
 import os
 import re
+import struct
 import sys
+import zlib
 from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
+
+from submission_policy import partition_known_blockers
 
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
@@ -204,6 +208,49 @@ REQUIRED_PROPOSAL_IMAGE_PATHS = {
     "assets/figures/mobility-bluegreen.png",
     "assets/figures/metrics-evidence.png",
 }
+
+
+def png_integrity_error(path: Path) -> str | None:
+    """Return a deterministic PNG structure/CRC/decompression error, if any."""
+    try:
+        payload = path.read_bytes()
+    except OSError as exc:
+        return f"cannot read PNG: {exc}"
+    if not payload.startswith(b"\x89PNG\r\n\x1a\n"):
+        return "invalid PNG signature"
+    offset = 8
+    chunk_types: list[bytes] = []
+    idat = bytearray()
+    while offset < len(payload):
+        if len(payload) - offset < 12:
+            return "truncated PNG chunk header or checksum"
+        length = struct.unpack(">I", payload[offset : offset + 4])[0]
+        chunk_type = payload[offset + 4 : offset + 8]
+        end = offset + 12 + length
+        if end > len(payload):
+            return f"truncated PNG {chunk_type.decode('ascii', 'replace')} chunk"
+        chunk_data = payload[offset + 8 : offset + 8 + length]
+        expected_crc = struct.unpack(">I", payload[offset + 8 + length : end])[0]
+        actual_crc = zlib.crc32(chunk_data, zlib.crc32(chunk_type)) & 0xFFFFFFFF
+        if actual_crc != expected_crc:
+            return f"invalid PNG {chunk_type.decode('ascii', 'replace')} checksum"
+        chunk_types.append(chunk_type)
+        if chunk_type == b"IDAT":
+            idat.extend(chunk_data)
+        offset = end
+        if chunk_type == b"IEND":
+            break
+    if not chunk_types or chunk_types[0] != b"IHDR":
+        return "PNG must start with IHDR"
+    if b"IDAT" not in chunk_types:
+        return "PNG has no IDAT image data"
+    if not chunk_types or chunk_types[-1] != b"IEND":
+        return "PNG has no complete IEND chunk"
+    try:
+        zlib.decompress(bytes(idat))
+    except zlib.error as exc:
+        return f"invalid PNG IDAT stream: {exc}"
+    return None
 FALLBACK_REQUIRED_STANDARD_IDS = {
     "PROJECT-OFFICIAL-ANNOUNCEMENT",
     "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
@@ -266,6 +313,34 @@ SOFT_RISK_PATTERNS = [
     (re.compile(r"(内部资料|内部数据|涉密|保密图件|非公开空间数据|未公开图件|绝密|机密)"), "可能涉及非公开或敏感资料"),
     (re.compile(r"(无需审批|保证落地|一定实施)"), "可能存在不可执行承诺"),
 ]
+
+SOFT_RISK_NEGATION_RE = re.compile(
+    r"(?:未|不|无|禁止|严禁|不得|不可|避免|拒绝|不应|没有)"
+    r"(?:再|曾|会|应)?"
+    r"(?:使用|采用|提交|上传|包含|涉及|接触|获取|依赖|提供)?"
+    r"[^。！？；;\n]{0,48}$"
+)
+SOFT_RISK_NEGATED_LIST_RE = re.compile(
+    r"(?:明确)?不包含以下内容|"
+    r"(?:禁止|严禁|不得)(?:使用|提交|上传|包含)(?:以下)?(?:内容|资料|数据)?"
+)
+
+
+def has_unnegated_soft_risk(pattern: re.Pattern[str], text: str) -> bool:
+    """Return true only when a soft-risk term is asserted, not explicitly disclaimed."""
+    for match in pattern.finditer(text):
+        line_start = text.rfind("\n", 0, match.start()) + 1
+        line_prefix = text[line_start:match.start()]
+        clause_prefix = re.split(r"(?:但|然而|却|实际(?:上)?|仍(?:然)?)", line_prefix)[-1]
+        if SOFT_RISK_NEGATION_RE.search(clause_prefix):
+            continue
+
+        paragraph_start = text.rfind("\n\n", 0, match.start())
+        paragraph_prefix = text[max(0, paragraph_start):match.start()]
+        if SOFT_RISK_NEGATED_LIST_RE.search(paragraph_prefix):
+            continue
+        return True
+    return False
 
 FORBIDDEN_HTML_PATTERNS = [
     (re.compile(r"<script\b", re.I), "HTML report must not contain scripts"),
@@ -971,7 +1046,14 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                     report.add_error(message)
                 continue
             declared_digest = item.get("sha256")
-            if safe_path != "manifest.json" and not declared_digest:
+            if safe_path == "manifest.json":
+                if declared_digest:
+                    report.add_warning(
+                        f"{proposal_dir}/manifest.json: omit sha256 for `manifest.json`; "
+                        "a manifest cannot contain a stable hash of itself"
+                    )
+                continue
+            if not declared_digest:
                 message = f"{proposal_dir}/manifest.json: listed file `{safe_path}` needs sha256"
                 if translation_entry:
                     report.add_warning(message + "; bilingual metadata does not block review")
@@ -979,7 +1061,7 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                     report.add_error(message)
                 else:
                     report.add_warning(message + " (legacy package compatibility)")
-            elif declared_digest:
+            else:
                 actual_digest = hashlib.sha256(listed_file.read_bytes()).hexdigest()
                 if declared_digest != actual_digest:
                     message = f"{proposal_dir}/manifest.json: sha256 mismatch for `{safe_path}`"
@@ -995,9 +1077,16 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
     validation_claim = data.get("validation_claim")
     if isinstance(validation_claim, dict):
         known_blockers = validation_claim.get("known_blockers")
-        if isinstance(known_blockers, list) and known_blockers:
+        blocking, organizer_gaps = partition_known_blockers(known_blockers)
+        if blocking:
             report.add_warning(
-                f"{proposal_dir}/manifest.json: known_blockers present; submission may pass intake but cannot enter formal professional scoring until resolved"
+                f"{proposal_dir}/manifest.json: participant-controlled known_blockers present; "
+                "submission may pass intake but cannot enter formal professional scoring until resolved"
+            )
+        if organizer_gaps:
+            report.add_warning(
+                f"{proposal_dir}/manifest.json: organizer official-geometry data gap disclosed; "
+                "keep provisional warnings and recalculate when supplied, but do not block or lower content scoring"
             )
     return data, stage
 
@@ -1244,6 +1333,20 @@ def validate_proposal_embedded_images(
 ) -> None:
     images = extract_markdown_images(body)
     normalized_images: set[str] = set()
+    declared_paths: set[str] | None = None
+    manifest_path = repo_root / proposal_dir / "manifest.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, UnicodeDecodeError, json.JSONDecodeError):
+        # Manifest validation reports the primary error. Avoid cascading
+        # declaration errors when there is no usable files inventory.
+        manifest = None
+    if isinstance(manifest, dict) and isinstance(manifest.get("files"), list):
+        declared_paths = {
+            str(item["path"])
+            for item in manifest["files"]
+            if isinstance(item, dict) and isinstance(item.get("path"), str)
+        }
     for alt_text, raw_path in images:
         normalized = normalize_proposal_image_path(raw_path)
         if normalized is None:
@@ -1267,6 +1370,14 @@ def validate_proposal_embedded_images(
             report.add_error(
                 f"{proposal_dir}/proposal.md: embedded image `{normalized}` needs descriptive alt text"
             )
+        if declared_paths is not None and normalized not in declared_paths:
+            report.add_error(
+                f"{proposal_dir}/proposal.md: embedded image `{normalized}` must be listed in manifest.json files"
+            )
+            # Trusted PR validation intentionally hydrates only changed and
+            # manifest-declared files. Do not misreport an undeclared image as
+            # missing merely because it was not downloaded for a follow-up PR.
+            continue
         if not (repo_root / proposal_dir / normalized).exists():
             report.add_error(
                 f"{proposal_dir}/proposal.md: embedded image `{normalized}` is missing"
@@ -1534,6 +1645,14 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
         return
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
 
+    for rel_path in sorted(REQUIRED_PROPOSAL_IMAGE_PATHS):
+        image_path = base / rel_path
+        if not image_path.is_file():
+            continue
+        error = png_integrity_error(image_path)
+        if error:
+            report.add_error(f"{proposal_dir}/{rel_path}: unreadable required PNG: {error}")
+
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
         if path.exists():
@@ -1719,7 +1838,7 @@ def validate_proposal_file(
             report.add_error(f"{proposal_path}: {reason}")
 
     for pattern, reason in SOFT_RISK_PATTERNS:
-        if pattern.search(text):
+        if has_unnegated_soft_risk(pattern, text):
             report.add_warning(f"{proposal_path}: {reason}; maintainer review required")
 
 
@@ -1754,7 +1873,7 @@ def validate_changelog_file(
             report.add_error(f"{changelog_path}: {reason}")
 
     for pattern, reason in SOFT_RISK_PATTERNS:
-        if pattern.search(text):
+        if has_unnegated_soft_risk(pattern, text):
             report.add_warning(f"{changelog_path}: {reason}; maintainer review required")
 
 
@@ -1822,7 +1941,7 @@ def validate_risk_file(
             if pattern.search(combined_text):
                 report.add_error(f"{label}: {reason}")
         for pattern, reason in SOFT_RISK_PATTERNS:
-            if pattern.search(combined_text):
+            if has_unnegated_soft_risk(pattern, combined_text):
                 report.add_warning(f"{label}: {reason}; maintainer review required")
 
 
@@ -1917,7 +2036,7 @@ def validate_spatial_file(
             if pattern.search(combined_text):
                 report.add_error(f"{label}: {reason}")
         for pattern, reason in SOFT_RISK_PATTERNS:
-            if pattern.search(combined_text):
+            if has_unnegated_soft_risk(pattern, combined_text):
                 report.add_warning(f"{label}: {reason}; maintainer review required")
 
 

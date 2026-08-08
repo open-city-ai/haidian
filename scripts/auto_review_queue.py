@@ -23,6 +23,27 @@ from typing import Any
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
 PASS = "SUCCESS"
+# Branch protection may allow neutral or skipped checks, but the review worker
+# requires evidence that deterministic submission validation actually ran.
+TERMINAL_NON_SUCCESS_CONCLUSIONS = {
+    "ACTION_REQUIRED",
+    "CANCELLED",
+    "FAILURE",
+    "NEUTRAL",
+    "SKIPPED",
+    "STALE",
+    "STARTUP_FAILURE",
+    "TIMED_OUT",
+}
+REVIEW_DRAFT_LABEL = "review/draft"
+ACTIVE_REVIEW_LABELS = {
+    "review/queued",
+    "review/ci-failed",
+    "review/changes-requested",
+    "review/low-quality",
+    "review/formal-ready",
+    "review/intake-accepted",
+}
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
 
@@ -64,10 +85,10 @@ def check_conclusions(meta: dict[str, Any]) -> list[str]:
 
 def ci_state(meta: dict[str, Any]) -> str:
     conclusions = check_conclusions(meta)
-    if any(item == "FAILURE" for item in conclusions):
-        return "failure"
     if any(item == PASS for item in conclusions):
         return "success"
+    if any(item in TERMINAL_NON_SUCCESS_CONCLUSIONS for item in conclusions):
+        return "failure"
     return "pending"
 
 
@@ -132,6 +153,120 @@ def label_args(remove: list[str], add: list[str]) -> list[str]:
     return args
 
 
+def label_names(meta: dict[str, Any]) -> set[str]:
+    return {
+        str(item.get("name"))
+        for item in meta.get("labels", [])
+        if isinstance(item, dict) and item.get("name")
+    }
+
+
+def edit_review_labels_verified(
+    repo: str,
+    number: int,
+    remove: list[str],
+    add: list[str],
+    cwd: Path,
+    *,
+    attempts: int = 2,
+) -> None:
+    """Apply label changes and verify them, retrying one GitHub race."""
+    last_error: WorkerError | None = None
+    for _ in range(attempts):
+        current = label_names(pr_meta(repo, number, cwd))
+        pending_remove = sorted(current & set(remove))
+        pending_add = sorted(set(add) - current)
+        if not pending_remove and not pending_add:
+            return
+        try:
+            run(
+                [
+                    "gh",
+                    "pr",
+                    "edit",
+                    str(number),
+                    "--repo",
+                    repo,
+                    *label_args(pending_remove, pending_add),
+                ],
+                cwd=cwd,
+            )
+        except WorkerError as exc:
+            last_error = exc
+        current = label_names(pr_meta(repo, number, cwd))
+        if not (current & set(remove)) and set(add) <= current:
+            return
+    if last_error is not None:
+        raise last_error
+    raise WorkerError(f"PR #{number} review labels did not persist after {attempts} attempts")
+
+
+def review_label_changes(meta: dict[str, Any]) -> tuple[list[str], list[str]]:
+    """Return the minimal label changes needed to match live PR state.
+
+    The trusted pull-request workflow handles each new event, but older PRs can
+    retain a stale label when the workflow was skipped or the labeling rules
+    changed. The queue worker sees every open PR, so it reconciles only the
+    state that can be derived without reading or executing contributor code:
+    draft state and the required deterministic CI conclusion. Human review
+    outcomes are preserved on ready PRs.
+    """
+    existing = label_names(meta)
+    remove: set[str] = set()
+    add: set[str] = set()
+
+    if meta.get("isDraft"):
+        remove.update(existing & ACTIVE_REVIEW_LABELS)
+        if REVIEW_DRAFT_LABEL not in existing:
+            add.add(REVIEW_DRAFT_LABEL)
+    else:
+        if REVIEW_DRAFT_LABEL in existing:
+            remove.add(REVIEW_DRAFT_LABEL)
+        if ci_state(meta) == "failure":
+            if "review/queued" in existing:
+                remove.add("review/queued")
+            if "review/ci-failed" not in existing:
+                add.add("review/ci-failed")
+
+    return sorted(remove), sorted(add)
+
+
+def reconcile_review_labels(
+    repo: str,
+    pull_requests: list[dict[str, Any]],
+    cwd: Path,
+) -> list[dict[str, Any]]:
+    """Apply minimal trusted label repairs across all open pull requests."""
+    results: list[dict[str, Any]] = []
+    for meta in pull_requests:
+        remove, add = review_label_changes(meta)
+        if not remove and not add:
+            continue
+        number = int(meta["number"])
+        edit_review_labels_verified(repo, number, remove, add, cwd)
+        results.append({"number": number, "removed": remove, "added": add})
+    return results
+
+
+def reconcile_merged_review_labels(
+    repo: str,
+    pull_requests: list[dict[str, Any]],
+    cwd: Path,
+) -> list[dict[str, Any]]:
+    """Repair accepted merged PRs left queued by a post-merge label race."""
+    results: list[dict[str, Any]] = []
+    for meta in pull_requests:
+        existing = label_names(meta)
+        remove = ["review/queued"] if "review/queued" in existing else []
+        add = ["review/intake-accepted"] if "review/intake-accepted" not in existing else []
+        if not remove and not add:
+            continue
+        number = int(meta["number"])
+        edit_review_labels_verified(repo, number, remove, add, cwd)
+        results.append({"number": number, "removed": remove, "added": add})
+    return results
+
+
 def apply_review(
     repo: str,
     number: int,
@@ -156,12 +291,12 @@ def apply_review(
         if admin_merge:
             merge.append("--admin")
         run(merge, cwd=cwd)
-        run(
-            ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(
-                ["review/queued"],
-                ["review/intake-accepted"],
-            )],
-            cwd=cwd,
+        edit_review_labels_verified(
+            repo,
+            number,
+            ["review/queued"],
+            ["review/intake-accepted"],
+            cwd,
         )
         return
 
@@ -171,10 +306,7 @@ def apply_review(
     add = ["review/changes-requested"]
     if outcome.action == "low-quality":
         add.append("review/low-quality")
-    run(
-        ["gh", "pr", "edit", str(number), "--repo", repo, *label_args(["review/queued"], add)],
-        cwd=cwd,
-    )
+    edit_review_labels_verified(repo, number, ["review/queued"], add, cwd)
 
 
 def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) -> dict[str, Any]:
@@ -300,6 +432,41 @@ def main() -> int:
         fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
     except BlockingIOError as exc:
         raise WorkerError("another auto-review worker is already running") from exc
+    if args.apply:
+        merged_queued = gh_json(
+            args.repo,
+            [
+                "pr",
+                "list",
+                "--state",
+                "merged",
+                "--label",
+                "review/queued",
+                "--limit",
+                "1000",
+                "--json",
+                "number,labels",
+            ],
+            cwd=repo_root,
+        )
+        for repair in reconcile_merged_review_labels(args.repo, merged_queued, repo_root):
+            print(json.dumps({"merged_label_reconciliation": repair}, ensure_ascii=False), flush=True)
+        open_pull_requests = gh_json(
+            args.repo,
+            [
+                "pr",
+                "list",
+                "--state",
+                "open",
+                "--limit",
+                "1000",
+                "--json",
+                "number,isDraft,statusCheckRollup,labels",
+            ],
+            cwd=repo_root,
+        )
+        for repair in reconcile_review_labels(args.repo, open_pull_requests, repo_root):
+            print(json.dumps({"label_reconciliation": repair}, ensure_ascii=False), flush=True)
     candidates = gh_json(
         args.repo,
         [

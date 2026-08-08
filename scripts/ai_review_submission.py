@@ -181,6 +181,7 @@ def render_html_previews(submission_dir: Path, temp_dir: Path, warnings: list[st
             warnings.append(f"Missing HTML deliverable: {rel}")
             continue
         preview = temp_dir / f"html-{index + 1}.png"
+        browser_profile = temp_dir / f"chromium-profile-{index + 1}"
         try:
             completed = subprocess.run(
                 [
@@ -188,7 +189,9 @@ def render_html_previews(submission_dir: Path, temp_dir: Path, warnings: list[st
                     "--headless",
                     "--disable-gpu",
                     "--no-sandbox",
+                    "--disable-dev-shm-usage",
                     "--hide-scrollbars",
+                    f"--user-data-dir={browser_profile}",
                     "--window-size=1440,1600",
                     f"--screenshot={preview}",
                     source.resolve().as_uri(),

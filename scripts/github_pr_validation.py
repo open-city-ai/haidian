@@ -20,11 +20,33 @@ import urllib.request
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from validate_submission import ValidationReport, format_report, validate_submission
+from validate_submission import (
+    MAX_DRAWING_BYTES,
+    MAX_GEOJSON_BYTES,
+    ValidationReport,
+    format_report,
+    validate_submission,
+)
 
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+MAX_TRUSTED_DOWNLOAD_BYTES = max(MAX_DRAWING_BYTES, MAX_GEOJSON_BYTES)
+REVIEW_WORKFLOW_LABELS = [
+    "review/queued",
+    "review/ci-failed",
+    "review/changes-requested",
+    "review/low-quality",
+    "review/formal-ready",
+    "review/intake-accepted",
+]
+
+
+class DownloadLimitError(RuntimeError):
+    def __init__(self, path: str, max_bytes: int) -> None:
+        self.path = path
+        self.max_bytes = max_bytes
+        super().__init__(f"{path}: file exceeds trusted download cap of {max_bytes} bytes")
 
 
 class GitHubClient:
@@ -67,7 +89,7 @@ class GitHubClient:
         path: str,
         ref: str,
         destination: Path,
-        max_bytes: int = 6 * 1024 * 1024,
+        max_bytes: int = MAX_TRUSTED_DOWNLOAD_BYTES,
     ) -> None:
         # Fetch raw bytes through the Contents API on api.github.com. Unlike the
         # github.com raw_url, this honors the Bearer token on private repos (the
@@ -88,7 +110,7 @@ class GitHubClient:
         with urllib.request.urlopen(request, timeout=60) as response:
             content = response.read(max_bytes + 1)
         if len(content) > max_bytes:
-            raise RuntimeError(f"{destination}: file exceeds download cap")
+            raise DownloadLimitError(path, max_bytes)
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(content)
 
@@ -178,6 +200,42 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     return bool(changed_files) and len(roots) == 1
 
 
+def has_submission_changes(changed_files: list[str]) -> bool:
+    """Return true when a PR touches or clearly attempts a submission package.
+
+    A misplaced package can contain no ``submissions/`` path at all. Requiring
+    both canonical anchors in the same directory identifies that submission
+    intent without classifying ordinary project-file changes as submissions.
+    """
+    if any(filename.startswith("submissions/") for filename in changed_files):
+        return True
+    anchors_by_parent: dict[PurePosixPath, set[str]] = {}
+    for filename in changed_files:
+        path = PurePosixPath(filename)
+        if path.name not in {"proposal.md", "manifest.json"}:
+            continue
+        anchors_by_parent.setdefault(path.parent, set()).add(path.name)
+    return any(
+        {"proposal.md", "manifest.json"} <= anchors
+        for anchors in anchors_by_parent.values()
+    )
+
+
+def sync_draft_review_labels(client: GitHubClient, pr_number: int, is_draft: bool) -> bool:
+    """Keep review workflow labels aligned with the live GitHub draft state.
+
+    Draft PRs are paused before validation and must not retain a review outcome
+    label. Ready PRs shed the draft label before normal validation selects the
+    next state.
+    """
+    if is_draft:
+        client.remove_labels(pr_number, REVIEW_WORKFLOW_LABELS)
+        client.add_labels(pr_number, ["review/draft"])
+        return False
+    client.remove_labels(pr_number, ["review/draft"])
+    return True
+
+
 def safe_manifest_paths(manifest: object) -> set[str]:
     """Return inert, proposal-relative file paths declared by a manifest."""
     if not isinstance(manifest, dict) or not isinstance(manifest.get("files"), list):
@@ -197,38 +255,61 @@ def safe_manifest_paths(manifest: object) -> set[str]:
     return paths
 
 
+def download_for_validation(
+    client: GitHubClient,
+    head_repo: str,
+    head_sha: str,
+    worktree: Path,
+    path: str,
+) -> str | None:
+    """Download inert content, preserving an actionable error for oversized files."""
+    destination = worktree / path
+    try:
+        client.download_content(head_repo, path, head_sha, destination)
+    except DownloadLimitError as exc:
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(b"")
+        return str(exc)
+    return None
+
+
 def hydrate_proposal_package(
     client: GitHubClient,
     head_repo: str,
     head_sha: str,
     worktree: Path,
     proposal_path: str,
-) -> None:
+) -> list[str]:
     """Download the inert files needed to validate an existing proposal package."""
+    download_errors: list[str] = []
     proposal_dir = PurePosixPath(proposal_path).parent.as_posix()
     manifest_path = f"{proposal_dir}/manifest.json"
     manifest_destination = worktree / manifest_path
     if not manifest_destination.exists():
         if not client.fetch_content(head_repo, manifest_path, head_sha, manifest_destination):
-            return
+            return download_errors
     try:
         manifest = json.loads(manifest_destination.read_text(encoding="utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError):
-        return
+        return download_errors
     for relative in safe_manifest_paths(manifest):
         destination = worktree / proposal_dir / relative
         if destination.exists():
             continue
         try:
-            client.download_content(
+            error = download_for_validation(
+                client,
                 head_repo,
-                f"{proposal_dir}/{relative}",
                 head_sha,
-                destination,
+                worktree,
+                f"{proposal_dir}/{relative}",
             )
+            if error:
+                download_errors.append(error)
         except urllib.error.HTTPError as exc:
             if exc.code != 404:
                 raise
+    return download_errors
 
 
 def write_step_summary(markdown: str) -> None:
@@ -257,6 +338,10 @@ def main() -> int:
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
 
+    if not sync_draft_review_labels(client, pr_number, bool(pull_request.get("draft"))):
+        print(f"PR #{pr_number} is draft; review automation paused")
+        return 0
+
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
     changed_files = [item["filename"] for item in files]
     bypass = [
@@ -269,22 +354,27 @@ def main() -> int:
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
+        download_errors: list[str] = []
         for item in files:
             filename = item["filename"]
             if item.get("status") == "removed":
                 continue
-            client.download_content(head_repo, filename, head_sha, worktree / filename)
+            error = download_for_validation(client, head_repo, head_sha, worktree, filename)
+            if error:
+                download_errors.append(error)
 
         for proposal_path in proposal_paths_for(validation_files):
             destination = worktree / proposal_path
             if not destination.exists():
                 client.fetch_content(head_repo, proposal_path, head_sha, destination)
-            hydrate_proposal_package(
-                client,
-                head_repo,
-                head_sha,
-                worktree,
-                proposal_path,
+            download_errors.extend(
+                hydrate_proposal_package(
+                    client,
+                    head_repo,
+                    head_sha,
+                    worktree,
+                    proposal_path,
+                )
             )
 
         if not validation_files and maintainer_bypass:
@@ -297,6 +387,8 @@ def main() -> int:
             )
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
+        for error in download_errors:
+            validation.add_error(error)
         validation_markdown = format_report(validation)
 
         comment = (
@@ -309,13 +401,14 @@ def main() -> int:
         client.upsert_comment(pr_number, comment)
 
         queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+        submission_change = has_submission_changes(changed_files)
         if validation.ok and queue_candidate:
             client.remove_labels(
                 pr_number,
                 ["review/ci-failed", "review/changes-requested", "review/low-quality"],
             )
             client.add_labels(pr_number, ["review/queued"])
-        elif queue_candidate:
+        elif not validation.ok and submission_change:
             client.remove_labels(pr_number, ["review/queued"])
             client.add_labels(pr_number, ["review/ci-failed"])
 

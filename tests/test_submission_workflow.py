@@ -1,15 +1,20 @@
 import sys
 import tempfile
 import unittest
+import base64
 import json
 import subprocess
 import hashlib
 from pathlib import Path
+from unittest import mock
 
 import jsonschema
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+VALID_PNG = base64.b64decode(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+)
 sys.path.insert(0, str(REPO_ROOT / "scripts"))
 
 from validate_submission import (  # noqa: E402
@@ -18,12 +23,20 @@ from validate_submission import (  # noqa: E402
     REQUIRED_SECTIONS,
     REQUIRED_SECTIONS_EN,
     REQUIRED_DESIGN_DEPTH_IDS,
+    SOFT_RISK_PATTERNS,
+    has_unnegated_soft_risk,
     is_empty_pdf,
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    MAX_TRUSTED_DOWNLOAD_BYTES,
+    DownloadLimitError,
+    GitHubClient,
+    download_for_validation,
+    has_submission_changes,
     is_review_queue_candidate,
     safe_manifest_paths,
+    sync_draft_review_labels,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
@@ -48,7 +61,122 @@ class EmptyPdfDetectionTests(unittest.TestCase):
         self.assertFalse(is_empty_pdf(b"not a pdf"))
 
 
+class SoftRiskDetectionTests(unittest.TestCase):
+    def setUp(self) -> None:
+        self.sensitive_pattern = SOFT_RISK_PATTERNS[0][0]
+
+    def test_direct_use_of_internal_data_still_requires_review(self) -> None:
+        self.assertTrue(
+            has_unnegated_soft_risk(
+                self.sensitive_pattern,
+                "本方案使用企业内部数据校准重点区域画像。",
+            )
+        )
+
+    def test_explicit_non_use_statement_does_not_trigger_warning(self) -> None:
+        self.assertFalse(
+            has_unnegated_soft_risk(
+                self.sensitive_pattern,
+                "未使用任何非公开地图、秘密文件、内部数据或个人隐私。",
+            )
+        )
+
+    def test_negative_markdown_list_does_not_trigger_warning(self) -> None:
+        text = """**方案明确不包含以下内容**：
+- 控规调整或法定规划判断
+- 非公开政府数据、企业内部数据、个人隐私数据
+- 未经授权的第三方素材
+"""
+        self.assertFalse(has_unnegated_soft_risk(self.sensitive_pattern, text))
+
+    def test_contrast_after_disclaimer_still_detects_real_promise(self) -> None:
+        promise_pattern = SOFT_RISK_PATTERNS[1][0]
+        self.assertTrue(
+            has_unnegated_soft_risk(
+                promise_pattern,
+                "本方案不保证落地，但后续阶段一定实施。",
+            )
+        )
+
+
 class ManifestHydrationTests(unittest.TestCase):
+    class ByteResponse:
+        def __init__(self, size: int) -> None:
+            self.size = size
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, exc_type, exc, traceback) -> None:
+            return None
+
+        def read(self, limit: int) -> bytes:
+            return b"x" * min(self.size, limit)
+
+    def test_trusted_download_accepts_a_valid_drawing_larger_than_old_cap(self) -> None:
+        live_pr_502_size = 6_697_514
+        self.assertLess(live_pr_502_size, MAX_TRUSTED_DOWNLOAD_BYTES)
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with tempfile.TemporaryDirectory() as tmp:
+            destination = Path(tmp) / "a0-boards.en.pdf"
+            with mock.patch(
+                "urllib.request.urlopen",
+                return_value=self.ByteResponse(live_pr_502_size),
+            ):
+                client.download_content(
+                    "baobao-byte/haidian",
+                    "submissions/baobao-byte/design/drawings/a0-boards.en.pdf",
+                    "head-sha",
+                    destination,
+                )
+
+            self.assertEqual(live_pr_502_size, destination.stat().st_size)
+
+    def test_oversized_download_becomes_validation_error_and_placeholder(self) -> None:
+        class OversizedClient:
+            def download_content(self, repo, path, ref, destination) -> None:
+                raise DownloadLimitError(path, MAX_TRUSTED_DOWNLOAD_BYTES)
+
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            path = "submissions/alice/design/drawings/a0-boards.pdf"
+
+            error = download_for_validation(
+                OversizedClient(),
+                "alice/haidian",
+                "head-sha",
+                root,
+                path,
+            )
+
+            self.assertIn(path, error)
+            self.assertIn(str(MAX_TRUSTED_DOWNLOAD_BYTES), error)
+            self.assertEqual(b"", (root / path).read_bytes())
+
+    class LabelClient:
+        def __init__(self) -> None:
+            self.removed = []
+            self.added = []
+
+        def remove_labels(self, number, labels) -> None:
+            self.removed.append((number, labels))
+
+        def add_labels(self, number, labels) -> None:
+            self.added.append((number, labels))
+
+    def test_draft_pr_pauses_review_and_replaces_active_labels(self) -> None:
+        client = self.LabelClient()
+        self.assertFalse(sync_draft_review_labels(client, 42, True))
+        self.assertEqual([(42, ["review/draft"])], client.added)
+        self.assertIn("review/queued", client.removed[0][1])
+        self.assertIn("review/changes-requested", client.removed[0][1])
+
+    def test_ready_pr_removes_stale_draft_label_and_continues(self) -> None:
+        client = self.LabelClient()
+        self.assertTrue(sync_draft_review_labels(client, 42, False))
+        self.assertEqual([(42, ["review/draft"])], client.removed)
+        self.assertEqual([], client.added)
+
     def test_accepts_only_safe_relative_manifest_paths(self) -> None:
         manifest = {
             "files": [
@@ -112,6 +240,24 @@ class ManifestHydrationTests(unittest.TestCase):
                 "alice",
             )
         )
+
+    def test_invalid_participant_path_still_counts_as_submission_change(self) -> None:
+        files = ["submissions/team-name/design/proposal.md"]
+        self.assertTrue(has_submission_changes(files))
+        self.assertFalse(is_review_queue_candidate(files, "different-author"))
+        self.assertFalse(has_submission_changes(["README.md", "scripts/check.py"]))
+
+    def test_misplaced_submission_package_still_counts_for_failure_labeling(self) -> None:
+        files = ["proposal.md", "manifest.json", "assets/figures/site-overview.png"]
+        self.assertTrue(has_submission_changes(files))
+        self.assertFalse(is_review_queue_candidate(files, "alice"))
+
+    def test_single_project_anchor_does_not_imply_submission_intent(self) -> None:
+        self.assertFalse(has_submission_changes(["docs/proposal.md", "scripts/check.py"]))
+        self.assertFalse(has_submission_changes(["manifest.json", "README.md"]))
+
+    def test_misplaced_submission_anchors_must_share_a_directory(self) -> None:
+        self.assertFalse(has_submission_changes(["docs/proposal.md", "examples/manifest.json"]))
 
     def test_local_full_package_check_ignores_existing_maintainer_feedback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -696,10 +842,10 @@ class SubmissionWorkflowTests(unittest.TestCase):
 </main></body></html>""",
         )
         for figure in figure_assets:
-            self.write(
+            self.write_bytes(
                 root,
                 f"{base}/{figure}",
-                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>Figure</title><rect width="10" height="10"/></svg>',
+                VALID_PNG,
             )
         return [proposal] + [f"{base}/{item}" for item in required]
 
@@ -951,6 +1097,49 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("embedded image `assets/figures/site-overview.png` is missing", "\n".join(report.errors))
 
+    def test_required_png_must_have_valid_chunk_checksum(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            image = root / base / "assets/figures/mobility-bluegreen.png"
+            payload = bytearray(image.read_bytes())
+            payload[payload.index(b"IDAT") + 4] ^= 0x01
+            image.write_bytes(payload)
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "mobility-bluegreen.png: unreadable required PNG",
+                "\n".join(report.errors),
+            )
+
+    def test_proposal_embedded_image_must_be_declared_in_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            extra_rel = "assets/figures/extra-analysis.png"
+            self.write_bytes(root, f"{base}/{extra_rel}", b"analysis figure")
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8")
+                + f"\n![补充分析图展示空间策略与指标关系]({extra_rel})\n",
+                encoding="utf-8",
+            )
+            changed.extend([f"{base}/proposal.md", f"{base}/{extra_rel}"])
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn(
+                f"embedded image `{extra_rel}` must be listed in manifest.json files",
+                errors,
+            )
+            self.assertNotIn(f"embedded image `{extra_rel}` is missing", errors)
+
     def test_proposal_embedded_image_cannot_be_remote(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -1006,6 +1195,29 @@ class SubmissionWorkflowTests(unittest.TestCase):
             changed = self.write_minimal_ai_package(root, base)
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
+
+    def test_manifest_self_hash_is_advisory_and_not_compared(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest_item = next(
+                item for item in manifest["files"] if item["path"] == "manifest.json"
+            )
+            manifest_item["sha256"] = "0" * 64
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            warnings = "\n".join(report.warnings)
+            self.assertIn("a manifest cannot contain a stable hash of itself", warnings)
+            self.assertNotIn("sha256 mismatch for `manifest.json`", "\n".join(report.errors))
 
     def test_changelog_submission_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -1683,6 +1895,26 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertFalse(report.ok)
             self.assertIn("blocking failed self-check", "\n".join(report.errors))
+
+    def test_organizer_geometry_known_blocker_is_advisory_only(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.promote_package_to_formal(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["validation_claim"]["known_blockers"] = [
+                "Provisional boundary used; official polygons required for formal professional scoring."
+            ]
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+            report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+            warnings = "\n".join(report.warnings)
+            self.assertIn("do not block or lower content scoring", warnings)
+            self.assertNotIn("cannot enter formal professional scoring", warnings)
 
     def test_blocking_self_check_always_fails(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

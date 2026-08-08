@@ -31,9 +31,9 @@
 
 ## Formal scoring readiness（可选，未满足也可作为 intake 提交）
 
-- [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，且 `official_boundary=true`
-- [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，且 `official_boundary=true`
-- [ ] `manifest.validation_claim.known_blockers` 为空
+- [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，或明确标注 provisional boundary 及精度/重算责任
+- [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，或明确标注 provisional key areas 及精度/重算责任
+- [ ] `manifest.validation_claim.known_blockers` 中不含参赛者可控的未完成阻断项（组织方未提供正式几何数据只作精度提示）
 - [ ] `self_check_submission.py` 输出 `can_enter_formal_review=true`
 - [ ] 没有 blocking self-check、空间复核、视觉复核或专业证据链缺口
 
@@ -64,7 +64,15 @@
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --record-pass
+python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
+```
+
+已经 finalize 的包后续修改时，以 `refresh_manifest_hashes.py` 代替再次运行 `finalize_submission.py`：
+
+```bash
+python3 scripts/refresh_manifest_hashes.py submissions/<my-github-login>/<proposal-slug>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --record-pass
 python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```
 

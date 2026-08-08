@@ -46,14 +46,15 @@ Result:
 - Spatial review: PASS.
 - Visual packaging check: PASS.
 - Professional evidence review: PASS.
-- `can_enter_formal_review`: false.
+- `can_enter_formal_review`: true when all participant-controlled gates pass.
 
 Expected warnings:
 
 - `geometry/site_boundary.geojson` uses provisional boundary.
 - `geometry/key_areas.geojson` contains three provisional key areas.
 
-These warnings do not block intake, but they do block formal professional scoring.
+These warnings do not block intake or content scoring. They require visible
+precision warnings and complete recalculation after official geometry arrives.
 
 ## Maintainer Review Summary
 
@@ -69,8 +70,8 @@ python3 scripts/maintainer_review.py \
 Result:
 
 ```text
-Recommendation: intake-provisional
-Can enter formal professional scoring: NO
+Recommendation: formal-review-ready
+Can enter formal professional scoring: YES
 deterministic_validation: PASS
 spatial_review: PASS
 visual_review: PASS
@@ -90,15 +91,16 @@ node --check submissions-data.js
 The new proposal appears in `submissions-data.js` with:
 
 ```text
-statusKey: intake_provisional
-status: 临时边界 intake
+statusKey: formal_review_ready
+status: 正式评分就绪
 visualUrl: submissions/codex-final/jingzhang-ai-symbiotic-rail/visual/index.html
 proposalUrl: submissions/codex-final/jingzhang-ai-symbiotic-rail/report/proposal.html
 ```
 
 ## Remaining Issues
 
-The flow is now walkable for intake. The project still needs official or cleared data before formal scoring:
+The flow is now walkable for content scoring. The project still needs official
+or cleared data before precise spatial conclusions, statutory use, or implementation:
 
 - Official overall design area polygon.
 - Official coordinated research area polygon.

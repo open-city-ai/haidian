@@ -117,6 +117,19 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
     return "\n".join(blocks)
 
 
+def strip_redundant_leading_title(markdown: str, title: str) -> str:
+    """Remove a leading Markdown H1 when the report hero already shows it."""
+    lines = markdown.splitlines(keepends=True)
+    for index, line in enumerate(lines):
+        if not line.strip():
+            continue
+        match = re.fullmatch(r"\s*#\s+(.+?)\s*(?:\n)?", line)
+        if match and match.group(1).strip() == title.strip():
+            del lines[index]
+        break
+    return "".join(lines)
+
+
 def render_html(
     submission_dir: Path,
     proposal_name: str = "proposal.md",
@@ -128,6 +141,7 @@ def render_html(
     summary = metadata.get("summary", "")
     language = metadata.get("language", "zh")
     document_lang = "en" if language == "en" else "zh-CN"
+    body = strip_redundant_leading_title(body, title)
     translation_match = re.search(r"(?m)^# 中文正式译文\s*$", body) if language == "en" else None
     if translation_match:
         english_body = body[: translation_match.start()]

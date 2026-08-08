@@ -1,12 +1,21 @@
 import sys
 import unittest
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from auto_review_queue import WorkerError, ci_state, decide, submission_dir_from_files  # noqa: E402
+from auto_review_queue import (  # noqa: E402
+    WorkerError,
+    ci_state,
+    decide,
+    edit_review_labels_verified,
+    reconcile_merged_review_labels,
+    review_label_changes,
+    submission_dir_from_files,
+)
 
 
 class AutoReviewQueueTests(unittest.TestCase):
@@ -86,6 +95,42 @@ class AutoReviewQueueTests(unittest.TestCase):
                 }
             ),
         )
+
+    def test_ci_state_treats_completed_non_success_conclusions_as_failure(self) -> None:
+        for conclusion in [
+            "ACTION_REQUIRED",
+            "CANCELLED",
+            "FAILURE",
+            "NEUTRAL",
+            "SKIPPED",
+            "STALE",
+            "STARTUP_FAILURE",
+            "TIMED_OUT",
+        ]:
+            with self.subTest(conclusion=conclusion):
+                self.assertEqual(
+                    "failure",
+                    ci_state(
+                        {
+                            "statusCheckRollup": [
+                                {"name": "submission-validation", "conclusion": conclusion}
+                            ]
+                        }
+                    ),
+                )
+
+    def test_ci_state_prefers_successful_rerun_over_older_terminal_results(self) -> None:
+        self.assertEqual(
+            "success",
+            ci_state(
+                {
+                    "statusCheckRollup": [
+                        {"name": "submission-validation", "conclusion": "TIMED_OUT"},
+                        {"name": "submission-validation", "conclusion": "SUCCESS"},
+                    ]
+                }
+            ),
+        )
         self.assertEqual(
             "success",
             ci_state(
@@ -97,6 +142,113 @@ class AutoReviewQueueTests(unittest.TestCase):
                 }
             ),
         )
+
+    def test_draft_reconciliation_replaces_active_review_labels(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": True,
+                "labels": [
+                    {"name": "review/queued"},
+                    {"name": "review/changes-requested"},
+                    {"name": "unrelated"},
+                ],
+                "statusCheckRollup": [],
+            }
+        )
+        self.assertEqual(["review/changes-requested", "review/queued"], remove)
+        self.assertEqual(["review/draft"], add)
+
+    def test_ready_failure_reconciliation_adds_ci_label_without_erasing_review(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "labels": [{"name": "review/changes-requested"}],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "FAILURE"}
+                ],
+            }
+        )
+        self.assertEqual([], remove)
+        self.assertEqual(["review/ci-failed"], add)
+
+    def test_ready_cancelled_reconciliation_replaces_queued_label(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "labels": [{"name": "review/queued"}],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "CANCELLED"}
+                ],
+            }
+        )
+        self.assertEqual(["review/queued"], remove)
+        self.assertEqual(["review/ci-failed"], add)
+
+    def test_ready_success_only_removes_stale_draft_label(self) -> None:
+        remove, add = review_label_changes(
+            {
+                "isDraft": False,
+                "labels": [
+                    {"name": "review/draft"},
+                    {"name": "review/changes-requested"},
+                ],
+                "statusCheckRollup": [
+                    {"name": "submission-validation", "conclusion": "SUCCESS"}
+                ],
+            }
+        )
+        self.assertEqual(["review/draft"], remove)
+        self.assertEqual([], add)
+
+    def test_reconciliation_is_noop_when_labels_already_match(self) -> None:
+        self.assertEqual(
+            ([], []),
+            review_label_changes(
+                {
+                    "isDraft": True,
+                    "labels": [{"name": "review/draft"}],
+                    "statusCheckRollup": [],
+                }
+            ),
+        )
+
+    def test_merged_queued_pr_is_reconciled_as_intake_accepted(self) -> None:
+        with mock.patch("auto_review_queue.edit_review_labels_verified") as edit:
+            result = reconcile_merged_review_labels(
+                "open-city-ai/haidian",
+                [{"number": 346, "labels": [{"name": "review/queued"}]}],
+                ROOT,
+            )
+        edit.assert_called_once_with(
+            "open-city-ai/haidian",
+            346,
+            ["review/queued"],
+            ["review/intake-accepted"],
+            ROOT,
+        )
+        self.assertEqual(
+            [{"number": 346, "removed": ["review/queued"], "added": ["review/intake-accepted"]}],
+            result,
+        )
+
+    def test_label_write_retries_when_first_result_does_not_persist(self) -> None:
+        states = [
+            {"labels": [{"name": "review/queued"}]},
+            {"labels": [{"name": "review/queued"}]},
+            {"labels": [{"name": "review/queued"}]},
+            {"labels": [{"name": "review/intake-accepted"}]},
+        ]
+        with mock.patch("auto_review_queue.pr_meta", side_effect=states), mock.patch(
+            "auto_review_queue.run"
+        ) as run_mock:
+            edit_review_labels_verified(
+                "open-city-ai/haidian",
+                346,
+                ["review/queued"],
+                ["review/intake-accepted"],
+                ROOT,
+            )
+        self.assertEqual(2, run_mock.call_count)
 
 
 if __name__ == "__main__":

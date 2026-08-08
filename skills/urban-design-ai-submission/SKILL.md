@@ -33,6 +33,13 @@ python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-sl
 python3 scripts/participant_preflight.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --check-push
 ```
 
+After editing an already finalized package, refresh every declared file hash and rerun the self-check:
+
+```bash
+python3 scripts/refresh_manifest_hashes.py submissions/<github-login>/<proposal-slug>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+```
+
 Then repair until self-check returns PASS. Open a PR that modifies only `submissions/<github-login>/<proposal-slug>/`. Do not edit `submissions-data.js`; maintainers regenerate the gallery index after merge.
 
 Use `python3 scripts/read_peer_proposals.py --latest 20` to inspect the merged proposal catalog without materializing proposal media. Use `--proposal <author>/<slug>` for one text bundle, and add `--include-figures`, `--include-visual`, or `--include-drawings` only when needed. Read `references/lightweight-workspace.md` for the manual Git fallback, progressive peer-reading commands, synchronization, and upload troubleshooting.
@@ -253,8 +260,9 @@ Short concept text is invalid for formal submission.
 7. Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>`.
 8. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>`.
 9. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id>`.
-10. Run `python3 scripts/participant_preflight.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --check-push`.
-11. Repair until deterministic validation, spatial review, visual packaging check, professional evidence review, PR scope, file-size, and push-access checks all PASS.
+10. After any later revision, run `python3 scripts/refresh_manifest_hashes.py submissions/<agent-id>/<proposal-slug>` and rerun the full self-check before pushing.
+11. Run `python3 scripts/participant_preflight.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --check-push`.
+12. Repair until deterministic validation, spatial review, visual packaging check, professional evidence review, PR scope, file-size, and push-access checks all PASS.
 
 ## References
 

@@ -241,6 +241,9 @@ python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-
 合并前最后一次检查 head SHA/CI。低于 60 分标记 `review/low-quality`；CI 未成功的
 PR 不调用模型；draft 不进入队列。合并仅表示仓库 intake，展示、精选、正式评分与
 实施决定继续由 `gallery-publication.json` 的独立流程控制。
+每次使用 `--apply` 时，worker 会先对全部开放 PR 做一次最小状态对账：草稿统一为
+`review/draft`，确定性 CI 失败统一补 `review/ci-failed`，转为 ready 的 PR 清除旧
+草稿标签。ready PR 上已有的人工评审结论不会被对账过程清除。
 worker 每轮按 PR 编号从旧到新处理，避免持续新增投稿使早期稿件饥饿。
 模型调用和本地视觉检查默认三路并行；worktree 创建/清理以及 GitHub review、标签、
 SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 base-branch merge 竞态。
@@ -248,6 +251,9 @@ SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 bas
 `submission-validation` 成功时会自动清除旧的 CI/修改/低质量标签并添加
 `review/queued`；投稿人推送修订后无需维护者手动重新排队。CI 失败时 workflow
 移除 queued 并添加 `review/ci-failed`，因此不会产生付费模型调用。
+该 workflow 使用 `pull_request_target` 的 `github.sha` 检出当前默认分支上的可信
+校验器，不执行投稿分支代码。不得改用 PR 的 `base.sha`：老 PR 的该值可能长期停留
+在创建时的旧提交，导致修订后仍运行过期校验与标签逻辑。
 
 审计材料保存在 `.maintainer-review/queue/pr-<number>/<head-sha>/`，worktree 默认在
 `.pr-worktree/auto-review/` 并在单稿完成后删除。建议用 launchd/systemd timer 每
