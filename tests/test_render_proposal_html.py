@@ -13,6 +13,20 @@ from render_proposal_html import render_html  # noqa: E402
 
 
 class RenderProposalHtmlTests(unittest.TestCase):
+    def test_render_html_omits_redundant_leading_title(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                '---\ntitle: "测试方案"\nsummary: "离线阅读版"\n---\n\n'
+                '# 测试方案\n\n正文。\n',
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertEqual(1, html.count("<h1>测试方案</h1>"))
+            self.assertIn("<p>正文。</p>", html)
+
     def test_render_html_rewrites_local_figure_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)
