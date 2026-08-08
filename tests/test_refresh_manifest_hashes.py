@@ -82,7 +82,10 @@ class RefreshManifestHashesTests(unittest.TestCase):
             package, manifest_path = self.make_package(root)
             outside = root / "outside.txt"
             outside.write_text("outside package\n", encoding="utf-8")
-            (package / "outside-link.txt").symlink_to(outside)
+            try:
+                (package / "outside-link.txt").symlink_to(outside)
+            except (NotImplementedError, OSError):
+                self.skipTest("symbolic links are not available on this platform")
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             manifest["files"].append({"path": "outside-link.txt", "sha256": "0" * 64})
             manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
@@ -98,11 +101,12 @@ class RefreshManifestHashesTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             package, manifest_path = self.make_package(Path(tmp))
             manifest_path.chmod(0o640)
+            expected_mode = manifest_path.stat().st_mode & 0o777
 
             completed = self.run_script(package)
 
             self.assertEqual(0, completed.returncode, completed.stderr)
-            self.assertEqual(0o640, manifest_path.stat().st_mode & 0o777)
+            self.assertEqual(expected_mode, manifest_path.stat().st_mode & 0o777)
 
 
 if __name__ == "__main__":
