@@ -2,14 +2,14 @@
 
 **Submission:** Jing-Zhang Open Pulse / 京张开源脉冲
 **Author:** 许丙南 (`147228`)
-**Iteration:** v3.1 (including v2.8 proof-mile and v3.1 spatial-first fixed-figure closure)
+**Iteration:** v3.2 (including v2.8 proof-mile and v3.2 eight-band spatial-depth closure)
 **Display licence:** `COMMUNITY-DISPLAY-ONLY`
 
 ## Scope of this statement
 
 This statement covers the formal package under `submissions/147228/jingzhang-open-pulse/`: Markdown narratives and translation, JSON metadata and analytical tables, GeoJSON geometry, generated figures, A3/A0 PDFs, offline HTML, and validation metadata. The path-level inventory is `visual/assets/copyright-ledger.json`; `manifest.json` records the package hashes. The ledger must be regenerated after any asset is edited.
 
-The v3.1 drawing set contains bilingual ten-page landscape A3 booklets (420 × 297 mm) and bilingual three-page landscape A0 boards (1189 × 841 mm). These are presentation exports of the local evidence figures, not construction documents; the PDF metadata and page boxes record the physical sizes so a reviewer can verify the intended print scale without treating the drawings as an official survey or approval set.
+The v3.2 drawing set contains bilingual ten-page landscape A3 booklets (420 × 297 mm) and bilingual three-page landscape A0 boards (1189 × 841 mm). These are presentation exports of the local evidence figures, not construction documents; the PDF metadata and page boxes record the physical sizes so a reviewer can verify the intended print scale without treating the drawings as an official survey or approval set.
 
 ## Authorship and generation
 
@@ -35,7 +35,7 @@ The source package declares `COMMUNITY-DISPLAY-ONLY`. This record preserves attr
 
 Before adding any image, map, logo, font, data extract, event content or code dependency, a contributor must record: the exact path, author or provider, source URL or permission record, licence, attribution text, allowed derivative use, retrieval date, intended display, and SHA-256 hash. The contributor must then update `sources.json`, `visual/assets/copyright-ledger.json`, `manifest.json`, and the relevant narrative or figure caption. Unclear material stays out of the public package.
 
-The ledger's `clearance_status` distinguishes locally generated material from official public data with attribution and the one peer-attributed structural adaptation. `third_party_materials` is intentionally empty for locally generated v3.1 records, but the Relay Receipt schema record now names its peer source rather than claiming a self-generated-only origin. This is submission evidence, not a legal opinion; rights-holder confirmation remains necessary if the future implementation team introduces new content.
+The ledger's `clearance_status` distinguishes locally generated material from official public data with attribution and the one peer-attributed structural adaptation. `third_party_materials` is intentionally empty for locally generated v3.2 records, but the Relay Receipt schema record now names its peer source rather than claiming a self-generated-only origin. This is submission evidence, not a legal opinion; rights-holder confirmation remains necessary if the future implementation team introduces new content.
 
 ## Privacy, safety, and public-interest boundary
 
