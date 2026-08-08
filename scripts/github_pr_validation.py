@@ -186,6 +186,11 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     return bool(changed_files) and len(roots) == 1
 
 
+def has_submission_changes(changed_files: list[str]) -> bool:
+    """Return true when a PR touches the participant submission namespace."""
+    return any(filename.startswith("submissions/") for filename in changed_files)
+
+
 def sync_draft_review_labels(client: GitHubClient, pr_number: int, is_draft: bool) -> bool:
     """Keep review workflow labels aligned with the live GitHub draft state.
 
@@ -336,13 +341,14 @@ def main() -> int:
         client.upsert_comment(pr_number, comment)
 
         queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+        submission_change = has_submission_changes(changed_files)
         if validation.ok and queue_candidate:
             client.remove_labels(
                 pr_number,
                 ["review/ci-failed", "review/changes-requested", "review/low-quality"],
             )
             client.add_labels(pr_number, ["review/queued"])
-        elif queue_candidate:
+        elif not validation.ok and submission_change:
             client.remove_labels(pr_number, ["review/queued"])
             client.add_labels(pr_number, ["review/ci-failed"])
 

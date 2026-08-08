@@ -17,6 +17,7 @@ from validate_submission import (  # noqa: E402
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
+    has_submission_changes,
     is_review_queue_candidate,
     safe_manifest_paths,
     sync_draft_review_labels,
@@ -132,6 +133,12 @@ class ManifestHydrationTests(unittest.TestCase):
                 "alice",
             )
         )
+
+    def test_invalid_participant_path_still_counts_as_submission_change(self) -> None:
+        files = ["submissions/team-name/design/proposal.md"]
+        self.assertTrue(has_submission_changes(files))
+        self.assertFalse(is_review_queue_candidate(files, "different-author"))
+        self.assertFalse(has_submission_changes(["README.md", "scripts/check.py"]))
 
     def test_local_full_package_check_ignores_existing_maintainer_feedback(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
