@@ -11,3 +11,5 @@
 - Restored the required 12-page A3 booklet and added implementation-depth, governance, and package-QA review sheets.
 - Reconciled the repository-validator receipt to the current upstream main commit and corrected the taskbook snapshot hash for reproducible provenance.
 - Added complete English display counterparts for the proposal, offline report, visual index, A3 booklet, and A0 boards; upgraded the offline renderer to preserve tables and emphasis in both languages.
+- Added explicit authority levels for all background case records and source/metric citations to the metrics-evidence visual captions.
+- Expanded the English A0 boards with the Z1/Z2/Z3 public-output table and a dedicated open-scenario operations pathway for display parity.
