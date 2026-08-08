@@ -126,6 +126,20 @@ class AutoReviewQueueTests(unittest.TestCase):
         )
         self.assertEqual([], selected)
 
+    def test_queue_selection_skips_unavailable_head_and_fills_batch(self) -> None:
+        candidates = [
+            {"number": 727, "headRefOid": "a" * 40},
+            {"number": 728, "headRefOid": "b" * 40},
+        ]
+
+        def load_review(number: int) -> dict:
+            if number == 727:
+                raise WorkerError("GitHub API rate limit")
+            return {"headRefOid": "b" * 40, "reviews": []}
+
+        selected = select_queue_candidates(candidates, 1, load_review)
+        self.assertEqual([728], [item["number"] for item in selected])
+
     def test_ci_state(self) -> None:
         self.assertEqual(
             "success",

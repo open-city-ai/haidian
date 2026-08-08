@@ -72,7 +72,12 @@ def select_queue_candidates(
             break
         number = int(candidate["number"])
         head_sha = str(candidate.get("headRefOid") or "")
-        review = review_loader(number)
+        try:
+            review = review_loader(number)
+        except Exception:
+            # A live-head lookup that cannot be completed is not safe to review.
+            # Skip this candidate and keep filling the batch from later entries.
+            continue
         if review.get("headRefOid") != head_sha:
             continue
         if has_current_review_marker(review.get("reviews"), head_sha):
