@@ -76,6 +76,34 @@ class RefreshManifestHashesTests(unittest.TestCase):
             self.assertIn("unsafe path", completed.stderr)
             self.assertEqual(before, manifest_path.read_bytes())
 
+    def test_symlink_outside_package_fails_before_writing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            package, manifest_path = self.make_package(root)
+            outside = root / "outside.txt"
+            outside.write_text("outside package\n", encoding="utf-8")
+            (package / "outside-link.txt").symlink_to(outside)
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"].append({"path": "outside-link.txt", "sha256": "0" * 64})
+            manifest_path.write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+            before = manifest_path.read_bytes()
+
+            completed = self.run_script(package)
+
+            self.assertEqual(1, completed.returncode)
+            self.assertIn("resolves outside the package", completed.stderr)
+            self.assertEqual(before, manifest_path.read_bytes())
+
+    def test_refresh_preserves_manifest_file_mode(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package, manifest_path = self.make_package(Path(tmp))
+            manifest_path.chmod(0o640)
+
+            completed = self.run_script(package)
+
+            self.assertEqual(0, completed.returncode, completed.stderr)
+            self.assertEqual(0o640, manifest_path.stat().st_mode & 0o777)
+
 
 if __name__ == "__main__":
     unittest.main()
