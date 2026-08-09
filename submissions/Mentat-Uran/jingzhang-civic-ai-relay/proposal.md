@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以京张遗址公园为公共协议脊，把众智园验证、AI 原点转译、大钟寺采用组织成可复核、可退出的城市学习接力；SC-04 合成桌面演练已可由第三方复跑，真实运营试点仍被责任、现场与授权 Gate 阻断，全部空间控制继续受 provisional 边界约束。"
+summary: "以京张遗址公园方向为公共协议脊，组织北部验证、中部转译、南部采用和两翼反馈；居民始终可沿静态导向、连续无障碍与人工服务完成普通路径，SC-04 仅作为可复跑且受 Gate 阻断的最小证据切片，全部空间控制继续受 provisional 边界约束。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -18,6 +18,19 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **核心判断：不是把三个园区串在一条“展示轴”上，而是让公共问题、技术验证、产业转译、城市使用、社会反馈和再验证沿京张走廊持续接力；每次交接都留下能被质询、拒绝和回滚的凭证。**
 
 ![京张共智接力带标志：墨绿大 J/Z、信号橙小 J、治理青小 Z 与三站回授弧组成嵌合双轨](assets/relay-mark.png)
+
+## 整体运行逻辑：先服务城市，再验证技术
+
+“共智接力”首先是一条城市运行回路，不是一组 AI 展项。北部把失败和复测条件整理为 `TestEvidence`，中部把证据、许可、维护、普通路径和退出资产组装为 `AdoptionPackage`，南部在人工服务连续的前提下形成采用、拒绝或暂停决定及 `UseFeedback`；东西两翼再把城市问题、专业能力和负面结果送回下一轮验证。[data:geometry/roads.geojson#ROAD-001] [data:geometry/public_space.geojson#PUBLIC-001]
+
+| 接力环节 | 交接对象 | 对城市的直接价值 | 不得越过的条件 |
+| --- | --- | --- | --- |
+| 北部验证 | 失败记录、接口规则、复测条件 | 让产业团队先看见风险，公众能看见测试边界 | 场地、数据、保险或事故责任不清即不测 |
+| 中部转译 | 许可、维护、普通路径、退出资产 | 把原型转成可解释、可维护、可拒绝的服务包 | 法律、IP、安全、维护或退出责任不清即不交接 |
+| 南部采用 | 采用/拒绝理由、决定差异、使用反馈 | 基本公共服务不断线，负面结果同样公开 | 值守、消保、无障碍或人工接管不清即不试用 |
+| 两翼反馈 | 去标识化问题、能力目录、复盘条件 | 让社区问题与专业能力持续返回，而非停在活动曝光 | 没有授权交换、回应路径或退出机制即不协同 |
+
+对居民、通勤者和访客，完整路径始终是“静态导向 → 连续无障碍通行 → 遮阴与停留 → 人工服务 → 可选择的数字辅助”；拒绝 AI 不得降低基本服务。对产业团队，价值不在展示次数，而在失败能否转成下一轮测试条件。SC-04 只是检验这套全带关系能否在一个最小切片中被第三方复跑、阻断和退出，不代表整条创新带被缩减为单一试点。[metric:human_handoff_gate_count] [assumption:A-OPERATIONS-001]
 
 ## 最小可执行试点：SC-04 与 Relay Receipt 0.3
 

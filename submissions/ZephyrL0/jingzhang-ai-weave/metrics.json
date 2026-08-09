@@ -1,0 +1,204 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(EPSG:4548, provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "临时范围面积仅用于展示与自检，正式 polygon 补齐后重算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2977815.529,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "由临时范围内概念性绿廊图层派生。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 1534331.743,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "由临时范围内概念性公共界面图层派生。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1155185.324,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "建筑为方法性示意，非现状测绘或开发规模承诺。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.260918,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "临时范围内的概念绿地比例。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.134439,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "临时范围内的概念公共空间比例。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "三处重点区均为仓库提供的临时范围。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "待正式控规条件、现状建筑和官方边界补齐后复算。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "待正式控规与现状建筑测绘资料补齐后确认。"
+    },
+    "flagship_public_design_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "count(public_designs.flagships)",
+      "confidence": "high",
+      "assumptions": [
+        "两项均为概念建议，需由专业团队结合正式场地深化。"
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "count(public_designs.landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "地标为非巨构、可逆的公共空间原型。"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "count(public_designs.agent_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "场景为待验证的服务蓝图。"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "count(public_designs.personas)",
+      "confidence": "high",
+      "assumptions": [
+        "画像仅表达服务需要，不作为个人标签。"
+      ]
+    },
+    "agent_service_contract_fields": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "agent.json"
+      ],
+      "formula": "count(public_designs.service_contract_fields)",
+      "confidence": "high",
+      "assumptions": [
+        "每项场景均须填写六字段后方可进入试点讨论。"
+      ]
+    },
+    "peer_catalog_count_reviewed": {
+      "status": "known",
+      "value": 309,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(window.HAIDIAN_SUBMISSIONS)",
+      "confidence": "high",
+      "assumptions": [
+        "公开目录于2026-08-10读取；后续合并会改变总数。"
+      ]
+    }
+  }
+}

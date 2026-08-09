@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "The Jing-Zhang Railway Heritage Park becomes a civic protocol spine connecting validation at Zhongzhiyuan, translation at the Beijing AI Origin Community, and adoption at Dazhongsi. A third party can now rerun the SC-04 synthetic tabletop, while accountability, field, and authorization gates still block any operational pilot and every spatial control remains provisional."
+summary: "The direction of the Jing-Zhang Railway Heritage Park becomes a civic protocol spine linking northern validation, central translation, southern adoption, and two feedback wings. A static, accessible, staffed ordinary path remains available to everyone; SC-04 is only a rerunnable minimum evidence slice still blocked by field gates, and every spatial control remains provisional."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -18,6 +18,19 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **Core judgment: the proposal does not simply connect three parks along a display axis. It creates a continuous relay in which civic problems, technical validation, product translation, urban use, public feedback, and revalidation move along the Jing-Zhang corridor. Every handoff leaves a receipt that people can question, refuse, and roll back.**
 
 ![Jing-Zhang Civic AI Relay mark: large dark J/Z, orange small J, teal small Z, and a three-node feedback arc form an integrated double track](assets/relay-mark.png)
+
+## Belt-Wide Operating Logic: Serve the City before Testing Technology
+
+The Civic Relay is first a city operating loop, not a collection of AI exhibits. The north turns failures and retest conditions into `TestEvidence`. The centre assembles evidence, licence, maintenance, the ordinary path, and exit assets into an `AdoptionPackage`. The south protects staffed-service continuity while recording an adopt, reject, or pause decision and `UseFeedback`. The two wings return urban problems, professional capability, and negative results to the next validation cycle. [data:geometry/roads.geojson#ROAD-001] [data:geometry/public_space.geojson#PUBLIC-001]
+
+| Relay stage | Handoff object | Direct value to the city | Condition that cannot be bypassed |
+| --- | --- | --- | --- |
+| Northern validation | Failure record, interface rule, retest condition | Industry teams see risk before adoption; the public sees the test boundary | No test while site, data, insurance, or incident duty is unclear |
+| Central translation | Licence, maintenance, ordinary path, exit asset | Turns a prototype into an explainable, maintainable, rejectable service pack | No handoff while legal, IP, safety, maintenance, or exit duty is unclear |
+| Southern adoption | Adopt/reject reason, decision diff, use feedback | Basic public service continues and negative results are disclosed | No trial while staffing, consumer protection, accessibility, or takeover is unclear |
+| Two-wing feedback | De-identified problem, capability directory, review condition | Community problems and professional capability return instead of ending as event exposure | No exchange without authorization, a response path, and an exit mechanism |
+
+For residents, commuters, and visitors, the complete journey remains static wayfinding → continuous accessible passage → shade and rest → staffed service → optional digital assistance. Refusing AI may not reduce basic service. For industry teams, value lies in turning failure into the next test condition, not in accumulating demonstrations. SC-04 only asks whether this belt-wide relationship can be rerun, blocked, and exited in one minimum slice; it does not reduce the whole innovation belt to one pilot. [metric:human_handoff_gate_count] [assumption:A-OPERATIONS-001]
 
 ## Minimum Executable Pilot: SC-04 and Relay Receipt 0.3
 
