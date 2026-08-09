@@ -36,23 +36,126 @@ DESIGN_GEOMETRY = [
 ]
 DRAWINGS = ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"]
 READABLE_OUTPUTS = ["proposal.md", "report/proposal.html", "visual/index.html"]
+REFRESH_PLACEHOLDER_MARKERS = ("SCAFFOLD-DRAFT", "PARTICIPANT-DESIGN: replace")
 
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> int:
+    """Refresh hashes for a ready package after a participant revision.
+
+    A ready package has already passed the scaffold-to-submission promotion
+    checks.  Re-running those checks would reject a legitimate presentation-
+    only edit because the files are no longer unchanged from the scaffold.
+    Refresh therefore keeps the package state, verifies the anti-placeholder
+    and bilingual metadata boundaries, rewrites declared hashes, and marks the
+    persisted validation claim stale until self-check is run again.
+    """
+    errors: list[str] = []
+    proposal_path = root / "proposal.md"
+    if not proposal_path.is_file():
+        errors.append("proposal.md is required for refresh")
+        proposal_text = ""
+    else:
+        proposal_text = proposal_path.read_text(encoding="utf-8")
+    for marker in REFRESH_PLACEHOLDER_MARKERS:
+        if marker in proposal_text:
+            errors.append(f"proposal.md still contains the generated placeholder marker: {marker}")
+    for rel in [*FIGURES, *DRAWINGS, *READABLE_OUTPUTS]:
+        path = root / rel
+        if not path.is_file():
+            errors.append(f"required review artifact is missing: {rel}")
+        elif rel in DRAWINGS and is_empty_pdf(path.read_bytes()):
+            errors.append(f"{rel} has no pages or is still a placeholder drawing")
+
+    proposal_metadata, _ = parse_front_matter(proposal_text) if proposal_text else ({}, "")
+    primary_language = proposal_metadata.get("language")
+    translation_language = "en" if primary_language == "zh" else "zh" if primary_language == "en" else None
+    strict_bilingual = requires_bilingual_contract(proposal_metadata)
+    if translation_language and strict_bilingual:
+        expected_translation = localized_path("proposal.md", translation_language)
+        if proposal_metadata.get("translation_file") != expected_translation:
+            errors.append(
+                f"proposal.md must declare translation_file: {expected_translation} for the required bilingual package"
+            )
+        translated_path = root / expected_translation
+        if not translated_path.is_file():
+            errors.append(f"required bilingual counterpart is missing: {expected_translation}")
+        else:
+            try:
+                translated_metadata, _ = parse_front_matter(
+                    translated_path.read_text(encoding="utf-8")
+                )
+            except UnicodeDecodeError:
+                errors.append(f"{expected_translation} must be UTF-8 text")
+            else:
+                if translated_metadata.get("language") != translation_language:
+                    errors.append(f"{expected_translation} must declare language: {translation_language}")
+                if translated_metadata.get("translation_of") != "proposal.md":
+                    errors.append(f"{expected_translation} must declare translation_of: proposal.md")
+
+    files = manifest.get("files")
+    if not isinstance(files, list) or not files:
+        errors.append("manifest.json files must be a non-empty array")
+    else:
+        for item in files:
+            if not isinstance(item, dict) or not item.get("path"):
+                errors.append("manifest.json contains a file entry without a path")
+                continue
+            rel = str(item["path"])
+            if rel == "manifest.json":
+                continue
+            if not (root / rel).is_file():
+                errors.append(f"manifest.json lists a missing file: {rel}")
+
+    if errors:
+        print("Ready package was not refreshed:")
+        for error in errors:
+            print(f"- {error}")
+        return 1
+
+    for item in manifest["files"]:
+        if not isinstance(item, dict):
+            continue
+        rel = item.get("path")
+        if rel and rel != "manifest.json" and (root / rel).is_file():
+            item["sha256"] = digest(root / rel)
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict):
+        claim = {}
+        manifest["validation_claim"] = claim
+    claim["self_checked"] = False
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Refreshed review-ready package: {root}")
+    print("Run self_check_submission.py now; the persisted validation claim is stale until it passes again.")
+    return 0
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("submission_dir")
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="refresh hashes for an existing ready_for_review package after a revision",
+    )
     args = parser.parse_args()
     root = Path(args.submission_dir).resolve()
     manifest_path = root / "manifest.json"
     if not manifest_path.is_file():
         parser.error(f"manifest.json not found under {root}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("package_state") != "scaffold":
+    package_state = manifest.get("package_state")
+    if package_state == "ready_for_review":
+        if not args.refresh:
+            parser.error("package_state is ready_for_review; use --refresh to refresh a revised package")
+        return refresh_ready_package(root, manifest_path, manifest)
+    if package_state != "scaffold":
         parser.error("package_state must be scaffold before finalization")
+    if args.refresh:
+        parser.error("--refresh requires package_state=ready_for_review")
 
     declared = {
         str(item.get("path")): str(item.get("sha256"))
