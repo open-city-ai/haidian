@@ -4,7 +4,7 @@ author_github: "Mentat-Uran"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以京张遗址公园为公共协议脊，把众智园验证、AI 原点转译、大钟寺采用组织成可复核、可退出、可迭代的城市学习接力，并以机器可读接力凭证明确数据、责任、停止与回授；全部空间控制均保留 provisional 边界和专业复核条件。"
+summary: "以京张遗址公园为公共协议脊，把众智园验证、AI 原点转译、大钟寺采用组织成可复核、可退出的城市学习接力；SC-04 合成工单最小试点与 Relay Receipt 0.3 让第三方能够测试、暂停、拒绝、回滚和复核，全部空间控制仍受 provisional 边界与专业 Gate 约束。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -15,15 +15,37 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 **英文名：Jing-Zhang Civic AI Relay**<br>
 **核心判断：不是把三个园区串在一条“展示轴”上，而是让公共问题、技术验证、产业转译、城市使用、社会反馈和再验证沿京张走廊持续接力；每次交接都留下能被质询、拒绝和回滚的凭证。**
 
-![京张共智接力带标志：J/Z 双轨、三站与回授弧](assets/relay-mark.svg)
+![京张共智接力带标志：墨绿大 J/Z、信号橙小 J、治理青小 Z 与三站回授弧组成嵌合双轨](assets/relay-mark.png)
+
+## 最小可执行试点：SC-04 与 Relay Receipt 0.3
+
+本轮不新增场景数量，而把既有 SC-04“城市服务接口互操作测试”收敛为唯一最小试点。它只在模拟服务柜台读取四份随包合成工单 [metric:sc04_synthetic_ticket_count]、写入隔离转接日志，不连接真实服务系统，不处理真实个人数据，不发送消息，也不能批准、拒绝或关闭真实事项。空间点位仍为 provisional 候选；真实运营主体、值守排班、预算、现场数据、公众参与结果和服务绩效均为 unknown。[data:geometry/public_space.geojson#SC-04] [data:visual/assets/example-sc04-relay-receipt.json] [assumption:A-OPERATIONS-001]
+
+**一张 Relay Receipt 固定十段执行链：问题 → 场地 → 数据 → 系统权限 → 人工 Gate → 测试 → 证据 → 采用/拒绝 → 反馈 → 回滚/退役。** 每段都有机器字段、责任状态和失败去向；任一 Gate 缺证据即停留在上一状态，不以多智能体投票或宣传性指标越级。[data:visual/assets/relay-receipt.schema.json] [metric:relay_receipt_stage_count]
+
+试点共有 G0—G6 七道运行 Gate。[metric:sc04_pilot_gate_count] 它们不是空间分期；每一道都必须由证据和人工签署推进。
+
+| Gate | 当前可复核状态 | 进入下一 Gate 的必要条件 | 未通过时的处理 |
+| --- | --- | --- | --- |
+| G0 问题与场地 | 已定义方案边界：四份合成工单、模拟柜台、无真实交易 | official 候选场地、权属、无障碍与服务边界完成现场核查 | 保持桌面 fixture，不落位、不招募公众 |
+| G1 数据与权限 | 已定义最小字段和只读/只写沙箱权限；外部连接、识别、消息和真实决定均禁止 | 经授权数据责任方确认分类、保留、删除、日志和权限隔离 | 权限保持关闭；只允许人工按预期队列表比对 |
+| G2 人工责任与非 AI 路径 | 责任角色已定义但未指派；纸质目录和人工转介脚本为常开路径 | 单一 `A`、值守表、升级联系人、接管演练和无障碍走查全部确认 | 不得进入限域试用；公众服务继续走纯人工路径 |
+| G3 沙箱测试 | 测试用例与六项候选验收条件已定义；`performance_results=null`、`run_status=not_run` | 独立复现四份 fixture，并生成完整日志、人工差异和删除记录 | 任一硬停止触发即隔离沙箱并执行回滚清单 |
+| G4 采用/拒绝 | 决定权属于未来经授权服务主管；当前为 `pending` | 人工逐项签署证据，可选择采用、拒绝、暂停或要求复测 | 不得自动上线；拒绝和负面结果与采用采用同一披露结构 |
+| G5 限域试用 | 尚不具备进入条件 | 主体、场地、权限、真实数据必要性、保险、申诉、维护和成本 Gate 全部通过 | 任一项 unknown 即保持沙箱，不向真实业务扩展 |
+| G6 回滚/退役 | 五步退出动作已写入凭证；尚无真实系统需要执行 | 停权、隔离、切人工、处置日志、发布回滚/退役记录均有完成证据 | 新版本必须另开凭证并从 G0 重新审查 |
+
+六项候选验收条件是部署前门槛，不是已取得成绩：Schema 与样例有效；4/4 工单身份和状态不丢失；4/4 到达预期人工队列且高风险事项不能自动关闭；4/4 状态转换日志完整；隔离工具后人工路径仍能完成 4/4；删除前后计数与复核记录齐全。四个硬停止是高风险误转或自动关闭、日志缺失/篡改、出现未授权或真实个人数据、人工接管不能完成 fixture。触发后按“撤销权限 → 停止入口并隔离 → 全量切回纸质/人工 → 隔离并按规则删除日志 → 仅保留空 fixture、事件复盘和回滚凭证”退出。[metric:sc04_acceptance_criterion_count] [metric:sc04_stop_condition_count] [metric:sc04_rollback_action_count]
+
+责任模型只定义角色，不虚构机构：未来经授权服务主管承担单一 `A`；fixture 维护、服务人员和数据管理角色承担 `R`；无障碍、安全、法律与受影响使用者进入 `C/I`。当前 `A` 仍未指派，所以结构校验可以复现，真实限域试用不能启动。[data:visual/assets/operations-matrix.json]
 
 ## 设计依据与资料清单
 
 本方案首先区分证据等级。公告和清权任务书决定任务边界；仓库登记为 `usable_for_formal=yes` 的来源支撑正式事实；处理后的 fact pack 只作阅读导航；临时 polygon 只作生成、图示和 intake 自检；全球案例只作背景机制参照。由此，方案不会把粗略边界、开放底图、案例经验或智能体推断升级为官方红线、法定控规或政府承诺。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:SITE-PACKAGE]
 
-设计前建立了“目标—空间—产业—人群—文化—运营—治理—证据”关系图，而不是先列项目：目标是形成世界级 AI 创新生态且增进公共利益；空间以京张公共协议脊连接北部验证、中部转译、南部应用，并由东西两翼反馈；产业用问题池、测试证据和采用服务形成闭环；人群覆盖研发者、创业团队、居民、学生、通勤者、运营者和访客；文化把铁路工程精神、中关村创新文化与可质询的 AI 新文化连续表达；运营以年度循环维护场景；治理要求最小数据、知情选择、人工复核、申诉和回滚；证据则落到 GeoJSON、metrics、矩阵、图纸和来源登记。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:existing_conditions_diagnosis]
+方案的关系合同是：目标同时服务创新生态与公共利益；空间以京张公共协议脊连接北部验证、中部转译、南部应用，并由东西两翼反馈；产业用问题池、测试证据和采用服务闭环；研发者、创业团队、居民、学生、通勤者、运营者和访客各有不同权限与风险；铁路工程、中关村创新和可质询的 AI 新文化连续表达；年度运营维护场景；治理要求最小数据、知情选择、人工复核、申诉和回滚；证据落到 GeoJSON、metrics、矩阵、图纸和来源登记。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:existing_conditions_diagnosis]
 
-整体情境比选采用七项等权判断，每项 1—5 分：整体效应、公共利益、AI 原生性、空间可转化性、长期运营、证据强度、对数据缺口的敏感性。A“三区园区增长”得 19 分，产业落位清楚但公共回路弱；B“未来地标走廊”得 18 分，传播强但容易形成一次性展示；C“城市学习接力”得 34 分，能把技术验证、公共使用和再验证闭合，且在官方 polygon 缺失时仍可按关系而非伪精确地块表达。因此 C 为主方案；A 作为产业分期备选逻辑，B 仅保留为识别系统和节点设计的传播工具。该比选是基于论文分析提炼的整体主义推断框架，不代表王红扬本人意见，也不替代现场调研、法定规划或专业工程判断。[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
+在“三区园区增长”“未来地标走廊”和“城市学习接力”三类总体方向中，前者保留为产业分期备选，后者只作为识别系统和节点传播工具；主方案选择“城市学习接力”，因为它能闭合技术验证、公共使用和再验证，并在 official polygon 缺失时按关系而非伪精确地块表达。该选择仍须由现场调研、法定规划和专业工程判断复核。[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
 
 当前正式包使用 EPSG:4326 表达坐标、EPSG:4548 复算面积。总体设计临时边界必须保持 `geometry_role=provisional_constraint`、`official_boundary=false`、`boundary_precision=provisional_rough`；三处重点区同样不具有法定效力。[data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001] 公告文字约 11.4 平方公里与临时 polygon 复算 11,412,825.386 平方米并列披露，差异约 0.1125%；公告三处重点区合计 3,684,000 平方米，临时 polygon 合计 3,692,893.005 平方米。两组值不相互替代，official polygon 到位后统一重建图层和复算。[metric:announced_overall_design_area_sqm] [metric:site_area_sqm] [metric:provisional_site_area_difference_ratio] [metric:announced_key_area_area_sqm] [metric:provisional_key_area_area_sqm]
 
@@ -41,7 +63,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 三大定位在同一回路中分工：百年京张文化带保存“工程—开放—接力”的时间叙事；都市 AI 生活体验带让居民在可退出、可申诉的日常服务中感知 AI；AI 融合创新带把测试证据变成可采用的产品和公共能力。五大功能也不各占一块孤岛：全栈自主创新由北部验证支撑，世界级创新生态由中部转译连接，AI+ 场景赋能在东翼和南部接口验证，智能化活力城市由全带公共服务承载，AI 治理话语权来自公开证据、人工复核和可回滚机制。三区两翼因此形成闭环，而不是五块招商标签。[source:AGENT-TASKBOOK]
 
-命名体系采用“带—站—节点—场景—凭证”五级语法：`京张共智接力带 / Civic AI Relay` 为总名，三个关键局部使用“验证—转译—接口”的动词型名称，公共节点使用“标、墙、厅、刻度”等可辨认名，场景卡统一使用 `SC-01…SC-12`，每次运行生成 `RELAY-RECEIPT`。独立 SVG 主标由 J/Z 双轨、三个接力点和一条回授弧构成；文化导视可调用双轨和刻度，但不能变形或替代主标。不得直接使用企业标识、人物肖像或未授权字体。视觉以纸白、墨黑、铁路信号橙、治理青和蓝绿色为主，形成“铁路时刻表 + 公共证据册”的工业编辑语言。[data:assets/relay-mark.svg]
+命名体系采用“带—站—节点—场景—凭证”五级语法：`京张共智接力带 / Civic AI Relay` 为总名，三个关键局部使用“验证—转译—接口”的动词型名称，公共节点使用“标、墙、厅、刻度”等可辨认名，场景卡统一使用 `SC-01…SC-12`，每次运行生成 `RELAY-RECEIPT`。主标保留一大一小两组 J/Z：墨绿大 J、大 Z 构成主轨，信号橙小 J 和治理青小 Z 沿各自大字内侧负形形成紧凑副轨；整体依靠平行间距、共享节奏和留白结合，不以笔画交叉或覆盖制造嵌合。右侧三点回授弧与字形保持间距。文化导视可调用双轨和刻度，但不能变形或替代主标。不得直接使用企业标识、人物肖像或未授权字体。视觉以纸白、墨黑、铁路信号橙、治理青和蓝绿色为主，形成“铁路时刻表 + 公共证据册”的工业编辑语言。[data:assets/relay-mark.png]
 
 ![总体范围、接力方向与证据边界](assets/figures/site-overview.png)
 
@@ -142,9 +164,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 接力凭证协议与最小可复现切片
 
-`visual/assets/relay-receipt.schema.json` 是本案的机器可读 `Relay Receipt 0.2` 草案。[metric:machine_readable_protocol_count] 它把一次场景运行的公共问题、空间引用、数据保留、模型和工具版本、禁止动作、人工签署、非 AI 回退、申诉、维护责任、成本状态、评估和下一站交接放入同一对象；状态转换必须留下 `decision_diff`，缺少基线时指标值为 `null` 而不是估算。Schema 是概念治理接口，不是现行政府系统、法定档案或已上线平台。[data:visual/assets/relay-receipt.schema.json]
+`visual/assets/relay-receipt.schema.json` 是本案的机器可读 `Relay Receipt 0.3` 草案。[metric:machine_readable_protocol_count] 十个必填对象与本章开头的执行链一一对应；系统版本、允许/禁止动作、人工决定、候选验收条件、正负证据、反馈和五步退出不得散落在不同文档。状态转换必须留下 `decision_diff`，没有基线或未运行时结果为 `null`，而不是估算。Schema 是概念治理接口，不是现行政府系统、法定档案或已上线平台。[data:visual/assets/relay-receipt.schema.json]
 
-最小切片选择风险最低且不需要真实个人数据的 SC-04：`visual/assets/example-sc04-relay-receipt.json` 使用四份合成工单，演示“提议—沙箱—人工签署—不进入真实业务”的完整记录。示例明确 `deployment_status=sandbox_only`、`performance_results=null`，列出误转高风险事项、日志中断和人工接管失败三个硬停止条件；它可通过 JSON Schema 校验，但这只证明结构可执行，不证明接口正确、服务可用或现实部署安全。[metric:minimum_reproducible_slice_count] [data:visual/assets/example-sc04-relay-receipt.json]
+`visual/assets/example-sc04-relay-receipt.json` 把四份合成 fixture、六项候选验收、四个硬停止和五步回滚放在同一凭证中，并明确 `deployment_status=sandbox_only`、`run_status=not_run`、`performance_results=null`、责任主体未指派。样例通过 JSON Schema 校验只证明字段和类型可复现，不证明工单已跑通、接口正确、服务可用、公众接受或现实部署安全。[metric:minimum_reproducible_slice_count] [data:visual/assets/example-sc04-relay-receipt.json]
 
 空间上的三个接力点因此对应三类不可互换的对象：北部出具 `TestEvidence`，中部维护 `AdoptionPackage`，南部形成 `UseFeedback`；只有人工签署的 `RelayReceipt` 能把对象交给下一站。任何主体都不能靠多智能体投票绕过人类责任、扩大工具权限、自动分配预算、关闭公共工单或改变法定空间控制。
 
@@ -222,7 +244,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 资源采用“五本账”而不是先报总投资：人员账记录值守、专业复核、申诉和维护工时；空间账记录使用时段、替代用途与撤场条件；设备账记录采购/租赁、能耗、备件和退役；数据账记录采集、存储、安全、删除与审计成本；公共价值账记录基本服务改善、负面结果和机会成本。当前没有运营主体、服务量、设备选型、人工排班和市场报价，因此所有金额保持 unknown。首个开放周期只用于校准工单量、值守容量、维护频率和成本区间；若承担 `A` 的角色、持续预算、保险、许可、数据责任或退出资产处置任一项不清楚，相应行动包不得进入常态运营。[assumption:A-OPERATIONS-001]
 
-三期 polygon 只表达从小范围协议试点到三个关键局部、再到全带关系网络的概念扩展，不代表开发时序。第一阶段约 312,202.227 平方米，先验证 P2/P3/P4 的规则和人工能力；第二阶段约 1,606,526.574 平方米，连接三处关键局部与两翼服务；第三阶段约 9,494,102.999 平方米，只在前两阶段证据表明公共价值、可维护性和安全性后讨论全带扩展。[data:geometry/phasing.geojson#PHASE-001] [metric:phase_1_area_sqm] [metric:phase_2_area_sqm] [metric:phase_3_area_sqm] [depth:phasing_implementation]
+三期 polygon 只表达从小范围协议试点到三个关键局部、再到全带关系网络的概念扩展，不代表开发时序，也不等于 SC-04 的 G0—G6 运行 Gate。第一阶段约 312,202.227 平方米，只讨论 P2/P3/P4 规则和人工能力的空间承载；第二阶段约 1,606,526.574 平方米，连接三处关键局部与两翼服务；第三阶段约 9,494,102.999 平方米，只在前两阶段证据表明公共价值、可维护性和安全性后讨论全带扩展。[data:geometry/phasing.geojson#PHASE-001] [metric:phase_1_area_sqm] [metric:phase_2_area_sqm] [metric:phase_3_area_sqm] [depth:phasing_implementation]
 
 年度运营建议形成四季循环：第一季度发布城市问题和公共利益审查；第二季度开展开发者协作、红队和互操作测试；第三季度组织低风险公众体验与国际交流周；第四季度公开失败、修复、采用和退出情况，更新贡献荣誉。开发者社区不以一次黑客松结束，而以维护者轮值、问题负责人、复测义务和版本档案延续。场景转化路径为“问题入池—伦理/数据/无障碍筛查—合成数据测试—限域试用—人工评议—采用或关闭—年度复盘”。
 
@@ -260,7 +282,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 版权方面，正文、结构化数据、图示、HTML 和 PDF 由本次智能体工作流基于仓库清权材料和自行生成的几何、排版与文字形成；使用系统字体渲染，不上传字体文件；没有使用商业地图截图、远程瓦片、未授权照片、商标、肖像或论文图像。全球案例仅作文字机制总结并回引原始机构页面，不能复用其视觉资产。`visual/assets/asset-rights.json` 逐项登记正文、Logo/VI、GeoJSON、图纸、PDF、HTML、Schema、示例数据、字体使用和外部案例摘要的来源、生成方式、再分发内容与限制，避免用一段总声明代替资产审计。[metric:asset_rights_entry_count] [data:visual/assets/asset-rights.json] 许可与展示范围以 `COMMUNITY-DISPLAY-ONLY` 和 copyright statement 为准。
 
-本方案采用的整体主义方法是从公开论文分析报告中提炼的推断性框架，仅用于组织目标、空间、产业、人群、文化、运营、治理和证据的关系；它不代表王红扬本人意见，不替代现场调研、法定规划、公众参与、文保审查、交通/市政/建筑专业设计或政府审定。最终判断仍由维护者、评审者、专业团队与相关公众作出。
+本成果不替代现场调研、法定规划、公众参与、文保审查、交通/市政/建筑专业设计或政府审定。最终判断仍由维护者、评审者、专业团队与相关公众作出。
 
 ## 参考资料
 
