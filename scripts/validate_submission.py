@@ -231,6 +231,7 @@ REQUIRED_DESIGN_DEPTH_IDS = {
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 PROPOSAL_FORMAT_VERSION = "2"
 BILINGUAL_CONTRACT_VERSION = "1"
+SOURCE_REGISTRY_PATH = "data/source_registry.json"
 MAX_INLINE_REFERENCES_PER_BLOCK = 8
 MAX_CONSECUTIVE_REFERENCES = 3
 MARKDOWN_IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
@@ -706,6 +707,113 @@ def load_json_file(report: ValidationReport, path: Path, display_path: str) -> o
     except json.JSONDecodeError as exc:
         report.add_error(f"{display_path}: invalid JSON: {exc.msg} at line {exc.lineno}")
     return None
+
+
+def source_declares_formal_usability(source: dict) -> bool:
+    """Return whether a submission source asserts formal-evidence eligibility.
+
+    ``sources.json`` intentionally permits lightweight citation entries, so an
+    ``official_public`` source_type alone is not an assertion that the source
+    passed the repository's formal-use review.  These explicit fields are.
+    """
+    return (
+        str(source.get("type", "")).strip().lower() == "formal_usable"
+        or str(source.get("formal_usable", "")).strip().lower() in {"yes", "true", "1"}
+        or str(source.get("usable_for_formal", "")).strip().lower() in {"yes", "true", "1"}
+        or str(source.get("usable_for", "")).strip().lower() in {"formal", "formal_usable"}
+    )
+
+
+def load_source_registry_entries(repo_root: Path) -> dict[str, dict] | None:
+    """Load registry entries by ID, or return None when they cannot be verified."""
+    registry_path = repo_root / SOURCE_REGISTRY_PATH
+    try:
+        data = json.loads(registry_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return None
+    sources = data.get("sources") if isinstance(data, dict) else None
+    if not isinstance(sources, list):
+        return None
+    return {
+        source_id: source
+        for source in sources
+        if isinstance(source, dict)
+        and isinstance((source_id := source.get("source_id")), str)
+        and source_id
+    }
+
+
+def validate_formal_source_registry(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_dir: str,
+) -> None:
+    """Require explicit formal-use claims to point at a maintainer-approved source.
+
+    Version 1 packages predate this source-contract requirement, so they keep
+    validating with a visible warning.  Version 2 packages are the migration
+    boundary: a contributor may not turn a discovered public URL into formal
+    evidence by setting a flag in its own ``sources.json``.
+    """
+    sources_path = repo_root / proposal_dir / "sources.json"
+    try:
+        sources_data = json.loads(sources_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return
+    source_items = sources_data.get("sources") if isinstance(sources_data, dict) else None
+    if not isinstance(source_items, list):
+        return
+
+    proposal_path = repo_root / proposal_dir / "proposal.md"
+    try:
+        metadata, _ = parse_front_matter(proposal_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError):
+        return
+    strict_contract = proposal_format_version(metadata) == PROPOSAL_FORMAT_VERSION
+    registry_entries: dict[str, dict] | None = None
+
+    def report_problem(message: str) -> None:
+        if strict_contract:
+            report.add_error(message)
+        else:
+            report.add_warning(message + "; legacy v1 package remains compatible")
+
+    for index, source in enumerate(source_items):
+        if not isinstance(source, dict) or not source_declares_formal_usability(source):
+            continue
+        source_label = source.get("id")
+        if not isinstance(source_label, str) or not source_label.strip():
+            source_label = f"sources[{index}]"
+        registry_source_id = source.get("source_registry_id")
+        if not isinstance(registry_source_id, str) or not registry_source_id.strip():
+            report_problem(
+                f"{proposal_dir}/sources.json: `{source_label}` declares formal usability but must set "
+                "source_registry_id to an approved data/source_registry.json entry"
+            )
+            continue
+        if registry_entries is None:
+            registry_entries = load_source_registry_entries(repo_root)
+        if registry_entries is None:
+            report_problem(
+                f"{proposal_dir}/sources.json: cannot verify `{source_label}` source_registry_id "
+                f"because {SOURCE_REGISTRY_PATH} is unavailable or invalid"
+            )
+            continue
+        registry_source = registry_entries.get(registry_source_id)
+        if registry_source is None:
+            report_problem(
+                f"{proposal_dir}/sources.json: `{source_label}` source_registry_id "
+                f"`{registry_source_id}` is not registered in {SOURCE_REGISTRY_PATH}"
+            )
+            continue
+        if (
+            registry_source.get("review_status") != "approved"
+            or registry_source.get("usable_for_formal") != "yes"
+        ):
+            report_problem(
+                f"{proposal_dir}/sources.json: `{source_label}` source_registry_id "
+                f"`{registry_source_id}` is not approved for formal use"
+            )
 
 
 def policy_file(repo_root: Path, relative_path: str) -> Path:
@@ -1651,6 +1759,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
         path = base / name
         if path.exists():
             load_json_file(report, path, f"{proposal_dir}/{name}")
+    validate_formal_source_registry(report, repo_root, proposal_dir)
     self_check_path = base / "self_check.json"
     if self_check_path.exists():
         validate_self_check_file(

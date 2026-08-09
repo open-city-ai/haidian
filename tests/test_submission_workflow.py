@@ -986,6 +986,27 @@ class SubmissionWorkflowTests(unittest.TestCase):
             changed.append(f"{base}/{localized_rel}")
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
+    def make_v2_proposal_readable(self, root: Path, base: str) -> None:
+        """Remove the v1 index dump so a v2 fixture tests only its target rule."""
+        path = root / base / "proposal.md"
+        readable = re.sub(
+            r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+            "",
+            path.read_text(encoding="utf-8"),
+        )
+        readable_explanation = re.sub(
+            r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+            "",
+            FORMAL_PARAGRAPH,
+        )
+        for heading in REQUIRED_SECTIONS:
+            readable = readable.replace(
+                f"## {heading}\n",
+                f"## {heading}\n\n本节关键判断依据 [source:SITE-PACKAGE]。{readable_explanation}\n",
+                1,
+            )
+        path.write_text(readable, encoding="utf-8")
+
     def update_json(self, root: Path, rel: str, updater) -> None:
         path = root / rel
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -1288,6 +1309,160 @@ class SubmissionWorkflowTests(unittest.TestCase):
             base = "submissions/alice/ai-urban-loop"
             changed = self.write_minimal_ai_package(root, base)
             report = validate_submission(root, "alice", changed)
+            self.assertTrue(report.ok, report.errors)
+
+    def test_legacy_formal_source_claim_warns_without_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.update_json(
+                root,
+                f"{base}/sources.json",
+                lambda data: data["sources"].append(
+                    {
+                        "id": "EX-UNREGISTERED",
+                        "type": "formal_usable",
+                        "usable_for_formal": "yes",
+                    }
+                ),
+            )
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8") + "\n[source:EX-UNREGISTERED]\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            warnings = "\n".join(report.warnings)
+            self.assertIn("EX-UNREGISTERED", warnings)
+            self.assertIn("source_registry_id", warnings)
+            self.assertIn("legacy v1 package remains compatible", warnings)
+
+    def test_v2_formal_source_claim_requires_approved_registry_mapping(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.make_v2_proposal_readable(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            self.update_json(
+                root,
+                f"{base}/sources.json",
+                lambda data: data["sources"].append(
+                    {
+                        "id": "EX-UNREGISTERED",
+                        "type": "formal_usable",
+                        "usable_for_formal": "yes",
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("EX-UNREGISTERED", "\n".join(report.errors))
+            self.assertIn("source_registry_id", "\n".join(report.errors))
+
+    def test_v2_formal_usable_boolean_claim_requires_approved_registry_mapping(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.make_v2_proposal_readable(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            self.update_json(
+                root,
+                f"{base}/sources.json",
+                lambda data: data["sources"].append(
+                    {
+                        "id": "EX-BOOLEAN-FORMAL",
+                        "formal_usable": True,
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("EX-BOOLEAN-FORMAL", errors)
+            self.assertIn("source_registry_id", errors)
+
+    def test_v2_usable_for_formal_boolean_claim_requires_approved_registry_mapping(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.make_v2_proposal_readable(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            self.update_json(
+                root,
+                f"{base}/sources.json",
+                lambda data: data["sources"].append(
+                    {
+                        "id": "EX-BOOLEAN-USABLE",
+                        "usable_for_formal": True,
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("EX-BOOLEAN-USABLE", errors)
+            self.assertIn("source_registry_id", errors)
+
+    def test_v2_formal_source_claim_accepts_approved_registry_mapping(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.make_v2_proposal_readable(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            self.write_json(
+                root,
+                "data/source_registry.json",
+                {
+                    "sources": [
+                        {
+                            "source_id": "DATA-SRC-APPROVED-TEST",
+                            "review_status": "needs_review",
+                            "usable_for_formal": "background_only",
+                        }
+                    ]
+                },
+            )
+            self.update_json(
+                root,
+                f"{base}/sources.json",
+                lambda data: data["sources"].append(
+                    {
+                        "id": "EX-APPROVED",
+                        "type": "formal_usable",
+                        "usable_for_formal": "yes",
+                        "source_registry_id": "DATA-SRC-APPROVED-TEST",
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn("not approved for formal use", "\n".join(report.errors))
+
+            self.update_json(
+                root,
+                "data/source_registry.json",
+                lambda data: data["sources"][0].update(
+                    {"review_status": "approved", "usable_for_formal": "yes"}
+                ),
+            )
+            report = validate_submission(root, "alice", changed)
+
             self.assertTrue(report.ok, report.errors)
 
     def test_changelog_submission_passes_hard_validation(self) -> None:
