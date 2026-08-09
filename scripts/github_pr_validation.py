@@ -148,6 +148,30 @@ class GitHubClient:
             url = next_link(headers.get("Link", ""))
         return results
 
+    def tree_blob_map(self, sha: str) -> dict[str, str]:
+        """Return the recursive blob map for a trusted base or head commit."""
+        encoded_sha = urllib.parse.quote(sha, safe="")
+        data, _ = self.request(
+            "GET",
+            f"/repos/{self.repository}/git/trees/{encoded_sha}?recursive=1",
+        )
+        if not isinstance(data, dict) or data.get("truncated"):
+            raise RuntimeError(
+                f"GitHub tree response for `{sha}` was missing or truncated"
+            )
+        entries = data.get("tree")
+        if not isinstance(entries, list):
+            raise RuntimeError(f"GitHub tree response for `{sha}` was malformed")
+        blobs: dict[str, str] = {}
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            path = entry.get("path")
+            blob_sha = entry.get("sha")
+            if entry.get("type") == "blob" and isinstance(path, str) and isinstance(blob_sha, str):
+                blobs[path] = blob_sha
+        return blobs
+
     def download_content(
         self,
         repo: str,
@@ -281,6 +305,67 @@ def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str
         for item in files
         if item.get("status") != "removed"
     ]
+
+
+def submission_scope_violations(
+    files: list[dict], pr_author: str, maintainer_bypass: bool
+) -> list[str]:
+    """Return participant-submission paths outside the PR author's directory.
+
+    GitHub reports the current path in ``filename`` and the old path in
+    ``previous_filename`` for renames.  Both paths matter: otherwise a
+    participant can rename or delete another author's submission while the
+    validator only hydrates and validates the new, participant-owned files.
+    Maintainer-authorized PRs retain an explicit bypass for repository-wide
+    maintenance.
+    """
+    if maintainer_bypass:
+        return []
+
+    author = pr_author.casefold()
+    violations: set[str] = set()
+    for item in files:
+        for key in ("filename", "previous_filename"):
+            path = item.get(key)
+            if not isinstance(path, str):
+                continue
+            parts = path.split("/")
+            if not parts or parts[0] != "submissions":
+                continue
+            if len(parts) < 2 or parts[1].casefold() != author:
+                violations.add(path)
+    return sorted(violations)
+
+
+def submission_tree_scope_violations(
+    base_tree: dict[str, str],
+    head_tree: dict[str, str],
+    pr_author: str,
+    maintainer_bypass: bool,
+) -> list[str]:
+    """Return changed submission paths outside the participant's own scope.
+
+    This catches deletions hidden by a pull request's merge-base calculation,
+    including a branch based on the first parent of a merge commit.
+    """
+    if maintainer_bypass:
+        return []
+
+    author = pr_author.casefold()
+    changed_paths = {
+        path
+        for path in base_tree.keys() | head_tree.keys()
+        if base_tree.get(path) != head_tree.get(path)
+    }
+    violations = {
+        path
+        for path in changed_paths
+        if (
+            path.split("/")[0] == "submissions"
+            and (len(path.split("/")) < 2 or path.split("/")[1].casefold() != author)
+        )
+    }
+    return sorted(violations)
 
 
 def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
@@ -421,6 +506,7 @@ def main() -> int:
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
     queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+    scope_violations = submission_scope_violations(files, pr_author, maintainer_bypass)
 
     # Code/docs/test PRs do not need participant-package hydration.  Decide
     # this immediately after the file listing so a non-submission change
@@ -447,6 +533,78 @@ def main() -> int:
         write_step_summary(comment)
         client.upsert_comment(pr_number, comment)
         return 0
+
+    scope_verification_error = None
+    base_sha = pull_request.get("base", {}).get("sha")
+    if not maintainer_bypass and isinstance(base_sha, str) and base_sha:
+        try:
+            base_tree = client.tree_blob_map(base_sha)
+            head_tree = client.tree_blob_map(head_sha)
+            scope_violations.extend(
+                submission_tree_scope_violations(
+                    base_tree,
+                    head_tree,
+                    pr_author,
+                    maintainer_bypass,
+                )
+            )
+            scope_violations = sorted(set(scope_violations))
+        except RuntimeError as exc:
+            scope_verification_error = str(exc)
+
+    if scope_verification_error:
+        validation = ValidationReport(
+            changed_files=changed_files,
+            maintainer_bypass=maintainer_bypass,
+        )
+        validation.add_error(
+            "submission path ownership could not be verified: "
+            f"{scope_verification_error}"
+        )
+        validation_markdown = format_report(validation)
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"the PR head changed before the submission-scope verification failure was reported."
+            )
+            return 0
+        comment = (
+            f"{COMMENT_MARKER}\n"
+            "# Haidian Submission Validation\n\n"
+            f"{validation_markdown}\n\n"
+            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+        )
+        write_step_summary(comment)
+        client.upsert_comment(pr_number, comment)
+        return 1
+
+    if scope_violations:
+        validation = ValidationReport(
+            changed_files=changed_files,
+            maintainer_bypass=maintainer_bypass,
+        )
+        for path in scope_violations:
+            validation.add_error(
+                f"{path}: participant PR by `{pr_author}` may only modify paths "
+                f"under `submissions/{pr_author}/`; cross-author submission "
+                "changes require maintainer authorization"
+            )
+        validation_markdown = format_report(validation)
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"the PR head changed before the submission-scope failure was reported."
+            )
+            return 0
+        comment = (
+            f"{COMMENT_MARKER}\n"
+            "# Haidian Submission Validation\n\n"
+            f"{validation_markdown}\n\n"
+            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+        )
+        write_step_summary(comment)
+        client.upsert_comment(pr_number, comment)
+        return 1
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:

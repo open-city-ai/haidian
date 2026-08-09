@@ -38,6 +38,8 @@ from github_pr_validation import (  # noqa: E402
     is_review_queue_candidate,
     main,
     safe_manifest_paths,
+    submission_scope_violations,
+    submission_tree_scope_violations,
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
@@ -122,6 +124,47 @@ class GitHubApiResilienceTests(unittest.TestCase):
                 client.request("POST", "/test", {"body": "comment"})
         self.assertEqual(1, urlopen.call_count)
         sleep.assert_not_called()
+
+    def test_tree_blob_map_extracts_blobs_and_rejects_truncation(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        with patch.object(
+            client,
+            "request",
+            return_value=(
+                {
+                    "truncated": False,
+                    "tree": [
+                        {
+                            "path": "submissions/alice/proposal.md",
+                            "type": "blob",
+                            "sha": "blob-sha",
+                        },
+                        {
+                            "path": "submissions/alice",
+                            "type": "tree",
+                            "sha": "tree-sha",
+                        },
+                    ],
+                },
+                {},
+            ),
+        ) as request:
+            self.assertEqual(
+                {"submissions/alice/proposal.md": "blob-sha"},
+                client.tree_blob_map("head-sha"),
+            )
+        request.assert_called_once_with(
+            "GET",
+            "/repos/open-city-ai/haidian/git/trees/head-sha?recursive=1",
+        )
+
+        with patch.object(
+            client,
+            "request",
+            return_value=({"truncated": True, "tree": []}, {}),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "missing or truncated"):
+                client.tree_blob_map("large-sha")
 
     def test_download_404_retries_then_succeeds(self) -> None:
         client = GitHubClient("token", "open-city-ai/haidian")
@@ -424,6 +467,121 @@ class ManifestHydrationTests(unittest.TestCase):
     def test_removed_paths_are_excluded_from_validation_scope(self) -> None:
         files = [{"filename": "submissions/alice/design/proposal.md", "status": "removed"}]
         self.assertEqual([], validation_paths_for(files, False))
+
+    def test_participant_scope_catches_cross_author_delete_and_rename(self) -> None:
+        files = [
+            {"filename": "submissions/bob/old-design/proposal.md", "status": "removed"},
+            {
+                "filename": "submissions/alice/new-design/proposal.md",
+                "previous_filename": "submissions/bob/old-design/proposal.md",
+                "status": "renamed",
+            },
+            {"filename": "submissions/alice/new-design/manifest.json", "status": "added"},
+        ]
+        self.assertEqual(
+            [
+                "submissions/bob/old-design/proposal.md",
+            ],
+            submission_scope_violations(files, "alice", False),
+        )
+        self.assertEqual([], submission_scope_violations(files, "alice", True))
+
+    def test_tree_scope_catches_hidden_cross_author_deletion(self) -> None:
+        base_tree = {
+            "submissions/bob/old-design/proposal.md": "old-blob",
+            "submissions/alice/old-design/manifest.json": "unchanged-blob",
+        }
+        head_tree = {
+            "submissions/alice/new-design/proposal.md": "new-blob",
+            "submissions/alice/old-design/manifest.json": "unchanged-blob",
+        }
+        self.assertEqual(
+            ["submissions/bob/old-design/proposal.md"],
+            submission_tree_scope_violations(base_tree, head_tree, "alice", False),
+        )
+        self.assertEqual(
+            [],
+            submission_tree_scope_violations(base_tree, head_tree, "alice", True),
+        )
+
+    def test_cross_author_submission_change_fails_before_download(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 909,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/bob/old-design/proposal.md", "status": "removed"},
+            {"filename": "submissions/alice/new-design/proposal.md", "status": "added"},
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
+            client.paginate.return_value = files
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(1, main())
+        client.download_content.assert_not_called()
+        client.fetch_content.assert_not_called()
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("cross-author submission changes require maintainer authorization", comment)
+
+    def test_tree_guard_catches_deletion_hidden_by_pr_file_listing(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 909,
+                "user": {"login": "alice"},
+                "base": {"sha": "base-sha"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/alice/new-design/proposal.md", "status": "added"},
+        ]
+        base_tree = {
+            "submissions/bob/old-design/proposal.md": "old-blob",
+        }
+        head_tree = {
+            "submissions/alice/new-design/proposal.md": "new-blob",
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.side_effect = [
+                ({"head": {"sha": "head-sha"}}, {}),
+                ({"head": {"sha": "head-sha"}}, {}),
+                ({"head": {"sha": "head-sha"}}, {}),
+            ]
+            client.tree_blob_map.side_effect = [base_tree, head_tree]
+            client.paginate.return_value = files
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(1, main())
+        client.download_content.assert_not_called()
+        client.fetch_content.assert_not_called()
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("submissions/bob/old-design/proposal.md", comment)
 
     def test_participant_deletion_only_pr_is_warning_not_missing_file_failure(self) -> None:
         event = {
