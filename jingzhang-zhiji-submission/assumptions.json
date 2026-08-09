@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "category": "geometry",
+      "description_zh": "所有边界使用 provisional 约束，基于公告文字描述推算",
+      "impact_zh": "面积计算存在误差，正式数据发布后需复算",
+      "severity": "high",
+      "mitigation_zh": "已在 proposal.md、sources.json 和 visual/index.html 中醒目标注"
+    },
+    {
+      "id": "ASM-002",
+      "category": "crs",
+      "description_zh": "GeoJSON 使用 EPSG:4326 交换，面积计算使用 EPSG:4548",
+      "impact_zh": "坐标投影可能引入少量面积误差",
+      "severity": "low",
+      "mitigation_zh": "使用 CGCS2000/3度带 CM117E，适合北京地区"
+    },
+    {
+      "id": "ASM-003",
+      "category": "planning_control",
+      "description_zh": "容积率、建筑高度、建筑密度、绿地率、退线距离等控规参数均缺失",
+      "impact_zh": "无法给出法定控规指标",
+      "severity": "high",
+      "mitigation_zh": "所有控规参数标注为'待确认'，不伪造官方审定结论"
+    },
+    {
+      "id": "ASM-004",
+      "category": "land_ownership",
+      "description_zh": "未获取地块权属信息",
+      "impact_zh": "拆改留方案为概念建议",
+      "severity": "medium",
+      "mitigation_zh": "拆改留方案表述为'概念建议'，需权属调查后深化"
+    },
+    {
+      "id": "ASM-005",
+      "category": "building_height",
+      "description_zh": "建筑高度和层数数据缺失",
+      "impact_zh": "建筑体块为示意性表达",
+      "severity": "medium",
+      "mitigation_zh": "buildings.geojson 中 height_m 和 floors 设为 null"
+    },
+    {
+      "id": "ASM-006",
+      "category": "drawing_version",
+      "description_zh": "A3/A0 PDF 为概念性示意图，非正式施工图",
+      "impact_zh": "图纸仅用于展示和评审",
+      "severity": "low",
+      "mitigation_zh": "PDF 标注为概念方案，不作为工程依据"
+    }
+  ]
+}
