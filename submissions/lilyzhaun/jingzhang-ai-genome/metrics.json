@@ -1,0 +1,164 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary 复算值"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 522439.57,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(building_footprints) area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "AI 研发/孵化/智能产业示范建筑基底概念分布，非官方地块"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.230423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "green_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional 边界的空间复算，official 边界发布后需重算"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.180195,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "public_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 provisional 边界的空间复算，official 边界发布后需重算"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count of KEY_AREA features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2629780.678,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union area of green_space in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 复算"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2056534.488,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union area of public_space in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 复算"
+      ]
+    },
+    "road_network_km": {
+      "status": "known",
+      "value": 18.5,
+      "unit": "km",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum of road centerline lengths in EPSG:4548 / 1000",
+      "confidence": "medium",
+      "assumptions": [
+        "慢行与创新服务绿道网络概念总长"
+      ]
+    },
+    "phasing_area_phase1_sqm": {
+      "status": "known",
+      "value": 3601997.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "phase_1 polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "概念分期，非官方时序"
+      ]
+    },
+    "phasing_area_phase2_sqm": {
+      "status": "known",
+      "value": 4582584.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "phase_2 polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "概念分期，非官方时序"
+      ]
+    },
+    "phasing_area_phase3_sqm": {
+      "status": "known",
+      "value": 2550056.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "phase_3 polygon area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "概念分期，非官方时序"
+      ]
+    }
+  }
+}
