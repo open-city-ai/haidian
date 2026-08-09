@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.1.0",
+  "package_provenance_zh": "本投稿包由 Cursor IDE 中的 claude-fable-5 模型按 urban-design-ai-submission 技能生成；用于百年京张 AI 创新带城市设计开源征集。所有结论均为开放共创建议，不替代正式规划或政府审定。",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints are not present in the cleared public site package. All statutory conclusions (FAR, building height, demolition/retention, road alignment) remain pending the official task-book attachment.",
+      "impact": "The package can be reviewed as a formal AI submission; statutory controls still need professional confirmation once the qualification documents are released by the qualification committee.",
+      "rationale_source": "data/source_registry.json#DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+    },
+    {
+      "id": "A-PROVISIONAL-BOUNDARY-002",
+      "status": "provisional_constraint_in_use",
+      "statement": "geometry/site_boundary.geojson and geometry/key_areas.geojson inherit the maintainer-defined provisional polygons from brief/site-package/geometry/provisional_boundaries.geojson. They are labelled official_boundary=false and geometry_role=provisional_constraint and must be replaced when the qualification package is published.",
+      "impact": "All area-sensitive metrics (site_area_sqm, green_ratio, public_space_ratio, land_use_*) will be recomputed after official polygons arrive. The data gap itself does not block content scoring.",
+      "rationale_source": "brief/site-package/geometry/provisional_boundaries_basis.md"
+    },
+    {
+      "id": "A-HERITAGE-003",
+      "status": "pending_official_review",
+      "statement": "京张铁路遗址公园沿线文物保护与清华园火车站旧址缓冲范围基于公开资料与海淀区文旅口径梳理，最终边界和管控要求以北京市文物局与海淀分局审定为准。",
+      "impact": "Heritage constraint polygons in geometry/constraints.geojson are conceptual overlays for design discussion; their effect on demolish/renovate decisions must be revisited with the cultural heritage authority.",
+      "rationale_source": "data/source_registry.json#DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509 + 北京市文物局公开资料"
+    },
+    {
+      "id": "A-RAIL-TRANSIT-004",
+      "status": "pending_official_review",
+      "statement": "大钟寺站四象限步行连通与轨道站点一体化范围需要结合北京地铁运营公司、京张铁路遗址公园设计与市政管线综合图复核。",
+      "impact": "Public space PUBLIC-004 与道路 ROAD-005 的范围和接驳节点只能作为概念建议；formal 一体化方案需专业团队深化。",
+      "rationale_source": "data/source_registry.json#DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+    },
+    {
+      "id": "A-AI-TESTING-005",
+      "status": "design_concept_only",
+      "statement": "AI 产业测试验证场景（开放数据沙盒、低碳算力驿站、机器人配送）的隐私边界、人工复核和运营主体仍在概念阶段；落地前需通过伦理评审与主管单位授权。",
+      "impact": "scenario cards 02、03、04、08 中场景为概念建议，不构成已批准运营或已签发测试许可。",
+      "rationale_source": "brief/site-package/agent_taskbook.json (boundary_clause)"
+    },
+    {
+      "id": "A-BRAND-006",
+      "status": "design_concept_only",
+      "statement": "提案命名「百年京张文化走廊 / Centennial Jing-Zhang Heritage Corridor」与 Logo 方向（轨距 + 神经网络抽象符号）属参赛者创意建议；项目最终品牌命名与 Logo 须经主办单位与征集组织机构最终确定。",
+      "impact": "主稿中的命名、Logo 描述和品牌识别说明仅作为参赛者提案，不构成官方品牌决定。",
+      "rationale_source": "docs/terminology-glossary.md + brief/site-package/agent_taskbook.json (forbidden_claims)"
+    },
+    {
+      "id": "A-PROVISIONAL-AREA-007",
+      "status": "pending_professional_confirmation",
+      "statement": "公众参与、开发者社区运营、年度活动体系的组织主体、合作通道和资金机制仍需海淀科委、中关村科学城管委会与征集组织机构进一步确定。",
+      "impact": "annual event system / developer community / scenario access 仅作为概念建议；不得表述为已确定政府安排。",
+      "rationale_source": "brief/site-package/agent_taskbook.json (boundary_clause)"
+    }
+  ]
+}

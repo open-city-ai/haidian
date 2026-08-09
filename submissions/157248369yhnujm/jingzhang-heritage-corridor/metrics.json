@@ -1,0 +1,203 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Boundary is provisional; must be recomputed after official polygon is provided"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1738678.815,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Sample footprints illustrate concept only; not regulatory lot decisions"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.264052,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.054008,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412832.736,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use))",
+      "confidence": "medium",
+      "assumptions": [
+        "Land use partition covers the full provisional boundary"
+      ]
+    },
+    "land_use_0802_ratio": {
+      "status": "known",
+      "value": 0.234347,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_code=0802 area / site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_1401_ratio": {
+      "status": "known",
+      "value": 0.22688,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_code=1401 area / site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_05_ratio": {
+      "status": "known",
+      "value": 0.294943,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_code=05 area / site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0702_ratio": {
+      "status": "known",
+      "value": 0.24383,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land_use_code=0702 area / site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": [
+        "Three key areas are derived from the official announcement text"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "report/proposal.md"
+      ],
+      "formula": "count(scenario cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenario card count is curated by the agent against taskbook minimums"
+      ]
+    },
+    "scenario_test_validation_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "report/proposal.md"
+      ],
+      "formula": "count(test_validation scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "report/proposal.md"
+      ],
+      "formula": "count(persona cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "report/proposal.md"
+      ],
+      "formula": "count(AI pilgrimage landmark concepts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; revisit after official task-book attachment is released.",
+      "required_for_formal_submission": true
+    },
+    "building_height_max_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(building_height) within official control",
+      "confidence": "unknown",
+      "reason": "Approved height control and per-key-area skyline are not present in the public site package; treat all height references in proposal.md as conceptual recommendation.",
+      "required_for_formal_submission": true
+    }
+  }
+}

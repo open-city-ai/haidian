@@ -1,0 +1,301 @@
+{
+  "schema_version": "0.1.0",
+  "title_zh": "设计深度矩阵 / Design Depth Matrix",
+  "package_provenance_zh": "本矩阵由 Cursor IDE 中的 claude-fable-5 模型按 urban-design-ai-submission 技能生成；每个核心深度项已声明为 complete 并提供可复核证据链。",
+  "items": [
+    {
+      "item_id": "existing_conditions_diagnosis",
+      "title_zh": "现状诊断与资料缺口",
+      "professional_dimension": "规划",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["设计依据与资料清单", "三层范围工作框架", "风险、版权与合规说明"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/constraints.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": ["site_area_sqm", "key_area_count"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "PROVISIONAL-BOUNDARIES", "AGENT-FACT-PACK"],
+      "assumption_ids": ["A-PROVISIONAL-BOUNDARY-002", "A-CONTROLS-001", "A-HERITAGE-003"],
+      "self_check_ids": ["BOUNDARY_TRUST", "KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY"],
+      "evidence_summary_zh": "现状诊断基于 provisional geometry 与公告文字四至；铁路蓝线、文保缓冲、轨道影响范围、桥下空间已在 constraints.geojson 显式表达；待官方数据补齐项在 assumptions.json 与 missing_data_checklist.csv 中列明。"
+    },
+    {
+      "item_id": "three_level_scope_framework",
+      "title_zh": "三层范围工作框架",
+      "professional_dimension": "规划",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["三层范围工作框架"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": ["site_area_sqm", "key_area_count"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "assumption_ids": ["A-PROVISIONAL-BOUNDARY-002"],
+      "self_check_ids": ["BOUNDARY_TRUST", "LAND_USE_TOPOLOGY"],
+      "evidence_summary_zh": "三层范围在 proposal.md / proposal.en.md 中以 11.4 km² / 43.6 km² / 368.4 ha 标注，并在 site_boundary.geojson + key_areas.geojson 中表达；同步在 spatial.json 中映射为概念节点。"
+    },
+    {
+      "item_id": "overall_spatial_structure",
+      "title_zh": "总体空间结构",
+      "professional_dimension": "城市设计",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["总体设计范围城市更新与控规深度城市设计", "蓝绿空间、公共空间与城市风貌"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/roads.geojson",
+        "geometry/spatial.json"
+      ],
+      "metric_refs": ["green_ratio", "public_space_ratio", "land_use_0802_ratio", "land_use_05_ratio"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "MOHURD-URBAN-DESIGN-MEASURES"],
+      "assumption_ids": ["A-CONTROLS-001"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "三廊三区两翼结构图通过 spatial.json 与 roads.geojson 表达；用地结构覆盖于 land_use.geojson 的 4 个 polygon；provisional boundary 在图面以虚线弱化。"
+    },
+    {
+      "item_id": "land_use_layout",
+      "title_zh": "用地布局",
+      "professional_dimension": "规划",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["用地、建筑规模与拆改留方案"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": [
+        "land_use_0802_ratio",
+        "land_use_1401_ratio",
+        "land_use_05_ratio",
+        "land_use_0702_ratio",
+        "land_use_total_area_sqm"
+      ],
+      "source_ids": ["MNR-LAND-USE-CLASSIFICATION", "OFFICIAL-ANNOUNCEMENT"],
+      "assumption_ids": ["A-CONTROLS-001"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "METRICS_RECALCULATION"],
+      "evidence_summary_zh": "land_use.geojson 4 个 polygon 完全覆盖 provisional 边界，相邻多边形共享坐标；用 0802 / 1401 / 05 / 0702 等官方用地代码；metrics 中分别复算 23.43% / 22.69% / 29.49% / 24.38% 的比例。"
+    },
+    {
+      "item_id": "development_intensity_controls",
+      "title_zh": "开发强度与待确认控规条件",
+      "professional_dimension": "控规",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["总体设计范围城市更新与控规深度城市设计", "风险、版权与合规说明"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf"],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "metric_refs": ["building_footprint_area_sqm", "floor_area_ratio", "building_height_max_m"],
+      "source_ids": ["MOHURD-CONTROL-DETAILED-PLANNING", "OFFICIAL-ANNOUNCEMENT"],
+      "assumption_ids": ["A-CONTROLS-001"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "METRICS_RECALCULATION"],
+      "evidence_summary_zh": "floor_area_ratio 与 building_height_max_m 在 metrics.json 中标记为 unknown，并附 reason 与 required_for_formal_submission；建筑基底面积 building_footprint_area_sqm = 1738678.815 由 buildings.geojson 复算。"
+    },
+    {
+      "item_id": "height_massing_character",
+      "title_zh": "建筑高度、体量与风貌控制",
+      "professional_dimension": "建筑",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["用地、建筑规模与拆改留方案", "蓝绿空间、公共空间与城市风貌"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": ["building_footprint_area_sqm", "building_height_max_m"],
+      "source_ids": ["MOHURD-URBAN-DESIGN-MEASURES", "MOHURD-ARCH-DESIGN-DEPTH-2016"],
+      "assumption_ids": ["A-CONTROLS-001", "A-BRAND-006"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "建筑方案提供 sample footprints；具体高度与体量在官方控规附件发布前保持 unknown；导视、Logo、风貌建议属概念方案。"
+    },
+    {
+      "item_id": "retain_renovate_demolish",
+      "title_zh": "建筑拆改留分类",
+      "professional_dimension": "建筑",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["用地、建筑规模与拆改留方案"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf"],
+      "geometry_refs": [
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": ["building_footprint_area_sqm"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "MOHURD-CONTROL-DETAILED-PLANNING"],
+      "assumption_ids": ["A-HERITAGE-003", "A-CONTROLS-001"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "拆改留方案以 sample building footprints 表示，未给出地块级拆改结论；京张铁路蓝线与清华园站缓冲在 constraints.geojson 表达；最终分类须与官方控规、文物与权属材料复核。"
+    },
+    {
+      "item_id": "traffic_rail_slow_parking",
+      "title_zh": "道路、轨道、慢行与停车组织",
+      "professional_dimension": "交通",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["交通、轨道、市政与公共服务设施"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": ["site_area_sqm"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "assumption_ids": ["A-RAIL-TRANSIT-004", "A-CONTROLS-001"],
+      "self_check_ids": ["VISUAL_STATIC", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "五条廊道（ROAD-001 主轴慢行、ROAD-002 场景实验、ROAD-003 智能消费、ROAD-004 东西缝合、ROAD-005 大钟寺站四象限步行环）覆盖三区两翼；大钟寺站四象限与北五环桥下节点已识别。"
+    },
+    {
+      "item_id": "municipal_new_infrastructure",
+      "title_zh": "市政与新型基础设施策略",
+      "professional_dimension": "市政",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["交通、轨道、市政与公共服务设施", "AI 创新生态、人才画像与 AI+ 场景"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": ["site_area_sqm"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "assumption_ids": ["A-AI-TESTING-005", "A-CONTROLS-001"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "端侧算力驿站、低碳能源、新型基础设施以 AI 场景卡 03 / 08 形式提出；具体市政容量、能源、防洪、消防指标在官方资料补齐前列为 unknown。"
+    },
+    {
+      "item_id": "blue_green_public_space",
+      "title_zh": "蓝绿系统与公共空间",
+      "professional_dimension": "景观",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["蓝绿空间、公共空间与城市风貌"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": ["green_ratio", "public_space_ratio"],
+      "source_ids": ["MOHURD-URBAN-DESIGN-MEASURES", "OFFICIAL-ANNOUNCEMENT"],
+      "assumption_ids": ["A-HERITAGE-003"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "4 个 green_space polygon + 5 个 public_space polygon 覆盖京张主轴、清河小月河界面、大钟寺站口与 AI 原点社区中段；green_ratio = 0.3036，public_space_ratio = 0.054008 来自 metrics.json 复算。"
+    },
+    {
+      "item_id": "three_key_area_detailed_design",
+      "title_zh": "三大重点片区详细设计",
+      "professional_dimension": "城市设计",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["重点区域详细设计"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "metric_refs": ["key_area_count"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "assumption_ids": ["A-PROVISIONAL-BOUNDARY-002", "A-RAIL-TRANSIT-004"],
+      "self_check_ids": ["KEY_AREAS_TRUST", "LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "三处重点片区（PROV-KEY-001 众智园、PROV-KEY-002 AI 原点、PROV-KEY-003 大钟寺）在 key_areas.geojson 表达；每个片区在 proposal.md 中包含定位 + 空间动作 + AI 场景 + 实施风险小方案。"
+    },
+    {
+      "item_id": "renewal_project_list",
+      "title_zh": "更新项目清单",
+      "professional_dimension": "实施",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["更新项目清单、实施政策与分期计划"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/phasing.geojson",
+        "geometry/buildings.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "metric_refs": ["building_footprint_area_sqm"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "assumption_ids": ["A-CONTROLS-001", "A-PROVISIONAL-AREA-007"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "JZ-01 至 JZ-06 更新项目清单与 phasing.geojson 三个分期 polygon 一一对应；每个项目标记依赖条件、运营主体与实施风险。"
+    },
+    {
+      "item_id": "phasing_implementation",
+      "title_zh": "分期实施计划",
+      "professional_dimension": "实施",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["更新项目清单、实施政策与分期计划"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/phasing.geojson"
+      ],
+      "metric_refs": ["site_area_sqm"],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "AGENT-TASKBOOK"],
+      "assumption_ids": ["A-PROVISIONAL-AREA-007"],
+      "self_check_ids": ["LAND_USE_TOPOLOGY", "PROFESSIONAL_EVIDENCE"],
+      "evidence_summary_zh": "phasing.geojson 三期 polygon：近期（AI 原点主轴 2026-2027）、中期（大钟寺国际路演客厅 2027-2028）、远期（众智园国家AI平台组团 2028-2030）。"
+    },
+    {
+      "item_id": "metrics_recalculation",
+      "title_zh": "指标复算",
+      "professional_dimension": "校核",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["指标体系、面积复算与合规矩阵"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "metric_refs": [
+        "site_area_sqm",
+        "building_footprint_area_sqm",
+        "green_ratio",
+        "public_space_ratio",
+        "land_use_total_area_sqm"
+      ],
+      "source_ids": ["OFFICIAL-ANNOUNCEMENT", "PROVISIONAL-BOUNDARIES"],
+      "assumption_ids": ["A-CONTROLS-001", "A-PROVISIONAL-BOUNDARY-002"],
+      "self_check_ids": ["METRICS_RECALCULATION", "LAND_USE_TOPOLOGY"],
+      "evidence_summary_zh": "所有 known 指标均由 GeoJSON 在 EPSG:4548 下复算；unknown 字段（FAR、building_height_max_m）显式标注并说明复算前置条件；metrics-evidence.png 以 symlog 视图呈现 14 个核心指标的来源与值。"
+    },
+    {
+      "item_id": "risk_missing_data",
+      "title_zh": "风险与缺资料清单",
+      "professional_dimension": "合规",
+      "required": true,
+      "status": "complete",
+      "proposal_sections": ["风险、版权与合规说明"],
+      "drawing_refs": ["drawings/a3-booklet.pdf", "drawings/a3-booklet.en.pdf", "drawings/a0-boards.pdf", "drawings/a0-boards.en.pdf"],
+      "geometry_refs": [
+        "geometry/constraints.geojson"
+      ],
+      "metric_refs": ["floor_area_ratio", "building_height_max_m"],
+      "source_ids": ["AGENT-TASKBOOK", "OFFICIAL-ANNOUNCEMENT", "MOHURD-CONTROL-DETAILED-PLANNING"],
+      "assumption_ids": ["A-CONTROLS-001", "A-PROVISIONAL-BOUNDARY-002", "A-HERITAGE-003", "A-AI-TESTING-005", "A-BRAND-006", "A-PROVISIONAL-AREA-007"],
+      "self_check_ids": ["PROFESSIONAL_EVIDENCE", "BOUNDARY_TRUST"],
+      "evidence_summary_zh": "风险矩阵 risk.json 覆盖 8 个 1-5 分风险项；assumptions.json 列明 7 条假设与对应影响；自检 self_check.json 显式披露 provisional 状态；report/copyright_statement.md 登记字体与依赖。"
+    }
+  ]
+}
