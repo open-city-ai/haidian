@@ -6,7 +6,8 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路为脉、AI全栈自主创新为芯，构建从统筹研究范围到重点区域的AI创新带总体城市设计方案：一带三核两翼的空间结构、概念性用地与建筑方案、12张AI场景卡、6类人才画像与4处朝圣地标，全部成果标注临时边界与待确认事项。"
 tracks: ["jingzhang-heritage-narrative","ai-origin-community","ai-traffic-walkability"]
 scenarios: ["ai-traffic-walkability","ai-cultural-guide","ai-health-service-navigation","enterprise-service-copilot","robot-delivery-low-speed","public-safety-operations-review"]
-iteration: "v0.5"
+translation_file: "proposal.en.md"
+iteration: "v0.6"
 ---
 
 # 京张智脉：让百年铁轨重新成为城市心跳
