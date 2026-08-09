@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://example.org/jingzhang/relay-receipt.schema.json",
   "title": "Jing-Zhang Civic AI Relay Receipt",
-  "description": "Concept governance record for one bounded AI scenario handoff; not an official system or deployment approval.",
+  "description": "Concept governance record for one bounded AI scenario from problem through rollback or retirement; not an official system or deployment approval.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -13,17 +13,18 @@
     "problem",
     "place",
     "data",
-    "system",
+    "permissions",
     "human_gate",
-    "rights",
-    "operations",
-    "evaluation",
-    "handoff",
+    "test",
+    "evidence",
+    "decision",
+    "feedback",
+    "rollback_retirement",
     "disclaimer"
   ],
   "properties": {
     "schema_version": {
-      "const": "0.2.0"
+      "const": "0.3.0"
     },
     "receipt_id": {
       "type": "string",
@@ -67,6 +68,8 @@
         },
         "evidence_refs": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -80,7 +83,8 @@
         "geometry_ref",
         "geometry_status",
         "space_mode",
-        "non_ai_path"
+        "non_ai_path",
+        "site_verification_status"
       ],
       "properties": {
         "geometry_ref": {
@@ -98,6 +102,13 @@
         },
         "non_ai_path": {
           "type": "string"
+        },
+        "site_verification_status": {
+          "enum": [
+            "pending",
+            "verified",
+            "not_applicable"
+          ]
         }
       }
     },
@@ -109,7 +120,9 @@
         "minimum_fields",
         "personal_data",
         "retention",
-        "deletion_verification"
+        "deletion_verification",
+        "notice",
+        "opt_out"
       ],
       "properties": {
         "purpose": {
@@ -117,6 +130,8 @@
         },
         "minimum_fields": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -133,10 +148,16 @@
         },
         "deletion_verification": {
           "type": "string"
+        },
+        "notice": {
+          "type": "string"
+        },
+        "opt_out": {
+          "type": "string"
         }
       }
     },
-    "system": {
+    "permissions": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -144,9 +165,10 @@
         "model_or_ruleset",
         "version",
         "artifact_hash",
-        "tool_permissions",
+        "allowed_actions",
         "forbidden_actions",
-        "abstention_conditions"
+        "abstention_conditions",
+        "external_connection"
       ],
       "properties": {
         "deployment_status": {
@@ -169,8 +191,10 @@
             "null"
           ]
         },
-        "tool_permissions": {
+        "allowed_actions": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -178,6 +202,7 @@
         "forbidden_actions": {
           "type": "array",
           "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
@@ -185,9 +210,17 @@
         "abstention_conditions": {
           "type": "array",
           "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
+        },
+        "external_connection": {
+          "enum": [
+            "disabled",
+            "approved_limited",
+            "operational"
+          ]
         }
       }
     },
@@ -196,7 +229,10 @@
       "additionalProperties": false,
       "required": [
         "accountable_role",
+        "accountable_role_status",
         "reviewer_roles",
+        "takeover_role",
+        "non_ai_fallback_verified",
         "decision",
         "signed_at",
         "decision_diff"
@@ -205,11 +241,30 @@
         "accountable_role": {
           "type": "string"
         },
+        "accountable_role_status": {
+          "enum": [
+            "unassigned",
+            "candidate",
+            "confirmed"
+          ]
+        },
         "reviewer_roles": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
+        },
+        "takeover_role": {
+          "type": "string"
+        },
+        "non_ai_fallback_verified": {
+          "enum": [
+            "not_run",
+            "pass",
+            "fail"
+          ]
         },
         "decision": {
           "enum": [
@@ -234,22 +289,245 @@
         }
       }
     },
-    "rights": {
+    "test": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "notice",
-        "opt_out",
-        "appeal",
-        "accessibility",
-        "deletion"
+        "scope",
+        "run_status",
+        "fixture_count",
+        "test_cases",
+        "acceptance_criteria",
+        "stop_conditions",
+        "baseline_status"
       ],
       "properties": {
-        "notice": {
+        "scope": {
           "type": "string"
         },
-        "opt_out": {
+        "run_status": {
+          "enum": [
+            "not_run",
+            "running",
+            "completed",
+            "stopped"
+          ]
+        },
+        "fixture_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "test_cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "topic",
+              "risk_level",
+              "expected_human_queue"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "topic": {
+                "type": "string"
+              },
+              "risk_level": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high"
+                ]
+              },
+              "expected_human_queue": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "acceptance_criteria": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "id",
+              "criterion",
+              "required",
+              "result",
+              "evidence_ref"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "criterion": {
+                "type": "string"
+              },
+              "required": {
+                "type": "boolean"
+              },
+              "result": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  null
+                ]
+              },
+              "evidence_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
+        },
+        "stop_conditions": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string"
+          }
+        },
+        "baseline_status": {
+          "enum": [
+            "missing",
+            "partial",
+            "verified"
+          ]
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "performance_results",
+        "route_log_ref",
+        "human_comparison_record",
+        "negative_results",
+        "deletion_record",
+        "evidence_status"
+      ],
+      "properties": {
+        "performance_results": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "route_log_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "human_comparison_record": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "negative_results": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deletion_record": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "evidence_status": {
+          "enum": [
+            "not_generated",
+            "partial",
+            "complete"
+          ]
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "outcome",
+        "decided_by_role",
+        "signed_at",
+        "reasons",
+        "decision_diff"
+      ],
+      "properties": {
+        "outcome": {
+          "enum": [
+            "pending",
+            "adopt",
+            "reject",
+            "pause",
+            "retest",
+            "retire",
+            "rollback"
+          ]
+        },
+        "decided_by_role": {
           "type": "string"
+        },
+        "signed_at": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "reasons": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "decision_diff": {
+          "type": "string"
+        }
+      }
+    },
+    "feedback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "feedback_status",
+        "channels",
+        "appeal",
+        "accessibility",
+        "public_report_ref",
+        "maintenance_owner",
+        "maintenance_owner_status",
+        "cost_status",
+        "next_gate"
+      ],
+      "properties": {
+        "feedback_status": {
+          "enum": [
+            "not_collected",
+            "partial",
+            "complete"
+          ]
+        },
+        "channels": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
         },
         "appeal": {
           "type": "string"
@@ -257,34 +535,21 @@
         "accessibility": {
           "type": "string"
         },
-        "deletion": {
-          "type": "string"
-        }
-      }
-    },
-    "operations": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "service_window",
-        "on_call_role",
-        "fallback",
-        "maintenance_owner",
-        "cost_status",
-        "exit_asset_plan"
-      ],
-      "properties": {
-        "service_window": {
-          "type": "string"
-        },
-        "on_call_role": {
-          "type": "string"
-        },
-        "fallback": {
-          "type": "string"
+        "public_report_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "maintenance_owner": {
           "type": "string"
+        },
+        "maintenance_owner_status": {
+          "enum": [
+            "unassigned",
+            "candidate",
+            "confirmed"
+          ]
         },
         "cost_status": {
           "enum": [
@@ -293,74 +558,98 @@
             "verified"
           ]
         },
-        "exit_asset_plan": {
+        "next_gate": {
           "type": "string"
         }
       }
     },
-    "evaluation": {
+    "rollback_retirement": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "baseline_status",
-        "candidate_metrics",
-        "performance_results",
-        "stop_conditions",
-        "review_cycle"
+        "triggers",
+        "ordered_actions",
+        "data_disposition",
+        "retained_assets",
+        "exit_owner",
+        "exit_owner_status",
+        "completion_status",
+        "completion_evidence"
       ],
       "properties": {
-        "baseline_status": {
-          "enum": [
-            "missing",
-            "partial",
-            "verified"
-          ]
-        },
-        "candidate_metrics": {
+        "triggers": {
           "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
           "items": {
             "type": "string"
           }
         },
-        "performance_results": {
-          "type": [
-            "object",
-            "null"
-          ]
+        "ordered_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "step",
+              "action",
+              "completed",
+              "completion_evidence"
+            ],
+            "properties": {
+              "step": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "action": {
+                "type": "string"
+              },
+              "completed": {
+                "type": "boolean"
+              },
+              "completion_evidence": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            }
+          }
         },
-        "stop_conditions": {
+        "data_disposition": {
+          "type": "string"
+        },
+        "retained_assets": {
           "type": "array",
           "minItems": 1,
           "items": {
             "type": "string"
           }
         },
-        "review_cycle": {
-          "type": "string"
-        }
-      }
-    },
-    "handoff": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "from_role",
-        "to_role",
-        "output_object",
-        "next_gate"
-      ],
-      "properties": {
-        "from_role": {
+        "exit_owner": {
           "type": "string"
         },
-        "to_role": {
-          "type": "string"
+        "exit_owner_status": {
+          "enum": [
+            "unassigned",
+            "candidate",
+            "confirmed"
+          ]
         },
-        "output_object": {
-          "type": "string"
+        "completion_status": {
+          "enum": [
+            "not_required",
+            "not_started",
+            "partial",
+            "complete"
+          ]
         },
-        "next_gate": {
-          "type": "string"
+        "completion_evidence": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },

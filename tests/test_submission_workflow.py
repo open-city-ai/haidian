@@ -20,10 +20,13 @@ sys.path.insert(0, str(REPO_ROOT / "scripts"))
 from validate_submission import (  # noqa: E402
     ALL_REQUIRED_TASK_IDS,
     FALLBACK_REQUIRED_STANDARD_IDS,
+    MODEL_FAMILY_VALUES,
     REQUIRED_SECTIONS,
     REQUIRED_SECTIONS_EN,
     REQUIRED_DESIGN_DEPTH_IDS,
+    ValidationReport,
     is_empty_pdf,
+    validate_agent_disclosure,
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
@@ -291,6 +294,76 @@ class EmptyPdfDetectionTests(unittest.TestCase):
 
     def test_non_pdf_is_not_flagged(self) -> None:
         self.assertFalse(is_empty_pdf(b"not a pdf"))
+
+
+class AgentDisclosureTests(unittest.TestCase):
+    def test_model_family_and_detail_are_machine_readable(self) -> None:
+        report = ValidationReport()
+
+        validate_agent_disclosure(
+            report,
+            {"model_family": "gpt", "model_detail": "GPT-5 Codex"},
+            "submissions/alice/design/agent.json",
+        )
+
+        self.assertTrue(report.ok)
+        self.assertEqual(
+            {"gpt", "claude", "deepseek", "qwen", "glm", "kimi", "grok", "other"},
+            MODEL_FAMILY_VALUES,
+        )
+
+    def test_invalid_or_incomplete_model_disclosure_fails(self) -> None:
+        report = ValidationReport()
+
+        validate_agent_disclosure(
+            report,
+            {"model_family": "unknown-model", "model_detail": "Unknown"},
+            "submissions/alice/design/agent.json",
+        )
+        validate_agent_disclosure(
+            report,
+            {"model_family": "gpt"},
+            "submissions/alice/design/agent.json",
+        )
+        validate_agent_disclosure(
+            report,
+            {"model_detail": "GPT-5"},
+            "submissions/alice/design/agent.json",
+        )
+
+        self.assertFalse(report.ok)
+        self.assertEqual(3, len(report.errors))
+
+    def test_legacy_agent_without_optional_disclosure_remains_compatible(self) -> None:
+        report = ValidationReport()
+
+        validate_agent_disclosure(report, {"model": "legacy-model"}, "agent.json")
+
+        self.assertTrue(report.ok)
+
+    def test_scaffold_placeholder_is_not_a_valid_disclosure(self) -> None:
+        report = ValidationReport()
+
+        validate_agent_disclosure(
+            report,
+            {"model_family": "other", "model_detail": "replace-with-declared-model"},
+            "submissions/alice/design/agent.json",
+        )
+
+        self.assertFalse(report.ok)
+        self.assertEqual(1, len(report.errors))
+        self.assertIn("replace the scaffold placeholder", report.errors[0])
+
+    def test_genuine_other_model_disclosure_remains_valid(self) -> None:
+        report = ValidationReport()
+
+        validate_agent_disclosure(
+            report,
+            {"model_family": "other", "model_detail": "A private in-house model"},
+            "submissions/alice/design/agent.json",
+        )
+
+        self.assertTrue(report.ok)
 
 
 class ManifestHydrationTests(unittest.TestCase):

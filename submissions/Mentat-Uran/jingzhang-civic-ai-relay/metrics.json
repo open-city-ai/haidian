@@ -437,6 +437,105 @@
         "A-OPERATIONS-001"
       ]
     },
+    "relay_receipt_stage_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/relay-receipt.schema.json"
+      ],
+      "formula": "count(required execution-stage objects from problem through rollback_retirement)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_pilot_gate_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/operations-matrix.json"
+      ],
+      "formula": "count(SC-04 pilot gates G0 through G6)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_synthetic_ticket_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(bundled synthetic test fixtures; no real service records)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001"
+      ]
+    },
+    "sc04_acceptance_criterion_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(candidate acceptance criteria with result=null before test)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_stop_condition_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(hard stop conditions in the SC-04 synthetic pilot contract)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_rollback_action_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(ordered rollback and retirement actions)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_performance_results": {
+      "status": "unknown",
+      "value": null,
+      "unit": "result",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "record verified results only after an authorized sandbox run",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "The synthetic pilot has not run; no routing, takeover, deletion, or service-performance result is claimed."
+    },
     "human_handoff_gate_count": {
       "status": "known",
       "value": 3,

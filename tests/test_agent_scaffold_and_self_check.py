@@ -90,6 +90,22 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
     for rel in ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"]:
         (output_dir / rel).write_bytes(drawing)
 
+    # Finalization represents a participant-authored package, so replace the
+    # disclosure placeholders emitted by the scaffold before refreshing hashes.
+    agent_path = output_dir / "agent.json"
+    agent = json.loads(agent_path.read_text(encoding="utf-8"))
+    agent.update(
+        {"model": "GPT-5 Codex", "model_family": "gpt", "model_detail": "GPT-5 Codex"}
+    )
+    agent_path.write_text(json.dumps(agent, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    manifest_path = output_dir / "manifest.json"
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    if isinstance(manifest.get("agent"), dict):
+        manifest["agent"].update(
+            {"model": "GPT-5 Codex", "model_family": "gpt", "model_detail": "GPT-5 Codex"}
+        )
+    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
     primary_text = proposal.read_text(encoding="utf-8")
     translated_proposal = output_dir / "proposal.en.md"
     if not translated_proposal.exists():
@@ -193,6 +209,21 @@ def write_provisional_site_package(root: Path) -> None:
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")
 class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
+    def test_scaffold_emits_machine_readable_model_disclosure_fields(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "model-disclosure"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+
+            agent = json.loads((output_dir / "agent.json").read_text(encoding="utf-8"))
+            manifest = json.loads((output_dir / "manifest.json").read_text(encoding="utf-8"))
+            expected = {
+                "model_family": "other",
+                "model_detail": "replace-with-declared-model",
+            }
+            self.assertEqual(expected, {key: agent[key] for key in expected})
+            self.assertEqual(expected, {key: manifest["agent"][key] for key in expected})
+
     def test_finalize_blocks_v2_package_without_required_bilingual_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "missing-bilingual"

@@ -75,6 +75,42 @@
     "geometry/public_space.geojson",
     "proposal.md"
    ]
+  },
+  {
+   "id": "A-EXISTING-002",
+   "title_zh": "现状建成底数为背景级参照，非现状调查",
+   "description_zh": "本包的现状建筑量级取自 OpenStreetMap 公开建筑轮廓（总体设计范围内基底≥400㎡ 者 1,286 处、基底合计约196公顷、覆盖率约17.2%），存档于 visual/assets/osm-buildings.json。按本包来源纪律，OSM 属 background_only，该组数据只作量级参照，不作为现状事实结论；其中不含建筑面积与层数，因此不据此推算存量建筑规模。",
+   "impact_zh": "由此得出的'占满而未建足'（无净地可平面铺开、更新容量在立体与界面维度）是待证推断，不是结论；拆改留仍只能停在方法框架层面，不可作逐栋判断。",
+   "mitigation_zh": "取得官方现状建筑与权属调查后交叉核验，据以将该推断升级或撤回，并重算存量相关表述；过滤阈值（400㎡）与 OSM 完整率亦须一并复核。",
+   "affected_files": [
+    "visual/assets/osm-buildings.json",
+    "proposal.md",
+    "proposal.en.md"
+   ]
+  },
+  {
+   "id": "A-CAPACITY-001",
+   "title_zh": "概念规模与公开可更新容量的可比性未核实",
+   "description_zh": "本包概念组团规模约126万平方米；公开报道提到创新带'可用更新面积约100万平方米'。两者的统计范围、时点与计容口径均未核实，后者亦非法定容量上限。",
+   "impact_zh": "若两者口径可比，本包概念规模约为其1.26倍；本包据此仅将概念组团规模视为上限性示意，不判定超量、不宣称吻合、不自行设定修正值。",
+   "mitigation_zh": "取得官方可更新容量的统计口径定义与现状建筑面积底数后重新校准概念规模。",
+   "affected_files": [
+    "metrics.json",
+    "proposal.md",
+    "proposal.en.md"
+   ]
+  },
+  {
+   "id": "A-CONTROLS-002",
+   "title_zh": "概念组团无用地边界，故不可折算容积率",
+   "description_zh": "本包只定义概念组团的建筑基底，未定义其用地边界。容积率的分母是用地面积，因此本包无法也不应折算容积率；正文给出的约8.7为'概念组团平均层数等价值'（示意规模÷自身基底），与容积率分母不同、不可直接比较。",
+   "impact_zh": "带内两宗公开项目的容积率（约2.45、约2.62）只说明既有项目的强度量级，不能与上述层数等价值相比，也不构成本包的强度结论。",
+   "mitigation_zh": "取得官方控规条件或地块规划条件后，按其口径直接引用容积率，不再使用层数等价值。",
+   "affected_files": [
+    "metrics.json",
+    "proposal.md",
+    "proposal.en.md"
+   ]
   }
  ]
 }
