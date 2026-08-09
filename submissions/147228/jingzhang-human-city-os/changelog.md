@@ -1,5 +1,10 @@
 # 方案迭代记录
 
+## v0.3 - 2026-08-10
+
+- Added a bilingual ordinary-person service-flow contract linking five understandable actions to existing scenario cards, release gates, retained evidence, and fail-closed actions.
+- Kept the flow at `result_status=not_run`; it does not claim user research, field testing, accessibility performance, service availability, or release authorization.
+
 ## v0.3 - 2026-08-09
 
 - 持久化当前 main 提交上的真实四门自检结果、生成器版本、UTC 时间和 formal-review readiness；这只是本地包证据，不是官方评分或实施批准。

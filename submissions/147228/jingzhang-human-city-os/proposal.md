@@ -28,6 +28,8 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 发布门台账与每张场景卡均明确不构成许可、工程方案、投资承诺或实施结论；官方边界、权属、控规、道路、市政、蓝线和现状资料一旦补齐，须先全量重算再讨论下一版本。
 
+为让“人的城”不只停留在机制名词，`visual/assets/human-city-ordinary-person-flow.json` 将人工/非数字入口、提出请求、人工接管、申诉撤回、第三方复核五步翻译成普通人可读的服务路径。每步绑定现有场景卡、发布门、留存证据和失败动作；它是 `result_status=not_run` 的概念审阅接口，不是用户访谈、现场试用、无障碍绩效或发布许可。[data:visual/assets/human-city-ordinary-person-flow.json] [depth:phasing_implementation] [metric:version_release_count]
+
 ## 核心概念与四项运行机制
 
 核心概念是“人本城市操作系统”（Human City OS）：把城市空间、公共服务与 AI 代理组织成一套可观察、可拒绝、可回滚的发布系统。它不是把 AI 变成地标，也不是用自动化替代人的判断，而是把每个城市能力拆成四项可审计机制：人类优先机制保证人工服务、无障碍和拒绝权；证据发布机制把地点、时间、数据、责任和版本门绑定；空间—服务接口机制把城市 API、慢行网络、公共空间和场景卡连成可复核的服务链；退出与修复机制要求停机、撤除、数据删除、异议处理和独立复盘同时存在。[depth:phasing_implementation] [metric:version_release_count]

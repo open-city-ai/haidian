@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "flow_id": "HUMAN-CITY-ORDINARY-FLOW-001",
+  "claim_level": "concept_review_interface",
+  "result_status": "not_run",
+  "not_field_evidence": true,
+  "purpose_zh": "把 Human City OS 的可观察、可拒绝、可回滚机制翻译成普通人可以理解的五步服务路径。",
+  "boundary_zh": "这是概念级审阅流程，不是用户访谈、现场试用、无障碍绩效、服务可用性或发布许可；当前 provisional geometry、社会结果和运行指标不因该流程改变。",
+  "steps": [
+    {
+      "step_id": "HCF-01",
+      "ordinary_action_zh": "进入服务并选择人工、纸本/电话或 AI 辅助路径",
+      "visible_space_or_service_zh": "人工通道与代际共学；不以扫码或设备作为入口",
+      "scenario_refs": ["SC-A03"],
+      "release_gate": "v0.1",
+      "evidence_to_retain_zh": "选择状态、版本、可理解性走读和障碍记录",
+      "fail_closed_action_zh": "没有等效人工通道，不进入纯数字流程。"
+    },
+    {
+      "step_id": "HCF-02",
+      "ordinary_action_zh": "提出一个有明确目的的公共服务请求并查看资料边界",
+      "visible_space_or_service_zh": "城市 API 交换站、人工柜台、目的与授权说明",
+      "scenario_refs": ["SC-B01", "SC-C04"],
+      "release_gate": "v0.1",
+      "evidence_to_retain_zh": "场景 ID、数据范围、责任角色和授权版本",
+      "fail_closed_action_zh": "目的、权限或责任不清，留在纸面协议，不调用数据。"
+    },
+    {
+      "step_id": "HCF-03",
+      "ordinary_action_zh": "看见不理解或不安全的自动化建议，并请求人工接管",
+      "visible_space_or_service_zh": "硅基通行权/监管沙盒的可视状态、人工服务台和事故复盘入口",
+      "scenario_refs": ["SC-B02", "SC-C03"],
+      "release_gate": "v0.2",
+      "evidence_to_retain_zh": "触发原因、时间、人工接管角色和处置记录",
+      "fail_closed_action_zh": "没有可见人工接管或专业授权，立即暂停相关场景。"
+    },
+    {
+      "step_id": "HCF-04",
+      "ordinary_action_zh": "提出异议、删除/撤回授权，或回到线下服务",
+      "visible_space_or_service_zh": "城市版本发布室、公共数据授权样板间、电话/纸面申诉入口",
+      "scenario_refs": ["SC-C04", "SC-C05"],
+      "release_gate": "v0.2",
+      "evidence_to_retain_zh": "问题编号、期限、处置状态、撤回和删除记录",
+      "fail_closed_action_zh": "投诉未闭环或撤回不可执行，不进入更高版本。"
+    },
+    {
+      "step_id": "HCF-05",
+      "ordinary_action_zh": "第三方复核证据后决定修复、继续研究或退出",
+      "visible_space_or_service_zh": "公开问题清单、release note、公众复核窗口和版本差异页",
+      "scenario_refs": ["SC-C05", "SC-D02"],
+      "release_gate": "v1.0",
+      "evidence_to_retain_zh": "复核差异、最差群体风险、公开决定和下一次门槛",
+      "fail_closed_action_zh": "证据无法复演、权利受损或条件改变，撤下展示并回到 v0.1。"
+    }
+  ],
+  "source_refs": [
+    "visual/assets/scenario-cards.json",
+    "visual/assets/scenario-space-operation-matrix.json",
+    "visual/assets/release-gate-ledger.json",
+    "visual/assets/personas-and-fairness.json"
+  ]
+}
