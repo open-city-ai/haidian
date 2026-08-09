@@ -160,7 +160,10 @@ class PullRequestHeadGuardTests(unittest.TestCase):
         with patch.object(
             client,
             "request",
-            return_value=({"head": {"sha": "current-sha"}}, {}),
+            return_value=(
+                {"state": "open", "draft": False, "head": {"sha": "current-sha"}},
+                {},
+            ),
         ) as request:
             self.assertTrue(is_current_pull_request_head(client, 627, "current-sha"))
             self.assertFalse(is_current_pull_request_head(client, 627, "stale-sha"))
@@ -185,7 +188,10 @@ class PullRequestHeadGuardTests(unittest.TestCase):
             event_file.flush()
             client = MagicMock()
             client.repository = "open-city-ai/haidian"
-            client.request.return_value = ({"head": {"sha": "current-sha"}}, {})
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "current-sha"}},
+                {},
+            )
             with patch.dict(
                 os.environ,
                 {
@@ -219,8 +225,14 @@ class PullRequestHeadGuardTests(unittest.TestCase):
             client = MagicMock()
             client.repository = "open-city-ai/haidian"
             client.request.side_effect = [
-                ({"head": {"sha": "event-sha"}}, {}),
-                ({"head": {"sha": "newer-sha"}}, {}),
+                (
+                    {"state": "open", "draft": False, "head": {"sha": "event-sha"}},
+                    {},
+                ),
+                (
+                    {"state": "open", "draft": False, "head": {"sha": "newer-sha"}},
+                    {},
+                ),
             ]
             client.paginate.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
@@ -255,9 +267,18 @@ class PullRequestHeadGuardTests(unittest.TestCase):
             client = MagicMock()
             client.repository = "open-city-ai/haidian"
             client.request.side_effect = [
-                ({"head": {"sha": "event-sha"}}, {}),
-                ({"head": {"sha": "event-sha"}}, {}),
-                ({"head": {"sha": "newer-sha"}}, {}),
+                (
+                    {"state": "open", "draft": False, "head": {"sha": "event-sha"}},
+                    {},
+                ),
+                (
+                    {"state": "open", "draft": False, "head": {"sha": "event-sha"}},
+                    {},
+                ),
+                (
+                    {"state": "open", "draft": False, "head": {"sha": "newer-sha"}},
+                    {},
+                ),
             ]
             client.paginate.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
@@ -441,7 +462,10 @@ class ManifestHydrationTests(unittest.TestCase):
             event_file.flush()
             client = MagicMock()
             client.repository = "open-city-ai/haidian"
-            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
+                {},
+            )
             client.paginate.return_value = files
             with patch.dict(
                 os.environ,
@@ -469,12 +493,16 @@ class ManifestHydrationTests(unittest.TestCase):
             {"filename": "scripts/tool.py", "status": "modified"},
             {"filename": "tests/test_tool.py", "status": "modified"},
         ]
+
         with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
             json.dump(event, event_file)
             event_file.flush()
             client = MagicMock()
             client.repository = "open-city-ai/haidian"
-            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
+                {},
+            )
             client.paginate.return_value = files
             with patch.dict(
                 os.environ,
@@ -490,6 +518,62 @@ class ManifestHydrationTests(unittest.TestCase):
         client.fetch_content.assert_not_called()
         comment = client.upsert_comment.call_args.args[1]
         self.assertIn("non-submission code/docs/test PR", comment)
+
+    def test_closed_pr_short_circuits_before_hydration_or_side_effects(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 736,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "closed-head"},
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.request.return_value = ({"state": "closed", "draft": False}, {})
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.paginate.assert_not_called()
+        client.download_content.assert_not_called()
+        client.upsert_comment.assert_not_called()
+        client.add_labels.assert_not_called()
+        client.remove_labels.assert_not_called()
+
+    def test_current_draft_pr_short_circuits_before_hydration_or_side_effects(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 736,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "draft-head"},
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.request.return_value = ({"state": "open", "draft": True}, {})
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.paginate.assert_not_called()
+        client.download_content.assert_not_called()
+        client.upsert_comment.assert_not_called()
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(

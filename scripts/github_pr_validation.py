@@ -259,6 +259,8 @@ def is_current_pull_request_head(
     )
     if not isinstance(payload, dict):
         raise RuntimeError("GitHub pull request response was not an object")
+    if payload.get("state") != "open" or payload.get("draft") is True:
+        return False
     head = payload.get("head")
     if not isinstance(head, dict) or not isinstance(head.get("sha"), str):
         raise RuntimeError("GitHub pull request response did not include head.sha")

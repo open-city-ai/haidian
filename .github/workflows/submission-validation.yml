@@ -9,19 +9,57 @@ permissions:
   pull-requests: write
   issues: write
 
-# Every validation run calls the GitHub API to enumerate and hydrate the PR.
-# Serializing those calls avoids secondary-rate-limit 403s when several
-# submissions arrive together.
+# Keep only the newest event for each PR. The global API lock below still
+# serializes hydration, but a synchronize event no longer leaves older heads
+# occupying that queue or publishing obsolete state.
 concurrency:
-  group: submission-validation
-  cancel-in-progress: false
-  queue: max
+  group: submission-validation-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
-  submission-validation:
-    name: submission-validation
+  head_guard:
+    name: reject stale validation events before API hydration
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
+    outputs:
+      current: ${{ steps.check-head.outputs.current }}
+    steps:
+      - name: Compare event head with the live pull request head
+        id: check-head
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          pr_number="$(jq -r '.pull_request.number' "${GITHUB_EVENT_PATH}")"
+          event_head="$(jq -r '.pull_request | .head | .sha' "${GITHUB_EVENT_PATH}")"
+          read -r state draft current_head < <(
+            gh api "repos/${GITHUB_REPOSITORY}/pulls/${pr_number}" \
+              --jq '[.state, (.draft | tostring), .head.sha] | @tsv'
+          )
+          if [[ "${state}" == "open" && "${draft}" == "false" && "${current_head}" == "${event_head}" ]]; then
+            echo "current=true" >> "${GITHUB_OUTPUT}"
+            echo "Current PR head is ${current_head}; validation may enter the serialized hydration queue."
+          else
+            echo "current=false" >> "${GITHUB_OUTPUT}"
+            echo "Skipping stale, closed, or draft validation event for PR #${pr_number}."
+          fi
+
+  submission-validation:
+    name: submission-validation
+    needs: head_guard
+    runs-on: ubuntu-latest
+    if: needs.head_guard.outputs.current == 'true'
+    timeout-minutes: 15
+    # Every validation calls the GitHub API to enumerate and hydrate the PR.
+    # Keep those calls serialized across PRs to avoid secondary-rate-limit
+    # 403s, while retaining one pending slot per PR at the workflow level.
+    # The API lock must keep all distinct PRs eligible; per-PR cancellation
+    # above already removes superseded heads before they reach this queue.
+    concurrency:
+      group: submission-validation-api
+      cancel-in-progress: false
+      queue: max
     steps:
       - name: Checkout current trusted default branch
         uses: actions/checkout@v4
