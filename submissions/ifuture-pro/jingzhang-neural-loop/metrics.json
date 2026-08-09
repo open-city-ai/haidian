@@ -1,0 +1,217 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary from DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "Subject to recalculation when official boundary is released"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Zhongzhiyuan, AI Origin Community, Dazhongsi based on provisional boundaries",
+        "Subject to recalculation when official boundaries are released"
+      ]
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary, subject to recalculation"
+      ]
+    },
+    "ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary, subject to recalculation"
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary, subject to recalculation"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "conceptual_target",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual proposal based on innovation district requirements",
+        "Requires confirmation with official planning controls"
+      ],
+      "reason": "Conceptual ~4.5M sqm target; cannot be derived from provisional geometry without official regulatory FAR controls and floor-count data."
+    },
+    "average_far": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual proposal for overall design area",
+        "Requires official regulatory planning confirmation"
+      ],
+      "reason": "Conceptual ~2.5 target; a definitive FAR requires official regulatory planning controls rather than provisional boundary data."
+    },
+    "land_use_structure": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "land_use_area_by_type / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional land use allocation",
+        "Subject to recalculation with official boundaries"
+      ],
+      "reason": "Land-use allocation is documented as area_sqm_declared per land_use.geojson feature (45/10/25/20); a single normalized scalar ratio is not materialized pending the official boundary."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(green_space) / polygon_area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional computed ratio from derived green_space layer over provisional site boundary",
+        "Conceptual design target remains >=0.30; this value is the provisional measured ratio pending official boundary"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(public_space) / polygon_area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional computed ratio from derived public_space layer over provisional site boundary",
+        "Conceptual design target remains 0.35 for the full multi-level public space system; this value is the provisional measured ratio pending official boundary"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on retain-renovate-demolish strategy",
+        "40% retain, 30% improve, 30% rebuild"
+      ],
+      "reason": "buildings.geojson holds indicative retain/improve/rebuild strategy blocks, not a complete as-built building survey; a definitive footprint total requires a parcel-level survey."
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(AI_plus_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "10 AI+ scenario cards as required by agent.3"
+      ]
+    },
+    "validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(validation_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "3 test/validation scenarios as required by agent.3."
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "5 user personas as required by agent.3."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(ai_landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "3 AI landmarks as required by agent.4."
+      ]
+    },
+    "global_case_study_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [],
+      "formula": "count(global_innovation_cases)",
+      "confidence": "high",
+      "assumptions": [
+        "8 global AI innovation ecosystem cases as required by agent.2."
+      ]
+    }
+  }
+}
