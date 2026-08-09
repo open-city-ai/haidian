@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 
+from git_blob_hashes import git_blob_sha256
 from validate_submission import (
     DISPLAY_BASE_FILES,
     is_empty_pdf,
@@ -39,6 +40,15 @@ READABLE_OUTPUTS = ["proposal.md", "report/proposal.html", "visual/index.html"]
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def manifest_digests(root: Path, relative_paths: list[str]) -> dict[str, str]:
+    """Hash listed files using Git's pending blobs when available."""
+    files = {relative: root / relative for relative in relative_paths}
+    git_digests = git_blob_sha256(files.values(), cwd=root)
+    if git_digests is None:
+        return {relative: digest(path) for relative, path in files.items()}
+    return {relative: git_digests[path.resolve()] for relative, path in files.items()}
 
 
 def main() -> int:
@@ -166,12 +176,21 @@ def main() -> int:
                 translated_item["language"] = translation_language
                 translated_item["translation_of"] = rel
                 translated_item["required"] = strict_bilingual
+    hash_paths = [
+        str(item["path"])
+        for item in manifest_files
+        if isinstance(item, dict)
+        and item.get("path")
+        and item.get("path") != "manifest.json"
+        and (root / str(item["path"])).is_file()
+    ]
+    hashes = manifest_digests(root, hash_paths)
     for item in manifest_files:
         if not isinstance(item, dict):
             continue
         rel = item.get("path")
-        if rel and rel != "manifest.json" and (root / rel).is_file():
-            item["sha256"] = digest(root / rel)
+        if rel and rel != "manifest.json" and str(rel) in hashes:
+            item["sha256"] = hashes[str(rel)]
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Review-ready package: {root}")
     print("Run self_check_submission.py now. Any later file edit requires refreshed manifest hashes and another full validation.")

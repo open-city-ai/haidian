@@ -17,6 +17,8 @@ from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
 
+from git_blob_hashes import git_blob_sha256
+
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
 
@@ -1018,6 +1020,22 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
     strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
     files = data.get("files")
     listed_paths: set[str] = set()
+    git_digests: dict[Path, str] | None = None
+    if isinstance(files, list):
+        manifest_files: list[Path] = []
+        for item in files:
+            if not isinstance(item, dict) or not item.get("path"):
+                continue
+            try:
+                safe_path = normalize_changed_path(str(item["path"]))
+            except ValueError:
+                continue
+            if safe_path == "manifest.json":
+                continue
+            listed_file = repo_root / proposal_dir / safe_path
+            if listed_file.is_file():
+                manifest_files.append(listed_file)
+        git_digests = git_blob_sha256(manifest_files, cwd=repo_root)
     if not isinstance(files, list) or not files:
         report.add_error(f"{proposal_dir}/manifest.json: files must be a non-empty array")
     else:
@@ -1058,7 +1076,11 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
                 else:
                     report.add_warning(message + " (legacy package compatibility)")
             elif declared_digest:
-                actual_digest = hashlib.sha256(listed_file.read_bytes()).hexdigest()
+                actual_digest = (
+                    git_digests.get(listed_file.resolve())
+                    if git_digests is not None
+                    else hashlib.sha256(listed_file.read_bytes()).hexdigest()
+                )
                 if declared_digest != actual_digest:
                     message = f"{proposal_dir}/manifest.json: sha256 mismatch for `{safe_path}`"
                     if translation_entry and not strict_bilingual:
