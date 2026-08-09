@@ -7,10 +7,24 @@ bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 iteration: "v0.8"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v0.8 在不改写临时几何、已知指标或 unknown 的前提下，为 6 个测试类场景登记授权前的基线、样本、成功/停止条件、人工替代、责任、复核和删除证明，并明确现场与居民验证仍待补齐。"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v0.8 把中关村科技服务翼落成可回接的场景卡，加入三组可复算的概念空间取舍，并为 6 个测试类场景登记授权前的基线、样本、成功/停止条件、人工替代、责任、复核和删除证明；临时几何、已知指标与 unknown 均保持原值。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
+
+## v0.8：把科技服务翼和空间取舍变成可复核证据
+
+本轮把任务书点名的**中关村科技服务翼**落到 `SC-D04`“要素配置台”：它连接 IP、合规、数据授权与跨区域应用转化，服务一人公司、小团队、科研团队和京津冀应用伙伴。场景卡与空间—运营矩阵都保留人工咨询、纸面材料、授权链、利益冲突披露和冻结条件；包内不指定机构、资本方或已签协议。[source:AGENT-TASKBOOK] [data:geometry/constraints.geojson#ZONE-C-DATA] [data:geometry/public_space.geojson#PUBLIC-D-GLOBAL]
+
+该场景在总体空间结构中的位置见 [depth:overall_spatial_structure]。
+
+参数化推演把当前六层概念功能带作为基线，再比较“人本优先、平衡、机器协同”三组面积参数。`visual/assets/run-parametric-tradeoff-study.js` 检查六个 share 的和、面积公式和基线回接；三组面积仅为概念候选，正式 `metrics.json`、几何、图纸和发布状态均不变。图 11 让评审者直接看到社区保留、技能学习、可逆留白、城市 API 与韧性空间之间的取舍，后续专业团队可用官方边界、控规、权属、交通、市政、能源和公众基线替换输入后再研究。[data:geometry/land_use.geojson#LU-H01] [metric:design_partition_area_sqm] [depth:land_use_layout]
+
+参数化研究的深度复核见 [depth:metrics_recalculation]。
+
+![图 11｜三组概念空间取舍：基线、人本优先与机器协同](assets/figures/parametric-tradeoff-study.png)
+
+三组参数均为概念建议和参考方案，供专业团队深化研究。它们只比较空间关系，不生成容积率、建筑高度、工程可行性、投资、就业结果或政策结论。[data:geometry/site_boundary.geojson#SITE-001] [metric:community_retention_support_area_ratio] [metric:reversible_space_ratio]
 
 # 京张人本城市操作系统
 
@@ -39,9 +53,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## v0.6：把“谁能进入、谁能停止”放到同一张空间图
 
-本轮不是再增加一组价值口号，而是把原已分散在 6 类用户画像、16 张场景卡、3 段发布门和临时空间锚点中的验收关系重组为图 09。六条人物路径分别从原住民/老人、被替代风险劳动者、夜班 AI 从业者、OPC/小商户、公共服务人员与行动不便/低数字能力使用者出发；图中选择其中 10 条直接关联场景作为可读路径，同时保留 16/16 场景点和全部 3 个发布门，避免把“代表性人物”误写成“唯一受影响人群”。[data:geometry/constraints.geojson#SC-A01] [metric:scenario_node_count] [depth:municipal_new_infrastructure]
+本轮把原已分散在 6 类用户画像、17 张场景卡、3 段发布门和临时空间锚点中的验收关系重组为图 09。六条人物路径分别从原住民/老人、被替代风险劳动者、夜班 AI 从业者、OPC/小商户、公共服务人员与行动不便/低数字能力使用者出发；图中选择其中 10 条直接关联场景作为可读路径，同时保留 17 张场景卡、16 个几何空间节点和全部 3 个发布门，让“代表性人物”始终与完整场景清单并列阅读。[data:geometry/constraints.geojson#SC-A01] [metric:scenario_node_count] [depth:municipal_new_infrastructure]
 
-`visual/assets/human-city-acceptance-atlas.json` 只登记已有 persona、场景与发布门 ID；离线 runner 再核验 6/6 人物路径、16/16 场景卡、10/10 代表性链接、30/30 代表性空间引用、45/45 场景空间引用和 3/3 发布门均能解析，并使“虚构人物锚点”负样本失败。这个 PASS 只说明本包的引用与停止条件没有被图面遮蔽，不证明真实人群覆盖、人工服务、空间可达、现场安全、许可或社会绩效。[data:geometry/constraints.geojson#SC-C04] [data:geometry/phasing.geojson#PHASE-V10] [depth:risk_missing_data]
+`visual/assets/human-city-acceptance-atlas.json` 只登记已有 persona、场景与发布门 ID；离线 runner 再核验 6/6 人物路径、17/17 场景卡、10/10 代表性链接、30/30 代表性空间引用、47/47 场景空间引用和 3/3 发布门均能解析，并使“虚构人物锚点”负样本失败。这个 PASS 只说明本包的引用与停止条件没有被图面遮蔽，不证明真实人群覆盖、人工服务、空间可达、现场安全、许可或社会绩效。[data:geometry/constraints.geojson#SC-C04] [data:geometry/phasing.geojson#PHASE-V10] [depth:risk_missing_data]
 
 图 09 的 6 张人物卡逐项保留“人本底线—人工替代—停止/回退”三件事：例如，社区保留不能用空间代理冒充真实保留率，技能路径不能把培训人次替代就业结果，数字入口不能排挤同等人工替代，公共服务 AI 不能自主决定个人权利。点位仍只是提交包的临时几何概念锚点；它们不是现实服务点、道路或工程定位。[data:geometry/public_space.geojson#PUBLIC-A-INCLUSION] [data:geometry/roads.geojson#ROAD-A-SKILL] [metric:manual_service_equivalence_rate]
 
@@ -61,7 +75,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 先验收一条普通人可完成的服务链
 
-从评审和普通人视角看，Human City OS 的最小验收对象不是城市 API，而是一条能被人看懂、拒绝并完成的服务链：**进入公共空间或服务点 → 在人工、电话、纸面与 AI 辅助之间选择 → 请求一项日常服务 → 在断网、无障碍受阻、安全事件或资料授权不清时由人接管 → 冻结、改道、申诉或退出 → 由独立复核者回放证据后决定修复、继续或撤回**。这条链仍是概念验收契约，不是现实运营、许可或绩效承诺。
+从评审和普通人视角看，Human City OS 的最小验收对象是一条能被人看懂、拒绝并完成的服务链；城市 API 只是其中一项可调用能力：**进入公共空间或服务点 → 在人工、电话、纸面与 AI 辅助之间选择 → 请求一项日常服务 → 在断网、无障碍受阻、安全事件或资料授权不清时由人接管 → 冻结、改道、申诉或退出 → 由独立复核者回放证据后决定修复、继续或撤回**。这条链仍是概念验收契约，现实运营、许可与绩效需由有权主体另行验证。
 
 | 步骤 | 普通人可见的空间/服务 | 必须回放的证据 | 失效即闭环的动作 |
 | --- | --- | --- | --- |
@@ -117,7 +131,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 核心概念与四项运行机制
 
-核心概念是“人本城市操作系统”（Human City OS）：把城市空间、公共服务与 AI 代理组织成一套可观察、可拒绝、可回滚的发布系统。它不是把 AI 变成地标，也不是用自动化替代人的判断，而是把每个城市能力拆成四项可审计机制：人类优先机制保证人工服务、无障碍和拒绝权；证据发布机制把地点、时间、数据、责任和版本门绑定；空间—服务接口机制把城市 API、慢行网络、公共空间和场景卡连成可复核的服务链；退出与修复机制要求停机、撤除、数据删除、异议处理和独立复盘同时存在。[depth:phasing_implementation] [metric:version_release_count]
+核心概念是“人本城市操作系统”（Human City OS）：把城市空间、公共服务与 AI 代理组织成一套可观察、可拒绝、可回滚的发布系统。AI 在这里承担城市能力的调用与协作，人的判断保留最终权力。系统拆成四项可审计机制：人类优先机制保证人工服务、无障碍和拒绝权；证据发布机制把地点、时间、数据、责任和版本门绑定；空间—服务接口机制把城市 API、慢行网络、公共空间和场景卡连成可复核的服务链；退出与修复机制要求停机、撤除、数据删除、异议处理和独立复盘同时存在。[depth:phasing_implementation] [metric:version_release_count]
 
 四项机制共同把“从 AI 展台到人的城”从价值宣言变成空间—治理—运营协议：每个试点必须回答谁能启动、谁负最终责任、公众如何拒绝、什么证据才能扩展，以及失败后如何恢复。任何未知指标继续保留 `unknown`，不由模型或案例类比补齐；任何设计分区仍是概念建议，不提升为法定用地、官方边界或实施承诺。
 
@@ -137,7 +151,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 三层范围工作框架
 
-43.6 平方公里统筹研究范围回答“海淀的创新势能如何外溢”；约 11.4 平方公里总体设计范围回答“人本服务、城市 API 与硬约束如何共同落入空间”；约 368.4 公顷重点区域回答“在众智园、AI 原点社区和大钟寺分别先试什么”。三层不是三套互不相干的图，而是从战略、空间到验证的同一条证据链。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:three_level_scope_framework]
+43.6 平方公里统筹研究范围回答“海淀的创新势能如何外溢”；约 11.4 平方公里总体设计范围回答“人本服务、城市 API 与硬约束如何共同落入空间”；约 368.4 公顷重点区域回答“在众智园、AI 原点社区和大钟寺分别先试什么”。三层沿同一条证据链推进，顺序从战略、空间落位到场景验证。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:three_level_scope_framework]
 
 | 层级 | 主问题 | 本方案交付 | 不越界条件 |
 | --- | --- | --- | --- |
@@ -164,17 +178,27 @@ A 组“人的尊严”包括社区保留、就业转型、数字包容和身心
 | Busan Eco Delta | living lab、沙盒、开放数据 | 小月河翼具身测试与气候模拟 | 保险、事故处置、人工接管 |
 | Toronto Quayside | 独立数据治理 | 公共数据授权样板间 | 公益优先、隐私保护、第三方评估 |
 
-外溢机制不是简单“招商”。技术外溢通过京津冀制造和应用伙伴把海淀研发形成测试接口；标准外溢把路权、数据授权、无障碍和事故复盘模板沉淀为可复用规范；知识外溢以 15 分钟碰撞圈、公开问题清单、年度 release note 和跨校社群形成可追溯知识资产。国际化服务集中于语言、医疗导航、知识产权、合规和生活支持，不虚构国际学校、医院或机构名单。[source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]
+外溢机制从技术、标准、知识和国际服务四条路径展开。技术外溢通过京津冀制造和应用伙伴把海淀研发形成测试接口；标准外溢把路权、数据授权、无障碍和事故复盘模板沉淀为可复用规范；知识外溢以 15 分钟碰撞圈、公开问题清单、年度 release note 和跨校社群形成可追溯知识资产。国际化服务集中于语言、医疗导航、知识产权、合规和生活支持，不列出未经核验的国际学校、医院或机构名单。[source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]
+
+中关村科技服务翼承担要素全球化配置、中关村 IP 与资本信息服务的概念接口：`SC-D04` 先提供公开服务目录、人工咨询、授权核验和跨区域应用问题台账，再把可复核的协议草案送入京津冀制造与应用讨论。资本信息服务在本包中只表示信息与合规接口，未写成融资、投资或招商承诺；小月河场景服务翼则承接具身测试与气候韧性场景，两翼通过标准、数据、知识和人才转型形成协同回路。[source:AGENT-TASKBOOK] [data:geometry/constraints.geojson#ZONE-C-DATA] [depth:overall_spatial_structure]
 
 ## 总体设计范围城市更新与控规深度城市设计
 
-总体设计不是用一个巨型 AI 园区替代现有城市，而是在临时设计边界内建立六层功能操作系统：社区保留与服务、国际/OPC 服务、技能再造与公共数据学习、可逆留白、城市 API 与具身研发、无屏绿地与气候韧性。六个多边形完整覆盖提交边界且无重叠，面积和比例由同一 GeoJSON 在 EPSG:4548 下重算。[data:geometry/land_use.geojson#LU-H01] [metric:design_partition_area_sqm] [depth:land_use_layout]
+总体设计在临时设计边界内建立六层功能操作系统，并保留现有城市结构的多样日常：社区保留与服务、国际/OPC 服务、技能再造与公共数据学习、可逆留白、城市 API 与具身研发、无屏绿地与气候韧性。六个多边形完整覆盖提交边界且无重叠，面积和比例由同一 GeoJSON 在 EPSG:4548 下重算。[data:geometry/land_use.geojson#LU-H01] [metric:design_partition_area_sqm] [depth:land_use_layout]
 
 社区保留支撑分区占临时边界约 18.3%，可逆留白分区占约 15.1%。这两个值是设计分区的空间代理，不是居民保留率或法定留白率；真实社区保留率必须以清权家庭基线、资格规则和后续登记计算，因此目前保持 unknown。[metric:community_retention_support_area_ratio] [metric:reversible_space_ratio] [metric:resident_retention_rate]
 
 城市 API 层采用“目录-授权-调用-日志-审计-退出”六步协议。市政设施 Agent 只能调用最小化、分级授权的接口；涉及供水、供电、供热、交通和公共数据的调用必须保留人工接管和事故追溯。北京现行公共数据授权运营办法要求依法合规、公益优先、安全可控并设置评价与退出，本方案据此把数据要素城区从展示厅变成可审计的制度样板。[source:BJ-PUBLIC-DATA-2026] [data:geometry/constraints.geojson#ZONE-B-API]
 
 可逆设计用模块化构件、可拆服务舱、短周期租约和 meanwhile use 化解“AI 三个月迭代、城市十年建设周期”的错配。每个试点在立项时同时提交撤除、复原与数据删除计划；v0.2 试点没有独立评估与公众复核，不得进入 v1.0 扩展。建筑高度、开发强度、拆改留和工程容量因缺官方条件全部留待专业深化。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:development_intensity_controls]
+
+### 参数化推演：把空间取舍放到可复算候选集
+
+`visual/assets/parametric-tradeoff-study.json` 以当前六层概念功能带的 geometry 面积为基线，设置人本优先、平衡、机器协同三组透明参数。每组都按“share × 临时边界面积”计算讨论面积；离线 runner 同时检查 share 求和、面积回算和 `LU-H01`、`LU-B01` 基线回接，证据写入 `parametric-tradeoff-study-evidence.json`。这组研究把社区保留、技能学习、可逆留白、城市 API 和无屏韧性空间放在同一张比较图上，供专业团队在正式资料补齐后替换输入。[data:geometry/land_use.geojson#LU-H01] [metric:community_retention_support_area_ratio] [metric:reversible_space_ratio]。参数化研究的深度复核见 [depth:metrics_recalculation]
+
+三组参数保持低置信度和概念状态。它们不改写本包正式面积、比例、图纸或 `scenario_node_count=16` 的几何事实，17 张场景卡中的 `SC-D04` 也继续以既有空间锚点表达；任何进入下一轮的取舍都要重新核对官方边界、权属、控规、建筑、交通、市政、能源、气候和公众基线。[data:geometry/site_boundary.geojson#SITE-001] [metric:scenario_node_count] [depth:risk_missing_data]
+
+![图 11｜三组概念空间取舍：基线、人本优先与机器协同](assets/figures/parametric-tradeoff-study.png)
 
 ![图 02｜六层空间操作系统：临时分区与可逆留白](assets/figures/land-use-structure.png)
 
@@ -207,9 +231,11 @@ AI 原点社区把被替代风险劳动者而非“明星人才”放入创新�
 | 公共服务人员 | 人工最终责任与可解释工具 | 城市 API 控制台、事故复盘庭 | 人工接管演练与日志审计 |
 | 国际访客/团队 | 语言、医疗、合规和生活可达 | 一站式国际服务客厅 | 多语无障碍走查，不虚构服务机构 |
 
-16 张场景卡均写入 `constraints.geojson`，其中 A、B 各 4 项，C 5 项，D 3 项；6 项标记为测试验证场景，超过任务书最低要求。[data:geometry/constraints.geojson#SC-B01] [metric:human_first_scenario_count] [metric:machine_city_scenario_count]
+16 个几何场景节点与 17 张场景卡共同构成场景清单：几何节点中 A、B 各 4 项，C 5 项，D 3 项；`SC-D04` 复用 `ZONE-C-DATA` 与 `PUBLIC-D-GLOBAL` 两个空间锚点，补足中关村科技服务翼的功能机制。6 个节点标记为测试验证场景，超过任务书最低要求。[data:geometry/constraints.geojson#SC-B01] [data:geometry/constraints.geojson#ZONE-C-DATA]
 
-v0.2 将这 16 项从目录升级为可审阅场景卡：每张卡都连接其空间锚点、建议服务对象、人工替代、资料边界、验收所需证据与停止条件。测试类场景额外执行地点、时间、数据、责任“四限定”；这不代表已具备运行条件，而是把“还缺什么”放在扩展之前。[data:geometry/constraints.geojson#SC-C03] [metric:test_validation_scenario_count]
+节点总量与人本、机器场景计数见 [metric:scenario_node_count] [metric:human_first_scenario_count] [metric:machine_city_scenario_count]。
+
+v0.2 将这 17 张卡从目录升级为可审阅场景卡：每张卡都连接其空间锚点、建议服务对象、人工替代、资料边界、验收所需证据与停止条件。测试类节点额外执行地点、时间、数据、责任“四限定”；场景卡保持概念状态，把“还缺什么”放在扩展之前。[data:geometry/constraints.geojson#SC-C03] [metric:test_validation_scenario_count]
 
 | 卡片 | 主题 | 场景 | 空间载体 | 人工/制度护栏 |
 | --- | --- | --- | --- | --- |
@@ -229,8 +255,9 @@ v0.2 将这 16 项从目录升级为可审阅场景卡：每张卡都连接其�
 | SC-D01 | D | OPC 共享实验室 | 共享实验与服务节点 | 开放申请，不指定供应商 |
 | SC-D02 | D | 标准外溢工作室 | 众智园协作节点 | 输出可复核协议，不声称国家标准 |
 | SC-D03 | D | 国际服务一站式客厅 | 大钟寺公共空间 | 多语、无障碍、合规边界 |
+| SC-D04 | D | 中关村科技服务翼要素配置台 | 数据授权与国际服务锚点 | IP、合规、人工入口与冲突披露 |
 
-六个测试场景都采用“限定范围-限定时间-限定数据-限定责任”的四限定协议。测试成功不是展示效果，而是事故率、人工接管、能源、无障碍、公众接受和撤除能力共同达标；任何单一技术指标都不能自动触发扩区。[metric:test_validation_scenario_count] [depth:risk_missing_data]
+六个测试节点都采用“限定范围-限定时间-限定数据-限定责任”的四限定协议。测试成功要同时满足事故率、人工接管、能源、无障碍、公众接受和撤除能力的约定门槛；任何单一技术指标都不能自动触发扩区。[metric:test_validation_scenario_count] [depth:risk_missing_data]
 
 ## 用地、建筑规模与拆改留方案
 
@@ -246,7 +273,7 @@ v0.2 将这 16 项从目录升级为可审阅场景卡：每张卡都连接其�
 
 交通系统把人和机器视为两类权利主体，但人的生命安全、无障碍和拒绝权优先。人本网络包括技能再造走廊、夜间安心接驳、适老连续步行和无屏绿地；机器网络包括硅基通行权测试廊、低空物流概念分层、城市 API 节点与具身测试场。两类网络在交叉点设置可视状态、低速区、人工接管和事故停机，不以“效率最优”压倒步行者。[data:geometry/roads.geojson#ROAD-A-NIGHT] [depth:traffic_rail_slow_parking]
 
-低空概念廊长度由 geometry 复算，但没有空域、净空、噪声、隐私、消防和航线审批资料，因此只能作为需研究的垂直功能层。硅基通行权同样不是道路权利授予，而是一个受控测试协议。任何线路都不得被图纸读成工程线位或既定运营路线。[metric:low_altitude_concept_corridor_length_m] [metric:silicon_right_of_way_length_m]
+低空概念廊长度由 geometry 复算，但没有空域、净空、噪声、隐私、消防和航线审批资料，因此只能作为需研究的垂直功能层。硅基通行权在本包中表示受控测试协议，涉及人机混行规则、责任、保险与事故处置；它不产生工程线位或既定运营路线。[metric:low_altitude_concept_corridor_length_m] [metric:silicon_right_of_way_length_m]
 
 算电协同是空间设计前置门槛，不是后置机电优化。新建/改扩建智算设施需先对照北京现行 PUE 要求；本方案建议绿电占比以 30% 为初始设计基线，并用购电凭证与计量核验，但明确它不是项目法定值；余热只有在热品位、季节需求、供热管网与经济性成立时，才可接入社区能源系统。[source:BJ-COMPUTE-2024] [metric:operational_pue] [metric:green_electricity_share]
 
@@ -256,7 +283,7 @@ v0.2 将这 16 项从目录升级为可审阅场景卡：每张卡都连接其�
 
 ## 蓝绿空间、公共空间与城市风貌
 
-蓝绿系统不是 AI 展示背景，而是热浪、暴雨、心理恢复和日常交往的基础设施。小月河翼海绵韧性概念带连接模拟、巡检和公众避险信息；三个无屏静心花园要求不设置强制交互屏、广告推荐或情绪识别，给高强度脑力劳动者、老人、儿童和居民保留不被计算的空间。[data:geometry/green_space.geojson#GREEN-C-SPONGE] [metric:no_screen_green_area_sqm]
+蓝绿系统承担热浪、暴雨、心理恢复和日常交往等基础设施功能。小月河翼海绵韧性概念带连接模拟、巡检和公众避险信息；三个无屏静心花园要求不设置强制交互屏、广告推荐或情绪识别，给高强度脑力劳动者、老人、儿童和居民保留不被计算的空间。[data:geometry/green_space.geojson#GREEN-C-SPONGE] [metric:no_screen_green_area_sqm]
 
 绿地总面积约 1,269,256.687 平方米、占临时边界约 11.12%；公共空间约 121,447.158 平方米、占约 1.06%。这些都是设计图层值，不是法定绿地率或公园实施面积；取得官方边界、蓝线、文保和现状绿地后必须重新生成。[metric:green_ratio] [metric:public_space_ratio] [depth:blue_green_public_space]
 
@@ -285,7 +312,7 @@ v0.2 将这 16 项从目录升级为可审阅场景卡：每张卡都连接其�
 
 版本治理的核心文件是 release note：列出新增、改变、撤回、事故、公众异议、数据权限和下一版本门槛。年度体检既看空间，也看居民保留、岗位转型、能源、气候、数据和人工通道。公众可以提交 issue，维护团队必须回复“接受、试验、拒绝或待资料”并说明证据。[depth:renewal_project_list] [depth:phasing_implementation]
 
-为避免“展示即升级”，本次 v0.2 将三处概念分期面补入进入门、推进门、退出门，并把完整台账和 16 张场景卡作为离线结构化附件。它们要求把人工接管、授权、保险、计量、校准、无障碍和公众复核写成前提，而不是把任何单一技术效果当作扩区理由。[data:geometry/phasing.geojson#PHASE-V02] [standard:MOHURD-URBAN-DESIGN-MEASURES]
+为避免“展示即升级”，本次 v0.2 将三处概念分期面补入进入门、推进门、退出门，并把当时的 16 张场景卡作为离线结构化附件；v0.8 再增加 SC-D04，当前完整台账为 17 张卡。它们要求把人工接管、授权、保险、计量、校准、无障碍和公众复核写成前提，而不是把任何单一技术效果当作扩区理由。[data:geometry/phasing.geojson#PHASE-V02] [standard:MOHURD-URBAN-DESIGN-MEASURES]
 
 ![图 06｜城市发布门与场景退出证据](assets/figures/release-gates.png)
 

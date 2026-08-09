@@ -27,7 +27,7 @@ const expectedScenarioIds = [
   "SC-A01", "SC-A02", "SC-A03", "SC-A04",
   "SC-B01", "SC-B02", "SC-B03", "SC-B04",
   "SC-C01", "SC-C02", "SC-C03", "SC-C04", "SC-C05",
-  "SC-D01", "SC-D02", "SC-D03"
+  "SC-D01", "SC-D02", "SC-D03", "SC-D04"
 ];
 const expectedReleaseIds = ["PHASE-V01", "PHASE-V02", "PHASE-V10"];
 
@@ -126,7 +126,7 @@ function assess(candidate) {
       pass: sameSet(scope.scenario_ids, expectedScenarioIds) &&
         allScenarioRecords.length === expectedScenarioIds.length &&
         allScenarioRecords.every((record) => record.no_deployment_claim === true),
-      detail: "All sixteen existing scenario cards remain visible as a complete conceptual registry."
+      detail: "All seventeen scenario cards remain visible as a complete conceptual registry."
     },
     {
       id: "ATLAS_RELEASE_GATES",
