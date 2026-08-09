@@ -172,7 +172,7 @@ The first pilot is a small morning and evening window in Zhongzhiyuan, an access
 Mobility operations do not replace urban design. The following massing ledger translates each area’s mobility role into a provisional interface and intensity range; it does not change the geometry or present a regulatory-plan control.
 
 | Key area | Announced area (task scale only) | Spatial relationship | Conceptual intensity | Public-facing height | First professional evidence to collect |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | --- | --- |
 | Zhongzhiyuan AI Autonomous Innovation Acceleration Zone | Approx. 192.1 ha in the announcement | Separate enterprise arrival, shuttle waiting, loading and fire-clearance layers; keep the ground interface service-oriented | FAR 1.2–1.8 for design comparison only | 2–4 storeys; upper height unknown | Existing buildings, energy/fire review, ownership, enterprise OD and curb survey |
 | Beijing AI Origin Community | Approx. 104.3 ha in the announcement | Place community services, continuous walking/accessibility, weather shelter and daily needs on one human-first interface | FAR 1.0–1.5 for design comparison only | 2–3 storeys; upper height unknown | Accessibility walk, resident-service baseline, ownership, care and night-safety evidence |
 | Dazhongsi AI Industry Cluster | Approx. 72.0 ha in the announcement | Distinguish rail transfer, bicycle parking, public ground-floor frontage and timed loading | FAR 0.8–1.3 for design comparison only | 1–3 storeys; upper height unknown | Station flow, curb counts, traffic organisation, fire and municipal interfaces |
