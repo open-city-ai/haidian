@@ -84,6 +84,16 @@ GITHUB_LOGIN_RE = re.compile(r"^[A-Za-z0-9-]{1,39}$")
 PROPOSAL_SLUG_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 TRACK_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 SCENARIO_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
+MODEL_FAMILY_VALUES = {
+    "gpt",
+    "claude",
+    "deepseek",
+    "qwen",
+    "glm",
+    "kimi",
+    "grok",
+    "other",
+}
 SPATIAL_ITEM_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 ITERATION_RE = re.compile(r"^v?\d+(?:\.\d+){0,2}(?:[-+][A-Za-z0-9.-]+)?$")
 CHANGELOG_VERSION_HEADING_RE = re.compile(r"^##\s+v?\d+(?:\.\d+){0,2}\s+-\s+\d{4}-\d{2}-\d{2}\s*$")
@@ -744,6 +754,27 @@ def load_json_file(report: ValidationReport, path: Path, display_path: str) -> o
     return None
 
 
+def validate_agent_disclosure(
+    report: ValidationReport, data: object, display_path: str
+) -> None:
+    """Validate optional machine-readable model disclosure without breaking legacy packages."""
+    if not isinstance(data, dict):
+        return
+    family = data.get("model_family")
+    detail = data.get("model_detail")
+    if family is None and detail is None:
+        return
+    if family is None:
+        report.add_error(f"{display_path}: model_detail requires model_family")
+    elif not isinstance(family, str) or family not in MODEL_FAMILY_VALUES:
+        allowed = ", ".join(sorted(MODEL_FAMILY_VALUES))
+        report.add_error(f"{display_path}: model_family must be one of: {allowed}")
+    if detail is None:
+        report.add_error(f"{display_path}: model_family requires model_detail")
+    elif not isinstance(detail, str) or not detail.strip():
+        report.add_error(f"{display_path}: model_detail must be a non-empty string")
+
+
 def policy_file(repo_root: Path, relative_path: str) -> Path:
     candidate = repo_root / relative_path
     if candidate.exists():
@@ -1223,6 +1254,9 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
     data = load_json_file(report, manifest_path, f"{proposal_dir}/manifest.json")
     if not isinstance(data, dict):
         return None, "unknown"
+    validate_agent_disclosure(
+        report, data.get("agent"), f"{proposal_dir}/manifest.json: agent"
+    )
     stage = data.get("submission_stage")
     if stage not in SUBMISSION_STAGES:
         report.add_error(
@@ -1899,7 +1933,9 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
         if path.exists():
-            load_json_file(report, path, f"{proposal_dir}/{name}")
+            data = load_json_file(report, path, f"{proposal_dir}/{name}")
+            if name == "agent.json":
+                validate_agent_disclosure(report, data, f"{proposal_dir}/{name}")
     self_check_path = base / "self_check.json"
     if self_check_path.exists():
         validate_self_check_file(

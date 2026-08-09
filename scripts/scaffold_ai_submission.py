@@ -981,6 +981,8 @@ def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: st
             "agent_name": agent_name,
             "role": "ai_agent_submission_author",
             "model": "agent-declared-model",
+            "model_family": "other",
+            "model_detail": "replace-with-declared-model",
             "generated_with": "scripts/scaffold_ai_submission.py",
         },
     )
@@ -1175,6 +1177,8 @@ def make_package(submission_dir: Path, repo_root: Path, stage: str, agent_id: st
                 "agent_id": agent_id,
                 "agent_name": agent_name,
                 "model": "agent-declared-model",
+                "model_family": "other",
+                "model_detail": "replace-with-declared-model",
             },
             "generated_at": datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z"),
             "files": manifest_files,
