@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>京张共振场 / JINGZHANG LOOP</title>
+  <style>
+    :root {
+      --ink: #0d2338;
+      --ink-2: #173c55;
+      --paper: #f3f1ea;
+      --paper-2: #e7e5dc;
+      --cyan: #2ab6c0;
+      --amber: #f0b35a;
+      --coral: #cf614c;
+      --green: #6e9c75;
+      --line: rgba(13, 35, 56, .18);
+      --muted: #5d6b70;
+      --shadow: 0 22px 60px rgba(13, 35, 56, .12);
+      font-family: "Segoe UI", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(1420px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .brand { display: flex; align-items: center; gap: 14px; font-weight: 800; letter-spacing: .08em; }
+    .mark { position: relative; width: 42px; height: 28px; display: inline-block; }
+    .mark::before, .mark::after { content: ""; position: absolute; left: 0; right: 0; height: 5px; border-radius: 4px; background: var(--cyan); transform: skewX(-22deg); }
+    .mark::before { top: 3px; box-shadow: 14px 14px 0 var(--amber); }
+    .mark::after { top: 13px; width: 21px; border: 2px solid var(--coral); background: transparent; }
+    nav { display: flex; gap: 18px; color: var(--muted); font-size: 13px; }
+    nav a:hover { color: var(--coral); }
+    .hero { display: grid; grid-template-columns: 1.15fr .85fr; gap: 42px; padding: 72px 0 54px; align-items: end; }
+    .eyebrow { color: var(--coral); font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { margin: 12px 0 18px; font-size: clamp(44px, 7vw, 100px); line-height: .92; letter-spacing: -.08em; max-width: 760px; }
+    h1 span { display: block; color: var(--cyan); font-size: .56em; letter-spacing: -.04em; margin-top: 16px; }
+    .dek { max-width: 650px; font-size: 20px; color: var(--ink-2); }
+    .hero-note { border-left: 4px solid var(--amber); padding: 22px 24px; background: var(--paper-2); box-shadow: var(--shadow); }
+    .hero-note strong { display: block; font-size: 24px; margin-bottom: 10px; }
+    .stamp { display: inline-flex; gap: 8px; flex-wrap: wrap; margin-top: 24px; }
+    .chip { padding: 7px 10px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 12px; background: rgba(255,255,255,.3); }
+    .notice { display: flex; gap: 14px; align-items: flex-start; padding: 16px 18px; border: 1px dashed var(--coral); background: rgba(207, 97, 76, .06); font-size: 13px; color: #6e3b31; }
+    .notice b { white-space: nowrap; color: var(--coral); }
+    section { padding: 54px 0; border-top: 1px solid var(--line); }
+    .section-head { display: flex; justify-content: space-between; gap: 24px; align-items: baseline; margin-bottom: 26px; }
+    h2 { margin: 0; font-size: clamp(26px, 4vw, 52px); letter-spacing: -.06em; line-height: 1; }
+    .kicker { color: var(--muted); max-width: 500px; font-size: 14px; }
+    .figure { background: var(--ink); box-shadow: var(--shadow); overflow: hidden; }
+    .figure img { display: block; width: 100%; height: auto; }
+    .figure figcaption { padding: 12px 16px 14px; color: #dce8e6; font-size: 12px; display: flex; justify-content: space-between; gap: 14px; }
+    .figure figcaption span:last-child { color: var(--cyan); text-align: right; }
+    .overview { display: grid; grid-template-columns: 1.45fr .55fr; gap: 22px; align-items: stretch; }
+    .rail-card { padding: 24px; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: space-between; min-height: 100%; }
+    .rail-card h3 { margin: 0 0 14px; font-size: 26px; letter-spacing: -.04em; }
+    .rail-line { position: relative; margin: 28px 0 24px; padding-left: 26px; border-left: 3px solid var(--cyan); }
+    .rail-line::before { content: ""; position: absolute; left: -9px; top: 2px; width: 13px; height: 13px; border-radius: 50%; background: var(--amber); box-shadow: 0 42px 0 var(--coral), 0 84px 0 var(--green); }
+    .rail-line p { margin: 0 0 22px; }
+    .rail-line b { display: block; color: var(--cyan); font-size: 12px; letter-spacing: .12em; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .scope-card, .key-card, .mini-card, .project, .metric-card { border: 1px solid var(--line); background: rgba(255,255,255,.24); }
+    .scope-card { padding: 20px; min-height: 170px; position: relative; }
+    .scope-card::before { content: "01"; position: absolute; right: 16px; top: 14px; color: var(--paper-2); font-size: 42px; font-weight: 900; }
+    .scope-card:nth-child(2)::before { content: "02"; }
+    .scope-card:nth-child(3)::before { content: "03"; }
+    .scope-card h3, .key-card h3 { margin: 0 0 8px; font-size: 20px; }
+    .scope-card p, .key-card p { margin: 0; color: var(--muted); font-size: 14px; }
+    .band { margin-top: 22px; display: grid; grid-template-columns: 2fr 1fr; gap: 22px; }
+    .band-copy { padding: 24px; background: var(--ink-2); color: var(--paper); }
+    .band-copy h3 { margin: 0 0 12px; font-size: 28px; }
+    .band-copy p { color: #d8e4e1; margin: 0 0 18px; }
+    .legend { display: flex; flex-wrap: wrap; gap: 12px 18px; font-size: 12px; color: var(--muted); }
+    .legend i { display: inline-block; width: 11px; height: 11px; margin-right: 6px; vertical-align: -1px; border-radius: 2px; }
+    .l-cyan { background: var(--cyan); } .l-amber { background: var(--amber); } .l-coral { background: var(--coral); } .l-green { background: var(--green); } .l-ink { background: var(--ink); }
+    .key-card { padding: 20px; min-height: 210px; border-top: 4px solid var(--cyan); }
+    .key-card:nth-child(2) { border-color: var(--amber); } .key-card:nth-child(3) { border-color: var(--coral); }
+    .key-code { font: 700 11px ui-monospace, SFMono-Regular, Consolas, monospace; color: var(--muted); letter-spacing: .12em; }
+    .key-card ul { padding-left: 18px; margin: 14px 0 0; color: var(--muted); font-size: 13px; }
+    .visual-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .visual-grid .figure:first-child { grid-column: 1 / -1; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .metric-card { padding: 18px; min-height: 132px; }
+    .metric-card small { display: block; color: var(--muted); font-size: 11px; letter-spacing: .06em; }
+    .metric-card strong { display: block; margin: 10px 0 4px; font-size: clamp(24px, 3vw, 38px); letter-spacing: -.06em; }
+    .metric-card em { color: var(--coral); font-style: normal; font-size: 12px; }
+    .metric-card.highlight { background: var(--cyan); color: var(--ink); border-color: var(--cyan); }
+    .metric-card.highlight small, .metric-card.highlight em { color: var(--ink-2); }
+    .scenario-layout { display: grid; grid-template-columns: .62fr 1.38fr; gap: 22px; }
+    .scenario-index { padding: 24px; background: var(--ink); color: var(--paper); }
+    .scenario-index h3 { font-size: 32px; margin: 0 0 10px; line-height: 1; }
+    .scenario-index p { color: #c8d9d7; font-size: 14px; }
+    .scenario-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .mini-card { padding: 14px; }
+    .mini-card b { display: block; color: var(--coral); font: 800 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .mini-card strong { display: block; font-size: 15px; margin: 4px 0; }
+    .mini-card span { display: block; color: var(--muted); font-size: 12px; }
+    .projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .project { padding: 16px; min-height: 138px; }
+    .project b { color: var(--coral); font: 800 11px ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .project h3 { margin: 7px 0; font-size: 16px; }
+    .project p { margin: 0; color: var(--muted); font-size: 12px; }
+    .audit { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .audit-card { padding: 24px; border: 1px solid var(--line); background: var(--paper-2); }
+    .audit-card h3 { margin: 0 0 14px; font-size: 22px; }
+    .check { display: flex; justify-content: space-between; gap: 14px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 13px; }
+    .check span:last-child { color: var(--green); font-weight: 800; white-space: nowrap; }
+    details { border-top: 1px solid var(--line); padding: 14px 0; }
+    summary { cursor: pointer; font-weight: 800; }
+    details p, details li { color: var(--muted); font-size: 13px; }
+    footer { padding: 40px 0 70px; color: var(--muted); font-size: 12px; display: flex; justify-content: space-between; gap: 20px; }
+    @media (max-width: 900px) {
+      .hero, .overview, .band, .scenario-layout, .audit { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .grid-3, .projects { grid-template-columns: 1fr; }
+      nav { display: none; }
+    }
+    @media (max-width: 560px) {
+      .shell { width: min(100% - 28px, 1420px); }
+      .hero { padding-top: 46px; }
+      h1 { font-size: 52px; }
+      .visual-grid, .scenario-list { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      section { padding: 38px 0; }
+      footer { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span><span>JINGZHANG LOOP</span></a>
+      <nav aria-label="页面导航">
+        <a href="#map">总览地图</a><a href="#areas">重点区域</a><a href="#scenarios">AI 场景</a><a href="#audit">自检状态</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" style="border-top:0;">
+        <div>
+          <div class="eyebrow">Centennial Jingzhang AI Innovation Belt / v0.1</div>
+          <h1>京张<br>共振场<span>可回退的 AI 公共接口</span></h1>
+          <p class="dek">把遗产慢行脊、产业创新和日常生活编成一条可看见、可质疑、可退出、有人负责的城市接口网络。</p>
+          <div class="stamp"><span class="chip">AI 交通与步行</span><span class="chip">企业服务生态</span><span class="chip">公共治理</span><span class="chip">g1331 / Codex</span></div>
+        </div>
+        <aside class="hero-note">
+          <strong>一脊 · 两缝 · 三站 · 四道保险</strong>
+          <p>一条京张遗产慢行脊；中关村科技服务翼与小月河场景赋能翼；VERIFY / TRANSLATE / EXCHANGE 三类接口站；可解释、可退出、人工值守、低技术回退。</p>
+          <div class="notice"><b>边界声明</b><span>本展示使用 provisional geometry。地图工具只做背景 QA；所有空间图层是概念参考，不是官方红线、法定用地或工程方案。</span></div>
+        </aside>
+      </section>
+
+      <section id="map">
+        <div class="section-head"><h2>总览地图</h2><p class="kicker">以设计意图为主、以 provisional boundary 为低对比约束，展示空间关系而非假装精确的法定边界。</p></div>
+        <div class="overview">
+          <figure class="figure"><img src="../assets/figures/site-overview.png" alt="京张共振场总体空间结构图"><figcaption><span>Site overview / one spine, two seams</span><span>SITE-001 · provisional</span></figcaption></figure>
+          <aside class="rail-card">
+            <div><h3>空间接口协议</h3><p>每个 AI 城市服务都要能被公众读懂，并在不信任、低质量数据、故障或权利争议时回到人工和纸面服务。</p></div>
+            <div class="rail-line">
+              <p><b>VERIFY</b>众智园：受控测试、标准、安全治理</p>
+              <p><b>TRANSLATE</b>AI 原点社区：近校转译、开源学习、人才生活</p>
+              <p><b>EXCHANGE</b>大钟寺：站城交换、终端体验、国际交往</p>
+            </div>
+            <small>Map QA: AI 原点社区—京张铁路遗址公园约 728 m；后者—大钟寺站约 3,378 m。仅作背景核对。</small>
+          </aside>
+        </div>
+      </section>
+
+      <section id="scope">
+        <div class="section-head"><h2>三层范围</h2><p class="kicker">研究决定方向，总体设计形成骨架，重点片区把治理协议放进真实街角。</p></div>
+        <div class="grid-3">
+          <article class="scope-card"><h3>统筹研究 / 43.6 km²</h3><p>产业、人才、文化、未来城市形态：策源—转化—体验—校验—传播。</p></article>
+          <article class="scope-card"><h3>总体设计 / 11.4 km²</h3><p>用地、更新、慢行、轨道、市政、蓝绿网络和可拆解建筑界面。</p></article>
+          <article class="scope-card"><h3>重点区域 / 368.4 ha</h3><p>三站三种接口性格：校验、转译、交换；每站都能暂停和回退。</p></article>
+        </div>
+        <div class="band">
+          <div class="band-copy"><h3>铁路构架 × 校园尺度 × 透明接口</h3><p>设计不是增加一层“科技景观”，而是把公共服务、产业试验和人行连续性放到首层、站点、花园和街角。</p><div class="legend"><span><i class="l-cyan"></i>公共接口</span><span><i class="l-amber"></i>试验信号</span><span><i class="l-coral"></i>风险提示</span><span><i class="l-green"></i>蓝绿网络</span></div></div>
+          <figure class="figure"><img src="../assets/figures/land-use-structure.png" alt="五条用地界面带与三层范围"></figure>
+        </div>
+      </section>
+
+      <section id="areas">
+        <div class="section-head"><h2>重点区域</h2><p class="kicker">同一套接口协议，三种空间性格。三处边界均为 provisional constraint。</p></div>
+        <div class="grid-3">
+          <article class="key-card"><div class="key-code">PROV-KEY-001 / VERIFY</div><h3>众智园</h3><p>花园型全栈自主创新街区。</p><ul><li>清河低碳创新界面</li><li>安全、标准、设备互操作测试</li><li>可移动展台与人工值守</li></ul></article>
+          <article class="key-card"><div class="key-code">PROV-KEY-002 / TRANSLATE</div><h3>北京 AI 原点社区</h3><p>近校型成果转化与人才社区。</p><ul><li>成果转化街与开源工作台</li><li>面向居民的模型解释和反馈</li><li>先轻介入、后专业复核</li></ul></article>
+          <article class="key-card"><div class="key-code">PROV-KEY-003 / EXCHANGE</div><h3>大钟寺</h3><p>城市型智能经济与国际交往街区。</p><ul><li>12 / 13 号线站城接口叙事</li><li>四象限步行与首层公共界面</li><li>版权清晰的多语导览</li></ul></article>
+        </div>
+      </section>
+
+      <section id="layers">
+        <div class="section-head"><h2>用地分区 · 建筑 · 交通慢行</h2><p class="kicker">所有概念层从同一 provisional site 派生；控制数值待正式控规与工程资料补齐。</p></div>
+        <div class="visual-grid">
+          <figure class="figure"><img src="../assets/figures/land-use-structure.png" alt="用地结构与产业服务界面"></figure>
+          <figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间系统"></figure>
+          <figure class="figure"><img src="../assets/figures/key-areas.png" alt="重点区域和接口节点"></figure>
+        </div>
+      </section>
+
+      <section id="bluegreen">
+        <div class="section-head"><h2>蓝绿公共空间</h2><p class="kicker">公园、河岸、慢行、站点和公共首层共同构成 AI 场景的低技术底座。</p></div>
+        <div class="overview">
+          <figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" alt="蓝绿空间和公共空间网络"></figure>
+          <div class="rail-card"><h3>四个公共接口地标</h3><p>AI Interface Gate、Evidence Garden、Translation Lantern、Open Studio。它们不是高耸单体，而是可解释、可预约、可退出的公共节点。</p><div class="legend"><span><i class="l-green"></i>绿地 50.4268%</span><span><i class="l-cyan"></i>公共空间 7.6952%</span><span><i class="l-amber"></i>低亮信号</span></div></div>
+        </div>
+      </section>
+
+      <section id="scenarios">
+        <div class="section-head"><h2>AI 场景</h2><p class="kicker">12 张场景卡，每一张都必须说明用户、空间、数据、人工复核、停止条件和回退方式。</p></div>
+        <div class="scenario-layout">
+          <div class="scenario-index"><h3>12 / 04 / 06</h3><p>12 个场景卡；4 个产业验证；6 类人才画像。场景使用公开、授权、聚合或合成数据，不建立个人轨迹档案。</p><p>自动化不是目标。公共可恢复性和责任链才是目标。</p></div>
+          <div class="scenario-list">
+            <article class="mini-card"><b>AI-01—04</b><strong>众智园 · 产业校验</strong><span>安全红队、绿色算力、设备互操作、标准共创。</span></article>
+            <article class="mini-card"><b>AI-05—08</b><strong>原点社区 · 知识转译</strong><span>成果解释、开源贡献、人才服务、无障碍学习。</span></article>
+            <article class="mini-card"><b>AI-09—11</b><strong>大钟寺 · 站城交换</strong><span>四象限步行、拥挤提醒、版权清晰导览。</span></article>
+            <article class="mini-card"><b>AI-12</b><strong>三站 · 公共调解</strong><span>匿名反馈、人工调解、取消自动推荐。</span></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="metrics">
+        <div class="section-head"><h2>核心指标</h2><p class="kicker">空间值从提交图层复算；公告尺度和 provisional 设计值明确分开。</p></div>
+        <div class="stats">
+          <article class="metric-card highlight"><small>PROVISIONAL SITE AREA</small><strong><span data-metric="site_area_sqm" data-value="11412825.386">1141.3 ha</span></strong><em>概念边界 · 非官方红线</em></article>
+          <article class="metric-card"><small>GREEN RATIO</small><strong><span data-metric="green_ratio" data-value="0.504268">50.4268%</span></strong><em>7 个绿地对象</em></article>
+          <article class="metric-card"><small>PUBLIC SPACE</small><strong><span data-metric="public_space_ratio" data-value="0.076952">7.6952%</span></strong><em>8 个公共空间对象</em></article>
+          <article class="metric-card"><small>ROAD CENTERLINES</small><strong><span data-metric="road_centerline_length_m" data-value="27903">27.9 km</span></strong><em>概念中心线 · 非道路红线</em></article>
+          <article class="metric-card"><small>BUILDING CARRIERS</small><strong><span data-metric="building_carrier_count" data-value="18">18</span></strong><em>保留 / 改造 / 新建概念</em></article>
+          <article class="metric-card"><small>RENEWAL PROJECTS</small><strong><span data-metric="renewal_project_count" data-value="9">09</span></strong><em>空间、服务、运营一体化</em></article>
+          <article class="metric-card"><small>PHASES</small><strong><span data-metric="phase_count" data-value="3">03</span></strong><em>先证明 · 再缝合 · 后治理</em></article>
+          <article class="metric-card"><small>KEY AREAS</small><strong><span data-metric="key_area_count" data-value="3">03</span></strong><em>VERIFY · TRANSLATE · EXCHANGE</em></article>
+        </div>
+        <div class="visual-grid" style="margin-top:22px;"><figure class="figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据链"></figure></div>
+      </section>
+
+      <section id="projects">
+        <div class="section-head"><h2>更新项目</h2><p class="kicker">九项项目把空间改造、公共服务和可持续运营连成可审查的实施序列。</p></div>
+        <div class="projects">
+          <article class="project"><b>JZ-01</b><h3>京张慢行脊断点缝合</h3><p>先用标线、座椅和无障碍导视做可逆试点。</p></article>
+          <article class="project"><b>JZ-02</b><h3>清河创新界面</h3><p>低碳测试花园与安全解释站。</p></article>
+          <article class="project"><b>JZ-03</b><h3>标准共创廊</h3><p>把风险、标准和人工接管做成展陈。</p></article>
+          <article class="project"><b>JZ-04</b><h3>成果转化街</h3><p>共享首层启动发布、学习和咨询。</p></article>
+          <article class="project"><b>JZ-05</b><h3>人才生活客厅</h3><p>开放学习、照护、运动和多语服务。</p></article>
+          <article class="project"><b>JZ-06</b><h3>四象限步行环</h3><p>与站务协同观察过街冲突。</p></article>
+          <article class="project"><b>JZ-07</b><h3>智能终端首层</h3><p>以授权内容和可退出导览试验公共性。</p></article>
+          <article class="project"><b>JZ-08</b><h3>低技术底座</h3><p>预留电力、通信、固定导视和人工窗口。</p></article>
+          <article class="project"><b>JZ-09</b><h3>京张开放周</h3><p>年度开放、开发者社区和公开复盘。</p></article>
+        </div>
+      </section>
+
+      <section id="audit">
+        <div class="section-head"><h2>任务覆盖 · 自检状态</h2><p class="kicker">结构化 package 与人工可读 proposal 是同一条证据链；最终状态以提交脚本输出为准。</p></div>
+        <div class="audit">
+          <article class="audit-card">
+            <h3>覆盖面</h3>
+            <div class="check"><span>官方公告 1.3 / 1.4 / 1.5</span><span>已映射</span></div>
+            <div class="check"><span>agent.1—agent.6</span><span>已映射</span></div>
+            <div class="check"><span>三处重点区域详细设计</span><span>已表达</span></div>
+            <div class="check"><span>五张图 · A3 · A0 · HTML</span><span>已生成</span></div>
+            <div class="check"><span>中英双语合同</span><span>已配对</span></div>
+          </article>
+          <article class="audit-card">
+            <h3>四道保险</h3>
+            <div class="check"><span>可解释：用途 / 数据 / 责任人</span><span>接口协议</span></div>
+            <div class="check"><span>可退出：人工服务和公开反馈</span><span>接口协议</span></div>
+            <div class="check"><span>可暂停：值守与降级</span><span>接口协议</span></div>
+            <div class="check"><span>可回退：纸面、固定导视、人工</span><span>接口协议</span></div>
+            <div class="check"><span>边界、权属、控规、工程</span><span>待专业确认</span></div>
+          </article>
+        </div>
+        <details open><summary>来源</summary><p>官方公告、agent taskbook、场地包和标准快照构成正式依据；高德 POI/步行结果只作背景 QA。完整来源、获取日期、用途和限制见 sources.json。</p></details>
+        <details><summary>假设</summary><p>A-BOUNDARY-001 / A-CONTROLS-001 / A-GEOMETRY-001 / A-INTERFACE-001 / A-DATA-001 / A-HERITAGE-001 / A-OPERATIONS-001 / A-MAP-001。官方空间数据替换后必须联动重算。</p></details>
+        <details><summary>自检状态</summary><p>本页呈现的是 formal package 的目标交付状态；spatial review、visual review、professional review 和 participant preflight 的实际结果以 self_check.json 与 CI 为准。</p></details>
+      </section>
+    </main>
+
+    <footer><span>JINGZHANG LOOP / 京张共振场 · COMMUNITY-DISPLAY-ONLY</span><span>Provisional design evidence · human and professional teams retain final judgment</span></footer>
+  </div>
+</body>
+</html>
