@@ -1,5 +1,8 @@
-import importlib.util
+from __future__ import annotations
+
 import json
+import importlib.util
+import os
 import subprocess
 import sys
 import tempfile
@@ -23,8 +26,23 @@ def load_bootstrap_module():
 
 
 class LightweightParticipantFlowTests(unittest.TestCase):
-    def run_command(self, command: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
-        return subprocess.run(command, cwd=cwd, capture_output=True, text=True, check=False)
+    def run_command(
+        self,
+        command: list[str],
+        cwd: Path,
+        *,
+        env: dict[str, str] | None = None,
+        encoding: str | None = None,
+    ) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            command,
+            cwd=cwd,
+            capture_output=True,
+            text=True,
+            encoding=encoding,
+            env=env,
+            check=False,
+        )
 
     def test_bootstrap_dry_run_uses_partial_sparse_fork_workflow(self) -> None:
         completed = self.run_command(
@@ -130,6 +148,49 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertEqual(report["shown"], 1)
         self.assertTrue(report["proposals"][0]["source_url"].startswith("https://raw.githubusercontent.com/"))
         self.assertNotIn("downloaded", report["proposals"][0])
+
+    def test_peer_catalog_reconfigures_gbk_output_to_utf8(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            item = {
+                "id": "alice/encoding-check",
+                "sourceUrl": "submissions/alice/encoding-check/proposal.md",
+                "title": "编码检查²",
+                "titleEn": "Encoding check",
+                "summary": "含有 superscript ² 的摘要",
+                "summaryEn": "A summary containing ²",
+                "author": "alice",
+                "authorName": "Alice",
+                "date": "2026-08-09",
+                "statusKey": "ready",
+                "statusEn": "Ready",
+                "proposalUrl": "proposal-view.html?id=alice%2Fencoding-check",
+                "visualUrl": "submissions/alice/encoding-check/visual/index.html",
+            }
+            (root / "submissions-data.js").write_text(
+                "window.HAIDIAN_SUBMISSIONS = "
+                + json.dumps([item], ensure_ascii=False)
+                + ";\n",
+                encoding="utf-8",
+            )
+            env = os.environ.copy()
+            env["PYTHONIOENCODING"] = "gbk"
+            completed = self.run_command(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "read_peer_proposals.py"),
+                    "--repo-root",
+                    str(root),
+                    "--latest",
+                    "1",
+                ],
+                REPO_ROOT,
+                env=env,
+                encoding="utf-8",
+            )
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+            self.assertIn("²", completed.stdout)
+            self.assertNotIn("UnicodeEncodeError", completed.stderr)
 
     def test_preflight_accepts_own_scope_and_rejects_outside_changes(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A railway shift-handover logic becomes a civic AI protocol: one continuous line links building, validation, open sharing and public service, while every scenario retains human takeover, a no-AI equivalent and an exit rule."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.8"
+iteration: "v1.9"
 ---
 
 # JING-ZHANG HANDOVER LINE
@@ -444,9 +444,32 @@ Privacy uses data minimisation, voluntary participation, purpose limitation, wit
 
 All figures, diagrams, visual identity, text, geometry and PDFs are original for this submission or programmatically derived from cleared repository data. External cases are paraphrased without copying photographs, maps, trademarks or protected layouts. The proposal is an open co-design recommendation; it does not replace planning, architecture, transport, landscape, municipal, heritage, legal, privacy or engineering services, and makes no claim of government approval, funding, procurement or delivery.
 
+### Rights and build provenance: itemised, and verifiable by command
+
+Pointing at `report/copyright_statement.md` is not evidence. A reviewer, or any third party, should be able to judge this package's rights position without opening that file, so the conclusions are set out below together with the way to check them. Every row can be reproduced against this package using the command given.
+
+| Asset class | What is actually used | Rights basis | Independent verification | Known limit |
+| --- | --- | --- | --- | --- |
+| Latin type in the drawings | Helvetica / Helvetica-Bold / Helvetica-BoldOblique [source:FONT-PDF-BASE14] | PDF standard base fonts, referenced by name; **no font file is embedded or redistributed** | `pdffonts drawings/a3-booklet.pdf` → `Type 1 / WinAnsi / emb=no` | Glyphs are supplied by the reader; metric differences between readers can shift layout slightly |
+| Chinese type in the drawings | STSong-Light, Song (CID Type 0) [source:FONT-ADOBE-CID] | Adobe Asian standard CID fonts and CMaps, referenced by name; **not embedded, not redistributed** | Same command → `CID Type 0 / UniGB-UCS2-H or UniGB-UTF16-H / emb=no` | **The reader must supply a CJK font pack or Chinese text may not display**; embedding a licensed face is required before formal publication |
+| Type inside the PNG figures | macOS system font STHeiti Medium.ttc, rasterised by Pillow [source:FONT-STHEITI-RASTER] | Used only at local render time; the output is glyph pixels, and the package contains no `.ttc`/`.ttf` | `find assets -name '*.tt[cf]'` → no result | Re-running the generator on a machine without that face yields different glyphs |
+| Build toolchain | Python 3.12.13 (PSF), reportlab 4.4.3 (BSD), Pillow 12.3.0 (MIT-CMU), shapely 2.1.2 (BSD-3), pyproj 3.7.2 (MIT), PyMuPDF 1.27.2.3 (AGPL-3.0 or Artifex commercial) [source:TOOLCHAIN-BUILD] | Version and licence read from each dependency's own distribution metadata, not from secondary description | `python -c "import importlib.metadata as m; print(m.version('reportlab'), m.metadata('Pillow')['License-Expression'])"` | PyMuPDF is used only as a **tool** to restamp footer text; its code is neither redistributed nor linked into any deliverable |
+| Geometry and metrics | Nine GeoJSON layers and metrics.json | Programmatically generated here, with formula and source file registered per metric | Recompute in EPSG:4548 following each metric's `formula` and `source_file` | The generators are not in the package, so the claim is **recomputable metrics, not byte-identical reproducibility** |
+| Licence marker | `COMMUNITY-DISPLAY-ONLY` | One of the three `license` enum values in `schema/proposal.schema.json` (the others being CC-BY-4.0 and CC-BY-SA-4.0) | `git show HEAD:schema/proposal.schema.json` and read that enum | The repository publishes no canonical text for the marker, so this package states its own meaning below rather than impersonating a standard licence |
+
+What this package takes `COMMUNITY-DISPLAY-ONLY` to mean: copying and quoting is permitted for review, public display, teaching and knowledge capture within this open call, with attribution retained; it grants no commercial use and no right to present the contents as statutory planning or a government decision; any further use still requires the third party to verify the original rights status of each external source cited here.
+
+**Build provenance.** v1.9 regenerates every deliverable in a single build, so the package now carries **one version number**: 26 figures, 38 drawing sheets and both offline pages all stamp `JING-ZHANG HANDOVER LINE / PACKAGE v1.9` (drawings add a page tag such as `01-13`). Up to v1.8 three stamps coexisted — body v1.9, sheets v1.6, figures v1.0 — because the latter two had not changed in content and were not re-rendered; this round rebuilds them instead of restamping, so the discrepancy no longer needs explaining.
+
+Numbering is split into two non-colliding namespaces: drawing sheets use `JZ / NN` (A3 booklet) and `B / NN` (A0 boards), figures use `F / NN`. That removes the earlier collisions — A0 board 3 headed `JZ/03` while its embedded figure carried `JZ/06`, `JZ/08` fell outside the stated `01-06` set, and `spatial-prototype` and `handover-scene` were both `JZ/10`.
+
+The first three sheets of each set (A3 `JZ/01`–`JZ/03`, A0 `B/01`–`B/03`) are re-laid out as native vector pages. Previously they embedded whole figures — each with its own frame, title and footer — inside the page frame, producing a figure-within-a-figure, two version numbers on one page, and inner captions unreadable at review resolution. Content is now set directly on the page, with a single header and footer. Remaining sheets keep their artwork and only have the footer restamped, with embedded figures replaced by the same files that ship in `assets/figures/`, so a figure is byte-identical in the standalone file and inside the drawings.
+
+Whether a deliverable is still current should be judged from the manifest sha256 and the per-version changelog. Once official boundaries trigger a full recomputation, everything will again be unified in a single build. The deterministic render scripts used this round are **not shipped in the package**: the repository's `validate_submission.py` only admits data and asset file types inside a submission directory, and `.py` is not among the permitted extensions. This version therefore continues to claim **recomputable metrics only**, not byte-reproducible artefacts; the scripts can be offered separately as an Issue with a patch, per the taskbook's `continuous_participation.issue_collaboration_zh`.
+
 ## References
 
-All seventeen sources are registered in sources.json with authority level, collection method, spatial and temporal coverage, licence status and usable / not-usable boundaries. Where a unit conversion occurs, the original wording and the conversion method are recorded; where a fact is an administrative-scale background observation, it is flagged `not_spatially_allocable=true`.
+All twenty-one sources are registered in sources.json with authority level, collection method, spatial and temporal coverage, licence status and usable / not-usable boundaries. Where a unit conversion occurs, the original wording and the conversion method are recorded; where a fact is an administrative-scale background observation, it is flagged `not_spatially_allocable=true`.
 
 ### 1. Task authority
 

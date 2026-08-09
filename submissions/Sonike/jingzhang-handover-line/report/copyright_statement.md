@@ -4,6 +4,23 @@
 
 全部中英文对应图均由提交几何、`metrics.json` 与本方案数据在本地确定性渲染，没有使用外部底图、遥感截图、摄影、人物肖像、企业Logo、第三方插画、远程字体、CDN、地图瓦片或生成式图像素材。A3图册和A0展板只嵌入上述原创图件与本方案文字。
 
+## 字体、工具链与构建溯源（逐项可核验）
+
+自 v1.9 起，权利证据不再只放在本文件——同一张表已写入 `proposal.md` 的「权利与构建溯源」小节并登记进 `sources.json`，因为**指向一份文件不等于给出证据**：评审输入只包含 `proposal.md`、`sources.json`、`self_check.json`、`manifest.json` 与三个矩阵，本文件本身不在其中，此前的"版权声明见 report/copyright_statement.md"实际上无法被独立核验。
+
+| 资产类别 | 实际使用 | 权利依据 | 核验命令 |
+| --- | --- | --- | --- |
+| 图纸拉丁文字 | Helvetica / -Bold / -BoldOblique | PDF 内置基础字体，按名引用，不嵌入不再分发 | `pdffonts drawings/a3-booklet.pdf` → `Type 1 / WinAnsi / emb=no` |
+| 图纸中文文字 | STSong-Light、Song | Adobe Asian 标准 CID 字体与 CMap，按名引用，不嵌入不再分发 | 同上 → `CID Type 0 / UniGB-* / emb=no` |
+| PNG 图件文字 | macOS 系统字体 STHeiti Medium.ttc | 仅本机渲染，产物为字形像素；包内无 `.ttc`/`.ttf` | `find assets -name '*.tt[cf]'` → 无结果 |
+| 工具链 | Python 3.12.13(PSF)、reportlab 4.4.3(BSD)、Pillow 12.3.0(MIT-CMU)、shapely 2.1.2(BSD-3)、pyproj 3.7.2(MIT)、PyMuPDF 1.27.2.3(AGPL-3.0 或 Artifex 商业) | 版本与许可逐个读取依赖自身分发元数据 | `importlib.metadata.version()` / `metadata()['License-Expression']` |
+
+两条必须一并说明的限制：其一，PDF 的 CJK 字形 `emb=no`，**阅读器需自带中文字体包，否则中文可能不显示**，正式出版前应改为嵌入获授权字体；其二，PyMuPDF 为 AGPL-3.0 或 Artifex 商业双许可，本包仅将其作为工具用于页脚文本重刷，未分发其代码、未链接进任何交付物；若日后需随包分发生成脚本，须先确认该依赖的分发条件。
+
+`COMMUNITY-DISPLAY-ONLY` 是 `schema/proposal.schema.json` 的 `license` 枚举值之一，仓库未发布其规范条款文本。本包对它的自述含义为：允许为本次开源征集的评审、公开展示、教学与知识沉淀而复制与引用，须保留出处；不授予商业使用，不授予将本包内容表述为法定规划或政府决定的权利；第三方进一步使用时仍须自行核验其中每条外部来源的原始权利状态。
+
+构建溯源：正文与结构化文件为 v1.9，图纸与双语 HTML 页脚为 v1.6，PNG 图件页脚为 v1.0。三者不同是因为后两类自该版本起内容未改变、故未重新渲染；重刷版本号会使其看起来比实际更新。成果时效以 manifest 的 sha256 与 changelog 为准，不以页脚数字为准。
+
 v1.6 新增的 `visual/assets/governance/shift-ledger.schema.json` 为本方案原创的 JSON Schema Draft 2020-12 机器契约；`example-scn05-shift-ledger.json` 是合成、未执行且角色未授权的沙盒结构样例，不含个人数据，也不连接真实导航、政务、维护或告警服务。`validation-report.json` 仅记录 Schema 元模式与样例结构校验，不能据此声称路线、性能、安全、无障碍质量、法律合规、公众接受度或现场运行已经验证。
 
 v1.6 引用的三部法律法规与政策文件（《生成式人工智能服务管理暂行办法》《中华人民共和国无障碍环境建设法》、国办发〔2020〕45号）均为国家机关依法公开发布的文本。本包只引用条款要义并标注条号与施行日期，不复制全文、不再分发附件，也不构成法律意见；条款适用与个案认定由主管部门和具备资质的法律专业人员负责。海淀区2025年国民经济和社会发展统计公报为区级政府网站公开发布的 HTML 页面，未见明确开放数据许可，因此本包只摘录事实数值并保留发布者、标题与原始链接，不复制页面全文；每项数值的原文表述、采集方法、单位换算与可用/不可用边界逐条记录在 `sources.json`。

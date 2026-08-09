@@ -76,7 +76,7 @@
       "result": "pass",
       "severity": "major",
       "target": "sources.json",
-      "message": "十七条来源逐条登记权威等级、证据类别、采集方法、时空覆盖、许可状态与可用/不可用边界；涉及单位换算的写明原文表述、换算方法与入库值，行政尺度事实标记 not_spatially_allocable=true。"
+      "message": "二十一条来源（含 4 条构建工具链与字体登记）逐条登记权威等级、证据类别、采集方法、时空覆盖、许可状态与可用/不可用边界；涉及单位换算的写明原文表述、换算方法与入库值，行政尺度事实标记 not_spatially_allocable=true。"
     },
     {
       "check_id": "BACKGROUND_NOT_SPATIAL",
@@ -97,7 +97,7 @@
       "result": "pass",
       "severity": "minor",
       "target": "drawings/",
-      "message": "四套图纸共38页页脚统一为 JING-ZHANG HANDOVER LINE / v1.6 / NN-TT；修复了此前前三页标 v1.5、其余页标 A3 BOOKLET / A0 BOARDS 的分裂标注。"
+      "message": "四套图纸共 38 页、26 张图件与两个离线页面的页脚在 v1.9 统一为 JING-ZHANG HANDOVER LINE / PACKAGE v1.9（图纸另附页码 NN-TT）。此前三套并存的页脚（正文 v1.9、图纸 v1.6、图件 v1.0）已消除；编号也分成互不冲突的命名空间：图纸页 JZ/NN 与 B/NN、图件 F/NN，原 A0 第 3 张页头 JZ/03 与内嵌图件 JZ/06 冲突、JZ/08 超出 01-06 套系、spatial-prototype 与 handover-scene 同为 JZ/10 等问题一并修复。"
     },
     {
       "check_id": "VISUAL_STATIC",
@@ -147,6 +147,62 @@
       "severity": "major",
       "target": "report/copyright_statement.md",
       "message": "图件、图标、排版与几何均为本方案程序化原创；外部案例仅作文字转述并逐项列源；Codex与用户操作的Claude Opus 5跨轮次协作已如实披露。"
+    },
+    {
+      "check_id": "FONT_EMBEDDING_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/a3-booklet.pdf; drawings/a0-boards.pdf; assets/figures/",
+      "message": "pdffonts 对四套 PDF 逐一核验：Helvetica 系列为 Type 1/WinAnsi/emb=no，STSong-Light 与 Song 为 CID Type 0/UniGB/emb=no，即全部按标准字体名引用，未嵌入或再分发任何字体文件；PNG 图件为字形栅格，包内无 .ttc/.ttf。已知限制：CJK 依赖阅读器字体包，正式出版前须改为嵌入获授权字体。"
+    },
+    {
+      "check_id": "TOOLCHAIN_LICENSE_LEDGER",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json#TOOLCHAIN-BUILD; proposal.md",
+      "message": "生成工具链版本与许可逐个读取依赖自身分发元数据：Python 3.12.13(PSF)、reportlab 4.4.3(BSD)、Pillow 12.3.0(MIT-CMU)、shapely 2.1.2(BSD-3)、pyproj 3.7.2(MIT)、PyMuPDF 1.27.2.3(AGPL-3.0 或 Artifex 商业)。PyMuPDF 仅作工具用于页脚重刷，未分发其代码、未链接进交付物。"
+    },
+    {
+      "check_id": "BUILD_PROVENANCE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "proposal.md; manifest.json; changelog.md",
+      "message": "v1.9 在同一次构建中重新生成全部交付物，全包只有一个版本号。图纸前三页（A3 JZ/01–JZ/03、A0 B/01–B/03）由矢量原生重排，消除了图中图嵌套与同页双版本号；其余页面保留原图面、仅重印页脚，并把内嵌图件替换为与 assets/figures/ 同源的文件。确定性渲染脚本受投稿目录文件类型限制未能随包提交（.py 不在允许扩展名内），故本版仍只主张指标可独立复算。成果时效仍以 manifest sha256 与 changelog 为准。"
+    },
+    {
+      "check_id": "LICENSE_MARKER_SCOPE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "proposal.md; schema/proposal.schema.json",
+      "message": "COMMUNITY-DISPLAY-ONLY 是仓库 schema 的 license 枚举值而非标准许可证，仓库未发布其条款文本；本包在正文自述其含义与边界，不冒充标准许可证，也不代第三方清权。"
+    },
+    {
+      "check_id": "FIGURE_RESTAMP_PIXEL_SCOPE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "assets/figures/",
+      "message": "8 张未重绘图件（16 个中英文件）本轮只重印页脚图签与左上角编号：先按 40px 网格周期以同相位干净竖条重建声明矩形内的背景，再按原字号原色重绘文字，随后逐像素断言声明矩形之外零变化——16 个 PNG 全部 outside_diff=0。handover-scene 为 JPEG，重新编码带来全图平均 0.17/255 的再压缩损失，单独记录，不作零变化断言。"
+    },
+    {
+      "check_id": "SHEET_NESTING_REMOVED",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/",
+      "message": "评审窗口内的 6 页（A3 前 3 页 + A0 前 3 张）此前把自带图框、标题与页脚的整张图件缩小嵌入页面图框，形成三层嵌套且内层小字在 72dpi 下不可读。本轮改为矢量原生排版：全页只有一层页眉页脚、一个版本号，地图直接由 geometry/*.geojson 在 EPSG:4548 投影绘制并配指北针与比例尺。"
+    },
+    {
+      "check_id": "SHEET_BLANK_AREA_FILLED",
+      "result": "pass",
+      "severity": "minor",
+      "target": "drawings/a0-boards.pdf; drawings/a3-booklet.pdf",
+      "message": "此前 A0 第 1 张下部约 1/4、第 3 张下部约 1/3、A3 第 3 页下部约 35% 为纯网格空白。本轮用既有数据填充：A0/01 补三座交接场卡（真实轮廓、共享比例尺、复算面积）与分期条件门；A0/03 补八栈×三区两翼落位矩阵与三期进入/退回条件；A3/03 补五大功能空间对应。填充内容均转录自本包既有正文与 geometry/metrics，不新增任何主张。"
+    },
+    {
+      "check_id": "KEY_AREA_GEOMETRY_TRUE_OUTLINE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "assets/figures/key-areas.png",
+      "message": "三处重点区卡片此前复用同一抽象场地剪影、仅以色块区分，无法反映 2.7 倍的面积差与地理位置差异。本轮改为按 key_areas.geojson 真实轮廓、同一比例尺绘制，附主轴与缝合支线、沿线定位条、指北针与比例尺，并标注 metrics.json 的复算面积（1,929,201.877 / 1,043,236.909 / 720,454.219 m²）。"
     }
   ]
 }
