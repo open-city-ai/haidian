@@ -52,6 +52,19 @@ ROOT_SUBMISSION_ENTRY_PATHS = frozenset(
         "self_check.json",
     }
 )
+ROOT_NON_SUBMISSION_DIRS = frozenset(
+    {
+        ".github",
+        "brief",
+        "collections",
+        "data",
+        "docs",
+        "examples",
+        "scripts",
+        "skills",
+        "tests",
+    }
+)
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -335,12 +348,26 @@ def participant_scope_violations(
 
 
 def is_root_submission_pr(files: list[dict] | list[str]) -> bool:
-    """Return true when a PR contains a root-level participant package entry."""
-    return any(
-        path.strip().casefold() in ROOT_SUBMISSION_ENTRY_PATHS
-        for path in _pull_request_paths(files)
-        if path.strip()
-    )
+    """Return true for root files or a nested package-shaped root directory.
+
+    A package placed at ``jingzhang-zhiji-submission/manifest.json`` is just as
+    misplaced as a root ``manifest.json``.  Without this grouped check, a PR
+    containing only non-``submissions/`` paths is classified as ordinary code
+    and skips the participant package validator entirely.
+    """
+    nested_entries: dict[str, set[str]] = {}
+    for raw_path in _pull_request_paths(files):
+        path = raw_path.strip().casefold()
+        if not path:
+            continue
+        if path in ROOT_SUBMISSION_ENTRY_PATHS:
+            return True
+        parts = PurePosixPath(path).parts
+        if len(parts) < 2 or parts[0] in ROOT_NON_SUBMISSION_DIRS or parts[0] == "submissions":
+            continue
+        if parts[-1] in ROOT_SUBMISSION_ENTRY_PATHS:
+            nested_entries.setdefault(parts[0], set()).add(parts[-1])
+    return any(len(entries) >= 2 for entries in nested_entries.values())
 
 
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:

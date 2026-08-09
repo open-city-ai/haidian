@@ -575,6 +575,21 @@ class ManifestHydrationTests(unittest.TestCase):
         self.assertTrue(is_root_submission_pr(files))
         self.assertTrue(is_non_submission_pr(files))
 
+    def test_nested_root_submission_package_is_not_classified_as_code_pr(self) -> None:
+        files = [
+            "jingzhang-zhiji-submission/agent.json",
+            "jingzhang-zhiji-submission/manifest.json",
+            "jingzhang-zhiji-submission/proposal.md",
+            "jingzhang-zhiji-submission/self_check.json",
+        ]
+        self.assertTrue(is_root_submission_pr(files))
+        self.assertTrue(is_non_submission_pr(files))
+
+    def test_documentation_package_entries_do_not_trigger_root_submission_guard(self) -> None:
+        files = ["docs/manifest.json", "docs/proposal.md"]
+        self.assertFalse(is_root_submission_pr(files))
+        self.assertTrue(is_non_submission_pr(files))
+
     def test_root_level_submission_package_fails_scope_guard(self) -> None:
         event = {
             "pull_request": {
