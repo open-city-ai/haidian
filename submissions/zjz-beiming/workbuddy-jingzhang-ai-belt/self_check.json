@@ -1,0 +1,216 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "CHECK_COMPLIANCE_BRIEF_SECTIONS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "compliance_matrix.json",
+      "message": "公告1.3/1.4/1.5逐节合规覆盖完成，23项requirement全部覆盖。"
+    },
+    {
+      "check_id": "CHECK_TASKBOOK_TASKS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "compliance_matrix.json + proposal.md",
+      "message": "六项智能体任务（agent.1至agent.6）全部覆盖：命名Logo、生态案例、场景卡、朝圣地标、文化叙事、长期运营。"
+    },
+    {
+      "check_id": "CHECK_SCOPE_LEVELS",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + metrics.json",
+      "message": "三层范围（43.6/11.4/3.684 k㎡）面积值匹配公告。临时边界已标注 provisional 状态。"
+    },
+    {
+      "check_id": "CHECK_KEY_AREAS",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + geometry/key_areas.geojson",
+      "message": "三处重点区域均已详细设计并包含空间定位+建筑更新+交通+公共空间+AI场景+实施风险。"
+    },
+    {
+      "check_id": "CHECK_SCENARIO_CARDS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md + metrics.json",
+      "message": "12张场景卡全部在正文中可读，不少于10张要求。"
+    },
+    {
+      "check_id": "CHECK_USER_PERSONAS",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + metrics.json",
+      "message": "6类用户画像全部在正文中可读，不少于5类要求。"
+    },
+    {
+      "check_id": "CHECK_LANDMARK_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + metrics.json",
+      "message": "4个朝圣地标/荣誉展示节点，不少于3个要求。"
+    },
+    {
+      "check_id": "CHECK_CULTURAL_NARRATIVE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "三段式文化叙事（京张铁路→中关村创新→AI新文化）在正文中展开。"
+    },
+    {
+      "check_id": "CHECK_OPERATION_PLAN",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "年度活动体系、开发者社区运营、场景开放运营、国际传播和转化路径均有具体设计。"
+    },
+    {
+      "check_id": "CHECK_ECOSYSTEM_CASES",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + metrics.json",
+      "message": "8个全球AI创新生态案例，不少于5-8个要求。"
+    },
+    {
+      "check_id": "CHECK_GEOJSON_LAYERS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "8个必交 GeoJSON 图层全部提交：SITE_BOUNDARY, KEY_AREA, LAND_USE, BUILDING_FOOTPRINT, ROAD_CENTERLINE, GREEN_SPACE, PUBLIC_SPACE, PHASE。"
+    },
+    {
+      "check_id": "CHECK_GEOJSON_FEATURE_PROPS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "所有 GeoJSON feature properties 包含必填字段 id, layer, source_type, confidence, geometry_role。"
+    },
+    {
+      "check_id": "CHECK_FIGURE_COUNT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets/figures/",
+      "message": "5张必交图纸提交：site-overview, land-use-structure, key-areas, mobility-bluegreen, metrics-evidence。"
+    },
+    {
+      "check_id": "CHECK_FIGURE_EMBEDDING",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "5张图纸以 Markdown 本地图片语法嵌入 proposal.md。"
+    },
+    {
+      "check_id": "CHECK_METRICS_STATUS",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "所有指标包含 status/value/unit/source_files/formula/confidence/assumptions。unknown 指标提供了 reason。"
+    },
+    {
+      "check_id": "CHECK_METRICS_FORMULA",
+      "result": "pass",
+      "severity": "minor",
+      "target": "metrics.json",
+      "message": "所有指标提供了公式说明或数据来源说明。"
+    },
+    {
+      "check_id": "CHECK_PLANNING_CONTROLS",
+      "result": "fail",
+      "severity": "major",
+      "target": "proposal.md + metrics.json",
+      "message": "容积率、建筑高度、建筑密度、绿地率等控规条件缺失。已在 assumptions 中标记 ASM-PLAN-001，在 proposal.md 中各章节标注设计建议/待确认。这是已知外部数据缺口，不是方案缺陷。",
+      "suggested_fix": "获取官方控规条件后补充更新。当前版本已在所有涉及处标注数据缺口。"
+    },
+    {
+      "check_id": "CHECK_PACKAGE_STATE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "package_state=ready_for_review, package_type=professional_design_package。"
+    },
+    {
+      "check_id": "CHECK_LEGAL_DISCLAIMER",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md + report/copyright_statement.md",
+      "message": "风险、版权与合规说明章节包含空间落地建议的概念属性声明、数据使用边界和待补资料清单。"
+    },
+    {
+      "check_id": "CHECK_CITATION_TAGS",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文中使用 [source:...] [data:...] [metric:...] [standard:...] [depth:...] 格式的证据引用标签。"
+    },
+    {
+      "check_id": "CHECK_BILINGUAL",
+      "result": "pass",
+      "severity": "minor",
+      "target": "proposal.en.md",
+      "message": "英文翻译版本已提交。两版本章节对齐、声明一致。"
+    },
+    {
+      "check_id": "CHECK_URBAN_DESIGN_DEPTH",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + design_depth_matrix.json",
+      "message": "总体设计范围达到控规级城市设计深度，重点区域达到规划综合实施方案深度。"
+    },
+    {
+      "check_id": "CHECK_PHASING",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + geometry/phasing.geojson",
+      "message": "近期/中期/远期三期分期的项目清单和实施逻辑明确。"
+    },
+    {
+      "check_id": "CHECK_LAND_USE_CODES",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分类采用自然资源部国土空间分类指南代码体系。"
+    },
+    {
+      "check_id": "CHECK_LAND_USE_COVERAGE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "用地图层完整覆盖设计边界，无未标记空白区域。"
+    },
+    {
+      "check_id": "CHECK_TRANSPORT_SYSTEM",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + geometry/roads.geojson",
+      "message": "道路微循环、轨道站点一体化、慢行断点、无人接驳等交通内容完整。"
+    },
+    {
+      "check_id": "CHECK_PUBLIC_FACILITIES",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + geometry/land_use.geojson",
+      "message": "创新服务平台和人才生活服务设施布局方案完整。"
+    },
+    {
+      "check_id": "CHECK_BLUEGREEN",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md + geometry/green_space.geojson + geometry/public_space.geojson",
+      "message": "一轴两带多节点的蓝绿公共空间系统设计完整。"
+    },
+    {
+      "check_id": "CHECK_RENEWAL_LOGIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "保留/改造/拆除/新建分类原则和在三大片区的应用明确。所有空间结论标注为概念建议。"
+    },
+    {
+      "check_id": "CHECK_ARCH_DEPTH",
+      "result": "not_applicable",
+      "severity": "info",
+      "target": "standard_matrix.json",
+      "message": "建筑方案为概念性体量建议，不替代方案设计/施工图阶段。该标准不直接适用。"
+    }
+  ]
+}

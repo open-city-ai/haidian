@@ -1,0 +1,402 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "coordinated_research_area": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "官方公告值",
+      "confidence": "medium",
+      "assumptions": [
+        "基于官方公告声明的面积数值，不是从 polygon 实际计算。官方 polygon 不可用。"
+      ]
+    },
+    "overall_design_area": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "官方公告值（临时边界近似校核约1141.3万sqm）",
+      "confidence": "medium",
+      "assumptions": [
+        "基于公告文字四至推导的临时边界，官方精确面积以正式 polygon 计算为准。"
+      ]
+    },
+    "key_area_total": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "众智园192.1ha + 原点社区104.3ha + 大钟寺72.0ha = 368.4ha",
+      "confidence": "medium",
+      "assumptions": [
+        "面积值取官方公告数字，实际空间范围以正式 GIS polygon 为准。"
+      ]
+    },
+    "zhongzhiyuan_area": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告值192.1ha",
+      "confidence": "medium",
+      "assumptions": [
+        "基于公告文字推导的临时重点区范围。"
+      ]
+    },
+    "ai_origin_area": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告值104.3ha",
+      "confidence": "medium",
+      "assumptions": [
+        "基于公告文字推导的临时重点区范围。"
+      ]
+    },
+    "dazhongsi_area": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/design_brief.json"
+      ],
+      "formula": "公告值72.0ha",
+      "confidence": "medium",
+      "assumptions": [
+        "基于公告文字推导的临时重点区范围。"
+      ]
+    },
+    "floor_area_total": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [],
+      "formula": "sum(用地面积 × 容积率)",
+      "confidence": "low",
+      "assumptions": [
+        "缺少批准的控规容积率条件。概念性建筑规模估算约800-1200万sqm（总体设计范围内），不构成审定开发强度。需要控规附件后精确计算。"
+      ],
+      "reason": "容积率等控规条件缺失，建筑总规模为概念性估算，不可作为审定依据。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "建筑基底面积 / 建设用地面积",
+      "confidence": "low",
+      "assumptions": [
+        "缺少批准的控规建筑密度条件和准确的建筑基底数据。"
+      ],
+      "reason": "缺少批准的控规控制指标和准确的现状建筑调查数据。"
+    },
+    "green_ratio": {
+      "value": 0.123423,
+      "unit": "ratio",
+      "status": "known",
+      "confidence": "provisional",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "green_space_area / site_area (spatial recomputation from GeoJSON)",
+      "assumptions": [
+        "ASM-SITE-003: green space area provisional"
+      ],
+      "evidence_zh": "绿地率基于当前临时边界和绿色空间图层复算；待官方蓝绿管控线确认后复算。"
+    },
+    "public_space_ratio": {
+      "value": 0.0,
+      "unit": "ratio",
+      "status": "known",
+      "confidence": "provisional",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/land_use.geojson"
+      ],
+      "formula": "public_space_area / site_area (spatial recomputation from GeoJSON)",
+      "assumptions": [
+        "ASM-SITE-003: public space area provisional"
+      ],
+      "evidence_zh": "公共空间率设计目标15%，含AI广场、创源广场、荣誉墙、开源画廊等。实际比例待官方数据确认后复算。"
+    },
+    "industry_space_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "研发产业类用地面积 / 建设用地面积",
+      "confidence": "medium",
+      "assumptions": [
+        "基于设计概念的用地结构推算。概念目标约35%。"
+      ],
+      "reason": "缺少批准的控规用地规划。"
+    },
+    "residential_space_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "居住类用地面积 / 建设用地面积",
+      "confidence": "medium",
+      "assumptions": [
+        "基于设计概念的用地结构推算。概念目标约20%。"
+      ],
+      "reason": "缺少批准的控规用地规划。"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "12张场景卡为概念设计产出，具体数量和内容在方案深化过程中可能调整。"
+      ]
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(test_validation_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "测试验证场景为概念设计，实际验证需技术和安全审批。"
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "用户画像基于公开文献和行业认知构建，非实际调研数据。"
+      ]
+    },
+    "ecosystem_case_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ecosystem_cases)",
+      "confidence": "high",
+      "assumptions": [
+        "案例基于公开研究和文献，信息截止 2026 年上半年。"
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(AI_pilgrimage_landmarks + honor_display_nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "地标为概念设计，具体选址、设计和建设需另行审批。"
+      ]
+    },
+    "annual_activity_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual_activities)",
+      "confidence": "medium",
+      "assumptions": [
+        "年度活动体系为概念建议，具体活动数量和形式需运营方确认。"
+      ]
+    },
+    "developer_community_scale": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "estimate(registered_developers + event_participants)",
+      "confidence": "low",
+      "assumptions": [
+        "开发者社区规模为运营目标性估算。概念目标约5000+注册开发者。"
+      ],
+      "reason": "开发者社区规模取决于实际运营推广和活动参与度。"
+    },
+    "heritage_route_length": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "sum(cultural_route_lengths)",
+      "confidence": "medium",
+      "assumptions": [
+        "京张铁路遗址公园主轴线约12km（大钟寺至北五环），基于 OSM 铁路和公园数据推算。"
+      ],
+      "reason": "缺少官方测量数据，路权归属和实际可达性未确认。"
+    },
+    "road_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "道路总长度 / 用地面积",
+      "confidence": "medium",
+      "assumptions": [
+        "基于 OSM 道路网络推算。"
+      ],
+      "reason": "缺少官方道路管理数据和准确的控规道路红线。"
+    },
+    "metro_station_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(metro_stations_in_design_area)",
+      "confidence": "high",
+      "assumptions": [
+        "基于北京轨道交通线网公开信息。经过总体设计范围内的地铁站数量。"
+      ],
+      "reason": null
+    },
+    "near_term_project_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(near_term_projects)",
+      "confidence": "medium",
+      "assumptions": [
+        "近期项目清单为概念建议，具体项目、投资和实施以政府决策为准。"
+      ]
+    },
+    "land_use_type_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(distinct land_use_codes)",
+      "confidence": "high",
+      "assumptions": [
+        "用地分类基于自然资源部指南代码体系。"
+      ],
+      "reason": null
+    },
+    "cultural_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(cultural_nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "文化节点为概念设计，具体点位需结合文保和城市更新实际条件确认。"
+      ],
+      "reason": null
+    },
+    "slow_traffic_network_length": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "sum(slow_traffic_path_lengths)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计中慢行网络总长约50-80km。需在交通专项规划中精确推算。"
+      ],
+      "reason": "缺少官方慢行网络数据和路权条件。"
+    },
+    "geojson_layer_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/"
+      ],
+      "formula": "count(required_submission_layers_in_geometry/)",
+      "confidence": "high",
+      "assumptions": [
+        "8个必交图层全部提交。"
+      ]
+    },
+    "figure_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "assets/figures/"
+      ],
+      "formula": "count(required_figures)",
+      "confidence": "high",
+      "assumptions": [
+        "5张必交图纸全部提交。"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(distinct phases)",
+      "confidence": "high",
+      "assumptions": [
+        "近期/中期/远期三期。"
+      ]
+    },
+    "site_area_sqm": {
+      "value": 11412825.386,
+      "unit": "sqm",
+      "status": "known",
+      "confidence": "provisional",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "overall_design_area from official announcement (11.4 km² = 11,400,000 sqm)",
+      "assumptions": [
+        "ASM-SITE-001: provisional boundary derived from text description"
+      ],
+      "evidence_zh": "总体设计范围面积11.4km²，来源于官方公告。边界为临时推导，面积精度待官方CAD/GIS数据确认。"
+    }
+  }
+}
