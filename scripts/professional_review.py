@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
 import sys
 from dataclasses import dataclass, field
@@ -26,6 +27,137 @@ from validate_submission import (
 
 
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
+TABLE_NUMBER_RE = re.compile(
+    r"(?P<number>[+-]?(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?))\s*"
+    r"(?P<unit>km²|km2|m²|sqm|ha|公顷|平方公里|平方千米|公里|米|km|m|㎡|%|％|ratio|比例|个|处|项)?",
+    re.IGNORECASE,
+)
+
+# These aliases are intentionally limited to unambiguous metric-table labels.
+# The checker does not interpret arbitrary prose or unlabeled numbers.
+METRIC_TABLE_ALIASES: dict[str, tuple[str, ...]] = {
+    "site_area_sqm": ("范围面积", "site area", "overall design area"),
+    "green_ratio": ("绿地率", "green ratio"),
+    "public_space_ratio": ("公共空间比例", "public-space ratio", "public space ratio"),
+    "building_footprint_area_sqm": ("建筑基底面积", "building footprint area"),
+    "road_network_length_m": ("道路网络长度", "road network length"),
+    "heritage_spine_length_m": ("双轨慢行主脊长度", "heritage spine length", "slow-mobility spine length"),
+    "second_line_length_m": ("AI智轨复线长度", "AI smart-line length", "second-line length"),
+    "ai_scenario_node_count": ("AI场景节点数", "AI scenario node count"),
+    "ai_service_zone_count": ("AI服务区数量", "AI service-zone count"),
+    "renewal_project_count": ("更新项目数量", "renewal project count"),
+    "building_count": ("建筑数量", "building count"),
+    "land_use_parcel_count": ("用地分区数量", "land-use parcel count"),
+    "floor_area_ratio": ("容积率", "floor area ratio", "FAR"),
+    "building_height_m": ("建筑高度", "building height"),
+    "building_density": ("建筑密度", "building density"),
+}
+
+
+@dataclass(frozen=True)
+class ProposalMetricClaim:
+    metric_id: str
+    raw_value: str
+    value: float
+    unit: str
+    line_number: int
+
+
+def _parse_table_value(value_cell: str) -> tuple[float, str] | None:
+    """Parse one unambiguous numeric value from a metric table value cell."""
+    # Ranges and compound values are deliberately left to human review rather
+    # than guessed from their first number.
+    if re.search(r"\d\s*(?:-|–|—|至|到)\s*\d", value_cell):
+        return None
+    match = TABLE_NUMBER_RE.search(value_cell)
+    if not match:
+        return None
+    try:
+        number = float(match.group("number").replace(",", ""))
+    except ValueError:
+        return None
+    if not math.isfinite(number):
+        return None
+    return number, (match.group("unit") or "").casefold()
+
+
+def extract_proposal_metric_claims(text: str) -> list[ProposalMetricClaim]:
+    """Extract only explicit metric-table rows with a known display alias."""
+    claims: list[ProposalMetricClaim] = []
+    for line_number, line in enumerate(text.splitlines(), start=1):
+        if line.count("|") < 2 or re.match(r"^\s*\|?\s*:?-{3,}", line):
+            continue
+        cells = [cell.strip().strip("`*") for cell in line.strip().strip("|").split("|")]
+        if len(cells) < 2:
+            continue
+        label = cells[0].casefold()
+        parsed = _parse_table_value(cells[1])
+        if parsed is None:
+            continue
+        value, unit = parsed
+        for metric_id, aliases in METRIC_TABLE_ALIASES.items():
+            if any(alias.casefold() in label for alias in aliases):
+                claims.append(
+                    ProposalMetricClaim(
+                        metric_id=metric_id,
+                        raw_value=cells[1],
+                        value=value,
+                        unit=unit,
+                        line_number=line_number,
+                    )
+                )
+                break
+    return claims
+
+
+def _metric_value_in_base_units(claim: ProposalMetricClaim, metric: dict[str, Any]) -> float:
+    """Convert a displayed table value using its explicit unit."""
+    unit = claim.unit
+    value = claim.value
+    target = str(metric.get("unit", "")).casefold()
+    if unit in {"%", "％"} and target in {"ratio", "比例"}:
+        return value / 100
+    if unit in {"km", "公里"} and target in {"m", "米"}:
+        return value * 1000
+    if unit in {"ha", "公顷"} and target in {"sqm", "m²", "㎡"}:
+        return value * 10000
+    if unit in {"km²", "km2", "平方公里", "平方千米"} and target in {"sqm", "m²", "㎡"}:
+        return value * 1_000_000
+    return value
+
+
+def validate_proposal_metric_table_claims(
+    report: ProfessionalReport,
+    target_file: str,
+    text: str,
+    metrics: dict[str, Any],
+) -> None:
+    """Reject explicit table values that contradict the machine metric ledger."""
+    for claim in extract_proposal_metric_claims(text):
+        metric = metrics.get(claim.metric_id)
+        if not isinstance(metric, dict):
+            continue
+        status = metric.get("status")
+        if status in {"unknown", "not_applicable"}:
+            report.add(
+                "PROPOSAL_UNKNOWN_METRIC_NUMERIC_CLAIM",
+                "major",
+                target_file,
+                f"line {claim.line_number}: `{claim.metric_id}` is {status!r} in metrics.json but the table displays `{claim.raw_value}`; use an explicit non-numeric pending label.",
+            )
+            continue
+        if status != "known" or not isinstance(metric.get("value"), (int, float)):
+            continue
+        expected = float(metric["value"])
+        actual = _metric_value_in_base_units(claim, metric)
+        tolerance = max(abs(expected) * 0.01, 0.01)
+        if abs(actual - expected) > tolerance:
+            report.add(
+                "PROPOSAL_METRIC_VALUE_MISMATCH",
+                "major",
+                target_file,
+                f"line {claim.line_number}: table value `{claim.raw_value}` for `{claim.metric_id}` resolves to {actual:g}, but metrics.json says {expected:g}; regenerate the narrative from the final metric ledger.",
+            )
 
 
 @dataclass
@@ -147,6 +279,20 @@ def build_professional_review(repo_root: Path, submission_dir: Path) -> Professi
                 report.add("DATA_PROPOSAL_REF", "major", "proposal.md", f"Missing [data:{rel_path}#...] reference.")
 
     metric_items = metrics.get("metrics") if isinstance(metrics, dict) else {}
+    if isinstance(metric_items, dict):
+        validate_proposal_metric_table_claims(report, "proposal.md", proposal_text, metric_items)
+        english_proposal_path = submission_dir / "proposal.en.md"
+        if english_proposal_path.exists():
+            try:
+                english_proposal_text = english_proposal_path.read_text(encoding="utf-8")
+            except UnicodeDecodeError:
+                english_proposal_text = ""
+            validate_proposal_metric_table_claims(
+                report,
+                "proposal.en.md",
+                english_proposal_text,
+                metric_items,
+            )
     known_metric_ids = {
         name
         for name, value in metric_items.items()
