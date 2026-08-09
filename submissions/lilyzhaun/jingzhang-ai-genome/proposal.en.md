@@ -232,7 +232,7 @@ Xiaoyuehe scenario empowerment wing is the “holding yard”: perceptible, revo
 
 Land-use layout expresses conceptual clusters—R&D, incubation/translation, commercial business, living support, education–research interfaces, green and public space—via the land_use layer covering the design boundary without overlap [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]. Judgment: densify mixed uses along the spine and rail stations; avoid mono-functional compounds; balance industry space and life services within a fifteen-minute walk.
 
-Building footprint package value building_footprint_area_sqm ≈ 310,807 m² supports renewal discussion, not statutory capacity [metric:building_footprint_area_sqm] [data:geometry/buildings.geojson#BLDG-001]. floor_area_ratio is **unknown** in metrics—approved FAR and official boundary are missing; speculative FAR must not be presented as adopted [metric:floor_area_ratio]. Height, intensity, and setbacks remain pending official regulatory conditions [depth:development_intensity_controls] [depth:height_massing_character].
+Building footprint package value building_footprint_area_sqm ≈ 522,440 m² supports renewal discussion, not statutory capacity [metric:building_footprint_area_sqm] [data:geometry/buildings.geojson#BLDG-001]. floor_area_ratio is **unknown** in metrics—approved FAR and official boundary are missing; speculative FAR must not be presented as adopted [metric:floor_area_ratio]. Height, intensity, and setbacks remain pending official regulatory conditions [depth:development_intensity_controls] [depth:height_massing_character].
 
 **Retain–renovate–demolish principles (conceptual, not parcel conclusions)** [depth:retain_renovate_demolish]:  
 - **Retain:** structures with railway-industrial memory, modern research/education value, or reusable frames—prefer structural keep and functional update.  
@@ -264,7 +264,7 @@ Mobility strategy applies “standard-gauge thinking” to multimodal interopera
 
 ## Blue-Green Network, Public Space, and Urban Character
 
-Blue-green and public space carry the genome’s **expression sequence**: touchable history, experiential scenarios, visible runtime states [depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001]. Package baselines: green_ratio ≈ 0.123, public_space_ratio ≈ 0.073. Conceptual research targets suggest green ratio 0.18–0.22 and public-space ratio 0.15–0.20 after official boundaries and green inventories; they are not statutory metrics [metric:green_ratio] [metric:public_space_ratio].
+Blue-green and public space carry the genome’s **expression sequence**: touchable history, experiential scenarios, visible runtime states [depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001]. Package baselines: green_ratio ≈ 0.230, public_space_ratio ≈ 0.180. Conceptual research targets suggest green ratio 0.18–0.22 and public-space ratio 0.15–0.20 after official boundaries and green inventories; they are not statutory metrics [metric:green_ratio] [metric:public_space_ratio].
 
 **Heritage park AI public space (agent.4):** narrative points, rests, sport segments, open test windows, and honor nodes along the spine; **east–west stitching**—vertical slow interfaces from park to campus/park districts; **north–south continuity**—continuous walk/cycle and barrier crossings. Conceptual stitching only; no unauthorized tenure crossing.
 
@@ -333,9 +333,9 @@ Metrics serve readable, measurable, reversible, evolvable design: each core metr
 | Metric | Status / value (package) | Design meaning | Notes |
 | --- | --- | --- | --- |
 | site_area_sqm | ≈ 11,412,825 m² | Overall design working area | Aligns with ~11.4 km² announcement; recompute after official boundary |
-| building_footprint_area_sqm | ≈ 310,807 m² | Footprint reference for renewal discussion | Not statutory capacity |
-| green_ratio | ≈ 0.123 | Blue-green support for talent life and health | Research target 0.18–0.22 |
-| public_space_ratio | ≈ 0.073 | Innovation exchange and scenario carrying | Research target 0.15–0.20 |
+| building_footprint_area_sqm | ≈ 522,440 m² | Footprint reference for renewal discussion | Not statutory capacity |
+| green_ratio | ≈ 0.230 | Blue-green support for talent life and health | Research target 0.18–0.22 |
+| public_space_ratio | ≈ 0.180 | Innovation exchange and scenario carrying | Research target 0.15–0.20 |
 | floor_area_ratio | unknown | Intensity control | Pending regulatory plan and official boundary |
 | key_area_count | 3 | Detailed-design anchors | Zhongzhiyuan / Origin / Dazhongsi |
 

@@ -232,7 +232,7 @@ iteration: "v0.1"
 
 用地布局以总体设计范围内的概念分区表达产业研发、孵化转化、商业商务、居住配套、教育科研接口、绿地与公共空间等功能簇，图层见 land_use，须无重叠覆盖设计边界 [data:geometry/land_use.geojson#LU-001] [depth:land_use_layout] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。设计判断：优先沿一脊与轨道站点加密混合功能，避免单一大院式隔离；产业空间与生活服务在 15 分钟步行尺度内互补。
 
-建筑基底参考提交包复算 building_footprint_area_sqm ≈ 310,807 m²，用于讨论更新潜力，而非法定容量 [metric:building_footprint_area_sqm] [data:geometry/buildings.geojson#BLDG-001]。容积率 floor_area_ratio 在 metrics 中为 unknown——因批准 FAR 与正式边界缺失，禁止填写推测值冒充审定 [metric:floor_area_ratio]。建筑高度、强度、退线一律待正式控规条件确认 [depth:development_intensity_controls] [depth:height_massing_character]。
+建筑基底参考提交包复算 building_footprint_area_sqm ≈ 522,440 m²，用于讨论更新潜力，而非法定容量 [metric:building_footprint_area_sqm] [data:geometry/buildings.geojson#BLDG-001]。容积率 floor_area_ratio 在 metrics 中为 unknown——因批准 FAR 与正式边界缺失，禁止填写推测值冒充审定 [metric:floor_area_ratio]。建筑高度、强度、退线一律待正式控规条件确认 [depth:development_intensity_controls] [depth:height_massing_character]。
 
 **拆改留策略（概念原则，非地块结论）** [depth:retain_renovate_demolish]：  
 - **留**：具有铁路工业记忆、近现代科研教育价值或结构可再利用的建筑与构筑，优先结构保留与功能更新。  
@@ -264,7 +264,7 @@ iteration: "v0.1"
 
 ## 蓝绿空间、公共空间与城市风貌
 
-蓝绿与公共空间是基因组的「表达序列」载体：历史可触摸、场景可体验、运行状态可看见 [depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001]。提交包复算 green_ratio ≈ 0.123、public_space_ratio ≈ 0.073，作为现状参考基线；概念目标区间建议绿地率研究 0.18–0.22、公共空间比例研究 0.15–0.20，须在 official 边界与绿地专项数据补齐后重算，不得当作法定指标 [metric:green_ratio] [metric:public_space_ratio]。
+蓝绿与公共空间是基因组的「表达序列」载体：历史可触摸、场景可体验、运行状态可看见 [depth:blue_green_public_space] [data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001]。提交包复算 green_ratio ≈ 0.230、public_space_ratio ≈ 0.180，作为现状参考基线；概念目标区间建议绿地率研究 0.18–0.22、公共空间比例研究 0.15–0.20，须在 official 边界与绿地专项数据补齐后重算，不得当作法定指标 [metric:green_ratio] [metric:public_space_ratio]。
 
 **京张遗址公园 AI 公共空间（agent.4）**：沿一脊布置叙事点、休息点、运动段、开放测试窗口与荣誉节点；东西缝合——打通公园与两侧校区园区的垂直慢行接口；南北贯通——连续步骑道与跨障碍节点。策略为概念缝合，不涉及未授权穿越权属空间。
 
@@ -331,9 +331,9 @@ iteration: "v0.1"
 | 指标 | 状态/值（提交包） | 设计含义 | 备注 |
 | --- | --- | --- | --- |
 | site_area_sqm | ≈11,412,825 m² | 总体设计工作底图面积 | 与公告 11.4 km² 量级一致；provisional 时正式后重算 |
-| building_footprint_area_sqm | ≈310,807 m² | 建筑基底参考，讨论更新潜力 | 非法定容量 |
-| green_ratio | ≈0.123 | 蓝绿支撑人才生活与公共健康 | 概念目标研究 0.18–0.22 |
-| public_space_ratio | ≈0.073 | 创新交往与场景承载 | 概念目标研究 0.15–0.20 |
+| building_footprint_area_sqm | ≈522,440 m² | 建筑基底参考，讨论更新潜力 | 非法定容量 |
+| green_ratio | ≈0.230 | 蓝绿支撑人才生活与公共健康 | 概念目标研究 0.18–0.22 |
+| public_space_ratio | ≈0.180 | 创新交往与场景承载 | 概念目标研究 0.15–0.20 |
 | floor_area_ratio | unknown | 强度控制 | 待控规与正式边界 |
 | key_area_count | 3 | 详细设计锚点数量 | 众智园/原点/大钟寺 |
 
