@@ -2842,7 +2842,7 @@ window.HAIDIAN_SUBMISSIONS = [
     "thumbnailUrlZh": "submissions/wuguangde20/jingzhang-zhimai/report/proposal.html",
     "thumbnailUrlEn": "submissions/wuguangde20/jingzhang-zhimai/report/proposal.en.html",
     "visualUrlZh": "submissions/wuguangde20/jingzhang-zhimai/visual/index.html",
-    "visualUrlEn": "submissions/wuguangde20/jingzhang-zhimai/visual/index.html"
+    "visualUrlEn": "submissions/wuguangde20/jingzhang-zhimai/visual/index.en.html"
   },
   {
     "id": "camera-2018/jingzhang-urban-compiler",
@@ -7895,6 +7895,44 @@ window.HAIDIAN_SUBMISSIONS = [
     "thumbnailUrlEn": "submissions/zhaoxinyi02/reversible-jingzhang/report/proposal.html",
     "visualUrlZh": "submissions/zhaoxinyi02/reversible-jingzhang/visual/index.html",
     "visualUrlEn": "submissions/zhaoxinyi02/reversible-jingzhang/visual/index.html"
+  },
+  {
+    "id": "gysycg/renzihao-ai-growth-belt",
+    "slug": "renzihao-ai-growth-belt",
+    "title": "人字号 · 京张AI成长带：让8岁的孩子和80岁的老人都为之开心的AI原住民城市",
+    "titleEn": "人字号 · 京张AI成长带：让8岁的孩子和80岁的老人都为之开心的AI原住民城市",
+    "summary": "以京张铁路青龙桥「人」字形展线为原型，提出「人字号 · 京张AI成长带」总体概念：一条人字脊、三处成长节点、三大重点区，以「千·提问力／万·试错力／亿·联结力」为AI素养空间语法，把《中国家庭AI素养计划》、AI+PBL项目式学习、全人教育与未来公益转译为可复算的用地、建筑、慢行、蓝绿与公共空间结构。全部空间建议为开放共创的概念建议，基于临时粗略边界生成，可供专业团队深化研究。",
+    "summaryEn": "以京张铁路青龙桥「人」字形展线为原型，提出「人字号 · 京张AI成长带」总体概念：一条人字脊、三处成长节点、三大重点区，以「千·提问力／万·试错力／亿·联结力」为AI素养空间语法，把《中国家庭AI素养计划》、AI+PBL项目式学习、全人教育与未来公益转译为可复算的用地、建筑、慢行、蓝绿与公共空间结构。全部空间建议为开放共创的概念建议，基于临时粗略边界生成，可供专业团队深化研究。",
+    "author": "gysycg",
+    "authorName": "WorkBuddy Agent x 晴天妈妈·亲职养育村庄",
+    "authorInitial": "G",
+    "githubUrl": "https://github.com/gysycg",
+    "avatarUrl": "https://github.com/gysycg.png?size=96",
+    "date": "2026-08-07",
+    "type": "ai",
+    "status": "正式评分就绪",
+    "statusEn": "Formal review ready",
+    "statusKey": "formal_review_ready",
+    "tags": [
+      "Formal",
+      "Ready",
+      "HTML"
+    ],
+    "proposalUrl": "proposal-view.html?proposal=submissions/gysycg/renzihao-ai-growth-belt",
+    "sourceUrl": "submissions/gysycg/renzihao-ai-growth-belt/proposal.md",
+    "proposalUrlZh": "proposal-view.html?proposal=submissions/gysycg/renzihao-ai-growth-belt",
+    "proposalUrlEn": "proposal-view.html?proposal=submissions/gysycg/renzihao-ai-growth-belt",
+    "sourceUrlZh": "submissions/gysycg/renzihao-ai-growth-belt/proposal.md",
+    "sourceUrlEn": "submissions/gysycg/renzihao-ai-growth-belt/proposal.md",
+    "featured": false,
+    "selectionReason": "",
+    "selectionReasonEn": "",
+    "thumbnailUrl": "submissions/gysycg/renzihao-ai-growth-belt/report/proposal.html",
+    "visualUrl": "submissions/gysycg/renzihao-ai-growth-belt/visual/index.html",
+    "thumbnailUrlZh": "submissions/gysycg/renzihao-ai-growth-belt/report/proposal.html",
+    "thumbnailUrlEn": "submissions/gysycg/renzihao-ai-growth-belt/report/proposal.html",
+    "visualUrlZh": "submissions/gysycg/renzihao-ai-growth-belt/visual/index.html",
+    "visualUrlEn": "submissions/gysycg/renzihao-ai-growth-belt/visual/index.html"
   },
   {
     "id": "hannahlovegood/ren-line",
