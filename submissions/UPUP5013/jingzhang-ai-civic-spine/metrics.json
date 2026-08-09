@@ -1,129 +1,207 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "0.1.1",
   "units": {
     "length": "m",
     "area": "sqm"
   },
   "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "project_polygon_area(EPSG:4326 -> EPSG:4548, site_boundary)",
+      "confidence": "medium",
+      "assumptions": ["总体设计范围采用仓库提供的临时几何；正式 CAD/GIS 到位后必须重算。"]
+    },
     "research_area_sqm": {
+      "status": "known",
       "value": 43600000,
       "unit": "sqm",
-      "status": "known",
-      "method": "????????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/constraints.geojson"],
+      "formula": "official_announcement_declared_area; no exact participant polygon",
+      "confidence": "low",
+      "assumptions": ["公告面积是研究口径，不是本提交包的可计算 site。"]
     },
     "overall_design_area_sqm": {
+      "status": "known",
       "value": 11400000,
       "unit": "sqm",
-      "status": "known",
-      "method": "????????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/site_boundary.geojson"],
+      "formula": "official_announcement_declared_area; provisional geometry recalculated separately as site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["公告面积与临时几何有小幅差异，正式资料到位后以官方边界重算。"]
     },
     "key_area_sqm": {
+      "status": "known",
       "value": 3684000,
       "unit": "sqm",
+      "source_files": ["sources.json", "geometry/key_areas.geojson"],
+      "formula": "sum_announced_areas_of_three_key_areas",
+      "confidence": "low",
+      "assumptions": ["三处片区边界为 provisional constraint，不作为法定红线或精确面积依据。"]
+    },
+    "green_space_area_sqm": {
       "status": "known",
-      "method": "????????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "value": 4356249.66,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "union_polygon_area(green_space) / project_crs",
+      "confidence": "medium",
+      "assumptions": ["绿地层是概念性蓝绿公共框架，不等同于现状绿地调查。"]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.381698,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "area(union(green_space)) / area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": ["正式底图、绿地分类和官方范围到位后重算。"]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 832204.946,
+      "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "union_polygon_area(public_space) / project_crs",
+      "confidence": "medium",
+      "assumptions": ["公共空间为概念建议范围，不代表产权或施工边界。"]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.072918,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "area(union(public_space)) / area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": ["正式底图、产权和法定公共空间口径到位后重算。"]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 939837.57,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson", "geometry/site_boundary.geojson"],
+      "formula": "area(union(building_footprints))",
+      "confidence": "medium",
+      "assumptions": ["建筑层是概念性保留、更新和公共首层节点示意，不是现状建筑普查。"]
     },
     "heritage_ai_spine_length_m": {
+      "status": "known",
       "value": 10800,
       "unit": "m",
-      "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/roads.geojson"],
+      "formula": "design_target_from_open_call; geometry is a reference alignment",
+      "confidence": "low",
+      "assumptions": ["线路长度是设计目标，不能替代交通工程测量。"]
     },
     "slow_loop_length_m": {
+      "status": "known",
       "value": 16200,
       "unit": "m",
-      "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/roads.geojson"],
+      "formula": "design_target_from_open_call; geometry is a reference alignment",
+      "confidence": "low",
+      "assumptions": ["慢行环长度是设计目标，需结合现状路网复核。"]
     },
     "east_west_links_count": {
+      "status": "known",
       "value": 12,
       "unit": "count",
-      "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/roads.geojson"],
+      "formula": "design_target_from_open_call; three representative links are drawn",
+      "confidence": "low",
+      "assumptions": ["图层展示代表性补链，12 条是后续项目清单目标。"]
     },
     "innovation_service_nodes_count": {
+      "status": "known",
       "value": 18,
       "unit": "count",
-      "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/public_space.geojson"],
+      "formula": "design_target_from_open_call; four anchor spaces are spatially illustrated",
+      "confidence": "low",
+      "assumptions": ["18 个节点是概念性服务网络目标，不代表已批准设施。"]
     },
     "adaptive_reuse_area_sqm": {
+      "status": "known",
       "value": 680000,
       "unit": "sqm",
-      "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/buildings.geojson"],
+      "formula": "design_target_from_open_call",
+      "confidence": "low",
+      "assumptions": ["存量更新面积待建筑普查、产权和审批条件确认。"]
     },
     "ai_floor_area_sqm": {
+      "status": "known",
       "value": 1800000,
       "unit": "sqm",
-      "status": "known",
-      "method": "?????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/land_use.geojson"],
+      "formula": "design_target_from_open_call; not a FAR or approval conclusion",
+      "confidence": "low",
+      "assumptions": ["AI 产业及服务面积是概念目标，不替代法定开发强度。"]
     },
     "talent_housing_units": {
+      "status": "known",
       "value": 12000,
       "unit": "count",
-      "status": "known",
-      "method": "???????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json", "geometry/land_use.geojson"],
+      "formula": "design_target_from_open_call",
+      "confidence": "low",
+      "assumptions": ["人才住房数量需由住房政策、产权和供地条件复核。"]
     },
     "blue_green_access_ratio": {
+      "status": "known",
       "value": 0.9,
       "unit": "ratio",
-      "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "source_files": ["sources.json"],
+      "formula": "design_target_from_open_call; baseline and network model pending",
+      "confidence": "low",
+      "assumptions": ["90% 是设计目标，当前没有完整可达性网络和基线。"]
     },
     "carbon_reduction_ratio": {
+      "status": "known",
       "value": 0.35,
       "unit": "ratio",
+      "source_files": ["sources.json"],
+      "formula": "design_target_from_open_call; baseline and carbon model pending",
+      "confidence": "low",
+      "assumptions": ["35% 是设计目标，不能作为已实现减碳承诺。"]
+    },
+    "ai_scenario_cards_count": {
       "status": "known",
-      "method": "????",
-      "source_ids": [
-        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
-        "DATA-SRC-OPEN-CITY-HAIDIAN"
-      ]
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md", "visual/index.html"],
+      "formula": "count(scenario_cards)",
+      "confidence": "medium",
+      "assumptions": ["场景卡为概念运营设计，全部需要人工复核和小规模试点。"]
+    },
+    "ai_industry_testbeds_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md", "visual/index.html"],
+      "formula": "count(industry_testbeds)",
+      "confidence": "medium",
+      "assumptions": ["测试验证场景是建议，不代表已获批准的运营安排。"]
+    },
+    "user_personas_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["proposal.md", "visual/index.html"],
+      "formula": "count(user_personas)",
+      "confidence": "medium",
+      "assumptions": ["画像用于设计校验，不构成真实人口统计结论。"]
+    },
+    "ai_landmarks_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md", "visual/index.html"],
+      "formula": "count(ai_landmarks)",
+      "confidence": "medium",
+      "assumptions": ["地标为可深化的公共空间节点建议。"]
     }
   }
 }

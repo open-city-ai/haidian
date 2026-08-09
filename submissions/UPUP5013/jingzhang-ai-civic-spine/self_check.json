@@ -1,32 +1,48 @@
 {
   "schema_version": "1.0",
   "proposal_slug": "jingzhang-ai-civic-spine",
-  "run_date": "2026-08-08",
+  "run_date": "2026-08-09",
   "overall_status": "pass_with_warnings",
   "checks": [
     {
       "check_id": "CHECK-FILES",
       "result": "pass",
       "severity": "info",
-      "summary": "Required package files are present."
+      "summary": "Required package files and translated primary deliverable are present."
     },
     {
       "check_id": "CHECK-SCHEMA",
       "result": "pass",
-      "severity": "info",
-      "summary": "JSON and GeoJSON parse successfully."
+      "severity": "major",
+      "summary": "Deterministic validator passed with only non-blocking maintainer review warnings."
     },
     {
       "check_id": "CHECK-BOUNDARY",
       "result": "unknown",
+      "severity": "minor",
+      "summary": "Overall design boundary and key areas remain provisional; research scope is separated into constraints.geojson."
+    },
+    {
+      "check_id": "CHECK-SPATIAL",
+      "result": "pass",
+      "severity": "minor",
+      "summary": "Spatial review passes. Three key areas remain provisional and must not be used as official redlines or precise-area bases."
+    },
+    {
+      "check_id": "CHECK-VISUAL",
+      "result": "pass",
       "severity": "major",
-      "summary": "Official redline is unavailable; provisional geometry is disclosed."
+      "summary": "Visual packaging passed with all required sections and metric bindings."
     },
     {
       "check_id": "CHECK-CONTROLS",
       "result": "unknown",
       "severity": "major",
-      "summary": "Statutory FAR, height, land-use and municipal capacity controls remain missing."
+      "summary": "Statutory FAR, height, ownership, municipal capacity, accessibility, and approval controls remain unavailable in the public package."
     }
+  ],
+  "known_blockers": [
+    "Official CAD/GIS/PDF boundaries and statutory controls are unavailable.",
+    "Participant-controlled source, rights, accessibility, and operations evidence must be reviewed by humans before implementation."
   ]
 }

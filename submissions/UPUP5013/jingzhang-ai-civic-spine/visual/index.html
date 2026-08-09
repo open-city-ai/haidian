@@ -1,138 +1,197 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>轨迹智环 | Jing-Zhang AI Civic Spine</title>
-<style>
-:root {
-  --ink:#18202a; --muted:#5f6875; --paper:#f7f4ec; --rail:#2a6f73;
-  --ai:#d64f38; --blue:#3f7fbf; --green:#5f8f4e; --gold:#c8952f; --line:#d7d1c4;
-}
-* { box-sizing:border-box; }
-body { margin:0; font-family:"Microsoft YaHei", "Noto Sans CJK SC", Arial, sans-serif; color:var(--ink); background:var(--paper); }
-main { min-height:100vh; display:grid; grid-template-columns:minmax(300px, 410px) 1fr; }
-aside { padding:28px; border-right:1px solid var(--line); background:#fffdf8; overflow:auto; }
-h1 { margin:0 0 8px; font-size:32px; line-height:1.1; }
-h2 { margin:24px 0 10px; font-size:18px; }
-p { line-height:1.65; margin:0 0 14px; color:var(--muted); }
-.tag { display:inline-block; border:1px solid var(--line); padding:5px 9px; margin:0 6px 6px 0; font-size:12px; background:white; }
-.metrics { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:14px; }
-.metric { border:1px solid var(--line); background:white; padding:11px; min-height:76px; }
-.metric b { display:block; font-size:23px; color:var(--ai); }
-.metric span { font-size:12px; color:var(--muted); }
-.stage { margin-top:14px; display:flex; gap:8px; flex-wrap:wrap; }
-button { border:1px solid var(--line); background:white; padding:9px 12px; cursor:pointer; font:inherit; }
-button.active { background:var(--ink); color:white; }
-section.map { position:relative; min-height:100vh; overflow:hidden; }
-svg { width:100%; height:100%; position:absolute; inset:0; }
-.panel { position:absolute; right:26px; top:26px; width:min(390px, calc(100% - 52px)); background:rgba(255,253,248,.94); border:1px solid var(--line); padding:18px; }
-.legend { position:absolute; left:26px; bottom:26px; background:rgba(255,253,248,.94); border:1px solid var(--line); padding:14px; font-size:13px; }
-.legend i { display:inline-block; width:18px; height:4px; vertical-align:middle; margin-right:8px; }
-.warning { color:#7c4b00; font-size:12px; line-height:1.5; margin-top:16px; }
-@media (max-width: 860px) {
-  main { grid-template-columns:1fr; }
-  aside { border-right:0; border-bottom:1px solid var(--line); }
-  section.map { min-height:720px; }
-  .panel { position:static; width:auto; margin:16px; }
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>轨迹智环 | 百年京张 AI 创新公共脊</title>
+  <style>
+    :root {
+      --ink: #17343d;
+      --muted: #64747a;
+      --paper: #f5f1e7;
+      --panel: #fffdf8;
+      --rail: #245b66;
+      --red: #a94e38;
+      --blue: #4d86a7;
+      --green: #668b5d;
+      --gold: #b5822e;
+      --line: #d8d0c1;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: "Microsoft YaHei", Arial, sans-serif; }
+    main { max-width: 1440px; margin: 0 auto; padding: 28px; }
+    header { border-bottom: 3px solid var(--rail); padding-bottom: 22px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { font-size: 38px; line-height: 1.2; margin-bottom: 8px; }
+    h2 { font-size: 23px; margin-bottom: 12px; }
+    h3 { font-size: 16px; margin-bottom: 7px; }
+    p, li { color: var(--muted); line-height: 1.72; }
+    .eyebrow { color: var(--red); font-weight: 700; font-size: 14px; }
+    .note { border-left: 4px solid var(--gold); padding: 10px 14px; background: #fff8e8; color: #6d5424; margin-top: 16px; }
+    .grid { display: grid; gap: 18px; }
+    .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 24px 0; }
+    .metric { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--rail); padding: 16px; min-height: 118px; }
+    .metric b { display: block; color: var(--red); font-size: 28px; margin: 5px 0; }
+    .metric span { font-size: 13px; color: var(--muted); }
+    .two { grid-template-columns: 1.25fr .75fr; margin-top: 22px; }
+    section { padding: 24px 0; border-bottom: 1px solid var(--line); }
+    .board { background: var(--panel); border: 1px solid var(--line); padding: 16px; }
+    .board img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }
+    .chips { display: flex; gap: 7px; flex-wrap: wrap; }
+    .chip { border: 1px solid var(--line); background: #fff; padding: 5px 8px; font-size: 12px; color: var(--ink); }
+    table { border-collapse: collapse; width: 100%; background: var(--panel); }
+    th, td { text-align: left; padding: 10px; border: 1px solid var(--line); vertical-align: top; font-size: 14px; line-height: 1.55; }
+    th { background: #e7eee8; color: var(--ink); }
+    .list-columns { columns: 2; column-gap: 32px; }
+    .list-columns li { break-inside: avoid; margin-bottom: 8px; }
+    footer { padding: 28px 0 8px; color: var(--muted); font-size: 13px; }
+    @media (max-width: 760px) {
+      main { padding: 18px; }
+      h1 { font-size: 30px; }
+      .metrics, .two { grid-template-columns: 1fr; }
+      .list-columns { columns: 1; }
+      th, td { font-size: 13px; }
+    }
+  </style>
 </head>
 <body>
-<main>
-  <aside>
-    <h1>轨迹智环</h1>
-    <p>百年京张 AI 创新公共脊，将遗址公园、三大重点片区、轨道站点、人才生活和低碳算力节点组织成可实施的开源城市更新网络。</p>
-    <span class="tag">heritage AI spine</span><span class="tag">slow loop</span><span class="tag">three AI districts</span><span class="tag">offline visual</span>
-    <div class="metrics">
-      <div class="metric"><b>43.6</b><span>km² 统筹研究</span></div>
-      <div class="metric"><b>11.4</b><span>km² 总体设计</span></div>
-      <div class="metric"><b>368.4</b><span>ha 重点区域</span></div>
-      <div class="metric"><b>18</b><span>AI 城市服务节点</span></div>
+  <main>
+    <header>
+      <div class="eyebrow">CENTENNIAL JING-ZHANG AI INNOVATION BELT / CONCEPTUAL REFERENCE SCHEME</div>
+      <h1>轨迹智环：百年京张 AI 创新公共脊</h1>
+      <p>以京张遗产的连续公共界面为骨架，将研发、转化、应用、人才服务、文化叙事与低碳基础设施组织为可分期、可审计、可由专业团队继续深化的城市设计建议。</p>
+      <div class="note">重要说明：网页中的边界、用地、项目和指标均为公开资料条件下的概念性研究成果。临时几何不等于法定红线，不构成控规、产权、投资、施工或审批结论。</div>
+    </header>
+
+    <div class="grid metrics" aria-label="核心指标">
+      <article class="metric">
+        <span>总体设计范围（临时几何重算）</span>
+        <b data-metric="site_area_sqm" data-value="11412825.386">11.41 km²</b>
+        <span>EPSG:4548 面积重算</span>
+      </article>
+      <article class="metric">
+        <span>蓝绿公共框架比例</span>
+        <b data-metric="green_ratio" data-value="0.381698">38.17%</b>
+        <span>概念绿地与开敞空间</span>
+      </article>
+      <article class="metric">
+        <span>公共空间比例</span>
+        <b data-metric="public_space_ratio" data-value="0.072918">7.29%</b>
+        <span>概念公共客厅与站前界面</span>
+      </article>
     </div>
-    <h2>阶段视图</h2>
-    <div class="stage">
-      <button class="active" data-stage="all">全部</button>
-      <button data-stage="0-2">0-2年</button>
-      <button data-stage="3-5">3-5年</button>
-      <button data-stage="5-10">5-10年</button>
-    </div>
-    <p class="warning">注：所有边界采用开源仓库临时约束边界，不能替代法定红线。正式报批前必须替换官方 CAD/GIS/PDF 边界并重新自检。</p>
-  </aside>
-  <section class="map">
-    <svg viewBox="0 0 1200 920" aria-label="轨迹智环方案图">
-      <defs>
-        <pattern id="grid" width="54" height="54" patternUnits="userSpaceOnUse">
-          <path d="M54 0H0V54" fill="none" stroke="#e8e1d5" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <rect width="1200" height="920" fill="url(#grid)"/>
-      <g id="geo"></g>
-    </svg>
-    <div class="panel">
-      <h2 id="panelTitle">一条遗产创新脊，三个 AI 城市样板</h2>
-      <p id="panelText">点击节点查看片区策略。方案优先修复南北遗产空间和东西向慢行联系，再以可分期项目包导入产业、人才、公共服务和低碳基础设施。</p>
-    </div>
-    <div class="legend">
-      <div><i style="background:var(--rail)"></i>京张遗产 AI 公共脊</div>
-      <div><i style="background:var(--blue)"></i>慢行智环与东西补链</div>
-      <div><i style="background:var(--gold)"></i>重点片区临时范围</div>
-      <div><i style="background:var(--ai)"></i>AI 城市服务节点</div>
-    </div>
-  </section>
-</main>
-<script>
-const boundaries = {"type": "FeatureCollection", "name": "provisional_jingzhang_ai_belt_boundaries", "metadata": {"boundary_status": "maintainer_defined_provisional", "official_boundary_available_in_repository": false, "official_basis_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509", "coordinate_reference_system": "EPSG:4326", "usage_note": "All boundary geometry is provisional and must be replaced by official CAD/GIS/PDF boundaries before regulatory use."}, "features": [{"type": "Feature", "id": "PROV-SITE-001", "properties": {"id": "PROV-SITE-001", "layer": "SITE_BOUNDARY", "scope_id": "overall_design_area", "name_zh": "总体设计范围粗略替代边界", "geometry_role": "provisional_constraint", "official_boundary": false, "area_sqm_declared": 11400000, "area_sqm_calculated": 11412825.386, "confidence": "medium"}, "geometry": {"type": "Polygon", "coordinates": [[[116.3407, 39.939], [116.3553, 39.939], [116.3553, 39.965], [116.3533, 39.99], [116.3553, 40.0265], [116.3427, 40.0265], [116.3417, 40.006], [116.3397, 39.975], [116.3407, 39.939]]]}}, {"type": "Feature", "id": "PROV-RESEARCH-001", "properties": {"id": "PROV-RESEARCH-001", "layer": "SITE_BOUNDARY", "scope_id": "coordinated_research_area", "name_zh": "统筹研究范围粗略替代边界", "geometry_role": "provisional_constraint", "official_boundary": false, "area_sqm_declared": 43600000, "area_sqm_calculated": 43609232.558, "confidence": "medium"}, "geometry": {"type": "Polygon", "coordinates": [[[116.31885, 39.938], [116.36615, 39.938], [116.37215, 39.965], [116.37215, 40.027], [116.33285, 40.027], [116.32085, 40.0], [116.31285, 39.965], [116.31885, 39.938]]]}}, {"type": "Feature", "id": "PROV-KEY-001", "properties": {"id": "PROV-KEY-001", "layer": "KEY_AREA", "area_id": "zhongzhiyuan_ai_acceleration_area", "name_zh": "众智园AI自主创新加速区粗略范围", "geometry_role": "provisional_constraint", "official_boundary": false, "announced_area_sqm": 1921000, "area_sqm_calculated": 1929201.877}, "geometry": {"type": "Polygon", "coordinates": [[[116.343, 40.0075], [116.354, 40.0075], [116.354, 40.026], [116.343, 40.026], [116.343, 40.0075]]]}}, {"type": "Feature", "id": "PROV-KEY-002", "properties": {"id": "PROV-KEY-002", "layer": "KEY_AREA", "area_id": "beijing_ai_origin_community", "name_zh": "北京AI原点社区粗略范围", "geometry_role": "provisional_constraint", "official_boundary": false, "announced_area_sqm": 1043000, "area_sqm_calculated": 1043236.909}, "geometry": {"type": "Polygon", "coordinates": [[[116.342, 39.9835], [116.353, 39.9835], [116.353, 39.9935], [116.342, 39.9935], [116.342, 39.9835]]]}}, {"type": "Feature", "id": "PROV-KEY-003", "properties": {"id": "PROV-KEY-003", "layer": "KEY_AREA", "area_id": "dazhongsi_ai_industry_cluster", "name_zh": "大钟寺AI产业集聚区粗略范围", "geometry_role": "provisional_constraint", "official_boundary": false, "announced_area_sqm": 720000, "area_sqm_calculated": 720454.221}, "geometry": {"type": "Polygon", "coordinates": [[[116.342, 39.944], [116.355, 39.944], [116.355, 39.94984], [116.342, 39.94984], [116.342, 39.944]]]}}]};
-const network = {"type": "FeatureCollection", "name": "jingzhang_ai_civic_spine_strategy_network", "features": [{"type": "Feature", "id": "NET-RAIL-SPINE-001", "properties": {"name_zh": "京张遗址AI创新公共脊", "layer": "heritage_ai_spine", "length_km_target": 10.8, "priority": 1}, "geometry": {"type": "LineString", "coordinates": [[116.348, 39.94], [116.347, 39.965], [116.348, 39.988], [116.3485, 40.012], [116.3486, 40.026]]}}, {"type": "Feature", "id": "NET-SLOW-LOOP-001", "properties": {"name_zh": "AI人才慢行智环", "layer": "slow_mobility_loop", "length_km_target": 16.2, "priority": 1}, "geometry": {"type": "LineString", "coordinates": [[116.338, 39.946], [116.361, 39.953], [116.362, 39.997], [116.356, 40.022], [116.335, 40.018], [116.332, 39.974], [116.338, 39.946]]}}, {"type": "Feature", "id": "NET-EW-LINKS-001", "properties": {"name_zh": "东西向校区园区社区补链", "layer": "east_west_links", "count_target": 12, "priority": 2}, "geometry": {"type": "MultiLineString", "coordinates": [[[116.333, 40.018], [116.361, 40.018]], [[116.334, 39.989], [116.361, 39.989]], [[116.336, 39.949], [116.361, 39.949]]]}}]};
-const nodes = {"type": "FeatureCollection", "name": "jingzhang_ai_civic_spine_nodes", "features": [{"type": "Feature", "id": "NODE-001", "properties": {"name_zh": "众智园全栈开源会客厅", "program": "foundation-model lab, standard testbed, innovation plaza", "phase": "0-2"}, "geometry": {"type": "Point", "coordinates": [116.348, 40.018]}}, {"type": "Feature", "id": "NODE-002", "properties": {"name_zh": "AI原点转化街坊", "program": "near-campus incubator, talent services, demo street", "phase": "0-2"}, "geometry": {"type": "Point", "coordinates": [116.347, 39.989]}}, {"type": "Feature", "id": "NODE-003", "properties": {"name_zh": "大钟寺智能经济会客厅", "program": "agent economy, consumer AI, metro-integrated public room", "phase": "3-5"}, "geometry": {"type": "Point", "coordinates": [116.349, 39.947]}}, {"type": "Feature", "id": "NODE-004", "properties": {"name_zh": "清河低碳算力驿站", "program": "edge compute, heat recovery, waterfront services", "phase": "3-5"}, "geometry": {"type": "Point", "coordinates": [116.344, 40.012]}}, {"type": "Feature", "id": "NODE-005", "properties": {"name_zh": "京张记忆发布广场", "program": "heritage exhibition, AI launch events", "phase": "0-2"}, "geometry": {"type": "Point", "coordinates": [116.3475, 39.982]}}]};
-const minLon=116.312, maxLon=116.373, minLat=39.936, maxLat=40.028;
-function xy(c) { return [80+(c[0]-minLon)/(maxLon-minLon)*1040, 840-(c[1]-minLat)/(maxLat-minLat)*760]; }
-function pathFor(coords) { return coords.map((c,i)=>`${i?'L':'M'}${xy(c)[0].toFixed(1)} ${xy(c)[1].toFixed(1)}`).join(' ') + ' Z'; }
-function lineFor(coords) { return coords.map((c,i)=>`${i?'L':'M'}${xy(c)[0].toFixed(1)} ${xy(c)[1].toFixed(1)}`).join(' '); }
-const g = document.getElementById('geo');
-function add(el) { g.appendChild(el); return el; }
-for (const f of boundaries.features) {
-  const p = document.createElementNS('http://www.w3.org/2000/svg','path');
-  p.setAttribute('d', pathFor(f.geometry.coordinates[0]));
-  p.setAttribute('fill', f.properties.layer === 'KEY_AREA' ? '#fff4cf' : (f.id.includes('RESEARCH') ? '#e9f1ed' : '#f7eee7'));
-  p.setAttribute('stroke', f.properties.layer === 'KEY_AREA' ? 'var(--gold)' : (f.id.includes('RESEARCH') ? 'var(--green)' : 'var(--ai)'));
-  p.setAttribute('stroke-width', f.properties.layer === 'KEY_AREA' ? 3 : 4);
-  p.setAttribute('opacity', f.properties.layer === 'KEY_AREA' ? .82 : .54);
-  add(p);
-}
-for (const f of network.features) {
-  if (f.geometry.type === 'LineString') {
-    const p = document.createElementNS('http://www.w3.org/2000/svg','path');
-    p.setAttribute('d', lineFor(f.geometry.coordinates));
-    p.setAttribute('fill','none'); p.setAttribute('stroke', f.properties.layer === 'heritage_ai_spine' ? 'var(--rail)' : 'var(--blue)');
-    p.setAttribute('stroke-width', f.properties.layer === 'heritage_ai_spine' ? 12 : 5);
-    p.setAttribute('stroke-linecap','round'); p.setAttribute('stroke-linejoin','round'); add(p);
-  } else {
-    for (const line of f.geometry.coordinates) {
-      const p = document.createElementNS('http://www.w3.org/2000/svg','path');
-      p.setAttribute('d', lineFor(line)); p.setAttribute('fill','none'); p.setAttribute('stroke','var(--blue)'); p.setAttribute('stroke-width','4'); p.setAttribute('stroke-dasharray','8 8'); add(p);
-    }
-  }
-}
-function visibleForStage(feature, stage) { return stage === 'all' || feature.properties.phase === stage; }
-function renderNodes(stage='all') {
-  [...g.querySelectorAll('.node,.node-label')].forEach(n=>n.remove());
-  for (const f of nodes.features.filter(n=>visibleForStage(n, stage))) {
-    const [x,y]=xy(f.geometry.coordinates);
-    const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
-    c.setAttribute('class','node'); c.setAttribute('cx',x); c.setAttribute('cy',y); c.setAttribute('r',18); c.setAttribute('fill','var(--ai)'); c.setAttribute('stroke','white'); c.setAttribute('stroke-width','4');
-    c.style.cursor='pointer';
-    c.addEventListener('click',()=>{ document.getElementById('panelTitle').textContent=f.properties.name_zh; document.getElementById('panelText').textContent=f.properties.program + ' / phase ' + f.properties.phase + ' years'; });
-    add(c);
-    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-    t.setAttribute('class','node-label'); t.setAttribute('x',x+24); t.setAttribute('y',y+6); t.setAttribute('font-size','18'); t.setAttribute('fill','var(--ink)'); t.textContent=f.properties.name_zh; add(t);
-  }
-}
-renderNodes();
-document.querySelectorAll('button[data-stage]').forEach(btn=>btn.addEventListener('click',()=>{
-  document.querySelectorAll('button').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); renderNodes(btn.dataset.stage);
-}));
-</script>
+
+    <section>
+      <h2>总览地图</h2>
+      <div class="board"><img src="../assets/figures/site-overview.png" alt="轨迹智环总览地图"></div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>三层范围</h2>
+        <table>
+          <tr><th>层级</th><th>作用</th><th>数据状态</th></tr>
+          <tr><td>43.6 平方公里统筹研究范围</td><td>区域创新协同、三大定位与京津冀资源接口</td><td>公告面积 + 临时研究约束层</td></tr>
+          <tr><td>11.4 平方公里总体设计范围</td><td>公共脊、慢行补链、公共空间与更新项目的可计算研究底面</td><td>临时 site boundary，已重算</td></tr>
+          <tr><td>368.4 公顷三处重点区域</td><td>众智园、AI 原点社区、大钟寺的详细设计建议</td><td>临时 key-area constraint</td></tr>
+        </table>
+      </div>
+      <div>
+        <h2>重点区域</h2>
+        <div class="chips">
+          <span class="chip">众智园：全栈自主创新与测试</span>
+          <span class="chip">AI 原点：成果转化与人才社区</span>
+          <span class="chip">大钟寺：站城消费与国际展示</span>
+          <span class="chip">中关村科技服务翼</span>
+          <span class="chip">小月河场景赋能翼</span>
+        </div>
+        <p>三处片区以“研发 - 转化 - 应用”构成闭环，两翼分别提供全球要素配置和公共场景验证接口。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>用地分区</h2>
+      <div class="board"><img src="../assets/figures/land-use-structure.png" alt="完整覆盖总体设计范围的概念用地分区"></div>
+      <p>用地层完整覆盖临时总体设计范围，并用统一边界拆分为 AI 混合创新与人才服务、社区公共服务与存量更新、遗产公园与蓝绿开放空间、低碳市政与研发支撑四类概念分区。它不替代法定用地分类或开发强度控制。</p>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>交通慢行</h2>
+        <p>设计目标包括 10.8 公里京张遗产 AI 公共脊、16.2 公里人才慢行智环和 12 条东西补链。图层展示代表性线路，所有线位需在现状路网、交通安全和工程条件明确后复核。</p>
+        <h2>蓝绿公共空间</h2>
+        <p>蓝绿框架由遗产公园界面、社区口袋花园带、清河生态缓冲带和四处公共客厅共同组成。每个公共空间同时对应停留、展示、服务和无障碍连续性，而非单纯绿化率指标。</p>
+      </div>
+      <div class="board"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间示意"></div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>建筑</h2>
+        <p>六组概念建筑基底用于表达“保留 - 修补 - 共享首层 - 适度更新”的空间策略。它们不是现状普查，也不是拆改结论；产权、结构、安全和控规条件均需由后续专业工作确认。</p>
+        <h2>更新项目</h2>
+        <table>
+          <tr><th>阶段</th><th>建议项目包</th><th>前置条件</th></tr>
+          <tr><td>0-2 年</td><td>遗产记忆发布、站前安全、街角公共服务</td><td>权属、交通安全、临时活动许可</td></tr>
+          <tr><td>3-5 年</td><td>社区补链、算力驿站、存量更新试点</td><td>市政容量、数据治理、运营主体</td></tr>
+          <tr><td>5-10 年</td><td>连续公共脊与多主体运营平台</td><td>正式边界、资金边界、长期维护责任</td></tr>
+        </table>
+      </div>
+      <div class="board"><img src="../assets/figures/key-areas.png" alt="三处重点区域与公共空间关系"></div>
+    </section>
+
+    <section>
+      <h2>AI 场景</h2>
+      <table>
+        <tr><th>12 张场景卡</th><th>空间载体</th><th>人工复核与退出边界</th></tr>
+        <tr><td>开放模型发布、算法安全评测、城市更新问答、慢行导航</td><td>众智园共享大厅、遗产公共脊、站前口袋空间</td><td>不采集身份信息；结果可解释、可关闭、人工申诉</td></tr>
+        <tr><td>低碳能源调度、热回收可视化、遗产导览、无障碍辅助</td><td>清河驿站、公园界面、慢行环</td><td>先小规模试点；不以自动决策替代公共服务人员</td></tr>
+        <tr><td>人才服务、创业路演、夜间导视、公共议题共创</td><td>AI 原点街角、大钟寺站城客厅</td><td>线上线下等效服务；保留非智能设备与人工窗口</td></tr>
+      </table>
+      <p><strong>三类产业测试验证场景：</strong>模型安全沙盒、城市更新知识库问答、低碳算力热管理。它们都是概念性试点建议，不代表已批准运营。</p>
+      <p><strong>六类用户画像：</strong>基础模型研发者、成果转化团队、智能体创业者、周边居民、低数字技能与老年使用者、访客与国际交流者。</p>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>任务覆盖</h2>
+        <ul class="list-columns">
+          <li><strong>agent.1：</strong>“轨迹智环 / Trajectory Loop”命名、双线轨迹 Logo 方向、三区两翼空间结构。</li>
+          <li><strong>agent.2：</strong>6 个可借鉴案例类型与土地、空间、产业、资金、人才、算力、数据、场景八要素生态图谱。</li>
+          <li><strong>agent.3：</strong>12 张场景卡、3 个测试验证场景、6 类画像及人工复核边界。</li>
+          <li><strong>agent.4：</strong>三处 AI 朝圣地标：记忆发布广场、开放模型客厅、智能经济会客厅；配置荣誉墙和可移动组件库。</li>
+          <li><strong>agent.5：</strong>以“铁轨 - 街角 - 算力 - 记忆”为文化叙事，采用双线轨迹导视与英文传播短句。</li>
+          <li><strong>agent.6：</strong>年度 AI 公开周、开发者驻留、场景开放日、成果回看和转化服务五段式运营机制。</li>
+        </ul>
+      </div>
+      <div>
+        <h2>品牌与国际传播</h2>
+        <p><strong>Logo 方向：</strong>两条不闭合的轨迹线，一条指向百年京张记忆，一条指向开放 AI 未来；二者在公共客厅处形成可被行走和使用的“环”。</p>
+        <p><strong>English line：</strong>“Trace the railway. Test the future. Share the city.”</p>
+        <p>建议建立年历：春季开放数据工作坊、夏季场景公开测试、秋季 AI 城市论坛、冬季公共收益回看。所有活动名称、资金与合作方均为后续可研与运营团队可深化的建议。</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>自检状态</h2>
+      <p><strong>本地确定性校验：</strong>待本次修订后的最终提交自检刷新。<br>
+      <strong>空间复核：</strong>通过；保留三处临时重点片区的非阻断警告。<br>
+      <strong>视觉包装：</strong>本页显式包含全部必备章节和可核验核心指标。</p>
+      <div class="board"><img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据关系"></div>
+    </section>
+
+    <section class="grid two">
+      <div>
+        <h2>来源</h2>
+        <p>北京市规划和自然资源委员会海淀分局于 2026 年 5 月 9 日发布的公开征集公告；open-city-ai/haidian 仓库的任务书、标准快照、提交规范与临时边界文件。详情见 <code>sources.json</code>。</p>
+      </div>
+      <div>
+        <h2>假设</h2>
+        <p>正式 CAD/GIS 红线、控规强度与高度、产权、市政容量、现状建筑和法定公共空间资料尚未提供。详情见 <code>assumptions.json</code>；收到正式资料后应替换临时几何并重算所有空间指标。</p>
+      </div>
+    </section>
+
+    <footer>UPUP5013 / jingzhang-ai-civic-spine · 仅含本地资源，不加载远程脚本、地图或字体。</footer>
+  </main>
 </body>
 </html>
