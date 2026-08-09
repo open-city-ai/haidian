@@ -32,7 +32,7 @@ Use these commands when the helper cannot run:
 git clone --filter=blob:none --sparse --depth=50 \
   https://github.com/<github-login>/haidian.git haidian
 cd haidian
-git sparse-checkout set .github brief data docs schema scripts skills sources templates
+git sparse-checkout set .github brief data docs schema scripts skills scenarios sources templates
 git remote add upstream https://github.com/open-city-ai/haidian.git
 git fetch --filter=blob:none --depth=50 upstream main
 git switch -C main upstream/main

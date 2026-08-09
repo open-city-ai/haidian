@@ -13,6 +13,8 @@ from pathlib import Path, PurePosixPath
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
+STRONG_RE = re.compile(r"\*\*(.+?)\*\*", re.S)
+EM_RE = re.compile(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", re.S)
 TABLE_DELIMITER_CELL_RE = re.compile(r"^:?-{3,}:?$")
 REFERENCE_LABELS = {
     "source": "来源",
@@ -54,7 +56,16 @@ def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
 
 def render_inline(text: str) -> str:
     escaped = html.escape(text)
-    escaped = INLINE_CODE_RE.sub(lambda m: f"<code>{html.escape(m.group(1))}</code>", escaped)
+    code_spans: list[str] = []
+
+    def protect_code(match: re.Match[str]) -> str:
+        token = f"\x00CODE{len(code_spans)}\x00"
+        code_spans.append(f"<code>{match.group(1)}</code>")
+        return token
+
+    escaped = INLINE_CODE_RE.sub(protect_code, escaped)
+    escaped = STRONG_RE.sub(r"<strong>\1</strong>", escaped)
+    escaped = EM_RE.sub(r"<em>\1</em>", escaped)
 
     def replace_ref(match: re.Match[str]) -> str:
         kind = match.group(1)
@@ -67,7 +78,10 @@ def render_inline(text: str) -> str:
             f'{label}</sup>'
         )
 
-    return REFERENCE_RE.sub(replace_ref, escaped)
+    escaped = REFERENCE_RE.sub(replace_ref, escaped)
+    for index, code in enumerate(code_spans):
+        escaped = escaped.replace(f"\x00CODE{index}\x00", code)
+    return escaped
 
 
 def pipe_is_escaped(line: str, index: int) -> bool:
@@ -236,6 +250,19 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             index += 1
             continue
 
+        if stripped_line.startswith(">"):
+            flush_paragraph()
+            close_list()
+            quote_lines: list[str] = []
+            while index < len(lines):
+                quote_line = lines[index].strip()
+                if not quote_line.startswith(">"):
+                    break
+                quote_lines.append(quote_line[1:].lstrip())
+                index += 1
+            blocks.append(f"<blockquote>{render_inline(' '.join(quote_lines))}</blockquote>")
+            continue
+
         if line.startswith("#"):
             flush_paragraph()
             close_list()
@@ -332,6 +359,13 @@ h1 {{ font-size: 34px; line-height: 1.22; margin: 0 0 10px; }}
 h2 {{ font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }}
 h3 {{ font-size: 20px; margin: 26px 0 10px; }}
 p, li {{ font-size: 16px; }}
+blockquote {{
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}}
 code {{
   background: #eef2f7;
   color: #1d4f7a;

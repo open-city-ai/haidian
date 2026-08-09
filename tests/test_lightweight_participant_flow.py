@@ -37,10 +37,12 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertEqual(report["partial_clone_filter"], "blob:none")
         self.assertEqual(report["depth"], 50)
         self.assertIn("sources", report["sparse_paths"])
+        self.assertIn("scenarios", report["sparse_paths"])
         flattened = [token for command in report["commands"] for token in command]
         self.assertIn("--filter=blob:none", flattened)
         self.assertIn("sparse-checkout", flattened)
         self.assertIn("sources", flattened)
+        self.assertIn("scenarios", flattened)
         self.assertIn("submissions/octocat/agent-city", flattened)
         self.assertIn("submission/octocat/agent-city", flattened)
         self.assertIn("upstream", flattened)

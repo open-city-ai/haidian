@@ -22,6 +22,7 @@ DEFAULT_SPARSE_PATHS = (
     "schema",
     "scripts",
     "skills",
+    "scenarios",
     "sources",
     "templates",
 )
