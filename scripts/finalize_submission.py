@@ -11,8 +11,10 @@ from pathlib import Path
 from validate_submission import (
     DISPLAY_BASE_FILES,
     PERSISTED_READINESS_CONTRACT,
+    first_symbolic_link,
     is_empty_pdf,
     localized_path,
+    normalize_changed_path,
     parse_front_matter,
     primary_path_from_localized,
     requires_bilingual_contract,
@@ -41,6 +43,58 @@ REFRESH_PLACEHOLDER_MARKERS = ("SCAFFOLD-DRAFT", "PARTICIPANT-DESIGN: replace")
 
 def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def safe_manifest_path(root: Path, raw_path: object) -> tuple[str | None, Path | None, str | None]:
+    """Normalize a manifest path and prove that it stays inside the package."""
+    if not isinstance(raw_path, str):
+        return None, None, "manifest.json contains a non-string file path"
+    try:
+        rel = normalize_changed_path(raw_path)
+    except ValueError as exc:
+        return None, None, f"manifest.json contains an unsafe file path {raw_path!r}: {exc}"
+    linked = first_symbolic_link(root, rel)
+    if linked is not None:
+        linked_rel = linked.relative_to(root).as_posix()
+        return None, None, f"manifest.json path traverses symbolic link: {rel} (via {linked_rel})"
+    path = root / rel
+    try:
+        path.resolve().relative_to(root.resolve())
+    except ValueError:
+        return None, None, f"manifest.json path resolves outside the package: {rel}"
+    return rel, path, None
+
+
+def invalidate_self_check(root: Path) -> None:
+    """Make a persisted self-check fail closed after any package refresh."""
+    path = root / "self_check.json"
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        data = {}
+    if not isinstance(data, dict):
+        data = {}
+    data["ok"] = False
+    data["can_enter_formal_review"] = False
+    data["review_status"] = "revision-requested"
+    checks = data.get("checks")
+    if not isinstance(checks, list):
+        checks = []
+    checks = [
+        item
+        for item in checks
+        if not (isinstance(item, dict) and item.get("check_id") == "REFRESH_INVALIDATED")
+    ]
+    checks.append(
+        {
+            "check_id": "REFRESH_INVALIDATED",
+            "result": "fail",
+            "severity": "blocking",
+            "message": "Package files changed; rerun scripts/self_check_submission.py before formal review.",
+        }
+    )
+    data["checks"] = checks
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> int:
@@ -97,6 +151,7 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
                     errors.append(f"{expected_translation} must declare translation_of: proposal.md")
 
     files = manifest.get("files")
+    listed_items: dict[str, dict] = {}
     if not isinstance(files, list) or not files:
         errors.append("manifest.json files must be a non-empty array")
     else:
@@ -104,11 +159,45 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
             if not isinstance(item, dict) or not item.get("path"):
                 errors.append("manifest.json contains a file entry without a path")
                 continue
-            rel = str(item["path"])
+            rel, path, path_error = safe_manifest_path(root, item["path"])
+            if path_error:
+                errors.append(path_error)
+                continue
+            assert rel is not None and path is not None
+            item["path"] = rel
+            if rel in listed_items:
+                errors.append(f"manifest.json contains duplicate file entries: {rel}")
+                continue
+            listed_items[rel] = item
             if rel == "manifest.json":
                 continue
-            if not (root / rel).is_file():
+            if not path.is_file():
                 errors.append(f"manifest.json lists a missing file: {rel}")
+
+    if translation_language and strict_bilingual:
+        bilingual_primary_files = [*sorted(DISPLAY_BASE_FILES), *sorted(FIGURES)]
+        for rel in bilingual_primary_files:
+            primary_item = listed_items.get(rel)
+            if primary_item is None:
+                errors.append(f"manifest.json must list the required display file: {rel}")
+                continue
+            if rel.startswith("assets/figures/") and primary_item.get("language") == "neutral":
+                continue
+            translated_rel = localized_path(rel, translation_language)
+            translated_path = root / translated_rel
+            if not translated_path.is_file():
+                errors.append(f"required bilingual counterpart is missing: {translated_rel}")
+                continue
+            translated_item = listed_items.get(translated_rel)
+            if translated_item is None:
+                errors.append(f"manifest.json must list the required bilingual counterpart: {translated_rel}")
+                continue
+            if translated_item.get("language") != translation_language:
+                errors.append(f"{translated_rel} must declare language: {translation_language}")
+            if translated_item.get("translation_of") != rel:
+                errors.append(f"{translated_rel} must declare translation_of: {rel}")
+            if translated_rel.endswith(".pdf") and is_empty_pdf(translated_path.read_bytes()):
+                errors.append(f"{translated_rel} has no pages or is still a placeholder drawing")
 
     if errors:
         print("Ready package was not refreshed:")
@@ -116,6 +205,7 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
             print(f"- {error}")
         return 1
 
+    invalidate_self_check(root)
     for item in manifest["files"]:
         if not isinstance(item, dict):
             continue

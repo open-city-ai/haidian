@@ -440,6 +440,109 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual(new_digest, hashlib.sha256(visual.read_bytes()).hexdigest())
             self.assertEqual("ready_for_review", after["package_state"])
             self.assertFalse(after["validation_claim"]["self_checked"])
+            self_check = json.loads((submission_dir / "self_check.json").read_text(encoding="utf-8"))
+            self.assertFalse(self_check["ok"])
+            self.assertFalse(self_check["can_enter_formal_review"])
+            self.assertEqual("revision-requested", self_check["review_status"])
+            self.assertTrue(
+                any(
+                    item.get("check_id") == "REFRESH_INVALIDATED"
+                    and item.get("severity") == "blocking"
+                    for item in self_check["checks"]
+                    if isinstance(item, dict)
+                )
+            )
+            from generate_submissions_data import classify_submission
+
+            self.assertEqual("needs_revision", classify_submission(submission_dir, after))
+
+    def test_refresh_rejects_missing_bilingual_companion_or_manifest_entry(self) -> None:
+        for missing_manifest_entry in [True, False]:
+            with self.subTest(missing_manifest_entry=missing_manifest_entry):
+                with tempfile.TemporaryDirectory() as tmp:
+                    root = Path(tmp)
+                    submission_dir = root / "submissions" / "alice" / "bilingual-refresh"
+                    write_official_site_package(root)
+                    scaffold = run_scaffold(submission_dir, cwd=root)
+                    self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+                    finalized = complete_scaffold(submission_dir)
+                    self.assertEqual(0, finalized.returncode, finalized.stdout + finalized.stderr)
+
+                    manifest_path = submission_dir / "manifest.json"
+                    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                    if missing_manifest_entry:
+                        manifest["files"] = [
+                            item
+                            for item in manifest["files"]
+                            if item.get("path") != "visual/index.en.html"
+                        ]
+                    else:
+                        (submission_dir / "visual" / "index.en.html").unlink()
+                    manifest_path.write_text(
+                        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                    )
+
+                    refreshed = subprocess.run(
+                        [
+                            sys.executable,
+                            str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                            str(submission_dir),
+                            "--refresh",
+                        ],
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                    )
+                    self.assertNotEqual(0, refreshed.returncode)
+                    output = refreshed.stdout + refreshed.stderr
+                    if missing_manifest_entry:
+                        self.assertIn("manifest.json must list the required bilingual counterpart", output)
+                    else:
+                        self.assertIn("required bilingual counterpart is missing", output)
+
+    def test_refresh_rejects_manifest_traversal_and_symbolic_links(self) -> None:
+        for symbolic_link in [False, True]:
+            with self.subTest(symbolic_link=symbolic_link):
+                with tempfile.TemporaryDirectory() as tmp:
+                    root = Path(tmp)
+                    submission_dir = root / "submissions" / "alice" / "unsafe-refresh"
+                    write_official_site_package(root)
+                    scaffold = run_scaffold(submission_dir, cwd=root)
+                    self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+                    finalized = complete_scaffold(submission_dir)
+                    self.assertEqual(0, finalized.returncode, finalized.stdout + finalized.stderr)
+
+                    manifest_path = submission_dir / "manifest.json"
+                    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                    if symbolic_link:
+                        outside = root / "outside-visual.html"
+                        outside.write_text("outside package", encoding="utf-8")
+                        visual = submission_dir / "visual" / "index.html"
+                        visual.unlink()
+                        visual.symlink_to(outside)
+                    else:
+                        manifest["files"][0]["path"] = "../outside.txt"
+                    manifest_path.write_text(
+                        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+                    )
+
+                    refreshed = subprocess.run(
+                        [
+                            sys.executable,
+                            str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                            str(submission_dir),
+                            "--refresh",
+                        ],
+                        capture_output=True,
+                        text=True,
+                        check=False,
+                    )
+                    self.assertNotEqual(0, refreshed.returncode)
+                    output = refreshed.stdout + refreshed.stderr
+                    if symbolic_link:
+                        self.assertIn("manifest.json path traverses symbolic link", output)
+                    else:
+                        self.assertIn("unsafe file path", output)
 
     def test_finalize_preserves_localized_figure_language_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
