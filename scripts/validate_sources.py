@@ -134,7 +134,15 @@ def validate_source_index(repo_root: Path, index_path: Path | None = None) -> So
     if not index_path.is_absolute():
         index_path = repo_root / index_path
 
-    report = SourceValidationReport(index_path=str(index_path.relative_to(repo_root)))
+    index_path = index_path.resolve()
+    try:
+        relative_index_path = index_path.relative_to(repo_root)
+    except ValueError:
+        report = SourceValidationReport(index_path=str(index_path))
+        report.add_error("source index must be inside the repository")
+        return report
+
+    report = SourceValidationReport(index_path=str(relative_index_path))
     if not index_path.exists():
         report.add_error(f"{report.index_path}: source index is missing")
         return report

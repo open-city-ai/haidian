@@ -89,6 +89,18 @@ class PublicSourcesTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("unsafe path", "\n".join(report.errors))
 
+    def test_source_index_outside_repo_fails_without_reading_it(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp) / "repo"
+            root.mkdir()
+            outside_index = root.parent / "outside.json"
+            self.write_json(outside_index.parent, outside_index.name, VALID_INDEX)
+
+            report = validate_source_index(root, Path("../outside.json"))
+
+            self.assertFalse(report.ok)
+            self.assertIn("must be inside the repository", "\n".join(report.errors))
+
 
 if __name__ == "__main__":
     unittest.main()
