@@ -1867,6 +1867,57 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertTrue(report.ok, report.errors)
             self.assertNotIn("site-overview.en.png", "\n".join(report.warnings))
 
+    def test_v2_unreferenced_neutral_manifest_figure_is_not_exempt(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            primary = root / base / "proposal.md"
+            readable = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                primary.read_text(encoding="utf-8"),
+            )
+            readable_explanation = re.sub(
+                r"\[(?:source|standard|depth|data|metric):[^\]\s]+\]",
+                "",
+                FORMAL_PARAGRAPH,
+            )
+            for heading in REQUIRED_SECTIONS:
+                readable = readable.replace(
+                    f"## {heading}\n",
+                    f"## {heading}\n\n本节关键判断依据 [source:SITE-PACKAGE]。{readable_explanation}\n",
+                    1,
+                )
+            primary.write_text(readable, encoding="utf-8")
+            self.add_bilingual_v2_display(root, base, changed)
+
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            extra_rel = "assets/figures/unreferenced-map.png"
+            extra = root / base / extra_rel
+            extra.write_bytes(b"PNG text-bearing figure")
+            manifest["files"].append({
+                "path": extra_rel,
+                "role": "proposal_figure",
+                "required": True,
+                "language": "neutral",
+                "sha256": hashlib.sha256(extra.read_bytes()).hexdigest(),
+            })
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            changed.append(f"{base}/{extra_rel}")
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "unreferenced-map.png` declares language=neutral without text_free=true",
+                "\n".join(report.errors),
+            )
+
     def test_localized_visual_html_receives_static_safety_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
