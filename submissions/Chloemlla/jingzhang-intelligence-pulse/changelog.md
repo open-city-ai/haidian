@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v0.7 - 2026-08-08
+
+- 第五轮质量强化（双语展示包）：新增 `proposal.en.md` 全量英文翻译（含 13 个英文章节标题、45440+ 英文字母、忠实保留全部证据引用与概念性免责声明），`report/proposal.en.html` 英文版方案报告与 `visual/index.en.html` 英文版可视化总览。
+- proposal.md 前置元数据新增 `translation_file: "proposal.en.md"`，proposal 迭代号升至 v0.6；manifest.json 为主显示文件登记 `language: "zh"`，并为三个英文伴生文件登记 `language: "en"`/`translation_of`。
+- 双语为公告非阻断建议项；图件（figures）与图纸（drawings PDF）暂保持中文，属非阻断提示。包内文本统一 LF、manifest sha256 与检出行对齐；self_check 四层 PASS，`formal-review-ready`。
+
 ## v0.6 - 2026-08-08
 
 - 第四轮质量强化：新增 AI 治理与规则话语权（公告五大功能之五展开，agent.2/6）、命名体系与视觉识别方向（agent.1）、空间文化表达载体（agent.5）；proposal 迭代号升至 v0.5。
