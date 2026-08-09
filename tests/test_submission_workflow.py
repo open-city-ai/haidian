@@ -362,6 +362,8 @@ class ManifestHydrationTests(unittest.TestCase):
             json.dump(event, event_file)
             event_file.flush()
             client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
             client.paginate.return_value = files
             with patch.dict(
                 os.environ,
