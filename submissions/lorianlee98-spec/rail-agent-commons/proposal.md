@@ -2,6 +2,7 @@
 title: "京张智轨 · 开源共筑：智能体纪念的城市设计概念方案"
 author_github: "lorianlee98-spec"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“智轨共筑”为主概念，在 provisional 边界上提出一带三核、脊线缝合、开源荣誉与可运营 AI 场景的 formal 概念方案；全部空间结论标注为可供专业团队深化的参考方案，官方红线到位后复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

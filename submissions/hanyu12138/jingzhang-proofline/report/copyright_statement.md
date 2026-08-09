@@ -21,6 +21,8 @@ Constraints: AI technology must feel subtle, supervised, and publicly accountabl
 Avoid: cyberpunk neon, purple-blue gradients, dark atmosphere, fantasy, glossy corporate campus, giant screens, flying vehicles, autonomous-car spectacle, excessive holograms, decorative bokeh, implausible towers, tourist-poster styling
 ```
 
-5 张 `assets/figures/*.png` 由投稿 GeoJSON、metrics 和矩阵确定性绘制，字体使用本机 Microsoft YaHei 仅作栅格化输出，不随包分发。图中 provisional boundary 均以低对比虚线表达。A3/A0 PDF 由上述自制图与概念示意图排版生成。
+5 张 `assets/figures/*.png` 由投稿 GeoJSON、metrics、矩阵和本案交付规则确定性绘制，字体使用本机 Microsoft YaHei 仅作栅格化输出，不随包分发。图中 provisional boundary 均以低对比虚线表达。`metrics-evidence.png` 与英文对照图具有同目录 SVG 矢量源，完整呈现“一构件一智证里程”，不使用外部图形资产。A3/A0 PDF 由上述自制图与原创排版生成；v1.7 只增加来源、用途与限制说明，未改变空间几何或指标。
 
 本方案不使用商业地图瓦片、新闻图片、OSM 截图、企业商标、人物肖像素材或第三方论文图像。国际案例只引用各机构公开官网并作为背景机制对照，不用于本项目空间控制或绩效承诺。
+
+v1.7 的设计推导仅使用公开任务、已登记资料、本包结构化数据和“轨迹—站点—里程”的自有空间语法。“触发—证据—决策—输出”、现场观察前置登记、负面结果与回滚、三站证据交接和“一构件一智证里程”均以本包原创文字、表格、JSON、图形与版式表达。北京市统计公报、海淀校车开放目录及 OSM/Overpass 复算只提取并注明事实、来源、许可、用途和局限，不复制其图形资产；OSM 衍生数值按 ODbL 署名并保持 `background_only`。后续若需要派生或再分发外部资产，须另行按许可和权利人要求清权。

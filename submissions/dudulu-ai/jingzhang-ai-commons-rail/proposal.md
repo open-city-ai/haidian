@@ -2,6 +2,7 @@
 title: "共智轨·AI Commons Rail：可验证、可共治、可生长的城市智能公共接口"
 author_github: "dudulu-ai"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以百年京张铁路遗产公共轴为城市智能公共接口，构建三核两翼、十二个可审计AI场景和分期治理闭环；所有空间动作均为可供专业团队深化的概念建议。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

@@ -2,6 +2,7 @@
 title: "智脉京张 Living Track：百年铁路上的AI创新活轨"
 author_github: "luokhan85-tech"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把京张铁路遗址走廊转化为一条活的AI创新轨道：三轨三层空间结构、三站两翼协同回路、10余张AI场景卡、5类以上用户画像、3处以上AI朝圣地标、年度活动体系与长期运营机制；全部基于公开资料与provisional边界生成，完成结构化自检与专业证据链复核。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

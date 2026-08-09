@@ -2,6 +2,7 @@
 title: "原点智脉 Origin Pulse——百年京张AI创新带城市设计开源征集方案"
 author_github: "smartzhanghb"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「三次原点」为叙事主线、以京张铁路遗址走廊为空间主轴的概念性城市设计方案：一轴三核、蓝绿慢行复合，覆盖命名体系、AI创新生态、12张场景卡、5处朝圣地标与长期运营机制；基于 provisional 粗略边界生成并可整体复算。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

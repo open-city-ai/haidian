@@ -1,0 +1,183 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "recomputation_note_zh": "全部已知指标由 submissions/leecyang/jingzhang-mending-belt/geometry/*.geojson 在 EPSG:4548 下重新计算，可由第三方用同一批 GeoJSON 复现。",
+ "recomputation_note_en": "Every known metric is recomputed from this submission's GeoJSON in EPSG:4548 and is reproducible by a third party from the same files.",
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。",
+    "公告约值 11,400,000 sqm，临时边界相对偏差 +0.11%。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 7168017.032,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "area(union(GREEN_SPACE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.628067,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。",
+    "绿地含遗产缝合绿脊与衔接段缓冲绿地，不含缝合口广场。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 1289239.701,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "area(union(PUBLIC_SPACE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.112964,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。",
+    "公共空间即十二处缝合口的东西向连续地面。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 316530.193,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "area(union(BUILDING_FOOTPRINT), EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。",
+    "基底为概念占位体量，不表达建筑规模或权属。"
+   ]
+  },
+  "mending_stitch_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(PUBLIC_SPACE where space_type=mending_stitch)",
+   "confidence": "high",
+   "assumptions": [
+    "缝合口数量与位置为概念建议，位置线索来自公告任务表述。"
+   ]
+  },
+  "mending_stitch_area_sqm": {
+   "status": "known",
+   "value": 1289239.701,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "area(union(mending_stitch)), EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA)",
+   "confidence": "high",
+   "assumptions": [
+    "公告明确三处重点区。"
+   ]
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "area(union(KEY_AREA), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积基于仓库 provisional 粗略边界在 EPSG:4548 下复算；官方红线发布后必须整链重算。",
+    "公告约值 3,684,000 sqm。"
+   ]
+  },
+  "land_use_polygon_count": {
+   "status": "known",
+   "value": 90,
+   "unit": "count",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "count(LAND_USE)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "公开资料包中没有经批准的容积率管控值与官方精确边界，待正式数据补齐后方可计算。"
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "approved_height_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "建筑高度属法定规划判断，本概念方案不给出结论，待正式数据补齐。"
+  }
+ }
+}

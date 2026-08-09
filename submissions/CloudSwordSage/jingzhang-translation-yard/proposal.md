@@ -2,6 +2,7 @@
 title: "京张转译场：让技术、城市与人互相读懂"
 author_github: "CloudSwordSage"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共转译界面，把研究、模型和产业能力变成可测试、可解释、可退出的城市服务。"
 tracks: ["jingzhang-heritage-narrative", "enterprise-services-ecosystem", "civic-agent-governance"]

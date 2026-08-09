@@ -2,6 +2,7 @@
 title: "京张智城：AI 原生城市操作系统｜Jing-Zhang AI City OS"
 author_github: "xiebaiyuan"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「一板三核两翼」把百年京张遗址主轴重构为可进化的城市主板：共享总线（遗址活力带）串联全栈验证核（众智园）、开源转化核（AI原点社区）、智能原生交往核（大钟寺），两翼（中关村科技服务翼、小月河场景赋能翼）提供要素与场景供给，形成可复算、可迭代、可人工复核的 AI 原生城市操作系统。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "youth-friendly-public-space"]

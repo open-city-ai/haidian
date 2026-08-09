@@ -2,6 +2,7 @@
 title: "原点之城 ORIGIN：把百年京张AI创新带做成一条可以走完、可以留名的开发者之城"
 author_github: "KevinJH82"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为9.8公里主脊，提出“一脉·三原点·双缝双环”的空间结构，把三区两翼的产业组织翻译成可走完的开发者散步道、可留名的里程碑纪念体系、可运营的14张AI场景卡与年度活动机制；全部空间结论以GeoJSON与可复算指标承载，边界为临时粗略边界并逐处标注复算前提。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "youth-friendly-public-space"]

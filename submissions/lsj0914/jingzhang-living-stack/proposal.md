@@ -2,6 +2,7 @@
 title: "京张生境栈 · JING-ZHANG LIVING STACK"
 author_github: "lsj0914"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一脊三庭两翼十二栈，把AI产业验证、铁路遗产、蓝绿生态与包容性日常生活组织成可审查、可退出、可长期运营的城市生境。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

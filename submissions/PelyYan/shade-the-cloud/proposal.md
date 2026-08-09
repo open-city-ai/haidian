@@ -2,6 +2,7 @@
 title: "云下有荫 SHADE THE CLOUD：京张 AI 气候公地与低碳创新带"
 author_github: "PelyYan"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以可核验的城市热预算为线索，把人工智能设施的能源、水与数据成本转化为遮荫、降温、雨洪调蓄、无障碍和开放知识等公共回报；以一脊三凉岛两翼、六个凉行门和十二个可撤回场景，提出京张 AI 创新带的气候公地框架。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

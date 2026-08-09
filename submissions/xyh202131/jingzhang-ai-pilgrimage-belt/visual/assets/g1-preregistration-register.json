@@ -1,0 +1,1189 @@
+{
+  "schema_version": "0.1.0",
+  "register_id": "JZ-G1-PREREGISTRATION-V1",
+  "status": "conceptual_unapproved",
+  "as_of": "2026-08-09",
+  "purpose_zh": "把十二个既有场景的 G1 影子测试转成可预注册、可复测、可停止恢复的机器可读空表，不新增场景，不声称现场、主体、审批或结果已经存在。",
+  "purpose_en": "Convert the twelve existing scenarios into machine-readable preregistration shells for repeatable, stoppable, and recoverable G1 shadow tests, without adding scenarios or claiming that sites, owners, approvals, or results exist.",
+  "language_contract": {
+    "languages": [
+      "zh",
+      "en"
+    ],
+    "paired_human_readable_fields_required": true,
+    "machine_identifiers_language_neutral": true
+  },
+  "threshold_policy": {
+    "field_effect_threshold_status": "pending_preregistration",
+    "field_effect_thresholds_may_be_invented_before_baseline": false,
+    "fixed_safety_hard_gates_allowed": true,
+    "fixed_safety_hard_gates_scope": "Only non-negotiable safety boundaries already declared by the proposal may be fixed before field baselining.",
+    "all_other_thresholds_rule_zh": "取得获批场地的基线后、采集测试结果前，由已确认责任角色、社区共测代表和独立复测者共同锁定；当前值必须为 null。",
+    "all_other_thresholds_rule_en": "After an approved-site baseline is obtained and before test outcomes are collected, the confirmed accountable role, community co-test representatives, and independent retester must jointly lock the threshold; its current value must remain null."
+  },
+  "required_record_fields": [
+    "record_id",
+    "scene_id",
+    "linked_observation_refs",
+    "linked_project_refs",
+    "linked_parity_refs",
+    "baseline_task",
+    "primary_metric",
+    "guardrails",
+    "sample_frame",
+    "collection_window",
+    "non_ai_comparator",
+    "threshold",
+    "hard_no_harm_rule",
+    "data_owner_role",
+    "stop_rule",
+    "recovery_acceptance",
+    "independent_retester",
+    "version_lock",
+    "result_status"
+  ],
+  "records": [
+    {
+      "record_id": "G1-PREREG-001",
+      "scene_id": "SCENE-001",
+      "scenario_id": "SC-04",
+      "name_zh": "低速配送安全沙盒",
+      "name_en": "Low-speed delivery safety sandbox",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-003",
+        "SG-005"
+      ],
+      "linked_project_refs": [
+        "JZ-03"
+      ],
+      "linked_protocol_refs": [
+        "T-01"
+      ],
+      "linked_parity_refs": [],
+      "baseline_task": {
+        "zh": "在与公众完全分离的受控路线内，由人工配送完成同一物品、距离和时段任务，并记录干预、延误和安全事件。",
+        "en": "On a controlled route fully separated from the public, complete the same item, distance, and time-window task by staffed delivery and record interventions, delay, and safety events."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-001",
+        "name_zh": "无安全硬门失败的任务完成率",
+        "name_en": "Task-completion ratio without a safety hard-gate failure",
+        "formula": "completed_tasks_with_zero_collision_zero_boundary_breach_and_no_failed_physical_estop / all_started_test_tasks",
+        "unit": "ratio",
+        "denominator": "all_started_test_tasks"
+      },
+      "guardrails": [
+        "public_route_separation",
+        "human_takeover_available",
+        "manual_delivery_available",
+        "minimum_necessary_safety_data_only"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "获批封闭测试路线中的预定义配送任务，不包括无意参与的公众。",
+        "population_en": "Predefined delivery tasks on an approved closed test route, excluding non-consenting members of the public.",
+        "sampling_unit": "started_test_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "same route, payload, operating envelope, and declared weather classes for staffed baseline and G1 shadow test"
+      },
+      "non_ai_comparator": {
+        "zh": "人工配送与静态路线管理。",
+        "en": "Staffed delivery with static route control.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {
+          "collision_count": 0,
+          "boundary_breach_count": 0,
+          "physical_emergency_stop_success_ratio": 1.0,
+          "complete_human_takeover_chain_required": true
+        }
+      },
+      "hard_no_harm_rule": {
+        "zh": "任何碰撞、越界、实体急停失败或人工接管链缺失立即失败；不得把测试风险转移给普通公园使用者。",
+        "en": "Any collision, boundary breach, failed physical emergency stop, or incomplete human-takeover chain is an immediate failure; test risk must not be transferred to ordinary park users."
+      },
+      "data_owner_role": {
+        "role": "controlled-test data custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "触发任一安全硬门或采集超出预注册范围时立即断电、隔离并停止测试。",
+        "en": "Immediately power down, isolate, and stop the test when any safety hard gate is triggered or collection exceeds the preregistered scope."
+      },
+      "recovery_acceptance": {
+        "zh": "测试区恢复普通使用，设备隔离完成，事件记录最小化保存，根因和独立复测均通过后才能重新申请。",
+        "en": "Ordinary use is restored, equipment is isolated, only a minimised incident record is retained, and both root-cause review and independent retest pass before reapplication.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent robotics safety evaluator",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not be responsible for building or operating the tested system"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-002",
+      "scene_id": "SCENE-002",
+      "scenario_id": "SC-07",
+      "name_zh": "公共空间能耗助手",
+      "name_en": "Public-space energy assistant",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-003",
+        "SG-004"
+      ],
+      "linked_project_refs": [
+        "JZ-02",
+        "JZ-03"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [],
+      "baseline_task": {
+        "zh": "按既有人工时表运行同一公共空间服务，记录每个合规服务小时的能耗、最低安全照明、人工覆盖和投诉。",
+        "en": "Operate the same public-space service under the existing manual schedule and record energy per compliant service hour, minimum safety lighting, manual overrides, and complaints."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-002",
+        "name_zh": "每个合规公共服务小时能耗",
+        "name_en": "Energy per compliant public-service hour",
+        "formula": "total_metered_energy_kwh / compliant_public_service_hours",
+        "unit": "kwh_per_service_hour",
+        "denominator": "compliant_public_service_hours"
+      },
+      "guardrails": [
+        "minimum_safety_lighting_not_reduced",
+        "manual_override_available",
+        "quiet_hours_preserved",
+        "no_identifiable_visitor_tracking"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "获批地点内具有可比服务需求和环境条件的人工时表运行小时。",
+        "population_en": "Manual-schedule operating hours with comparable service demand and environmental conditions at an approved site.",
+        "sampling_unit": "compliant_public_service_hour",
+        "sample_size": null,
+        "recruitment_status": "not_applicable_until_site_approval"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "paired manual-baseline and G1-shadow windows stratified by approved operating mode and environmental condition"
+      },
+      "non_ai_comparator": {
+        "zh": "人工运行时表、最低照明标准和实体覆盖开关。",
+        "en": "Manual operating schedule, minimum-lighting standard, and physical override.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "节能不得降低安全照明、无障碍可见性、静音时段或人工覆盖能力。",
+        "en": "Energy saving must not reduce safety lighting, accessible visibility, quiet periods, or manual override capability."
+      },
+      "data_owner_role": {
+        "role": "park operations energy-data custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "低于获批安全基线、人工覆盖失效或出现未授权人员跟踪时立即恢复人工时表。",
+        "en": "Return immediately to the manual schedule if the approved safety baseline is breached, manual override fails, or unauthorised person tracking occurs."
+      },
+      "recovery_acceptance": {
+        "zh": "人工时表和安全照明恢复，控制器隔离，照度与访问复核通过。",
+        "en": "The manual schedule and safety lighting are restored, the controller is isolated, and lighting and access checks pass.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent public-space energy and accessibility reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not own the optimisation system or its performance target"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-003",
+      "scene_id": "SCENE-003",
+      "scenario_id": "SC-10",
+      "name_zh": "安全事件辅助研判",
+      "name_en": "Safety-incident decision support",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-005"
+      ],
+      "linked_project_refs": [
+        "JZ-03",
+        "JZ-07"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [
+        "PARITY-004"
+      ],
+      "baseline_task": {
+        "zh": "由授权人员按既有规则处理同一组去标识历史或合成事件，并记录正确分流、升级、纠正和用时。",
+        "en": "Authorised staff process the same de-identified historical or synthetic incident set under existing rules, recording correct routing, escalation, correction, and time."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-003",
+        "name_zh": "经人工复核的正确事件分流率",
+        "name_en": "Human-reviewed correct incident-routing ratio",
+        "formula": "cases_routed_to_the_preregistered_correct_human_queue / all_reviewed_shadow_cases",
+        "unit": "ratio",
+        "denominator": "all_reviewed_shadow_cases"
+      },
+      "guardrails": [
+        "no_automated_enforcement",
+        "no_unauthorised_identification",
+        "emergency_response_not_delayed",
+        "human_decision_recorded"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "经合法授权并完成去标识的历史事件或无个人数据的合成事件。",
+        "population_en": "Lawfully authorised and de-identified historical incidents or synthetic incidents containing no personal data.",
+        "sampling_unit": "shadow_review_case",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "blinded comparison of existing staffed triage and offline decision support; no public action"
+      },
+      "non_ai_comparator": {
+        "zh": "既有人工事件受理、分流和紧急响应程序。",
+        "en": "Existing staffed incident intake, routing, and emergency-response procedure.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得自动执法、不得延迟紧急响应、不得对未授权人员作身份推断或公开行动。",
+        "en": "There must be no automated enforcement, delayed emergency response, unauthorised identity inference, or unreviewed public action."
+      },
+      "data_owner_role": {
+        "role": "authorised incident-record custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "发生越权识别、自动执法建议进入执行链、紧急响应延迟或日志越界时立即停止。",
+        "en": "Stop immediately upon overreaching identification, execution of an automated enforcement recommendation, emergency-response delay, or out-of-scope logging."
+      },
+      "recovery_acceptance": {
+        "zh": "全部案件回到人工队列，越界数据删除或隔离，受影响决定完成复核和纠正。",
+        "en": "All cases return to the staffed queue, out-of-scope data are deleted or isolated, and affected decisions are reviewed and corrected.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent safety-governance and privacy reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not operate the incident system or adjudicate the evaluated cases"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-004",
+      "scene_id": "SCENE-004",
+      "scenario_id": "SC-11",
+      "name_zh": "失败与修正公开档案",
+      "name_en": "Failure and correction public archive",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-005"
+      ],
+      "linked_project_refs": [
+        "JZ-07",
+        "JZ-08"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [
+        "PARITY-004"
+      ],
+      "baseline_task": {
+        "zh": "人工策展者对同一组去标识失败记录完成核验、脱敏、答辩、发布、纠正和撤回流程。",
+        "en": "Human curators process the same de-identified failure records through verification, redaction, reply, publication, correction, and withdrawal."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-004",
+        "name_zh": "完整完成权利审查的发布记录率",
+        "name_en": "Publication-record ratio with complete rights review",
+        "formula": "published_records_with_source_redaction_reply_correction_and_withdrawal_checks / all_records_proposed_for_publication",
+        "unit": "ratio",
+        "denominator": "all_records_proposed_for_publication"
+      },
+      "guardrails": [
+        "no_personal_data_disclosure",
+        "factual_dispute_hold_available",
+        "right_of_reply_available",
+        "offline_correction_channel_available"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "已获授权用于流程测试的去标识失败记录和合成争议案例。",
+        "population_en": "De-identified failure records authorised for process testing and synthetic dispute cases.",
+        "sampling_unit": "record_proposed_for_publication",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "offline comparison of human-only curation and assisted drafting under the same publication checklist"
+      },
+      "non_ai_comparator": {
+        "zh": "人工维护的版本化失败、纠正和撤回登记。",
+        "en": "A human-maintained, versioned failure, correction, and withdrawal register.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "个人数据、未决事实争议和可能造成报复性伤害的内容不得公开。",
+        "en": "Personal data, unresolved factual disputes, and material likely to cause retaliatory harm must not be published."
+      },
+      "data_owner_role": {
+        "role": "failure-archive and correction-record custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "脱敏失败、事实争议无暂停路径、答辩或撤回无法执行时停止发布。",
+        "en": "Stop publication when redaction fails, a factual dispute lacks a hold path, or reply or withdrawal cannot be actioned."
+      },
+      "recovery_acceptance": {
+        "zh": "受影响内容撤下，纠正通知可访问，权利请求处理完成并通过独立抽查。",
+        "en": "Affected content is removed, an accessible correction notice is available, rights requests are completed, and an independent sample check passes.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent publication-rights and public-interest reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not author, approve, or operate the tested publication record"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-005",
+      "scene_id": "SCENE-005",
+      "scenario_id": "SC-01",
+      "name_zh": "京张可信文化导览",
+      "name_en": "Trustworthy Jing-Zhang cultural guide",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-004",
+        "SG-007"
+      ],
+      "linked_project_refs": [
+        "JZ-04",
+        "JZ-06"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [],
+      "baseline_task": {
+        "zh": "参与者使用策展审核后的实体、纸质或音频材料完成同一文化导览任务，并核对来源、理解和纠错入口。",
+        "en": "Participants complete the same cultural-guide task using curator-approved physical, print, or audio material, checking sources, comprehension, and correction access."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-005",
+        "name_zh": "来源可核且任务正确完成率",
+        "name_en": "Source-verifiable correct task-completion ratio",
+        "formula": "tasks_completed_correctly_with_a_verifiable_cleared_source / all_started_guide_tasks",
+        "unit": "ratio",
+        "denominator": "all_started_guide_tasks"
+      },
+      "guardrails": [
+        "every_claim_has_cleared_source",
+        "generated_content_labelled",
+        "disputed_claim_hold_available",
+        "accessible_non_screen_route_available"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "经同意参与的居民、游客、儿童照护组合和不同语言或感知需求使用者。",
+        "population_en": "Consenting residents, visitors, child-caregiver groups, and users with different language or sensory needs.",
+        "sampling_unit": "started_guide_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "same route, claims, questions, and accessible modes for curator-approved non-AI and G1 shadow guide"
+      },
+      "non_ai_comparator": {
+        "zh": "经策展批准的实体导视、纸质文本、触觉或音频材料和人工纠错。",
+        "en": "Curator-approved physical signs, print, tactile or audio material, and staffed correction.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得把生成内容作为历史证据，不得发布无来源或权利未核内容，不得取消非屏幕导览。",
+        "en": "Generated content must not be presented as historical evidence; unsourced or uncleared content must not be published; non-screen guidance must remain."
+      },
+      "data_owner_role": {
+        "role": "curatorial source and guide-result custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "来源、权利、AI 标识、争议暂停或无障碍替代任一缺失时立即停止该内容。",
+        "en": "Stop the affected content immediately if source, rights, AI label, dispute hold, or accessible alternative is missing."
+      },
+      "recovery_acceptance": {
+        "zh": "恢复经核实体内容，撤下争议版本，完成纠正并由独立策展或权利审核复核。",
+        "en": "Restore verified physical content, remove the disputed version, complete correction, and obtain independent curatorial or rights review.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent heritage-interpretation and accessibility reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not author the tested guide or own its cited assets"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-006",
+      "scene_id": "SCENE-006",
+      "scenario_id": "SC-06",
+      "name_zh": "开源协作匹配",
+      "name_en": "Open-source collaboration matching",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-006",
+        "SG-007"
+      ],
+      "linked_project_refs": [
+        "JZ-04"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [],
+      "baseline_task": {
+        "zh": "参与者通过公开问题板、自主报名和人工主持完成同一自愿协作组建任务。",
+        "en": "Participants form a voluntary collaboration for the same public issue using an open issue board, self-selection, and human facilitation."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-006",
+        "name_zh": "完成许可确认的自愿协作形成率",
+        "name_en": "Voluntary collaboration-formation ratio with licence confirmation",
+        "formula": "formed_collaborations_with_confirmed_consent_withdrawal_and_licence / all_started_matching_tasks",
+        "unit": "ratio",
+        "denominator": "all_started_matching_tasks"
+      },
+      "guardrails": [
+        "voluntary_participation_only",
+        "withdrawal_available",
+        "no_employment_or_benefit_scoring",
+        "equal_non_ai_participation"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "经同意、自愿参加同一公开问题协作的技术和非技术参与者。",
+        "population_en": "Consenting technical and non-technical participants voluntarily collaborating on the same public issue.",
+        "sampling_unit": "started_matching_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "parallel self-selection, human-facilitated, and G1 suggestion paths for the same issue pool"
+      },
+      "non_ai_comparator": {
+        "zh": "公开问题板、自主选择和人工主持。",
+        "en": "Open issue board, self-selection, and human facilitation.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不用 AI 不得降低参与资格、可见度或退出权；匹配不得进入招聘、财富、行政或公共福利评价。",
+        "en": "Not using AI must not reduce participation eligibility, visibility, or withdrawal rights; matching must not enter employment, wealth, administrative, or public-benefit evaluation."
+      },
+      "data_owner_role": {
+        "role": "voluntary participation and licence-record custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "发生歧视性匹配、退出受阻、许可不明或结果被用于就业福利评价时停止。",
+        "en": "Stop upon discriminatory matching, blocked withdrawal, unclear licence, or use of results in employment or benefit evaluation."
+      },
+      "recovery_acceptance": {
+        "zh": "撤销匹配结果，完成退出和数据删除请求，保留公开问题板与人工主持，并通过独立包容性复核。",
+        "en": "Withdraw match outputs, complete withdrawal and deletion requests, retain the open board and human facilitation, and pass independent inclusion review.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent inclusion and open-licensing reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not operate the matching service or select participants"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-007",
+      "scene_id": "SCENE-007",
+      "scenario_id": "SC-09",
+      "name_zh": "教育体验工坊",
+      "name_en": "Educational experience workshop",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-006",
+        "SG-007"
+      ],
+      "linked_project_refs": [
+        "JZ-04"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [],
+      "baseline_task": {
+        "zh": "在教师监督下，用纸质材料、人工演示和小组讨论完成同一来源识别、局限判断和纠错学习任务。",
+        "en": "Under teacher supervision, complete the same source-identification, limitation-judgment, and correction learning task through print material, human demonstration, and group discussion."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-007",
+        "name_zh": "经教师复核的学习目标完成率",
+        "name_en": "Teacher-reviewed learning-objective completion ratio",
+        "formula": "participants_completing_all_preregistered_learning_objectives / all_participants_starting_the_task",
+        "unit": "ratio",
+        "denominator": "all_participants_starting_the_task"
+      },
+      "guardrails": [
+        "teacher_supervision",
+        "no_unapproved_minor_data_export",
+        "offline_equal_participation",
+        "harmful_output_stop_available"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "在学校、监护和场地规则下自愿参加的学生、教师及非技术学习者。",
+        "population_en": "Students, teachers, and non-technical learners participating voluntarily under school, guardian, and venue rules.",
+        "sampling_unit": "participant_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "teacher-led non-AI and supervised local-sandbox sessions using the same objectives and assessment rubric"
+      },
+      "non_ai_comparator": {
+        "zh": "教师讲授、纸质练习和离线小组讨论。",
+        "en": "Teacher instruction, printed exercises, and offline group discussion.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得让未成年人脱离监督使用，不得把个人学习数据导出获批环境，不得降低离线学习者的参与和反馈权。",
+        "en": "Minors must not use the system unsupervised, personal learning data must not leave the approved environment, and offline learners must retain equal participation and feedback rights."
+      },
+      "data_owner_role": {
+        "role": "approved learning-session data custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "发生未监督使用、数据导出、无法控制的有害输出或离线路径缺失时停止。",
+        "en": "Stop upon unsupervised use, data export, uncontrolled harmful output, or loss of the offline route."
+      },
+      "recovery_acceptance": {
+        "zh": "切回教师和纸质课程，隔离或删除越界数据，完成保障审查和同题复测。",
+        "en": "Return to teacher-led and print lessons, isolate or delete out-of-scope data, and complete safeguarding review and same-task retest.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent education, safeguarding, and accessibility reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not teach, build, or score the tested system"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-008",
+      "scene_id": "SCENE-008",
+      "scenario_id": "SC-12",
+      "name_zh": "气候与无障碍共同测试",
+      "name_en": "Climate and accessibility co-test",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-004",
+        "SG-006"
+      ],
+      "linked_project_refs": [
+        "JZ-01",
+        "JZ-02"
+      ],
+      "linked_protocol_refs": [
+        "T-03"
+      ],
+      "linked_parity_refs": [
+        "PARITY-001"
+      ],
+      "baseline_task": {
+        "zh": "不同能力参与者依据现场核验的实体导视和人工支持，在安全天气窗口完成同一起终点及休息点任务。",
+        "en": "Participants with different abilities complete the same origin-destination and rest-point task in a safe weather window using field-verified physical guidance and staffed support."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-008",
+        "name_zh": "分组安全任务完成率",
+        "name_en": "Group-stratified safe task-completion ratio",
+        "formula": "participants_completing_the_task_without_safety_or_accessibility_break / all_participants_starting_the_task",
+        "unit": "ratio",
+        "denominator": "all_participants_starting_the_task"
+      },
+      "guardrails": [
+        "safe_weather_window",
+        "verified_accessible_route",
+        "group_outcome_gap_not_worsened",
+        "staffed_and_static_guidance_available"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "经同意的老年人、行动不便者、儿童照护组合、户外工作者和普通步行者。",
+        "population_en": "Consenting older people, people with reduced mobility, child-caregiver groups, outdoor workers, and ordinary pedestrians.",
+        "sampling_unit": "participant_route_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "same route and safe weather class for static-staffed baseline and G1 advice, stratified by participant group"
+      },
+      "non_ai_comparator": {
+        "zh": "经测绘的实体无障碍路线、静态天气提示、遮阴休息信息和人工支持。",
+        "en": "A surveyed physical accessible route, static weather warning, shade and rest information, and staffed support.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得在危险天气测试，不得使用受阻路线，不得使任何分组表现低于其非 AI 基线或取消人工静态路径。",
+        "en": "Testing must not occur in unsafe weather or on a blocked route, worsen any group's result below its non-AI baseline, or remove staffed and static paths."
+      },
+      "data_owner_role": {
+        "role": "consented accessibility co-test data custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "天气越过安全门、无障碍路线受阻、任一群体差距恶化或人工支持中断时停止。",
+        "en": "Stop when weather crosses the safety gate, the accessible route is blocked, any group gap worsens, or staffed support is interrupted."
+      },
+      "recovery_acceptance": {
+        "zh": "恢复经核非 AI 路线和人工支持，修复断点，并由独立无障碍复测确认。",
+        "en": "Restore the verified non-AI route and staffed support, repair the break, and obtain independent accessibility retest confirmation.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent accessibility and public-health safety reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not design the route or operate the advice service"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-009",
+      "scene_id": "SCENE-009",
+      "scenario_id": "SC-02",
+      "name_zh": "无障碍路径助手",
+      "name_en": "Accessible route assistant",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-002",
+        "SG-006",
+        "SG-008"
+      ],
+      "linked_project_refs": [
+        "JZ-01",
+        "JZ-05"
+      ],
+      "linked_protocol_refs": [
+        "T-03"
+      ],
+      "linked_parity_refs": [
+        "PARITY-001"
+      ],
+      "baseline_task": {
+        "zh": "不同能力参与者用现场核验的实体地图、导视和人工确认完成同一起终点任务。",
+        "en": "Participants with different abilities complete the same origin-destination task using a field-verified physical map, signs, and staffed confirmation."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-009",
+        "name_zh": "分组无障碍任务成功率",
+        "name_en": "Group-stratified accessible task-success ratio",
+        "formula": "participants_reaching_the_verified_destination_without_a_critical_break / all_participants_starting_the_route_task",
+        "unit": "ratio",
+        "denominator": "all_participants_starting_the_route_task"
+      },
+      "guardrails": [
+        "critical_break_count_zero",
+        "live_manual_confirmation_available",
+        "non_ai_route_same_outcome",
+        "no_identity_linked_route_history"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "经同意的轮椅使用者、视障者、老年人、照护者和普通步行者。",
+        "population_en": "Consenting wheelchair users, visually impaired users, older people, caregivers, and ordinary pedestrians.",
+        "sampling_unit": "participant_route_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "same verified origin, destination, operating hours, and temporary-barrier state for non-AI and G1 paths"
+      },
+      "non_ai_comparator": {
+        "zh": "实体无障碍地图、导视、人工确认和投诉渠道。",
+        "en": "Physical accessible map, signs, staffed confirmation, and complaint channel.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "任何关键断点都必须有经核非 AI 路径；AI 不得制造安全误导、降低资格权利或保存身份关联轨迹。",
+        "en": "Every critical break must have a verified non-AI route; AI must not create unsafe misdirection, reduce eligibility or rights, or retain identity-linked route histories."
+      },
+      "data_owner_role": {
+        "role": "accessible-route status and test-result custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "关键断点、状态无法人工确认、安全误导或非 AI 路径不可用时停止。",
+        "en": "Stop upon a critical break, status that cannot be manually confirmed, unsafe misdirection, or unavailable non-AI route."
+      },
+      "recovery_acceptance": {
+        "zh": "恢复实体和人工路径，纠正障碍状态，所有群体完成同题独立复测。",
+        "en": "Restore physical and staffed paths, correct barrier status, and complete an independent same-task retest with all groups.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent accessibility evaluator",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not design the route or produce its live status"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-010",
+      "scene_id": "SCENE-010",
+      "scenario_id": "SC-03",
+      "name_zh": "慢行拥堵提示",
+      "name_en": "Slow-travel congestion notice",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-002",
+        "SG-003",
+        "SG-006"
+      ],
+      "linked_project_refs": [
+        "JZ-01",
+        "JZ-02"
+      ],
+      "linked_protocol_refs": [],
+      "linked_parity_refs": [],
+      "baseline_task": {
+        "zh": "在相同峰值或活动时段，用人工观察和临时静态提示处理经核慢行段的拥堵任务。",
+        "en": "During the same peak or event window, manage congestion on a verified slow-travel segment using staff observation and temporary static notices."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-010",
+        "name_zh": "无新增冲突的提示任务完成率",
+        "name_en": "Notice-task completion ratio without a new conflict",
+        "formula": "notice_windows_with_no_new_accessibility_or_movement_conflict / all_evaluated_notice_windows",
+        "unit": "ratio",
+        "denominator": "all_evaluated_notice_windows"
+      },
+      "guardrails": [
+        "no_identifiable_tracking",
+        "alternative_route_field_verified",
+        "accessible_users_not_displaced",
+        "static_guidance_available"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "经批准时段内、经现场核验的步行骑行共享路段观察窗口。",
+        "population_en": "Observation windows on a field-verified shared walking and cycling segment during an approved period.",
+        "sampling_unit": "notice_window",
+        "sample_size": null,
+        "recruitment_status": "not_applicable_until_site_approval"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "matched no-intervention, staffed-static, and G1-shadow windows under comparable demand and event conditions"
+      },
+      "non_ai_comparator": {
+        "zh": "不干预基线、人工观察和临时静态提示。",
+        "en": "No-intervention baseline, staff observation, and temporary static notices.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得识别人，不得把冲突转移到未经核路线，不得挤压无障碍通行或取消静态提示。",
+        "en": "People must not be identified, conflict must not be displaced to an unverified route, accessible passage must not be constrained, and static notices must remain."
+      },
+      "data_owner_role": {
+        "role": "non-identifying movement-count custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "发现身份跟踪、误导改道、无障碍受损或替代路线状态不明时停止提示。",
+        "en": "Stop notices upon identity tracking, misleading rerouting, accessibility harm, or unknown alternative-route status."
+      },
+      "recovery_acceptance": {
+        "zh": "撤回智能提示，恢复人工静态管理，确认所有受影响路线状态并独立复核冲突。",
+        "en": "Withdraw intelligent notices, restore staffed static management, confirm every affected route state, and independently review conflicts.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent slow-mobility and accessibility reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not operate the counting or route-recommendation system"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-011",
+      "scene_id": "SCENE-011",
+      "scenario_id": "SC-05",
+      "name_zh": "企业服务智能体",
+      "name_en": "Enterprise-service agent",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-006",
+        "SG-008"
+      ],
+      "linked_project_refs": [
+        "JZ-05"
+      ],
+      "linked_protocol_refs": [
+        "T-02"
+      ],
+      "linked_parity_refs": [
+        "PARITY-002"
+      ],
+      "baseline_task": {
+        "zh": "参与者用正式来源清单、纸质流程和人工窗口完成同一固定企业服务问题集。",
+        "en": "Participants complete the same fixed enterprise-service question set using an official source list, printed process, and staffed counter."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-011",
+        "name_zh": "来源正确且成功转接的服务任务率",
+        "name_en": "Service-task ratio with correct sources and successful handoff",
+        "formula": "tasks_with_correct_current_source_and_successful_required_handoff / all_started_service_tasks",
+        "unit": "ratio",
+        "denominator": "all_started_service_tasks"
+      },
+      "guardrails": [
+        "formal_advice_not_automated",
+        "stale_source_warning_required",
+        "staffed_handoff_available",
+        "equal_non_ai_rights_cost_and_outcome"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "由已确认服务所有者提供、覆盖正常、过期、冲突、拒答和转接情形的固定问题集。",
+        "population_en": "A fixed question set supplied by the confirmed service owner and covering normal, stale, conflicting, refusal, and handoff cases.",
+        "sampling_unit": "started_service_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "same fixed question set, source snapshot, opening hours, and rights for official-source, staffed, and G1-shadow paths"
+      },
+      "non_ai_comparator": {
+        "zh": "正式来源页面、带时间戳清单、纸质流程和人工窗口。",
+        "en": "Official source pages, timestamped list, printed process, and staffed counter.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得把导航写成审批或资格决定；错误不得影响正式办理；非 AI 用户的结果、费用、权利和申诉不得较差。",
+        "en": "Navigation must not be presented as approval or eligibility; an error must not affect a formal procedure; non-AI users must not receive worse outcomes, costs, rights, or appeal."
+      },
+      "data_owner_role": {
+        "role": "authoritative service-source and handoff-record custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "错误影响正式办理、来源过期无提示、拒答或人工转接失败时停止对应答案集。",
+        "en": "Stop the affected answer set when an error affects a formal process, a stale source lacks warning, refusal fails, or staffed handoff fails."
+      },
+      "recovery_acceptance": {
+        "zh": "全部任务切回正式来源和人工窗口，修正来源包并由独立人员重跑完整问题集。",
+        "en": "Return every task to official sources and the staffed counter, correct the source pack, and have an independent reviewer rerun the complete question set.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent service-quality and source-freshness reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not maintain the answer set or operate the staffed counter"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    },
+    {
+      "record_id": "G1-PREREG-012",
+      "scene_id": "SCENE-012",
+      "scenario_id": "SC-08",
+      "name_zh": "社区健康导航",
+      "name_en": "Community health navigation",
+      "current_gate": "G0",
+      "approval_status": "conceptual_unapproved",
+      "linked_observation_refs": [
+        "SG-002",
+        "SG-006",
+        "SG-008"
+      ],
+      "linked_project_refs": [
+        "JZ-05"
+      ],
+      "linked_protocol_refs": [
+        "T-02"
+      ],
+      "linked_parity_refs": [
+        "PARITY-003"
+      ],
+      "baseline_task": {
+        "zh": "参与者使用已核公共机构清单、电话、实体信息和人工服务完成同一非诊断信息或紧急转介任务。",
+        "en": "Participants complete the same non-diagnostic information or emergency-referral task using a verified public-provider directory, telephone, physical information, and staffed service."
+      },
+      "primary_metric": {
+        "metric_id": "G1-M-012",
+        "name_zh": "安全且来源正确的导航任务完成率",
+        "name_en": "Safe, source-correct navigation task-completion ratio",
+        "formula": "tasks_with_correct_current_provider_source_non_diagnostic_boundary_and_timely_required_referral / all_started_navigation_tasks",
+        "unit": "ratio",
+        "denominator": "all_started_navigation_tasks"
+      },
+      "guardrails": [
+        "no_diagnostic_output",
+        "emergency_redirection_not_delayed",
+        "current_provider_source_required",
+        "staffed_and_non_ai_route_available"
+      ],
+      "sample_frame": {
+        "status": "pending_preregistration",
+        "population_zh": "由已确认信息所有者提供、覆盖普通、信息不足、过期和紧急情形的非诊断任务集及经同意使用者。",
+        "population_en": "A non-diagnostic task set supplied by the confirmed information owner, covering ordinary, insufficient-information, stale, and emergency cases, plus consenting users.",
+        "sampling_unit": "started_navigation_task",
+        "sample_size": null,
+        "recruitment_status": "not_started"
+      },
+      "collection_window": {
+        "status": "pending_preregistration",
+        "site_id": null,
+        "start_at": null,
+        "end_at": null,
+        "comparison_design": "same provider-directory snapshot, cases, opening hours, and referral rules for staffed non-AI and G1-shadow paths"
+      },
+      "non_ai_comparator": {
+        "zh": "经核公共机构清单、电话、实体信息、人工咨询和紧急号码。",
+        "en": "Verified public-provider directory, telephone, physical information, staffed consultation, and emergency numbers.",
+        "same_task_required": true
+      },
+      "threshold": {
+        "status": "pending_preregistration",
+        "value": null,
+        "fixed_safety_hard_gates": {}
+      },
+      "hard_no_harm_rule": {
+        "zh": "不得诊断、不得延误紧急转介、不得采集非任务必需健康数据、不得让非 AI 用户获得较弱入口或权利。",
+        "en": "There must be no diagnosis, delayed emergency referral, collection of health data unnecessary to the task, or weaker access or rights for non-AI users."
+      },
+      "data_owner_role": {
+        "role": "public-provider source and referral-test custodian",
+        "assignment_status": "unconfirmed"
+      },
+      "stop_rule": {
+        "zh": "产生诊断、延迟紧急转介、机构信息过期或人工非 AI 路径中断时停止。",
+        "en": "Stop upon diagnostic output, delayed emergency referral, stale provider information, or interruption of the staffed non-AI path."
+      },
+      "recovery_acceptance": {
+        "zh": "切回经核机构清单和人工转介，删除非必要健康数据，修正任务集并完成独立紧急情形复测。",
+        "en": "Return to the verified provider directory and staffed referral, delete unnecessary health data, correct the task set, and complete an independent emergency-case retest.",
+        "evidence_status": "unknown"
+      },
+      "independent_retester": {
+        "role": "independent health-information safety and accessibility reviewer",
+        "confirmation_status": "unconfirmed",
+        "independence_rule": "must not maintain the provider directory or operate the navigation service"
+      },
+      "version_lock": {
+        "status": "pending_preregistration",
+        "protocol_version": null,
+        "model_or_system_version": null,
+        "data_snapshot_digest": null,
+        "locked_before_collection_required": true
+      },
+      "result_status": "unknown"
+    }
+  ],
+  "summary": {
+    "scene_count": 12,
+    "required_field_coverage_ratio": 1.0,
+    "bilingual_human_readable_field_coverage_ratio": 1.0,
+    "current_gate_g0_count": 12,
+    "conceptual_unapproved_count": 12,
+    "completed_preregistrations": 0,
+    "approved_collection_windows": 0,
+    "completed_field_executions": 0,
+    "known_result_count": 0,
+    "confirmed_data_owner_roles": 0,
+    "confirmed_independent_retesters": 0,
+    "field_effect_thresholds_registered": 0,
+    "coverage_ratios_are_field_results": false
+  }
+}

@@ -2,6 +2,7 @@
 title: "京张智织：可验证公共智能与AI生活实验带"
 author_github: "fengfanM"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以百年京张轨脊为公共空间骨架，以可验证、可退出、有人类复核的AI服务为城市接口，形成一脊一环三结五织片的开放共生方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

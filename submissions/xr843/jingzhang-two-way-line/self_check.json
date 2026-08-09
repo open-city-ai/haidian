@@ -1,0 +1,48 @@
+{
+ "schema_version": "0.1.0",
+ "checked_at": "2026-08-09",
+ "tool": "scripts/self_check_submission.py --pr-author xr843",
+ "result": "PASS",
+ "can_enter_formal_review": true,
+ "checks": [
+  {
+   "id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "info",
+   "note": "site boundary provisional(street-aligned, self-derived, area-calibrated +0.0006%); flagged official_boundary=false everywhere"
+  },
+  {
+   "id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "minor",
+   "note": "three key areas provisional(anchored on public stations/heritage POIs, within ±0.01% of announced); disclosed in proposal/visual/sources/assumptions"
+  },
+  {
+   "id": "LAND_USE_TOPOLOGY",
+   "result": "pass",
+   "severity": "info",
+   "note": "189 polygons full coverage; gap ~658 sqm (<0.01% tolerance); pairwise overlaps under 1 sqm after projected-space repair"
+  },
+  {
+   "id": "METRIC_RECALC",
+   "result": "pass",
+   "severity": "info",
+   "note": "site_area/green_ratio/public_space_ratio recomputed in EPSG:4548 match metrics.json within tolerance"
+  },
+  {
+   "id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "info",
+   "note": "visual/index.html + index.en.html offline static, zero scripts, all data-metric spans match metrics.json"
+  },
+  {
+   "id": "BILINGUAL_PAIRING",
+   "result": "pass",
+   "severity": "info",
+   "note": "proposal/report HTML/A3/A0/five figures all paired zh+en; v2 + bilingual_contract_version 1"
+  }
+ ],
+ "residual_warnings": [
+  "KEY_AREA_PROVISIONAL x3 (minor, by design): provisional key areas are not official redlines; content scoring unaffected"
+ ]
+}

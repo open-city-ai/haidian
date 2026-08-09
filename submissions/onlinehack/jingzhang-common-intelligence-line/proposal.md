@@ -2,6 +2,7 @@
 title: "京张共智线"
 author_github: "onlinehack"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以一线·三站·两翼·六环把AI研究、验证、采用、公共体验与城市记忆组织成共同智能协议；总体与重点区采用provisional_constraint，官方精确边界到位后统一复算。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]

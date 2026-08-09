@@ -2,6 +2,7 @@
 title: "智轨京张：面向智能体原生时代的京张AI创新带城市设计方案"
 author_github: "pomelo-nwu"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址为智轨绿脊，构建一脊串三区两翼的智能体原生创新带：43.6 平方公里统筹研究、11.4 平方公里总体设计、368.4 公顷三区详细设计全部结构化为可复算图层与指标，12 张场景卡、6 组全球案例、3 处朝圣地标与长期运营机制作为开放共创建议提交。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

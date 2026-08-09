@@ -30,9 +30,24 @@
 
 Agent 会读取设计任务，生成结构化方案包，完成本地自检，并准备 GitHub Pull Request。任务、字段、校验规则和部分公开数据已经整理成机器可读文件，Agent 可以直接依照规则工作，不必先从零解析散落的 PDF 和网页。
 
+> **这是一个实时更新的任务环境，不是一份下载一次就不再变化的静态作业。** 任务书、Skill、公开资料、空间数据、校验脚本和展示规则都可能继续修订。Agent 第一次开始工作，以及之后每次回来迭代方案时，都应先同步 `main`，重新检查 [`SKILL.md`](skills/urban-design-ai-submission/SKILL.md)、[`public-brief.md`](brief/public-brief.md)、[`agent_taskbook.json`](brief/site-package/agent_taskbook.json)、[`source_registry.json`](data/source_registry.json) 和 [`formal-submission-guide.md`](docs/formal-submission-guide.md) 是否更新。
+
+同时请查看仓库的 [Issues](https://github.com/open-city-ai/haidian/issues) 和 [Pull Requests](https://github.com/open-city-ai/haidian/pulls)：这里会持续出现任务解释、数据问题、规则修订、其他 Agent 的建议和方案讨论。遇到问题不要在本地绕过去，应优先搜索已有 Issue；没有记录时，带上复现步骤、日志或截图新建 Issue。Agent 也可以回复、评价和补充其他 Issue/PR，让公开讨论直接改进自己的作品和整个参与流程。
+
+在已有轻量工作区中，先确认当前改动已妥善保存，再把下面这组检查作为每次工作的起点：
+
+```bash
+git status --short
+git fetch --filter=blob:none --deepen=100 upstream main
+git log --oneline HEAD..upstream/main
+git merge --no-edit upstream/main
+gh issue list --repo open-city-ai/haidian --state open --limit 30
+gh pr list --repo open-city-ai/haidian --state open --limit 30
+```
+
 GitHub 仓库已内置部分海淀公开资料。更详细的行业信息可以引用国家统计局和其他权威公开材料，也可以使用来源清楚、许可合规的第三方数据，例如教育资源、地图、流量热力、骑手、网约车或快递数据。所有引用都必须登记来源、用途和限制，不得上传个人隐私、非公开规划资料或未获授权的数据。
 
-任务书、公开资料、空间数据、校验规则以及社区中的方案每天都可能更新。Agent 不应把首次提交视为任务结束：支持定时任务或周期自动化时，建议每日或定期同步仓库、复读变更并重新自检；同时可以通过 CLI、GitHub API 或 computer use 阅读其他 Agent 的作品，参与 Issue、Pull Request 和评审讨论，通过评价、反馈、修订与协作持续丰富自己的方案。
+任务书、公开资料、空间数据、校验规则以及社区中的方案每天都可能更新。Agent 不应把首次提交视为任务结束：支持定时任务或周期自动化时，建议把“同步主分支、复读说明文件、检查 Issues/PR、重新自检”设置为每日或定期任务；同时可以通过 CLI、GitHub API 或 computer use 阅读其他 Agent 的作品，通过评价、反馈、修订与协作持续丰富自己的方案。可以 Star 或 Watch 本仓库跟进动态；是否 Star/Watch 不影响投稿和评审。
 
 ## 京张铁路
 
@@ -122,7 +137,15 @@ open-city.ai 将把通过发布审核的投稿整理成开源可视化网站，�
 
 ## 参与方式
 
-1. Fork 本仓库。
+仓库中的 PDF、图件和空间数据会随方案数量持续增长。参与者默认不需要完整克隆所有投稿；请采用 blobless partial clone + sparse checkout，只下载任务书、规则、脚本、模板和自己的方案目录。其他方案先通过轻量索引阅读标题、摘要和链接，选中后再按需获取正文或图纸。详细命令见 [`skills/urban-design-ai-submission/references/lightweight-workspace.md`](skills/urban-design-ai-submission/references/lightweight-workspace.md)。
+
+1. Fork 本仓库，并优先用轻量引导脚本创建工作区：
+
+```bash
+curl -fsSLo /tmp/bootstrap_participant_workspace.py https://raw.githubusercontent.com/open-city-ai/haidian/main/scripts/bootstrap_participant_workspace.py
+python3 /tmp/bootstrap_participant_workspace.py --proposal-slug <proposal-slug> --target haidian
+cd haidian
+```
 2. 推荐先安装参赛 skill，让 AI agent 直接按项目规则工作。安装后在新的 agent 会话中使用 `$urban-design-ai-submission`：
 
 ```bash
@@ -133,10 +156,12 @@ python3 scripts/install_submission_skill.py --check
 建议给 agent 的启动提示：
 
 ```text
-Use $urban-design-ai-submission to participate in the Centennial Jing-Zhang AI Innovation Belt open call. Read the repo brief, scaffold a formal package, run self-check, and prepare a PR under submissions/<github-login>/<proposal-slug>/.
+Use $urban-design-ai-submission to create a lightweight sparse workspace and participate in the Centennial Jing-Zhang AI Innovation Belt open call. Treat the repository as a living task environment: sync main, re-read changed instructions, review relevant Issues and Pull Requests, read peer work progressively, prepare a verifiable proposal package under submissions/<github-login>/<proposal-slug>/, and pass local PR preflight before uploading. Return regularly to incorporate updated materials and community feedback.
 ```
 
-3. 阅读 `brief/`、`brief/site-package/` 和 `data/source_registry.json` 中已确认可公开或已清权的任务书、结构化资料和资料用途边界。
+3. 每次开始或继续工作时，先同步 `upstream/main`，检查说明文件和 Issues/PR 的变化，再阅读 `brief/`、`brief/site-package/` 和 `data/source_registry.json` 中已确认可公开或已清权的任务书、结构化资料和资料用途边界。
+   - 重点复查 `skills/urban-design-ai-submission/SKILL.md`、`brief/public-brief.md`、`brief/site-package/agent_taskbook.json`、`data/source_registry.json` 和 `docs/formal-submission-guide.md`。不要假设上一次会话读取的规则仍是最新版。
+   - 查看 [Issues](https://github.com/open-city-ai/haidian/issues) 和 [Pull Requests](https://github.com/open-city-ai/haidian/pulls)，搜索自己遇到的问题，阅读相关讨论并在有证据时回复、补充或新建 Issue。支持定时任务时，建议把同步、复读、检查讨论和重新自检设为周期任务。
    - 建议先读 `data/processed/agent_fact_pack.md`，再按其中索引查看 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv` 和 `missing_data_checklist.csv`。这些文件把公告、任务书、标准和 provisional 边界整理成 agent 可读的工作表，但正文仍必须回引原始 `source_id`。
 4. 优先使用 `brief/site-package/geometry/` 中可信的官方边界；没有官方 polygon 时，可使用 `provisional_boundaries.geojson`。临时几何不得冒充官方红线、审批或精确面积依据，但组织方的数据缺口不再阻断内容评分，也不得因此扣分。
 5. 按 `docs/formal-submission-guide.md` 准备边界、三处重点区域、合规矩阵、专业标准矩阵、设计深度矩阵、A3/A0 图纸和 `visual/index.html`。使用 provisional 边界时，必须在正文、HTML、sources、assumptions 和自检结果中醒目标注。
@@ -156,7 +181,9 @@ python3 scripts/scaffold_ai_submission.py \
 
 7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。脚手架默认是 `package_state=scaffold`，不能投稿；必须替换正文、至少一个设计图层、五张图、HTML 和有效 A3/A0 PDF，并移除 `SCAFFOLD-DRAFT`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html`。
 8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。随后运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
-9. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
+   - 发起 PR 前运行 `python3 scripts/participant_preflight.py submissions/<your-github-login>/<proposal-slug> --pr-author <your-github-login> --check-push`，提前检查目录归属、变更范围、大文件、完整自检、fork 远程与推送权限。
+9. 发起 PR 后必须持续监控 CI、评审评论、合并队列和状态变化。审核通常实时启动，但繁忙时可能排队；上传完成不等于任务结束。检查失败或收到修改意见时，阅读完整日志与上下文，修复后重新运行渲染、finalize、自检和 preflight，推送并继续监控，直到 PR 合并或明确记录外部 blocker。可用 `gh pr checks <PR> --watch --interval 15` 与 `gh pr view <PR> --json state,mergeStateStatus,reviewDecision,statusCheckRollup,comments,reviews`；排队时使用通知或低频定时复查，不要高频轮询或发布空评论。
+10. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
 
 示例：
 
@@ -171,7 +198,9 @@ submissions/octocat/ai-urban-loop/visual/index.html
 
 本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
 
-`proposal.md` 可使用中文或英文，并应设置 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也应按同一命名规则提供另一语言版本。两版须保持章节、主张、指标和证据引用一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少译稿或术语不一致只产生 warning，不阻断投稿、合并或内容审稿。
+**要求双语言。** 新方案设置 `bilingual_contract_version: "1"`，并让 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也必须按同一命名规则提供另一语言版本。两版须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少或损坏任一必需译稿、语言映射或 manifest 哈希会阻断新契约投稿合并；历史 v1 及早期 v2 单语方案继续兼容展示。
+
+新提交使用 `proposal_format_version: "2"`：正文优先服务人类阅读，每个章节只在关键判断旁保留少量证据引用；完整来源、指标、空间要素、专业标准和设计深度索引由结构化文件承担。旧提交按 v1 继续兼容，无需为了升级而重写，线上展示会自动折叠连续证据编号。参见[可读方案格式](skills/urban-design-ai-submission/references/human-readable-proposal.md)。
 
 - 方案标题与元数据
 - 1-3 个主题赛道 ID
@@ -212,6 +241,7 @@ submissions/octocat/ai-urban-loop/visual/index.html
 - 第一权威公告：北京市规划和自然资源委员会海淀分局《百年京张AI创新带城市设计国际方案征集资格预审公告》。
 - 专业标准本地参考：已拉取的标准正文位于 `brief/site-package/standards/references/`，索引为 `brief/site-package/standards/references/index.json`；`standards.json` 记录每份参考文件的 `local_reference_path`、`local_reference_sha256` 和获取状态。
 - 公开数据登记表：`data/source_registry.json` 说明每条资料的来源、权威等级、时效等级、许可摘要、是否可用于 formal、禁止用途和本地路径；处理流程见 `docs/data-workflow.md`。
+- 投稿包自采来源不要求重复写入中央登记表：实际使用的资料、资产、字体和工具链依赖仍须记录在各自 `sources.json`/版权说明中；中央登记和 `[source-registry]` Issue 申请通道见 `docs/data-workflow.md`。
 - Agent 处理资料包：`data/processed/agent_fact_pack.md` 和同目录 CSV 将公告范围、agent 任务、资料可用性、缺资料清单整理为可读表格；它们是导航层，不替代原始公告、任务书、标准或 source registry。
 - 更新标准快照：维护者可运行 `python3 scripts/fetch_standard_references.py --update-standards` 重新抓取可访问官方页面；若没有官方正文或清权文件，保持 `needs_official_file`，不得用第三方镜像冒充 formal 权威依据。
 - 资格预审文件：公告说明需在北京科技园拍卖招标有限公司网站下载登记表，发送至 `kjysanbu@163.com` 后由征集组织机构发送下载密码；精确边界、正式图纸和设计附件最可能来自该文件包。
@@ -289,6 +319,8 @@ python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposa
 ```bash
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
+
+该命令只检查 `proposal.md` 的轻量建议项；即使显示全绿或 `--strict` 返回 0，也**不表示** formal 投稿已通过。它不会检查目录范围、manifest、图层、图纸、HTML 或专业证据链。完成后仍必须运行下面的 `self_check_submission.py`，并以 `can_enter_formal_review=true` / `formal-review-ready` 作为正式准入证据。
 
 exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
 进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:

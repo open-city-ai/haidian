@@ -2,6 +2,220 @@
  "schema_version": "1.0",
  "package_id": "ren-axis-jingzhang-ai-belt",
  "note_zh": "18项按《北京市城市更新项目库管理办法（试行）》口径接入市、区两级项目库（条件门齐备申报入库、未达标动态出库），并设3年评估—6年换装—不达标回退的自适应周期。台账为概念级治理模板：权属状态均为待核验、KPI基线均待试点前实测冻结、责任仅列类型不指认机构（A为依法定程序最终确认的主管或业主责任主体）；实体项目走「条件门—验收—停工复核」，AI场景走「黄/红牌—人工接管—恢复—退役」。本文件为 visual 台账面板与 A3 台账页的同源机器可读数据；human_review/no_ai_alternative/appeal_channel 三项字段完备率指标由本文件复算（公式见 metrics.json），量的是设计承诺完备性、非运行实测。",
+ "language_note": "场景与项目台账字段目前仅有中文；画像核验表为中英双语。English readers: the persona table below is bilingual; the scenario and project ledgers are currently Chinese-only.",
+ "executable_pilot_cards": {
+  "note_zh": "三张可执行卡回应公开意见通道第 002 号意见（issue #215）。可交付的是字段结构、冻结机制与责任归属；阈值数值必须来自试点前的实测基线，本包不编造数值——SC-12 是例外，它的成功口径是包内一致性，无需等待试点即可执行。",
+  "note_en": "These three cards answer comment 002 in the public channel (issue #215). What is deliverable now is the field structure, the freezing mechanism and accountability; threshold values must come from a measured pre-pilot baseline and are not invented here. SC-12 is the exception: its success criterion is internal consistency, enforceable immediately.",
+  "fields": [
+   {
+    "key": "baseline",
+    "zh": "基线",
+    "en": "Baseline"
+   },
+   {
+    "key": "window",
+    "zh": "试验时段与样本",
+    "en": "Trial window and sample"
+   },
+   {
+    "key": "success",
+    "zh": "最小成功阈值",
+    "en": "Minimum success threshold"
+   },
+   {
+    "key": "stop",
+    "zh": "停止阈值",
+    "en": "Stop threshold"
+   },
+   {
+    "key": "owner",
+    "zh": "现场责任人",
+    "en": "On-site owner"
+   },
+   {
+    "key": "human_alt",
+    "zh": "人工等价服务",
+    "en": "Human equivalent service"
+   },
+   {
+    "key": "deletion",
+    "zh": "数据删除证明",
+    "en": "Proof of data deletion"
+   },
+   {
+    "key": "review",
+    "zh": "复盘周期",
+    "en": "Review cycle"
+   }
+  ],
+  "cards": [
+   {
+    "id": "SC-01",
+    "name_zh": "轴上通勤助手",
+    "name_en": "Axis commuting assistant",
+    "loc_zh": "北三环缝合段",
+    "loc_en": "Third Ring stitching segment",
+    "baseline_zh": "改造前连续四周的过街等候时长分布与断面步行流量（同点位、同时段口径）；待试点前实测冻结（当前无实测基线，不填数值）",
+    "baseline_en": "Four weeks of pre-intervention crossing wait times and footway flows at the same points and hours; frozen from a measured baseline before the pilot; no value stated yet",
+    "window_zh": "首期 12 周；工作日早晚高峰各 2 小时 + 周末 1 个时段；样本为断面级聚合计数，无个体标识",
+    "window_en": "12 weeks; two peak hours on weekdays plus one weekend window; sample is section-level aggregate counts with no individual identifiers",
+    "success_zh": "过街等候时长中位数较基线改善且无安全事件；改善幅度阈值待试点前实测冻结（当前无实测基线，不填数值）",
+    "success_en": "Median crossing wait improves against baseline with zero safety incidents; the improvement threshold is frozen from a measured baseline before the pilot; no value stated yet",
+    "stop_zh": "任一安全事件、或建议与现场信号状态不一致累计达设定次数、或投诉未在一个工作日内响应——即红牌暂停并回退常规过街设施",
+    "stop_en": "Any safety incident, or advice inconsistent with the actual signal state reaching the set count, or a complaint unanswered within one working day — red card, revert to conventional crossing infrastructure",
+    "owner_zh": "运营方交通值守班组（角色，非机构指认）；红牌权同时归属属地社区代表",
+    "owner_en": "The operator's traffic watch team (a role, not a named body); community representatives hold an equal red-card right",
+    "human_alt_zh": "常规过街设施与原信号配时全程保留可用，不因试点降低服务",
+    "human_alt_en": "Conventional crossings and the original signal timing stay fully available throughout; the pilot never degrades the baseline service",
+    "deletion_zh": "聚合计数保留≤90天，到期自动删除；红牌或退役时立即清缓存并出具删除记录（时间、范围、执行人、核验人）",
+    "deletion_en": "Aggregate counts kept ≤90 days then auto-deleted; on red card or retirement the cache is cleared immediately and a deletion record is issued (time, scope, executor, verifier)",
+    "review_zh": "每 4 周一次复盘并公开纪要；红牌后须完成责任复核与受影响群体反馈方可转黄观察一周期",
+    "review_en": "Review every four weeks with published minutes; after a red card, accountability review and affected-group feedback must complete before a yellow observation period"
+   },
+   {
+    "id": "SC-09",
+    "name_zh": "智能园艺与生态监测（测试）",
+    "name_en": "Smart horticulture and ecological monitoring (test)",
+    "loc_zh": "众智园绿廊",
+    "loc_en": "Zhongzhiyuan green corridor",
+    "baseline_zh": "首季人工对照组：常规定时养护下的植被长势判读准确率与用水量；待试点前实测冻结（当前无实测基线，不填数值）",
+    "baseline_en": "A first-season human control group: recognition accuracy and water use under conventional scheduled maintenance; frozen from a measured baseline before the pilot; no value stated yet",
+    "window_zh": "一个完整生长季；样本为固定摄位植被影像与环境传感，不含人像；设同条件对照区段",
+    "window_en": "One full growing season; sample is fixed-position vegetation imagery and environmental sensing with no people in frame; a matched control section runs alongside",
+    "success_zh": "识别准确率与节水率同时优于人工对照组；两项阈值待试点前实测冻结（当前无实测基线，不填数值）",
+    "success_en": "Both recognition accuracy and water saving beat the human control group; both thresholds are frozen from a measured baseline before the pilot; no value stated yet",
+    "stop_zh": "任何危及植被或公众安全的误动作即红牌；连续两个考核周期未达标转黄牌",
+    "stop_en": "Any erroneous action endangering vegetation or the public triggers a red card; two consecutive periods below target trigger a yellow card",
+    "owner_zh": "绿化养护运营方 + 技术供应方双列名（角色）；养护班组持现场停止权",
+    "owner_en": "Landscape maintenance operator and technology supplier jointly named (roles); the maintenance crew holds on-site stop authority",
+    "human_alt_zh": "常规定时养护全程可回退，回退不需要技术方同意",
+    "human_alt_en": "Conventional scheduled maintenance can be reinstated at any time, and reinstatement does not require the supplier's consent",
+    "deletion_zh": "原始影像保留≤180天；退役时按既定规则删除并出具删除记录，评测结果与失败档案公开留存",
+    "deletion_en": "Raw imagery kept ≤180 days; on retirement it is deleted under the agreed rule with a deletion record issued, while evaluation results and the failure log remain public",
+    "review_zh": "每月巡检 + 每季度对照评测；失败记录逐条公开，供后续场景引用避坑",
+    "review_en": "Monthly inspection plus quarterly controlled evaluation; every failure is logged publicly so later scenarios can avoid the same trap"
+   },
+   {
+    "id": "SC-12",
+    "name_zh": "城市模型实测场",
+    "name_en": "Urban model ground",
+    "loc_zh": "众智园展示枢纽",
+    "loc_en": "Zhongzhiyuan exhibition hub",
+    "baseline_zh": "本包当前指标即基线：30 项已复算指标与 4 项待正式数据补齐的控制指标，口径见 metrics.json",
+    "baseline_en": "This package's current metrics are the baseline: 30 recomputed metrics and 4 control values pending official data, as declared in metrics.json",
+    "window_zh": "随版本 K 标滚动；每次官方数据到位触发一次整包重算与展示更新",
+    "window_en": "Rolls with each version K-marker; every arrival of official data triggers one whole-package recomputation and display update",
+    "success_zh": "展示数值与 metrics.json 逐位一致率 100%，且待补齐指标在展示层不出现数值——这是可立即执行的硬性口径，不需等试点",
+    "success_en": "Displayed values match metrics.json digit for digit at 100%, and pending metrics never appear as numbers in the display layer — an immediately enforceable rule that needs no pilot",
+    "stop_zh": "任一图层口径不一致即下架该图层并公示原因；构建期断言失败则该版本不予发布",
+    "stop_en": "Any layer whose values disagree is withdrawn with a published reason; if the build-time assertion fails, that version is not released",
+    "owner_zh": "展示运营方 + 数据口径委员会（角色）；开源仓库 issue 为公开申诉入口",
+    "owner_en": "Exhibition operator and a data-definition committee (roles); the public appeal route is an issue in the open-source repository",
+    "human_alt_zh": "静态图纸与印刷指标手册全程并存，断电断网不影响查阅",
+    "human_alt_en": "Static drawings and a printed metrics handbook are always available; loss of power or network does not affect access",
+    "deletion_zh": "仅使用公开数据集，不接入个人数据，因而无个人数据删除义务；展项撤展时归档留存",
+    "deletion_en": "Only public datasets are used and no personal data is ingested, so no personal-data deletion obligation arises; on withdrawal the exhibit is archived",
+    "review_zh": "每次版本 K 标更新后人工核对一次并留存一致性核查记录",
+    "review_en": "A human consistency check after every version K-marker update, with the check record retained"
+   }
+  ]
+ },
+ "personas": {
+  "note_zh": "六类画像×过道岔条件；可审查指标须试点后真实记录，当前无数值。",
+  "note_en": "Six personas × switch-admission conditions. Reviewable indicators are recorded after a pilot; no values are claimed now.",
+  "rows": [
+   {
+    "id": "PS-01",
+    "zh": "前沿研究员",
+    "en": "Frontier researcher",
+    "exclusion_zh": "算力与数据门槛、评测口径黑箱",
+    "exclusion_en": "Compute and data thresholds; opaque evaluation criteria",
+    "floor_zh": "公开评测口径与申诉复评通道",
+    "floor_en": "Published evaluation criteria and an appeal route",
+    "indicator_zh": "复评申请响应时长（试点后记录）",
+    "indicator_en": "Response time to re-evaluation requests (recorded after pilot)",
+    "alt_zh": "线下评审与人工复核",
+    "alt_en": "Offline review and human assessment"
+   },
+   {
+    "id": "PS-02",
+    "zh": "创业工程师与开发者",
+    "en": "Founder-engineer and developer",
+    "exclusion_zh": "场景清单信息不对称、准入流程繁复",
+    "exclusion_en": "Asymmetric information on the scenario list; heavy admission process",
+    "floor_zh": "清单公开+道岔评审标准公开",
+    "floor_en": "Public scenario list and published switch-review criteria",
+    "indicator_zh": "申请到答复时长（试点后记录）",
+    "indicator_en": "Application-to-response time (recorded after pilot)",
+    "alt_zh": "线下服务窗口与人工对接",
+    "alt_en": "Offline service counter and human liaison"
+   },
+   {
+    "id": "PS-03",
+    "zh": "AI产品运营与设计人才",
+    "en": "AI product and design talent",
+    "exclusion_zh": "场景试验田排期不透明、数据接口不开放",
+    "exclusion_en": "Opaque testbed scheduling; closed data interfaces",
+    "floor_zh": "场景开放清单与道岔排期公示",
+    "floor_en": "Published scenario list and switch scheduling",
+    "indicator_zh": "申请到进场时长（试点后记录）",
+    "indicator_en": "Application-to-access time (recorded after pilot)",
+    "alt_zh": "线下对接窗口与人工排期",
+    "alt_en": "Offline liaison desk and manual scheduling"
+   },
+   {
+    "id": "PS-04",
+    "zh": "高校学生",
+    "en": "University student",
+    "exclusion_zh": "设备与会员门槛、课业时段冲突",
+    "exclusion_en": "Device and membership thresholds; timetable clashes",
+    "floor_zh": "免费公共时段+无账号即可体验",
+    "floor_en": "Free public hours; no account required to take part",
+    "indicator_zh": "免费时段占比（试点后记录）",
+    "indicator_en": "Share of free opening hours (recorded after pilot)",
+    "alt_zh": "实体课程与线下集市",
+    "alt_en": "In-person courses and the physical market"
+   },
+   {
+    "id": "PS-05",
+    "zh": "社区居民（含老年群体）",
+    "en": "Resident, including older people",
+    "exclusion_zh": "必须扫码、语音过快、界面频繁变化",
+    "exclusion_en": "Mandatory QR entry; speech too fast; interfaces that change often",
+    "floor_zh": "纸质/人工同等入口，大字高对比，座椅遮荫连续",
+    "floor_en": "Equal paper and staffed entry; large high-contrast type; continuous seating and shade",
+    "indicator_zh": "非数字入口可用率（试点后记录）",
+    "indicator_en": "Availability of non-digital entry points (recorded after pilot)",
+    "alt_zh": "人工服务台与电话渠道",
+    "alt_en": "Staffed service desk and telephone channel"
+   },
+   {
+    "id": "PS-06",
+    "zh": "国际访问者与客座专家",
+    "en": "International visitor and visiting expert",
+    "exclusion_zh": "单语界面、支付与认证壁垒",
+    "exclusion_en": "Monolingual interfaces; payment and identity barriers",
+    "floor_zh": "双语导视+免注册基础服务",
+    "floor_en": "Bilingual wayfinding; basic services without registration",
+    "indicator_zh": "双语覆盖率（试点后记录）",
+    "indicator_en": "Bilingual coverage rate (recorded after pilot)",
+    "alt_zh": "双语人工导览",
+    "alt_en": "Bilingual staffed guiding"
+   }
+  ],
+  "cross_cutting_review_group": {
+   "zh": "残障使用者（贯穿各画像的核验群体）",
+   "en": "Disabled users (a review group cutting across every persona)",
+   "exclusion_zh": "坡道断点、错误导航、设备占据通行带",
+   "exclusion_en": "Ramp breaks; wrong navigation; equipment occupying the accessible route",
+   "floor_zh": "无障碍代表参与验收；错误即回退静态导视",
+   "floor_en": "Accessibility representatives join acceptance; on error, fall back to static wayfinding",
+   "indicator_zh": "连续通行率、问题关闭率（试点后记录）",
+   "indicator_en": "Continuity of accessible routes and issue-closure rate (recorded after pilot)",
+   "alt_zh": "人工伴行与纸质无障碍图",
+   "alt_en": "Staffed accompaniment and a printed accessibility map"
+  }
+ },
  "scenarios": [
   {
    "id": "SC-01",

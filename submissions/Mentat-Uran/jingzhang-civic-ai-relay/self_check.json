@@ -20,7 +20,7 @@
       "result": "pass",
       "severity": "major",
       "target": "geometry/land_use.geojson",
-      "message": "Nine polygons share cut lines, are non-overlapping, and cover the submitted boundary."
+      "message": "Twelve polygons share cut lines, are non-overlapping, and cover the submitted boundary."
     },
     {
       "check_id": "VISUAL_STATIC",
@@ -51,11 +51,39 @@
       "message": "No external imagery, fonts, trademarks or remote assets are redistributed."
     },
     {
+      "check_id": "PROTOCOL_SCHEMA",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/relay-receipt.schema.json",
+      "message": "Relay Receipt 0.3 is a valid Draft 2020-12 JSON Schema; its ten required execution objects map problem through rollback_retirement, and the SC-04 example validates against it."
+    },
+    {
+      "check_id": "MINIMUM_SLICE",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/assets/example-sc04-relay-receipt.json",
+      "message": "SC-04 contains four synthetic fixtures, six candidate acceptance criteria, four hard stops and five ordered rollback actions; every run result remains null/not_run, so this is not deployment or performance evidence."
+    },
+    {
+      "check_id": "ASSET_RIGHTS_LEDGER",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/asset-rights.json",
+      "message": "Ten asset classes state source, generation method, redistributed content and restrictions."
+    },
+    {
       "check_id": "PDF_VISUAL_QA",
       "result": "pass",
       "severity": "info",
       "target": "drawings/",
-      "message": "A3/A0 drawings are generated from the same figures and metrics and are scheduled for rendered-page inspection before submission."
+      "message": "All 28 A3 pages and 6 A0 boards across Chinese and English were rasterized and inspected through contact sheets plus original-resolution spot checks; no clipping, overlap or blank page was observed. This is visual preflight, not professional acceptance."
+    },
+    {
+      "check_id": "ACCESSIBILITY_PRECHECK",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Chinese and English visual/report pages were checked at 1440 px and 390 px: no page-level horizontal overflow, remote resources or console errors; skip links receive focus, mobile tables scroll, and selected text/background pairs measured at least 4.73:1. No real-user, assistive-technology or field test is claimed."
     },
     {
       "check_id": "OFFICIAL_CONTROLS_UNKNOWN",

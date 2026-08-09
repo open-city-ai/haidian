@@ -2,6 +2,7 @@
 title: "京张智脉：百年铁路动脉上的AI创新共同体"
 author_github: "Margin-del"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为历史与公共空间主轴，把众智园、北京AI原点社区和大钟寺组织为验证、转化、应用三核，中关村科技服务翼与小月河场景赋能翼双翼联动，形成一脉三核、双翼两环、多点场景的AI创新共同体。"
 tracks: ["civic-agent-governance", "ai-public-services", "jingzhang-heritage-narrative"]

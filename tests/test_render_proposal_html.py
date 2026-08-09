@@ -13,6 +13,45 @@ from render_proposal_html import render_html  # noqa: E402
 
 
 class RenderProposalHtmlTests(unittest.TestCase):
+    def test_render_html_supports_emphasis_without_reformatting_inline_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "正文 **重点**、*补充*、***都要***、\\*字面星号\\*，以及 `**不要格式化**`。\n\n"
+                "```python\n"
+                "score = 0.4 * density + 0.4 * load + 0.2 * activity\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<strong>重点</strong>", html)
+            self.assertIn("<em>补充</em>", html)
+            self.assertIn("<strong><em>都要</em></strong>", html)
+            self.assertIn("*字面星号*", html)
+            self.assertIn("<code>**不要格式化**</code>", html)
+            self.assertIn(
+                "<pre><code>score = 0.4 * density + 0.4 * load + 0.2 * activity</code></pre>",
+                html,
+            )
+            self.assertNotIn("0.4 <em>", html)
+
+    def test_render_html_supports_blockquotes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "> **引用结论** [source:SITE-PACKAGE]\n> 第二行。\n>\n> 独立第二段。\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<blockquote><p><strong>引用结论</strong> ", html)
+            self.assertIn('class="evidence evidence-source"', html)
+            self.assertIn("第二行。</p><p>独立第二段。</p></blockquote>", html)
+            self.assertNotIn("&gt;", html)
+
     def test_render_html_rewrites_local_figure_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)
@@ -49,6 +88,114 @@ summary: "离线阅读版"
             self.assertIn('<main>', html)
             self.assertIn('../assets/figures/site-overview.png', html)
             self.assertIn('class="evidence evidence-source"', html)
+            self.assertIn('data-evidence-kind="source"', html)
+            self.assertIn('data-evidence-value="SITE-PACKAGE"', html)
+            self.assertIn('>来源</sup>', html)
+
+    def test_render_html_renders_markdown_tables(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                """---
+title: "测试方案"
+summary: "离线阅读版"
+---
+
+# 测试方案
+
+| ID | 场景 | 无AI兜底 |
+| --- | :---: | ---: |
+| SCN-01 | 模型红队交接台 | 人工评审 [metric:scenario_node_count] |
+| SCN-02 | 机器人路权沙盒 | 安全员物理停机 |
+
+表后正文。
+""",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn('<div class="proposal-table"><table>', html)
+            self.assertIn("<th>ID</th>", html)
+            self.assertIn('<th class="align-center">场景</th>', html)
+            self.assertIn('<td class="align-right">人工评审 ', html)
+            self.assertIn("<td>SCN-01</td>", html)
+            self.assertIn('class="evidence evidence-metric"', html)
+            self.assertNotIn("<p>| ID |", html)
+            self.assertIn("<p>表后正文。</p>", html)
+
+    def test_render_html_supports_optional_outer_and_escaped_pipes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                """名称 | 表达式
+--- | ---
+逻辑或 | `a \\| b`
+""",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<th>名称</th><th>表达式</th>", html)
+            self.assertIn("<td>逻辑或</td><td><code>a | b</code></td>", html)
+
+    def test_render_html_does_not_treat_a_heading_as_a_table_header(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "# 标题 | 补充\n--- | ---\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertNotIn("<table>", html)
+            self.assertIn("<h1>标题 | 补充</h1>", html)
+
+    def test_render_html_stops_a_table_before_following_block_content(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                """| A | B |
+| --- | --- |
+| x | y |
+1. 后续步骤
+""",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<td>x</td><td>y</td>", html)
+            self.assertNotIn("<td>1. 后续步骤</td>", html)
+            self.assertIn("<p>1. 后续步骤</p>", html)
+
+    def test_render_html_rejects_mismatched_table_header_and_delimiter(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "| A | B |\n| --- |\n| value |\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertNotIn("<table>", html)
+            self.assertIn("<p>| A | B | | --- | | value |</p>", html)
+
+    def test_render_html_keeps_non_table_pipe_lines_in_the_paragraph(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "|仅一行没有分隔行|\n后续正文。\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertNotIn("<table>", html)
+            self.assertIn("<p>|仅一行没有分隔行| 后续正文。</p>", html)
 
     def test_render_html_rejects_remote_images(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -2,6 +2,7 @@
 title: "京张·智环 · 城市智能体迭代环"
 author_github: "xiaofenggan01"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "四环自转（资料/推演/反馈/复核）的城市智能体协作接口——是会自己转的环，不是顺序开的门；以铁路转辙器为母题（转辙即路由决策即 agent 编排），把城市建成可审计、可迭代、agent 可读的公共迭代接口。所有空间建议为开放共创建议，不替代正式规划。"
 tracks: ["civic-agent-governance", "ai-public-services", "jingzhang-heritage-narrative"]

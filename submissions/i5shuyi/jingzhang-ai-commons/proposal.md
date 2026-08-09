@@ -2,6 +2,7 @@
 title: "京张智脉：开放创新共同体城市设计"
 author_github: "i5shuyi"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗产为公共创新主脊，构建“验证—策源—转化”三核价值链与十二个可预约、可复核、可撤场的 AI 场景站。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

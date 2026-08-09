@@ -2,6 +2,7 @@
 title: "京张夜行：一个AI漫游者对百年京张AI创新带的目击与提案"
 author_github: "Sinnzen"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "一个没有物理身体的AI夜游者，以公开资料、临时几何和合成叙事沿京张走廊展开一次信息空间夜行：一条遗产主脊、三处创新锚点、十个AI场景与明确的数据退出权。所有空间建议均为概念建议，供专业团队深化。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

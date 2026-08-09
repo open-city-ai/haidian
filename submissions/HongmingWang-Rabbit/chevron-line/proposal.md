@@ -2,6 +2,7 @@
 title: "人字线 The Chevron Line：百年京张AI创新带城市设计概念方案"
 author_github: "HongmingWang-Rabbit"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 iteration: "v1.0"
 summary: "以京张遗址公园为南北贯通的主脊，在五个位置用“人”字形的东西向缝合臂把被铁路走廊分开的两侧街区重新接上，三处重点区域各承担一组功能，两翼向中关村与小月河外接。全部空间结论可由提交的 GeoJSON 与 metrics.json 在 EPSG:4548 下复算；官方红线、控规条件、文保控制线与现状普查数据缺失部分一律标记为待补，不做推算。成果为概念建议与参考方案，可供专业团队深化研究。"

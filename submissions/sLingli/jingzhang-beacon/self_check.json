@@ -1,0 +1,72 @@
+{
+  "schema_version": "0.1.0",
+  "generated_at": "2026-08-09T03:19:36Z",
+  "generator": "scripts/self_check_submission.py --json; result persisted by contributor after full four-gate run",
+  "package_type": "professional_design_package",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "review_status": "formal-review-ready",
+  "gates": {
+    "deterministic_validation": true,
+    "spatial_review": true,
+    "visual_packaging_check": true,
+    "professional_evidence_review": true
+  },
+  "spatial_issue_ids": [
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL"
+  ],
+  "notes": "Spatial KEY_AREA_PROVISIONAL findings are minor and disclosed; organizer data gaps do not block content scoring. Geometry remains provisional_constraint until official polygons are supplied.",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "info",
+      "target": "manifest.json",
+      "message": "Required CI validation passed; provisional boundary warning is disclosed and does not block content scoring."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present and clearly labeled; replace with official redline before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional and disclosed; replace with official polygons before professional scoring."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/land_use.geojson",
+      "message": "Topology, coverage, containment, and metric recalculation passed spatial review."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use polygons fully cover the submitted boundary without gaps or overlaps."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML passed required markers and metric consistency checks."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "Standards, design depth items, geometry, metrics, sources, and assumptions are referenced in the proposal."
+    }
+  ]
+}

@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>Jingzhang Open Belt | Urban Design Atlas</title>
+<style>
+:root{--paper:#f3f0e7;--paper-deep:#e9e4d8;--ink:#19231f;--muted:#6f756f;--line:#c8c2b5;--red:#d3523e;--green:#3e6759;--gold:#b98d38;--header:58px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden;background:var(--paper)}
+body{margin:0;overflow-x:hidden;background:var(--paper);color:var(--ink);font-family:"Avenir Next","Helvetica Neue",Arial,sans-serif;line-height:1.5;text-rendering:optimizeLegibility}
+img{display:block;max-width:100%}
+a{color:inherit}
+.skip{position:fixed;left:14px;top:-80px;z-index:100;padding:10px 14px;background:var(--ink);color:white;text-decoration:none}
+.skip:focus{top:12px}
+.sitebar{position:sticky;top:0;z-index:40;height:var(--header);border-bottom:1px solid rgba(25,35,31,.18);background:rgba(243,240,231,.94);backdrop-filter:blur(14px);display:flex;align-items:center;padding:0 clamp(18px,3vw,46px);gap:32px}
+.brand{display:flex;align-items:baseline;gap:11px;text-decoration:none;font-weight:800;letter-spacing:.08em;white-space:nowrap}
+.brand small{font-size:9px;font-weight:700;color:var(--red);letter-spacing:.18em}
+.sitebar nav{margin-left:auto;display:flex;gap:24px}
+.sitebar nav a,.lang{font-size:12px;text-decoration:none;color:var(--muted);padding:18px 0 15px;border-bottom:2px solid transparent}
+.sitebar nav a:hover,.sitebar nav a:focus-visible,.lang:hover,.lang:focus-visible{color:var(--ink);border-color:var(--red)}
+.lang{font-weight:800;color:var(--ink)}
+.hero{min-height:calc(100svh - var(--header));border-bottom:1px solid var(--line)}
+.hero-head{min-height:192px;padding:30px clamp(18px,4vw,60px) 26px;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:36px}
+.kicker,.sheet-no{margin:0 0 9px;color:var(--red);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.hero h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(52px,5.7vw,92px);font-weight:700;line-height:.92;letter-spacing:-.055em}
+.hero-line{max-width:760px;margin:18px 0 0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(18px,1.4vw,23px);line-height:1.48}
+.actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px;align-self:end}
+.actions a{min-height:40px;padding:10px 15px;border:1px solid var(--ink);font-size:12px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;transition:background .2s,color .2s}
+.actions a:first-child{background:var(--ink);color:var(--paper)}
+.actions a:hover,.actions a:focus-visible{background:var(--red);border-color:var(--red);color:white}
+.hero-media{height:clamp(520px,calc(100svh - 250px),760px);display:grid;grid-template-columns:minmax(0,2.35fr) minmax(300px,1fr);border-top:1px solid var(--line);background:var(--paper-deep)}
+.hero-media figure,.sheet,.scene,.paired figure{position:relative;min-width:0;margin:0;overflow:hidden}
+.hero-plan{border-right:1px solid var(--line);display:grid;grid-template-rows:minmax(0,1fr) auto}
+.hero-plan img{width:100%;height:100%;object-fit:contain;background:var(--paper)}
+.hero-life{display:grid;grid-template-rows:minmax(0,1fr) auto;background:var(--ink)}
+.hero-life img{width:100%;height:100%;object-fit:cover;object-position:55% center;filter:saturate(.88)}
+figcaption{min-height:36px;padding:9px 12px;border-top:1px solid var(--line);background:var(--paper);color:var(--muted);font-size:10px;letter-spacing:.02em}
+.hero-life figcaption{border-color:#3b4540;background:var(--ink);color:#e7e4dc}
+.hero-plan figcaption span{margin-right:10px;color:var(--red);font-weight:800}
+.atlas{overflow:hidden}
+.atlas-block{padding:clamp(70px,8vw,132px) clamp(14px,3vw,46px);border-bottom:1px solid var(--line)}
+.atlas-block.tone{background:#ebe7dc}
+.section-head{max-width:1480px;margin:0 auto 32px;display:grid;grid-template-columns:170px minmax(0,800px);gap:34px;align-items:start}
+.sheet-no{padding-top:9px;border-top:2px solid var(--red)}
+.section-head h2{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,4.3vw,66px);font-weight:700;line-height:1.01;letter-spacing:-.045em}
+.section-head p:last-child{margin:14px 0 0;max-width:720px;color:var(--muted);font-size:15px}
+.sheet,.paired,.scene-row{max-width:1500px;margin-inline:auto}
+.sheet{border:1px solid var(--line);background:var(--paper)}
+.sheet img{width:100%;height:auto;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.sheet:hover img,.paired figure:hover img,.scene:hover img{transform:scale(1.006)}
+.scene-row{display:grid;grid-template-columns:1.04fr .92fr 1.04fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:22px}
+.scene{display:grid;grid-template-rows:minmax(0,1fr) auto;background:var(--paper)}
+.scene img{width:100%;height:clamp(250px,28vw,430px);object-fit:cover;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.scene:nth-child(2) img{object-position:58% center}
+.scene-note{max-width:1500px;margin:10px auto 0;color:var(--muted);font-size:10px}
+.paired{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;border:1px solid var(--line);background:var(--line)}
+.paired figure{display:grid;grid-template-rows:minmax(0,1fr) auto;background:var(--paper)}
+.paired img{width:100%;height:auto;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+.review-index{padding:62px clamp(14px,3vw,46px) 72px;background:var(--ink);color:#ecede8}
+.review-index details{max-width:1500px;margin:auto;border-top:1px solid #6d756f;border-bottom:1px solid #6d756f}
+.review-index summary{cursor:pointer;padding:22px 0;list-style:none;font-family:Georgia,"Times New Roman",serif;font-size:clamp(27px,3vw,42px)}
+.review-index summary::-webkit-details-marker{display:none}
+.review-index summary::after{content:"+";float:right;color:var(--red);font-family:Arial,sans-serif}
+.review-index details[open] summary::after{content:"−"}
+.review-index summary span{margin-left:14px;font-family:Arial,sans-serif;font-size:9px;letter-spacing:.18em;color:#99a09b}
+.index-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);gap:56px;padding:8px 0 28px}
+.index-list{margin:0}
+.index-list div{display:grid;grid-template-columns:86px minmax(0,1fr);gap:18px;padding:12px 0;border-top:1px solid #3e4943}
+.index-list dt{color:#aeb5af;font-size:11px}
+.index-list dd{margin:0;font-size:13px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #6d756f;border-bottom:1px solid #6d756f}
+.metric{padding:14px 10px 14px 0;border-right:1px solid #3e4943}
+.metric:last-child{padding-left:12px;border-right:0}
+.metric strong{display:block;font-family:Georgia,"Times New Roman",serif;font-size:clamp(23px,2vw,34px);font-weight:500;color:white;white-space:nowrap}
+.metric span{display:block;margin-top:4px;color:#aeb5af;font-size:10px}
+.check{margin:18px 0 0;color:#c8cec9;font-size:12px}
+.filelinks{display:flex;flex-wrap:wrap;gap:10px 18px;margin-top:18px}
+.filelinks a{font-size:11px;color:#f0eee8;text-underline-offset:4px}
+footer{padding:28px clamp(18px,3vw,46px);background:#101713;color:#afb6b1;display:flex;justify-content:space-between;gap:22px;font-size:10px}
+footer strong{color:#f0eee8;letter-spacing:.08em}
+@media(max-width:980px){
+  .sitebar nav{display:none}
+  .hero-head{grid-template-columns:1fr;align-items:start;gap:22px}
+  .actions{justify-content:flex-start}
+  .hero-media{height:auto;grid-template-columns:1fr}
+  .hero-plan{border-right:0;border-bottom:1px solid var(--line)}
+  .hero-plan img{aspect-ratio:16/9}
+  .hero-life img{height:auto;aspect-ratio:16/9}
+  .section-head{grid-template-columns:120px minmax(0,1fr)}
+  .index-grid{grid-template-columns:1fr;gap:30px}
+}
+@media(max-width:650px){
+  :root{--header:54px}
+  .sitebar{gap:14px;padding-inline:14px}
+  .brand{font-size:12px}.brand small{display:none}.lang{margin-left:auto}
+  .hero-head{min-height:0;padding:24px 14px 22px;gap:20px}
+  .hero h1{font-size:44px;line-height:.96}
+  .hero-line{margin-top:12px;font-size:17px}
+  .actions{gap:7px}.actions a{flex:1 1 auto;padding-inline:10px}
+  .hero-plan img,.hero-life img{aspect-ratio:16/9}
+  .atlas-block{padding:58px 12px}
+  .section-head{grid-template-columns:1fr;gap:7px;margin-bottom:20px}
+  .sheet-no{width:92px;margin-bottom:4px}
+  .section-head h2{font-size:37px}.section-head p:last-child{font-size:14px;margin-top:10px}
+  .scene-row,.paired{grid-template-columns:1fr}
+  .scene img{height:auto;aspect-ratio:16/10}
+  .review-index{padding:44px 14px 58px}
+  .review-index summary span{display:none}
+  .index-list div{grid-template-columns:72px minmax(0,1fr);gap:12px}
+  .metrics{grid-template-columns:1fr}.metric,.metric:last-child{padding:12px 0;border-right:0;border-bottom:1px solid #3e4943}.metric:last-child{border-bottom:0}
+  footer{display:block}footer span{display:block;margin-top:7px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sheet img,.paired img,.scene img{transition:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to the atlas</a>
+<header class="sitebar">
+  <a class="brand" href="#top"><span>JZ OPEN</span><small>RAILWAY COMMONS</small></a>
+  <nav aria-label="Atlas navigation"><a href="#atlas">Plan</a><a href="#courts">Courts</a><a href="#route">Route</a><a href="#build">Build</a><a href="#review">Checks</a></nav>
+  <a class="lang" href="index.html" lang="zh-CN">中文</a>
+</header>
+<main id="main">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-head">
+      <div><p class="kicker">Concept proposal 2026　Urban design atlas</p><h1 id="hero-title">Jingzhang Open Belt</h1><p class="hero-line">Nine kilometres of former railway link three parts of the city to places people can use every day.</p></div>
+      <div class="actions" aria-label="Downloads and reading"><a href="../report/proposal.en.html">Full proposal</a><a href="../drawings/a3-booklet.en.pdf" download>A3 booklet PDF</a><a href="../drawings/a0-boards.en.pdf" download>A0 boards PDF</a></div>
+    </div>
+    <div class="hero-media">
+      <figure class="hero-plan"><img src="../assets/figures/site-overview.en.png" alt="Overall map of the north, centre and south sections of Jingzhang Heritage Park" fetchpriority="high"><figcaption><span>01</span>Overall map and spatial structure</figcaption></figure>
+      <figure class="hero-life"><img src="../assets/scenes/ai-origin-service-court.jpg" alt="Concept scene of a staffed service court under mature trees" fetchpriority="high"><figcaption>AI Origin service court　concept scene</figcaption></figure>
+    </div>
+  </section>
+
+  <div class="atlas" id="atlas">
+    <section class="atlas-block reveal" aria-labelledby="scale-title">
+      <div class="section-head"><p class="sheet-no">02　SCALE</p><div><h2 id="scale-title">From nine kilometres to one courtyard</h2><p>Read the full corridor first, then see how its three parts meet blocks and crossings.</p></div></div>
+      <figure class="sheet"><img src="../assets/figures/land-use-structure.en.png" alt="Land use at corridor, neighbourhood and courtyard scales"><figcaption>Three scopes　land use and building context</figcaption></figure>
+    </section>
+
+    <section class="atlas-block tone reveal" id="courts" aria-labelledby="courts-title">
+      <div class="section-head"><p class="sheet-no">03　COURTS</p><div><h2 id="courts-title">Three courts at the same scale</h2><p>Entrances, shade, rainwater, test edges and staffed positions all appear in plan and section.</p></div></div>
+      <figure class="sheet"><img src="../assets/figures/key-areas.en.png" alt="Plans and sections for the Zhongzhiyuan, AI Origin and Dazhongsi key areas"><figcaption>Key areas　Zhongzhiyuan test court　AI Origin service court　Dazhongsi exchange court</figcaption></figure>
+      <div class="scene-row" aria-label="Three concept scenes">
+        <figure class="scene"><img src="../assets/scenes/zhongzhiyuan-test-court.jpg" alt="Concept scene of bounded low-speed testing at Zhongzhiyuan"><figcaption>Zhongzhiyuan　low-speed testing</figcaption></figure>
+        <figure class="scene"><img src="../assets/scenes/xiaoyuehe-crossing.jpg" alt="Concept scene of the Xiaoyuehe walking crossing"><figcaption>Xiaoyuehe　walking crossing</figcaption></figure>
+        <figure class="scene"><img src="../assets/scenes/dazhongsi-evening-court.jpg" alt="Concept scene of evening use at Dazhongsi"><figcaption>Dazhongsi　evening exchange</figcaption></figure>
+      </div>
+      <p class="scene-note">The four concept scenes show use and scale only; they are not records of existing conditions.</p>
+    </section>
+
+    <section class="atlas-block reveal" id="route" aria-labelledby="route-title">
+      <div class="section-head"><p class="sheet-no">04　ROUTE</p><div><h2 id="route-title">Make the route work first</h2><p>Movement, rail, water and six sections share one drawing, so each break can be checked on the ground.</p></div></div>
+      <figure class="sheet"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Nine-kilometre movement route, rail interfaces, blue-green public space and six sections"><figcaption>Walking and cycling line　rail interfaces　blue-green public space</figcaption></figure>
+    </section>
+
+    <section class="atlas-block tone reveal" aria-labelledby="life-title">
+      <div class="section-head"><p class="sheet-no">05–06　DAILY LIFE</p><div><h2 id="life-title">Who arrives where</h2><p>Universities, communities and operators each have an entry point, while service, walking and testing occupy different hours.</p></div></div>
+      <div class="paired">
+        <figure><img src="../assets/figures/ecosystem-space.en.png" alt="Spatial relationships among universities, communities, public agencies and operators"><figcaption>05　Research and public service</figcaption></figure>
+        <figure><img src="../assets/figures/scenario-operations.en.png" alt="AI scenarios and staffed handovers from morning to night"><figcaption>06　AI scenarios across one day</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="atlas-block reveal" id="build" aria-labelledby="build-title">
+      <div class="section-head"><p class="sheet-no">07–08　BUILD</p><div><h2 id="build-title">Build and repair one piece at a time</h2><p>Canopies, seats, rain gardens and service desks begin on short sections, then join into the full line after another measure.</p></div></div>
+      <div class="paired">
+        <figure><img src="../assets/figures/components-phasing.en.png" alt="Eight public-space components designed for individual installation and repair"><figcaption>07　Eight public components</figcaption></figure>
+        <figure><img src="../assets/figures/phasing-strategy.en.png" alt="Nine renewal projects arranged across ninety days, one year and three years"><figcaption>08　Projects and phasing</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="atlas-block tone reveal" aria-labelledby="evidence-title">
+      <div class="section-head"><p class="sheet-no">09–10　EVIDENCE</p><div><h2 id="evidence-title">Keep the numbers on the drawing and the mark on the route</h2><p>Working areas use one boundary, while the railway rivet and stitch appear on signs, canvas and paper.</p></div></div>
+      <div class="paired">
+        <figure><img src="../assets/figures/metrics-evidence.en.png" alt="Working site area, green-space ratio and public-space ratio"><figcaption>09　Metrics and evidence limits</figcaption></figure>
+        <figure><img src="../assets/figures/identity-system.en.png" alt="Jingzhang Open Belt mark, colours and site applications"><figcaption>10　Identity along the line</figcaption></figure>
+      </div>
+    </section>
+  </div>
+</main>
+
+<section class="review-index" id="review" aria-labelledby="review-title">
+  <details open>
+    <summary id="review-title">Drawing index and checks<span>INDEX &amp; CHECKS</span></summary>
+    <div class="index-grid">
+      <dl class="index-list">
+        <div><dt>Space</dt><dd>overall map　three scopes　key areas　land use　buildings</dd></div>
+        <div><dt>Systems</dt><dd>movement　rail　blue-green　public space　projects</dd></div>
+        <div><dt>Use</dt><dd>AI scenarios　metrics　task coverage</dd></div>
+        <div><dt>Review</dt><dd>self-check　sources　assumptions</dd></div>
+      </dl>
+      <div>
+        <div class="metrics" aria-label="Core metrics">
+          <div class="metric" data-metric="site_area_sqm" data-value="11412603.01"><strong>11.413 km²</strong><span>working site area</span></div>
+          <div class="metric" data-metric="green_ratio" data-value="0.226745"><strong>22.67%</strong><span>working green ratio</span></div>
+          <div class="metric" data-metric="public_space_ratio" data-value="0.044027"><strong>4.40%</strong><span>working public-space ratio</span></div>
+        </div>
+        <p class="check">The package uses a provisional boundary and will be recalculated when statutory controls arrive.</p>
+        <div class="filelinks"><a href="../self_check.json">Self-check file</a><a href="../sources.json">Sources</a><a href="../assumptions.json">Assumptions</a><a href="../metrics.json">Metrics file</a></div>
+      </div>
+    </div>
+  </details>
+</section>
+<footer><strong>JINGZHANG OPEN BELT　CONCEPT PROPOSAL</strong><span>Original work CC BY 4.0　OSM context ODbL 1.0　Concept scenes do not represent existing or approved conditions</span></footer>
+</body>
+</html>

@@ -2,6 +2,7 @@
 title: "智脉京张——百年铁路文脉的AI创新传输带城市设计"
 author_github: "xuhong992"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路文脉为文化主轴，提出「智脉京张」概念：一带三核、多点场景、蓝绿慢行复合环；面向AI全栈自主创新体系、世界级创新生态、AI+场景赋能、智能化活力城市与全球AI治理话语权五大功能，覆盖众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业集聚区三处重点区域的formal城市设计。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "jingzhang-heritage-narrative"]

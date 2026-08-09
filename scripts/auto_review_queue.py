@@ -20,8 +20,11 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from generate_submissions_data import package_sha256
+
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
+CONFLICT_MARKER = "<!-- haidian-auto-review-conflict:{head_sha} -->"
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
@@ -54,19 +57,31 @@ def gh_json(repo: str, args: list[str], *, cwd: Path) -> Any:
         raise WorkerError(f"invalid JSON from gh {' '.join(args)}") from exc
 
 
-def check_conclusions(meta: dict[str, Any]) -> list[str]:
-    return [
-        str(item.get("conclusion") or "")
-        for item in meta.get("statusCheckRollup", [])
+def latest_validation_check(meta: dict[str, Any]) -> dict[str, Any] | None:
+    checks = [
+        (index, item)
+        for index, item in enumerate(meta.get("statusCheckRollup", []))
         if item.get("name") == "submission-validation"
     ]
+    if not checks:
+        return None
+    return max(
+        checks,
+        key=lambda pair: (
+            str(pair[1].get("startedAt") or pair[1].get("completedAt") or ""),
+            pair[0],
+        ),
+    )[1]
 
 
 def ci_state(meta: dict[str, Any]) -> str:
-    conclusions = check_conclusions(meta)
-    if any(item == "FAILURE" for item in conclusions):
+    check = latest_validation_check(meta)
+    if check is None or check.get("status") not in {None, "COMPLETED"}:
+        return "pending"
+    conclusion = str(check.get("conclusion") or "")
+    if conclusion in {"FAILURE", "CANCELLED", "TIMED_OUT", "ACTION_REQUIRED"}:
         return "failure"
-    if any(item == PASS for item in conclusions):
+    if conclusion == PASS:
         return "success"
     return "pending"
 
@@ -109,7 +124,13 @@ def decide(review: dict[str, Any], decision: dict[str, Any], threshold: float) -
 def pr_meta(repo: str, number: int, cwd: Path) -> dict[str, Any]:
     return gh_json(
         repo,
-        ["pr", "view", str(number), "--json", "number,author,headRefOid,state,isDraft,statusCheckRollup,labels"],
+        [
+            "pr",
+            "view",
+            str(number),
+            "--json",
+            "number,author,headRefOid,state,isDraft,mergeable,statusCheckRollup,labels",
+        ],
         cwd=cwd,
     )
 
@@ -132,6 +153,63 @@ def label_args(remove: list[str], add: list[str]) -> list[str]:
     return args
 
 
+def apply_conflict_hold(repo: str, number: int, head_sha: str, cwd: Path) -> None:
+    live = pr_meta(repo, number, cwd)
+    assert_live(live, head_sha, require_success=True)
+    if live.get("mergeable") != "CONFLICTING":
+        raise WorkerError("PR is no longer conflicting")
+    body = (
+        f"{CONFLICT_MARKER.format(head_sha=head_sha)}\n"
+        f"Exact head `{head_sha}` passed required CI but cannot enter paid review because it does not merge "
+        "cleanly with the current base branch. Please update/rebase the branch and let trusted validation "
+        "finish on the new head; the new exact head will then be queued again. No paid AI review was called."
+    )
+    run(["gh", "pr", "comment", str(number), "--repo", repo, "--body", body], cwd=cwd)
+    run(
+        [
+            "gh",
+            "pr",
+            "edit",
+            str(number),
+            "--repo",
+            repo,
+            *label_args(["review/queued"], ["review/changes-requested"]),
+        ],
+        cwd=cwd,
+    )
+
+
+def load_cached_review(
+    audit_dir: Path,
+    submission_dir: str,
+    checkout_root: Path,
+    threshold: float,
+) -> tuple[dict[str, Any], dict[str, Any], Decision] | None:
+    try:
+        review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
+        decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
+        comment = (audit_dir / "pr-comment.md").read_text(encoding="utf-8")
+    except (OSError, json.JSONDecodeError):
+        return None
+    if not comment.strip():
+        return None
+    if review.get("submission_dir") != submission_dir or decision.get("submission_dir") != submission_dir:
+        return None
+    if decision.get("dry_run") is not False or decision.get("model_output_schema_valid") is not True:
+        return None
+    try:
+        expected_hash = package_sha256(checkout_root / submission_dir)
+    except SystemExit:
+        return None
+    if decision.get("reviewed_package_sha256") != expected_hash:
+        return None
+    try:
+        outcome = decide(review, decision, threshold)
+    except WorkerError:
+        return None
+    return review, decision, outcome
+
+
 def apply_review(
     repo: str,
     number: int,
@@ -142,9 +220,12 @@ def apply_review(
     *,
     admin_merge: bool,
 ) -> None:
-    assert_live(pr_meta(repo, number, cwd), head_sha, require_success=True)
+    live = pr_meta(repo, number, cwd)
+    assert_live(live, head_sha, require_success=True)
     marker = REVIEW_MARKER.format(head_sha=head_sha)
     if outcome.action == "accept":
+        if live.get("mergeable") == "CONFLICTING":
+            raise WorkerError("PR became conflicting before merge")
         body = (
             f"{marker}\nMaintainer intake decision: Review Agent score {outcome.score:g}/100. "
             "Mandatory rejection and all four local gates passed. Accepted for repository intake only; "
@@ -186,6 +267,8 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
         return {"number": number, "result": "skipped-draft"}
     if state != "success":
         return {"number": number, "head_sha": head_sha, "result": f"skipped-ci-{state}"}
+    if meta.get("mergeable") == "CONFLICTING":
+        return {"number": number, "head_sha": head_sha, "result": "skipped-conflicting"}
 
     paths_text = run(
         ["gh", "pr", "diff", str(number), "--repo", args.repo, "--name-only"],
@@ -204,33 +287,39 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
         checked = run(["git", "rev-parse", "HEAD"], cwd=worktree).stdout.strip()
         if checked != head_sha:
             raise WorkerError("fetched worktree SHA does not match live PR head")
-        command = [
-            sys.executable,
-            str(repo_root / "scripts" / "ai_review_submission.py"),
-            submission_dir,
-            "--repo-root",
-            str(worktree),
-            "--pr-author",
-            author,
-            "--out",
-            str(audit_dir),
-            "--model",
-            args.model,
-            "--reasoning-effort",
-            args.reasoning_effort,
-            "--timeout",
-            str(args.timeout),
-            "--retries",
-            str(args.retries),
-            "--max-images",
-            str(args.max_images),
-            "--comment",
-            "--json",
-        ]
-        run(command, cwd=worktree)
-        review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
-        ai_decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
-        outcome = decide(review, ai_decision, args.threshold)
+        cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold)
+        if cached is None:
+            command = [
+                sys.executable,
+                str(repo_root / "scripts" / "ai_review_submission.py"),
+                submission_dir,
+                "--repo-root",
+                str(worktree),
+                "--pr-author",
+                author,
+                "--out",
+                str(audit_dir),
+                "--model",
+                args.model,
+                "--reasoning-effort",
+                args.reasoning_effort,
+                "--timeout",
+                str(args.timeout),
+                "--retries",
+                str(args.retries),
+                "--max-images",
+                str(args.max_images),
+                "--comment",
+                "--json",
+            ]
+            run(command, cwd=worktree)
+            review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
+            ai_decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
+            outcome = decide(review, ai_decision, args.threshold)
+            reused_audit = False
+        else:
+            review, ai_decision, outcome = cached
+            reused_audit = True
         result = {
             "number": number,
             "head_sha": head_sha,
@@ -239,6 +328,7 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
             "result": outcome.action,
             "reason": outcome.reason,
             "package_sha256": ai_decision.get("reviewed_package_sha256"),
+            "reused_audit": reused_audit,
         }
         if args.apply:
             with GITHUB_WRITE_LOCK:
@@ -312,12 +402,41 @@ def main() -> int:
             "--limit",
             "1000",
             "--json",
-            "number,author,headRefOid,state,isDraft,statusCheckRollup,labels",
+            "number,author,headRefOid,state,isDraft,mergeable,statusCheckRollup,labels",
         ],
         cwd=repo_root,
     )
-    selected = sorted(candidates, key=lambda item: int(item["number"]))[: args.limit]
+    selected = []
     results = []
+    for candidate in sorted(candidates, key=lambda item: int(item["number"])):
+        if len(selected) >= args.limit:
+            break
+        number = int(candidate["number"])
+        try:
+            live = pr_meta(args.repo, number, repo_root)
+        except Exception as exc:
+            results.append({"number": number, "result": "error", "error": str(exc)})
+            continue
+        state = ci_state(live)
+        if live.get("isDraft") or live.get("state") != "OPEN" or state != "success":
+            results.append({"number": number, "head_sha": live.get("headRefOid"), "result": f"skipped-ci-{state}"})
+            continue
+        if live.get("mergeable") == "CONFLICTING":
+            try:
+                if args.apply:
+                    apply_conflict_hold(args.repo, number, str(live["headRefOid"]), repo_root)
+            except Exception as exc:
+                results.append({"number": number, "result": "error", "error": str(exc)})
+                continue
+            results.append(
+                {
+                    "number": number,
+                    "head_sha": live.get("headRefOid"),
+                    "result": "changes-requested-conflict" if args.apply else "skipped-conflicting",
+                }
+            )
+            continue
+        selected.append(live)
     with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
         futures = {executor.submit(process_pr, args, meta, repo_root): meta for meta in selected}
         for future in as_completed(futures):

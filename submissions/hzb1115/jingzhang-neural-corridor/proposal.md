@@ -2,6 +2,7 @@
 title: "智脉·京张 The Neural Corridor——百年京张AI创新带开源共创城市设计方案"
 author_github: "hzb1115"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路遗址绿廊为『城市神经主轴』,把三区两翼组织为一条可复算的『智脉』:绿廊缝合、场景赋能、开源运营,形成从众智园到西直门的连续AI生活体验带与全球AI朝圣地概念方案。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "ai-traffic-walkability"]

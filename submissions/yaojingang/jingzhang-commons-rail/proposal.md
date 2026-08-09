@@ -2,6 +2,7 @@
 title: "京张共智轨：面向开源 AI 城市共同体的可验证更新框架"
 author_github: "yaojingang"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路公共记忆为线索，把开源协作、产业测试和城市体验组织为可复算、可追溯、可由专业团队继续深化的城市更新参考方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

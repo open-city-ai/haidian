@@ -2,6 +2,7 @@
 title: "百年京张记忆长廊：一廊九站·众星托举——技术走向人间的百年（可行性方案）"
 author_github: "gymaira1990-jpg"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以国家五年规划与关键历史节点为骨架，把京张铁路遗址公园及两侧片区组织为一条'技术走向人间'的百年记忆长廊。方案以「记忆循环」（文化是城市发展循环引擎）与「技术走向人间的百年」（1909打破空间→1994打破信息→2026打破能力，技术普惠每一个人）为灵魂，展开一廊九站·众星托举的空间骨架、集章护照·星火开放平台·城市记忆库的产品与数据架构、三线五群·日夜间体验体系、以及概念测算的收益与效益，达到可行性方案级别，供专业团队深化。"
 tracks: ["jingzhang-heritage-narrative", "youth-friendly-public-space", "civic-agent-governance"]

@@ -13,7 +13,7 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "low",
       "assumptions": [
         "The submitted boundary is an explicitly provisional geometry. Its calculated area is a working value for intake and design comparison, not a precise official scoring area."
       ]
@@ -28,6 +28,20 @@
       "formula": "sum(polygon_area(building_footprints))",
       "confidence": "medium",
       "assumptions": []
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "value": 0.027233,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "This ratio is calculated from the submitted provisional boundary and conceptual building footprints; it is not a statutory building coverage ratio."
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -75,6 +89,161 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "land_use_polygon_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(non-overlapping design-proposal land-use polygons covering the provisional site)",
+      "confidence": "medium",
+      "assumptions": [
+        "The eight polygons are a provisional design partition using current land-use enum codes; they are not statutory zoning or approved controls."
+      ]
+    },
+    "building_unit_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features where layer=BUILDING_FOOTPRINT)",
+      "confidence": "medium",
+      "assumptions": [
+        "The nine units are a conceptual subdivision of the unchanged submitted footprint; they are not an existing-building inventory, approved building count or development capacity."
+      ]
+    },
+    "green_segment_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(features where layer=GREEN_SPACE)",
+      "confidence": "medium",
+      "assumptions": [
+        "The five connected segments preserve the prior conceptual green-space union and do not prove existing vegetation, ecological status or statutory green-space supply."
+      ]
+    },
+    "public_space_polygon_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features where layer=PUBLIC_SPACE)",
+      "confidence": "medium",
+      "assumptions": [
+        "The three public rooms preserve the prior conceptual public-space union; public access, rights, fire and operations remain to be verified."
+      ]
+    },
+    "public_scenario_node_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "visual/assets/scenario-operation-matrix.json"
+      ],
+      "formula": "count(features where layer=SCENARIO_NODE)",
+      "confidence": "medium",
+      "assumptions": [
+        "Nodes are conceptual anchors for the 14 scenario rows; they do not represent deployed equipment, approved sites or observed facilities."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(features where layer=PHASE)",
+      "confidence": "medium",
+      "assumptions": [
+        "The three bands are conditional design gates, not an approved construction schedule, investment plan or delivery commitment."
+      ]
+    },
+    "constraint_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(features where status=data_gap)",
+      "confidence": "high",
+      "assumptions": [
+        "These six objects register missing professional inputs; they are not official constraints, existing conditions or legal controls."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario-operation-matrix.json"
+      ],
+      "formula": "count(rows)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_case_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/industry-validation-cases.json"
+      ],
+      "formula": "count(cases)",
+      "confidence": "high",
+      "assumptions": [
+        "These are conceptual validation windows, not deployed pilots or procurement approvals."
+      ]
+    },
+    "policy_enterprise_playbook_card_count": {
+      "status": "known",
+      "value": 42,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/policy-enterprise-playbook.json"
+      ],
+      "formula": "count(cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Cards are conceptual policy interfaces, not enacted regulations, procurement awards or enterprise performance claims."
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/persona-and-inclusion-matrix.json"
+      ],
+      "formula": "count(persona rows)",
+      "confidence": "medium",
+      "assumptions": [
+        "The eight rows are non-identifying design lenses; they are not measured population counts or automated eligibility categories."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/landmark-honor-crosswalk.json"
+      ],
+      "formula": "count(nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "Nodes are conceptual public markers, not approved structures, heritage alterations or institutional endorsements."
+      ]
     },
     "design_north_south_spine_length_m": {
       "status": "known",
@@ -156,6 +325,54 @@
       "reason": "No project-specific resident baseline survey has been completed.",
       "pilot_target_min": 80,
       "pilot_target_scale": "0-100"
+    },
+    "pedestrian_wind_comfort_acceptable_area_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["assumptions.json","proposal.md"],"formula":"area meeting an approved pedestrian-wind comfort criterion / assessed pedestrian public-space area, reported by season, wind direction and leaf-on/leaf-off state","confidence":"unknown","assumptions":[],"reason":"No calibrated pedestrian-level CFD, local wind boundary conditions or field wind measurements are available."},
+    "pollutant_stagnation_hotspot_count": {"status":"unknown","value":null,"unit":"count","source_files":["assumptions.json","proposal.md"],"formula":"count contiguous pedestrian zones exceeding an approved stagnation or pollutant-removal threshold under specified source and wind scenarios","confidence":"unknown","assumptions":[],"reason":"No site emission inventory, PM2.5 time series, air-age analysis or calibrated dispersion model is available."},
+    "mean_radiant_temperature_baseline_c": {"status":"unknown","value":null,"unit":"degC","source_files":["assumptions.json","proposal.md"],"formula":"seasonal and time-of-day mean radiant temperature measured along representative pedestrian routes","confidence":"unknown","assumptions":[],"reason":"No site mean-radiant-temperature survey or calibrated outdoor thermal-comfort model is available."},
+    "continuous_shaded_accessible_route_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["geometry/roads.geojson","assumptions.json","proposal.md"],"formula":"length of verified accessible primary route meeting the approved seasonal shade window / total verified accessible primary-route length","confidence":"unknown","assumptions":[],"reason":"The route geometry is provisional and no solar/shade study, tree-crown survey or field accessibility audit has been completed."},
+    "blue_green_accessible_route_overlap_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["geometry/green_space.geojson","geometry/public_space.geojson","geometry/roads.geojson","proposal.md"],"formula":"length of field-verified accessible primary route within an approved blue-green service distance / total field-verified accessible primary-route length","confidence":"unknown","assumptions":[],"reason":"Submitted layers are conceptual and no field-verified accessible route, blue-space edge or service-distance criterion is available; no health outcome is inferred from proximity."},
+    "water_risk_exceedance_route_verified_ratio": {"status":"unknown","value":null,"unit":"ratio","source_files":["assumptions.json","proposal.md"],"formula":"length of critical accessible route verified outside approved flood-depth and velocity thresholds / total critical accessible-route length under the specified exceedance event","confidence":"unknown","assumptions":[],"reason":"No verified DEM, drainage network, design storm, flood-depth/velocity model or field calibration is available."},
+    "risk_class_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "risk.json",
+        "proposal.md"
+      ],
+      "formula": "count(validated risk dimensions in risk.json)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a design risk-register count, not a measured probability or safety certification."
+      ]
+    },
+    "construction_readiness_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/construction-readiness.json",
+        "proposal.md"
+      ],
+      "formula": "count(explicit construction/opening gates CR-01 through CR-05)",
+      "confidence": "high",
+      "assumptions": [
+        "Gates are a conceptual professional-handoff framework, not construction or approval evidence."
+      ]
+    },
+    "participation_lens_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/participation-cycle.json",
+        "proposal.md"
+      ],
+      "formula": "count(non-identifying participation lenses PC-P01 through PC-P07)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a design-lens count, not a population statistic, consent result or eligibility rule."
+      ]
     },
     "resilience_v13_candidate_count": {
       "status": "known",
@@ -260,6 +477,78 @@
       "confidence": "low",
       "assumptions": [
         "Gates are pre-field design-screening rules and must be replaced by approved engineering and participatory acceptance criteria."
+      ]
+    },
+    "civic_pulse_stage_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-pulse-protocol.json",
+        "proposal.md"
+      ],
+      "formula": "count(protocol stages question, permission, bounded test, human decision, public receipt, scale/repair/retire)",
+      "confidence": "high",
+      "assumptions": [
+        "This is a conceptual handoff count, not a field process completion or approval."
+      ]
+    },
+    "civic_pulse_station_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/civic-pulse-protocol.json",
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(differentiated station handoffs for Zhongzhi Garden, AI Origin Community and Dazhongsi)",
+      "confidence": "high",
+      "assumptions": [
+        "Station labels are conceptual and key-area polygons remain provisional."
+      ]
+    },
+    "risk_class_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "risk.json",
+        "proposal.md"
+      ],
+      "formula": "count(validated risk dimensions in risk.json)",
+      "confidence": "high",
+      "assumptions": [
+        "Risk dimensions are review priorities, not probabilities, safety certification or approval."
+      ]
+    },
+    "proof_mile_component_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/proof-mile-delivery.json",
+        "proposal.md"
+      ],
+      "formula": "count(reversible component delivery records K01-K06)",
+      "confidence": "high",
+      "assumptions": [
+        "These are conceptual handoff records, not built components, field acceptance or procurement commitments."
+      ]
+    },
+    "proof_mile_station_handoff_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/proof-mile-delivery.json",
+        "geometry/key_areas.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(station handoff records ST-01 through ST-03)",
+      "confidence": "high",
+      "assumptions": [
+        "Station geometry and responsibilities remain provisional until official polygons, rights and professional review are available."
       ]
     }
   }

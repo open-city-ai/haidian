@@ -17,78 +17,94 @@
 *{box-sizing:border-box}
 html{background:var(--bg);scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:#eef1f5;font-family:var(--sans);-webkit-font-smoothing:antialiased}
+body.drawer-open{overflow:hidden}
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit}
 .topbar{
   position:sticky;top:0;z-index:80;display:flex;align-items:center;justify-content:space-between;
-  min-height:62px;padding:10px 24px;border-bottom:1px solid var(--line);
+  min-height:64px;padding:10px 24px;border-bottom:1px solid var(--line);
   background:#05070aeb;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)
 }
-.back{display:flex;align-items:center;gap:10px;color:#a2a9b4;font-size:12px}
+.back{display:flex;align-items:center;gap:10px;color:#b3bac4;font-size:13px}
 .back:hover{color:var(--accent)}
-.top-title{min-width:0;margin:0 20px;color:#c9ced6;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-title{min-width:0;margin:0 28px;color:#d4d8de;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .top-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .action{
-  display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:0 12px;
-  border:1px solid var(--line);background:#090c11;color:#adb4bf;font-size:11px;letter-spacing:.03em;
+  display:inline-flex;align-items:center;justify-content:center;min-height:40px;padding:0 15px;
+  border:1px solid var(--line);background:#090c11;color:#c0c6cf;font-size:12px;letter-spacing:.02em;
   cursor:pointer;transition:.18s
 }
 .action:hover{border-color:var(--accent);color:var(--accent)}
 .action.primary{border-color:#ffc46b80;background:#ffc46b12;color:var(--accent)}
-.progress{position:fixed;z-index:100;top:61px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--blue))}
-.package-overview{
-  position:relative;z-index:30;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(300px,.65fr);
-  max-width:1580px;margin:18px auto 0;padding:0 24px;gap:12px
+.progress{position:fixed;z-index:100;top:63px;left:0;width:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--blue))}
+.workspace-nav{
+  position:relative;z-index:30;display:grid;grid-template-columns:190px repeat(3,minmax(0,1fr));
+  max-width:1580px;margin:18px auto 0;padding:0 24px
 }
-.package-entry{
-  display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 22px;width:100%;padding:16px 18px;
-  border:1px solid var(--line);background:#090c11;color:#eef1f5;text-align:left;cursor:pointer;transition:.2s
+.workspace-label{
+  display:flex;flex-direction:column;justify-content:center;gap:6px;padding:15px 18px;
+  border:1px solid var(--line);border-right:0;background:#070a0e
 }
-.package-entry:hover,.package-entry:focus-visible{border-color:#ffc46b78;background:#0d1118;outline:0;transform:translateY(-1px)}
-.package-entry-eyebrow{color:var(--accent);font:8px var(--mono);letter-spacing:.16em;text-transform:uppercase}
-.package-entry strong{font-size:16px;font-weight:520;line-height:1.35}
-.package-entry-desc{grid-column:1;color:#858e9a;font-size:10px;line-height:1.6}
-.package-entry-cta{grid-column:2;grid-row:1/4;color:var(--accent);font:10px var(--mono);letter-spacing:.08em;white-space:nowrap}
-.package-entry.evidence-entry{border-color:#65b7ff45}
-.package-entry.evidence-entry .package-entry-eyebrow,.package-entry.evidence-entry .package-entry-cta{color:var(--blue)}
-.package-drawer{max-width:1532px;margin:12px auto 0;border:1px solid var(--line);background:#080b10;overflow:hidden}
+.workspace-label span{color:#727c88;font:9px var(--mono);letter-spacing:.16em;text-transform:uppercase}
+.workspace-label strong{font-size:15px;font-weight:560}
+.workspace-step{
+  min-width:0;display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:center;gap:13px;
+  min-height:82px;padding:14px 16px;border:1px solid var(--line);border-left:0;background:#090c11;
+  color:#eef1f5;text-align:left;cursor:pointer;transition:.18s
+}
+.workspace-step:hover,.workspace-step:focus-visible{position:relative;z-index:2;border-color:#ffc46b75;background:#0d1118;outline:0}
+.workspace-step.active{box-shadow:inset 0 -3px var(--accent)}
+.workspace-step.evidence{box-shadow:inset 0 -3px var(--blue)}
+.workspace-index{display:grid;place-items:center;width:32px;height:32px;border:1px solid #ffffff24;color:#98a1ad;font:10px var(--mono)}
+.workspace-step.active .workspace-index{border-color:#ffc46b70;color:var(--accent)}
+.workspace-step.evidence .workspace-index{border-color:#65b7ff66;color:var(--blue)}
+.workspace-copy{display:grid;gap:4px;min-width:0}
+.workspace-copy strong{font-size:14px;font-weight:600;line-height:1.35}
+.workspace-copy small{color:#89929e;font-size:11px;line-height:1.45;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.workspace-action{color:var(--accent);font:11px var(--mono);white-space:nowrap}
+.workspace-step.evidence .workspace-action{color:var(--blue)}
+.package-scrim{position:fixed;z-index:70;inset:64px 0 0;background:#020305c7;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px)}
+.package-scrim[hidden]{display:none}
+.package-drawer{
+  position:fixed;z-index:75;inset:82px max(24px,calc((100vw - 1532px)/2)) 22px;
+  border:1px solid #ffffff2b;background:#080b10;overflow:auto;box-shadow:0 28px 100px #000d
+}
 .package-drawer[hidden]{display:none}
-.drawer-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:18px 20px;border-bottom:1px solid var(--line)}
-.drawer-head h2{margin:3px 0 0;font-size:18px;font-weight:480}
-.drawer-note{margin-top:5px;color:#78818d;font-size:10px;line-height:1.6}
-.drawer-close{padding:7px 10px;border:1px solid var(--line);background:transparent;color:#9aa2ad;cursor:pointer}
+.drawer-head{position:sticky;z-index:3;top:0;display:flex;align-items:flex-start;justify-content:space-between;gap:28px;padding:22px 24px;border-bottom:1px solid var(--line);background:#080b10f2;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.drawer-head h2{margin:5px 0 0;font-size:24px;font-weight:560}
+.drawer-note{max-width:740px;margin-top:7px;color:#9aa3ae;font-size:13px;line-height:1.65}
+.drawer-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.drawer-close{min-height:40px;padding:0 14px;border:1px solid #ffc46b70;background:#ffc46b10;color:var(--accent);font-size:12px;cursor:pointer}
 .artifact-groups{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0}
 .artifact-group{min-width:0;padding:18px 16px 20px;border-right:1px solid var(--line)}
 .artifact-group:last-child{border-right:0}
-.artifact-title{display:flex;justify-content:space-between;gap:8px;padding-bottom:10px;border-bottom:1px solid #ffffff12;color:#d5dae1;font-size:11px}
+.artifact-title{display:flex;justify-content:space-between;gap:8px;padding-bottom:12px;border-bottom:1px solid #ffffff12;color:#e0e4e9;font-size:13px}
 .artifact-title span:last-child{color:var(--accent);font:10px var(--mono)}
 .artifact-list{display:grid;gap:7px;margin-top:10px}
 .artifact-link{display:grid;grid-template-columns:36px 1fr auto;align-items:center;gap:8px;padding:8px;border:1px solid transparent;color:#959eaa;transition:.16s}
 .artifact-link:hover{border-color:#ffffff1f;background:#ffffff08;color:#fff}
 .artifact-icon{display:grid;place-items:center;width:36px;height:24px;border:1px solid #ffffff1c;color:#7fb8e9;font:6px var(--mono);letter-spacing:-.03em}
-.artifact-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px}
-.artifact-open{color:#5f6874;font:8px var(--mono)}
+.artifact-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px}
+.artifact-open{color:#8a949f;font:10px var(--mono)}
 .artifact-empty{padding:9px;color:#606975;font-size:10px}
-.shell{display:grid;grid-template-columns:minmax(0,1fr) 380px;max-width:1580px;margin:0 auto;transition:grid-template-columns .25s}
-.shell.panel-collapsed{grid-template-columns:minmax(0,1fr)}
-.shell.panel-collapsed .panel{display:none}
-.report-wrap{min-width:0;padding:34px 28px 90px}
+.shell{display:grid;grid-template-columns:minmax(0,1fr) 420px;max-width:1580px;margin:0 auto}
+.report-wrap{min-width:0;padding:28px 28px 90px}
 .report{
-  max-width:940px;min-height:75vh;margin:0 auto;padding:50px 62px 80px;background:var(--paper);
+  max-width:980px;min-height:75vh;margin:0 auto;padding:52px 64px 80px;background:var(--paper);
   color:var(--ink);box-shadow:0 0 0 1px #ffffff10,0 28px 80px #0008
 }
-.report-explorer{margin:-50px -62px 42px;background:#edf2f7;border-bottom:1px solid var(--paper-line)}
-.report-explorer-head{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 16px;border-bottom:1px solid var(--paper-line)}
-.report-explorer-head strong{color:#244e75;font-size:12px;font-weight:650}
-.report-explorer-head span{color:#73808e;font-size:9px;line-height:1.5;text-align:right}
-.report-status{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:0}
-.status-cell{padding:13px 14px;border:0;border-right:1px solid var(--paper-line);background:transparent;text-align:left;cursor:pointer;transition:.16s}
-.status-cell:last-child{border-right:0}
+.report-explorer{margin:-52px -64px 46px;background:#edf2f7;border-bottom:1px solid var(--paper-line)}
+.report-explorer-head{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:18px 20px;border-bottom:1px solid var(--paper-line)}
+.report-explorer-head strong{color:#1e466b;font-size:15px;font-weight:680}
+.report-explorer-head span{max-width:470px;color:#667789;font-size:12px;line-height:1.55;text-align:right}
+.report-status{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
+.status-cell{position:relative;min-height:78px;padding:15px 17px;border:0;border-right:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line);background:transparent;text-align:left;cursor:pointer;transition:.16s}
+.status-cell:nth-child(3n){border-right:0}.status-cell:nth-child(n+4){border-bottom:0}
 .status-cell:hover,.status-cell.active{background:#dfeaf4;box-shadow:inset 0 -3px #245b8f}
 .status-cell:focus-visible{outline:2px solid #245b8f;outline-offset:-2px}
-.status-value{display:block;color:#244e75;font:600 15px var(--mono)}
-.status-label{display:block;margin-top:3px;color:#7d8794;font-size:9px;letter-spacing:.08em}
-.status-hint{display:block;margin-top:4px;color:#9aa4af;font:7px var(--mono);letter-spacing:.04em}
+.status-value{display:block;color:#244e75;font:650 20px var(--mono)}
+.status-label{display:block;margin-top:5px;color:#687787;font-size:11px;font-weight:600;letter-spacing:.04em}
+.status-action{position:absolute;right:14px;top:17px;color:#7890a7;font:10px var(--mono)}
 .report .hero{padding:0 0 28px;margin:0 0 28px;border-bottom:3px solid #245b8f}
 .report h1{margin:0 0 12px;font-size:clamp(30px,4vw,44px);line-height:1.18;letter-spacing:-.035em}
 .report h2{margin:48px 0 18px;padding-top:26px;border-top:1px solid var(--paper-line);font-size:27px;line-height:1.35;letter-spacing:-.025em}
@@ -113,6 +129,7 @@ button{font:inherit;color:inherit}
   display:inline-flex;align-items:center;padding:.12em .48em;border:1px solid #d7dfe7;border-radius:999px;
   background:#f7f9fb;color:#526475;font-family:var(--sans);font-size:.88em;line-height:1.55
 }
+.report .semantic-flag.pending{border-color:#d9b779;background:#fff8e9;color:#765522}
 .report pre{max-width:100%;padding:16px;overflow:auto;background:#e9eef4;color:#24384d;font:12px/1.65 var(--mono)}
 .report blockquote{margin:22px 0;padding:12px 18px;border-left:3px solid #7997b4;background:#eaf0f6;color:#4f6073}
 .report table{width:100%;margin:24px 0;border-collapse:collapse;font-size:13px;line-height:1.55}
@@ -131,6 +148,12 @@ button{font:inherit;color:inherit}
 .evidence-ref:hover,.evidence-ref.active{border-color:#245b8f;background:#245b8f;color:#fff;transform:translateY(-1px)}
 .evidence-ref.unresolved{border-style:dashed;color:#8a6670;background:#f8eef0}
 .evidence-ref.unresolved::before{content:"!";margin-right:.12em;font-size:.82em}
+.evidence-bundle{
+  display:inline-flex;align-items:center;min-height:1.8em;margin:0 .18em;padding:.08em .62em;
+  border:1px solid #9eb2c6;border-radius:999px;background:#edf3f8;color:#245b8f;
+  font:600 10px var(--mono);vertical-align:.16em;cursor:pointer;transition:.16s
+}
+.evidence-bundle:hover,.evidence-bundle:focus-visible{border-color:#245b8f;background:#245b8f;color:#fff}
 .citation-popover{
   position:fixed;z-index:160;width:min(360px,calc(100vw - 24px));padding:15px 16px 13px;
   border:1px solid #ffc46b70;background:#0b0f15f5;color:#eef2f6;
@@ -147,62 +170,61 @@ button{font:inherit;color:inherit}
 .citation-fact span:first-child{color:#68727f;font:8px var(--mono);letter-spacing:.06em;text-transform:uppercase}
 .citation-hint{margin-top:9px;color:#68727f;font:8px var(--mono);letter-spacing:.08em}
 .panel{
-  position:sticky;top:62px;height:calc(100vh - 62px);border-left:1px solid var(--line);
+  position:sticky;top:64px;height:calc(100vh - 64px);border-left:1px solid var(--line);
   background:linear-gradient(180deg,#090c11,#06080c);overflow:hidden
 }
 .panel.attention{box-shadow:inset 3px 0 var(--blue),-18px 0 54px #65b7ff12}
 .panel-inner{height:100%;display:flex;flex-direction:column}
-.panel-head{padding:23px 22px 18px;border-bottom:1px solid var(--line)}
+.panel-head{padding:24px 24px 20px;border-bottom:1px solid var(--line)}
 .panel-head-row{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.panel-collapse{padding:6px 9px;border:1px solid var(--line);background:transparent;color:#7f8995;font-size:9px;cursor:pointer}
-.panel-collapse:hover{border-color:var(--blue);color:var(--blue)}
-.eyebrow{color:var(--accent);font:9px var(--mono);letter-spacing:.18em;text-transform:uppercase}
-.panel-title{display:flex;justify-content:space-between;align-items:end;margin-top:8px}
-.panel-title h2{margin:0;font-size:20px;font-weight:400}
-.coverage{color:var(--green);font:14px var(--mono)}
-.coverage-note{margin-top:8px;padding:10px 11px;border:1px solid #65b7ff28;background:#65b7ff08;color:#929ba7;font-size:11px;line-height:1.6}
-.filters{display:flex;gap:6px;padding:12px 14px;border-bottom:1px solid var(--line);overflow:auto}
+.eyebrow{color:var(--accent);font:10px var(--mono);letter-spacing:.16em;text-transform:uppercase}
+.panel-title{display:flex;justify-content:space-between;align-items:end;margin-top:10px}
+.panel-title h2{margin:0;font-size:24px;font-weight:560}
+.coverage{color:var(--green);font:16px var(--mono)}
+.coverage-note{margin-top:12px;padding:12px 13px;border:1px solid #65b7ff35;background:#65b7ff09;color:#a9b2bd;font-size:13px;line-height:1.65}
+.filters{display:flex;flex-wrap:wrap;gap:7px;padding:14px 16px;border-bottom:1px solid var(--line)}
 .filter{
-  flex:none;padding:7px 9px;border:1px solid var(--line);background:transparent;color:#87909d;
-  font:9px var(--mono);cursor:pointer
+  flex:none;min-height:34px;padding:7px 10px;border:1px solid var(--line);background:transparent;color:#9ca5b0;
+  font:11px var(--mono);cursor:pointer
 }
 .filter.active{border-color:#ffc46b75;background:#ffc46b0f;color:var(--accent)}
-.detail{padding:19px 20px;border-bottom:1px solid var(--line);max-height:43%;overflow:auto}
+.detail{padding:20px 22px;border-bottom:1px solid var(--line);max-height:42%;overflow:auto}
 .detail-placeholder{color:#707986;font-size:12px;line-height:1.8}
-.detail-type{display:inline-block;margin-bottom:9px;color:var(--blue);font:9px var(--mono);letter-spacing:.12em;text-transform:uppercase}
-.detail h3{margin:0 0 9px;font-size:15px;font-weight:500;line-height:1.5}
-.detail-summary{color:#a3aab4;font-size:12px;line-height:1.75}
+.detail-type{display:inline-block;margin-bottom:10px;color:var(--blue);font:10px var(--mono);letter-spacing:.12em;text-transform:uppercase}
+.detail h3{margin:0 0 10px;font-size:17px;font-weight:600;line-height:1.5}
+.detail-summary{color:#b0b7c1;font-size:13px;line-height:1.75}
 .detail-grid{display:grid;gap:8px;margin-top:14px}
 .detail-row{padding-top:8px;border-top:1px solid #ffffff10}
-.detail-key{display:block;color:#646d79;font:8px var(--mono);letter-spacing:.1em;text-transform:uppercase}
-.detail-value{display:block;margin-top:4px;color:#a8afb9;font-size:11px;line-height:1.6;word-break:break-word}
-.detail-link{display:inline-flex;margin-top:14px;color:var(--accent);font-size:11px;border-bottom:1px solid #ffc46b55}
-.evidence-list{flex:1;overflow:auto;padding:8px 10px 20px}
+.detail-key{display:block;color:#717b87;font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase}
+.detail-value{display:block;margin-top:4px;color:#b7bec7;font-size:12px;line-height:1.65;word-break:break-word}
+.detail-link{display:inline-flex;margin-top:16px;color:var(--accent);font-size:12px;border-bottom:1px solid #ffc46b55}
+.evidence-list{flex:1;display:grid;align-content:start;gap:7px;overflow:auto;padding:12px 12px 24px}
 .evidence-item{
-  width:100%;display:grid;grid-template-columns:28px 1fr;gap:10px;text-align:left;padding:11px 10px;
-  border:0;border-bottom:1px solid #ffffff0c;background:transparent;cursor:pointer
+  width:100%;display:grid;grid-template-columns:32px 1fr;gap:12px;text-align:left;padding:13px 12px;
+  border:1px solid #ffffff12;background:#ffffff02;cursor:pointer
 }
-.evidence-item:hover,.evidence-item.active{background:#ffffff08;box-shadow:inset 2px 0 var(--blue)}
-.evidence-n{display:grid;place-items:center;width:25px;height:25px;border:1px solid #ffffff26;color:#8fbce5;font:9px var(--mono)}
+.evidence-item:hover,.evidence-item.active{border-color:#65b7ff52;background:#65b7ff08;box-shadow:inset 3px 0 var(--blue)}
+.evidence-n{display:grid;place-items:center;width:30px;height:30px;border:1px solid #ffffff26;color:#8fbce5;font:10px var(--mono)}
 .evidence-item.active .evidence-n{border-color:var(--accent);color:var(--accent)}
-.evidence-name{display:block;color:#b8bec7;font-size:11px;line-height:1.45}
-.evidence-meta{display:block;margin-top:4px;color:#626b77;font:8px var(--mono);text-transform:uppercase}
+.evidence-name{display:block;color:#d0d5dc;font-size:13px;line-height:1.45}
+.evidence-meta{display:block;margin-top:5px;color:#7b8591;font:9px var(--mono);text-transform:uppercase}
 .loading{display:grid;place-items:center;min-height:60vh;color:#7d8590;font:11px var(--mono);letter-spacing:.12em}
 .error{max-width:680px;margin:80px auto;padding:28px;border:1px solid #e08b7855;background:#e08b780b;color:#d4a093}
 .mobile-toggle{display:none}
 @media(max-width:1050px){
-  .shell{grid-template-columns:minmax(0,1fr) 320px}
+  .workspace-nav{grid-template-columns:repeat(3,minmax(0,1fr))}.workspace-label{display:none}.workspace-step:first-of-type{border-left:1px solid var(--line)}
+  .shell{grid-template-columns:minmax(0,1fr) 350px}
   .report{padding-left:42px;padding-right:42px}.report-explorer{margin-left:-42px;margin-right:-42px}
   .artifact-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.artifact-group:nth-child(2){border-right:0}.artifact-group:nth-child(-n+2){border-bottom:1px solid var(--line)}
 }
 @media(max-width:820px){
   .topbar{padding:9px 14px}.top-title{display:none}.action.secondary{display:none}
-  .package-overview{grid-template-columns:1fr;padding:0 12px;margin-top:12px}.package-entry{padding:13px 14px}
-  .package-drawer{margin:10px 12px 0}.artifact-groups{grid-template-columns:1fr}.artifact-group{border-right:0;border-bottom:1px solid var(--line)}.artifact-group:last-child{border-bottom:0}
+  .workspace-nav{display:flex;overflow:auto;margin-top:12px;padding:0 12px}.workspace-step{flex:0 0 238px;min-height:74px}.workspace-step+.workspace-step{border-left:0}
+  .package-drawer{inset:72px 10px 10px}.drawer-head{position:static;flex-direction:column;padding:18px}.drawer-actions{justify-content:flex-start}.artifact-groups{grid-template-columns:1fr}.artifact-group{border-right:0;border-bottom:1px solid var(--line)}.artifact-group:last-child{border-bottom:0}
   .shell{display:block}.report-wrap{padding:20px 12px 90px}.report{padding:34px 20px 60px}
   .report-explorer{margin:-34px -20px 30px}.report-explorer-head{align-items:flex-start;flex-direction:column}.report-explorer-head span{text-align:left}
   .report-status{grid-template-columns:repeat(2,1fr)}
-  .status-cell:nth-child(2n){border-right:0}.status-cell:nth-child(n+3){border-top:1px solid var(--paper-line)}
+  .status-cell,.status-cell:nth-child(3n){border-right:1px solid var(--paper-line);border-bottom:1px solid var(--paper-line)}.status-cell:nth-child(2n){border-right:0}.status-cell:nth-child(n+5){border-bottom:0}
   .report p,.report li{font-size:15.5px;line-height:1.82}.report h1{font-size:30px}.report h2{font-size:23px}
   .report .data-token{white-space:normal}.report .data-token-id{display:none}
   .report h3{font-size:19px}.report ol,.report ul{padding-left:22px}
@@ -213,12 +235,12 @@ button{font:inherit;color:inherit}
   .report table.responsive-table td:last-child{border-bottom:0}
   .report table.responsive-table td::before{content:attr(data-label);color:#60748a;font:9px/1.5 var(--mono);letter-spacing:.05em;text-transform:uppercase}
   .citation-popover{display:none}
-  .panel{position:fixed;z-index:90;inset:112px 0 0;height:auto;border-left:0;border-top:1px solid var(--line);transform:translateY(105%);transition:.25s}
+  .panel{position:fixed;z-index:90;inset:64px 0 0;height:auto;border-left:0;border-top:1px solid var(--line);transform:translateY(105%);transition:.25s}
   .panel.open{transform:translateY(0)}
-  .shell.panel-collapsed .panel{display:block}.mobile-toggle{display:inline-flex}.panel-collapse{display:none}.panel-head{padding-top:16px}.detail{max-height:35%}
+  .mobile-toggle{display:inline-flex}.panel-head{padding-top:18px}.detail{max-height:35%}
 }
 @media print{
-  body{background:#fff}.topbar,.package-overview,.package-drawer,.panel,.progress{display:none}.shell{display:block}.report-wrap{padding:0}.report{box-shadow:none;max-width:none}
+  body{background:#fff}.topbar,.workspace-nav,.package-scrim,.package-drawer,.panel,.progress{display:none}.shell{display:block}.report-wrap{padding:0}.report{box-shadow:none;max-width:none}
 }
 </style>
 <link rel="stylesheet" href="proposal-artifact-viewer.css?v=3">
@@ -230,30 +252,27 @@ button{font:inherit;color:inherit}
   <a class="back" href="submissions.html">← 返回方案展示</a>
   <div class="top-title" id="topTitle">正在载入方案</div>
   <div class="top-actions">
-    <button class="action mobile-toggle" id="evidenceToggle" type="button" aria-expanded="false" aria-controls="panel">证据索引 <span id="mobileCount">0</span></button>
-    <a class="action secondary" id="sourceLink" href="#">正文源文件 ↗</a>
-    <a class="action secondary" id="a3Link" href="#">查看 A3 图册 ↗</a>
+    <button class="action mobile-toggle" id="evidenceToggle" type="button" aria-expanded="false" aria-controls="panel">核对证据 <span id="mobileCount">0</span></button>
     <a class="action primary" id="visualLink" href="#">打开交互可视化 ↗</a>
   </div>
 </header>
-<section class="package-overview" aria-label="方案浏览入口">
-  <button class="package-entry" id="packageToggle" type="button" aria-expanded="false" aria-controls="packageDrawer">
-    <span class="package-entry-eyebrow">Complete proposal package</span>
-    <strong><span id="packageCount">—</span> 个文件已载入，不只是一份正文</strong>
-    <span class="package-entry-desc" id="packageBreakdown">正在读取图纸、图片、空间图层与结构化数据</span>
-    <span class="package-entry-cta">展开可视化资料库 ↓</span>
+<nav class="workspace-nav" aria-label="方案工作台">
+  <div class="workspace-label"><span>Proposal workspace</span><strong>方案工作台</strong></div>
+  <a class="workspace-step active" href="#report" aria-current="page">
+    <span class="workspace-index">01</span><span class="workspace-copy"><strong>阅读方案</strong><small>浏览完整正文与图表</small></span><span class="workspace-action">当前</span>
+  </a>
+  <button class="workspace-step" id="packageToggle" type="button" aria-expanded="false" aria-controls="packageDrawer">
+    <span class="workspace-index">02</span><span class="workspace-copy"><strong>浏览方案资料</strong><small><span id="packageCount">—</span> 个文件 · <span id="packageBreakdown">正在读取资料</span></small></span><span class="workspace-action">打开 ↗</span>
   </button>
-  <button class="package-entry evidence-entry" id="evidenceEntry" type="button">
-    <span class="package-entry-eyebrow">Clickable evidence</span>
-    <strong><span id="evidenceEntryCount">—</span> 条证据可以逐项核对</strong>
-    <span class="package-entry-desc">点击正文圆形编号、下方统计数字或右侧卡片，都会打开对应资料</span>
-    <span class="package-entry-cta">开始浏览 →</span>
+  <button class="workspace-step evidence" id="evidenceEntry" type="button">
+    <span class="workspace-index">03</span><span class="workspace-copy"><strong>核对方案证据</strong><small><span id="evidenceEntryCount">—</span> 条结构化证据，可与正文互相定位</small></span><span class="workspace-action">开始 →</span>
   </button>
-</section>
-<section class="package-drawer" id="packageDrawer" hidden aria-label="完整方案文件清单">
+</nav>
+<div class="package-scrim" id="packageScrim" hidden></div>
+<section class="package-drawer" id="packageDrawer" hidden role="dialog" aria-modal="true" aria-labelledby="packageDrawerTitle" aria-label="完整方案文件清单">
   <div class="drawer-head">
-    <div><div class="eyebrow">Visualized artifacts</div><h2>完整方案资料展厅</h2><div class="drawer-note">总览只保留轻量识别卡；点击任意文件后，空间图层、结构化数据、文档、图像、PDF 与交互页面会在站内完整渲染</div></div>
-    <button class="drawer-close" id="packageClose" type="button">收起 ↑</button>
+    <div><div class="eyebrow">Proposal library · all files</div><h2 id="packageDrawerTitle">方案资料库</h2><div class="drawer-note">图纸、空间图层、结构化数据和正文说明都在这里。选择任意文件，即可在站内查看完整渲染；关闭资料库后仍回到原来的阅读位置。</div></div>
+    <div class="drawer-actions"><a class="action secondary" id="sourceLink" href="#">正文源文件 ↗</a><a class="action secondary" id="a3Link" href="#">A3 图册 ↗</a><button class="drawer-close" id="packageClose" type="button">关闭资料库 ×</button></div>
   </div>
   <div class="artifact-groups" id="artifactGroups"></div>
 </section>
@@ -276,9 +295,9 @@ button{font:inherit;color:inherit}
   <aside class="panel" id="panel">
     <div class="panel-inner">
       <div class="panel-head">
-        <div class="panel-head-row"><div class="eyebrow">Structured Evidence · Click to inspect</div><button class="panel-collapse" id="panelCollapse" type="button">收起侧栏 →</button></div>
-        <div class="panel-title"><h2>证据索引</h2><span class="coverage" id="coverage">0 / 0</span></div>
-        <div class="coverage-note">这里不是静态说明。正文圆形编号、分类按钮和下方证据卡片都可以点击，并会互相定位。</div>
+        <div class="panel-head-row"><div class="eyebrow">03 · Evidence review</div></div>
+        <div class="panel-title"><h2>核对方案证据</h2><span class="coverage" id="coverage">0 / 0</span></div>
+        <div class="coverage-note">选择分类或证据记录查看详情。正文中的“依据”与“多条依据”均可点击，并会在这里显示对应资料。</div>
       </div>
       <div class="filters" id="filters"></div>
       <div class="detail" id="detail"><div class="detail-placeholder">选择正文中的证据编号，查看结构化资料</div></div>
@@ -370,7 +389,7 @@ function renderArtifacts(){
   const dataCount=state.artifacts.filter(item=>/\.(?:json|csv|tsv)$/i.test(item.path)&&!/\.geojson$/i.test(item.path)).length;
   const interactiveCount=state.artifacts.filter(item=>item.path==='visual/index.html').length;
   $('#packageCount').textContent=state.artifacts.length;
-  $('#packageBreakdown').textContent=`${imageCount} 张图像 · ${pdfCount} 份 PDF · ${geoCount} 个空间图层 · ${dataCount} 个结构化文件 · ${interactiveCount} 个交互页面`;
+  $('#packageBreakdown').textContent=`${imageCount} 图像 · ${pdfCount} PDF · ${geoCount} 图层 · ${dataCount} 数据 · ${interactiveCount} 交互`;
 }
 async function fetchText(path){
   const response=await fetch(path,{cache:'no-store'});
@@ -495,14 +514,14 @@ function renderStatus(refs){
   const counts=Object.fromEntries(Object.keys(KIND_META).map(kind=>[kind,refs.filter(ref=>ref.kind===kind).length]));
   const resolved=refs.filter(ref=>ref.resolved).length;
   return `<section class="report-explorer">
-    <div class="report-explorer-head"><strong>这是一份可以逐层打开的方案</strong><span>点击下面任意数字筛选证据；正文中的圆形编号也可以点击</span></div>
+    <div class="report-explorer-head"><strong>方案证据概览</strong><span>正文优先保持可读；点击“依据”或“多条依据”可在右侧核对完整结构化记录</span></div>
     <div class="report-status">
-      <button class="status-cell active" data-filter="all" type="button"><span class="status-value">${resolved}/${refs.length}</span><span class="status-label">已解析证据</span><span class="status-hint">点击浏览全部</span></button>
-      <button class="status-cell" data-filter="source" type="button"><span class="status-value">${counts.source}</span><span class="status-label">资料来源</span><span class="status-hint">点击筛选来源</span></button>
-      <button class="status-cell" data-filter="metric" type="button"><span class="status-value">${counts.metric}</span><span class="status-label">方案指标</span><span class="status-hint">点击核对指标</span></button>
-      <button class="status-cell" data-filter="data" type="button"><span class="status-value">${counts.data}</span><span class="status-label">空间要素</span><span class="status-hint">点击查看图层</span></button>
-      <button class="status-cell" data-filter="professional" type="button"><span class="status-value">${counts.standard+counts.depth}</span><span class="status-label">专业依据</span><span class="status-hint">点击查看依据</span></button>
-      <button class="status-cell" data-filter="boundary" type="button"><span class="status-value">${counts.assumption+counts.self_check}</span><span class="status-label">边界与自检</span><span class="status-hint">点击查看边界</span></button>
+      <button class="status-cell active" data-filter="all" type="button"><span class="status-value">${resolved}/${refs.length}</span><span class="status-label">全部已解析证据</span><span class="status-action">查看 →</span></button>
+      <button class="status-cell" data-filter="source" type="button"><span class="status-value">${counts.source}</span><span class="status-label">资料来源</span><span class="status-action">查看 →</span></button>
+      <button class="status-cell" data-filter="metric" type="button"><span class="status-value">${counts.metric}</span><span class="status-label">方案指标</span><span class="status-action">查看 →</span></button>
+      <button class="status-cell" data-filter="data" type="button"><span class="status-value">${counts.data}</span><span class="status-label">空间要素</span><span class="status-action">查看 →</span></button>
+      <button class="status-cell" data-filter="professional" type="button"><span class="status-value">${counts.standard+counts.depth}</span><span class="status-label">专业依据</span><span class="status-action">查看 →</span></button>
+      <button class="status-cell" data-filter="boundary" type="button"><span class="status-value">${counts.assumption+counts.self_check}</span><span class="status-label">边界与自检</span><span class="status-action">查看 →</span></button>
     </div>
   </section>`;
 }
@@ -511,7 +530,6 @@ function filteredRefs(){
   return state.refs.filter(ref=>kinds.includes(ref.kind));
 }
 function openEvidencePanel(){
-  $('#shell').classList.remove('panel-collapsed');
   $('#panel').classList.add('open','attention');
   $('#evidenceToggle').setAttribute('aria-expanded','true');
   setTimeout(()=>$('#panel').classList.remove('attention'),500);
@@ -579,6 +597,12 @@ function bindEvidenceButtons(root){
     button.addEventListener('focus',()=>showCitation(button,button.dataset.key));
     button.addEventListener('blur',hideCitation);
     button.addEventListener('click',()=>{hideCitation();selectRef(button.dataset.key,false,true)});
+  });
+  root.querySelectorAll('.evidence-bundle').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const first=(button.dataset.keys||'').split('|').find(Boolean);
+      if(first)selectRef(first,false,true);
+    });
   });
 }
 function removeRepeatedTitle(report){
@@ -751,6 +775,14 @@ const SEMANTIC_FLAGS={
   'geometry_role=conceptual_design':'概念设计范围',
   'geometry_role=existing_condition':'现状条件'
 };
+const MACHINE_FILE_LABELS={
+  'compliance_matrix.json':'任务覆盖矩阵',
+  'standard_matrix.json':'专业标准矩阵',
+  'design_depth_matrix.json':'设计深度矩阵',
+  'metrics.json':'指标数据',
+  'sources.json':'资料来源清单',
+  'assumptions.json':'前提与缺口清单'
+};
 function dataTokenLabel(path,id){
   const filename=path.split('/').pop().replace(/\.geojson$/i,'');
   const subject=DATA_PATH_LABELS[filename]||filename.replaceAll('_',' ');
@@ -772,6 +804,12 @@ function normalizeBareDataReferences(report){
   report.querySelectorAll('code').forEach(code=>{
     if(code.closest('.evidence'))return;
     const raw=code.textContent.trim();
+    const machineLabel=MACHINE_FILE_LABELS[raw];
+    if(machineLabel){
+      code.className='data-token';code.title=raw;
+      code.innerHTML=`<span class="data-token-label">${escapeHTML(machineLabel)}</span>`;
+      return;
+    }
     const flagLabel=SEMANTIC_FLAGS[raw];
     if(flagLabel){
       code.className='semantic-flag';
@@ -795,7 +833,29 @@ function normalizeBareDataReferences(report){
     code.innerHTML=`<span class="data-token-label">${escapeHTML(label.subject)}</span><span class="data-token-id">${escapeHTML(label.detail)}</span>`;
   });
 }
-function parseEvidenceMarker(text){
+function normalizeHumanStatusTerms(report){
+  const walker=document.createTreeWalker(report,NodeFilter.SHOW_TEXT);const nodes=[];
+  while(walker.nextNode()){
+    const node=walker.currentNode;
+    if(node.parentElement?.closest('code,pre,script,style,.evidence,.data-token,.semantic-flag'))continue;
+    if(/\bunknown\b/i.test(node.nodeValue||''))nodes.push(node);
+  }
+  nodes.forEach(node=>{
+    const fragment=document.createDocumentFragment();let cursor=0;
+    for(const match of (node.nodeValue||'').matchAll(/\bunknown\b/gi)){
+      fragment.append((node.nodeValue||'').slice(cursor,match.index));
+      const flag=document.createElement('span');flag.className='semantic-flag pending';
+      flag.textContent='待正式数据补齐';flag.title='原始机器状态：unknown';fragment.append(flag);
+      cursor=match.index+match[0].length;
+    }
+    fragment.append((node.nodeValue||'').slice(cursor));node.replaceWith(fragment);
+  });
+}
+function parseEvidenceMarker(value){
+  if(value instanceof Element&&value.dataset.evidenceKind&&value.dataset.evidenceValue){
+    return [`[${value.dataset.evidenceKind}:${value.dataset.evidenceValue}]`,value.dataset.evidenceKind,value.dataset.evidenceValue];
+  }
+  const text=typeof value==='string'?value:value?.textContent||'';
   return text.trim().match(new RegExp(`^\\[(${EVIDENCE_KINDS}):([^\\]\\s]+)\\]$`));
 }
 function normalizeEvidenceMarkers(report){
@@ -826,7 +886,7 @@ function normalizeEvidenceMarkers(report){
 function attachEvidence(report,maps){
   const unique=new Map();
   report.querySelectorAll('.evidence').forEach(node=>{
-    const match=parseEvidenceMarker(node.textContent);
+    const match=parseEvidenceMarker(node);
     if(!match)return;
     const key=`${match[1]}:${match[2]}`;
     if(!unique.has(key))unique.set(key,{key,kind:match[1],value:match[2],nodes:[]});
@@ -836,10 +896,34 @@ function attachEvidence(report,maps){
   state.refs.forEach(ref=>ref.nodes.forEach(node=>{
     const button=document.createElement('button');
     button.type='button';button.className=`evidence-ref ${ref.resolved?'':'unresolved'}`;
-    button.dataset.key=ref.key;button.textContent=ref.number;button.title=`${KIND_META[ref.kind].zh}：${ref.label}`;
+    button.dataset.key=ref.key;button.textContent='依据';button.title=`${KIND_META[ref.kind].zh}：${ref.label}`;
     button.setAttribute('aria-label',`${KIND_META[ref.kind].zh}：${ref.label}`);
     node.replaceWith(button);
   }));
+  collapseEvidenceRuns(report);
+}
+function collapseEvidenceRuns(report){
+  const allowed=/^[\s、,，;；:/和与&+]*$/;
+  report.querySelectorAll('p,li,td,th,blockquote,figcaption').forEach(block=>{
+    let cursor=block.firstChild;
+    while(cursor){
+      if(!(cursor instanceof Element)||!cursor.classList.contains('evidence-ref')){cursor=cursor.nextSibling;continue}
+      const runNodes=[cursor];const buttons=[cursor];let next=cursor.nextSibling;
+      while(next){
+        if(next.nodeType===Node.TEXT_NODE&&allowed.test(next.nodeValue||'')){runNodes.push(next);next=next.nextSibling;continue}
+        if(next instanceof Element&&next.classList.contains('evidence-ref')){runNodes.push(next);buttons.push(next);next=next.nextSibling;continue}
+        break;
+      }
+      if(buttons.length>=3){
+        const bundle=document.createElement('button');
+        bundle.type='button';bundle.className='evidence-bundle';
+        bundle.dataset.keys=buttons.map(button=>button.dataset.key).join('|');
+        bundle.textContent=`${buttons.length} 条依据`;
+        bundle.title='打开这组结构化依据';
+        runNodes[0].before(bundle);runNodes.forEach(node=>node.remove());cursor=bundle.nextSibling;
+      }else cursor=next;
+    }
+  });
 }
 async function load(){
   const path=new URLSearchParams(location.search).get('proposal');
@@ -860,9 +944,10 @@ async function load(){
   normalizeInlineMarkdown(imported);
   normalizeCrossNodeStrong(imported);
   normalizeBareDataReferences(imported);
+  normalizeHumanStatusTerms(imported);
   normalizeEvidenceMarkers(imported);
   await resolveDataRefs([...imported.querySelectorAll('.evidence')].map(node=>{
-    const match=parseEvidenceMarker(node.textContent);
+    const match=parseEvidenceMarker(node);
     return match?{kind:match[1],value:match[2]}:null;
   }).filter(Boolean));
   const maps=buildMaps({sources,metrics,standards,depth,assumptions,selfCheck});
@@ -888,25 +973,25 @@ function togglePackage(force){
   const drawer=$('#packageDrawer');
   const open=force??drawer.hidden;
   drawer.hidden=!open;
+  $('#packageScrim').hidden=!open;
+  document.body.classList.toggle('drawer-open',open);
   $('#packageToggle').setAttribute('aria-expanded',String(open));
-  $('#packageToggle').querySelector('.package-entry-cta').textContent=open?'收起资料展厅 ↑':'展开可视化资料库 ↓';
+  $('#packageToggle').classList.toggle('active',open);
+  if(open)$('#packageClose').focus();
 }
 $('#packageToggle').addEventListener('click',()=>togglePackage());
-$('#packageClose').addEventListener('click',()=>togglePackage(false));
+$('#packageClose').addEventListener('click',()=>{togglePackage(false);$('#packageToggle').focus()});
+$('#packageScrim').addEventListener('click',()=>{togglePackage(false);$('#packageToggle').focus()});
 $('#evidenceEntry').addEventListener('click',()=>activateFilter('all'));
-$('#panelCollapse').addEventListener('click',()=>{
-  $('#shell').classList.add('panel-collapsed');
-  $('#panel').classList.remove('open');
-  $('#evidenceToggle').setAttribute('aria-expanded','false');
-});
 $('#evidenceToggle').addEventListener('click',()=>{
-  $('#shell').classList.remove('panel-collapsed');
   const open=$('#panel').classList.toggle('open');
   $('#evidenceToggle').setAttribute('aria-expanded',String(open));
 });
 document.addEventListener('keydown',event=>{
   if(event.key!=='Escape')return;
-  hideCitation();$('#panel').classList.remove('open');$('#evidenceToggle').setAttribute('aria-expanded','false');
+  hideCitation();
+  if(!$('#packageDrawer').hidden){togglePackage(false);$('#packageToggle').focus();return}
+  $('#panel').classList.remove('open');$('#evidenceToggle').setAttribute('aria-expanded','false');
 });
 window.addEventListener('scroll',()=>{
   const max=document.documentElement.scrollHeight-innerHeight;

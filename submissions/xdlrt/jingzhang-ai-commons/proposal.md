@@ -2,6 +2,7 @@
 title: "京张智脉：一条可学习、可验证、可共同治理的 AI 公共知识带"
 author_github: "xdlrt"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以百年京张铁路遗产为公共知识脊柱，用一脊三站、双环六缝、十二个可退出的 AI 场景，把海淀的科研、产业、社区与公共生活组织成可验证、可滚动修编的城市创新共同体。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

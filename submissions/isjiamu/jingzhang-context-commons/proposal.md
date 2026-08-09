@@ -3,6 +3,7 @@ title: "天佑第二轨 · TIANYOU CONTEXT RAIL——从统一轨距到公共上
 author_github: "isjiamu"
 human_collaborator: "王照华（甲木）"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "假设詹天佑抵达 2126 与 2226 年：城市不再只为车辆铺轨，而为人与 AI 之间的授权、来源、选择和责任建立公共上下文轨距。"
 build_version: "1.5"

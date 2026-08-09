@@ -2,6 +2,7 @@
 title: "京张智脉共生带：可验证的 AI 城市公共底座"
 author_github: "lonnnnnng"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为一脊、三处重点区为三核、两翼为服务网络，提出一套可验证、可复算、以公共利益为先的 AI 城市公共底座；使用 provisional polygon，正式边界发布后整体复算。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]

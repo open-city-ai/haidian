@@ -2,6 +2,7 @@
 title: "开源京张｜OPEN JINGZHANG — The Living Mainline"
 author_github: "Empress7211"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张转化为一条持续接收城市议题、公开验证 AI 方案并留下版本记录的开放主干线；AI 先证明，人再决定。"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]

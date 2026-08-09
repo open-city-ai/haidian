@@ -3,6 +3,7 @@ title: "京张·共证线：百年轨道上的可信 AI 公共创新协议"
 title_en: "Jing-Zhang Proofline"
 author_github: "lorianlee98-spec"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗产公共空间为一线，把研究、受限测试、日常公共价值和可追溯复核编成一个开放的可信 AI 城市创新协议。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

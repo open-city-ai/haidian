@@ -119,6 +119,9 @@ class SelfCheckReport:
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "check_scope": "advisory_proposal_only",
+            "formal_readiness": "not_assessed",
+            "next_required_check": "scripts/self_check_submission.py",
             "proposal_path": self.proposal_path,
             "ready": self.ready,
             "summary": self.summary,
@@ -192,6 +195,42 @@ def load_source_index(repo_root: Path, index_path: Path | None = None) -> list[d
     return sources if isinstance(sources, list) else []
 
 
+def load_package_source_index(proposal_path: Path) -> list[dict[str, Any]]:
+    """Load the formal package-local source registry when one is present.
+
+    Proposal format v2 keeps the human-readable proposal beside a package
+    ``sources.json``.  The advisory score should recognize those citations in
+    addition to the repository-wide lightweight index; otherwise a valid
+    formal package is reported as having no source coverage.
+    """
+    package_index_path = proposal_path.parent / "sources.json"
+    if not package_index_path.exists():
+        return []
+    try:
+        index_data = json.loads(package_index_path.read_text(encoding="utf-8"))
+    except (UnicodeDecodeError, json.JSONDecodeError):
+        return []
+    raw_sources = index_data.get("sources") if isinstance(index_data, dict) else []
+    if not isinstance(raw_sources, list):
+        return []
+
+    sources: list[dict[str, Any]] = []
+    for source in raw_sources:
+        if not isinstance(source, dict):
+            continue
+        normalized = dict(source)
+        if not normalized.get("id") and normalized.get("registry_source_id"):
+            normalized["id"] = normalized["registry_source_id"]
+        if not normalized.get("citation"):
+            for key in ("url", "path", "title"):
+                value = normalized.get(key)
+                if isinstance(value, str) and value.strip():
+                    normalized["citation"] = value.strip()
+                    break
+        sources.append(normalized)
+    return sources
+
+
 def reference_lines(reference_section: str) -> list[str]:
     lines = []
     for raw_line in reference_section.splitlines():
@@ -206,17 +245,22 @@ def reference_lines(reference_section: str) -> list[str]:
 def match_sources(text: str, reference_section: str, sources: list[dict[str, Any]]) -> tuple[list[SourceMatch], list[str]]:
     haystack = f"{text}\n{reference_section}"
     matched: list[SourceMatch] = []
+    matched_ids: set[str] = set()
     matched_tokens: set[str] = set()
     for source in sources:
         if not isinstance(source, dict):
             continue
-        source_id = str(source.get("id", "")).strip()
+        source_id = str(source.get("id") or "").strip()
+        registry_source_id = str(source.get("registry_source_id") or "").strip()
         citation = str(source.get("citation", "")).strip()
         path = str(source.get("path", "")).strip()
         url = str(source.get("url", "")).strip()
-        candidates = [item for item in [source_id, citation, path, url] if item]
+        candidates = [item for item in [source_id, registry_source_id, citation, path, url] if item]
         if any(candidate in haystack for candidate in candidates):
-            matched.append(SourceMatch(source_id, citation or path or url))
+            match_id = source_id or registry_source_id or citation or path or url
+            if match_id not in matched_ids:
+                matched.append(SourceMatch(match_id, citation or path or url))
+                matched_ids.add(match_id)
             matched_tokens.update(candidates)
 
     unmatched = []
@@ -352,18 +396,19 @@ def score_proposal(
 
     reference_section = find_section(sections, REFERENCE_SECTION_ALIASES)
     sources = load_source_index(repo_root, sources_index_path)
+    sources.extend(load_package_source_index(proposal_path))
     matched_sources, unmatched_references = match_sources(text, reference_section, sources)
     if not reference_section:
         source_status = STATUS_MISSING
         source_message = "缺少参考资料章节内容。"
     elif matched_sources:
         source_status = STATUS_PASS if not unmatched_references else STATUS_NEEDS_WORK
-        source_message = "已引用公开资料索引内资料。"
+        source_message = "已引用全局或方案包来源索引内资料。"
         if unmatched_references:
-            source_message += " 索引外资料需要说明来源和公开性。"
+            source_message += " 未匹配的资料需要说明来源和公开性。"
     else:
         source_status = STATUS_NEEDS_WORK
-        source_message = "未匹配到公开资料索引内资料；建议至少引用 brief/public-brief.md。"
+        source_message = "未匹配到来源索引内资料；轻量方案建议引用 brief/public-brief.md，正式 v2 包建议提供可匹配的 sources.json。"
     checks.append(build_check("公开资料引用", source_status, source_message))
 
     ordered_checks = sorted(checks, key=lambda item: DIMENSION_ORDER.index(item.dimension))
@@ -389,7 +434,15 @@ def format_report(report: SelfCheckReport) -> str:
         f"{summary.get(STATUS_MANUAL_REVIEW, 0)} manual-review"
     )
     lines.append("")
-    lines.append("> This self-check is advisory. It does not replace maintainer or expert review.")
+    lines.append(
+        "> This is advisory only: `pass` and a zero `--strict` exit code apply only to this "
+        "proposal-level check. They do not assess formal readiness."
+    )
+    lines.append(
+        "> Formal readiness: not assessed. Next run "
+        "`scripts/self_check_submission.py <submission-dir> --pr-author <github-login>` "
+        "for deterministic, spatial, visual, and professional evidence validation."
+    )
 
     if report.metadata_missing:
         lines.extend(["", "Missing metadata:"])
@@ -403,7 +456,7 @@ def format_report(report: SelfCheckReport) -> str:
         lines.append(f"- [{check.status}] {check.dimension}: {' '.join(check.messages)}")
 
     if report.matched_sources:
-        lines.extend(["", "Matched public sources:"])
+        lines.extend(["", "Matched indexed sources:"])
         lines.extend(f"- {item.id}: {item.citation}" for item in report.matched_sources)
     if report.unmatched_reference_lines:
         lines.extend(["", "References needing source/public-status notes:"])
@@ -421,7 +474,7 @@ def main() -> int:
     parser.add_argument(
         "--strict",
         action="store_true",
-        help="Exit non-zero when any self-check dimension is missing.",
+        help="Exit non-zero when an advisory self-check dimension is missing; formal readiness is not assessed.",
     )
     args = parser.parse_args()
 

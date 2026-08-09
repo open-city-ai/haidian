@@ -2,6 +2,7 @@
 title: "智轨·京张：百年京张AI创新带总体概念与城市设计"
 author_github: "CapableCCat"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“第二次通车”为总体概念，把百年京张铁路遗址转译为 AI 创新走廊：一轴两带三区两翼多站的空间结构、12 张 AI 场景卡、4 个朝圣地标与可持续运营机制，构成可复算、可深化、可国际传播的城市设计方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

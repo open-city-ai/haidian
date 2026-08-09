@@ -2,6 +2,7 @@
 title: "京张共智环：百年铁路遗产上的AI公共创新带"
 author_github: "CHneger"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以临时粗略边界为 intake 约束，提出京张遗址公园公共创新主轴、三核两翼协同、低侵入AI场景和可持续运营机制。所有空间与运营内容均为概念建议，官方边界与控规条件补齐后需统一复算。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]

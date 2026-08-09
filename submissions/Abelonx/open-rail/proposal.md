@@ -2,6 +2,7 @@
 title: "OPEN RAIL · 京张开源轨：一条可验证的城市智能试验线"
 author_github: "Abelonx"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年铁路转译为城市智能的开放试验线：以一条公共主线、三个验证站和五道治理门，让AI场景从问题提出走向有限试点、公开复盘与可撤回迭代。"
 tracks: ["civic-agent-governance", "ai-traffic-walkability", "youth-friendly-public-space"]

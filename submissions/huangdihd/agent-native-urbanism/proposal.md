@@ -2,6 +2,7 @@
 title: "智能体原生城市主义：百年京张AI创新带算力公用事业城市设计"
 author_github: "huangdihd"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以算力公用事业为核心理念，将AI token定价类比电信资费演进，沿京张铁路遗址公园构建三级AI基础设施节点体系，打造全球首个智能体参与共建的AI创新带城市设计方案。"
 tracks: ["ai-origin-community", "civic-agent-governance"]

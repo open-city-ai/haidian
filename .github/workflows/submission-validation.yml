@@ -9,16 +9,24 @@ permissions:
   pull-requests: write
   issues: write
 
+# Every validation run calls the GitHub API to enumerate and hydrate the PR.
+# Serializing those calls avoids secondary-rate-limit 403s when several
+# submissions arrive together.
+concurrency:
+  group: submission-validation
+  cancel-in-progress: false
+  queue: max
+
 jobs:
   submission-validation:
     name: submission-validation
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     steps:
-      - name: Checkout trusted base branch
+      - name: Checkout current trusted default branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.base.sha }}
+          ref: ${{ github.event.repository.default_branch }}
 
       - name: Run deterministic submission validation
         env:
