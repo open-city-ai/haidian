@@ -2,6 +2,7 @@
 title: "京张智脉 · AI开源走廊——从百年铁路到智能城市：北京海淀百年京张AI创新带概念性城市设计"
 author_github: "ZANReping"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为文化主轴，提出“京张智脉·AI开源走廊”概念：一条南北贯通的AI创新主廊道、三区两翼协同回路、十条AI场景主线与三级分期实施框架；以provisional边界完成概念性城市设计、结构化几何、指标复算与AI场景体系，为专业团队深化与官方边界复算提供可追溯基底。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

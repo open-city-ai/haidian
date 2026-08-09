@@ -2,6 +2,7 @@
 title: "京张智脉｜Jing-Zhang Intelligence Commons"
 author_github: "ssynb"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以‘一脉三核两翼十二站’把百年京张文化、AI 全栈创新、公共场景验证与长期社区运营组织成可复算、可迭代的城市公共智脉。"
 tracks: ["civic-agent-governance", "ai-traffic-walkability", "enterprise-services-ecosystem"]

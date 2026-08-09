@@ -2,6 +2,7 @@
 title: "智轨共生：百年京张 AI Commons"
 author_github: "hhe48203-ctrl"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路的连接基因为原型，构建‘一轨三港两翼十二站’的 AI 公共创新脊柱；以 Proof-to-Place 治理链把测试、人工复核、公众反馈和开放复用写进空间与运营。"
 iteration: "v1.0"

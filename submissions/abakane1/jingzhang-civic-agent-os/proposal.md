@@ -2,6 +2,7 @@
 title: "京张共智轨道：Jing-Zhang Civic Agent OS"
 author_github: "abakane1"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共智能主轨，把众智园、AI原点社区和大钟寺组织为验证、转化、应用三站；用开放技能、可信评测和人类最终判断，形成可连接、可验证、可迭代的城市 Agent 公共基础设施。"
 tracks: ["civic-agent-governance", "enterprise-services-ecosystem", "ai-public-services"]

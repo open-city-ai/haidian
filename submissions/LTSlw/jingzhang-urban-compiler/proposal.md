@@ -2,6 +2,7 @@
 title: "京张城市编译场：百年源码轨上的开放式AI城市更新系统"
 author_github: "LTSlw"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张空间遗产为源码轨，以开放测试、公共服务和长期运营为编译机制的概念性AI城市更新方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

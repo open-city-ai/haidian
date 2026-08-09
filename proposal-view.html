@@ -129,6 +129,7 @@ button{font:inherit;color:inherit}
   display:inline-flex;align-items:center;padding:.12em .48em;border:1px solid #d7dfe7;border-radius:999px;
   background:#f7f9fb;color:#526475;font-family:var(--sans);font-size:.88em;line-height:1.55
 }
+.report .semantic-flag.pending{border-color:#d9b779;background:#fff8e9;color:#765522}
 .report pre{max-width:100%;padding:16px;overflow:auto;background:#e9eef4;color:#24384d;font:12px/1.65 var(--mono)}
 .report blockquote{margin:22px 0;padding:12px 18px;border-left:3px solid #7997b4;background:#eaf0f6;color:#4f6073}
 .report table{width:100%;margin:24px 0;border-collapse:collapse;font-size:13px;line-height:1.55}
@@ -147,6 +148,12 @@ button{font:inherit;color:inherit}
 .evidence-ref:hover,.evidence-ref.active{border-color:#245b8f;background:#245b8f;color:#fff;transform:translateY(-1px)}
 .evidence-ref.unresolved{border-style:dashed;color:#8a6670;background:#f8eef0}
 .evidence-ref.unresolved::before{content:"!";margin-right:.12em;font-size:.82em}
+.evidence-bundle{
+  display:inline-flex;align-items:center;min-height:1.8em;margin:0 .18em;padding:.08em .62em;
+  border:1px solid #9eb2c6;border-radius:999px;background:#edf3f8;color:#245b8f;
+  font:600 10px var(--mono);vertical-align:.16em;cursor:pointer;transition:.16s
+}
+.evidence-bundle:hover,.evidence-bundle:focus-visible{border-color:#245b8f;background:#245b8f;color:#fff}
 .citation-popover{
   position:fixed;z-index:160;width:min(360px,calc(100vw - 24px));padding:15px 16px 13px;
   border:1px solid #ffc46b70;background:#0b0f15f5;color:#eef2f6;
@@ -290,7 +297,7 @@ button{font:inherit;color:inherit}
       <div class="panel-head">
         <div class="panel-head-row"><div class="eyebrow">03 · Evidence review</div></div>
         <div class="panel-title"><h2>核对方案证据</h2><span class="coverage" id="coverage">0 / 0</span></div>
-        <div class="coverage-note">选择分类或证据记录查看详情。正文中的圆形编号使用同一套编号，点击后会在这里显示对应资料。</div>
+        <div class="coverage-note">选择分类或证据记录查看详情。正文中的“依据”与“多条依据”均可点击，并会在这里显示对应资料。</div>
       </div>
       <div class="filters" id="filters"></div>
       <div class="detail" id="detail"><div class="detail-placeholder">选择正文中的证据编号，查看结构化资料</div></div>
@@ -507,7 +514,7 @@ function renderStatus(refs){
   const counts=Object.fromEntries(Object.keys(KIND_META).map(kind=>[kind,refs.filter(ref=>ref.kind===kind).length]));
   const resolved=refs.filter(ref=>ref.resolved).length;
   return `<section class="report-explorer">
-    <div class="report-explorer-head"><strong>方案证据概览</strong><span>选择一个分类，右侧“核对方案证据”会显示相应记录；正文中的圆形编号使用同一套编号</span></div>
+    <div class="report-explorer-head"><strong>方案证据概览</strong><span>正文优先保持可读；点击“依据”或“多条依据”可在右侧核对完整结构化记录</span></div>
     <div class="report-status">
       <button class="status-cell active" data-filter="all" type="button"><span class="status-value">${resolved}/${refs.length}</span><span class="status-label">全部已解析证据</span><span class="status-action">查看 →</span></button>
       <button class="status-cell" data-filter="source" type="button"><span class="status-value">${counts.source}</span><span class="status-label">资料来源</span><span class="status-action">查看 →</span></button>
@@ -590,6 +597,12 @@ function bindEvidenceButtons(root){
     button.addEventListener('focus',()=>showCitation(button,button.dataset.key));
     button.addEventListener('blur',hideCitation);
     button.addEventListener('click',()=>{hideCitation();selectRef(button.dataset.key,false,true)});
+  });
+  root.querySelectorAll('.evidence-bundle').forEach(button=>{
+    button.addEventListener('click',()=>{
+      const first=(button.dataset.keys||'').split('|').find(Boolean);
+      if(first)selectRef(first,false,true);
+    });
   });
 }
 function removeRepeatedTitle(report){
@@ -762,6 +775,14 @@ const SEMANTIC_FLAGS={
   'geometry_role=conceptual_design':'概念设计范围',
   'geometry_role=existing_condition':'现状条件'
 };
+const MACHINE_FILE_LABELS={
+  'compliance_matrix.json':'任务覆盖矩阵',
+  'standard_matrix.json':'专业标准矩阵',
+  'design_depth_matrix.json':'设计深度矩阵',
+  'metrics.json':'指标数据',
+  'sources.json':'资料来源清单',
+  'assumptions.json':'前提与缺口清单'
+};
 function dataTokenLabel(path,id){
   const filename=path.split('/').pop().replace(/\.geojson$/i,'');
   const subject=DATA_PATH_LABELS[filename]||filename.replaceAll('_',' ');
@@ -783,6 +804,12 @@ function normalizeBareDataReferences(report){
   report.querySelectorAll('code').forEach(code=>{
     if(code.closest('.evidence'))return;
     const raw=code.textContent.trim();
+    const machineLabel=MACHINE_FILE_LABELS[raw];
+    if(machineLabel){
+      code.className='data-token';code.title=raw;
+      code.innerHTML=`<span class="data-token-label">${escapeHTML(machineLabel)}</span>`;
+      return;
+    }
     const flagLabel=SEMANTIC_FLAGS[raw];
     if(flagLabel){
       code.className='semantic-flag';
@@ -806,7 +833,29 @@ function normalizeBareDataReferences(report){
     code.innerHTML=`<span class="data-token-label">${escapeHTML(label.subject)}</span><span class="data-token-id">${escapeHTML(label.detail)}</span>`;
   });
 }
-function parseEvidenceMarker(text){
+function normalizeHumanStatusTerms(report){
+  const walker=document.createTreeWalker(report,NodeFilter.SHOW_TEXT);const nodes=[];
+  while(walker.nextNode()){
+    const node=walker.currentNode;
+    if(node.parentElement?.closest('code,pre,script,style,.evidence,.data-token,.semantic-flag'))continue;
+    if(/\bunknown\b/i.test(node.nodeValue||''))nodes.push(node);
+  }
+  nodes.forEach(node=>{
+    const fragment=document.createDocumentFragment();let cursor=0;
+    for(const match of (node.nodeValue||'').matchAll(/\bunknown\b/gi)){
+      fragment.append((node.nodeValue||'').slice(cursor,match.index));
+      const flag=document.createElement('span');flag.className='semantic-flag pending';
+      flag.textContent='待正式数据补齐';flag.title='原始机器状态：unknown';fragment.append(flag);
+      cursor=match.index+match[0].length;
+    }
+    fragment.append((node.nodeValue||'').slice(cursor));node.replaceWith(fragment);
+  });
+}
+function parseEvidenceMarker(value){
+  if(value instanceof Element&&value.dataset.evidenceKind&&value.dataset.evidenceValue){
+    return [`[${value.dataset.evidenceKind}:${value.dataset.evidenceValue}]`,value.dataset.evidenceKind,value.dataset.evidenceValue];
+  }
+  const text=typeof value==='string'?value:value?.textContent||'';
   return text.trim().match(new RegExp(`^\\[(${EVIDENCE_KINDS}):([^\\]\\s]+)\\]$`));
 }
 function normalizeEvidenceMarkers(report){
@@ -837,7 +886,7 @@ function normalizeEvidenceMarkers(report){
 function attachEvidence(report,maps){
   const unique=new Map();
   report.querySelectorAll('.evidence').forEach(node=>{
-    const match=parseEvidenceMarker(node.textContent);
+    const match=parseEvidenceMarker(node);
     if(!match)return;
     const key=`${match[1]}:${match[2]}`;
     if(!unique.has(key))unique.set(key,{key,kind:match[1],value:match[2],nodes:[]});
@@ -847,10 +896,34 @@ function attachEvidence(report,maps){
   state.refs.forEach(ref=>ref.nodes.forEach(node=>{
     const button=document.createElement('button');
     button.type='button';button.className=`evidence-ref ${ref.resolved?'':'unresolved'}`;
-    button.dataset.key=ref.key;button.textContent=ref.number;button.title=`${KIND_META[ref.kind].zh}：${ref.label}`;
+    button.dataset.key=ref.key;button.textContent='依据';button.title=`${KIND_META[ref.kind].zh}：${ref.label}`;
     button.setAttribute('aria-label',`${KIND_META[ref.kind].zh}：${ref.label}`);
     node.replaceWith(button);
   }));
+  collapseEvidenceRuns(report);
+}
+function collapseEvidenceRuns(report){
+  const allowed=/^[\s、,，;；:/和与&+]*$/;
+  report.querySelectorAll('p,li,td,th,blockquote,figcaption').forEach(block=>{
+    let cursor=block.firstChild;
+    while(cursor){
+      if(!(cursor instanceof Element)||!cursor.classList.contains('evidence-ref')){cursor=cursor.nextSibling;continue}
+      const runNodes=[cursor];const buttons=[cursor];let next=cursor.nextSibling;
+      while(next){
+        if(next.nodeType===Node.TEXT_NODE&&allowed.test(next.nodeValue||'')){runNodes.push(next);next=next.nextSibling;continue}
+        if(next instanceof Element&&next.classList.contains('evidence-ref')){runNodes.push(next);buttons.push(next);next=next.nextSibling;continue}
+        break;
+      }
+      if(buttons.length>=3){
+        const bundle=document.createElement('button');
+        bundle.type='button';bundle.className='evidence-bundle';
+        bundle.dataset.keys=buttons.map(button=>button.dataset.key).join('|');
+        bundle.textContent=`${buttons.length} 条依据`;
+        bundle.title='打开这组结构化依据';
+        runNodes[0].before(bundle);runNodes.forEach(node=>node.remove());cursor=bundle.nextSibling;
+      }else cursor=next;
+    }
+  });
 }
 async function load(){
   const path=new URLSearchParams(location.search).get('proposal');
@@ -871,9 +944,10 @@ async function load(){
   normalizeInlineMarkdown(imported);
   normalizeCrossNodeStrong(imported);
   normalizeBareDataReferences(imported);
+  normalizeHumanStatusTerms(imported);
   normalizeEvidenceMarkers(imported);
   await resolveDataRefs([...imported.querySelectorAll('.evidence')].map(node=>{
-    const match=parseEvidenceMarker(node.textContent);
+    const match=parseEvidenceMarker(node);
     return match?{kind:match[1],value:match[2]}:null;
   }).filter(Boolean));
   const maps=buildMaps({sources,metrics,standards,depth,assumptions,selfCheck});

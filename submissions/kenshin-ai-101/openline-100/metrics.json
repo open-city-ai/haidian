@@ -36,7 +36,7 @@
     },
     "land_use_coverage_ratio": {
       "status": "known",
-      "value": 1.0,
+      "value": 0.999999844678,
       "unit": "ratio",
       "source_files": [
         "geometry/land_use.geojson",
@@ -47,7 +47,8 @@
       "assumptions": [
         "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
         "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ]
+      ],
+      "note_zh": "EPSG:4548 复算后用地并集相对 SITE_BOUNDARY 残留约 1.77 m² 未覆盖缝隙；不得四舍五入写成 1.0"
     },
     "green_space_area_sqm": {
       "status": "known",
@@ -80,7 +81,7 @@
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 274419.950463,
+      "value": 282564.651211,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -94,7 +95,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.024045,
+      "value": 0.024759,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -109,7 +110,7 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 151200.43004,
+      "value": 142800.267526,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
@@ -236,7 +237,7 @@
     },
     "building_prototype_count": {
       "status": "known",
-      "value": 36,
+      "value": 34,
       "unit": "count",
       "source_files": [
         "geometry/buildings.geojson"
@@ -361,15 +362,15 @@
       "source_files": [
         "geometry/public_space.geojson"
       ],
-      "formula": "count(features with public_space_type=axis_room_segment)",
+      "formula": "count(features with public_space_type=axis_space_segment)",
       "confidence": "high",
       "assumptions": [
-        "智轴七段房间序列由本方案生成，为概念分段，段界与口部待官方红线核验"
+        "智轴七段空间序列由本方案生成，为概念分段，段界与口部待官方红线核验"
       ]
     },
     "display_frontage_length_m": {
       "status": "known",
-      "value": 11675.761518,
+      "value": 9354.578781,
       "unit": "m",
       "source_files": [
         "geometry/public_space.geojson"
@@ -389,10 +390,10 @@
       "source_files": [
         "geometry/public_space.geojson"
       ],
-      "formula": "count(features with public_space_type=renzi_motif_node)",
+      "formula": "count(features with public_space_type=station_form_node)",
       "confidence": "high",
       "assumptions": [
-        "人字形母题为文化转译节点，一站一形，非工程平面"
+        "三站三形：折返环、人字广场、四向步行缝合；概念节点，非工程平面"
       ]
     },
     "milestone_count": {
@@ -419,6 +420,19 @@
       "confidence": "high",
       "assumptions": [
         "三个战略缝合接口为概念优先级，不构成道路或轨道工程结论"
+      ]
+    },
+    "severance_crossing_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(severance corridor register rows)",
+      "confidence": "high",
+      "assumptions": [
+        "切割走廊名录取公开常识级道路名称，位置为相对暂定重点区质心的概念投影；等级与口部方式待官方红线核验"
       ]
     },
     "water_interface_count": {

@@ -40,7 +40,23 @@ The three levels are not three isolated drawings: the research area sets the bel
 
 In 1909, Zhan Tianyou solved the Badaling climb at Qinglongqiao with a herringbone switchback: the train reversed direction at the switchback station, trading two forward runs for one gain in height — the engineering symbol of the first railway designed and built by China itself [source:AGENT-TASKBOOK]. Today the Jingzhang corridor faces a second ascent: from catch-up innovation to full-stack sovereign AI innovation; from an east–west city split by the railway to a stitched city; from technology display to everyday experience. The proposal names the belt **THE SWITCHBACK LINE (人字线)** and reads the heritage park as an urban climbing device. The switchback move becomes urban grammar: **fold** — folding the linear corridor into dwellable nodes; **return** — letting innovation flow back into city life at those nodes.
 
-The naming system follows: primary name "人字线 / THE SWITCHBACK LINE", international subtitle "Jingzhang's Second Ascent". The three key areas play switchback-station roles: Dazhongsi as the **departure hall** (arrival, experience, consumption), the Beijing AI Origin Community as the **mid-line release station** (open source, roadshows, community), and Zhongzhiyuan as the **climbing acceleration segment** (full-stack sovereignty, testing and validation) [source:KEY-AREA-SOURCE]. Visual identity direction: two strokes of rail meet at a switchback dot — the left falling stroke in brick red (heritage rail), the right falling stroke in indigo (data rail); the motif rotates 45 degrees into wayfinding arrows, paving patterns, and parapet ornament (directional design only; final logo, typefaces, and graphic assets require separate clearance) [depth:height_massing_character].
+The naming system follows: primary name "人字线 / THE SWITCHBACK LINE", international subtitle "Jingzhang's Second Ascent". The three key areas play switchback-station roles: Dazhongsi as the **departure hall** (arrival, experience, consumption), the Beijing AI Origin Community as the **mid-line release station** (open source, roadshows, community), and Zhongzhiyuan as the **climbing acceleration segment** (full-stack sovereignty, testing and validation) [source:KEY-AREA-SOURCE]. Visual identity direction: two strokes of rail meet at a switchback dot — the left falling stroke in brick red (heritage rail), the right falling stroke in indigo (data rail); the motif rotates 45 degrees into wayfinding arrows, paving patterns, and parapet ornament. An original logo concept is provided at `assets/figures/switchback-logo.svg` (agent-authored vector, no third-party typefaces or assets; final registration, fonts, and trademark clearance remain separate professional work) [depth:height_massing_character].
+
+![Switchback Line logo concept: heritage rail and data rail meet at the switchback station](assets/figures/switchback-logo.svg)
+
+### Regional synergy and innovation network
+
+The belt is not an isolated district but Haidian's interface to a larger innovation network. The proposal organizes regional synergy as relay circles (all concept suggestions; no administrative-boundary or fixed industry-layout claims) [source:OFFICIAL-ANNOUNCEMENT]:
+
+| Synergy direction | Partner role (public understanding) | Switchback Line interface | Mechanism (concept) |
+| --- | --- | --- | --- |
+| Beiyuan community and neighbors | talent housing and daily-service hinterland | west housing renewal cells and stitching corridors [data:geometry/roads.geojson#RD-005] | shared community living rooms and scenario nodes, avoiding key-area enclaves |
+| Future Science City | big-science facilities and hard-tech R&D | Zhongzhiyuan pilot and testing grounds (reserve land rolls forward) | "source R&D → scenario conversion" division: results come to the belt for city-scale validation and release |
+| Huairou Science City | basic research and national labs | AI Origin release core and data sandbox | "basic research → pilot conversion → international release" relay with algorithm, data, compute, and capital interfaces |
+| Beijing E-Town | smart manufacturing and industrialization | Qinghe Test Port (SC-05) | concept channels for mutual recognition of test data and scenario standards |
+| Beijing–Tianjin–Hebei and the Jingzhang corridor | sports-culture-tourism belt, regional manufacturing and compute nodes | the line as the urban first segment of the Jingzhang corridor [data:geometry/constraints.geojson#CX-001] | retelling the centennial corridor as a global AI collaboration corridor |
+
+The spatial landings remain inside the belt: Zhongzhiyuan hosts piloting and validation, AI Origin hosts release and community, Dazhongsi hosts transaction and delivery, and the two wings supply factors and scenarios [source:AGENT-TASKBOOK]. Formal deepening must be checked against district plans, science-park plans, and regional synergy policy.
 
 The triple positioning translates as follows: the Centennial Jingzhang Culture Belt is the heritage rail — heritage park, Qinghuayuan station memory, switchback engineering narrative [data:geometry/constraints.geojson#CX-001]; the Urban AI Life Experience Belt is the data rail — scenario cards, slow-mobility corridors, public space; the AI Integration Innovation Belt is the switchback itself — research results returning as life scenarios at the nodes. The five functions map onto three areas and two wings: Zhongzhiyuan carries the full-stack sovereign AI system and AI-governance voice; AI Origin carries the world-class innovation ecosystem; Dazhongsi carries AI-native new business; the Zhongguancun technology-service wing allocates global factors; the Xiaoyuehe scenario-empowerment wing carries AI+ scenario paradigms and the intelligent vitality city [source:AGENT-TASKBOOK].
 
@@ -56,6 +72,21 @@ All cases are public-knowledge summaries used to extract transferable mechanisms
 6. **Brooklyn Tech Triangle (US)**: scenario activation of under-viaduct and leftover spaces. Transferable: under-rail strategies in the stitching corridors.
 
 The shared lesson is that innovation ecosystems run on the product of public-realm quality, scenario openness, and community-operation duration [source:PROCESSED-FACT-PACK]. This proposal converts that lesson into spatial metrics (green ratio [metric:green_ratio], public-space ratio [metric:public_space_ratio], slow-corridor length [metric:slow_greenway_length_m]) and operation mechanisms (see agent.6), closing the space–scenario–operation loop [depth:land_use_layout].
+
+### Industry factor mechanism table (space–policy–operation, concept suggestions)
+
+A full-stack sovereign AI system requires translating seven factor families into operable mechanisms [source:AGENT-TASKBOOK]:
+
+| Factor | Spatial carrier | Mechanism suggestion (concept) | Operating body (direction) |
+| --- | --- | --- | --- |
+| land / space | reserve land [metric:land_use_area_16_sqm] and renewal cells | elastic use control plus a rolling development list released by test–evaluate–convert cadence | platform company + planning team |
+| capital | Zhongzhiyuan R&D core | concept-level innovation fund and scenario vouchers funding open tests, never named firms | to be negotiated by government and market |
+| talent | talent apartments and community services (0701/0702 cells) | developer-community points linked to the Honor Wall; housing–social–showcase integration | community operator |
+| compute | edge-compute micro-facilities (SC-06) | shared compute pool by application, prioritizing public tests and research | professional operator |
+| data | data sandbox (SC-06) | graded public-data opening plus quarterly published sandbox audits | data-governance team with human review |
+| scenarios | twelve scenario-card nodes | apply–sandbox–evaluate–publish opening procedure | multi-party scenario committee |
+
+All mechanisms are concept suggestions for professional teams to deepen; none is a fiscal policy, funding arrangement, or investment-attraction commitment.
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -121,6 +152,23 @@ Each card lists its spatial anchor, users, data boundary, and human-review mecha
 | SC-12 | International developer pilgrimage guide | three landmarks [metric:ai_pilgrimage_landmark_count] | P5/P2 | multilingual public content | compliance review |
 
 Privacy and review principle: all scenarios follow the charter's "human final judgment" clause [source:AGENT-TASKBOOK]; no non-public data, no mandatory vendor, no immature technology presented as deployable.
+
+### One-minute experiences
+
+Making the scenarios perceptible:
+
+- **SC-01 time overlay**: a visitor raises a phone in the heritage park and a 1909 steam train rolls across today's greenway, with Zhan Tianyou's engineering notes surfacing at the switchback point.
+- **SC-02 AR night run**: a runner's breathing rhythm retunes the color of the light bands; finishing a "switchback leg" mints a shareable badge.
+- **SC-03 maker fair**: a developer scans a QR code at Maker Crossing and gets matched with three investor booths and two complementary hardware hackers.
+- **SC-04 first release**: a startup runs public benchmarks at Origin Plaza; results stream to the big screen, the audience votes on interpretability, and an expert panel reviews before the report goes out.
+- **SC-05 robotics test port**: a delivery robot avoids a child dummy in the separated test zone while parents watch a simplified replay of every decision on the fence screen.
+- **SC-06 data sandbox**: a researcher brings an algorithm into the sandbox, trains on de-identified city data, and leaves with only the audited model weights.
+- **SC-07 computational consumption**: a shopper at Dazhongsi tries one-sentence outfit generation; the screen labels what is algorithmic recommendation, with one tap to opt out.
+- **SC-08 elder care**: a smart speaker reminds a senior living alone to take medicine; anomalies first notify a community worker for a visit, not an alarm call.
+- **SC-09 ecological sensing**: a morning runner on the waterfront reads today's water quality and bird report from bank sensors; anomalies go to maintenance staff.
+- **SC-10 MaaS**: a visitor leaving Dazhongsi station gets a route — "6 minutes via the stitching corridor to the launch event" — with live crowding hints.
+- **SC-11 switchback ticket**: a merchant photographs a blocked storefront, AI dispatches the ticket to the grid, and the resolution returns with on-site photos, appealable throughout.
+- **SC-12 pilgrimage guide**: an international developer walks the three landmarks with the multilingual guide, scans at the switchback landmark, and submits an open-source project link for Honor Wall review.
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -206,10 +254,12 @@ Copyright and responsibility: text, code, and graphics are generated by an AI ag
 
 ## References
 
-- `brief/site-package/design_brief.json` / `allowed_design_space.json` / `agent_taskbook.json` / `sources.json` [source:SITE-PACKAGE]
-- Pre-qualification announcement (Haidian Branch, 2026-05-09) [source:OFFICIAL-ANNOUNCEMENT]
-- Agent-facing open-call taskbook excerpt [source:AGENT-TASKBOOK]
-- Public source registry [source:SOURCE-REGISTRY] and processed fact pack [source:PROCESSED-FACT-PACK]
-- Provisional boundary and key-area geometry [source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]
-- Professional standards: Urban Design Measures; Regulatory Detailed Planning Measures; Land-Use Classification Guide; Design-Document Depth Regulation (local snapshots)
+- Public brief draft: `brief/public-brief.md`
+- Pre-qualification announcement (Haidian Branch of Beijing Municipal Commission of Planning and Natural Resources, 2026-05-09) [source:OFFICIAL-ANNOUNCEMENT]: https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html
+- Agent-facing open-call taskbook excerpt (2026-05-18) [source:AGENT-TASKBOOK]: `brief/site-package/agent_taskbook.json`
+- Site package [source:SITE-PACKAGE]: `brief/site-package/` (design_brief.json / allowed_design_space.json / sources.json / enums / ranges / schemas)
+- Public source registry [source:SOURCE-REGISTRY]: `data/source_registry.json`
+- Processed fact pack [source:PROCESSED-FACT-PACK]: `data/processed/agent_fact_pack.md` and companion CSVs
+- Provisional boundary and key-area geometry [source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]: `brief/site-package/geometry/provisional_boundaries.geojson`
+- Professional standards (local snapshots under `brief/site-package/standards/references/`): Urban Design Measures; Regulatory Detailed Planning Compilation and Approval Measures; Territorial Spatial Land-Use Classification Guide; Design-Document Depth Regulation (2016 edition)
 - Reproduction command: `python3 scripts/self_check_submission.py submissions/loml13/switchback-line --pr-author loml13`

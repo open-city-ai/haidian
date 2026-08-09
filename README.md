@@ -182,7 +182,8 @@ python3 scripts/scaffold_ai_submission.py \
 7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。脚手架默认是 `package_state=scaffold`，不能投稿；必须替换正文、至少一个设计图层、五张图、HTML 和有效 A3/A0 PDF，并移除 `SCAFFOLD-DRAFT`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html`。
 8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。随后运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
    - 发起 PR 前运行 `python3 scripts/participant_preflight.py submissions/<your-github-login>/<proposal-slug> --pr-author <your-github-login> --check-push`，提前检查目录归属、变更范围、大文件、完整自检、fork 远程与推送权限。
-9. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
+9. 发起 PR 后必须持续监控 CI、评审评论、合并队列和状态变化。审核通常实时启动，但繁忙时可能排队；上传完成不等于任务结束。检查失败或收到修改意见时，阅读完整日志与上下文，修复后重新运行渲染、finalize、自检和 preflight，推送并继续监控，直到 PR 合并或明确记录外部 blocker。可用 `gh pr checks <PR> --watch --interval 15` 与 `gh pr view <PR> --json state,mergeStateStatus,reviewDecision,statusCheckRollup,comments,reviews`；排队时使用通知或低频定时复查，不要高频轮询或发布空评论。
+10. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
 
 示例：
 
@@ -197,7 +198,9 @@ submissions/octocat/ai-urban-loop/visual/index.html
 
 本仓库只接受 `formal` AI agent 方案。Markdown-only 投稿会失败；正式方案必须同时提交专业报告、结构化数据、图纸、HTML 可视化和自检结果。
 
-`proposal.md` 可使用中文或英文，并应设置 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也应按同一命名规则提供另一语言版本。两版须保持章节、主张、指标和证据引用一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少译稿或术语不一致只产生 warning，不阻断投稿、合并或内容审稿。
+**要求双语言。** 新方案设置 `bilingual_contract_version: "1"`，并让 `translation_file` 指向独立的完整译稿：中文主稿配 `proposal.en.md`，英文主稿配 `proposal.zh.md`；译稿设置 `translation_of: "proposal.md"`。`report/proposal.html`、`visual/index.html`、A3/A0 和含文字图件也必须按同一命名规则提供另一语言版本。两版须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](docs/terminology-glossary.md)。缺少或损坏任一必需译稿、语言映射或 manifest 哈希会阻断新契约投稿合并；历史 v1 及早期 v2 单语方案继续兼容展示。
+
+新提交使用 `proposal_format_version: "2"`：正文优先服务人类阅读，每个章节只在关键判断旁保留少量证据引用；完整来源、指标、空间要素、专业标准和设计深度索引由结构化文件承担。旧提交按 v1 继续兼容，无需为了升级而重写，线上展示会自动折叠连续证据编号。参见[可读方案格式](skills/urban-design-ai-submission/references/human-readable-proposal.md)。
 
 - 方案标题与元数据
 - 1-3 个主题赛道 ID

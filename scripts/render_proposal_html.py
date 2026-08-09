@@ -13,6 +13,14 @@ from pathlib import Path, PurePosixPath
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
+TABLE_DELIMITER_CELL_RE = re.compile(r"^:?-{3,}:?$")
+REFERENCE_LABELS = {
+    "source": "来源",
+    "standard": "标准",
+    "depth": "深度",
+    "data": "空间数据",
+    "metric": "指标",
+}
 
 
 def parse_front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -51,9 +59,80 @@ def render_inline(text: str) -> str:
     def replace_ref(match: re.Match[str]) -> str:
         kind = match.group(1)
         value = match.group(2)
-        return f'<span class="evidence evidence-{kind}">[{kind}:{html.escape(value)}]</span>'
+        label = REFERENCE_LABELS[kind]
+        escaped_value = html.escape(value)
+        return (
+            f'<sup class="evidence evidence-{kind}" data-evidence-kind="{kind}" '
+            f'data-evidence-value="{escaped_value}" title="{label}：{escaped_value}">'
+            f'{label}</sup>'
+        )
 
     return REFERENCE_RE.sub(replace_ref, escaped)
+
+
+def pipe_is_escaped(line: str, index: int) -> bool:
+    backslashes = 0
+    index -= 1
+    while index >= 0 and line[index] == "\\":
+        backslashes += 1
+        index -= 1
+    return backslashes % 2 == 1
+
+
+def has_unescaped_pipe(line: str) -> bool:
+    for index, char in enumerate(line):
+        if char == "|" and not pipe_is_escaped(line, index):
+            return True
+    return False
+
+
+def split_table_row(line: str) -> list[str]:
+    text = line.strip()
+    cells: list[str] = []
+    cell: list[str] = []
+    index = 0
+    while index < len(text):
+        char = text[index]
+        if char == "|" and pipe_is_escaped(text, index):
+            cell.pop()
+            cell.append("|")
+            index += 1
+            continue
+        if char == "|":
+            cells.append("".join(cell).strip())
+            cell = []
+        else:
+            cell.append(char)
+        index += 1
+    cells.append("".join(cell).strip())
+
+    if text.startswith("|"):
+        cells = cells[1:]
+    if text.endswith("|") and not pipe_is_escaped(text, len(text) - 1):
+        cells = cells[:-1]
+    return cells
+
+
+def parse_table_delimiter(line: str) -> list[str] | None:
+    cells = split_table_row(line)
+    if not cells or not all(TABLE_DELIMITER_CELL_RE.fullmatch(cell) for cell in cells):
+        return None
+    return cells
+
+
+def table_alignment(delimiter: str) -> str | None:
+    if delimiter.startswith(":") and delimiter.endswith(":"):
+        return "center"
+    if delimiter.endswith(":"):
+        return "right"
+    if delimiter.startswith(":"):
+        return "left"
+    return None
+
+
+def render_table_cell(tag: str, value: str, alignment: str | None) -> str:
+    alignment_class = f' class="align-{alignment}"' if alignment else ""
+    return f"<{tag}{alignment_class}>{render_inline(value)}</{tag}>"
 
 
 def render_markdown_body(submission_dir: Path, markdown: str) -> str:
@@ -73,11 +152,73 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             blocks.append("</ul>")
             in_list = False
 
-    for raw_line in markdown.splitlines():
-        line = raw_line.rstrip()
+    lines = markdown.splitlines()
+    index = 0
+    while index < len(lines):
+        line = lines[index].rstrip()
+        stripped_line = line.strip()
+
+        if (
+            index + 1 < len(lines)
+            and stripped_line
+            and not line.startswith("#")
+            and not line.startswith("- ")
+            and not IMAGE_RE.fullmatch(stripped_line)
+            and (has_unescaped_pipe(line) or has_unescaped_pipe(lines[index + 1]))
+        ):
+            delimiter_cells = parse_table_delimiter(lines[index + 1].strip())
+            header_cells = split_table_row(line)
+            if delimiter_cells is not None and len(header_cells) == len(delimiter_cells):
+                flush_paragraph()
+                close_list()
+                alignments = [table_alignment(cell) for cell in delimiter_cells]
+                header = "".join(
+                    render_table_cell("th", cell, alignment)
+                    for cell, alignment in zip(header_cells, alignments)
+                )
+                index += 2
+                body_rows: list[str] = []
+                while index < len(lines):
+                    row = lines[index].rstrip()
+                    stripped = row.strip()
+                    if (
+                        not stripped
+                        or not has_unescaped_pipe(row)
+                        or stripped.startswith("#")
+                        or stripped.startswith("- ")
+                        or stripped.startswith("* ")
+                        or stripped.startswith("+ ")
+                        or stripped.startswith(">")
+                        or stripped.startswith("```")
+                        or stripped.startswith("~~~")
+                        or re.match(r"^\d{1,9}[.)]\s+", stripped)
+                        or IMAGE_RE.fullmatch(stripped)
+                    ):
+                        break
+                    cells = split_table_row(row)
+                    cells = (cells + [""] * len(header_cells))[: len(header_cells)]
+                    body_rows.append(
+                        "<tr>"
+                        + "".join(
+                            render_table_cell("td", cell, alignment)
+                            for cell, alignment in zip(cells, alignments)
+                        )
+                        + "</tr>"
+                    )
+                    index += 1
+                body = f"<tbody>{''.join(body_rows)}</tbody>" if body_rows else ""
+                blocks.append(
+                    '<div class="proposal-table"><table>'
+                    f"<thead><tr>{header}</tr></thead>"
+                    f"{body}"
+                    "</table></div>"
+                )
+                continue
+
         if not line.strip():
             flush_paragraph()
             close_list()
+            index += 1
             continue
 
         image_match = IMAGE_RE.fullmatch(line.strip())
@@ -92,6 +233,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 f"<figcaption>{alt}</figcaption>"
                 "</figure>"
             )
+            index += 1
             continue
 
         if line.startswith("#"):
@@ -100,6 +242,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             level = min(len(line) - len(line.lstrip("#")), 4)
             title = line[level:].strip()
             blocks.append(f"<h{level}>{render_inline(title)}</h{level}>")
+            index += 1
             continue
 
         if line.startswith("- "):
@@ -108,9 +251,11 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 blocks.append("<ul>")
                 in_list = True
             blocks.append(f"<li>{render_inline(line[2:].strip())}</li>")
+            index += 1
             continue
 
         paragraph.append(line.strip())
+        index += 1
 
     flush_paragraph()
     close_list()
@@ -195,6 +340,24 @@ code {{
 }}
 .summary {{ color: var(--muted); font-size: 17px; }}
 .translation-link a {{ color: var(--accent); font-weight: 700; }}
+.proposal-table {{ margin: 20px 0 26px; overflow-x: auto; }}
+.proposal-table table {{
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}}
+.proposal-table th, .proposal-table td {{
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}}
+.proposal-table th {{ background: #eef2f7; color: var(--ink); font-weight: 700; }}
+.proposal-table tbody tr:nth-child(even) {{ background: #fafcfe; }}
+.proposal-table .align-center {{ text-align: center; }}
+.proposal-table .align-right {{ text-align: right; }}
 .proposal-figure {{
   margin: 22px 0 28px;
   border: 1px solid var(--line);
@@ -214,13 +377,16 @@ code {{
   font-size: 14px;
 }}
 .evidence {{
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  color: #31506f;
-  border-radius: 4px;
-  padding: 0.03em 0.32em;
-  font-size: 0.92em;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
 }}
 @media (max-width: 720px) {{
   main {{ padding: 26px 16px 52px; }}

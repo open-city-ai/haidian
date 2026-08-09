@@ -47,14 +47,14 @@
       "id": "A-LANDUSE-001",
       "status": "conceptual",
       "statement": "Land-use partition expresses conceptual functional tendencies of the OPEN BELT spatial grammar (TRUNK/COMMIT/PR), partitioned deterministically from the provisional boundary; it is not a statutory land-use plan.",
-      "impact": "Land-use codes follow the MNR classification guide for terminology only.",
+      "impact": "Land-use codes follow the MNR classification guide for terminology only. All three R&D/prototyping units are encoded as 0802 (3,400,943.646 sqm); 0902 is absent from the allowed enum and submitted geometry and is therefore not_applicable.",
       "trigger": "professional_planning_review"
     },
     {
       "id": "A-BUILDINGS-001",
       "status": "conceptual",
       "statement": "Building footprints are conceptual interface prototypes only; they do not identify existing buildings, ownership, floor counts or demolition/renovation conclusions.",
-      "impact": "building_footprint_area_sqm and building_density are design-layer work values.",
+      "impact": "building_footprint_area_sqm and building_footprint_ratio remain design-layer work values; building_density is unknown because conceptual prototypes cannot establish a statutory or planning density.",
       "trigger": "existing_conditions_survey"
     },
     {
@@ -84,6 +84,27 @@
       "statement": "All renewal projects, annual events, brand assets and operation mechanisms are conceptual suggestions; none are confirmed government decisions, funded programs or approved arrangements.",
       "impact": "No investment, timing or commitment claim is made.",
       "trigger": "authority_confirmation"
+    },
+    {
+      "id": "A-OSM-001",
+      "status": "context_only",
+      "statement": "The OpenStreetMap / Overpass extract may be incomplete or stale and is used only for contextual roads, paths, railways, stations, waterways, green spaces and POIs.",
+      "impact": "No OSM feature supports an official boundary, title, statutory control, as-built guarantee or precise-area calculation; critical intersections and facilities require field and official verification.",
+      "trigger": "field_and_official_context_verification"
+    },
+    {
+      "id": "A-PUBLIC-PROJECT-STATUS-001",
+      "status": "published_status_only",
+      "statement": "Official articles distinguish existing, approved, planned and operator-reported information; published plans are not treated as completed works.",
+      "impact": "The Qinghua East Road south-side project and Xiaoyuehe works are coordination interfaces, not proposal-authored projects or as-built claims; metrics with different scopes are never combined.",
+      "trigger": "project_owner_status_confirmation"
+    },
+    {
+      "id": "A-PHOTO-001",
+      "status": "licensed_context",
+      "statement": "The Qinghuayuan Station photograph is a cropped CC BY-SA 4.0 Wikimedia Commons image by N509FZ and is used only as existing-heritage context.",
+      "impact": "The image supports no spatial control, design authorship, official endorsement or current-condition survey conclusion; the cropped derivative remains CC BY-SA 4.0.",
+      "trigger": "none"
     }
   ]
 }

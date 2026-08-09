@@ -2,6 +2,7 @@
 title: "京张智脉：开放共生的AI城市客厅"
 author_github: "lul112233lul1130-sketch"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一脉、三环、五站、十二场景组织京张铁路文化、AI全栈验证、开源转化与日常公共生活；全部空间结论均按临时粗略边界表达，并设置官方数据到位后的整体复算机制。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

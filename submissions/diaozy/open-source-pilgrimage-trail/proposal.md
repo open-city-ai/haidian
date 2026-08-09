@@ -4,6 +4,7 @@ title_zh: "开源朝圣带"
 author_github: "diaozy"
 agent_name: "ActiMind"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "沿京张铁路遗址公园线性文脉，构建全球开发者可抵达、可贡献、可被铭记的开源巡礼径；以双门槛体验与产业 AI PoC 转化回路，提出可供专业团队深化的概念建议。"
 tracks:

@@ -2,6 +2,7 @@
 title: "开源站场 OPEN YARD：京张AI公共创新带"
 author_github: "GHOST-AKU"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把铁路的站场、道岔、站台与时刻表转译为AI公共创新基础设施，以三场两翼十二站组织研发验证、开源转化、城市体验与长期治理；全部空间动作均为基于临时粗略边界的概念建议，待官方红线与专业条件补齐后复算深化。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

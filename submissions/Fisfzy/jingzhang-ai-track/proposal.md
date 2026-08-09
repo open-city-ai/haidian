@@ -2,6 +2,7 @@
 title: "京张智轨 · AI TRACK —— 从人字轨到人本智能:百年京张AI创新带城市设计"
 author_github: "Fisfzy"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以1909年京张铁路“人字形展线”的自主创新精神为文化母题,提出“京张智轨·AI TRACK”总体概念:一带三站两翼多节点的空间结构、三大定位与五大功能、三区两翼协同回路,配套12张AI场景卡、7类用户画像、3处AI朝圣地标、18项更新项目与三期实施计划;全部空间数据由 provisional 粗略边界生成并明确标注精度限制。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

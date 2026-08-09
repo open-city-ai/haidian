@@ -2,6 +2,7 @@
 title: "京张蓝绿智联｜三站缝合"
 author_github: "kylin985ti"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以清河—小月河—京张铁路遗址公园为蓝绿文化公共底盘，以北段清河共研站、五道口近校共创站和大钟寺城市共享站为实施节点，形成可步行、可验证、可共治的AI创新带参考方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

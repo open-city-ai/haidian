@@ -2,6 +2,7 @@
 title: "京张开源智脉：可验证、可体验、可持续的 AI 城市共生带"
 author_github: "Lirving9"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共脊柱、三处重点区为创新锚点，将开源协作、产业验证与市民日常组织成可审计、可迭代的 AI 城市共生带。"
 tracks: ["jingzhang-heritage-narrative", "civic-agent-governance", "enterprise-services-ecosystem"]

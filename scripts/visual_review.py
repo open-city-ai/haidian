@@ -11,8 +11,10 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import math
 import re
 from dataclasses import dataclass, field
+from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
@@ -88,18 +90,36 @@ def load_metrics(path: Path) -> dict[str, Any]:
     return metrics if isinstance(metrics, dict) else {}
 
 
-def extract_visual_metrics(text: str) -> dict[str, float]:
-    metrics: dict[str, float] = {}
-    pattern = re.compile(
-        r"data-metric\s*=\s*['\"]([^'\"]+)['\"][^>]*data-value\s*=\s*['\"]([^'\"]+)['\"]",
-        re.I,
-    )
-    for name, raw_value in pattern.findall(text):
+class VisualMetricParser(HTMLParser):
+    """Collect explicit metric declarations without depending on attribute order."""
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.metrics: dict[str, float] = {}
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = {name.lower(): value for name, value in attrs}
+        name = attributes.get("data-metric")
+        raw_value = attributes.get("data-value")
+        if not isinstance(name, str) or not isinstance(raw_value, str):
+            return
         try:
-            metrics[html.unescape(name)] = float(raw_value)
+            value = float(raw_value)
         except ValueError:
-            continue
-    return metrics
+            return
+        if not math.isfinite(value):
+            return
+        self.metrics[html.unescape(name)] = value
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+
+
+def extract_visual_metrics(text: str) -> dict[str, float]:
+    parser = VisualMetricParser()
+    parser.feed(text)
+    parser.close()
+    return parser.metrics
 
 
 def review_visual(submission_dir: Path) -> VisualReport:

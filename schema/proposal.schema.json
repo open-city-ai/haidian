@@ -34,10 +34,23 @@
             "en"
           ]
         },
+        "proposal_format_version": {
+          "type": "string",
+          "enum": [
+            "1",
+            "2"
+          ],
+          "description": "Version 2 separates human-readable narrative citations from the complete machine-audit index. Missing values remain valid legacy version 1 submissions."
+        },
         "translation_file": {
           "type": "string",
           "pattern": "^proposal\\.(zh|en)\\.md$",
-          "description": "Recommended non-blocking companion file containing the complete translation of proposal.md."
+          "description": "Required for version 2. Points to the complete Chinese or English translation of proposal.md."
+        },
+        "bilingual_contract_version": {
+          "type": "string",
+          "const": "1",
+          "description": "Explicit opt-in for proposal format v2 to the blocking Chinese-English display contract. New scaffolds set this field; historical packages without it retain compatibility."
         },
         "translation_of": {
           "type": "string",
@@ -113,6 +126,24 @@
     }
   },
   "allOf": [
+    {
+      "if": {
+        "properties": {
+          "metadata": {
+            "properties": {
+              "proposal_format_version": {"const": "2"},
+              "bilingual_contract_version": {"const": "1"}
+            },
+            "required": ["proposal_format_version", "bilingual_contract_version"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "metadata": {"required": ["translation_file"]}
+        }
+      }
+    },
     {
       "if": {
         "properties": {

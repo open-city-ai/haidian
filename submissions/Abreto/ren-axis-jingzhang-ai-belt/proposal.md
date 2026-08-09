@@ -2,6 +2,7 @@
 title: "人字轴 REN AXIS——百年京张AI创新带城市设计方案"
 author_github: "Abreto"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "把京张遗址公园读作'人字轴'：9公里未来主脊与2.2公里京张故线历史支线在西直门北侧真实分岔，构成一轴双臂、三站两翼的空间结构；以坡度叙事组织9公里空间序列，以铁路语汇状态机治理12个AI场景，以确定性生成管道保证全包可重算。概念方案，基于临时边界，供专业团队深化。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

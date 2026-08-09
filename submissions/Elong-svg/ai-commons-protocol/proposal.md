@@ -249,3 +249,5 @@ AI 场景的主要风险包括隐私、误导、过度监控、技术不成熟�
 ![慢行蓝绿公共回路图](assets/figures/mobility-bluegreen.png)
 
 ![指标复算与证据链图](assets/figures/metrics-evidence.png)
+
+本次修订将总体空间结构图更新为 QGIS 大字可读版：左侧总图继续表达一主轴、三副轴和三处重点区的关系，右侧以三张详图强化重点区阅读；标题为 32 pt，说明为 24 pt。配套 A1 图纸见 `drawings/qgis-readable-plan-a1.pdf`。其中道路、铁路和水系仅作为低对比度城市语境，来源为 [source:OSM-CONTEXT]，不参与边界、面积、道路红线或法定控制判断。[assumption:A-OSM-CONTEXT-006]

@@ -2,6 +2,7 @@
 title: "京张共智线：一条可验证、可参与、可持续进化的城市公共智能带"
 author_github: "jollyworm-coder"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路为公共叙事轴，把海淀AI创新优势转化为可验证、可选择、可共同改进的城市公共智能；以众智园、AI原点社区和大钟寺分别承担可信验证、开放协作和城市交互三类原型。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

@@ -22,12 +22,14 @@ DEFAULT_SPARSE_PATHS = (
     "schema",
     "scripts",
     "skills",
+    "sources",
     "templates",
 )
 REQUIRED_FILES = (
     "skills/urban-design-ai-submission/SKILL.md",
     "brief/site-package/agent_taskbook.json",
     "data/source_registry.json",
+    "sources/public-sources.json",
     "scripts/scaffold_ai_submission.py",
     "scripts/self_check_submission.py",
     "requirements-review.txt",

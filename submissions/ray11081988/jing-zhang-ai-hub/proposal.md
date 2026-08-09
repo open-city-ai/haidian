@@ -2,6 +2,7 @@
 title: "智脉京张 AI 创新带概念方案"
 author_github: "ray11081988"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「历史人文×AI交织」为总主题的京张智脉共生带概念方案：京张铁路遗址、大钟寺、清河等历史人文资产作为城市底座，AI全栈创新、开源社区、智能场景作为软性插件嵌入既有肌理，形成软嵌入而非推倒重建的城市更新路径；全部结论以概念建议表述，指标由 provisional boundary 派生图层复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

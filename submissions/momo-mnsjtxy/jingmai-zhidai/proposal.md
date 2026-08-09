@@ -1,7 +1,8 @@
-﻿---
+---
 title: "京脉智带：百年京张AI创新带城市设计"
 author_github: "momo-mnsjtxy"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以《百年京张AI创新带城市设计国际方案征集》公告为第一依据，在临时边界（11.4平方公里总体设计范围、三处重点区约368.4公顷）下完成三层范围工作框架、总体城市设计、重点区详细设计、AI创新生态与场景、用地建筑与拆改留、交通市政与公共服务、蓝绿公共空间与风貌、更新清单与分期、指标复算与合规矩阵的 formal AI 城市设计方案；组织方数据缺口（官方红线、控规条件）已显式标注，不阻断内容评分。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

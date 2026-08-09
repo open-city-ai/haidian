@@ -3,6 +3,7 @@ title: "MEND JINGZHANG — The Urban Care & Repair District"
 title_zh: "MEND JINGZHANG——京张城市照护与修复区"
 author_github: "DENGDixin"
 language: "en"
+translation_file: "proposal.zh.md"
 chinese_translation: "included"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A formal, evidence-led urban design proposal that recasts the Centennial Jing-Zhang AI Innovation Belt as a district that continuously inspects, mends, verifies, and passes on its buildings, public services, landscapes, mobility systems, and civic knowledge."
@@ -215,7 +216,7 @@ MEND 的经济机制奖励服务连续性、可修复性、开放接口、无障
 
 MENDWAY、横向缝合街道、修复庭院、生态房间和轨道服务集群共同构成城区。主轴首层保持开放活力，安静研发与生活支持进入内部，物流从边缘按时段管理。临历史与居住界面控制体量，大尺度适应性空间只在交通、消防、服务和风貌评估允许处布局。由于正式容积率、高度、密度、退线、道路红线和文保资料缺失，这些只属于定性建议；分别由 [depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character] 管理。
 
-空约束登记 [data:geometry/constraints.geojson#empty-cleared-register] 不表示场地没有约束，只表示本次提交尚无额外经核验的约束几何。实施前必须补入正式控规、权属、市政、防洪生态、消防、考古文保、建筑普查、树木和公共服务承载。方案的价值在于这些条件到来后可以重新裁切和排序，而不必伪造当前精度。
+空约束登记 [data:geometry/constraints.geojson#empty-cleared-register] 不表示场地没有约束，只表示本次提交尚无额外经核验的约束几何。实施前必须补入正式控规、权属、市政、防洪生态、消防、考古文保、建筑普查、树木和公共服务承载。方案的价值在于这些条件到来后可以重新裁切和排序，而不必伪造当前精度 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。
 
 ## 5. 重点区域详细设计
 
@@ -237,7 +238,7 @@ MEND 同时为发明系统的人和维持系统的人设计。五类人物揭示
 
 **07 商户救援**帮助小企业处理许可、施工干扰、物流与连续性，但法律决定回到工作人员；**08 建筑健康室**汇总检查、能耗异常、舒适投诉与维护计划，不自动批准安全结论；**09 遗产状况日记**由居民和专家记录京张沿线变化，专业机构核验解释；**10 技能接力工作室**以付费微学徒方式交换机器人、维修、安全、语言和现场知识；**11 安静夜间负荷调节**协调物流、充电、照明与清洁，不做人脸或个人追踪；**12 公共服务连续性助手**用最小化或合成数据演练中断恢复，指挥权始终属于人员。
 
-三处受控验证场地把风险挡在日常公共空间之外。“维护机器人受控试验场”采用隔离路线、限速、远程急停、现场观察员和事故记录；“负责任资产分诊沙盒”让模型建议与合格检查员逐项比对，禁止自动决定公共资产处置；“循环硬件与辅具诊所”验证可修复性、零件追踪、卫生、电气安全和使用者签字。通过验证的组件才可进入街道，并保留明确运营者和回滚方案。场景回应 [requirement:agent.2] [requirement:agent.3] [requirement:agent.6]，并连接 [data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-001] 与 [metric:scenario_card_count] 的机器可读证据；AI只辅助推荐和协调，不替代规划审批、临床诊断、法律权利判断或问责人员。
+三处受控验证场地把风险挡在日常公共空间之外。“维护机器人受控试验场”采用隔离路线、限速、远程急停、现场观察员和事故记录；“负责任资产分诊沙盒”让模型建议与合格检查员逐项比对，禁止自动决定公共资产处置；“循环硬件与辅具诊所”验证可修复性、零件追踪、卫生、电气安全和使用者签字。通过验证的组件才可进入街道，并保留明确运营者和回滚方案。场景回应 [requirement:agent.2] [requirement:agent.3] [requirement:agent.6]，并连接 [data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-001] 的机器可读证据；AI只辅助推荐和协调，不替代规划审批、临床诊断、法律权利判断或问责人员。
 
 ## 7. 用地、建筑规模与拆改留方案
 

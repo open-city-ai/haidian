@@ -1,0 +1,89 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时边界保持 official_boundary=false、低可信和非审批用途；边界相关指标同步继承 LOW。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处必选重点区齐全且明确为临时替代范围，不作为官方红线或精确面积依据。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "36 个用地单元完整、无重叠地覆盖提交临时范围，微小浮点残差由最终单元吸收。"
+    },
+    {
+      "check_id": "SPATIAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "空间证据包含 180 个体量原型、12 条设计线、10 处绿地、9 处公共空间、6 门、3 个 AI 服务区和 12 个场景节点。"
+    },
+    {
+      "check_id": "METRIC_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "27 个 known 指标均来自 EPSG:4548 几何复算或机器可读属性计数；不支持的法定与运行指标保持 unknown。"
+    },
+    {
+      "check_id": "SCENARIO_PROTOCOL",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/constraints.geojson",
+      "message": "12 个 G0 节点均具备版本、责任、风险、最小数据、地理/时段边界、受损人群、人工接管、申诉、非 AI 选项、进入/停止、复测包和具体到期日。"
+    },
+    {
+      "check_id": "PUBLIC_INTEREST_FALLBACK",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "9 个公共节点全部保留非 AI 通道、人工兜底、静音时段和无屏默认，AI 测试不得挤压日常生活。"
+    },
+    {
+      "check_id": "TASK_EVIDENCE_SPECIFICITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json",
+      "message": "23 项任务按真实章节、Feature、指标、来源、假设和自检分别映射，不再批量复制同一证据组合。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线 HTML 显示不足、总览、三层范围、重点区、用地、交通、蓝绿、建筑、项目、场景、指标、任务、自检、来源和假设，无远程依赖。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文引用 6 项标准、15 项设计深度、全部 27 个 known 指标及所有必需机器图层。"
+    },
+    {
+      "check_id": "RISK_AND_SOURCE_BOUNDARIES",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "项目、标准、政策、场地、OSM 和案例来源均记录可用与禁用范围；外部协同、文化和场景协议保持建议属性。"
+    },
+    {
+      "check_id": "PAPER_DIMENSIONS",
+      "result": "pass",
+      "severity": "info",
+      "target": "drawings/",
+      "message": "A3 文册与 A0 展板使用实际 A3/A0 页面尺寸；标题和注释为可检索矢量文字。"
+    }
+  ]
+}

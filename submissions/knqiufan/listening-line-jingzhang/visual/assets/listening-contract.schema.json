@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://haidian.open-city.ai/schemas/listening-contract-1.0.json",
-  "title": "倾听合约 1.0 / Listening Contract 1.0",
-  "description": "A public-space admission and closure record for AI-enabled and ordinary urban services. This open proposal is not certification or administrative approval.",
+  "$id": "https://haidian.open-city.ai/schemas/listening-contract-1.2.json",
+  "title": "倾听合约 1.2 / Listening Contract 1.3",
+  "description": "A 14-dimension public checklist for AI-enabled and ordinary urban services. Each real run must additionally produce a Listening Receipt 1.3. This open proposal is not certification or administrative approval.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -22,6 +22,7 @@
     "stop_and_rollback"
   ],
   "properties": {
+    "example_status": {"enum": ["synthetic_non_operational_example"]},
     "purpose": {"type": "string", "minLength": 10},
     "place_and_users": {
       "type": "object",
@@ -46,9 +47,11 @@
     "model_and_limits": {"type": "string"},
     "human_owner": {
       "type": "object",
-      "required": ["role", "contact_path", "final_decision"],
+      "required": ["role", "accountable_organisation", "authorisation_reference", "contact_path", "final_decision"],
       "properties": {
         "role": {"type": "string"},
+        "accountable_organisation": {"type": ["string", "null"]},
+        "authorisation_reference": {"type": ["string", "null"]},
         "contact_path": {"type": "string"},
         "final_decision": {"type": "string"}
       }
@@ -78,7 +81,7 @@
     },
     "state": {
       "type": "string",
-      "enum": ["ASKED", "EXPLAINED", "VERIFIED", "APPEALED", "REPAIRED", "ARCHIVED_OR_EXITED"]
+      "enum": ["PROPOSED", "BASELINED", "AUTHORISED", "LIMITED_TRIAL", "REVIEWED", "ADOPTED", "MODIFIED", "PAUSED", "EXITED"]
     },
     "evidence_log": {
       "type": "array",
@@ -97,7 +100,7 @@
   "$defs": {
     "state": {
       "type": "string",
-      "enum": ["ASKED", "EXPLAINED", "VERIFIED", "APPEALED", "REPAIRED", "ARCHIVED_OR_EXITED"]
+      "enum": ["PROPOSED", "BASELINED", "AUTHORISED", "LIMITED_TRIAL", "REVIEWED", "ADOPTED", "MODIFIED", "PAUSED", "EXITED"]
     }
   }
 }

@@ -2,6 +2,7 @@
 title: "京张元枢｜JING-ZHANG AI KERNEL"
 author_github: "teddyli18000"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以百年京张为城市级 AI 公共内核：把科研、模型验证、产业转译、真实场景、公共治理与全球发布接入同一套可审计、可迭代的开放协议。"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "youth-friendly-public-space"]

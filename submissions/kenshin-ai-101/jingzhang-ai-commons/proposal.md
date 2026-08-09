@@ -2,6 +2,7 @@
 title: "下一站，每个人：京张开源线"
 author_github: "kenshin-ai-101"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "百年前，中国人自己修通京张；今天，让每个人都能向这座城市提交一次更新。以京张开源线组织一线、三场、一时刻，让AI走进街区、公开接受检验。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

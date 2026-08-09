@@ -2,6 +2,7 @@
 title: "京张智脉：百年京张AI创新带协同共生方案"
 author_github: "Jack777-han"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为历史主轴、三处重点片区为创新锚点，提出一带三核多点、蓝绿慢行复合环的协同共生方案，覆盖公告任务与 agent.1-agent.6。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "ai-origin-community"]

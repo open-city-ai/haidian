@@ -6,7 +6,7 @@
       "result": "pass",
       "severity": "major",
       "target": "geometry/site_boundary.geojson",
-      "message": "临时范围已保留 official_boundary=false 与 provisional_constraint 属性，所有指标均声明低置信度并绑定替换触发器。"
+      "message": "临时范围保留 official_boundary=false 与 provisional_constraint；受边界影响的面积与比例绑定替换触发器，指标置信度按计算可复现性与事实有效性分别标注。"
     },
     {
       "check_id": "KEY_AREAS_TRUST",
@@ -44,6 +44,62 @@
       "message": "十二个场景节点均设人工接管、无AI等价服务与停用条件；四个产业验证场景按沙盒处理。"
     },
     {
+      "check_id": "DUAL_CONTROL_SHIFT_LEDGER",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/shift-ledger.schema.json; visual/assets/governance/example-scn05-shift-ledger.json; visual/assets/governance/validation-report.json",
+      "message": "双联交接账Schema通过Draft 2020-12元模式检查；SCN-05合成沙盒样例结构错误为0，但性能、现场可用性、合规与人工授权状态仍为未验证。"
+    },
+    {
+      "check_id": "VERSIONED_ROLLBACK",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; geometry/buildings.geojson; geometry/phasing.geojson",
+      "message": "12个场景与20个更新单元均具版本、适用范围、责任角色、复核、验收和回滚字段；三期使用差异化进入门、验收门与回滚状态，不承诺固定年份。"
+    },
+    {
+      "check_id": "DELIVERY_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; drawings/a3-booklet.pdf#p03; drawings/a0-boards.pdf#p03",
+      "message": "P01—P06均列出A/R/C-I、KPI、接管SLO、停止/回滚条件与资源开工单；责任主体或持续资源未授权时不得启动或扩张。"
+    },
+    {
+      "check_id": "HONOR_RECORD",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; proposal.md",
+      "message": "四个公共地标可定位且带启用与回滚状态；荣誉记录具有提名、证据、双人复核、异议、纠错、撤回、申诉及实名/化名/匿名选择。"
+    },
+    {
+      "check_id": "SOURCE_PROVENANCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "十七条来源逐条登记权威等级、证据类别、采集方法、时空覆盖、许可状态与可用/不可用边界；涉及单位换算的写明原文表述、换算方法与入库值，行政尺度事实标记 not_spatially_allocable=true。"
+    },
+    {
+      "check_id": "BACKGROUND_NOT_SPATIAL",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json; metrics.json",
+      "message": "海淀区2025年统计公报的八项观察值全部停留在 evidence_class=background_only，未进入 metrics.json，未改变任何几何、面积、线位或分期；正文逐条写明其不能证明什么。"
+    },
+    {
+      "check_id": "REGULATORY_BASELINE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; sources.json",
+      "message": "可停用、可投诉、无AI等价服务三条红线分别对应《生成式人工智能服务管理暂行办法》第十四、十五、十七条，《无障碍环境建设法》第三十九条与国办发〔2020〕45号；仅作合规对照，不作法律意见，条款适用由主管部门认定。"
+    },
+    {
+      "check_id": "DRAWING_VERSION_CONSISTENCY",
+      "result": "pass",
+      "severity": "minor",
+      "target": "drawings/",
+      "message": "四套图纸共38页页脚统一为 JING-ZHANG HANDOVER LINE / v1.6 / NN-TT；修复了此前前三页标 v1.5、其余页标 A3 BOOKLET / A0 BOARDS 的分裂标注。"
+    },
+    {
       "check_id": "VISUAL_STATIC",
       "result": "pass",
       "severity": "info",
@@ -58,11 +114,39 @@
       "message": "正文、矩阵、几何、图纸、指标、来源和假设构成交叉引用的专业证据链。"
     },
     {
+      "check_id": "ROLE_SPEC_TRANSFERABLE",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/role-spec.json; visual/assets/governance/role-spec.schema.json",
+      "message": "八个角色写明最低资质、可决定与不可决定事项、值守方式、无人值守兜底、启停权、双人复核及其独立第二复核角色、分歧升级路径、交班证据与缺岗禁止条件。assignment_status 在 schema 中约束为常量 unassigned；停用权分散于多个角色，第二复核角色不得指向自身，升级路径末端一律交回人类专业团队。未指名任何单位或个人，不声称任何合作或已签约关系。"
+    },
+    {
+      "check_id": "MEASUREMENT_PROTOCOL_COMPLETE",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/measurement-protocol.json; metrics.json",
+      "message": "metrics.json 中 11 项非 known 指标全部具备测量协议：定义、数据源类型、采集角色、采样单元与范围、频率或触发、分母、缺失值处理、质量检查、争议复核、隐私与留存、发布门槛。baseline 与 target 的 schema 类型被约束为 null，缺失值处理禁止插值与区级平均替代；发布门槛任一条不成立即保持未赋值。公布协议不等于公布目标。"
+    },
+    {
+      "check_id": "GOVERNANCE_SCHEMA_VALIDATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/governance/validation-report.json",
+      "message": "三对 schema 与实例（双联交接账、角色规格、测量协议）通过 Draft 2020-12 元模式与实例校验，并通过一项跨文件引用完整性检查（角色号可解析、指标覆盖无缺项、baseline/target 仍为 null、assignment_status 仍为 unassigned），共 7 项检查全部通过。校验只证明可解析与引用完整，不证明任何角色已任命、任何指标已有数值或任何做法已获许可。"
+    },
+    {
+      "check_id": "NO_GENERATIVE_IMAGE_ASSET",
+      "result": "pass",
+      "severity": "major",
+      "target": "assets/figures/",
+      "message": "包内 26 张图件全部为 PIL/reportlab 程序化绘制，无生成式图像素材。v1.6.2—v1.6.3 曾包含一张 gpt-image-2 概念表现图，自 v1.6.4 起其内容已整体替换为程序化绘制的《交接断面》；路径保留而非删除，是因为参赛者 PR 无法删除文件（Issue #647，修复 PR #668/#671 未合并）。"
+    },
+    {
       "check_id": "COPYRIGHT_TRACEABILITY",
       "result": "pass",
       "severity": "major",
       "target": "report/copyright_statement.md",
-      "message": "图件、图标、排版与几何均为本方案程序化原创；外部案例仅作文字转述并逐项列源。"
+      "message": "图件、图标、排版与几何均为本方案程序化原创；外部案例仅作文字转述并逐项列源；Codex与用户操作的Claude Opus 5跨轮次协作已如实披露。"
     }
   ]
 }

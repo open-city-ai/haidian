@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Translate the historic railway logic of track, station and mile into civic AI validation infrastructure: one public spine, three Proof Stations, two service wings, twelve reversible scenarios and tiered evidence gates connecting innovation, everyday life and governance."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.3"
+iteration: "v1.6"
 ---
 
 # Jing-Zhang Proofline: Verifiable, Shared and Evolvable Civic AI Infrastructure
@@ -15,6 +15,8 @@ iteration: "v1.3"
 > **BOUNDARY STATUS: PROVISIONAL CONSTRAINT.** This proposal uses a rough temporary extent compiled by repository maintainers from the public announcement. It is suitable only for concept generation, display and submission self-check. It is not an Official Planning Boundary and does not establish parcel, ownership, road, heritage or engineering limits. All layers, metrics, figures, PDFs and HTML must be recalculated when rights-cleared official polygons become available. [source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001] [self_check:BOUNDARY_TRUST]
 
 Jing-Zhang Proofline does not add another layer of smart devices to the city. It turns AI from a back-office capability into a civic process that people can see, question, leave and improve together. The historic Jing-Zhang Railway established a spatial grammar of track, station and mile. Proofline translates it into a loop of question definition, public testing, human decision, contribution memory and reusable transfer. Zhongzhiyuan undertakes full-stack validation; Beijing AI Origin Community enables open transfer; Dazhongsi supports urban experience. The Zhongguancun Technology Services Wing and Xiaoyue River Scenario Enablement Wing provide professional resources and real-world contexts. Public interest is the test of value and accountable people retain final responsibility. [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+
+v1.6 establishes “mile” as Proofline's own delivery grammar: One Component, One Proof-Mile. An ordinary-service base, reversible test pocket and public evidence rail form each construction bay. Every K01–K06 component advances through CR0–CR4 only on evidence from its own site, problem and positive or negative findings; three Proof Stations then hand off technical-safety, rights-maintenance and real-use evidence. Deliverability therefore includes the ability to stop, remove and reinstate—not the quantity of installed devices.
 
 ## Executive Brief
 
@@ -344,11 +346,41 @@ The developer path is problem call, transparent selection, small trial, Human Re
 
 Policy suggestions are to establish civic scenario permits and exit clauses; require non-technical alternatives, Human Review, version records and negative results; provide time-share products for short R&D, shared experiments, launches and community service; and extend participation from one consultation to problem definition, test observation and annual review. Competent authorities and professional teams must deepen all suggestions.
 
+### 4. Continuous participation and open review
+
+Following the repository README's continuous-participation loop, this pass rebuilt the evidence baseline from `upstream/main@d400d48d`: reread the README, submission skill, public brief, agent taskbook, source register and formal guide; inspect current Issues and tooling changes; and edit only material whose provenance, decision and validation can be explained. [source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK]
+
+Proofline's internal participation record follows trigger, evidence, decision and output. A source change first identifies affected layers and metrics. Field observation fixes the geometry version, environmental conditions, actual accessible route, unobserved cases and professional acceptance criteria in advance. Every trial records positive, negative and aborted outcomes. The three-station evidence chain closes each handoff with a non-AI baseline and a retain, modify or remove decision. These rules directly support Proofline's spatial, component and operating design without changing any unverified site fact.
+
+Repository collaboration is also evidence. The Issue #485 public-call index defect is fixed; this package continues to separate the complete source register from lightweight term matching and adds no irrelevant entry. The Issue #446 table-rendering fix has regenerated both reports with 13 semantic GFM tables in each language. The Issue #430 bilingual-figure metadata repair and Issue #420 Windows UTF-8 repair are now upstream, and this package rechecks its manifest and preflight results directly. Issue #588 affects post-merge website deployment timing only, not proposal content or local validation. `visual/assets/participation.json` records links, actions, rejected options and next-check commands.
+
+The next pass does not claim a fictional scheduled task. It is event-triggered: recalculate everything when official polygons, controls, roads, rail, ownership, heritage, utilities or waterway evidence changes; reopen a data gate when corridor or platform data has permission, method, coverage and bias documentation; pause before Human Review when residents, accessibility users, operators or rights holders identify material risk; and sync upstream before a scoped update when repository guidance, schemas, rendering, Issues or review changes. Every pass preserves adopt, revise and stop outcomes and reruns self-check plus participant preflight. [depth:phasing_implementation]
+
+### 5. One Component, One Proof-Mile: from concept to reversible delivery
+
+Construction optimization begins by making the ordinary route work—not by installing more devices. Every technology must be able to leave and every component must have a maintainer. To keep five gates from becoming a generic process transferable to any project, Proofline translates the railway grammar of station, mile and handoff into its own **One Component, One Proof-Mile** rule. Each K01–K06 component carries its own mile record; evidence that is not attached to a specific component, authorized location and public problem cannot advance the whole line by assertion. `visual/assets/construction-readiness.json` is a handoff framework for professional design development, not a construction drawing, bill of quantities, procurement specification, schedule or approval.
+
+Each construction bay has three layers. The **ordinary-service base** keeps passage, wayfinding, rest or staffed help working without a model, power or network. The **reversible test pocket** holds removable mock-ups only inside an authorized extent; it cannot occupy accessible clear width or turn the ordinary route into compulsory participation. The **public evidence rail** identifies the component, current CR gate, operator, non-AI baseline, negative results, stop condition and removal route on site. Proof therefore becomes a spatial interface that the public can read and professional teams can hand off—not only a back-office record.
+
+Each Proof-Mile still passes through five delivery gates:
+
+- **CR0 Evidence lock and site survey:** obtain official polygons, ownership, topographic and condition surveys, heritage, road and rail, accessibility, trees, soil, drainage, utilities, fire and operations constraints, and preregister pedestrian wind, heat and shade observations tied to the actual accessible route. A material conflict or absent accountable party prevents mock-up entry.
+- **CR1 Authorized 1:1 reversible mock-up:** wheelchair, low-vision, older-user and maintenance walkthroughs use full-scale passive, offline and removable components while recording the geometry version, observation conditions and unobserved cases. Trip, glare, ponding, wind or heat, fire, heritage or maintenance risk sends the component back or stops it.
+- **CR2 Controlled or off-street test:** smart functions are tested only with a physical boundary, manual takeover, emergency stop, minimum data and incident record. Failure must return to a safe non-AI state.
+- **CR3 Permitted time-limited public pilot:** opening fixes a start and end, accountable operator, evaluation baseline, notice and opt-out, staffed alternative and daily close-down check. A serious incident, repeated accessibility failure, unauthorized collection or loss of staffing stops the test.
+- **CR4 Retain, modify or remove:** publish comparison with the pre-pilot baseline, positive and negative results, distributional effects and maintenance cost. Only professional sign-off, statutory procedures, funding and procurement can later convert a retained item into permanent design; otherwise reinstate the site and record material recovery and data deletion. [depth:phasing_implementation]
+
+Six low-impact components connect directly to the existing action packages. K01 ordinary wayfinding and staffed help plus K02 accessible shaded rest and service bays establish the basic public service for P01, P02 and P06. K02 shade and pedestrian wind-heat conditions must be observed against a geometry version, season or leaf state, actual route and professional acceptance criteria; one comfortable visit or a tree count proves nothing. K03 blue-green rainwater edge mock-ups test soil, infiltration, contamination, overflow and maintenance for P02 and P03. K04 switchable evidence kiosks use passive information as the baseline for P01, P03 and P05. K05 robot boundaries and emergency-stop kits are restricted to P03's authorized controlled site. K06 contribution-lineage and railway-memory frames are free-standing and reversible for P07 and cannot attach to heritage fabric without heritage and rights clearance. [depth:municipal_new_infrastructure] [depth:blue_green_public_space]
+
+The three Proof Stations are not repeated display nodes; they are differentiated evidence handoffs. Zhongzhiyuan receives technical, safety and failure evidence. AI Origin receives rights, maintenance, accountability and transfer evidence. Dazhongsi receives real-use, non-participant impact, opt-out and complaint evidence. At minimum, every component records its ID, action packages, current gate, public problem, non-AI baseline, geometry version, authorized location, accountable operator, positive and negative evidence, stop owner, removal and reinstatement state, and retain / modify / remove decision. Eight professional domains must each say proceed, revise or do not proceed before advancement. One component's pass cannot stand in for another component or for statutory approval. [depth:phasing_implementation]
+
+Without an official base and site survey, this pass adds no component quantity, fixed dimension, material strength, building volume, alignment, schedule or cost; conceptual deliverability does not masquerade as engineering feasibility. [assumption:A-OPERATIONS-001]
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 ### 1. Core reproducible metrics
 
-![Core metrics, phasing and evidence chain](assets/figures/metrics-evidence.en.png)
+![Core metrics and One Component, One Proof-Mile delivery chain](assets/figures/metrics-evidence.en.png)
 
 | Metric | Package value | Interpretive boundary |
 | --- | ---: | --- |
@@ -408,7 +440,18 @@ Narrative, GeoJSON, JSON, HTML, logo, five evidence figures and PDFs are origina
 
 Offline `visual/index.html` loads no CDN, remote font, remote map, external script, iframe, form, API or tracker. Global cases use only names and mechanisms from institutional public pages, not protected images, charts or copied prose. If provenance, authorization or dispute handling cannot be confirmed, content does not enter permanent display. [self_check:VISUAL_STATIC]
 
-## References
+## References: public-call index
+
+- Public brief `brief/public-brief.md`: task background, vision, priority directions, participation workflow and artifact-status boundary. [source:PUBLIC-BRIEF]
+- Public-material boundary `brief/README.md`: distinguishes public, non-public and review-required material without replacing formal disclosure review. [source:REPOSITORY-README]
+
+These two items correspond to the lightweight `sources/public-sources.json` index used for public-call matching. That index does not replace this package's full `sources.json` register for formal evidence, official statistics, cases, rights and generated assets.
+
+This index layer answers how the public call enters design judgment; it does not turn two repository documents into site evidence. `brief/public-brief.md` calibrates the Centennial Jing-Zhang, AI Innovation Belt, continuous-participation and artifact-status directions. `brief/README.md` constrains disclosure boundaries. Together they support the shift from smart display to a reversible and reviewable civic process, but they establish no corridor demand, flow, ownership, current building, road, rail, heritage, utility or engineering condition.
+
+The public-call index therefore enters no area or length calculation and changes no GeoJSON, `metrics.json` value or phase. Spatial metrics remain EPSG:4548 recomputations from package provisional geometry and require full recalculation after official polygons. Administrative industry and public-service context remains scale-limited and non-spatially allocable in the complete register below. Construction components still await survey, ownership, heritage, transport-accessibility, landscape-water, utility-fire and operations evidence. Missing inputs remain unknown rather than being substituted by the call documents.
+
+## Complete source and evidence register
 
 ### Formal tasks, standards and data
 
