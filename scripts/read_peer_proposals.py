@@ -52,6 +52,18 @@ class PeerReaderError(RuntimeError):
     pass
 
 
+def configure_stdout() -> None:
+    """Prefer UTF-8 for human-readable output on legacy Windows consoles."""
+    reconfigure = getattr(sys.stdout, "reconfigure", None)
+    if reconfigure is None:
+        return
+    try:
+        reconfigure(encoding="utf-8", errors="backslashreplace")
+    except (OSError, ValueError):
+        # Keep embedded/test streams and older Python implementations usable.
+        return
+
+
 def safe_repo_path(value: str) -> str:
     path = PurePosixPath(value)
     if path.is_absolute() or ".." in path.parts or not path.parts:
@@ -224,6 +236,7 @@ def render_list(items: list[dict[str, Any]], source: str) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    configure_stdout()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", default=".", help="Sparse workspace containing submissions-data.js")
     parser.add_argument("--latest", type=int, default=20, help="Maximum catalog entries to show")
