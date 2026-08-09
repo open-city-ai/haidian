@@ -2,8 +2,8 @@
 title: "京张主线·端口：百年京张AI创新带城市设计概念方案"
 author_github: "WilderNoTrack"
 language: "zh"
-translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
+translation_file: "proposal.en.md"
 version: "2.0.0"
 summary: "京张铁路遗址公园二期已于 2026 年 8 月 6 日建成开放——全长 9 公里、53 公顷、服务 70 个社区约 45 万人，官方已完成拆围挡、打通 9 条城市支路与『三道一绿』全线贯通。本方案因此不再重复提出『贯通』，而是把已建成的主线当作既成的城市级基础设施，提出挂载在其上的端口层：三个端口（PORT.N/PORT.O/PORT.S）、十二组东西缝合接口、十二张可退出的 AI 场景卡、三处朝圣地标与原点名录荣誉体系。提交 51 个无缝无叠用地地块与 20 项 EPSG:4548 复算指标，全部空间建议均为概念建议，可供专业团队深化研究。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
