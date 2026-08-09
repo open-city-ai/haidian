@@ -28,8 +28,12 @@ from validate_submission import (
 
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 TABLE_NUMBER_RE = re.compile(
-    r"(?P<number>[+-]?(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?))\s*"
-    r"(?P<unit>km²|km2|m²|sqm|ha|公顷|平方公里|平方千米|公里|米|km|m|㎡|%|％|ratio|比例|个|处|项)?",
+    r"^\s*"
+    r"(?P<approx>~|≈|约|about|approximately|approx\.?)?\s*"
+    r"(?P<number>[+-]?(?:\d{1,3}(?:,\d{3})+|\d+(?:\.\d+)?|\.\d+))\s*"
+    r"(?P<unit>square\s+kilometers?|square\s+kilometres?|"
+    r"km²|km2|m²|sqm|ha|公顷|平方公里|平方千米|公里|米|km|m|㎡|%|％|ratio|比例|个|处|项)?"
+    r"\s*[，,。.]?\s*$",
     re.IGNORECASE,
 )
 
@@ -64,12 +68,13 @@ class ProposalMetricClaim:
 
 
 def _parse_table_value(value_cell: str) -> tuple[float, str] | None:
-    """Parse one unambiguous numeric value from a metric table value cell."""
-    # Ranges and compound values are deliberately left to human review rather
-    # than guessed from their first number.
-    if re.search(r"\d\s*(?:-|–|—|至|到)\s*\d", value_cell):
-        return None
-    match = TABLE_NUMBER_RE.search(value_cell)
+    """Parse a whole metric cell, never a number embedded in prose or a formula."""
+    # References are metadata, not a second numeric claim. Everything else
+    # must fit the complete numeric-cell grammar below; ranges, lists,
+    # formulas, and explanatory prose remain human-review territory.
+    normalized = re.sub(r"\s*\[[^\]]+\]\s*", " ", value_cell)
+    normalized = normalized.strip().strip("`*")
+    match = TABLE_NUMBER_RE.fullmatch(normalized)
     if not match:
         return None
     try:
@@ -121,7 +126,16 @@ def _metric_value_in_base_units(claim: ProposalMetricClaim, metric: dict[str, An
         return value * 1000
     if unit in {"ha", "公顷"} and target in {"sqm", "m²", "㎡"}:
         return value * 10000
-    if unit in {"km²", "km2", "平方公里", "平方千米"} and target in {"sqm", "m²", "㎡"}:
+    if unit in {
+        "km²",
+        "km2",
+        "平方公里",
+        "平方千米",
+        "square kilometers",
+        "square kilometer",
+        "square kilometres",
+        "square kilometre",
+    } and target in {"sqm", "m²", "㎡"}:
         return value * 1_000_000
     return value
 
@@ -147,6 +161,25 @@ def validate_proposal_metric_table_claims(
             )
             continue
         if status != "known" or not isinstance(metric.get("value"), (int, float)):
+            continue
+        target_unit = str(metric.get("unit", "")).casefold()
+        if not claim.unit and target_unit in {
+            "sqm",
+            "m²",
+            "㎡",
+            "m",
+            "米",
+            "km",
+            "ha",
+            "公顷",
+        }:
+            # A bare 11.4 may be km², ha, or a rounded base-unit value. Do not
+            # invent a unit and turn an otherwise reviewable statement into a
+            # blocking mismatch.
+            continue
+        if not claim.unit and target_unit in {"ratio", "比例"} and not 0 <= claim.value <= 1:
+            # Ratios may be written as a base fraction without a suffix, but a
+            # bare 28.5 is more likely an unlabelled percentage than 28.5x.
             continue
         expected = float(metric["value"])
         actual = _metric_value_in_base_units(claim, metric)

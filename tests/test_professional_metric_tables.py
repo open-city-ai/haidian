@@ -50,6 +50,44 @@ class ProfessionalMetricTableTests(unittest.TestCase):
         text = "| 建筑高度 | 18–24 m | range |\n| 重点区域 | 3 | count |\n"
         self.assertEqual([], extract_proposal_metric_claims(text))
 
+    def test_prose_formulas_and_multi_value_cells_are_not_guessed(self) -> None:
+        text = (
+            "| 范围面积 | Approximately 11.4 square kilometers, including urban areas | note |\n"
+            "| 公共空间比例 | 29.04% / 3.77% / 6.49% | note |\n"
+            "| 范围面积 | polygon_area(site_boundary) @EPSG:4548 | formula |\n"
+        )
+        self.assertEqual([], extract_proposal_metric_claims(text))
+
+    def test_spelled_square_kilometer_unit_is_normalized(self) -> None:
+        report = ProfessionalReport()
+        validate_proposal_metric_table_claims(
+            report,
+            "proposal.md",
+            "| 范围面积 | 约11.4 square kilometers | metric:site_area_sqm |\n",
+            {"site_area_sqm": {"status": "known", "value": 11400000, "unit": "sqm"}},
+        )
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_bare_physical_values_are_not_assumed_to_be_base_units(self) -> None:
+        report = ProfessionalReport()
+        validate_proposal_metric_table_claims(
+            report,
+            "proposal.md",
+            "| 范围面积 | 11.4 | metric:site_area_sqm |\n",
+            {"site_area_sqm": {"status": "known", "value": 11400000, "unit": "sqm"}},
+        )
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
+    def test_bare_ratio_above_one_is_not_assumed_to_be_a_base_ratio(self) -> None:
+        report = ProfessionalReport()
+        validate_proposal_metric_table_claims(
+            report,
+            "proposal.md",
+            "| 绿地率 | 28.5 | metric:green_ratio |\n",
+            {"green_ratio": {"status": "known", "value": 0.285, "unit": "ratio"}},
+        )
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+
 
 if __name__ == "__main__":
     unittest.main()
