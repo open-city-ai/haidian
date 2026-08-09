@@ -410,6 +410,8 @@ The implementation handoff is deliberately inspectable: `operations-matrix.json`
 
 Each scenario row carries a spatial carrier, trigger, minimum data, RACI, recovery rule, non-AI equivalent and exit condition.
 
+This revision adds `visual/assets/run-open-pulse-scenario-audit.js` and its persisted result `open-pulse-scenario-audit.json`. The runner reads only the bundled 14 scenarios and eight operation packages, then deterministically checks the spatial carrier, trigger, minimum data, RACI, ordinary fallback, stop/success conditions, acceptance, maintenance and provisional boundary. Three deliberately malformed fixtures—missing accountable role, missing ordinary fallback/stop rule, and missing operation stop rule—must be rejected. `node visual/assets/run-open-pulse-scenario-audit.js --check` proves only that the structural contract is reproducible; it does not prove field access, operator SLA, model safety, engineering approval or a public pilot.
+
 ### 3.1 Node-level concepts and public-interest audit
 
 The node plans and public-interest audit make arrival, status, operation, ordinary return, accessibility, complaint and group-difference evidence reviewable.

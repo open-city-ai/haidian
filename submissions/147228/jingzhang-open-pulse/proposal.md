@@ -618,6 +618,8 @@ v1.7 的机器可读资产保留不变；v1.8 把最影响内容评分的证据�
 
 完整 14 行（含 data retention、relative cost band、success metric）见 `scenario-operation-matrix.json`。以上 SLA 是设计合同草案，不是法定标准；所有窗口结束后归还普通公共使用。
 
+本轮增加 `visual/assets/run-open-pulse-scenario-audit.js` 与其回读结果 `open-pulse-scenario-audit.json`。它只读取包内的 14 条场景和 8 个行动包，确定性检查空间载体、触发器、最小数据、RACI、人工等价路径、停止/成功条件、验收、维护和 provisional 边界；同时把“缺 accountable”“缺非 AI 兜底/停止条件”“缺行动包停止条件”三个负例故意打坏，确认审计会拒绝它们。`node visual/assets/run-open-pulse-scenario-audit.js --check` 通过只表示结构合同可复现，不表示现场可达、运营 SLA、模型安全、工程批准或公开试点已通过。
+
 ### 5. 公共利益、参与和公平：先测再承诺
 
 | 审计项 | 当前状态 | 试点前证据 | 冲突处置 |

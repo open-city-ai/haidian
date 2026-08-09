@@ -1,5 +1,16 @@
 # 方案迭代记录
 
+## v3.1 - 2026-08-10
+
+- Aligned the Chinese AV-T03 rollback-gate status with `visual/assets/curbside-test-gates.json`: `baseline: unknown` now renders as `UNKNOWN`, rather than visually upgrading an unmeasured weather/network outcome to a design target.
+- Refreshed matching manifest and copyright-ledger hashes for the changed visual index, figures and changelog; no gate register value, performance result, permit, deployment or official-score claim changed.
+
+## v3.0 - 2026-08-10
+
+- Corrected the bilingual autonomy-readiness data plate and its visual-index captions from four candidate nodes to three, matching `visual/assets/autonomy_nodes.json` (`AUTO-NODE-001` through `AUTO-NODE-003`).
+- Revalidated the 2400 × 1700 figures after a surgical presentation edit; the register, scenario count, gate count and metric status are unchanged.
+- This is a figure-integrity correction only; it adds no road, permit, deployment, performance or official-score claim.
+
 ## v2.9 - 2026-08-09
 
 - Added bilingual acceptance-trace quick maps so reviewers can follow each check to its gate, fixture, scenario or boundary field without searching the contract; the maps are reading aids only and the runner remains the source of structural validation.

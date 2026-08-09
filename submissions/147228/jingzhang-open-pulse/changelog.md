@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v3.7 - 2026-08-10
+
+- Tightened the Open Pulse negative-fixture audit so each malformed contract must fail the exact expected check IDs, not merely produce any failure.
+- Regenerated `open-pulse-scenario-audit.json`; the change remains a local structural audit and adds no field, operational, legal or deployment claim.
+- Added mirrored Chinese/English visual-index links for the S02 tabletop contract, evidence receipt and runner, so the primary offline review surface exposes the v3.6 replay without changing its `not_authorized_not_run` / `not_run` boundary.
+
 ## v3.6 - 2026-08-09
 
 - Added four deterministic negative replays, one per S02 fixture; the runner now verifies hold/stop/withdraw/delete-temporary-state decisions as `reject_or_stop` while retaining `not_run`, `performance_results=null`, and the no-authorization boundary.
@@ -107,6 +113,13 @@
 
 - 跟进主线合并后的评审基线，重新渲染中英文离线报告，并刷新 manifest 与逐资产版权台账哈希。
 - 保持八类公共使用者镜头、三类产业验证窗、四类责任/荣誉节点和八项运维行动包在双语正文与视觉索引中的可回读链接。
+
+## v3.6.1 - 2026-08-10
+
+- 增加 `run-open-pulse-scenario-audit.js` 与 `open-pulse-scenario-audit.json`，对 14 条场景、8 个行动包的空间/责任/人工兜底/停止/验收/维护字段做确定性回放。
+- 加入三个故意缺字段的负例，确认审计器会拒绝缺 accountable、缺非 AI 兜底/停止条件和缺运营包停止条件的合同；结果仅是本地结构证据，不升级为现场、运营、工程或公开试点结论。
+- 中英文提案和 QA 记录增加同一复核入口，保持 provisional geometry、unknown 基线和人工回退边界。
+
 ## v2.4 - 2026-08-08
 
 - 将最新主线的政策/企业成长接口、具身智能凭证和 QA 记录与 v2.1 的三类验证窗、八类公共使用者镜头、四类责任/荣誉节点统一为一个可审阅版本。
