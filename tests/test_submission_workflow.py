@@ -2158,6 +2158,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             manifest_path = root / base / "manifest.json"
             manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
             manifest["package_state"] = "ready_for_review"
+            manifest["validation_claim"]["readiness_contract"] = "persisted-self-check-v1"
             manifest["validation_claim"]["self_checked"] = False
             manifest_path.write_text(
                 json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
@@ -2170,7 +2171,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             )
             report = validate_submission(root, "alice", changed + [f"{base}/manifest.json"])
             self.assertFalse(report.ok)
-            self.assertIn("self_checked=false", "\n".join(report.errors))
+            self.assertIn("must set validation_claim.self_checked=true", "\n".join(report.errors))
 
     def test_bilingual_contract_manifest_only_update_rechecks_full_package(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

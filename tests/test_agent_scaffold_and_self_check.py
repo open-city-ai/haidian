@@ -456,6 +456,54 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
 
             self.assertEqual("needs_revision", classify_submission(submission_dir, after))
 
+            marked = mark_self_checked(submission_dir)
+            self.assertEqual(0, marked.returncode, marked.stdout + marked.stderr)
+            refreshed_self_check = json.loads(
+                (submission_dir / "self_check.json").read_text(encoding="utf-8")
+            )
+            refreshed_manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            self.assertTrue(refreshed_self_check["ok"])
+            self.assertTrue(refreshed_self_check["can_enter_formal_review"])
+            self.assertTrue(refreshed_manifest["validation_claim"]["self_checked"])
+            self.assertEqual(
+                "persisted-self-check-v1",
+                refreshed_manifest["validation_claim"]["readiness_contract"],
+            )
+            self.assertEqual(
+                "formal_review_ready",
+                classify_submission(submission_dir, refreshed_manifest),
+            )
+
+    def test_refresh_rejects_unlisted_self_check_symlink_before_write(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submissions" / "alice" / "unsafe-self-check"
+            write_official_site_package(root)
+            self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
+            self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+
+            outside = root / "outside-self-check.json"
+            sentinel = b'{"sentinel":"unchanged"}\n'
+            outside.write_bytes(sentinel)
+            self_check_path = submission_dir / "self_check.json"
+            self_check_path.unlink()
+            self_check_path.symlink_to(outside)
+
+            refreshed = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                    str(submission_dir),
+                    "--refresh",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, refreshed.returncode)
+            self.assertIn("fixed package path traverses symbolic link", refreshed.stdout)
+            self.assertEqual(sentinel, outside.read_bytes())
+
     def test_refresh_rejects_missing_bilingual_companion_or_manifest_entry(self) -> None:
         for missing_manifest_entry in [True, False]:
             with self.subTest(missing_manifest_entry=missing_manifest_entry):

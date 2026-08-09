@@ -65,9 +65,25 @@ def safe_manifest_path(root: Path, raw_path: object) -> tuple[str | None, Path |
     return rel, path, None
 
 
+def safe_fixed_package_path(root: Path, relative_path: str) -> Path:
+    """Resolve a fixed package file without following a contributor symlink."""
+    linked = first_symbolic_link(root, relative_path)
+    if linked is not None:
+        linked_rel = linked.relative_to(root).as_posix()
+        raise ValueError(
+            f"fixed package path traverses symbolic link: {relative_path} (via {linked_rel})"
+        )
+    path = root / relative_path
+    try:
+        path.resolve().relative_to(root.resolve())
+    except ValueError as exc:
+        raise ValueError(f"fixed package path resolves outside the package: {relative_path}") from exc
+    return path
+
+
 def invalidate_self_check(root: Path) -> None:
     """Make a persisted self-check fail closed after any package refresh."""
-    path = root / "self_check.json"
+    path = safe_fixed_package_path(root, "self_check.json")
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
     except (OSError, UnicodeDecodeError, json.JSONDecodeError):
@@ -90,6 +106,7 @@ def invalidate_self_check(root: Path) -> None:
             "check_id": "REFRESH_INVALIDATED",
             "result": "fail",
             "severity": "blocking",
+            "target": "self_check.json",
             "message": "Package files changed; rerun scripts/self_check_submission.py before formal review.",
         }
     )
@@ -108,6 +125,10 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
     persisted validation claim stale until self-check is run again.
     """
     errors: list[str] = []
+    try:
+        safe_fixed_package_path(root, "self_check.json")
+    except ValueError as exc:
+        errors.append(str(exc))
     proposal_path = root / "proposal.md"
     if not proposal_path.is_file():
         errors.append("proposal.md is required for refresh")
@@ -219,7 +240,10 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
     claim["self_checked"] = False
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Refreshed review-ready package: {root}")
-    print("Run self_check_submission.py now; the persisted validation claim is stale until it passes again.")
+    print(
+        "Run self_check_submission.py --mark-self-checked now; the persisted validation "
+        "claim remains pending until the passing four-gate report is persisted."
+    )
     return 0
 
 
@@ -233,7 +257,10 @@ def main() -> int:
     )
     args = parser.parse_args()
     root = Path(args.submission_dir).resolve()
-    manifest_path = root / "manifest.json"
+    try:
+        manifest_path = safe_fixed_package_path(root, "manifest.json")
+    except ValueError as exc:
+        parser.error(str(exc))
     if not manifest_path.is_file():
         parser.error(f"manifest.json not found under {root}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))

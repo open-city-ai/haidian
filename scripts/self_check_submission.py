@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from validate_submission import PERSISTED_READINESS_CONTRACT
+from validate_submission import PERSISTED_READINESS_CONTRACT, first_symbolic_link
 
 
 REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
@@ -25,6 +25,22 @@ def script_path(repo_root: Path, name: str) -> Path:
     # Keep every subprocess on the same trusted validator version as this
     # entrypoint.  repo_root may be an untrusted or older PR checkout.
     return SCRIPT_DIR / name
+
+
+def safe_package_file(submission_dir: Path, relative_path: str) -> Path:
+    """Resolve a fixed package file without following an unlisted symlink."""
+    linked = first_symbolic_link(submission_dir, relative_path)
+    if linked is not None:
+        linked_rel = linked.relative_to(submission_dir).as_posix()
+        raise ValueError(
+            f"fixed package path traverses symbolic link: {relative_path} (via {linked_rel})"
+        )
+    path = submission_dir / relative_path
+    try:
+        path.resolve().relative_to(submission_dir.resolve())
+    except ValueError as exc:
+        raise ValueError(f"fixed package path resolves outside the package: {relative_path}") from exc
+    return path
 
 
 def run_json_command(command: list[str]) -> dict[str, Any]:
@@ -355,12 +371,12 @@ def mark_self_checked(submission_dir: Path, report: dict[str, Any]) -> tuple[boo
     """Persist the passing four-gate report and its manifest claim atomically enough to retry safely."""
     if report.get("can_enter_formal_review") is not True:
         return False, "cannot mark self_checked unless can_enter_formal_review=true"
-    manifest_path = submission_dir / "manifest.json"
-    self_check_path = submission_dir / "self_check.json"
     try:
+        manifest_path = safe_package_file(submission_dir, "manifest.json")
+        self_check_path = safe_package_file(submission_dir, "self_check.json")
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
         existing_self_check = json.loads(self_check_path.read_text(encoding="utf-8"))
-    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
         return False, f"cannot read manifest.json or self_check.json: {exc}"
     claim = manifest.get("validation_claim")
     if not isinstance(claim, dict):
