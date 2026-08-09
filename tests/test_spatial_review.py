@@ -1,5 +1,6 @@
 import importlib.util
 import json
+import math
 import sys
 import tempfile
 import unittest
@@ -59,6 +60,10 @@ def polygon(x1: float, y1: float, x2: float, y2: float) -> dict:
         "type": "Polygon",
         "coordinates": [[[x1, y1], [x2, y1], [x2, y2], [x1, y2], [x1, y1]]],
     }
+
+
+def point(x: float = 116.305, y: float = 39.905) -> dict:
+    return {"type": "Point", "coordinates": [x, y]}
 
 
 def write_valid_spatial_package(root: Path, base: str) -> None:
@@ -372,6 +377,48 @@ class SpatialReviewTests(unittest.TestCase):
 
             self.assertFalse(report.ok)
             self.assertIn("METRIC_RECALC_MISMATCH", {issue.check_id for issue in report.issues})
+
+    def test_area_layers_reject_point_geometry(self) -> None:
+        filenames = [
+            "site_boundary.geojson",
+            "key_areas.geojson",
+            "land_use.geojson",
+            "buildings.geojson",
+            "green_space.geojson",
+            "public_space.geojson",
+        ]
+        for filename in filenames:
+            with self.subTest(filename=filename), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                base = "submissions/alice/spatial-point"
+                write_valid_spatial_package(root, base)
+                path = root / base / "geometry" / filename
+                data = json.loads(path.read_text(encoding="utf-8"))
+                data["features"][0]["geometry"] = point()
+                write_json(root, f"{base}/geometry/{filename}", data)
+
+                report = review_submission(root / base, REPO_ROOT, "formal")
+
+                self.assertFalse(report.ok)
+                type_issues = [issue for issue in report.issues if issue.check_id == "GEOMETRY_TYPE"]
+                self.assertTrue(type_issues, [issue.__dict__ for issue in report.issues])
+                self.assertTrue(all(math.isfinite(value) for value in report.metrics.values()))
+
+    def test_malformed_feature_returns_structured_error(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/spatial-malformed"
+            write_valid_spatial_package(root, base)
+            write_json(
+                root,
+                f"{base}/geometry/site_boundary.geojson",
+                {"type": "FeatureCollection", "features": [42]},
+            )
+
+            report = review_submission(root / base, REPO_ROOT, "formal")
+
+            self.assertFalse(report.ok)
+            self.assertIn("GEOMETRY_FEATURE", {issue.check_id for issue in report.issues})
 
 
 if __name__ == "__main__":
