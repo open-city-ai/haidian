@@ -100,7 +100,18 @@ def main() -> int:
             for item in manifest.get("files", [])
             if isinstance(item, dict) and item.get("path")
         }
-        bilingual_primary_files = [*sorted(DISPLAY_BASE_FILES), *FIGURES]
+        manifest_figure_files = [
+            rel
+            for rel in listed_items
+            if (
+                rel.startswith("assets/figures/")
+                and primary_path_from_localized(rel) is None
+                and (root / rel).is_file()
+            )
+        ]
+        bilingual_primary_files = list(
+            dict.fromkeys([*sorted(DISPLAY_BASE_FILES), *FIGURES, *sorted(manifest_figure_files)])
+        )
         for rel in bilingual_primary_files:
             item = listed_items.get(rel, {})
             if (

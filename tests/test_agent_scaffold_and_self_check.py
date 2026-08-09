@@ -312,6 +312,45 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual("en", items[localized_rel]["language"])
             self.assertEqual(primary_rel, items[localized_rel]["translation_of"])
 
+    def test_finalize_checks_unreferenced_manifest_figure(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "unreferenced-figure"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+
+            completed = complete_scaffold(output_dir)
+            self.assertEqual(0, completed.returncode, completed.stdout + completed.stderr)
+
+            extra_rel = "assets/figures/report-only-map.png"
+            extra = output_dir / extra_rel
+            extra.write_bytes(b"PNG text-bearing figure")
+            manifest_path = output_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["package_state"] = "scaffold"
+            manifest["files"].append(
+                {
+                    "path": extra_rel,
+                    "role": "proposal_figure",
+                    "required": True,
+                    "language": "neutral",
+                    "sha256": hashlib.sha256(extra.read_bytes()).hexdigest(),
+                }
+            )
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            finalized = subprocess.run(
+                [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertNotEqual(0, finalized.returncode)
+            self.assertIn("assets/figures/report-only-map.en.png", finalized.stdout)
+
     def test_generated_scaffold_is_blocked_until_participant_finalizes_it(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
