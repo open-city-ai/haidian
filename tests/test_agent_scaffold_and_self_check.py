@@ -65,7 +65,7 @@ def run_scaffold(output_dir: Path, stage: str = "formal", cwd: Path = REPO_ROOT)
     )
 
 
-def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
+def complete_scaffold(output_dir: Path, *, declare_model: bool = True) -> subprocess.CompletedProcess:
     proposal = output_dir / "proposal.md"
     proposal.write_text(
         proposal.read_text(encoding="utf-8").replace("SCAFFOLD-DRAFT", "PARTICIPANT-DESIGN")
@@ -119,6 +119,15 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
         target = source.with_name(f"{source.stem}.en{source.suffix}")
         if not target.exists():
             target.write_bytes(source.read_bytes())
+    if declare_model:
+        manifest_path = output_dir / "manifest.json"
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        manifest["agent"]["model"] = "test-scaffold-model"
+        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        agent_path = output_dir / "agent.json"
+        agent = json.loads(agent_path.read_text(encoding="utf-8"))
+        agent["model"] = "test-scaffold-model"
+        agent_path.write_text(json.dumps(agent, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     return subprocess.run(
         [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
         capture_output=True,
@@ -193,6 +202,17 @@ def write_provisional_site_package(root: Path) -> None:
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")
 class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
+    def test_finalize_rejects_scaffold_model_placeholder(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            output_dir = Path(tmp) / "submissions" / "alice" / "placeholder-model"
+            scaffold = run_scaffold(output_dir)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+
+            finalized = complete_scaffold(output_dir, declare_model=False)
+
+            self.assertNotEqual(0, finalized.returncode)
+            self.assertIn("scaffold placeholder", finalized.stdout)
+
     def test_finalize_blocks_v2_package_without_required_bilingual_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "missing-bilingual"

@@ -11,6 +11,7 @@ from pathlib import Path
 from validate_submission import (
     DISPLAY_BASE_FILES,
     is_empty_pdf,
+    is_scaffold_agent_model,
     localized_path,
     parse_front_matter,
     primary_path_from_localized,
@@ -59,6 +60,18 @@ def main() -> int:
         if isinstance(item, dict) and item.get("path") and item.get("sha256")
     }
     errors: list[str] = []
+
+    manifest_agent = manifest.get("agent")
+    if isinstance(manifest_agent, dict) and is_scaffold_agent_model(manifest_agent.get("model")):
+        errors.append("manifest agent.model still has the scaffold placeholder; declare the actual model or an accurate disclosure")
+    agent_path = root / "agent.json"
+    if agent_path.is_file():
+        try:
+            agent_card = json.loads(agent_path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            agent_card = None
+        if isinstance(agent_card, dict) and is_scaffold_agent_model(agent_card.get("model")):
+            errors.append("agent.json model still has the scaffold placeholder; declare the actual model or an accurate disclosure")
 
     proposal_text = (root / "proposal.md").read_text(encoding="utf-8")
     proposal_metadata, _ = parse_front_matter(proposal_text)
