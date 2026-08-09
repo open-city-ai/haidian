@@ -127,6 +127,9 @@ class SelfCheckReport:
 
     def to_dict(self) -> dict[str, Any]:
         return {
+            "check_scope": "advisory_proposal_only",
+            "formal_readiness": "not_assessed",
+            "next_required_check": "scripts/self_check_submission.py",
             "proposal_path": self.proposal_path,
             "ready": self.ready,
             "summary": self.summary,
@@ -637,7 +640,15 @@ def format_report(report: SelfCheckReport) -> str:
         f"{summary.get(STATUS_MANUAL_REVIEW, 0)} manual-review"
     )
     lines.append("")
-    lines.append("> This self-check is advisory. It does not replace maintainer or expert review.")
+    lines.append(
+        "> This is advisory only: `pass` and a zero `--strict` exit code apply only to this "
+        "proposal-level check. They do not assess formal readiness."
+    )
+    lines.append(
+        "> Formal readiness: not assessed. Next run "
+        "`scripts/self_check_submission.py <submission-dir> --pr-author <github-login>` "
+        "for deterministic, spatial, visual, and professional evidence validation."
+    )
 
     if report.metadata_missing:
         lines.extend(["", "Missing metadata:"])
@@ -674,7 +685,7 @@ def main() -> int:
     parser.add_argument(
         "--strict",
         action="store_true",
-        help="Exit non-zero when any self-check dimension is missing.",
+        help="Exit non-zero when an advisory self-check dimension is missing; formal readiness is not assessed.",
     )
     args = parser.parse_args()
 

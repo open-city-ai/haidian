@@ -429,7 +429,21 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertIn("Proposal self-check", markdown)
             self.assertIn("advisory", markdown)
+            self.assertIn("Formal readiness: not assessed", markdown)
+            self.assertIn("scripts/self_check_submission.py", markdown)
             self.assertIn("Matched public sources", markdown)
+
+    def test_json_preserves_advisory_scope_metadata(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            proposal = self.write_proposal(root)
+
+            payload = score_proposal(root, proposal).to_dict()
+
+            self.assertEqual(payload["check_scope"], "advisory_proposal_only")
+            self.assertEqual(payload["formal_readiness"], "not_assessed")
+            self.assertEqual(payload["next_required_check"], "scripts/self_check_submission.py")
 
 
 if __name__ == "__main__":
