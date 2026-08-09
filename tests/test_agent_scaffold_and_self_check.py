@@ -17,7 +17,10 @@ HAS_REVIEW_DEPS = all(
 )
 
 if HAS_REVIEW_DEPS:
-    from self_check_submission import build_self_check  # noqa: E402
+    from self_check_submission import (  # noqa: E402
+        build_self_check,
+        record_passing_self_check,
+    )
     from pyproj import Transformer  # noqa: E402
     from shapely.geometry import shape  # noqa: E402
     from shapely.ops import transform  # noqa: E402
@@ -193,6 +196,54 @@ def write_provisional_site_package(root: Path) -> None:
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold/self-check tests")
 class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
+    def test_record_pass_updates_manifest_only_after_formal_gate(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = Path(tmp)
+            manifest_path = submission / "manifest.json"
+            manifest_path.write_text(
+                json.dumps(
+                    {
+                        "package_state": "ready_for_review",
+                        "validation_claim": {
+                            "self_checked": False,
+                            "known_blockers": ["Keep disclosed limitation"],
+                        },
+                        "files": [
+                            {"path": "manifest.json", "sha256": "a" * 64},
+                            {"path": "proposal.md", "sha256": "b" * 64},
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            record_passing_self_check(submission, {"can_enter_formal_review": True})
+
+            recorded = json.loads(manifest_path.read_text(encoding="utf-8"))
+            self.assertTrue(recorded["validation_claim"]["self_checked"])
+            self.assertIn(
+                "professional evidence: PASS",
+                recorded["validation_claim"]["self_check_summary"],
+            )
+            self.assertEqual(
+                ["Keep disclosed limitation"],
+                recorded["validation_claim"]["known_blockers"],
+            )
+            self.assertNotIn("sha256", recorded["files"][0])
+            self.assertEqual("b" * 64, recorded["files"][1]["sha256"])
+
+    def test_record_pass_refuses_ineligible_report_without_mutating_manifest(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = Path(tmp)
+            manifest_path = submission / "manifest.json"
+            original = '{"package_state":"ready_for_review","validation_claim":{"self_checked":false}}\n'
+            manifest_path.write_text(original, encoding="utf-8")
+
+            with self.assertRaisesRegex(ValueError, "passes all four gates"):
+                record_passing_self_check(submission, {"can_enter_formal_review": False})
+
+            self.assertEqual(original, manifest_path.read_text(encoding="utf-8"))
+
     def test_finalize_blocks_v2_package_without_required_bilingual_files(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "missing-bilingual"

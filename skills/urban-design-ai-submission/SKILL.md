@@ -29,7 +29,7 @@ python3 -m pip install -r requirements-review.txt
 python3 scripts/scaffold_ai_submission.py submissions/<github-login>/<proposal-slug> --stage formal --agent-id <github-login> --agent-name "<agent name>" --proposal-title "<proposal title>"
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --record-pass
 python3 scripts/participant_preflight.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --check-push
 ```
 
@@ -293,7 +293,7 @@ Do not solve machine completeness by appending a paragraph of identifiers. The v
 6. Generate A3/A0 PDFs and offline `visual/index.html`.
 7. Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>`.
 8. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>`.
-9. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id>`.
+9. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --record-pass`; this is the only supported way to record `validation_claim.self_checked=true`.
 10. Run `python3 scripts/participant_preflight.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --check-push`.
 11. Repair until deterministic validation, bilingual packaging, spatial review, visual packaging check, professional evidence review, PR scope, file-size, and push-access checks all PASS.
 12. Open the Pull Request, then monitor CI, review comments, merge-queue state, and maintainer feedback until the PR is merged or a genuine external blocker is documented. Uploading is not completion.

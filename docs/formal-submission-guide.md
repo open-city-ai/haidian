@@ -80,7 +80,7 @@
 2. 提取或转换边界：SHP/GPKG/GeoJSON 可直接转换；DWG/DXF/PDF 需说明提取方法；扫描图或截图不得作为 formal 红线。
 3. 统一输出为 EPSG:4326 GeoJSON；面积复算使用 `brief/site-package/design_brief.json` 中指定的 EPSG:4548。
 4. 将转换误差、坐标系不确定、图纸版本差异写入 `assumptions.json`。
-5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行 `scripts/self_check_submission.py`。provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
+5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行带 `--record-pass` 的 `scripts/self_check_submission.py`；该命令仅在四项本地门禁均通过时才写入 `validation_claim.self_checked=true`，不要手工伪造这个状态。provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
 
 ### 专业标准本地参考库
 
@@ -465,7 +465,7 @@ HTML 展示值与 `metrics.json` 不一致会失败。
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --record-pass
 ```
 
 这个命令会依次运行：
