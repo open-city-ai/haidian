@@ -1,0 +1,320 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, standards, and schemas.",
+      "authority_level": "project_input",
+      "usable_for": [
+        "scope",
+        "design_space",
+        "metrics_schema"
+      ],
+      "not_usable_for": [
+        "official_boundary_if_missing"
+      ]
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Cleared-source usability registry.",
+      "authority_level": "repository_registry",
+      "usable_for": [
+        "source_status"
+      ],
+      "not_usable_for": [
+        "new_facts"
+      ]
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Navigation and task synthesis; not a new authority source.",
+      "authority_level": "processed_reference",
+      "usable_for": [
+        "navigation"
+      ],
+      "not_usable_for": [
+        "independent_facts"
+      ]
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Provisional design boundary and three key-area polygons.",
+      "authority_level": "provisional_only",
+      "usable_for": [
+        "concept_geometry",
+        "visualization",
+        "recalculation"
+      ],
+      "not_usable_for": [
+        "redline",
+        "permit",
+        "precise_area"
+      ]
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Provisional locations of Zhongzhiyuan, Beijing AI Origin Community, and Dazhongsi AI Industry Cluster.",
+      "authority_level": "provisional_only",
+      "usable_for": [
+        "concept_geometry",
+        "key_area_programming"
+      ],
+      "not_usable_for": [
+        "official_area",
+        "parcel_control"
+      ]
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "publisher": "Beijing Municipal Planning and Natural Resources Commission",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "usage": "Open-call scope, goals, key areas, design depth, and submission context.",
+      "authority_level": "official_public",
+      "usable_for": [
+        "project_facts",
+        "requirements"
+      ],
+      "not_usable_for": [
+        "unpublished_controls"
+      ]
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Ten principles, three positions, five functions, six agent tasks, scenarios, personas, landmarks, and operations.",
+      "authority_level": "user_cleared",
+      "usable_for": [
+        "design_brief",
+        "program"
+      ],
+      "not_usable_for": [
+        "statutory_control"
+      ]
+    },
+    {
+      "id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "path": "brief/site-package/standards/references/MOHURD-URBAN-DESIGN-MEASURES.md",
+      "source_type": "official_public",
+      "usage": "Urban-design quality and public-space review reference.",
+      "authority_level": "official_standard",
+      "usable_for": [
+        "public_space",
+        "character",
+        "human_scale"
+      ],
+      "not_usable_for": [
+        "project_specific_controls"
+      ]
+    },
+    {
+      "id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "path": "brief/site-package/standards/references/MOHURD-CONTROL-DETAILED-PLANNING.md",
+      "source_type": "official_public",
+      "usage": "Regulatory-plan interface; distinguishes statutory controls from proposal options.",
+      "authority_level": "official_standard",
+      "usable_for": [
+        "control_boundary",
+        "implementation_interface"
+      ],
+      "not_usable_for": [
+        "missing_controls"
+      ]
+    },
+    {
+      "id": "MNR-LAND-USE-CLASSIFICATION-202311",
+      "path": "brief/site-package/standards/references/MNR-LAND-USE-CLASSIFICATION-GUIDE.md",
+      "source_type": "official_public",
+      "usage": "Land-use coding reference for concept layers.",
+      "authority_level": "official_standard",
+      "usable_for": [
+        "land_use_codes"
+      ],
+      "not_usable_for": [
+        "parcel_ownership"
+      ]
+    },
+    {
+      "id": "MOHURD-ARCH-DESIGN-DEPTH-2016",
+      "path": "brief/site-package/standards/references/MOHURD-ARCH-DESIGN-DEPTH-2016.md",
+      "source_type": "missing_source_url",
+      "usage": "Data gap recorded; architectural construction-depth claims are deferred.",
+      "authority_level": "data_gap",
+      "usable_for": [],
+      "not_usable_for": [
+        "construction_documents"
+      ]
+    },
+    {
+      "id": "CASE-ONE-NORTH",
+      "title": "JTC One-North",
+      "url": "https://www.jtc.gov.sg/find-land/jtc-key-estates/one-north?estate=one-north",
+      "publisher": "JTC Singapore",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Precinct diversity, research-to-market ecosystem, and live-work-play adjacency.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "CASE-KALASATAMA",
+      "title": "Smart Kalasatama final report",
+      "url": "https://forumvirium.fi/en/publication/smartkalasatama-final-report/",
+      "publisher": "Forum Virium Helsinki",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Resident-led agile pilots, climate targets, and everyday service testing.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "CASE-MOBILITY-LAB",
+      "title": "Mobility Lab Helsinki",
+      "url": "https://forumvirium.fi/en/projects/mobility-lab-helsinki-is-a-testbed-for-smart-mobility-innovations-2/",
+      "publisher": "Forum Virium Helsinki",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Real-world mobility testbed with city, companies, researchers, and residents.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "CASE-PARIS-SACLAY",
+      "title": "Paris-Saclay practical innovation guide",
+      "url": "https://www.paris-saclay.com/fileadmin/documents/1._L_agglo/5._Publications/PARIS-SACLAY_GUIDE_PRATIQUE_INNOVATION.pdf",
+      "publisher": "Paris-Saclay Agglomeration",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Incubation, open innovation, events, and support for research-to-enterprise translation.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "CASE-BOSTON-ID",
+      "title": "Boston Innovation District planning",
+      "url": "https://www.bostonplans.org/getattachment/6df4a8af-b842-42db-aea1-da6066257588",
+      "publisher": "Boston Planning & Development Agency",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Waterfront innovation district, public realm stewardship, and transit-linked growth.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "CASE-KENDALL",
+      "title": "Kendall Square",
+      "url": "https://www.cambridgema.gov/cdd/economicopportunityanddevelopment/aboutcambridge/kendallsq",
+      "publisher": "City of Cambridge",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Industrial-to-innovation transformation paired with housing, services, and transit.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "CASE-MARINETERREIN",
+      "title": "Marineterrein Amsterdam",
+      "url": "https://www.amsterdam.nl/projecten/marineterrein/",
+      "publisher": "City of Amsterdam",
+      "accessed": "2026-08-09",
+      "source_type": "official_public",
+      "authority_level": "background_only",
+      "usage": "Open-ended innovation district, temporary use, test-before-scale, and public access.",
+      "usable_for": [
+        "mechanism_reference",
+        "case_comparison"
+      ],
+      "not_usable_for": [
+        "local_boundary",
+        "local_controls",
+        "local_performance_claims"
+      ]
+    },
+    {
+      "id": "VISUAL-STYLE-RECOMMENDATIONS",
+      "path": "docs/visual-style-recommendations.md",
+      "source_type": "repository_public_reference",
+      "usage": "Visual hierarchy, legend, and accessibility guidance.",
+      "authority_level": "repository_guidance",
+      "usable_for": [
+        "figure_design"
+      ],
+      "not_usable_for": [
+        "planning_facts"
+      ]
+    },
+    {
+      "id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "path": "brief/site-package/geometry/provisional_boundaries_basis.md",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Provenance and limitations of provisional geometry, including OSM cross-check boundary caveat.",
+      "authority_level": "provisional_only",
+      "usable_for": [
+        "limitation_disclosure"
+      ],
+      "not_usable_for": [
+        "official_extent"
+      ]
+    }
+  ]
+}
