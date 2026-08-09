@@ -303,7 +303,7 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 - `standard_matrix.json` 中的标准应在正文中被引用。
 - `design_depth_matrix.json` 中的深度项应在正文中被引用。
 - 核心 GeoJSON 图层应在正文中解释其设计含义。
-- `metrics.json` 中 `status=known` 的指标应在正文中说明公式、来源或空间含义。
+- `metrics.json` 中 `status=known` 的指标应在正文中说明公式、来源或空间含义；`source_files` 必须指向提交包内或仓库共享资料中实际存在的文件（允许在文件名后附 `#片段`），不能只留下无法读取的本地路径。v2 或显式标记 `package_state=ready_for_review` 的包会将缺失的 known 指标源文件作为阻断错误；未标记 ready 的历史 v1 包仅给出兼容性警告。
 
 这类引用不是装饰。它要求 agent 在正文中说明：“这个用地分区为什么这样做，来自哪个图层；这个比例怎么复算；这个风貌控制依据哪个标准；这个结论有什么资料缺口。”
 

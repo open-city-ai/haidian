@@ -1764,6 +1764,83 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertNotIn("bilingual", "\n".join(report.warnings))
             self.assertNotIn("counterpart", "\n".join(report.warnings))
 
+    def test_v2_known_metric_requires_existing_source_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            metrics_path = root / base / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["site_area_sqm"]["source_files"] = [
+                "../../../diagnosis/section_units.geojson"
+            ]
+            metrics_path.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed + [f"{base}/metrics.json"])
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "metrics.json: metrics.site_area_sqm: source file does not exist",
+                "\n".join(report.errors),
+            )
+
+    def test_review_ready_legacy_known_metric_requires_existing_source_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["package_state"] = "ready_for_review"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            metrics_path = root / base / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["site_area_sqm"]["source_files"] = [
+                "../../../diagnosis/section_units.geojson"
+            ]
+            metrics_path.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed + [f"{base}/metrics.json"])
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "metrics.json: metrics.site_area_sqm: source file does not exist",
+                "\n".join(report.errors),
+            )
+
+    def test_metric_source_fragments_and_repository_paths_are_resolved(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            brief_path = root / "brief" / "site-package" / "ranges" / "planning_limits.json"
+            brief_path.parent.mkdir(parents=True, exist_ok=True)
+            brief_path.write_text("{}", encoding="utf-8")
+            metrics_path = root / base / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["site_area_sqm"]["source_files"] = [
+                "geometry/site_boundary.geojson#SITE-001",
+                "brief/site-package/ranges/planning_limits.json",
+            ]
+            metrics_path.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed + [f"{base}/metrics.json"])
+
+            self.assertTrue(report.ok, report.errors)
+
     def test_language_neutral_cannot_bypass_primary_display_pair(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

@@ -939,7 +939,33 @@ def validate_geojson_file(
     return len(features)
 
 
-def validate_metrics_file(report: ValidationReport, path: Path, display_path: str) -> None:
+def _metric_source_candidates(repo_root: Path, proposal_dir: str, source: str) -> list[Path]:
+    """Return safe package- and repository-relative candidates for a metric source."""
+    raw_source = source.split("#", 1)[0].strip()
+    if not raw_source or raw_source.startswith(("http://", "https://")):
+        return []
+    source_path = Path(raw_source)
+    repo_root = repo_root.resolve()
+    candidates: list[Path] = []
+    for candidate in [(repo_root / proposal_dir / source_path).resolve(), (repo_root / source_path).resolve()]:
+        try:
+            candidate.relative_to(repo_root)
+        except ValueError:
+            continue
+        if candidate not in candidates:
+            candidates.append(candidate)
+    return candidates
+
+
+def validate_metrics_file(
+    report: ValidationReport,
+    path: Path,
+    display_path: str,
+    *,
+    repo_root: Path | None = None,
+    proposal_dir: str | None = None,
+    strict_sources: bool = False,
+) -> None:
     data = load_json_file(report, path, display_path)
     if not isinstance(data, dict):
         return
@@ -971,6 +997,42 @@ def validate_metrics_file(report: ValidationReport, path: Path, display_path: st
             value = metric["value"]
             if value < 0 or value > 1:
                 report.add_error(f"{label}: ratio value must be between 0 and 1")
+        source_files = metric.get("source_files")
+        if source_files is None:
+            if status == "known":
+                message = f"{label}: known metric needs source_files"
+                if strict_sources:
+                    report.add_error(message)
+                else:
+                    report.add_warning(message + "; legacy package remains compatible")
+            continue
+        if not isinstance(source_files, list) or not source_files:
+            message = f"{label}: source_files must be a non-empty array"
+            if status == "known" and strict_sources:
+                report.add_error(message)
+            else:
+                report.add_warning(message)
+            continue
+        if repo_root is None or proposal_dir is None:
+            continue
+        for source in source_files:
+            if not isinstance(source, str) or not source.strip():
+                message = f"{label}: source_files entries must be non-empty strings"
+                if status == "known" and strict_sources:
+                    report.add_error(message)
+                else:
+                    report.add_warning(message)
+                continue
+            if source.startswith(("http://", "https://")):
+                continue
+            candidates = _metric_source_candidates(repo_root, proposal_dir, source)
+            if any(candidate.is_file() for candidate in candidates):
+                continue
+            message = f"{label}: source file does not exist: `{source}`"
+            if status == "known" and strict_sources:
+                report.add_error(message)
+            else:
+                report.add_warning(message + "; legacy or unresolved metric remains compatible")
 
 
 def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_dir: str) -> tuple[dict | None, str]:
@@ -1646,6 +1708,10 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     if not (base / "manifest.json").exists():
         return
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
+    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    strict_sources = strict_bilingual or (
+        isinstance(manifest, dict) and manifest.get("package_state") == "ready_for_review"
+    )
 
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
@@ -1659,7 +1725,14 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
 
     metrics_path = base / "metrics.json"
     if metrics_path.exists():
-        validate_metrics_file(report, metrics_path, f"{proposal_dir}/metrics.json")
+        validate_metrics_file(
+            report,
+            metrics_path,
+            f"{proposal_dir}/metrics.json",
+            repo_root=repo_root,
+            proposal_dir=proposal_dir,
+            strict_sources=strict_sources,
+        )
 
     compliance_path = base / "compliance_matrix.json"
     if compliance_path.exists():
@@ -1684,7 +1757,6 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     proposal_html_path = base / "report" / "proposal.html"
     if proposal_html_path.exists():
         validate_proposal_html_file(report, proposal_html_path, f"{proposal_dir}/report/proposal.html")
-    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
     for language in ["zh", "en"]:
         translated_html = base / "report" / f"proposal.{language}.html"
         if translated_html.exists():
