@@ -35,6 +35,7 @@ from github_pr_validation import (  # noqa: E402
     _is_retryable_http_error,
     is_current_pull_request_head,
     is_non_submission_pr,
+    is_root_submission_pr,
     is_review_queue_candidate,
     participant_scope_violations,
     main,
@@ -568,6 +569,47 @@ class ManifestHydrationTests(unittest.TestCase):
         comment = client.upsert_comment.call_args.args[1]
         self.assertIn("Changed files: 2", comment)
         self.assertIn("README.md: participant PRs may only change submissions/alice/", comment)
+
+    def test_root_level_submission_package_is_not_classified_as_code_pr(self) -> None:
+        files = ["manifest.json", "agent.json", "proposal.md", "geometry/site_boundary.geojson"]
+        self.assertTrue(is_root_submission_pr(files))
+        self.assertTrue(is_non_submission_pr(files))
+
+    def test_root_level_submission_package_fails_scope_guard(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 649,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "manifest.json", "status": "added"},
+            {"filename": "agent.json", "status": "added"},
+            {"filename": "proposal.md", "status": "added"},
+            {"filename": "geometry/site_boundary.geojson", "status": "added"},
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client), patch(
+                "github_pr_validation.validate_submission"
+            ) as validate:
+                self.assertEqual(1, main())
+        validate.assert_not_called()
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("root-level package entry files are not accepted", comment)
+        self.assertIn("manifest.json: participant PRs may only change submissions/alice/", comment)
 
     def test_non_submission_code_pr_is_not_sent_to_package_validator(self) -> None:
         self.assertTrue(is_non_submission_pr(["scripts/tool.py", "tests/test_tool.py"]))

@@ -40,6 +40,18 @@ RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 # retries bounded and limited to GETs; a permanent missing file still fails
 # with the path and head-specific download error after the retry budget.
 RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
+# These root-level paths are package entry points in the participant contract.
+# A non-maintainer PR that creates them outside submissions/<author>/ is a
+# misplaced submission, not an ordinary code/docs/test PR.
+ROOT_SUBMISSION_ENTRY_PATHS = frozenset(
+    {
+        "manifest.json",
+        "agent.json",
+        "proposal.md",
+        "proposal.en.md",
+        "self_check.json",
+    }
+)
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -283,6 +295,20 @@ def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str
     ]
 
 
+def _pull_request_paths(files: list[dict] | list[str]) -> list[str]:
+    """Return current and previous GitHub PR paths in one normalized list."""
+    paths: list[str] = []
+    for item in files:
+        if isinstance(item, dict):
+            for key in ("filename", "previous_filename"):
+                value = item.get(key)
+                if isinstance(value, str):
+                    paths.append(value)
+        elif isinstance(item, str):
+            paths.append(item)
+    return paths
+
+
 def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     """Return true only for a single participant-owned submission directory."""
     roots: set[str] = set()
@@ -304,16 +330,17 @@ def participant_scope_violations(
     participant must not use that exclusion to delete repository-owned files.
     """
     prefix = f"submissions/{pr_author.strip()}/".casefold()
-    paths: set[str] = set()
-    for item in files:
-        if isinstance(item, dict):
-            for key in ("filename", "previous_filename"):
-                value = item.get(key)
-                if isinstance(value, str) and value.strip():
-                    paths.add(value.strip())
-        elif isinstance(item, str) and item.strip():
-            paths.add(item.strip())
+    paths = {path.strip() for path in _pull_request_paths(files) if path.strip()}
     return sorted(path for path in paths if not path.casefold().startswith(prefix))
+
+
+def is_root_submission_pr(files: list[dict] | list[str]) -> bool:
+    """Return true when a PR contains a root-level participant package entry."""
+    return any(
+        path.strip().casefold() in ROOT_SUBMISSION_ENTRY_PATHS
+        for path in _pull_request_paths(files)
+        if path.strip()
+    )
 
 
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
@@ -444,12 +471,13 @@ def main() -> int:
     validation_files = validation_paths_for(files, maintainer_bypass)
     queue_candidate = is_review_queue_candidate(changed_files, pr_author)
     scope_violations = participant_scope_violations(files, pr_author)
+    root_submission_pr = is_root_submission_pr(files)
 
     # Code/docs/test PRs do not need participant-package hydration.  Decide
     # this immediately after the file listing so a non-submission change
     # cannot spend API calls downloading its whole diff before receiving the
     # informational validation comment.
-    if is_non_submission_pr(files):
+    if is_non_submission_pr(files) and (not root_submission_pr or maintainer_bypass):
         validation = ValidationReport(changed_files=changed_files)
         validation.add_warning(
             "non-submission code/docs/test PR; participant package validation was not applicable"
@@ -491,7 +519,17 @@ def main() -> int:
                 proposal_path,
             )
 
-        if not validation_files and (maintainer_bypass or queue_candidate):
+        if root_submission_pr and not maintainer_bypass:
+            validation = ValidationReport(changed_files=changed_files)
+            validation.add_error(
+                "participant submission artifacts must be under submissions/"
+                f"{pr_author}/; root-level package entry files are not accepted"
+            )
+            for path in scope_violations:
+                validation.add_error(
+                    f"{path}: participant PRs may only change submissions/{pr_author}/"
+                )
+        elif not validation_files and (maintainer_bypass or queue_candidate):
             validation = ValidationReport(
                 changed_files=changed_files,
                 maintainer_bypass=maintainer_bypass,
