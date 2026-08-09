@@ -307,7 +307,10 @@ def build_item(repo_root: Path, submission_dir: Path, publication: dict[str, Any
         visual_urls[translation_language] = url
         thumbnail_urls.setdefault(translation_language, url)
     item: dict[str, Any] = {
-        "id": slug,
+        # Slugs are participant-scoped and frequently repeat across authors.
+        # Use the repository-relative owner/slug pair as the public stable key.
+        "id": f"{owner}/{slug}",
+        "slug": slug,
         "title": title_zh,
         "titleEn": title_en,
         "summary": summary_zh,
@@ -453,7 +456,7 @@ def build_data(repo_root: Path) -> list[dict[str, Any]]:
                     "repair and re-run the full maintainer review first"
                 )
         items.append(build_item(repo_root, path, publication))
-    return sorted(items, key=lambda item: (item.get("date") or "", item.get("id") or ""), reverse=True)
+    return sorted(items, key=lambda item: (item.get("date") or "", item.get("slug") or ""), reverse=True)
 
 
 def render_js(items: list[dict[str, Any]]) -> str:
