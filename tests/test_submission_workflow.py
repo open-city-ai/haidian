@@ -502,6 +502,12 @@ class ManifestHydrationTests(unittest.TestCase):
             }
         }
         files = [{"filename": candidate, "status": "added"}]
+
+        def download_content(_repo, path, _sha, destination, *_args):
+            if path == candidate:
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_text('{"type":"object","required":[]}', encoding="utf-8")
+
         finding = SchemaSimilarityFinding(
             candidate_path=candidate,
             peer_path="submissions/peer/design/visual/assets/receipt.schema.json",
@@ -515,6 +521,8 @@ class ManifestHydrationTests(unittest.TestCase):
             client.repository = "open-city-ai/haidian"
             client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
             client.paginate.return_value = files
+            client.download_content.side_effect = download_content
+            client.fetch_content.return_value = False
             with patch.dict(
                 os.environ,
                 {
@@ -557,6 +565,8 @@ class ManifestHydrationTests(unittest.TestCase):
             json.dump(event, event_file)
             event_file.flush()
             client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
             client.paginate.return_value = files
             client.download_content.side_effect = download_content
             client.fetch_content.return_value = False
