@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is explicitly flagged official_boundary=false and provisional_rough; all dependent metrics require recalculation after official data."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three key areas remain explicit provisional constraints and retain announcement area metadata."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Seven concept bands are an exact partition of the provisional site geometry in EPSG:4548."
+    },
+    {
+      "check_id": "METRIC_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Known spatial metrics are derived from submitted geometry; unavailable controls remain unknown with reasons."
+    },
+    {
+      "check_id": "BILINGUAL_DISPLAY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Narrative, five figures, report HTML, visual HTML, A3 booklet and A0 boards have English counterparts."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "Static offline HTML contains no scripts, remote assets, forms or embeds."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Every required chapter contains claim-adjacent evidence markers linked to structured files."
+    },
+    {
+      "check_id": "COPYRIGHT",
+      "result": "pass",
+      "severity": "info",
+      "target": "report/copyright_statement.md",
+      "message": "Case material is paraphrased; no external media is reproduced; submission identity and licence are declared."
+    }
+  ]
+}
