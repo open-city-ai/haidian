@@ -14,9 +14,22 @@ class DeployPagesWorkflowTests(unittest.TestCase):
         self.assertIn("python3 scripts/generate_source_registry_data.py\n", workflow)
         self.assertIn("python3 scripts/generate_submissions_data.py --check", workflow)
         self.assertIn("python3 scripts/generate_source_registry_data.py --check", workflow)
+        self.assertIn("- name: Check GitHub Pages configuration", workflow)
+        self.assertIn("id: pages", workflow)
+        self.assertIn('echo "configured=false" >> "$GITHUB_OUTPUT"', workflow)
+        self.assertIn("GitHub Pages is not configured; skipping GitHub Pages deployment", workflow)
+        self.assertEqual(3, workflow.count("if: steps.pages.outputs.configured == 'true'"))
         self.assertLess(
             workflow.index("python3 scripts/generate_submissions_data.py\n"),
             workflow.index("python3 scripts/generate_submissions_data.py --check"),
+        )
+        self.assertLess(
+            workflow.index("python3 scripts/validate_data_registry.py --json"),
+            workflow.index("- name: Check GitHub Pages configuration"),
+        )
+        self.assertLess(
+            workflow.index("- name: Check GitHub Pages configuration"),
+            workflow.index("- name: Configure Pages"),
         )
 
 
