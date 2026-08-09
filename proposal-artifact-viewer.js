@@ -5,6 +5,7 @@
   const palette = ['#65b7ff', '#ffc46b', '#9d8cff', '#62d6a8', '#e08b78', '#75c7bd'];
   let config = null;
   let selectedIndex = -1;
+  let renderEpoch = 0;
 
   const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, ch => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -333,7 +334,11 @@
     elements.forEach(element => observer.observe(element));
   }
 
-  async function renderSelected(item) {
+  function isCurrentRender(epoch, path) {
+    return epoch === renderEpoch && config?.artifacts[selectedIndex]?.path === path;
+  }
+
+  async function renderSelected(item, epoch) {
     const body = document.getElementById('artifactViewerBody');
     const path = item.path;
     const kind = fileKind(path);
@@ -341,19 +346,21 @@
     if (kind === 'image') { body.innerHTML = `<div class="artifact-render image"><img src="${escapeHTML(url)}" alt="${escapeHTML(config.label(path))}"></div>`; return; }
     if (kind === 'pdf') { body.innerHTML = `<iframe class="artifact-frame" src="${escapeHTML(url)}#view=FitH&pagemode=none" title="${escapeHTML(config.label(path))}"></iframe>`; return; }
     if (kind === 'html') { body.innerHTML = `<div class="artifact-render"><div class="artifact-sandbox-note">站内预览运行在隔离沙箱中；需要完整交互或下载时，可使用右上角“打开原文件”</div><iframe class="artifact-frame" src="${escapeHTML(url)}" sandbox="allow-scripts allow-forms allow-modals allow-popups" referrerpolicy="no-referrer" title="${escapeHTML(config.label(path))}"></iframe></div>`; return; }
-    if (kind === 'geojson') { body.innerHTML = renderGeoJSON(await readJSON(path)); return; }
-    if (kind === 'json') { body.innerHTML = renderJSON(await readJSON(path)); return; }
+    if (kind === 'geojson') { const data = await readJSON(path); if (isCurrentRender(epoch, path)) body.innerHTML = renderGeoJSON(data); return; }
+    if (kind === 'json') { const data = await readJSON(path); if (isCurrentRender(epoch, path)) body.innerHTML = renderJSON(data); return; }
     if (kind === 'table') {
       const rows = parseDelimited(await readText(path), path.toLowerCase().endsWith('.tsv') ? '\t' : ',');
-      body.innerHTML = `<div class="artifact-render artifact-data-layout"><section class="artifact-summary"><div class="artifact-summary-card"><div class="artifact-summary-value">${rows.length}</div><div class="artifact-summary-label">数据行</div></div><div class="artifact-summary-card"><div class="artifact-summary-value">${Object.keys(rows[0] || {}).length}</div><div class="artifact-summary-label">字段列</div></div></section><section class="artifact-section"><h3>结构化表格</h3>${renderTable(rows, 'table')}</section></div>`; return;
+      if (isCurrentRender(epoch, path)) body.innerHTML = `<div class="artifact-render artifact-data-layout"><section class="artifact-summary"><div class="artifact-summary-card"><div class="artifact-summary-value">${rows.length}</div><div class="artifact-summary-label">数据行</div></div><div class="artifact-summary-card"><div class="artifact-summary-value">${Object.keys(rows[0] || {}).length}</div><div class="artifact-summary-label">字段列</div></div></section><section class="artifact-section"><h3>结构化表格</h3>${renderTable(rows, 'table')}</section></div>`; return;
     }
     const text = await readText(path);
+    if (!isCurrentRender(epoch, path)) return;
     if (kind === 'markdown') { body.innerHTML = `<article class="artifact-render artifact-document">${markdownToHTML(text, path)}</article>`; return; }
     body.innerHTML = `<article class="artifact-render artifact-document"><h1>${escapeHTML(config.label(path))}</h1><pre><code>${escapeHTML(text)}</code></pre></article>`;
   }
 
   async function open(path) {
     if (!config) return;
+    const epoch = ++renderEpoch;
     selectedIndex = config.artifacts.findIndex(item => item.path === path);
     if (selectedIndex < 0) return;
     const item = config.artifacts[selectedIndex];
@@ -369,13 +376,14 @@
     viewer.hidden = false; viewer.setAttribute('aria-hidden', 'false');
     document.body.classList.add('artifact-viewer-open');
     document.getElementById('artifactViewerClose').focus({preventScroll: true});
-    try { await renderSelected(item); }
-    catch (error) { body.innerHTML = `<div class="artifact-error"><strong>这份文件暂时无法在站内渲染</strong><p>${escapeHTML(error.message)}</p><p>可以使用右上角“打开原文件”继续查看</p></div>`; }
+    try { await renderSelected(item, epoch); }
+    catch (error) { if (isCurrentRender(epoch, path)) body.innerHTML = `<div class="artifact-error"><strong>这份文件暂时无法在站内渲染</strong><p>${escapeHTML(error.message)}</p><p>可以使用右上角“打开原文件”继续查看</p></div>`; }
   }
 
   function close() {
     const viewer = document.getElementById('artifactViewer');
     if (!viewer) return;
+    renderEpoch += 1;
     viewer.hidden = true; viewer.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('artifact-viewer-open');
   }
