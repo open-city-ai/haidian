@@ -1,0 +1,94 @@
+{
+  "self_check_version": "0.1.0",
+  "checked_at": "2026-08-08T00:00:00Z",
+  "package_type": "professional_design_package",
+  "package_state": "ready_for_review",
+  "warnings": [
+    "All geometry uses provisional boundaries; replace with official CAD/GIS when available",
+    "Building GFA/FAR are conceptual estimates pending regulatory plan data",
+    "Report HTML manually rendered; official render_proposal_html.py unavailable due to missing script dependencies",
+    "A3/A0 PDFs programmatically generated; professional layout would improve presentation",
+    "Key area total 370 ha vs 368 ha declared (+0.4pct); fine-tuning pending official polygon"
+  ],
+  "blockers": [],
+  "checks": [
+    {
+      "check_id": "required_files_present",
+      "details": "30 files including changelog.md",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "geometry_boundary_valid",
+      "details": "Official provisional polygon, ~11.41 km2, 0.1pct deviation",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "land_use_partition",
+      "details": "15 non-overlapping grid partitions, 100pct coverage, 0 overlaps, 0 gaps",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "key_areas_calibrated",
+      "details": "3 Polygon key areas, 370 ha total vs 368 ha declared, each within 10pct",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "buildings_spatial",
+      "details": "8 building footprint Polygons across three key areas",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "all_features_have_confidence",
+      "details": "All features in 9 GeoJSON files include confidence field",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "evidence_references_aligned",
+      "details": "All proposal evidence tags match actual GeoJSON feature IDs",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "visual_html_images_fixed",
+      "details": "visual/index.html uses ../assets/figures/ paths",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "no_false_translation_claim",
+      "details": "translation_file removed from manifest.json and proposal.md",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "changelog_present",
+      "details": "changelog.md with v1.0 release notes",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "report_html_rendered",
+      "details": "Frontmatter stripped, evidence tags converted to span.evidence, correct image paths",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "html_offline",
+      "details": "Visual HTML is offline, no CDN/external resources",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "provisional_boundary_disclosed",
+      "details": "All provisional geometry labeled in proposal and sources.json",
+      "result": "pass",
+      "severity": "minor"
+    }
+  ]
+}
