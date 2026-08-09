@@ -294,6 +294,28 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     return bool(changed_files) and len(roots) == 1
 
 
+def participant_scope_violations(
+    files: list[dict] | list[str], pr_author: str
+) -> list[str]:
+    """Return every current or previous path outside a participant package.
+
+    Removed files are intentionally included here.  They are excluded from
+    content validation because they are absent from the PR checkout, but a
+    participant must not use that exclusion to delete repository-owned files.
+    """
+    prefix = f"submissions/{pr_author.strip()}/".casefold()
+    paths: set[str] = set()
+    for item in files:
+        if isinstance(item, dict):
+            for key in ("filename", "previous_filename"):
+                value = item.get(key)
+                if isinstance(value, str) and value.strip():
+                    paths.add(value.strip())
+        elif isinstance(item, str) and item.strip():
+            paths.add(item.strip())
+    return sorted(path for path in paths if not path.casefold().startswith(prefix))
+
+
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
     """Return true only for ordinary non-submission paths.
 
@@ -421,6 +443,7 @@ def main() -> int:
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
     queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+    scope_violations = participant_scope_violations(files, pr_author)
 
     # Code/docs/test PRs do not need participant-package hydration.  Decide
     # this immediately after the file listing so a non-submission change
@@ -483,6 +506,16 @@ def main() -> int:
                 )
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
+            if not maintainer_bypass:
+                for path in scope_violations:
+                    validation.add_error(
+                        f"{path}: participant PRs may only change submissions/{pr_author}/"
+                    )
+            # Content validation receives only files present in the PR
+            # checkout.  The published report must still describe the full PR
+            # diff, including deletions, so scope defects cannot disappear
+            # from the CI summary.
+            validation.changed_files = changed_files
         validation_markdown = format_report(validation)
 
         if not is_current_pull_request_head(client, pr_number, head_sha):

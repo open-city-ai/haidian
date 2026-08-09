@@ -36,6 +36,7 @@ from github_pr_validation import (  # noqa: E402
     is_current_pull_request_head,
     is_non_submission_pr,
     is_review_queue_candidate,
+    participant_scope_violations,
     main,
     safe_manifest_paths,
     validation_paths_for,
@@ -516,6 +517,57 @@ class ManifestHydrationTests(unittest.TestCase):
                 "alice",
             )
         )
+
+    def test_participant_scope_violations_include_removed_and_renamed_paths(self) -> None:
+        files = [
+            {"filename": "submissions/alice/design/proposal.md", "status": "modified"},
+            {"filename": "README.md", "status": "removed"},
+            {
+                "filename": "submissions/alice/design/notes.md",
+                "previous_filename": "docs/notes.md",
+                "status": "renamed",
+            },
+        ]
+        self.assertEqual(
+            ["README.md", "docs/notes.md"],
+            participant_scope_violations(files, "alice"),
+        )
+
+    def test_mixed_participant_scope_fails_even_when_root_file_is_removed(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 648,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [
+            {"filename": "submissions/alice/design/proposal.md", "status": "modified"},
+            {"filename": "README.md", "status": "removed"},
+        ]
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.paginate.return_value = files
+            report = ValidationReport(
+                changed_files=["submissions/alice/design/proposal.md"]
+            )
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client), patch(
+                "github_pr_validation.validate_submission", return_value=report
+            ), patch("github_pr_validation.proposal_paths_for", return_value=set()):
+                self.assertEqual(1, main())
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("Changed files: 2", comment)
+        self.assertIn("README.md: participant PRs may only change submissions/alice/", comment)
 
     def test_non_submission_code_pr_is_not_sent_to_package_validator(self) -> None:
         self.assertTrue(is_non_submission_pr(["scripts/tool.py", "tests/test_tool.py"]))
