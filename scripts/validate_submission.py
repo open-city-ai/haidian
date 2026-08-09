@@ -231,6 +231,7 @@ REQUIRED_DESIGN_DEPTH_IDS = {
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 PROPOSAL_FORMAT_VERSION = "2"
 BILINGUAL_CONTRACT_VERSION = "1"
+SCAFFOLD_AGENT_MODEL = "agent-declared-model"
 MAX_INLINE_REFERENCES_PER_BLOCK = 8
 MAX_CONSECUTIVE_REFERENCES = 3
 MARKDOWN_IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
@@ -698,6 +699,11 @@ def relative_to_proposal(path: str, proposal_dir: str) -> str:
     return path[len(prefix) :] if path.startswith(prefix) else path
 
 
+def is_scaffold_agent_model(value: object) -> bool:
+    """Return whether an agent model field still carries the scaffold placeholder."""
+    return isinstance(value, str) and value.strip().casefold() == SCAFFOLD_AGENT_MODEL
+
+
 def load_json_file(report: ValidationReport, path: Path, display_path: str) -> object | None:
     try:
         return json.loads(path.read_text(encoding="utf-8"))
@@ -1009,13 +1015,23 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
         report.add_error(
             f"{proposal_dir}/manifest.json: package_state must be scaffold or ready_for_review"
         )
+    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
     if data.get("submission_type") != "ai_agent":
         report.add_error(f"{proposal_dir}/manifest.json: submission_type must be ai_agent")
     if data.get("project_id") != "centennial-jingzhang-ai-belt":
         report.add_error(
             f"{proposal_dir}/manifest.json: project_id must be centennial-jingzhang-ai-belt"
         )
-    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    agent = data.get("agent")
+    if isinstance(agent, dict) and is_scaffold_agent_model(agent.get("model")):
+        message = (
+            f"{proposal_dir}/manifest.json: agent.model must replace the scaffold "
+            f"placeholder `{SCAFFOLD_AGENT_MODEL}` with an accurate model or disclosure"
+        )
+        if strict_bilingual:
+            report.add_error(message)
+        else:
+            report.add_warning(message + "; legacy v1 package remains compatible")
     files = data.get("files")
     listed_paths: set[str] = set()
     if not isinstance(files, list) or not files:
@@ -1647,7 +1663,21 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
         return
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
 
-    for name in ["agent.json", "assumptions.json", "sources.json"]:
+    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    agent_path = base / "agent.json"
+    if agent_path.exists():
+        agent_data = load_json_file(report, agent_path, f"{proposal_dir}/agent.json")
+        if isinstance(agent_data, dict) and is_scaffold_agent_model(agent_data.get("model")):
+            message = (
+                f"{proposal_dir}/agent.json: model must replace the scaffold placeholder "
+                f"`{SCAFFOLD_AGENT_MODEL}` with an accurate model or disclosure"
+            )
+            if strict_bilingual:
+                report.add_error(message)
+            else:
+                report.add_warning(message + "; legacy v1 package remains compatible")
+
+    for name in ["assumptions.json", "sources.json"]:
         path = base / name
         if path.exists():
             load_json_file(report, path, f"{proposal_dir}/{name}")

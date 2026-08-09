@@ -1290,6 +1290,51 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
 
+    def test_legacy_scaffold_model_placeholder_warns_without_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.update_json(
+                root,
+                f"{base}/manifest.json",
+                lambda data: data["agent"].update({"model": "agent-declared-model"}),
+            )
+            self.update_json(
+                root,
+                f"{base}/agent.json",
+                lambda data: data.update({"model": "agent-declared-model"}),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("scaffold placeholder", "\n".join(report.warnings))
+
+    def test_v2_scaffold_model_placeholder_fails_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            self.update_json(
+                root,
+                f"{base}/manifest.json",
+                lambda data: data["agent"].update({"model": "agent-declared-model"}),
+            )
+            self.update_json(
+                root,
+                f"{base}/agent.json",
+                lambda data: data.update({"model": "agent-declared-model"}),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("manifest.json: agent.model", errors)
+            self.assertIn("agent.json: model", errors)
+
     def test_changelog_submission_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
