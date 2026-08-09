@@ -209,6 +209,35 @@ class GitHubClient:
         destination.write_bytes(content)
         return True
 
+    def assert_regular_file(self, repo: str, path: str, ref: str) -> None:
+        """Reject Git objects that are not ordinary files before raw download.
+
+        The raw Contents representation can resolve a symbolic link to its
+        target bytes. That would make the trusted validator treat an external
+        or otherwise untracked object as an in-package artifact, so inspect the
+        typed Contents metadata first. A 404 is left to ``download_content`` so
+        its existing bounded retry and path-specific error remain authoritative.
+        """
+        encoded_path = urllib.parse.quote(path)
+        encoded_ref = urllib.parse.quote(ref)
+        try:
+            data, _ = self.request(
+                "GET",
+                f"/repos/{repo}/contents/{encoded_path}?ref={encoded_ref}",
+            )
+        except urllib.error.HTTPError as exc:
+            if exc.code == 404:
+                return
+            raise
+        if not isinstance(data, dict):
+            raise RuntimeError(f"GitHub API path {path} did not return file metadata")
+        object_type = data.get("type")
+        if object_type != "file":
+            raise RuntimeError(
+                f"GitHub API path {path} is not a regular file (type={object_type!r}); "
+                "trusted validation refuses symbolic links and non-file entries"
+            )
+
     def upsert_comment(self, issue_number: int, body: str) -> None:
         comments = self.paginate(f"/repos/{self.repository}/issues/{issue_number}/comments?per_page=100")
         for comment in comments:
@@ -361,6 +390,11 @@ def hydrate_proposal_package(
         if destination.exists():
             continue
         try:
+            client.assert_regular_file(
+                head_repo,
+                f"{proposal_dir}/{relative}",
+                head_sha,
+            )
             client.download_content(
                 head_repo,
                 f"{proposal_dir}/{relative}",
@@ -454,6 +488,8 @@ def main() -> int:
             filename = item["filename"]
             if item.get("status") == "removed":
                 continue
+            if filename.startswith("submissions/"):
+                client.assert_regular_file(head_repo, filename, head_sha)
             client.download_content(head_repo, filename, head_sha, worktree / filename)
 
         for proposal_path in proposal_paths_for(validation_files):

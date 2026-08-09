@@ -367,6 +367,32 @@ class AgentDisclosureTests(unittest.TestCase):
 
 
 class ManifestHydrationTests(unittest.TestCase):
+    def test_trusted_download_rejects_symbolic_link_metadata(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(
+            client,
+            "request",
+            return_value=({"type": "symlink", "target": "../../outside.txt"}, {}),
+        ):
+            with self.assertRaisesRegex(
+                RuntimeError,
+                r"path submissions/alice/design/asset.bin is not a regular file",
+            ):
+                client.assert_regular_file(
+                    "fork/repo",
+                    "submissions/alice/design/asset.bin",
+                    "head-sha",
+                )
+
+    def test_trusted_download_accepts_regular_file_metadata(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(client, "request", return_value=({"type": "file"}, {})):
+            client.assert_regular_file(
+                "fork/repo",
+                "submissions/alice/design/asset.bin",
+                "head-sha",
+            )
+
     def test_download_content_accepts_ten_mib_file(self) -> None:
         client = GitHubClient("token", "owner/repo")
         with tempfile.TemporaryDirectory() as tmp:
