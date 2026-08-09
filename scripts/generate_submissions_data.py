@@ -22,6 +22,11 @@ from urllib.parse import quote
 
 
 PUBLICATION_FILE = "gallery-publication.json"
+GALLERY_ASSIGNMENT_RE = re.compile(
+    r"window\.HAIDIAN_SUBMISSIONS\s*=\s*(\[.*\])\s*;?\s*$", re.S
+)
+GALLERY_SOURCE_SUFFIX = "/proposal.md"
+GALLERY_PATH_SAMPLE_LIMIT = 20
 
 
 REQUIRED_PACKAGE_FILES = {
@@ -467,6 +472,60 @@ def render_js(items: list[dict[str, Any]]) -> str:
     )
 
 
+def parse_rendered_items(text: str) -> list[dict[str, Any]] | None:
+    """Parse the generated assignment without executing JavaScript."""
+    match = GALLERY_ASSIGNMENT_RE.search(text)
+    if not match:
+        return None
+    try:
+        items = json.loads(match.group(1))
+    except json.JSONDecodeError:
+        return None
+    if not isinstance(items, list) or not all(isinstance(item, dict) for item in items):
+        return None
+    return items
+
+
+def gallery_source_paths(items: list[dict[str, Any]]) -> set[str]:
+    """Return proposal directories represented by gallery source URLs."""
+    return {
+        source[: -len(GALLERY_SOURCE_SUFFIX)]
+        for item in items
+        if isinstance(source := item.get("sourceUrl"), str) and source.endswith(GALLERY_SOURCE_SUFFIX)
+    }
+
+
+def describe_gallery_mismatch(existing: str, expected_items: list[dict[str, Any]]) -> str:
+    """Explain a stale gallery index in terms a maintainer can immediately fix."""
+    expected_paths = gallery_source_paths(expected_items)
+    actual_items = parse_rendered_items(existing)
+    if actual_items is None:
+        return (
+            "submissions-data.js is out of date and could not be parsed; "
+            "run scripts/generate_submissions_data.py"
+        )
+
+    actual_paths = gallery_source_paths(actual_items)
+    missing = sorted(expected_paths - actual_paths)
+    extra = sorted(actual_paths - expected_paths)
+    details = [
+        f"submissions-data.js is out of date: expected {len(expected_items)} public items, "
+        f"found {len(actual_items)}"
+    ]
+    if missing:
+        sample = ", ".join(missing[:GALLERY_PATH_SAMPLE_LIMIT])
+        if len(missing) > GALLERY_PATH_SAMPLE_LIMIT:
+            sample += ", ..."
+        details.append(f"missing {len(missing)} paths: {sample}")
+    if extra:
+        sample = ", ".join(extra[:GALLERY_PATH_SAMPLE_LIMIT])
+        if len(extra) > GALLERY_PATH_SAMPLE_LIMIT:
+            sample += ", ..."
+        details.append(f"unexpected {len(extra)} paths: {sample}")
+    details.append("run scripts/generate_submissions_data.py")
+    return "; ".join(details)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--repo-root", default=".")
@@ -489,11 +548,12 @@ def main() -> int:
     out_path = Path(args.out)
     if not out_path.is_absolute():
         out_path = repo_root / out_path
-    generated = render_js(build_data(repo_root))
+    expected_items = build_data(repo_root)
+    generated = render_js(expected_items)
     if args.check:
         existing = out_path.read_text(encoding="utf-8") if out_path.exists() else ""
         if existing != generated:
-            print(f"{out_path.relative_to(repo_root)} is out of date; run scripts/generate_submissions_data.py", file=sys.stderr)
+            print(describe_gallery_mismatch(existing, expected_items), file=sys.stderr)
             return 1
         return 0
     out_path.write_text(generated, encoding="utf-8")
