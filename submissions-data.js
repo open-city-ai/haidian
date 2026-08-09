@@ -6790,7 +6790,7 @@ window.HAIDIAN_SUBMISSIONS = [
     "thumbnailUrlZh": "submissions/cssMV/spike-belt/report/proposal.html",
     "thumbnailUrlEn": "submissions/cssMV/spike-belt/report/proposal.en.html",
     "visualUrlZh": "submissions/cssMV/spike-belt/visual/index.html",
-    "visualUrlEn": "submissions/cssMV/spike-belt/visual/index.html"
+    "visualUrlEn": "submissions/cssMV/spike-belt/visual/index.en.html"
   },
   {
     "id": "hxd0818/reversible-jingzhang",
