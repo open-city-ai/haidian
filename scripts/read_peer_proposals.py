@@ -57,7 +57,11 @@ def configure_utf8_output() -> None:
     for stream in (sys.stdout, sys.stderr):
         reconfigure = getattr(stream, "reconfigure", None)
         if reconfigure is not None:
-            reconfigure(encoding="utf-8")
+            try:
+                reconfigure(encoding="utf-8", errors="backslashreplace")
+            except (OSError, ValueError):
+                # Embedded/test streams and older Python implementations may reject reconfigure.
+                continue
 
 
 def safe_repo_path(value: str) -> str:
