@@ -482,6 +482,15 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
             self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
 
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"] = [
+                item for item in manifest["files"] if item.get("path") != "self_check.json"
+            ]
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
             outside = root / "outside-self-check.json"
             sentinel = b'{"sentinel":"unchanged"}\n'
             outside.write_bytes(sentinel)
