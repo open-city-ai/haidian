@@ -59,9 +59,24 @@ def copy_skill(source: Path, target: Path) -> None:
     )
 
 
-def build_report(source: Path, target: Path, installed: bool, action: str) -> dict[str, Any]:
+def target_within_codex_home(codex_home: Path, target: Path) -> bool:
+    try:
+        target.resolve().relative_to(codex_home.resolve())
+    except (OSError, RuntimeError, ValueError):
+        return False
+    return True
+
+
+def build_report(
+    source: Path,
+    target: Path,
+    installed: bool,
+    action: str,
+    *,
+    target_safe: bool = True,
+) -> dict[str, Any]:
     source_exists = (source / "SKILL.md").exists()
-    target_exists = (target / "SKILL.md").exists()
+    target_exists = target_safe and (target / "SKILL.md").exists()
     report: dict[str, Any] = {
         "action": action,
         "skill_name": SKILL_NAME,
@@ -70,6 +85,7 @@ def build_report(source: Path, target: Path, installed: bool, action: str) -> di
         "installed": installed,
         "source_exists": source_exists,
         "target_exists": target_exists,
+        "target_safe": target_safe,
         "starter_prompt": STARTER_PROMPT,
     }
     if source_exists:
@@ -80,7 +96,7 @@ def build_report(source: Path, target: Path, installed: bool, action: str) -> di
         report["up_to_date"] = report.get("source_sha256") == report.get("target_sha256")
     else:
         report["up_to_date"] = False
-    report["ok"] = source_exists and target_exists and report["up_to_date"]
+    report["ok"] = source_exists and target_exists and target_safe and report["up_to_date"]
     return report
 
 
@@ -110,7 +126,23 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     source = repo_root() / "skills" / SKILL_NAME
-    target = Path(args.codex_home).expanduser() / "skills" / SKILL_NAME
+    codex_home = Path(args.codex_home).expanduser()
+    target = codex_home / "skills" / SKILL_NAME
+
+    if not target_within_codex_home(codex_home, target):
+        report = build_report(
+            source,
+            target,
+            installed=False,
+            action="unsafe-target",
+            target_safe=False,
+        )
+        report["error"] = "Target resolves outside the configured Codex home."
+        if args.json:
+            print(json.dumps(report, ensure_ascii=False, indent=2))
+        else:
+            print(render_text(report), file=sys.stderr)
+        return 1
 
     if not (source / "SKILL.md").exists():
         report = build_report(source, target, installed=False, action="missing-source")

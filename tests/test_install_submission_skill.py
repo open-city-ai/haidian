@@ -45,6 +45,44 @@ class InstallSubmissionSkillTests(unittest.TestCase):
             self.assertTrue(reinstall_report["up_to_date"])
             self.assertFalse(stale.exists())
 
+    def test_symlinked_skills_parent_outside_codex_home_is_rejected(self) -> None:
+        for args in [(), ("--check",)]:
+            with self.subTest(args=args), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                codex_home = root / "home"
+                outside = root / "outside"
+                codex_home.mkdir()
+                outside.mkdir()
+                (codex_home / "skills").symlink_to(outside, target_is_directory=True)
+
+                target = outside / "urban-design-ai-submission"
+                target.mkdir()
+                (target / "SKILL.md").write_text("external skill\n", encoding="utf-8")
+                sentinel = target / "sentinel.txt"
+                sentinel.write_text("DO NOT DELETE\n", encoding="utf-8")
+
+                completed = self.run_installer(codex_home, *args)
+
+                self.assertNotEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+                report = json.loads(completed.stdout)
+                self.assertEqual(report["action"], "unsafe-target")
+                self.assertFalse(report["target_safe"])
+                self.assertFalse(report["installed"])
+                self.assertEqual(sentinel.read_text(encoding="utf-8"), "DO NOT DELETE\n")
+
+    def test_install_is_noop_when_source_and_target_are_the_same(self) -> None:
+        skill_file = REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md"
+        original = skill_file.read_bytes()
+
+        completed = self.run_installer(REPO_ROOT)
+
+        self.assertEqual(completed.returncode, 0, completed.stdout + completed.stderr)
+        report = json.loads(completed.stdout)
+        self.assertTrue(report["ok"])
+        self.assertTrue(report["up_to_date"])
+        self.assertEqual(report["source_sha256"], report["target_sha256"])
+        self.assertEqual(skill_file.read_bytes(), original)
+
 
 if __name__ == "__main__":
     unittest.main()
