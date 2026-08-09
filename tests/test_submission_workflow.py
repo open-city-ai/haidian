@@ -1064,6 +1064,43 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("required AI package file is missing", "\n".join(report.errors))
 
+    def test_symlinked_manifest_is_rejected_before_package_reads(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            outside_manifest = root / "outside-manifest.json"
+            outside_manifest.write_bytes(manifest_path.read_bytes())
+            manifest_path.unlink()
+            manifest_path.symlink_to(outside_manifest)
+
+            report = validate_submission(root, "alice", [f"{base}/proposal.md"])
+
+        self.assertFalse(report.ok)
+        self.assertIn(
+            f"{base}/manifest.json: symbolic links are not allowed in submission packages",
+            "\n".join(report.errors),
+        )
+
+    def test_symlinked_package_subdirectory_is_rejected_before_asset_reads(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            self.write_minimal_ai_package(root, base)
+            visual_dir = root / base / "visual"
+            outside_visual_dir = root / "outside-visual"
+            visual_dir.rename(outside_visual_dir)
+            visual_dir.symlink_to(outside_visual_dir, target_is_directory=True)
+
+            report = validate_submission(root, "alice", [f"{base}/proposal.md"])
+
+        self.assertFalse(report.ok)
+        self.assertIn(
+            f"{base}/visual: symbolic links are not allowed in submission packages",
+            "\n".join(report.errors),
+        )
+
     def test_user_cannot_modify_another_user_folder(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

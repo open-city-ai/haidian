@@ -341,6 +341,42 @@ def normalize_changed_path(raw_path: str) -> str:
     return path.as_posix()
 
 
+def first_symbolic_link(repo_root: Path, relative_path: str) -> Path | None:
+    """Return the first symlink traversed by a repository-relative path."""
+    candidate = repo_root
+    for part in PurePosixPath(relative_path).parts:
+        candidate /= part
+        if candidate.is_symlink():
+            return candidate
+    return None
+
+
+def report_symbolic_link(report: ValidationReport, repo_root: Path, path: Path) -> None:
+    relative = path.relative_to(repo_root).as_posix()
+    report.add_error(f"{relative}: symbolic links are not allowed in submission packages")
+
+
+def submission_directory_is_safe(
+    report: ValidationReport, repo_root: Path, proposal_dir: str
+) -> bool:
+    """Reject symlinks before a package validator reads package-controlled files."""
+    linked_path = first_symbolic_link(repo_root, proposal_dir)
+    if linked_path is not None:
+        report_symbolic_link(report, repo_root, linked_path)
+        return False
+
+    base = repo_root / proposal_dir
+    if not base.exists():
+        return True
+    for directory, names, files in os.walk(base, followlinks=False):
+        for name in [*names, *files]:
+            candidate = Path(directory) / name
+            if candidate.is_symlink():
+                report_symbolic_link(report, repo_root, candidate)
+                return False
+    return True
+
+
 def load_changed_files(args: argparse.Namespace) -> list[str]:
     files: list[str] = []
     files.extend(args.changed_file or [])
@@ -2089,6 +2125,11 @@ def validate_submission(
         parts = path.split("/")
         full_path = repo_root / path
 
+        linked_path = first_symbolic_link(repo_root, path)
+        if linked_path is not None:
+            report_symbolic_link(report, repo_root, linked_path)
+            continue
+
         if path.startswith(PROTECTED_REVIEW_ARTIFACT_PREFIXES):
             report.add_error(
                 f"{path}: maintainer review artifacts must stay local and only be shared through PR comments"
@@ -2242,8 +2283,16 @@ def validate_submission(
     if report.total_bytes > MAX_TOTAL_BYTES:
         report.add_error(f"changed files total {report.total_bytes} bytes exceeds {MAX_TOTAL_BYTES}")
 
+    unsafe_submission_dirs = {
+        proposal_dir
+        for proposal_dir in proposal_dirs
+        if not submission_directory_is_safe(report, repo_root, proposal_dir)
+    }
+
     for proposal_dir in sorted(proposal_dirs):
         ai_package_dirs.add(proposal_dir)
+        if proposal_dir in unsafe_submission_dirs:
+            continue
         proposal_path = f"{proposal_dir}/proposal.md"
         if not (repo_root / proposal_path).exists():
             report.add_error(f"{proposal_path}: every touched proposal directory needs proposal.md")
@@ -2257,25 +2306,35 @@ def validate_submission(
             spatial_files.add(spatial_path)
 
     for proposal_path in sorted(proposal_files):
+        if str(PurePosixPath(proposal_path).parent) in unsafe_submission_dirs:
+            continue
         if not (repo_root / proposal_path).exists():
             continue
         path_author = proposal_path.split("/")[1]
         validate_proposal_file(report, repo_root, proposal_path, pr_author, path_author)
 
     for proposal_dir in sorted(ai_package_dirs):
+        if proposal_dir in unsafe_submission_dirs:
+            continue
         validate_ai_package_dir(report, repo_root, proposal_dir)
 
     for changelog_path in sorted(changelog_files):
+        if str(PurePosixPath(changelog_path).parent) in unsafe_submission_dirs:
+            continue
         if not (repo_root / changelog_path).exists():
             continue
         validate_changelog_file(report, repo_root, changelog_path)
 
     for risk_path in sorted(risk_files):
+        if str(PurePosixPath(risk_path).parent) in unsafe_submission_dirs:
+            continue
         if not (repo_root / risk_path).exists():
             continue
         validate_risk_file(report, repo_root, risk_path)
 
     for spatial_path in sorted(spatial_files):
+        if str(PurePosixPath(spatial_path).parent) in unsafe_submission_dirs:
+            continue
         if not (repo_root / spatial_path).exists():
             continue
         validate_spatial_file(report, repo_root, spatial_path)
