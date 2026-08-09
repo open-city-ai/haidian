@@ -2,6 +2,7 @@
 title: "京张绿智共生带——面向零碳创新的AI城市生态走廊"
 author_github: "jianchuanqi"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以存量更新减碳、蓝绿慢行增益和AI辅助碳治理为主线，将京张遗址公园、三处AI重点区与两翼创新资源组织为可步行、可迭代、可核算的绿色创新走廊。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

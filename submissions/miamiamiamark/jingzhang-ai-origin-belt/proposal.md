@@ -2,6 +2,7 @@
 title: "百年京张·AI原点：从百年工程到全球AI朝圣地的创新带城市设计"
 author_github: "Miamiamiamark"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「百年京张·AI原点」为总体概念，将京张铁路的百年自主工程精神与中关村创新文化、AI开源共创文化融合为一条可感知、可运营的城市叙事主轴；围绕众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区三处重点区域，提出三区两翼协同、京张遗址公园活力带贯通、AI场景卡落位的概念性城市设计方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community"]

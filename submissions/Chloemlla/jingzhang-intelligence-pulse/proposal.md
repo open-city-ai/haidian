@@ -2,6 +2,7 @@
 title: "京张智脉——让百年铁轨重新成为城市心跳"
 author_github: "Chloemlla"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路为脉、AI全栈自主创新为芯，构建从统筹研究范围到重点区域的AI创新带总体城市设计方案：一带三核两翼的空间结构、概念性用地与建筑方案、12张AI场景卡、6类人才画像与4处朝圣地标，全部成果标注临时边界与待确认事项。"
 tracks: ["jingzhang-heritage-narrative","ai-origin-community","ai-traffic-walkability"]

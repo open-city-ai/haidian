@@ -2,6 +2,7 @@
 title: "未来胡同：把时间还给普通人的 AI 创新带"
 author_github: "oukeming64-tech"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以未来胡同为社会空间原型，让AI退到后台，用可验证的交通时间红利、无门槛公共服务和街坊共同生活回应百年京张创新带。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

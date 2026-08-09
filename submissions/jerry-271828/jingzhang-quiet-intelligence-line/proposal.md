@@ -2,6 +2,7 @@
 title: "京张静智线：可选择智能的城市共同体"
 author_github: "jerry-271828"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以连续无感通过带、服务等价审计和人工接管为核心，把 AI 从默认环境改造成可选择、可退出、关闭后仍可使用的城市公共设施。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]

@@ -2,6 +2,7 @@
 title: "地面真值 GROUND TRUTH：百年京张AI公共接口带"
 author_github: "XuejiFang"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "以 Ground Truth 的双重含义为方法：AI 模型必须在真实街道接受检验，城市设计也必须回到人的地面体验。方案以一条公共真值脊、七条横向复核街、三座地面真值庭和十二个有人审、可退出的场景，把研发、社区与市场组织成可验证的 AI 城市接口。"
 tracks: ["ai-traffic-walkability", "ai-public-services", "robotics-autonomous-mobility"]

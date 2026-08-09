@@ -2,6 +2,7 @@
 title: "京张不断线：可降级、可复核、可恢复的 AI 城市连续性带"
 author_github: "shuncleopasfang"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "为百年京张构建最低服务线、非同源续行路径与复原时刻表，让模型、网络或自动化失效时，城市仍可读、可走、可求助并能完成积压对账。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

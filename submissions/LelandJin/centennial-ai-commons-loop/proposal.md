@@ -2,6 +2,7 @@
 title: "百年智轨·共生环——京张AI公共脊与三区两翼协同城市"
 author_github: "LelandJin"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一条铁路遗产—AI公共脊、三处共生环、两侧协同翼和十二个可治理场景触点，组织百年京张AI创新带的空间、产业、公共生活与长期运营。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

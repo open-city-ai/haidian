@@ -2,6 +2,7 @@
 title: "留白京张 ATTENTION COMMONS：百年京张 AI 创新带低扰动城市设计"
 author_github: "houxysection"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "CC-BY-4.0"
 summary: "把人的注意力视为公共资源：AI 只有在被请求、可解释、可人工接管并可退出时，才进入城市公共空间。"
 tracks: ["civic-agent-governance", "ai-traffic-walkability", "enterprise-services-ecosystem"]

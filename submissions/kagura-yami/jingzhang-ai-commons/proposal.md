@@ -2,6 +2,7 @@
 title: "京张智脉·开源共生带 / JingZhang AI Commons"
 author_github: "kagura-yami"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以‘一脉三原、两翼十二场’串联三区两翼的全栈创新、近校转化、智能原生业态与 AI 公共生活，并以可逆更新、场景沙盒和开源社区运营构建可步行、可测试、可复核的 JingZhang AI Commons。所有空间建议基于临时边界，待官方 polygon 及专业底数到位后整体复算深化。"
 iteration: "v1.0"

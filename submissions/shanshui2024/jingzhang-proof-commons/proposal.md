@@ -2,6 +2,7 @@
 title: "京张智证公地：可逆更新与公共验证驱动的AI创新带"
 author_github: "shanshui2024"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 iteration: "v0.1"
 summary: "以研发基准、公共基准、应用基准三类城市接口，连接百年京张文化、都市AI生活与AI融合创新；所有空间内容均为概念建议，临时边界仅用于投稿自检和讨论。"

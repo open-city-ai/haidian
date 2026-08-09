@@ -2,6 +2,7 @@
 title: "京张智脉：百年京张AI创新带总体概念与场景运营方案"
 author_github: "Steph-kss"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路百年自主创新精神为纵轴、AI全栈创新生态为横轴，提出'一带三核两翼'总体结构、'智源·智汇·智享'命名体系、12张AI场景卡、4个朝圣地标与全球AI创新活动运营体系；基于 provisional boundary 生成，保留精度警示并待官方数据发布后复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

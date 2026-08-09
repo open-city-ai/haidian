@@ -2,6 +2,7 @@
 title: "共脉京张：可验证、可漫游、可共治的AI城市共生带"
 author_github: "mayinghan"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一条公共文化脊、两条服务环、三处创新核与六个公共房间，把百年京张的工程精神、海淀的开放创新和可审计的AI城市治理连接为可分期、可复算、可由专业团队继续深化的城市设计方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

@@ -2,6 +2,7 @@
 title: "京张智脉共生带：百年京张AI创新带城市设计概念方案"
 author_github: "JinGuYuan"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以2026年8月全线贯通的京张铁路遗址公园为历史与公共空间主轴，提出'一带三核两翼多点、蓝绿慢行复合环'的AI创新带城市设计概念：众智园为全栈自主创新核、AI原点社区为近校生态原点核、大钟寺为城市型AI原生新业态核，两翼对接中关村科技服务与"小月河场景赋能，形成可复核、可复算、待官方边界替换后重算的formal机器可读方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-traffic-walkability", "youth-friendly-public-space"]
