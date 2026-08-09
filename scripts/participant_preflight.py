@@ -4,10 +4,12 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +33,97 @@ def run(command: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
         env=environment,
         check=False,
     )
+
+
+def git_blob_manifest_hashes(repo_root: Path, submission_rel: str) -> dict[str, Any]:
+    """Compare manifest digests with the bytes Git would actually commit.
+
+    Git can normalize CRLF or apply another clean filter during ``git add``.
+    A workspace-only self-check therefore cannot prove that a manifest digest
+    will still match after a contributor pushes. Use an isolated temporary
+    index so this preflight observes Git's real clean-filter output without
+    changing the contributor's index or worktree.
+    """
+    manifest_path = repo_root / submission_rel / "manifest.json"
+    if not manifest_path.is_file():
+        return {"ok": True, "checked_paths": [], "mismatches": [], "error": None}
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        return {"ok": False, "checked_paths": [], "mismatches": [], "error": str(exc)}
+
+    entries = [
+        (str(item["path"]), str(item["sha256"]))
+        for item in manifest.get("files", [])
+        if isinstance(item, dict)
+        and isinstance(item.get("path"), str)
+        and isinstance(item.get("sha256"), str)
+    ]
+    if not entries:
+        return {"ok": True, "checked_paths": [], "mismatches": [], "error": None}
+
+    environment = os.environ.copy()
+    environment["PYTHONUTF8"] = "1"
+    environment["PYTHONIOENCODING"] = "utf-8"
+    with tempfile.TemporaryDirectory(prefix="haidian-preflight-index-") as directory:
+        environment["GIT_INDEX_FILE"] = str(Path(directory) / "index")
+
+        for command in (
+            ["git", "read-tree", "HEAD"],
+            ["git", "add", "--all", "--", submission_rel],
+        ):
+            completed = subprocess.run(
+                command,
+                cwd=repo_root,
+                capture_output=True,
+                env=environment,
+                check=False,
+            )
+            if completed.returncode:
+                detail = completed.stderr.decode("utf-8", "replace").strip()
+                return {
+                    "ok": False,
+                    "checked_paths": [],
+                    "mismatches": [],
+                    "error": f"{' '.join(command)} failed: {detail}",
+                }
+
+        mismatches: list[dict[str, str]] = []
+        checked_paths: list[str] = []
+        for relative_path, declared_sha256 in entries:
+            git_path = f"{submission_rel}/{relative_path}"
+            completed = subprocess.run(
+                ["git", "show", f":{git_path}"],
+                cwd=repo_root,
+                capture_output=True,
+                env=environment,
+                check=False,
+            )
+            if completed.returncode:
+                detail = completed.stderr.decode("utf-8", "replace").strip()
+                return {
+                    "ok": False,
+                    "checked_paths": checked_paths,
+                    "mismatches": mismatches,
+                    "error": f"cannot read staged Git blob for `{relative_path}`: {detail}",
+                }
+            checked_paths.append(relative_path)
+            actual_sha256 = hashlib.sha256(completed.stdout).hexdigest()
+            if declared_sha256 != actual_sha256:
+                mismatches.append(
+                    {
+                        "path": relative_path,
+                        "declared_sha256": declared_sha256,
+                        "git_blob_sha256": actual_sha256,
+                    }
+                )
+
+    return {
+        "ok": not mismatches,
+        "checked_paths": checked_paths,
+        "mismatches": mismatches,
+        "error": None,
+    }
 
 
 def git_output(repo_root: Path, *args: str, allow_failure: bool = False) -> str:
@@ -204,6 +297,22 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         if not self_check["ok"]:
             blockers.append("submission self-check failed; repair the reported issues before pushing")
 
+    manifest_git_blob_check: dict[str, Any] | None = None
+    if submission_dir.is_dir():
+        manifest_git_blob_check = git_blob_manifest_hashes(repo_root, submission_rel)
+        if manifest_git_blob_check.get("error"):
+            blockers.append(
+                "cannot verify manifest hashes against bytes Git will commit: "
+                + str(manifest_git_blob_check["error"])
+            )
+        elif manifest_git_blob_check.get("mismatches"):
+            paths = ", ".join(
+                item["path"] for item in manifest_git_blob_check["mismatches"]
+            )
+            blockers.append(
+                "manifest sha256 values do not match bytes Git will commit: " + paths
+            )
+
     push_check: dict[str, Any] | None = None
     if args.check_push and branch and origin_url:
         push_check = check_push(repo_root, branch)
@@ -229,6 +338,7 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         "package_file_count": len(inventory),
         "package_bytes": package_bytes,
         "self_check": self_check,
+        "manifest_git_blob_check": manifest_git_blob_check,
         "push_dry_run": push_check,
         "blockers": blockers,
         "warnings": warnings,

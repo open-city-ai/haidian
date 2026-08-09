@@ -1,9 +1,12 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
+import json
 import os
 import subprocess
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -75,6 +78,58 @@ class ParticipantPreflightEncodingTests(unittest.TestCase):
         self.assertEqual("1", kwargs["env"]["PYTHONUTF8"])
         self.assertEqual("utf-8", kwargs["env"]["PYTHONIOENCODING"])
         self.assertEqual(completed.stdout, "海淀规划\n")
+
+
+class ParticipantPreflightGitBlobTests(unittest.TestCase):
+    def git(self, root: Path, *args: str) -> subprocess.CompletedProcess[str]:
+        return subprocess.run(
+            ["git", *args],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+
+    def test_detects_manifest_hash_calculated_before_git_crlf_normalization(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.assertEqual(0, self.git(root, "init", "-b", "main").returncode)
+            self.assertEqual(0, self.git(root, "config", "user.email", "test@example.com").returncode)
+            self.assertEqual(0, self.git(root, "config", "user.name", "Test").returncode)
+            (root / "README.md").write_text("base\n", encoding="utf-8")
+            self.assertEqual(0, self.git(root, "add", "README.md").returncode)
+            self.assertEqual(0, self.git(root, "commit", "-m", "base").returncode)
+            self.assertEqual(0, self.git(root, "config", "core.autocrlf", "true").returncode)
+
+            submission = root / "submissions" / "alice" / "line-endings"
+            submission.mkdir(parents=True)
+            proposal_bytes = b"# Proposal\r\n\r\nCRLF content\r\n"
+            (submission / "proposal.md").write_bytes(proposal_bytes)
+            (submission / "manifest.json").write_text(
+                json.dumps(
+                    {
+                        "files": [
+                            {
+                                "path": "proposal.md",
+                                "sha256": hashlib.sha256(proposal_bytes).hexdigest(),
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            report = participant_preflight.git_blob_manifest_hashes(
+                root, "submissions/alice/line-endings"
+            )
+
+            self.assertFalse(report["ok"])
+            self.assertEqual("", self.git(root, "diff", "--cached", "--name-only").stdout)
+            self.assertEqual(["proposal.md"], [item["path"] for item in report["mismatches"]])
+            self.assertEqual(
+                hashlib.sha256(b"# Proposal\n\nCRLF content\n").hexdigest(),
+                report["mismatches"][0]["git_blob_sha256"],
+            )
 
 
 if __name__ == "__main__":
