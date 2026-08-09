@@ -544,6 +544,87 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
                     else:
                         self.assertIn("unsafe file path", output)
 
+    def test_refresh_rejects_manifest_path_escape_and_symbolic_link(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submissions" / "alice" / "unsafe-refresh"
+            write_official_site_package(root)
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(0, finalized.returncode, finalized.stdout + finalized.stderr)
+
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"].append({"path": "../outside.txt", "sha256": "0" * 64})
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            escaped = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                    str(submission_dir),
+                    "--refresh",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, escaped.returncode)
+            self.assertIn("unsafe path", escaped.stdout)
+
+            manifest["files"] = [item for item in manifest["files"] if item.get("path") != "../outside.txt"]
+            outside = root / "outside.png"
+            outside.write_bytes(b"outside")
+            linked = submission_dir / "assets" / "figures" / "escape.png"
+            linked.symlink_to(outside)
+            manifest["files"].append({"path": "assets/figures/escape.png", "sha256": "0" * 64})
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            symlinked = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                    str(submission_dir),
+                    "--refresh",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, symlinked.returncode)
+            self.assertIn("symbolic link", symlinked.stdout)
+
+    def test_refresh_rejects_removed_bilingual_display_counterpart(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submissions" / "alice" / "missing-counterpart"
+            write_official_site_package(root)
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(0, finalized.returncode, finalized.stdout + finalized.stderr)
+
+            translated_html = submission_dir / "report" / "proposal.en.html"
+            translated_html.unlink()
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["files"] = [
+                item for item in manifest["files"] if item.get("path") != "report/proposal.en.html"
+            ]
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            refreshed = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                    str(submission_dir),
+                    "--refresh",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, refreshed.returncode)
+            self.assertIn("required bilingual counterpart is missing", refreshed.stdout)
+
     def test_finalize_preserves_localized_figure_language_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "bilingual-figures"

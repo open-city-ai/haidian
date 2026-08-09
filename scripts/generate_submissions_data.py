@@ -176,6 +176,26 @@ def known_blockers(manifest: Any) -> list[str]:
     return []
 
 
+def has_stale_self_check_claim(submission_dir: Path, manifest: Any) -> bool:
+    """Treat an explicit refresh invalidation as stale for modern self-checks.
+
+    Older merged packages predate the machine-readable formal-readiness field
+    and commonly carry self_checked=false alongside a legacy self_check.json.
+    Preserve their historical gallery classification; a ready package with a
+    modern self-check result must be re-run after finalize --refresh marks the
+    claim stale.
+    """
+    if not isinstance(manifest, dict) or manifest.get("package_state") != "ready_for_review":
+        return False
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict) or claim.get("self_checked") is not False:
+        return False
+    self_check = read_json(submission_dir / "self_check.json")
+    return isinstance(self_check, dict) and isinstance(
+        self_check.get("can_enter_formal_review"), bool
+    )
+
+
 def feature_collection(path: Path) -> list[dict[str, Any]]:
     data = read_json(path)
     if isinstance(data, dict) and isinstance(data.get("features"), list):
@@ -228,6 +248,8 @@ def classify_submission(submission_dir: Path, manifest: Any) -> str:
     if stage != "formal":
         return "legacy_fixture"
     if not package_complete(submission_dir):
+        return "needs_revision"
+    if has_stale_self_check_claim(submission_dir, manifest):
         return "needs_revision"
     if stored_formal_readiness(submission_dir) is True:
         return "formal_review_ready"

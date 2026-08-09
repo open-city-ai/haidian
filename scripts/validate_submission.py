@@ -1668,6 +1668,19 @@ def validate_self_check_file(
     return data
 
 
+def self_check_claim_is_stale(manifest: dict | None, self_check: object) -> bool:
+    """Detect a modern self-check result invalidated by a later package refresh."""
+    if not isinstance(manifest, dict) or manifest.get("package_state") != "ready_for_review":
+        return False
+    claim = manifest.get("validation_claim")
+    return (
+        isinstance(claim, dict)
+        and claim.get("self_checked") is False
+        and isinstance(self_check, dict)
+        and isinstance(self_check.get("can_enter_formal_review"), bool)
+    )
+
+
 def collect_json_ids(data: object, list_key: str, id_key: str) -> set[str]:
     if not isinstance(data, dict):
         return set()
@@ -2064,6 +2077,11 @@ def validate_ai_package_dir(
             stage,
             allow_pending_self_check=allow_pending_self_check,
         )
+        if self_check_claim_is_stale(manifest, self_check) and not allow_pending_self_check:
+            report.add_error(
+                f"{proposal_dir}/manifest.json: validation_claim.self_checked=false; "
+                "rerun self_check_submission.py after the latest package refresh"
+            )
     validate_readiness_claim(
         report,
         proposal_dir,

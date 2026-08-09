@@ -2149,6 +2149,29 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", [f"{base}/manifest.json"])
             self.assertTrue(report.ok, report.errors)
 
+    def test_refresh_invalidated_self_check_blocks_modern_formal_package(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.promote_package_to_formal(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["package_state"] = "ready_for_review"
+            manifest["validation_claim"]["self_checked"] = False
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+            )
+            self_check_path = root / base / "self_check.json"
+            self_check = json.loads(self_check_path.read_text(encoding="utf-8"))
+            self_check["can_enter_formal_review"] = True
+            self_check_path.write_text(
+                json.dumps(self_check, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+            )
+            report = validate_submission(root, "alice", changed + [f"{base}/manifest.json"])
+            self.assertFalse(report.ok)
+            self.assertIn("self_checked=false", "\n".join(report.errors))
+
     def test_bilingual_contract_manifest_only_update_rechecks_full_package(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

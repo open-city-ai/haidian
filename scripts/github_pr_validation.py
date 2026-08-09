@@ -30,6 +30,7 @@ from validate_submission import (
     PROTECTED_REVIEW_ARTIFACT_PREFIXES,
     ValidationReport,
     format_report,
+    normalize_changed_path,
     validate_submission,
 )
 
@@ -382,10 +383,10 @@ def safe_manifest_paths(manifest: object) -> set[str]:
         raw = item.get("path") if isinstance(item, dict) else None
         if not isinstance(raw, str):
             continue
-        candidate = PurePosixPath(raw)
-        if candidate.is_absolute() or not candidate.parts or ".." in candidate.parts:
+        try:
+            normalized = normalize_changed_path(raw.replace("\\", "/"))
+        except ValueError:
             continue
-        normalized = candidate.as_posix()
         if normalized in {".", ""}:
             continue
         paths.add(normalized)

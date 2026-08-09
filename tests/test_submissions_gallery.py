@@ -6,6 +6,7 @@ import unittest
 import tempfile
 from pathlib import Path
 from urllib.parse import urlsplit
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from generate_submissions_data import (  # noqa: E402
     build_data,
     build_item,
+    classify_submission,
     discover_submissions,
     load_publication_registry,
     package_sha256,
@@ -81,6 +83,43 @@ class TestSubmissionsGallery(unittest.TestCase):
                 "proposal-view.html?proposal=submissions/alice/example",
                 items[0]["proposalUrl"],
             )
+
+    def test_refresh_invalidates_modern_self_check_until_rerun(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "refreshable"
+            submission.mkdir(parents=True)
+            (submission / "self_check.json").write_text(
+                json.dumps({"can_enter_formal_review": True}), encoding="utf-8"
+            )
+            manifest = {
+                "submission_stage": "formal",
+                "package_state": "ready_for_review",
+                "validation_claim": {"self_checked": False, "known_blockers": []},
+            }
+            with patch("generate_submissions_data.package_complete", return_value=True), patch(
+                "generate_submissions_data.stored_formal_readiness", return_value=True
+            ):
+                self.assertEqual("needs_revision", classify_submission(submission, manifest))
+
+    def test_legacy_self_check_without_formal_readiness_keeps_compatibility(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "legacy"
+            submission.mkdir(parents=True)
+            (submission / "self_check.json").write_text(
+                json.dumps({"checks": [{"result": "pass", "severity": "info"}]}),
+                encoding="utf-8",
+            )
+            manifest = {
+                "submission_stage": "formal",
+                "package_state": "ready_for_review",
+                "validation_claim": {"self_checked": False, "known_blockers": []},
+            }
+            with patch("generate_submissions_data.package_complete", return_value=True), patch(
+                "generate_submissions_data.stored_formal_readiness", return_value=None
+            ):
+                self.assertEqual("formal_review_ready", classify_submission(submission, manifest))
 
     def test_registry_can_explicitly_hold_a_merged_submission(self):
         with tempfile.TemporaryDirectory() as tmp:
