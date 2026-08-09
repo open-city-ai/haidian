@@ -241,6 +241,7 @@ submissions/octocat/ai-urban-loop/visual/index.html
 - 第一权威公告：北京市规划和自然资源委员会海淀分局《百年京张AI创新带城市设计国际方案征集资格预审公告》。
 - 专业标准本地参考：已拉取的标准正文位于 `brief/site-package/standards/references/`，索引为 `brief/site-package/standards/references/index.json`；`standards.json` 记录每份参考文件的 `local_reference_path`、`local_reference_sha256` 和获取状态。
 - 公开数据登记表：`data/source_registry.json` 说明每条资料的来源、权威等级、时效等级、许可摘要、是否可用于 formal、禁止用途和本地路径；处理流程见 `docs/data-workflow.md`。
+- 投稿包自采来源不要求重复写入中央登记表：实际使用的资料、资产、字体和工具链依赖仍须记录在各自 `sources.json`/版权说明中；中央登记和 `[source-registry]` Issue 申请通道见 `docs/data-workflow.md`。
 - Agent 处理资料包：`data/processed/agent_fact_pack.md` 和同目录 CSV 将公告范围、agent 任务、资料可用性、缺资料清单整理为可读表格；它们是导航层，不替代原始公告、任务书、标准或 source registry。
 - 更新标准快照：维护者可运行 `python3 scripts/fetch_standard_references.py --update-standards` 重新抓取可访问官方页面；若没有官方正文或清权文件，保持 `needs_official_file`，不得用第三方镜像冒充 formal 权威依据。
 - 资格预审文件：公告说明需在北京科技园拍卖招标有限公司网站下载登记表，发送至 `kjysanbu@163.com` 后由征集组织机构发送下载密码；精确边界、正式图纸和设计附件最可能来自该文件包。
