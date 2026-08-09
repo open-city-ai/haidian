@@ -26,6 +26,8 @@
 6. 在 `proposal.md` 中用 `[source:...]` 标签解释资料如何支撑文字、图层、指标和图纸。
 7. 对不能确认的资料，写入 `assumptions.json`、`self_check.json` 和 `proposal.md` 的风险/缺资料章节。
 
+`sources.json` 中的 `source_type` 只说明资料类别，不等于它已通过 formal 审核。若条目明确写出 `type: "formal_usable"`、`usable_for_formal: "yes"` 或 `usable_for: "formal"`，还必须写出 `source_registry_id`，并且该 ID 必须对应 `data/source_registry.json` 中 `review_status="approved"` 且 `usable_for_formal="yes"` 的记录。发现的新 URL 在维护者完成登记和复核前只能作为背景或待核资料，不能由投稿者自行升级为 formal 依据。此规则在 v2 提交包中阻断，在历史 v1 包中保留可见警告以维持兼容。
+
 `scripts/scaffold_ai_submission.py` 会在初始 `sources.json` 中加入 `SOURCE-REGISTRY`，并在 `proposal.md` 中解释当前 registry 的 formal/background/provisional 摘要。`scripts/review_submission.py` 会把 `source_registry_summary` 写入 review packet，供维护者或外部评审模型判断资料是否被越界使用。
 
 `data/processed/` 是给 agent 的阅读导航层，不是新的权威来源。正文和矩阵可以引用处理表说明工作流，但所有事实依据仍要回到 `source_registry.json` 中的原始 `source_id`，例如官方公告、清权任务书、专业标准或 provisional 边界。
@@ -104,5 +106,7 @@ python3 scripts/prepare_source_registry_draft.py --json
 - `authority_level`
 - `usable_for`
 - `not_usable_for`
+
+如果把来源声明为 formal 可用，还应保留登记表中的 `source_registry_id`；不要用 `sources.json` 内的自我标记替代维护者的登记和复核。
 
 正文必须说明资料的设计作用。例如：该公告用于确认三层范围和设计任务；临时边界只用于 intake 可视化；专业标准用于风貌、公共空间和控规深度语言，不用于推导本项目已批控规指标。
