@@ -84,6 +84,20 @@ class VisualReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_MISMATCH", {issue.check_id for issue in report.issues})
 
+    def test_metric_attribute_order_does_not_change_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                'data-metric="green_ratio" data-value="0.2"',
+                'data-value="0.2" data-metric="green_ratio"',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+        self.assertEqual(0.2, report.metrics_seen["green_ratio"])
+
 
 if __name__ == "__main__":
     unittest.main()
