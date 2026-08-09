@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v0.3 - 2026-08-09
+
+- 持久化当前 main 提交上的真实四门自检结果、生成器版本、UTC 时间和 formal-review readiness；这只是本地包证据，不是官方评分或实施批准。
+- 刷新 `self_check.json` 与本变更记录的 manifest 哈希；没有修改几何、指标值、现场绩效、许可、部署或公开排序声明。
+- 继续明确临时边界与重点区的精度限制，三条 `KEY_AREA_PROVISIONAL` 只是不阻断内容评审的提示。
+
 本轮为实质性证据与治理设计迭代，不是公共排序、日期或名称操作；未修改 `submissions-data.js`、`gallery-publication.json`，也未改动其它投稿包。
 
 ## v0.2 - 2026-08-09

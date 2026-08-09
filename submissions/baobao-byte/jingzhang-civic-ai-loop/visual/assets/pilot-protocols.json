@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "status": "pre-pilot_protocols_not_executed",
   "common_rules": {
     "minimum_data": true,
@@ -26,7 +26,25 @@
         "无法转人工",
         "现场物理断点未隔离"
       ],
-      "non_ai_fallback": "人工服务台、纸本路线、现场维修工单"
+      "non_ai_fallback": "人工服务台、纸本路线、现场维修工单",
+      "execution_status": "field_not_authorized_not_run",
+      "desktop_replay": {
+        "status": "PASS",
+        "scope": "offline_synthetic_only",
+        "fixture_count": 4,
+        "assertion_count": 8,
+        "runner": "visual/assets/run-p1-replay.js",
+        "fixtures": "visual/assets/p1-replay-fixtures.json",
+        "evidence": "visual/assets/p1-replay-evidence.json",
+        "proves": "deterministic protocol branches and rollback mechanics only",
+        "does_not_prove": [
+          "field safety",
+          "staff availability",
+          "public outcomes",
+          "legal authorization",
+          "deployment security"
+        ]
+      }
     },
     {
       "id": "P2",
