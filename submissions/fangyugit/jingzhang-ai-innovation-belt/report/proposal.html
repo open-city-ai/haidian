@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百年京张·AI全栈自主创新城市带设计方案 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>百年京张·AI全栈自主创新城市带设计方案</h1>
+<p class="summary">以&#x27;京张智脉共生带&#x27;为总体概念，落实百年京张文化带、都市AI生活体验带、AI融合创新带三大定位，形成&#x27;一带三核、多点场景、蓝绿慢行复合环&#x27;的空间结构，并给出10张AI场景卡、5类用户画像、3个产业测试验证场景、4个AI朝圣地标与年度活动体系。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>百年京张·AI全栈自主创新城市带设计方案</h1>
+<h2>0 方案导读</h2>
+<p>本方案以北京市规划和自然资源委员会海淀分局《百年京张AI创新带城市设计国际方案征集资格预审公告》（2026-05-09）及面向智能体的设计任务书为第一依据，在官方 <code>SITE_BOUNDARY</code> 与三处 <code>KEY_AREA</code> 正式多边形尚未发布前，使用 <code>brief/site-package/geometry/provisional_boundaries.geojson</code> 生成可评分、可复核的 formal 设计包。边界与重点区面积属于 <code>provisional_constraint</code>（<code>official_boundary=false</code>），仅供设计讨论与可视化，不等同于法定控规结论；官方多边形发布后应重新运行脚手架并复算全部指标。该组织方数据缺口不阻断内容评分。</p>
+<p>方案的组织逻辑遵循 agent.1~agent.6 六个应答层级：总体概念与命名 → 三级定位 → 控规深度设计 → 重点区详细设计 → 场景/画像/测试 → 文化叙事与活动运营。全部设计判断均可回溯到 <code>design_brief.json</code>、<code>sources.json</code>、<code>standard_matrix.json</code> 与 <code>design_depth_matrix.json</code>，指标复算路径见 <code>metrics.json</code>。</p>
+<h2>1 概念命名与总体定位</h2>
+<h3>1.1 总体概念：京张智脉共生带（Jingzhang Smart-Vein Living Belt）</h3>
+<p>京张铁路是中国自主修建的第一条干线铁路，其&quot;人字形&quot;折返线是百年前工程师用智慧驯服山区地形的世界级创举。本方案以&quot;从&#x27;人字形铁路&#x27;到&#x27;智脉型城市&#x27;&quot;为主线，提出<strong>&quot;京张智脉共生带&quot;</strong>总体概念：把百年工程智慧延续为智能时代的城市操作系统，让 AI 从&quot;外挂功能&quot;变成像当年铁轨一样承载城市生长、输送流动、激发创新的基础设施。</p>
+<blockquote><p>核心转译：<strong>人字形铁路（1909）—— 让山地可通行；智脉型城市（2026+）—— 让城市可思考。</strong></p></blockquote>
+<p>概念落位为&quot;一带三核、多点场景、蓝绿慢行复合环&quot;：</p>
+<ul>
+<li><strong>一带</strong>：沿京张遗址公园与轨道廊道展开的 ±11.4km² 总体创新带（SITE-001）。</li>
+<li><strong>三核</strong>：北端<strong>众智园·开源策源核</strong>（192.1ha）、中部<strong>AI原点社区·中试转化核</strong>（104.3ha）、南端<strong>大钟寺·文化客厅核</strong>（72.0ha），构成&quot;策源—中试—转化—上市&quot;四段式空间接力。</li>
+<li><strong>多点场景</strong>：10 张 AI 场景卡（SC-01~SC-10）沿带多点分布，服务 5 类用户画像。</li>
+<li><strong>蓝绿慢行复合环</strong>：蓝绿空间（绿地率约 12.3%）与慢行系统复合，串联三核与各场景。</li>
+</ul>
+<h3>1.2 三级定位与五大功能</h3>
+<p>依据 <code>design_brief.json</code> 的 positionings，总体定位落为三条线索、五类核心功能：</p>
+<div class="proposal-table"><table><thead><tr><th>定位线索</th><th>策略要点</th><th>空间落位</th></tr></thead><tbody><tr><td><strong>百年京张文化带</strong></td><td>以遗址公园为骨、铁轨记忆为魂，重现工程叙事</td><td>京张遗址公园活力带、L4 大钟寺AI星厅</td></tr><tr><td><strong>都市AI生活体验带</strong></td><td>让 AI 场景可触达、可体验、可日常化</td><td>都市AI生活体验带、SC-03/05 场景</td></tr><tr><td><strong>AI融合创新带</strong></td><td>全栈自主创新体系，从开源策源到产业转化</td><td>世界级 AI 创新生态、众智园/AI原点社区</td></tr></tbody></table></div>
+<p>五类核心功能：<strong>创新策源、产业转化、生活体验、文化叙事、治理示范</strong>。五大功能不是并列板块，而是沿带咬合串联，构成&quot;以创新带文化、以文化养生活、以生活聚人才、以人才强创新&quot;的自强化回路。</p>
+<h3>1.3 三大体系支撑</h3>
+<p>1. <strong>AI 全栈自主创新体系&quot;两核一廊&quot;</strong>：众智园（开源策源）+ AI原点社区（中试转化）两核，沿京张廊道构建&quot;策源—中试—转化—上市&quot;四段式空间接力，形成从算法、算力、数据到终端、应用的自主创新链条。 2. <strong>世界级 AI 创新生态</strong>：以开源社区、共性技术平台、概念验证中心、中试熟化基地和产业加速器为五级载体，衔接高校院所与市场资本。 3. <strong>AI 治理话语权平台</strong>：设 AI 创新贡献墙、荣誉展示区与开放评测中心，承接公共安全研判实验区（T-03）与 AI 治理规则的企业级开放评议。## 2 总体设计范围与控规深度设计</p>
+<h3>2.1 三层范围框架</h3>
+<p>范围沿用 scaffold 三层结构（<code>geometry/site_boundary.geojson#SITE-001</code>）：</p>
+<ul>
+<li><strong>统筹研究范围</strong>（PROV-RESEARCH-001，±43.6km²）：跨海淀多片区的协同研究圈层，含轨道、市政与生态廊道衔接。</li>
+<li><strong>总体设计范围</strong>（SITE-001，±11.4km²）：本方案控规深度设计主对象。</li>
+<li><strong>重点区域范围</strong>（PROV-KEY-001/002/003，合计 ±369.3ha）：三处重点区精细化设计对象。</li>
+</ul>
+<h3>2.2 控制性详细规划深度的六类用地</h3>
+<p>按&quot;创新主导、生活复合、蓝绿织入&quot;原则，将总体设计范围划分为六类主导用地（详见 <code>geometry/land_use.geojson</code>）：</p>
+<div class="proposal-table"><table><thead><tr><th>用地代码</th><th>用地主导功能</th><th>布局要点</th></tr></thead><tbody><tr><td>R（居住）</td><td>人才公寓、混合社区</td><td>AI原点社区周边、南段生活组团聚人</td></tr><tr><td>A（公服）</td><td>教育、文化、医疗、体育</td><td>高校院所联动、社区级服务圈补齐</td></tr><tr><td>B（商办）</td><td>AI 总部、研发、孵化</td><td>众智园与原点社区承载&quot;策源—转化&quot;</td></tr><tr><td>M（研发工业）</td><td>中试、智造、算力中心</td><td>沿廊道布置中试熟化与算力设施</td></tr><tr><td>G（绿地广场）</td><td>遗址公园、滨水绿廊、开放广场</td><td>京张遗址公园活力带串联全带</td></tr><tr><td>S（交通市政）</td><td>轨道站点、慢行廊、能源站</td><td>三级交通骨架与市政管廊</td></tr></tbody></table></div>
+<p>用地比例以创新生产类（B+M）为绝对主体（约 45%），居住与配套（R+A）约 35%，绿地广场（G）约 12%，交通市政（S）约 8%；具体以复算 <code>metrics.json</code> 为准。</p>
+<h3>2.3 三级交通骨架</h3>
+<ul>
+<li><strong>一级（区域快线）</strong>：轨道交通干线 + 高快速路，承接城市级客流。</li>
+<li><strong>二级（带内主廊）</strong>：东西向轨交支线与南北向智脉主轴，串联三核。</li>
+<li><strong>三级（慢行微网）</strong>：15 分钟步行圈 + 蓝绿慢行复合环，覆盖全部场景点与公共空间。</li>
+</ul>
+<h3>2.4 蓝绿空间与生态格局</h3>
+<p>绿地率为约 12.3%（<code>metrics.json</code>），以京张遗址公园为绿轴、南北蓝绿廊为织线、社区口袋公园为节点，构建&quot;一轴两廊多节点&quot;蓝绿骨架。公共空间率约 7.3%，通过开敞广场、站城一体节点与滨水步道织密共享空间（详见 <code>geometry/green_space.geojson</code>、<code>public_space.geojson</code>）。## 3 重点区域详细设计 依据 <code>design_brief.json</code> 的 key_areas 与 <code>geometry/key_areas.geojson</code> 三处矩形，对三处重点区进行五要素精细化设计（土地功能、空间形态、公共空间、慢行交通、地块指标），详见 <code>geometry/land_use.geojson</code> 与 <code>design_depth_matrix.json</code>。</p>
+<h3>3.1 PROV-KEY-001 众智园 · 开源策源核（192.1ha，北端）</h3>
+<p>定位为全球开源 AI 策源地与概念验证中枢。</p>
+<ul>
+<li><strong>土地功能</strong>：主导 B+M 研发办公与公共技术平台，配建开源社区中心、开放代码广场、评测中心。</li>
+<li><strong>空间形态</strong>：延续京张机务段的历史轴线，塑造&quot;开源广场—策源塔—共享工坊&quot;的仪式性创新序列。</li>
+<li><strong>公共空间</strong>：<strong>开源广场</strong>（L2）作为全带公共活动主轴端点，承载贡献墙与年度发布。</li>
+<li><strong>慢行交通</strong>：园区级无车化慢行环 + P+R 换乘站，接驳一级快线。</li>
+<li><strong>地块指标</strong>：以高密度研发街坊为主，预留弹性生长的&quot;插件式&quot;模块地块。</li>
+</ul>
+<h3>3.2 PROV-KEY-002 AI原点社区 · 中试转化核（104.3ha，中部）</h3>
+<p>定位为&quot;学校—实验室—市场&quot;之间的中试熟化与人才社区。</p>
+<ul>
+<li><strong>土地功能</strong>：中试熟化基地、算力枢纽、人才公寓与商业配套复合。</li>
+<li><strong>空间形态</strong>：围绕&quot;AI 原点&quot;站城节点形成紧凑混合街区，上住下研、职住平衡。</li>
+<li><strong>公共空间</strong>：<strong>全栈成就馆</strong>（L3）与社区级的 AI 生活实验室、实验广场。</li>
+<li><strong>慢行交通</strong>：T-01 低速无人配送走廊在此设核心段，与轨道支线无缝接驳。</li>
+<li><strong>地块指标</strong>：中高强度混合开发，容积率梯度从站城中心向社区外围递减。</li>
+</ul>
+<h3>3.3 PROV-KEY-003 大钟寺 · 文化客厅核（72.0ha，南端）</h3>
+<p>定位为文化客厅与 AI 文旅体验中心。</p>
+<ul>
+<li><strong>土地功能</strong>：文化展示、沉浸体验、商业休闲与酒店服务。</li>
+<li><strong>空间形态</strong>：以<strong>大钟寺AI星厅</strong>（L4）为精神地标，重塑南门户形象。</li>
+<li><strong>公共空间</strong>：站前文化广场、滨水步道与节庆活动场。</li>
+<li><strong>慢行交通</strong>：接驳南端轨道站点，构建&quot;轨道+文化慢游&quot;动线。</li>
+<li><strong>地块指标</strong>：文化商旅为主导，低中密度开敞布局，突出地标留白。</li>
+</ul>
+<p>三处重点区合计 ±369.3ha，占总体设计范围约 32%，是&quot;一带三核&quot;的空间支点；详细地块指标、图层与复算见 geometry 与 metrics。## 4 AI 场景卡、用户画像与测试验证场景</p>
+<h3>4.1 十张 AI 场景卡（SC-01~SC-10，≥10 满足）</h3>
+<p>每张场景卡包含：场景编号、位置、服务对象、AI 能力、数据依托、相关图层、验证指标。</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>场景</th><th>位置</th><th>核心 AI 能力</th><th>相关图层</th></tr></thead><tbody><tr><td>SC-01</td><td>开源代码广场</td><td>众智园 L2</td><td>协同开发 Copilot、贡献评测</td><td>key_areas/land_use</td></tr><tr><td>SC-02</td><td>智能楼宇能源管家</td><td>众智园/AI原点</td><td>能耗预测、减碳调度</td><td>buildings/land_use</td></tr><tr><td>SC-03</td><td>AI 通勤即问即行</td><td>全带</td><td>多模式出行 Agent、实时预约</td><td>roads/mobility</td></tr><tr><td>SC-04</td><td>本地生活 AI 助手</td><td>街区商铺</td><td>商圈推荐、社区供需撮合</td><td>public_space</td></tr><tr><td>SC-05</td><td>沉浸式铁路体验馆</td><td>大钟寺 L4</td><td>生成式内容文旅导览</td><td>key_areas</td></tr><tr><td>SC-06</td><td>全栈成就馆企业展厅</td><td>AI原点 L3</td><td>企业技术全景可视化</td><td>key_areas</td></tr><tr><td>SC-07</td><td>公共安全研判实验</td><td>众智园 T-03</td><td>风险预测、事件研判</td><td>land_use</td></tr><tr><td>SC-08</td><td>企业服务助手沙箱</td><td>AI原点 T-02</td><td>文档/审批/知识办公 Agent</td><td>buildings</td></tr><tr><td>SC-09</td><td>残障友好 AI 导行</td><td>全带慢行</td><td>无障碍规划、语音导航</td><td>green_space</td></tr><tr><td>SC-10</td><td>青少年 AI 科普营</td><td>全带</td><td>学习路径生成、场馆联动</td><td>public_space</td></tr></tbody></table></div>
+<h3>4.2 五类用户画像（P1~P5，=5 满足）</h3>
+<ul>
+<li><strong>P1 高校创客</strong>：注重开源代码、查重与算力普惠，活动在 SC-01/10。</li>
+<li><strong>P2 AI 工程师</strong>：追求中试设备、算力与社区，活动在 SC-02/06/08。</li>
+<li><strong>P3 产业创业者</strong>：需要融资对接与孵化空间，活动在 SC-01/06/08。</li>
+<li><strong>P4 市民家庭</strong>：希望生活更便利，活动在 SC-03/04/09。</li>
+<li><strong>P5 全球访客与开发者</strong>：体验文化地标与城市 AI，活动在 SC-05/06。</li>
+</ul>
+<h3>4.3 三个产业测试验证场景（T-01~T-03，≥3 满足）</h3>
+<ul>
+<li><strong>T-01 低速无人配送走廊</strong>：沿慢行复合环布设，验证路权、调度与多车协同，对应 track <code>ai-traffic-walkability</code>。</li>
+<li><strong>T-02 企业服务助手沙箱</strong>：在 AI原点社区设置企业级办公 Agent 测评环境，对应 scenario <code>enterprise-service-copilot</code>。</li>
+<li><strong>T-03 公共安全研判实验区</strong>：在众智园设置风险预测与事件研判的实验环境，对应 scenario <code>public-safety-operations-review</code>。## 5 蓝绿空间、AI 原生新业态与风貌</li>
+</ul>
+<h3>5.1 蓝绿空间骨架</h3>
+<p>以京张遗址公园为绿轴，南北两条蓝绿廊为织线，社区口袋公园为节点，构建&quot;一轴两廊多节点&quot;蓝绿骨架（<code>geometry/green_space.geojson</code>）。绿地率约 12.3%，通过滨水步道、林荫大道与广场绿廊织密生态与慢行复合图层。</p>
+<h3>5.2 四大 AI 朝圣地标（L1~L4，≥3 满足）</h3>
+<ul>
+<li><strong>L1 京张智脉之门</strong>：总体带北门户，以&quot;人字形&quot;钢构演绎铁路记忆与 AI 共生，兼具导览与地标功能。</li>
+<li><strong>L2 开源广场</strong>：众智园核心，承载 AI 创新贡献墙、年度旗舰发布与开源嘉年华。</li>
+<li><strong>L3 全栈成就馆</strong>：AI原点社区企业展厅，全景展示中国 AI 全栈自主创新成果。</li>
+<li><strong>L4 大钟寺AI星厅</strong>：南门户文化客厅，注入沉浸式 AI 文旅体验。</li>
+</ul>
+<h3>5.3 AI 原生新业态</h3>
+<p>围绕&quot;开源策源、中试转化、文化体验、生活服务&quot;四类培育 AI 原生业态：开源社区运营、算力普惠服务、AI 端侧硬件中试、生成式文旅内容、社区生活 Agent 服务等，形成自我造血的经济生态，反哺蓝绿与公共空间维护。</p>
+<h3>5.4 总体风貌</h3>
+<p>以&quot;智脉共生&quot;为风貌主题，形成三段式风貌区：北段创新智造、中段活力复合、南段文化品质；建筑色彩与形态延续京张工业遗产的沉稳基色，融入玻璃、穿孔板等现代 AI 语汇，突出&quot;历史厚重 + 未来轻盈&quot;的双重表情。## 6 AI 文化融合叙事与活动运营体系</p>
+<h3>6.1 文化叙事主线</h3>
+<p>以&quot;从&#x27;人字形铁路&#x27;到&#x27;智脉型城市&#x27;&quot;作为贯穿全带的文化叙事主线，将百年京张的自主创新精神转译为当代 AI 全栈自主创新的城市宣言。三大文脉融合：<strong>工程智慧、轨道记忆、科技双创</strong>，通过遗址公园、博物馆群、地标装置与数字内容四大载体，让&quot;自己动手、自主创新&quot;的精神可感知、可传承、可体验。</p>
+<h3>6.2 年度活动体系</h3>
+<p>以&quot;1+1+4+N&quot;构建全年运营框架：</p>
+<ul>
+<li><strong>1 个旗舰大会</strong>：GAIW（Grand AI Innovation Week）年度 AI 创新周，聚合发布、竞赛、路演与成果展。</li>
+<li><strong>1 条公共体验路线</strong>：串联 L1~L4 朝圣地的&quot;智脉巡礼&quot;主题动线。</li>
+<li><strong>4 季品牌行动</strong>：春·开源启航 / 夏·中试加速 / 秋·创新盛典 / 冬·科普研学。</li>
+<li><strong>N 场开发者社区运营</strong>：常年黑客松、Open Day、Meetup 与开源贡献者激励。</li>
+</ul>
+<h3>6.3 贡献记忆机制</h3>
+<p>设 AI 创新贡献墙与开源贡献者荣誉体系，记录每一次代码提交、补丁贡献与场景共创，形成可持续的社区归属与开放治理。## 7 更新项目清单与分期实施</p>
+<h3>7.1 更新项目清单（JZ-01~JZ-06）</h3>
+<div class="proposal-table"><table><thead><tr><th>项目</th><th>内容</th><th>对应重点区</th></tr></thead><tbody><tr><td>JZ-01</td><td>开源广场与策源塔</td><td>众智园</td></tr><tr><td>JZ-02</td><td>中试熟化基地与算力枢纽</td><td>AI原点社区</td></tr><tr><td>JZ-03</td><td>全栈成就馆</td><td>AI原点社区</td></tr><tr><td>JZ-04</td><td>大钟寺AI星厅与文化客厅</td><td>大钟寺</td></tr><tr><td>JZ-05</td><td>京张遗址公园活力带与蓝绿慢行环</td><td>全带</td></tr><tr><td>JZ-06</td><td>低运量智轨与无人配送走廊</td><td>全带</td></tr></tbody></table></div>
+<h3>7.2 分期实施</h3>
+<ul>
+<li><strong>近期（2026—2027）</strong>：完成总体控规深化与重点区概念设计，启动 JZ-01/JZ-05，落地 T-01 一期试点。</li>
+<li><strong>中期（2028—2030）</strong>：建成众智园与 AI原点社区主体，开放 L1~L4 朝圣地标，上线 GAIW 旗舰大会。</li>
+<li><strong>长期（2031— ）</strong>：全带场景全面运营，&quot;一带三核&quot;成熟运转，形成可持续的 AI 创新生态与品牌效应。</li>
+</ul>
+<h2>8 指标体系与合规</h2>
+<h3>8.1 指标体系</h3>
+<p>指标分三类，复算路径见 <code>metrics.json</code>：</p>
+<ul>
+<li><strong>空间类</strong>：site_area_sqm（±11412825）、building_footprint_area_sqm（±310807）、green_ratio（±0.1234）、public_space_ratio（±0.0733）、key_area_count=3。因缺 approved FAR 控制，floor_area_ratio 以 unknown 声明，官方控规发布后复算。</li>
+<li><strong>管控类</strong>：用地结构比例、开发强度梯度、交通与蓝绿管控要求，见 <code>compliance_matrix.json</code>。</li>
+<li><strong>绩效类</strong>：场景数（10）、画像（5）、测试场景（3）、朝圣地标（4）、项目（6）等可评分项。</li>
+</ul>
+<h3>8.2 合规与风险说明</h3>
+<ul>
+<li><strong>边界合规</strong>：边界与面积基于 provisional 数据（<code>official_boundary=false</code>），不作为法定结论；官方 polygon 发布后必须重算。</li>
+<li><strong>版权与展示</strong>：本方案为社区展示性质（license=COMMUNITY-DISPLAY-ONLY），素材与指标均登记来源于 <code>sources.json</code>；不引用未授权第三方版权作品。</li>
+<li><strong>风险暴露</strong>：正式 SITE_BOUNDARY、KEY_AREA、approved FAR 与实测地形尚未获得，是当前最大数据缺口，已在 <code>missing_data_checklist</code> 与免责声明中如实披露，不因此阻断内容评分。</li>
+</ul>
+<h2>9 参考资料</h2>
+<ul>
+<li>《百年京张AI创新带城市设计国际方案征集资格预审公告》（2026-05-09）及组织方发布的 <code>design_brief.json</code>、<code>allowed_design_space.json</code>、<code>agent_task_requirements.csv</code>。</li>
+<li><code>brief/site-package/</code> 下 provisional 边界、重点区、枚举、指标与来源清单；<code>data/source_registry.json</code>、<code>data/processed/agent_fact_pack.md</code>。</li>
+<li>组织方面向智能体的 agent.1~agent.6 任务书与评分要求。</li>
+<li>本包 <code>sources.json</code>、<code>standard_matrix.json</code>、<code>design_depth_matrix.json</code>、<code>compliance_matrix.json</code> 所登记的全部来源与标准映射。</li>
+</ul>
+</main>
+</body>
+</html>
