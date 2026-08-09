@@ -16,6 +16,8 @@ from generate_submissions_data import (  # noqa: E402
     discover_submissions,
     load_publication_registry,
     package_sha256,
+    classify_submission,
+    REQUIRED_PACKAGE_FILES,
 )
 DATA_FILE = ROOT / "submissions-data.js"
 INDEX_FILE = ROOT / "index.html"
@@ -104,6 +106,28 @@ class TestSubmissionsGallery(unittest.TestCase):
                 encoding="utf-8",
             )
             self.assertEqual([], build_data(root))
+
+    def test_current_blockers_override_stale_formal_readiness(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "example"
+            for rel in REQUIRED_PACKAGE_FILES:
+                path = submission / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"placeholder")
+            (submission / "self_check.json").write_text(
+                json.dumps({"ok": True, "can_enter_formal_review": True}),
+                encoding="utf-8",
+            )
+            manifest = {
+                "submission_stage": "formal",
+                "validation_claim": {
+                    "self_checked": True,
+                    "known_blockers": ["Unresolved participant-controlled licence issue"],
+                },
+            }
+
+            self.assertEqual("needs_revision", classify_submission(submission, manifest))
 
     def test_publication_registry_rejects_missing_selection_metadata(self):
         with tempfile.TemporaryDirectory() as tmp:

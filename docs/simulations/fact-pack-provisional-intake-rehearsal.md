@@ -53,7 +53,7 @@ Expected warnings:
 - `geometry/site_boundary.geojson` uses provisional boundary.
 - `geometry/key_areas.geojson` contains three provisional key areas.
 
-These warnings do not block intake, but they do block formal professional scoring.
+The transcript above records the former boundary-gated result. Under the current rule, these warnings do not block intake or content scoring; they must stay visible until official geometry is supplied and precision-sensitive metrics are recalculated.
 
 ## Maintainer Review Summary
 
@@ -66,7 +66,7 @@ python3 scripts/maintainer_review.py \
   --comment
 ```
 
-Result:
+Historical result:
 
 ```text
 Recommendation: intake-provisional
@@ -77,9 +77,18 @@ visual_review: PASS
 professional_review: PASS
 ```
 
+Current expected result for the same participant-controlled checks is:
+
+```text
+Recommendation: formal-review-ready
+Can enter formal professional scoring: YES
+```
+
+The change does not treat provisional geometry as authoritative. It separates the organizer-owned data limitation from participant-controlled readiness defects.
+
 ## Gallery Integration
 
-After maintainer-style index generation:
+Historical gallery result after maintainer-style index generation:
 
 ```bash
 python3 scripts/generate_submissions_data.py
@@ -96,9 +105,11 @@ visualUrl: submissions/codex-final/jingzhang-ai-symbiotic-rail/visual/index.html
 proposalUrl: submissions/codex-final/jingzhang-ai-symbiotic-rail/report/proposal.html
 ```
 
+Under the current rule, the corresponding current status is `formal_review_ready`; the retained limitation is shown to reviewers without downgrading the gallery status.
+
 ## Remaining Issues
 
-The flow is now walkable for intake. The project still needs official or cleared data before formal scoring:
+The flow is now walkable for content scoring, while the project still needs official or cleared data for authoritative geometry and precision-sensitive recalculation:
 
 - Official overall design area polygon.
 - Official coordinated research area polygon.

@@ -171,6 +171,25 @@ class ExportReviewPacketTests(unittest.TestCase):
             self.assertIn("## 2. 方案 B", markdown)
             self.assertIn("| 2 | 方案 B | bob |", markdown)
 
+    def test_export_distinguishes_known_limitations_from_blockers(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            repo_root = Path(tmp)
+            submission_dir = make_submission(repo_root, "alice", "proposal-a", "方案 A")
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["validation_claim"]["known_limitations"] = [
+                "Official boundary is not yet published; recalculate precision-sensitive metrics later."
+            ]
+            write_json(manifest_path, manifest)
+
+            files = export_review_packet(repo_root, [submission_dir], repo_root / "packet", "测试评审包")
+
+            markdown = Path(files["markdown"]).read_text(encoding="utf-8")
+            html = Path(files["html"]).read_text(encoding="utf-8")
+        self.assertIn("### 已知限制与资料边界", markdown)
+        self.assertNotIn("### 已知阻断项", markdown)
+        self.assertIn("已知限制与资料边界", html)
+
     def test_pdf_export_reports_missing_engine(self) -> None:
         original_exists = Path.exists
 

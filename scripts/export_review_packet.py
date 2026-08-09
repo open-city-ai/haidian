@@ -319,6 +319,12 @@ def known_blockers(packet: SubmissionPacket) -> list[str]:
     return [text(item) for item in as_list(blockers) if text(item).strip()]
 
 
+def known_limitations(packet: SubmissionPacket) -> list[str]:
+    validation_claim = as_dict(packet.manifest.get("validation_claim"))
+    limitations = validation_claim.get("known_limitations")
+    return [text(item) for item in as_list(limitations) if text(item).strip()]
+
+
 def metric_rows(packet: SubmissionPacket) -> list[list[Any]]:
     rows = []
     for key, value in sorted(packet.metrics.items()):
@@ -425,6 +431,11 @@ def append_packet_markdown(lines: list[str], packet: SubmissionPacket, index: in
     if blockers:
         lines.extend(["", "### 已知阻断项", ""])
         lines.extend(f"- {item}" for item in blockers)
+
+    limitations = known_limitations(packet)
+    if limitations:
+        lines.extend(["", "### 已知限制与资料边界", ""])
+        lines.extend(f"- {item}" for item in limitations)
 
     lines.extend(["", "### 风险与待补条件", ""])
     if packet.risk_dimensions:
@@ -603,6 +614,12 @@ def render_packet_html_section(packet: SubmissionPacket, output_dir: Path, index
         blocker_html = "<h3>已知阻断项</h3><ul>" + "".join(
             f"<li>{html.escape(item)}</li>" for item in blockers
         ) + "</ul>"
+    limitations = known_limitations(packet)
+    limitation_html = ""
+    if limitations:
+        limitation_html = "<h3>已知限制与资料边界</h3><ul>" + "".join(
+            f"<li>{html.escape(item)}</li>" for item in limitations
+        ) + "</ul>"
     summary_html = f"<p class=\"summary\">{html.escape(packet.summary)}</p>" if packet.summary else ""
     return f"""
 <article class="proposal">
@@ -617,6 +634,7 @@ def render_packet_html_section(packet: SubmissionPacket, output_dir: Path, index
     <div><span>版本 / 迭代</span><strong>{html.escape(packet.version or '未声明')} / {html.escape(packet.iteration or '未声明')}</strong></div>
   </section>
   {blocker_html}
+  {limitation_html}
   <h3>风险与待补条件</h3>
   {html_table(["风险维度", "等级", "说明", "缓解方式"], risk_rows(packet)) if packet.risk_dimensions else '<p class="empty">未提供 risk.json。</p>'}
   <h4>假设与资料缺口</h4>

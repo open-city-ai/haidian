@@ -208,7 +208,7 @@ def build_prompt(review_input: dict) -> str:
             "- Data gaps and repair actions",
             "- `pr_comment_markdown`: concise Markdown for a PR comment",
             "",
-            "Important: deterministic validation and spatial review results are evidence. Treat blocking self-checks, known blockers, and missing official geometry as serious readiness limits.",
+            "Important: deterministic validation and spatial review results are evidence. Treat participant-controlled blocking self-checks and known_blockers as serious readiness limits. Treat known_limitations (including organizer-owned missing official geometry, provisional boundaries, and precision-sensitive recalculation) as visible data boundaries: preserve them in the review, but do not let them by themselves block formal content scoring or reduce rubric scores. Keep this distinction explicit.",
             "Treat background_only, provisional_only, and needs_review registry entries as non-formal evidence unless the submitted package separately provides reviewed official/cleared evidence.",
             "Version 2 bilingual deliverables are mandatory. A missing, incomplete, malformed, or incorrectly mapped Chinese/English counterpart is a blocking package-readiness failure. Historical version 1 packages remain compatible; review their available language without inventing missing content. Human reviewers must still compare translated claims, metrics, evidence, and figure positions for substantive equivalence.",
             "If pre-submit self-check, spatial review, machine visual-packaging checks, or professional evidence review is FAIL, the package cannot enter formal professional scoring.",
