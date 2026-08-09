@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.7"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v0.7 将任务书 13 项统一评审维度与仓库 formal scorecard 的 7 项工作流问题分开映射到同一组包内证据，并以离线路径审计阻止导航、权重或引用被误读为官方评分，既有临时几何、已知指标与 unknown 均不因叙述而改写。"
+iteration: "v0.8"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v0.8 在不改写临时几何、已知指标或 unknown 的前提下，为 6 个测试类场景登记授权前的基线、样本、成功/停止条件、人工替代、责任、复核和删除证明，并明确现场与居民验证仍待补齐。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -23,6 +23,19 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 新增加的无网络 `run-reviewer-navigation-audit.js` 读取任务书、本地 formal scorecard 脚本和包内导航，核验 13/13 任务书维度、7/7 工作流问题、其 100% 模板权重与 42/42 包内文件路径；缺少任一维度或替换为不存在的路径的负样本必须 FAIL。它只证明阅读路径和本地词表没有漂移，不验证设计好坏、来源权威、许可、现场绩效、评审判断或任何得分。图 10 将这两套问题、五条证据脊和“资料不足则保持概念 / unknown”的共同边界压缩为一页阅读地图。[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [depth:metrics_recalculation]
 
 ![图 10｜评审证据地图：任务书维度、工作流问题与五条可回放证据脊](assets/figures/reviewer-navigation.png)
+
+## v0.8：把“可以开始”写成授权前的验收登记
+
+本轮回应评审中最关键的落地问题：场景卡已经写了人工接管和停止动作，却还不够让人判断一项研究何时可以开始。于是把 6 个 `test_validation=true` 场景逐项登记到 `visual/assets/pilot-readiness-register.json`，每条都回答基线、观察对象与时间窗、成功条件、停止条件、人工替代、最终责任、复核周期和删除证明。登记值全部保持“未采集、待授权主体确定或授权前冻结”，不把示范数字写成现场结果。[data:geometry/phasing.geojson#PHASE-V02] [depth:risk_missing_data]
+
+| 进入前要回答的问题 | 当前状态 | 仍需谁补齐 |
+| --- | --- | --- |
+| 现状基线与观察对象 | 未采集，样本框和时间窗未冻结 | 有权主体与专业评估者，在取得同意后确定 |
+| 成功与停止条件 | 数量阈值待授权前冻结，场景卡的安全、投诉、越权、无障碍和责任不清即暂停仍然有效 | 专业评估者与现场安全责任角色 |
+| 人工替代与责任 | 人工、电话、纸面或现场路径已写入包内，实际班次、响应时限和运营主体待确认 | 运营方、资料责任方和独立复核者 |
+| 复核、异议与删除 | 周期、公开摘要、异议答复和删除证明待启动前写入 release note | 授权主体与公众反馈程序 |
+
+这张表只是一份授权前的工作合同。包内没有现场走访、居民访谈、问卷、运营日志或真实绩效，`site_visit_status`、`resident_validation_status`、`stakeholder_engagement_status` 和 `field_measurement_status` 均保持未开展或未采集。离线 runner 会对 6/6 测试类场景、8/8 必填字段和两个缺字段/误填数值的负样本做结构复核；通过只说明台账没有漏项，不能证明可以获批、可以部署或已经有效。[metric:manual_service_equivalence_rate] [depth:metrics_recalculation]
 
 ## v0.6：把“谁能进入、谁能停止”放到同一张空间图
 

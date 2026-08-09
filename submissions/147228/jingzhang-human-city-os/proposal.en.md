@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.7"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v0.7 separately maps the taskbook's thirteen unified review dimensions and the repository formal scorecard's seven workflow questions to the same in-package evidence, using an offline path audit to prevent navigation, weights, or references from being misread as an official score; provisional geometry, known metrics, and unknowns are never rewritten by narrative."
+iteration: "v0.8"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. Without rewriting provisional geometry, known metrics, or unknowns, v0.8 registers pre-authorization baseline, sample, success/stop, human-fallback, accountability, review, and deletion fields for six test scenarios, while keeping field and resident validation pending."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -23,6 +23,19 @@ This iteration repairs a readability gap, not a score opportunity. The repositor
 The new network-free `run-reviewer-navigation-audit.js` reads the taskbook, local formal-scorecard scripts, and the package navigation. It verifies all 13/13 taskbook dimensions, 7/7 workflow questions, their 100% template-weight alignment, and 42/42 package-local file paths; negative samples that remove a dimension or replace a path with a nonexistent file must fail. It proves only that reading paths and local vocabularies have not drifted—not design quality, source authority, rights, field performance, reviewer judgement, or any score. Figure 10 compresses the two question sets, five evidence spines, and their shared boundary—missing input stays conceptual or `unknown`—onto one reading page. [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [depth:metrics_recalculation]
 
 ![Figure 10 | Review evidence map: taskbook dimensions, workflow questions, and five replayable evidence spines](assets/figures/reviewer-navigation.en.png)
+
+## v0.8: Turn “ready to start” into a pre-authorization acceptance register
+
+This iteration answers the most important delivery question in the review: the scenario cards already describe human takeover and stop actions, but they do not yet make clear when a study may start. `visual/assets/pilot-readiness-register.json` therefore registers all 6 `test_validation=true` scenarios against a baseline, participant and time window, success condition, stop condition, human alternative, final accountability, review period, and deletion proof. Every value stays at “not collected,” “to be defined,” or “freeze before authorization”; no example number is presented as a field result. [data:geometry/phasing.geojson#PHASE-V02] [depth:risk_missing_data]
+
+| Question before entry | Current status | Who still has to complete it |
+| --- | --- | --- |
+| Baseline and observation scope | Not collected; sampling frame and time window are not frozen | An authorized party and professional evaluator after consent |
+| Success and stop conditions | Numeric thresholds freeze before authorization; scenario-card stops for safety, complaints, unauthorized access, accessibility barriers, and unclear accountability already apply | Professional evaluator and on-site safety role |
+| Human alternative and accountability | Staffed, telephone, paper, or on-site paths are registered; named shifts, response time, and operator remain unconfirmed | Operator, data-accountability party, and independent reviewer |
+| Review, objections, and deletion | Period, public summary, objection response, and deletion proof must enter the release note before start | Authorized party and public-feedback procedure |
+
+This is a pre-authorization working contract. The package contains no site visit, resident interview, survey, operating log, or real performance result; `site_visit_status`, `resident_validation_status`, `stakeholder_engagement_status`, and `field_measurement_status` remain not conducted or not collected. The offline runner checks 6/6 test scenarios, 8/8 required fields, and two negative fixtures for a missing field and an invented numeric value. A pass proves only that the register has no structural omission; it does not prove approval, deployment, or effectiveness. [metric:manual_service_equivalence_rate] [depth:metrics_recalculation]
 
 ## v0.6: Put “who can enter and who can stop” on one spatial page
 
