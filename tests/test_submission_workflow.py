@@ -235,6 +235,44 @@ class PullRequestHeadGuardTests(unittest.TestCase):
         client.add_labels.assert_not_called()
         client.remove_labels.assert_not_called()
 
+    def test_non_submission_head_change_before_comment_skips_side_effects(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 627,
+                "user": {"login": "147228"},
+                "head": {
+                    "repo": {"full_name": "147228/haidian"},
+                    "sha": "event-sha",
+                },
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.side_effect = [
+                ({"head": {"sha": "event-sha"}}, {}),
+                ({"head": {"sha": "event-sha"}}, {}),
+                ({"head": {"sha": "newer-sha"}}, {}),
+            ]
+            client.paginate.return_value = [{"filename": "docs/example.md"}]
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        self.assertEqual(3, client.request.call_count)
+        client.download_content.assert_not_called()
+        client.upsert_comment.assert_not_called()
+        client.add_labels.assert_not_called()
+        client.remove_labels.assert_not_called()
+
 
 class EmptyPdfDetectionTests(unittest.TestCase):
     def test_zero_count_placeholder_is_empty(self) -> None:

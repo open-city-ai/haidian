@@ -438,6 +438,12 @@ def main() -> int:
             f"{validation_markdown}\n\n"
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"event head {head_sha} no longer matches the current PR head."
+            )
+            return 0
         write_step_summary(comment)
         client.upsert_comment(pr_number, comment)
         return 0
