@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "SEMANTIC_LOCK",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md + proposal.en.md + visual/assets/submission-model.json",
+      "message": "Locked three-layer contract, three fields, P1-P3, SC-01..12, four landmarks, ten components, G0-G8, conditional 100 days, RACI and OPEX match the proposals."
+    },
+    {
+      "check_id": "SERIALIZED_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "Reloaded EPSG:4548 checks pass: land gap 0.0 sqm, overlap 0.0 sqm; buildings overlap 0.0 sqm."
+    },
+    {
+      "check_id": "BILINGUAL_PARITY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets/figures/*.png + visual/index*.html + drawings/*.pdf",
+      "message": "Five non-identical bilingual figure pairs, same-structure HTML, and same-page-count PDF pairs are present; English HTML has no CJK leakage."
+    },
+    {
+      "check_id": "PDF_GATE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "drawings/*.pdf",
+      "message": "A3 landscape booklets have 10 pages; A0 landscape boards have 5 full-figure pages; exact media boxes, extractable text, and size limits pass."
+    },
+    {
+      "check_id": "OFFICIAL_REFRESH_TRIGGER",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson + assumptions.json",
+      "message": "Every display carries the provisional/not-for-approval disclaimer and full-package refresh trigger."
+    },
+    {
+      "check_id": "OFFICIAL_GEOMETRY_AVAILABLE",
+      "result": "unknown",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Official cleared polygons are unavailable; this is an organizer data gap, not a content-scoring failure.",
+      "suggested_fix": "Replace all three scope levels and three key-area polygons together, then rerun the generator."
+    },
+    {
+      "check_id": "PROJECT_STATUS_AND_G0",
+      "result": "unknown",
+      "severity": "major",
+      "target": "assumptions.json",
+      "message": "No real interface is claimed to have passed G0; the 100-day window remains conditional."
+    },
+    {
+      "check_id": "PROFESSIONAL_CONTROLS",
+      "result": "unknown",
+      "severity": "major",
+      "target": "assumptions.json",
+      "message": "Planning, ownership, construction, rail, utilities, safety, accessibility, monitoring, cost, procurement and OPEX require authorised professional confirmation."
+    },
+    {
+      "check_id": "NOISE_STANDARD_VERSION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "sources.json + visual assets",
+      "message": "Uses Emission Standard for Construction Noise GB 12523-2025 from 2026-01-01 and HJ 1402-2024; no 2011 standard is presented as current. Public sensors remain non-enforcement."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html + visual/index.en.html",
+      "message": "Static offline pages contain no remote resources, iframe, forms, fetch, XHR, WebSocket, EventSource, or beacon."
+    }
+  ]
+}
