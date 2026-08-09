@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import importlib.util
+import io
 import os
 import subprocess
 import sys
@@ -75,6 +76,69 @@ class ParticipantPreflightEncodingTests(unittest.TestCase):
         self.assertEqual("1", kwargs["env"]["PYTHONUTF8"])
         self.assertEqual("utf-8", kwargs["env"]["PYTHONIOENCODING"])
         self.assertEqual(completed.stdout, "海淀规划\n")
+
+
+class ParticipantPreflightPushRemoteTests(unittest.TestCase):
+    def test_check_push_uses_selected_remote_and_quotes_display_command(self) -> None:
+        completed = subprocess.CompletedProcess(
+            ["git", "push"],
+            0,
+            stdout="Everything up-to-date\n",
+            stderr="",
+        )
+        with patch.object(participant_preflight, "run", return_value=completed) as mocked:
+            report = participant_preflight.check_push(
+                REPO_ROOT,
+                "submission/alice/example",
+                "fork;echo-unsafe",
+            )
+
+        mocked.assert_called_once_with(
+            [
+                "git",
+                "push",
+                "--dry-run",
+                "fork;echo-unsafe",
+                "HEAD:refs/heads/submission/alice/example",
+            ],
+            REPO_ROOT,
+        )
+        self.assertTrue(report["ok"])
+        self.assertEqual(
+            report["command"],
+            "git push --dry-run 'fork;echo-unsafe' HEAD:refs/heads/submission/alice/example",
+        )
+
+    def test_upload_command_quotes_selected_remote(self) -> None:
+        self.assertEqual(
+            participant_preflight.shell_push_command(
+                "fork;echo-unsafe",
+                "HEAD",
+                set_upstream=True,
+            ),
+            "git push -u 'fork;echo-unsafe' HEAD",
+        )
+
+    def test_cli_accepts_push_remote(self) -> None:
+        report = {"ok": True, "blockers": [], "warnings": []}
+        with (
+            patch.object(participant_preflight, "inspect", return_value=report) as mocked,
+            patch("sys.stdout", new_callable=io.StringIO),
+        ):
+            returncode = participant_preflight.main(
+                [
+                    "submissions/alice/example",
+                    "--pr-author",
+                    "alice",
+                    "--check-push",
+                    "--push-remote",
+                    "fork",
+                    "--json",
+                ]
+            )
+
+        self.assertEqual(returncode, 0)
+        self.assertEqual(mocked.call_args.args[0].push_remote, "fork")
 
 
 if __name__ == "__main__":
