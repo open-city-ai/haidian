@@ -1016,6 +1016,7 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
             f"{proposal_dir}/manifest.json: package_state must be scaffold or ready_for_review"
         )
     strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    requires_current_agent_disclosure = strict_bilingual or package_state == "ready_for_review"
     if data.get("submission_type") != "ai_agent":
         report.add_error(f"{proposal_dir}/manifest.json: submission_type must be ai_agent")
     if data.get("project_id") != "centennial-jingzhang-ai-belt":
@@ -1028,7 +1029,7 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
             f"{proposal_dir}/manifest.json: agent.model must replace the scaffold "
             f"placeholder `{SCAFFOLD_AGENT_MODEL}` with an accurate model or disclosure"
         )
-        if strict_bilingual:
+        if requires_current_agent_disclosure:
             report.add_error(message)
         else:
             report.add_warning(message + "; legacy v1 package remains compatible")
@@ -1664,6 +1665,9 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
 
     strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    requires_current_agent_disclosure = strict_bilingual or (
+        isinstance(manifest, dict) and manifest.get("package_state") == "ready_for_review"
+    )
     agent_path = base / "agent.json"
     if agent_path.exists():
         agent_data = load_json_file(report, agent_path, f"{proposal_dir}/agent.json")
@@ -1672,7 +1676,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
                 f"{proposal_dir}/agent.json: model must replace the scaffold placeholder "
                 f"`{SCAFFOLD_AGENT_MODEL}` with an accurate model or disclosure"
             )
-            if strict_bilingual:
+            if requires_current_agent_disclosure:
                 report.add_error(message)
             else:
                 report.add_warning(message + "; legacy v1 package remains compatible")
@@ -1690,7 +1694,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
                 f"{proposal_dir}/agent.json: model `{agent_model.strip()}` does not match "
                 f"manifest.json agent.model `{manifest_model.strip()}`"
             )
-            if strict_bilingual:
+            if requires_current_agent_disclosure:
                 report.add_error(message)
             else:
                 report.add_warning(message + "; legacy v1 package remains compatible")
