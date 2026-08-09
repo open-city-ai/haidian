@@ -1709,6 +1709,9 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
         return
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
     strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    strict_sources = strict_bilingual or (
+        isinstance(manifest, dict) and manifest.get("package_state") == "ready_for_review"
+    )
 
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
@@ -1728,7 +1731,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
             f"{proposal_dir}/metrics.json",
             repo_root=repo_root,
             proposal_dir=proposal_dir,
-            strict_sources=strict_bilingual,
+            strict_sources=strict_sources,
         )
 
     compliance_path = base / "compliance_matrix.json"

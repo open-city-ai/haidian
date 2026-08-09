@@ -1788,6 +1788,36 @@ class SubmissionWorkflowTests(unittest.TestCase):
                 "\n".join(report.errors),
             )
 
+    def test_review_ready_legacy_known_metric_requires_existing_source_file(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["package_state"] = "ready_for_review"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            metrics_path = root / base / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["site_area_sqm"]["source_files"] = [
+                "../../../diagnosis/section_units.geojson"
+            ]
+            metrics_path.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed + [f"{base}/metrics.json"])
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "metrics.json: metrics.site_area_sqm: source file does not exist",
+                "\n".join(report.errors),
+            )
+
     def test_metric_source_fragments_and_repository_paths_are_resolved(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
