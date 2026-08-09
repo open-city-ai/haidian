@@ -84,6 +84,9 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
             self.assertIn("pr_comment_markdown", prompt)
             self.assertIn("submissions-data.js", prompt)
             self.assertIn("Version 2 bilingual deliverables are mandatory", prompt)
+            self.assertIn("known_limitations", prompt)
+            self.assertIn("do not let them by themselves block formal content scoring", prompt)
+            self.assertNotIn("missing official geometry as serious readiness limits", prompt)
             self.assertTrue((out_dir / "advisory-review.md").exists())
 
     def test_advisory_review_schema_defines_pr_comment_contract(self) -> None:
