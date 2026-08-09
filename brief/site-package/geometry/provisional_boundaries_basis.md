@@ -44,7 +44,7 @@
 | 与 `PROV-SITE-001` 最近距离 | 412.5 m |
 | 与 `PROV-RESEARCH-001` 覆盖率 | 100% |
 
-这组结果**不证明** `PROV-SITE-001` 一定错误：OSM 可能只测绘了已建成的一段，临时 polygon 也只是按公告文字四至推定。它只证明总体设计范围存在一个需要官方 polygon 裁决的空间不确定性；在官方资料发布前，不能把 OSM 反向升级成正式边界，也不能用它阻断或替代方案评分。对应的 OSM 数据源已在 `data/source_registry.json` 登记为 `background_only`。
+这组结果**不证明** `PROV-SITE-001` 一定错误：OSM 可能只测绘了已建成的一段，临时 polygon 也只是按公告文字四至推定。它只证明总体设计范围存在一个需要官方 polygon 裁决的空间不确定性；在官方资料发布前，不能把 OSM 反向升级成正式边界，也不能用它阻断或替代方案评分。对应的 OSM 结果目前仅保留在本背景记录和 [Issue #846](https://github.com/open-city-ai/haidian/issues/846) 中，未作为中央 `data/source_registry.json` 的可重放来源；若未来需要登记，必须先固定查询、抓取元数据和快照哈希，并记录 ODbL 处理边界。
 
 ## 替换条件
 
