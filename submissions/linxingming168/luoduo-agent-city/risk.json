@@ -1,0 +1,57 @@
+{
+ "schema_version": "0.1.0",
+ "version": 1,
+ "dimensions": [
+  {
+   "id": "data_privacy",
+   "label": "数据隐私",
+   "score": 2,
+   "note": "方案使用 provisional 边界与公开资料，未涉及个人敏感数据。",
+   "mitigation": "所有数据来源公开或已授权，禁止引入未公开资料。"
+  },
+  {
+   "id": "implementation_complexity",
+   "label": "实施复杂度",
+   "score": 3,
+   "note": "分期实施与生态即服务降低单期复杂度。",
+   "mitigation": "以运营前置的小单元试点逐步扩展，控制风险敞口。"
+  },
+  {
+   "id": "policy_uncertainty",
+   "label": "政策不确定性",
+   "score": 2,
+   "note": "城市设计与更新政策存在调整可能。",
+   "mitigation": "方案保持概念性，待官方红线与政策明确后整体重算。"
+  },
+  {
+   "id": "technology_maturity",
+   "label": "技术成熟度",
+   "score": 2,
+   "note": "落朵9大真实生态已实际运营，技术路径可验证。",
+   "mitigation": "优先采用已落地场景，避免未验证技术堆叠。"
+  }
+ ],
+ "risks": [
+  {
+   "id": "R-LEGAL-001",
+   "category_zh": "法律/官方声明边界",
+   "description_zh": "所有成果为开放共创建议，不替代正式规划、不构成政府审定结论；禁用法定规划判断、地块拆改留、工程方案、地下空间、权属投资、未公开资料、侵权内容。",
+   "severity": "major",
+   "mitigation_zh": "全文统一概念性声明 + boundary_clause 红线 + risk.json 披露。"
+  },
+  {
+   "id": "R-DATA-001",
+   "category_zh": "数据缺口",
+   "description_zh": "官方精确红线与三处重点区域 polygon 暂缺，使用 provisional 粗略边界。",
+   "severity": "minor",
+   "mitigation_zh": "provisional 边界在 proposal/HTML/sources/assumptions/self_check 一致披露，不冒充官方。"
+  },
+  {
+   "id": "R-GEN-001",
+   "category_zh": "生成方法披露",
+   "description_zh": "文本/几何/指标/矩阵/图纸/可视化由 AI 生成。",
+   "severity": "info",
+   "mitigation_zh": "agent.json generation_disclosure_zh + risk 披露 + 人类最终判断。"
+  }
+ ]
+}

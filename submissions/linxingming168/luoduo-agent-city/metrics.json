@@ -1,0 +1,463 @@
+{
+ "schema_version": "0.1.0",
+ "project_id": "centennial-jingzhang-ai-belt",
+ "package_id": "luoduo-agent-city",
+ "crs": {
+  "exchange": "EPSG:4326",
+  "area_calculation": "EPSG:4548"
+ },
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "boundary_basis_zh": "全部面积指标基于 provisional 粗略边界计算，不得作为官方红线或精确面积依据；官方多边形补齐后必须整体重算。",
+ "component_reconciliation_zh": "用地分量合计与 site_area_sqm 的微小差异来自逐要素投影后共享边的进出，远低于校验容差；官方红线到位后随整体重算消解。",
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "epsg4548_polygon_area(site_boundary)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ],
+   "note_zh": "基于临时粗略边界；官方红线到位后重算。"
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_areas)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "key_area_zhongzhiyuan_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "epsg4548(key_areas[zhongzhiyuan])",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_origin_community_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "epsg4548(key_areas[origin])",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_dazhongsi_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "epsg4548(key_areas[dazhongsi])",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(key_areas)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_commercial_05_sqm": {
+   "status": "known",
+   "value": 3078190.367,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=05)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_residential_07_sqm": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=07)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_community_service_0702_sqm": {
+   "status": "known",
+   "value": 559660.03,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=0702)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_research_0802_sqm": {
+   "status": "known",
+   "value": 1959642.683,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=0802)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_education_0804_sqm": {
+   "status": "known",
+   "value": 839490.437,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=0804)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_road_1207_sqm": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=1207)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_park_green_1401_sqm": {
+   "status": "known",
+   "value": 1678801.545,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=1401)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_protective_green_1402_sqm": {
+   "status": "known",
+   "value": 0.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=1402)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_plaza_1403_sqm": {
+   "status": "known",
+   "value": 559422.145,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=1403)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "land_use_reserved_16_sqm": {
+   "status": "known",
+   "value": 1957561.548,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(epsg4548 where code=16)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1659832.04,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "epsg4548(union(green))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.145436,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green/site",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 559422.145,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "epsg4548(union(public polygons))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.049017,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public/site",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 303503.427,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-GFA-001"
+   ],
+   "note_zh": "概念组团基底，非全域总量。"
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.026593,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "footprint/site",
+   "confidence": "medium",
+   "assumptions": [
+    "A-GFA-001"
+   ]
+  },
+  "proposed_total_floor_area_sqm": {
+   "status": "known",
+   "value": 2241291.556,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint*floors)",
+   "confidence": "low",
+   "assumptions": [
+    "A-GFA-001"
+   ],
+   "note_zh": "概念组团规模测算，不构成开发强度结论。"
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 70594.46,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(epsg4548_length)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-TRANSPORT-001"
+   ]
+  },
+  "phase1_area_sqm": {
+   "status": "known",
+   "value": 7967164.538,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "epsg4548(PH-1)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "phase2_area_sqm": {
+   "status": "known",
+   "value": 3842237.531,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "epsg4548(PH-2)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "phase3_area_sqm": {
+   "status": "known",
+   "value": 7287898.379,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "epsg4548(PH-3)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 11,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 18,
+   "unit": "count",
+   "source_files": [
+    "geometry/phasing.geojson",
+    "proposal.md"
+   ],
+   "formula": "count(renewal projects in proposal)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "ai_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(AI landmarks)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "official_floor_area_ratio_control": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": [],
+   "confidence": "unknown",
+   "assumptions": [
+    "A-CONTROLS-001"
+   ],
+   "reason": "已清权资料包不含经批准容积率控制。",
+   "required_for_formal_submission": true,
+   "needed_from": "经批准的控制性详细规划或正式任务书附件"
+  },
+  "official_building_height_control_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": [],
+   "confidence": "unknown",
+   "assumptions": [
+    "A-CONTROLS-001"
+   ],
+   "reason": "已清权资料包不含经批准建筑高度控制。",
+   "required_for_formal_submission": true,
+   "needed_from": "经批准的控制性详细规划或正式任务书附件"
+  },
+  "official_building_density_control": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": [],
+   "confidence": "unknown",
+   "assumptions": [
+    "A-CONTROLS-001"
+   ],
+   "reason": "已清权资料包不含经批准建筑密度控制。",
+   "required_for_formal_submission": true,
+   "needed_from": "经批准的控制性详细规划或正式任务书附件"
+  },
+  "official_green_ratio_control": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": [],
+   "confidence": "unknown",
+   "assumptions": [
+    "A-CONTROLS-001"
+   ],
+   "reason": "已清权资料包不含经批准绿地率控制。",
+   "required_for_formal_submission": true,
+   "needed_from": "经批准的控制性详细规划或正式任务书附件"
+  }
+ }
+}
