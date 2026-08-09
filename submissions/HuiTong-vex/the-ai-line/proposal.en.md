@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "An English display translation of the formal proposal. Spatial conclusions use the provisional boundary only; official polygons require full recalculation."
 tracks: ["jingzhang-heritage-narrative", "enterprise-services-ecosystem", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v0.4"
+iteration: "v0.5"
 ---
 
 # The AI Line: Centennial Jing-Zhang AI Innovation Belt — Overall Concept and Key-Area Urban Design
@@ -108,11 +108,17 @@ One spine (Jing-Zhang Heritage Park vitality corridor, approx. 2.92M m² park gr
 
 Urban design guidelines (concept, not statutory): street-section typologies — greenway segment (linear park + slow traffic + cycling, width to be refined against official road redlines), commercial vitality segment (continuous arcades/oversails + tree pits + terrace space), community branch segment (narrow-grid streets + pocket greens); building frontage and setbacks — a 60%–80% frontage-rate continuous street-wall intent along the heritage-park belt (subject to official controls), setbacks combined with green buffers along arterials; night lighting — a “data-pulse” themed lighting hierarchy (warm slow light on the heritage belt, cool functional light in industry zones, accent fixtures at nodes) with light-pollution and energy control; signage and street furniture — unified rail-code motif for benches, lighting, bus stops, and manhole covers plus the three-tier signage; all guideline elements require re-verification under official regulatory and engineering conditions.
 
+Massing and skyline (concept, not statutory): view corridors — lookout channels reserved along the heritage-park belt toward the Dazhongsi station tower to the south and the Qinghe ecological corridor to the north (directional concept; corridor widths and height controls await official planning); height gradient — a “low-inward, higher-outward” intent along the green belt (low next to the park, rising toward the blocks), with frontage rate + setbacks + height gradient forming continuous street walls and a transparent skyline; street height-to-width (D/H) intent — approx. 1:1–1:2 on commercial vitality streets (enclosure), 1:2–1:3 on greenway segments (openness), approx. 1:1 on community branches (human scale); landmark nodes — the Dazhongsi station-city tower and the AI landmark at the park end anchor the skyline; all subject to official regulatory and urban-design refinement.
+
+![Conceptual skyline and view corridors](assets/figures/skyline-diagram.en.png)
+
 ## Renewal Project List, Implementation Policy, and Phasing
 
 Conceptual renewal list ([data:geometry/phasing.geojson#PHASE-1] onward): station-city integration (Dazhongsi), street renewal (Origin Community), industrial park renewal (Zhongzhiyuan) [depth:renewal_project_list]. Policy directions (concepts only): scenario-open filing, FAR bonus tied to public-space contribution, talent housing co-located with industrial land. Phasing: near term 2026–2028 (approx. 2.04M m², [metric:phase1_area_sqm]) Dazhongsi + Origin Community first, launching the annual Global AI Innovation Week (concept); mid term 2028–2031 (approx. 0.63M m², [metric:phase2_area_sqm]) Zhongzhiyuan and the Qinghe interface, developer-community operations; long term 2031–2035 (approx. 8.74M m², [metric:phase3_area_sqm]) link belts and park network completion [depth:phasing_implementation]. All events, funding, and operations are concepts, not confirmed government arrangements.
 
 Operation and investment model (concept): public-space concessioning — heritage-park stations, showcase spaces, and event venues brought in under concession (direction); developer-community operations — contribution board, meetups, and scenario-filing channels form integrated online/offline operations (see scenario operations page); brand-asset accumulation — Global AI Week, open-source contributor conference, and model-evaluation open contest become annual assets; investment — public-interest open space mainly public investment, industrial/commercial parcels mainly market development, mixed renewal exploring “district coordination + multiple agents” (see renewal project detail table); all mechanisms are conceptual suggestions, not government arrangements.
+
+Implementation KPIs (concept): scenario-operation KPIs — annual AI events, open scenarios count, developer contributor registrations (monthly monitoring); construction KPIs — near-term project start rate, heritage-belt greenway continuity rate, slow-traffic network density (current recomputation approx. [metric:slow_traffic_network_density_km_per_km2]), green-space 500 m service coverage (current approx. [metric:green_space_service_coverage_ratio]), blue-green interface length (Qinghe + Xiaoyuehe conceptual interface approx. [metric:blue_green_interface_length_m]); monitoring — quarterly evaluation and annual publication via the digital-twin “one belt, one map” base as reference for implementing agents; targets to be set once implementing agents and official conditions are confirmed; this proposal provides only the indicator system.
 
 Renewal project detail table (concept; implementing agents are suggestions):
 
@@ -135,7 +141,7 @@ Phasing-project-policy table:
 
 ## Indicators, Area Recalculation, and Compliance Matrices
 
-Twenty-five indicators (24 known, 1 unknown) are all recomputable from `geometry/*.geojson` in EPSG:4548 or explicitly flagged unknown ([metric:site_area_sqm], [metric:green_ratio], [metric:public_space_ratio], [metric:building_footprint_area_sqm], [metric:building_density], [metric:road_network_length_m], [metric:key_area_count], [metric:scenario_node_count], [metric:phase1_area_sqm], [metric:phase2_area_sqm], [metric:phase3_area_sqm]); [metric:floor_area_ratio] is unknown pending official regulatory conditions [depth:metrics_recalculation]. Key-indicator intent table:
+Twenty-eight indicators (27 known, 1 unknown) are all recomputable from `geometry/*.geojson` in EPSG:4548 or explicitly flagged unknown ([metric:site_area_sqm], [metric:green_ratio], [metric:public_space_ratio], [metric:building_footprint_area_sqm], [metric:building_density], [metric:road_network_length_m], [metric:key_area_count], [metric:scenario_node_count], [metric:phase1_area_sqm], [metric:phase2_area_sqm], [metric:phase3_area_sqm]); [metric:floor_area_ratio] is unknown pending official regulatory conditions [depth:metrics_recalculation]. Key-indicator intent table:
 
 | Indicator | Value (recomputed) | Design intent | Section |
 | --- | --- | --- | --- |
@@ -157,6 +163,8 @@ Compliance: `compliance_matrix.json` covers all announcement tasks 1.3.1–1.5.3
 ## Risk, Copyright, and Compliance
 
 All materials are public or user-provided cleared sources ([source:SOURCE-REGISTRY]); no internal data, non-public spatial data, or personal privacy data is used. Provisional boundary precision limits are flagged in [source:BOUNDARY-SOURCE], [source:KEY-AREA-SOURCE], the proposal, `visual/index.html`, and `assumptions.json`. The proposal, figures, and code are original AI-generated content licensed COMMUNITY-DISPLAY-ONLY (see [depth:risk_missing_data] and `report/copyright_statement.md`); no unauthorized trademarks, fonts, images, portraits, or paper figures are used. Registered risks: provisional boundary precision, missing regulatory conditions, ownership/implementation (concept level), privacy/ethics (data minimization + human review), public acceptance (participation mechanisms). AI-generated responsibility is declared by the submitting agent; final judgment rests with humans and professional teams [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. This proposal makes no assertion of official approval, regulatory conclusions, implementation commitments, or engineering feasibility.
+
+Risk responses (concept): data privacy — no individual-level trajectory data collected or used; operational data aggregated and anonymized; low risk; implementation complexity — de-risked through phased delivery + pilot-first + district coordination, with near-term projects preferring station-city and block units with relatively simple ownership; public acceptance — calibrated through community co-decision, resettle-before-renewal, and scenario feedback; medium risk requiring full public participation; operational sustainability — diversified revenue via concessioning, brand assets, and the developer community to reduce dependence on a single fiscal source; boundary uncertainty — all geometry is based on provisional boundaries (official_boundary=false explicitly flagged) and will be re-checked in one pass when official boundaries are published; risk is controlled with a defined disposition path.
 
 ## References
 

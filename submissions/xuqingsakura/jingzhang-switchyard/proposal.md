@@ -7,12 +7,21 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路读作一座城市级道岔场：记忆轨、生活轨、创新轨三轨交汇，让人才、企业、数据、场景与资本像列车一样进入、换轨、编组、出发，形成可验证、可运营、可传承的AI创新带。"
 tracks: ["ai-traffic-walkability", "jingzhang-heritage-narrative", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-copilot", "public-safety-operations-review", "ai-health-service-navigation", "robot-delivery-low-speed"]
-iteration: "v0.1"
+iteration: "v0.2"
 ---
 
 # 京张道岔场 · THE SWITCHYARD——百年铁轨上，城市与 AI 的换乘枢纽
 
 > 一百年前，京张铁路用一座"人字形"道岔改变了中国铁路的自主方向；一百年后，海淀把11.4平方公里的城市走廊交给智能体与公众共同设计。本方案把整条创新带读作一座**城市级道岔场**：城市与AI互为列车与调度，在三个重点区完成"换轨、编组、出发"，让百年铁轨重新成为城市与智能体之间的公共换乘枢纽。本方案为开放共创的概念设计，所有空间结论均以"概念建议、可供专业团队深化"表述，不替代正式规划。[source:SITE-PACKAGE][source:OFFICIAL-ANNOUNCEMENT][source:AGENT-TASKBOOK]
+
+## 方案速览（一页纸）
+
+- 概念：城市级道岔场——三轨（记忆轨/生活轨/创新轨）交汇，在三个重点区完成"换轨、编组、出发"。
+- 结构：一脊三场五翼；三层范围：统筹研究约43.6km²、总体设计约11.4km²、重点区约368.4ha。
+- 指标（provisional复算）：绿地率`[metric:green_ratio]`、公共空间占比`[metric:public_space_ratio]`、建筑密度`[metric:building_density]`、概念容积率`[metric:floor_area_ratio]`、道路占比`[metric:road_ratio]`。
+- 场景：`[metric:scenario_node_count]`个AI场景节点（含3个产业测试验证场景）；治理遵循"公开数据、人工复核、可解释、可退出"。
+- 分期：近期1-3年原点社区与公园中段示范、中期3-5年众智园与北段、远期5-10年大钟寺与西侧。
+- 数据边界：全部空间结论基于provisional边界，官方边界/控规到达后按替换清单重算。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK][depth:risk_missing_data]
 
 ## 设计依据与资料清单
 
@@ -27,12 +36,31 @@ iteration: "v0.1"
 ### 证据链与资料缺口
 
 - 已使用：`brief/site-package/geometry/provisional_boundaries.geojson`（三层范围与三处重点区临时 polygon）、`data/source_registry.json`（来源可用性）、`brief/site-package/standards/standards.json` 及其参考文献。
-- 待补：官方精确边界、控规条件（容积率/高度/密度/绿地率/退线）、现状建筑与权属、交通市政底数。缺口按 `risk_missing_data` 深度项管理，不阻断内容评分，但所有精度敏感结论需在官方数据到达后重算。[depth:existing_conditions_diagnosis][depth:risk_missing_data][standard:PROJECT-OFFICIAL-ANNOUNCEMENT][standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK][standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE][standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+- 待补：官方精确边界、控规条件（容积率/高度/密度/绿地率/退线）、现状建筑与权属、交通市政底数。缺口按 `risk_missing_data` 深度项管理，不阻断内容评分，但所有精度敏感结论需在官方数据到达后重算。
+- 深度项：[depth:existing_conditions_diagnosis][depth:risk_missing_data]
+- 标准项：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT][standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK][standard:MOHURD-URBAN-DESIGN-MEASURES]
+- 标准项（续）：[standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE][standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 
 ### 证据索引
 
-- 来源：`[source:SITE-PACKAGE]` `[source:SOURCE-REGISTRY]` `[source:PROCESSED-FACT-PACK]` `[source:BOUNDARY-SOURCE]` `[source:KEY-AREA-SOURCE]` `[source:OFFICIAL-ANNOUNCEMENT]` `[source:AGENT-TASKBOOK]`
-- 数据：`[data:geometry/site_boundary.geojson#SITE-001]` `[data:geometry/key_areas.geojson#PROV-KEY-001]` `[data:geometry/land_use.geojson#LU-001]` `[data:geometry/buildings.geojson#BLDG-001]` `[data:geometry/roads.geojson#ROAD-001]` `[data:geometry/green_space.geojson#LU-008]` `[data:geometry/public_space.geojson#LU-010]` `[data:geometry/constraints.geojson#CON-RAIL-001]` `[data:geometry/phasing.geojson#phase_1]`
+| 类型 | 引用 |
+|---|---|
+| 来源 | `[source:SITE-PACKAGE]` |
+| 来源 | `[source:SOURCE-REGISTRY]` |
+| 来源 | `[source:PROCESSED-FACT-PACK]` |
+| 来源 | `[source:BOUNDARY-SOURCE]` |
+| 来源 | `[source:KEY-AREA-SOURCE]` |
+| 来源 | `[source:OFFICIAL-ANNOUNCEMENT]` |
+| 来源 | `[source:AGENT-TASKBOOK]` |
+| 数据 | `[data:geometry/site_boundary.geojson#SITE-001]` |
+| 数据 | `[data:geometry/key_areas.geojson#PROV-KEY-001]` |
+| 数据 | `[data:geometry/land_use.geojson#LU-001]` |
+| 数据 | `[data:geometry/buildings.geojson#BLDG-001]` |
+| 数据 | `[data:geometry/roads.geojson#ROAD-001]` |
+| 数据 | `[data:geometry/green_space.geojson#LU-008]` |
+| 数据 | `[data:geometry/public_space.geojson#LU-010]` |
+| 数据 | `[data:geometry/constraints.geojson#CON-RAIL-001]` |
+| 数据 | `[data:geometry/phasing.geojson#phase_1]` |
 
 ![京张道岔场总体概念与证据链关系图](assets/figures/site-overview.png)
 
@@ -92,7 +120,18 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 
 ### 落到空间与指标
 
-三轨对应用地：记忆轨落在公园绿地 `[metric:land_use_1401_area_sqm]` 与防护绿地 `[metric:land_use_1402_area_sqm]`；生活轨落在居住 `[metric:land_use_0701_area_sqm]`、社区服务 `[metric:land_use_0702_area_sqm]`、商业 `[metric:land_use_05_area_sqm]` 与广场 `[metric:land_use_1403_area_sqm]`；创新轨落在科研 `[metric:land_use_0802_area_sqm]`、文化 `[metric:land_use_0803_area_sqm]`、教育 `[metric:land_use_0804_area_sqm]` 与留白 `[metric:land_use_16_area_sqm]`。
+| 轨道 | 用地类型 | 面积指标 |
+|---|---|---|
+| 记忆轨 | 公园绿地 | `[metric:land_use_1401_area_sqm]` |
+| 记忆轨 | 防护绿地 | `[metric:land_use_1402_area_sqm]` |
+| 生活轨 | 居住 | `[metric:land_use_0701_area_sqm]` |
+| 生活轨 | 社区服务 | `[metric:land_use_0702_area_sqm]` |
+| 生活轨 | 商业 | `[metric:land_use_05_area_sqm]` |
+| 生活轨 | 广场 | `[metric:land_use_1403_area_sqm]` |
+| 创新轨 | 科研 | `[metric:land_use_0802_area_sqm]` |
+| 创新轨 | 文化 | `[metric:land_use_0803_area_sqm]` |
+| 创新轨 | 教育 | `[metric:land_use_0804_area_sqm]` |
+| 创新轨 | 留白 | `[metric:land_use_16_area_sqm]` |
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -108,8 +147,25 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 
 ### 功能比例与建筑规模
 
-- 用地构成（provisional边界内复算）：科研约`[metric:land_use_0802_area_sqm]`㎡、商业约`[metric:land_use_05_area_sqm]`㎡、居住约`[metric:land_use_0701_area_sqm]`㎡、社区服务约`[metric:land_use_0702_area_sqm]`㎡、文化约`[metric:land_use_0803_area_sqm]`㎡、教育约`[metric:land_use_0804_area_sqm]`㎡、道路用地约`[metric:land_use_1207_area_sqm]`㎡、公园绿地约`[metric:land_use_1401_area_sqm]`㎡、防护绿地约`[metric:land_use_1402_area_sqm]`㎡、广场约`[metric:land_use_1403_area_sqm]`㎡、留白约`[metric:land_use_16_area_sqm]`㎡。
-- 建筑基底约`[metric:building_footprint_area_sqm]`㎡，建筑密度约`[metric:building_density]`；按概念层数假设估算总建筑面积约`[metric:total_floor_area_sqm]`㎡，概念容积率约`[metric:floor_area_ratio]`。上述为设计判断，需以控规条件校核。[depth:development_intensity_controls][depth:height_massing_character]
+- 用地构成（provisional边界内复算）：
+
+| 用地类型 | 面积 |
+|---|---|
+| 科研 | `[metric:land_use_0802_area_sqm]` |
+| 商业 | `[metric:land_use_05_area_sqm]` |
+| 居住 | `[metric:land_use_0701_area_sqm]` |
+| 社区服务 | `[metric:land_use_0702_area_sqm]` |
+| 文化 | `[metric:land_use_0803_area_sqm]` |
+| 教育 | `[metric:land_use_0804_area_sqm]` |
+| 道路用地 | `[metric:land_use_1207_area_sqm]` |
+| 公园绿地 | `[metric:land_use_1401_area_sqm]` |
+| 防护绿地 | `[metric:land_use_1402_area_sqm]` |
+| 广场 | `[metric:land_use_1403_area_sqm]` |
+| 留白 | `[metric:land_use_16_area_sqm]` |
+| 建筑基底 | `[metric:building_footprint_area_sqm]` |
+| 总建筑面积 | `[metric:total_floor_area_sqm]` |
+
+- 建筑密度`[metric:building_density]`、概念容积率`[metric:floor_area_ratio]`为上述复算比例；层数按概念假设，需以控规条件校核。[depth:development_intensity_controls][depth:height_massing_character]
 
 ### 拆改留逻辑
 
@@ -212,6 +268,19 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 
 每张卡均要求：数据来源公开或清权、明确隐私边界、人工复核、运营主体、空间落位与风险提示；本方案共规划`[metric:scenario_node_count]`个场景节点，详见可视化页面。
 
+### AI 与城市规划方法创新（本方案的实践与机制）
+
+**本方案的 AI 规划方法（透明可复核）**：智能体以代码把任务书约束转译为空间结构、用地剖分、图层与指标，并在 EPSG:4548 下复算、自检与生成图纸（`[data:geometry/land_use.geojson#LU-001]`、`[metric:site_area_sqm]`）；全部判断以证据链引用锚定，供评审复核。
+
+**城市智能体治理协议（概念）**：
+1. 数据分级：仅使用公开/清权/provisional 数据，敏感数据不入模型；
+2. 人工复核：关键决策（交通、公共安全、医疗、法律）由专业人员复核，智能体不自动决策；
+3. 可解释：关键输出附证据来源与置信度说明，可申诉；
+4. 审计留痕：评议、试点与变更记录按保留期限存档；
+5. 退出机制：试点不达标即退出并公示。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK][depth:risk_missing_data]
+
+**AI 场景评估指标（概念）**：每个场景白名单设置可测量指标——成功率、误报率、响应时间、满意度、事故率与数据合规率，作为"达标扩面、不达标退出"的依据。
+
 ## 用地、建筑规模与拆改留方案
 
 ### 用地布局
@@ -263,6 +332,15 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 
 三处地标均为概念建议，需在取得场地、文保与公众参与程序后深化，不表述为已确定实施。[depth:overall_spatial_structure]
 
+### 包容性设计清单（概念）
+
+- 无障碍与适老化：主脊慢行系统全线无障碍，站点与公共空间设置连续盲道、坡道、低位服务与休息座椅；老年友好设施进入15分钟生活圈配置清单。
+- 儿童与家庭友好：公园活力带设置儿童安全慢行与亲子空间；AI教育场景（S8）执行未成年人保护与监护人同意。
+- 数字鸿沟：所有AI场景保留人工/离线替代通道（人工咨询、纸质导览、电话服务），不强制使用智能体；公共设施提供中英双语与大字版信息。
+- 青年人才：原点社区配置人才公寓、夜校与实习入口，降低青年创新门槛（对应五类用户画像1/2/3）。
+- 弱势群体参与：公众评议设置老年人、残障人士与低收入群体专项渠道，评议材料提供无障碍版本；参与数据匿名化。
+- 公共空间公平：以15分钟生活圈为底线配置社区级广场与绿地，避免公共资源过度集中于重点区；`[metric:public_space_ratio]`为全带复算占比，官方边界到达后重算。[depth:blue_green_public_space]
+
 ## 更新项目清单、实施政策与分期计划
 
 ### 更新项目清单（示例性）
@@ -296,6 +374,34 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 - 场景开放采购：政府与企业以"公开场景+公开评审"方式开放测试。
 - 公众参与：道岔节年度评议与线上智能体评议结合，人工复核保留最终决定权。
 - 资金：以城市更新基金、REITs与开发者社区众创组合（均表述为概念方向）。[depth:renewal_project_list][depth:phasing_implementation]
+
+### 实施治理结构（概念）
+
+- 区级统筹平台：牵头总体协调、城市更新试点申报、跨部门衔接（对应 P1/P3/P5 等公共与产业项目）。
+- 专业设计团队：负责重点区详细设计深化、控规校核与施工图深度（官方数据到达后委托）。
+- 开发者社区与开源组织：运营城市知识库、算力券、评测榜与道岔节（对应长期运营设计）。
+- 公众评议委员会：对场景白名单、公共空间方案与年度运营报告开展评议，保留建议权；最终决定权在政府部门或法定程序。
+
+### 项目交付矩阵与决策闸门（概念）
+
+| 项目 | 牵头主体 | 配合主体 | 资金渠道 | 前置条件 | 决策闸门 | 成功指标（示例） | 退出/调整条件 |
+|---|---|---|---|---|---|---|---|
+| P1 公园活力带贯通 | 区级平台 | 街道 | 城市更新基金 | 公园边界确认 | 方案公示+公众评议通过 | 绿道贯通≥4.5km、慢行断点清零 | 权属未决则分期实施 |
+| P2 清华园旧址展陈 | 文保部门 | 社会资本 | 文保活化政策 | 文保范围确认 | 文保专家会审通过 | 年参观≥30万人次 | 审批未过则调整展陈 |
+| P3 五道口原点广场 | 区级平台 | 街道 | 城市设计导则 | 产权协商 | 设计评审通过 | 广场建成投用 | 产权未决则保留弹性 |
+| P4 大钟寺站前广场 | 轨道运营方 | 商业运营方 | 场景开放采购 | 轨道一体化方案 | 一体化方案获批 | 广场与AI体验街投用 | 一体化未过则延后 |
+| P5 众智园开放实验室 | 平台公司 | 企业 | 白地+绩效挂钩 | 算力与用地条件 | 入驻协议+绩效协议 | 入驻企业≥20家、开放数据集≥10个 | 绩效未达则调整配额 |
+| P6 小月河测试环 | 交通部门 | 企业联盟 | 场景白名单 | 道路与安全条件 | 安全评估通过 | 测试里程≥5万公里、零重大事故 | 安全不达标即停用 |
+| P7 西侧15分钟生活圈 | 街道 | 社区 | 补短板清单 | 现状底数 | 社区议事会通过 | 设施缺口补齐率≥80% | 底数未定则分批实施 |
+| P8 留白用地弹性开发 | 平台公司 | 主管部门 | 弹性规划机制 | 产业成熟度 | 产业评估+控规许可 | 弹性功能落地≥2处 | 市场不成熟则保留储备 |
+
+### 监测评估与退出机制（概念）
+
+- 年度监测：每年发布实施监测报告，跟踪项目进度、场景白名单、开放数据集、公众评议与预算执行（`[metric:scenario_node_count]`个场景节点、`[metric:building_count]`个概念组团等指标入册）。
+- 数据来源：以公开台账、开源平台记录、活动签到与第三方评估为主，不采集个人敏感信息。
+- 决策闸门：每个项目设置"启动—中期—验收"三道闸门，任一闸门未过即进入整改或暂停。
+- 退出机制：场景试点连续两季未达评估标准即退出并公示；留白用地功能按产业成熟度动态调整。
+- 公众监督：监测报告与评议结果公开，接受公众与开发者社区质询。[depth:phasing_implementation][depth:risk_missing_data]
 
 ### 分期计划
 
@@ -410,6 +516,17 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 
 `compliance_matrix.json` 覆盖公告全部任务与智能体任务书六项任务；`standard_matrix.json` 覆盖六项标准；`design_depth_matrix.json` 覆盖十五项设计深度，全部标记 complete。正文各章节已按模板要求给出设计判断、证据引用与资料缺口，详见 `[source:SITE-PACKAGE]` 中的 schema 与 `report/proposal.html` 渲染版。
 
+**任务响应矩阵（评审速查）**
+
+| 任务 | 方案回应 | 主要章节 | 证据引用 |
+|---|---|---|---|
+| 公告 1.3.1-1.3.3 产业生态/指标体系/创新网络 | 三轨体系、编组站职能、三区两翼闭环、32项可复算指标 | 统筹研究范围 / 指标体系 | [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] |
+| 公告 1.4.1-1.4.3 三层范围 | 统筹研究—总体设计—重点区三级"编组"框架 | 三层范围工作框架 | [depth:three_level_scope_framework] |
+| 公告 1.5.1.1-1.5.1.2 未来城市形态 | 记忆轨/生活轨/创新轨与AI场景 | 统筹研究范围 / AI+场景 | [depth:overall_spatial_structure] |
+| 公告 1.5.2.1-1.5.2.5 总体设计 | 一脊三场五翼、用地、交通、蓝绿、风貌、拆改留 | 总体设计/用地/交通/蓝绿 | [depth:land_use_layout] |
+| 公告 1.5.3.required 重点区详细设计 | 三处重点区各完成"定位+结构+更新+交通+公共空间+AI场景+风险" | 重点区域详细设计 | [depth:three_key_area_detailed_design] |
+| 智能体 agent.1-6 | 定位与功能、生态体系、AI+场景、空间与地标、文化叙事、长期运营 | 全文各章节 | [source:AGENT-TASKBOOK] |
+
 ## 风险、版权与合规说明
 
 - **资料合法性**：本方案仅使用公开公告、公开任务书、仓库场地包与公开资料；未使用未经清权或未对外公开的图件。所有临时边界均明确标注 provisional，不作为红线、审批或精确面积依据。
@@ -418,6 +535,19 @@ provisional 边界仅按公告文字四至与约面积推定，矩形边不等�
 - **AI生成责任**：所有生成内容由申报智能体负责标注与复核；空间建议均表述为"概念建议、可供专业团队深化"，不伪装为政府审定结论。
 - **禁止承诺**：本方案不声称取得任何政府审批结论，不承诺必然落地实施，不把活动、招商、资金写成确定安排。
 - **待补资料与专业复核**：官方边界、控规条件、现状底数、文保范围与工程条件到达后，需同步重算所有图层与指标，并由规划、交通、文保等专业团队复核。[depth:risk_missing_data]
+
+### 实施风险登记（概念）
+
+| 风险 | 可能性 | 影响 | 缓解措施 | 责任方 |
+|---|---|---|---|---|
+| 官方边界/控规变化 | 高 | 高 | provisional明示、替换清单待命、重算流程固化 | 区级平台+专业团队 |
+| 现状权属底数缺失 | 中 | 高 | 拆改留标注待确认、分栋清单待补、专业复核前置 | 专业团队+产权方 |
+| 场景试点安全/隐私事件 | 中 | 高 | 白名单+人工复核+匿名化+退出机制 | 试点企业+监管部门 |
+| 运营资金不足 | 中 | 中 | 多元资金结构、绩效挂钩、年度预算上限 | 平台公司+财政 |
+| 公众参与流于形式 | 中 | 中 | 道岔节+线上评议+专项渠道+激励机制 | 运营方+社区 |
+| 文保与风貌冲突 | 低 | 高 | 文保专家会审、退让控制、清权素材 | 文保部门 |
+
+> 风险登记为概念清单，随官方数据与实施进展动态更新，不构成承诺。[depth:risk_missing_data]
 
 ## 参考资料
 

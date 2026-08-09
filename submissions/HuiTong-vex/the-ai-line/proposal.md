@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张百年铁路线为历史脊柱，提出「京张AI创新线（The AI Line）」总体概念：一带三核两翼多点的空间结构、三大重点片区详细设计、10张AI场景卡与3处朝圣地标；全部空间结论基于provisional边界，明确标注精度限制并待官方数据复算。"
 tracks: ["jingzhang-heritage-narrative", "enterprise-services-ecosystem", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v0.4"
+iteration: "v0.5"
 ---
 
 # The AI Line：百年京张AI创新带总体概念与重点区域城市设计
@@ -126,6 +126,10 @@ AI 朝圣地标与荣誉展示节点共 3 处（概念）：01「AI 原点纪念
 
 城市设计导则（概念，非控规结论）：街道断面类型——绿道段（带状公园+慢行+骑行，断面宽度按官方道路红线深化）、商业活力段（连续骑楼/挑檐+树池+外摆预留）、社区支路段（窄路密网+口袋绿地）；建筑贴线与退界——沿遗址公园带界面鼓励贴线率 60%—80% 的连续街墙意向（具体以控规为准），沿主干路退界结合绿带缓冲；夜景照明——以"数据脉冲"为主题的灯光分级体系（遗址带暖色慢光、产业区冷色功能光、节点装置色），控制光污染与能耗；标识与家具——统一采用"铁轨—代码"母题的城市家具（座椅、路灯、公交站、井盖）与导视（见三级导视）；所有导则要素均需在官方控规与工程条件下复核。
 
+空间形态与天际线（概念，非控规结论）：视线通廊——沿遗址公园活力带预留向南望大钟寺站塔楼、向北望清河生态廊的眺望通道（方向性概念，具体视廊宽度与高度控制待官方规划确定）；高度梯度——沿绿带“内低外高”意向（临公园界低层、向两侧街区渐升），以“贴线率 + 退界 + 高度梯度”三重控制形成连续街墙与通透天际线；街道高宽比（D/H）意向——商业活力段约 1:1—1:2（围合亲切），绿道段约 1:2—1:3（开阔疏朗），社区支路段约 1:1（宜人尺度）；地标节点——大钟寺站城塔楼与遗址公园端部 AI 地标构成天际线锚点；以上均以官方控规与城市设计深化为准。
+
+![天际线与视线通廊概念分析](assets/figures/skyline-diagram.png)
+
 ## 更新项目清单、实施政策与分期计划
 
 更新项目清单（概念层级，[data:geometry/phasing.geojson#PHASE-1] 起）按三类组织：站城一体类（大钟寺站周边商业文化更新，依赖轨道与权属协调）、街区更新类（原点社区近校街区功能置换，依赖高校合作机制）、产业园区类（众智园低效厂房更新与测试空间加建，依赖现状权属调查）。实施政策建议（均为深化方向）："场景开放备案制"（企业以备案方式在公共空间开展受监管 AI 试验）、"更新容积率奖励与公共空间贡献挂钩"、"人才住房随产业用地同步配建"；所有政策表述为概念建议，不构成政府承诺 [depth:renewal_project_list]。
@@ -153,9 +157,11 @@ AI 朝圣地标与荣誉展示节点共 3 处（概念）：01「AI 原点纪念
 
 运营机制与投资模式（概念）：公共空间特许经营——遗址公园带驿站、展演空间与活动场地以特许经营方式引入专业运营（概念方向）；开发者社区运营——贡献榜、meetup 与场景开放申请通道构成线上线下一体运营（见场景运营页）；品牌活动沉淀——全球 AI 活动周、开源贡献者大会与模型评测开放赛形成年度资产；投资模式——公益性公共空间以公共投资为主，产业与商服地块以市场化开发为主，混合更新项目探索“片区统筹 + 多元主体”（见更新项目明细表）；全部机制表述为概念建议，不构成政府安排。
 
+实施 KPI 与考核（概念）：场景运营 KPI——年度 AI 活动场次、场景开放数、开发者贡献者注册数（月度监测）；建设 KPI——近期项目开工率、遗址公园带绿道贯通率、慢行网络密度（现状复算约 [metric:slow_traffic_network_density_km_per_km2]）、绿地 500 米服务覆盖率（现状复算约 [metric:green_space_service_coverage_ratio]）、蓝绿界面长度（清河+小月河概念界面约 [metric:blue_green_interface_length_m]）；监测机制——以数字孪生“一带一张图”底座对上述 KPI 进行季度评估与年度发布，作为实施主体的考核参考；KPI 目标值待实施主体与官方条件确定后设定，本方案仅提供指标体系。
+
 ## 指标体系、面积复算与合规矩阵
 
-指标体系共 25 项（24 项 known、1 项 unknown），全部可从 `geometry/*.geojson` 在 EPSG:4548 下复算或明确标记未知 [metric:site_area_sqm]、[metric:green_ratio]、[metric:public_space_ratio]、[metric:building_footprint_area_sqm]、[metric:building_density]、[metric:road_network_length_m]、[metric:key_area_count]、[metric:scenario_node_count]、[metric:phase1_area_sqm]、[metric:phase2_area_sqm]、[metric:phase3_area_sqm] 与各类用地面积指标；[metric:floor_area_ratio] 因官方控规条件缺失标记为 unknown [depth:metrics_recalculation]。每个指标的设计含义在正文对应章节解释，例如绿地率 30.5% 支撑人才生活品质与蓝绿韧性（见蓝绿章节），公共空间率 8.1% 支撑创新交往（见场景章节），科研用地占比 15.4% 支撑产业空间供给（见用地章节）。
+指标体系共 28 项（27 项 known、1 项 unknown），全部可从 `geometry/*.geojson` 在 EPSG:4548 下复算或明确标记未知 [metric:site_area_sqm]、[metric:green_ratio]、[metric:public_space_ratio]、[metric:building_footprint_area_sqm]、[metric:building_density]、[metric:road_network_length_m]、[metric:key_area_count]、[metric:scenario_node_count]、[metric:phase1_area_sqm]、[metric:phase2_area_sqm]、[metric:phase3_area_sqm] 与各类用地面积指标；[metric:floor_area_ratio] 因官方控规条件缺失标记为 unknown [depth:metrics_recalculation]。每个指标的设计含义在正文对应章节解释，例如绿地率 30.5% 支撑人才生活品质与蓝绿韧性（见蓝绿章节），公共空间率 8.1% 支撑创新交往（见场景章节），科研用地占比 15.4% 支撑产业空间供给（见用地章节）。
 
 关键指标设计意图表：
 
@@ -179,6 +185,8 @@ AI 朝圣地标与荣誉展示节点共 3 处（概念）：01「AI 原点纪念
 ## 风险、版权与合规说明
 
 本方案的资料合法性边界：全部引用公开或用户提供且已清权的资料（[source:SOURCE-REGISTRY]），未使用内部资料、非公开空间数据、个人隐私数据；临时边界精度限制已在 [source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、正文、`visual/index.html` 与 `assumptions.json` 中醒目标注。版权说明：方案正文、图表与代码为 AI 生成原创内容，按 `COMMUNITY-DISPLAY-ONLY` 许可提交（见 [depth:risk_missing_data] 与 `report/copyright_statement.md`）；未使用未经授权的商标、字体、图片、人物肖像与论文图像；生成方式、引用来源与授权限制均已披露，符合共创原则的生成方法披露要求。风险登记：provisional 边界精度风险（替换 official 后复算）、控规条件缺失风险（强度指标待确认）、权属与实施风险（概念层级，需专业团队深化）、隐私与伦理风险（场景遵守数据最小化与人工复核）、公众接受度风险（通过公共参与机制缓解）；AI 生成责任由提交 agent 声明承担，最终判断由人类与专业团队完成 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。本方案不包含对官方批准、审批结论、控规结论、实施承诺或工程可行性的任何断言。
+
+风险与应对（概念）：数据隐私——不采集、不使用个体级轨迹数据，场景运营数据以脱敏聚合为原则，风险等级低；实施复杂度——以“分期实施 + 试点先行 + 片区统筹”降低落地风险，近期项目优先选择权属相对简单的站城与街区单元；公众接受度——通过社区共建议事、先安置后更新与场景体验反馈机制持续校准，风险等级中，需全过程公众参与；运营可持续——以特许经营、品牌资产与开发者社区形成多元运营收入，降低对单一财政来源的依赖；边界不确定性——所有几何成果基于 provisional 边界（official_boundary=false 明确标注），官方边界发布后按复算清单一次性复核，风险可控且有明确处置路径。
 
 ## 参考资料
 
