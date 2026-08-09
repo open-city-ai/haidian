@@ -103,7 +103,11 @@ def main() -> int:
         bilingual_primary_files = [*sorted(DISPLAY_BASE_FILES), *FIGURES]
         for rel in bilingual_primary_files:
             item = listed_items.get(rel, {})
-            if rel.startswith("assets/figures/") and item.get("language") == "neutral":
+            if (
+                rel.startswith("assets/figures/")
+                and item.get("language") == "neutral"
+                and item.get("text_free") is True
+            ):
                 continue
             translated_rel = localized_path(rel, translation_language)
             if not (root / translated_rel).is_file():

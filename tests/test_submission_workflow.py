@@ -1744,6 +1744,9 @@ class SubmissionWorkflowTests(unittest.TestCase):
                     "translation_of": primary_rel,
                     "sha256": hashlib.sha256(companion.read_bytes()).hexdigest(),
                 })
+            by_path["assets/figures/site-overview.png"].update(
+                {"language": "neutral", "text_free": True}
+            )
             manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             changed.extend(f"{base}/{path}" for path in companion_paths)
             report = validate_submission(root, "alice", changed)
@@ -1781,6 +1784,40 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
             self.assertIn("proposal.en.md", "\n".join(report.warnings))
+
+    def test_v2_neutral_figure_requires_explicit_text_free_declaration(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal_path = root / base / "proposal.md"
+            proposal_path.write_text(
+                proposal_path.read_text(encoding="utf-8").replace(
+                    'language: "zh"',
+                    'language: "zh"\nproposal_format_version: "2"\n'
+                    'bilingual_contract_version: "1"\ntranslation_file: "proposal.en.md"',
+                    1,
+                ),
+                encoding="utf-8",
+            )
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            figure = next(
+                item for item in manifest["files"]
+                if item["path"] == "assets/figures/site-overview.png"
+            )
+            figure["language"] = "neutral"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("site-overview.png` declares language=neutral without text_free=true", errors)
+            self.assertIn("site-overview.en.png", errors)
 
     def test_localized_visual_html_receives_static_safety_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

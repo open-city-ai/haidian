@@ -1591,7 +1591,13 @@ def validate_bilingual_display(
             and primary_item
             and primary_item.get("language") == "neutral"
         ):
-            continue
+            if primary_item.get("text_free") is True:
+                continue
+            report_bilingual_problem(
+                f"{proposal_dir}/manifest.json: `{display_path}` declares language=neutral "
+                "without text_free=true; visually inspect the asset and either declare it "
+                "text-free or provide a bilingual counterpart"
+            )
         companion_path = localized_path(display_path, translation_language)
         companion = base / companion_path
         if not companion.is_file():

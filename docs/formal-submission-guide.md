@@ -10,7 +10,7 @@
 
 **要求双语言。** 新方案同时设置 `bilingual_contract_version: "1"`。`proposal.md` 可以中文或英文书写，但必须通过独立文件提供完整对照译文：中文主稿使用 `proposal.en.md`，英文主稿使用 `proposal.zh.md`。主稿设置 `translation_file`，译稿设置 `translation_of: "proposal.md"`；HTML、A3/A0 和含文字图件也使用 `.zh` / `.en` 语言副本。两版必须保持章节、主张、指标、证据引用和图件位置一致，并优先使用[赛事中英术语表](terminology-glossary.md)。自动校验会把缺少文件、错误语言映射、无效译稿 HTML/PDF 或过期 manifest 哈希视作阻断错误；翻译等义性仍由维护者人工核对。历史 v1 及早期 v2 单语方案继续兼容展示，不要求为了保留既有成果而补写；它们下一次完整升级时可显式加入新契约。
 
-无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；无文字资产可声明 `language: "neutral"` 并由两版共用。
+无后缀文件是 `proposal.md` 所声明的主语言版本；译稿在扩展名前插入语言码，例如 `report/proposal.en.html`、`visual/index.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。manifest 中主文件项声明 `language: "zh"` 或 `language: "en"`，译稿项声明另一语言并通过 `translation_of` 指回主文件；只有确认不含任何人类可读文字的图件，才可同时声明 `language: "neutral"` 和 `text_free: true` 由两版共用。
 
 英文主稿必须使用以下正式章节标题；中文译稿保持对应顺序。这样英文正文可独立通过结构校验，不依赖同一文件中的中文章节。
 

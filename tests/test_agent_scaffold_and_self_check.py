@@ -221,6 +221,17 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             drawing = b"%PDF-1.4\n3 0 obj<</Type/Page/Parent 2 0 R>>endobj\n" + b"0" * 4096
             for rel in ["drawings/a3-booklet.pdf", "drawings/a0-boards.pdf"]:
                 (output_dir / rel).write_bytes(drawing)
+            manifest_path = output_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            figure = next(
+                item for item in manifest["files"]
+                if item["path"] == "assets/figures/site-overview.png"
+            )
+            figure["language"] = "neutral"
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
 
             finalized = subprocess.run(
                 [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
@@ -230,6 +241,7 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             )
             self.assertNotEqual(0, finalized.returncode)
             self.assertIn("required bilingual counterpart is missing", finalized.stdout)
+            self.assertIn("assets/figures/site-overview.en.png", finalized.stdout)
 
     def test_finalize_registers_existing_language_counterparts(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
