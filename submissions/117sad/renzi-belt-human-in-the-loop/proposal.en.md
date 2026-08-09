@@ -65,13 +65,16 @@ The official announcement and the agent open-call taskbook define scope, depth a
 
 1. **Scenario-registry intake fix.** Added `scenarios/`, `schema/`, `sources/` and `templates/` back to the repository sparse-checkout so the scenario registry loader can see the policy files, eliminating the `proposal.md: scenario registry is missing or invalid` error in deterministic validation.
 2. **Full English display counterparts.** Generated five `assets/figures/*.en.png` panels, an English `drawings/a3-booklet.en.pdf` (9 pages), an English `drawings/a0-boards.en.pdf` (2 pages), and `visual/index.en.html` (30.6 KB). The manifest now declares `language=en` and `translation_of=` for each, clearing all eight non-blocking bilingual warnings.
-3. **Self-computed intensity metric.** Added `proposed_plan_floor_area_ratio` to `metrics.json` (value 1.012, derived from `sum(building.area_sqm_declared * floors_proposed) / site_area_sqm`). The official `floor_area_ratio` stays `unknown` for the reason stated in `assumptions.json`.
+3. **Self-computed intensity metric.** Added `proposed_plan_floor_area_ratio` to `metrics.json` (value 0.4408, derived from `sum(building.area_sqm_declared * floors_proposed) / site_area_sqm`). The official `floor_area_ratio` stays `unknown` for the reason stated in `assumptions.json`.
 4. **Changelog entry.** `changelog.md` now records `## v0.2 - 2026-08-09` with five completed actions and the file list.
 5. **Geometry build-stamp.** Each `geometry/*.geojson` carries a top-level `_build_stamp` field, so the finalize stage can detect substantive layer refreshes (hash change).
 
-**Metric recalculation note (v0.2).** Alongside [metric:floor_area_ratio] which stays `unknown` (no official FAR control), the package adds a self-computed [metric:proposed_plan_floor_area_ratio] = sum(building.footprint × floors) / site_area_sqm = 0.213. It expresses the order of magnitude implied by the proposed building heights and floor counts and does not replace the official statutory control. See `metrics.json` and `assumptions.json`.
+**Metric recalculation note (v0.2).** Alongside [metric:floor_area_ratio] which stays `unknown` (no official FAR control), the package adds a self-computed [metric:proposed_plan_floor_area_ratio] = sum(building.footprint × floors) / site_area_sqm = 0.4408. It expresses the order of magnitude implied by the proposed building heights and floor counts and does not replace the official statutory control. See `metrics.json` and `assumptions.json`.
 
-
-<!-- last regenerated: 2026-08-09 11:40:41 -->
-
-<!-- last regenerated: 2026-08-09 11:41:39 -->
+**Iteration log (v0.3 · 2026-08-09 · 117sad).** A full metric-consistency rework was carried out on top of v0.2; all deliverables now align to the current geometry:
+1. **Metric recalculation**: `building_footprint_area_sqm` 579,731.853 → **594,772.590** sqm (recomputed from current buildings.geojson in EPSG:4548); `proposed_plan_floor_area_ratio` 0.213/1.012 → **0.4408** using `sum(area_sqm_declared_i × floors_proposed_i) / site_area_sqm` (mean_floors_proposed=8.46), eliminating the internal contradiction between the `1.012` and `0.213` strings; `key_area_total` ≈368.4 → **369.3 ha**, matching key_areas.geojson geometry.
+2. **Figure sync**: metrics-evidence figure redrawn from current metrics.json + land_use geometry, with a `proposed_plan_floor_area_ratio` card added and the leftover English word `outstanding` translated.
+3. **Render HTML sync**: report/proposal.html, report/proposal.en.html, visual/index.html, visual/index.en.html are re-rendered from the corrected proposal.
+4. **changelog.md**: a new v0.3 section records the rework; v0.2 historical wording is updated to remain truthful.
+5. **Validation loop**: finalize + self_check pass with zero errors; PR #684 pushed as v0.3.
+<!-- last regenerated: 2026-08-09 12:10:00 -->

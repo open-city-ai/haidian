@@ -20,14 +20,16 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 579731.853,
+      "value": 594772.59,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
       ],
-      "formula": "sum(polygon_area(building_footprints))",
+      "formula": "sum(polygon_area(building_footprints) in EPSG:4548)",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Footprint area recomputed from current buildings.geojson in EPSG:4548 at v0.3 (supersedes the earlier 579,731.853 figure which was stale relative to the current geometry)."
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -78,16 +80,18 @@
     },
     "proposed_plan_floor_area_ratio": {
       "status": "known",
-      "value": 0.213,
+      "value": 0.4408,
       "unit": "ratio",
       "source_files": [
         "geometry/buildings.geojson",
         "geometry/site_boundary.geojson"
       ],
-      "formula": "sum(building_footprint_area_sqm * mean_floors_proposed) / site_area_sqm",
+      "formula": "sum(area_sqm_declared_i * floors_proposed_i) / site_area_sqm",
       "confidence": "medium",
       "assumptions": [
-        "Self-computed from agent-generated building footprints; not the official FAR control. The official floor_area_ratio stays unknown per assumptions.json."
+        "Self-computed from per-building declared footprint and floors_proposed (mean_floors_proposed = 8.46).",
+        "Replaces v0.2 value 0.213, which used an incorrect mean_floors ~4.19.",
+        "Official floor_area_ratio stays unknown per assumptions.json (no statutory control)."
       ]
     }
   }

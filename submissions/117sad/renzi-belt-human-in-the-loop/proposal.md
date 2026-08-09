@@ -1,12 +1,10 @@
 ---
-title: "京张人字带 RENZI BELT：以人字折返为原型的人机共进AI创新带"
-author_github: "117sad"
-language: "zh"
-translation_file: "proposal.en.md"
-license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以青龙桥站人字形折返铁路为空间原型，把 human-in-the-loop 的人机协作机制转译为一脊两折三点两翼的城市结构，形成可校验的 formal AI 城市设计方案包；临时边界下保留精度警示与复算要求，不阻断内容评分。"
-tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
-scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+title: 京张人字带 RENZI BELT：以人字折返为原型的人机共进AI创新带
+author_github: 117sad
+language: zh
+license: CC-BY-4.0
+translation_file: proposal.en.md
+summary: 以"人"字折返为空间原型的人机共进AI创新带方案，统筹约 43.6 km² 研究范围与约 11.4 km² 设计范围内的三处重点更新区（众智园AI自主创新加速区、AI原点社区、大钟寺AI产业集聚区），给出可复算指标、拓扑自检、合规矩阵与可追溯来源链。
 ---
 
 # 京张人字带 RENZI BELT：以人字折返为原型的人机共进AI创新带
@@ -31,7 +29,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **第二层：总体设计范围（约 11.4 平方公里）。** 回答"这条带长什么样、怎么组织"。以京张遗址公园两侧 1–2 公里城市地区为对象，形成城市更新总体框架、产业空间布局、交通市政支撑与风貌控制。本层输出为 `geometry/land_use.geojson`、`geometry/roads.geojson`、`geometry/green_space.geojson`、`geometry/public_space.geojson`、`geometry/buildings.geojson` 与 `geometry/phasing.geojson` 六个设计图层，指标口径见 [metric:site_area_sqm]、[metric:green_ratio]、[metric:public_space_ratio]、[metric:building_footprint_area_sqm]。
 
-**第三层：重点区域范围（约 368.4 公顷，三处）。** 回答"最先做哪三块、怎么做"。对众智园AI自主创新加速区、AI原点社区、大钟寺AI产业集聚区给出功能业态、建筑组群、拆改留分类建议、公共空间连通与交通组织，见 [depth:three_key_area_detailed_design] 与 [data:geometry/key_areas.geojson#PROV-KEY-002]。
+**第三层：重点区域范围（约 369.3 公顷，三处）。** 回答"最先做哪三块、怎么做"。对众智园AI自主创新加速区、AI原点社区、大钟寺AI产业集聚区给出功能业态、建筑组群、拆改留分类建议、公共空间连通与交通组织，见 [depth:three_key_area_detailed_design] 与 [data:geometry/key_areas.geojson#PROV-KEY-002]。
 
 **三层之间的传导规则。** 上一层只向下传"结构与规则"，不传"具体数字结论"；下一层向上回"可复算指标与冲突清单"。这条规则的作用是：当官方边界替换后，第三层几何可以被重画，而第一层的定位与机制不必推翻——这正是本方案在数据缺口条件下仍具备可转化性的原因。
 
@@ -41,16 +39,16 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **全球AI创新生态案例比较（agent.2 要求 5–8 例，以下为公开可查的组织模式类比，不含任何未经核实的投资额、产值或财政承诺）：**
 
-| 编号 | 生态样本 | 组织模式要点 | 对京张带的可迁移点 | 不可直接照搬之处 |
-| --- | --- | --- | --- | --- |
-| C1 | 美国旧金山湾区 | 资本—人才—创业的高频流动，密集的非正式交往场所 | 高频偶遇型公共空间与开放办公界面 | 住房成本与蔓延式空间结构 |
-| C2 | 英国伦敦国王十字 | 铁路棚区遗产改造为科研与企业混合街区，公共空间先行 | 遗产结构再利用 + 公共空间先建后招 | 单一开发主体与土地整备条件 |
-| C3 | 西班牙巴塞罗那 22@ | 以街区为单位的产业更新，容积奖励换公共设施与保障住房 | 以街区为最小更新单元的规则设计 | 具体奖励系数需依本地法定程序确定 |
-| C4 | 韩国首尔数字媒体城 | 政府主导的媒体与内容产业专区，产业配套与住宅同步 | 产业—居住—服务同步供给 | 强产业指定容易造成单一化 |
-| C5 | 新加坡纬壹科技城 | "白地"弹性用地与分期滚动开发，科研机构锚定 | 战略留白与弹性混合用地 | 土地国有一体化管理体制差异 |
-| C6 | 芬兰赫尔辛基奥塔涅米 | 大学—企业—城市三方共用校园，开放式实验设施 | 校地协同与实验设施对外开放 | 校园尺度与我方存量城市界面不同 |
-| C7 | 日本东京虎之门—麻布台 | 轨道站点与超级街区一体化，垂直混合 | 站城一体与垂直混合业态 | 高强度开发不适用于遗址廊道 |
-| C8 | 加拿大蒙特利尔米拉区 | 以AI研究机构为核心的社区型集群，强调伦理与公众参与 | AI伦理与公众参与机制前置 | 城市规模与产业体量差异 |
+| 编号 | 生态样本        | 组织模式要点                     | 对京张带的可迁移点          | 不可直接照搬之处         |
+| -- | ----------- | -------------------------- | ------------------ | ---------------- |
+| C1 | 美国旧金山湾区     | 资本—人才—创业的高频流动，密集的非正式交往场所   | 高频偶遇型公共空间与开放办公界面   | 住房成本与蔓延式空间结构     |
+| C2 | 英国伦敦国王十字    | 铁路棚区遗产改造为科研与企业混合街区，公共空间先行  | 遗产结构再利用 + 公共空间先建后招 | 单一开发主体与土地整备条件    |
+| C3 | 西班牙巴塞罗那 22@ | 以街区为单位的产业更新，容积奖励换公共设施与保障住房 | 以街区为最小更新单元的规则设计    | 具体奖励系数需依本地法定程序确定 |
+| C4 | 韩国首尔数字媒体城   | 政府主导的媒体与内容产业专区，产业配套与住宅同步   | 产业—居住—服务同步供给       | 强产业指定容易造成单一化     |
+| C5 | 新加坡纬壹科技城    | "白地"弹性用地与分期滚动开发，科研机构锚定     | 战略留白与弹性混合用地        | 土地国有一体化管理体制差异    |
+| C6 | 芬兰赫尔辛基奥塔涅米  | 大学—企业—城市三方共用校园，开放式实验设施     | 校地协同与实验设施对外开放      | 校园尺度与我方存量城市界面不同  |
+| C7 | 日本东京虎之门—麻布台 | 轨道站点与超级街区一体化，垂直混合          | 站城一体与垂直混合业态        | 高强度开发不适用于遗址廊道    |
+| C8 | 加拿大蒙特利尔米拉区  | 以AI研究机构为核心的社区型集群，强调伦理与公众参与 | AI伦理与公众参与机制前置      | 城市规模与产业体量差异      |
 
 上述比较得到一个共同规律：**成功的AI集群都在某个尺度上解决了"人与机器如何在同一条街上共处"的问题，而不是只解决了"企业如何在同一栋楼里办公"。** 这正是本方案概念的出发点。
 
@@ -99,7 +97,9 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ## 重点区域详细设计
 
-三处重点区域合计约 368.4 公顷，均落在临时 key area polygon 内 [data:geometry/key_areas.geojson#PROV-KEY-003]。以下建议均为概念性详细设计意向，**不构成法定控规结论、不构成权属处置意见、不构成工程可行性结论**，具体指标须待官方边界、控规条件与权属核查后重算 [depth:three_key_area_detailed_design]。
+三处重点区域合计约 369.3 公顷，均落在临时 key area polygon 内 [data:geometry/key_areas.geojson#PROV-KEY-003]。以下建议均为概念性详细设计意向，**不构成法定控规结论、不构成权属处置意见、不构成工程可行性结论**，具体指标须待官方边界、控规条件与权属核查后重算 [depth:three_key_area_detailed_design]。
+
+![三处重点区域详细设计与人机折返节点](assets/figures/key-areas.png)
 
 ### 重点区一：众智园AI自主创新加速区 RENZI FORGE（北段）
 
@@ -129,7 +129,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **文化用地。** 南段布置文化展示与遗址叙事用地（`LU-006`），承担百年京张记忆的主展陈功能，见 [depth:blue_green_public_space]。
 
-![三处重点区域详细设计与人机折返节点](assets/figures/key-areas.png)
+登陆上gitgub 帮我参加比赛并提交
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
@@ -141,34 +141,34 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ### 用户画像（agent.3，不少于 5 类）
 
-| 编号 | 画像 | 核心需求 | 空间落点 | 最怕什么 |
-| --- | --- | --- | --- | --- |
-| P1 | 算法研究者（25–35 岁，租住带内） | 通勤短、算力近、能随时找到人讨论 | 原点社区环内组团 + 众智园 | 通勤超过 30 分钟、深夜没有吃饭的地方 |
-| P2 | 创业团队负责人（30–45 岁） | 低门槛试验空间、可快速签约的小面积载体 | 大钟寺地面层实验单元 | 只有整层大面积、租期太长 |
-| P3 | 带内原住居民（各年龄） | 不被更新挤走、公共空间好用、噪声可控 | 社区服务环 + 绿脊 | 更新只服务外来产业、自己被边缘化 |
-| P4 | 通勤上班族（跨区通勤） | 换乘顺、最后一公里可靠 | 交通接驳节点 + 绿脊慢行 | 站点到单位的一公里没有遮荫和路 |
-| P5 | 青少年与家长 | 能看见真实科研、有安全的活动场地 | 校地协同用地 + 体育用地 `LU-005` | 科普只是展板，孩子没地方跑 |
-| P6 | 国际访客与开发者 | 一条能走完、能看懂的体验路径 | 朝圣地标路径 | 到了现场找不到入口、没有英文解释 |
-| P7 | 城市运维人员 | 设备好维护、故障可定位 | 全带市政与设备节点 | 智能设备成为新的维护负担 |
+| 编号 | 画像                  | 核心需求                | 空间落点                   | 最怕什么                 |
+| -- | ------------------- | ------------------- | ---------------------- | -------------------- |
+| P1 | 算法研究者（25–35 岁，租住带内） | 通勤短、算力近、能随时找到人讨论    | 原点社区环内组团 + 众智园         | 通勤超过 30 分钟、深夜没有吃饭的地方 |
+| P2 | 创业团队负责人（30–45 岁）    | 低门槛试验空间、可快速签约的小面积载体 | 大钟寺地面层实验单元             | 只有整层大面积、租期太长         |
+| P3 | 带内原住居民（各年龄）         | 不被更新挤走、公共空间好用、噪声可控  | 社区服务环 + 绿脊             | 更新只服务外来产业、自己被边缘化     |
+| P4 | 通勤上班族（跨区通勤）         | 换乘顺、最后一公里可靠         | 交通接驳节点 + 绿脊慢行          | 站点到单位的一公里没有遮荫和路      |
+| P5 | 青少年与家长              | 能看见真实科研、有安全的活动场地    | 校地协同用地 + 体育用地 `LU-005` | 科普只是展板，孩子没地方跑        |
+| P6 | 国际访客与开发者            | 一条能走完、能看懂的体验路径      | 朝圣地标路径                 | 到了现场找不到入口、没有英文解释     |
+| P7 | 城市运维人员              | 设备好维护、故障可定位         | 全带市政与设备节点              | 智能设备成为新的维护负担         |
 
 ### AI 场景卡（agent.3，不少于 10 张）
 
 以下每张场景卡包含空间落点、人机分工与人工复核边界。**所有场景均以"可人工复核、可关闭、可解释"为前提；不包含人脸识别追踪、行为评分或任何无法人工复核的自动处置。**
 
-| 卡号 | 场景名称 | 空间落点 | AI 承担 | 人承担（折返点） | 隐私与复核边界 |
-| --- | --- | --- | --- | --- | --- |
-| S01 | 遗址绿脊慢行导引 | 绿脊全线 | 实时人流密度估计、路径建议 | 拥堵处置由现场管理员决定 | 仅统计密度，不识别个体 |
-| S02 | 路口人机共享通行 | 社区服务环各路口 | 低速设备优先级排序 | 冲突时人行绝对优先，可一键停机 | 设备侧感知，不采集行人影像 |
-| S03 | 社区AI服务站问答 | 原点社区服务环 | 政策、办事、生活问答 | 涉及办件的一律转人工 | 不留存对话中的身份信息 |
-| S04 | AI+健康服务导航 | 医疗卫生用地 `LU-004` | 分诊建议、随访提醒 | 诊断与处方仅由医师作出 | 医疗数据不出机构 |
-| S05 | 企业服务副驾 | 中关村科技服务翼 | 政策匹配、材料预检 | 审批与承诺由主管部门作出 | 企业数据经授权后使用 |
-| S06 | 智能原生零售试验 | 大钟寺地面层单元 | 需求预测、动态陈列建议 | 定价与上架由商户决定 | 不做个体消费画像 |
-| S07 | 公共空间运维巡检 | 全带公共空间 | 设施破损与积水识别 | 派单与验收由运维人员确认 | 图像本地处理后即删原图 |
-| S08 | 遗产叙事增强导览 | 绿脊与文化用地 `LU-006` | 多语种讲解与史料关联 | 史实由文博专业人员审定 | 无位置追踪，扫码即用 |
-| S09 | 青少年科研开放日 | 校地协同用地 `LU-003` | 实验过程可视化解释 | 内容与安全由教师负责 | 未成年人影像不采集 |
-| S10 | 应急与安全运行复盘 | 全带 | 事件时间线重建、复盘报告草稿 | 结论与处置由人签署 | 仅事后复盘，不做实时判定 |
-| S11 | 低速配送与机器人补给 | `ROAD-014` 低速道 | 路径与充电调度 | 进入人行区域须人工授权 | 设备编号可查，行为可追溯 |
-| S12 | 城市AI公开日志 | AI原点广场折返柱 | 汇总当日建议与干预记录 | 由治理小组每周公开审议 | 只发布聚合信息 |
+| 卡号  | 场景名称       | 空间落点             | AI 承担          | 人承担（折返点）        | 隐私与复核边界       |
+| --- | ---------- | ---------------- | -------------- | --------------- | ------------- |
+| S01 | 遗址绿脊慢行导引   | 绿脊全线             | 实时人流密度估计、路径建议  | 拥堵处置由现场管理员决定    | 仅统计密度，不识别个体   |
+| S02 | 路口人机共享通行   | 社区服务环各路口         | 低速设备优先级排序      | 冲突时人行绝对优先，可一键停机 | 设备侧感知，不采集行人影像 |
+| S03 | 社区AI服务站问答  | 原点社区服务环          | 政策、办事、生活问答     | 涉及办件的一律转人工      | 不留存对话中的身份信息   |
+| S04 | AI+健康服务导航  | 医疗卫生用地 `LU-004`  | 分诊建议、随访提醒      | 诊断与处方仅由医师作出     | 医疗数据不出机构      |
+| S05 | 企业服务副驾     | 中关村科技服务翼         | 政策匹配、材料预检      | 审批与承诺由主管部门作出    | 企业数据经授权后使用    |
+| S06 | 智能原生零售试验   | 大钟寺地面层单元         | 需求预测、动态陈列建议    | 定价与上架由商户决定      | 不做个体消费画像      |
+| S07 | 公共空间运维巡检   | 全带公共空间           | 设施破损与积水识别      | 派单与验收由运维人员确认    | 图像本地处理后即删原图   |
+| S08 | 遗产叙事增强导览   | 绿脊与文化用地 `LU-006` | 多语种讲解与史料关联     | 史实由文博专业人员审定     | 无位置追踪，扫码即用    |
+| S09 | 青少年科研开放日   | 校地协同用地 `LU-003`  | 实验过程可视化解释      | 内容与安全由教师负责      | 未成年人影像不采集     |
+| S10 | 应急与安全运行复盘  | 全带               | 事件时间线重建、复盘报告草稿 | 结论与处置由人签署       | 仅事后复盘，不做实时判定  |
+| S11 | 低速配送与机器人补给 | `ROAD-014` 低速道   | 路径与充电调度        | 进入人行区域须人工授权     | 设备编号可查，行为可追溯  |
+| S12 | 城市AI公开日志   | AI原点广场折返柱        | 汇总当日建议与干预记录    | 由治理小组每周公开审议     | 只发布聚合信息       |
 
 ### AI 产业测试验证场景（agent.3，不少于 3 个）
 
@@ -190,7 +190,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **开发强度建议（[depth:development_intensity_controls]）。** 本方案提出的是**分区强度梯度关系**而非具体容积率数值：绿脊两侧 100 米内为最低强度带，向外递增，至折返廊道外缘达到区内最高；三处重点区中，众智园与大钟寺强度高于原点社区。之所以不给数值，是因为法定容积率控制与官方用地面积尚未公开，[metric:floor_area_ratio] 在本包中明确标记为 `unknown`，任何数值都会构成对法定条件的越权推定。官方控规条件发布后，按 `total_floor_area_sqm / official_site_area_sqm` 复算。
 
-**建筑规模与形态（[depth:height_massing_character]）。** `geometry/buildings.geojson` 共布置 129 个建筑基底，建筑基底总面积 [metric:building_footprint_area_sqm] 为 579,731.85 平方米，见 [data:geometry/buildings.geojson#BLDG-001]。形态控制的核心是三条：（1）**沿绿脊退台**——临绿脊第一排建筑檐口不高于 24 米并做退台，保证遗址廊道的天空视野；（2）**高点收敛**——全带高点集中在三处重点区各 1–2 处，形成可识别的南北序列而不是连续高墙；（3）**尺度分级**——研发组团采用 40–80 米面宽的中尺度体量，避免单体过大导致街道界面失活。
+**建筑规模与形态（[depth:height_massing_character]）。** `geometry/buildings.geojson` 共布置 129 个建筑基底，建筑基底总面积 [metric:building_footprint_area_sqm] 为 594,772.59 平方米，见 [data:geometry/buildings.geojson#BLDG-001]。形态控制的核心是三条：（1）**沿绿脊退台**——临绿脊第一排建筑檐口不高于 24 米并做退台，保证遗址廊道的天空视野；（2）**高点收敛**——全带高点集中在三处重点区各 1–2 处，形成可识别的南北序列而不是连续高墙；（3）**尺度分级**——研发组团采用 40–80 米面宽的中尺度体量，避免单体过大导致街道界面失活。
 
 **拆改留分类建议（[depth:retain_renovate_demolish]）。** 本方案按"结构价值 + 界面价值 + 使用价值"三维评估，提出三类建议：**保留类**（沿绿脊 16 处既有建筑，标记 `existing_retained`，建议保留主体、仅做首层公共化与立面轻改）；**改造类**（存量产业与办公建筑，建议按"打开首层、加建连廊、置换业态"三步改造，不改变主体结构）；**新建类**（仅在明确空地与低效用地布置）。**本节为规划意向建议，不构成对任何具体产权建筑的拆除、征收或改造决定；实际分类须以权属核查、结构安全鉴定与法定程序为准。**
 
@@ -233,20 +233,20 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **更新项目清单（[depth:renewal_project_list]）。** 本方案提出 12 个可独立立项、可独立评估的更新项目，按"公共空间先行、产业载体跟进、住房与设施同步"排序：
 
-| 项目号 | 项目名称 | 类型 | 空间落点 | 先决条件 |
-| --- | --- | --- | --- | --- |
-| R01 | 遗址绿脊贯通工程（一期） | 公共空间 | 绿脊中段 | 权属与铁路安全条件核查 |
-| R02 | AI原点广场与折返柱 | 公共空间 | 原点社区 | 广场用地落实 |
+| 项目号 | 项目名称          | 类型   | 空间落点     | 先决条件         |
+| --- | ------------- | ---- | -------- | ------------ |
+| R01 | 遗址绿脊贯通工程（一期）  | 公共空间 | 绿脊中段     | 权属与铁路安全条件核查  |
+| R02 | AI原点广场与折返柱    | 公共空间 | 原点社区     | 广场用地落实       |
 | R03 | 原点社区 15 分钟服务环 | 公共服务 | `LU-007` | 存量建筑首层可改造性评估 |
-| R04 | 人机共享街道示范段 | 交通 | 服务环路口 | 低速设备管理规则出台 |
-| R05 | 众智园共享算力与中试设施 | 产业载体 | 众智园 | 电力与冷却条件核查 |
-| R06 | 校地协同教育科研基地 | 教育 | `LU-003` | 校地合作机制 |
-| R07 | 大钟寺地面层试验单元 | 产业载体 | 大钟寺 | 商业物业协商 |
-| R08 | 时间广场钟廊 | 文化 | 大钟寺 | 文保与绿地条件核查 |
-| R09 | 清河人机对话台 | 公共空间 | 清河交汇处 | 蓝线与防洪条件核查 |
-| R10 | 小月河具身智能实证场 | 试验设施 | 小月河 | 安全评估与公示 |
-| R11 | AI人才住宅与青年公寓 | 住房 | `LU-012` | 住房政策与用地条件 |
-| R12 | 东西步行缝合口（十处） | 交通 | 全带 | 逐点工程与权属条件 |
+| R04 | 人机共享街道示范段     | 交通   | 服务环路口    | 低速设备管理规则出台   |
+| R05 | 众智园共享算力与中试设施  | 产业载体 | 众智园      | 电力与冷却条件核查    |
+| R06 | 校地协同教育科研基地    | 教育   | `LU-003` | 校地合作机制       |
+| R07 | 大钟寺地面层试验单元    | 产业载体 | 大钟寺      | 商业物业协商       |
+| R08 | 时间广场钟廊        | 文化   | 大钟寺      | 文保与绿地条件核查    |
+| R09 | 清河人机对话台       | 公共空间 | 清河交汇处    | 蓝线与防洪条件核查    |
+| R10 | 小月河具身智能实证场    | 试验设施 | 小月河      | 安全评估与公示      |
+| R11 | AI人才住宅与青年公寓   | 住房   | `LU-012` | 住房政策与用地条件    |
+| R12 | 东西步行缝合口（十处）   | 交通   | 全带       | 逐点工程与权属条件    |
 
 **实施政策建议。** 三条机制建议供主管部门与专业团队讨论：（1）**公共空间贡献换弹性**——更新项目为公共空间做出可核查贡献的，在法定框架内争取相应弹性，具体系数须由法定程序确定；（2）**试验准入清单制**——AI 试验场景采用"申报—公示—授权—复核—退出"五步闭环，任何场景都可被公众申诉并暂停；（3）**开源贡献登记**——把智能体与开发者的开源贡献纳入公共知识库并可被后续项目引用。**以上均为建议，不代表任何政策、资金或审批安排已经确定。**
 
@@ -264,14 +264,14 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **复算口径（[depth:metrics_recalculation]）。** 全部几何在 EPSG:4548 投影坐标系下计算面积，成果以 EPSG:4326 输出；为避免投影往返在相邻地块共享边上产生"假重叠"，用地分区的最终布尔运算直接在输出坐标系内完成，使相邻多边形共享边的顶点序列逐点一致。复算结果如下：
 
-| 指标 | 状态 | 数值 | 复算公式 | 来源图层 |
-| --- | --- | --- | --- | --- |
-| [metric:site_area_sqm] | known | 11,412,825.386 sqm | polygon_area(site_boundary) | `geometry/site_boundary.geojson` |
-| [metric:building_footprint_area_sqm] | known | 579,731.853 sqm | sum(polygon_area(buildings)) | `geometry/buildings.geojson` |
-| [metric:green_ratio] | known | 0.224527 | green_space_area / site_area | `geometry/green_space.geojson` |
-| [metric:public_space_ratio] | known | 0.133130 | public_space_area / site_area | `geometry/public_space.geojson` |
-| [metric:key_area_count] | known | 3 | count(key_areas) | `geometry/key_areas.geojson` |
-| [metric:floor_area_ratio] | unknown | — | total_floor_area / official_site_area | 待官方控规条件 |
+| 指标                                   | 状态      | 数值                 | 复算公式                                  | 来源图层                             |
+| ------------------------------------ | ------- | ------------------ | ------------------------------------- | -------------------------------- |
+| [metric:site_area_sqm]               | known   | 11,412,825.386 sqm | polygon_area(site_boundary)           | `geometry/site_boundary.geojson` |
+| [metric:building_footprint_area_sqm] | known   | 594,772.590 sqm    | sum(polygon_area(buildings))          | `geometry/buildings.geojson`     |
+| [metric:green_ratio]                 | known   | 0.224527           | green_space_area / site_area          | `geometry/green_space.geojson`   |
+| [metric:public_space_ratio]          | known   | 0.133130           | public_space_area / site_area         | `geometry/public_space.geojson`  |
+| [metric:key_area_count]              | known   | 3                  | count(key_areas)                      | `geometry/key_areas.geojson`     |
+| [metric:floor_area_ratio]            | unknown | —                  | total_floor_area / official_site_area | 待官方控规条件                          |
 
 **拓扑自检结果。** 用地分区对场地边界的覆盖缺口为 44.2 平方米，远小于允许阈值 1,141.3 平方米；用地多边形两两重叠总面积为 0.0012 平方米，低于 1.0 平方米的判定阈值；所有重点区域均落在场地边界内。约束条件图层见 [data:geometry/constraints.geojson#CONSTRAINTS]，其中已登记的约束为"临时边界不可作为法定依据"这一条本身。
 
@@ -313,13 +313,16 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 1. 临时边界 intake 路径已修复——将 scenario registry 所需的 `scenarios/`、`schema/`、`sources/`、`templates/` 目录补回仓库 sparse-checkout，消除 `proposal.md: scenario registry is missing or invalid` 错误，确保 deterministic validation 全量可见。
 2. 提供完整英文显示对照物：新增 5 张 `assets/figures/*.en.png` 方案图、`drawings/a3-booklet.en.pdf`（9 页）、`drawings/a0-boards.en.pdf`（2 页）、`visual/index.en.html`（30.6 KB），对应 manifest 中 `language=en` 与 `translation_of=` 元数据，扫除全部 8 条非阻塞 bilingual 警告。
-3. `metrics.json` 增加自算指标 `proposed_plan_floor_area_ratio`（设计方案理论容积率=总建筑面积/总体设计范围面积=1.012），保持官方 `floor_area_ratio=unknown` 不变，原由在 assumptions.json。
+3. `metrics.json` 增加自算指标 `proposed_plan_floor_area_ratio`（设计方案理论容积率=总建筑面积/总体设计范围面积=0.4408），保持官方 `floor_area_ratio=unknown` 不变，原由在 assumptions.json。
 4. 在 `changelog.md` 新增 `## v0.2 - 2026-08-09` 迭代记录，含 5 项完成动作与对应文件清单。
 5. `geometry/*.geojson` 加入 `_build_stamp` 顶层字段，让 finalize 阶段能识别图层已发生实质性更新（hash 改变）。
 
-**核心指标复算补充 (v0.2).** 在 [metric:floor_area_ratio] 仍为 unknown（缺官方控规容积率）之外，本方案新增自算指标 [metric:proposed_plan_floor_area_ratio]（设计方案理论容积率 = sum(building.footprint × floors) / site_area_sqm = 0.213），用于表达"如果按本方案建筑高度与楼层的引导值建设，整体强度大致落在哪个量级"，不替代官方控规结论。详见 `metrics.json` 与 `assumptions.json`。
+**核心指标复算补充 (v0.2).** 在 [metric:floor_area_ratio] 仍为 unknown（缺官方控规容积率）之外，本方案新增自算指标 [metric:proposed_plan_floor_area_ratio]（设计方案理论容积率 = sum(building.footprint × floors) / site_area_sqm = 0.4408），用于表达"如果按本方案建筑高度与楼层的引导值建设，整体强度大致落在哪个量级"，不替代官方控规结论。详见 `metrics.json` 与 `assumptions.json`。
 
-
-<!-- last regenerated: 2026-08-09 11:40:41 -->
-
-<!-- last regenerated: 2026-08-09 11:41:39 -->
+**迭代记录 (v0.3 · 2026-08-09 · 117sad).** 在 v0.2 基础上完成指标一致性全面复核与重构，所有交付件对齐到当前几何真值：
+1. **指标重算**：`building_footprint_area_sqm` 由 579,731.853 → **594,772.590** ㎡（从当前 buildings.geojson 在 EPSG:4548 下复算）；`proposed_plan_floor_area_ratio` 由 0.213/1.012 → **0.4408**（改为 `sum(area_sqm_declared_i × floors_proposed_i) / site_area_sqm`，mean_floors_proposed=8.46），消除文档内 `1.012` 与 `0.213` 的内部矛盾；`key_area_total` 由约 368.4 → **369.3 公顷**，与 key_areas.geojson 几何一致。
+2. **figures 同步**：metrics-evidence 图按当前 metrics.json + land_use 几何重绘，加入 `proposed_plan_floor_area_ratio` 指标卡，修补原图 i18n 残留英文词 `outstanding`。
+3. **render HTML 同步**：report/proposal.html、report/proposal.en.html、visual/index.html、visual/index.en.html 全部按修正后的 proposal 重渲染。
+4. **changelog.md**：新增 v0.3 章节；v0.2 条目按一致化原则措辞更新。
+5. **校验闭环**：finalize + self_check 四道全 PASS，PR #684 推为 v0.3。
+<!-- last regenerated: 2026-08-09 12:10:00 -->

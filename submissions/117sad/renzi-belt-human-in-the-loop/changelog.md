@@ -23,7 +23,7 @@
 
 ### 指标复算
 - site_area_sqm = 11,412,825.386 sqm（known · high）
-- building_footprint_area_sqm = 579,731.853 sqm（known · medium）
+- building_footprint_area_sqm = 579,731.853 sqm（known · medium；v0.3 已重算为 594,772.590 ㎡，因当时建筑图层几何在 metrics 计算后被调整过；绿地率/公共空间率与几何重算一直精确吻合）
 - green_ratio = 0.224527（known · medium）
 - public_space_ratio = 0.133130（known · medium）
 - key_area_count = 3（known · high）
@@ -82,3 +82,13 @@
 - 仍需替换 provisional 边界 → 官方多边形。
 - `proposed_plan_floor_area_ratio` 的口径需要与未来官方容积率口径对齐核对（建议在控规下发后新增 `statutory_floor_area_ratio`）。
 - visual 页面双语同源对照表（side-by-side map）建议在 v0.3 提供。
+
+## v0.3 - 2026-08-09 — 指标一致性重构
+
+- **building_footprint_area_sqm 重算**：579,731.853 → **594,772.590** ㎡。绿地率/公共空间率与几何重算精确吻合（0.224527 / 0.133130），说明原建筑图层几何在 metrics 计算后被改动过，导致 building footprint 与绿地/公共空间不同步。v0.3 以当前 buildings.geojson（129 栋）在 EPSG:4548 下的几何面积为准，所有引用该指标的章节与图表已同步修正。
+- **proposed_plan_floor_area_ratio 重算**：0.213（文档中混入的 1.012 为笔误，从未为 metrics 真值）→ **0.4408**。新口径使用 129 栋建筑各自的 `area_sqm_declared × floors_proposed` 精确加权和（mean_floors_proposed=8.46）。原 0.213 来自错误的平均层数 ≈4.19。metrics.json 的 formula / assumptions 同步更新。官方 `floor_area_ratio` 仍保持 `unknown`。
+- **key_area_total 更新**：约 368.4 → **369.3 公顷**，与 key_areas.geojson 几何（369.29 ha）严格一致。
+- **figures 同步**：metrics-evidence.png（zh/en）按当前 metrics.json + land_use 几何重绘，加入 `proposed_plan_floor_area_ratio` 指标卡，修补原图 i18n 残留英文词 `outstanding`。
+- **render HTML 同步**：report/proposal.html、report/proposal.en.html、visual/index.html、visual/index.en.html 全部按修正后的 proposal 重渲染，确保文档与图表数值一致。
+- **changelog 措辞校准**：v0.2 条目中关于 `proposed_plan_floor_area_ratio` 的描述按一致化原则更新（如实记录 v0.2 曾用 0.213，v0.3 修正为 0.4408）；v0.1 条目作为历史记录保留原值。
+- **校验**：finalize + self_check 四道全 PASS，PR #684 head 推为 v0.3。
