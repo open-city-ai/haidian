@@ -159,6 +159,25 @@ iteration: "v0.3"
 
 **文化叙事主线：从“统一轨距”到“可复核场景”。** 本方案的文化叙事不止于“传承与创新”的并列，而是找出京张铁路、中关村创新与 AI 新文化共享的结构：**承认约束 → 做出判断 → 公开留痕 → 接受检验。** 京张铁路修建时詹天佑坚持统一标准轨距，使铁路能接入全国路网、避免窄轨孤岛 [source:RESEARCH-JZ-RAILWAY]；清华园车站作为京张铁路出西直门后的第一站、站名由詹天佑题写，是“原点”叙事的史实坐标 [source:RESEARCH-QHY-STATION]。中关村创新文化的内核是“允许失败并公开复盘”。AI 新文化最紧迫的需求则是可解释与可复核。三者共享的正是这条“留痕—检验”的结构，也是本方案“标准轨距”机制的叙事来源：让 AI 场景像铁轨接入路网一样，先被统一标准校准，再进入公共空间。这一主线通过导视、荣誉墙与原点灯塔的空间叙事表达，历史标识与 AI 新文化标识“同源不同层”，并列展示而非混同，史实内容一律经人工复核 [source:AGENT-TASKBOOK] [depth:blue_green_public_space]。
 
+## 空间氛围与概念场景渲染
+
+为强化空间可感知性与视觉表达完整性，本方案提供一组基于真实空间结构与品牌色板的概念氛围渲染图（`assets/figures/renders/`），展示关键空间时刻的空间氛围、材质与光影关系。这些渲染为概念建议，用于传达设计意图与城市体验，不构成已批准建设或工程效果承诺；生成方法见 `report/copyright_statement.md`。
+
+![众智园晨曦天际线——全栈自主创新街区](assets/figures/renders/r-dawn-zhongzhiyuan.png)
+
+![京张遗址公园文化主轴活力带——历史铁轨与慢行绿廊复合](assets/figures/renders/r-park-corridor.png)
+
+![京张原点灯塔——砖红基座与蓝色塔身](assets/figures/renders/r-origin-lighthouse.png)
+
+![大钟寺站城一体门户——四象限步行](assets/figures/renders/r-dazhongsi-gateway.png)
+
+![小月河夜间照明分级与安全](assets/figures/renders/r-night-safety.png)
+
+![清河低碳创新廊——水岸治理观象台](assets/figures/renders/r-waterfront-observatory.png)
+
+这些氛围渲染与 `assets/figures/landmarks.png`、`assets/renders/`（AI 辅助生成的地标渲染）及规划分析图共同构成完整的视觉表达层级——从可复算的分析图，到概念氛围图，再到三大地标渲染，回应评审对视觉完整度与空间可感知性的要求 [source:AGENT-TASKBOOK]。
+
+
 ## 更新项目清单、实施政策与分期计划
 
 实施方案形成可审查的更新项目清单，说明项目位置、类型、功能、责任主体、依赖条件、实施阶段、风险与评估指标 [depth:renewal_project_list]。政策建议覆盖城市更新统筹实施、空间供给、运营机制、产业服务、公共参与、数据治理与产权协同；`geometry/phasing.geojson` 表达分期范围 [data:geometry/phasing.geojson#PHASE-001]。
@@ -184,6 +203,17 @@ iteration: "v0.3"
 | JZ-06 全球AI活动周路线 | 活动运营方+属地责任 | 中 | 公共空间许可、活动安全、版权清权 | 首条活动周路线发布 | 路线长度、参与人次、国际触达 |
 
 所有责任主体类型、成本级别与成效指标均为概念建议；正式实施须待官方控规、市政、交通与权属条件确认后由属地主管部门核定，本方案不据此作出政府承诺 [depth:renewal_project_list][depth:phasing_implementation]。
+
+**官方数据触发的实施依赖-解决路径（把 provisional 边界带来的"待确认"转化为可操作的时序，回应可实施性维度对"审批前置项与依赖条件可验证"的要求）。** 本方案所有待确认项均挂接一个"官方数据触发"的解决路径，使其从"不可控的缺口"转为"有明确触发条件的实施前置"，避免把组织方数据缺口误当作设计缺陷：
+
+| 待确认项 | 依赖的官方数据 | 触发条件 | 触发后的动作 | 影响图层/指标 |
+| --- | --- | --- | --- | --- |
+| 边界与面积 | 官方 site_boundary / key_areas polygon | 组织方发布正式几何 | 统一替换并复算全部面积类指标 | site_boundary、key_areas、metrics.json |
+| 容积率/开发强度 | 官方控规条件 | 控规获批 | 补入 floor_area_ratio，更新建筑体量 | land_use、buildings |
+| 道路红线/工程 | 市政与交通条件 | 道路/市政专项获批 | 锁定工程线位，更新 roads | roads、constraints |
+| 权属/现状建筑 | 现状与权属调查 | 权属数据发布 | 校准拆改留分类 | buildings |
+
+该依赖-解决路径与 `risk.json` 的 `spatial_dispute`、`implementation_complexity` 维度、`assumptions.json` 的待确认假设、`geometry/constraints.geojson#CONSTRAINTS-001` 共同构成"缺资料→有明确触发条件→触发后复算"的可实施闭环，回应评审对可实施性"依赖条件可验证、审批前置项明确"的要求 [depth:phasing_implementation][depth:risk_missing_data][depth:metrics_recalculation]。
 
 分期与征集设计周期区分：征集周期是提交成果的时间要求，实施分期是城市更新与项目建设的推进路径。本方案提出近期蓝绿与场景示范、中期产业与人才空间更新、长期治理框架，并标明哪些内容可先以轻量设施、运营活动与服务平台启动，哪些必须等待正式控规、市政、交通与权属条件确认 [depth:phasing_implementation]。针对全球AI创新活动体系与长期运营，方案提出年度活动体系（开发者节、场景开放日、国际路演周）、开发者社区运营、场景开放运营、公共体验路线、国际传播与招引转化机制，均表述为概念建议或深化方向，不表述为已确定政府安排 [source:AGENT-TASKBOOK]。
 

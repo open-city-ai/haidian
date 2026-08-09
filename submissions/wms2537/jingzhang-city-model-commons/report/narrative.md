@@ -6,7 +6,7 @@ language: "zh"
 license: "CC-BY-4.0"
 summary: "以百年京张铁路遗产为公共版本线，建设由开放三维语义城模、可复现实验、受控实地验证和公众审计共同组成的空间智能公地。三处重点区分别承担基准验证、开源共创与日常服务，把AI从城市表面的设备标签转化为可理解、可模拟、可问责、可回滚的公共能力。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
-iteration: "v1.1"
+iteration: "v1.3"
 ---
 
 # 京张城模公地
@@ -45,6 +45,12 @@ iteration: "v1.1"
 提交采用 EPSG:4326 交换 GeoJSON，并在 EPSG:4548 下复算面积和长度。当前临时总体边界复算约 **11.413 km²**，与公告约 11.4 km² 的差异约 0.11%；该吻合只说明临时几何可支持概念工作，不能升级为官方红线或审定面积。[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:site_area_deviation_ratio]
 
 容积率、建筑高度、法定建筑密度、道路退线、现状建筑总基底、市政容量和文保控制面积均明确保持 unknown。建筑、道路、用地和分期图层表达“可供专业团队深化的参考方案”，不构成批准、拆除、新建、工程线位、投资或实施承诺。[metric:floor_area_ratio] [metric:building_height_m] [metric:official_building_density] [metric:road_redline_setback_m] [metric:existing_building_footprint_sqm] [depth:existing_conditions_diagnosis] [depth:risk_missing_data]
+
+### 海淀证据基线与区域协同
+
+新增的公开证据基线将当前语境和项目控制分开：北京人口/轨道与老龄社会背景、海淀知识与服务密集型经济、京张遗址公园公开语境、海淀 AI 政策语境只用于设计响应，不生成未来人口、客流、红线或实施承诺。[source:DATA-SRC-BEIJING-2024-STATISTICS] [source:DATA-SRC-HAIDIAN-2024-STATISTICS] [source:DATA-SRC-BEIJING-AGEING-2024] [source:DATA-SRC-JINGZHANG-PARK-20230630] [source:DATA-SRC-HAIDIAN-2026-WORK-REPORT] [data:visual/assets/site_evidence_baseline.json#OBS-BJ-POP-2024]
+
+区域协同采用五个方向性接口：北纬社区交换居民问题与非数字服务体验；未来科学城交换端侧/具身验证问题；怀柔科学城交换测量与校准问题；经开区交换工程化与维护问题；京津冀交换去地点化 schema、负面结果和维护交接。每一项都要对方另行同意，并确认许可、权利、安全、责任、维护和退出；不表示签约、数据共享或自动互认。[source:DATA-SRC-HAIDIAN-15FYP-20251208] [assumption:A-REGIONAL-SYNERGY-001] [metric:regional_interface_count]
 
 ## 三层范围工作框架
 
@@ -268,6 +274,8 @@ iteration: "v1.1"
 | C-04 观察廊与交接窗口 | 众智园试验边界，分开人、机器人和设备 | 场景运营者 | 物理隔离、限速、急停、清晰撤离 |
 | C-05 算法公示亭 | 原点社区、大钟寺服务廊 | 模型卡责任人 | 用途、局限、申诉和退出可读 |
 | C-06 荣誉/贡献牌 | 提交墙与模型馆，展示可复现公共贡献 | 独立评估者 | 不使用未经授权肖像、商标或第三方素材 |
+
+六个组件同步登记空间锚点、最小数据、人工接管、维护记录、正/负证据和停止/退役决定；完整机器副本见 `[data:visual/assets/proof_mile_delivery.json#C-01]`。组件只有在开放门槛、正向证据和负向证据可读时才进入小范围使用，没有运行基线不填效果值。
 
 导视采用三层语言：Z1 **版本线 / VERSION LINE**（连续慢行与公共主线）、Z2 **朝圣节点 / LANDMARK**（停留、解释与荣誉）、Z3 **服务与试验 / SERVICE**（求助、交接与退出）。国际传播短句为：**A city model people can question. / 一座人人都能质询的城模。** 该句描述公共界面方向，不构成官方品牌授权。
 

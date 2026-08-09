@@ -18,7 +18,9 @@ iteration: "v0.1"
 
 **核心创意**：一百年前詹天佑以自主设计建成京张铁路，实现了中国铁路从「依赖」到「自主」的跨越；一百年后，海淀在这条铁路沿线建设 AI 创新带，正在完成从「算力自主」到「智能自主」的又一次跨越。方案以「双轨」作为贯穿命名、空间、叙事与运营的核心隐喻：**铁轨记忆线**（京张遗址公园，承载百年文化）与**算力轨道线**（沿学院路一线的 AI 产业与创新服务走廊，指向智能未来）双轨并行、互相咬合，交汇于 AI 原点社区——这里是双轨的「原点」，也是创新的「原点」[source:AGENT-TASKBOOK]。
 
-**资料与证据清单**：方案使用的正式任务依据为官方资格预审公告（任务 1.3/1.4/1.5、三层范围、三处重点区面积）[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 与面向智能体任务书（十大共创原则、三大定位、五大功能、三区两翼、agent.1-agent.6、统一边界条款）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]；专业标准采用《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING] [source:MOHURD-CONTROL-DETAILED-PLANNING] 与《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [source:MNR-LAND-USE-CLASSIFICATION]。空间数据登记于 `sources.json`：`OFFICIAL-ANNOUNCEMENT`、`AGENT-TASKBOOK`、`SITE-PACKAGE`、`SOURCE-REGISTRY` 为 formal-ready 来源；`BOUNDARY-SOURCE`、`KEY-AREA-SOURCE` 为 provisional-only 边界来源；`OSM-BASE`、`HERITAGE-PUBLIC`、`PUBLIC-NARRATIVE` 为背景资料 [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。
+**资料与证据清单**：方案使用的正式任务依据为官方资格预审公告（任务 1.3/1.4/1.5、三层范围、三处重点区面积）[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 与面向智能体任务书（十大共创原则、三大定位、五大功能、三区两翼、agent.1-agent.6、统一边界条款）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]；专业标准采用《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING] [source:MOHURD-CONTROL-DETAILED-PLANNING]，《国土空间调查、规划、用途管制用地用海分类指南》与 [source:MNR-LAND-USE-CLASSIFICATION] 提供用地代码语义。
+
+空间数据登记于 `sources.json`：`OFFICIAL-ANNOUNCEMENT`、`AGENT-TASKBOOK`、`SITE-PACKAGE`、`SOURCE-REGISTRY` 为 formal-ready 来源；`BOUNDARY-SOURCE`、`KEY-AREA-SOURCE` 为 provisional-only 边界来源；`OSM-BASE`、`HERITAGE-PUBLIC`、`PUBLIC-NARRATIVE` 为背景资料 [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。
 
 **Provisional 边界披露**：本方案使用组织方提供的临时粗略边界（总体设计范围 PROV-SITE-001，约 11.4 km²；三处重点区 PROV-KEY-001/002/003）。该边界依据公告文字四至与面积约束推断，仅用于 AI 生成、可视化与临时自检，**不得**作为 official redline、审批依据或精确面积复算依据；正式 polygon 发布后需复算全部面积指标与图层覆盖 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [depth:metrics_recalculation]。
 
@@ -81,7 +83,7 @@ AI 原生城市形态的五个方向：**可感知**（场景可见、可体验�
 
 ### 功能布局与更新框架
 
-功能布局以「科研教育 15.1%、商业服务 22.9%、居住 31.6%、绿地 18.6%、广场 1.7%」为概念配比 [metric:research_education_ratio] [metric:commercial_ratio] [metric:residential_ratio] [metric:green_ratio]，通过 `land_use.geojson` 全覆盖表达（无缝隙、无重叠）[depth:land_use_layout] [data:geometry/land_use.geojson#LU-003]。
+功能布局以「科研教育 15.1%、商业服务 22.9%、居住 31.6%、绿地 18.6%、广场 1.7%」为概念配比 [metric:research_education_ratio] [metric:commercial_ratio] [metric:residential_ratio]，绿地率为 [metric:green_ratio]，通过 `land_use.geojson` 全覆盖表达（无缝隙、无重叠）[depth:land_use_layout] [data:geometry/land_use.geojson#LU-003]。
 
 城市更新总体框架按「保留—改造—更新—新建」四类组织 [depth:retain_renovate_demolish] [standard:MOHURD-URBAN-DESIGN-MEASURES]：
 - **保留**：清华园车站旧址等文保单位、遗址公园、绿地水系（`constraints.geojson`）[data:geometry/constraints.geojson#CONST-HER-001]；
@@ -180,7 +182,7 @@ SC-05 机器人配送、SC-06 安全复核台、SC-07 开源展示廊、SC-09 �
 
 用地布局依据《国土空间用地用海分类指南》代码组织 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [source:MNR-LAND-USE-CLASSIFICATION]：科研用地 0802、文化用地 0803、教育用地 0804、商业服务业用地 05、城镇住宅用地 0701、公园绿地 1401、广场用地 1403，全部用地单元无缝隙覆盖总体设计范围 [depth:land_use_layout] [data:geometry/land_use.geojson#LU-007]。
 
-概念配比（EPSG:4548 复算）：居住 31.6%、商业服务 22.9%、科研教育 15.1%、绿地 18.6%、广场 1.7% [metric:residential_ratio] [metric:commercial_ratio] [metric:research_education_ratio] [metric:green_ratio] [metric:public_space_ratio]。建筑基底示意约 7.0 万 m²（无重叠并集面积，与逐栋求和一致），仅为空间供给意向，不代表现状或审定方案 [metric:building_footprint_area_sqm] [data:geometry/buildings.geojson#BLD-002]。
+概念配比（EPSG:4548 复算）：居住 31.6%、商业服务 22.9%、科研教育 15.1% [metric:residential_ratio] [metric:commercial_ratio] [metric:research_education_ratio]；绿地率 18.6% [metric:green_ratio]，广场比例 1.7% [metric:public_space_ratio]。建筑基底示意约 7.0 万 m²（无重叠并集面积，与逐栋求和一致），仅为空间供给意向，不代表现状或审定方案 [metric:building_footprint_area_sqm] [data:geometry/buildings.geojson#BLD-002]。
 
 拆改留逻辑（概念级）：保留文保与绿带；改造沿轨老旧街区为 AI 服务与居住混合；更新低效产业空间；新建仅限关键公共节点。建筑规模、高度、容积率、密度均列为待确认控规条件，本方案不给出法定数值 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [assumption:A-CONTROLS-001] [depth:development_intensity_controls]。
 
@@ -248,7 +250,11 @@ SC-05 机器人配送、SC-06 安全复核台、SC-07 开源展示廊、SC-09 �
 
 ## 指标体系、面积复算与合规矩阵
 
-核心指标（EPSG:4548 复算，详见 `metrics.json`）：场地面积 11,412,825 m² [metric:site_area_sqm]；绿地面积与绿地率 18.6% [metric:green_space_area_sqm] [metric:green_ratio]（支撑人才向往的高品质城区：绿地在 500 米步行可达内）；广场面积与广场比例 1.7% [metric:public_space_area_sqm] [metric:public_space_ratio]（支撑创新交往与公共体验）；科研教育占比 15.1% [metric:research_education_ratio]；商业 22.9% [metric:commercial_ratio]；居住 31.6% [metric:residential_ratio]；慢行网络约 14.7 km [metric:slow_trail_length_m]；三处重点区面积 [metric:key_area_zhongzhiyuan_sqm] [metric:key_area_origin_sqm] [metric:key_area_dazhongsi_sqm]；场景节点 12 处 [metric:ai_scenario_node_count]；画像 6 类 [metric:user_persona_count]；朝圣地标 4 处 [metric:ai_landmark_count]；更新项目 15 项 [metric:renewal_project_count]。容积率、建筑高度与密度因缺官方依据列为 unknown [metric:floor_area_ratio] [metric:building_height_control_m] [metric:building_density]。
+核心指标（EPSG:4548 复算，详见 `metrics.json`）：场地面积 11,412,825 m² [metric:site_area_sqm]；绿地面积与绿地率 18.6% [metric:green_space_area_sqm] [metric:green_ratio]；广场面积与广场比例 1.7% [metric:public_space_area_sqm] [metric:public_space_ratio]；科研教育占比 15.1% [metric:research_education_ratio]，商业 22.9% [metric:commercial_ratio]，居住 31.6% [metric:residential_ratio]。
+
+慢行网络约 14.7 km [metric:slow_trail_length_m]；三处重点区面积 [metric:key_area_zhongzhiyuan_sqm]、[metric:key_area_origin_sqm] 与 [metric:key_area_dazhongsi_sqm]；场景节点 12 处 [metric:ai_scenario_node_count]，画像 6 类 [metric:user_persona_count]，朝圣地标 4 处 [metric:ai_landmark_count]，更新项目 15 项 [metric:renewal_project_count]。
+
+容积率、建筑高度与密度因缺官方依据，分别列为 [metric:floor_area_ratio]、[metric:building_height_control_m] 与 [metric:building_density]，状态 unknown。
 
 合规矩阵 `compliance_matrix.json` 覆盖公告任务 1.3.1-1.5.3.3 与 agent.1-agent.6 共 23 项；标准矩阵 `standard_matrix.json` 覆盖 5 项强制标准；深度矩阵 `design_depth_matrix.json` 覆盖 15 项成果深度，全部 complete [depth:metrics_recalculation] [source:SOURCE-REGISTRY]。所有指标均从 `geometry/*.geojson` 复算得出，可追溯、可复核；provisional 边界替换后统一重算 [assumption:A-BOUNDARY-001]。
 
@@ -256,7 +262,7 @@ SC-05 机器人配送、SC-06 安全复核台、SC-07 开源展示廊、SC-09 �
 
 ## 风险、版权与合规说明
 
-- **资料合法性**：全部引用来自官方公开、清权或 provisional 登记来源，`sources.json` 逐条登记来源、用途与限制；不引用非公开规划资料、内部数据或个人隐私 [source:SOURCE-REGISTRY]。
+- **资料合法性**：全部引用来自官方公开、清权或 provisional 登记来源，`sources.json` 逐条登记来源、用途与限制；不引用非公开规划资料或个人隐私数据 [source:SOURCE-REGISTRY]。
 - **Provisional 边界风险**：总体边界与三处重点区均为粗略 provisional，不得用于精确面积、红线与审批；正式 polygon 发布后必须复算 [assumption:A-BOUNDARY-001]。
 - **法定控制缺口**：容积率、高度、密度、道路红线、市政管线、权属与工程条件均待官方附件确认，方案不做法定结论 [assumption:A-CONTROLS-001] [depth:development_intensity_controls]。
 - **AI 生成责任**：方案由 AI Agent 生成，作者对事实、引用、版权与最终表达负责；Logo、字体、图片、人物与企业标识均未使用未授权素材 [depth:risk_missing_data]。逐资产权利证据见 `report/copyright_statement.md` 附录，来源权限与限制逐条登记于 `sources.json`。

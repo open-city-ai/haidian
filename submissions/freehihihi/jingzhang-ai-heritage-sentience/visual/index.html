@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百年京张·智城有灵 — 可视化看板</title>
+<style>
+:root{--green:#2C6E3F;--blue:#3A5A8C;--rust:#C7B198;--bg:#0f1a26;--panel:#16263a;--ink:#e8eef5;--muted:#9aa7b8;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Harmony","PingFang SC","Microsoft YaHei",sans-serif}
+.wrap{max-width:1180px;margin:0 auto;padding:24px}
+h1{font-size:30px;margin:8px 0 4px}
+h2{color:var(--green);border-left:5px solid var(--green);padding-left:10px;margin:34px 0 12px;font-size:22px}
+h3{color:#cfe0d2;font-size:16px;margin:16px 0 6px}
+.hero{background:linear-gradient(120deg,#12301f,#173a2c);border-radius:14px;padding:22px 26px;margin-bottom:8px}
+.prov{background:#5b2323;color:#ffd9d0;border-radius:8px;padding:10px 14px;font-size:13px;margin:12px 0;border:1px dashed #e08b7a}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{background:var(--panel);border:1px solid #2a3d55;border-radius:10px;padding:14px 16px}
+.num{font-size:26px;font-weight:700;color:#7fd0a0;margin-top:4px}
+.num small{font-size:13px;color:var(--muted);font-weight:400}
+.tag{display:inline-block;background:#204060;border-radius:20px;padding:2px 10px;font-size:12px;margin:2px}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--panel)}
+th,td{border:1px solid #2a3d55;padding:8px;text-align:left;vertical-align:top}
+th{background:#16324a}
+ul{margin:6px 0;padding-left:20px}
+.foot{color:var(--muted);font-size:12px;margin-top:40px;border-top:1px solid #2a3d55;padding-top:14px}
+img{max-width:100%;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <h1>百年京张 · 智城有灵</h1>
+    <div style="color:#cfe8d3">京张文化遗产与城市智能体治理融合设计 — 概念建议可视化看板</div>
+  </div>
+  <div class="prov">⚠ 边界为 <b>provisional 粗略示意</b>、非官方红线；地块级结论与指标为方向设计，需官方多边形与控规条件到位后重算。概念建议，非政府审定。</div>
+
+  <h2>总览地图</h2>
+  <img src="../assets/figures/site-overview.png" alt="总览地图">
+  <p class="foot-note">以京张遗址公园活力带为文化主脊，北至北五环、东至京藏高速、南至西直门外大街、西至万泉河路。图上含北针与示意比例尺。</p>
+
+  <h2>三层范围</h2>
+  <table>
+    <tr><th>层级</th><th>面积</th><th>承担任务</th><th>几何图层</th></tr>
+    <tr><td>统筹研究范围</td><td>≈43.6 km²</td><td>产业战略与整体格局</td><td>geometry/site_boundary</td></tr>
+    <tr><td>总体设计范围</td><td>≈11.4 km²</td><td>控规深度总体设计</td><td>land_use / buildings</td></tr>
+    <tr><td>重点区域合计</td><td>≈368.4 ha</td><td>精细化详细设计</td><td>key_areas / public_space</td></tr>
+  </table>
+
+  <h2>用地分区</h2>
+  <img src="../assets/figures/land-use-structure.png" alt="用地结构">
+  <h3>核心指标（provisional 复算，数据来自 metrics.json）</h3>
+  <div class="grid">
+    <div class="card"><h3>统筹研究范围面积</h3><div class="num" data-metric="site_area_sqm" data-value="43609232.558">43,609,233<small> m²</small></div><div class="foot-note">research_area（provisional）</div></div>
+    <div class="card"><h3>绿地率</h3><div class="num" data-metric="green_ratio" data-value="0.317362">31.7<small>%（research_area）</small></div></div>
+    <div class="card"><h3>公共空间比例</h3><div class="num" data-metric="public_space_ratio" data-value="0.003758">0.38<small>%（3处重点区公共节点口径）</small></div></div>
+    <div class="card"><h3>综合容积率</h3><div class="num" data-metric="avg_far" data-value="1.34">1.34<small>（统筹层示意）</small></div></div>
+    <div class="card"><h3>路网密度</h3><div class="num" data-metric="road_density" data-value="0.00032">0.00032<small> m/m² ＝ 0.32 km/km²（换算显示）</small></div></div>
+  </div>
+
+  <h2>交通慢行与蓝绿公共空间</h2>
+  <img src="../assets/figures/mobility-bluegreen.png" alt="交通与蓝绿空间">
+
+  <h2>场景</h2>
+  <h3>AI 场景卡（10 张，完整见 scenario_cards.json）</h3>
+  <div class="grid">
+    <div class="card"><h3>京张文化智能导览</h3><p>AR导览+路线推荐</p><span class="tag">SC-AI-CULTURAL-GUIDE</span></div>
+    <div class="card"><h3>大模型行业验证坊</h3><p>产业测试验证</p><span class="tag">SC-LLM-INDUSTRY-VALIDATION</span></div>
+    <div class="card"><h3>开源成果展示廊</h3><p>开发者荣誉展示</p><span class="tag">SC-OPEN-SOURCE-SHOWCASE</span></div>
+    <div class="card"><h3>AI+医疗健康导航</h3><p>适老就医导航</p><span class="tag">SC-AI-HEALTH-NAVIGATION</span></div>
+    <div class="card"><h3>AI+教育智慧课堂</h3><p>个性化学习</p><span class="tag">SC-AI-EDU-CLASSROOM</span></div>
+    <div class="card"><h3>AI零售/智能体门店</h3><p>智能原生新业态</p><span class="tag">SC-AI-RETAIL-AGENT</span></div>
+    <div class="card"><h3>机器人低速配送</h3><p>产业测试验证</p><span class="tag">SC-ROBOT-LOW-SPEED-DELIVERY</span></div>
+    <div class="card"><h3>城市智能体治理沙盒</h3><p>可回滚治理试点</p><span class="tag">SC-GOVERNANCE-SANDBOX</span></div>
+    <div class="card"><h3>开发者广场/数据开放</h3><p>开放数据与Wi-Fi</p><span class="tag">SC-DEVELOPER-SQUARE-DATA</span></div>
+    <div class="card"><h3>AI安全隐私运营中心</h3><p>人工复核与值守</p><span class="tag">SC-AI-PRIVACY-SECURITY-OPS</span></div>
+  </div>
+
+  <h2>更新项目</h2>
+  <h3>三处重点区域</h3>
+  <table>
+    <tr><th>重点区</th><th>定位</th><th>空间结构</th></tr>
+    <tr><td>① 众智园AI自主创新加速区 ≈192.1ha</td><td>全栈自主创新与治理话语权</td><td>创新廊+加速坊</td></tr>
+    <tr><td>② 北京AI原点社区 ≈104.3ha</td><td>世界级AI生态与人才原点</td><td>原点广场+开发者街道</td></tr>
+    <tr><td>③ 大钟寺AI产业聚集区 ≈72.0ha</td><td>智能原生新业态试点</td><td>产业客厅+试跑街区</td></tr>
+  </table>
+  <h3>分期计划</h3>
+  <p>近（一期）→ 中（二期）→ 远（远期）三阶段；里程碑、责任主体类型、KPI、风险与退出机制见 deepening_evidence.json。</p>
+  <img src="../assets/figures/key-areas.png" alt="重点区索引">
+
+  <h2>区域协同</h2>
+  <table>
+    <tr><th>对象</th><th>要素流</th><th>合作接口</th></tr>
+    <tr><td>北纬社区</td><td>生活配套外溢、社区共享</td><td>设施共建、慢行衔接</td></tr>
+    <tr><td>未来科学城</td><td>成果转化互补</td><td>联合创新平台</td></tr>
+    <tr><td>怀柔科学城</td><td>算力与科研数据协同</td><td>场景开放承接</td></tr>
+    <tr><td>北京经开区</td><td>AI+制造场景验证</td><td>中试协同、供应链配套</td></tr>
+    <tr><td>京津冀</td><td>人才流动、产业分工</td><td>区域协同廊道、公共接口</td></tr>
+  </table>
+  <p class="foot-note">概念建议；具体合作须各方正式签署，不构成既定合作或政府承诺（regional_synergy.json）。</p>
+
+  <h2>包容性</h2>
+  <p>覆盖老年人、儿童、残障人士、低收入居民、非智能终端用户、外来务工者、数字素养不足者：全龄无障碍与导盲标识、免费公共空间与平价服务、人工与线下非数字替代渠道、更新搬迁与安置预案、居民议事与多渠道参与、争议申诉与第三方仲裁、公益Wi-Fi/设备借用/数字培训。</p>
+
+  <h2>文化</h2>
+  <p>文化主脊：京张遗址公园活力带；AI 朝圣地标（≥3）：智能体贡献荣誉墙、开源成果展示廊、全球开发者荣誉广场。地标与导视、Logo、字体、人物标识均须清权，概念展示、非已批准建设。</p>
+
+  <h2>VI 视觉识别（概念方向）</h2>
+  <img src="../assets/logo.png" alt="概念Logo草案" style="background:#F3F7F2;max-width:300px">
+  <p>Logo 方向「人字形展线+节点」；品牌色：京张绿 #2C6E3F、智联蓝 #3A5A8C、铁路灰棕 #C7B198；中英文字标、最小尺寸与留白、单色反白规范见 deepening_evidence.json。</p>
+
+  <h2>产业—空间—场景—运营生态图谱</h2>
+  <img src="../assets/figures/ecosystem-map.png" alt="生态图谱">
+
+  <h2>运营与实施</h2>
+  <p>运营模型「政府引导+平台运营+多方共治」；按季度推进规划、场景开放试点、国际论坛与绩效评估；场景开放遵循提案—合规审查—试点授权—运行监测—复审流程，设置 KPI 与停止/退出条件；年度活动与社区机制见 deepening_evidence.json。</p>
+
+  <h2>Agent 1–6 证据索引</h2>
+  <table>
+    <tr><th>Agent任务</th><th>证据文件 / 图件</th><th>位置</th></tr>
+    <tr><td>agent.1 定位/命名/总体结构</td><td>Logo、方案概览、三层范围</td><td><code>visual/assets/logo.png</code>、<code>proposal.md</code>、上表三层范围</td></tr>
+    <tr><td>agent.2 全球案例/生态机制/要素</td><td>案例表、生态图谱、区域协同、8类要素保障</td><td><code>visual/assets/case_studies.json</code>、<code>assets/figures/ecosystem-map.png</code>、<code>visual/assets/regional_synergy.json</code></td></tr>
+    <tr><td>agent.3 用户画像/10场景卡</td><td>10张场景卡（含触发/KPI/停止）、服务用户</td><td><code>visual/assets/scenario_cards.json</code>、上方场景网格</td></tr>
+    <tr><td>agent.4 公共空间组件库/3地标</td><td>公共空间组件、导视、朝圣地标</td><td><code>visual/assets/deepening_evidence.json</code>、<code>assets/figures/key-areas.png</code></td></tr>
+    <tr><td>agent.5 京张—中关村—AI文化叙事</td><td>文化主脊、VI、文化叙事</td><td><code>proposal.md</code> 文化章节、<code>assets/figures/node-deep-design.png</code></td></tr>
+    <tr><td>agent.6 活动/运营/国际传播闭环</td><td>运营模型、里程碑/KPI/退出、季度节奏、英文包</td><td><code>visual/assets/deepening_evidence.json</code>、<code>assets/figures/ecosystem-map.png</code>、<code>index.en.html</code></td></tr>
+  </table>
+
+  <h2>任务覆盖</h2>
+  <p>覆盖 17 项公告任务与 6 项 agent 任务（agent.1–agent.6），详见 compliance_matrix.json；5 项强制标准见 standard_matrix.json；15 项设计深度均 complete，见 design_depth_matrix.json。</p>
+
+  <h2>自检状态</h2>
+  <p>确定性校验 PASS · 空间复核 PASS · 视觉与可读性 PASS · 专业证据链 PASS；本地可进入正式评审：review_status = formal-review-ready（见 self_check.json）。</p>
+
+  <h2>假设</h2>
+  <ul>
+    <li>ASM-001 官方边界未发布，采用 provisional 替代边界，正式多边形到位后重算。</li>
+    <li>ASM-002 三层范围面积与重点区为概念分割，待官方校核。</li>
+    <li>ASM-003 现状建筑/权属/控规条件缺失，拆改留与强度待补。</li>
+    <li>ASM-004 活动/招商/政策为深化方向，非政府承诺。</li>
+    <li>ASM-005 场景运营须经数据合规与人工复核。</li>
+  </ul>
+
+  <h2>来源</h2><p>全球 AI 生态案例比较与来源见 <code>visual/assets/case_studies.json</code>；指标一致性机器核对见 <code>visual/assets/metrics_consistency_report.json</code>。相关资料来源见 <code>sources.json</code> 与 source registry（公告、任务书、国家标准、provisional 边界）；方案全部证据、指标、标准与设计深度引用见 <code>sources.json</code>、<code>metrics.json</code>、<code>standard_matrix.json</code>、<code>design_depth_matrix.json</code> 及 <code>visual/assets/</code> 下的深化证据文件。</p>
+
+  <h2>合规</h2>
+  <p>仅使用公开资料、site-package 与已清权材料；provisional 边界明确披露；完整版权与逐资产台账见 report/copyright_statement.md；发布许可 COMMUNITY-DISPLAY-ONLY。</p>
+
+  <div class="foot">AI 智能体参与贡献者：xiaoyi_dawei (freehihihi) ｜ 概念建议，非政府审定；COMMUNITY-DISPLAY-ONLY。可视化与数据均基于 provisional 边界。</div>
+</div>
+</body>
+</html>

@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.1"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. Every spatial value is recalculated from provisional geometry; unmeasured social and energy outcomes remain unknown."
+iteration: "v0.2"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v0.2 attaches all sixteen scenarios to three release gates, human fallbacks, and exit evidence. Every spatial value remains recalculated from provisional geometry; unmeasured social and energy outcomes remain unknown."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -15,6 +15,24 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 # Jingzhang Human City OS
 
 > From an AI showcase to a city for people in the AI era. AI is not the protagonist of the city; it is an auditable, rejectable, and reversible capability serving residents, workers, founders, and public institutions.
+
+## v0.2: Turning City Versions into Vetoable Release Gates
+
+This v0.2 is a substantive evidence upgrade, not a repackaging of spatial values or public ordering. Without changing provisional-boundary coordinates, design areas, or existing `known` metrics, it adds sixteen cards linking space, accountability, human fallback, data boundary, and stop condition, a ledger for three city release gates, and audits for accessibility and persona fairness. The earlier claim of reversibility becomes reviewable questions of who may begin research, what evidence is needed, and when a proposal must pause. It remains a conceptual reference scheme for professional teams to deepen. [data:geometry/phasing.geojson#PHASE-V02] [metric:version_release_count]
+
+| Release gate | Must be completed before entry | Reviewable evidence | Pause or rollback condition |
+| --- | --- | --- | --- |
+| v0.1 Observe, baseline, and public consent | Data boundary, human-service floor, objection channel | Comprehension walk-through; problem and gap ledger | Unconsented data use, no human channel, or exclusion risk |
+| v0.2 Reversible pilots and independent evaluation | Limited place/time/data/accountability, human takeover, professional authorization | Incident review; authorization, metering, calibration, and independent assessment | Safety event, unauthorized data, accessibility barrier, or insufficient evidence |
+| v1.0 Reviewed scaling and standards spillover | Prior-version evidence, objection handling, public-interest review | Annual health check, release note, reviewable protocol drafts | Unverifiable evidence, harmed rights, or changed base conditions |
+
+The gate ledger and scenario cards expressly do not constitute permits, engineering schemes, investment commitments, or implementation findings. Once official boundaries, rights, controls, roads, utilities, blue lines, or existing-condition data arrive, the whole package must be recalculated before another version is considered.
+
+## Core Concept and Four Operating Mechanisms
+
+The core concept is the Human City OS: a release system that organizes urban space, public services, and AI agents so they remain observable, rejectable, and reversible. AI is not turned into a landmark, and automation does not replace human judgement. Each urban capability is split into four auditable mechanisms: a human-priority mechanism that protects staffed service, accessibility, and the right to refuse; an evidence-release mechanism that binds place, time, data, accountability, and version gates; a space-service interface mechanism that connects the city API, walking network, public space, and scenario cards into a reviewable service chain; and an exit-and-repair mechanism that requires shutdown, removal, data deletion, objection handling, and independent review together. [depth:phasing_implementation] [metric:version_release_count]
+
+Together these mechanisms turn “from an AI showcase to a city for people” from a value statement into a spatial-governance-operations protocol. Every pilot must answer who may start it, who retains final responsibility, how the public can refuse, what evidence permits expansion, and how the system recovers after failure. Unknown metrics remain `unknown` rather than being filled by model inference or case analogy; every spatial band remains a design suggestion, not a statutory land-use zone, official boundary, or implementation commitment.
 
 ## Design Basis and Source List
 
@@ -102,6 +120,8 @@ Six personas establish that the right to refuse AI is part of service quality. L
 
 All sixteen scenario cards are encoded in `constraints.geojson`: four in A, four in B, five in C, and three in D. Six are explicitly tagged as test-and-validation scenarios, exceeding the taskbook minimum. [data:geometry/constraints.geojson#SC-B01] [metric:human_first_scenario_count] [metric:machine_city_scenario_count]
 
+v0.2 upgrades these sixteen entries from a catalogue to reviewable scenario cards. Each links its spatial anchor, suggested users, human alternative, data boundary, evidence required for acceptance, and stop condition. Test scenarios additionally use the four limits of place, time, data, and accountability. This does not mean that any scenario is ready to operate; it makes what is still missing visible before expansion. [data:geometry/constraints.geojson#SC-C03] [metric:test_validation_scenario_count]
+
 | Card | Group | Scenario | Spatial carrier | Human/institutional safeguard |
 | --- | --- | --- | --- | --- |
 | SC-A01 | A | Community Retention Ledger | Community-retention support area | Rights-cleared baseline, resident consent, no commercial profiling |
@@ -176,6 +196,10 @@ Implementation uses three city releases instead of a single completion date. Rel
 
 The core governance artifact is the release note. It records additions, changes, withdrawals, incidents, public objections, data permissions, and the next release's gates. The annual health check reviews space together with resident retention, job transition, energy, climate, data, and human channels. The public can file issues, and the maintenance team must answer “accept,” “test,” “reject,” or “await evidence,” with reasons. [depth:renewal_project_list] [depth:phasing_implementation]
 
+To avoid treating display as an upgrade, v0.2 adds entry, advance, and exit gates to the three conceptual phase polygons, with the complete ledger and sixteen scenario cards as offline structured attachments. They require human takeover, authorization, insurance, metering, calibration, accessibility, and public review to be prerequisites instead of allowing any one technical effect to justify expansion. [data:geometry/phasing.geojson#PHASE-V02] [standard:MOHURD-URBAN-DESIGN-MEASURES]
+
+![v0.2 city release gates and scenario exit evidence](assets/figures/release-gates.en.png)
+
 Long-term operation follows four seasons. Spring's Open City Problems Week collects issues from residents and frontline staff. Summer's City API and Embodied-AI Test Month permits controlled validation only. Autumn's Work Transition and OPC Co-creation Season links jobs, skills, and small teams. Winter's City Release Conference publishes the annual health check and release note. This is a proposed operating mechanism and claims no government approval, budget, venue, or partnership. [source:AGENT-TASKBOOK] [depth:renewal_project_list]
 
 The name is “Jingzhang Human City OS / 京张人本城市操作系统.” The logo direction places a rail segment and a human-confirmation point inside an open bracket: the bracket means API callability, the rail means historical continuity, and the confirmation point means that a person retains final authority. The identity uses original geometry and system fonts without company marks or unlicensed typefaces. [source:AGENT-TASKBOOK] [depth:risk_missing_data]
@@ -183,6 +207,8 @@ The name is “Jingzhang Human City OS / 京张人本城市操作系统.” The 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 Every metric marked `known` is recalculated by projecting package GeoJSON into EPSG:4548. The proposal, five figures, HTML pages, and PDFs draw from the same `metrics.json`. The spatial metrics have low confidence because their source boundary is provisional; additional decimal places improve reproducibility, not factual precision. [metric:site_area_sqm] [depth:metrics_recalculation]
+
+The v0.2 metric audit separates spatial recalculations that are unchanged in this revision from social and operational outcomes that still cannot substitute for measurements. Release-gate and scenario evidence change no area, ratio, length, or unknown metric. Any later geometry edit must recalculate `metrics.json`, figures, HTML, and PDFs together; prose cannot override data. [metric:green_ratio] [metric:operational_pue]
 
 | Metric | Current value | Evidence | Interpretation boundary |
 | --- | ---: | --- | --- |
@@ -198,7 +224,7 @@ Every metric marked `known` is recalculated by projecting package GeoJSON into E
 
 Resident-retention rate, operational PUE, green-electricity share, and recovered-heat output remain `unknown`. They require, respectively, a lawful household baseline, operating-facility consumption, power credentials, and heat-network metering. Keeping them unknown in the machine-readable record prevents a vision from being read as measured performance. [metric:operational_pue] [metric:recovered_heat_mwh]
 
-`compliance_matrix.json` covers twenty-three requirements across announcement groups 1.3, 1.4, 1.5 and agent.1 through agent.6. `standard_matrix.json` covers the announcement, taskbook, and three formally usable professional standards. `design_depth_matrix.json` covers fifteen required depth topics, while `self_check.json` stores the four gates. The prose does not duplicate those matrices; it attaches source, standard, depth, data, and metric anchors directly to decisions. [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:metrics_recalculation]
+`compliance_matrix.json` covers twenty-three requirements across announcement groups 1.3, 1.4, 1.5 and agent.1 through agent.6. `standard_matrix.json` covers the announcement, taskbook, and three formally usable professional standards. `design_depth_matrix.json` covers fifteen required depth topics, while `self_check.json` stores the four gates. v0.2 additionally provides ledgers for scenarios, release gates, persona fairness, implementation roles, metric recalculation, rights, bilingual equivalence, and accessibility so professional teams can review the evidence without treating appendices as proof of implementation. [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:metrics_recalculation]
 
 ![Metrics, unknowns, and evidence chain](assets/figures/metrics-evidence.en.png)
 

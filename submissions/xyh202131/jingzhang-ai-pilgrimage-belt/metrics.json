@@ -406,6 +406,71 @@
         "Counts conceptual test-contract records, not approved preregistrations, test windows, participants or field results."
       ]
     },
+    "g0_offline_evidence_contract_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/g0-offline-enterprise-service-baseline.json"
+      ],
+      "formula": "count(T-02 G0 offline evidence contracts in the submission)",
+      "confidence": "high",
+      "assumptions": [
+        "This counts a documentation artifact only; it records no model interaction, service interaction, field execution, approval, or accuracy result."
+      ]
+    },
+    "g0_offline_fixed_question_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/g0-offline-enterprise-service-baseline.json"
+      ],
+      "formula": "count(fixed_questions)",
+      "confidence": "high",
+      "assumptions": [
+        "The five questions are a frozen contract scope, not executed service requests or model interactions."
+      ]
+    },
+    "g0_offline_contract_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/g0-offline-enterprise-service-baseline.json"
+      ],
+      "formula": "questions_with_required_contract_fields / 5",
+      "confidence": "high",
+      "assumptions": [
+        "This is design-field coverage only, not a service-accuracy, source-freshness, human-handoff, model, or field-execution result."
+      ]
+    },
+    "completed_g0_offline_replay_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/g0-offline-enterprise-service-baseline.json"
+      ],
+      "formula": "count(completed read-only offline replays)",
+      "confidence": "high",
+      "assumptions": [
+        "No offline replay has been completed; no model interaction, service interaction, or field execution is claimed."
+      ]
+    },
+    "g0_offline_answer_output_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/g0-offline-enterprise-service-baseline.json"
+      ],
+      "formula": "count(recorded substantive service answer outputs)",
+      "confidence": "high",
+      "assumptions": [
+        "No substantive answer output, model interaction, service interaction, field execution, approval, or service result exists in this G0 evidence package."
+      ]
+    },
     "g1_preregistration_required_field_coverage_ratio": {
       "status": "known",
       "value": 1.0,
@@ -581,6 +646,59 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "Requires metered operation tests and an agreed service baseline."
+    },
+    "key_area_evidence_matrix_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(key-area evidence crosswalk artifacts)",
+      "confidence": "high",
+      "assumptions": [
+        "This counts a documentation artifact only; it does not establish field evidence, approval or operating performance."
+      ]
+    },
+    "key_area_evidence_matrix_record_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "count(key-area evidence crosswalk records)",
+      "confidence": "high",
+      "assumptions": [
+        "All three records reference provisional geometry and conceptual mappings."
+      ]
+    },
+    "key_area_evidence_matrix_field_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json"
+      ],
+      "formula": "records_with_all_required_crosswalk_fields / key_area_records",
+      "confidence": "high",
+      "assumptions": [
+        "Field coverage describes matrix completeness only, not field or partner coverage."
+      ]
+    },
+    "key_area_records_with_provisional_geometry": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/key-area-evidence-matrix.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_records with provisional_only geometry)",
+      "confidence": "high",
+      "assumptions": [
+        "Official key-area geometry is unavailable."
+      ]
     }
   }
 }

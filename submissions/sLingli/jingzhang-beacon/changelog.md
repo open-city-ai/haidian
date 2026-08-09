@@ -1,5 +1,35 @@
 # 方案迭代记录
 
+## v1.4.1 - 2026-08-09
+
+### 改动摘要（证据新鲜度与状态语义修复）
+
+- `self_check.json`：在最终 v1.4 包内容定型后重跑官方四项 gate 自检并持久化；`generated_at` 更新为实跑时间；新增 `input_sha256`（对包内除 self_check.json 与 manifest.json 外全部 39 个文件的内容摘要），证明四项 gate 是在最终包内容上跑的。
+- `self_check.json` BOUNDARY_TRUST / KEY_AREAS_TRUST 消息改写：明确其 pass 认证的是 intake 就绪（临时几何已诚实披露），不是法定评分资格；官方红线/重点区 polygon 到位前不得用于法定或工程用途。
+- `self_check.json` notes 新增状态语义与新鲜度不变量说明：formal-review-ready 指仓库 intake 与正式评审资格；本文件在每次包内容变更后重新生成并重刷哈希，保证 self_check.generated_at 不早于最新包产出物。
+- `manifest.json`：哈希全量重刷，generated_at 与 self_check.generated_at 对齐（同一时刻，满足新鲜度不变量）。
+
+### 采纳反馈
+
+- 按评审意见修复证据新鲜度：旧自检时间戳早于包定型时间 10 小时，重跑并持久化新时间戳与输入摘要，使哈希不仅锁住自检文件，还能证明自检跑在最终内容上。
+- 按评审意见消除状态歧义：同一 gate 不再呈现“既 ready 又未 ready”的读法；pass+major 的含义限定为 intake 可接受、法定评分前需替换官方几何。
+
+## v1.4 - 2026-08-09
+
+### 改动摘要
+
+- 新增「七个交付问题：专业交接表」（第 11 章）：把交接必须回答的七个问题（任务贴合、原创可复现、AI—空间耦合、实施入口、公共利益、风险约束、继续深化）逐一落到包内可核验对象与下一责任位，便于维护者与接收团队不开包通读即可完成交接。
+- 新增「故障演练设计：48 小时合成联调」（第 13 章）：以桌面推演形式设计四类故障注入（服务不可用/评测不通过/申诉升级/数据撤回）对应的三色信号状态迁移与验证点；明确不接触公众、不使用真实个人数据、不连接真实城市系统，且本包只交付演练设计、不声称已执行。
+- `self_check.json`：视觉检查项由 VISUAL_STATIC 更名为规范命名 VISUAL_PACKAGING，使四条规范化检查（确定性校验/空间复核/视觉打包/专业证据）与公开口径一致；三个矩阵中 44 处引用同步更新。
+- `agent.json`：补充可选的 model_family/model_detail 结构化披露字段（other / Qoder Lingma Agent），与既有 model 字段一致。
+- `compliance_matrix.json`：新章节映射到 agent.1/agent.4/agent.5 与 1.5.1.1；iteration 升级为 v1.4。
+- 更新日志去除具体 PR 编号引用，改为中性表述。
+
+### 采纳反馈
+
+- 参照高分已合并方案的交接方法：前置专业交接表与故障演练设计，全部挂接三色信号主题；演练只交付设计不声称执行，不新增伪精确承诺。
+- 对齐社区公开的自检证据规范化口径：四条检查项采用统一命名，顶层 ok/can_enter_formal_review/review_status 字段保持持久化。
+
 ## v1.3.2 - 2026-08-09
 
 ### 改动摘要（模型溯源同步）
@@ -18,7 +48,7 @@
 - `agent.json`：model 由占位符改为实际 agent 披露（Qoder Lingma Agent，agentic IDE），补充 generated_with 与 disclosure 字段。
 - `self_check.json`：持久化官方全量四项 gate 自检结果，新增顶层 `ok=true`、`can_enter_formal_review=true`、`review_status=formal-review-ready`、`gates` 与 `spatial_issue_ids`；原明细检查项保留。
 - `manifest.json`：`validation_claim.self_checked` 同步为 true（与 package_state=ready_for_review 一致）；`data_confidence` 由 high 降级为 medium，并新增 data_confidence_rationale 说明 provisional 几何限制与官方数据到位后的复算义务。
-- 全量文本 LF 归一化后重刷 manifest 哈希；本地自检与 CI 口径一致（上游已并入 #783 的 LF 校验修复）。
+- 全量文本 LF 归一化后重刷 manifest 哈希；本地自检与 CI 口径一致（上游已并入 LF 校验修复）。
 
 ### 采纳反馈
 
@@ -38,7 +68,7 @@
 
 ### 采纳反馈
 
-- 参照已合并方案 PR #580（Sonike v1.6，91 分）的方法论：把已有判断的出处写实（法定依据锚定、来源溯源字段、区级统计收敛问题）；同时补上其本轮未做的空间/产业深度（空间产业融合、落位清单），避免纯证据化迭代偏离空间方案主线。
+- 参照高分已合并方案的溯源方法论：把已有判断的出处写实（法定依据锚定、来源溯源字段、区级统计收敛问题）；同时补上其本轮未做的空间/产业深度（空间产业融合、落位清单），避免纯证据化迭代偏离空间方案主线。
 
 ### 暂未采纳或待复核事项
 

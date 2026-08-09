@@ -1,0 +1,31 @@
+{
+  "runner": "run-mobility-tabletop.js",
+  "contract_id": "MOB-M09-TABLETOP-001",
+  "scenario_id": "M-09",
+  "tabletop_status": "pass",
+  "claim_level": "local_synthetic_tabletop",
+  "operational_status": "not_authorized_not_run",
+  "gate_effect": "none; no P1/P2 advancement",
+  "reproduce": "node visual/assets/run-mobility-tabletop.js --check",
+  "environment": {
+    "network_calls": 0,
+    "external_systems": "none",
+    "participant_contact": "none",
+    "state_changes": "in-memory only"
+  },
+  "acceptance_results": [
+    {"id": "AC-01", "check": "contract identity and scenario identity align", "result": "pass"},
+    {"id": "AC-02", "check": "4/4 synthetic service requests retain a human/public fallback", "result": "pass"},
+    {"id": "AC-03", "check": "new curb reservations freeze after a digital outage", "result": "pass"},
+    {"id": "AC-04", "check": "unknown local performance remains null/unknown", "result": "pass"},
+    {"id": "AC-05", "check": "synthetic tabletop cannot advance P1 or P2", "result": "pass"},
+    {"id": "AC-06", "check": "5/5 rollback steps are declared and replayed", "result": "pass"}
+  ],
+  "replayed_counts": {
+    "service_requests": "4/4",
+    "acceptance_checks": "6/6",
+    "rollback_steps": "5/5"
+  },
+  "performance_results": null,
+  "boundary": "PASS means the offline fixture reproduces fallback and rollback logic only. It does not prove real staffing, route accessibility, public acceptance, service performance, safety or authorization."
+}

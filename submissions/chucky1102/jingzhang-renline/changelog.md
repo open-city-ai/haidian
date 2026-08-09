@@ -2,6 +2,30 @@
 
 人字线 RENLINE(submissions/chucky1102/jingzhang-renline)
 
+## v1.0 - 2026-08-09
+
+- **评审导航**:开篇新增"七维执行摘要"表——每个评审维度一句可读回答+核验入口文件(致谢 147228/jingzhang-open-pulse 的执行摘要实践)。
+- **人字形边界声明**:明确青龙桥人字形展线本体在43.6km²统筹研究范围外,本方案取"折返方法"非场地符号,空间落点全部来自范围内已核实锚点(致谢 jiangmuran/jingzhang-leveling-line 的提醒);并致意 Abreto/ren-axis(同日独立生成,CC-BY-4.0):REN AXIS=平面真实分岔的几何,RENLINE=迭代过程协议的方法。
+- **证据状态四分法**:known/design_target/unknown/blocked 全文口径,四态只能靠新数据移动(致谢 open-pulse)。
+- **折返量化判据与恢复条件**:安全级接管事件或超阈值即转红,阈值一期实测后定不预填(致谢 near-miss-line);连续两期合格+一期观察方可回绿;声明"折返判定≠有效性判定"(致谢 leveling-line 闭合差机制)。
+- **折返档案三级化**:近失/折返/退役三级留痕+稳定编号/失效日期/复核者+回写纪律+自动复核队列(致谢 near-miss-line、jingzhang-gauge、with-credits)。
+- **实施矩阵补充口径**:近期可启动五项(不依赖官方数据)、退出条件原则(不留半拆工程、地标含降级方案)、成本三带不做测算。
+- switchback-protocol.json 同步机器化上述判据;front matter iteration 升 v1.0;中英逐节同步。
+
+## v0.9 - 2026-08-09
+
+- **自检证据持久化**(响应 #883 / #807):`self_check.json` 补齐顶层 `ok` / `can_enter_formal_review` / `review_status` / `package_type` 与四条规范化记录(`DETERMINISTIC_VALIDATION` / `SPATIAL_REVIEW` / `VISUAL_PACKAGING` / `PROFESSIONAL_EVIDENCE`),如实落盘本次 `scripts/self_check_submission.py` 运行结论(四项全 PASS,`can_enter_formal_review=YES`);spatial 记录中明确三条 `KEY_AREA_PROVISIONAL` 源于组织方几何缺口而非包内缺陷。原有被矩阵引用的 `BOUNDARY_TRUST` / `KEY_AREAS_TRUST` / `LAND_USE_TOPOLOGY` / `VISUAL_STATIC` 四条原样保留。
+- **可审计的自检声明**:`manifest.json` 的 `validation_claim.self_checked` 由 `false` 更正为 `true`,并附自检命令、结果与时间戳;同步刷新 `self_check.json` 的 sha256。
+- 本次不改动任何方案内容、图面或几何,仅补齐流程证据。
+
+## v0.8 - 2026-08-09
+
+- **折返协议机器化**:新增 `visual/assets/switchback-protocol.json`——12张场景卡逐卡登记状态/验证门/接管时限/非智能替代/数据边界/人工复核/爬升等级/升门条件,含全带默认值与五类责任角色(机器可读运营合约做法致谢 147228/jingzhang-open-pulse,独立转译)。
+- **区域协同接口表**:北纬社区/未来科学城/怀柔科学城/北京经开区/京津冀五向接口逐行列表(补评审维度"区域协同性")。
+- **原创Logo概念稿**:纯代码绘制 `assets/figures/renline-logo.svg`(人字双轨+虚线轨心+信号灯节点+数据流,零第三方素材)嵌入正文。
+- **更新项目清单表格化**:14项补充实施主体建议与关键依赖条件两列(补评审维度"可实施性")。
+- 中英文逐节同步;经 #848 合并后的最新校验器复检,自检四项 PASS。
+
 ## v0.7 - 2026-08-09
 
 - **展示层追平正文机制**(此前图件与可视化页停留在 v0.2 内容):

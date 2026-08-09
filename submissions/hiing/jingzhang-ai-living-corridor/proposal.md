@@ -201,6 +201,29 @@ scenarios: ["ai-cultural-guide", "ai-health-service-navigation", "ai-traffic-wal
 
 ![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
 
+
+## Gallery-readiness 空间深化与证据补充
+
+本节是已合并 intake 方案的后续质量提升，不改变 provisional geometry 的法律与精度边界。新增图件把场景从文字映射推进到可审查的概念空间：
+
+- 三重点区街区结构、首层界面与场景锚点：`assets/figures/key-area-detail.png`
+- 京张遗产慢行、创新转化街与站前客厅三类剖面：`assets/figures/street-sections.png`
+- 荣誉墙、开源展示廊、AI 服务亭、路演模块、无障碍休息点、配送交接点组件库：`assets/figures/component-library.png`
+- 四阶段分期、依赖关系、CAPEX 等级、OPEX 类别与 Go/No-Go：`assets/figures/phasing-delivery.png`
+- 13 个场景的空间、责任主体、KPI 与退出条件索引：`assets/figures/scenario-space-index.png`
+
+![三重点区域概念详设](assets/figures/key-area-detail.png)
+
+![典型街道剖面与首层界面](assets/figures/street-sections.png)
+
+![公共空间组件库](assets/figures/component-library.png)
+
+![分期与决策闸门](assets/figures/phasing-delivery.png)
+
+![场景—空间—责任索引](assets/figures/scenario-space-index.png)
+
+实施信息采用成本等级而不是虚构金额，详见 `sources.json#implementation_matrix`。案例可比性与官方来源详见 `sources.json#case_study_matrix`；设计深度声明与正文、图件、GeoJSON、来源、假设之间的逐项关系详见 `sources.json#evidence_crosswalk`。所有平面尺寸为概念区间，官方红线、现状测绘、权属、市政、消防、文保和专项审查到位后必须复核。
+
 ## 风险、版权与合规说明
 
 主要风险：provisional 边界精度、控规条件缺失、权属不明、文保与市政资料不足、活动运营被误读为已批准安排。对应深度 [depth:risk_missing_data]，约束层 [data:geometry/constraints.geojson#CONSTRAINTS]，来源 [source:SITE-PACKAGE]、[source:PROCESSED-FACT-PACK]，标准 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。

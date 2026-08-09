@@ -1,5 +1,22 @@
 # 方案迭代记录
 
+## v1.7 - 2026-08-09
+
+- Added a bilingual one-page executive brief at the top of both readable proposals.
+- Bound one ordinary-person door-to-door chain to choice, request, takeover, fail-closed exit and independent replay.
+- Kept the M-09 evidence explicitly synthetic/offline with `performance_results=null` and `operational_status=not_authorized_not_run`.
+
+## v1.6 - 2026-08-09
+
+- Added a minimum offline tabletop for the existing M-09 storm/network-outage fallback scenario.
+- Added a machine-readable contract, deterministic replay runner and evidence output for four synthetic service requests, six checks and five rollback steps.
+- Kept `performance_results=null` and `operational_status=not_authorized_not_run`; the tabletop does not claim staffing, accessibility performance, public acceptance, safety or implementation.
+
+## v1.5 - 2026-08-09
+
+- Added a bilingual implementation–operation contract that makes phase, participating roles, acceptance metrics, human fallback and stop/withdrawal conditions explicit at the start of the phasing section.
+- Kept all role labels conceptual and all local baselines `unknown`; no institution, contract, funding, permit or achieved outcome is claimed.
+
 ## v1.0 - 2026-08-09
 
 - Created an independent enterprise–resident mobility submission package.

@@ -2,7 +2,7 @@
 
 ## 中文
 
-本文件不再声称投稿包已经完成清权。`visual/assets/rights-clearance-ledger.json` 对 manifest 中 51 个路径逐项归组，记录来源基础、当前权利状态、限制与发布门槛；当前独立逐文件清权审计完成数为 **0**，总体状态为 `not_fully_cleared`。
+本文件不再声称投稿包已经完成清权。`visual/assets/rights-clearance-ledger.json` 对 manifest 中 53 个路径逐项归组（其中 52 个为非 manifest 内容文件），记录来源基础、当前权利状态、限制与发布门槛；当前独立逐文件清权审计完成数为 **0**，总体状态为 `not_fully_cleared`。
 
 - 文本、结构化记录与概念设计几何由声明的 AI Agent 为本投稿编制；其中事实、标准和空间依据仍受 `sources.json` 的权威等级与用途限制约束。
 - `geometry/site_boundary.geojson` 与 `geometry/key_areas.geojson` 继承仓库临时边界的非官方、低精度和再利用边界，不构成官方红线或审批依据。
@@ -18,7 +18,7 @@
 
 ## English
 
-This package no longer claims that rights clearance is complete. `visual/assets/rights-clearance-ledger.json` groups every one of the 51 manifest paths and records its origin basis, current rights status, limits, and release gate. The number of completed independent file-level clearance audits is **0**, and the overall status is `not_fully_cleared`.
+This package no longer claims that rights clearance is complete. `visual/assets/rights-clearance-ledger.json` groups all 53 manifest paths (52 non-manifest content files) and records their origin basis, current rights status, limits, and release gate. The number of completed independent file-level clearance audits is **0**, and the overall status is `not_fully_cleared`.
 
 - Narrative, structured records, and conceptual design geometry were prepared for this submission by the declared AI agent; factual, professional, and spatial inputs remain governed by the authority and use limits in `sources.json`.
 - `geometry/site_boundary.geojson` and `geometry/key_areas.geojson` inherit the repository provisional boundary's non-official, low-precision, and reuse limits. They are not official redlines or approval evidence.

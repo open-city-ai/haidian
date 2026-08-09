@@ -205,7 +205,24 @@ This operations system, together with the renewal project list and phasing, form
 
 The metrics system at minimum covers overall-design area, key-area areas, green and public-space ratios, building footprints, renewal-project count, AI scenario nodes, slow-mobility indicators, industrial-space indicators, talent-service indicators, and self-check status [depth:metrics_recalculation]. All known metrics must be recalculable from GeoJSON or trusted sources; unknown metrics must state a reason and formal prerequisites. The results of `scripts/spatial_review.py` and `scripts/visual_review.py` are key formal self-check evidence.
 
-This proposal explicitly cites [metric:site_area_sqm], [metric:key_area_count], [metric:building_footprint_area_sqm], [metric:green_ratio], and [metric:public_space_ratio], sourced from [data:geometry/site_boundary.geojson#SITE-001], [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/buildings.geojson#BLDG-001], [data:geometry/green_space.geojson#GREEN-001], and [data:geometry/public_space.geojson#PUBLIC-001]. Key-area areas and phase areas are reported by [metric:key_area_area_zhongzhiyuan_ai_acceleration_area_sqm], [metric:key_area_area_beijing_ai_origin_community_sqm], [metric:key_area_area_dazhongsi_ai_industry_cluster_sqm], and [metric:phase_1_area_sqm], [metric:phase_2_area_sqm], [metric:phase_3_area_sqm].
+The overall-design area, green and public-space ratios, building footprints, key-area areas, and phase areas are all recomputed from the geometry in EPSG:4548 ([data:geometry/site_boundary.geojson#SITE-001]). The full metric-to-evidence table follows; individual chapters also cite the relevant metrics in place:
+
+| Metric | Evidence source |
+| --- | --- |
+| Overall design area | [metric:site_area_sqm] · [data:geometry/site_boundary.geojson#SITE-001] |
+| Key-area count | [metric:key_area_count] · [data:geometry/key_areas.geojson#PROV-KEY-001] |
+| Green & open space | [metric:green_space_area_sqm] · [metric:green_ratio] · [data:geometry/green_space.geojson#GREEN-001] |
+| Public space | [metric:public_space_area_sqm] · [metric:public_space_ratio] · [data:geometry/public_space.geojson#PUBLIC-001] |
+| Building footprint | [metric:building_footprint_area_sqm] · [metric:building_density] · [data:geometry/buildings.geojson#BLDG-001] |
+| Road/greenway mileage | [metric:road_length_m] · [data:geometry/roads.geojson#ROAD-001] |
+| Zhongzhiyuan area | [metric:key_area_area_zhongzhiyuan_ai_acceleration_area_sqm] |
+| AI Origin Community area | [metric:key_area_area_beijing_ai_origin_community_sqm] |
+| Dazhongsi area | [metric:key_area_area_dazhongsi_ai_industry_cluster_sqm] |
+| Near-term pilot | [metric:phase_1_area_sqm] |
+| Mid-term linkage | [metric:phase_2_area_sqm] |
+| Long-term depth | [metric:phase_3_area_sqm] |
+| AI scenario nodes | [metric:scenario_node_count] |
+| Pilgrimage landmarks | [metric:landmark_count] |
 
 ![Core metrics recalculation and evidence chain](assets/figures/metrics-evidence.png)
 
@@ -232,4 +249,10 @@ All images, drawings, icons, data, and code assets in this proposal state source
 - data/processed/source_use_matrix.csv
 - data/processed/missing_data_checklist.csv
 - docs/terminology-glossary.md
-- Machine-readable reference index: [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:SITE-PACKAGE], [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK], [source:BOUNDARY-SOURCE], [source:KEY-AREA-SOURCE], [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK], [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE], [standard:MOHURD-ARCH-DESIGN-DEPTH-2016], [depth:metrics_recalculation], [data:geometry/site_boundary.geojson#SITE-001], [metric:site_area_sqm]
+- Machine-readable reference index (full evidence chain lives in `sources.json`, `standard_matrix.json`, `design_depth_matrix.json`, and `metrics.json`):
+  - Primary basis: announcement [source:OFFICIAL-ANNOUNCEMENT] and taskbook [source:AGENT-TASKBOOK]
+  - Site package & registry: [source:SITE-PACKAGE] · [source:SOURCE-REGISTRY] · [source:PROCESSED-FACT-PACK]
+  - Boundary & key areas: [source:BOUNDARY-SOURCE] · [source:KEY-AREA-SOURCE]
+  - Professional standards: [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] · [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] · [standard:MOHURD-URBAN-DESIGN-MEASURES]
+  - More standards: [standard:MOHURD-CONTROL-DETAILED-PLANNING] · [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] · [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+  - Depth & metrics: [depth:metrics_recalculation] · [data:geometry/site_boundary.geojson#SITE-001] · [metric:site_area_sqm]

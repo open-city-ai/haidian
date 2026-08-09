@@ -2,6 +2,17 @@
 
 This file records the proposal's design development. The formal package is submitted only through the participant-authorized GitHub Pull Request workflow.
 
+## v14.0 - 2026-08-09
+
+### Independent bilingual display contract and proposal format v2
+
+- Upgraded the Chinese primary proposal to `proposal_format_version: "2"` and `bilingual_contract_version: "1"`, preserving all required chapters while replacing four dense evidence dumps with claim-adjacent anchors.
+- Added a complete standalone English proposal with the official English chapter names, aligned design claims, metrics, provisional-boundary warnings, evidence references and figure sequence.
+- Added 15 English technical figures derived from the same spatial structure, metrics and implementation logic as the Chinese figures; conceptual art renderings remain language-neutral.
+- Added independent offline English proposal and visual HTML pages with the same known metrics, unknown statutory controls, task coverage, assumptions and four-gate review status.
+- Added a 24-page English A3 booklet and an 8-board English A0 set, both visually rendered and reviewed as genuine English deliverables rather than filename placeholders.
+- Kept the formal geometry, metrics, compliance, standards, design-depth and simulation evidence unchanged; V14 improves readability and international access without introducing new official, surveyed or implementation claims.
+
 ## v1.0 - 2026-08-09
 
 ### Evidence chain, executable pilots, boundary resilience and global communication

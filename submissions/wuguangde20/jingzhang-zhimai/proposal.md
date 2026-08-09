@@ -207,7 +207,24 @@ AI 场景必须落到空间与治理边界：公共空间场景引用 [data:geom
 
 指标体系至少包含总体设计范围面积、重点区域面积、绿地与公共空间比例、建筑基底、更新项目数量、AI 场景节点、慢行连通指标、产业空间指标、人才服务指标和自检状态 [depth:metrics_recalculation]。所有 known 指标必须能从 GeoJSON 或可信来源复算；unknown 指标必须给出原因和正式提交前置条件。`scripts/spatial_review.py` 和 `scripts/visual_review.py` 的结果是 formal 自检的重要证据。
 
-本方案显式引用 [metric:site_area_sqm]、[metric:key_area_count]、[metric:building_footprint_area_sqm]、[metric:green_ratio]、[metric:public_space_ratio]，并说明这些值来自 [data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/green_space.geojson#GREEN-001] 和 [data:geometry/public_space.geojson#PUBLIC-001]。三处重点区面积与三期面积分别见 [metric:key_area_area_zhongzhiyuan_ai_acceleration_area_sqm]、[metric:key_area_area_beijing_ai_origin_community_sqm]、[metric:key_area_area_dazhongsi_ai_industry_cluster_sqm] 与 [metric:phase_1_area_sqm]、[metric:phase_2_area_sqm]、[metric:phase_3_area_sqm]。
+本方案的总体设计范围面积、绿地与公共空间率、建筑基底、重点区面积与分期面积等核心指标，均由 geometry 在 EPSG:4548 复算（[data:geometry/site_boundary.geojson#SITE-001]）。完整指标与证据对照如下表，正文各章节亦分点引用对应指标：
+
+| 指标 | 证据来源 |
+| --- | --- |
+| 总体设计范围 | [metric:site_area_sqm] · [data:geometry/site_boundary.geojson#SITE-001] |
+| 重点区域数量 | [metric:key_area_count] · [data:geometry/key_areas.geojson#PROV-KEY-001] |
+| 绿地与开敞空间 | [metric:green_space_area_sqm] · [metric:green_ratio] · [data:geometry/green_space.geojson#GREEN-001] |
+| 公共空间 | [metric:public_space_area_sqm] · [metric:public_space_ratio] · [data:geometry/public_space.geojson#PUBLIC-001] |
+| 建筑基底 | [metric:building_footprint_area_sqm] · [metric:building_density] · [data:geometry/buildings.geojson#BLDG-001] |
+| 道路/绿道里程 | [metric:road_length_m] · [data:geometry/roads.geojson#ROAD-001] |
+| 众智园面积 | [metric:key_area_area_zhongzhiyuan_ai_acceleration_area_sqm] |
+| AI原点社区面积 | [metric:key_area_area_beijing_ai_origin_community_sqm] |
+| 大钟寺面积 | [metric:key_area_area_dazhongsi_ai_industry_cluster_sqm] |
+| 近期试点 | [metric:phase_1_area_sqm] |
+| 中期联动 | [metric:phase_2_area_sqm] |
+| 远期纵深 | [metric:phase_3_area_sqm] |
+| AI场景节点 | [metric:scenario_node_count] |
+| 朝圣地标 | [metric:landmark_count] |
 
 ![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
 
@@ -215,7 +232,7 @@ AI 场景必须落到空间与治理边界：公共空间场景引用 [data:geom
 
 ## 风险、版权与合规说明
 
-本方案主文件为中文，并提供 `proposal.en.md` 完整对照译文（缺少译稿只产生 non-blocking warning）。风险与缺资料清单由 [depth:risk_missing_data] 管理，并与 [data:geometry/constraints.geojson#CONST-RAIL-001]、[source:SITE-PACKAGE]、[source:PROCESSED-FACT-PACK] 和 [standard:MOHURD-CONTROL-DETAILED-PLANNING] 相互校核。`missing_data_checklist.csv` 列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，已进入 `assumptions.json` 与自检风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，均降级为待确认事项，不构成实施承诺。
+本方案主文件为中文，并提供 `proposal.en.md` 完整对照译文（缺少译稿只产生 non-blocking warning）。风险与缺资料清单由 [depth:risk_missing_data] 管理，并以约束图层 [data:geometry/constraints.geojson#CONST-RAIL-001] 与任务包 [source:SITE-PACKAGE] 相互校核；公开资料登记 [source:PROCESSED-FACT-PACK] 与控规深度要求 [standard:MOHURD-CONTROL-DETAILED-PLANNING] 亦纳入本风险章节。`missing_data_checklist.csv` 列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，已进入 `assumptions.json` 与自检风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，均降级为待确认事项，不构成实施承诺。
 
 本方案所有图片、图纸、图标、数据和代码资产在 `report/copyright_statement.md` 中说明来源、许可和授权状态。HTML 页面（`visual/index.html`、`report/proposal.html`）不加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不跟踪评审者行为。本方案不声称官方批准、审定控规、最终土地权属、最终建设规模或保证实施；AI agent 对事实、来源、版权、空间数据、指标和表达负责。
 
@@ -234,4 +251,9 @@ AI 场景必须落到空间与治理边界：公共空间场景引用 [data:geom
 - data/processed/source_use_matrix.csv
 - data/processed/missing_data_checklist.csv
 - docs/terminology-glossary.md
-- 机器可读引用索引：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]、[depth:metrics_recalculation]、[data:geometry/site_boundary.geojson#SITE-001]、[metric:site_area_sqm]
+- 机器可读引用索引（完整证据链见 `sources.json`、`standard_matrix.json`、`design_depth_matrix.json` 与 `metrics.json`）：
+  - 首要依据：公告 [source:OFFICIAL-ANNOUNCEMENT] 与任务书 [source:AGENT-TASKBOOK]
+  - 任务包与登记表：[source:SITE-PACKAGE] · [source:SOURCE-REGISTRY] · [source:PROCESSED-FACT-PACK]
+  - 边界与重点区：[source:BOUNDARY-SOURCE] · [source:KEY-AREA-SOURCE]
+  - 专业标准：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] · [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] · [standard:MOHURD-URBAN-DESIGN-MEASURES] · [standard:MOHURD-CONTROL-DETAILED-PLANNING] · [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] · [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+  - 深度与指标：[depth:metrics_recalculation] · [data:geometry/site_boundary.geojson#SITE-001] · [metric:site_area_sqm]

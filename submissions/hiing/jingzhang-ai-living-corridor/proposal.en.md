@@ -127,3 +127,10 @@ The proposal adds testable interfaces with Haidian open-source communities inclu
 ## Original Identity System
 
 The participant-generated mark transforms two railway tracks into an AI data-light ribbon. Railway gray `#263447`, AI indigo `#4D3FC7`, Zhongguancun green `#218C63`, and milestone gold `#C38D35` are used consistently across bilingual figures and drawings. This mark is not an official government or project identity.
+
+
+## Gallery-readiness Spatial Detail and Evidence Upgrade
+
+This follow-up upgrade does not change the provisional geometry status. It adds conceptual key-area block plans, three street sections and first-floor interfaces, a six-item public-space component library, four-phase Go/No-Go delivery logic, and a 13-scenario space/responsibility index. See `assets/figures/key-area-detail.en.png`, `street-sections.en.png`, `component-library.en.png`, `phasing-delivery.en.png`, and `scenario-space-index.en.png`.
+
+Case comparability and official links are recorded in `sources.json#case_study_matrix`; cost classes, approval touchpoints, RACI, pilot durations, gates, and rollback are recorded in `sources.json#implementation_matrix`; claim-to-figure/data/source/assumption mappings are recorded in `sources.json#evidence_crosswalk`. All dimensions remain conceptual ranges pending official boundaries, survey, ownership, utilities, fire, heritage, and specialist review.

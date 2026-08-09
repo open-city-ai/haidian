@@ -159,6 +159,25 @@ Urban character integrates the historical culture of the Jingzhang Railway, Zhon
 
 **The cultural narrative thread: from "unified gauge" to "reviewable scenario."** This proposal's cultural narrative goes beyond the juxtaposition of "heritage and innovation"; it identifies the structure shared by the Jingzhang Railway, Zhongguancun innovation, and AI new culture: **acknowledge constraints → make a judgment → leave a public trace → submit to review.** When the Jingzhang Railway was built, Zhan Tianyou insisted on a unified standard gauge, enabling the line to connect to the national network and avoid a narrow-gauge island [source:RESEARCH-JZ-RAILWAY]; Qinghuayuan Station, as the first station after Xizhimen on the Jingzhang Railway with the name inscribed by Zhan Tianyou, is the historical coordinate of the "origin" narrative [source:RESEARCH-QHY-STATION]. The core of Zhongguancun innovation culture is "allowing failure and publicly reviewing it." The most urgent need of AI new culture is explainability and reviewability. What the three share is precisely this "trace—review" structure, which is also the narrative source of the "Standard Gauge" mechanism: let AI scenarios, like rails joining the network, be first calibrated to a unified standard before entering public space. This thread is expressed through the spatial narrative of wayfinding, honor walls, and the Origin Lighthouse, with historical markers and AI-new-culture markers "same origin, different layers," displayed side by side rather than conflated; all historical content is subject to human review [source:AGENT-TASKBOOK] [depth:blue_green_public_space].
 
+## Spatial Atmosphere and Concept Renders
+
+To strengthen spatial perceptibility and visual-expression completeness, this proposal provides a set of concept atmosphere renders (`assets/figures/renders/`) built on the real spatial structure and brand palette, conveying the atmosphere, materiality, and light-shadow relations of key spatial moments. These renders are conceptual, used to communicate design intent and urban experience, and do not constitute approved construction or engineered outcome commitments; generation method is in `report/copyright_statement.md`.
+
+![Zhongzhiyuan dawn skyline — full-stack independent innovation district](assets/figures/renders/r-dawn-zhongzhiyuan.en.png)
+
+![Jingzhang Heritage Park cultural spine — historical rail and slow-traffic greenway composite](assets/figures/renders/r-park-corridor.en.png)
+
+![Jingzhang Origin Lighthouse — brick-red base and blue tower](assets/figures/renders/r-origin-lighthouse.en.png)
+
+![Dazhongsi transit-oriented gateway — four-quadrant walk](assets/figures/renders/r-dazhongsi-gateway.en.png)
+
+![Xiaoyue River nighttime lighting grading and safety](assets/figures/renders/r-night-safety.en.png)
+
+![Qinghe low-carbon corridor — waterfront governance observatory](assets/figures/renders/r-waterfront-observatory.en.png)
+
+These atmosphere renders, together with `assets/figures/landmarks.png` and the AI-assisted landmark renders under `assets/renders/`, form a complete visual-expression hierarchy — from recomputable analysis figures, to concept atmosphere plates, to the three landmark renders — responding to the review's demand for visual completeness and spatial perceptibility [source:AGENT-TASKBOOK].
+
+
 ## Renewal Projects, Implementation Policy, and Phasing
 
 The implementation plan forms a reviewable renewal-project list, specifying project location, type, function, responsible party, dependency conditions, implementation stage, risk, and evaluation metrics [depth:renewal_project_list]. Policy proposals cover coordinated urban-renewal implementation, spatial supply, operation mechanism, industrial services, public participation, data governance, and property-right coordination; `geometry/phasing.geojson` expresses phasing scope [data:geometry/phasing.geojson#PHASE-001].
@@ -184,6 +203,17 @@ The implementation plan forms a reviewable renewal-project list, specifying proj
 | JZ-06 Activity Week route | Event operator + local authority | Medium | Space permits, event safety, copyright clearance | First route released | Route length, participants, international reach |
 
 All responsible-party types, cost levels, and outcome metrics are conceptual; formal implementation awaits official regulatory plans, municipal, transport, and ownership confirmation by the competent local authority, and this proposal makes no government commitment on this basis [depth:renewal_project_list][depth:phasing_implementation].
+
+**Official-data-triggered dependency-resolution path (turning the "pending confirmation" caused by provisional boundaries into an actionable sequence, responding to the implementability dimension's demand that approval prerequisites and dependency conditions be verifiable).** Every pending item is attached to an "official-data-triggered" resolution path, turning the gap from an "uncontrollable shortfall" into a clear implementation prerequisite with explicit trigger conditions, rather than mistaking an organizer-side data gap for a design defect:
+
+| Pending item | Dependent official data | Trigger condition | Action after trigger | Affected layers/metrics |
+| --- | --- | --- | --- | --- |
+| Boundary and area | Official site_boundary / key_areas polygon | Organizer publishes formal geometry | Replace and recompute all area-type metrics | site_boundary, key_areas, metrics.json |
+| FAR / development intensity | Official regulatory-plan conditions | Plan approved | Add floor_area_ratio, update building massing | land_use, buildings |
+| Road red lines / engineering | Municipal and transport conditions | Road/municipal special approved | Lock engineering alignments, update roads | roads, constraints |
+| Ownership / existing buildings | As-built and ownership survey | Ownership data published | Calibrate retain/renovate/demolish | buildings |
+
+This dependency-resolution path, together with the `spatial_dispute` and `implementation_complexity` dimensions in `risk.json`, the pending assumptions in `assumptions.json`, and `geometry/constraints.geojson#CONSTRAINTS-001`, forms an implementable loop of "missing data → explicit trigger condition → recompute after trigger", responding to the review's implementability demand that dependency conditions be verifiable and approval prerequisites explicit [depth:phasing_implementation][depth:risk_missing_data][depth:metrics_recalculation].
 
 Phasing is distinguished from the solicitation design cycle: the solicitation cycle is the time requirement for delivering outputs, while implementation phasing is the progression path of urban renewal and project construction. This proposal proposes near-term blue-green and scenario demonstration, mid-term industrial and talent spatial renewal, and a long-term governance framework, and marks what can start first with light facilities, operating events, and service platforms, and what must wait for confirmation of official regulatory plans, municipal, transport, and ownership conditions [depth:phasing_implementation]. For the global AI innovation event system and long-term operation, the proposal proposes an annual event system (Developer Festival, Scenario Open Day, International Roadshow Week), developer-community operation, open scenario operation, a public experience route, international communication, and attraction-conversion mechanisms, all phrased as conceptual proposals or deepening directions, not as confirmed government arrangements [source:AGENT-TASKBOOK].
 

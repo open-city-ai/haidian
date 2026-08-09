@@ -90,6 +90,20 @@ English mapping: Tier 1 **First City of AI Rule-of-Law Endeavor** (master), Tier
 
 Logo visual motif (direction indication only): "scales + rail" as the core — the upper crossbar borrows from rail-tie imagery, the lower part is a stylised justice-symbol, the three key areas embed as three coloured nodes (Source / Test / Market), and the central "Forum" axis is wrapped by a gold ring. No corporate, trademark, font or portrait elements are used [depth:risk_missing_data].
 
+#### Visual Identity System Specification (VI direction)
+
+| Item | Definition | Application |
+| --- | --- | --- |
+| Master mark | "Scales + rail" logo (CN/EN/combined formats) | Public interface, A3/A0, HTML, event materials |
+| Symbol colours | Source-indigo #1E5AA8 · Test-vermilion #C77E3C · Market-cyan-green #2E9BA6 · Forum-gold #C9A227 | Three-area symbol colours + gold axis identity |
+| Supporting colours | Ink #22303F, cream #F7F6F2, alert red #B5453F | Layering and warnings |
+| Typeface | Chinese PingFang SC / English Helvetica (system fonts, not redistributed) | Reports, figures, wayfinding |
+| Graphic motifs | Rail tie (paving), balance (beam), node ring (Forum gold ring) | Wayfinding, component library, landmarks |
+| Wayfinding hierarchy | Level 1 (area) · Level 2 (node) · Level 3 (scenario) | Cultural wayfinding system |
+| Accessibility | Braille, multilingual, sign-language, large-print specs | All public terminals |
+
+The VI direction follows "reviewable, clearable, non-entertaining" principles; formal VI is deepened by professional teams [depth:risk_missing_data].
+
 ### AI Innovation Ecosystem — Global Case Briefs
 
 Public references [source:SITE-PACKAGE], used as conceptual background only:
@@ -168,7 +182,7 @@ Positioned as "Urban Smart-Economy + Rule-of-Law Endeavor 'Market' Block" [data:
 
 ## AI Innovation Ecosystem, Personas and AI+ Scenarios
 
-### Personas (6)
+### Personas (12, incl. vulnerable and marginalised groups)
 
 | Persona | Typical need | Spatial response | Boundaries |
 | --- | --- | --- | --- |
@@ -178,6 +192,21 @@ Positioned as "Urban Smart-Economy + Rule-of-Law Endeavor 'Market' Block" [data:
 | Legal-Tech Entrepreneur | Low-cost office, financing, regulator dialogue | Rule-of-Law Talent Community, Forum Hall | Financial sustainability; not a commercial endorsement |
 | Government Governor | Governance tools, decision support, risk warning | Algorithm Filing Sandbox, slow-traffic navigation | Does not replace administrative approval |
 | Neighbourhood Resident | Low disturbance, community services, AI legal consultancy | AI legal counselling points, mediation workshop | Does not collect behavioural trajectories |
+| Children & Youth | Safe school commute, AI rule-of-law literacy, friendly space | Source Hall children zone, community mediation corner, safe school route | Strict data minimisation for minors |
+| Older Adults | Large-print wayfinding, voice counsel, no-app-payment services | Accessibility terminals, slow-traffic AI pillars, staffed counters | No forced digitisation; human channel retained |
+| Persons with Disabilities | Barrier-free paths, sign-language and assistive adaptation | Braille signage, accessibility terminals, slow-traffic gap elimination | Accessibility designed upfront, not retrofitted |
+| Low Digital-Literacy Persons | Plain legal language, offline assistance | Staffed kiosks, community briefings, large-print materials | Human alternative channel provided |
+| External Visitors | Wayfinding, multilingual information, public facility access | Bilingual signage, Forum Hall visitor services | Visitor data anonymised and aggregated |
+| Economically Disadvantaged | Public-interest legal counsel, low-cost dispute resolution | Intelligent Mediation Workshop public seats, Source Hall free exhibitions | Public-interest services without fee barriers |
+
+### Public Co-Creation and Grievance-Redress Mechanism
+
+Residents and communities are co-deciders of planning and operation, not just service recipients:
+
+- **Public co-creation**: an annual "Rule-of-Law Endeavor Community Council" (rotating between the Source Hall and mediation corners) proposes improvements on slow-traffic routes, wayfinding language, scenario priorities and landmark narratives; an adoption list is published quarterly.
+- **Grievance and redress**: a unified grievance entry (online + staffed counter) for AI scenarios; algorithm-involved decisions provide a three-step remedy "explain → appeal → human re-review", resolved within 15 working days.
+- **Inclusion metrics**: ① 100% barrier-free coverage of the slow-traffic system; ② Braille, multilingual and sign-language terminals in wayfinding; ③ digital-exclusion service windows not less than 30% of all service points; ④ co-creation adoption rate and grievance closure rate included in the annual ROL-AI Index.
+- **Co-creation output**: council recommendations enter the iteration list of the Public-Space Component Library and Cultural Wayfinding System, forming a "suggest → adopt → implement → publicise" loop [depth:risk_missing_data].
 
 ### AI Rule-of-Law Scenario Cards (12, organised by the Five-Dimensional Loop)
 
@@ -189,6 +218,38 @@ Positioned as "Urban Smart-Economy + Rule-of-Law Endeavor 'Market' Block" [data:
 **Public experience (cross-dimensional)**: S04 AI Slow-Traffic Navigation (low-intrusion sensing + wayfinding advice).
 
 Common principles: data minimisation, interpretability, human review, privacy protection; does not replace judiciary / law enforcement / approval; does not write immature technology as fully deployable [depth:risk_missing_data].
+
+### Factor-Support Mechanism (Land-Space-Industry-Capital-Talent-Computing-Data-Scenario)
+
+The "AI Rule-of-Law Endeavor" requires coordinated supply of eight factors (all concept design):
+
+| Factor | Supply mechanism | Spatial / institutional carrier |
+| --- | --- | --- |
+| Land | Flexible disposal of redevelopment and reserve land, prioritising endeavour space | land_use.geojson reserve + JZ-03/04 |
+| Space | Four endeavour spaces + component library, phased near/mid/long supply | key_areas.geojson + phasing.geojson + component library |
+| Industry | Test hosts evaluation/standards; Market hosts compliance/factor circulation | Zhongzhiyuan evaluation cluster + Dazhongsi compliance belt |
+| Capital | Government guidance fund + social capital + public-interest fund | Phased financing scheme for JZ projects (concept) |
+| Talent | Rule-of-Law Talent Community + university joint training + international recruitment | Origin Community + regional synergy (Beiwei) |
+| Computing | Edge Computing Stations + Huairou Science City computing channel | New infrastructure JZ-05 + regional synergy |
+| Data | Compliance Port registration + evaluation + cross-border circulation loop | Dazhongsi Port + S05/S11 |
+| Scenario | 12 scenario cards organised by the Five-Dimensional Loop, each with space/data/operator/review | Scenario technical elements table |
+
+The eight factors are calibrated annually by the ROL-AI Index, forming a "supply-operate-monitor-adjust" loop [depth:metrics_recalculation].
+
+### Key-Area Spatial Node Typology (Street-Station-Public Interface-Pedestrian Path)
+
+Strengthening the relation of nodes to real streets, rail stations, public interfaces and pedestrian paths (concept):
+
+| Node type | Example | Location | Linked scenarios |
+| --- | --- | --- | --- |
+| Rail station integration node | Dazhongsi four-quadrant pedestrian connectivity | Dazhongsi · Market | S05/S07 |
+| Campus-block stitch node | Origin Community three-segment slow-traffic stitch | Origin · Source | S08/S09 |
+| Waterfront public interface | Qinghe low-carbon innovation interface | Zhongzhiyuan · Test | S01/S02 |
+| Park slow-traffic gap repair | Jingzhang Heritage Park gap stitching | Belt green band | S04 |
+| Community service node | Mediation corner + accessibility terminals | Community end | S10 |
+| Honour exhibition node | Algorithm Justice Ring | Axis · Forum | S12 |
+
+Each node type gives a four-part description "current problem → spatial action → AI scenario → implementation dependency" (see Key Areas chapter and concept plan), avoiding dangling nodes [depth:overall_spatial_structure] [depth:traffic_rail_slow_parking].
 
 ### Scenario Card Technical Elements (complete)
 

@@ -11,15 +11,15 @@
     nav,.metrics,.audit{display:grid;gap:12px;padding:24px 6vw}nav{grid-template-columns:repeat(4,1fr)}nav div,.metric,.audit div{background:white;border:1px solid var(--line);padding:18px;box-shadow:0 8px 24px #17355512}nav div{border-top:5px solid}nav div:nth-child(1){border-color:var(--a)}nav div:nth-child(2){border-color:var(--b)}nav div:nth-child(3){border-color:var(--c)}nav div:nth-child(4){border-color:var(--d)}
     .metrics{grid-template-columns:repeat(3,1fr);padding-top:0}.metric b{display:block;font-size:clamp(24px,3vw,42px);margin-top:8px}.metric span{color:var(--muted)}
     main{padding:0 6vw 28px;display:grid;gap:28px}article{background:white;border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 12px 34px #17355512}article h2{margin:0;padding:20px 24px;border-bottom:1px solid var(--line)}article p{margin:0;padding:14px 24px;color:var(--muted)}article img{width:100%;display:block}
-    .audit{grid-template-columns:repeat(4,1fr);padding-top:0}.audit h3{margin:0 0 8px}.audit p{margin:0;color:var(--muted);line-height:1.55}footer{padding:32px 6vw;color:var(--muted);border-top:1px solid var(--line)}
-    @media(max-width:760px){nav,.metrics,.audit{grid-template-columns:1fr 1fr}header{padding-top:42px}}@media(max-width:520px){nav,.metrics,.audit{grid-template-columns:1fr}}
+    .audit{grid-template-columns:repeat(4,1fr);padding-top:0}.audit h3{margin:0 0 8px}.audit p{margin:0;color:var(--muted);line-height:1.55}.release{padding:4px 6vw 28px}.release-head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:14px}.release-head h2{margin:0;font-size:clamp(24px,3vw,40px)}.release-head p{margin:0;color:var(--muted);max-width:690px;line-height:1.55}.gate-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.gate{background:#fff;border:1px solid var(--line);border-top:6px solid var(--a);padding:22px;box-shadow:0 12px 34px #17355512}.gate:nth-child(2){border-color:var(--b)}.gate:nth-child(3){border-color:var(--c)}.gate small{font-weight:700;letter-spacing:.08em;color:var(--muted)}.gate h3{margin:10px 0;font-size:22px}.gate p{color:var(--muted);line-height:1.55;margin:8px 0}.gate b{color:var(--ink)}.evidence-links{margin-top:16px;background:#10233f;color:#fff;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}.evidence-links p{margin:0;color:#d5dfeb;line-height:1.5}.evidence-links a{color:#fff;text-decoration-thickness:2px;text-underline-offset:4px;white-space:nowrap}footer{padding:32px 6vw;color:var(--muted);border-top:1px solid var(--line)}
+    @media(max-width:760px){nav,.metrics,.audit,.gate-grid{grid-template-columns:1fr 1fr}.release-head,.evidence-links{align-items:start;flex-direction:column}header{padding-top:42px}}@media(max-width:520px){nav,.metrics,.audit,.gate-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
   <header>
-    <small>FORMAL AI URBAN DESIGN PACKAGE · v0.1</small>
+    <small>FORMAL AI URBAN DESIGN PACKAGE · v0.2</small>
     <h1>京张人本城市操作系统</h1>
-    <p>从 AI 展台到 AI 时代人的城：人的尊严、机器可用、硬约束、势能外溢。</p>
+    <p>从 AI 展台到 AI 时代人的城：人的尊严、机器可用、硬约束、势能外溢。v0.2 把每项扩展建议置于可审阅、可暂停的发布门之后。</p>
     <div class="warn">临时边界：不是官方红线，所有面积与线长待正式数据发布后重算。</div>
   </header>
   <nav aria-label="四条价值链">
@@ -37,12 +37,21 @@
     <article><h2>交通慢行与蓝绿公共空间</h2><p>人的路权优先；机器廊道、低空层、无屏绿地与海绵韧性均设置授权和停止条件。</p><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行、机器测试与蓝绿公共空间"></article>
     <article><h2>核心指标、任务覆盖与自检状态</h2><p>known 指标由 GeoJSON 重算；居民保留率、运行 PUE、绿电与余热没有实测则保持 unknown。</p><img src="../assets/figures/metrics-evidence.png" alt="核心指标、任务覆盖、自检状态、来源与假设"></article>
   </main>
-  <section class="audit" aria-label="证据审计">
-    <div><h3>任务覆盖</h3><p>公告、任务书、标准与设计深度分别进入结构化矩阵。</p></div>
-    <div><h3>自检状态</h3><p>确定性、空间、视觉、专业四道门禁在提交前全部运行。</p></div>
-    <div><h3>来源</h3><p>正式、背景与临时资料分级登记，不跨越允许用途。</p></div>
-    <div><h3>假设</h3><p>缺官方边界、控规、权属、现状建筑和市政底数，触发后全量重算。</p></div>
+  <section class="release" aria-label="v0.2 发布门与场景退出条件">
+    <div class="release-head"><div><h2>v0.2：可否决的城市发布门</h2><p>本轮没有改写面积、比例、路线或 unknown 指标；它补足 16 个场景的责任、人工替代、资料边界、验收证据与停止条件。所有内容仍是概念建议，供专业团队深化研究。</p></div><img src="../assets/figures/release-gates.png" alt="三个城市发布门及停止条件" style="width:260px;max-width:100%;border:1px solid var(--line)"></div>
+    <div class="gate-grid">
+      <article class="gate"><small>01 · v0.1</small><h3>观察、基线与公众共识</h3><p><b>先补齐：</b>资料边界、人工服务底线与异议入口。</p><p><b>暂停：</b>未经同意使用资料、无人工通道或排斥风险。</p></article>
+      <article class="gate"><small>02 · v0.2</small><h3>可逆试点与独立评估</h3><p><b>先补齐：</b>地点/时间/数据/责任四限定、人工接管与专业授权。</p><p><b>暂停：</b>安全事件、未授权数据、无障碍障碍或证据不足。</p></article>
+      <article class="gate"><small>03 · v1.0</small><h3>经审查后扩展与标准外溢</h3><p><b>先补齐：</b>前一版本证据、异议处理与公共利益审查。</p><p><b>暂停：</b>证据不可复核、权益受损或基础条件变化。</p></article>
+    </div>
+    <div class="evidence-links"><p>离线证据台账：发布门、16 张场景卡、用户公平、执行责任、指标复算、权利、双语与可访问性审计。当前版本明确：单项技术效果不能跳过任何发布门；这些台账不等于许可、实施或绩效证明。</p><a href="assets/release-gate-ledger.json">打开 v0.2 台账</a></div>
   </section>
-  <footer>离线静态展示 · 无远程脚本、字体、地图瓦片、表单或追踪。</footer>
+  <section class="audit" aria-label="证据审计">
+    <div><h3>任务覆盖</h3><p>公告、任务书、标准与设计深度分别进入结构化矩阵；场景卡再把要求落到空间与退出门。</p></div>
+    <div><h3>自检状态</h3><p>确定性、空间、视觉、专业四道门禁在提交前全部运行；本地通过不代替维护者合并或公网发布。</p></div>
+    <div><h3>来源与权利</h3><p>正式、背景与临时资料分级登记，不跨越允许用途；每类展示资产有来源与清权声明。</p></div>
+    <div><h3>假设与无障碍</h3><p>缺官方边界、控规、权属、现状建筑和市政底数时全量重算；人工替代与专业无障碍复核保持前置。</p></div>
+  </section>
+  <footer>离线静态展示 · 无远程脚本、字体、地图瓦片、表单或追踪 · 临时边界不是官方红线。</footer>
 </body>
 </html>

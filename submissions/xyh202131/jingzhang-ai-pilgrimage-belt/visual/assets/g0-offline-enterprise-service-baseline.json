@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1.0",
+  "evidence": {
+    "register_id": "JZ-G0-OFFLINE-ENTERPRISE-SERVICE-V1",
+    "as_of": "2026-08-09",
+    "status": "conceptual_reproducible_not_executed",
+    "protocol_id": "T-02",
+    "current_gate": "G0",
+    "purpose_zh": "为来源化企业服务协议固定一个仅可离线复核的五问证据契约；它证明问题、来源边界和拒答转接字段可重放，不声称执行、模型交互、现场结果、审批或服务正确性。",
+    "purpose_en": "Fix a five-question, offline-review-only evidence contract for the sourced enterprise-service protocol. It demonstrates replayable question, source-boundary, refusal, and handoff fields, without claiming execution, model interaction, field results, approval, or service correctness."
+  },
+  "fixed_questions": [
+    {
+      "question_id": "Q-001",
+      "question_zh": "当前可引用来源的状态和访问日期是什么？",
+      "question_en": "What are the current status and access date of the citable sources?",
+      "source_ids": ["SOURCE-REGISTRY"],
+      "allowed_use_zh": "仅核对来源登记中的状态、访问日期、可用范围和限制。",
+      "allowed_use_en": "Only check source-register status, access date, permitted scope, and limitations.",
+      "prohibited_inference_zh": "不得把访问日期推断为来源仍然新鲜、内容未变或具有新的法定效力。",
+      "prohibited_inference_en": "Do not infer that an access date means a source remains current, unchanged, or newly authoritative.",
+      "expected_answer_mode": "source_status_only",
+      "on_failure_refusal_action": "refuse_and_handoff_to_source_maintainer_for_refresh"
+    },
+    {
+      "question_id": "Q-002",
+      "question_zh": "京张铁路遗址公园二期公开开园基线如何界定？",
+      "question_en": "How is the publicly reported opening baseline for Phase II of the Jing-Zhang Railway Heritage Park bounded?",
+      "source_ids": ["HAIDIAN-JZ-PHASE2-OPEN-2026"],
+      "allowed_use_zh": "仅引用公开报道的开园日期和背景性描述，并标注其发布日期与适用范围。",
+      "allowed_use_en": "Only cite the published opening date and contextual description, with publication date and applicable scope.",
+      "prohibited_inference_zh": "不得推断竣工现状、精确长度、持续开放、无障碍连续性、具体点位或新增干预获批。",
+      "prohibited_inference_en": "Do not infer as-built conditions, precise length, continuing availability, accessible continuity, exact sites, or approval for a new intervention.",
+      "expected_answer_mode": "cite_scope_and_date",
+      "on_failure_refusal_action": "refuse_and_handoff_to_field_audit_or_park_operator"
+    },
+    {
+      "question_id": "Q-003",
+      "question_zh": "海淀或北京市人工智能公共服务的政策方向如何限定引用？",
+      "question_en": "How may policy directions for AI public services in Haidian or Beijing be cited within scope?",
+      "source_ids": ["HAIDIAN-15FYP-2026", "BEIJING-AI-ORIGIN-2026"],
+      "allowed_use_zh": "仅作为已公开政策或项目方向的背景引用，不超出原文的主体、时间和地域范围。",
+      "allowed_use_en": "Use only as background citations for published policy or programme direction, without exceeding the original actor, time, or geographic scope.",
+      "prohibited_inference_zh": "不得推断特定企业、地块、服务窗口、预算、合作主体、审批或实施承诺。",
+      "prohibited_inference_en": "Do not infer a specific enterprise, parcel, service desk, budget, partner, approval, or delivery commitment.",
+      "expected_answer_mode": "cite_scope_and_date",
+      "on_failure_refusal_action": "refuse_and_handoff_to_policy_owner_or_responsible_public_body"
+    },
+    {
+      "question_id": "Q-004",
+      "question_zh": "能否提供临时边界或地块的精确位置、面积或法定结论？",
+      "question_en": "Can a provisional boundary or parcel be used to provide an exact location, area, or statutory conclusion?",
+      "source_ids": ["BOUNDARY-SOURCE", "KEY-AREA-SOURCE"],
+      "allowed_use_zh": "仅说明其为概念生成、展示或临时核验使用的 provisional 数据。",
+      "allowed_use_en": "Only state that it is provisional data for concept generation, display, or temporary checks.",
+      "prohibited_inference_zh": "不得提供或推断官方红线、权属、审批、精确面积、工程线位或可实施地块结论。",
+      "prohibited_inference_en": "Do not provide or infer an official redline, ownership, approval, precise area, engineering alignment, or deliverable parcel conclusion.",
+      "expected_answer_mode": "refuse_and_handoff",
+      "on_failure_refusal_action": "refuse_and_handoff_to_authoritative_boundary_or_land_administration"
+    },
+    {
+      "question_id": "Q-005",
+      "question_zh": "涉及正式办事、审批或个案资格的请求应如何处理？",
+      "question_en": "How must a request about formal procedures, approvals, or case-specific eligibility be handled?",
+      "source_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY"],
+      "allowed_use_zh": "仅提供来源导航和人工办理入口的转接规则，不处理正式办理或作出资格判断。",
+      "allowed_use_en": "Only provide source-navigation and human-service handoff rules; do not process a formal procedure or decide eligibility.",
+      "prohibited_inference_zh": "不得代表主管部门受理、承诺、批准、拒绝或预测正式办理结果。",
+      "prohibited_inference_en": "Do not accept, promise, approve, deny, or predict a formal-procedure outcome on behalf of a responsible authority.",
+      "expected_answer_mode": "refuse_and_handoff",
+      "on_failure_refusal_action": "refuse_and_handoff_to_responsible_human_service_channel"
+    }
+  ],
+  "source_contract": {
+    "permitted_source_ids": [
+      "SITE-PACKAGE",
+      "SOURCE-REGISTRY",
+      "BOUNDARY-SOURCE",
+      "KEY-AREA-SOURCE",
+      "HAIDIAN-JZ-PHASE2-OPEN-2026",
+      "BEIJING-AI-ORIGIN-2026",
+      "HAIDIAN-15FYP-2026"
+    ],
+    "validation_rule": "all source_ids in fixed_questions must exist in sources.json and must be members of permitted_source_ids; no source record may be added by this contract.",
+    "usage_limits": {
+      "official_or_project_register": "SITE-PACKAGE and SOURCE-REGISTRY support only project-material navigation, source status, and stated-use limits; they do not create legal authority or rights clearance.",
+      "background": "HAIDIAN-JZ-PHASE2-OPEN-2026, BEIJING-AI-ORIGIN-2026, and HAIDIAN-15FYP-2026 support dated public-background citations only; they do not establish current field conditions, partnerships, siting, budgets, approvals, or delivery commitments.",
+      "provisional_boundary": "BOUNDARY-SOURCE and KEY-AREA-SOURCE support concept generation, display, and temporary checks only; they must trigger refusal for official redline, ownership, approval, precise-area, engineering, or parcel requests.",
+      "project_material": "No source in this contract authorizes a formal procedure, case determination, or autonomous service operation; such requests require human handoff."
+    }
+  },
+  "replay_contract": {
+    "replay_scope": "Read-only review of sources.json and this file's five fixed questions; no web retrieval, source refresh, model call, service interaction, field visit, or formal procedure is performed.",
+    "steps": [
+      "Read sources.json without modification.",
+      "Read the five fixed_questions in this file without modification.",
+      "Verify every question source_id exists in sources.json and is permitted by source_contract.",
+      "Verify each question carries allowed use, prohibited inference, expected answer mode, and refusal/handoff action.",
+      "Record only contract-completeness counts; do not generate a substantive service response."
+    ],
+    "version_lock": null,
+    "input_summary": null,
+    "output_location": null,
+    "refusal_and_handoff_contract": {
+      "rule_zh": "当来源缺失、过期、超出范围、涉及临时边界精度，或请求正式办事、审批与个案判断时，拒绝作出实体结论并转接至维护者、责任主体、主管部门、场地运营方或人工服务渠道。",
+      "rule_en": "When a source is missing, stale, or out of scope, when provisional-boundary precision is requested, or when a request concerns a formal procedure, approval, or case determination, refuse a substantive conclusion and hand off to the maintainer, responsible body, public authority, site operator, or human service channel.",
+      "service_execution_authorized": false
+    },
+    "replayer_statement_zh": "复核者可以复现本协议的读取和字段核验，但不能据此声称完成服务、得到回答或验证现场行为。",
+    "replayer_statement_en": "A replayer can reproduce the protocol's reading and field checks, but cannot claim that a service was completed, an answer was obtained, or field behaviour was verified.",
+    "completed_replays": 0,
+    "answer_outputs": 0,
+    "field_tests": 0,
+    "approval_count": 0
+  },
+  "summary": {
+    "question_count": 5,
+    "question_contract_coverage_ratio": 1.0,
+    "completed_offline_replays": 0,
+    "known_answer_outputs": 0,
+    "field_execution_count": 0,
+    "coverage_definition": "Coverage measures required contract-field presence across the five fixed questions only; it is not service accuracy, source freshness, handoff success, model performance, or field execution."
+  }
+}

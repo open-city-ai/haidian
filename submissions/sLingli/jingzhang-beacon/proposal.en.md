@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Taking the signalling system of the century-old Jing-Zhang Railway as its prototype, JINGZHANG BEACON turns the operating status of an AI city into a public signal language readable by everyone, using green, amber and red signals. A one-spine, three-beacon, two-wing spatial structure makes the three key areas verification, open-source and experience beacons, forming an AI city public interface that is experienceable, verifiable and reversible."
 tracks: ["ai-traffic-walkability", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-cultural-guide", "ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.3"
+iteration: "v1.4"
 ---
 
 # JINGZHANG BEACON: Making the Operating Status of an AI City a Public Signal Language
@@ -263,6 +263,22 @@ The taskbook's supplementary dimensions ask which districts, nodes or space type
 
 Handover principle: this package delivers mechanisms, interfaces and evidence chains; quantification, legalisation and engineering are left to subsequent professional teams, and any receiver may recompute and override this package's provisional conclusions once official data arrives [depth:renewal_project_list].
 
+### Seven Delivery Questions: Professional Handover Table
+
+To let maintainers and receiving teams complete a handover without reading the whole package, this proposal answers the seven questions any handover must settle, each anchored to a verifiable object and a next responsibility seat; every "verifiable object" can be opened and re-checked inside this package [depth:renewal_project_list]:
+
+| Delivery question | This package's answer | Verifiable object | Next responsibility seat |
+| --- | --- | --- | --- |
+| Task fit: does it cover all mandatory tasks? | All six mandatory tasks covered, mapped item by item | `compliance_matrix.json` requirements, full set | Maintainer intake review |
+| Originality and reproducibility: can a third party recompute the conclusions? | All spatial indicators recompute to the same digit from the submitted geometry via `scripts/spatial_review.py` | `metrics.json` recomputed values + `geometry/*.geojson` | Professional survey/planning teams recompute on official boundary |
+| AI-space coupling: how does the AI mechanism land in space? | Three-colour signals graded onto three spatial carriers (lab / block / public interface) | Chapter 5 key areas + `geometry/key_areas.geojson` | Operations team + technical evaluation body |
+| Implementation entry: where does step one start and who approves? | Phase 1 enters via the Zhongzhiyuan verification axis, passing the five-question gate item by item | Chapter 11 phasing plan + landing inventory | Government and professional teams deepen the statutory layer |
+| Public interest: how is public benefit kept and harm remedied? | Appeal entries and human-review gaps ship with every signal node; rollback is the remedy | Chapter 13 compliance baseline + risk matrix | Operations team + legal/compliance team |
+| Risks and constraints: what is unknown and what is off-limits? | Geometry provisional, regulatory indicators unknown, reasons registered item by item | `assumptions.json` + risk matrix R-01 to R-04 | Official data providers + review teams |
+| Continued deepening: what does the receiver do next? | The full recomputation sequence after official polygons arrive is already written down | Chapter 1 replacement sequence + landing inventory receiver column | Next-round iteration participants |
+
+The handover table adds no new commitments: every "next responsibility seat" is a suggested deepening receiver, and formal responsibility allocation follows statutory procedures [source:AGENT-TASKBOOK].
+
 ## 12. Indicator System, Area Recalculation and Compliance Matrix
 
 The indicator system contains spatial indicators (directly recomputable from submitted geometry), control indicators (requiring official regulatory planning support) and performance indicators (requiring continuous operational data calibration) [depth:metrics_recalculation]. Spatial indicators keep their full recomputed values (e.g. site area 11,412,825.386 sqm [metric:site_area_sqm]); the decimals mean "a third party can reproduce the same digit from the same geometry", not that external facts carry the same precision - and this is no reason to rewrite approximations into false exactness:
@@ -285,6 +301,19 @@ The indicator system contains spatial indicators (directly recomputable from sub
 | Regulatory indicators missing (FAR/height/density) | Kept unknown with registered reasons [metric:floor_area_ratio] | Deepen per approved regulatory conditions | R-02 |
 | Road redlines, ownership, heritage, municipal capacity missing | All downgraded to directional strategies [data:geometry/constraints.geojson#CONSTRAINT-01] | Re-verify when engineering and ownership materials are complete | R-03 |
 | External data licences and reuse terms | Public/cleared materials only, registered item by item [source:SITE-PACKAGE] | Continuous verification and change registration | R-04 |
+
+### Fault-Drill Design: 48-Hour Synthetic Integration (Tabletop, Not Yet Executed)
+
+The credibility of the red-light mechanism depends on whether "stop and rollback" is truly executable. This proposal designs a 48-hour synthetic integration test as a drill script for deepening handover: **no contact with the public, no real personal data, no connection to real city systems**; only the signal mechanism itself is stressed in a test environment by injecting four fault classes, verifying whether the three-colour state transitions converge as designed [depth:risk_missing_data]:
+
+| Fault injection | Expected signal transition | Verification point | Exit and recovery |
+| --- | --- | --- | --- |
+| F1 service unavailable (model endpoint down) | Green to amber to red; interface degrades instantly to human guidance | Whether the degradation notice ships within the time limit; whether a human equivalent path is available | After recovery, pass virtual evaluation again before returning to green |
+| F2 evaluation failure (output quality/safety below bar) | Amber to red; pilot qualification frozen immediately | Whether the freeze is one-click executable and leaves an audit record | Re-apply from amber after remediation |
+| F3 user appeals escalate (concentrated complaints) | Red review; human takeover, automated decisions paused | Appeal-entry reachability, response deadline, human review records | Publish the review conclusion, then decide restore or retire |
+| F4 data withdrawal (a party revokes data consent) | Affected scenarios roll back as a whole; derived data deletable | Rollback-script executability; whether data minimisation holds | Stay stopped until consent is re-granted |
+
+The drill must be re-performed by a team that did not participate in designing this proposal, producing a deviation list; drill conclusions, deviations and remediation should all be written into public records. This section is a drill design, not an execution result - this package does not claim the drill has been run; real execution requires the operator, the evaluation body and supervisors to be present [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
 ### Compliance Baseline: Statutory Grounds for the Three Red Lines
 

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Jing-Zhang AI Coexistence Loop: Making Innovation Walkable, Testable, and Sustainable"
 author_github: "ABUQWQ"
 language: "en"
@@ -85,6 +85,18 @@ Target indicators for professional deepening include loop accessibility, human-a
 
 The package labels provisional boundaries; minimizes personal data; provides stop, human-takeover, and review mechanisms; prioritizes older adults, children, disabled users, low-bandwidth users, and non-smartphone users; and uses locally generated graphics and text. No remote map tiles, portraits, trademarks, or unlicensed third-party images are embedded [source:BOUNDARY-SOURCE] [source:SOURCE-REGISTRY]. All spatial proposals are conceptual suggestions, reference schemes, or material for professional deepening, not government-approved conclusions [source:AGENT-TASKBOOK].
 
+## v2 supplement: case evidence, scenario operations, and implementation governance
+
+To address the first-round review focus on case depth, scenario operations, and implementation evidence, this follow-up adds structured evidence attachments. They remain conceptual research and do not change the provisional geometry status or claim existing partnerships, financing, approvals, or implementation.
+
+- `visual/assets/case_studies.json`: six global AI innovation ecosystem cases with sources, spatial form, mechanisms, transferable elements, and non-transferable limits.
+- `visual/assets/ecosystem_value_loop.json`: a responsibility/input/output loop for land, space, industry, capital, talent, compute, data, and scenarios.
+- `visual/assets/scenario_operations.json`: ten AI scenarios with location, users, data boundaries, operator roles, human fallback, cost level, KPIs, stop conditions, and review cycles.
+- `visual/assets/implementation_governance.json`: three implementation phases with work packages, prerequisites, milestones, metrics, and exit conditions.
+- `visual/assets/annual_programme.json`: an annual operations skeleton for events, developer community, public experience, international communication, and evaluation.
+- `visual/assets/evidence_index.json`: a task-by-task index connecting agent.1 through agent.6 to planned boards, data files, sources, and acceptance questions.
+
+This update prioritizes reviewable evidence. B03, B04, B10, and B12 are the first-round inputs for further professional deepening and new drawings. Every `to be confirmed` field must be reviewed by actual operators and qualified professionals before implementation or formal design development.
 ## References
 
 - `brief/site-package/design_brief.json` [source:SITE-PACKAGE]

@@ -6,8 +6,8 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.1"
-summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；所有空间数值均从临时几何重算，社会与能源绩效无实测则保持 unknown。"
+iteration: "v0.2"
+summary: "以人的尊严为底座、以机器可调用为增量、以能源气候和治理为硬约束的可回滚城市版本；v0.2 将 16 个场景接入三段发布门、人工兜底与退出证据，所有空间数值仍从临时几何重算，社会与能源绩效无实测则保持 unknown。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
@@ -15,6 +15,24 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 # 京张人本城市操作系统
 
 > 从 AI 展台，到 AI 时代人的城。AI 不应成为城市的主角，而应成为居民、劳动者、创业者和公共机构可审计、可拒绝、可回滚的基础能力。
+
+## v0.2：把城市版本做成可否决的发布门
+
+本次 v0.2 是一轮实质性证据升级，而不是对空间数值或公共排序的包装：在不改变临时边界坐标、设计面积和既有 `known` 指标的前提下，新增 16 张“空间—责任—人工兜底—资料边界—停止条件”场景卡、三段城市发布门台账，以及可访问性与用户公平审计。它把原先的“可回滚”主张落到谁可以启动研究、需要什么证据、何时必须暂停的可审阅问题上；仍只是概念建议，供专业团队深化研究。[data:geometry/phasing.geojson#PHASE-V02] [metric:version_release_count]
+
+| 发布门 | 进入前必须先补齐 | 可核验证据 | 暂停或回滚条件 |
+| --- | --- | --- | --- |
+| v0.1 观察、基线与公众共识 | 资料边界、人工服务底线、异议入口 | 可理解性走读、问题与缺口台账 | 未经同意使用资料、无人工通道或排斥风险 |
+| v0.2 可逆试点与独立评估 | 地点/时间/数据/责任四限定、人工接管、专业授权 | 事件复盘、授权/计量/校准资料、独立评价 | 安全事件、未授权数据、无障碍障碍或证据不足 |
+| v1.0 经审查后扩展与标准外溢 | 前一版本证据、异议处理、公共利益审查 | 年度体检、release note、可复核协议草案 | 证据不可复核、权益受损或基础条件变化 |
+
+发布门台账与每张场景卡均明确不构成许可、工程方案、投资承诺或实施结论；官方边界、权属、控规、道路、市政、蓝线和现状资料一旦补齐，须先全量重算再讨论下一版本。
+
+## 核心概念与四项运行机制
+
+核心概念是“人本城市操作系统”（Human City OS）：把城市空间、公共服务与 AI 代理组织成一套可观察、可拒绝、可回滚的发布系统。它不是把 AI 变成地标，也不是用自动化替代人的判断，而是把每个城市能力拆成四项可审计机制：人类优先机制保证人工服务、无障碍和拒绝权；证据发布机制把地点、时间、数据、责任和版本门绑定；空间—服务接口机制把城市 API、慢行网络、公共空间和场景卡连成可复核的服务链；退出与修复机制要求停机、撤除、数据删除、异议处理和独立复盘同时存在。[depth:phasing_implementation] [metric:version_release_count]
+
+四项机制共同把“从 AI 展台到人的城”从价值宣言变成空间—治理—运营协议：每个试点必须回答谁能启动、谁负最终责任、公众如何拒绝、什么证据才能扩展，以及失败后如何恢复。任何未知指标继续保留 `unknown`，不由模型或案例类比补齐；任何设计分区仍是概念建议，不提升为法定用地、官方边界或实施承诺。
 
 ## 设计依据与资料清单
 
@@ -102,6 +120,8 @@ AI 原点社区把被替代风险劳动者而非“明星人才”放入创新�
 
 16 张场景卡均写入 `constraints.geojson`，其中 A、B 各 4 项，C 5 项，D 3 项；6 项标记为测试验证场景，超过任务书最低要求。[data:geometry/constraints.geojson#SC-B01] [metric:human_first_scenario_count] [metric:machine_city_scenario_count]
 
+v0.2 将这 16 项从目录升级为可审阅场景卡：每张卡都连接其空间锚点、建议服务对象、人工替代、资料边界、验收所需证据与停止条件。测试类场景额外执行地点、时间、数据、责任“四限定”；这不代表已具备运行条件，而是把“还缺什么”放在扩展之前。[data:geometry/constraints.geojson#SC-C03] [metric:test_validation_scenario_count]
+
 | 卡片 | 主题 | 场景 | 空间载体 | 人工/制度护栏 |
 | --- | --- | --- | --- | --- |
 | SC-A01 | A | 社区保留账本 | 社区保留服务区 | 清权基线、居民同意、不得商业画像 |
@@ -176,6 +196,10 @@ AI 原点社区把被替代风险劳动者而非“明星人才”放入创新�
 
 版本治理的核心文件是 release note：列出新增、改变、撤回、事故、公众异议、数据权限和下一版本门槛。年度体检既看空间，也看居民保留、岗位转型、能源、气候、数据和人工通道。公众可以提交 issue，维护团队必须回复“接受、试验、拒绝或待资料”并说明证据。[depth:renewal_project_list] [depth:phasing_implementation]
 
+为避免“展示即升级”，本次 v0.2 将三处概念分期面补入进入门、推进门、退出门，并把完整台账和 16 张场景卡作为离线结构化附件。它们要求把人工接管、授权、保险、计量、校准、无障碍和公众复核写成前提，而不是把任何单一技术效果当作扩区理由。[data:geometry/phasing.geojson#PHASE-V02] [standard:MOHURD-URBAN-DESIGN-MEASURES]
+
+![v0.2 城市发布门与场景退出证据](assets/figures/release-gates.png)
+
 长期运营形成四季节奏：春季“城市问题开源周”收集居民与服务人员问题；夏季“城市 API 与具身测试月”只做受控验证；秋季“工作转型与 OPC 共创季”连接岗位、技能和小团队；冬季“城市版本大会”发布年度体检和 release note。活动仅为概念运营机制，尚未取得任何政府审批、资金或场地承诺。[source:AGENT-TASKBOOK] [depth:renewal_project_list]
 
 品牌名称为“Jingzhang Human City OS / 京张人本城市操作系统”。Logo 方向是一个开放括号包住一段轨道与一个人工确认点：括号代表 API 可调用，轨道代表历史连续，确认点代表人拥有最终决定权。视觉只用原创几何与系统字体，不使用企业标识或未经授权字体。[source:AGENT-TASKBOOK] [depth:risk_missing_data]
@@ -183,6 +207,8 @@ AI 原点社区把被替代风险劳动者而非“明星人才”放入创新�
 ## 指标体系、面积复算与合规矩阵
 
 所有 `known` 指标均从本包 GeoJSON 投影到 EPSG:4548 后复算；proposal、五张图、HTML 和 PDF 使用同一 `metrics.json`。空间指标的低置信度来自临时边界，并不因小数位多而提高精度。[metric:site_area_sqm] [depth:metrics_recalculation]
+
+v0.2 的指标审计明确区分“本轮不变的空间复算值”和“仍不能替代实测的社会/运行结果”。发布门和场景证据不改变任一面积、比例、线长或 unknown 指标；后续一旦改动 geometry，必须同时重算 `metrics.json`、图件、HTML 与 PDF，不能用叙述覆盖数据。[metric:green_ratio] [metric:operational_pue]
 
 | 指标 | 当前值 | 证据 | 解释边界 |
 | --- | ---: | --- | --- |
@@ -198,7 +224,7 @@ AI 原点社区把被替代风险劳动者而非“明星人才”放入创新�
 
 居民保留率、运行 PUE、绿电占比和余热回收量保持 `unknown`：它们分别需要家庭基线、实际设施能耗、绿电凭证和热网计量。把 unknown 留在机器文件中，是为了阻止愿景被误读成绩效。[metric:operational_pue] [metric:recovered_heat_mwh]
 
-`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 和 agent.1-agent.6 共 23 项；`standard_matrix.json` 覆盖公告、任务书与三项可正式使用的专业标准；`design_depth_matrix.json` 覆盖 15 项深度；`self_check.json` 记录四类门禁。正文不复制矩阵，而在判断旁放入来源、标准、深度、数据和指标锚点。[standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:metrics_recalculation]
+`compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 和 agent.1-agent.6 共 23 项；`standard_matrix.json` 覆盖公告、任务书与三项可正式使用的专业标准；`design_depth_matrix.json` 覆盖 15 项深度；`self_check.json` 记录四类门禁。v0.2 另附场景、发布门、用户公平、执行责任、指标复算、权利、双语与可访问性台账，便于专业团队复核而不把附表误当作实施证明。[standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:metrics_recalculation]
 
 ![指标、未知与证据链](assets/figures/metrics-evidence.png)
 

@@ -72,6 +72,16 @@ The component library includes a human desk, dual-channel wayfinding, reversible
 
 Five conceptual project families—human buffer/retention, reskilling/night health, civic API/data governance, Xiaoyuehe blue-green human-machine testing, and culture/global commons—each state role types, data preconditions, resource-intensity class, G0/G1 gates, acceptance metrics, and exit protocol. This is not a project approval, budget, policy, or construction plan. [data:geometry/phasing.geojson#PHASE-01] [metric:project_family_count] [depth:implementation_and_phasing]
 
+### Phase–participant–acceptance gates (concept v0, not a construction promise)
+
+Each project family moves through three phases with explicit responsibility boundaries. G0 is jointly reviewed by local/planning and public-service roles, community/resident representatives, accessibility and cultural specialists for the problem, authorization and human-equivalent service. G1 is run by pilot operators, maintainers, a data-protection role and a public observer seat as a small reversible test. G2 is decided by professional reviewers, procurement/insurance and operating/local-accountability roles. Specific institutions, contracts, budgets and approvals remain `unknown`; this does not claim a confirmed partnership.
+
+| Phase | Participants and prerequisites | Readable acceptance evidence | Exit or fallback |
+| --- | --- | --- | --- |
+| G0 problem and authorization | Task crosswalk, source clearance, community seat, accessibility review and human channel | 100% of scenario cards have an accountable role, source, data-minimization and exit protocol; authorization and issue register retained | Unclear authorization, human fallback or rights boundary: remain in research |
+| G1 reversible pilot | Pilot operator, maintainer, public observer seat and independent reviewer | Group-level participation coverage, human takeover, first redress response, incident records and accessible-route continuity | Any group harmed, unexplained incident or unresolved complaint: freeze and return to human service |
+| G2 conditional expansion | Professional review, procurement/insurance, operator and local-accountability roles | Field data, permits, maintenance SLA, privacy/copyright/cultural review and a retrospective report; model output cannot replace field evidence | Any missing prerequisite: withdraw display/stop expansion; never present concept metrics as outcomes |
+
 A four-season Commons Cycle frames public problem release, Xiaoyuehe co-learning walks, developer protocol camp, and annual v0.x health check/release note. The developer mechanism is problem register → office hours → G0 protocol → human/public review → version note; international conversion is multilingual evidence → due diligence → voluntary reversible exchange. [source:AGENT-TASKBOOK] [data:geometry/phasing.geojson#PHASE-03] [metric:scenario_g0_count]
 
 ## Metrics, Area Recalculation, and Compliance Matrix

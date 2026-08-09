@@ -4,63 +4,51 @@ author_github: "baobao-byte"
 language: "en"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A public-interest proving ground where urban AI must earn trust before it scales."
+summary: "Start with a reversible First Hundred Metres acceptance segment, then scale urban AI only through public choice, human takeover, appeal and replay."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-version: "2.3"
-iteration: 12
+version: "2.4"
+iteration: 13
 proposal_format_version: "2"
 ---
 
 # Jing-Zhang Civic AI Loop: An Open Belt for Verifiable Urban Agents
 
-v2.3 professional handover edition. Four package-level checks have passed; the text now follows the v2 reading contract of claim-adjacent evidence anchors plus structured audit files. All spatial figures still use repository provisional geometry with low aggregate confidence. They support conceptual review only—not official redlines, statutory controls, property, engineering, or precise-area claims. Asset rights and generation lineage are in `report/copyright_statement.md`; remediation differences are in `changelog.md`.
+v2.4 review-restructured edition. It leads with one walkable, stoppable and replayable spatial prototype before the whole-belt system. Spatial figures still use repository provisional geometry with low aggregate confidence; they are not official redlines, statutory controls or precise-area claims. Asset rights and generation lineage are in `report/copyright_statement.md`; version differences are in `changelog.md`.
 
 Motto: Every urban intelligence must withstand public scrutiny.
 
 ![Civic AI Loop concept mark](assets/figures/civic-loop-logo.en.svg)
 
-## Executive brief: a public acceptance line, not another “AI park”
-The scarce asset is not another closed compute room but a walkable public infrastructure where residents, researchers, firms, operators and regulators can decide whether an urban intelligence deserves to enter the city. Zhongzhiyuan tests the stack and safety; the AI Origin Community turns research prototypes into participatory neighbourhood services; Dazhongsi tests public experience and consumer rights. The two wings provide professional support and bounded real-world tasks.
+## Executive brief: build the first hundred metres before promising eleven kilometres
 
-The six Taskbook agents become one delivery contract: 12 scenario cards, three falsifiable pilot protocols, AP0—AP7 action packages, G0—G4 gates, five resource ledgers and a civic-agent receipt. The first 90 days prepare evidence, repair one accessible public chain, establish staffed/paper/phone fallback and run synthetic-data rehearsals. Only P1 may begin after G0—G2 evidence is complete; any unresolved severe safety, rights or data issue stops the trial. Boundaries, title, statutory controls, cost, procurement, real operators and performance baselines remain unknown/pending until lawfully verified.
+The century-old Jing-Zhang corridor does not need another AI showcase. It needs a public place where anyone can decide whether an urban AI deserves to enter the city. The Loop translates railway stations, lines, timetables and hand-offs into four civic rights: entry, human takeover, appeal and exit. Zhongzhiyuan tests safety and the stack; AI Origin Community translates prototypes into public services; Dazhongsi tests everyday and consumer rights; the two wings connect professional support and controlled urban scenarios. [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]
 
-Four machine-readable artefacts make the proposal handover-ready: `visual/assets/delivery-matrix.json`, `pilot-protocols.json`, `civic-agent-receipt.schema.json` and `asset-rights.json`. The included receipt is a synthetic example, not evidence of a live project. [metric:machine_readable_contract_count] [metric:receipt_required_field_count]
+**The only launch action is the “First Hundred Metres Civic Acceptance Segment” at AI Origin Community.** It is a reversible retrofit to an existing walking chain, not a miniature technology park. The entrance gives equal visibility to ordinary and AI-assisted routes; the middle provides a safe stopping bay, paper task ticket and visible staffed desk; the end provides an independent appeal point, version-status board and Run Receipt. If every model and device is removed, continuous walking, rest, lighting, staffed service and railway interpretation still work. “First Hundred Metres” names the first continuous acceptance unit; its actual length, width, gradient, location and quantities remain subject to official geometry, field audit and professional verification. [depth:detailed_public_space_design] [assumption:A-BOUNDARY-001]
 
-### Seven delivery questions: where a professional team takes over
-
-This is not a self-score. It is a handover map in which each judgement points to a claim, spatial evidence and a structured file that can be checked further.
-
-|Delivery judgement|Verifiable object already supplied|What the next accountable professional must complete|
-|---|---|---|
-|Does it answer the Jing-Zhang brief?|Three positions, five functions, three areas, two wings and agents 1–6 form a spatial–operating contract|Recheck every placement against official three-level geometry and the current Taskbook|
-|Can the novelty be reproduced?|The “railway grammar—public proof walk—Run Receipt” closes the loop from place to operational evidence|An independent team must replay the same receipt and record failures|
-|Does AI change planning method?|Model entry conditions become dual routes, staffed takeover, appeal, status signage and reversible space|Professionals must verify fire, transport, accessibility, data and operating interfaces|
-|Is there an implementation entry?|AP0–AP7, P1–P3 and G0–G4 specify dependencies, acceptance, hard stops and restoration|Confirm operator, site, budget, procurement, insurance and approvals; no unknown may be skipped|
-|Can public benefit be tested?|Six user groups run one task chain, measured by worst-group, non-digital access, takeover and appeal|Recruit lawfully and obtain informed consent before any real-user test|
-|Can risk constrain expansion?|Data minimisation, human final review, expiry, suspension, deletion, rollback and negative-result disclosure enter the receipt|Legal, safety, ethics and site-accountable parties must sign each gate|
-|Can others continue the work?|Bilingual texts, five core figures, nine GeoJSON layers, four PDFs, offline sites and audit matrices share one version|Recalculate the whole package and redraw after official geometry arrives|
-
-### 48-hour synthetic integration drill: falsify the delivery chain before a site exists
-
-Without contacting the public, using real personal data or calling a live city system, a successor team can immediately run a two-day tabletop integration. Hours 1–4 freeze one synthetic task, version and vacant role slots; hours 5–16 pass one Run Receipt through service desk, model, human takeover and appeal desk; hours 17–28 inject refusal, timeout, accessibility blockage and deletion failure; hours 29–40 assign an uninvolved person to replay it; hours 41–48 permit only pass, repair or stop, archiving differences, unresolved conditions and restoration evidence. Minimum outputs are one complete receipt, four failure tickets, one independent replay difference and one stop/restoration record. Any empty required evidence means repair—not a successful demo. This drill proves only that the handover chain is reviewable; it does not prove spatial, system or policy approval. [depth:phasing_implementation] [metric:decision_gate_count]
-
-### One line, three stations, one receipt: the Loop's minimum spatial prototype
-
-- One line: the century-old Jing-Zhang railway park becomes a continuous public acceptance line. AI is not an exhibit along it; a bounded trial may enter only after ordinary passage, staffed service and analogue fallback work.
-- Three stations: Zhongzhiyuan proves stack and safety, the AI Origin Community proves open translation, and Dazhongsi proves everyday experience and consumer rights. The two wings supply professional inputs and bounded real-world tasks. Every station makes entry, takeover, appeal and exit spatially visible.
-- One receipt: every urban-AI run records version, evidence, accountable human, worst-group result, appeal, expiry and disposition. Independent review then chooses scale, repair or exit; a hard stop overrides averages and publicity. [source:AGENT-TASKBOOK] [depth:overall_spatial_structure] [metric:machine_readable_contract_count]
-
-
-This “railway line-and-station grammar—public acceptance space—run receipt” is the proposal's original closed loop: space is not a technology container but a civic interface where urban AI can be questioned, refused and retested. Responsibility, budget and data remain pending until statutory inputs are verified [assumption:A-OPERATIONS-001] [assumption:A-DATA-001].
-
-A continuous public proof walk turns abstract governance into observable acts. A visitor collects an anonymous task ticket at Zhongzhiyuan, compares the AI route with the ordinary route in the failure theatre, and triggers one staffed takeover. At the AI Origin Community, a wheelchair user, older resident or first-time visitor repeats the same task; the display foregrounds the worst-group result rather than the average. At Dazhongsi, an independent appeal desk reveals the version, accountable human, data expiry and stop status before the visitor records “scale / repair / exit”. The ticket becomes a Run Receipt; its QR code resolves only to a de-identified evidence package. If the ordinary route, staffed desk or appeal entrance fails at any station, the demonstration fails regardless of spectacle. The walk is simultaneously a spatial itinerary, public-learning device and mandatory acceptance script. No duration is pre-set; each segment must be calibrated against verified network evidence and an accessible walk audit. [depth:detailed_public_space_design] [metric:receipt_required_field_count]
-
-|Action along the line|Spatial interface|Evidence left behind|Failure response|
+|A person's five-step journey|Visible spatial element|Evidence left behind|Failure response|
 |---|---|---|---|
-|Zhongzhiyuan: trigger takeover|Dual-route entrance, lay-by, staffed desk|Trigger reason, takeover latency, accountable role|Return to the ordinary route and stop automation|
-|AI Origin: cross-group retest|Continuous accessible surface, quiet waiting point, paper ticket|Worst-group completion, barrier log, minority note|Do not proceed until the issue closes|
-|Dazhongsi: public disposition|Independent appeal desk, version board, exit gate|Scale / repair / exit vote and disposition deadline|Unresolved overdue case automatically pauses|
+|Choose ordinary or AI route|equally visible entrances and continuous accessible surface|choice state and barrier log, without identity|do not open the test if the ordinary route fails|
+|Request one AI-assisted task|paper ticket and low-stimulus waiting point|version, source and completion/refusal|stop for missing sources or severe misinformation|
+|Trigger human takeover|visible staffed desk and safe bay|reason, delay and accountable role|switch the whole service to human operation|
+|Appeal and leave|independent appeal point and exit|case ID, deadline and deletion/disposition state|automatically pause overdue cases|
+|Let a third party replay|de-identified evidence cabinet and status board|replay difference and scale/repair/exit decision|no replay, no scaling|
+
+These five steps compress urban design, AI evaluation and civic rights into one street segment: **space is not a technology container; it is an institutional interface through which the public may refuse technology.** The launch tests only P1, one accessible public task chain. P2 public-service agent evaluation and P3 low-speed delivery remain later protocols and do not compete for launch attention, site or resources. The first 90 days cover source replacement, field audit, non-AI baseline, staffed service and synthetic rehearsal only. Missing evidence at G0–G2 stops progression; a successful demonstration is not deployment approval. [metric:pilot_protocol_count] [metric:decision_gate_count]
+
+### One line, three stations, one receipt: scale from the first hundred metres
+
+- One line: the direction of the Jing-Zhang heritage park is a continuous civic acceptance line, not a new statutory road boundary; ordinary passage comes first.
+- Three stations: Zhongzhiyuan asks whether AI can work safely; AI Origin asks whether ordinary people can use and challenge it; Dazhongsi asks whether it protects rights in daily life and consumption.
+- One receipt: each run records version, evidence, human responsibility, worst-group result, appeal, deadline and disposition. Independent review may only choose scale, repair or exit. [metric:machine_readable_contract_count] [metric:receipt_required_field_count]
+
+A complete visit begins at the first hundred metres: take an anonymous ticket, choose between two routes, deliberately trigger human takeover, inspect version, responsibility, retention and stop status, then vote “scale / repair / exit”. Wheelchair users, older people, caregivers, temporary visitors and developers run the same task. The display foregrounds the worst-performing group and failure cause, never an average that hides a barrier. If the ordinary route, staffed desk or appeal point is unavailable, the run fails. [depth:detailed_public_space_design]
+
+|Scale|Question|Evidence required first|Still unknown|
+|---|---|---|---|
+|First hundred metres|Can one public task be safe, optional, human-takeover-ready and appealable?|field audit, non-AI baseline, staffing and synthetic rehearsal|exact location, quantities, budget and operator|
+|Three stations|Can validation, translation and everyday use form a continuous relay?|independent P1 replay plus official three-area and professional inputs|construction sequence, real performance and procurement|
+|Whole belt|Can the mechanism become open civic infrastructure?|maintenance, exit resources, inter-district protocol and annual public review|statutory adoption, investment commitment and scaled impact|
 
 ## Taskbook at a glance: three positions, five functions, three areas and two wings
 

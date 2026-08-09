@@ -3,6 +3,8 @@ title: "京张探针 Probe"
 author_github: "CaoChen13"
 language: "zh"
 translation_file: "proposal.en.md"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以日常公共带串联创新、社区与遗址空间，并用受益—成本—责任台账把每项更新转化为可复算、可核验、可否决的行动。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -511,7 +513,7 @@ Logo 方向采用一个自绘的“**开口 P + 轨枕刻度 + 人工复核点**
 
 ### 二、正文级指标：精度服从证据
 
-正文只显示可被当前证据支持的约值：总体设计范围约 11.4 km²，方案绿地比例约 0.11、公共空间比例约 0.03，参数化示意建筑基底约 1.49 ha（14 个概念模块，confidence=low）。这些量用于方案内部复核，不是现实测量、法定指标或工程规模。[metric:site_area_sqm][metric:green_ratio][metric:public_space_ratio][metric:building_footprint_area_sqm]
+正文只显示可被当前证据支持的约值：总体设计范围约 11.4 km²，方案绿地比例约 0.11、公共空间比例约 0.03，参数化示意建筑基底约 1.49 ha（14 个概念模块，confidence=low）。这些量用于方案内部复核，不是现实测量、法定指标或工程规模。[metric:site_area_sqm][metric:green_ratio]公共空间与建筑基底的相同约束见[metric:public_space_ratio][metric:building_footprint_area_sqm]。
 
 ### 三、机器复算附录（完整位数不代表现实精度）
 
@@ -638,7 +640,7 @@ AI 生成不构成事实豁免。每项生成内容应保留提示输入、数�
 - 处理事实包：三层范围、任务与缺资料的阅读导航，不是新权威来源[source:PROCESSED-FACT-PACK]。
 - provisional 总体边界与重点片区几何来源[source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]。
 - OpenStreetMap 背景语境与外业线索，按 ODbL 登记[source:OSM-CONTEXT]。
-- 全球生态案例：AI Singapore 100E、Mila、Vector Institute、STATION F F/ai 与 TUM Venture Labs 的官方网页[source:CASE-AISG-100E][source:CASE-MILA-PARTNERSHIPS][source:CASE-VECTOR-INSTITUTE][source:CASE-STATIONF-FAI][source:CASE-TUM-VENTURE-LABS]。
+- 全球生态案例：AI Singapore 100E、Mila、Vector Institute、STATION F F/ai 与 TUM Venture Labs 的官方网页[source:CASE-AISG-100E][source:CASE-MILA-PARTNERSHIPS][source:CASE-VECTOR-INSTITUTE]；其余两项案例见[source:CASE-STATIONF-FAI][source:CASE-TUM-VENTURE-LABS]。
 - 文化叙事：北京市政府公开的京张铁路遗产资料与北京市科委、中关村管委会公开的中关村示范区资料[source:JINGZHANG-HERITAGE-BEIJING][source:ZHONGGUANCUN-INNOVATION-CULTURE]。
 
 机器可读成果入口为 `standard_matrix.json`、`design_depth_matrix.json`、`compliance_matrix.json`、`metrics.json`、`assumptions.json`、`sources.json` 与 `self_check.json`；审计输出随包交付于 `visual/assets/boundary_sensitivity.json` 与 `visual/assets/run_record.json`，生成脚本因包格式不接受 `.py` 而未随包交付（见“复跑链”一节）。九类空间文件均在正文就近引用：总体边界、重点片区、用地、建筑、道路、绿地、公共空间、约束和分期；引用锚点只证明对象可定位，不证明对象具有官方效力[data:geometry/site_boundary.geojson#SITE-001][data:geometry/key_areas.geojson#PROV-KEY-001][data:geometry/land_use.geojson#LU-001]。

@@ -1,4 +1,4 @@
-﻿---
+---
 title: "京张AI共生环：把创新变成可漫游、可测试、可持续的城市日常"
 author_github: "ABUQWQ"
 language: "zh"
@@ -166,6 +166,18 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 - **版权风险**：图纸、图标、文字和代码由本地生成；未使用未授权商业地图瓦片、人物肖像、商标或第三方图片 [source:SOURCE-REGISTRY]。
 - **表达边界**：本方案全部空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不构成政府审定结论 [source:AGENT-TASKBOOK]。
 
+## v2 增补：案例证据、场景运营与实施治理
+
+为回应首轮内容评审中对案例深度、场景运营和实施证据的关注，本次后续版本增加独立的结构化证据附件。附件仍是概念研究，不改变 provisional geometry 的边界性质，也不声称已有合作、融资、审批或落地。
+
+- `visual/assets/case_studies.json`：六个全球 AI 创新生态案例，分别记录来源、空间形态、机制、可迁移部分和不可照搬部分。案例用于机制启发，不代表京张已有事实。
+- `visual/assets/ecosystem_value_loop.json`：把土地、空间、产业、资金、人才、算力、数据、场景串成责任—输入—输出循环，并标出待确认的供给主体。
+- `visual/assets/scenario_operations.json`：十个 AI 场景逐项补充空间位置、服务用户、数据边界、运营角色、人工替代、成本级别、KPI、停机条件和复盘周期。
+- `visual/assets/implementation_governance.json`：将 0—6 个月、6—18 个月和 18 个月以后拆成工作包、前置条件、里程碑、指标和退出条件。
+- `visual/assets/annual_programme.json`：建立年度活动、开发者社区、公共体验、国际传播和年度评估的运营骨架。
+- `visual/assets/evidence_index.json`：把 agent.1—agent.6 分别绑定到 B01—B12 图纸计划、数据文件、来源和验收问题，避免所有任务复用同一组泛化证据。
+
+本次更新优先补齐可审阅证据；B03、B04、B10 和 B12 可直接作为下一轮深化与新图纸制作的输入。所有 `待确认` 字段必须在正式实施或专业深化前由实际责任主体和有资质团队复核。
 ## 参考资料
 
 - `brief/site-package/design_brief.json`：项目范围、定位和任务入口 [source:SITE-PACKAGE]。
@@ -176,7 +188,3 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 - `standard_matrix.json`、`design_depth_matrix.json`、`compliance_matrix.json`：本包的结构化审计证据。
 
 > 状态声明：本提交包由AI agent生成，当前可供公开讨论、自检和专业评审；因官方边界和部分现状数据尚待补齐，不能替代正式规划、工程设计、审批文件或政府实施安排。
-
-
-
-

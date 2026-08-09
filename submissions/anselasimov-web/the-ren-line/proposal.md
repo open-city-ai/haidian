@@ -6,7 +6,8 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以詹天佑人字形线路为总概念、以人民城市理念为根:一撇是已建成的9公里记忆线绿廊,一捺是算力与场景叠加的智能线,在AI原点社区顶点换向;众智园与大钟寺双机牵引,以概念用地分区、243栋概念建筑、12个AI场景节点与三大朝圣地标,提出'百年在此换向'的存量AI创新带方案。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "robotics-autonomous-mobility"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "robot-delivery-low-speed", "ai-health-service-navigation"]
-iteration: "v1.2"
+iteration: "v1.3"
+translation_file: "proposal.en.md"
 ---
 
 # 人字形 The REN Line:百年京张AI创新带城市设计方案
@@ -72,7 +73,7 @@ Logo与视觉识别方向:两笔"人"字——一笔实线(枕木纹理,记忆�
 
 **城市更新总体框架**:定位为"叠加式更新"——依据《北京市城市更新条例》三条路径打包 [source:SRC-BJ-RENEWAL-REG]:公共空间类更新(绿廊界面与桥下空间)、"边角地、插花地、夹心地"利用(铁路沿线夹心地)、轨道场站及周边一体化更新(大钟寺、五道口、清华东路),形成区域综合性更新单元的概念建议。更新对象分四类:绿廊界面激活型(沿记忆线两侧第一排)、存量楼宇AI村化型(原点社区)、枢纽再造型(大钟寺、北站门户)、渐进社区型(知春路以南存量社区带)。拆改留在建筑层面仅作概念指引(见用地章)[depth:retain_renovate_demolish]。
 
-**开发强度与建筑规模**:官方容积率、建筑高度、密度、绿地率控制指标均未公开(A-CONTROLS-001),本方案不给出任何审定指标 [metric:floor_area_ratio_official与building_height_official_m状态为unknown]。概念测算仅供讨论:243栋概念建筑基底279,251平方米 [metric:building_footprint_area_sqm],概念总建筑规模3,886,869平方米 [metric:concept_total_floor_area_sqm],重点区概念毛容积率1.05 [metric:concept_far_key_areas]、概念建筑密度7.6% [metric:building_density_key_areas]——这两个数不是设计目标而是校验值:用来检验概念组团在重点区尺度上"放不放得下"、绿廊天空面与文物建控地带会不会被挤占;量级参照中关村科学城既有创新街区,官方指标一旦公布,组团数量与体量按官方条件反向重排,而不是反过来用本方案的概念值去争取指标,全部待官方控规条件确认后重校 [depth:development_intensity_controls] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。
+**开发强度与建筑规模**:官方容积率、建筑高度、密度、绿地率控制指标均未公开(A-CONTROLS-001),本方案不给出任何审定指标 (floor_area_ratio_official 与 building_height_official_m 在 metrics.json 中状态为 unknown)。概念测算仅供讨论:243栋概念建筑基底279,251平方米 [metric:building_footprint_area_sqm],概念总建筑规模3,886,869平方米 [metric:concept_total_floor_area_sqm],重点区概念毛容积率1.05 [metric:concept_far_key_areas]、概念建筑密度7.6% [metric:building_density_key_areas]——这两个数不是设计目标而是校验值:用来检验概念组团在重点区尺度上"放不放得下"、绿廊天空面与文物建控地带会不会被挤占;量级参照中关村科学城既有创新街区,官方指标一旦公布,组团数量与体量按官方条件反向重排,而不是反过来用本方案的概念值去争取指标,全部待官方控规条件确认后重校 [depth:development_intensity_controls] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。
 
 **风貌基调**:"蓝图上的百年"——工程理性基调(砖红、锈钢、蓝灰),沿记忆线第一排建筑控制概念性高度退台以保持绿廊天空面——判读标准取"站在绿廊步道中心平视,对岸建筑不越过行道树冠线以上的天空开口",让"退台"成为现场可校核的规则,而不是一句风格描述;车站遗存周边执行文物建控地带要求(西直门站Ⅴ类建控地带"不得新建与文物保护和展示利用无关的建构筑物" [source:SRC-XZM-HERITAGE]);高度体量的正式管控以控规与文保部门审定为准 [depth:height_massing_character] [standard:MOHURD-URBAN-DESIGN-MEASURES]。
 

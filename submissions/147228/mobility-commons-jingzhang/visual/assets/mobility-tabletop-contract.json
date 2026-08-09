@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "MOB-M09-TABLETOP-001",
+  "contract_version": "1.0",
+  "scenario_id": "M-09",
+  "scenario_name": "storm_or_network_outage_ground_fallback",
+  "claim_level": "local_synthetic_tabletop",
+  "operational_status": "not_authorized_not_run",
+  "tabletop_status": "synthetic_fixture",
+  "gate_effect": "none; P1 and P2 remain blocked until dated local evidence and authorized responsibility are present",
+  "reproduce": "node visual/assets/run-mobility-tabletop.js --check",
+  "environment": {
+    "data": "four bundled synthetic service requests and a declared event sequence; no personal data",
+    "network_calls": 0,
+    "external_systems": "none",
+    "participant_contact": "none",
+    "state_changes": "in-memory only"
+  },
+  "service_requests": [
+    {
+      "request_id": "M09-R01",
+      "service_group": "resident_daily_care",
+      "primary_route": "digital_recommendation",
+      "fallback_route": "human_public_transport_telephone_paper",
+      "expected_state": "fallback_required"
+    },
+    {
+      "request_id": "M09-R02",
+      "service_group": "wheelchair_accessible_route",
+      "primary_route": "digital_route_status",
+      "fallback_route": "human_route_audit_and_assistance",
+      "expected_state": "fallback_required"
+    },
+    {
+      "request_id": "M09-R03",
+      "service_group": "enterprise_shuttle_window",
+      "primary_route": "curb_reservation",
+      "fallback_route": "public_transport_and_manual_dispatch",
+      "expected_state": "reservation_frozen"
+    },
+    {
+      "request_id": "M09-R04",
+      "service_group": "rail_last_mile_transfer",
+      "primary_route": "transfer_recommendation",
+      "fallback_route": "staffed_wayfinding_and_public_transport",
+      "expected_state": "fallback_required"
+    }
+  ],
+  "event_sequence": [
+    {
+      "event_id": "M09-E01",
+      "trigger": "network_or_digital_service_unavailable",
+      "observed": true,
+      "required_action": "freeze_new_reservations_and_publish_fallback"
+    },
+    {
+      "event_id": "M09-E02",
+      "trigger": "accessible_route_audit_is_not_dated",
+      "observed": true,
+      "required_action": "do_not_claim_route_performance_and_keep_human_audit"
+    },
+    {
+      "event_id": "M09-E03",
+      "trigger": "complaint_owner_is_unassigned",
+      "observed": true,
+      "required_action": "remain_in_P0_and_do_not_expand"
+    },
+    {
+      "event_id": "M09-E04",
+      "trigger": "human_and_public_transport_fallback_is_available",
+      "observed": true,
+      "required_action": "serve_without_digital_access_and_record_the_gap"
+    }
+  ],
+  "acceptance_checks": [
+    "all_four_requests_keep_identity_and_fallback_route",
+    "all_new_curb_reservations_are_frozen_after_outage",
+    "unknown_route_and_service_metrics_remain_null_or_unknown",
+    "no_request_is_auto_closed_without_human_review",
+    "P1_and_P2_do_not_advance_from_a_synthetic_tabletop",
+    "five_rollback_steps_are_ordered_and_reversible"
+  ],
+  "rollback_steps": [
+    "freeze_new_curb_reservations",
+    "switch_to_human_public_transport_telephone_paper_access",
+    "keep_accessible_and_emergency_routes_open_and_auditable",
+    "record_unresolved_complaints_and_unassigned_ownership_without_silent_closure",
+    "delete_only_temporary_fixture_state_and_open_a_new_review_before_restart"
+  ],
+  "result_boundary": {
+    "performance_results": null,
+    "local_baseline": "unknown",
+    "deployment_status": "not_authorized_not_run",
+    "decision": "do_not_advance",
+    "reason": "The fixture tests fallback and rollback semantics only; it does not prove service availability, accessibility performance, public acceptance, staffing or safety."
+  },
+  "boundary": "This is a conceptual, offline tabletop contract. It creates no reservation, contacts no operator, changes no route and does not authorize a pilot or construction."
+}

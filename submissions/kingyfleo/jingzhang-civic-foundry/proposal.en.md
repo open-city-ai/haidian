@@ -1,45 +1,62 @@
 ---
-title: "JING-ZHANG CIVIC FOUNDRY | A CULTURAL-PRODUCTION BELT FOR AI-TO-CIVIC-VALUE CONVERSION"
-title_zh: "京张万象工场｜文化生产驱动的AI城市价值转化带"
+title: "JING-ZHANG CIVIC FOUNDRY | AN AI CIVIC-PRODUCT CONVERSION LINE CO-AUTHORED BY THE CITY"
+title_zh: "京张万象工场｜城市共同作者的AI公共产品转化线"
 author_github: "kingyfleo"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "CC-BY-SA-4.0"
-summary: "Jing-Zhang is proposed as an AI-to-civic-value conversion infrastructure: cultural production, civic commissions, graded spatial access, and a machine-readable Jing-Zhang Conversion Accountability Chain turn technical outputs into deployable civic products and real use into durable public value."
+summary: "Jing-Zhang Civic Foundry turns an existing railway park into a legible, ecological and human-scale civic-product conversion line: one continuous public line, three differentiated grounds, nine transverse urban rooms and six reusable spatial patterns connect real civic commissions, cultural co-authorship, reversible prototypes and twelve-month adopt-or-exit evidence."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v4.0"
+iteration: "v5.0"
 ---
 
 # JING-ZHANG CIVIC FOUNDRY
 
-## A CULTURAL-PRODUCTION BELT FOR AI-TO-CIVIC-VALUE CONVERSION
+## AN AI CIVIC-PRODUCT CONVERSION LINE CO-AUTHORED BY THE CITY
 
-### 京张万象工场｜文化生产驱动的AI城市价值转化带
+### A CIVIC-PRODUCT CONVERSION LINE CO-AUTHORED BY THE CITY
 
-## The city is not an AI showcase. It is a co-author.
+## Why does a park that already works still need urban design?
 
-> **Beijing does not lack AI outputs. What remains scarce is the capacity to turn technical results into civic products and real use into durable value.**
+The premise must be corrected first. The Jing-Zhang Railway Heritage Park is not empty land awaiting an AI concept. By July 2026, the park's second phase had formed a roughly nine-kilometre continuous public corridor serving around seventy surrounding communities and approximately 450,000 residents. The existing park, everyday use and railway memory are therefore the starting public assets—not a backdrop to be overwritten by technology. [source:JZ-PARK-PHASE2-2026] [depth:existing_conditions_diagnosis]
 
-Jing-Zhang Civic Foundry does not treat the 11.4-square-kilometre Overall Design Area as a corridor for displaying technology. Nor does it use more models, screens, and festivals as proof of innovation. It makes the city itself a co-author of AI: residents and frontline institutions issue real commissions; cultural practitioners calibrate meaning and authenticity; researchers and creators co-produce; professional teams validate by risk level; the public tests and corrects low-risk outcomes at civic premieres; and operators use twelve months of evidence on reuse, service quality, and cost to decide whether to adopt, modify, scale down, or exit.
+> **The planning task is not to build another AI park inside a park. It is to convert an already continuous green corridor into a continuous civic-production interface without sacrificing ecological quiet, ordinary life or free public access.**
 
-The final product is not a single "AI landmark". It is three classes of outcomes that can continue to work in the city: **reusable cultural content packs, deployable public-experience modules, and sustainable urban services**. Culture is not packaging applied after technology is complete. It is the conversion infrastructure through which technology gains context, authorship, public understanding, market validation, and repeatable operation. [source:AUTHOR-CULTURE-METHOD] [metric:civic_product_type_count] [depth:overall_spatial_structure]
+Jing-Zhang Civic Foundry makes the city a co-author of AI. Residents and frontline institutions issue real commissions; cultural practitioners establish context, authenticity and rights; researchers, creators and service workers co-produce; professional teams validate by exposure and risk; the public encounters low-risk prototypes at eye level and can refuse, correct or bypass them; operators then use twelve months of evidence to adopt, modify, reduce or exit. [source:AUTHOR-CULTURE-METHOD] [metric:civic_product_type_count]
+
+Culture is not post-production packaging. It is the conversion infrastructure that connects technology with local knowledge, creators, distribution, public understanding, market validation and public reinvestment. The outcome is not an "AI landmark" but three maintainable civic products: **reusable cultural content packs, reversible public-experience modules and sustainable urban services**. The non-negotiable baseline remains a free, continuous, shaded and accessible park. [depth:overall_spatial_structure] [metric:public_safeguard_count]
 
 ![Jing-Zhang Civic Foundry: from AI output to civic value](assets/figures/site-overview.en.png)
 
-### One Core, One Loop, Three Areas, Three Products, Five Ledgers
+### From railway capacity to civic conversion capacity
 
-| Layer | Core content | Role |
+Historical fact and contemporary translation are kept separate. The railway once built public capacity by moving people and goods. This proposal does not manufacture a historical metaphor; it translates one enduring question—how public capability is constructed and kept in use—into a contemporary urban task: **turn infrastructure for transport into infrastructure that converts knowledge, technology and creativity into public life.** [source:JZ-HISTORY-BEIJING-CULTURE]
+
+### Five canonical books become five design vetoes
+
+The books are not decorative citations. Each supplies a veto against an apparently complete but spatially unsound proposal. A mechanism earns a place only after all five tests are passed. [source:PLANNING-BOOK-RANKING]
+
+| Planning classic | Calibration for Jing-Zhang | Design veto |
 | --- | --- | --- |
-| One Core | Cultural production drives AI-to-civic-value conversion | Culture mediates technical capability into meaning, trust, civic products, durable services, and public return |
-| One Loop | Civic Brief -> Cultural Calibration -> Human-AI Co-Production -> Controlled Validation -> Civic Premiere -> Sustained Adoption -> Public Reinvestment | Every stage has accountable actors, a spatial setting, evidence, and stop conditions |
-| Three Areas | Safe Validation Yard at Zhongzhiyuan; Co-Author Foundry at AI Origin; Civic Premiere Ground at Dazhongsi | Tasks are allocated by risk, maturity, and public exposure, not forced into geographic sequence |
-| Three Products | Reusable cultural content packs; deployable public-experience modules; sustainable urban services | Repeatable, maintainable outputs replace one-off exhibits |
-| Five Ledgers | Public Value; Cultural Authenticity; Rights and Provenance; Safety and Environment; Operations and Reinvestment | Public, cultural, rights, safety, and operating evidence remain jointly auditable |
+| Jane Jacobs, *The Death and Life of Great American Cities* | Mixed uses, different times, sidewalk guardianship and ordinary self-organisation sustain urban life | An AI project that displaces daily passage, small businesses, neighbourhood contact or active ground-floor "eyes" cannot occupy the public edge. [source:PLANNING-JACOBS] |
+| Kevin Lynch, *The Image of the City* | Paths, edges, districts, nodes and landmarks make the city mentally legible | If ordinary users cannot explain a space as "one line, three grounds and nine rooms", no further hierarchy is added. [source:PLANNING-LYNCH] |
+| Ian McHarg, *Design with Nature* | Water, soil, trees, heat, sound and ecological process are read before suitability is assigned | No fixed technology is placed without an ecological base map and field survey; quiet ecological intervals cannot be continuously activated. [source:PLANNING-MCHARG] |
+| Jan Gehl, *Cities for People* | Life, then space, then buildings; the city is experienced at walking speed and eye level | Every prototype must first draw the five-minute walk, pause, seat, shade and staffed service before its architectural image or screens. [source:PLANNING-GEHL] |
+| Christopher Alexander et al., *A Pattern Language* | Good places grow through linked, adaptable patterns rather than one-shot megastructures | Only components that can be expressed as a reusable pattern, tested incrementally and corrected by different communities may be built. [source:PLANNING-ALEXANDER] |
 
-The production chain is **a loop, not a north-to-south line**. Civic briefs are distributed across the corridor. Cultural calibration and human-AI co-production are concentrated at AI Origin. High-risk prototypes move to controlled validation at Zhongzhiyuan. Mature, low-risk outcomes premiere at Dazhongsi. Twelve months of use generate operating evidence and distributable surplus, which feed the next round of civic briefs. Spatial order and working order are deliberately different, avoiding false causality created only for graphic neatness. [metric:workflow_stage_count] [metric:flagship_area_count]
+### One Line, Three Grounds, Nine Rooms—activity and quiet in rhythm
+
+| Spatial layer | Design content | How people perceive it | Planning role |
+| --- | --- | --- | --- |
+| One Line | The existing nine-kilometre park plus a civic-product conversion path | Always walkable, pauseable and legible; never cut off by events | Lynch's path—not a newly invented axis |
+| Three Grounds | Safe Validation Ground at Zhongzhiyuan; Co-Production Ground at AI Origin; Civic Premiere Ground at Dazhongsi | Three distinct atmospheres, thresholds and levels of public exposure | Three legible districts and urban nodes |
+| Nine Rooms | Nine east-west interfaces composed as street–porch–court–workshop | A visible ground floor entered on foot from campuses, parks, neighbourhoods and stations | Turns the railway edge into transverse encounter nodes |
+| Quiet–Active Rhythm | Continuous shade, quiet bypasses and ecological buffers between active production nodes | The park remains complete without using AI or consuming anything | Ecological process and daily life precede technology deployment |
+
+One operating contract is deliberately memorable to both government and the public: **one real civic commission, one visible public prototype, one year of adopt-or-exit evidence.** Commissions are distributed along the corridor; co-production concentrates at AI Origin; higher-risk prototypes move to controlled validation at Zhongzhiyuan; mature low-risk products premiere at Dazhongsi; twelve months of use determine adoption, modification or exit. Spatial order and working order are not drawn as a false assembly line. [metric:workflow_stage_count] [metric:flagship_area_count]
 
 ## Executive Decision Brief: Jing-Zhang Should Compete for Conversion Capacity
 
@@ -57,7 +74,7 @@ Four concept decisions are proposed for professional consideration: confirm AI-t
 
 ### Seven-Dimension Evidence Index
 
-| Review dimension | Direct evidence in v4.0 |
+| Review dimension | Direct evidence in v5.0 |
 | --- | --- |
 | Brief alignment | Three scope levels, three positionings, five functions, Three Areas and Two Wings, six Agent tasks, and differentiated key-area design |
 | Originality | Civic Commission System, Jing-Zhang Conversion Accountability Chain, Three Conversions, Five-Ledger Review, spatial access code, and public reinvestment |
@@ -72,6 +89,10 @@ The complete evidence index is `visual/assets/review-evidence-index.json`; it or
 ## Design Basis and Source Inventory
 
 The formal basis comprises announcements by relevant Beijing authorities, the Agent Taskbook, and the repository site package. Facts about Jing-Zhang history and the railway heritage park rely only on public information issued by Beijing cultural-heritage and landscape authorities. Seven international cases are used only to extract mechanisms; their density, governance, finance, market, and ownership conditions are not projected onto Beijing. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE]
+
+Public information released by the Beijing Municipal Government in July 2026 states that phase two of the Jing-Zhang Railway Heritage Park had formed a roughly nine-kilometre green corridor connecting around seventy communities and serving approximately 450,000 residents. This existing public life is the design baseline. Any new use must prove that it improves transverse connection, daily comfort or civic-product conversion capacity rather than reducing the park's free, continuous and quiet qualities in the name of innovation. [source:JZ-PARK-PHASE2-2026]
+
+Jacobs, Lynch, McHarg, Gehl and Alexander are used only to establish design methods and vetoes, not as site facts, statutory standards or engineering evidence. The five books were selected from recognised planning reading lists and reordered for this project's five weaknesses—daily life, urban image, ecological suitability, human scale and incremental patterns. No single universal ranking is claimed. [source:PLANNING-BOOK-RANKING]
 
 Haidian's 2026 cultural-development policy supports AI, VR, and digital twins in cultural creation, cultural-tourism settings, and cultural products, alongside competition-result incubation, scene opening, and investment matching. Its technology-transfer policy further emphasises real business needs, scene lists, and full-cycle validation. Beijing's AI-plus-audiovisual policy frames a closed loop from technology research to result conversion and scene application. These policies establish directional relevance for linking technology, culture, scenes, and conversion; they do not authorise, fund, procure, or endorse this proposal. [source:HAIDIAN-CULTURE-TECH-2026] [source:HAIDIAN-TECH-TRANSFER-2026] [source:BEIJING-AI-AUDIOVISUAL-2025]
 
@@ -95,7 +116,7 @@ Structured reading of the public peer catalogue at the time of review is used on
 | Safety validation and governance protocol | Risk grading, explainability, exit | Does not duplicate a stand-alone test field | Connects validation to cultural meaning, civic premiere, and twelve-month adoption |
 | Heritage, tourism, and memory narrative | Local identity, display, visitor flow | Does not reduce culture to exhibition content | Makes authenticity, creator rights, and content production part of the workflow |
 | Vertical industry and ecosystem loop | Concrete and operable single-system chain | Does not compete for depth in one vertical | Cultural production becomes an adoption interface across urban systems |
-| Civic Foundry | How technology becomes civic products, real use, and durable value | Does not rely on one landmark or one opening event | Integrates one core, one loop, three areas, three products, and five ledgers |
+| Civic Foundry | How technology becomes civic products, real use, and durable value | Does not rely on one landmark or one opening event | One Line, Three Grounds and Nine Rooms host commission–prototype–one-year adopt/exit evidence |
 
 Three strategic judgements guide the proposal. First, the next phase of global AI-city competition concerns **conversion efficiency from technology to society**, not model count. Second, culture is civic-value conversion infrastructure rather than decorative content: it determines whether technology is understandable, narratives are authentic, creators are recognised, experiences become use, and use supports long-term operation. Third, urban design is not only spatial form; it must synchronise **four clocks that cannot be collapsed into one**. [metric:four_clock_count]
 
@@ -150,7 +171,7 @@ The Foundry creates a seven-stage civic commission loop: **Civic Brief -> Cultur
 
 ### 2. Jing-Zhang Civic Conversion Accountability Chain: one chain from technical result to durable civic value
 
-Version 4.0 turns the seven-stage loop into the **Jing-Zhang Civic Conversion Accountability Chain 1.0**. Each project maintains one evidence-bound chain from commission and cultural calibration through controlled trial and public premiere to adoption, renewal, or exit. It is not a government permit, product certification, procurement endorsement, or executed legal contract. It binds who commissioned the work, who benefits, where it may operate, who is accountable, how it is funded and maintained, and how it stops in one evidence object. [data:visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json] [metric:conversion_accountability_chain_schema_count]
+The seven-stage loop is formalised as the **Jing-Zhang Civic Conversion Accountability Chain 1.0**. Each project maintains one evidence-bound chain from commission and cultural calibration through controlled trial and public premiere to adoption, renewal, or exit. It is not a government permit, product certification, procurement endorsement, or executed legal contract. It binds who commissioned the work, who benefits, where it may operate, who is accountable, how it is funded and maintained, and how it stops in one evidence object. [data:visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json] [metric:conversion_accountability_chain_schema_count]
 
 **One project, one chain; one gate, one accountable role; one stage, one evidence set; one failure, one exit route.** This is both an executive mnemonic and a shared delivery checklist for planning, finance, culture, technology, and operations teams.
 
@@ -163,6 +184,26 @@ Version 4.0 turns the seven-stage loop into the **Jing-Zhang Civic Conversion Ac
 | G5 Adopt, Renew, or Exit | Do twelve months of evidence support continued use? | Public, operator/procurer, independent evaluator, and audit | Adopt, renew for a term, reduce, roll back, or exit |
 
 The accountability chain maintains the Five Ledgers, an L1-L3 spatial licence, capex, annual opex, exit reserve, and stop conditions. Status changes are evidence-bound; a company cannot rename a successful display as civic adoption. The synthetic example remains `concept_only`, with zero months observed and no deployment, funding, procurement, or approval. [data:visual/assets/example-jingzhang-civic-conversion-accountability-chain.json] [metric:adoption_gate_count]
+
+```json
+{
+  "chain_record_id": "SYNTHETIC-JZCCAC-001",
+  "proposal_status": "concept_only",
+  "spatial_licence": {
+    "exposure_level": "L2_CO_CREATION",
+    "time_limited": true,
+    "reversible": true,
+    "public_baseline_protected": true,
+    "official_geometry_confirmed": false
+  },
+  "delivery": {
+    "capex_status": "pending",
+    "annual_opex_status": "pending",
+    "exit_reserve_status": "pending"
+  },
+  "adoption_evidence": {"months_observed": 0}
+}
+```
 
 ### 3. Cultural-industry capability becomes three civic products
 
@@ -196,6 +237,17 @@ This proposal does not describe cultural advantage as running events or communic
 ## Overall Design Area: Urban Renewal and RDP-Depth Urban Design
 
 This tier uses overall urban design to coordinate spatial structure, public realm, functional interweaving, character, and delivery sequence, while distinguishing every conceptual control from later statutory planning, specialist design, and field verification. [standard:MOHURD-URBAN-DESIGN-MEASURES]
+
+### 0. Existing conditions precede design: four diagnoses to complete
+
+| Existing-condition judgement | Known fact or current gap | Direct constraint on design | Next verification |
+| --- | --- | --- | --- |
+| The park is already continuous and used | A roughly nine-kilometre corridor, around seventy communities and approximately 450,000 residents form a real-life baseline | Do not invent a new axis or let events, fences or paid interfaces cut existing paths | Weekday/weekend, morning/noon/evening and seasonal public-life observation |
+| The railway is a longitudinal public asset and a transverse interface | Stations, roads, neighbourhoods and campuses vary greatly along the line | Nine Urban Rooms are candidate stitches, not evenly distributed promises | Right-of-way, crossings, level change, heritage, trees, night safety and accessibility |
+| Technology and cultural supply are rich; the adoption chain is thin | Research, content and policy direction are known; real commissioners, procurement and maintenance owners remain unknown | Build commission–prototype–adopt/exit responsibility before a display landmark | Interview frontline institutions, residents, merchants, operators and procurement/maintenance functions |
+| Ecological and statutory base maps remain incomplete | Precise official polygons, trees, water–soil–heat–sound, RDP controls and municipal capacity are missing | Keep fixed installations, intensity and quantities unknown; begin with suitability overlays | Official boundaries; tree/soil, stormwater, thermal, acoustic and infrastructure surveys |
+
+Diagnosis is not a decorative "problem map". It determines where to **keep quiet, repair ordinary life, permit testing or refuse construction**. Until field evidence is complete, drawings remain testable spatial hypotheses rather than precise claims about existing conditions. [depth:existing_conditions_diagnosis]
 
 ### 1. Land use represents production relationships, not a colour ratio
 
@@ -231,6 +283,21 @@ The planning innovation is not another category of "AI land". It converts AI's r
 
 Zhongzhiyuan defaults to L1 controlled validation, AI Origin to L2 co-production, and Dazhongsi admits only L3 low-risk premieres that have passed the first four gates. A project cannot lower its safeguards merely by moving location. Statutory controls, dimensions, fire, heritage, transport, capacity, and municipal conditions remain subject to official inputs and professional design. [metric:spatial_layer_count] [assumption:A-CONTROLS-001]
 
+### 4. Six civic-production spatial patterns: start small, make it real, then repeat
+
+The six patterns convert abstract mechanisms into minimum spatial units that can be drawn in section, prototyped and corrected by communities. They are neither a standard-component catalogue nor uniform corridor furniture; each must be calibrated to existing users, trees, heritage and maintenance capacity. [source:PLANNING-ALEXANDER] [metric:spatial_pattern_count]
+
+| Pattern | Problem addressed | Spatial prototype | Protection of ordinary life | Evidence required to proceed |
+| --- | --- | --- | --- | --- |
+| P1 Civic Commission Porch | Platforms and experts rewrite local needs | Covered street porch, staffed window and erasable brief table | Ask, check and withdraw without an app | Real commissioner, accountable owner and closure definition |
+| P2 Co-Author Workshop Edge | The public can watch but cannot alter a prototype | Openable workshop edge, long table, material library and quiet living room | Free seating and passage remain open during projects | Co-authors, cultural sources, licences and remuneration recorded |
+| P3 Reversible Prototype Bay | A temporary pilot hardens into permanent infrastructure | A serviced bay set back from the main path with independent power, containment and restoration layer | Main path and tree shade remain continuous; ordinary park returns after removal | Time limit, risk level, human takeover and restoration owner declared |
+| P4 Quiet No-Scan Bypass | Park users are forced into tests or consumption | Parallel shaded path with seats and physical wayfinding | No scan, fee or push notification; children and older people can use it independently | All-time continuity and field-tested accessibility |
+| P5 Civic Premiere Steps | Launch events generate traffic but little understanding or correction | Small steps facing an everyday street, staffed interpretation desk, status and exit sign | Ordinary seating and meeting place outside event hours | Users can explain purpose, status, responsible person and refusal route |
+| P6 Maintenance and Exit Bench | Nobody maintains a pilot and failure disappears | Tool store, fault board, version archive, recovery and site-restoration interface | Maintenance never blocks passage; basic service survives faults | Annual opex, complaint clock, exit reserve and restoration record visible |
+
+Combination follows one order: **protect P4 quiet bypasses and everyday ground floors first; add P1/P2 only for real commissions; introduce P3/P5 only after the accountability chain passes; build P6 from day one, not at the end.** The corridor can therefore begin with one crossing, one porch and one courtyard rather than depend on a single large capital project.
+
 ## Land Use, Building Capacity, and Demolish-Renovate-Retain Strategy
 
 ### Existing frame, new insert, reversible layer
@@ -257,7 +324,11 @@ Six safeguards must coexist before a public premiere: basic service is free; a p
 
 The Blue-Green Space is not an event backdrop. The union of the continuous Civic Production Floor and nine climate gardens is approximately 126.0 hectares, or 11.0% of the provisional area. [metric:green_space_area_sqm] [metric:green_ratio] The union of twelve scenario public spaces is approximately 8.8 hectares, or 0.8%. [metric:public_space_area_sqm] [metric:public_space_ratio] Gardens provide infiltration, shade, acoustic buffering, waiting space, and ecological connection. No conclusion on transplantation, removal, or engineering capacity is made before surveys of existing trees, soil, ponding, and heat conditions. [data:geometry/green_space.geojson#GREEN-CIVIC-FLOOR]
 
-The public baseline is never sold with events: continuous access, an accessible route, information on water and toilets, free seating, quiet rest, basic historical information, staffed help, and emergency services take priority. Events use three deployment states - daily, making, and premiere. Every premiere requires advance review of temporary works and evacuation, time and noise limits, a retained bypass, and a post-event record of energy, waste, complaints, and restoration. [depth:blue_green_public_space]
+Six base maps are overlaid before deciding what belongs where: existing water and ponding; soil and root zones; trees and canopy; thermal comfort; noise and quiet; habitat and continuity. Ecologically sensitive or heavily used areas admit only conservation and low intervention. Reversible prototypes are considered only on already hardened, accessible and maintainable interfaces. When survey data are absent, the default is less construction, reversibility and distance from root zones—not an assumption that blank space is buildable. [source:PLANNING-MCHARG] [depth:blue_green_public_space]
+
+The corridor follows a quiet–active–quiet rhythm rather than continuous programming. Three Grounds and Nine Rooms are limited active points; quiet ecological intervals, P4 no-scan bypasses and continuous shade remain between them. The public baseline is never sold with events: continuous access, an accessible route, information on water and toilets, free seating, quiet rest, basic historical information, staffed help, and emergency services take priority. Events use three deployment states—daily, making and premiere. Every premiere requires advance review of temporary works and evacuation, time and noise limits, a retained bypass, and a post-event record of energy, waste, complaints and restoration.
+
+A **2×3 public-life observation window** establishes the human-scale baseline: weekdays and weekends are each observed in morning, noon and evening for walking, stopping, sitting, caring, exercise, conversation, detours and conflict, with repeated checks in heat, cold, rain, snow and event conditions. No footfall or satisfaction result is prefilled. Observation first determines seating, shade, ground-floor opening, lighting and staffed help; buildings and digital layers come later. [source:PLANNING-GEHL] [metric:public_life_observation_window_count]
 
 ![Four-time layers, Civic Production Floor, and blue-green walking and cycling network](assets/figures/mobility-bluegreen.en.png)
 
@@ -269,6 +340,8 @@ The public baseline is never sold with events: continuous access, an accessible 
 
 The proposition is low public exposure and a high technical threshold. From outside to inside, four layers are arranged: a public observation gallery and Failure Archive; a green safety buffer; controlled test yards; and R&D with a human-takeover core. The public can see project status and failure knowledge without entering hazardous operations. Enterprises cannot use an "open experience" format to bypass professional validation. [data:geometry/key_areas.geojson#PROV-KEY-001]
 
+The five-minute human sequence is **quiet–test–observe–exit**. A P4 Quiet No-Scan Bypass first provides complete movement without joining a test; a legible threshold then enters controlled testing; a safe gallery explains status and failure; discomfort or alarm leads by the shortest route back to the ordinary park. At eye level, only project status, risk, the on-site responsible person and stop control are displayed—never a giant screen standing in for futurity.
+
 Building prototypes include adaptable high-bay workshops, an Urban Renewal Simulation Yard, a Physical AI Test Yard, an AI Safety and Governance Lab, a Standards Exchange Yard, and research bases. Vehicles and equipment enter from parallel logistics routes while pedestrians enter observation areas from Urban Rooms; the flows do not cross in the core test zone. SC-07 renewal simulation, SC-08 public-AI red teaming, and SC-09 graded Physical AI validation are mandatory validation scenarios. [metric:ai_validation_scenario_count]
 
 The gate sequence is provenance registration -> closed simulation -> professional safety and ethics review -> a staffed public trial with limited time and participants. Stop triggers include failed human takeover, movement beyond the approved scope, excessive collection of sensitive data, unexplained disparate impact, equipment risk, or unresolved complaints. Failure is recorded rather than hidden by a success-rate headline. [depth:three_key_area_detailed_design]
@@ -277,6 +350,8 @@ The gate sequence is provenance registration -> closed simulation -> professiona
 
 The proposition is multi-party co-production at a medium threshold. Existing blocks and buildings are retained and adapted first. A walkable family of courtyards connects the Open Civic Commission Hall, Co-Author Workshops, Cultural Provenance Lab, near-campus learning, creator residencies, and staffed community services. The public long table is not event furniture; it is a permanent institutional setting for problem definition, rights negotiation, prototype display, and version review. [data:geometry/key_areas.geojson#PROV-KEY-002]
 
+The five-minute human sequence is **street–porch–court–workshop**. A street with merchants and everyday services enters a covered commission porch; a free shared court reveals the project and its co-authors; only then does a person voluntarily enter the open workshop. Seats, shade, physical wayfinding and staffed help occur at every step. People who never enter the workshop still pass, rest and receive essential service.
+
 Ground floors provide three visible interfaces: open workshops where work is being made, staffed services where help is available, and public living rooms where no purchase is required. Housing, childcare, exercise, quiet study, and care are ordinary-life baselines that cannot be displaced by creative events. Near-campus collaboration is framed as open briefs and shared courses; no university partnership is assumed. [depth:three_key_area_detailed_design] [source:AGENT-TASKBOOK]
 
 Every project completes cultural evidence, co-authorship, material licences, data minimisation, and an accessibility script here. A project may continue research while a dispute remains unresolved, but it cannot enter Civic Premiere. Creator pay, resident participation, and professional review are recorded separately so that participation is not treated as free labour.
@@ -284,6 +359,8 @@ Every project completes cultural evidence, co-authorship, material licences, dat
 ### C. Dazhongsi Civic Premiere Ground
 
 The proposition is high public exposure with low-risk premiere. The programme combines a transit forecourt, Civic Premiere Hall, AI-Native culture and micro-enterprise market, content workshops, Cultural Evidence Room, and quiet bypass. On arrival, the public first sees what problem a project addresses, its test status, who is responsible, and how it exits; the technical effect comes second. [data:geometry/key_areas.geojson#PROV-KEY-003]
+
+The five-minute human sequence is **station–street–ground–hall**. Transit arrival first enters a legible walking street and neighbourhood ground floor, then Civic Premiere Steps that remain useful every day, and only finally the indoor hall. Premiere information is read at eye level and ordinary walking speed. The P4 quiet bypass avoids queues, commerce and scanning so commuters, older people, carers with children and nearby residents are never captured by an event.
 
 This is not a convention centre. Only low-risk projects that have passed prior review may premiere. Commercial content and public information use separate interfaces. Merchants receive reusable content tools and training instead of surrendering data to a platform. Night-time operation is constrained by sound, waste, transport, lighting, and residents' rest. Transit integration, four-quadrant junctions, and mixed green-space use require official transport and existing-condition information before detailed design. No engineering commitment is made on provisional drawings. [depth:three_key_area_detailed_design]
 
@@ -343,7 +420,7 @@ Public finance supports heritage conservation, accessibility, infrastructure, an
 
 ### 4. Fiscal Firewall: five kinds of money carry different responsibilities
 
-City leaders need to prevent a familiar failure: construction is funded, second-year operation is not, and no one pays for removal. Version 4.0 does not invent investment amounts. It specifies the permitted role of each funding category; before G3, every project identifies capex, annual opex, and an exit reserve. [data:visual/assets/delivery-program.json] [metric:funding_channel_count]
+City leaders need to prevent a familiar failure: construction is funded, second-year operation is not, and no one pays for removal. This proposal does not invent investment amounts. It specifies the permitted role of each funding category; before G3, every project identifies capex, annual opex, and an exit reserve. [data:visual/assets/delivery-program.json] [metric:funding_channel_count]
 
 | Funding category | May support | Must not support |
 | --- | --- | --- |
@@ -441,6 +518,10 @@ No unsupported total investment or revenue is promised. Each project carries a w
 ### 1. Spatial and task indicators
 
 The provisional Overall Design Area recalculates to about 11.41 square kilometres. Conceptual courtyard footprints total about 9.6 hectares, or 0.8% of the provisional area. [metric:building_footprint_ratio] Nine Urban Rooms and twelve Civic Commissions are counted from layers or tables. [metric:urban_room_count] [metric:scenario_count] Three controlled validation scenarios, eight personas, four contribution landmarks, and twelve renewal projects remain independently auditable in the structured layer. [metric:ai_validation_scenario_count] [metric:persona_count] [metric:pilgrimage_landmark_count]
+
+Background research checks seven public cases; the provisional fabric contains thirteen zones; `making_line_length_m` remains a compatibility alias for the Civic Production Floor centreline so older review tools retain the evidence. [metric:global_case_count] [metric:land_use_zone_count] [metric:making_line_length_m]
+
+Version 5 retains one machine-readable Conversion Accountability Chain and six delivery packages as auditable structures; neither count implies deployment, budget or government authority. [metric:conversion_accountability_chain_schema_count] [metric:delivery_package_count]
 
 Machine precision supports topology and recalculation; it does not imply official survey precision. Every known metric in `metrics.json` records value, unit, source files, formula, confidence, and assumptions. FAR and maximum Building Height remain unknown. [depth:metrics_recalculation]
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>京张·智环·城市智能体迭代环 · 提交可视化</title>
+<title>京张·转辙·城市智能体验证带 · 提交可视化</title>
 <style>
 :root{--paper:#F5F2EC;--ink:#2B2B2B;--blue:#1F4E79;--red:#B4402B;--green:#2E8B57;--yellow:#D4A24C;--grey:#8A8A8A;}
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -36,7 +36,7 @@ td,th{border:1px solid var(--grey);padding:6px 8px;text-align:left;}th{backgroun
 @media(max-width:760px){.grid2,.grid3,.kpis{grid-template-columns:1fr;}}
 </style></head><body><div class="wrap">
 <header>
-<h1>京张·智环·城市智能体迭代环</h1>
+<h1>京张·转辙·城市智能体验证带</h1>
 <div class="tag">资料环 · 推演环 · 反馈环 · 复核环 — 四环协作的 AI 城市治理创新带</div>
 <div class="badges">
 <span class="badge prov">provisional boundary · 面积方向性参考</span>
@@ -51,6 +51,7 @@ td,th{border:1px solid var(--grey);padding:6px 8px;text-align:left;}th{backgroun
 <div class="kpi green"><div class="n">公园绿地比例</div><div class="v"><span data-metric="green_ratio" data-value="0.311944">31.19%</span></div><div class="note">geometry/green_space.geojson</div></div>
 <div class="kpi yellow"><div class="n">公共空间比例</div><div class="v"><span data-metric="public_space_ratio" data-value="0.113433">11.34%</span></div><div class="note">geometry/public_space.geojson</div></div>
 </div>
+<div style="background:#fff;border:1px solid var(--grey);border-radius:10px;padding:14px;margin-bottom:18px;font-size:13px"><b style="color:var(--blue)">真实数据锚点</b>（公开源，非 provisional 复算）：京张遗址公园二期 <b>2026-08-06 开放</b>，全线约 <b>9km/53ha</b>，服务近 <b>70 社区约 45 万居民</b>；海淀 AI 企业 <b>2000+</b>、核心产值 <b>3500 亿</b>（约全国 30%）、人才 <b>9 万</b>、占全区 GDP <b>40%</b>；平台劳动者（美团 2024 月均有收入骑手 <b>336.3 万</b>）。</div>
 
 <section><h2>四环协作</h2>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center">
@@ -141,6 +142,7 @@ td,th{border:1px solid var(--grey);padding:6px 8px;text-align:left;}th{backgroun
 <div class="scenario"><b>⑩ 人才画像空间匹配</b><br>资料环 · 众智园</div>
 <div class="scenario"><b>⑪ 众创社区议事治理</b><br>反馈环 · 大钟寺</div>
 <div class="scenario"><b>⑫ 数字包容三通道</b><br>反馈环 · 三重点区 · <span class="pill g">包容</span></div>
+<div class="scenario"><b>⑬ 无障碍连贯率监测</b><br>反馈环 · 全域 · <span class="pill g">无障碍</span></div>
 <div class="scenario"><b>用户画像 ×7</b><br>创业者/学者/原住民/青年/治理者/通勤者/<b style="color:#B4402B">服务劳动者</b></div>
 </div>
 <h3>更新项目</h3>
@@ -193,6 +195,34 @@ td,th{border:1px solid var(--grey);padding:6px 8px;text-align:left;}th{backgroun
 </div>
 <p style="font-size:12px;color:#8A8A8A;margin-top:10px">治理环指标把"四环协作"变成机器可读证据；转辙器母题贯穿 Logo/地标/导视——转辙即路由决策即 agent 编排。另含 8 项 per-code 用地面积(land_use_area_xxxx_sqm)。</p>
 </section>
+<section><h2>门闸与收据制品</h2>
+<div class="grid2">
+<div>
+<h3>G0-G6 七道门闸状态机</h3>
+<table>
+<tr><th>门闸</th><th>环</th><th>未通过处理</th></tr>
+<tr><td>G0 资料就绪</td><td>资料环</td><td>回资料环补料</td></tr>
+<tr><td>G1 推演生成</td><td>推演环</td><td>重设参数重推</td></tr>
+<tr><td>G2 反馈接入</td><td>反馈环</td><td>关停+线下征集</td></tr>
+<tr><td>G3 人工复核(申请)</td><td>复核环</td><td>红牌暂停</td></tr>
+<tr><td>G4 受控测试(验证)</td><td>验证</td><td>退回 G1</td></tr>
+<tr><td>G5 公开试点(开放)</td><td>开放</td><td>收缩或退出</td></tr>
+<tr><td>G6 退役迭代(退役)</td><td>迭代</td><td>公众触发复议</td></tr>
+</table>
+<p style="font-size:12px;color:#8A8A8A">验线四步:申请(G3)→验证(G4)→开放(G5)→退役(G6);门闸可回滚,环会自转。</p>
+</div>
+<div>
+<h3>Civic Agent Receipt 收据</h3>
+<div class="card"><div class="t">每次干预的机器可读凭证</div><div class="d">
+<b>必填 8 字段</b>:receipt_id / scenario_id / gate / disposition / human_responsibility / evidence_refs / appeal / run_status<br><br>
+<b>处置 disposition</b>:pending / pass / fail / rollback / exit<br>
+<b>运行状态</b>:sandbox_only / not_run / controlled_test / public_pilot / retired<br>
+<b>诚实</b>:example 标 sandbox_only + performance_results=null,不冒充已运行<br>
+<b>可证伪三问</b>:能否证伪?退出后空间如何处置?公众能否独立触发暂停?
+</div></div>
+<p style="font-size:12px;color:#8A8A8A">制品:report/civic-agent-receipt.schema.json · report/gate-state-machine.json · report/example-receipt.json</p>
+</div>
+</div></section>
 <section><h2>来源</h2>
 <table>
 <tr><th>id</th><th>资料</th><th>状态</th></tr>
