@@ -1,0 +1,406 @@
+<!doctype html>
+<!--
+  PROTOTYPE — THROWAWAY. 京张征集 / 大钟寺核心主张概念板 (wayfinder ticket #6).
+  本地文件,不入 main、不入公开 fork。用浏览器直接打开;底部切换 3 个概念,←/→ 键也可切。
+  关闭后入选的概念折进主张,其余丢弃。
+-->
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>核心主张概念板 · PROTOTYPE</title>
+<style>
+  :root{
+    --bg:#0e1116; --bg2:#151a22; --ink:#e8edf2; --dim:#9aa7b5; --faint:#5d6976;
+    --line:#27303c; --accent:#ffd166; --good:#7ee0a2; --warn:#ff9d6e; --bad:#ff7a7a;
+    --card:#171d26;
+    font-synthesis:none;
+  }
+  @media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+    --bg:#f6f7f9; --bg2:#eceff3; --ink:#16202b; --dim:#4a5867; --faint:#8a98a8;
+    --line:#d3dae2; --card:#ffffff;
+  }}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:15px/1.6 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 24px 140px}
+  .tag{display:inline-block;font-size:11px;letter-spacing:.08em;font-weight:700;
+    background:var(--accent);color:#1a1300;padding:2px 8px;border-radius:3px;text-transform:uppercase}
+  h1{font-size:22px;margin:14px 0 4px;font-weight:700}
+  .sub{color:var(--dim);font-size:13px;margin:0 0 22px}
+  .meta{background:var(--bg2);border:1px solid var(--line);border-radius:8px;padding:12px 14px;
+    font-size:12.5px;color:var(--dim);margin-bottom:24px}
+  .meta b{color:var(--ink)}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  .card h3{margin:0 0 10px;font-size:14px;color:var(--accent);letter-spacing:.02em}
+  .card.full{grid-column:1/-1}
+  .card p{margin:0 0 8px}.card p:last-child{margin:0}
+  .vec{color:var(--faint);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;display:block}
+  .quote{font-size:17px;line-height:1.5;color:var(--ink);font-weight:500;
+    border-left:3px solid var(--accent);padding:4px 0 4px 14px;margin:0}
+  .names{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .pill{background:var(--bg2);border:1px solid var(--line);border-radius:20px;padding:4px 12px;font-size:13px}
+  .pill .en{color:var(--dim);font-size:11.5px;margin-left:6px}
+  ul{margin:4px 0 0;padding-left:18px}li{margin:4px 0}
+  .risk{border-color:#5a2e2e}@media(prefers-color-scheme:light){:root:not([data-theme="dark"]) .risk{border-color:#e8c9c9}}
+  .risk li.safe{color:var(--good)} .risk li.con{color:var(--warn)}
+  .gov{background:linear-gradient(180deg,var(--bg2),var(--card));border-color:var(--accent)}
+  .sketch{background:var(--bg2);border-radius:8px;padding:10px;margin-top:4px}
+  svg{display:block;width:100%;height:auto}
+  .picktable{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px}
+  .picktable th,.picktable td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .picktable th{background:var(--bg2);color:var(--dim);font-weight:600;font-size:12px}
+  .picktable td .h{color:var(--accent);font-weight:600}
+  /* floating switcher */
+  .switcher{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);
+    background:var(--bg2);border:1px solid var(--accent);border-radius:40px;
+    display:flex;align-items:center;gap:4px;padding:6px;box-shadow:0 8px 30px rgba(0,0,0,.45);z-index:50}
+  .switcher button{background:transparent;border:0;color:var(--ink);width:34px;height:34px;border-radius:50%;
+    cursor:pointer;font-size:16px;font-weight:700}
+  .switcher button:hover{background:var(--bg)}
+  .switcher .lbl{padding:0 14px;font-size:13px;white-space:nowrap}
+  .switcher .lbl b{color:var(--accent)}
+  .variant{display:none}.variant.on{display:block}
+  .kbd{font:11px ui-monospace,Menlo,monospace;background:var(--bg);border:1px solid var(--line);
+    border-radius:4px;padding:1px 6px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">PROTOTYPE · 扔掉物</span>
+  <h1>核心主张概念板 / Core Thesis Board</h1>
+  <p class="sub">京张征集 · 大钟寺核心区 + 铁路脊 · 三赛道统一主张(赛道3锚 + 7 + 6风味) · wayfinder #6</p>
+
+  <div class="meta">
+    <b>问题:</b> 一句话主张 + 命名系 + 形态草图,把青年第三空间(3)·AI公共服务(7)·智能体治理(6风味)串起来,贴着大钟寺72ha + 铁路脊缝长。
+    三个概念<b>结构不同</b>(空间缝合 / 驿站网络 / 时间预算),不是文案改写。<b>你挑一个或合成</b>;选中后折进主张,其余丢弃。
+    底部切换 · <span class="kbd">←</span> <span class="kbd">→</span> 键盘也可切。
+  </div>
+
+  <!-- ============ VARIANT A ============ -->
+  <section class="variant" data-v="A">
+    <div class="card full" style="margin-bottom:18px">
+      <span class="vec">Concept A · 空间隐喻</span>
+      <p class="quote">把京张铁路切开城市的「缝」,缝合成青年第三空间的「脊」;AI公共服务驿站是缝上的「活扣」——可审计、可回退的城市缝合。</p>
+      <div class="names">
+        <span class="pill">缝合带 <span class="en">The Urban Seam</span></span>
+        <span class="pill">城市接缝计划 <span class="en">Seam-Stitching Spine</span></span>
+        <span class="pill">缝·驿 <span class="en">Seam & Knot</span></span>
+        <span class="pill">治理原语:活扣协议 <span class="en">Knot Protocol</span></span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>① 核心隐喻 / 命名系</h3>
+        <p>京张铁路是<strong>横切海淀的城市接缝</strong>——历史上物理割裂南北。本概念把这层「缝」翻面:缝不是伤口,是缝合的针脚轨迹。<b>第三空间脊</b>=沿缝铺开的青年可负担空间;AI公共服务驿站=<b>缝上的活扣(Knot)</b>,既缝住两侧功能,又是治理契约的物理出口。命名贯穿「缝/缝合/活扣/针脚」一族词。</p>
+      </div>
+      <div class="card">
+        <h3>② 一句话主张</h3>
+        <p>「<b>缝合</b>」既是空间动作(脊缝再生+轻量插入,不拆建),也是治理姿态(人工复核把AI决策缝回公共责任)。一个动词同时定义形态与机制。</p>
+        <p style="color:var(--dim);font-size:13px">EN: <i>The rail seam that once cut the city becomes the spine that stitches youth back in; every AI service counter is a knot you can audit and unwind.</i></p>
+      </div>
+
+      <div class="card full">
+        <h3>③ 形态 / 场景草图(大钟寺 + 铁路脊缝)</h3>
+        <div class="sketch">
+          <svg viewBox="0 0 760 220">
+            <defs><pattern id="dotA" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#3a4757"/></pattern></defs>
+            <rect x="0" y="0" width="760" height="220" fill="url(#dotA)" opacity=".5"/>
+            <!-- north/south blocks -->
+            <rect x="0" y="0" width="760" height="70" fill="#1d2530" opacity=".7"/>
+            <rect x="0" y="150" width="760" height="70" fill="#1d2530" opacity=".7"/>
+            <text x="12" y="22" fill="#9aa7b5" font-size="11">北侧建成区(AI原点社区南缘)</text>
+            <text x="12" y="205" fill="#9aa7b5" font-size="11">南侧建成区(西直门外腹地)</text>
+            <!-- the seam -->
+            <line x1="0" y1="110" x2="760" y2="110" stroke="#ffd166" stroke-width="2" stroke-dasharray="2 6"/>
+            <text x="560" y="104" fill="#ffd166" font-size="11">京张铁路脊缝(脊)</text>
+            <!-- stitch cross-ties -->
+            <g stroke="#7ee0a2" stroke-width="2">
+              <line x1="80" y1="92" x2="80" y2="128"/><line x1="140" y1="92" x2="140" y2="128"/>
+              <line x1="200" y1="92" x2="200" y2="128"/><line x1="260" y1="92" x2="260" y2="128"/>
+              <line x1="540" y1="92" x2="540" y2="128"/><line x1="600" y1="92" x2="600" y2="128"/>
+              <line x1="660" y1="92" x2="660" y2="128"/>
+            </g>
+            <!-- 大钟寺 core knot field -->
+            <rect x="290" y="80" width="180" height="60" rx="8" fill="none" stroke="#ffd166" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text x="300" y="76" fill="#ffd166" font-size="11" font-weight="700">大钟寺核心区 72ha(活扣密集场)</text>
+            <g>
+              <circle cx="320" cy="110" r="9" fill="#ff9d6e"/><circle cx="320" cy="110" r="4" fill="#0e1116"/>
+              <circle cx="370" cy="110" r="9" fill="#ff9d6e"/><circle cx="370" cy="110" r="4" fill="#0e1116"/>
+              <circle cx="420" cy="110" r="9" fill="#ff9d6e"/><circle cx="420" cy="110" r="4" fill="#0e1116"/>
+              <circle cx="450" cy="110" r="7" fill="#7ee0a2"/>
+            </g>
+            <text x="300" y="158" fill="#9aa7b5" font-size="10">夜市 · 共学 · 微舞台(轻量插入,不拆建)</text>
+            <!-- node labels -->
+            <circle cx="80" cy="110" r="6" fill="#7ee0a2"/><text x="60" y="150" fill="#7ee0a2" font-size="10">北节点</text>
+            <circle cx="700" cy="110" r="6" fill="#7ee0a2"/><text x="675" y="150" fill="#7ee0a2" font-size="10">南节点</text>
+            <text x="12" y="130" fill="#7ee0a2" font-size="10">活扣=AI驿站(治理出口)</text>
+          </svg>
+        </div>
+        <p style="color:var(--dim);font-size:12.5px;margin-top:8px"><b>脊</b>=贯穿的铁路缝(连续)· <b>活扣</b>=等距AI驿站(离散,缝住南北)· 大钟寺核心区=活扣最密的「场」,内含夜市/共学/微舞台三档轻量插入;南北两节点为脊上卫星活扣。形态=「一条缝 + 一串扣」,治理粒度=单个扣。</p>
+      </div>
+
+      <div class="card">
+        <h3>④ 蓝海差异化</h3>
+        <ul>
+          <li><b>赢青年空白(赛道3):</b>赛道3原本空——把第三空间做成<b>脊的主语</b>,不是配角;空间动作=缝合而非盖楼,契合青年低成本。</li>
+          <li><b>赢赛道6硬茬:</b>赛道6强队把治理做成后端JSON契约;本概念把契约<b>空间化为可见的「活扣」</b>(人在柜台的复核=物理回退),公众看得见、用得上,治理从抽象协议变成公共家具。</li>
+          <li><b>三赛道咬合点:</b>「活扣」一枚词同时承载 青年空间(扣=逗留点)· AI服务(扣=柜台)· 治理(扣=可审计回退)。</li>
+        </ul>
+      </div>
+      <div class="card risk">
+        <h3>⑤ 证据风险(对照 #3)</h3>
+        <ul>
+          <li class="con">青年密度/夜间热力/可达性 → 只能写「概念建议」,不得量化。</li>
+          <li class="con">活扣间距/缝合效率 → 概念性,无数。</li>
+          <li class="safe">✓ 脊(缝)长度、大钟寺核心区面积、南北节点 → 从 provisional 几何重算,可安全量化。</li>
+          <li class="safe">✓ 活扣数量、人工复核触发枚举 → 自报机制值,可量化(非外部数据)。</li>
+        </ul>
+      </div>
+      <div class="card gov full">
+        <h3>治理原语 · 与 life-letter.schema 同构映射</h3>
+        <p style="font-size:13px;color:var(--dim)">「活扣协议」:每个活扣=<code>SCENARIO_NODE</code>(位置×服务×人工复核触发×非AI回退×退出条件)。缝=节点间的治理连续性约束。基准赛道6两份把治理做成机器可读契约——这里把同一契约长在<b>公共空间实体</b>上,即「治理即家具」。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT B ============ -->
+  <section class="variant" data-v="B">
+    <div class="card full" style="margin-bottom:18px">
+      <span class="vec">Concept B · 网络隐喻</span>
+      <p class="quote">京张的公共基因是「驿站」——把铁路变成一张青年可负担的第三空间驿站网,每站一个AI公共服务柜台,柜台即治理契约的物理出口。</p>
+      <div class="names">
+        <span class="pill">京张驿网 <span class="en">Station Commons</span></span>
+        <span class="pill">驿·城 <span class="en">Way-Station City</span></span>
+        <span class="pill">主驿+卫星驿 <span class="en">Hub & Satellite</span></span>
+        <span class="pill">治理原语:驿站协议 <span class="en">Station Protocol</span></span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>① 核心隐喻 / 命名系</h3>
+        <p>京张铁路的<strong>原始公共基础设施是「车站」</strong>。本概念把铁路DNA从「线/带/园」(叙事与公园是赛道2的地盘)收回为<b>「驿站网络」</b>——离散、点状、可复制的最小公共单元。每个驿站=青年第三空间+AI公共服务柜台+治理节点三合一。命名贯穿「驿/驿站/主驿/卫星驿/驿站协议」。</p>
+      </div>
+      <div class="card">
+        <h3>② 一句话主张</h3>
+        <p>「<b>驿站</b>」回答的是<em>如何以最小公共单元覆盖青年</em>——不靠一条连续大公园(贵、慢、占满铁路),而靠可复制的点状单元网。治理=每个驿站自描述契约。</p>
+        <p style="color:var(--dim);font-size:13px">EN: <i>Jingzhang's original public gene was the station; we turn the rail into a network of affordable youth way-stations, each carrying an AI service counter that is itself a governance node.</i></p>
+      </div>
+
+      <div class="card full">
+        <h3>③ 形态 / 场景草图(大钟寺 + 铁路脊缝)</h3>
+        <div class="sketch">
+          <svg viewBox="0 0 760 220">
+            <rect x="0" y="0" width="760" height="220" fill="#11161d"/>
+            <!-- faint rail line (context only, NOT the thesis) -->
+            <line x1="0" y1="110" x2="760" y2="110" stroke="#3a4757" stroke-width="1" stroke-dasharray="3 7"/>
+            <text x="600" y="104" fill="#5d6976" font-size="10">铁路(背景,非主角)</text>
+            <!-- network links (dashed) -->
+            <g stroke="#ffd166" stroke-width="1.5" stroke-dasharray="4 4" opacity=".7">
+              <line x1="90" y1="110" x2="380" y2="110"/>
+              <line x1="380" y1="110" x2="680" y2="110"/>
+              <line x1="380" y1="110" x2="260" y2="50"/>
+              <line x1="380" y1="110" x2="500" y2="50"/>
+              <line x1="380" y1="110" x2="260" y2="175"/>
+              <line x1="380" y1="110" x2="500" y2="175"/>
+              <line x1="90" y1="110" x2="150" y2="60"/>
+              <line x1="680" y1="110" x2="620" y2="60"/>
+            </g>
+            <!-- satellite stations -->
+            <g>
+              <circle cx="90" cy="110" r="10" fill="#7ee0a2"/><circle cx="90" cy="110" r="4.5" fill="#11161d"/>
+              <text x="68" y="138" fill="#7ee0a2" font-size="10">北卫星驿</text>
+              <circle cx="680" cy="110" r="10" fill="#7ee0a2"/><circle cx="680" cy="110" r="4.5" fill="#11161d"/>
+              <text x="658" y="138" fill="#7ee0a2" font-size="10">南卫星驿</text>
+              <circle cx="150" cy="60" r="6" fill="#7ee0a2"/>
+              <circle cx="260" cy="50" r="6" fill="#7ee0a2"/>
+              <circle cx="500" cy="50" r="6" fill="#7ee0a2"/>
+              <circle cx="260" cy="175" r="6" fill="#7ee0a2"/>
+              <circle cx="500" cy="175" r="6" fill="#7ee0a2"/>
+              <circle cx="620" cy="60" r="6" fill="#7ee0a2"/>
+            </g>
+            <!-- 主驿 大钟寺 hub -->
+            <circle cx="380" cy="110" r="22" fill="none" stroke="#ff9d6e" stroke-width="2"/>
+            <circle cx="380" cy="110" r="14" fill="#ff9d6e"/><circle cx="380" cy="110" r="6" fill="#11161d"/>
+            <text x="300" y="150" fill="#ff9d6e" font-size="11" font-weight="700">大钟寺·主驿(72ha 密集群)</text>
+            <text x="320" y="195" fill="#9aa7b5" font-size="10">夜市+共学+市政柜台,密度最高的驿</text>
+            <text x="14" y="26" fill="#9aa7b5" font-size="11">网络拓扑 · 不铺满铁路 · 点状最小单元</text>
+          </svg>
+        </div>
+        <p style="color:var(--dim);font-size:12.5px;margin-top:8px"><b>不连续</b>:铁路只是背景虚线,主角是<b>节点网</b>。大钟寺=「主驿」(密度最高的驿群:夜市+共学+市政柜台);南北=「卫星驿」;再用毛细支线接入建成区空地/桥下缝。形态=「主驿+卫星驿」,治理粒度=单个驿(可复制、可试点、可单独退出)。</p>
+      </div>
+
+      <div class="card">
+        <h3>④ 蓝海差异化</h3>
+        <ul>
+          <li><b>赢青年空白:</b>驿站是<em>可负担的最小覆盖单元</em>——青年问题=覆盖与可达,网络模型比带状公园更贴题。</li>
+          <li><b>赢赛道6硬茬:</b>赛道6强队是<b>纯后端协议</b>;本概念把治理做成<b>可单独退出/试点的实体节点</b>(一驿失败不影响全网),治理粒度=城市治理的最小实验单元。</li>
+          <li><b>避开赛道2拥挤:</b>明确<b>不做连续公园/叙事带</b>(那是赛道2主场)——网络 ≠ 带,差异化清晰,降撞车风险。</li>
+          <li><b>可分期:</b>「先建主驿,再加密卫星驿」天然分期叙事,贴 implementation_feasibility(20%权重)。</li>
+        </ul>
+      </div>
+      <div class="card risk">
+        <h3>⑤ 证据风险(对照 #3)</h3>
+        <ul>
+          <li class="con">驿站覆盖人口/可达半径/使用强度 → 概念建议,不得量化。</li>
+          <li class="con">网络效率指标 → 概念性。</li>
+          <li class="safe">✓ 主驿(大钟寺)面积、卫星驿点位、支线长度 → provisional 几何可算。</li>
+          <li class="safe">✓ 驿站数量、单驿服务枚举、退出条件 → 自报机制值,可量化。</li>
+        </ul>
+      </div>
+      <div class="card gov full">
+        <h3>治理原语 · 与 life-letter.schema 同构映射</h3>
+        <p style="font-size:13px;color:var(--dim)">「驿站协议」:每驿=<code>SCENARIO_NODE</code>自描述(位置×服务×人工复核×非AI回退×退出×可复制模板)。主驿=基准契约实例,卫星驿=同模板参数化复制。与赛道6契约<b>同构</b>,但以城市基础设施单元(驿)为载体——治理即最小公共单元。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VARIANT C ============ -->
+  <section class="variant" data-v="C">
+    <div class="card full" style="margin-bottom:18px">
+      <span class="vec">Concept C · 时间隐喻</span>
+      <p class="quote">青年负担得起的只有城市的「空时」——把大钟寺和铁路脊建成一条「第25小时」公共脊:办公熄灯时它亮起,AI公共服务驿站7×24,人工复核按时刻表值守,时刻表的缝隙就是治理的退出条件。</p>
+      <div class="names">
+        <span class="pill">第25小时 <span class="en">The 25th Hour</span></span>
+        <span class="pill">京张夜脊 <span class="en">Off-Hours Commons</span></span>
+        <span class="pill">夜脊 <span class="en">Night Spine</span></span>
+        <span class="pill">治理原语:时刻表协议 <span class="en">Timetable Protocol</span></span>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h3>① 核心隐喻 / 命名系</h3>
+        <p>大钟寺的真问题是<strong>「夜里关灯」</strong>——产业集聚区入夜即空,而青年的可负担时段恰恰是城市的非生产时段。本概念以<b>时间预算</b>组织空间:把城市的「空时」(夜/周末/换班间隙)重新分配给青年。<b>铁路=时刻表的故乡</b>,所以治理用「时刻表」作机器可读原语,与铁路DNA同源。命名贯穿「第25小时/夜脊/时刻表/换班」。</p>
+      </div>
+      <div class="card">
+        <h3>② 一句话主张</h3>
+        <p>「<b>第25小时</b>」主张:不是多给一块地,而是多给<b>一段城市运行时间</b>。空间是固定的,时间是可分配的公共资源——治理=把时间切成可值守、可回退的时刻表。</p>
+        <p style="color:var(--dim);font-size:13px">EN: <i>Youth can only afford the city's off-hours; we build a 25th-hour commons that wakes when offices sleep — AI counters run 24/7, human review staffs by timetable, and the gaps in the timetable are the governance exit conditions.</i></p>
+      </div>
+
+      <div class="card full">
+        <h3>③ 形态 / 场景草图(大钟寺 + 铁路脊缝)</h3>
+        <div class="sketch">
+          <svg viewBox="0 0 760 230">
+            <defs>
+              <linearGradient id="daynight" x1="0" x2="1">
+                <stop offset="0" stop-color="#1b2a3a"/><stop offset=".4" stop-color="#243349"/>
+                <stop offset=".5" stop-color="#3a2f4a"/><stop offset=".6" stop-color="#4a2f3a"/>
+                <stop offset="1" stop-color="#2a1a26"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="40" width="760" height="120" fill="url(#daynight)"/>
+            <!-- time axis -->
+            <g font-size="10" fill="#9aa7b5">
+              <text x="8" y="178">06:00</text><text x="150" y="178">12:00</text>
+              <text x="300" y="178">18:00</text><text x="470" y="178">22:00 办公熄灯</text>
+              <text x="660" y="178">02:00</text>
+              <line x1="0" y1="160" x2="760" y2="160" stroke="#3a4757"/>
+              <text x="8" y="32" fill="#ffd166" font-weight="700">城市运行时间轴 · 22:00 后青年空时开启</text>
+            </g>
+            <!-- spine lights up at dusk -->
+            <g>
+              <line x1="0" y1="100" x2="760" y2="100" stroke="#3a4757" stroke-width="1"/>
+              <!-- dark segment (day) -->
+              <line x1="0" y1="100" x2="360" y2="100" stroke="#3a4757" stroke-width="4"/>
+              <!-- lit segment (night) -->
+              <line x1="360" y1="100" x2="760" y2="100" stroke="#ffd166" stroke-width="4"/>
+              <text x="120" y="92" fill="#5d6976" font-size="10">白天:脊休眠</text>
+              <text x="560" y="92" fill="#ffd166" font-size="10">入夜:脊点亮(第25小时)</text>
+            </g>
+            <!-- 大钟寺 core -->
+            <rect x="300" y="70" width="180" height="60" rx="8" fill="none" stroke="#ff9d6e" stroke-width="1.5" stroke-dasharray="5 4"/>
+            <text x="306" y="64" fill="#ff9d6e" font-size="11" font-weight="700">大钟寺核心区·夜脊主段</text>
+            <circle cx="340" cy="100" r="8" fill="#ffd166"/><circle cx="340" cy="100" r="3.5" fill="#0e1116"/>
+            <circle cx="390" cy="100" r="8" fill="#ffd166"/><circle cx="390" cy="100" r="3.5" fill="#0e1116"/>
+            <circle cx="440" cy="100" r="8" fill="#ffd166"/><circle cx="440" cy="100" r="3.5" fill="#0e1116"/>
+            <text x="300" y="138" fill="#9aa7b5" font-size="10">夜市·共学·微舞台(按时刻表启停)</text>
+            <!-- timetable node -->
+            <circle cx="80" cy="100" r="7" fill="#7ee0a2"/><text x="60" y="124" fill="#7ee0a2" font-size="10">北节点</text>
+            <circle cx="700" cy="100" r="7" fill="#7ee0a2"/><text x="680" y="124" fill="#7ee0a2" font-size="10">南节点</text>
+            <!-- timetable mini-grid -->
+            <g font-size="9" fill="#9aa7b5">
+              <text x="14" y="210">时刻表协议示例:</text>
+              <rect x="100" y="200" width="40" height="14" fill="#3a4757"/><text x="105" y="211" fill="#9aa7b5">人工</text>
+              <rect x="142" y="200" width="40" height="14" fill="#5a2e2e"/><text x="147" y="211" fill="#ff9d6e">缝隙(退出)</text>
+              <rect x="200" y="200" width="60" height="14" fill="#1e3a2e"/><text x="206" y="211" fill="#7ee0a2">AI+复核</text>
+              <text x="270" y="211">→ 每段脊/每驿发表自己的值守时刻表,缝隙=非AI回退触发</text>
+            </g>
+          </svg>
+        </div>
+        <p style="color:var(--dim);font-size:12.5px;margin-top:8px">形态仍是脊,但组织逻辑是<b>时间</b>:脊随时刻表「亮/灭」,大钟寺核心=夜脊主段(夜市/共学/微舞台按时刻表启停),AI驿站7×24、人工复核按时刻表值守。<b>时刻表的缝隙(无人值守时段)=治理退出条件/非AI回退触发</b>——治理原语与铁路DNA(时刻表)同源,机器可读。</p>
+      </div>
+
+      <div class="card">
+        <h3>④ 蓝海差异化</h3>
+        <ul>
+          <li><b>赢青年空白:</b>唯一以<em>时间预算</em>切入青年空间的参赛——青年=时间贫困,而非空间贫困;问题框定本身原创(originality 10%)。</li>
+          <li><b>赢赛道6硬茬:</b>赛道6强队的治理原语是抽象角色/状态机;本概念用<b>「时刻表」</b>——既是铁路DNA(评委共鸣),又天然机器可读(行×列=节点×时段),缝隙即退出条件。<b>领域原生</b>。</li>
+          <li><b>夜间活力叙事自洽:</b>夜场是已锁场景锚,「第25小时」给夜场一个原创理由(不是「热闹」,是「城市空时的再分配」)。</li>
+        </ul>
+      </div>
+      <div class="card risk">
+        <h3>⑤ 证据风险(对照 #3)</h3>
+        <ul>
+          <li class="con">夜间人流量/活动强度/时间利用 → 概念建议,不得量化。</li>
+          <li class="con">「第25小时」效用 → 定性主张,无外部数据支撑。</li>
+          <li class="safe">✓ 脊长度、大钟寺核心区面积、节点点位 → provisional 几何可算。</li>
+          <li class="safe">✓ 时刻表时段数、值守触发枚举、退出条件 → 自报机制值,可量化。</li>
+        </ul>
+      </div>
+      <div class="card gov full">
+        <h3>治理原语 · 与 life-letter.schema 同构映射</h3>
+        <p style="font-size:13px;color:var(--dim)">「时刻表协议」:每段脊/每驿=<code>SCENARIO_NODE</code>,但其核心字段是<b>时段表</b>(节点×时段→{人工值守|AI+复核|缝隙})。缝隙=无人工值守=强制非AI回退/暂停服务=天然退出条件。与 life-letter.schema 的「触发/回退/退出」三元同构,且用铁路原生语汇(时刻表)表达——治理即时刻表。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- decision helper -->
+  <div class="card full" style="margin-top:26px">
+    <h3 style="color:var(--ink)">怎么挑 / 决策辅助</h3>
+    <table class="picktable">
+      <tr><th>维度</th><th>A 缝合带(空间)</th><th>B 京张驿网(网络)</th><th>C 第25小时(时间)</th></tr>
+      <tr><td><b>主隐喻</b></td><td><span class="h">缝 / 活扣</span></td><td><span class="h">驿站网络</span></td><td><span class="h">时刻表 / 第25小时</span></td></tr>
+      <tr><td><b>形态逻辑</b></td><td>连续脊 + 离散扣(缝合)</td><td>离散节点网(非带)</td><td>连续脊 + 时段启停</td></tr>
+      <tr><td><b>治理原语</b></td><td>活扣协议(节点=出口)</td><td>驿站协议(节点可复制)</td><td>时刻表协议(缝隙=退出)</td></tr>
+      <tr><td><b>原创性强度</b></td><td>中(缝合词熟但落地新)</td><td>中(网络模型清晰)</td><td><b>高</b>(时间预算框定 + 时刻表=铁路DNA)</td></tr>
+      <tr><td><b>与铁路DNA咬合</b></td><td>弱-中(缝是城市语)</td><td>强(驿站=铁路语)</td><td><b>最强</b>(时刻表=铁路语)</td></tr>
+      <tr><td><b>分期/可行性</b></td><td>中(脊需连贯)</td><td><b>高</b>(主驿先行,天然分期)</td><td>中(时段编排先行,空间后跟)</td></tr>
+      <tr><td><b>与赛道2撞车风险</b></td><td>中(易被读成公园带)</td><td><b>低</b>(明确非带)</td><td>低(时间维度独特)</td></tr>
+      <tr><td><b>最大软肋</b></td><td>「缝」易被读成景观叙事</td><td>主线叙事弱于A/C</td><td>主张偏抽象,需空间锚</td></tr>
+    </table>
+    <p style="color:var(--dim);font-size:12.5px;margin-top:10px"><b>可合成方向(若你想混):</b> C 的「时刻表协议」是最原创、与铁路DNA最强咬合的治理原语,可作治理层骨架;B 的「驿站」是最清晰的空间单元(可分期、低撞车);A 的「缝合」给空间动作一个好动词。例如:<i>「京张驿网(空间=B)· 第25小时(时间=C)· 缝合(动作=A)」</i>——驿站点亮夜脊,人工按时刻表值守,缝隙即回退。</p>
+  </div>
+</div>
+
+<!-- switcher -->
+<div class="switcher" id="sw">
+  <button id="prev" title="上一个">‹</button>
+  <div class="lbl">概念 <b id="curKey">A</b> · <span id="curName">缝合带</span></div>
+  <button id="next" title="下一个">›</button>
+</div>
+
+<script>
+  const META={A:{name:"缝合带 · 空间",sub:"缝/活扣"},B:{name:"京张驿网 · 网络",sub:"驿站网络"},C:{name:"第25小时 · 时间",sub:"时刻表"}};
+  const order=["A","B","C"];
+  function cur(){return new URLSearchParams(location.search).get("variant")||"A";}
+  function show(v){document.querySelectorAll(".variant").forEach(s=>s.classList.toggle("on",s.dataset.v===v));
+    document.getElementById("curKey").textContent=v;document.getElementById("curName").textContent=META[v].name;}
+  function set(v){const u=new URL(location);u.searchParams.set("variant",v);history.replaceState(null,"",u);show(v);}
+  document.getElementById("prev").onclick=()=>set(order[(order.indexOf(cur())-1+3)%3]);
+  document.getElementById("next").onclick=()=>set(order[(order.indexOf(cur())+1)%3]);
+  document.addEventListener("keydown",e=>{
+    if(/input|textarea/i.test(e.target.tagName)||e.target.isContentEditable)return;
+    if(e.key==="ArrowLeft")set(order[(order.indexOf(cur())-1+3)%3]);
+    if(e.key==="ArrowRight")set(order[(order.indexOf(cur())+1)%3]);
+  });
+  if(!order.includes(cur()))set("A");else show(cur());
+</script>
+</body>
+</html>
