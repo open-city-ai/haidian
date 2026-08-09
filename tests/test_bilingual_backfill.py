@@ -13,6 +13,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 from backfill_bilingual_artifacts import (  # noqa: E402
     backfill_manifests,
     create_localized_figure,
+    find_bilingual_font,
     localize_translation_image_paths,
 )
 from backfill_bilingual_submissions import (  # noqa: E402
@@ -26,6 +27,16 @@ from backfill_bilingual_submissions import (  # noqa: E402
 
 
 class BilingualBackfillTests(unittest.TestCase):
+    def test_bilingual_font_search_uses_first_available_fallback(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            fallback = root / "NotoSansCJK-Regular.ttc"
+            fallback.touch()
+            self.assertEqual(
+                fallback,
+                find_bilingual_font([root / "missing.ttf", fallback]),
+            )
+
     def test_front_matter_parser_accepts_utf8_bom(self) -> None:
         front, body = parse_front_matter("\ufeff---\nlanguage: zh\n---\n正文\n")
         self.assertEqual(["language: zh"], front)

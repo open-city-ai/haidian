@@ -29,6 +29,11 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install Unicode CJK fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes fonts-noto-cjk
+
       - name: Install review dependencies
         run: python -m pip install --disable-pip-version-check -r requirements-review.txt
 

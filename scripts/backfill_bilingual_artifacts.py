@@ -16,7 +16,7 @@ import json
 import re
 import subprocess
 from pathlib import Path
-from typing import Any
+from typing import Any, Iterable
 
 from backfill_bilingual_submissions import (
     CJK_RE,
@@ -33,10 +33,18 @@ from validate_submission import localized_path
 
 ROOT = Path(__file__).resolve().parents[1]
 OCR_CACHE = Path("/tmp/haidian-bilingual-backfill/ocr-translation-v3.jsonl")
-FONT_PATHS = [
+FONT_PATHS = (
     Path("/Library/Fonts/Arial Unicode.ttf"),
     Path("/System/Library/Fonts/Supplemental/Arial Unicode.ttf"),
-]
+    # Installed by the Linux test workflow.  This open font keeps maintainer
+    # backfill output portable instead of making macOS-only Arial a requirement.
+    Path("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"),
+)
+
+
+def find_bilingual_font(paths: Iterable[Path] = FONT_PATHS) -> Path | None:
+    """Return the first available CJK-capable font from supported platforms."""
+    return next((path for path in paths if path.is_file()), None)
 
 
 def sha256(path: Path) -> str:
@@ -236,9 +244,9 @@ def create_localized_figure(
     source = Image.open(source_path).convert("RGB")
     width = source.width
     padding = max(24, width // 30)
-    font_path = next((path for path in FONT_PATHS if path.exists()), None)
+    font_path = find_bilingual_font()
     if font_path is None:
-        raise RuntimeError("Arial Unicode font is required for bilingual figure panels")
+        raise RuntimeError("a Unicode CJK font is required for bilingual figure panels")
     body_size = max(15, min(28, width // 65))
     title_size = int(body_size * 1.35)
     body_font = ImageFont.truetype(str(font_path), body_size)
@@ -400,9 +408,9 @@ def backfill_pdfs(dirs: list[Path]) -> int:
     except ImportError as exc:
         raise SystemExit("Run this mode with the bundled workspace Python containing reportlab") from exc
 
-    font_path = next((path for path in FONT_PATHS if path.exists()), None)
+    font_path = find_bilingual_font()
     if font_path is None:
-        raise RuntimeError("Arial Unicode font is required for bilingual PDFs")
+        raise RuntimeError("a Unicode CJK font is required for bilingual PDFs")
     pdfmetrics.registerFont(TTFont("BilingualSans", str(font_path)))
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name="BiTitle", fontName="BilingualSans", fontSize=24, leading=31, spaceAfter=12))
