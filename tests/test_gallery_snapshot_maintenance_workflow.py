@@ -49,6 +49,26 @@ class GallerySnapshotMaintenanceWorkflowTests(unittest.TestCase):
         self.assertIn("Gallery snapshot publication blocked", self.workflow)
         self.assertIn("repository rules may prohibit", self.workflow)
 
+    def test_rejected_push_uploads_artifact_but_keeps_job_failed(self) -> None:
+        push_block_start = self.workflow.index("if ! git push --force-with-lease=")
+        push_block_end = self.workflow.index('echo "publishable=true"', push_block_start)
+        push_block = self.workflow[push_block_start:push_block_end]
+        self.assertIn('echo "blocked=true"', push_block)
+        self.assertIn('echo "## Gallery snapshot publication blocked"', push_block)
+        self.assertIn("exit 0", push_block)
+
+        artifact_start = self.workflow.index("- name: Upload generated snapshot artifact")
+        artifact_end = self.workflow.index("- name: Open or update snapshot maintenance PR")
+        artifact_step = self.workflow[artifact_start:artifact_end]
+        self.assertIn("if: steps.snapshot.outputs.changed == 'true'", artifact_step)
+        self.assertIn("submissions-data.js", artifact_step)
+        self.assertIn("gallery-snapshot.patch", artifact_step)
+
+        report_start = self.workflow.index("- name: Report blocked snapshot publication")
+        report_step = self.workflow[report_start:]
+        self.assertIn("if: steps.snapshot.outputs.blocked == 'true'", report_step)
+        self.assertIn("exit 1", report_step)
+
     def test_only_opens_draft_pr_when_snapshot_changed(self) -> None:
         self.assertIn('echo "changed=false"', self.workflow)
         self.assertIn('echo "changed=true"', self.workflow)
