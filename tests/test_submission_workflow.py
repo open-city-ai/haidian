@@ -347,6 +347,41 @@ class ManifestHydrationTests(unittest.TestCase):
                 discover_submission_files(submission, root),
             )
 
+    def test_maintainer_controlled_paths_are_not_treated_as_code_only(self) -> None:
+        protected_paths = [
+            "submissions-data.js",
+            "gallery-publication.json",
+            "submissions/README.md",
+            ".maintainer-review/alice/review-summary.json",
+            "docs/reviews/alice.md",
+        ]
+        for path in protected_paths:
+            with self.subTest(path=path):
+                self.assertFalse(is_non_submission_pr([path]))
+
+        self.assertFalse(
+            is_non_submission_pr(
+                [
+                    {
+                        "filename": "scripts/generated-gallery.js",
+                        "previous_filename": "submissions-data.js",
+                        "status": "renamed",
+                    }
+                ]
+            )
+        )
+        self.assertFalse(
+            is_non_submission_pr(
+                [
+                    {
+                        "filename": "submissions-data.js",
+                        "previous_filename": "scripts/generated-gallery.js",
+                        "status": "renamed",
+                    }
+                ]
+            )
+        )
+
 
 class ProposalSchemaTests(unittest.TestCase):
     def test_english_contract_accepts_english_section_headings(self) -> None:
@@ -1832,6 +1867,164 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertTrue(report.ok, report.errors)
             self.assertNotIn("bilingual", "\n".join(report.warnings))
             self.assertNotIn("counterpart", "\n".join(report.warnings))
+
+    def test_v2_simulation_metrics_must_match_task_records(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+
+            metrics_path = root / base / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"].update(
+                {
+                    "simulation_task_count": {
+                        "status": "known",
+                        "value": 2,
+                        "unit": "count",
+                        "source_files": ["simulation.json"],
+                    },
+                    "simulation_success_rate": {
+                        "status": "known",
+                        "value": 0.5,
+                        "unit": "ratio",
+                        "source_files": ["simulation.json"],
+                    },
+                    "tool_schema_pass_rate": {
+                        "status": "known",
+                        "value": 1.0,
+                        "unit": "ratio",
+                        "source_files": ["simulation.json"],
+                    },
+                    "energy_budget_violations": {
+                        "status": "known",
+                        "value": 0,
+                        "unit": "count",
+                        "source_files": ["simulation.json"],
+                    },
+                    "audit_completeness": {
+                        "status": "known",
+                        "value": 0.5,
+                        "unit": "ratio",
+                        "source_files": ["simulation.json"],
+                    },
+                }
+            )
+            metrics_path.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            self.write_json(
+                root,
+                f"{base}/simulation.json",
+                {
+                    "schema_version": "0.1.0",
+                    "task_count": 2,
+                    "tasks": [
+                        {
+                            "task_id": "SIM-001",
+                            "outcome": "success",
+                            "dispatch_schema_valid": True,
+                            "energy_used_kwh": 3.0,
+                            "energy_budget_kwh": 2.0,
+                            "audit_complete": True,
+                        },
+                        {
+                            "task_id": "SIM-002",
+                            "outcome": "failed",
+                            "dispatch_schema_valid": False,
+                            "energy_used_kwh": 1.0,
+                            "energy_budget_kwh": 2.0,
+                            "audit_complete": False,
+                        },
+                    ],
+                },
+            )
+            changed.extend([f"{base}/metrics.json", f"{base}/simulation.json"])
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("metrics.tool_schema_pass_rate=1.0", errors)
+            self.assertIn("task-derived value 0.5", errors)
+            self.assertIn("metrics.energy_budget_violations=0", errors)
+            self.assertIn("task-derived value 1", errors)
+
+    def test_simulation_baseline_must_match_mirror_file_and_metric_scope(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+
+            metrics_path = root / base / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["simulation_success_rate"] = {
+                "status": "known",
+                "value": 0.5,
+                "unit": "ratio",
+                "source_files": ["simulation.json"],
+            }
+            metrics_path.write_text(
+                json.dumps(metrics, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            self.write_json(
+                root,
+                f"{base}/simulation.json",
+                {
+                    "schema_version": "0.1.0",
+                    "task_count": 2,
+                    "tasks": [
+                        {
+                            "task_id": "SIM-001",
+                            "outcome": "success",
+                            "dispatch_schema_valid": True,
+                            "energy_used_kwh": 1.0,
+                            "energy_budget_kwh": 2.0,
+                            "audit_complete": True,
+                        },
+                        {
+                            "task_id": "SIM-002",
+                            "outcome": "failed",
+                            "dispatch_schema_valid": True,
+                            "energy_used_kwh": 1.0,
+                            "energy_budget_kwh": 2.0,
+                            "audit_complete": True,
+                        },
+                    ],
+                    "baselines": {
+                        "urban_llm_harness": {"success_rate": 1.0},
+                    },
+                },
+            )
+            self.write_json(
+                root,
+                f"{base}/visual/assets/evaluation-baseline.json",
+                {
+                    "schema_version": "0.1.0",
+                    "metrics": {
+                        "urban_llm_harness": {"success_rate": 0.9},
+                    },
+                },
+            )
+            changed.extend(
+                [
+                    f"{base}/metrics.json",
+                    f"{base}/simulation.json",
+                    f"{base}/visual/assets/evaluation-baseline.json",
+                ]
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("conflicts with baselines.urban_llm_harness.success_rate=1.0", errors)
+            self.assertIn("urban_llm_harness must mirror the task-derived aggregate", errors)
+            self.assertIn("evaluation-baseline.json", errors)
 
     def test_language_neutral_cannot_bypass_primary_display_pair(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

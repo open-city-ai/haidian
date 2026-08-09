@@ -1009,6 +1009,215 @@ def validate_metrics_file(report: ValidationReport, path: Path, display_path: st
                 report.add_error(f"{label}: ratio value must be between 0 and 1")
 
 
+def _simulation_source_declared(metric: object) -> bool:
+    if not isinstance(metric, dict):
+        return False
+    source_files = metric.get("source_files")
+    if not isinstance(source_files, list):
+        return False
+    for source in source_files:
+        if not isinstance(source, str):
+            continue
+        normalized = source.split("#", 1)[0].strip().lstrip("./")
+        if normalized == "simulation.json":
+            return True
+    return False
+
+
+def _simulation_scalar_equal(left: object, right: object) -> bool:
+    if isinstance(left, bool) or isinstance(right, bool):
+        return left == right
+    if not isinstance(left, (int, float)) or not isinstance(right, (int, float)):
+        return left == right
+    scale = max(1.0, abs(float(left)), abs(float(right)))
+    return abs(float(left) - float(right)) <= 1e-9 * scale
+
+
+def _simulation_issue(report: ValidationReport, strict: bool, message: str) -> None:
+    if strict:
+        report.add_error(message)
+    else:
+        report.add_warning(message + "; legacy simulation remains compatible")
+
+
+def validate_simulation_consistency(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_dir: str,
+    metrics_path: Path,
+    simulation_path: Path,
+    *,
+    strict: bool,
+) -> None:
+    """Check that claimed simulation aggregates are reproducible from task records."""
+    simulation_display = f"{proposal_dir}/simulation.json"
+    simulation = load_json_file(report, simulation_path, simulation_display)
+    if not isinstance(simulation, dict):
+        return
+
+    tasks = simulation.get("tasks")
+    if not isinstance(tasks, list) or not tasks or not all(isinstance(task, dict) for task in tasks):
+        _simulation_issue(
+            report,
+            strict,
+            f"{simulation_display}: tasks must be a non-empty array of objects for reproducible aggregates",
+        )
+        return
+
+    task_count = simulation.get("task_count")
+    if isinstance(task_count, bool) or not isinstance(task_count, int):
+        _simulation_issue(
+            report,
+            strict,
+            f"{simulation_display}: task_count must be an integer matching tasks.length",
+        )
+    elif task_count != len(tasks):
+        _simulation_issue(
+            report,
+            strict,
+            f"{simulation_display}: task_count={task_count} does not match tasks.length={len(tasks)}",
+        )
+
+    derived: dict[str, int | float] = {"simulation_task_count": len(tasks)}
+    derivation_problems: dict[str, str] = {}
+
+    outcomes = [task.get("outcome") for task in tasks]
+    if all(isinstance(outcome, str) and outcome.strip() for outcome in outcomes):
+        successful = sum(
+            1
+            for outcome in outcomes
+            if outcome == "success" or outcome.endswith("_success")
+        )
+        derived["simulation_success_rate"] = successful / len(tasks)
+    else:
+        derivation_problems["simulation_success_rate"] = (
+            "each task needs a non-empty outcome; use `success` or an outcome ending in `_success` for successful tasks"
+        )
+
+    schema_values = [task.get("dispatch_schema_valid") for task in tasks]
+    if all(isinstance(value, bool) for value in schema_values):
+        derived["tool_schema_pass_rate"] = sum(schema_values) / len(tasks)
+    else:
+        derivation_problems["tool_schema_pass_rate"] = "each task needs boolean dispatch_schema_valid"
+
+    energy_values = [
+        (task.get("energy_used_kwh"), task.get("energy_budget_kwh"))
+        for task in tasks
+    ]
+    if all(
+        isinstance(used, (int, float))
+        and not isinstance(used, bool)
+        and isinstance(budget, (int, float))
+        and not isinstance(budget, bool)
+        for used, budget in energy_values
+    ):
+        derived["energy_budget_violations"] = sum(
+            1 for used, budget in energy_values if used > budget
+        )
+    else:
+        derivation_problems["energy_budget_violations"] = (
+            "each task needs numeric energy_used_kwh and energy_budget_kwh"
+        )
+
+    audit_values = [task.get("audit_complete") for task in tasks]
+    if all(isinstance(value, bool) for value in audit_values):
+        derived["audit_completeness"] = sum(audit_values) / len(tasks)
+    else:
+        derivation_problems["audit_completeness"] = "each task needs boolean audit_complete"
+
+    metrics_data = load_json_file(report, metrics_path, f"{proposal_dir}/metrics.json")
+    metric_items = metrics_data.get("metrics") if isinstance(metrics_data, dict) else None
+    if not isinstance(metric_items, dict):
+        return
+
+    for name, problem in derivation_problems.items():
+        metric = metric_items.get(name)
+        if isinstance(metric, dict) and metric.get("status") == "known" and _simulation_source_declared(metric):
+            _simulation_issue(
+                report,
+                strict,
+                f"{simulation_display}: metrics.{name} cannot be recomputed; {problem}",
+            )
+
+    for name, expected in derived.items():
+        metric = metric_items.get(name)
+        if not isinstance(metric, dict) or metric.get("status") != "known":
+            continue
+        if not _simulation_source_declared(metric):
+            continue
+        actual = metric.get("value")
+        if not isinstance(actual, (int, float)) or isinstance(actual, bool):
+            continue
+        if not _simulation_scalar_equal(actual, expected):
+            _simulation_issue(
+                report,
+                strict,
+                f"{simulation_display}: metrics.{name}={actual} does not match the task-derived value {expected}",
+            )
+
+    baseline = simulation.get("baselines")
+    if not isinstance(baseline, dict):
+        return
+
+    metric_to_baseline = {
+        "simulation_success_rate": "success_rate",
+        "tool_schema_pass_rate": "tool_schema_pass_rate",
+        "high_risk_intercept_rate": "high_risk_intercept_rate",
+        "energy_budget_violations": "energy_budget_violations",
+        "replan_p95_seconds": "replan_p95_seconds",
+        "audit_completeness": "audit_completeness",
+    }
+    harness_baseline = baseline.get("urban_llm_harness")
+    if isinstance(harness_baseline, dict):
+        for metric_name, baseline_name in metric_to_baseline.items():
+            metric = metric_items.get(metric_name)
+            baseline_value = harness_baseline.get(baseline_name)
+            if (
+                isinstance(metric, dict)
+                and metric.get("status") == "known"
+                and _simulation_source_declared(metric)
+                and isinstance(metric.get("value"), (int, float))
+                and not isinstance(metric.get("value"), bool)
+                and isinstance(baseline_value, (int, float))
+                and not isinstance(baseline_value, bool)
+                and not _simulation_scalar_equal(metric["value"], baseline_value)
+            ):
+                _simulation_issue(
+                    report,
+                    strict,
+                    f"{simulation_display}: metrics.{metric_name}={metric['value']} conflicts with baselines.urban_llm_harness.{baseline_name}={baseline_value}; urban_llm_harness must mirror the task-derived aggregate, so record any distinct evaluation under a different documented baseline",
+                )
+
+    evaluation_path = repo_root / proposal_dir / "visual" / "assets" / "evaluation-baseline.json"
+    if not evaluation_path.is_file():
+        return
+    evaluation_display = f"{proposal_dir}/visual/assets/evaluation-baseline.json"
+    evaluation = load_json_file(report, evaluation_path, evaluation_display)
+    if not isinstance(evaluation, dict):
+        return
+    evaluation_metrics = evaluation.get("metrics")
+    if not isinstance(evaluation_metrics, dict):
+        return
+    for baseline_name, values in baseline.items():
+        evaluation_values = evaluation_metrics.get(baseline_name)
+        if not isinstance(values, dict) or not isinstance(evaluation_values, dict):
+            continue
+        for key, value in values.items():
+            other = evaluation_values.get(key)
+            if (
+                isinstance(value, (int, float))
+                and not isinstance(value, bool)
+                and isinstance(other, (int, float))
+                and not isinstance(other, bool)
+                and not _simulation_scalar_equal(value, other)
+            ):
+                _simulation_issue(
+                    report,
+                    strict,
+                    f"{evaluation_display}: metrics.{baseline_name}.{key}={other} conflicts with simulation.json baselines.{baseline_name}.{key}={value}",
+                )
+
+
 def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_dir: str) -> tuple[dict | None, str]:
     manifest_path = repo_root / proposal_dir / "manifest.json"
     data = load_json_file(report, manifest_path, f"{proposal_dir}/manifest.json")
@@ -1682,6 +1891,10 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     if not (base / "manifest.json").exists():
         return
     manifest, stage = validate_manifest_file(report, repo_root, proposal_dir)
+    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
+    strict_simulation = strict_bilingual or (
+        isinstance(manifest, dict) and manifest.get("package_state") == "ready_for_review"
+    )
 
     for name in ["agent.json", "assumptions.json", "sources.json"]:
         path = base / name
@@ -1696,6 +1909,17 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     metrics_path = base / "metrics.json"
     if metrics_path.exists():
         validate_metrics_file(report, metrics_path, f"{proposal_dir}/metrics.json")
+
+    simulation_path = base / "simulation.json"
+    if simulation_path.exists() and metrics_path.exists():
+        validate_simulation_consistency(
+            report,
+            repo_root,
+            proposal_dir,
+            metrics_path,
+            simulation_path,
+            strict=strict_simulation,
+        )
 
     compliance_path = base / "compliance_matrix.json"
     if compliance_path.exists():
@@ -1720,7 +1944,6 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
     proposal_html_path = base / "report" / "proposal.html"
     if proposal_html_path.exists():
         validate_proposal_html_file(report, proposal_html_path, f"{proposal_dir}/report/proposal.html")
-    strict_bilingual = requires_bilingual_display(repo_root, proposal_dir)
     for language in ["zh", "en"]:
         translated_html = base / "report" / f"proposal.{language}.html"
         if translated_html.exists():

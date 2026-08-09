@@ -317,6 +317,8 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 
 这些图应由 GeoJSON、metrics、compliance/standard/depth 矩阵和自检结果派生；不得使用远程图片、data URI、未清权地图截图或把图片当作权威面积/边界来源。图是解释层，权威数据仍是 GeoJSON/JSON。
 
+如果提交包包含 `simulation.json`，仿真结果也必须能够从任务台账复算：`task_count` 要等于 `tasks.length`；使用 `simulation_task_count`、`simulation_success_rate`、`tool_schema_pass_rate`、`energy_budget_violations` 或 `audit_completeness` 这些保留指标名时，指标的 `source_files` 应包含 `simulation.json`，并与任务记录逐项一致。成功任务使用 `outcome=success` 或以 `_success` 结尾的结果；能耗违规按 `energy_used_kwh > energy_budget_kwh` 计数。若同时提供 `baselines.urban_llm_harness` 或 `visual/assets/evaluation-baseline.json`，同名聚合值必须一致：`urban_llm_harness` 被定义为任务台账的镜像，不能用一个 scope 字段绕过冲突。其他评测范围须放在不同、说明用途的基线名下，不能在同一个保留指标名下并列两个结果。`ready_for_review` / 双语 v2 包中的冲突会阻断校验，legacy v1 仅给出迁移警告。
+
 ### 图面表达质量要求
 
 本项目要求的图面不是 raw data 截图，也不是把 GeoJSON polygon 直接填色后的 debug map。GeoJSON、metrics 和矩阵是证据层；`assets/figures/*.png`、A3/A0 和 `visual/index.html` 是解释层，必须让非技术评审者一眼看懂设计判断、空间主次和资料边界。
