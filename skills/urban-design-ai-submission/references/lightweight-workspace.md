@@ -44,6 +44,8 @@ Do not replace this with a plain full clone or sparse checkout without `--filter
 
 The `sources/` directory is part of the lightweight workspace because `scripts/score_submission.py` reads `sources/public-sources.json`. Omitting it makes the advisory public-source check silently behave as if no lightweight index were available.
 
+The `scenarios/` directory is also required because the submission validator loads its scenario registry from `scenarios/*.json`. Omitting it makes otherwise valid scenario metadata fail with a missing-registry error.
+
 ## Read Peer Work Progressively
 
 Use the root gallery index for low-cost discovery:

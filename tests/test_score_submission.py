@@ -90,6 +90,23 @@ class ScoreSubmissionTests(unittest.TestCase):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
 
+    def write_package_source_index(self, proposal: Path) -> None:
+        index = {
+            "schema_version": "0.1.0",
+            "package_id": "ai-urban-loop",
+            "sources": [
+                {
+                    "id": "OFFICIAL-ANNOUNCEMENT",
+                    "registry_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+                    "title": "公开征集公告",
+                    "url": "https://example.com/announcement",
+                }
+            ],
+        }
+        (proposal.parent / "sources.json").write_text(
+            json.dumps(index, ensure_ascii=False), encoding="utf-8"
+        )
+
     def check_map(self, report):
         return {check.dimension: check.status for check in report.checks}
 
@@ -135,6 +152,26 @@ class ScoreSubmissionTests(unittest.TestCase):
             self.assertEqual(checks["公开资料引用"], STATUS_NEEDS_WORK)
             self.assertEqual(report.matched_sources, [])
 
+    def test_formal_package_source_registry_is_used_for_v2_markers(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            body = VALID_BODY.replace(
+                "- `brief/public-brief.md`\n- `brief/README.md`",
+                "- `[source:OFFICIAL-ANNOUNCEMENT]`\n- `[source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]`",
+            )
+            proposal = self.write_proposal(root, body)
+            self.write_package_source_index(proposal)
+
+            report = score_proposal(root, proposal)
+            checks = self.check_map(report)
+
+            self.assertEqual(checks["公开资料引用"], STATUS_PASS)
+            self.assertEqual(
+                [item.id for item in report.matched_sources],
+                ["OFFICIAL-ANNOUNCEMENT"],
+            )
+            self.assertEqual(report.unmatched_reference_lines, [])
+
     def test_weak_landing_path_needs_work(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -160,7 +197,21 @@ class ScoreSubmissionTests(unittest.TestCase):
 
             self.assertIn("Proposal self-check", markdown)
             self.assertIn("advisory", markdown)
-            self.assertIn("Matched public sources", markdown)
+            self.assertIn("Formal readiness: not assessed", markdown)
+            self.assertIn("scripts/self_check_submission.py", markdown)
+            self.assertIn("Matched indexed sources", markdown)
+
+    def test_json_marks_formal_readiness_as_not_assessed(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            self.write_source_index(root)
+            proposal = self.write_proposal(root)
+
+            payload = score_proposal(root, proposal).to_dict()
+
+            self.assertEqual(payload["check_scope"], "advisory_proposal_only")
+            self.assertEqual(payload["formal_readiness"], "not_assessed")
+            self.assertEqual(payload["next_required_check"], "scripts/self_check_submission.py")
 
 
 if __name__ == "__main__":
