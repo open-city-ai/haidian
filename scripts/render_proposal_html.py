@@ -13,8 +13,9 @@ from pathlib import Path, PurePosixPath
 IMAGE_RE = re.compile(r"!\[([^\]]*)\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REFERENCE_RE = re.compile(r"\[(source|standard|depth|data|metric):([^\]\s]+)\]")
 INLINE_CODE_RE = re.compile(r"`([^`]+)`")
-STRONG_RE = re.compile(r"\*\*(.+?)\*\*", re.S)
-EM_RE = re.compile(r"(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)", re.S)
+STRONG_EM_RE = re.compile(r"(?<![\\*])\*\*\*(?=\S)(.+?)(?<=\S)\*\*\*(?!\*)", re.S)
+STRONG_RE = re.compile(r"(?<![\\*])\*\*(?=\S)(.+?)(?<=\S)\*\*(?!\*)", re.S)
+EM_RE = re.compile(r"(?<![\\*])\*(?=\S)(.+?)(?<=\S)\*(?!\*)", re.S)
 TABLE_DELIMITER_CELL_RE = re.compile(r"^:?-{3,}:?$")
 REFERENCE_LABELS = {
     "source": "来源",
@@ -64,6 +65,7 @@ def render_inline(text: str) -> str:
         return token
 
     escaped = INLINE_CODE_RE.sub(protect_code, escaped)
+    escaped = STRONG_EM_RE.sub(r"<strong><em>\1</em></strong>", escaped)
     escaped = STRONG_RE.sub(r"<strong>\1</strong>", escaped)
     escaped = EM_RE.sub(r"<em>\1</em>", escaped)
 
@@ -81,7 +83,7 @@ def render_inline(text: str) -> str:
     escaped = REFERENCE_RE.sub(replace_ref, escaped)
     for index, code in enumerate(code_spans):
         escaped = escaped.replace(f"\x00CODE{index}\x00", code)
-    return escaped
+    return escaped.replace(r"\*", "*")
 
 
 def pipe_is_escaped(line: str, index: int) -> bool:
@@ -172,6 +174,30 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
         line = lines[index].rstrip()
         stripped_line = line.strip()
 
+        if stripped_line.startswith("```") or stripped_line.startswith("~~~"):
+            flush_paragraph()
+            close_list()
+            fence_char = stripped_line[0]
+            fence_length = len(stripped_line) - len(stripped_line.lstrip(fence_char))
+            code_lines: list[str] = []
+            index += 1
+            while index < len(lines):
+                candidate = lines[index].rstrip()
+                candidate_stripped = candidate.strip()
+                closing_length = len(candidate_stripped) - len(
+                    candidate_stripped.lstrip(fence_char)
+                )
+                if (
+                    closing_length >= fence_length
+                    and not candidate_stripped[closing_length:]
+                ):
+                    index += 1
+                    break
+                code_lines.append(candidate)
+                index += 1
+            blocks.append(f"<pre><code>{html.escape(chr(10).join(code_lines))}</code></pre>")
+            continue
+
         if (
             index + 1 < len(lines)
             and stripped_line
@@ -253,14 +279,23 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
         if stripped_line.startswith(">"):
             flush_paragraph()
             close_list()
-            quote_lines: list[str] = []
+            quote_paragraphs: list[list[str]] = [[]]
             while index < len(lines):
                 quote_line = lines[index].strip()
                 if not quote_line.startswith(">"):
                     break
-                quote_lines.append(quote_line[1:].lstrip())
+                quote_text = quote_line[1:].lstrip()
+                if quote_text:
+                    quote_paragraphs[-1].append(quote_text)
+                elif quote_paragraphs[-1]:
+                    quote_paragraphs.append([])
                 index += 1
-            blocks.append(f"<blockquote>{render_inline(' '.join(quote_lines))}</blockquote>")
+            rendered_quotes = "".join(
+                f"<p>{render_inline(' '.join(items))}</p>"
+                for items in quote_paragraphs
+                if items
+            )
+            blocks.append(f"<blockquote>{rendered_quotes}</blockquote>")
             continue
 
         if line.startswith("#"):
