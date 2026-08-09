@@ -443,6 +443,8 @@ HTML 是必交电子展示页面，用于让评审者快速看懂方案。它不
 
 核心指标必须用 `data-metric` 和 `data-value` 标记，便于 `scripts/visual_review.py` 与 `metrics.json` 对比：
 
+每一个带数值的 `data-metric` 都必须对应 `metrics.json` 中 `status="known"` 且具有数值 `value` 的指标，并且数值必须一致。`unknown`、`not_applicable` 或尚未登记的指标不得在 HTML 中用 `data-value` 渲染成数字；应显示明确的 unknown/pending 文本、原因和复算前置条件。视觉审查会把这类数值声明判为阻断问题，防止单独截屏或摘录后被误读为正式控规或已知事实。
+
 ```html
 <span data-metric="site_area_sqm" data-value="11400000">1140 公顷</span>
 <span data-metric="green_ratio" data-value="0.23">23%</span>
