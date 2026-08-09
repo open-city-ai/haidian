@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import io
+import json
 import os
 import subprocess
 import sys
@@ -129,6 +130,34 @@ class ParticipantPreflightPushRemoteTests(unittest.TestCase):
 
         self.assertEqual(returncode, 0)
         self.assertEqual(mocked.call_args.args[0].push_remote, "fork")
+
+    def test_cli_rejects_unsafe_push_remote_before_git_call(self) -> None:
+        unsafe_remotes = (
+            "--upload-pack=touch-pwned",
+            "fork;echo-unsafe",
+            "fork\nunsafe",
+        )
+
+        for remote in unsafe_remotes:
+            with (
+                self.subTest(remote=remote),
+                patch.object(participant_preflight, "git_output") as mocked_git,
+                patch("sys.stdout", new_callable=io.StringIO) as stdout,
+            ):
+                returncode = participant_preflight.main(
+                    [
+                        "submissions/alice/example",
+                        "--pr-author",
+                        "alice",
+                        f"--push-remote={remote}",
+                        "--json",
+                    ]
+                )
+
+                mocked_git.assert_not_called()
+                self.assertEqual(returncode, 1)
+                report = json.loads(stdout.getvalue())
+                self.assertIn("push remote must start", report["blockers"][0])
 
 
 if __name__ == "__main__":

@@ -134,6 +134,9 @@ python3 scripts/participant_preflight.py \
 
 `--push-remote` controls both the dry-run authentication check and the upload
 command printed after a successful preflight. It defaults to `origin` for
-workspaces created by the current bootstrap helper.
+workspaces created by the current bootstrap helper. Remote names must start
+with an ASCII letter or digit and contain only ASCII letters, digits, `.`, `_`,
+`/`, or `-`. Option-like names, whitespace, shell metacharacters, and control
+characters are rejected before Git runs.
 
 The preflight checks the branch, proposal ownership, PR file scope, GitHub's 100 MiB per-file limit, package size, partial/sparse workspace configuration, fork/upstream remotes, contributor self-check, and optional push authentication. Repair every blocker before uploading.

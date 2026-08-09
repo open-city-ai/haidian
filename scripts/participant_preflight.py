@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -15,6 +16,16 @@ from typing import Any
 GITHUB_HARD_FILE_LIMIT = 100 * 1024 * 1024
 LARGE_FILE_WARNING = 25 * 1024 * 1024
 LARGE_PACKAGE_WARNING = 200 * 1024 * 1024
+SAFE_REMOTE_NAME = re.compile(r"[A-Za-z0-9][A-Za-z0-9._/-]*")
+
+
+def validate_remote_name(remote: str) -> str:
+    if not SAFE_REMOTE_NAME.fullmatch(remote):
+        raise RuntimeError(
+            "push remote must start with an ASCII letter or digit and contain only "
+            "ASCII letters, digits, '.', '_', '/', or '-'"
+        )
+    return remote
 
 
 def run(command: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
@@ -78,6 +89,7 @@ def file_inventory(submission_dir: Path) -> tuple[list[dict[str, Any]], int]:
 
 
 def check_push(repo_root: Path, branch: str, remote: str = "origin") -> dict[str, Any]:
+    remote = validate_remote_name(remote)
     command = ["git", "push", "--dry-run", remote, f"HEAD:refs/heads/{branch}"]
     completed = run(command, repo_root)
     return {
@@ -113,6 +125,7 @@ def run_self_check(repo_root: Path, submission_rel: str, pr_author: str) -> dict
 
 
 def inspect(args: argparse.Namespace) -> dict[str, Any]:
+    push_remote = validate_remote_name(args.push_remote)
     requested_root = Path(args.repo_root).expanduser().resolve()
     root_text = git_output(requested_root, "rev-parse", "--show-toplevel")
     repo_root = Path(root_text).resolve()
@@ -146,16 +159,16 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         repo_root,
         "remote",
         "get-url",
-        args.push_remote,
+        push_remote,
         allow_failure=True,
     )
-    if not origin_url and args.push_remote == "origin":
+    if not origin_url and push_remote == "origin":
         blockers.append("origin remote is missing")
     if not push_remote_url:
-        blockers.append(f"push remote '{args.push_remote}' is missing")
+        blockers.append(f"push remote '{push_remote}' is missing")
     elif "open-city-ai/haidian" in push_remote_url and not args.allow_canonical_origin:
         warnings.append(
-            f"{args.push_remote} points to the canonical repository; contributors without "
+            f"{push_remote} points to the canonical repository; contributors without "
             "write access should select their writable fork remote"
         )
     if origin_url and "open-city-ai/haidian" not in origin_url and not upstream_url:
@@ -216,10 +229,10 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
 
     push_check: dict[str, Any] | None = None
     if args.check_push and branch and push_remote_url:
-        push_check = check_push(repo_root, branch, args.push_remote)
+        push_check = check_push(repo_root, branch, push_remote)
         if not push_check["ok"]:
             blockers.append(
-                f"{args.push_remote} push dry-run failed; authenticate or select a writable "
+                f"{push_remote} push dry-run failed; authenticate or select a writable "
                 "fork remote before uploading"
             )
 
@@ -231,7 +244,7 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         "branch": branch,
         "origin_url": origin_url,
         "upstream_url": upstream_url,
-        "push_remote": args.push_remote,
+        "push_remote": push_remote,
         "push_remote_url": push_remote_url,
         "workspace": {
             "partial_clone_filter": partial_filter or None,
@@ -250,7 +263,7 @@ def inspect(args: argparse.Namespace) -> dict[str, Any]:
         "next_commands": [
             f"git add {submission_rel}",
             f'git commit -m "Submit {parts[-1] if parts else "proposal"}"',
-            f"git push -u {args.push_remote} HEAD",
+            f"git push -u {push_remote} HEAD",
             "gh pr create --repo open-city-ai/haidian --base main",
         ],
     }
