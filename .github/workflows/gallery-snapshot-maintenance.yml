@@ -38,6 +38,10 @@ jobs:
           set -euo pipefail
           branch="${MAINTENANCE_BRANCH}"
 
+          echo "changed=false" >> "${GITHUB_OUTPUT}"
+          echo "publishable=false" >> "${GITHUB_OUTPUT}"
+          echo "blocked=false" >> "${GITHUB_OUTPUT}"
+
           # This workflow runs only for the canonical repository's trusted main
           # push. It never checks out or executes a contributor PR head.
           if git ls-remote --exit-code origin "refs/heads/${branch}" >/dev/null 2>&1; then
@@ -53,7 +57,6 @@ jobs:
             tests.test_gallery_snapshot_maintenance_workflow
 
           if git diff --quiet -- submissions-data.js; then
-            echo "changed=false" >> "${GITHUB_OUTPUT}"
             echo "Generated gallery snapshot is already fresh."
             exit 0
           fi
@@ -63,18 +66,43 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh generated gallery snapshot"
-
-          if expected="$(git rev-parse --verify "refs/remotes/origin/${branch}" 2>/dev/null)"; then
-            git push --force-with-lease="refs/heads/${branch}:${expected}" \
-              origin "HEAD:refs/heads/${branch}"
-          else
-            git push --force-with-lease="refs/heads/${branch}:0000000000000000000000000000000000000000" \
-              origin "HEAD:refs/heads/${branch}"
-          fi
+          git show --format= --binary HEAD -- submissions-data.js > gallery-snapshot.patch
           echo "changed=true" >> "${GITHUB_OUTPUT}"
 
-      - name: Open or update snapshot maintenance PR
+          if expected="$(git rev-parse --verify "refs/remotes/origin/${branch}" 2>/dev/null)"; then
+            if ! git push --force-with-lease="refs/heads/${branch}:${expected}" \
+                origin "HEAD:refs/heads/${branch}"; then
+              echo "blocked=true" >> "${GITHUB_OUTPUT}"
+              {
+                echo "## Gallery snapshot publication blocked"
+                echo
+                echo "The maintenance branch exists but could not be updated. Review the push rejection and apply the uploaded snapshot artifact through the normal maintainer gate."
+              } >> "${GITHUB_STEP_SUMMARY}"
+              exit 0
+            fi
+          else
+            echo "blocked=true" >> "${GITHUB_OUTPUT}"
+            {
+              echo "## Gallery snapshot publication blocked"
+              echo
+              echo "The configured maintenance branch does not exist, and repository rules may prohibit this workflow token from creating refs. Review the uploaded snapshot artifact and create or authorize the maintenance branch through the normal maintainer gate."
+            } >> "${GITHUB_STEP_SUMMARY}"
+            exit 0
+          fi
+          echo "publishable=true" >> "${GITHUB_OUTPUT}"
+
+      - name: Upload generated snapshot artifact
         if: steps.snapshot.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: gallery-snapshot-${{ github.sha }}
+          path: |
+            submissions-data.js
+            gallery-snapshot.patch
+          if-no-files-found: error
+
+      - name: Open or update snapshot maintenance PR
+        if: steps.snapshot.outputs.changed == 'true' && steps.snapshot.outputs.publishable == 'true'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
@@ -98,3 +126,10 @@ jobs:
             gh pr create --repo "${GITHUB_REPOSITORY}" --base main --head "${branch}" \
               --draft --title "${title}" --body "${body}"
           fi
+
+      - name: Report blocked snapshot publication
+        if: steps.snapshot.outputs.blocked == 'true'
+        shell: bash
+        run: |
+          echo "::error title=Gallery snapshot publication blocked::See the workflow summary and uploaded artifact for the exact snapshot."
+          exit 1

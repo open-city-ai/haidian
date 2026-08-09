@@ -38,10 +38,24 @@ class GallerySnapshotMaintenanceWorkflowTests(unittest.TestCase):
         self.assertIn("git push --force-with-lease=", self.workflow)
         self.assertNotIn("HEAD:refs/heads/main", self.workflow)
 
+    def test_branch_policy_blocker_preserves_snapshot_for_maintainer_recovery(self) -> None:
+        self.assertIn('echo "publishable=false"', self.workflow)
+        self.assertIn('echo "blocked=true"', self.workflow)
+        self.assertIn(
+            "git show --format= --binary HEAD -- submissions-data.js > gallery-snapshot.patch",
+            self.workflow,
+        )
+        self.assertIn("actions/upload-artifact@v4", self.workflow)
+        self.assertIn("Gallery snapshot publication blocked", self.workflow)
+        self.assertIn("repository rules may prohibit", self.workflow)
+
     def test_only_opens_draft_pr_when_snapshot_changed(self) -> None:
         self.assertIn('echo "changed=false"', self.workflow)
         self.assertIn('echo "changed=true"', self.workflow)
-        self.assertIn("if: steps.snapshot.outputs.changed == 'true'", self.workflow)
+        self.assertIn(
+            "if: steps.snapshot.outputs.changed == 'true' && steps.snapshot.outputs.publishable == 'true'",
+            self.workflow,
+        )
         self.assertIn("gh pr create", self.workflow)
         self.assertIn("--draft", self.workflow)
 
