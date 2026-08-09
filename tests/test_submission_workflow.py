@@ -1587,6 +1587,78 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("疑似手机号", "\n".join(report.errors))
 
+    def test_explicit_sensitive_source_denial_does_not_warn(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8")
+                + "\n方案未使用任何非公开地图、企业内部数据、个人隐私数据或未授权版权材料。\n",
+                encoding="utf-8",
+            )
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertNotIn("可能涉及非公开或敏感资料", "\n".join(report.warnings))
+
+    def test_sensitive_source_use_and_false_denial_still_warn(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8")
+                + "\n本方案不使用除企业内部数据以外的资料，并采用企业内部数据校准指标。\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("可能涉及非公开或敏感资料", "\n".join(report.warnings))
+
+    def test_sensitive_source_causal_clause_is_not_treated_as_a_denial(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            proposal = root / base / "proposal.md"
+            proposal.write_text(
+                proposal.read_text(encoding="utf-8")
+                + "\n本方案不使用公开资料，因为企业内部数据更适合本项目。\n",
+                encoding="utf-8",
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("可能涉及非公开或敏感资料", "\n".join(report.warnings))
+
+    def test_sensitive_source_denial_of_unrelated_public_source_still_warns(self) -> None:
+        disclosures = (
+            "本方案未使用公开资料，涉密测绘成果作为底图。",
+            "本方案不使用公开资料，企业内部数据用于校准指标。",
+            "本方案未采用旧版公开底图，保密图件作为现状核验来源。",
+        )
+        for disclosure in disclosures:
+            with self.subTest(disclosure=disclosure), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                base = "submissions/alice/ai-urban-loop"
+                changed = self.write_minimal_ai_package(root, base)
+                proposal = root / base / "proposal.md"
+                proposal.write_text(
+                    proposal.read_text(encoding="utf-8") + "\n" + disclosure + "\n",
+                    encoding="utf-8",
+                )
+
+                report = validate_submission(root, "alice", changed)
+
+                self.assertTrue(report.ok, report.errors)
+                self.assertIn("可能涉及非公开或敏感资料", "\n".join(report.warnings))
+
     def test_minimal_ai_package_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

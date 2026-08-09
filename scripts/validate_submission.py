@@ -281,10 +281,85 @@ HARD_RISK_PATTERNS = [
     (re.compile(r"(已获|已经获得).{0,12}(政府|官方).{0,12}(批准|背书|认可)"), "疑似伪造官方批准或背书"),
 ]
 
+SENSITIVE_SOURCE_PATTERN = re.compile(
+    r"(内部资料|内部数据|涉密|保密图件|非公开空间数据|未公开图件|绝密|机密)"
+)
+SENSITIVE_SOURCE_DENIAL_RE = re.compile(
+    r"(?:未使用|没有使用|并未使用|从未使用|不使用|未采用|没有采用|并未采用|不采用|"
+    r"未引用|没有引用|并未引用|不引用|未接触|没有接触|并未接触|不接触|"
+    r"未访问|没有访问|并未访问|不访问|未获取|没有获取|并未获取|不获取|"
+    r"未收集|没有收集|并未收集|不收集|未持有|没有持有|并未持有|不持有|"
+    r"未依赖|没有依赖|并未依赖|不依赖|未涉及|没有涉及|并未涉及|不涉及|"
+    r"未包含|没有包含|并未包含|不包含|未含有|没有含有|并未含有|不含有)"
+    r"\s*(?:任何|相关|此类|上述|以上|该等|这类)?\s*"
+)
+SENSITIVE_SOURCE_USE_RE = re.compile(
+    r"(?:使用|采用|引用|接触|访问|获取|收集|持有|依赖|涉及|包含|含有)"
+)
+SENSITIVE_SOURCE_PIVOT_RE = re.compile(r"(?:因为|所以|但|但是|然而|而|却|仍|同时|不过)")
+SENSITIVE_SOURCE_PASSIVE_DENIAL_RE = re.compile(
+    r"\s*(?:均|都)?(?:未被|没有被|并未被|从未被|不被)"
+    r"(?:使用|采用|引用|接触|访问|获取|收集|持有|依赖|涉及|包含)"
+)
+
 SOFT_RISK_PATTERNS = [
-    (re.compile(r"(内部资料|内部数据|涉密|保密图件|非公开空间数据|未公开图件|绝密|机密)"), "可能涉及非公开或敏感资料"),
+    (SENSITIVE_SOURCE_PATTERN, "可能涉及非公开或敏感资料"),
     (re.compile(r"(无需审批|保证落地|一定实施)"), "可能存在不可执行承诺"),
 ]
+
+
+def explicitly_denies_sensitive_source(text: str, match: re.Match[str]) -> bool:
+    """Return whether a matched sensitive-source term is explicitly denied.
+
+    Keyword warnings should not punish a contributor for clearly saying that a
+    proposal does *not* use non-public or sensitive source material.  Keep the
+    exception narrow: it only accepts an affirmative denial within the same
+    sentence/clause and rejects wording that changes the meaning, such as
+    "不使用除内部数据以外的资料" (do not use materials other than internal data).
+    """
+    sentence_start = max(
+        text.rfind(boundary, 0, match.start())
+        for boundary in ("。", "！", "？", "；", "\n")
+    ) + 1
+    sentence_end_candidates = [
+        position
+        for boundary in ("。", "！", "？", "；", "\n")
+        if (position := text.find(boundary, match.end())) != -1
+    ]
+    sentence_end = min(sentence_end_candidates, default=len(text))
+    prefix = text[sentence_start:match.start()]
+
+    for denial in reversed(list(SENSITIVE_SOURCE_DENIAL_RE.finditer(prefix))):
+        between = prefix[denial.end():]
+        if len(re.sub(r"\s+", "", between)) > 80:
+            continue
+        if re.match(r"\s*除", between):
+            continue
+        # A comma normally starts a new clause, so do not let a denial of an
+        # unrelated public source suppress a later sensitive-source disclosure.
+        # The explicit quantifier "任何" keeps compound lists such as
+        # "未使用任何非公开地图、企业内部数据" valid.
+        if re.search(r"[，,]", between) and "任何" not in denial.group(0):
+            continue
+        if SENSITIVE_SOURCE_USE_RE.search(between):
+            continue
+        if SENSITIVE_SOURCE_PIVOT_RE.search(between):
+            continue
+        return True
+
+    suffix = text[match.end():sentence_end]
+    return bool(SENSITIVE_SOURCE_PASSIVE_DENIAL_RE.match(suffix))
+
+
+def add_soft_risk_warnings(report: "ValidationReport", label: str, text: str) -> None:
+    for pattern, reason in SOFT_RISK_PATTERNS:
+        for match in pattern.finditer(text):
+            if pattern is SENSITIVE_SOURCE_PATTERN and explicitly_denies_sensitive_source(
+                text, match
+            ):
+                continue
+            report.add_warning(f"{label}: {reason}; maintainer review required")
+            break
 
 FORBIDDEN_HTML_PATTERNS = [
     (re.compile(r"<script\b", re.I), "HTML report must not contain scripts"),
@@ -2150,9 +2225,7 @@ def validate_proposal_file(
         if pattern.search(text):
             report.add_error(f"{proposal_path}: {reason}")
 
-    for pattern, reason in SOFT_RISK_PATTERNS:
-        if pattern.search(text):
-            report.add_warning(f"{proposal_path}: {reason}; maintainer review required")
+    add_soft_risk_warnings(report, proposal_path, text)
 
 
 def validate_changelog_file(
@@ -2185,9 +2258,7 @@ def validate_changelog_file(
         if pattern.search(text):
             report.add_error(f"{changelog_path}: {reason}")
 
-    for pattern, reason in SOFT_RISK_PATTERNS:
-        if pattern.search(text):
-            report.add_warning(f"{changelog_path}: {reason}; maintainer review required")
+    add_soft_risk_warnings(report, changelog_path, text)
 
 
 def validate_risk_file(
@@ -2253,9 +2324,7 @@ def validate_risk_file(
         for pattern, reason in HARD_RISK_PATTERNS:
             if pattern.search(combined_text):
                 report.add_error(f"{label}: {reason}")
-        for pattern, reason in SOFT_RISK_PATTERNS:
-            if pattern.search(combined_text):
-                report.add_warning(f"{label}: {reason}; maintainer review required")
+        add_soft_risk_warnings(report, label, combined_text)
 
 
 def validate_spatial_file(
@@ -2348,9 +2417,7 @@ def validate_spatial_file(
         for pattern, reason in HARD_RISK_PATTERNS:
             if pattern.search(combined_text):
                 report.add_error(f"{label}: {reason}")
-        for pattern, reason in SOFT_RISK_PATTERNS:
-            if pattern.search(combined_text):
-                report.add_warning(f"{label}: {reason}; maintainer review required")
+        add_soft_risk_warnings(report, label, combined_text)
 
 
 def validate_submission(
