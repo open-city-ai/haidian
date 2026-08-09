@@ -43,6 +43,14 @@ class DataRegistryTests(unittest.TestCase):
                 with self.subTest(source_id=source["source_id"], local_path=local_path):
                     self.assertTrue((REPO_ROOT / local_path).exists())
 
+    def test_osm_boundary_crosscheck_is_background_only(self) -> None:
+        registry = json.loads((REPO_ROOT / "data" / "source_registry.json").read_text(encoding="utf-8"))
+        by_source = {source["source_id"]: source for source in registry["sources"]}
+        osm = by_source["DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808"]
+        self.assertEqual("background_only", osm["usable_for_formal"])
+        self.assertEqual("OPEN_LICENSE_REFERENCE", osm["authority_level"])
+        self.assertIn("official site boundary", osm["prohibited_uses"])
+
     def test_invalid_registry_fails_for_duplicate_and_restricted_approved_source(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
