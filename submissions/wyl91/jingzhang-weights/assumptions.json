@@ -1,0 +1,62 @@
+{
+  "schema_version": "0.1.0",
+  "submission_id": "wyl91/jingzhang-weights",
+  "assumptions": [
+    {
+      "assumption_id": "ASM-001",
+      "topic": "official_boundary_unavailable",
+      "statement": "当前使用仓库提供的临时边界（provisional_boundaries.geojson, official_boundary=false）进行所有空间生成和面积计算。取得官方CAD/GIS/PDF边界后，所有图层和指标需重新生成。",
+      "impact": "影响所有空间图层（9个GeoJSON文件）、面积指标、图纸和HTML可视化",
+      "confidence": "high",
+      "resolution_trigger": "官方边界数据发布或资格预审文件解锁"
+    },
+    {
+      "assumption_id": "ASM-002",
+      "topic": "regulatory_plan_unknown",
+      "statement": "当前不掌握总体设计范围内的现行控制性详细规划数据（用地性质、容积率、建筑高度、道路红线等），所有用地布局、建筑规模和高度建议均为概念性方向，不得视为对现行控规的调整建议。",
+      "impact": "影响用地布局、建筑规模估算、建筑高度概念建议",
+      "confidence": "high",
+      "resolution_trigger": "获取现行控规数据或官方发布相关约束条件"
+    },
+    {
+      "assumption_id": "ASM-003",
+      "topic": "building_stock_unknown",
+      "statement": "当前不掌握总体设计范围内的现状建筑精确分布、结构状况、权属和建筑年代数据。保留/改造/拆除/新建的分类基于公开可见的卫星影像和一般性城市认知，不代表实地调查结论。",
+      "impact": "影响建筑拆改留策略和更新项目清单",
+      "confidence": "medium",
+      "resolution_trigger": "获取现状建筑普查数据或官方更新潜力评估"
+    },
+    {
+      "assumption_id": "ASM-004",
+      "topic": "heritage_protection",
+      "statement": "京张铁路相关文保单位和历史建筑的保护范围和保护要求以现行文物部门公布的数据为准。本方案的公共空间和地标建议在与文保范围有交叠时，仅作为概念性方向，必须在专业文物影响评估后进行深化。",
+      "impact": "影响京张遗址公园沿线的地标位置和设计方案",
+      "confidence": "medium",
+      "resolution_trigger": "获取文保单位保护范围和建设控制地带精确数据"
+    },
+    {
+      "assumption_id": "ASM-005",
+      "topic": "global_cases_public_only",
+      "statement": "8个全球AI创新生态案例的信息来源为公开可访问的官方网站、学术文献和权威媒体报道，不包含非公开的运营数据和财务信息。案例对标结论为方向性参考。",
+      "impact": "影响创新生态方案的具体指标和可比性",
+      "confidence": "medium",
+      "resolution_trigger": "如需精确对标数据，需获取官方统计或合作调研"
+    },
+    {
+      "assumption_id": "ASM-006",
+      "topic": "event_calendar_tentative",
+      "statement": "年度活动体系中的所有活动均为概念建议，活动名称、频次、地点和内容均可根据组织方和社区反馈进行调整。活动预算、政府支持和商业合作模式尚未涉及。",
+      "impact": "影响运营方案的可行性和时间表",
+      "confidence": "medium",
+      "resolution_trigger": "与海淀区相关部门和潜在合作方确认活动可行性和资源支持"
+    },
+    {
+      "assumption_id": "ASM-007",
+      "topic": "osm_background_data",
+      "statement": "使用OpenStreetMap背景数据作为道路网络、水系和绿地的基础参考时，遵循ODbL许可要求。OSM数据的精度和完整性存在众包数据固有的局限。",
+      "impact": "影响背景空间分析的精度",
+      "confidence": "medium",
+      "resolution_trigger": "以官方测绘数据替代OSM背景图层"
+    }
+  ]
+}

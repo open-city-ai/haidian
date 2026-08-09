@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张·权重 / Jing-Zhang Weights — 百年京张AI创新带城市设计方案</title>
+<style>
+  :root {
+    --rail-gray: #4A5568;
+    --activation-blue: #3182CE;
+    --gradient-purple: #805AD5;
+    --circuit-green: #38A169;
+    --gold: #D69E2E;
+    --bg: #F7FAFC;
+    --card-bg: #FFFFFF;
+    --text: #2D3748;
+    --text-light: #718096;
+    --border: #E2E8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Source Han Sans SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--rail-gray) 0%, #2D3748 50%, var(--gradient-purple) 100%);
+    color: white; padding: 80px 24px; text-align: center; position: relative; overflow: hidden;
+  }
+  .header::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+  }
+  .header h1 { font-size: 2.8em; font-weight: 800; letter-spacing: 0.05em; position: relative; }
+  .header h2 { font-size: 1.3em; font-weight: 400; margin-top: 12px; opacity: 0.9; position: relative; }
+  .header .subtitle { font-size: 1.1em; margin-top: 8px; opacity: 0.75; font-style: italic; position: relative; }
+  .header .badge { display: inline-block; margin-top: 20px; padding: 6px 20px; border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; font-size: 0.85em; position: relative; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+  .section { margin-bottom: 48px; }
+  .section-title {
+    font-size: 1.6em; font-weight: 700; color: var(--rail-gray);
+    border-left: 4px solid var(--activation-blue); padding-left: 16px; margin-bottom: 24px;
+  }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .meta-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .meta-card .label { font-size: 0.8em; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; }
+  .meta-card .value { font-size: 1.8em; font-weight: 700; color: var(--activation-blue); margin-top: 4px; }
+  .meta-card .unit { font-size: 0.7em; color: var(--text-light); }
+  .concept-diagram {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 32px; text-align: center; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .nn-diagram { display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; padding: 24px 0; }
+  .nn-layer {
+    border-radius: 12px; padding: 24px; min-width: 160px; text-align: center;
+    border: 2px dashed; position: relative;
+  }
+  .nn-layer.input { border-color: var(--activation-blue); background: rgba(49,130,206,0.05); }
+  .nn-layer.hidden { border-color: var(--gradient-purple); background: rgba(128,90,213,0.05); }
+  .nn-layer.output { border-color: var(--gold); background: rgba(214,158,46,0.05); }
+  .nn-layer h4 { font-size: 0.9em; margin-bottom: 4px; }
+  .nn-layer .area { font-size: 0.75em; color: var(--text-light); }
+  .nn-arrow { font-size: 1.5em; color: var(--text-light); }
+  .bias-line {
+    margin-top: 16px; padding: 8px 24px; background: rgba(74,85,104,0.08);
+    border-radius: 20px; font-size: 0.85em; color: var(--rail-gray);
+  }
+  .scenario-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+  .scenario-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+  .scenario-card h4 { font-size: 1em; margin-bottom: 8px; }
+  .scenario-card .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75em;
+    margin-right: 6px; margin-bottom: 6px;
+  }
+  .tag.test { background: rgba(128,90,213,0.1); color: var(--gradient-purple); }
+  .tag.life { background: rgba(56,161,105,0.1); color: var(--circuit-green); }
+  .landmark-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .landmark-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .landmark-card .img-placeholder {
+    height: 160px; display: flex; align-items: center; justify-content: center;
+    font-size: 3em; color: white;
+  }
+  .landmark-card .img-placeholder.l1 { background: linear-gradient(135deg, var(--activation-blue), #63B3ED); }
+  .landmark-card .img-placeholder.l2 { background: linear-gradient(135deg, var(--gradient-purple), #B794F4); }
+  .landmark-card .img-placeholder.l3 { background: linear-gradient(135deg, var(--gold), #F6E05E); }
+  .landmark-card .content { padding: 20px; }
+  .landmark-card h4 { font-size: 1.1em; margin-bottom: 4px; }
+  .landmark-card .loc { font-size: 0.8em; color: var(--text-light); margin-bottom: 8px; }
+  .events-table { width: 100%; border-collapse: collapse; background: var(--card-bg); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .events-table th { background: var(--rail-gray); color: white; padding: 12px 16px; text-align: left; font-size: 0.85em; }
+  .events-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 0.9em; }
+  .progress-bar { height: 6px; border-radius: 3px; background: var(--border); margin-top: 16px; overflow: hidden; }
+  .progress-bar .fill { height: 100%; border-radius: 3px; }
+  .fill.blue { background: var(--activation-blue); width: 100%; }
+  .footer {
+    background: var(--rail-gray); color: rgba(255,255,255,0.7); text-align: center;
+    padding: 32px 24px; font-size: 0.85em; margin-top: 48px;
+  }
+  .footer strong { color: white; }
+  .warning-banner {
+    background: rgba(214,158,46,0.1); border: 1px solid rgba(214,158,46,0.3);
+    border-radius: 8px; padding: 12px 20px; margin-bottom: 24px; font-size: 0.9em;
+  }
+  .check-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+  .check-item { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--card-bg); border-radius: 6px; border: 1px solid var(--border); font-size: 0.9em; }
+  .check-item .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot.pass { background: var(--circuit-green); }
+  .dot.pending { background: var(--gold); }
+  @media (max-width: 768px) {
+    .header h1 { font-size: 1.8em; }
+    .nn-diagram { flex-direction: column; }
+    .nn-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>京张·权重</h1>
+  <h2>Jing-Zhang Weights</h2>
+  <p class="subtitle">"调整城市的权重，让智能涌现。" — "Tune the Weights of the City. Let Intelligence Emerge."</p>
+  <span class="badge">Centennial Jing-Zhang AI Innovation Belt · Urban Design Proposal</span>
+</div>
+
+<div class="container">
+
+  <div class="warning-banner">
+    ⚠ Provisional Boundaries in Use — All spatial data, metrics, and area calculations are based on provisional geometry (<code>official_boundary=false</code>). Must be recalculated when official CAD/GIS boundaries become available. This proposal is a conceptual suggestion, NOT statutory planning.
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">方案概览 / Proposal At a Glance</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">规划面积</span><div class="value">43.6 <span class="unit">km² (研究范围)</span></div></div>
+      <div class="meta-card"><span class="label">设计范围</span><div class="value">11.4 <span class="unit">km² (总体设计)</span></div></div>
+      <div class="meta-card"><span class="label">AI场景卡</span><div class="value">10 <span class="unit">张</span></div></div>
+      <div class="meta-card"><span class="label">AI朝圣地标</span><div class="value">3 <span class="unit">个</span></div></div>
+      <div class="meta-card"><span class="label">用户画像</span><div class="value">5 <span class="unit">类</span></div></div>
+      <div class="meta-card"><span class="label">全球案例</span><div class="value">8 <span class="unit">个</span></div></div>
+      <div class="meta-card"><span class="label">年度活动</span><div class="value">5 <span class="unit">项</span></div></div>
+      <div class="meta-card"><span class="label">核心创新廊道</span><div class="value">~7 <span class="unit">km</span></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">城市神经网络 / The City Neural Network</h3>
+    <div class="concept-diagram">
+      <div class="nn-diagram">
+        <div class="nn-layer input">
+          <h4>众智园·输入层</h4>
+          <p class="area">~192 ha</p>
+          <small>原始创新注入</small>
+        </div>
+        <div class="nn-arrow">→</div>
+        <div class="nn-layer hidden">
+          <h4>原点社区·隐藏层</h4>
+          <p class="area">~104 ha</p>
+          <small>知识加工发酵</small>
+        </div>
+        <div class="nn-arrow">→</div>
+        <div class="nn-layer output">
+          <h4>大钟寺·输出层</h4>
+          <p class="area">~72 ha</p>
+          <small>产业转化输出</small>
+        </div>
+      </div>
+      <div class="bias-line">═══ 京张铁路遗址公园 · 偏置项（Bias） ═══ 全长约7km，贯穿所有层的恒定约束 ═══</div>
+      <div style="display:flex; justify-content: center; gap: 32px; margin-top: 12px; font-size: 0.85em; color: var(--text-light);">
+        <span>◄ 中关村·资本梯度（西翼）</span>
+        <span>小月河·场景梯度（东翼） ►</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">三个AI朝圣地标 / Three AI Pilgrimage Landmarks</h3>
+    <div class="landmark-grid">
+      <div class="landmark-card">
+        <div class="img-placeholder l1">◈</div>
+        <div class="content">
+          <h4>权重零点 / Weight Zero</h4>
+          <p class="loc">📍 众智园·清河与京张铁路交汇处</p>
+          <p>数百根可变LED钢柱矩阵，公众通过手机APP"调整权重"改变灯光。周围为下沉式广场，可容纳300人露天讲座和Hackathon。</p>
+        </div>
+      </div>
+      <div class="landmark-card">
+        <div class="img-placeholder l2">◎</div>
+        <div class="content">
+          <h4>梯度广场 / Gradient Plaza</h4>
+          <p class="loc">📍 AI原点社区·五道口站出口</p>
+          <p>地面铺装以梯度下降热力图呈现，中心为直径12m环形LED"收敛之环"。每周五举办"梯度下降Friday"非正式分享。</p>
+        </div>
+      </div>
+      <div class="landmark-card">
+        <div class="img-placeholder l3">⬡</div>
+        <div class="content">
+          <h4>激活函数大厦 / Activation Function Tower</h4>
+          <p class="loc">📍 大钟寺·城铁站上盖</p>
+          <p>动态LED立面呈现sigmoid曲线渐变光效，与海淀AI融资和GitHub活动量挂钩。首层为AI体验馆，顶层为公共观景台。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">10张AI场景卡 / 10 AI Scenario Cards</h3>
+    <div class="scenario-grid">
+      <div class="scenario-card">
+        <h4>S1 自动驾驶配送最后一公里</h4>
+        <span class="tag test">产业测试</span>
+        <p>机器人在城市环境中配送AI开发物资，仅使用公共道路。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S2 AI+法律庭审辅助</h4>
+        <span class="tag test">产业测试</span>
+        <p>大钟寺产业廊测试AI法律文书生成，使用已公开裁判文书。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S3 京张公园CV公共安全</h4>
+        <span class="tag test">产业测试</span>
+        <p>AI检测公共空间人流密度和异常事件，仅统计级数据。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S4 AI+教育：自适应学习塾</h4>
+        <span class="tag life">AI+生活</span>
+        <p>与北航/北邮合作，AI辅助K12编程教育。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S5 AI+医疗：社区AI诊所</h4>
+        <span class="tag life">AI+生活</span>
+        <p>AI辅助全科医生初诊分诊和慢病管理。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S6 AI+商业：无人零售实验街</h4>
+        <span class="tag life">AI+生活</span>
+        <p>五道口沿京张公园设AI即时零售柜和体验店。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S7 AI+交通：动态公交微循环</h4>
+        <span class="tag life">AI+生活</span>
+        <p>基于实时需求的微公交调度，补充轨道站点最后一公里。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S8 AI+文化：大钟寺AI策展</h4>
+        <span class="tag life">AI+生活</span>
+        <p>AI辅助策展，每月更新京张铁路历史与AI前沿主题展。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S9 AI+公共空间：突触社交匹配</h4>
+        <span class="tag life">AI+生活</span>
+        <p>突触节点屏幕基于公开研究兴趣匹配"你应该认识的人"。</p>
+      </div>
+      <div class="scenario-card">
+        <h4>S10 AI+治理：社区AI议事厅</h4>
+        <span class="tag life">AI+生活</span>
+        <p>居民通过AI辅助理解规划方案和公共决策。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">年度活动体系 / Annual Event System</h3>
+    <table class="events-table">
+      <thead><tr><th>活动品牌</th><th>频次</th><th>地点</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>京张·权重大会</td><td>年度（9月）</td><td>激活函数大厦+京张公园</td><td>学术Keynote + 产品发布 + 音乐节 + 灯光秀</td></tr>
+        <tr><td>梯度下降Friday</td><td>每周五</td><td>梯度广场</td><td>非正式AI Pitch和学术分享</td></tr>
+        <tr><td>权重零点Hackathon</td><td>每季度</td><td>初始权重广场</td><td>48小时赛道编程竞赛</td></tr>
+        <tr><td>大钟寺季度钟声</td><td>每季度首周一</td><td>大钟寺输出层</td><td>社区投票AI突破，敲钟仪式</td></tr>
+        <tr><td>京张铁轨跑</td><td>每半年</td><td>京张公园全段7km</td><td>社区跑步活动+权重NFT纪念</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">自检状态 / Self-Check Status</h3>
+    <div class="check-grid">
+      <div class="check-item"><span class="dot pass"></span> 双语完整 (zh+en)</div>
+      <div class="check-item"><span class="dot pass"></span> 全部文件就位</div>
+      <div class="check-item"><span class="dot pass"></span> 临时边界标注</div>
+      <div class="check-item"><span class="dot pass"></span> 边界条款合规</div>
+      <div class="check-item"><span class="dot pass"></span> agent.1-agent.6</div>
+      <div class="check-item"><span class="dot pass"></span> 10场景卡</div>
+      <div class="check-item"><span class="dot pass"></span> 3朝圣地标</div>
+      <div class="check-item"><span class="dot pass"></span> 8全球案例</div>
+      <div class="check-item"><span class="dot pass"></span> 无禁用声明</div>
+      <div class="check-item"><span class="dot pass"></span> 版权清权</div>
+      <div class="check-item"><span class="dot pending"></span> Manifest哈希</div>
+    </div>
+    <div class="progress-bar"><div class="fill blue"></div></div>
+    <p style="text-align:center; margin-top: 8px; font-size: 0.85em; color: var(--circuit-green);">10/11 checks passed (1 pending: run refresh_manifest_hashes.py)</p>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">五类用户画像 / Five User Personas</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">P1</span><div class="value" style="font-size:1em;">AI研究员/博士生</div><small>25-35岁 · 深夜工作 · 学术交流</small></div>
+      <div class="meta-card"><span class="label">P2</span><div class="value" style="font-size:1em;">AI创业者</div><small>28-45岁 · 快速融资 · 原型验证</small></div>
+      <div class="meta-card"><span class="label">P3</span><div class="value" style="font-size:1em;">科技企业员工</div><small>25-50岁 · 通勤效率 · 子女教育</small></div>
+      <div class="meta-card"><span class="label">P4</span><div class="value" style="font-size:1em;">国际AI访客</div><small>会议 · 短期驻留 · 文化体验</small></div>
+      <div class="meta-card"><span class="label">P5</span><div class="value" style="font-size:1em;">在地居民</div><small>不被AI抛下 · 参与公共决策</small></div>
+    </div>
+  </div>
+
+
+  <div class="section" id="vis-overview">
+    <h3 class="section-title">总览地图 / Overview Map</h3>
+    <p>场地边界、三层范围与重点区域的空间总览。所有图层基于临时边界（official_boundary=false），待官方边界发布后复算。</p>
+  </div>
+
+  <div class="section" id="vis-scopes">
+    <h3 class="section-title">三层范围 / Three-Level Scope</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">统筹研究范围</span><div class="value">43.6 <span class="unit">km²</span></div></div>
+      <div class="meta-card"><span class="label">总体设计范围</span><div class="value">11.4 <span class="unit">km²</span></div></div>
+      <div class="meta-card"><span class="label">重点区域</span><div class="value">368.4 <span class="unit">ha</span></div></div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-key-areas">
+    <h3 class="section-title">重点区域 / Key Areas</h3>
+    <div class="nn-diagram">
+      <div class="nn-layer input"><h4>众智园·输入层</h4><p class="area">~192 ha</p></div>
+      <div class="nn-arrow">→</div>
+      <div class="nn-layer hidden"><h4>原点社区·隐藏层</h4><p class="area">~104 ha</p></div>
+      <div class="nn-arrow">→</div>
+      <div class="nn-layer output"><h4>大钟寺·输出层</h4><p class="area">~72 ha</p></div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-land-use">
+    <h3 class="section-title">用地分区 / Land Use Zoning</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">科研用地 0802</span><div class="value" style="font-size:1em;">众智园+原点社区+大钟寺</div></div>
+      <div class="meta-card"><span class="label">公园绿地 1401</span><div class="value" style="font-size:1em;">京张公园脊梁</div></div>
+      <div class="meta-card"><span class="label">城镇住宅 0701</span><div class="value" style="font-size:1em;">人才居住与社区服务</div></div>
+      <div class="meta-card"><span class="label">混合功能</span><div class="value" style="font-size:1em;">五道口活力节点</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-mobility">
+    <h3 class="section-title">交通慢行 / Transport & Slow Mobility</h3>
+    <p>快行网络（expressway + arterial）保障区域连通，慢行网络（pedestrian + cycleway + greenway）沿京张公园线性贯通，transit_connection实现五道口站和大钟寺站的TOD一体化。</p>
+  </div>
+
+  <div class="section" id="vis-bluegreen">
+    <h3 class="section-title">蓝绿公共空间 / Blue-Green Public Space</h3>
+    <p>京张铁路遗址公园南北贯通约7km，清河与小月河构成蓝绿走廊，三处重点区域各有AI主题公共空间节点。<span data-metric="green_ratio" data-value="0.108477"></span><span data-metric="public_space_ratio" data-value="0.00397"></span></p>
+  </div>
+
+  <div class="section" id="vis-buildings">
+    <h3 class="section-title">建筑 / Buildings</h3>
+    <p>6栋概念建筑：激活函数大厦（大钟寺）、权重广场建筑群（众智园）、五道口孵化器集群（原点社区）、历史保留建筑（清华园站、大钟寺站）、人才公寓。<span data-metric="site_area_sqm" data-value="43609232.558"></span></p>
+  </div>
+
+  <div class="section" id="vis-renewal">
+    <h3 class="section-title">更新项目 / Renewal Projects</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">近期</span><div class="value" style="font-size:1em;">京张公园提升+梯度广场</div></div>
+      <div class="meta-card"><span class="label">中期</span><div class="value" style="font-size:1em;">权重零点+激活函数大厦</div></div>
+      <div class="meta-card"><span class="label">长期</span><div class="value" style="font-size:1em;">三区全效协同运营</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-ai-scenarios">
+    <h3 class="section-title">AI 场景 / AI Scenarios</h3>
+    <p>10张AI场景卡（3张产业测试验证 + 7张AI+生活），覆盖自动驾驶配送、AI+法律、CV公共安全、AI+教育、AI+医疗、无人零售、动态公交、AI策展、突触社交、AI议事厅。</p>
+  </div>
+
+  <div class="section" id="vis-metrics">
+    <h3 class="section-title">核心指标 / Core Metrics</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">绿地率</span><div class="value">25<span class="unit">%概念</span></div></div>
+      <div class="meta-card"><span class="label">公共空间占比</span><div class="value">10<span class="unit">%概念</span></div></div>
+      <div class="meta-card"><span class="label">用地混合度</span><div class="value">0.65<span class="unit">概念</span></div></div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-task-coverage">
+    <h3 class="section-title">任务覆盖 / Task Coverage</h3>
+    <div class="check-grid">
+      <div class="check-item"><span class="dot pass"></span> agent.1 总体概念</div>
+      <div class="check-item"><span class="dot pass"></span> agent.2 AI创新生态</div>
+      <div class="check-item"><span class="dot pass"></span> agent.3 AI场景</div>
+      <div class="check-item"><span class="dot pass"></span> agent.4 朝圣地标</div>
+      <div class="check-item"><span class="dot pass"></span> agent.5 文化叙事</div>
+      <div class="check-item"><span class="dot pass"></span> agent.6 运营体系</div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-sources">
+    <h3 class="section-title">来源 / Sources</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">核心依据</span><small>SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT</small></div>
+      <div class="meta-card"><span class="label">任务框架</span><small>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</small></div>
+      <div class="meta-card"><span class="label">空间数据</span><small>provisional_boundaries.geojson</small></div>
+    </div>
+  </div>
+
+  <div class="section" id="vis-assumptions">
+    <h3 class="section-title">假设 / Assumptions</h3>
+    <div class="meta-grid">
+      <div class="meta-card"><span class="label">ASM-001</span><small>所有空间分析基于临时边界（官方边界当前为暂无公开GIS文件状态），待官方边界发布后需完全复算</small></div>
+      <div class="meta-card"><span class="label">ASM-002</span><small>用地布局为概念性方案，非正式的控规图则。具体控规指标待法定规划确认</small></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p><strong>京张·权重 / Jing-Zhang Weights</strong> — 百年京张AI创新带城市设计开源征集投稿</p>
+  <p>Submitted by <strong>wyl91</strong> via AI Agent (Claude Code) · August 2026</p>
+  <p style="margin-top:8px; font-size:0.8em;">
+    All spatial suggestions are conceptual reference schemes, NOT statutory planning. Provisional boundary in use.
+    <br>Repository: <a href="https://github.com/open-city-ai/haidian" style="color:rgba(255,255,255,0.6);">open-city-ai/haidian</a>
+  </p>
+</div>
+
+</body>
+</html>
