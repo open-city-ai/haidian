@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Validate Haidian AI proposal pull requests.
 
-The validator is intentionally deterministic and dependency-free so it can run
-on untrusted pull requests without installing contributor-controlled code.
+The validator is deterministic and uses only trusted base-branch code and
+schemas. It validates contributor files as inert data and never imports or
+executes contributor-controlled code.
 """
 
 from __future__ import annotations
@@ -17,8 +18,14 @@ from dataclasses import dataclass, field
 from pathlib import Path, PurePosixPath
 from typing import Iterable
 
+try:
+    import jsonschema
+except ImportError:  # pragma: no cover - exercised in dependency-free installs
+    jsonschema = None
+
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
+MANIFEST_SCHEMA_PATH = POLICY_ROOT / "brief/site-package/schemas/manifest.schema.json"
 
 REQUIRED_SECTIONS = [
     "设计依据与资料清单",
@@ -1258,11 +1265,54 @@ def validate_simulation_consistency(
                 )
 
 
+def manifest_schema_pointer(error: object) -> str:
+    path = getattr(error, "absolute_path", ())
+    parts = [str(item) for item in path]
+    return "/" + "/".join(parts) if parts else "/"
+
+
+def validate_manifest_schema(
+    report: ValidationReport,
+    manifest: dict,
+    display_path: str,
+) -> bool:
+    """Validate a manifest against the trusted, published JSON Schema.
+
+    The schema gate runs before the legacy semantic checks. This gives authors
+    one actionable schema error instead of a cascade of shape-dependent
+    messages, while the existing checks continue to cover file existence,
+    required package contents, and digest semantics.
+    """
+    if jsonschema is None:
+        report.add_error(
+            f"{display_path}: published manifest schema requires jsonschema; "
+            "install jsonschema (>=4.0,<5)"
+        )
+        return False
+    try:
+        schema = json.loads(MANIFEST_SCHEMA_PATH.read_text(encoding="utf-8"))
+        validator = jsonschema.Draft202012Validator(schema)
+        errors = sorted(
+            validator.iter_errors(manifest),
+            key=lambda error: tuple(str(item) for item in error.absolute_path),
+        )
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, jsonschema.SchemaError) as exc:
+        report.add_error(f"{display_path}: cannot execute published manifest schema: {exc}")
+        return False
+    for error in errors:
+        report.add_error(
+            f"{display_path}: schema[{manifest_schema_pointer(error)}]: {error.message}"
+        )
+    return not errors
+
+
 def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_dir: str) -> tuple[dict | None, str]:
     manifest_path = repo_root / proposal_dir / "manifest.json"
     data = load_json_file(report, manifest_path, f"{proposal_dir}/manifest.json")
     if not isinstance(data, dict):
         return None, "unknown"
+    if not validate_manifest_schema(report, data, f"{proposal_dir}/manifest.json"):
+        return data, str(data.get("submission_stage") or "unknown")
     validate_agent_disclosure(
         report, data.get("agent"), f"{proposal_dir}/manifest.json: agent"
     )

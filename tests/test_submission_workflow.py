@@ -27,6 +27,8 @@ from validate_submission import (  # noqa: E402
     ValidationReport,
     is_empty_pdf,
     validate_agent_disclosure,
+    validate_manifest_file,
+    validate_manifest_schema,
     validate_submission,
 )
 from github_pr_validation import (  # noqa: E402
@@ -294,6 +296,92 @@ class EmptyPdfDetectionTests(unittest.TestCase):
 
     def test_non_pdf_is_not_flagged(self) -> None:
         self.assertFalse(is_empty_pdf(b"not a pdf"))
+
+
+class ManifestSchemaGateTests(unittest.TestCase):
+    @staticmethod
+    def manifest(role: str = "quantitative_timeseries") -> dict:
+        return {
+            "schema_version": "0.1.0",
+            "package_id": "schema-gate-test",
+            "project_id": "centennial-jingzhang-ai-belt",
+            "site_package_version": "v0.1",
+            "submission_stage": "formal",
+            "submission_type": "ai_agent",
+            "agent": {"agent_id": "agent-test", "agent_name": "Test agent", "model": "test-model"},
+            "generated_at": "2026-08-10T00:00:00Z",
+            "files": [
+                {"path": "manifest.json", "role": "manifest", "required": True},
+                {"path": "visual/assets/data.json", "role": role, "required": False},
+            ],
+            "validation_claim": {"self_checked": False, "known_blockers": []},
+        }
+
+    def test_expanded_corpus_role_is_accepted_by_published_schema(self) -> None:
+        report = ValidationReport()
+
+        self.assertTrue(
+            validate_manifest_schema(
+                report,
+                self.manifest("quantitative_timeseries"),
+                "submissions/alice/design/manifest.json",
+            )
+        )
+        self.assertTrue(report.ok, report.errors)
+
+    def test_committed_manifest_roles_remain_in_published_schema(self) -> None:
+        schema = json.loads(
+            (REPO_ROOT / "brief" / "site-package" / "schemas" / "manifest.schema.json").read_text(
+                encoding="utf-8"
+            )
+        )
+        allowed_roles = set(
+            schema["properties"]["files"]["items"]["properties"]["role"]["enum"]
+        )
+        manifests = sorted((REPO_ROOT / "submissions").glob("*/*/manifest.json"))
+        if not manifests:
+            self.skipTest("submission packages are not present in this sparse checkout")
+
+        unknown_roles: dict[str, list[str]] = {}
+        for manifest_path in manifests:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            for index, entry in enumerate(manifest.get("files", [])):
+                role = entry.get("role")
+                if role not in allowed_roles:
+                    unknown_roles.setdefault(str(manifest_path), []).append(
+                        f"files/{index}/role={role!r}"
+                    )
+
+        self.assertEqual({}, unknown_roles, f"committed roles missing from schema: {unknown_roles}")
+
+    def test_unknown_role_fails_with_one_actionable_schema_error(self) -> None:
+        report = ValidationReport()
+
+        self.assertFalse(
+            validate_manifest_schema(
+                report,
+                self.manifest("unregistered_role"),
+                "submissions/alice/design/manifest.json",
+            )
+        )
+        self.assertEqual(1, len(report.errors))
+        self.assertIn("schema[/files/1/role]", report.errors[0])
+
+    def test_schema_failure_short_circuits_legacy_manifest_checks(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            proposal_dir = root / "submissions" / "alice" / "schema-gate-test"
+            proposal_dir.mkdir(parents=True)
+            manifest_path = proposal_dir / "manifest.json"
+            manifest_path.write_text(
+                json.dumps(self.manifest("unregistered_role")), encoding="utf-8"
+            )
+
+            report = ValidationReport()
+            validate_manifest_file(report, root, "submissions/alice/schema-gate-test")
+
+            self.assertEqual(1, len(report.errors))
+            self.assertTrue(report.errors[0].startswith("submissions/alice/schema-gate-test/manifest.json: schema["))
 
 
 class AgentDisclosureTests(unittest.TestCase):
@@ -2528,7 +2616,7 @@ class SubmissionWorkflowTests(unittest.TestCase):
             )
             report = validate_submission(root, "alice", changed)
             self.assertFalse(report.ok)
-            self.assertIn("submission_stage must be formal", "\n".join(report.errors))
+            self.assertIn("schema[/submission_stage]", "\n".join(report.errors))
 
     def test_unclosed_ai_package_polygon_fails_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
