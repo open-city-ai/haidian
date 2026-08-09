@@ -1391,6 +1391,31 @@ class SubmissionWorkflowTests(unittest.TestCase):
             self.assertIn("EX-BOOLEAN-FORMAL", errors)
             self.assertIn("source_registry_id", errors)
 
+    def test_v2_usable_for_formal_boolean_claim_requires_approved_registry_mapping(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.make_v2_proposal_readable(root, base)
+            self.add_bilingual_v2_display(root, base, changed)
+            self.update_json(
+                root,
+                f"{base}/sources.json",
+                lambda data: data["sources"].append(
+                    {
+                        "id": "EX-BOOLEAN-USABLE",
+                        "usable_for_formal": True,
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            errors = "\n".join(report.errors)
+            self.assertIn("EX-BOOLEAN-USABLE", errors)
+            self.assertIn("source_registry_id", errors)
+
     def test_v2_formal_source_claim_accepts_approved_registry_mapping(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
