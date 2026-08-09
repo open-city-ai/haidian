@@ -939,10 +939,13 @@ def validate_geojson_file(
     return len(features)
 
 
-def validate_metrics_file(report: ValidationReport, path: Path, display_path: str) -> None:
+def validate_metrics_file(
+    report: ValidationReport, repo_root: Path, path: Path, display_path: str
+) -> None:
     data = load_json_file(report, path, display_path)
     if not isinstance(data, dict):
         return
+    resolved_repo_root = repo_root.resolve()
     if data.get("schema_version") is None:
         report.add_error(f"{display_path}: missing schema_version")
     units = data.get("units")
@@ -967,6 +970,29 @@ def validate_metrics_file(report: ValidationReport, path: Path, display_path: st
                 report.add_error(f"{label}: unknown metric needs reason")
         if status == "known" and not isinstance(metric.get("value"), (int, float)):
             report.add_error(f"{label}: known metric needs numeric value")
+        if status == "known" and isinstance(metric.get("source_files"), list):
+            for source_file in metric["source_files"]:
+                if not isinstance(source_file, str):
+                    continue
+                local_reference = source_file.split("#", 1)[0].strip()
+                if not local_reference or ("/" not in local_reference and not Path(local_reference).suffix):
+                    continue
+                candidates: list[Path] = []
+                for base in (path.parent, resolved_repo_root):
+                    candidate = (base / local_reference).resolve()
+                    try:
+                        candidate.relative_to(resolved_repo_root)
+                    except ValueError:
+                        continue
+                    candidates.append(candidate)
+                if not candidates:
+                    report.add_error(
+                        f"{label}: known metric source_file `{source_file}` must stay within the repository"
+                    )
+                elif not any(candidate.is_file() for candidate in candidates):
+                    report.add_error(
+                        f"{label}: known metric source_file `{source_file}` is missing or is not a file"
+                    )
         if metric.get("unit") == "ratio" and isinstance(metric.get("value"), (int, float)):
             value = metric["value"]
             if value < 0 or value > 1:
@@ -1659,7 +1685,7 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
 
     metrics_path = base / "metrics.json"
     if metrics_path.exists():
-        validate_metrics_file(report, metrics_path, f"{proposal_dir}/metrics.json")
+        validate_metrics_file(report, repo_root, metrics_path, f"{proposal_dir}/metrics.json")
 
     compliance_path = base / "compliance_matrix.json"
     if compliance_path.exists():

@@ -1290,6 +1290,48 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
 
+    def test_known_metric_requires_existing_file_like_source(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.update_json(
+                root,
+                f"{base}/metrics.json",
+                lambda data: data["metrics"]["site_area_sqm"].update(
+                    {"source_files": ["../../../diagnosis/section_units.geojson"]}
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "known metric source_file `../../../diagnosis/section_units.geojson` is missing or is not a file",
+                "\n".join(report.errors),
+            )
+
+    def test_known_metric_source_file_cannot_escape_repository(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.update_json(
+                root,
+                f"{base}/metrics.json",
+                lambda data: data["metrics"]["site_area_sqm"].update(
+                    {"source_files": ["../../../../outside.geojson"]}
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertFalse(report.ok)
+            self.assertIn(
+                "known metric source_file `../../../../outside.geojson` must stay within the repository",
+                "\n".join(report.errors),
+            )
+
     def test_changelog_submission_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
