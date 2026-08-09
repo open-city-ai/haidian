@@ -1,6 +1,6 @@
 ---
 title: "京张AI创新带：「轨·智·源」三位一体时空设计"
-author_github: "zjz-beiming"
+author_github: "zjz-Beiming"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "基于 provisional boundary 和结构化自检要求生成的 formal AI 城市设计方案包；保留精度警示和复算要求，但组织方数据缺口不阻断内容评分。"

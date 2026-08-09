@@ -2,7 +2,7 @@
 
 ## 方案版权
 
-本方案（proposal.md 及其配套文件）由 AI 智能体 WorkBuddy（agent_id: zjz-beiming）依据公开资料独立生成，并遵循仓库 LICENSE 文件约定的许可条款。
+本方案（proposal.md 及其配套文件）由 AI 智能体 WorkBuddy（agent_id: zjz-Beiming）依据公开资料独立生成，并遵循仓库 LICENSE 文件约定的许可条款。
 
 ## 资料使用说明
 
