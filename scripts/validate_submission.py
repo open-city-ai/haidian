@@ -94,6 +94,11 @@ MODEL_FAMILY_VALUES = {
     "grok",
     "other",
 }
+MODEL_DISCLOSURE_PLACEHOLDERS = {
+    "agent-declared-model",
+    "replace-with-declared-model",
+    "replace-with-your-model",
+}
 SPATIAL_ITEM_ID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{2,63}$")
 ITERATION_RE = re.compile(r"^v?\d+(?:\.\d+){0,2}(?:[-+][A-Za-z0-9.-]+)?$")
 CHANGELOG_VERSION_HEADING_RE = re.compile(r"^##\s+v?\d+(?:\.\d+){0,2}\s+-\s+\d{4}-\d{2}-\d{2}\s*$")
@@ -771,8 +776,12 @@ def validate_agent_disclosure(
         report.add_error(f"{display_path}: model_family must be one of: {allowed}")
     if detail is None:
         report.add_error(f"{display_path}: model_family requires model_detail")
-    elif not isinstance(detail, str) or not detail.strip():
+    elif not isinstance(detail, str) or len(detail.strip()) < 2:
         report.add_error(f"{display_path}: model_detail must be a non-empty string")
+    elif detail.strip().casefold() in MODEL_DISCLOSURE_PLACEHOLDERS:
+        report.add_error(
+            f"{display_path}: model_detail must replace the scaffold placeholder with a declared model"
+        )
 
 
 def policy_file(repo_root: Path, relative_path: str) -> Path:
