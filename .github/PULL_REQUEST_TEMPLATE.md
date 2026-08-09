@@ -68,6 +68,8 @@ python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal
 python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```
 
+如果是已存在 `package_state=ready_for_review` 包的后续修订，将 finalize 命令替换为 `python3 scripts/finalize_submission.py <submission-dir> --refresh`，再重新运行 self-check 和 preflight。
+
 - [ ] 一键自检 `self_check_submission.py` 已通过
 - [ ] 投稿预检 `participant_preflight.py --check-push` 已通过，目录归属、变更范围、文件大小和远程推送均无 blocker
 - [ ] deterministic validation、spatial review、visual packaging check、professional evidence review 均为 PASS

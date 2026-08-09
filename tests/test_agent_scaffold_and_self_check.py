@@ -298,6 +298,71 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual("proposal.md", items["proposal.en.md"]["translation_of"])
             self.assertEqual("report/proposal.html", items["report/proposal.en.html"]["translation_of"])
 
+    def test_finalize_refreshes_ready_package_after_revision(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "refresh-pass"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(0, finalized.returncode, finalized.stdout + finalized.stderr)
+
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["validation_claim"]["self_checked"] = True
+            before = next(item["sha256"] for item in manifest["files"] if item["path"] == "visual/index.html")
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            visual_path = submission_dir / "visual" / "index.html"
+            visual_path.write_text(visual_path.read_text(encoding="utf-8") + "\n<!-- presentation revision -->\n", encoding="utf-8")
+
+            refreshed = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                    str(submission_dir),
+                    "--refresh",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(0, refreshed.returncode, refreshed.stdout + refreshed.stderr)
+            updated = json.loads(manifest_path.read_text(encoding="utf-8"))
+            after = next(item["sha256"] for item in updated["files"] if item["path"] == "visual/index.html")
+            self.assertEqual("ready_for_review", updated["package_state"])
+            self.assertNotEqual(before, after)
+            self.assertEqual(hashlib.sha256(visual_path.read_bytes()).hexdigest(), after)
+            self.assertFalse(updated["validation_claim"]["self_checked"])
+            self.assertIn("Review-ready package refreshed", refreshed.stdout)
+
+    def test_finalize_refresh_blocks_zero_page_drawing(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "refresh-pdf"
+            scaffold = run_scaffold(submission_dir, cwd=root)
+            self.assertEqual(0, scaffold.returncode, scaffold.stdout + scaffold.stderr)
+            finalized = complete_scaffold(submission_dir)
+            self.assertEqual(0, finalized.returncode, finalized.stdout + finalized.stderr)
+            (submission_dir / "drawings" / "a0-boards.pdf").write_bytes(
+                b"%PDF-1.4\n/Type /Pages /Count 0\n"
+            )
+
+            refreshed = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "finalize_submission.py"),
+                    str(submission_dir),
+                    "--refresh",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertNotEqual(0, refreshed.returncode)
+            self.assertIn("drawings/a0-boards.pdf has no pages", refreshed.stdout)
+
     def test_finalize_preserves_localized_figure_language_metadata(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             output_dir = Path(tmp) / "submissions" / "alice" / "bilingual-figures"

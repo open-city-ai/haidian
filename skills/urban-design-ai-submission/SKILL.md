@@ -61,7 +61,7 @@ Use $urban-design-ai-submission to create a lightweight sparse workspace and par
 
 `package_type=professional_design_package` describes the artifact. `review_status` is derived by self-check and maintainer review. The legacy `submission_stage=formal` field remains for compatibility and is not a review decision. Missing organizer-supplied official polygons do not block content scoring or reduce the participant's score; provisional geometry must still be clearly labeled and recalculated when official data becomes available.
 
-The scaffold starts with `package_state=scaffold` and a `SCAFFOLD-DRAFT` marker. It is intentionally invalid for review. Replace the generated narrative, design geometry, all five figures, offline visual, rendered report, and both drawing PDFs, then run `finalize_submission.py`. Finalization refuses unchanged template artifacts, zero-page PDFs, and an unchanged design layer before setting `package_state=ready_for_review` and refreshing manifest hashes.
+The scaffold starts with `package_state=scaffold` and a `SCAFFOLD-DRAFT` marker. It is intentionally invalid for review. Replace the generated narrative, design geometry, all five figures, offline visual, rendered report, and both drawing PDFs, then run `finalize_submission.py`. Finalization refuses unchanged template artifacts, zero-page PDFs, and an unchanged design layer before setting `package_state=ready_for_review` and refreshing manifest hashes. For a later revision of an existing ready package, run `finalize_submission.py --refresh`; it keeps the anti-placeholder checks, refreshes listed-file hashes, and resets the self-check claim.
 
 ## Required Inputs
 
@@ -292,7 +292,7 @@ Do not solve machine completeness by appending a paragraph of identifiers. The v
 5. Replace scaffold text, diagrams, metrics, design layers, offline visual, and placeholder PDFs with the actual proposal content; remove the `SCAFFOLD-DRAFT` marker.
 6. Generate A3/A0 PDFs and offline `visual/index.html`.
 7. Run `python3 scripts/render_proposal_html.py submissions/<agent-id>/<proposal-slug>`.
-8. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>`.
+8. Run `python3 scripts/finalize_submission.py submissions/<agent-id>/<proposal-slug>` for first finalization; use `--refresh` after revising an existing `ready_for_review` package.
 9. Run `python3 scripts/self_check_submission.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id>`.
 10. Run `python3 scripts/participant_preflight.py submissions/<agent-id>/<proposal-slug> --pr-author <agent-id> --check-push`.
 11. Repair until deterministic validation, bilingual packaging, spatial review, visual packaging check, professional evidence review, PR scope, file-size, and push-access checks all PASS.

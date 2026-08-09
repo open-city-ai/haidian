@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Promote a materially edited scaffold to a review-ready submission package."""
+"""Promote a scaffold or refresh an existing review-ready submission package."""
 
 from __future__ import annotations
 
@@ -44,13 +44,24 @@ def digest(path: Path) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("submission_dir")
+    parser.add_argument(
+        "--refresh",
+        action="store_true",
+        help="refresh hashes for an existing ready_for_review package after a revision",
+    )
     args = parser.parse_args()
     root = Path(args.submission_dir).resolve()
     manifest_path = root / "manifest.json"
     if not manifest_path.is_file():
         parser.error(f"manifest.json not found under {root}")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-    if manifest.get("package_state") != "scaffold":
+    package_state = manifest.get("package_state")
+    refresh_mode = package_state == "ready_for_review"
+    if args.refresh and not refresh_mode:
+        parser.error("--refresh requires package_state=ready_for_review")
+    if not args.refresh and package_state != "scaffold":
+        if refresh_mode:
+            parser.error("package_state is ready_for_review; use --refresh to refresh a revision")
         parser.error("package_state must be scaffold before finalization")
 
     declared = {
@@ -60,7 +71,24 @@ def main() -> int:
     }
     errors: list[str] = []
 
-    proposal_text = (root / "proposal.md").read_text(encoding="utf-8")
+    def require_non_empty_file(rel: str) -> None:
+        path = root / rel
+        if not path.is_file():
+            errors.append(f"{rel} is missing")
+        elif path.stat().st_size == 0:
+            errors.append(f"{rel} is empty")
+
+    if refresh_mode:
+        for rel in [*READABLE_OUTPUTS, *FIGURES]:
+            require_non_empty_file(rel)
+        for rel in DRAWINGS:
+            require_non_empty_file(rel)
+            path = root / rel
+            if path.is_file() and is_empty_pdf(path.read_bytes()):
+                errors.append(f"{rel} has no pages")
+
+    proposal_path = root / "proposal.md"
+    proposal_text = proposal_path.read_text(encoding="utf-8") if proposal_path.is_file() else ""
     proposal_metadata, _ = parse_front_matter(proposal_text)
     if "SCAFFOLD-DRAFT" in proposal_text:
         errors.append("proposal.md still contains the SCAFFOLD-DRAFT marker")
@@ -75,24 +103,25 @@ def main() -> int:
                 f"proposal.md must declare translation_file: {expected_translation} for the required bilingual package"
             )
 
-    def changed(rel: str) -> bool:
-        path = root / rel
-        return path.is_file() and rel in declared and digest(path) != declared[rel]
+    if not refresh_mode:
+        def changed(rel: str) -> bool:
+            path = root / rel
+            return path.is_file() and rel in declared and digest(path) != declared[rel]
 
-    for rel in READABLE_OUTPUTS:
-        if not changed(rel):
-            errors.append(f"{rel} is unchanged from the generated scaffold")
-    unchanged_figures = [rel for rel in FIGURES if not changed(rel)]
-    if unchanged_figures:
-        errors.append("all five proposal figures must be regenerated: " + ", ".join(unchanged_figures))
-    if not any(changed(rel) for rel in DESIGN_GEOMETRY):
-        errors.append("at least one participant-controlled design geometry layer must change")
-    for rel in DRAWINGS:
-        path = root / rel
-        if not changed(rel):
-            errors.append(f"{rel} is unchanged from the placeholder drawing")
-        elif is_empty_pdf(path.read_bytes()):
-            errors.append(f"{rel} has no pages")
+        for rel in READABLE_OUTPUTS:
+            if not changed(rel):
+                errors.append(f"{rel} is unchanged from the generated scaffold")
+        unchanged_figures = [rel for rel in FIGURES if not changed(rel)]
+        if unchanged_figures:
+            errors.append("all five proposal figures must be regenerated: " + ", ".join(unchanged_figures))
+        if not any(changed(rel) for rel in DESIGN_GEOMETRY):
+            errors.append("at least one participant-controlled design geometry layer must change")
+        for rel in DRAWINGS:
+            path = root / rel
+            if not changed(rel):
+                errors.append(f"{rel} is unchanged from the placeholder drawing")
+            elif is_empty_pdf(path.read_bytes()):
+                errors.append(f"{rel} has no pages")
 
     if translation_language and strict_bilingual:
         listed_items = {
@@ -123,7 +152,8 @@ def main() -> int:
                     errors.append(f"{translated_proposal.name} must declare translation_of: proposal.md")
 
     if errors:
-        print("Submission is still a scaffold:")
+        heading = "Submission refresh blocked:" if refresh_mode else "Submission is still a scaffold:"
+        print(heading)
         for error in errors:
             print(f"- {error}")
         return 1
@@ -173,7 +203,10 @@ def main() -> int:
         if rel and rel != "manifest.json" and (root / rel).is_file():
             item["sha256"] = digest(root / rel)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Review-ready package: {root}")
+    if refresh_mode:
+        print(f"Review-ready package refreshed: {root}")
+    else:
+        print(f"Review-ready package: {root}")
     print("Run self_check_submission.py now. Any later file edit requires refreshed manifest hashes and another full validation.")
     return 0
 

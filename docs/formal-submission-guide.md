@@ -358,6 +358,14 @@ python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slu
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
 ```
 
+以上无参数命令用于首次把 `package_state=scaffold` 提升为 `ready_for_review`。如果包已经是 `ready_for_review`，后续修改展示或正文后应改用：
+
+```bash
+python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug> --refresh
+```
+
+`--refresh` 仍会检查反占位条件、必需展示文件和非空图纸，只刷新 manifest 已列文件的哈希，并把 self-check claim 重置为未完成；随后必须重新运行 `self_check_submission.py`。
+
 规则：
 
 - 路径固定为 `report/proposal.html`。
