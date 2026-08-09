@@ -45,6 +45,12 @@ jobs:
           fi
           git switch --create "${branch}" "${GITHUB_SHA}"
           python3 scripts/generate_submissions_data.py
+          python3 scripts/generate_submissions_data.py --check
+          node --check submissions-data.js
+          python3 -m unittest \
+            tests.test_submissions_gallery \
+            tests.test_prelaunch_check \
+            tests.test_gallery_snapshot_maintenance_workflow
 
           if git diff --quiet -- submissions-data.js; then
             echo "changed=false" >> "${GITHUB_OUTPUT}"

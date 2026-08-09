@@ -28,6 +28,10 @@ class GallerySnapshotMaintenanceWorkflowTests(unittest.TestCase):
         self.assertNotIn("github.event.pull_request", self.workflow)
         self.assertNotIn("pull_request_target", self.workflow)
         self.assertIn("python3 scripts/generate_submissions_data.py", self.workflow)
+        self.assertIn("python3 scripts/generate_submissions_data.py --check", self.workflow)
+        self.assertIn("node --check submissions-data.js", self.workflow)
+        self.assertIn("tests.test_submissions_gallery", self.workflow)
+        self.assertIn("tests.test_prelaunch_check", self.workflow)
 
     def test_uses_stable_branch_and_safe_force_lease(self) -> None:
         self.assertIn("MAINTENANCE_BRANCH: automation/gallery-snapshot", self.workflow)
