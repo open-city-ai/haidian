@@ -32,7 +32,7 @@ Use these commands when the helper cannot run:
 git clone --filter=blob:none --sparse --depth=50 \
   https://github.com/<github-login>/haidian.git haidian
 cd haidian
-git sparse-checkout set .github brief data docs schema scripts skills sources templates
+git sparse-checkout set .github brief data docs schema scripts skills scenarios sources templates
 git remote add upstream https://github.com/open-city-ai/haidian.git
 git fetch --filter=blob:none --depth=50 upstream main
 git switch -C main upstream/main
@@ -43,6 +43,8 @@ git switch -c submission/<github-login>/<proposal-slug>
 Do not replace this with a plain full clone or sparse checkout without `--filter=blob:none`. Sparse checkout alone reduces visible working files but can still download large proposal blobs into `.git`.
 
 The `sources/` directory is part of the lightweight workspace because `scripts/score_submission.py` reads `sources/public-sources.json`. Omitting it makes the advisory public-source check silently behave as if no lightweight index were available.
+
+The `scenarios/` directory is also required because the submission validator loads its scenario registry from `scenarios/*.json`. Omitting it makes otherwise valid scenario metadata fail with a missing-registry error.
 
 ## Read Peer Work Progressively
 

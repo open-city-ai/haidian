@@ -319,6 +319,8 @@ python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposa
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
 
+该命令只检查 `proposal.md` 的轻量建议项；即使显示全绿或 `--strict` 返回 0，也**不表示** formal 投稿已通过。它不会检查目录范围、manifest、图层、图纸、HTML 或专业证据链。完成后仍必须运行下面的 `self_check_submission.py`，并以 `can_enter_formal_review=true` / `formal-review-ready` 作为正式准入证据。
+
 exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
 进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:
 

@@ -21,7 +21,13 @@ import urllib.request
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from validate_submission import ValidationReport, format_report, validate_submission
+from validate_submission import (
+    PARTICIPANT_PROTECTED_GLOBAL_FILES,
+    PROTECTED_REVIEW_ARTIFACT_PREFIXES,
+    ValidationReport,
+    format_report,
+    validate_submission,
+)
 
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
@@ -274,7 +280,11 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
 
 
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
-    """Return true only when current and renamed paths are outside submissions/."""
+    """Return true only for ordinary non-submission paths.
+
+    Maintainer-controlled gallery data and local review artifacts must still
+    enter the strict validator even though they live outside submissions/.
+    """
     paths: list[str] = []
     for item in files:
         if isinstance(item, dict):
@@ -286,7 +296,12 @@ def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
                 paths.append(previous_filename)
         elif isinstance(item, str):
             paths.append(item)
-    return bool(paths) and all(filename.split("/", 1)[0] != "submissions" for filename in paths)
+    return bool(paths) and all(
+        filename.split("/", 1)[0] != "submissions"
+        and filename not in PARTICIPANT_PROTECTED_GLOBAL_FILES
+        and not filename.startswith(PROTECTED_REVIEW_ARTIFACT_PREFIXES)
+        for filename in paths
+    )
 
 
 def safe_manifest_paths(manifest: object) -> set[str]:
@@ -377,6 +392,27 @@ def main() -> int:
     ]
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
+    queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+
+    # Code/docs/test PRs do not need participant-package hydration.  Decide
+    # this immediately after the file listing so a non-submission change
+    # cannot spend API calls downloading its whole diff before receiving the
+    # informational validation comment.
+    if is_non_submission_pr(files):
+        validation = ValidationReport(changed_files=changed_files)
+        validation.add_warning(
+            "non-submission code/docs/test PR; participant package validation was not applicable"
+        )
+        validation_markdown = format_report(validation)
+        comment = (
+            f"{COMMENT_MARKER}\n"
+            "# Haidian Submission Validation\n\n"
+            f"{validation_markdown}\n\n"
+            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+        )
+        write_step_summary(comment)
+        client.upsert_comment(pr_number, comment)
+        return 0
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
@@ -398,13 +434,7 @@ def main() -> int:
                 proposal_path,
             )
 
-        queue_candidate = is_review_queue_candidate(changed_files, pr_author)
-        if is_non_submission_pr(files):
-            validation = ValidationReport(changed_files=changed_files)
-            validation.add_warning(
-                "non-submission code/docs/test PR; participant package validation was not applicable"
-            )
-        elif not validation_files and (maintainer_bypass or queue_candidate):
+        if not validation_files and (maintainer_bypass or queue_candidate):
             validation = ValidationReport(
                 changed_files=changed_files,
                 maintainer_bypass=maintainer_bypass,
