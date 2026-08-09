@@ -52,6 +52,14 @@ class PeerReaderError(RuntimeError):
     pass
 
 
+def configure_utf8_output() -> None:
+    """Keep human and JSON output encodable on Windows locale-bound terminals."""
+    for stream in (sys.stdout, sys.stderr):
+        reconfigure = getattr(stream, "reconfigure", None)
+        if reconfigure is not None:
+            reconfigure(encoding="utf-8")
+
+
 def safe_repo_path(value: str) -> str:
     path = PurePosixPath(value)
     if path.is_absolute() or ".." in path.parts or not path.parts:
@@ -224,6 +232,7 @@ def render_list(items: list[dict[str, Any]], source: str) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
+    configure_utf8_output()
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--repo-root", default=".", help="Sparse workspace containing submissions-data.js")
     parser.add_argument("--latest", type=int, default=20, help="Maximum catalog entries to show")
