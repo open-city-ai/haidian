@@ -104,6 +104,7 @@ class GitHubClient:
     def __init__(self, token: str, repository: str) -> None:
         self.token = token
         self.repository = repository
+        self._git_tree_cache: dict[tuple[str, str], dict[str, dict[str, Any]]] = {}
 
     def request(self, method: str, url: str, data: dict | None = None) -> tuple[Any, dict[str, str]]:
         if url.startswith("/"):
@@ -209,33 +210,59 @@ class GitHubClient:
         destination.write_bytes(content)
         return True
 
+    def git_tree_entries(self, repo: str, ref: str) -> dict[str, dict[str, Any]]:
+        """Return one cached typed Git tree snapshot for a repository/ref.
+
+        The recursive tree endpoint exposes Git modes without one Contents API
+        request per path. A truncated tree is unsafe for a trusted download
+        boundary, so fail closed rather than silently falling back to a path
+        API that may resolve symlinks to target bytes.
+        """
+        cache_key = (repo, ref)
+        cached = self._git_tree_cache.get(cache_key)
+        if cached is not None:
+            return cached
+
+        encoded_ref = urllib.parse.quote(ref)
+        data, _ = self.request(
+            "GET",
+            f"/repos/{repo}/git/trees/{encoded_ref}?recursive=1",
+        )
+        if not isinstance(data, dict) or data.get("truncated") is True:
+            raise RuntimeError(
+                f"GitHub API tree {repo}@{ref} is truncated or malformed; "
+                "trusted validation refuses to hydrate untyped artifacts"
+            )
+        tree = data.get("tree")
+        if not isinstance(tree, list):
+            raise RuntimeError(f"GitHub API tree {repo}@{ref} did not return a tree")
+        entries: dict[str, dict[str, Any]] = {}
+        for item in tree:
+            if not isinstance(item, dict) or not isinstance(item.get("path"), str):
+                continue
+            entries[item["path"]] = {
+                "mode": item.get("mode"),
+                "type": item.get("type"),
+            }
+        self._git_tree_cache[cache_key] = entries
+        return entries
+
     def assert_regular_file(self, repo: str, path: str, ref: str) -> None:
         """Reject Git objects that are not ordinary files before raw download.
 
-        The raw Contents representation can resolve a symbolic link to its
-        target bytes. That would make the trusted validator treat an external
-        or otherwise untracked object as an in-package artifact, so inspect the
-        typed Contents metadata first. A 404 is left to ``download_content`` so
-        its existing bounded retry and path-specific error remain authoritative.
+        A missing tree entry is left to ``download_content`` so its existing
+        bounded retry and path-specific 404 remain authoritative. Git mode
+        ``100644`` and executable ``100755`` are the only accepted regular
+        file modes; symlinks, submodules and directories fail closed.
         """
-        encoded_path = urllib.parse.quote(path)
-        encoded_ref = urllib.parse.quote(ref)
-        try:
-            data, _ = self.request(
-                "GET",
-                f"/repos/{repo}/contents/{encoded_path}?ref={encoded_ref}",
-            )
-        except urllib.error.HTTPError as exc:
-            if exc.code == 404:
-                return
-            raise
-        if not isinstance(data, dict):
-            raise RuntimeError(f"GitHub API path {path} did not return file metadata")
-        object_type = data.get("type")
-        if object_type != "file":
+        entry = self.git_tree_entries(repo, ref).get(path)
+        if entry is None:
+            return
+        if entry.get("mode") not in {"100644", "100755"} or entry.get("type") != "blob":
             raise RuntimeError(
-                f"GitHub API path {path} is not a regular file (type={object_type!r}); "
-                "trusted validation refuses symbolic links and non-file entries"
+                f"GitHub API path {path} is not a regular file "
+                f"(mode={entry.get('mode')!r}, type={entry.get('type')!r}); "
+                "trusted validation refuses symbolic links, submodules and directories"
             )
 
     def upsert_comment(self, issue_number: int, body: str) -> None:
