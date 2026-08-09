@@ -718,6 +718,7 @@ def source_declares_formal_usability(source: dict) -> bool:
     """
     return (
         str(source.get("type", "")).strip().lower() == "formal_usable"
+        or str(source.get("formal_usable", "")).strip().lower() in {"yes", "true", "1"}
         or str(source.get("usable_for_formal", "")).strip().lower() == "yes"
         or str(source.get("usable_for", "")).strip().lower() in {"formal", "formal_usable"}
     )
