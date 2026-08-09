@@ -1676,6 +1676,24 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
                 report.add_error(message)
             else:
                 report.add_warning(message + "; legacy v1 package remains compatible")
+        manifest_agent = manifest.get("agent") if isinstance(manifest, dict) else None
+        manifest_model = manifest_agent.get("model") if isinstance(manifest_agent, dict) else None
+        agent_model = agent_data.get("model") if isinstance(agent_data, dict) else None
+        if (
+            isinstance(manifest_model, str)
+            and manifest_model.strip()
+            and isinstance(agent_model, str)
+            and agent_model.strip()
+            and manifest_model.strip() != agent_model.strip()
+        ):
+            message = (
+                f"{proposal_dir}/agent.json: model `{agent_model.strip()}` does not match "
+                f"manifest.json agent.model `{manifest_model.strip()}`"
+            )
+            if strict_bilingual:
+                report.add_error(message)
+            else:
+                report.add_warning(message + "; legacy v1 package remains compatible")
 
     for name in ["assumptions.json", "sources.json"]:
         path = base / name
