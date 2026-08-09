@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import math
 import re
 from dataclasses import dataclass, field
 from html.parser import HTMLParser
@@ -103,9 +104,12 @@ class VisualMetricParser(HTMLParser):
         if not isinstance(name, str) or not isinstance(raw_value, str):
             return
         try:
-            self.metrics[html.unescape(name)] = float(raw_value)
+            value = float(raw_value)
         except ValueError:
             return
+        if not math.isfinite(value):
+            return
+        self.metrics[html.unescape(name)] = value
 
     def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         self.handle_starttag(tag, attrs)
