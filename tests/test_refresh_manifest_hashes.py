@@ -68,3 +68,20 @@ class RefreshManifestHashesTests(unittest.TestCase):
 
             self.assertNotEqual(0, completed.returncode)
             self.assertIn("must stay inside the package", completed.stdout)
+
+    def test_rejects_symlinked_manifest_without_modifying_its_target(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            package = Path(tmp) / "package"
+            outside = Path(tmp) / "outside-manifest.json"
+            package.mkdir()
+            outside.write_text('{"files": []}', encoding="utf-8")
+            if not hasattr(os, "symlink"):
+                self.skipTest("symlink support is unavailable")
+            os.symlink(outside, package / "manifest.json")
+            original = outside.read_bytes()
+
+            completed = self.run_refresh(package)
+
+            self.assertNotEqual(0, completed.returncode)
+            self.assertIn("manifest.json must stay inside the package", completed.stderr)
+            self.assertEqual(original, outside.read_bytes())

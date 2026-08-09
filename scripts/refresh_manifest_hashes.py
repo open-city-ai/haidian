@@ -28,15 +28,29 @@ def manifest_file_path(root: Path, raw_path: object) -> tuple[str, Path]:
     return pure_path.as_posix(), path
 
 
+def package_manifest_path(root: Path) -> Path:
+    """Return only a regular manifest file physically contained by the package."""
+    manifest_path = root / "manifest.json"
+    try:
+        resolved_path = manifest_path.resolve(strict=True)
+        resolved_path.relative_to(root)
+    except (OSError, RuntimeError, ValueError) as exc:
+        raise ValueError("manifest.json must stay inside the package") from exc
+    if manifest_path.is_symlink() or not manifest_path.is_file():
+        raise ValueError("manifest.json must be a regular file inside the package")
+    return manifest_path
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("submission_dir")
     args = parser.parse_args()
 
     root = Path(args.submission_dir).resolve()
-    manifest_path = root / "manifest.json"
-    if not manifest_path.is_file():
-        parser.error(f"manifest.json not found under {root}")
+    try:
+        manifest_path = package_manifest_path(root)
+    except ValueError as exc:
+        parser.error(str(exc))
     try:
         manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (UnicodeDecodeError, json.JSONDecodeError) as exc:
