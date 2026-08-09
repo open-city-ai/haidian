@@ -2363,6 +2363,23 @@ class SubmissionWorkflowTests(unittest.TestCase):
 
             self.assertTrue(report.ok, report.errors)
 
+    def test_legacy_null_generated_at_remains_compatible(self) -> None:
+        """Confidence validation must not impose an unrelated timestamp migration."""
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            manifest_path = root / base / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            manifest["generated_at"] = None
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            self.assertTrue(report.ok, report.errors)
+
     def test_spatial_json_coordinates_fail_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
