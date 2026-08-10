@@ -1,0 +1,422 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 87414.717,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(concept_building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "semantic_name": "prototype_footprint_sample_area",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "concept_building_coverage_ratio": {
+      "status": "known",
+      "value": 0.007659,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001"
+      ],
+      "semantic_name": "prototype_sample_ratio",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2119234.98,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "blue_green_overlay_union_area",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.185689,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "blue_green_overlay_ratio",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 230255.631,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "scenario_support_envelope_union_area",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.020175,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "scenario_support_envelope_ratio",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "greenway_length_m": {
+      "status": "known",
+      "value": 9359.99,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001 projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TRANSPORT-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space features with scenario_id)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "testbed_scenario_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario_type=industry_testbed)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6.0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona rows in proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(concept renewal project list)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-EXISTING-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4285090.287,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "phase_1_review_jurisdiction_area",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 1534275.559,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "phase_2_review_jurisdiction_area",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 5593446.249,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(PHASE-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "semantic_name": "phase_3_review_jurisdiction_area",
+      "non_statutory_measure": true,
+      "interpretation_rule": "machine-readable internal design evidence; do not infer statutory land use, approved building, facility footprint or construction schedule"
+    },
+    "land_use_category_count": {
+      "status": "known",
+      "value": 7.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(distinct land_use_code)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 1972610.211,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 996149.729,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 1360497.345,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 2124988.883,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 1039122.168,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0803)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1620291.792,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0804)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2299192.511,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "缺少现状建筑层数、用途、权属和正式控规条件。"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "缺少官方红线与审定容积率条件。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_building_footprint / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "概念建筑基底不能替代审定建筑密度。"
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "area(official_road_redlines)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "缺少官方道路红线与断面资料。"
+    }
+  }
+}

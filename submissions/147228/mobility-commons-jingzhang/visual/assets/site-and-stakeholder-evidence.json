@@ -18,6 +18,11 @@
       "HAIDIAN-ROAD-PARKING-TENDER-2026",
       "BEIJING-HAIDIAN-TRANSIT-HUB-PDF",
       "BEIJING-ACCESSIBILITY-REGULATION",
+      "BARRIER-FREE-ENVIRONMENT-LAW",
+      "ELDERLY-SMART-TECH-PLAN-2020-45",
+      "GENERATIVE-AI-INTERIM-MEASURES",
+      "ISSUE-1029-KEY3-ANCHOR",
+      "ISSUE-951-SOURCE-BOUNDARY",
       "OSM-TRANSPORT-CONTEXT"
     ],
     "authorized_aggregate_sources": [],
@@ -27,7 +32,7 @@
     "accessibility_walkthrough": "not_conducted",
     "personal_data_collected": false,
     "consent_records": [],
-    "source_use_rule": "Policy, tender, method and open-map sources define context or a calibration request; none is treated as a resident, enterprise, operator or field-performance baseline."
+    "source_use_rule": "Policy, tender, method and open-map sources define context or a calibration request; package-local community references are judged by their own metadata and stated use; none is treated as a resident, enterprise, operator or field-performance baseline."
   },
   "inferred_needs": [
     {
@@ -90,24 +95,30 @@
   "next_evidence": [
     {
       "id": "EVIDENCE-P0-001",
-      "owner": "unknown_until_authorized",
-      "window": "before_P1",
-      "method": "dated_15_minute_grouped_od_and_mode_counts",
-      "output": "versioned_aggregate_baseline"
+      "owner": "proposed_transport_authority_and_subdistrict_office_with_enterprise_mobility_contacts",
+      "role_status": "proposed_role_not_confirmed_or_assigned",
+      "window": "P0-b_after_public_notice_and_response_ledger_before_P1",
+      "method": "transport_authority_and_subdistrict_office_authorize_dated_15_minute_grouped_od_and_mode_counts; enterprise_contacts_submit_consent_minimized_aggregate_windows",
+      "output": "versioned_aggregate_baseline",
+      "unblocks": ["enterprise_commute_demand_baseline", "external_commute_od_baseline", "employer_multimodal_trip_rate"]
     },
     {
       "id": "EVIDENCE-P0-002",
-      "owner": "unknown_until_authorized",
-      "window": "before_P1",
-      "method": "professional_accessibility_and_people_flow_walkthrough",
-      "output": "route_obstacle_and_fallback_register"
+      "owner": "proposed_disabled_persons_federation_or_qualified_accessibility_reviewer_with_older_person_representatives_and_transport_authority",
+      "role_status": "proposed_role_not_confirmed_or_assigned",
+      "window": "P0-c_after_public_notice_and_grouped_baseline_before_P1",
+      "method": "professional_continuous_route_and_people_flow_walkthrough_with_disabled_persons_federation_or_accessibility_reviewer_and_older_person_representatives; record assisted_transfer_and_human_fallback",
+      "output": "route_obstacle_and_fallback_register",
+      "unblocks": ["accessible_route_completion_ratio", "first_last_mile_transfer_reliability", "person_flow_conflict_rate"]
     },
     {
       "id": "EVIDENCE-P0-003",
-      "owner": "unknown_until_authorized",
-      "window": "before_P1",
-      "method": "public_comment_and_response_ledger",
-      "output": "adopted_partially_adopted_deferred_or_declined_record"
+      "owner": "proposed_subdistrict_public_participation_window_with_disabled_persons_federation_and_older_person_representatives",
+      "role_status": "proposed_role_not_confirmed_or_assigned",
+      "window": "P0-a_public_notice_and_response_ledger_frozen_before_P1",
+      "method": "public_comment_and_response_ledger_with_offline_telephone_paper_and_accessible_entry; record adopted_partially_adopted_deferred_or_declined_items",
+      "output": "adopted_partially_adopted_deferred_or_declined_record",
+      "unblocks": ["resident_daily_trip_access_index", "mobility_service_complaint_closure_hours"]
     }
   ],
   "guardrails": {
@@ -118,5 +129,10 @@
     "operational_status": "not_authorized_not_run",
     "p1_p2_advance_without_dated_baseline": false
   },
+  "role_basis": [
+    "BARRIER-FREE-ENVIRONMENT-LAW",
+    "ELDERLY-SMART-TECH-PLAN-2020-45"
+  ],
+  "role_boundary": "These are proposed organisational roles derived from public policy, not confirmed assignments, named partners or evidence that participation has occurred.",
   "boundary": "This record discloses evidence status and next collection work. It is not a site visit log, resident survey, stakeholder endorsement, accessibility audit, permit, operating result or implementation authorization."
 }

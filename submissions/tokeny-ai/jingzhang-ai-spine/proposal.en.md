@@ -94,11 +94,48 @@ Urban character keynote: with "heritage red × spine blue" as the color keynote,
 
 The three key areas use the KEY-001/002/003 provisional constraints in `geometry/key_areas.geojson` as the working boundary; the announced areas are approx. 192.1 / 104.3 / 72.0 ha, and the provisional-polygon recalculated values are approx. 192.9 / 104.3 / 72.0 ha, with a deviation within 0.43% [metric:key_area_zhongzhiyuan_sqm]. All area-level conclusions are conceptual recommendations, pending re-verification after the official key-area polygons are released [depth:three_key_area_detailed_design].
 
-**Zhongzhi Core (Zhongzhiyuan AI Independent Innovation Acceleration Area, KEY-001)** [data:geometry/key_areas.geojson#KEY-001]: the source of the full-stack independent AI innovation system. The conceptual spatial organization is "one core, one axis, two belts": the core area carries national strategic scientific and technological forces and open innovation platforms; the main axis links the R&D clusters; the two belts carry supporting functions and ecology. All parcel-level recommendations are conceptual recommendations [depth:key_area_zhongzhi].
+**Zhongzhi Core (Zhongzhiyuan AI Independent Innovation Acceleration Area, KEY-001)** [data:geometry/key_areas.geojson#KEY-001]: the source of the full-stack independent AI innovation system. Conceptual land-use composition (recalculated on the provisional constraint boundary, ~192.9 ha):
 
-**AI Origin Core (Beijing AI Origin Community, KEY-002)** [data:geometry/key_areas.geojson#KEY-002]: centered on the Qinghuayuan Station heritage site and the Wudaokou area, conceptually organized as "one axis, one core, two areas": the Spine cultural axis, the AI Origin exchange core, the academy area, and the commercial area, emphasizing "campus–park–neighborhood" integration and an open-source cultural community.
+| Function | Area | Share |
+| --- | ---: | ---: |
+| Research (0802) | 50.2 ha | 26.0% |
+| Park green (1401) | 37.5 ha | 19.5% |
+| Reserve (16) | 28.0 ha | 14.5% |
+| Culture (0803) | 27.5 ha | 14.3% |
+| Commercial (05) | 23.9 ha | 12.4% |
+| Roads (1207) | 22.0 ha | 11.4% |
+| Plazas (1403) | 3.8 ha | 2.0% |
 
-**Dazhongsi Core (Dazhongsi AI Industry Cluster, KEY-003)** [data:geometry/key_areas.geojson#KEY-003]: organized around Dazhongsi Station as a station-city integrated renewal, conceptually structured as "one station, one street, one plaza": a station-city integrated hub, an AI-native consumer street, and a four-quadrant plaza, emphasizing AI+ consumption and public experience.
+The conceptual spatial organization is "one core, one axis, two belts": the core area carries national strategic scientific and technological forces and open innovation platforms; the main axis links the R&D clusters; the two belts carry supporting functions and ecology. The ~14.5% strategic reserve is an intentional flexibility buffer — full-stack AI technology and national platform needs iterate rapidly, so the reserve keeps room for uncertainty and is activated only after platform needs are clarified, avoiding lock-in by short-term development. All parcel-level recommendations are conceptual recommendations [depth:three_key_area_detailed_design].
+
+**AI Origin Core (Beijing AI Origin Community, KEY-002)** [data:geometry/key_areas.geojson#KEY-002]: centered on the Qinghuayuan Station heritage site and the Wudaokou area. Conceptual land-use composition (~104.3 ha):
+
+| Function | Area | Share |
+| --- | ---: | ---: |
+| Research (0802) | 30.2 ha | 29.0% |
+| Roads (1207) | 16.2 ha | 15.5% |
+| Park green (1401) | 14.8 ha | 14.1% |
+| Reserve (16) | 14.0 ha | 13.5% |
+| Commercial (05) | 13.1 ha | 12.5% |
+| Community service (0702) | 12.3 ha | 11.8% |
+| Plazas (1403) | 3.7 ha | 3.6% |
+
+Conceptually organized as "one axis, one core, two areas": the Spine cultural axis, the AI Origin exchange core, the academy area, and the commercial area, emphasizing "campus–park–neighborhood" integration and an open-source cultural community. The reserve serves as a flexible buffer for the talent community and campus, filled progressively as tech-transfer proceeds.
+
+**Dazhongsi Core (Dazhongsi AI Industry Cluster, KEY-003)** [data:geometry/key_areas.geojson#KEY-003]: organized around Dazhongsi Station as a station-city integrated renewal. Conceptual land-use composition (~72.0 ha):
+
+| Function | Area | Share |
+| --- | ---: | ---: |
+| Commercial (05) | 19.6 ha | 27.3% |
+| Roads (1207) | 11.3 ha | 15.6% |
+| Culture (0803) | 11.1 ha | 15.4% |
+| Reserve (16) | 11.0 ha | 15.2% |
+| Park green (1401) | 8.1 ha | 11.2% |
+| Research (0802) | 7.9 ha | 11.0% |
+| Plazas (1403) | 3.1 ha | 4.4% |
+| Community service (0702) | 0.0 ha | 0.0% |
+
+Conceptually structured as "one station, one street, one plaza": a station-city integrated hub, an AI-native consumer street, and a four-quadrant plaza, emphasizing AI+ consumption and public experience. The reserve provides room for trial and error of AI-native new business forms. Community service land is intentionally 0% — as a pure urban industrial district, daily talent services are carried by the Origin Core and surrounding existing communities; this core focuses on commercial, cultural, and R&D functions to avoid diluting industrial concentration.
 
 ![Index and design task map of the three key areas](assets/figures/key-areas.png)
 
@@ -115,24 +152,24 @@ Around the three positioning statements—"full-stack independent AI innovation 
 5. **International visitors and talent**: needing bilingual wayfinding, an international community, and international events to strengthen the "AI capital" city brand.
 6. **Government and public sector**: needing scenario supervision tools, public data interfaces, and decision support; human review is the default prerequisite.
 
-### AI Scenario Cards (12 Cards; ★ Denotes Industry Testing-Verification Scenarios)
+### AI Scenario Cards (12 Cards; ★ Denotes Industry Testing-Validation Scenarios)
 
-Scenario cards are the spatial anchors of "AI+ scenarios." Each card registers: name, description, location and reference, operation mechanism, scope of access, risk, and human review nodes; data and mechanisms are registered in `scenario_cards.json`, and locations and boundaries in `geometry/scenario_areas.geojson` [source:AGENT-TASKBOOK].
+The 12 scenario cards correspond one-to-one to the Chinese primary draft; each card carries a spatial anchor referencing the submission geometry layer [source:AGENT-TASKBOOK].
 
-| No. | Name | Location | Scenario type | Human review |
-| --- | --- | --- | --- | --- |
-| SC-01 ★ | Robot delivery and low-speed autonomous driving testing corridor | South segment of the Spine (Dazhongsi Core) | Industry testing-verification | Confirmation for each delivery |
-| SC-02 ★ | Multi-agent traffic coordination and dispatch | Middle segment of the Spine and along Xueyuan Road | Industry testing-verification | Signal scheme review |
-| SC-03 | AI cultural guide and heritage narrative | Exhibition nodes along the full Spine | Public service | Content review |
-| SC-04 | AI healthcare service navigation | Xiaoyue River Wing and Dazhongsi Core | Public service | Professional medical review |
-| SC-05 | Enterprise service Copilot | Enterprise service clusters of the two wings | Industry service | Compliance review |
-| SC-06 | Public safety operations review | Zhongzhi Core and citywide nodes | Governance support | Law enforcement review |
-| SC-07 | AI mobility service (commuting) | Middle segment of the Spine and Wudaokou | Public service | Trip safety review |
-| SC-08 | Smart guardianship of school commuting routes | Academy area of AI Origin Core | Public service | School and parent confirmation |
-| SC-09 | Smart eldercare and age-friendly services | Dazhongsi Core and community nodes | Public service | Community and family confirmation |
-| SC-10 | Unattended waystation service on the Spine | Waystations along the full Spine | Public service | Remote human duty |
-| SC-11 | Open-Source Starlight Wall interactive display | Waystation in the middle segment of the Spine | Cultural display | Content review |
-| SC-12 | AI innovation competition and event space | Zhongzhi Core and citywide nodes | Event operation | Event filing |
+| No. | Scenario | Spatial anchor (geometry) | Users | Data & privacy boundary | Human review & operation |
+| --- | --- | --- | --- | --- | --- |
+| ★TVS-1 | Spine low-speed robot delivery test corridor | Full spine greenway [data:geometry/roads.geojson#RD-001] | Robot firms, park users | Public road data + authorized test data; no face capture | Case-by-case manual approval; scenario-registry operator |
+| ★TVS-2 | AI+traffic walking-cycling evaluation sandbox | Five stitch corridors & station links [data:geometry/roads.geojson#RD-002] | Commuters, transport researchers | Public flow data, anonymized counts | Pilot only after transport/planning review |
+| ★TVS-3 | Dazhongsi AI-native commerce A/B test field | Dazhongsi AI-native consumption zone [data:geometry/land_use.geojson#LU-037] | Merchants, consumers | Desensitized transactions, explicit consent | Voluntary merchant opt-in; consumer-rights fallback |
+| SC-04 | AI guide & cultural narrative | Spine gallery, Qinghuayuan Station site [data:geometry/green_space.geojson#GR-006] | Visitors, students | Public history + human-curated content | Triple review: culture, copyright, facts |
+| SC-05 | AI+healthcare service navigation | Community service clusters [data:geometry/land_use.geojson#LU-032] | Residents, park youth | Public service directory only; no personal health data | Medical & legal review; navigation only |
+| SC-06 | Enterprise service Copilot | Two-wing tech-service nodes [data:geometry/land_use.geojson#LU-060] | Enterprises, developers | Public policy & service directory | Human consulting channel retained |
+| SC-07 | Public safety & event operation review | Large-event & night scenario nodes [data:geometry/public_space.geojson#PS-001] | Operators, public | Anonymized crowd heat | Safety conclusions human-confirmed |
+| SC-08 | AI+education: campus-park open classroom | Origin Core campus-integration cluster [data:geometry/land_use.geojson#LU-035] | Students, public | Public course resources | Institutions review course content |
+| SC-09 | AI+legal: IP quick-service waystation | West-wing tech-service cluster [data:geometry/land_use.geojson#LU-063] | Startups | Public statutes & case base | Lawyers issue formal opinions |
+| SC-10 | AI+living: talent-community one-stop assistant | Origin Core talent community [data:geometry/land_use.geojson#LU-032] | Young talent | Minimal collection, local processing | Community operator fallback |
+| SC-11 | AI+public space: Spine night light & safety companion | Three Spine waystations [data:geometry/public_space.geojson#PS-007] | Night users | Presence sensing only; no face recognition | Night operation team on duty |
+| SC-12 | AI governance sandbox: algorithm disclosure & citizen review pavilion | Zhongzhiyuan standards & governance zone [data:geometry/land_use.geojson#LU-026] | Public, governance researchers | All disclosure materials public | Conclusions formed by governance committee |
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 

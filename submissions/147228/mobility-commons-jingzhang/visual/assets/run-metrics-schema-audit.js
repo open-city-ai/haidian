@@ -30,6 +30,12 @@ for (const [id, metric] of Object.entries(metrics || {})) {
   if (metric.status === "known" && (metric.value === null || metric.value === undefined)) {
     invalidRecords.push({ id, reason: "known_metric_must_have_value" });
   }
+  if (metric.status === "known" && (!Array.isArray(metric.assumptions) || metric.assumptions.length === 0)) {
+    invalidRecords.push({ id, reason: "known_metric_must_have_at_least_one_assumption" });
+  }
+  if (id === "site_area_sqm" && metric.status === "known" && !metric.assumptions.some((item) => /cross-check/i.test(item))) {
+    invalidRecords.push({ id, reason: "site_area_must_record_announcement_cross_check" });
+  }
 }
 
 const result = {

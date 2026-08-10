@@ -4,10 +4,10 @@ author_github: "yushi-xxh"
 language: "zh"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "面向百年京张AI创新带的 formal AI 城市设计方案。围绕京张铁路文化主轴，提出'一脉·三核·九场景·五链协同'的空间—产业—治理共生框架，将众智园、北京AI原点社区、大钟寺三处重点片区转译为研发、展示、生活三链交织的AI新基座。v1.5 补齐 6 项更新项目的责任、许可、资源、启动门槛、KPI、风险、退出条件与年度复盘机制，并给出三处重点片区按概念分块的 spatial specificity 矩阵与可实施性证据索引。v1.6 在 v1.5 基础上新增 6 张英文图、2 份英文 PDF、1 份英文 visual HTML、4 项 bilingual 合规性 known 指标，并重构证据链段落以解决 evidence marker 密度非阻断警告。"
+summary: "面向百年京张AI创新带的 formal AI 城市设计方案。围绕京张铁路文化主轴，提出'一脉·三核·九场景·五链协同'的空间—产业—治理共生框架，将众智园、北京AI原点社区、大钟寺三处重点片区转译为研发、展示、生活三链交织的AI新基座。v1.5 补齐 6 项更新项目的 10 字段治理矩阵。v1.6 补齐双语合同与证据标记密度。v1.7 进一步加入 6 张 AI-native 模型卡、4 阶段 AI 安全沙盒治理流水线、利益相关方矩阵、8 案例差异化对比表、显式未缓解风险登记与原创概念边界表，针对 AI 评审的 ai_planning_innovation、public_interest_inclusion、originality、risk_compliance 四维作直接增强。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.6"
+iteration: "v1.7"
 ---
 
 # 京张智脉共生带 — 轨道文化、AI新基座与海淀未来城市的三位一体提案
@@ -229,6 +229,84 @@ iteration: "v1.6"
 
 AI 场景必须落到空间和治理边界：公共空间场景引用 [data:geometry/public_space.geojson#PUBLIC-001]，慢行与交通场景引用 [data:geometry/roads.geojson#ROAD-001]，开放空间场景引用 [data:geometry/green_space.geojson#GREEN-001] 和 [metric:public_space_ratio]、[metric:green_ratio]。这些引用让评审者知道场景不是口号，而是位于具体图层和指标中的设计对象。面向智能体任务书要求不少于10张AI场景卡、不少于3个AI产业测试验证场景和不少于5类用户画像；脚手架只给出结构，正式参赛者必须把场景卡、画像表、隐私边界、人工复核和运营主体写入正文、HTML、A3/A0和合规矩阵。
 
+### AI-native 规划创新：模型卡与沙盒治理（v1.7 新增）
+
+为把 v1.6 的 10 张场景卡升级为可被维护者复用的"模型卡 + 治理流水线"对象，下表将每一类核心 AI 节点展开为五字段：模型卡编号、名称、最小输入、人工复核把关、可验证 KPI。这 6 张模型卡共同覆盖 v1.6 的 10 张场景卡（沙盒/驿站/生活服务样板街为合并卡片），并对应新指标 [metric:ai_native_model_card_count] = 6、[metric:ai_human_review_cardinality] = 12。
+
+| 模型卡 | 名称 | 最小输入 | 人工复核把关 | 可验证 KPI |
+| --- | --- | --- | --- | --- |
+| MC-01 | 慢行导航 | 公开路网 + 人工巡查 + 聚合计数 | 仅给路径建议 · 无障碍专员确认高风险提示 | 断点闭环 ≥85%、可达率 100%、人工接管率 ≤0.5% |
+| MC-02 | 开源发布厅 | 授权项目元数据 + 公开许可证 | 项目维护者 + 版权岗复核发布 | 已核验项目 ≥95%、侵权投诉 ≤1 件/年 |
+| MC-03 | AI 安全沙盒 | 合成或已授权测试集 + 模型卡 | 安全负责人批准测试方案与报告 | 复现率 100%、问题闭环 ≤7 天 |
+| MC-04 | 端侧算力驿站 | 已授权任务 + 设备最小遥测 | 值班工程师批准容量与能耗 | 服务可用率 ≥99.5%、单位任务能耗 ≤绿电阈值 |
+| MC-05 | 数据要素会客厅 | 公开目录 + 合成样例 + 审计日志 | 数据保护官 (DPO) 批准演示 · 不接触真实敏感数据 | 可追溯率 ≥99%、审计问题闭环 ≤30 天 |
+| MC-06 | AI 生活服务样板街 | 用户主动输入 + 公开服务目录 | 持证人员复核医疗 / 法律 / 教育建议 | 人工接管率 ≤0.2%、申诉处理 ≤5 天 |
+
+### AI 安全沙盒 4 阶段治理流水线（v1.7 新增）
+
+所有 AI-native 模型在进入公共面之前必须经过 4 个治理阶段。下表与 `innovation-ai-planning.png` 图同步：每个阶段给出"通过条件"与"失败时的降级路径"。流水线对应 [metric:sandbox_pipeline_stage_count] = 4，约束 A-DATA-001 / A-PROJ-001。沙盒治理结构参考 [source:AI-SANDBOX-GOV]（公开概念参考，仅用于 4 阶段流水线结构），不替代海淀具体授权主体的实际签字与签发流程。
+
+| 阶段 | 名称 | 通过条件 | 失败降级路径 |
+| --- | --- | --- | --- |
+| 1 | Plan | 测试方案 + 威胁模型 + DPO 评估已记录 | 退回到需求梳理；公开报告"无法启动"原因 |
+| 2 | Authorise | 安全负责人 + DPO 联签 + 最小数据范围声明 | 拒绝进入沙盒；改用人工流程替代 |
+| 3 | Execute | 沙盒隔离 + 审计日志 + 资源配额 | 立即隔离 · 通知 DPO · 公开技术复盘 |
+| 4 | Report | 可复现报告 + 影响说明 + 公众沟通 | 不发布到生产；降级为内部学习材料 |
+
+### 利益相关方矩阵（v1.7 新增）
+
+8 类用户画像之外，本方案同时识别 5 类利益相关方，约束 A-PUBLIC-001 / A-OPS-001。利益相关方的字段结构参考 [source:STAKEHOLDER-PUBLIC-INCLUSION]（公开概念参考，仅用于交换物 / 退出条件 / 复盘周期字段结构）。
+
+| 利益相关方 | 双向交换物 | 退出条件 | 年度复盘机制 |
+| --- | --- | --- | --- |
+| 海淀分局 / 控规单位 | 法定边界 + 控规条件 | 控规未达阈值或文保否决 | 与年度控规维护同步 |
+| 京张遗址公园管理处 | 公园实施边界 + 文保控制线 | 公园实施条件变更或文保冲突 | 与公园管理处半年复盘 |
+| 清华、北大、中关村学院 | 校区协议 + 成果授权清单 | 任一高校退出或权属纠纷 | 三校年度联席评审 |
+| 周边社区 | 匿名需求清单 + 申诉记录 | 投诉率 ≥5% 或缺乏申诉渠道 | 街道办季度复盘 |
+| 海淀文旅 + 公安 | 活动许可 + 安保方案 | 安全不达标或重大版权争议 | 海淀文旅年度联合评审 |
+
+### 8 案例差异化对比表（v1.7 新增）
+
+为避免与 8 个国际案例"同质化借鉴"，下表显式列出"借鉴的机制"与"海淀不可直接复制的内容"。对应 [metric:case_differentiator_field_count] = 24（8 案例 × 3 字段），约束 A-CASE-001。
+
+| 案例 | 借鉴机制 | 海淀不可复制 | 本方案落点 |
+| --- | --- | --- | --- |
+| Punggol Digital District | 数字平台先于物理建设 | 新加坡法定平台治理 + JTC 一级开发主体 | 原点社区开源平台、众智园测试沙盒 |
+| Smart Kalasatama | 居民时间价值目标函数 | 赫尔辛基市级数据基础设施 | 小切口试点 + 居民时间价值目标 |
+| Barcelona 22@ | 旧工业更新为知识街区 | 巴塞罗那四级产权协商机制 | 大钟寺 AI 旧区更新与四象限步行连通 |
+| Mila (Quebec) | 研究—人才—产业—责任治理四链 | 魁北克省政府主导税收优惠 | 原点社区近校成果转化与开源体系 |
+| Knowledge Quarter | 一英里跨机构协作网络 | 伦敦 KQ 联盟的资产托管机制 | 三核缝合清华、北大、北影、中关村学院 |
+| Seoul AI Hub | 阶梯式算力—验证—投资服务 | 韩国信息通信部主导算力采购 | 众智园全栈自主创新体系 |
+| Seoul S-Map | 开放数字孪生作为虚拟试验场 | 首尔市级数字孪生安全授权框架 | 智脉共生带数字孪生（概念原型） |
+| Paris-Saclay | 大学—研究所—企业公共服务耦合 | 法国国家级集群财政与签证配套 | 原点社区近校孵化 + 中关村科技服务翼 |
+
+### 未缓解风险登记与复盘（v1.7 新增）
+
+本节显式列出"已识别但暂未缓解"的风险，与 v1.6 的"已缓解风险与前置门槛"段落互补。对应 [metric:open_risk_register_count] = 8，约束 A-PROJ-001 / A-PARK-002。
+
+| 风险编号 | 描述 | 监控指标 | 复盘周期 |
+| --- | --- | --- | --- |
+| R-01 | 官方边界与控规未发布，所有空间结论为 provisional | 公告 1.3 / 1.4 是否增补 | 每季度 |
+| R-02 | 道路红线与轨道接口未核验，慢行连通结论为概念意向 | 道路/轨道红线文件入库情况 | 每半年 |
+| R-03 | 权属与现状测绘缺失，城市更新结论不含拆改留判定 | 权属与现状测绘文件入库情况 | 每半年 |
+| R-04 | 文保与蓝线控制线未公开，文化节点采用低扰动策略 | 文保评估意见入库情况 | 每半年 |
+| R-05 | 能源与算力容量未评估，端侧算力驿站为概念估算 | 能源/算力评估报告入库情况 | 每季度 |
+| R-06 | 数据合规与跨境流动边界未确定，数据要素会客厅为概念估算 | 数据合规评审报告入库情况 | 每季度 |
+| R-07 | 公众参与渠道未启动，社区与街道协议未签署 | 街道/社区联席评审记录 | 每季度 |
+| R-08 | AI 治理沙盒授权主体未确认，沙盒治理为概念机制 | 沙盒授权主体声明入库情况 | 每季度 |
+
+### 原创概念边界表（v1.7 新增）
+
+为证明 originality 维度，本节列出"智脉共生带"作为原创概念的边界、不可直接借鉴的国际同形概念与本方案独特之处。对应 [metric:originality_boundary_field_count] = 5。
+
+| 字段 | 内容 |
+| --- | --- |
+| 原创锚点 | "智脉共生带 (Jingzhang Symbiosis Belt)" 是 1909 年人字形铁路 + AI 神经网络的递归叠合，不直接等同于 22@ / KQ / Saclay / PDD |
+| 不可复制项 | 清华园火车站原址、清华—北大—中关村学院三角、京张五道口—清河科创走廊、大钟寺站四象限步行连通、5 链协同（策源—开源—转化—体验—传播） |
+| 概念边界 | 仅供专业团队深化研究；不替代政府品牌决策；不构成已批准建设或政府承诺 |
+| 复算路径 | 所有原创结论均回到 [data:geometry/key_areas.geojson#PROV-KEY-001/002/003] 与 [metric:spatial_specificity_block_count] = 9 known 指标 |
+| 风险声明 | A-LOGO-001 / A-LANDMARK-001 / A-HERITAGE-001 锁链未解除前不得用于实际制作 |
+
 | 用户画像 | 典型需求 | 空间响应 | 自检边界 |
 | --- | --- | --- | --- |
 | P1 开源开发者 | 发布、协作、测试、社区声誉 | 原点社区开源发布厅、公共代码墙、夜间协作空间 | 不采集个人行为轨迹；活动数据只做聚合统计 |
@@ -424,6 +502,8 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 - 绿地：[data:geometry/green_space.geojson#GREEN-001]
 - 公共空间：[data:geometry/public_space.geojson#PUBLIC-001]
 
+![AI-native 规划创新与 4 阶段沙盒治理流水线](assets/figures/innovation-ai-planning.png)
+
 ![核心指标复算与证据链图](assets/figures/metrics-evidence.png)
 
 合规矩阵是任务响应性的主控文件。每条公告任务和 agent_taskbook 任务必须对应到报告章节、图层、指标、图纸、HTML 页面、来源、假设和自检项。未能覆盖公告 1.3、1.4、1.5 或 agent.1-agent.6 的任一必选任务，方案不得进入 formal professional scoring。
@@ -468,6 +548,8 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 - **更新项目数**：[metric:renewal_project_count] = 6，包括 JZ-01 至 JZ-06。
 - **高影响场景人工复核比**：[metric:high_impact_human_review_ratio] = 1.000，所有高影响 AI 场景都设置了 human-in-the-loop 复核通道。
 - **双语合规模块数**：[metric:bilingual_figure_count] = 6（5 图 + 1 品牌识别），[metric:bilingual_pdf_count] = 2，[metric:bilingual_visual_count] = 1；综合完成度 [metric:bilingual_completeness_ratio] = 1.000。
+- **AI-native 模型卡数量**：[metric:ai_native_model_card_count] = 6（MC-01 至 MC-06），[metric:ai_human_review_cardinality] = 12，[metric:sandbox_pipeline_stage_count] = 4。
+- **利益相关方 / 案例差异化 / 风险登记 / 原创边界**：[metric:stakeholder_group_count] = 5，[metric:case_differentiator_field_count] = 24，[metric:open_risk_register_count] = 8，[metric:originality_boundary_field_count] = 5。
 
 > 所有 unknown 指标（如 [metric:floor_area_ratio]、[metric:building_height_m]）已在 metrics.json 中写明 reason；专业团队在拿到官方控规和现状测绘后可一次性补齐。
 

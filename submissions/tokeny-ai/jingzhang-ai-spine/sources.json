@@ -5,48 +5,128 @@
       "id": "SITE-PACKAGE",
       "path": "brief/site-package/",
       "source_type": "official_public",
-      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
+      "authority_level": "A1",
+      "usable_for": [
+        "官方项目定位",
+        "三层范围面积与文字四至",
+        "设计任务清单",
+        "允许设计空间与枚举"
+      ],
+      "not_usable_for": [
+        "官方红线精确坐标",
+        "法定控规指标"
+      ]
     },
     {
       "id": "SOURCE-REGISTRY",
       "path": "data/source_registry.json",
       "source_type": "repository_public_registry",
-      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
+      "authority_level": "repository_registry",
+      "usable_for": [
+        "区分 formal-ready / background / provisional 资料用途边界"
+      ],
+      "not_usable_for": [
+        "独立支撑空间控制结论"
+      ]
     },
     {
       "id": "PROCESSED-FACT-PACK",
       "path": "data/processed/agent_fact_pack.md",
       "source_type": "repository_processed_reference",
-      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
+      "authority_level": "repository_processed",
+      "usable_for": [
+        "任务与资料导航",
+        "范围结构快速索引"
+      ],
+      "not_usable_for": [
+        "替代原始来源作为依据"
+      ]
     },
     {
       "id": "BOUNDARY-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
       "source_type": "agent_inferred_from_public_data",
-      "usage": "Submitted site boundary geometry source (provisional)."
+      "usage": "Submitted site boundary geometry source (provisional).",
+      "authority_level": "provisional",
+      "usable_for": [
+        "AI 生成基底",
+        "可视化",
+        "临时自检"
+      ],
+      "not_usable_for": [
+        "官方红线",
+        "审批依据",
+        "精确面积认定",
+        "法定控制"
+      ]
     },
     {
       "id": "KEY-AREA-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
       "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional)."
+      "usage": "Three required detailed-design key area boundaries (provisional).",
+      "authority_level": "provisional",
+      "usable_for": [
+        "三处重点区生成与展示基底",
+        "临时自检"
+      ],
+      "not_usable_for": [
+        "官方重点区红线",
+        "审批依据",
+        "精确面积认定"
+      ]
     },
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
       "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
       "source_type": "official_public",
-      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
+      "authority_level": "A0",
+      "usable_for": [
+        "官方项目名称与范围",
+        "设计任务",
+        "组织与语言要求",
+        "成果语境"
+      ],
+      "not_usable_for": [
+        "边界坐标",
+        "控规指标"
+      ]
     },
     {
       "id": "AGENT-TASKBOOK",
       "path": "brief/site-package/agent_taskbook.json",
       "source_type": "user_provided_cleared",
-      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.",
+      "authority_level": "user_provided_cleared",
+      "usable_for": [
+        "三大定位",
+        "五大功能",
+        "三区两翼",
+        "六项智能体任务",
+        "共创原则与边界条款"
+      ],
+      "not_usable_for": [
+        "法定规划结论",
+        "政府实施承诺"
+      ]
     },
     {
       "id": "TOOLCHAIN",
       "source_type": "open_source_toolchain",
-      "usage": "shapely/pyproj/matplotlib/reportlab 等开源库，BSD/Apache/MIT 类许可，仅用于本地几何复算、制图与图册排版构建，构建产物随投稿包分发、工具源码不再分发。"
+      "usage": "shapely/pyproj/matplotlib/reportlab 等开源库，BSD/Apache/MIT 类许可，仅用于本地几何复算、制图与图册排版构建，构建产物随投稿包分发、工具源码不再分发。",
+      "authority_level": "open_source",
+      "usable_for": [
+        "几何复算",
+        "图件与图册生成",
+        "指标计算"
+      ],
+      "not_usable_for": [
+        "事实依据来源"
+      ]
     }
   ]
 }

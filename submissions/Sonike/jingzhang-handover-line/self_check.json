@@ -76,7 +76,7 @@
       "result": "pass",
       "severity": "major",
       "target": "sources.json",
-      "message": "二十一条来源（含 4 条构建工具链与字体登记）逐条登记权威等级、证据类别、采集方法、时空覆盖、许可状态与可用/不可用边界；涉及单位换算的写明原文表述、换算方法与入库值，行政尺度事实标记 not_spatially_allocable=true。"
+      "message": "二十二条来源（含 5 条构建工具链与字体登记）逐条登记权威等级、证据类别、采集方法、时空覆盖、许可状态与可用/不可用边界；涉及单位换算的写明原文表述、换算方法与入库值，行政尺度事实标记 not_spatially_allocable=true。"
     },
     {
       "check_id": "BACKGROUND_NOT_SPATIAL",
@@ -97,7 +97,7 @@
       "result": "pass",
       "severity": "minor",
       "target": "drawings/",
-      "message": "四套图纸共 38 页、26 张图件与两个离线页面的页脚自 v1.9 起统一，v1.10 整体重刷为 JING-ZHANG HANDOVER LINE / PACKAGE v1.10（图纸另附页码 NN-TT）。此前三套并存的页脚（正文 v1.9、图纸 v1.6、图件 v1.0）已消除；编号也分成互不冲突的命名空间：图纸页 JZ/NN 与 B/NN、图件 F/NN，原 A0 第 3 张页头 JZ/03 与内嵌图件 JZ/06 冲突、JZ/08 超出 01-06 套系、spatial-prototype 与 handover-scene 同为 JZ/10 等问题一并修复。"
+      "message": "四套图纸共 38 页、26 张图件与两个离线页面的页脚自 v1.9 起统一，v1.11 整体重刷为 JING-ZHANG HANDOVER LINE / PACKAGE v1.11（24 张 PNG 声明矩形外逐像素零变化，2 张 JPEG 沿用原量化表、矩形外均值偏差 0.08，四套 PDF 共 38 处页脚与 20 张内嵌图等长替换，页数与命中数逐套相等）（图纸另附页码 NN-TT）。此前三套并存的页脚（正文 v1.9、图纸 v1.6、图件 v1.0）已消除；编号也分成互不冲突的命名空间：图纸页 JZ/NN 与 B/NN、图件 F/NN，原 A0 第 3 张页头 JZ/03 与内嵌图件 JZ/06 冲突、JZ/08 超出 01-06 套系、spatial-prototype 与 handover-scene 同为 JZ/10 等问题一并修复。"
     },
     {
       "check_id": "VISUAL_STATIC",
@@ -139,7 +139,7 @@
       "result": "pass",
       "severity": "major",
       "target": "assets/figures/",
-      "message": "包内 26 张图件全部为 PIL/reportlab 程序化绘制，无生成式图像素材。v1.6.2—v1.6.3 曾包含一张 gpt-image-2 概念表现图，自 v1.6.4 起其内容已整体替换为程序化绘制的《交接断面》；路径保留而非删除，是因为参赛者 PR 无法删除文件（Issue #647，修复 PR #668/#671 未合并）。"
+      "message": "包内 26 张图件全部为 PIL/reportlab 程序化绘制，无生成式图像素材。v1.6.2—v1.6.3 曾包含一张 gpt-image-2 概念表现图，自 v1.6.4 起其内容已整体替换为程序化绘制的《交接断面》；路径保留而非删除：Issue #647 的修复 PR #671 已合并，validation_paths_for() 现无条件排除 removed，参赛者已可删除文件，故保留的唯一理由是该文件承载的《交接断面》（F/13）本身是成果的一部分。"
     },
     {
       "check_id": "COPYRIGHT_TRACEABILITY",
@@ -153,7 +153,7 @@
       "result": "pass",
       "severity": "major",
       "target": "drawings/a3-booklet.pdf; drawings/a0-boards.pdf; assets/figures/",
-      "message": "pdffonts 对四套 PDF 逐一核验：Helvetica 系列为 Type 1/WinAnsi/emb=no，STSong-Light 与 Song 为 CID Type 0/UniGB/emb=no，即全部按标准字体名引用，未嵌入或再分发任何字体文件；PNG 图件为字形栅格，包内无 .ttc/.ttf。已知限制：CJK 依赖阅读器字体包，正式出版前须改为嵌入获授权字体。"
+      "message": "pdffonts 对四套 PDF 逐一核验：中文为 <子集前缀>+NotoSerifSC，CID TrueType/UniGB-UCS2-H/emb=yes——Noto Serif SC Light 已按 OFL-1.1 子集嵌入，字体名对象与实际嵌入字形一致；Helvetica 家族与 ZapfDingbats 为 Type 1/WinAnsi/emb=no，属 PDF 规范要求阅读器自备的基础十四款字体，不嵌入亦不构成显示风险。PNG 图件为字形栅格，包内无 .ttc/.ttf。v1.10 及更早版本 CJK 为 emb=no 的阅读依赖至此关闭。"
     },
     {
       "check_id": "TOOLCHAIN_LICENSE_LEDGER",
@@ -167,7 +167,7 @@
       "result": "pass",
       "severity": "minor",
       "target": "proposal.md; manifest.json; changelog.md",
-      "message": "自 v1.9 起在同一次构建中重新生成全部交付物，全包只有一个版本号；v1.10 沿用同一工艺整体重刷版本印记。图纸前三页（A3 JZ/01–JZ/03、A0 B/01–B/03）由矢量原生重排，消除了图中图嵌套与同页双版本号；其余页面保留原图面、仅重印页脚，并把内嵌图件替换为与 assets/figures/ 同源的文件。确定性渲染脚本受投稿目录文件类型限制未能随包提交（.py 不在允许扩展名内），故本版仍只主张指标可独立复算。成果时效仍以 manifest sha256 与 changelog 为准。"
+      "message": "自 v1.9 起在同一次构建中重新生成全部交付物，全包只有一个版本号；其后各版沿用同一工艺整体重刷版本印记，本版为 v1.11。图纸前三页（A3 JZ/01–JZ/03、A0 B/01–B/03）由矢量原生重排，消除了图中图嵌套与同页双版本号；其余页面保留原图面、仅重印页脚，并把内嵌图件替换为与 assets/figures/ 同源的文件。确定性渲染脚本受投稿目录文件类型限制未能随包提交（.py 不在允许扩展名内），故本版仍只主张指标可独立复算。成果时效仍以 manifest sha256 与 changelog 为准。"
     },
     {
       "check_id": "LICENSE_MARKER_SCOPE",

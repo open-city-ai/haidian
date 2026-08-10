@@ -1,0 +1,658 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson#LU-001"
+      ],
+      "formula": "polygon_area(land_use_feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "land_use_code": "0802",
+      "label_zh": "科研用地 / Rail Memory Forge R&D commons"
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson#LU-002"
+      ],
+      "formula": "polygon_area(land_use_feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "land_use_code": "1401",
+      "label_zh": "公园绿地与开敞空间 / Reviewable public memory ground"
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson#LU-003"
+      ],
+      "formula": "polygon_area(land_use_feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "land_use_code": "05",
+      "label_zh": "商业服务业用地 / Adoption exchange and AI-native service"
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson#LU-004"
+      ],
+      "formula": "polygon_area(land_use_feature)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "land_use_code": "0702",
+      "label_zh": "社区服务设施用地 / Origin studio and public learning"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2333931.619,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(conceptual_building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ],
+      "not_existing_condition": true
+    },
+    "building_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "building_density_proposal_footprint_ratio": {
+      "status": "known",
+      "value": 0.204501,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001",
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "not_statutory_density": true
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(GREEN_SPACE proposal polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001",
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(PUBLIC_SPACE proposal polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001",
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 22985.251,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(ROAD_CENTERLINE conceptual links))",
+      "confidence": "low",
+      "assumptions": [
+        "A-ROAD-REDLINE-001"
+      ],
+      "not_road_redline": true
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json",
+        "geometry/roads.geojson"
+      ],
+      "formula": "requires official road redlines or approved cross-sections",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-ROAD-REDLINE-001"
+      ],
+      "reason": "Exact road redlines and carriageway/public-right-of-way widths are not included in the cleared site package."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR controls and official floor-area programs are not present in the public site package."
+    },
+    "height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved height, aviation, landscape, and heritage controls",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved height controls are not present in the public site package."
+    },
+    "statutory_building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved regulatory planning conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Statutory density controls are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA provisional polygons)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ]
+    },
+    "key_area_zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "polygon_area(provisional_key_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "announced_area_sqm": 1921000
+    },
+    "key_area_beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "polygon_area(provisional_key_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "announced_area_sqm": 1043000
+    },
+    "key_area_dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "polygon_area(provisional_key_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PROVISIONAL-BOUNDARY-001"
+      ],
+      "announced_area_sqm": 720000
+    },
+    "phase_phase_01_area_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-01"
+      ],
+      "formula": "polygon_area(phase_polygon)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "phase_phase_02_area_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-02"
+      ],
+      "formula": "polygon_area(phase_polygon)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "phase_phase_03_area_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-03"
+      ],
+      "formula": "polygon_area(phase_polygon)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "phase_phase_04_area_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-04"
+      ],
+      "formula": "polygon_area(phase_polygon)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "land_use_polygon_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE partition polygons)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features where id starts with MEM-)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PRIVACY-001",
+        "A-OPERATIONS-001"
+      ],
+      "scenario_cards": [
+        {
+          "id": "MEM-01",
+          "title_zh": "模型安全回放室",
+          "theme": "model_safety_validation",
+          "anchor": "PROV-KEY-001",
+          "primary_users": "开发者、评测员"
+        },
+        {
+          "id": "MEM-02",
+          "title_zh": "数据权利登记台",
+          "theme": "data_rights_registry",
+          "anchor": "PROV-KEY-001",
+          "primary_users": "数据管理者、法务与开发者"
+        },
+        {
+          "id": "MEM-03",
+          "title_zh": "机器人低速混行测试庭",
+          "theme": "embodied_ai_safety_validation",
+          "anchor": "PROV-KEY-001",
+          "primary_users": "机器人运维、安全与无障碍复核员"
+        },
+        {
+          "id": "MEM-04",
+          "title_zh": "开源发布厅",
+          "theme": "open_source_release",
+          "anchor": "PROV-KEY-002",
+          "primary_users": "开源维护者、开发者与法务"
+        },
+        {
+          "id": "MEM-05",
+          "title_zh": "大学-社区转译桌",
+          "theme": "university_community_translation",
+          "anchor": "PROV-KEY-002",
+          "primary_users": "高校师生、社区组织者与居民"
+        },
+        {
+          "id": "MEM-06",
+          "title_zh": "人才与权利诊所",
+          "theme": "talent_and_rights_service",
+          "anchor": "PROV-KEY-002",
+          "primary_users": "国际人才、初创团队与权利顾问"
+        },
+        {
+          "id": "MEM-07",
+          "title_zh": "企业 copilot 公众预览廊",
+          "theme": "enterprise_copilot_adoption_validation",
+          "anchor": "PROV-KEY-003",
+          "primary_users": "创业团队、采购方"
+        },
+        {
+          "id": "MEM-08",
+          "title_zh": "智能终端可用性试场",
+          "theme": "terminal_accessibility_durability_validation",
+          "anchor": "PROV-KEY-003",
+          "primary_users": "终端团队、无障碍复核员与运维者"
+        },
+        {
+          "id": "MEM-09",
+          "title_zh": "内容生成版权提示站",
+          "theme": "generated_content_rights",
+          "anchor": "RAIL-SPINE",
+          "primary_users": "内容创作者、版权顾问与公众"
+        },
+        {
+          "id": "MEM-10",
+          "title_zh": "慢行断点记忆灯标",
+          "theme": "slow_mobility_maintenance",
+          "anchor": "RAIL-SPINE",
+          "primary_users": "运维团队、社区代表"
+        },
+        {
+          "id": "MEM-11",
+          "title_zh": "蓝绿维护复算驿站",
+          "theme": "blue_green_recalculation",
+          "anchor": "SERVICE-WING-TECH",
+          "primary_users": "绿地运维、环境研究者与居民"
+        },
+        {
+          "id": "MEM-12",
+          "title_zh": "公共决策版本墙",
+          "theme": "public_decision_versioning",
+          "anchor": "SERVICE-WING-SCENARIO",
+          "primary_users": "运营方、研究团队"
+        }
+      ]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "metrics.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(industry_validation_scenarios catalog)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "validation_scenarios": [
+        {
+          "id": "VAL-01",
+          "title_zh": "模型安全与红队回放评测",
+          "anchor": "MEM-01",
+          "human_review_gate": true
+        },
+        {
+          "id": "VAL-02",
+          "title_zh": "机器人低速混行与停用演练",
+          "anchor": "MEM-03",
+          "human_review_gate": true
+        },
+        {
+          "id": "VAL-03",
+          "title_zh": "企业 copilot 公共采用验证",
+          "anchor": "MEM-07",
+          "human_review_gate": true
+        },
+        {
+          "id": "VAL-04",
+          "title_zh": "智能终端无障碍和耐久验证",
+          "anchor": "MEM-08",
+          "human_review_gate": true
+        }
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "metrics.json",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(persona catalog)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PRIVACY-001"
+      ],
+      "personas": [
+        {
+          "id": "PER-01",
+          "label_zh": "青年开源开发者",
+          "needs": "可复用算力、测试、社区荣誉"
+        },
+        {
+          "id": "PER-02",
+          "label_zh": "AI创业团队负责人",
+          "needs": "场景入口、合规评测、采购对接"
+        },
+        {
+          "id": "PER-03",
+          "label_zh": "高校实验室PI",
+          "needs": "论文到城市验证的公开证据链"
+        },
+        {
+          "id": "PER-04",
+          "label_zh": "社区长者",
+          "needs": "人工兜底、低门槛导览、隐私解释"
+        },
+        {
+          "id": "PER-05",
+          "label_zh": "中小商户",
+          "needs": "可理解的AI工具采纳与复盘"
+        },
+        {
+          "id": "PER-06",
+          "label_zh": "城市运行人员",
+          "needs": "事件复盘、责任链、人工审阅"
+        },
+        {
+          "id": "PER-07",
+          "label_zh": "国际访问者",
+          "needs": "英文导览、贡献地图、活动路径"
+        },
+        {
+          "id": "PER-08",
+          "label_zh": "文保与公共文化工作者",
+          "needs": "历史准确、低干预表达、资料边界"
+        }
+      ]
+    },
+    "pilgrimage_node_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features where node_subtype equals pilgrimage_node)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ],
+      "pilgrimage_nodes": [
+        {
+          "id": "PIL-01",
+          "title_zh": "清华园车站记忆门",
+          "theme": "qinghuayuan_station_memory",
+          "source_id": "BJ-QINGHUAYUAN-STATION"
+        },
+        {
+          "id": "PIL-02",
+          "title_zh": "中关村开源贡献墙",
+          "theme": "open_source_contributor_honor",
+          "source_id": "AGENT-TASKBOOK"
+        },
+        {
+          "id": "PIL-03",
+          "title_zh": "Stack Memory Forge 荣誉台",
+          "theme": "validation_contributor_honor",
+          "source_id": "AGENT-TASKBOOK"
+        },
+        {
+          "id": "PIL-04",
+          "title_zh": "大钟寺公共采用钟庭",
+          "theme": "public_adoption_honor",
+          "source_id": "AGENT-TASKBOOK"
+        }
+      ]
+    },
+    "commons_prototype_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(three commons prototypes)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ],
+      "prototypes": [
+        "Zhongzhiyuan Stack Memory Forge",
+        "Beijing AI Origin Open Memory Studio",
+        "Dazhongsi Public Adoption Memory Exchange"
+      ]
+    },
+    "service_wing_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(service wing conceptual links)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001"
+      ],
+      "service_wings": [
+        "Zhongguancun Technology Service Wing",
+        "Xiaoyuehe Scenario Empowerment Wing"
+      ]
+    },
+    "memory_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features where id starts with MEM-)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-DESIGN-PROPOSAL-001",
+        "A-PRIVACY-001"
+      ],
+      "equivalent_metric": "scenario_card_count"
+    }
+  }
+}

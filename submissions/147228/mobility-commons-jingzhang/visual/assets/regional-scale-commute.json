@@ -1,19 +1,21 @@
 {
-  "version": "2.13-regional-robustness-screen",
+  "version": "2.15-regional-distributional-accessibility",
   "simulation_class": "regional_population_scale_synthetic_two_peak_flow_not_local_OD",
   "status": "transparent_sandbox_before_field_calibration",
   "purpose": "Process one synthetic morning work/service chain and one separate synthetic return-leg coverage screen for every person in the regional population reference, compare a current-like stress case with an optimized multimodal operating case, and expose the mode-by-time-slice service, boarding and residual-queue ledger as aggregate evidence.",
   "evidence_chain": {
-    "id": "regional-runner-five-readouts-v1",
+    "id": "regional-runner-six-readouts-v1",
     "source_runner": "visual/assets/run-regional-commute-simulation.js",
     "readouts": [
       {"id": "regional_scale", "label_zh": "区域覆盖", "label_en": "regional scale", "artifact": "assets/figures/regional-scale-commute-board.svg", "question_zh": "所有声明代理是否被处理并守恒", "question_en": "were all declared agents processed and conserved"},
       {"id": "network_flow", "label_zh": "网络边节点", "label_en": "network flow", "artifact": "assets/figures/network-flow-board.svg", "question_zh": "人经过哪些关系边和换乘节点", "question_en": "which relationship edges and transfer nodes carry people"},
       {"id": "capacity_gap", "label_zh": "运力缺口", "label_en": "capacity gap", "artifact": "assets/figures/capacity-closure-board.svg", "question_zh": "哪些声明服务单元仍未闭合", "question_en": "which declared service units remain open"},
+      {"id": "group_distribution", "label_zh": "群体分布", "label_en": "group distribution", "artifact": "assets/figures/distributional-equity-board.svg", "question_zh": "总体平均值是否遮住某一群体", "question_en": "does the overall mean hide a group"},
+      {"id": "accessibility_tail", "label_zh": "可达性尾部", "label_en": "accessibility tail", "artifact": "assets/figures/distributional-accessibility-board.svg", "question_zh": "最低可达性是否被均值掩盖", "question_en": "does the mean hide the least accessible group"},
       {"id": "resource_sensitivity", "label_zh": "资源敏感性", "label_en": "resource sensitivity", "artifact": "assets/figures/resource-pressure-board.svg", "question_zh": "已知方式的相对压力如何变化", "question_en": "how relative pressure changes for known modes"},
       {"id": "robustness", "label_zh": "稳健性", "label_en": "robustness", "artifact": "assets/figures/robustness-screen-board.svg", "question_zh": "扰动下谁变慢以及何时停止", "question_en": "who slows under disruption and when to stop"}
     ],
-    "interpretation": "These five boards are different projections of one aggregate synthetic runner. They do not represent five independent field measurements, and they must be replaced together when dated OD, capacity, accessibility and operational evidence arrives."
+    "interpretation": "These seven boards are different projections of one aggregate synthetic runner. They do not represent seven independent field measurements, and they must be replaced together when dated OD, capacity, accessibility and operational evidence arrives."
   },
   "regional_scope": {
     "population_reference": 3122000,
@@ -108,12 +110,15 @@
     "hard_gate_constraints": {
       "minimum_accessibility_completion_proxy": 0.92,
       "maximum_worst_group_accessibility_gap_proxy_points": 5,
+      "maximum_worst_group_accessibility_p10_gap_proxy_points": 20,
       "require_mass_conservation": true,
       "require_all_agents_processed": true,
       "air_candidate_must_remain_blocked": true,
-      "maximum_peak_mode_load_ratio": 1.35
+      "maximum_peak_mode_load_ratio": 1.35,
+      "maximum_worst_group_satisfaction_gap_proxy_points": 12,
+      "maximum_worst_group_satisfaction_p10_gap_proxy_points": 20
     },
-    "selection_order": ["hard_gate_pass", "satisfaction_proxy_max", "average_generalized_cost_proxy_min", "p90_travel_time_proxy_minutes_min", "people_flow_conflict_rate_per_1000_proxy_min", "external_car_inflow_ratio_min", "vehicle_km_proxy_min"],
+    "selection_order": ["hard_gate_pass", "satisfaction_proxy_max", "worst_group_satisfaction_p10_proxy_max", "worst_group_accessibility_p10_gap_proxy_min", "average_generalized_cost_proxy_min", "p90_travel_time_proxy_minutes_min", "people_flow_conflict_rate_per_1000_proxy_min", "external_car_inflow_ratio_min", "vehicle_km_proxy_min"],
     "interpretation": "The selected policy is a synthetic candidate from a declared finite policy set; capacity gates prevent a paper-optimal but overloaded mode from winning, and the result is not a calibrated local optimum until OD, capacity, accessibility and satisfaction observations replace the assumptions."
   },
   "robustness_screen": {
@@ -129,18 +134,21 @@
     "hard_gate_constraints": {
       "minimum_accessibility_completion_proxy": 0.85,
       "maximum_worst_group_accessibility_gap_proxy_points": 24,
+      "maximum_worst_group_accessibility_p10_gap_proxy_points": 30,
+      "maximum_worst_group_satisfaction_gap_proxy_points": 18,
+      "maximum_worst_group_satisfaction_p10_gap_proxy_points": 30,
       "maximum_stress_peak_mode_load_ratio": 1.75,
       "require_mass_conservation": true,
       "require_all_agents_processed": true,
       "air_candidate_must_remain_blocked": true
     },
-    "selection_order": ["nominal_gate", "stress_gate_count", "worst_case_satisfaction_proxy_max", "worst_group_accessibility_gap_proxy_min", "worst_peak_mode_load_ratio_min", "mean_generalized_cost_proxy_min"],
-    "outputs": ["candidate_by_scenario_summary", "stress_gate_status", "worst_case_satisfaction_proxy", "worst_group_accessibility_gap_proxy_points", "worst_peak_mode_load_ratio", "recovery_calibration_requirements"],
+    "selection_order": ["nominal_gate", "stress_gate_count", "worst_case_satisfaction_proxy_max", "worst_group_accessibility_p10_gap_proxy_min", "worst_group_accessibility_gap_proxy_min", "worst_peak_mode_load_ratio_min", "mean_generalized_cost_proxy_min"],
+    "outputs": ["candidate_by_scenario_summary", "stress_gate_status", "worst_case_satisfaction_proxy", "worst_group_accessibility_p10_gap_proxy_points", "worst_group_accessibility_gap_proxy_points", "worst_peak_mode_load_ratio", "recovery_calibration_requirements"],
     "interpretation": "This is a transparent robustness screen over declared synthetic perturbations. It does not prove local resilience or select an implementation policy; a failure is a stop-and-calibrate signal, and the selected nominal candidate remains provisional until dated disruption, weather, capacity, accessibility and behavioural evidence are available.",
     "calibration_required": ["dated metro and bus disruption logs", "weather and bicycle service cancellation records", "mode and station capacity by 15-minute slice", "grouped accessibility and care-trip completion", "observed fallback acceptance and recovery time", "resident and employee satisfaction/intercept evidence"]
   },
   "optimization_objective": {
-    "order": ["hard_gates", "mass_conservation", "accessibility_continuity", "satisfaction_proxy_max", "generalized_cost_min", "p90_time_proxy_min", "people_flow_conflict_min", "external_car_inflow_min", "vehicle_km_proxy_min"],
+    "order": ["hard_gates", "mass_conservation", "accessibility_continuity", "accessibility_distribution_tail", "satisfaction_proxy_max", "generalized_cost_min", "p90_time_proxy_min", "people_flow_conflict_min", "external_car_inflow_min", "vehicle_km_proxy_min"],
     "hard_gates": ["fire_and_emergency_access", "accessible_route_continuity", "public_transport_backbone_protection", "peak_mode_capacity_screen", "privacy_aggregate_only", "human_service_equivalence", "air_candidate_blocked"],
     "soft_objective_weights": {"satisfaction_proxy": 0.30, "generalized_cost": 0.25, "p90_time_proxy": 0.15, "reliability": 0.12, "people_flow_conflict": 0.08, "external_car_inflow": 0.05, "vehicle_km_proxy": 0.05},
     "satisfaction_boundary": "Synthetic satisfaction proxy from time, reliability, accessibility and conflict; actual resident satisfaction remains unknown until survey/intercept evidence.",

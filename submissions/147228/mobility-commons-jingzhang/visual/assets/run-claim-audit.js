@@ -8,6 +8,8 @@ const auditPath = path.join(__dirname, 'claim-audit.json');
 const audit = JSON.parse(fs.readFileSync(auditPath, 'utf8'));
 const proposalZh = fs.readFileSync(path.join(packageRoot, 'proposal.md'), 'utf8');
 const proposalEn = fs.readFileSync(path.join(packageRoot, 'proposal.en.md'), 'utf8');
+const visualZh = fs.readFileSync(path.join(packageRoot, 'visual/index.html'), 'utf8');
+const visualEn = fs.readFileSync(path.join(packageRoot, 'visual/index.en.html'), 'utf8');
 
 const failures = [];
 const contextWindow = 260;
@@ -25,6 +27,18 @@ function requireTerms(text, terms, label) {
   if (missing.length) failures.push(`${label}: missing terms: ${missing.join(', ')}`);
 }
 
+function checkBilingualClaim(claim, zhText, enText, label) {
+  if (!zhText.includes(claim.match_zh)) failures.push(`${label}: Chinese match not found: ${claim.match_zh}`);
+  if (!enText.includes(claim.match_en)) failures.push(`${label}: English match not found: ${claim.match_en}`);
+  if (zhText.includes(claim.match_zh)) requireTerms(zhText, claim.required_zh, `${label}/zh`);
+  if (enText.includes(claim.match_en)) requireTerms(enText, claim.required_en, `${label}/en`);
+  for (const relativePath of claim.source_files) {
+    if (!fs.existsSync(path.join(packageRoot, relativePath))) {
+      failures.push(`${label}: missing source file: ${relativePath}`);
+    }
+  }
+}
+
 for (const claim of audit.headline_claims) {
   const zhContext = contextAround(proposalZh, claim.match_zh);
   const enContext = contextAround(proposalEn, claim.match_en);
@@ -32,11 +46,22 @@ for (const claim of audit.headline_claims) {
   if (!enContext) failures.push(`${claim.id}: English match not found: ${claim.match_en}`);
   if (zhContext) requireTerms(zhContext, claim.required_zh, `${claim.id}/zh`);
   if (enContext) requireTerms(enContext, claim.required_en, `${claim.id}/en`);
+  checkBilingualClaim(claim, visualZh, visualEn, `${claim.id}/visual`);
   for (const relativePath of claim.source_files) {
     if (!fs.existsSync(path.join(packageRoot, relativePath))) {
       failures.push(`${claim.id}: missing source file: ${relativePath}`);
     }
   }
+}
+
+for (const claim of audit.secondary_numeric_claims || []) {
+  checkBilingualClaim(claim, visualZh, visualEn, `${claim.id}/visual`);
+  const zhContext = contextAround(proposalZh, claim.match_zh);
+  const enContext = contextAround(proposalEn, claim.match_en);
+  if (!zhContext) failures.push(`${claim.id}: Chinese proposal context not found: ${claim.match_zh}`);
+  if (!enContext) failures.push(`${claim.id}: English proposal context not found: ${claim.match_en}`);
+  if (zhContext) requireTerms(zhContext, claim.required_zh, `${claim.id}/proposal-zh`);
+  if (enContext) requireTerms(enContext, claim.required_en, `${claim.id}/proposal-en`);
 }
 
 const headingsZh = proposalZh.split('\n').filter((line) => /^#{1,6}\s/.test(line)).join('\n');

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张回暖线 电子展示 / THE WARM RETURN electronic display</title>
+<style>
+:root{--ink:#141b26;--muted:#5d6b7f;--line:#d5dde8;--paper:#fff;--soft:#f5f8fb;
+--warm:#c2410c;--warm2:#ea8f3d;--cool:#0f6f8c;--park:#15803d;--civic:#7c3aed;--ash:#334155;
+--shadow:0 10px 30px rgba(20,27,38,.08)}
+*{box-sizing:border-box}
+body{margin:0;background:#eaeff4;color:var(--ink);line-height:1.6;
+font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif}
+.wrap{max-width:1300px;margin:auto}
+header{background:linear-gradient(120deg,#101a28,#1d2f45 62%,#5c3a1e);color:#fff;border-bottom:5px solid var(--warm2)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 350px;gap:30px;padding:38px 26px 30px}
+.eyebrow{color:#f0c48a;letter-spacing:.2em;text-transform:uppercase;font-size:12px;margin-bottom:12px}
+h1{font-size:34px;line-height:1.16;margin:0 0 6px}
+.sub{font-size:17px;color:#f6d9b6;margin:0 0 14px}
+h2{font-size:23px;margin:0 0 4px}
+.h2sub{font-size:14px;color:var(--muted);margin:0 0 12px;letter-spacing:.04em}
+h3{font-size:16px;margin:0 0 8px}
+p{margin:0 0 10px}
+.hero-copy{max-width:920px;color:#dbe6f1;font-size:15.5px}
+.status-box{border:1px solid rgba(255,255,255,.24);border-radius:10px;padding:16px;background:rgba(255,255,255,.07)}
+.status-box strong{display:block;font-size:18px;margin-bottom:8px}
+.status-box p{font-size:13.5px;color:#e7d6c2}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{border-radius:999px;border:1px solid rgba(255,255,255,.28);padding:6px 11px;font-size:12px}
+main{padding:22px 22px 40px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin:0 auto 18px;
+box-shadow:var(--shadow);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;
+padding:18px 22px;border-bottom:1px solid #e7ecf3;background:#fbfcfe}
+.sheet-head p.desc{color:var(--muted);max-width:860px;font-size:14.5px;margin:0}
+.tag{border:1px solid #cbd5e1;color:#334155;background:#f8fafc;border-radius:5px;
+padding:5px 9px;font-size:12px;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.body{padding:18px 22px}
+.map-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,.7fr);gap:20px;padding:18px 22px}
+figure{margin:0;border:1px solid #c3ccd9;border-radius:9px;overflow:hidden;background:#fbfcfe}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:13px;color:var(--muted);padding:9px 12px;border-top:1px solid #e7ecf3;background:#fff}
+svg{display:block;width:100%;height:auto}
+.metric-list{display:grid;gap:10px}
+.metric{border:1px solid #dfe6ef;border-radius:9px;padding:11px 12px;background:#fbfdff}
+.metric span{display:block;color:var(--muted);font-size:12.5px}
+.metric strong{display:block;font-size:22px;font-variant-numeric:tabular-nums;margin:3px 0 2px}
+.metric em{font-style:normal;font-size:11px;color:#8a97a8;
+font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+.metric.unknown strong{color:var(--warm);font-size:17px;letter-spacing:.06em}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:18px 22px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:18px 22px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:18px 22px}
+.grid5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:11px;padding:18px 22px}
+.card{border:1px solid #dde5ef;border-radius:9px;padding:14px;background:#fff}
+.card.lv1{border-top:4px solid var(--cool)}
+.card.lv2{border-top:4px solid var(--park)}
+.card.lv3{border-top:4px solid var(--warm)}
+.card ul{margin:8px 0 0 17px;padding:0;color:#475467;font-size:14px}
+.card li{margin-bottom:4px}
+.card p{font-size:14px;color:#475467}
+.card b{font-size:14px}
+.mini{font-size:12.5px;color:var(--muted)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{border:1px solid #e2e8f0;padding:8px 10px;text-align:left;vertical-align:top}
+th{background:#f4f7fa;font-weight:600}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#41506a;
+background:#f2f5f9;border-radius:6px;padding:8px 10px;margin-top:8px;overflow-wrap:anywhere}
+.warn{border-left:5px solid var(--warm2);background:#fff8ec}
+.ok{border-left:5px solid var(--park);background:#f2fdf5}
+.legend{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:12px 0 0}
+.legend span{display:flex;align-items:center;gap:7px;color:#334155;font-size:13px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{border:1px solid #d8e0ea;border-radius:5px;padding:3px 7px;font-size:11.5px;color:#41506a;
+background:#f7f9fc;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.sev-blocking{border-color:#f0c1a8;background:#fff5ef;color:#9a3412}
+.sev-major{border-color:#a9d3e0;background:#eff9fc;color:#0b5b74}
+.sev-minor{border-color:#dde3ea;background:#f7f9fc;color:#5d6b7f}
+.langbar{padding:12px 22px;background:#f2f5f9;border-bottom:1px solid var(--line);font-size:14px}
+.langbar a{color:#0b5b74}
+footer{padding:18px 24px 34px;color:#4b5768;font-size:13px}
+@media(max-width:1024px){.hero,.map-grid,.grid2,.grid3,.grid4,.grid5{grid-template-columns:1fr}
+h1{font-size:26px}.legend{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div>
+<div class="eyebrow">百年京张AI创新带城市设计 概念方案 / Centennial Jing-Zhang AI Innovation Belt urban design</div>
+<h1>京张回暖线：把算力的热还给城市</h1>
+<p class="sub">THE WARM RETURN　一脊、十节点、三缝合、一处留白</p>
+<p class="hero-copy">本页是离线电子展示成果。所有数值直接读取 metrics.json、sources.json、assumptions.json 与 self_check.json，与正文、图纸使用同一组数据，不存在人工抄录环节。权威口径仍以 GeoJSON 图层与结构化数据文件为准。</p>
+<div class="pill-row">
+<span class="pill">三层范围 / Three-level scope</span>
+<span class="pill">重点区域 / Key areas</span>
+<span class="pill">AI 场景 / AI scenarios</span>
+<span class="pill">任务覆盖 / Brief coverage</span>
+<span class="pill">自检状态 / Self-check state</span>
+<span class="pill">拒答清单 / Refusal list</span>
+</div></div>
+<aside class="status-box">
+<strong>临时几何声明 / Provisional geometry notice</strong>
+<p>provisional geometry: intake and discussion only — not an official redline, not a basis for approval, not a basis for precise area.</p>
+<p>官方边界与三处重点区精确 polygon 发布后，本包承诺重跑几何生成、指标复算、图纸与本页生成，并重跑全部校验脚本。</p>
+</aside></div></header>
+<div class="langbar wrap"><a href="index.en.html">Read this page in English</a></div>
+<main class="wrap">
+<section class="sheet">
+<div class="sheet-head"><div><h2>总览地图 / Overview map</h2><p class="desc">总览地图把能量链、慢行主脊、十处回暖节点与三处重点区放在同一张图上，左侧为脚本渲染的图件，右侧为可复算的核心指标。</p></div><span class="tag">geometry + metrics</span></div>
+<div class="map-grid"><div>
+<figure><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图 / Evidence chain and package relationship diagram"><figcaption>资料证据链与提交包关系图 / Evidence chain and package relationship diagram</figcaption></figure>
+<div class="legend">
+<span><i class="sw" style="background:var(--warm)"></i>回暖主脊 / Warm Return spine</span>
+<span><i class="sw" style="background:var(--park)"></i>蓝绿公共空间 / Blue-green public space</span>
+<span><i class="sw" style="background:var(--cool)"></i>重点区域 / Key areas</span>
+<span><i class="sw" style="background:var(--ash)"></i>留白用地 / Reserved blank parcel</span>
+</div></div><aside>
+<h3>核心指标 / Core metrics</h3>
+<div class="metric-list">
+<div class="metric"><span>总体设计范围复算面积（平方米）</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386</strong><em>site_area_sqm</em></div>
+<div class="metric"><span>绿地率（复算）</span><strong data-metric="green_ratio" data-value="0.205236">0.205236</strong><em>green_ratio</em></div>
+<div class="metric"><span>公共空间占比</span><strong data-metric="public_space_ratio" data-value="0.06144">0.06144</strong><em>public_space_ratio</em></div>
+</div>
+<div class="card warn" style="margin-top:14px"><h3>自检状态 / Self-check state</h3>
+<p class="mini">自检共 25 项，阻塞级失败 0 项，按 formal-review-ready 门槛（无 fail 且 blocking 的自检项）本包可进入正式评审；两项结论为 unknown，分别是约束几何数据缺口与官方数据发布后的整体重算承诺。包级数据置信度按下限口径申报为 medium。</p></div>
+</aside></div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>三层范围 / Three-level scope framework</h2><p class="desc">三层范围逐层收紧：统筹研究范围回答产业与未来城市形态，总体设计范围做控规深度城市设计，重点区域做详细设计。每层的可做与不可做都写明。</p></div><span class="tag">project_scope_summary</span></div>
+<div class="grid3">
+<article class="card lv1"><h3>统筹研究范围 43.6 平方公里 / Coordinated research area, 43.6 sq km</h3>
+<p>回答产业生态、区域协同与未来城市形态，不做用地与工程结论。</p><ul>
+<li>张北绿电与海淀算力的能量链</li>
+<li>AI 创新链与人才链</li>
+<li>品牌命名与国际传播</li>
+</ul></article>
+<article class="card lv2"><h3>总体设计范围 11.4 平方公里 / Overall design area, 11.4 sq km</h3>
+<p>组织用地结构、城市更新、交通市政与遗址公园活力带，达到控规深度城市设计。</p><ul>
+<li>21 个用地单元与一处留白</li>
+<li>一脊三缝合三接驳</li>
+<li>12 项更新项目与三期分期</li>
+</ul></article>
+<article class="card lv3"><h3>重点区域范围 368.4 公顷 / Key areas, 368.4 hectares</h3>
+<p>三处重点区做详细设计，说明功能业态、建筑更新、公共空间与交通组织。</p><ul>
+<li>众智园 AI 自主创新加速区</li>
+<li>北京 AI 原点社区</li>
+<li>大钟寺 AI 产业聚集区</li>
+</ul></article>
+</div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>用地分区 / Land use zoning</h2><p class="desc">提交边界被完整划分为 21 个用地单元，两两重叠面积为零，覆盖缺口 75.82 平方米、允许容差 1141.283 平方米，缺口来自坐标取整。用地代码采用国土空间调查规划用途分类，未自造代码。</p></div><span class="tag">geometry/land_use.geojson</span></div>
+<div class="map-grid"><div>
+<figure><img src="../assets/figures/land-use-structure.png" alt="用地分区与空间结构图 / Land use zoning and spatial structure"><figcaption>用地分区与空间结构图 / Land use zoning and spatial structure</figcaption></figure>
+</div><aside><div class="metric-list">
+<div class="metric"><span>用地单元数量</span><strong data-metric="land_use_feature_count" data-value="21">21</strong><em>land_use_feature_count</em></div>
+<div class="metric"><span>用地覆盖率</span><strong data-metric="land_use_coverage_ratio" data-value="0.999993">0.999993</strong><em>land_use_coverage_ratio</em></div>
+<div class="metric"><span>绿地面积（平方米）</span><strong data-metric="green_space_area_sqm" data-value="2342327.771">2342327.771</strong><em>green_space_area_sqm</em></div>
+<div class="metric"><span>公共空间面积（平方米）</span><strong data-metric="public_space_area_sqm" data-value="701201.672">701201.672</strong><em>public_space_area_sqm</em></div>
+<div class="metric"><span>绿地与公共空间合计占比</span><strong data-metric="green_and_public_space_ratio" data-value="0.266676">0.266676</strong><em>green_and_public_space_ratio</em></div>
+</div></aside></div>
+<div class="body">
+<h3>十类用地面积（复算，EPSG:4548） / Ten land categories by recomputed area (EPSG:4548)</h3>
+<table><thead><tr>
+<th>用地代码 / Land code</th>
+<th>复算面积（平方米） / Recomputed area (sqm)</th>
+<th>指标键 / Metric key</th>
+</tr></thead><tbody>
+<tr><td>0802</td><td class="num">2500435.021</td><td><span class="chip">land_use_area_0802_sqm</span></td></tr>
+<tr><td>05</td><td class="num">2009485.065</td><td><span class="chip">land_use_area_05_sqm</span></td></tr>
+<tr><td>1401</td><td class="num">1863662.192</td><td><span class="chip">land_use_area_1401_sqm</span></td></tr>
+<tr><td>07</td><td class="num">1483620.739</td><td><span class="chip">land_use_area_07_sqm</span></td></tr>
+<tr><td>0702</td><td class="num">868169.994</td><td><span class="chip">land_use_area_0702_sqm</span></td></tr>
+<tr><td>1403</td><td class="num">626086.337</td><td><span class="chip">land_use_area_1403_sqm</span></td></tr>
+<tr><td>16</td><td class="num">603596.237</td><td><span class="chip">land_use_area_16_sqm</span></td></tr>
+<tr><td>0804</td><td class="num">506390.305</td><td><span class="chip">land_use_area_0804_sqm</span></td></tr>
+<tr><td>1402</td><td class="num">478665.579</td><td><span class="chip">land_use_area_1402_sqm</span></td></tr>
+<tr><td>0805</td><td class="num">472739.549</td><td><span class="chip">land_use_area_0805_sqm</span></td></tr>
+</tbody></table>
+<p class="mini" style="margin-top:10px">留白用地是本方案在用地层面最重要的一项主动设计：热力接口、换热站与蓄热设施的位置与容量取决于机房实际负荷、热网可接入点与权属主体三件本方案无法获知的事，因此预留空间而不是现在画一条无依据的管线。</p>
+</div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>重点区域 / Key areas</h2><p class="desc">三处重点区临时几何合计 3692893.005 平方米，与公告 368.4 公顷偏差约千分之二，仅用于量级讨论。每处都给出产业定位、空间策略与明确的边界条件。</p></div><span class="tag">geometry/key_areas.geojson</span></div>
+<div class="map-grid"><div>
+<figure><img src="../assets/figures/key-areas.png" alt="三处重点区域详细设计图 / Detailed design of the three key areas"><figcaption>三处重点区域详细设计图 / Detailed design of the three key areas</figcaption></figure>
+</div><aside><div class="metric-list">
+<div class="metric"><span>三区合计（平方米）</span><strong data-metric="provisional_key_area_total_sqm" data-value="3692893.005">3692893.005</strong><em>provisional_key_area_total_sqm</em></div>
+<div class="metric"><span>众智园（平方米）</span><strong data-metric="provisional_key_area_zhongzhiyuan_sqm" data-value="1929201.877">1929201.877</strong><em>provisional_key_area_zhongzhiyuan_sqm</em></div>
+<div class="metric"><span>原点社区（平方米）</span><strong data-metric="provisional_key_area_origin_community_sqm" data-value="1043236.909">1043236.909</strong><em>provisional_key_area_origin_community_sqm</em></div>
+<div class="metric"><span>大钟寺（平方米）</span><strong data-metric="provisional_key_area_dazhongsi_sqm" data-value="720454.219">720454.219</strong><em>provisional_key_area_dazhongsi_sqm</em></div>
+</div></aside></div>
+<div class="grid3">
+<article class="card lv1"><h3>众智园：供给端 / Zhongzhiyuan: the supply end</h3><p>承担中试验证、评测与换热等重资产功能，清河界面既有厂房改造为换热站与热力展示空间；滨水动作全部止于概念建议，因为河道蓝线与岸线权属无可引用官方几何。</p></article>
+<article class="card lv2"><h3>原点社区：转化端 / Origin Community: the conversion end</h3><p>近校型成果转化街区，既有仓储改造为开源发布与展示场所；公共管理与公共服务用地靠近居住人口而不是靠近展示界面。</p></article>
+<article class="card lv3"><h3>大钟寺：城市端 / Dazhongsi: the city end</h3><p>城市型智能经济街区，与轨道站点耦合，路口四象限步行连通解决城市干道过街问题；不提出线路调整与出入口改造。</p></article>
+</div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>交通慢行与蓝绿公共空间 / Slow mobility and blue-green public space</h2><p class="desc">京张高铁清华园隧道贯通后腾退出一条连续线性空间。本方案不新增机动车通行能力，而是把它变成城市尺度的慢行骨架：一脊、三缝合、三接驳，配十处回暖公共节点。</p></div><span class="tag">roads / green_space / public_space</span></div>
+<div class="map-grid"><div>
+<figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间系统图 / Slow mobility and blue-green public space system"><figcaption>交通慢行与蓝绿公共空间系统图 / Slow mobility and blue-green public space system</figcaption></figure>
+</div><aside><div class="metric-list">
+<div class="metric"><span>道路中心线总长（米）</span><strong data-metric="road_centerline_length_m" data-value="26676.1">26676.1</strong><em>road_centerline_length_m</em></div>
+<div class="metric"><span>慢行长度（米）</span><strong data-metric="slow_mobility_length_m" data-value="23157.41">23157.41</strong><em>slow_mobility_length_m</em></div>
+<div class="metric"><span>慢行占比</span><strong data-metric="slow_mobility_share_of_road_network_ratio" data-value="0.868">0.868</strong><em>slow_mobility_share_of_road_network_ratio</em></div>
+<div class="metric"><span>回暖公共节点数量</span><strong data-metric="warm_public_node_count" data-value="10">10</strong><em>warm_public_node_count</em></div>
+<div class="metric"><span>回暖节点面积（平方米）</span><strong data-metric="warm_public_node_area_sqm" data-value="51139.201">51139.201</strong><em>warm_public_node_area_sqm</em></div>
+</div>
+<div class="card ok" style="margin-top:12px"><h3>解耦原则 / The decoupling principle</h3>
+<p class="mini">每处回暖节点先满足遮蔽、挡风、座椅、照明与热水五项基本条件，在余热接口落地之前就能独立使用；余热接入只作为热源升级项，不是前置条件。</p></div>
+</aside></div>
+<div class="body"><table><thead><tr>
+<th>系统 / System</th>
+<th>本方案给出的内容 / What is provided</th>
+<th>明确不给出的内容 / What is explicitly withheld</th>
+</tr></thead><tbody>
+<tr><td>慢行</td><td>主脊、自行车道、三处缝合、三处站点接驳</td><td>不做交通量预测与信号配时设计</td></tr>
+<tr><td>轨道</td><td>站前公共空间与接驳组织的概念建议</td><td>不提线路调整、出入口改造与客流推算</td></tr>
+<tr><td>热力</td><td>留白用地预留接口、展厅公开换热流程</td><td>不给管线、管径、容量与回收量</td></tr>
+<tr><td>蓝线</td><td>清河滨水绿道与余热温室联动</td><td>不给蓝线位置、防洪标准与岸线权属</td></tr>
+<tr><td>公共服务</td><td>暖亭、社区服务带、人工办理通道</td><td>不给设施规模指标与服务半径达标结论</td></tr>
+</tbody></table></div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>建筑与更新项目 / Buildings and renewal projects</h2><p class="desc">20 个建筑基底为概念示意，既不是现状建筑普查结果，也不代表规划总建筑规模。更新项目 12 项，分期先做不依赖余热的部分。</p></div><span class="tag">buildings / phasing</span></div>
+<div class="grid4">
+<div class="metric"><span>建筑基底面积（平方米）</span><strong data-metric="building_footprint_area_sqm" data-value="201535.051">201535.051</strong><em>building_footprint_area_sqm</em></div>
+<div class="metric"><span>基底率</span><strong data-metric="building_footprint_ratio" data-value="0.017659">0.017659</strong><em>building_footprint_ratio</em></div>
+<div class="metric"><span>建筑基底数量</span><strong data-metric="building_footprint_feature_count" data-value="20">20</strong><em>building_footprint_feature_count</em></div>
+<div class="metric"><span>既有保留对象</span><strong data-metric="retained_building_feature_count" data-value="3">3</strong><em>retained_building_feature_count</em></div>
+</div>
+<div class="body"><table><thead><tr>
+<th>分期 / Phase</th>
+<th>主要项目 / Main projects</th>
+<th>是否依赖热力接入 / Depends on heat connection</th>
+<th>复算面积（平方米） / Recomputed area (sqm)</th>
+</tr></thead><tbody>
+<tr><td>近期</td><td>原点社区试点、清华园前厅、开源发布场所改造、暖厅基本条件</td><td>否</td><td class="num">3171437.576</td></tr>
+<tr><td>中期</td><td>众智园供给端建设、五环跨环缝合、清河滨水绿道</td><td>部分</td><td class="num">2436748.65</td></tr>
+<tr><td>远期</td><td>大钟寺门户、四象限连通、站城一体广场、南段贯通</td><td>否</td><td class="num">5804658.041</td></tr>
+<tr><td>条件成熟后</td><td>换热站改造、余热温室、示范住区供暖</td><td>是</td><td class="num">—</td></tr>
+</tbody></table>
+<div class="grid3" style="padding:16px 0 0">
+<div class="metric"><span>更新项目数量</span><strong data-metric="renewal_project_count" data-value="12">12</strong><em>renewal_project_count</em></div>
+<div class="metric"><span>三期合计面积（平方米）</span><strong data-metric="phasing_area_sqm" data-value="11412844.268">11412844.268</strong><em>phasing_area_sqm</em></div>
+<div class="metric"><span>慢行缝合处数</span><strong data-metric="pedestrian_stitch_count" data-value="3">3</strong><em>pedestrian_stitch_count</em></div>
+</div>
+<p class="mini">拆改留以留为主：明确提出保留改造的对象两处，不提出任何具体拆除对象，原因是缺少现状建筑普查、结构安全评估与权属信息。分期边界为概念性分段，不构成实施时序承诺。</p>
+</div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>AI 场景 / AI scenarios</h2><p class="desc">每张场景卡必须回答四个问题：服务谁、在哪里、用什么数据、出错时谁负责。缺少任何一项的场景不进入本方案。全部场景遵循数据最小化，不采集个人轨迹、不输出个人画像。</p></div><span class="tag">12 scenario cards + 6 personas</span></div>
+<div class="grid4">
+<div class="metric"><span>AI 场景卡数量</span><strong data-metric="ai_scenario_card_count" data-value="12">12</strong><em>ai_scenario_card_count</em></div>
+<div class="metric"><span>用户画像数量</span><strong data-metric="user_persona_count" data-value="6">6</strong><em>user_persona_count</em></div>
+<div class="metric"><span>产业测试验证场景</span><strong data-metric="industry_test_scenario_count" data-value="4">4</strong><em>industry_test_scenario_count</em></div>
+<div class="metric"><span>站点接驳处数</span><strong data-metric="transit_connection_count" data-value="3">3</strong><em>transit_connection_count</em></div>
+</div>
+<div class="grid4">
+<article class="card"><b>01 AI 慢行导航</b><p class="mini">识别断点、拥挤与无障碍需求，服务主脊与三处缝合。</p></article>
+<article class="card"><b>02 低速配送机器人</b><p class="mini">在慢行主脊设定限定路权与避让规则，不进入暖亭内部。</p></article>
+<article class="card"><b>03 四象限过街辅助</b><p class="mini">大钟寺路口延长绿灯与语音提示。</p></article>
+<article class="card"><b>04 社区健康服务导航</b><p class="mini">保留现场指导与人工办理通道。</p></article>
+<article class="card"><b>05 适老服务点</b><p class="mini">传统服务与智能化服务并行，不推定使用率。</p></article>
+<article class="card"><b>06 共享厨房与热水房</b><p class="mini">冬季可停留的基本条件，不依赖余热接入。</p></article>
+<article class="card"><b>07 企业服务副驾</b><p class="mini">办事流程引导，涉及审批事项不代替官方结论。</p></article>
+<article class="card"><b>08 开源发布协作</b><p class="mini">活动数据仅做聚合统计，不建个人贡献画像。</p></article>
+<article class="card"><b>09 数据要素会客厅</b><p class="mini">数据服务另行授权，不默认开放。</p></article>
+<article class="card"><b>10 算力入口咨询</b><p class="mini">解释接入方式，不承诺配额。</p></article>
+<article class="card"><b>11 京张文化解说</b><p class="mini">以公开史料为限，不做仿古叙事。</p></article>
+<article class="card"><b>12 公共空间安全运行复核</b><p class="mini">聚合数据加人工复核，不输出个人画像。</p></article>
+</div>
+<div class="body"><p class="mini">人工兜底有明确依据也有明确边界：无障碍环境建设法第 39 条要求在医疗、社会保障、金融、生活缴费等服务事项保留现场指导与人工办理，本方案据此在这四类事项的场景中保留人工通道，并且不把这一要求泛化到全部数字界面。</p></div>
+</section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>核心指标与证据链 / Core metrics and evidence chain</h2><p class="desc">指标体系共 57 项：47 项可由提交几何在 EPSG:4548 下直接复算，10 项状态为 unknown，分别等官方控规条件与运营数据。三类划分让读者立刻分辨哪一项本方案能负责。</p></div><span class="tag">metrics.json</span></div>
+<div class="map-grid"><div>
+<figure><img src="../assets/figures/metrics-evidence.png" alt="指标复算与证据链关系图 / Metric recomputation and evidence chain"><figcaption>指标复算与证据链关系图 / Metric recomputation and evidence chain</figcaption></figure>
+</div><aside>
+<h3>等官方数据的指标 / Metrics awaiting official data</h3>
+<div class="metric-list">
+<div class="metric unknown"><span>building_density</span><strong>unknown</strong><em>building_density</em></div>
+<div class="metric unknown"><span>total_floor_area_sqm</span><strong>unknown</strong><em>total_floor_area_sqm</em></div>
+<div class="metric unknown"><span>floor_area_ratio</span><strong>unknown</strong><em>floor_area_ratio</em></div>
+<div class="metric unknown"><span>building_height_control_m</span><strong>unknown</strong><em>building_height_control_m</em></div>
+<div class="metric unknown"><span>pending_official_green_ratio_control</span><strong>unknown</strong><em>pending_official_green_ratio_control</em></div>
+<div class="metric unknown"><span>setback_control_m</span><strong>unknown</strong><em>setback_control_m</em></div>
+<div class="metric unknown"><span>road_area_sqm</span><strong>unknown</strong><em>road_area_sqm</em></div>
+<div class="metric unknown"><span>road_area_ratio</span><strong>unknown</strong><em>road_area_ratio</em></div>
+<div class="metric unknown"><span>waste_heat_recoverable_share_of_it_load_ratio</span><strong>unknown</strong><em>waste_heat_recoverable_share_of_it_load_ratio</em></div>
+<div class="metric unknown"><span>heat_supplied_households_equivalent</span><strong>unknown</strong><em>heat_supplied_households_equivalent</em></div>
+</div></aside></div>
+<div class="body">
+<h3>面积复算口径 / Area recalculation convention</h3>
+<p class="mini">交换坐标系 EPSG:4326，面积与长度计算坐标系 EPSG:4548。提交边界复算面积与公告 11.4 平方公里量级偏差 0.001125，仅用于量级讨论而非红线依据。</p>
+<div class="grid4" style="padding:12px 0 0">
+<div class="metric"><span>公告面积量级（平方米）</span><strong data-metric="official_overall_design_area_sqm" data-value="11400000">11400000</strong><em>official_overall_design_area_sqm</em></div>
+<div class="metric"><span>与公告量级偏差</span><strong data-metric="site_area_deviation_from_official_ratio" data-value="0.001125">0.001125</strong><em>site_area_deviation_from_official_ratio</em></div>
+<div class="metric"><span>公告重点区面积（平方米）</span><strong data-metric="official_key_detailed_design_area_sqm" data-value="3684000">3684000</strong><em>official_key_detailed_design_area_sqm</em></div>
+<div class="metric"><span>官方几何缺口数量</span><strong data-metric="official_geometry_data_gap_count" data-value="4">4</strong><em>official_geometry_data_gap_count</em></div>
+</div></div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>任务覆盖 / Brief coverage</h2><p class="desc">合规矩阵登记 23 项任务要求，逐项给出对应正文章节、GeoJSON 图层、指标、图纸、展示章节、来源、假设与自检条目；标准矩阵登记 6 项标准依据；设计深度矩阵登记 15 项深度条目。所有引用编号均已程序化校验可解析。</p></div><span class="tag">compliance / standard / design_depth matrices</span></div>
+<div class="body"><table><thead><tr>
+<th>要求编号 / Requirement</th>
+<th>标题 / Title</th>
+<th>对应指标 / Mapped metrics</th>
+<th>自检条目 / Self-checks</th>
+</tr></thead><tbody>
+<tr><td><span class="chip">1.3.1</span></td><td>构建世界级AI创新生态体系</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.3.2</span></td><td>建设适配AI新质生产力的新型城市形态</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.3.3</span></td><td>打造全球AI创新人才向往的高品质城区</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.4.1</span></td><td>统筹研究范围</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.4.2</span></td><td>总体设计范围</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.4.3</span></td><td>重点区域范围</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.1.1</span></td><td>统筹研究范围：AI创新生态体系</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.1.2</span></td><td>统筹研究范围：适配人工智能的未来城市形态</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.2.1</span></td><td>总体设计范围：产业目标与功能布局</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.2.2</span></td><td>总体设计范围：城市更新总体框架</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.2.3</span></td><td>总体设计范围：交通轨道市政配套设施</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.2.4</span></td><td>总体设计范围：京张遗址公园活力带</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.2.5</span></td><td>总体设计范围：城市风貌</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.3.required</span></td><td>重点区域范围详细设计必选项</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.3.1</span></td><td>众智园AI自主创新加速区</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.3.2</span></td><td>北京AI原点社区</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">1.5.3.3</span></td><td>大钟寺AI产业聚集区</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">agent.1</span></td><td>一带总体概念与功能统筹方案设计</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">agent.2</span></td><td>AI全栈自主创新体系与世界级AI创新生态设计</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">agent.3</span></td><td>AI+场景赋能新范式与智能化AI活力城市设计</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">agent.4</span></td><td>AI公共空间、智能原生新业态与朝圣地标设计</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">agent.5</span></td><td>百年京张文化、中关村文化与AI新文化融合叙事设计</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+<tr><td><span class="chip">agent.6</span></td><td>一带全球AI创新活动体系与长期运营设计</td><td><div class="chips"><span class="chip">site_area_sqm</span><span class="chip">green_ratio</span><span class="chip">public_space_ratio</span><span class="chip">key_area_count</span></div></td><td><div class="chips"><span class="chip">BOUNDARY_TRUST</span><span class="chip">KEY_AREAS_TRUST</span><span class="chip">METRIC_RECALCULATION</span></div></td></tr>
+</tbody></table></div>
+<div class="grid2">
+<div class="card"><h3>标准依据 / Standard bases</h3><div class="chips">
+<span class="chip">PROJECT-OFFICIAL-ANNOUNCEMENT · addressed</span>
+<span class="chip">PROJECT-AGENT-OPEN-CALL-TASKBOOK · addressed</span>
+<span class="chip">MOHURD-URBAN-DESIGN-MEASURES · addressed</span>
+<span class="chip">MOHURD-CONTROL-DETAILED-PLANNING · addressed</span>
+<span class="chip">MNR-LAND-USE-CLASSIFICATION-GUIDE · addressed</span>
+<span class="chip">MOHURD-ARCH-DESIGN-DEPTH-2016 · data_gap</span>
+</div></div>
+<div class="card"><h3>设计深度条目 / Design depth entries</h3><div class="chips">
+<span class="chip">existing_conditions_diagnosis · complete</span>
+<span class="chip">three_level_scope_framework · complete</span>
+<span class="chip">overall_spatial_structure · complete</span>
+<span class="chip">land_use_layout · complete</span>
+<span class="chip">development_intensity_controls · complete</span>
+<span class="chip">height_massing_character · complete</span>
+<span class="chip">retain_renovate_demolish · complete</span>
+<span class="chip">traffic_rail_slow_parking · complete</span>
+<span class="chip">municipal_new_infrastructure · complete</span>
+<span class="chip">blue_green_public_space · complete</span>
+<span class="chip">three_key_area_detailed_design · complete</span>
+<span class="chip">renewal_project_list · complete</span>
+<span class="chip">phasing_implementation · complete</span>
+<span class="chip">metrics_recalculation · complete</span>
+<span class="chip">risk_missing_data · complete</span>
+</div></div></div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>自检状态 / Self-check state</h2><p class="desc">formal-review-ready 的门槛是：阶段为 formal、参赛者可控的四项复核无 error、且没有 result 为 fail 且 severity 为 blocking 的自检项。自检共 25 项，阻塞级失败 0 项，按此门槛本包状态为 formal-review-ready。两项结论仍为 unknown 而非 pass：约束几何数据缺口，以及官方数据发布后的整体重算承诺。unknown 不等于 fail，它表示所依赖的外部条件尚未公布因而无法核验；把它们写成 unknown 比写成 pass 更有价值，因为它们标出了这份提交真正的边界。</p></div><span class="tag">self_check.json</span></div>
+<div class="body"><table><thead><tr>
+<th>自检编号 / Check</th>
+<th>结论 / Result</th>
+<th>等级 / Severity</th>
+<th>对象 / Target</th>
+</tr></thead><tbody>
+<tr><td><span class="chip">SELF_CHECK_POLICY</span></td><td>pass</td><td><span class="chip sev-info">info</span></td><td class="mini">self_check.json</td></tr>
+<tr><td><span class="chip">FORMAL_READINESS_THRESHOLD</span></td><td>pass</td><td><span class="chip sev-info">info</span></td><td class="mini">manifest.json</td></tr>
+<tr><td><span class="chip">DATA_CONFIDENCE_ALIGNMENT</span></td><td>pass</td><td><span class="chip sev-info">info</span></td><td class="mini">manifest.json</td></tr>
+<tr><td><span class="chip">METRIC_CRS_PROTOCOL</span></td><td>pass</td><td><span class="chip sev-info">info</span></td><td class="mini">metrics.json</td></tr>
+<tr><td><span class="chip">BOUNDARY_TRUST</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">geometry/site_boundary.geojson</td></tr>
+<tr><td><span class="chip">KEY_AREAS_TRUST</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">geometry/key_areas.geojson</td></tr>
+<tr><td><span class="chip">LAND_USE_TOPOLOGY</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">geometry/land_use.geojson</td></tr>
+<tr><td><span class="chip">LAND_USE_COVERAGE</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">geometry/land_use.geojson</td></tr>
+<tr><td><span class="chip">GEOMETRY_INSIDE_SITE</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">geometry/</td></tr>
+<tr><td><span class="chip">METRIC_RECALCULATION</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">metrics.json</td></tr>
+<tr><td><span class="chip">UNKNOWN_METRIC_DISCLOSURE</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">metrics.json</td></tr>
+<tr><td><span class="chip">CONSTRAINTS_DATA_GAP</span></td><td>unknown</td><td><span class="chip sev-major">major</span></td><td class="mini">geometry/constraints.geojson</td></tr>
+<tr><td><span class="chip">LOCKED_LAYER_RESPECT</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">geometry/</td></tr>
+<tr><td><span class="chip">BUILDING_SAMPLE_DISCLOSURE</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">geometry/buildings.geojson</td></tr>
+<tr><td><span class="chip">PHASING_COVERAGE</span></td><td>pass</td><td><span class="chip sev-minor">minor</span></td><td class="mini">geometry/phasing.geojson</td></tr>
+<tr><td><span class="chip">UNQUANTIFIED_HEAT_CLAIMS</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">proposal.md</td></tr>
+<tr><td><span class="chip">NO_GOVERNMENT_COMMITMENT_CLAIM</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">proposal.md</td></tr>
+<tr><td><span class="chip">PERSONAL_DATA_MINIMIZATION</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">proposal.md</td></tr>
+<tr><td><span class="chip">HUMAN_FALLBACK_DESIGN</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">proposal.md</td></tr>
+<tr><td><span class="chip">VISUAL_STATIC</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">visual/index.html</td></tr>
+<tr><td><span class="chip">VISUAL_METRIC_CONSISTENCY</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">visual/index.html</td></tr>
+<tr><td><span class="chip">BILINGUAL_PAIRING</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">proposal.md</td></tr>
+<tr><td><span class="chip">COPYRIGHT_CLEARANCE</span></td><td>pass</td><td><span class="chip sev-blocking">blocking</span></td><td class="mini">report/copyright_statement.md</td></tr>
+<tr><td><span class="chip">PROFESSIONAL_EVIDENCE</span></td><td>pass</td><td><span class="chip sev-major">major</span></td><td class="mini">proposal.md</td></tr>
+<tr><td><span class="chip">OFFICIAL_DATA_RECOMPUTE_PLEDGE</span></td><td>unknown</td><td><span class="chip sev-major">major</span></td><td class="mini">manifest.json</td></tr>
+</tbody></table>
+<div class="grid4" style="padding:14px 0 0">
+<div class="metric"><span>阻塞级失败项</span><strong data-metric="self_check_blocking_failures" data-value="0">0</strong><em>self_check_blocking_failures</em></div>
+<div class="metric"><span>自检等级分布</span><strong>9</strong><em>blocking</em></div>
+<div class="metric"><span>自检等级分布</span><strong>4</strong><em>info</em></div>
+<div class="metric"><span>自检等级分布</span><strong>11</strong><em>major</em></div>
+<div class="metric"><span>自检等级分布</span><strong>1</strong><em>minor</em></div>
+</div></div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>拒答清单 / The refusal list</h2><p class="desc">本方案主动不给出的十类结论。列出它们不是免责，而是设计决定：在没有审定控规、机房负荷与热网数据的前提下填入数值，会让整份方案的可信度失效。</p></div><span class="tag">declared unknowns</span></div>
+<div class="grid5">
+<article class="card warn"><b>容积率与总建筑规模</b></article>
+<article class="card warn"><b>建筑密度与高度控制</b></article>
+<article class="card warn"><b>退线与道路红线位置</b></article>
+<article class="card warn"><b>河道蓝线与防洪标准</b></article>
+<article class="card warn"><b>文保范围与建设控制地带边界</b></article>
+<article class="card warn"><b>热力管线走向、管径与容量</b></article>
+<article class="card warn"><b>余热回收量与等效供暖户数</b></article>
+<article class="card warn"><b>交通量预测与信号配时</b></article>
+<article class="card warn"><b>具体拆除对象</b></article>
+<article class="card warn"><b>碳减排量与政府实施承诺</b></article>
+</div></section>
+<section class="sheet">
+<div class="sheet-head"><div><h2>来源与假设 / Sources and assumptions</h2><p class="desc">公开来源 33 条，逐条登记发布方、URL、发布日期、访问日期、许可摘要、用途与用途禁区；明示假设 12 条，每条写明影响范围与退出条件。凡未登记的资料，其内容不写入本方案任何结论。</p></div><span class="tag">sources.json / assumptions.json</span></div>
+<div class="grid2">
+<div><h3>公开来源 / Public sources</h3><table><thead><tr>
+<th>编号 / ID</th>
+<th>发布方 / Publisher</th>
+<th>发布日期 / Published</th>
+</tr></thead><tbody>
+<tr><td><span class="chip">OFFICIAL-ANNOUNCEMENT</span></td><td class="mini">北京市规划和自然资源委员会海淀分局</td><td class="mini">2026-05-09</td></tr>
+<tr><td><span class="chip">AGENT-TASKBOOK</span></td><td class="mini">User-provided cleared document</td><td class="mini">2026-05-18</td></tr>
+<tr><td><span class="chip">PROVISIONAL-BOUNDARIES</span></td><td class="mini">Repository maintainers</td><td class="mini">2026-06-05</td></tr>
+<tr><td><span class="chip">MOHURD-URBAN-DESIGN-MEASURES</span></td><td class="mini">中华人民共和国住房和城乡建设部</td><td class="mini">2017-03-14</td></tr>
+<tr><td><span class="chip">MOHURD-CONTROL-DETAILED-PLANNING</span></td><td class="mini">中华人民共和国住房和城乡建设部</td><td class="mini"></td></tr>
+<tr><td><span class="chip">MNR-LAND-USE-CLASSIFICATION-GUIDE</span></td><td class="mini">自然资源部</td><td class="mini">2023-11-22</td></tr>
+<tr><td><span class="chip">GENERATIVE-AI-INTERIM-MEASURES</span></td><td class="mini">国家互联网信息办公室等七部门</td><td class="mini">2023-07-13</td></tr>
+<tr><td><span class="chip">BARRIER-FREE-ENVIRONMENT-LAW</span></td><td class="mini">全国人民代表大会常务委员会</td><td class="mini">2023-06-28</td></tr>
+<tr><td><span class="chip">ELDERLY-SMART-TECH-PLAN</span></td><td class="mini">国务院办公厅</td><td class="mini">2020-11-24</td></tr>
+<tr><td><span class="chip">BJ-JINGMEN-COAL-BRANCH</span></td><td class="mini">北京市文物局</td><td class="mini">2025-02-19</td></tr>
+<tr><td><span class="chip">BJ-HERITAGE-PARK-PLANNING</span></td><td class="mini">北京市规划和自然资源委员会</td><td class="mini">2021-12-16</td></tr>
+<tr><td><span class="chip">BJ-HERITAGE-PARK-BUILD</span></td><td class="mini">北京市园林绿化局；北京市海淀区人民政府</td><td class="mini">2023-06-26</td></tr>
+<tr><td><span class="chip">BJ-QINGHUAYUAN-STATION-HERITAGE</span></td><td class="mini">北京市人民政府</td><td class="mini">2023-01-19</td></tr>
+<tr><td><span class="chip">NRA-QINGHUAYUAN-TUNNEL</span></td><td class="mini">国家铁路局（原稿：新华社）</td><td class="mini">2018-11-21</td></tr>
+<tr><td><span class="chip">ZJK-RENEWABLE-DEMO-ZONE</span></td><td class="mini">国家发展和改革委员会</td><td class="mini">2015-07-28</td></tr>
+<tr><td><span class="chip">ZHANGBEI-HVDC-GRID</span></td><td class="mini">国家能源局；国家发展和改革委员会</td><td class="mini">2020-07-21</td></tr>
+<tr><td><span class="chip">ZHANGBEI-DATACENTER-BASE</span></td><td class="mini">北京市经济和信息化局（首都之窗）</td><td class="mini">2024-02-26</td></tr>
+<tr><td><span class="chip">BJ-HEATING-MANAGEMENT-MEASURES</span></td><td class="mini">北京市人民政府</td><td class="mini">2010-02-22</td></tr>
+<tr><td><span class="chip">BJ-INDOOR-TEMPERATURE-STANDARD</span></td><td class="mini">北京市城市管理委员会</td><td class="mini">2022-11-11</td></tr>
+<tr><td><span class="chip">NDRC-DATACENTER-GREEN-ACTION</span></td><td class="mini">国家发展和改革委员会等</td><td class="mini">2024-07-23</td></tr>
+<tr><td><span class="chip">BJ-DATACENTER-OPTIMIZATION</span></td><td class="mini">北京市经济和信息化局等；北京市人民政府</td><td class="mini">2024-11-15</td></tr>
+<tr><td><span class="chip">STOCKHOLM-OPEN-DISTRICT-HEATING</span></td><td class="mini">Stockholm Exergi；European Commission Covenant of Mayors (EU Mayors)</td><td class="mini">2025-01-01</td></tr>
+<tr><td><span class="chip">HELSINKI-TELIA-HELEN-HEAT</span></td><td class="mini">Helen Oy；Telia Company</td><td class="mini">2025-05-26</td></tr>
+<tr><td><span class="chip">ODENSE-META-FJERNVARME-FYN</span></td><td class="mini">Meta Platforms；UNEP Copenhagen Climate Centre (C2E2)</td><td class="mini">2020-10-13</td></tr>
+<tr><td><span class="chip">DE-ENERGY-EFFICIENCY-ACT-DATACENTER</span></td><td class="mini">Bundesministerium der Justiz（德国联邦司法部法规数据库）</td><td class="mini">2023-11-18</td></tr>
+<tr><td><span class="chip">CN-DATACENTER-WASTE-HEAT-CASES</span></td><td class="mini">万国数据 GDS；张家口市国资委；亿安天下（企业自披露）</td><td class="mini">2025-11-14</td></tr>
+<tr><td><span class="chip">IEA-ENERGY-AND-AI-2025</span></td><td class="mini">International Energy Agency (IEA)</td><td class="mini">2025-04-10</td></tr>
+<tr><td><span class="chip">CIBSE-LIQUID-COOLING-MODULE</span></td><td class="mini">CIBSE Journal（英国特许建筑设备工程师学会期刊）</td><td class="mini">2025-10-01</td></tr>
+<tr><td><span class="chip">SITE-PACKAGE</span></td><td class="mini">Repository maintainers</td><td class="mini"></td></tr>
+<tr><td><span class="chip">PLANNING-LIMITS</span></td><td class="mini">Repository maintainers</td><td class="mini"></td></tr>
+<tr><td><span class="chip">SOURCE-REGISTRY</span></td><td class="mini">Repository maintainers</td><td class="mini"></td></tr>
+<tr><td><span class="chip">PROCESSED-FACT-PACK</span></td><td class="mini">Repository maintainers</td><td class="mini"></td></tr>
+<tr><td><span class="chip">SUBMITTED-GEOMETRY</span></td><td class="mini">ztkuaikuai (Ducc, AI agent)</td><td class="mini"></td></tr>
+</tbody></table>
+<div class="code">sources.json · 33 entries · publisher / url / published_date / accessed_date / license_summary / usage / not_usable_for</div></div>
+<div><h3>明示假设 / Declared assumptions</h3>
+<div class="card" style="margin-bottom:10px"><b>PROVISIONAL-SITE-BOUNDARY</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">本包提交的总体设计范围边界来自仓库维护的临时粗略 polygon，不是官方红线。其复算面积 11,412,825.386 平方米与公告约 11.4 平方公里量级一致（偏差约 0.11%），但四至位置与形状精度均未知。</p></div>
+<div class="card" style="margin-bottom:10px"><b>PROVISIONAL-KEY-AREAS</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">三处重点区域范围为临时矩形示意。复算合计 3,692,893.005 平方米，与公告 368.4 公顷偏差约 0.24%；但矩形形状明显不同于真实片区边界，单个片区的四至不可信。</p></div>
+<div class="card" style="margin-bottom:10px"><b>MISSING-REGULATORY-CONTROLS</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">容积率、建筑高度、建筑密度、绿地率、退线五项官方控制条件在公开场地包中均登记为 missing，本方案不给出任何替代数值。</p></div>
+<div class="card" style="margin-bottom:10px"><b>NO-OFFICIAL-ROAD-REDLINE</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">没有官方道路红线、断面与管线资料。roads.geojson 仅提交中心线，表达慢行与接驳组织意图，不生成 ROAD_AREA 面图层。</p></div>
+<div class="card" style="margin-bottom:10px"><b>NO-CONSTRAINT-GEOMETRY</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">constraints.geojson 刻意保持为空要素集合。文物保护范围与建设控制地带、控规控制线、道路红线、河道蓝线与市政管线均属锁定图层，目前没有可引用的官方几何来源。</p></div>
+<div class="card" style="margin-bottom:10px"><b>BUILDING-SAMPLE-NOT-SURVEY</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">buildings.geojson 的 20 个建筑基底是概念示意对象，用于表达界面、体量关系与拆改留方法，不是现状建筑普查，也不是总建筑规模。</p></div>
+<div class="card" style="margin-bottom:10px"><b>RETAIN-RENOVATE-DEMOLISH-METHOD-ONLY</b><span class="chip sev-major" style="margin-left:6px">major</span><p class="mini" style="margin-top:6px">本方案提出拆改留的判定方法与分类逻辑，并标注 3 处保留改造概念对象；但在缺少现状建筑、权属、结构安全与文保资料时，不给出任何具体建筑的拆除结论。</p></div>
+<div class="card" style="margin-bottom:10px"><b>STATION-LOCATION-APPROXIMATE</b><span class="chip sev-minor" style="margin-left:6px">minor</span><p class="mini" style="margin-top:6px">大钟寺站、知春路站、五道口站的接驳位置为粗略示意，未使用官方轨道站点坐标与出入口资料。</p></div>
+<div class="card" style="margin-bottom:10px"><b>NO-COMPUTE-LOAD-DATA</b><span class="chip sev-blocking" style="margin-left:6px">blocking_for_quantified_claims</span><p class="mini" style="margin-top:6px">本走廊内数据中心与机房的装机容量、冷却方式、回水温度、年运行负荷与能效比均无公开可核验数据。本方案因此不给出任何余热回收比例、可回收热量或减排量数值。</p></div>
+<div class="card" style="margin-bottom:10px"><b>NO-DISTRICT-HEATING-NETWORK-DATA</b><span class="chip sev-blocking" style="margin-left:6px">blocking_for_quantified_claims</span><p class="mini" style="margin-top:6px">供热管网走向、管径、供回水温度、热源结构与现状热负荷均无可引用资料，热力接口位置只能表达为留白用地与待确认接口意向。</p></div>
+<div class="card" style="margin-bottom:10px"><b>NO-OPERATIONAL-PERFORMANCE-DATA</b><span class="chip sev-minor" style="margin-left:6px">minor</span><p class="mini" style="margin-top:6px">AI 创新指数、人才密度、慢行可达性实测、活动参与度、场景使用频次等绩效指标需要运营数据持续校准，当前无法复算。</p></div>
+<div class="card" style="margin-bottom:10px"><b>NO-GOVERNMENT-COMMITMENT</b><span class="chip sev-blocking" style="margin-left:6px">blocking_for_statutory_use</span><p class="mini" style="margin-top:6px">本包为开源征集的概念建议与参考方案，可供专业团队深化研究。它不声称获得政府批准、审定控规、最终权属、最终建设规模或实施承诺。</p></div>
+<div class="code">assumptions.json · 12 entries · statement / impact / retire_condition / affected / source_refs</div></div>
+</div></section>
+</main>
+<footer class="wrap">本页完全离线运行：无远程脚本、无远程地图瓦片、无远程字体、无 iframe、无表单、无外部接口调用，不采集也不跟踪评审者行为。全部空间内容为概念建议与参考方案，未声称获得任何政府批准或实施承诺。</footer>
+</body>
+</html>

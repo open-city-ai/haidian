@@ -1,5 +1,5 @@
 {
-  "model_version": "2.13-regional-robustness-screen",
+  "model_version": "2.15-regional-distributional-accessibility",
   "simulation_class": "regional_population_scale_synthetic_two_peak_flow_not_local_OD",
   "regional_scope": {
     "population_reference": 3122000,
@@ -16,6 +16,7 @@
       "hard_gates",
       "mass_conservation",
       "accessibility_continuity",
+      "accessibility_distribution_tail",
       "satisfaction_proxy_max",
       "generalized_cost_min",
       "p90_time_proxy_min",
@@ -49,6 +50,8 @@
     "selection_order": [
       "hard_gate_pass",
       "satisfaction_proxy_max",
+      "worst_group_satisfaction_p10_proxy_max",
+      "worst_group_accessibility_p10_gap_proxy_min",
       "average_generalized_cost_proxy_min",
       "p90_travel_time_proxy_minutes_min",
       "people_flow_conflict_rate_per_1000_proxy_min",
@@ -58,10 +61,13 @@
     "hard_gate_constraints": {
       "minimum_accessibility_completion_proxy": 0.92,
       "maximum_worst_group_accessibility_gap_proxy_points": 5,
+      "maximum_worst_group_accessibility_p10_gap_proxy_points": 20,
       "require_mass_conservation": true,
       "require_all_agents_processed": true,
       "air_candidate_must_remain_blocked": true,
-      "maximum_peak_mode_load_ratio": 1.35
+      "maximum_peak_mode_load_ratio": 1.35,
+      "maximum_worst_group_satisfaction_gap_proxy_points": 12,
+      "maximum_worst_group_satisfaction_p10_gap_proxy_points": 20
     },
     "selected_policy": "O4_capacity_balanced",
     "selected_policy_is_not_hand_picked": true,
@@ -71,6 +77,9 @@
         "policy_id": "O4_capacity_balanced",
         "weight_profile": "O4",
         "hard_gate_pass": true,
+        "agents_processed": 3122000,
+        "all_agents_processed": true,
+        "mass_conservation": true,
         "satisfaction_proxy": 66.44,
         "average_generalized_cost_proxy": 49.44,
         "p90_travel_time_proxy_minutes": 60,
@@ -89,13 +98,126 @@
         "capacity_overflow_person_trips": 332639,
         "accessibility_completion_proxy": 0.9343,
         "worst_group_accessibility_gap_proxy_points": 2.62,
-        "person_km_proxy": 28398272
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "worst_group_satisfaction_gap_proxy_points": 10.86,
+        "worst_group_satisfaction_p10_proxy": 50,
+        "worst_group_satisfaction_p10_gap_proxy_points": 20,
+        "person_km_proxy": 28398272,
+        "satisfaction_component_readout": {
+          "method": "additive_proxy_decomposition_from_regional_agent_score",
+          "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+          "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+          "mean_components": {
+            "time_disutility": 25.9647,
+            "wait_disutility": 0.5889,
+            "crowding_disutility": 0.4183,
+            "curb_disutility": 0.1611,
+            "accessibility_disutility": 0.552,
+            "reliability_disutility": 0.8764,
+            "conflict_disutility": 5.0001
+          },
+          "total_disutility": 33.5615,
+          "reconstructed_score": 66.44,
+          "by_group": {
+            "enterprise_employee": {
+              "count": 1092700,
+              "mean_components": {
+                "time_disutility": 26.3912,
+                "wait_disutility": 0.6024,
+                "crowding_disutility": 0.4872,
+                "curb_disutility": 0.1346,
+                "accessibility_disutility": 0.5864,
+                "reliability_disutility": 0.8964,
+                "conflict_disutility": 4.7504
+              },
+              "total_disutility": 33.8486,
+              "reconstructed_score": 66.15
+            },
+            "resident_worker": {
+              "count": 936600,
+              "mean_components": {
+                "time_disutility": 25.4185,
+                "wait_disutility": 0.547,
+                "crowding_disutility": 0.4201,
+                "curb_disutility": 0.1009,
+                "accessibility_disutility": 0.5991,
+                "reliability_disutility": 0.8139,
+                "conflict_disutility": 4.7187
+              },
+              "total_disutility": 32.6182,
+              "reconstructed_score": 67.38
+            },
+            "carer_or_child": {
+              "count": 468300,
+              "mean_components": {
+                "time_disutility": 26.2648,
+                "wait_disutility": 0.4805,
+                "crowding_disutility": 0.3355,
+                "curb_disutility": 0.0668,
+                "accessibility_disutility": 0.379,
+                "reliability_disutility": 0.715,
+                "conflict_disutility": 4.5182
+              },
+              "total_disutility": 32.7598,
+              "reconstructed_score": 67.24
+            },
+            "visitor_service": {
+              "count": 312200,
+              "mean_components": {
+                "time_disutility": 25.2958,
+                "wait_disutility": 0.5096,
+                "crowding_disutility": 0.4368,
+                "curb_disutility": 0.0338,
+                "accessibility_disutility": 0.5969,
+                "reliability_disutility": 0.7584,
+                "conflict_disutility": 4.3005
+              },
+              "total_disutility": 31.9318,
+              "reconstructed_score": 68.07
+            },
+            "logistics_and_maintenance": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.2374,
+                "wait_disutility": 1.2063,
+                "crowding_disutility": 0.0931,
+                "curb_disutility": 1.2725,
+                "accessibility_disutility": 0.5819,
+                "reliability_disutility": 1.7951,
+                "conflict_disutility": 11.6022
+              },
+              "total_disutility": 42.7885,
+              "reconstructed_score": 57.21
+            },
+            "night_worker": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.4208,
+                "wait_disutility": 0.6135,
+                "crowding_disutility": 0.4629,
+                "curb_disutility": 0.1338,
+                "accessibility_disutility": 0.4282,
+                "reliability_disutility": 0.9129,
+                "conflict_disutility": 4.6784
+              },
+              "total_disutility": 33.6505,
+              "reconstructed_score": 66.35
+            }
+          },
+          "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+        },
+        "air_candidate": "blocked",
+        "privacy_check": "aggregate_only_no_personal_trace"
       },
       {
         "rank": 2,
         "policy_id": "O1_transit_priority",
         "weight_profile": "O1",
         "hard_gate_pass": true,
+        "agents_processed": 3122000,
+        "all_agents_processed": true,
+        "mass_conservation": true,
         "satisfaction_proxy": 66.23,
         "average_generalized_cost_proxy": 50.06,
         "p90_travel_time_proxy_minutes": 60,
@@ -114,13 +236,126 @@
         "capacity_overflow_person_trips": 410139,
         "accessibility_completion_proxy": 0.9337,
         "worst_group_accessibility_gap_proxy_points": 2.93,
-        "person_km_proxy": 29608825
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "worst_group_satisfaction_gap_proxy_points": 10.74,
+        "worst_group_satisfaction_p10_proxy": 50,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
+        "person_km_proxy": 29608825,
+        "satisfaction_component_readout": {
+          "method": "additive_proxy_decomposition_from_regional_agent_score",
+          "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+          "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+          "mean_components": {
+            "time_disutility": 26.2013,
+            "wait_disutility": 0.6213,
+            "crowding_disutility": 0.4897,
+            "curb_disutility": 0.1653,
+            "accessibility_disutility": 0.5572,
+            "reliability_disutility": 0.9245,
+            "conflict_disutility": 4.8133
+          },
+          "total_disutility": 33.7726,
+          "reconstructed_score": 66.23,
+          "by_group": {
+            "enterprise_employee": {
+              "count": 1092700,
+              "mean_components": {
+                "time_disutility": 26.5625,
+                "wait_disutility": 0.6291,
+                "crowding_disutility": 0.5712,
+                "curb_disutility": 0.1347,
+                "accessibility_disutility": 0.5909,
+                "reliability_disutility": 0.9362,
+                "conflict_disutility": 4.4847
+              },
+              "total_disutility": 33.9093,
+              "reconstructed_score": 66.09
+            },
+            "resident_worker": {
+              "count": 936600,
+              "mean_components": {
+                "time_disutility": 25.7004,
+                "wait_disutility": 0.5764,
+                "crowding_disutility": 0.4873,
+                "curb_disutility": 0.1006,
+                "accessibility_disutility": 0.6076,
+                "reliability_disutility": 0.8578,
+                "conflict_disutility": 4.5297
+              },
+              "total_disutility": 32.8598,
+              "reconstructed_score": 67.14
+            },
+            "carer_or_child": {
+              "count": 468300,
+              "mean_components": {
+                "time_disutility": 26.5124,
+                "wait_disutility": 0.5141,
+                "crowding_disutility": 0.4024,
+                "curb_disutility": 0.0668,
+                "accessibility_disutility": 0.3694,
+                "reliability_disutility": 0.765,
+                "conflict_disutility": 4.3332
+              },
+              "total_disutility": 32.9633,
+              "reconstructed_score": 67.04
+            },
+            "visitor_service": {
+              "count": 312200,
+              "mean_components": {
+                "time_disutility": 25.5823,
+                "wait_disutility": 0.5527,
+                "crowding_disutility": 0.5206,
+                "curb_disutility": 0.0338,
+                "accessibility_disutility": 0.6154,
+                "reliability_disutility": 0.8224,
+                "conflict_disutility": 4.0798
+              },
+              "total_disutility": 32.207,
+              "reconstructed_score": 67.79
+            },
+            "logistics_and_maintenance": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.2998,
+                "wait_disutility": 1.2158,
+                "crowding_disutility": 0.0931,
+                "curb_disutility": 1.2886,
+                "accessibility_disutility": 0.574,
+                "reliability_disutility": 1.8092,
+                "conflict_disutility": 11.6678
+              },
+              "total_disutility": 42.9483,
+              "reconstructed_score": 57.05
+            },
+            "night_worker": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.8846,
+                "wait_disutility": 0.6995,
+                "crowding_disutility": 0.5303,
+                "curb_disutility": 0.2019,
+                "accessibility_disutility": 0.4494,
+                "reliability_disutility": 1.0409,
+                "conflict_disutility": 4.8676
+              },
+              "total_disutility": 34.6742,
+              "reconstructed_score": 65.33
+            }
+          },
+          "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+        },
+        "air_candidate": "blocked",
+        "privacy_check": "aggregate_only_no_personal_trace"
       },
       {
         "rank": 3,
         "policy_id": "O3_active_first",
         "weight_profile": "O3",
         "hard_gate_pass": false,
+        "agents_processed": 3122000,
+        "all_agents_processed": true,
+        "mass_conservation": true,
         "satisfaction_proxy": 66.78,
         "average_generalized_cost_proxy": 48.93,
         "p90_travel_time_proxy_minutes": 60,
@@ -139,13 +374,126 @@
         "capacity_overflow_person_trips": 389565,
         "accessibility_completion_proxy": 0.9289,
         "worst_group_accessibility_gap_proxy_points": 2.81,
-        "person_km_proxy": 28064518
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "worst_group_satisfaction_gap_proxy_points": 11.22,
+        "worst_group_satisfaction_p10_proxy": 50,
+        "worst_group_satisfaction_p10_gap_proxy_points": 20,
+        "person_km_proxy": 28064518,
+        "satisfaction_component_readout": {
+          "method": "additive_proxy_decomposition_from_regional_agent_score",
+          "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+          "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+          "mean_components": {
+            "time_disutility": 25.6854,
+            "wait_disutility": 0.5708,
+            "crowding_disutility": 0.4099,
+            "curb_disutility": 0.1348,
+            "accessibility_disutility": 0.5973,
+            "reliability_disutility": 0.8494,
+            "conflict_disutility": 4.9714
+          },
+          "total_disutility": 33.219,
+          "reconstructed_score": 66.78,
+          "by_group": {
+            "enterprise_employee": {
+              "count": 1092700,
+              "mean_components": {
+                "time_disutility": 26.1621,
+                "wait_disutility": 0.5766,
+                "crowding_disutility": 0.5041,
+                "curb_disutility": 0.0841,
+                "accessibility_disutility": 0.6237,
+                "reliability_disutility": 0.8581,
+                "conflict_disutility": 4.5075
+              },
+              "total_disutility": 33.3162,
+              "reconstructed_score": 66.68
+            },
+            "resident_worker": {
+              "count": 936600,
+              "mean_components": {
+                "time_disutility": 25.0477,
+                "wait_disutility": 0.5321,
+                "crowding_disutility": 0.3951,
+                "curb_disutility": 0.0837,
+                "accessibility_disutility": 0.6648,
+                "reliability_disutility": 0.7919,
+                "conflict_disutility": 4.8456
+              },
+              "total_disutility": 32.3609,
+              "reconstructed_score": 67.64
+            },
+            "carer_or_child": {
+              "count": 468300,
+              "mean_components": {
+                "time_disutility": 25.9994,
+                "wait_disutility": 0.462,
+                "crowding_disutility": 0.3186,
+                "curb_disutility": 0.0496,
+                "accessibility_disutility": 0.4281,
+                "reliability_disutility": 0.6875,
+                "conflict_disutility": 4.5158
+              },
+              "total_disutility": 32.461,
+              "reconstructed_score": 67.54
+            },
+            "visitor_service": {
+              "count": 312200,
+              "mean_components": {
+                "time_disutility": 24.9758,
+                "wait_disutility": 0.4976,
+                "crowding_disutility": 0.4192,
+                "curb_disutility": 0.0167,
+                "accessibility_disutility": 0.6433,
+                "reliability_disutility": 0.7405,
+                "conflict_disutility": 4.3597
+              },
+              "total_disutility": 31.6528,
+              "reconstructed_score": 68.35
+            },
+            "logistics_and_maintenance": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.1541,
+                "wait_disutility": 1.2103,
+                "crowding_disutility": 0.0759,
+                "curb_disutility": 1.2886,
+                "accessibility_disutility": 0.5895,
+                "reliability_disutility": 1.801,
+                "conflict_disutility": 11.7513
+              },
+              "total_disutility": 42.8707,
+              "reconstructed_score": 57.13
+            },
+            "night_worker": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.1826,
+                "wait_disutility": 0.5959,
+                "crowding_disutility": 0.429,
+                "curb_disutility": 0.1338,
+                "accessibility_disutility": 0.4315,
+                "reliability_disutility": 0.8867,
+                "conflict_disutility": 4.7838
+              },
+              "total_disutility": 33.4433,
+              "reconstructed_score": 66.56
+            }
+          },
+          "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+        },
+        "air_candidate": "blocked",
+        "privacy_check": "aggregate_only_no_personal_trace"
       },
       {
         "rank": 4,
         "policy_id": "O2_equity_balanced",
         "weight_profile": "O2",
         "hard_gate_pass": false,
+        "agents_processed": 3122000,
+        "all_agents_processed": true,
+        "mass_conservation": true,
         "satisfaction_proxy": 66.22,
         "average_generalized_cost_proxy": 50.29,
         "p90_travel_time_proxy_minutes": 90,
@@ -164,7 +512,117 @@
         "capacity_overflow_person_trips": 414711,
         "accessibility_completion_proxy": 0.9331,
         "worst_group_accessibility_gap_proxy_points": 3.23,
-        "person_km_proxy": 28837883
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "worst_group_satisfaction_gap_proxy_points": 10.57,
+        "worst_group_satisfaction_p10_proxy": 50,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
+        "person_km_proxy": 28837883,
+        "satisfaction_component_readout": {
+          "method": "additive_proxy_decomposition_from_regional_agent_score",
+          "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+          "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+          "mean_components": {
+            "time_disutility": 26.3596,
+            "wait_disutility": 0.611,
+            "crowding_disutility": 0.4893,
+            "curb_disutility": 0.1392,
+            "accessibility_disutility": 0.5616,
+            "reliability_disutility": 0.9092,
+            "conflict_disutility": 4.7091
+          },
+          "total_disutility": 33.779,
+          "reconstructed_score": 66.22,
+          "by_group": {
+            "enterprise_employee": {
+              "count": 1092700,
+              "mean_components": {
+                "time_disutility": 26.768,
+                "wait_disutility": 0.6238,
+                "crowding_disutility": 0.5628,
+                "curb_disutility": 0.118,
+                "accessibility_disutility": 0.5844,
+                "reliability_disutility": 0.9283,
+                "conflict_disutility": 4.4254
+              },
+              "total_disutility": 34.0107,
+              "reconstructed_score": 65.99
+            },
+            "resident_worker": {
+              "count": 936600,
+              "mean_components": {
+                "time_disutility": 25.7721,
+                "wait_disutility": 0.5607,
+                "crowding_disutility": 0.4789,
+                "curb_disutility": 0.0667,
+                "accessibility_disutility": 0.6303,
+                "reliability_disutility": 0.8344,
+                "conflict_disutility": 4.4459
+              },
+              "total_disutility": 32.789,
+              "reconstructed_score": 67.21
+            },
+            "carer_or_child": {
+              "count": 468300,
+              "mean_components": {
+                "time_disutility": 26.8163,
+                "wait_disutility": 0.5046,
+                "crowding_disutility": 0.4361,
+                "curb_disutility": 0.0341,
+                "accessibility_disutility": 0.359,
+                "reliability_disutility": 0.7509,
+                "conflict_disutility": 4.0815
+              },
+              "total_disutility": 32.9825,
+              "reconstructed_score": 67.02
+            },
+            "visitor_service": {
+              "count": 312200,
+              "mean_components": {
+                "time_disutility": 25.7152,
+                "wait_disutility": 0.547,
+                "crowding_disutility": 0.5122,
+                "curb_disutility": 0.0167,
+                "accessibility_disutility": 0.6304,
+                "reliability_disutility": 0.814,
+                "conflict_disutility": 4.0665
+              },
+              "total_disutility": 32.302,
+              "reconstructed_score": 67.7
+            },
+            "logistics_and_maintenance": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.3413,
+                "wait_disutility": 1.2104,
+                "crowding_disutility": 0.1017,
+                "curb_disutility": 1.2725,
+                "accessibility_disutility": 0.5759,
+                "reliability_disutility": 1.8012,
+                "conflict_disutility": 11.5666
+              },
+              "total_disutility": 42.8696,
+              "reconstructed_score": 57.13
+            },
+            "night_worker": {
+              "count": 156100,
+              "mean_components": {
+                "time_disutility": 26.9622,
+                "wait_disutility": 0.671,
+                "crowding_disutility": 0.5382,
+                "curb_disutility": 0.1507,
+                "accessibility_disutility": 0.4457,
+                "reliability_disutility": 0.9985,
+                "conflict_disutility": 4.5847
+              },
+              "total_disutility": 34.351,
+              "reconstructed_score": 65.65
+            }
+          },
+          "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+        },
+        "air_candidate": "blocked",
+        "privacy_check": "aggregate_only_no_personal_trace"
       }
     ],
     "interpretation": "The selected policy is a synthetic candidate from a declared finite policy set; capacity gates prevent a paper-optimal but overloaded mode from winning, and the result is not a calibrated local optimum until OD, capacity, accessibility and satisfaction observations replace the assumptions.",
@@ -207,6 +665,9 @@
       "hard_gate_constraints": {
         "minimum_accessibility_completion_proxy": 0.85,
         "maximum_worst_group_accessibility_gap_proxy_points": 24,
+        "maximum_worst_group_accessibility_p10_gap_proxy_points": 30,
+        "maximum_worst_group_satisfaction_gap_proxy_points": 18,
+        "maximum_worst_group_satisfaction_p10_gap_proxy_points": 30,
         "maximum_stress_peak_mode_load_ratio": 1.75,
         "require_mass_conservation": true,
         "require_all_agents_processed": true,
@@ -216,6 +677,7 @@
         "nominal_gate",
         "stress_gate_count",
         "worst_case_satisfaction_proxy_max",
+        "worst_group_accessibility_p10_gap_proxy_min",
         "worst_group_accessibility_gap_proxy_min",
         "worst_peak_mode_load_ratio_min",
         "mean_generalized_cost_proxy_min"
@@ -230,6 +692,11 @@
           "robust_gate_pass": true,
           "worst_case_satisfaction_proxy": 49.37,
           "worst_group_accessibility_gap_proxy_points": 4.86,
+          "worst_group_accessibility_p10_proxy": 0.7,
+          "worst_group_accessibility_p10_gap_proxy_points": 20,
+          "worst_group_satisfaction_gap_proxy_points": 17.07,
+          "worst_group_satisfaction_p10_proxy": 40,
+          "worst_group_satisfaction_p10_gap_proxy_points": 10,
           "worst_peak_mode_load_ratio": 1.6986,
           "mean_generalized_cost_proxy": 63.55,
           "scenario_summaries": [
@@ -247,11 +714,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.9331,
               "worst_group_accessibility_gap_proxy_points": 3.23,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 5,
+              "worst_group_satisfaction_gap_proxy_points": 10.57,
+              "worst_group_satisfaction_p10_proxy": 50,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.4268,
               "capacity_overflow_person_trips": 414711,
               "people_flow_conflict_rate_per_1000_proxy": 2.94,
               "external_car_inflow_ratio": 0.0729,
               "vehicle_km_proxy": 3110028,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 26.3596,
+                  "wait_disutility": 0.611,
+                  "crowding_disutility": 0.4893,
+                  "curb_disutility": 0.1392,
+                  "accessibility_disutility": 0.5616,
+                  "reliability_disutility": 0.9092,
+                  "conflict_disutility": 4.7091
+                },
+                "total_disutility": 33.779,
+                "reconstructed_score": 66.22,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 26.768,
+                      "wait_disutility": 0.6238,
+                      "crowding_disutility": 0.5628,
+                      "curb_disutility": 0.118,
+                      "accessibility_disutility": 0.5844,
+                      "reliability_disutility": 0.9283,
+                      "conflict_disutility": 4.4254
+                    },
+                    "total_disutility": 34.0107,
+                    "reconstructed_score": 65.99
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 25.7721,
+                      "wait_disutility": 0.5607,
+                      "crowding_disutility": 0.4789,
+                      "curb_disutility": 0.0667,
+                      "accessibility_disutility": 0.6303,
+                      "reliability_disutility": 0.8344,
+                      "conflict_disutility": 4.4459
+                    },
+                    "total_disutility": 32.789,
+                    "reconstructed_score": 67.21
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 26.8163,
+                      "wait_disutility": 0.5046,
+                      "crowding_disutility": 0.4361,
+                      "curb_disutility": 0.0341,
+                      "accessibility_disutility": 0.359,
+                      "reliability_disutility": 0.7509,
+                      "conflict_disutility": 4.0815
+                    },
+                    "total_disutility": 32.9825,
+                    "reconstructed_score": 67.02
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 25.7152,
+                      "wait_disutility": 0.547,
+                      "crowding_disutility": 0.5122,
+                      "curb_disutility": 0.0167,
+                      "accessibility_disutility": 0.6304,
+                      "reliability_disutility": 0.814,
+                      "conflict_disutility": 4.0665
+                    },
+                    "total_disutility": 32.302,
+                    "reconstructed_score": 67.7
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.3413,
+                      "wait_disutility": 1.2104,
+                      "crowding_disutility": 0.1017,
+                      "curb_disutility": 1.2725,
+                      "accessibility_disutility": 0.5759,
+                      "reliability_disutility": 1.8012,
+                      "conflict_disutility": 11.5666
+                    },
+                    "total_disutility": 42.8696,
+                    "reconstructed_score": 57.13
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.9622,
+                      "wait_disutility": 0.671,
+                      "crowding_disutility": 0.5382,
+                      "curb_disutility": 0.1507,
+                      "accessibility_disutility": 0.4457,
+                      "reliability_disutility": 0.9985,
+                      "conflict_disutility": 4.5847
+                    },
+                    "total_disutility": 34.351,
+                    "reconstructed_score": 65.65
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -269,11 +844,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.871,
               "worst_group_accessibility_gap_proxy_points": 4.78,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 15.6,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.4268,
               "capacity_overflow_person_trips": 414711,
               "people_flow_conflict_rate_per_1000_proxy": 4.82,
               "external_car_inflow_ratio": 0.0729,
               "vehicle_km_proxy": 3110028,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 33.6658,
+                  "wait_disutility": 2.3021,
+                  "crowding_disutility": 1.873,
+                  "curb_disutility": 0.557,
+                  "accessibility_disutility": 1.0839,
+                  "reliability_disutility": 3.4258,
+                  "conflict_disutility": 7.7177
+                },
+                "total_disutility": 50.6253,
+                "reconstructed_score": 49.37,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 35.0976,
+                      "wait_disutility": 2.5541,
+                      "crowding_disutility": 2.2992,
+                      "curb_disutility": 0.4719,
+                      "accessibility_disutility": 1.1961,
+                      "reliability_disutility": 3.8007,
+                      "conflict_disutility": 7.2528
+                    },
+                    "total_disutility": 52.6724,
+                    "reconstructed_score": 47.33
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 33.0211,
+                      "wait_disutility": 2.2951,
+                      "crowding_disutility": 1.8346,
+                      "curb_disutility": 0.2667,
+                      "accessibility_disutility": 1.1211,
+                      "reliability_disutility": 3.4154,
+                      "conflict_disutility": 7.2864
+                    },
+                    "total_disutility": 49.2404,
+                    "reconstructed_score": 50.76
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 33.0359,
+                      "wait_disutility": 1.7527,
+                      "crowding_disutility": 1.4644,
+                      "curb_disutility": 0.1365,
+                      "accessibility_disutility": 0.8541,
+                      "reliability_disutility": 2.6082,
+                      "conflict_disutility": 6.6892
+                    },
+                    "total_disutility": 46.541,
+                    "reconstructed_score": 53.46
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 33.0624,
+                      "wait_disutility": 2.2382,
+                      "crowding_disutility": 1.9106,
+                      "curb_disutility": 0.0669,
+                      "accessibility_disutility": 1.1204,
+                      "reliability_disutility": 3.3306,
+                      "conflict_disutility": 6.6646
+                    },
+                    "total_disutility": 48.3937,
+                    "reconstructed_score": 51.61
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.4524,
+                      "wait_disutility": 2.6111,
+                      "crowding_disutility": 0.3502,
+                      "curb_disutility": 5.0902,
+                      "accessibility_disutility": 0.7947,
+                      "reliability_disutility": 3.8856,
+                      "conflict_disutility": 18.9564
+                    },
+                    "total_disutility": 62.1406,
+                    "reconstructed_score": 37.86
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 33.8205,
+                      "wait_disutility": 2.047,
+                      "crowding_disutility": 1.7935,
+                      "curb_disutility": 0.6029,
+                      "accessibility_disutility": 0.9817,
+                      "reliability_disutility": 3.0461,
+                      "conflict_disutility": 7.5138
+                    },
+                    "total_disutility": 49.8055,
+                    "reconstructed_score": 50.19
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -291,11 +974,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8705,
               "worst_group_accessibility_gap_proxy_points": 4.86,
+              "worst_group_accessibility_p10_proxy": 0.7,
+              "worst_group_accessibility_p10_gap_proxy_points": 20,
+              "worst_group_satisfaction_gap_proxy_points": 13.48,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 0,
               "max_mode_load_ratio": 1.4268,
               "capacity_overflow_person_trips": 414711,
               "people_flow_conflict_rate_per_1000_proxy": 5.23,
               "external_car_inflow_ratio": 0.0729,
               "vehicle_km_proxy": 3110028,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 34.0255,
+                  "wait_disutility": 2.0511,
+                  "crowding_disutility": 1.6111,
+                  "curb_disutility": 0.4177,
+                  "accessibility_disutility": 1.0881,
+                  "reliability_disutility": 3.0522,
+                  "conflict_disutility": 8.3718
+                },
+                "total_disutility": 50.6175,
+                "reconstructed_score": 49.38,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 34.0528,
+                      "wait_disutility": 1.9855,
+                      "crowding_disutility": 1.8171,
+                      "curb_disutility": 0.354,
+                      "accessibility_disutility": 1.0116,
+                      "reliability_disutility": 2.9546,
+                      "conflict_disutility": 7.8674
+                    },
+                    "total_disutility": 50.043,
+                    "reconstructed_score": 49.96
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 33.9495,
+                      "wait_disutility": 2.1063,
+                      "crowding_disutility": 1.5765,
+                      "curb_disutility": 0.2,
+                      "accessibility_disutility": 1.2173,
+                      "reliability_disutility": 3.1344,
+                      "conflict_disutility": 7.9039
+                    },
+                    "total_disutility": 50.0879,
+                    "reconstructed_score": 49.91
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 35.0716,
+                      "wait_disutility": 1.8399,
+                      "crowding_disutility": 1.4873,
+                      "curb_disutility": 0.1024,
+                      "accessibility_disutility": 1.0431,
+                      "reliability_disutility": 2.738,
+                      "conflict_disutility": 7.2561
+                    },
+                    "total_disutility": 49.5384,
+                    "reconstructed_score": 50.46
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 34.0669,
+                      "wait_disutility": 2.0673,
+                      "crowding_disutility": 1.6991,
+                      "curb_disutility": 0.0502,
+                      "accessibility_disutility": 1.2147,
+                      "reliability_disutility": 3.0763,
+                      "conflict_disutility": 7.2294
+                    },
+                    "total_disutility": 49.4039,
+                    "reconstructed_score": 50.6
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.3958,
+                      "wait_disutility": 2.7946,
+                      "crowding_disutility": 0.3446,
+                      "curb_disutility": 3.8176,
+                      "accessibility_disutility": 0.8086,
+                      "reliability_disutility": 4.1586,
+                      "conflict_disutility": 20.5629
+                    },
+                    "total_disutility": 62.8827,
+                    "reconstructed_score": 37.12
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 34.6985,
+                      "wait_disutility": 2.0368,
+                      "crowding_disutility": 1.839,
+                      "curb_disutility": 0.4521,
+                      "accessibility_disutility": 1.0087,
+                      "reliability_disutility": 3.031,
+                      "conflict_disutility": 8.1506
+                    },
+                    "total_disutility": 51.2167,
+                    "reconstructed_score": 48.78
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -313,11 +1104,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8835,
               "worst_group_accessibility_gap_proxy_points": 2.44,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 17.07,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.6986,
               "capacity_overflow_person_trips": 767031,
               "people_flow_conflict_rate_per_1000_proxy": 4.82,
               "external_car_inflow_ratio": 0.0729,
               "vehicle_km_proxy": 3110028,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 30.4939,
+                  "wait_disutility": 1.6361,
+                  "crowding_disutility": 1.9373,
+                  "curb_disutility": 0.4642,
+                  "accessibility_disutility": 0.9784,
+                  "reliability_disutility": 2.4347,
+                  "conflict_disutility": 7.7177
+                },
+                "total_disutility": 45.6623,
+                "reconstructed_score": 54.34,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 30.961,
+                      "wait_disutility": 1.6156,
+                      "crowding_disutility": 2.1923,
+                      "curb_disutility": 0.3933,
+                      "accessibility_disutility": 1.0011,
+                      "reliability_disutility": 2.4042,
+                      "conflict_disutility": 7.2528
+                    },
+                    "total_disutility": 45.8203,
+                    "reconstructed_score": 54.18
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 29.9209,
+                      "wait_disutility": 1.5824,
+                      "crowding_disutility": 1.8957,
+                      "curb_disutility": 0.2222,
+                      "accessibility_disutility": 1.0032,
+                      "reliability_disutility": 2.3547,
+                      "conflict_disutility": 7.2864
+                    },
+                    "total_disutility": 44.2655,
+                    "reconstructed_score": 55.73
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 30.9859,
+                      "wait_disutility": 1.4529,
+                      "crowding_disutility": 1.7781,
+                      "curb_disutility": 0.1137,
+                      "accessibility_disutility": 0.8343,
+                      "reliability_disutility": 2.162,
+                      "conflict_disutility": 6.6892
+                    },
+                    "total_disutility": 44.0161,
+                    "reconstructed_score": 55.98
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 30.0027,
+                      "wait_disutility": 1.5473,
+                      "crowding_disutility": 2.0405,
+                      "curb_disutility": 0.0557,
+                      "accessibility_disutility": 1.0066,
+                      "reliability_disutility": 2.3025,
+                      "conflict_disutility": 6.6646
+                    },
+                    "total_disutility": 43.6199,
+                    "reconstructed_score": 56.38
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 29.202,
+                      "wait_disutility": 2.7495,
+                      "crowding_disutility": 0.4124,
+                      "curb_disutility": 4.2418,
+                      "accessibility_disutility": 1.0391,
+                      "reliability_disutility": 4.0915,
+                      "conflict_disutility": 18.9564
+                    },
+                    "total_disutility": 60.6927,
+                    "reconstructed_score": 39.31
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 31.46,
+                      "wait_disutility": 1.7165,
+                      "crowding_disutility": 2.1978,
+                      "curb_disutility": 0.5024,
+                      "accessibility_disutility": 0.9852,
+                      "reliability_disutility": 2.5544,
+                      "conflict_disutility": 7.5138
+                    },
+                    "total_disutility": 46.9301,
+                    "reconstructed_score": 53.07
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             }
@@ -332,6 +1231,11 @@
           "robust_gate_pass": true,
           "worst_case_satisfaction_proxy": 49.33,
           "worst_group_accessibility_gap_proxy_points": 4.71,
+          "worst_group_accessibility_p10_proxy": 0.7,
+          "worst_group_accessibility_p10_gap_proxy_points": 20,
+          "worst_group_satisfaction_gap_proxy_points": 17.68,
+          "worst_group_satisfaction_p10_proxy": 40,
+          "worst_group_satisfaction_p10_gap_proxy_points": 20,
           "worst_peak_mode_load_ratio": 1.505,
           "mean_generalized_cost_proxy": 62.32,
           "scenario_summaries": [
@@ -349,11 +1253,119 @@
               "p90_travel_time_proxy_minutes": 60,
               "accessibility_completion_proxy": 0.9343,
               "worst_group_accessibility_gap_proxy_points": 2.62,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 5,
+              "worst_group_satisfaction_gap_proxy_points": 10.86,
+              "worst_group_satisfaction_p10_proxy": 50,
+              "worst_group_satisfaction_p10_gap_proxy_points": 20,
               "max_mode_load_ratio": 1.2088,
               "capacity_overflow_person_trips": 332639,
               "people_flow_conflict_rate_per_1000_proxy": 3.13,
               "external_car_inflow_ratio": 0.0847,
               "vehicle_km_proxy": 3513768,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 25.9647,
+                  "wait_disutility": 0.5889,
+                  "crowding_disutility": 0.4183,
+                  "curb_disutility": 0.1611,
+                  "accessibility_disutility": 0.552,
+                  "reliability_disutility": 0.8764,
+                  "conflict_disutility": 5.0001
+                },
+                "total_disutility": 33.5615,
+                "reconstructed_score": 66.44,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 26.3912,
+                      "wait_disutility": 0.6024,
+                      "crowding_disutility": 0.4872,
+                      "curb_disutility": 0.1346,
+                      "accessibility_disutility": 0.5864,
+                      "reliability_disutility": 0.8964,
+                      "conflict_disutility": 4.7504
+                    },
+                    "total_disutility": 33.8486,
+                    "reconstructed_score": 66.15
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 25.4185,
+                      "wait_disutility": 0.547,
+                      "crowding_disutility": 0.4201,
+                      "curb_disutility": 0.1009,
+                      "accessibility_disutility": 0.5991,
+                      "reliability_disutility": 0.8139,
+                      "conflict_disutility": 4.7187
+                    },
+                    "total_disutility": 32.6182,
+                    "reconstructed_score": 67.38
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 26.2648,
+                      "wait_disutility": 0.4805,
+                      "crowding_disutility": 0.3355,
+                      "curb_disutility": 0.0668,
+                      "accessibility_disutility": 0.379,
+                      "reliability_disutility": 0.715,
+                      "conflict_disutility": 4.5182
+                    },
+                    "total_disutility": 32.7598,
+                    "reconstructed_score": 67.24
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 25.2958,
+                      "wait_disutility": 0.5096,
+                      "crowding_disutility": 0.4368,
+                      "curb_disutility": 0.0338,
+                      "accessibility_disutility": 0.5969,
+                      "reliability_disutility": 0.7584,
+                      "conflict_disutility": 4.3005
+                    },
+                    "total_disutility": 31.9318,
+                    "reconstructed_score": 68.07
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.2374,
+                      "wait_disutility": 1.2063,
+                      "crowding_disutility": 0.0931,
+                      "curb_disutility": 1.2725,
+                      "accessibility_disutility": 0.5819,
+                      "reliability_disutility": 1.7951,
+                      "conflict_disutility": 11.6022
+                    },
+                    "total_disutility": 42.7885,
+                    "reconstructed_score": 57.21
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.4208,
+                      "wait_disutility": 0.6135,
+                      "crowding_disutility": 0.4629,
+                      "curb_disutility": 0.1338,
+                      "accessibility_disutility": 0.4282,
+                      "reliability_disutility": 0.9129,
+                      "conflict_disutility": 4.6784
+                    },
+                    "total_disutility": 33.6505,
+                    "reconstructed_score": 66.35
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -371,11 +1383,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8747,
               "worst_group_accessibility_gap_proxy_points": 4.25,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 16.21,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.2088,
               "capacity_overflow_person_trips": 332639,
               "people_flow_conflict_rate_per_1000_proxy": 5.12,
               "external_car_inflow_ratio": 0.0847,
               "vehicle_km_proxy": 3513768,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 32.9265,
+                  "wait_disutility": 2.2863,
+                  "crowding_disutility": 1.6594,
+                  "curb_disutility": 0.6444,
+                  "accessibility_disutility": 1.0527,
+                  "reliability_disutility": 3.4022,
+                  "conflict_disutility": 8.1946
+                },
+                "total_disutility": 50.1661,
+                "reconstructed_score": 49.83,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 34.2405,
+                      "wait_disutility": 2.5079,
+                      "crowding_disutility": 2.0326,
+                      "curb_disutility": 0.5384,
+                      "accessibility_disutility": 1.1575,
+                      "reliability_disutility": 3.732,
+                      "conflict_disutility": 7.7855
+                    },
+                    "total_disutility": 51.9944,
+                    "reconstructed_score": 48.01
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 32.4977,
+                      "wait_disutility": 2.3168,
+                      "crowding_disutility": 1.6975,
+                      "curb_disutility": 0.4036,
+                      "accessibility_disutility": 1.0899,
+                      "reliability_disutility": 3.4477,
+                      "conflict_disutility": 7.7335
+                    },
+                    "total_disutility": 49.1867,
+                    "reconstructed_score": 50.81
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 31.9464,
+                      "wait_disutility": 1.7224,
+                      "crowding_disutility": 1.1413,
+                      "curb_disutility": 0.267,
+                      "accessibility_disutility": 0.8344,
+                      "reliability_disutility": 2.5631,
+                      "conflict_disutility": 7.4048
+                    },
+                    "total_disutility": 45.8794,
+                    "reconstructed_score": 54.12
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 32.3495,
+                      "wait_disutility": 2.2254,
+                      "crowding_disutility": 1.7131,
+                      "curb_disutility": 0.1352,
+                      "accessibility_disutility": 1.0772,
+                      "reliability_disutility": 3.3116,
+                      "conflict_disutility": 7.048
+                    },
+                    "total_disutility": 47.86,
+                    "reconstructed_score": 52.14
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.3269,
+                      "wait_disutility": 2.6234,
+                      "crowding_disutility": 0.3302,
+                      "curb_disutility": 5.0902,
+                      "accessibility_disutility": 0.8007,
+                      "reliability_disutility": 3.9039,
+                      "conflict_disutility": 19.0148
+                    },
+                    "total_disutility": 62.0901,
+                    "reconstructed_score": 37.91
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 32.9945,
+                      "wait_disutility": 2.0279,
+                      "crowding_disutility": 1.5948,
+                      "curb_disutility": 0.5351,
+                      "accessibility_disutility": 0.9539,
+                      "reliability_disutility": 3.0177,
+                      "conflict_disutility": 7.6674
+                    },
+                    "total_disutility": 48.7913,
+                    "reconstructed_score": 51.21
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -393,11 +1513,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8671,
               "worst_group_accessibility_gap_proxy_points": 4.71,
+              "worst_group_accessibility_p10_proxy": 0.7,
+              "worst_group_accessibility_p10_gap_proxy_points": 20,
+              "worst_group_satisfaction_gap_proxy_points": 13.76,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 0,
               "max_mode_load_ratio": 1.2088,
               "capacity_overflow_person_trips": 332639,
               "people_flow_conflict_rate_per_1000_proxy": 5.56,
               "external_car_inflow_ratio": 0.0847,
               "vehicle_km_proxy": 3513768,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 33.6293,
+                  "wait_disutility": 2.0842,
+                  "crowding_disutility": 1.3631,
+                  "curb_disutility": 0.4833,
+                  "accessibility_disutility": 1.1163,
+                  "reliability_disutility": 3.1015,
+                  "conflict_disutility": 8.889
+                },
+                "total_disutility": 50.6667,
+                "reconstructed_score": 49.33,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 33.8039,
+                      "wait_disutility": 2.0513,
+                      "crowding_disutility": 1.5625,
+                      "curb_disutility": 0.4038,
+                      "accessibility_disutility": 1.0683,
+                      "reliability_disutility": 3.0525,
+                      "conflict_disutility": 8.4452
+                    },
+                    "total_disutility": 50.3875,
+                    "reconstructed_score": 49.61
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 33.412,
+                      "wait_disutility": 2.1035,
+                      "crowding_disutility": 1.3609,
+                      "curb_disutility": 0.3027,
+                      "accessibility_disutility": 1.195,
+                      "reliability_disutility": 3.1303,
+                      "conflict_disutility": 8.3888
+                    },
+                    "total_disutility": 49.8932,
+                    "reconstructed_score": 50.11
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 34.5483,
+                      "wait_disutility": 1.909,
+                      "crowding_disutility": 1.1405,
+                      "curb_disutility": 0.2003,
+                      "accessibility_disutility": 1.1169,
+                      "reliability_disutility": 2.8408,
+                      "conflict_disutility": 8.0323
+                    },
+                    "total_disutility": 49.7881,
+                    "reconstructed_score": 50.21
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 33.6062,
+                      "wait_disutility": 2.0614,
+                      "crowding_disutility": 1.428,
+                      "curb_disutility": 0.1014,
+                      "accessibility_disutility": 1.2213,
+                      "reliability_disutility": 3.0676,
+                      "conflict_disutility": 7.6453
+                    },
+                    "total_disutility": 49.1312,
+                    "reconstructed_score": 50.87
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.3203,
+                      "wait_disutility": 2.8096,
+                      "crowding_disutility": 0.3132,
+                      "curb_disutility": 3.8176,
+                      "accessibility_disutility": 0.8257,
+                      "reliability_disutility": 4.181,
+                      "conflict_disutility": 20.6262
+                    },
+                    "total_disutility": 62.8936,
+                    "reconstructed_score": 37.11
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 34.3085,
+                      "wait_disutility": 2.0443,
+                      "crowding_disutility": 1.5685,
+                      "curb_disutility": 0.4013,
+                      "accessibility_disutility": 1.0588,
+                      "reliability_disutility": 3.0422,
+                      "conflict_disutility": 8.3172
+                    },
+                    "total_disutility": 50.7408,
+                    "reconstructed_score": 49.26
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -415,11 +1643,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8875,
               "worst_group_accessibility_gap_proxy_points": 2.63,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 17.68,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.505,
               "capacity_overflow_person_trips": 726439,
               "people_flow_conflict_rate_per_1000_proxy": 5.12,
               "external_car_inflow_ratio": 0.0847,
               "vehicle_km_proxy": 3513768,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 29.9043,
+                  "wait_disutility": 1.6323,
+                  "crowding_disutility": 1.642,
+                  "curb_disutility": 0.537,
+                  "accessibility_disutility": 0.9448,
+                  "reliability_disutility": 2.429,
+                  "conflict_disutility": 8.1946
+                },
+                "total_disutility": 45.284,
+                "reconstructed_score": 54.72,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 30.4238,
+                      "wait_disutility": 1.6241,
+                      "crowding_disutility": 1.8873,
+                      "curb_disutility": 0.4487,
+                      "accessibility_disutility": 0.9762,
+                      "reliability_disutility": 2.4168,
+                      "conflict_disutility": 7.7855
+                    },
+                    "total_disutility": 45.5624,
+                    "reconstructed_score": 54.44
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 29.3554,
+                      "wait_disutility": 1.5761,
+                      "crowding_disutility": 1.641,
+                      "curb_disutility": 0.3363,
+                      "accessibility_disutility": 0.9553,
+                      "reliability_disutility": 2.3454,
+                      "conflict_disutility": 7.7335
+                    },
+                    "total_disutility": 43.943,
+                    "reconstructed_score": 56.06
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 30.1929,
+                      "wait_disutility": 1.4653,
+                      "crowding_disutility": 1.3641,
+                      "curb_disutility": 0.2225,
+                      "accessibility_disutility": 0.8206,
+                      "reliability_disutility": 2.1805,
+                      "conflict_disutility": 7.4048
+                    },
+                    "total_disutility": 43.6507,
+                    "reconstructed_score": 56.35
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 29.3246,
+                      "wait_disutility": 1.51,
+                      "crowding_disutility": 1.7192,
+                      "curb_disutility": 0.1127,
+                      "accessibility_disutility": 0.9464,
+                      "reliability_disutility": 2.247,
+                      "conflict_disutility": 7.048
+                    },
+                    "total_disutility": 42.9079,
+                    "reconstructed_score": 57.09
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 29.072,
+                      "wait_disutility": 2.7495,
+                      "crowding_disutility": 0.3753,
+                      "curb_disutility": 4.2418,
+                      "accessibility_disutility": 1.0416,
+                      "reliability_disutility": 4.0915,
+                      "conflict_disutility": 19.0148
+                    },
+                    "total_disutility": 60.5865,
+                    "reconstructed_score": 39.41
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.6863,
+                      "wait_disutility": 1.6555,
+                      "crowding_disutility": 1.8771,
+                      "curb_disutility": 0.4459,
+                      "accessibility_disutility": 0.9341,
+                      "reliability_disutility": 2.4635,
+                      "conflict_disutility": 7.6674
+                    },
+                    "total_disutility": 45.7298,
+                    "reconstructed_score": 54.27
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             }
@@ -434,6 +1770,11 @@
           "robust_gate_pass": true,
           "worst_case_satisfaction_proxy": 48.73,
           "worst_group_accessibility_gap_proxy_points": 5.36,
+          "worst_group_accessibility_p10_proxy": 0.7,
+          "worst_group_accessibility_p10_gap_proxy_points": 20,
+          "worst_group_satisfaction_gap_proxy_points": 17.33,
+          "worst_group_satisfaction_p10_proxy": 40,
+          "worst_group_satisfaction_p10_gap_proxy_points": 10,
           "worst_peak_mode_load_ratio": 1.5991,
           "mean_generalized_cost_proxy": 63.42,
           "scenario_summaries": [
@@ -451,11 +1792,119 @@
               "p90_travel_time_proxy_minutes": 60,
               "accessibility_completion_proxy": 0.9337,
               "worst_group_accessibility_gap_proxy_points": 2.93,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 5,
+              "worst_group_satisfaction_gap_proxy_points": 10.74,
+              "worst_group_satisfaction_p10_proxy": 50,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.3112,
               "capacity_overflow_person_trips": 410139,
               "people_flow_conflict_rate_per_1000_proxy": 3.01,
               "external_car_inflow_ratio": 0.086,
               "vehicle_km_proxy": 3611754,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 26.2013,
+                  "wait_disutility": 0.6213,
+                  "crowding_disutility": 0.4897,
+                  "curb_disutility": 0.1653,
+                  "accessibility_disutility": 0.5572,
+                  "reliability_disutility": 0.9245,
+                  "conflict_disutility": 4.8133
+                },
+                "total_disutility": 33.7726,
+                "reconstructed_score": 66.23,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 26.5625,
+                      "wait_disutility": 0.6291,
+                      "crowding_disutility": 0.5712,
+                      "curb_disutility": 0.1347,
+                      "accessibility_disutility": 0.5909,
+                      "reliability_disutility": 0.9362,
+                      "conflict_disutility": 4.4847
+                    },
+                    "total_disutility": 33.9093,
+                    "reconstructed_score": 66.09
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 25.7004,
+                      "wait_disutility": 0.5764,
+                      "crowding_disutility": 0.4873,
+                      "curb_disutility": 0.1006,
+                      "accessibility_disutility": 0.6076,
+                      "reliability_disutility": 0.8578,
+                      "conflict_disutility": 4.5297
+                    },
+                    "total_disutility": 32.8598,
+                    "reconstructed_score": 67.14
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 26.5124,
+                      "wait_disutility": 0.5141,
+                      "crowding_disutility": 0.4024,
+                      "curb_disutility": 0.0668,
+                      "accessibility_disutility": 0.3694,
+                      "reliability_disutility": 0.765,
+                      "conflict_disutility": 4.3332
+                    },
+                    "total_disutility": 32.9633,
+                    "reconstructed_score": 67.04
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 25.5823,
+                      "wait_disutility": 0.5527,
+                      "crowding_disutility": 0.5206,
+                      "curb_disutility": 0.0338,
+                      "accessibility_disutility": 0.6154,
+                      "reliability_disutility": 0.8224,
+                      "conflict_disutility": 4.0798
+                    },
+                    "total_disutility": 32.207,
+                    "reconstructed_score": 67.79
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.2998,
+                      "wait_disutility": 1.2158,
+                      "crowding_disutility": 0.0931,
+                      "curb_disutility": 1.2886,
+                      "accessibility_disutility": 0.574,
+                      "reliability_disutility": 1.8092,
+                      "conflict_disutility": 11.6678
+                    },
+                    "total_disutility": 42.9483,
+                    "reconstructed_score": 57.05
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.8846,
+                      "wait_disutility": 0.6995,
+                      "crowding_disutility": 0.5303,
+                      "curb_disutility": 0.2019,
+                      "accessibility_disutility": 0.4494,
+                      "reliability_disutility": 1.0409,
+                      "conflict_disutility": 4.8676
+                    },
+                    "total_disutility": 34.6742,
+                    "reconstructed_score": 65.33
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -473,11 +1922,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8678,
               "worst_group_accessibility_gap_proxy_points": 5.36,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 15.55,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.3112,
               "capacity_overflow_person_trips": 410139,
               "people_flow_conflict_rate_per_1000_proxy": 4.93,
               "external_car_inflow_ratio": 0.086,
               "vehicle_km_proxy": 3611754,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 33.7124,
+                  "wait_disutility": 2.3936,
+                  "crowding_disutility": 1.9424,
+                  "curb_disutility": 0.661,
+                  "accessibility_disutility": 1.1103,
+                  "reliability_disutility": 3.5619,
+                  "conflict_disutility": 7.8884
+                },
+                "total_disutility": 51.27,
+                "reconstructed_score": 48.73,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 35.1792,
+                      "wait_disutility": 2.672,
+                      "crowding_disutility": 2.4086,
+                      "curb_disutility": 0.5389,
+                      "accessibility_disutility": 1.2429,
+                      "reliability_disutility": 3.9763,
+                      "conflict_disutility": 7.3499
+                    },
+                    "total_disutility": 53.3678,
+                    "reconstructed_score": 46.63
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 33.2358,
+                      "wait_disutility": 2.3922,
+                      "crowding_disutility": 1.944,
+                      "curb_disutility": 0.4026,
+                      "accessibility_disutility": 1.1388,
+                      "reliability_disutility": 3.5598,
+                      "conflict_disutility": 7.4236
+                    },
+                    "total_disutility": 50.0968,
+                    "reconstructed_score": 49.9
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 32.6583,
+                      "wait_disutility": 1.802,
+                      "crowding_disutility": 1.3858,
+                      "curb_disutility": 0.267,
+                      "accessibility_disutility": 0.8644,
+                      "reliability_disutility": 2.6815,
+                      "conflict_disutility": 7.1016
+                    },
+                    "total_disutility": 46.7606,
+                    "reconstructed_score": 53.24
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 33.2199,
+                      "wait_disutility": 2.332,
+                      "crowding_disutility": 2.0194,
+                      "curb_disutility": 0.1352,
+                      "accessibility_disutility": 1.1455,
+                      "reliability_disutility": 3.4702,
+                      "conflict_disutility": 6.6863
+                    },
+                    "total_disutility": 49.0085,
+                    "reconstructed_score": 50.99
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.3832,
+                      "wait_disutility": 2.6252,
+                      "crowding_disutility": 0.3302,
+                      "curb_disutility": 5.1544,
+                      "accessibility_disutility": 0.7929,
+                      "reliability_disutility": 3.9065,
+                      "conflict_disutility": 19.1222
+                    },
+                    "total_disutility": 62.3146,
+                    "reconstructed_score": 37.69
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 33.7797,
+                      "wait_disutility": 2.1189,
+                      "crowding_disutility": 1.7968,
+                      "curb_disutility": 0.8076,
+                      "accessibility_disutility": 0.9952,
+                      "reliability_disutility": 3.1531,
+                      "conflict_disutility": 7.9775
+                    },
+                    "total_disutility": 50.6288,
+                    "reconstructed_score": 49.37
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -495,11 +2052,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8733,
               "worst_group_accessibility_gap_proxy_points": 4.37,
+              "worst_group_accessibility_p10_proxy": 0.7,
+              "worst_group_accessibility_p10_gap_proxy_points": 20,
+              "worst_group_satisfaction_gap_proxy_points": 14,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 0,
               "max_mode_load_ratio": 1.3112,
               "capacity_overflow_person_trips": 410139,
               "people_flow_conflict_rate_per_1000_proxy": 5.35,
               "external_car_inflow_ratio": 0.086,
               "vehicle_km_proxy": 3611754,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 33.6484,
+                  "wait_disutility": 2.0442,
+                  "crowding_disutility": 1.5957,
+                  "curb_disutility": 0.4958,
+                  "accessibility_disutility": 1.0642,
+                  "reliability_disutility": 3.0419,
+                  "conflict_disutility": 8.5569
+                },
+                "total_disutility": 50.4471,
+                "reconstructed_score": 49.55,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 33.6892,
+                      "wait_disutility": 1.9857,
+                      "crowding_disutility": 1.8257,
+                      "curb_disutility": 0.4041,
+                      "accessibility_disutility": 1.0104,
+                      "reliability_disutility": 2.9549,
+                      "conflict_disutility": 7.9727
+                    },
+                    "total_disutility": 49.8427,
+                    "reconstructed_score": 50.16
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 33.537,
+                      "wait_disutility": 2.0674,
+                      "crowding_disutility": 1.5851,
+                      "curb_disutility": 0.3019,
+                      "accessibility_disutility": 1.1532,
+                      "reliability_disutility": 3.0765,
+                      "conflict_disutility": 8.0528
+                    },
+                    "total_disutility": 49.7739,
+                    "reconstructed_score": 50.23
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 34.6205,
+                      "wait_disutility": 1.8801,
+                      "crowding_disutility": 1.3638,
+                      "curb_disutility": 0.2003,
+                      "accessibility_disutility": 1.0505,
+                      "reliability_disutility": 2.7977,
+                      "conflict_disutility": 7.7035
+                    },
+                    "total_disutility": 49.6164,
+                    "reconstructed_score": 50.38
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 33.6889,
+                      "wait_disutility": 2.0347,
+                      "crowding_disutility": 1.7078,
+                      "curb_disutility": 0.1014,
+                      "accessibility_disutility": 1.1719,
+                      "reliability_disutility": 3.0278,
+                      "conflict_disutility": 7.2529
+                    },
+                    "total_disutility": 48.9854,
+                    "reconstructed_score": 51.01
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.2914,
+                      "wait_disutility": 2.8028,
+                      "crowding_disutility": 0.3132,
+                      "curb_disutility": 3.8658,
+                      "accessibility_disutility": 0.8047,
+                      "reliability_disutility": 4.1708,
+                      "conflict_disutility": 20.7428
+                    },
+                    "total_disutility": 62.9915,
+                    "reconstructed_score": 37.01
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 34.3922,
+                      "wait_disutility": 2.0664,
+                      "crowding_disutility": 1.8045,
+                      "curb_disutility": 0.6057,
+                      "accessibility_disutility": 0.9933,
+                      "reliability_disutility": 3.075,
+                      "conflict_disutility": 8.6536
+                    },
+                    "total_disutility": 51.5907,
+                    "reconstructed_score": 48.41
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -517,11 +2182,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8834,
               "worst_group_accessibility_gap_proxy_points": 2.38,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 17.33,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.5991,
               "capacity_overflow_person_trips": 741628,
               "people_flow_conflict_rate_per_1000_proxy": 4.93,
               "external_car_inflow_ratio": 0.086,
               "vehicle_km_proxy": 3611754,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 30.2579,
+                  "wait_disutility": 1.6452,
+                  "crowding_disutility": 1.9222,
+                  "curb_disutility": 0.5509,
+                  "accessibility_disutility": 0.9794,
+                  "reliability_disutility": 2.4482,
+                  "conflict_disutility": 7.8884
+                },
+                "total_disutility": 45.6922,
+                "reconstructed_score": 54.31,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 30.678,
+                      "wait_disutility": 1.6155,
+                      "crowding_disutility": 2.2065,
+                      "curb_disutility": 0.449,
+                      "accessibility_disutility": 1.0143,
+                      "reliability_disutility": 2.404,
+                      "conflict_disutility": 7.3499
+                    },
+                    "total_disutility": 45.7172,
+                    "reconstructed_score": 54.28
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 29.7678,
+                      "wait_disutility": 1.5881,
+                      "crowding_disutility": 1.9099,
+                      "curb_disutility": 0.3355,
+                      "accessibility_disutility": 0.9907,
+                      "reliability_disutility": 2.3633,
+                      "conflict_disutility": 7.4236
+                    },
+                    "total_disutility": 44.3789,
+                    "reconstructed_score": 55.62
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 30.5894,
+                      "wait_disutility": 1.4871,
+                      "crowding_disutility": 1.6321,
+                      "curb_disutility": 0.2225,
+                      "accessibility_disutility": 0.8377,
+                      "reliability_disutility": 2.2129,
+                      "conflict_disutility": 7.1016
+                    },
+                    "total_disutility": 44.0833,
+                    "reconstructed_score": 55.92
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 29.801,
+                      "wait_disutility": 1.541,
+                      "crowding_disutility": 2.0549,
+                      "curb_disutility": 0.1127,
+                      "accessibility_disutility": 0.9984,
+                      "reliability_disutility": 2.2932,
+                      "conflict_disutility": 6.6863
+                    },
+                    "total_disutility": 43.4875,
+                    "reconstructed_score": 56.51
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 29.1227,
+                      "wait_disutility": 2.7606,
+                      "crowding_disutility": 0.3753,
+                      "curb_disutility": 4.2953,
+                      "accessibility_disutility": 1.037,
+                      "reliability_disutility": 4.108,
+                      "conflict_disutility": 19.1222
+                    },
+                    "total_disutility": 60.8211,
+                    "reconstructed_score": 39.18
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 31.3115,
+                      "wait_disutility": 1.7636,
+                      "crowding_disutility": 2.158,
+                      "curb_disutility": 0.673,
+                      "accessibility_disutility": 0.9959,
+                      "reliability_disutility": 2.6244,
+                      "conflict_disutility": 7.9775
+                    },
+                    "total_disutility": 47.5039,
+                    "reconstructed_score": 52.5
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             }
@@ -536,6 +2309,11 @@
           "robust_gate_pass": false,
           "worst_case_satisfaction_proxy": 49.26,
           "worst_group_accessibility_gap_proxy_points": 5.88,
+          "worst_group_accessibility_p10_proxy": 0.7,
+          "worst_group_accessibility_p10_gap_proxy_points": 20,
+          "worst_group_satisfaction_gap_proxy_points": 18.13,
+          "worst_group_satisfaction_p10_proxy": 40,
+          "worst_group_satisfaction_p10_gap_proxy_points": 20,
           "worst_peak_mode_load_ratio": 2.0159,
           "mean_generalized_cost_proxy": 61.88,
           "scenario_summaries": [
@@ -553,11 +2331,119 @@
               "p90_travel_time_proxy_minutes": 60,
               "accessibility_completion_proxy": 0.9289,
               "worst_group_accessibility_gap_proxy_points": 2.81,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 5,
+              "worst_group_satisfaction_gap_proxy_points": 11.22,
+              "worst_group_satisfaction_p10_proxy": 50,
+              "worst_group_satisfaction_p10_gap_proxy_points": 20,
               "max_mode_load_ratio": 1.5724,
               "capacity_overflow_person_trips": 389565,
               "people_flow_conflict_rate_per_1000_proxy": 3.11,
               "external_car_inflow_ratio": 0.063,
               "vehicle_km_proxy": 2976150,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 25.6854,
+                  "wait_disutility": 0.5708,
+                  "crowding_disutility": 0.4099,
+                  "curb_disutility": 0.1348,
+                  "accessibility_disutility": 0.5973,
+                  "reliability_disutility": 0.8494,
+                  "conflict_disutility": 4.9714
+                },
+                "total_disutility": 33.219,
+                "reconstructed_score": 66.78,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 26.1621,
+                      "wait_disutility": 0.5766,
+                      "crowding_disutility": 0.5041,
+                      "curb_disutility": 0.0841,
+                      "accessibility_disutility": 0.6237,
+                      "reliability_disutility": 0.8581,
+                      "conflict_disutility": 4.5075
+                    },
+                    "total_disutility": 33.3162,
+                    "reconstructed_score": 66.68
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 25.0477,
+                      "wait_disutility": 0.5321,
+                      "crowding_disutility": 0.3951,
+                      "curb_disutility": 0.0837,
+                      "accessibility_disutility": 0.6648,
+                      "reliability_disutility": 0.7919,
+                      "conflict_disutility": 4.8456
+                    },
+                    "total_disutility": 32.3609,
+                    "reconstructed_score": 67.64
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 25.9994,
+                      "wait_disutility": 0.462,
+                      "crowding_disutility": 0.3186,
+                      "curb_disutility": 0.0496,
+                      "accessibility_disutility": 0.4281,
+                      "reliability_disutility": 0.6875,
+                      "conflict_disutility": 4.5158
+                    },
+                    "total_disutility": 32.461,
+                    "reconstructed_score": 67.54
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 24.9758,
+                      "wait_disutility": 0.4976,
+                      "crowding_disutility": 0.4192,
+                      "curb_disutility": 0.0167,
+                      "accessibility_disutility": 0.6433,
+                      "reliability_disutility": 0.7405,
+                      "conflict_disutility": 4.3597
+                    },
+                    "total_disutility": 31.6528,
+                    "reconstructed_score": 68.35
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.1541,
+                      "wait_disutility": 1.2103,
+                      "crowding_disutility": 0.0759,
+                      "curb_disutility": 1.2886,
+                      "accessibility_disutility": 0.5895,
+                      "reliability_disutility": 1.801,
+                      "conflict_disutility": 11.7513
+                    },
+                    "total_disutility": 42.8707,
+                    "reconstructed_score": 57.13
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 26.1826,
+                      "wait_disutility": 0.5959,
+                      "crowding_disutility": 0.429,
+                      "curb_disutility": 0.1338,
+                      "accessibility_disutility": 0.4315,
+                      "reliability_disutility": 0.8867,
+                      "conflict_disutility": 4.7838
+                    },
+                    "total_disutility": 33.4433,
+                    "reconstructed_score": 66.56
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -575,11 +2461,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8694,
               "worst_group_accessibility_gap_proxy_points": 4.97,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 16.57,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 1.5724,
               "capacity_overflow_person_trips": 389565,
               "people_flow_conflict_rate_per_1000_proxy": 5.09,
               "external_car_inflow_ratio": 0.063,
               "vehicle_km_proxy": 2976150,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 32.6288,
+                  "wait_disutility": 2.3185,
+                  "crowding_disutility": 1.6376,
+                  "curb_disutility": 0.5391,
+                  "accessibility_disutility": 1.097,
+                  "reliability_disutility": 3.4501,
+                  "conflict_disutility": 8.1476
+                },
+                "total_disutility": 49.8187,
+                "reconstructed_score": 50.18,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 34.2093,
+                      "wait_disutility": 2.5587,
+                      "crowding_disutility": 2.1173,
+                      "curb_disutility": 0.3363,
+                      "accessibility_disutility": 1.2152,
+                      "reliability_disutility": 3.8076,
+                      "conflict_disutility": 7.3873
+                    },
+                    "total_disutility": 51.6317,
+                    "reconstructed_score": 48.37
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 31.9328,
+                      "wait_disutility": 2.3446,
+                      "crowding_disutility": 1.5941,
+                      "curb_disutility": 0.3348,
+                      "accessibility_disutility": 1.1353,
+                      "reliability_disutility": 3.489,
+                      "conflict_disutility": 7.9413
+                    },
+                    "total_disutility": 48.7719,
+                    "reconstructed_score": 51.23
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 31.6444,
+                      "wait_disutility": 1.7433,
+                      "crowding_disutility": 1.102,
+                      "curb_disutility": 0.1984,
+                      "accessibility_disutility": 0.8834,
+                      "reliability_disutility": 2.5941,
+                      "conflict_disutility": 7.4009
+                    },
+                    "total_disutility": 45.5665,
+                    "reconstructed_score": 54.43
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 31.9318,
+                      "wait_disutility": 2.2548,
+                      "crowding_disutility": 1.6499,
+                      "curb_disutility": 0.0669,
+                      "accessibility_disutility": 1.1136,
+                      "reliability_disutility": 3.3553,
+                      "conflict_disutility": 7.1451
+                    },
+                    "total_disutility": 47.5174,
+                    "reconstructed_score": 52.48
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.125,
+                      "wait_disutility": 2.6275,
+                      "crowding_disutility": 0.2673,
+                      "curb_disutility": 5.1544,
+                      "accessibility_disutility": 0.7981,
+                      "reliability_disutility": 3.9099,
+                      "conflict_disutility": 19.2591
+                    },
+                    "total_disutility": 62.1413,
+                    "reconstructed_score": 37.86
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 32.592,
+                      "wait_disutility": 2.0239,
+                      "crowding_disutility": 1.4929,
+                      "curb_disutility": 0.5351,
+                      "accessibility_disutility": 0.9468,
+                      "reliability_disutility": 3.0118,
+                      "conflict_disutility": 7.8401
+                    },
+                    "total_disutility": 48.4426,
+                    "reconstructed_score": 51.56
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -597,11 +2591,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8557,
               "worst_group_accessibility_gap_proxy_points": 5.88,
+              "worst_group_accessibility_p10_proxy": 0.7,
+              "worst_group_accessibility_p10_gap_proxy_points": 20,
+              "worst_group_satisfaction_gap_proxy_points": 13.8,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 0,
               "max_mode_load_ratio": 1.5724,
               "capacity_overflow_person_trips": 389565,
               "people_flow_conflict_rate_per_1000_proxy": 5.52,
               "external_car_inflow_ratio": 0.063,
               "vehicle_km_proxy": 2976150,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 33.6101,
+                  "wait_disutility": 2.1457,
+                  "crowding_disutility": 1.3328,
+                  "curb_disutility": 0.4043,
+                  "accessibility_disutility": 1.2119,
+                  "reliability_disutility": 3.193,
+                  "conflict_disutility": 8.838
+                },
+                "total_disutility": 50.7358,
+                "reconstructed_score": 49.26,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 33.8422,
+                      "wait_disutility": 2.0764,
+                      "crowding_disutility": 1.6132,
+                      "curb_disutility": 0.2522,
+                      "accessibility_disutility": 1.1459,
+                      "reliability_disutility": 3.0899,
+                      "conflict_disutility": 8.0134
+                    },
+                    "total_disutility": 50.0332,
+                    "reconstructed_score": 49.97
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 33.4199,
+                      "wait_disutility": 2.2238,
+                      "crowding_disutility": 1.2806,
+                      "curb_disutility": 0.2511,
+                      "accessibility_disutility": 1.3388,
+                      "reliability_disutility": 3.3093,
+                      "conflict_disutility": 8.6143
+                    },
+                    "total_disutility": 50.4378,
+                    "reconstructed_score": 49.56
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 34.4331,
+                      "wait_disutility": 1.9439,
+                      "crowding_disutility": 1.0787,
+                      "curb_disutility": 0.1488,
+                      "accessibility_disutility": 1.2013,
+                      "reliability_disutility": 2.8928,
+                      "conflict_disutility": 8.0281
+                    },
+                    "total_disutility": 49.7267,
+                    "reconstructed_score": 50.27
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 33.5451,
+                      "wait_disutility": 2.1461,
+                      "crowding_disutility": 1.3693,
+                      "curb_disutility": 0.0502,
+                      "accessibility_disutility": 1.3199,
+                      "reliability_disutility": 3.1935,
+                      "conflict_disutility": 7.7506
+                    },
+                    "total_disutility": 49.3747,
+                    "reconstructed_score": 50.63
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.2424,
+                      "wait_disutility": 2.8413,
+                      "crowding_disutility": 0.2557,
+                      "curb_disutility": 3.8658,
+                      "accessibility_disutility": 0.8451,
+                      "reliability_disutility": 4.2281,
+                      "conflict_disutility": 20.8912
+                    },
+                    "total_disutility": 63.1696,
+                    "reconstructed_score": 36.83
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 34.1543,
+                      "wait_disutility": 2.0712,
+                      "crowding_disutility": 1.4501,
+                      "curb_disutility": 0.4013,
+                      "accessibility_disutility": 1.0949,
+                      "reliability_disutility": 3.0821,
+                      "conflict_disutility": 8.5045
+                    },
+                    "total_disutility": 50.7584,
+                    "reconstructed_score": 49.24
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             },
@@ -619,11 +2721,119 @@
               "p90_travel_time_proxy_minutes": 90,
               "accessibility_completion_proxy": 0.8832,
               "worst_group_accessibility_gap_proxy_points": 2.22,
+              "worst_group_accessibility_p10_proxy": 0.9,
+              "worst_group_accessibility_p10_gap_proxy_points": 0,
+              "worst_group_satisfaction_gap_proxy_points": 18.13,
+              "worst_group_satisfaction_p10_proxy": 40,
+              "worst_group_satisfaction_p10_gap_proxy_points": 10,
               "max_mode_load_ratio": 2.0159,
               "capacity_overflow_person_trips": 775366,
               "people_flow_conflict_rate_per_1000_proxy": 5.09,
               "external_car_inflow_ratio": 0.063,
               "vehicle_km_proxy": 2976150,
+              "satisfaction_component_readout": {
+                "method": "additive_proxy_decomposition_from_regional_agent_score",
+                "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+                "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+                "mean_components": {
+                  "time_disutility": 29.6186,
+                  "wait_disutility": 1.6242,
+                  "crowding_disutility": 1.6061,
+                  "curb_disutility": 0.4492,
+                  "accessibility_disutility": 0.9815,
+                  "reliability_disutility": 2.4169,
+                  "conflict_disutility": 8.1476
+                },
+                "total_disutility": 44.8441,
+                "reconstructed_score": 55.16,
+                "by_group": {
+                  "enterprise_employee": {
+                    "count": 1092700,
+                    "mean_components": {
+                      "time_disutility": 30.2338,
+                      "wait_disutility": 1.5884,
+                      "crowding_disutility": 1.9493,
+                      "curb_disutility": 0.2803,
+                      "accessibility_disutility": 1.0102,
+                      "reliability_disutility": 2.3638,
+                      "conflict_disutility": 7.3873
+                    },
+                    "total_disutility": 44.8131,
+                    "reconstructed_score": 55.19
+                  },
+                  "resident_worker": {
+                    "count": 936600,
+                    "mean_components": {
+                      "time_disutility": 28.9623,
+                      "wait_disutility": 1.5922,
+                      "crowding_disutility": 1.544,
+                      "curb_disutility": 0.279,
+                      "accessibility_disutility": 1.0075,
+                      "reliability_disutility": 2.3693,
+                      "conflict_disutility": 7.9413
+                    },
+                    "total_disutility": 43.6956,
+                    "reconstructed_score": 56.3
+                  },
+                  "carer_or_child": {
+                    "count": 468300,
+                    "mean_components": {
+                      "time_disutility": 29.8881,
+                      "wait_disutility": 1.4526,
+                      "crowding_disutility": 1.2911,
+                      "curb_disutility": 0.1653,
+                      "accessibility_disutility": 0.8595,
+                      "reliability_disutility": 2.1615,
+                      "conflict_disutility": 7.4009
+                    },
+                    "total_disutility": 43.219,
+                    "reconstructed_score": 56.78
+                  },
+                  "visitor_service": {
+                    "count": 312200,
+                    "mean_components": {
+                      "time_disutility": 28.9962,
+                      "wait_disutility": 1.5202,
+                      "crowding_disutility": 1.6488,
+                      "curb_disutility": 0.0557,
+                      "accessibility_disutility": 0.9824,
+                      "reliability_disutility": 2.2622,
+                      "conflict_disutility": 7.1451
+                    },
+                    "total_disutility": 42.6106,
+                    "reconstructed_score": 57.39
+                  },
+                  "logistics_and_maintenance": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 28.9473,
+                      "wait_disutility": 2.7674,
+                      "crowding_disutility": 0.3063,
+                      "curb_disutility": 4.2953,
+                      "accessibility_disutility": 1.0456,
+                      "reliability_disutility": 4.1182,
+                      "conflict_disutility": 19.2591
+                    },
+                    "total_disutility": 60.7392,
+                    "reconstructed_score": 39.26
+                  },
+                  "night_worker": {
+                    "count": 156100,
+                    "mean_components": {
+                      "time_disutility": 30.3566,
+                      "wait_disutility": 1.6459,
+                      "crowding_disutility": 1.7361,
+                      "curb_disutility": 0.4459,
+                      "accessibility_disutility": 0.9238,
+                      "reliability_disutility": 2.4493,
+                      "conflict_disutility": 7.8401
+                    },
+                    "total_disutility": 45.3977,
+                    "reconstructed_score": 54.6
+                  }
+                },
+                "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+              },
               "air_candidate": "blocked",
               "privacy_check": "aggregate_only_no_personal_trace"
             }
@@ -643,6 +2853,13 @@
   },
   "selected_policy_readout": {
     "policy_id": "O4_capacity_balanced",
+    "status": "synthetic_candidate_subject_to_calibration",
+    "population_agents": 3122000,
+    "agents_processed": 3122000,
+    "all_agents_processed": true,
+    "mass_conservation": true,
+    "air_candidate": "blocked",
+    "privacy_check": "aggregate_only_no_personal_trace",
     "mode_counts": {
       "metro": 952295,
       "bus": 602547,
@@ -1079,6 +3296,86 @@
         "60-90": 257171,
         "90+": 0
       },
+      "distributional_readout": {
+        "method": "synthetic_per_agent_binned_distribution_screen",
+        "status": "synthetic_distribution_screen_not_local_outcome",
+        "bin_interpretation": "Percentiles are upper bounds of declared bins; they are not observed person-level survey, accessibility audit or OD percentiles.",
+        "by_group": {
+          "enterprise_employee": {
+            "population_agents": 1092700,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "resident_worker": {
+            "population_agents": 936600,
+            "travel_time_p50_proxy_minutes": 45,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "carer_or_child": {
+            "population_agents": 468300,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "visitor_service": {
+            "population_agents": 312200,
+            "travel_time_p50_proxy_minutes": 45,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 70,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "logistics_and_maintenance": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 50,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 1
+          },
+          "night_worker": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          }
+        },
+        "worst_group_satisfaction_p10_proxy": 50,
+        "worst_group_satisfaction_p10_gap_proxy_points": 20,
+        "worst_group_p90_travel_time_proxy_minutes": 90,
+        "group_p90_travel_time_gap_proxy_minutes": 30,
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "interpretation": "This distributional screen keeps group outcomes and accessibility tails visible alongside the mean. It is a synthetic sufficiency and fairness check, not a local resident outcome or accessibility audit."
+      },
       "average_generalized_cost_proxy": 49.44,
       "satisfaction_proxy": 66.43,
       "satisfaction_proxy_by_group": {
@@ -1169,6 +3466,86 @@
       "visitor_service": 0.9289,
       "logistics_and_maintenance": 0.9307,
       "night_worker": 0.949
+    },
+    "distributional_readout": {
+      "method": "synthetic_per_agent_binned_distribution_screen",
+      "status": "synthetic_distribution_screen_not_local_outcome",
+      "bin_interpretation": "Percentiles are upper bounds of declared bins; they are not observed person-level survey, accessibility audit or OD percentiles.",
+      "by_group": {
+        "enterprise_employee": {
+          "population_agents": 1092700,
+          "travel_time_p50_proxy_minutes": 60,
+          "travel_time_p90_proxy_minutes": 60,
+          "satisfaction_p10_proxy_points": 60,
+          "satisfaction_p50_proxy_points": 70,
+          "satisfaction_p90_proxy_points": 80,
+          "accessibility_p10_proxy": 0.9,
+          "accessibility_p50_proxy": 1,
+          "accessibility_p90_proxy": 1
+        },
+        "resident_worker": {
+          "population_agents": 936600,
+          "travel_time_p50_proxy_minutes": 45,
+          "travel_time_p90_proxy_minutes": 60,
+          "satisfaction_p10_proxy_points": 60,
+          "satisfaction_p50_proxy_points": 70,
+          "satisfaction_p90_proxy_points": 80,
+          "accessibility_p10_proxy": 0.9,
+          "accessibility_p50_proxy": 1,
+          "accessibility_p90_proxy": 1
+        },
+        "carer_or_child": {
+          "population_agents": 468300,
+          "travel_time_p50_proxy_minutes": 60,
+          "travel_time_p90_proxy_minutes": 60,
+          "satisfaction_p10_proxy_points": 60,
+          "satisfaction_p50_proxy_points": 70,
+          "satisfaction_p90_proxy_points": 80,
+          "accessibility_p10_proxy": 0.95,
+          "accessibility_p50_proxy": 1,
+          "accessibility_p90_proxy": 1
+        },
+        "visitor_service": {
+          "population_agents": 312200,
+          "travel_time_p50_proxy_minutes": 45,
+          "travel_time_p90_proxy_minutes": 60,
+          "satisfaction_p10_proxy_points": 70,
+          "satisfaction_p50_proxy_points": 70,
+          "satisfaction_p90_proxy_points": 80,
+          "accessibility_p10_proxy": 0.9,
+          "accessibility_p50_proxy": 1,
+          "accessibility_p90_proxy": 1
+        },
+        "logistics_and_maintenance": {
+          "population_agents": 156100,
+          "travel_time_p50_proxy_minutes": 60,
+          "travel_time_p90_proxy_minutes": 60,
+          "satisfaction_p10_proxy_points": 50,
+          "satisfaction_p50_proxy_points": 60,
+          "satisfaction_p90_proxy_points": 80,
+          "accessibility_p10_proxy": 0.95,
+          "accessibility_p50_proxy": 0.95,
+          "accessibility_p90_proxy": 1
+        },
+        "night_worker": {
+          "population_agents": 156100,
+          "travel_time_p50_proxy_minutes": 60,
+          "travel_time_p90_proxy_minutes": 90,
+          "satisfaction_p10_proxy_points": 60,
+          "satisfaction_p50_proxy_points": 70,
+          "satisfaction_p90_proxy_points": 80,
+          "accessibility_p10_proxy": 0.95,
+          "accessibility_p50_proxy": 1,
+          "accessibility_p90_proxy": 1
+        }
+      },
+      "worst_group_satisfaction_p10_proxy": 50,
+      "worst_group_satisfaction_p10_gap_proxy_points": 20,
+      "worst_group_p90_travel_time_proxy_minutes": 90,
+      "group_p90_travel_time_gap_proxy_minutes": 30,
+      "worst_group_accessibility_p10_proxy": 0.9,
+      "worst_group_accessibility_p10_gap_proxy_points": 5,
+      "interpretation": "This distributional screen keeps group outcomes and accessibility tails visible alongside the mean. It is a synthetic sufficiency and fairness check, not a local resident outcome or accessibility audit."
     },
     "people_flow_conflict_rate_per_1000_proxy": 3.13,
     "external_car_inflow_ratio": 0.0847,
@@ -2479,13 +4856,109 @@
         "share": 0.0365
       }
     ],
-    "status": "synthetic_candidate_subject_to_calibration",
-    "population_agents": 3122000,
-    "agents_processed": 3122000,
-    "all_agents_processed": true,
-    "mass_conservation": true,
-    "air_candidate": "blocked",
-    "privacy_check": "aggregate_only_no_personal_trace"
+    "satisfaction_component_readout": {
+      "method": "additive_proxy_decomposition_from_regional_agent_score",
+      "formula": "score = clamp(100 - time - wait - crowding - curb - accessibility - reliability - conflict, 0, 100)",
+      "component_units": "proxy points per synthetic agent; not money, minutes or survey responses",
+      "mean_components": {
+        "time_disutility": 25.9647,
+        "wait_disutility": 0.5889,
+        "crowding_disutility": 0.4183,
+        "curb_disutility": 0.1611,
+        "accessibility_disutility": 0.552,
+        "reliability_disutility": 0.8764,
+        "conflict_disutility": 5.0001
+      },
+      "total_disutility": 33.5615,
+      "reconstructed_score": 66.44,
+      "by_group": {
+        "enterprise_employee": {
+          "count": 1092700,
+          "mean_components": {
+            "time_disutility": 26.3912,
+            "wait_disutility": 0.6024,
+            "crowding_disutility": 0.4872,
+            "curb_disutility": 0.1346,
+            "accessibility_disutility": 0.5864,
+            "reliability_disutility": 0.8964,
+            "conflict_disutility": 4.7504
+          },
+          "total_disutility": 33.8486,
+          "reconstructed_score": 66.15
+        },
+        "resident_worker": {
+          "count": 936600,
+          "mean_components": {
+            "time_disutility": 25.4185,
+            "wait_disutility": 0.547,
+            "crowding_disutility": 0.4201,
+            "curb_disutility": 0.1009,
+            "accessibility_disutility": 0.5991,
+            "reliability_disutility": 0.8139,
+            "conflict_disutility": 4.7187
+          },
+          "total_disutility": 32.6182,
+          "reconstructed_score": 67.38
+        },
+        "carer_or_child": {
+          "count": 468300,
+          "mean_components": {
+            "time_disutility": 26.2648,
+            "wait_disutility": 0.4805,
+            "crowding_disutility": 0.3355,
+            "curb_disutility": 0.0668,
+            "accessibility_disutility": 0.379,
+            "reliability_disutility": 0.715,
+            "conflict_disutility": 4.5182
+          },
+          "total_disutility": 32.7598,
+          "reconstructed_score": 67.24
+        },
+        "visitor_service": {
+          "count": 312200,
+          "mean_components": {
+            "time_disutility": 25.2958,
+            "wait_disutility": 0.5096,
+            "crowding_disutility": 0.4368,
+            "curb_disutility": 0.0338,
+            "accessibility_disutility": 0.5969,
+            "reliability_disutility": 0.7584,
+            "conflict_disutility": 4.3005
+          },
+          "total_disutility": 31.9318,
+          "reconstructed_score": 68.07
+        },
+        "logistics_and_maintenance": {
+          "count": 156100,
+          "mean_components": {
+            "time_disutility": 26.2374,
+            "wait_disutility": 1.2063,
+            "crowding_disutility": 0.0931,
+            "curb_disutility": 1.2725,
+            "accessibility_disutility": 0.5819,
+            "reliability_disutility": 1.7951,
+            "conflict_disutility": 11.6022
+          },
+          "total_disutility": 42.7885,
+          "reconstructed_score": 57.21
+        },
+        "night_worker": {
+          "count": 156100,
+          "mean_components": {
+            "time_disutility": 26.4208,
+            "wait_disutility": 0.6135,
+            "crowding_disutility": 0.4629,
+            "curb_disutility": 0.1338,
+            "accessibility_disutility": 0.4282,
+            "reliability_disutility": 0.9129,
+            "conflict_disutility": 4.6784
+          },
+          "total_disutility": 33.6505,
+          "reconstructed_score": 66.35
+        }
+      },
+      "interpretation": "This is a transparent synthetic utility decomposition. It is not resident satisfaction, employee preference, public acceptance or field service quality."
+    }
   },
   "departure_time_choice_screen": {
     "baseline": {
@@ -5064,6 +7537,9 @@
     "hard_gate_constraints": {
       "minimum_accessibility_completion_proxy": 0.85,
       "maximum_worst_group_accessibility_gap_proxy_points": 24,
+      "maximum_worst_group_accessibility_p10_gap_proxy_points": 30,
+      "maximum_worst_group_satisfaction_gap_proxy_points": 18,
+      "maximum_worst_group_satisfaction_p10_gap_proxy_points": 30,
       "maximum_stress_peak_mode_load_ratio": 1.75,
       "require_mass_conservation": true,
       "require_all_agents_processed": true,
@@ -5073,6 +7549,7 @@
       "nominal_gate",
       "stress_gate_count",
       "worst_case_satisfaction_proxy_max",
+      "worst_group_accessibility_p10_gap_proxy_min",
       "worst_group_accessibility_gap_proxy_min",
       "worst_peak_mode_load_ratio_min",
       "mean_generalized_cost_proxy_min"
@@ -5087,6 +7564,11 @@
         "robust_gate_pass": true,
         "worst_case_satisfaction_proxy": 49.37,
         "worst_group_accessibility_gap_proxy_points": 4.86,
+        "worst_group_accessibility_p10_proxy": 0.7,
+        "worst_group_accessibility_p10_gap_proxy_points": 20,
+        "worst_group_satisfaction_gap_proxy_points": 17.07,
+        "worst_group_satisfaction_p10_proxy": 40,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
         "worst_peak_mode_load_ratio": 1.6986,
         "mean_generalized_cost_proxy": 63.55,
         "scenario_summaries": [
@@ -5104,6 +7586,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.9331,
             "worst_group_accessibility_gap_proxy_points": 3.23,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 5,
+            "worst_group_satisfaction_gap_proxy_points": 10.57,
+            "worst_group_satisfaction_p10_proxy": 50,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.4268,
             "capacity_overflow_person_trips": 414711,
             "people_flow_conflict_rate_per_1000_proxy": 2.94,
@@ -5126,6 +7613,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.871,
             "worst_group_accessibility_gap_proxy_points": 4.78,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 15.6,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.4268,
             "capacity_overflow_person_trips": 414711,
             "people_flow_conflict_rate_per_1000_proxy": 4.82,
@@ -5148,6 +7640,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8705,
             "worst_group_accessibility_gap_proxy_points": 4.86,
+            "worst_group_accessibility_p10_proxy": 0.7,
+            "worst_group_accessibility_p10_gap_proxy_points": 20,
+            "worst_group_satisfaction_gap_proxy_points": 13.48,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 0,
             "max_mode_load_ratio": 1.4268,
             "capacity_overflow_person_trips": 414711,
             "people_flow_conflict_rate_per_1000_proxy": 5.23,
@@ -5170,6 +7667,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8835,
             "worst_group_accessibility_gap_proxy_points": 2.44,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 17.07,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.6986,
             "capacity_overflow_person_trips": 767031,
             "people_flow_conflict_rate_per_1000_proxy": 4.82,
@@ -5189,6 +7691,11 @@
         "robust_gate_pass": true,
         "worst_case_satisfaction_proxy": 49.33,
         "worst_group_accessibility_gap_proxy_points": 4.71,
+        "worst_group_accessibility_p10_proxy": 0.7,
+        "worst_group_accessibility_p10_gap_proxy_points": 20,
+        "worst_group_satisfaction_gap_proxy_points": 17.68,
+        "worst_group_satisfaction_p10_proxy": 40,
+        "worst_group_satisfaction_p10_gap_proxy_points": 20,
         "worst_peak_mode_load_ratio": 1.505,
         "mean_generalized_cost_proxy": 62.32,
         "scenario_summaries": [
@@ -5206,6 +7713,11 @@
             "p90_travel_time_proxy_minutes": 60,
             "accessibility_completion_proxy": 0.9343,
             "worst_group_accessibility_gap_proxy_points": 2.62,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 5,
+            "worst_group_satisfaction_gap_proxy_points": 10.86,
+            "worst_group_satisfaction_p10_proxy": 50,
+            "worst_group_satisfaction_p10_gap_proxy_points": 20,
             "max_mode_load_ratio": 1.2088,
             "capacity_overflow_person_trips": 332639,
             "people_flow_conflict_rate_per_1000_proxy": 3.13,
@@ -5228,6 +7740,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8747,
             "worst_group_accessibility_gap_proxy_points": 4.25,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 16.21,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.2088,
             "capacity_overflow_person_trips": 332639,
             "people_flow_conflict_rate_per_1000_proxy": 5.12,
@@ -5250,6 +7767,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8671,
             "worst_group_accessibility_gap_proxy_points": 4.71,
+            "worst_group_accessibility_p10_proxy": 0.7,
+            "worst_group_accessibility_p10_gap_proxy_points": 20,
+            "worst_group_satisfaction_gap_proxy_points": 13.76,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 0,
             "max_mode_load_ratio": 1.2088,
             "capacity_overflow_person_trips": 332639,
             "people_flow_conflict_rate_per_1000_proxy": 5.56,
@@ -5272,6 +7794,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8875,
             "worst_group_accessibility_gap_proxy_points": 2.63,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 17.68,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.505,
             "capacity_overflow_person_trips": 726439,
             "people_flow_conflict_rate_per_1000_proxy": 5.12,
@@ -5291,6 +7818,11 @@
         "robust_gate_pass": true,
         "worst_case_satisfaction_proxy": 48.73,
         "worst_group_accessibility_gap_proxy_points": 5.36,
+        "worst_group_accessibility_p10_proxy": 0.7,
+        "worst_group_accessibility_p10_gap_proxy_points": 20,
+        "worst_group_satisfaction_gap_proxy_points": 17.33,
+        "worst_group_satisfaction_p10_proxy": 40,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
         "worst_peak_mode_load_ratio": 1.5991,
         "mean_generalized_cost_proxy": 63.42,
         "scenario_summaries": [
@@ -5308,6 +7840,11 @@
             "p90_travel_time_proxy_minutes": 60,
             "accessibility_completion_proxy": 0.9337,
             "worst_group_accessibility_gap_proxy_points": 2.93,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 5,
+            "worst_group_satisfaction_gap_proxy_points": 10.74,
+            "worst_group_satisfaction_p10_proxy": 50,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.3112,
             "capacity_overflow_person_trips": 410139,
             "people_flow_conflict_rate_per_1000_proxy": 3.01,
@@ -5330,6 +7867,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8678,
             "worst_group_accessibility_gap_proxy_points": 5.36,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 15.55,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.3112,
             "capacity_overflow_person_trips": 410139,
             "people_flow_conflict_rate_per_1000_proxy": 4.93,
@@ -5352,6 +7894,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8733,
             "worst_group_accessibility_gap_proxy_points": 4.37,
+            "worst_group_accessibility_p10_proxy": 0.7,
+            "worst_group_accessibility_p10_gap_proxy_points": 20,
+            "worst_group_satisfaction_gap_proxy_points": 14,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 0,
             "max_mode_load_ratio": 1.3112,
             "capacity_overflow_person_trips": 410139,
             "people_flow_conflict_rate_per_1000_proxy": 5.35,
@@ -5374,6 +7921,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8834,
             "worst_group_accessibility_gap_proxy_points": 2.38,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 17.33,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.5991,
             "capacity_overflow_person_trips": 741628,
             "people_flow_conflict_rate_per_1000_proxy": 4.93,
@@ -5393,6 +7945,11 @@
         "robust_gate_pass": false,
         "worst_case_satisfaction_proxy": 49.26,
         "worst_group_accessibility_gap_proxy_points": 5.88,
+        "worst_group_accessibility_p10_proxy": 0.7,
+        "worst_group_accessibility_p10_gap_proxy_points": 20,
+        "worst_group_satisfaction_gap_proxy_points": 18.13,
+        "worst_group_satisfaction_p10_proxy": 40,
+        "worst_group_satisfaction_p10_gap_proxy_points": 20,
         "worst_peak_mode_load_ratio": 2.0159,
         "mean_generalized_cost_proxy": 61.88,
         "scenario_summaries": [
@@ -5410,6 +7967,11 @@
             "p90_travel_time_proxy_minutes": 60,
             "accessibility_completion_proxy": 0.9289,
             "worst_group_accessibility_gap_proxy_points": 2.81,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 5,
+            "worst_group_satisfaction_gap_proxy_points": 11.22,
+            "worst_group_satisfaction_p10_proxy": 50,
+            "worst_group_satisfaction_p10_gap_proxy_points": 20,
             "max_mode_load_ratio": 1.5724,
             "capacity_overflow_person_trips": 389565,
             "people_flow_conflict_rate_per_1000_proxy": 3.11,
@@ -5432,6 +7994,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8694,
             "worst_group_accessibility_gap_proxy_points": 4.97,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 16.57,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 1.5724,
             "capacity_overflow_person_trips": 389565,
             "people_flow_conflict_rate_per_1000_proxy": 5.09,
@@ -5454,6 +8021,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8557,
             "worst_group_accessibility_gap_proxy_points": 5.88,
+            "worst_group_accessibility_p10_proxy": 0.7,
+            "worst_group_accessibility_p10_gap_proxy_points": 20,
+            "worst_group_satisfaction_gap_proxy_points": 13.8,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 0,
             "max_mode_load_ratio": 1.5724,
             "capacity_overflow_person_trips": 389565,
             "people_flow_conflict_rate_per_1000_proxy": 5.52,
@@ -5476,6 +8048,11 @@
             "p90_travel_time_proxy_minutes": 90,
             "accessibility_completion_proxy": 0.8832,
             "worst_group_accessibility_gap_proxy_points": 2.22,
+            "worst_group_accessibility_p10_proxy": 0.9,
+            "worst_group_accessibility_p10_gap_proxy_points": 0,
+            "worst_group_satisfaction_gap_proxy_points": 18.13,
+            "worst_group_satisfaction_p10_proxy": 40,
+            "worst_group_satisfaction_p10_gap_proxy_points": 10,
             "max_mode_load_ratio": 2.0159,
             "capacity_overflow_person_trips": 775366,
             "people_flow_conflict_rate_per_1000_proxy": 5.09,
@@ -5781,6 +8358,86 @@
         "45-60": 1590637,
         "60-90": 628957,
         "90+": 0
+      },
+      "distributional_readout": {
+        "method": "synthetic_per_agent_binned_distribution_screen",
+        "status": "synthetic_distribution_screen_not_local_outcome",
+        "bin_interpretation": "Percentiles are upper bounds of declared bins; they are not observed person-level survey, accessibility audit or OD percentiles.",
+        "by_group": {
+          "enterprise_employee": {
+            "population_agents": 1092700,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 0.95
+          },
+          "resident_worker": {
+            "population_agents": 936600,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 1
+          },
+          "carer_or_child": {
+            "population_agents": 468300,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 50,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 1
+          },
+          "visitor_service": {
+            "population_agents": 312200,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 50,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 1
+          },
+          "logistics_and_maintenance": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 50,
+            "satisfaction_p90_proxy_points": 60,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 0.95
+          },
+          "night_worker": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 0.95
+          }
+        },
+        "worst_group_satisfaction_p10_proxy": 40,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
+        "worst_group_p90_travel_time_proxy_minutes": 90,
+        "group_p90_travel_time_gap_proxy_minutes": 0,
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "interpretation": "This distributional screen keeps group outcomes and accessibility tails visible alongside the mean. It is a synthetic sufficiency and fairness check, not a local resident outcome or accessibility audit."
       },
       "average_generalized_cost_proxy": 60.34,
       "satisfaction_proxy": 54.67,
@@ -6198,6 +8855,86 @@
         "60-90": 286528,
         "90+": 0
       },
+      "distributional_readout": {
+        "method": "synthetic_per_agent_binned_distribution_screen",
+        "status": "synthetic_distribution_screen_not_local_outcome",
+        "bin_interpretation": "Percentiles are upper bounds of declared bins; they are not observed person-level survey, accessibility audit or OD percentiles.",
+        "by_group": {
+          "enterprise_employee": {
+            "population_agents": 1092700,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "resident_worker": {
+            "population_agents": 936600,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "carer_or_child": {
+            "population_agents": 468300,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "visitor_service": {
+            "population_agents": 312200,
+            "travel_time_p50_proxy_minutes": 45,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 1,
+            "accessibility_p90_proxy": 1
+          },
+          "logistics_and_maintenance": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 60,
+            "satisfaction_p10_proxy_points": 50,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 1
+          },
+          "night_worker": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 60,
+            "satisfaction_p50_proxy_points": 70,
+            "satisfaction_p90_proxy_points": 80,
+            "accessibility_p10_proxy": 0.95,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 1
+          }
+        },
+        "worst_group_satisfaction_p10_proxy": 50,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
+        "worst_group_p90_travel_time_proxy_minutes": 90,
+        "group_p90_travel_time_gap_proxy_minutes": 30,
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 5,
+        "interpretation": "This distributional screen keeps group outcomes and accessibility tails visible alongside the mean. It is a synthetic sufficiency and fairness check, not a local resident outcome or accessibility audit."
+      },
       "average_generalized_cost_proxy": 50.06,
       "satisfaction_proxy": 66.23,
       "satisfaction_proxy_by_group": {
@@ -6614,6 +9351,86 @@
         "60-90": 1486756,
         "90+": 13966
       },
+      "distributional_readout": {
+        "method": "synthetic_per_agent_binned_distribution_screen",
+        "status": "synthetic_distribution_screen_not_local_outcome",
+        "bin_interpretation": "Percentiles are upper bounds of declared bins; they are not observed person-level survey, accessibility audit or OD percentiles.",
+        "by_group": {
+          "enterprise_employee": {
+            "population_agents": 1092700,
+            "travel_time_p50_proxy_minutes": 90,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 50,
+            "satisfaction_p90_proxy_points": 60,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.9,
+            "accessibility_p90_proxy": 0.95
+          },
+          "resident_worker": {
+            "population_agents": 936600,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.9,
+            "accessibility_p90_proxy": 1
+          },
+          "carer_or_child": {
+            "population_agents": 468300,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 50,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.9,
+            "accessibility_p90_proxy": 1
+          },
+          "visitor_service": {
+            "population_agents": 312200,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.9,
+            "accessibility_p90_proxy": 1
+          },
+          "logistics_and_maintenance": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 40,
+            "satisfaction_p90_proxy_points": 60,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.95,
+            "accessibility_p90_proxy": 0.95
+          },
+          "night_worker": {
+            "population_agents": 156100,
+            "travel_time_p50_proxy_minutes": 60,
+            "travel_time_p90_proxy_minutes": 90,
+            "satisfaction_p10_proxy_points": 40,
+            "satisfaction_p50_proxy_points": 60,
+            "satisfaction_p90_proxy_points": 70,
+            "accessibility_p10_proxy": 0.9,
+            "accessibility_p50_proxy": 0.9,
+            "accessibility_p90_proxy": 1
+          }
+        },
+        "worst_group_satisfaction_p10_proxy": 40,
+        "worst_group_satisfaction_p10_gap_proxy_points": 10,
+        "worst_group_p90_travel_time_proxy_minutes": 90,
+        "group_p90_travel_time_gap_proxy_minutes": 0,
+        "worst_group_accessibility_p10_proxy": 0.9,
+        "worst_group_accessibility_p10_gap_proxy_points": 0,
+        "interpretation": "This distributional screen keeps group outcomes and accessibility tails visible alongside the mean. It is a synthetic sufficiency and fairness check, not a local resident outcome or accessibility audit."
+      },
       "average_generalized_cost_proxy": 71.11,
       "satisfaction_proxy": 48.73,
       "satisfaction_proxy_by_group": {
@@ -6772,6 +9589,10 @@
     "optimized_conflict_proxy_not_higher": true,
     "optimized_external_car_inflow_not_higher": true,
     "optimized_peak_mode_capacity_screen_pass": true,
+    "optimized_worst_group_satisfaction_screen_pass": true,
+    "optimized_accessibility_tail_screen_pass": true,
+    "utility_component_decomposition_present": true,
+    "utility_component_reconstruction_error_bounded": true,
     "service_unit_ledger_complete": true,
     "vehicle_km_is_service_unit_based": true,
     "return_population_agents_processed": true,
@@ -6783,6 +9604,8 @@
     "robustness_all_population_agents_processed": true,
     "robustness_mass_conservation": true,
     "robustness_nominal_gate_has_eligible_candidate": true,
+    "robustness_selected_group_satisfaction_screen": true,
+    "robustness_selected_accessibility_tail_screen": true,
     "robustness_air_candidate_fail_closed": true,
     "robustness_privacy_aggregate_only": true,
     "robustness_selection_is_separate_from_nominal_selection": true,
@@ -6810,188 +9633,5 @@
     "people_flow_conflict_observation",
     "resident_and_employee_satisfaction_survey",
     "weather_disruption_and_emergency_protocol"
-  ],
-  "candidate_selection_audit": {
-    "generated_by": "node visual/assets/run-regional-commute-simulation.js",
-    "selected_policy": "O4_capacity_balanced",
-    "selected_policy_is_not_hand_picked": true,
-    "selection_order": [
-      "hard_gate_pass",
-      "satisfaction_proxy_max",
-      "average_generalized_cost_proxy_min",
-      "p90_travel_time_proxy_minutes_min",
-      "people_flow_conflict_rate_per_1000_proxy_min",
-      "external_car_inflow_ratio_min",
-      "vehicle_km_proxy_min"
-    ],
-    "hard_gate_constraints": {
-      "minimum_accessibility_completion_proxy": 0.92,
-      "maximum_worst_group_accessibility_gap_proxy_points": 5,
-      "require_mass_conservation": true,
-      "require_all_agents_processed": true,
-      "air_candidate_must_remain_blocked": true,
-      "maximum_peak_mode_load_ratio": 1.35
-    },
-    "ranked_candidates": [
-      {
-        "rank": 1,
-        "policy_id": "O4_capacity_balanced",
-        "weight_profile": "O4",
-        "hard_gate_pass": true,
-        "agents_processed": 3122000,
-        "all_agents_processed": true,
-        "mass_conservation": true,
-        "satisfaction_proxy": 66.44,
-        "average_generalized_cost_proxy": 49.44,
-        "p90_travel_time_proxy_minutes": 60,
-        "people_flow_conflict_rate_per_1000_proxy": 3.13,
-        "external_car_inflow_ratio": 0.0847,
-        "max_mode_load_ratio": 1.2088,
-        "capacity_overflow_person_trips": 332639,
-        "accessibility_completion_proxy": 0.9343,
-        "worst_group_accessibility_gap_proxy_points": 2.62,
-        "person_km_proxy": 28398272,
-        "vehicle_km_proxy": 3513768,
-        "air_candidate": "blocked",
-        "privacy_check": "aggregate_only_no_personal_trace"
-      },
-      {
-        "rank": 2,
-        "policy_id": "O1_transit_priority",
-        "weight_profile": "O1",
-        "hard_gate_pass": true,
-        "agents_processed": 3122000,
-        "all_agents_processed": true,
-        "mass_conservation": true,
-        "satisfaction_proxy": 66.23,
-        "average_generalized_cost_proxy": 50.06,
-        "p90_travel_time_proxy_minutes": 60,
-        "people_flow_conflict_rate_per_1000_proxy": 3.01,
-        "external_car_inflow_ratio": 0.086,
-        "max_mode_load_ratio": 1.3112,
-        "capacity_overflow_person_trips": 410139,
-        "accessibility_completion_proxy": 0.9337,
-        "worst_group_accessibility_gap_proxy_points": 2.93,
-        "person_km_proxy": 29608825,
-        "vehicle_km_proxy": 3611754,
-        "air_candidate": "blocked",
-        "privacy_check": "aggregate_only_no_personal_trace"
-      },
-      {
-        "rank": 3,
-        "policy_id": "O3_active_first",
-        "weight_profile": "O3",
-        "hard_gate_pass": false,
-        "agents_processed": 3122000,
-        "all_agents_processed": true,
-        "mass_conservation": true,
-        "satisfaction_proxy": 66.78,
-        "average_generalized_cost_proxy": 48.93,
-        "p90_travel_time_proxy_minutes": 60,
-        "people_flow_conflict_rate_per_1000_proxy": 3.11,
-        "external_car_inflow_ratio": 0.063,
-        "max_mode_load_ratio": 1.5724,
-        "capacity_overflow_person_trips": 389565,
-        "accessibility_completion_proxy": 0.9289,
-        "worst_group_accessibility_gap_proxy_points": 2.81,
-        "person_km_proxy": 28064518,
-        "vehicle_km_proxy": 2976150,
-        "air_candidate": "blocked",
-        "privacy_check": "aggregate_only_no_personal_trace"
-      },
-      {
-        "rank": 4,
-        "policy_id": "O2_equity_balanced",
-        "weight_profile": "O2",
-        "hard_gate_pass": false,
-        "agents_processed": 3122000,
-        "all_agents_processed": true,
-        "mass_conservation": true,
-        "satisfaction_proxy": 66.22,
-        "average_generalized_cost_proxy": 50.29,
-        "p90_travel_time_proxy_minutes": 90,
-        "people_flow_conflict_rate_per_1000_proxy": 2.94,
-        "external_car_inflow_ratio": 0.0729,
-        "max_mode_load_ratio": 1.4268,
-        "capacity_overflow_person_trips": 414711,
-        "accessibility_completion_proxy": 0.9331,
-        "worst_group_accessibility_gap_proxy_points": 3.23,
-        "person_km_proxy": 28837883,
-        "vehicle_km_proxy": 3110028,
-        "air_candidate": "blocked",
-        "privacy_check": "aggregate_only_no_personal_trace"
-      }
-    ],
-    "robustness": {
-      "selected_policy": "O2_equity_balanced",
-      "selected_policy_is_not_hand_picked": true,
-      "robust_gate_pass": true,
-      "selection_order": [
-        "nominal_gate",
-        "stress_gate_count",
-        "worst_case_satisfaction_proxy_max",
-        "worst_group_accessibility_gap_proxy_min",
-        "worst_peak_mode_load_ratio_min",
-        "mean_generalized_cost_proxy_min"
-      ],
-      "hard_gate_constraints": {
-        "minimum_accessibility_completion_proxy": 0.85,
-        "maximum_worst_group_accessibility_gap_proxy_points": 24,
-        "maximum_stress_peak_mode_load_ratio": 1.75,
-        "require_mass_conservation": true,
-        "require_all_agents_processed": true,
-        "air_candidate_must_remain_blocked": true
-      },
-      "ranked_candidates": [
-        {
-          "rank": 1,
-          "policy_id": "O2_equity_balanced",
-          "weight_profile": "O2",
-          "nominal_gate_pass": true,
-          "stress_gate_count": 3,
-          "robust_gate_pass": true,
-          "worst_case_satisfaction_proxy": 49.37,
-          "worst_group_accessibility_gap_proxy_points": 4.86,
-          "worst_peak_mode_load_ratio": 1.6986,
-          "mean_generalized_cost_proxy": 63.55
-        },
-        {
-          "rank": 2,
-          "policy_id": "O4_capacity_balanced",
-          "weight_profile": "O4",
-          "nominal_gate_pass": true,
-          "stress_gate_count": 3,
-          "robust_gate_pass": true,
-          "worst_case_satisfaction_proxy": 49.33,
-          "worst_group_accessibility_gap_proxy_points": 4.71,
-          "worst_peak_mode_load_ratio": 1.505,
-          "mean_generalized_cost_proxy": 62.32
-        },
-        {
-          "rank": 3,
-          "policy_id": "O1_transit_priority",
-          "weight_profile": "O1",
-          "nominal_gate_pass": true,
-          "stress_gate_count": 3,
-          "robust_gate_pass": true,
-          "worst_case_satisfaction_proxy": 48.73,
-          "worst_group_accessibility_gap_proxy_points": 5.36,
-          "worst_peak_mode_load_ratio": 1.5991,
-          "mean_generalized_cost_proxy": 63.42
-        },
-        {
-          "rank": 4,
-          "policy_id": "O3_active_first",
-          "weight_profile": "O3",
-          "nominal_gate_pass": true,
-          "stress_gate_count": 2,
-          "robust_gate_pass": false,
-          "worst_case_satisfaction_proxy": 49.26,
-          "worst_group_accessibility_gap_proxy_points": 5.88,
-          "worst_peak_mode_load_ratio": 2.0159,
-          "mean_generalized_cost_proxy": 61.88
-        }
-      ]
-    }
-  }
+  ]
 }

@@ -1,0 +1,105 @@
+{
+  "schema_version": "0.1.0",
+  "register_id": "MOB-RISK-REGISTER-001",
+  "not_a_score": true,
+  "purpose": "把风险维度、证据路径、触发条件、停止动作、人工等价入口和责任角色放在一个可回读的交通审查入口。",
+  "state_vocabulary": {
+    "controlled_by_gate": "已有包内规则控制，但不表示现场风险已消失",
+    "unknown": "需要日期化专业或公众证据，不能放行",
+    "blocked_until_evidence": "证据、责任或安全条件齐备前必须停止",
+    "not_started": "尚未授权或尚未开始，不能当作试点结果"
+  },
+  "risks": [
+    {
+      "id": "policy_uncertainty",
+      "label_zh": "政策、边界与交通规则不确定性",
+      "state": "blocked_until_evidence",
+      "trigger": "官方边界、路权、站口容量、消防、无障碍或空域条件发生变化，或出现无法核验的规则依赖。",
+      "evidence": ["geometry/site_boundary.geojson", "geometry/key_areas.geojson", "geometry/roads.geojson", "assumptions.json", "visual/assets/air-mobility-gate.json"],
+      "metric_ids": ["parking_occupancy_by_window_ratio", "external_commute_od_baseline", "car_inflow_peak_ratio", "air_ground_transfer_reliability"],
+      "non_ai_equivalent": "保留普通公共交通、步行和人工服务，不依赖模型推荐才能到达。",
+      "stop_condition": "没有日期化专业核验时，不锁定道路、站口、路缘、停车或空中实验位置，不进入 P1/P2。",
+      "owner_role": "规划、交通、消防、无障碍、空域与权属复核角色"
+    },
+    {
+      "id": "spatial_dispute",
+      "label_zh": "重点区、路缘与权属接口争议",
+      "state": "unknown",
+      "trigger": "重点区、站口、装卸、绿地、校园、商业或服务台的权属、通行、维护责任无法指认，或专业走读发现冲突。",
+      "evidence": ["geometry/key_areas.geojson", "geometry/public_space.geojson", "geometry/roads.geojson", "visual/assets/m09-curb-spatial-prototype.json", "visual/assets/curb-states.json"],
+      "metric_ids": ["parking_occupancy_by_window_ratio", "curb_time_window_compliance_ratio", "peak_curb_conflict_rate", "person_flow_conflict_rate"],
+      "non_ai_equivalent": "先以现有公共交通、纸面指引和人工清场维持普通路线，不把临时关系线变成固定布置。",
+      "stop_condition": "权属、通行、维护和撤回责任未形成可复核记录时，只登记需求，不预约、不改变公共路缘。",
+      "owner_role": "场地权属、交通管理、现场维护与无障碍复核角色"
+    },
+    {
+      "id": "equity_inclusion",
+      "label_zh": "公平、无障碍与非数字入口",
+      "state": "unknown",
+      "trigger": "连续路线、等待、人工/电话/纸面入口、照护安排或夜班回家在任一分组上出现中断、拒绝或不可解释差异。",
+      "evidence": ["visual/assets/site-and-stakeholder-evidence.json", "visual/assets/service-levels.json", "visual/assets/mobility-pilot-readiness.json", "visual/assets/mobility-tabletop-contract.json", "proposal.md"],
+      "metric_ids": ["resident_daily_trip_access_index", "first_last_mile_transfer_reliability", "accessible_route_completion_ratio", "mobility_service_complaint_closure_hours", "mode_transfer_reliability"],
+      "non_ai_equivalent": "人工窗口、电话、纸面路线、普通公共交通和照护陪同必须可独立使用。",
+      "stop_condition": "任一群体没有安全、可理解且可申诉的等价路径时，冻结推荐与扩容，回到人工和普通公共交通。",
+      "owner_role": "无障碍专业、社区服务、代表性使用者与独立复核角色"
+    },
+    {
+      "id": "implementation_complexity",
+      "label_zh": "多方式容量与实施协同复杂度",
+      "state": "unknown",
+      "trigger": "企业或居民需求、跨边界 OD、班次、停车、车队、责任人、预算或数据同意无法同时闭合。",
+      "evidence": ["visual/assets/demand-ledger.json", "visual/assets/external-commute-ledger.json", "visual/assets/implementation-operation-contract.json", "visual/assets/responsibility-acceptance-contract.json", "visual/assets/capacity-closure-screen.json", "visual/assets/pilot-startup-checklist.json"],
+      "metric_ids": ["enterprise_commute_demand_baseline", "employer_multimodal_trip_rate", "external_commute_generalized_cost_index", "multimodal_system_efficiency_index", "workplace_ev_charge_supply_gap_ratio"],
+      "non_ai_equivalent": "P0 只做人工登记与证据收集；没有责任运营者时不启用共享预约或自动排班。",
+      "stop_condition": "容量、责任、同意和申诉记录未同时存在时，只保留调查状态，不把合成候选转成实施顺序。",
+      "owner_role": "交通运营、企业交通协调、社区服务、维护与数据保护角色"
+    },
+    {
+      "id": "technology_maturity",
+      "label_zh": "仿真、自动化与空中候选成熟度",
+      "state": "blocked_until_evidence",
+      "trigger": "模型校准缺失、人员动线冲突、人工接管失败、数据边界越过，或空中候选缺少运行与安全前置条件。",
+      "evidence": ["visual/assets/movement-simulation.json", "visual/assets/multimodal-network.json", "visual/assets/air-mobility-gate.json", "visual/assets/mobility-tabletop-evidence.json", "visual/assets/claim-audit.json"],
+      "metric_ids": ["multimodal_simulation_calibration_status", "person_flow_conflict_rate", "air_ground_transfer_reliability", "multimodal_system_efficiency_index"],
+      "non_ai_equivalent": "先用人工引导、地面公共交通和可撤回服务窗口完成同一条普通出行链。",
+      "stop_condition": "没有本地校准、独立安全审查、人工接管和空域/消防/公众前置证据时，仿真只作屏查，空中候选保持 blocked。",
+      "owner_role": "交通建模、运行安全、消防、隐私、无障碍与空域专业角色"
+    },
+    {
+      "id": "public_acceptance",
+      "label_zh": "居民体验、投诉与公共接受度",
+      "state": "unknown",
+      "trigger": "居民路线、夜间安静、活动日冲突、等待、安全回家或投诉闭环出现未解释的负面变化。",
+      "evidence": ["visual/assets/site-and-stakeholder-evidence.json", "visual/assets/service-levels.json", "visual/assets/scenario-cards.json", "visual/assets/responsibility-acceptance-contract.json", "proposal.md"],
+      "metric_ids": ["resident_daily_trip_access_index", "mobility_service_complaint_closure_hours", "external_commute_generalized_cost_index", "person_flow_conflict_rate"],
+      "non_ai_equivalent": "公开状态板、电话、纸面申诉、普通路线和人工接管始终保留，用户不必接受 AI 推荐。",
+      "stop_condition": "没有公开解释、申诉责任和安全普通路线时，取消或缩小窗口，不以合成满意度代理放行。",
+      "owner_role": "居民代表、社区服务、交通安全、消费者权益与独立复核角色"
+    },
+    {
+      "id": "data_privacy",
+      "label_zh": "需求数据、轨迹与授权边界",
+      "state": "controlled_by_gate",
+      "trigger": "出现未经授权的企业/居民身份、精确地址、连续轨迹、敏感需求、跨场景关联或删除/撤回请求。",
+      "evidence": ["assumptions.json", "sources.json", "visual/assets/demand-ledger.json", "visual/assets/external-commute-ledger.json", "report/copyright_statement.md", "visual/assets/claim-audit.json"],
+      "metric_ids": ["enterprise_commute_demand_baseline", "resident_daily_trip_access_index", "external_commute_od_baseline", "workplace_ev_charge_supply_gap_ratio"],
+      "non_ai_equivalent": "需求可用匿名分组、人工窗口和纸面登记表达，不要求个人轨迹或自动推荐。",
+      "stop_condition": "授权、目的限定、保留/删除责任或撤回路径不完整时，拒绝该数据进入模型并冻结相关场景。",
+      "owner_role": "数据保护、网络安全、伦理、版权与受影响公众复核角色"
+    },
+    {
+      "id": "operations_cost",
+      "label_zh": "维护、人工接管与撤回成本",
+      "state": "unknown",
+      "trigger": "路缘清场、无障碍维护、人工接管、投诉回放、数据删除或设施撤除缺少人员、周期、备件或资金边界。",
+      "evidence": ["visual/assets/implementation-operation-contract.json", "visual/assets/responsibility-acceptance-contract.json", "visual/assets/mobility-pilot-readiness.json", "visual/assets/mobility-tabletop-contract.json", "visual/assets/curb-states.json"],
+      "metric_ids": ["curb_time_window_compliance_ratio", "first_last_mile_transfer_reliability", "accessible_route_completion_ratio", "mobility_service_complaint_closure_hours", "workplace_ev_charge_supply_gap_ratio"],
+      "non_ai_equivalent": "普通公共交通、人工值守、纸面指引和可撤回设施构成没有自动化依赖的退路。",
+      "stop_condition": "没有值守、维护、删除或撤回记录时，不预约、不扩容，按 M-09 回退合同恢复普通服务。",
+      "owner_role": "设施维护、公共服务、财务、数据保护与场地责任角色"
+    }
+  ],
+  "release_rule": "只有当风险状态、证据路径、责任角色、人工等价入口和停止条件同时可读，并且所有 unknown 指标仍被挂在风险条目上，场景才可进入下一次人工复核；unknown 不是 pass。",
+  "review_frequency": "每个新窗口前、每次材料或规则变化后，以及至少每个季节或年度复核一次。",
+  "boundary_zh": "这是包内证据与缺口的风险索引，不是现场风险评估、专业签字、运营许可、公众同意或官方评分。"
+}

@@ -38,6 +38,13 @@ h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
 h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
 h3 { font-size: 20px; margin: 26px 0 10px; }
 p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
 code {
   background: #eef2f7;
   color: #1d4f7a;
@@ -46,6 +53,24 @@ code {
 }
 .summary { color: var(--muted); font-size: 17px; }
 .translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
 .proposal-figure {
   margin: 22px 0 28px;
   border: 1px solid var(--line);
@@ -65,13 +90,16 @@ code {
   font-size: 14px;
 }
 .evidence {
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
-  border: 1px solid #cbd5e1;
-  background: #f8fafc;
-  color: #31506f;
-  border-radius: 4px;
-  padding: 0.03em 0.32em;
-  font-size: 0.92em;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
 }
 @media (max-width: 720px) {
   main { padding: 26px 16px 52px; }
@@ -88,114 +116,115 @@ code {
 <p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
 </section>
 <h1>京张公制：以公共规范为核心产品的百年京张AI创新带城市设计</h1>
-<p>**一句话概念**：这条带子最终要输出的不是建筑，而是一套&quot;公制&quot;——一份任何人都能照着建、照着接、照着查的 AI 城市公共规范。</p>
-<p>一百年前，京张铁路的价值不只是&quot;中国人自己修的第一条铁路&quot;，更在于在没有外部技术控制权的条件下，**自己确定技术规格并让它跑通**。自主 → 定标 → 互通，是京张真正的技术遗产。任务书列出的五大功能中，&quot;AI 全栈自主创新体系&quot;与&quot;AI 治理全球话语权&quot;正是这条线的两端，中间隔了一百年 <code><span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span></code>。</p>
-<p>轨距（gauge）是看不见的。它不生产任何一列火车，却决定了哪些车能上这条线、哪些路网能连起来。**掌握标准的人不必拥有车辆，就获得了网络的话语权。** 治理话语权不来自宣言，来自别人必须按你的规格来建。这是本方案对该项功能给出的机制答案。</p>
-<p>&gt; **合规声明**：本方案全部空间内容为**概念建议**，供专业团队深化，不构成法定规划、审定结论、实施承诺、投资承诺或工程可行性结论。所依据的边界为组织方提供的临时替代边界，不得作为官方红线或精确面积依据。</p>
+<p><strong>一句话概念</strong>：这条带子最终要输出的不是建筑，而是一套&quot;公制&quot;——一份任何人都能照着建、照着接、照着查的 AI 城市公共规范。</p>
+<p>一百年前，京张铁路的价值不只是&quot;中国人自己修的第一条铁路&quot;，更在于在没有外部技术控制权的条件下，<strong>自己确定技术规格并让它跑通</strong>。自主 → 定标 → 互通，是京张真正的技术遗产。任务书列出的五大功能中，&quot;AI 全栈自主创新体系&quot;与&quot;AI 治理全球话语权&quot;正是这条线的两端，中间隔了一百年 <code>[source:AGENT-TASKBOOK]</code>。</p>
+<p>轨距（gauge）是看不见的。它不生产任何一列火车，却决定了哪些车能上这条线、哪些路网能连起来。<strong>掌握标准的人不必拥有车辆，就获得了网络的话语权。</strong> 治理话语权不来自宣言，来自别人必须按你的规格来建。这是本方案对该项功能给出的机制答案。</p>
+<blockquote><p><strong>合规声明</strong>：本方案全部空间内容为<strong>概念建议</strong>，供专业团队深化，不构成法定规划、审定结论、实施承诺、投资承诺或工程可行性结论。所依据的边界为组织方提供的临时替代边界，不得作为官方红线或精确面积依据。</p></blockquote>
 <p>---</p>
 <h2>设计依据与资料清单</h2>
 <h3>依据来源与可用性分级</h3>
-<p>本方案严格区分 formal-ready、background-only 与 provisional-only 三类资料，读取 <code>data/source_registry.json</code> 后再选证据，不把背景性或临时性材料升格为法定控制依据 <code><span class="evidence evidence-source">[source:SOURCE-REGISTRY]</span></code>。</p>
-<p>| 资料 | 用途 | 可用性 | 本方案处理 | |---|---|---|---| | 公开任务书与项目公告 | 三层范围、三区两翼、五大功能口径 | formal-ready | 直接引用 <code><span class="evidence evidence-source">[source:PROJECT-OFFICIAL-ANNOUNCEMENT]</span></code> <code><span class="evidence evidence-source">[source:OFFICIAL-ANNOUNCEMENT]</span></code> <code><span class="evidence evidence-standard">[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</span></code> | | 结构化事实包 | 经组织方整理的口径与术语 | formal-ready | 用于统一表述 <code><span class="evidence evidence-source">[source:PROCESSED-FACT-PACK]</span></code> | | 面向智能体任务书 | agent.1–agent.6 必答任务 | formal-ready | 逐条在正文展开 <code><span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span></code> | | <code>ranges/planning_limits.json</code> | 官方面积口径与控制指标状态 | formal-ready | 面积对照与缺口披露 <code><span class="evidence evidence-source">[source:SITE-PACKAGE]</span></code> | | <code>geometry/provisional_boundaries.geojson</code> | 临时边界 | provisional-only | **仅**用于生成、可视化与自检 <code><span class="evidence evidence-source">[source:BOUNDARY-SOURCE]</span></code> <code><span class="evidence evidence-data">[data:geometry/site_boundary.geojson#SITE-001]</span></code> | | 重点区临时范围 | 三大核心功能分区 | provisional-only | 仅作方向性设计依据 <code><span class="evidence evidence-source">[source:KEY-AREA-SOURCE]</span></code> | | <code>enums/land_use_codes.json</code> | 用地分类代码 | formal-ready（项目子集） | 正式统计前须导入完整官方代码表 <code><span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</span></code> | | 全球案例与史料 | 案例参照与文化叙事 | 待补 | 见第 13 章，本版标注 <code>[待证]</code>，不作断言 |</p>
+<p>本方案严格区分 formal-ready、background-only 与 provisional-only 三类资料，读取 <code>data/source_registry.json</code> 后再选证据，不把背景性或临时性材料升格为法定控制依据 <code>[source:SOURCE-REGISTRY]</code>。</p>
+<div class="proposal-table"><table><thead><tr><th>资料</th><th>用途</th><th>可用性</th><th>本方案处理</th></tr></thead><tbody><tr><td>公开任务书与项目公告</td><td>三层范围、三区两翼、五大功能口径</td><td>formal-ready</td><td>直接引用 <code>[source:PROJECT-OFFICIAL-ANNOUNCEMENT]</code> <code>[source:OFFICIAL-ANNOUNCEMENT]</code> <code>[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]</code></td></tr><tr><td>结构化事实包</td><td>经组织方整理的口径与术语</td><td>formal-ready</td><td>用于统一表述 <code>[source:PROCESSED-FACT-PACK]</code></td></tr><tr><td>面向智能体任务书</td><td>agent.1–agent.6 必答任务</td><td>formal-ready</td><td>逐条在正文展开 <code>[source:AGENT-TASKBOOK]</code></td></tr><tr><td><code>ranges/planning_limits.json</code></td><td>官方面积口径与控制指标状态</td><td>formal-ready</td><td>面积对照与缺口披露 <code>[source:SITE-PACKAGE]</code></td></tr><tr><td><code>geometry/provisional_boundaries.geojson</code></td><td>临时边界</td><td>provisional-only</td><td><strong>仅</strong>用于生成、可视化与自检 <code>[source:BOUNDARY-SOURCE]</code> <code>[data:geometry/site_boundary.geojson#SITE-001]</code></td></tr><tr><td>重点区临时范围</td><td>三大核心功能分区</td><td>provisional-only</td><td>仅作方向性设计依据 <code>[source:KEY-AREA-SOURCE]</code></td></tr><tr><td><code>enums/land_use_codes.json</code></td><td>用地分类代码</td><td>formal-ready（项目子集）</td><td>正式统计前须导入完整官方代码表 <code>[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]</code></td></tr><tr><td>全球案例与史料</td><td>案例参照与文化叙事</td><td>待补</td><td>见第 13 章，本版标注 <code>[待证]</code>，不作断言</td></tr></tbody></table></div>
 <h3>证据链对应关系</h3>
 <ul>
 <li><code>sources.json</code> 记录每条引用的发布者、URL、检索日期、覆盖范围、许可与已知局限</li>
 <li><code>assumptions.json</code> 记录全部假设值（红线宽度、层数、价格带口径）及其不可用范围</li>
 <li><code>compliance_matrix.json</code> 覆盖公告 1.3/1.4/1.5 全部任务与 agent.1–agent.6</li>
-<li><code>standard_matrix.json</code> 回应强制性专业标准 <code><span class="evidence evidence-standard">[standard:MOHURD-URBAN-DESIGN-MEASURES]</span></code>、<code><span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span></code>、<code><span class="evidence evidence-standard">[standard:MNR-LAND-USE-CLASSIFICATION]</span></code></li>
-<li><code>design_depth_matrix.json</code> 逐项标注设计深度完成状态 <code><span class="evidence evidence-depth">[depth:land_use_layout]</span></code></li>
+<li><code>standard_matrix.json</code> 回应强制性专业标准 <code>[standard:MOHURD-URBAN-DESIGN-MEASURES]</code>、<code>[standard:MOHURD-CONTROL-DETAILED-PLANNING]</code>、<code>[standard:MNR-LAND-USE-CLASSIFICATION]</code></li>
+<li><code>design_depth_matrix.json</code> 逐项标注设计深度完成状态 <code>[depth:land_use_layout]</code></li>
 </ul>
 <h3>数据缺口（本章明确披露）</h3>
-<p>组织方尚未提供官方红线与重点区精确 polygon；<code>planning_limits.json</code> 中容积率、建筑高度、建筑密度、绿地率、退线五项官方控制指标状态均为 <code>missing</code> <code><span class="evidence evidence-source">[source:SITE-PACKAGE]</span></code>。本方案**不代填**这些指标，保持 <code>unknown</code>，并在第 11 章说明替换官方数据后需重算的范围。</p>
+<p>组织方尚未提供官方红线与重点区精确 polygon；<code>planning_limits.json</code> 中容积率、建筑高度、建筑密度、绿地率、退线五项官方控制指标状态均为 <code>missing</code> <code>[source:SITE-PACKAGE]</code>。本方案<strong>不代填</strong>这些指标，保持 <code>unknown</code>，并在第 11 章说明替换官方数据后需重算的范围。</p>
 <figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"><figcaption>资料证据链与提交包关系图</figcaption></figure>
 <p>---</p>
 <h2>三层范围工作框架</h2>
 <h3>三层目标与深度</h3>
-<p>| 层级 | 范围 | 官方面积 | 本方案深度 | 本方案复算 | |---|---|---|---|---| | 统筹研究范围 | 北五环—西直门外大街 | 43.60 km² | 产业与未来城市形态研究 | 未复算（无官方边界） | | 总体设计范围 | 遗址公园周边 1–2 km | 11.40 km² | 控规深度城市设计 | **11.413 km²**，偏差 0.11% <code><span class="evidence evidence-metric">[metric:site_area_sqm]</span></code> | | 重点精细化设计 | 三大核心功能分区 | 368.40 ha | 规划综合实施方案深度 | 368.40 ha（临时范围） |</p>
-<p>复算值与官方公布口径的 0.11% 偏差，反向印证了临时边界与投影链路（EPSG:4548，CGCS2000 3 度带 39 带）的正确性。但**这不等于边界准确**——临时边界是粗略替代，偏差小只说明量级一致。</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>范围</th><th>官方面积</th><th>本方案深度</th><th>本方案复算</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>北五环—西直门外大街</td><td>43.60 km²</td><td>产业与未来城市形态研究</td><td>未复算（无官方边界）</td></tr><tr><td>总体设计范围</td><td>遗址公园周边 1–2 km</td><td>11.40 km²</td><td>控规深度城市设计</td><td><strong>11.413 km²</strong>，偏差 0.11% <code>[metric:site_area_sqm]</code></td></tr><tr><td>重点精细化设计</td><td>三大核心功能分区</td><td>368.40 ha</td><td>规划综合实施方案深度</td><td>368.40 ha（临时范围）</td></tr></tbody></table></div>
+<p>复算值与官方公布口径的 0.11% 偏差，反向印证了临时边界与投影链路（EPSG:4548，CGCS2000 3 度带 39 带）的正确性。但<strong>这不等于边界准确</strong>——临时边界是粗略替代，偏差小只说明量级一致。</p>
 <h3>三层如何逐级落实</h3>
-<p>统筹研究范围回答&quot;这条带子在区域创新网络中承担什么&quot;；总体设计范围回答&quot;空间如何组织才能支撑这个承担&quot;；重点区域回答&quot;具体怎么建、先建什么&quot;。三层不是三张图的详略差别，而是同一套&quot;制标—首装—量产&quot;逻辑在不同尺度上的展开（见下一章）<code><span class="evidence evidence-depth">[depth:three_level_scope_framework]</span></code>。</p>
+<p>统筹研究范围回答&quot;这条带子在区域创新网络中承担什么&quot;；总体设计范围回答&quot;空间如何组织才能支撑这个承担&quot;；重点区域回答&quot;具体怎么建、先建什么&quot;。三层不是三张图的详略差别，而是同一套&quot;制标—首装—量产&quot;逻辑在不同尺度上的展开（见下一章）<code>[depth:three_level_scope_framework]</code>。</p>
 <h3>provisional boundary 的限制与替换清单</h3>
-<p>本方案使用 <code>geometry_role=&amp;quot;provisional_constraint&amp;quot;</code>、<code>official_boundary=false</code>、<code>boundary_precision=&amp;quot;provisional_rough&amp;quot;</code> 的临时边界 <code><span class="evidence evidence-data">[data:geometry/constraints.geojson#CN-001]</span></code>。它**仅**适用于：临时生成、人类可读可视化、非法定设计讨论、本地自检。它**不得**用于：官方红线、审批依据、精确面积计算、法定规划控制、权属或工程边界。</p>
+<p>本方案使用 <code>geometry_role=&quot;provisional_constraint&quot;</code>、<code>official_boundary=false</code>、<code>boundary_precision=&quot;provisional_rough&quot;</code> 的临时边界 <code>[data:geometry/constraints.geojson#CN-001]</code>。它<strong>仅</strong>适用于：临时生成、人类可读可视化、非法定设计讨论、本地自检。它<strong>不得</strong>用于：官方红线、审批依据、精确面积计算、法定规划控制、权属或工程边界。</p>
 <p>官方 polygon 发布后需重算：<code>land_use.geojson</code> 全量剖分、<code>roads.geojson</code> 路网、<code>buildings.geojson</code> 基底、<code>phasing.geojson</code> 分期，以及 <code>metrics.json</code> 中全部面积与比值指标。几何生成脚本为参数化实现，替换边界源文件后可一次性重跑，无需重绘。</p>
 <figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与空间工作框架图"><figcaption>三层范围与空间工作框架图</figcaption></figure>
 <p>---</p>
 <h2>统筹研究范围产业与未来城市研究</h2>
 <h3>总体概念与命名体系（agent.1）</h3>
-<p>| 层级 | 中文 | 英文 | 含义 | |---|---|---|---| | 总体概念 | **京张公制** | **The Jing-Zhang Gauge** | 「公」=公共/公开，「制」=规格/制度；双关公制单位体系——全球通用的度量约定 | | 规范主体 | 京张轨距 JZ-Gauge | JZ-Gauge | 版本化的 AI 城市公共规范集 | | 组件库 | 京张标准件 JZ-Parts | JZ-Parts | 可采购、可安装、可退役的实体组件目录 | | 场景规程 | 京张场景规程 JZ-Specs | JZ-Specs | 每个 AI 场景的行为边界与人工复核规则 | | 荣誉体系 | 立标碑 / 基准点 | Datum Stones | 见第 9 章 | | 年度活动 | 定标周 | Gauge Week | 见第 10 章 |</p>
-<p>不采用&quot;智脉/智谷/走廊&quot;一类命名：它们描述形态而不描述功能。**一个能被别的城市&quot;采用&quot;的名字，比一个好听的名字更接近治理话语权。**</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>中文</th><th>英文</th><th>含义</th></tr></thead><tbody><tr><td>总体概念</td><td><strong>京张公制</strong></td><td><strong>The Jing-Zhang Gauge</strong></td><td>「公」=公共/公开，「制」=规格/制度；双关公制单位体系——全球通用的度量约定</td></tr><tr><td>规范主体</td><td>京张轨距 JZ-Gauge</td><td>JZ-Gauge</td><td>版本化的 AI 城市公共规范集</td></tr><tr><td>组件库</td><td>京张标准件 JZ-Parts</td><td>JZ-Parts</td><td>可采购、可安装、可退役的实体组件目录</td></tr><tr><td>场景规程</td><td>京张场景规程 JZ-Specs</td><td>JZ-Specs</td><td>每个 AI 场景的行为边界与人工复核规则</td></tr><tr><td>荣誉体系</td><td>立标碑 / 基准点</td><td>Datum Stones</td><td>见第 9 章</td></tr><tr><td>年度活动</td><td>定标周</td><td>Gauge Week</td><td>见第 10 章</td></tr></tbody></table></div>
+<p>不采用&quot;智脉/智谷/走廊&quot;一类命名：它们描述形态而不描述功能。<strong>一个能被别的城市&quot;采用&quot;的名字，比一个好听的名字更接近治理话语权。</strong></p>
 <h3>视觉识别方向（agent.1）</h3>
-<p>核心符号为两条平行线加一个横向刻度标记，同时读作轨距断面、度量刻度与版本线。基底取铁轨钢灰与道砟色。**唯一强调色是&quot;版本色&quot;**：每个规范版本对应一个色号，实体标准件上直接刷该色，市民在街上就能看出这个设施建于哪一版规范之下——把&quot;可审计&quot;变成肉眼可见的设计动作。</p>
-<p>明确不做：拟人化 AI 头像、神经网络球、发光大脑、赛博渐变。任务书禁止&quot;过度娱乐化、网红化&quot;，且这类视觉已无识别度 <code><span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span></code>。</p>
+<p>核心符号为两条平行线加一个横向刻度标记，同时读作轨距断面、度量刻度与版本线。基底取铁轨钢灰与道砟色。<strong>唯一强调色是&quot;版本色&quot;</strong>：每个规范版本对应一个色号，实体标准件上直接刷该色，市民在街上就能看出这个设施建于哪一版规范之下——把&quot;可审计&quot;变成肉眼可见的设计动作。</p>
+<p>明确不做：拟人化 AI 头像、神经网络球、发光大脑、赛博渐变。任务书禁止&quot;过度娱乐化、网红化&quot;，且这类视觉已无识别度 <code>[source:AGENT-TASKBOOK]</code>。</p>
 <h3>三大定位的解释角度</h3>
-<p>| 任务书定位 | 本方案表述 | 核心动作 | |---|---|---| | 百年京张文化带 | 从自主修路到自主定标 | 把标准编制过程本身做成可参观的公共文化内容 | | 都市AI生活体验带 | 标准件即体验 | 每件 AI 设施可扫码查规格、责任人、退役日期 | | AI融合创新带 | 一致性测试即入口 | 企业接入方式是&quot;通过认证&quot;，不是&quot;签招商协议&quot; |</p>
+<div class="proposal-table"><table><thead><tr><th>任务书定位</th><th>本方案表述</th><th>核心动作</th></tr></thead><tbody><tr><td>百年京张文化带</td><td>从自主修路到自主定标</td><td>把标准编制过程本身做成可参观的公共文化内容</td></tr><tr><td>都市AI生活体验带</td><td>标准件即体验</td><td>每件 AI 设施可扫码查规格、责任人、退役日期</td></tr><tr><td>AI融合创新带</td><td>一致性测试即入口</td><td>企业接入方式是&quot;通过认证&quot;，不是&quot;签招商协议&quot;</td></tr></tbody></table></div>
 <h3>AI 全栈自主创新体系与生态案例（agent.2）</h3>
 <p>生态机制围绕土地、空间、产业、资金、人才、算力、数据、场景八类要素组织，核心是把&quot;认证&quot;变成产业入口：制标区编制规范并提供一致性测试，接入翼负责要素配置，首装区提供真实实装场地，量产区承接规模化。企业不必先谈政策，先过测试。</p>
-<p>全球案例参照方向如下。**本版仅给出选案方向与选案理由，具体数据、企业名单与投资额一律不编造**，正式稿前逐条补齐可公开来源：</p>
-<p>| 案例方向 | 参照什么 | 状态 | |---|---|---| | 城市级传感部署的公众争议与终止案例 | 失败教训与退出机制设计 | <code>[待证]</code> | | 开放式城市算法/数据登记制度 | 登记与公示的制度形式 | <code>[待证]</code> | | 面向公共采购的技术规范目录 | 组件库的制度可行性 | <code>[待证]</code> | | 科学城与创新街区空间组织 | 制标—首装—量产序列是否有先例 | <code>[待证]</code> | | 铁路遗产线性公园更新 | 线性空间缝合与激活手法 | <code>[待证]</code> | | 开源社区治理与版本发布机制 | 版本线与异议机制的组织原型 | <code>[待证]</code> | | 标准组织的一致性认证机制 | 认证如何成为产业入口 | <code>[待证]</code> |</p>
-<p><code><span class="evidence evidence-standard">[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</span></code></p>
+<p>全球案例参照方向如下。<strong>本版仅给出选案方向与选案理由，具体数据、企业名单与投资额一律不编造</strong>，正式稿前逐条补齐可公开来源：</p>
+<div class="proposal-table"><table><thead><tr><th>案例方向</th><th>参照什么</th><th>状态</th></tr></thead><tbody><tr><td>城市级传感部署的公众争议与终止案例</td><td>失败教训与退出机制设计</td><td><code>[待证]</code></td></tr><tr><td>开放式城市算法/数据登记制度</td><td>登记与公示的制度形式</td><td><code>[待证]</code></td></tr><tr><td>面向公共采购的技术规范目录</td><td>组件库的制度可行性</td><td><code>[待证]</code></td></tr><tr><td>科学城与创新街区空间组织</td><td>制标—首装—量产序列是否有先例</td><td><code>[待证]</code></td></tr><tr><td>铁路遗产线性公园更新</td><td>线性空间缝合与激活手法</td><td><code>[待证]</code></td></tr><tr><td>开源社区治理与版本发布机制</td><td>版本线与异议机制的组织原型</td><td><code>[待证]</code></td></tr><tr><td>标准组织的一致性认证机制</td><td>认证如何成为产业入口</td><td><code>[待证]</code></td></tr></tbody></table></div>
+<p><code>[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]</code></p>
 <p>---</p>
 <h2>总体设计范围城市更新与控规深度城市设计</h2>
 <h3>空间结构：一线、三工位、两接口</h3>
-<p>京张遗址公园南北向为**版本线 Version Line**——不是景观轴，是一条产品升级流水线的物理化：北端制定规范，中段首装验证，南端规模应用。一个标准件从 draft 到 stable 的全过程，在空间上走完一次南北路程 <code><span class="evidence evidence-data">[data:geometry/roads.geojson#RD-001]</span></code>。</p>
-<p>这给&quot;南北连通&quot;一个内在必然性：南北不是交通意义的连通，是**流程意义的连通**，不是为通而通 <code><span class="evidence evidence-depth">[depth:overall_spatial_structure]</span></code>。</p>
+<p>京张遗址公园南北向为<strong>版本线 Version Line</strong>——不是景观轴，是一条产品升级流水线的物理化：北端制定规范，中段首装验证，南端规模应用。一个标准件从 draft 到 stable 的全过程，在空间上走完一次南北路程 <code>[data:geometry/roads.geojson#RD-001]</code>。</p>
+<p>这给&quot;南北连通&quot;一个内在必然性：南北不是交通意义的连通，是<strong>流程意义的连通</strong>，不是为通而通 <code>[depth:overall_spatial_structure]</code>。</p>
 <h3>用地与功能布局</h3>
-<p>用地采用 Voronoi 剖分生成，相邻图斑共享精确边界坐标，完整覆盖设计范围且无缝隙、无重叠 <code><span class="evidence evidence-data">[data:geometry/land_use.geojson#LU-001]</span></code>。全域共 11 类用地代码：版本线核心绿廊为公园绿地（1401），缝合口为广场用地（1403），外缘配置防护绿地（1402），三工位内按主导功能配置科研（0802）、居住与社区服务（0701/0702）、商业服务业（05），腹地周期性插入教育、医疗、文化、体育设施用地 <code><span class="evidence evidence-depth">[depth:land_use_layout]</span></code>。</p>
+<p>用地采用 Voronoi 剖分生成，相邻图斑共享精确边界坐标，覆盖设计范围但<strong>并非完全无缝</strong>：<code>metrics.json</code> 的 <code>topology_check</code> 记录残留缝隙 14.897 m²、重叠 0.099 m²，<code>land_use_partition_complete</code> 为 <strong><code>false</code></strong> <code>[data:geometry/land_use.geojson#LU-001]</code>。相对 11.41 km² 的场地，该残差约为百万分之一点五量级，属浮点求交与坐标精度残差，不改变用地构成与面积复算结论；但本方案按实际值披露，不写成&quot;零缝隙&quot;。全域共 11 类用地代码：版本线核心绿廊为公园绿地（1401），缝合口为广场用地（1403），外缘配置防护绿地（1402），三工位内按主导功能配置科研（0802）、居住与社区服务（0701/0702）、商业服务业（05），腹地周期性插入教育、医疗、文化、体育设施用地 <code>[depth:land_use_layout]</code>。</p>
 <p>道路用地（1207）沿地块边界扣除后并入剖分，不产生夹缝地。留白用地（16）保留在外围，为官方边界发布后的调整留出余量。</p>
 <h3>城市更新总体框架</h3>
-<p>现状诊断以铁路两侧割裂、既有社区肌理、既有商业权属三项为核心问题识别，均基于公开可见的空间条件，不使用非公开资料 <code><span class="evidence evidence-depth">[depth:existing_conditions_diagnosis]</span></code>。更新对象按&quot;制标能力—首装场地—量产承接&quot;三类识别，而非按建筑年代一刀切。拆改留分类逻辑见第 7 章。</p>
+<p>现状诊断以铁路两侧割裂、既有社区肌理、既有商业权属三项为核心问题识别，均基于公开可见的空间条件，不使用非公开资料 <code>[depth:existing_conditions_diagnosis]</code>。更新对象按&quot;制标能力—首装场地—量产承接&quot;三类识别，而非按建筑年代一刀切。拆改留分类逻辑见第 7 章。</p>
 <h3>待确认的控规条件</h3>
-<p>建筑总规模、容积率、建筑高度、密度、绿地率、退线均缺官方控制条件。本章所有涉及开发强度的表述均为概念建议，**不得视为审定指标** <code><span class="evidence evidence-source">[source:SITE-PACKAGE]</span></code> <code><span class="evidence evidence-depth">[depth:development_intensity_controls]</span></code>。</p>
+<p>建筑总规模、容积率、建筑高度、密度、绿地率、退线均缺官方控制条件。本章所有涉及开发强度的表述均为概念建议，<strong>不得视为审定指标</strong> <code>[source:SITE-PACKAGE]</code> <code>[depth:development_intensity_controls]</code>。</p>
 <p>---</p>
 <h2>重点区域详细设计</h2>
-<p>本方案共设三个重点区 <code><span class="evidence evidence-metric">[metric:key_area_count]</span></code>，它们不是三块并列的产业用地，而是同一条生产线上的三个工位 <code><span class="evidence evidence-data">[data:geometry/key_areas.geojson#KEY-001]</span></code> <code><span class="evidence evidence-depth">[depth:three_key_area_detailed_design]</span></code>。</p>
+<p>本方案共设三个重点区 <code>[metric:key_area_count]</code>，它们不是三块并列的产业用地，而是同一条生产线上的三个工位 <code>[data:geometry/key_areas.geojson#KEY-001]</code> <code>[depth:three_key_area_detailed_design]</code>。</p>
 <h3>众智园 AI 自主创新加速区 → 制标区 Gauge Works（192.1 ha）</h3>
 <ul>
-<li>**定位**：规范编制、一致性测试实验室、红队与认证；对应&quot;AI 全栈自主创新体系&quot;与&quot;AI 治理全球话语权&quot;</li>
-<li>**空间结构**：以一致性测试实验室为核心，规范编制机构、认证机构、开源社区空间环绕布置，向版本线开口</li>
-<li>**建筑更新**：科研用地为主，向走廊侧配置文化用地，承载&quot;标准编制过程可参观&quot;</li>
-<li>**交通慢行**：版本线北段起点，缝合口密度最高</li>
-<li>**公共空间**：D-01 零号基准所在地</li>
-<li>**AI 场景**：S-10 开发者现场调试通道、T-01 一致性测试实验室、T-03 红队压力测试</li>
-<li>**实施风险**：标准制定权的行政归属未定，本方案只提机制设想，不涉及行政授权判断</li>
+<li><strong>定位</strong>：规范编制、一致性测试实验室、红队与认证；对应&quot;AI 全栈自主创新体系&quot;与&quot;AI 治理全球话语权&quot;</li>
+<li><strong>空间结构</strong>：以一致性测试实验室为核心，规范编制机构、认证机构、开源社区空间环绕布置，向版本线开口</li>
+<li><strong>建筑更新</strong>：科研用地为主，向走廊侧配置文化用地，承载&quot;标准编制过程可参观&quot;</li>
+<li><strong>交通慢行</strong>：版本线北段起点，缝合口密度最高</li>
+<li><strong>公共空间</strong>：D-01 零号基准所在地</li>
+<li><strong>AI 场景</strong>：S-10 开发者现场调试通道、T-01 一致性测试实验室、T-03 红队压力测试</li>
+<li><strong>实施风险</strong>：标准制定权的行政归属未定，本方案只提机制设想，不涉及行政授权判断</li>
 </ul>
 <h3>北京 AI 原点社区 → 首装区 Proto Blocks（104.3 ha）</h3>
 <ul>
-<li>**定位**：标准件首次实装、居民陪审、快速迭代退版；对应&quot;世界级 AI 创新生态&quot;</li>
-<li>**空间结构**：居住与社区服务用地为主，走廊侧配置社区服务设施用地承接陪审与展示功能</li>
-<li>**建筑更新**：以既有社区为载体，优先&quot;留、改&quot;，避免大规模拆除</li>
-<li>**公共空间**：D-02 公议台所在地</li>
-<li>**AI 场景**：S-05 社区服务窗口、S-09 无障碍与适老导引、T-02 首装陪审</li>
-<li>**实施风险**：居民对被首装的接受度是最大不确定性。设计上以&quot;可拒绝、可回退、有非 AI 冗余路径&quot;作为前置条件，而非事后补救</li>
+<li><strong>定位</strong>：标准件首次实装、居民陪审、快速迭代退版；对应&quot;世界级 AI 创新生态&quot;</li>
+<li><strong>空间结构</strong>：居住与社区服务用地为主，走廊侧配置社区服务设施用地承接陪审与展示功能</li>
+<li><strong>建筑更新</strong>：以既有社区为载体，优先&quot;留、改&quot;，避免大规模拆除</li>
+<li><strong>公共空间</strong>：D-02 公议台所在地</li>
+<li><strong>AI 场景</strong>：S-05 社区服务窗口、S-09 无障碍与适老导引、T-02 首装陪审</li>
+<li><strong>实施风险</strong>：居民对被首装的接受度是最大不确定性。设计上以&quot;可拒绝、可回退、有非 AI 冗余路径&quot;作为前置条件，而非事后补救</li>
 </ul>
 <h3>大钟寺 AI 产业聚集区 → 量产区 Market Floor（72.0 ha）</h3>
 <ul>
-<li>**定位**：通过认证的标准件规模化部署；对应&quot;智能原生新业态&quot;</li>
-<li>**空间结构**：商业服务业用地为主，形成智能原生消费与商务场景</li>
-<li>**公共空间**：D-03 退役场所在地</li>
-<li>**AI 场景**：S-07 智能原生商业、S-12 设施退役与数据销毁</li>
-<li>**实施风险**：既有商业权属复杂，本方案不擅自改造企业建筑或权属空间</li>
+<li><strong>定位</strong>：通过认证的标准件规模化部署；对应&quot;智能原生新业态&quot;</li>
+<li><strong>空间结构</strong>：商业服务业用地为主，形成智能原生消费与商务场景</li>
+<li><strong>公共空间</strong>：D-03 退役场所在地</li>
+<li><strong>AI 场景</strong>：S-07 智能原生商业、S-12 设施退役与数据销毁</li>
+<li><strong>实施风险</strong>：既有商业权属复杂，本方案不擅自改造企业建筑或权属空间</li>
 </ul>
+<blockquote><p><strong>本片区临时几何存在已知定位偏差，必须先声明</strong> <code>[source:ISSUE-1029]</code> <code>[depth:risk_missing_data]</code>：本方案沿用组织方 <code>provisional_boundaries.geojson</code> 的 <code>PROV-KEY-003</code>，其面积复算 72.0 ha 与公告吻合，但<strong>质心落在北京北站／西直门一带，而非大钟寺</strong>。该偏差由参赛方 @anselasimov-web 在 Issue #1029 中提出，维护者已独立复核确认成立，并以 #1036 澄清「三个 KEY 矩形只按公告南北顺序与约面积配置，占位几何尚未完成站点/道路锚定」，同时明确<strong>不平移坐标、不改面积</strong>，等待官方 key-area polygon。</p><p>我方也做了独立核对，结果一致：<code>PROV-KEY-003</code> 质心 39.946920 / 116.348500，距「北京北站信号楼」约 <strong>165 m</strong>、距京包客专线约 235 m；且按三处 provisional 重点区划定的提取范围内<strong>不含任何名称带「大钟寺」的地物</strong>。该核对所用的 OpenStreetMap 提取（<code>osm_base 2026-05-31</code>，计算于 EPSG:4548）<strong>不属于本包</strong>，随同作者的另一份投稿 <code>submissions/JIQINGFENG0818/jingzhang-patrol/</code> 提交并在该包 <code>sources.json</code> 中登记；此处仅作为旁证引用，本包自身的几何与指标不依赖该提取。</p><p><strong>因此本节全部空间结论按「量产区」这一功能工位成立，不按「大钟寺站周边」这一具体区位成立。</strong> 公告 1.5(3)3) 要求的大钟寺地铁站一体化与路口四象限步行连通，本版<strong>不在此临时几何上作图</strong>，留待官方边界发布后按新几何重做。本方案不自行平移该几何，以免与源几何脱钩。</p></blockquote>
 <h3>两翼</h3>
 <ul>
-<li>**接入翼**（中关村科技服务翼）：资本、IP 与全球要素通过认证接口进入，替代行政对接</li>
-<li>**实测翼**（小月河场景赋能翼）：真实水岸与社区环境下的场景压力测试，失败案例公开</li>
+<li><strong>接入翼</strong>（中关村科技服务翼）：资本、IP 与全球要素通过认证接口进入，替代行政对接</li>
+<li><strong>实测翼</strong>（小月河场景赋能翼）：真实水岸与社区环境下的场景压力测试，失败案例公开</li>
 </ul>
-<p>&gt; 三个重点区 polygon 均为 provisional，上述结论只能作为**方向性设计**；官方 polygon 发布后需重新核定用地边界、规模与实施项目。</p>
+<blockquote><p>三个重点区 polygon 均为 provisional，上述结论只能作为<strong>方向性设计</strong>；官方 polygon 发布后需重新核定用地边界、规模与实施项目。</p></blockquote>
 <figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"><figcaption>三处重点区域索引与设计任务图</figcaption></figure>
 <p>---</p>
 <h2>AI 创新生态、人才画像与 AI+ 场景</h2>
 <h3>用户画像（agent.3，6 类）</h3>
-<p>| 编号 | 画像 | 与创新带的关系 | 最关心什么 | |---|---|---|---| | P-01 | 规范编制与测试工程师 | 制标区常驻 | 测试设备、同行密度、规范迭代节奏 | | P-02 | 硬件与集成创业者 | 接入翼→制标区→量产区 | 认证周期与成本、能否快速拿到实装场地 | | P-03 | 首装区原住居民 | 被首装、被影响 | 能不能拒绝、坏了找谁、会不会被记录 | | P-04 | 高校学生与开发者 | 实测翼、开发者社区 | 有没有可动手的真实场地、数据能不能拿 | | P-05 | 采购与运维方（区属单位、物业） | 全带 | 采购依据、维保责任、坏了怎么换、退役怎么算 | | P-06 | 国际同行与考察者 | 定标周、基准点 | 这套规范能不能拿回去用 |</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>画像</th><th>与创新带的关系</th><th>最关心什么</th></tr></thead><tbody><tr><td>P-01</td><td>规范编制与测试工程师</td><td>制标区常驻</td><td>测试设备、同行密度、规范迭代节奏</td></tr><tr><td>P-02</td><td>硬件与集成创业者</td><td>接入翼→制标区→量产区</td><td>认证周期与成本、能否快速拿到实装场地</td></tr><tr><td>P-03</td><td>首装区原住居民</td><td>被首装、被影响</td><td>能不能拒绝、坏了找谁、会不会被记录</td></tr><tr><td>P-04</td><td>高校学生与开发者</td><td>实测翼、开发者社区</td><td>有没有可动手的真实场地、数据能不能拿</td></tr><tr><td>P-05</td><td>采购与运维方（区属单位、物业）</td><td>全带</td><td>采购依据、维保责任、坏了怎么换、退役怎么算</td></tr><tr><td>P-06</td><td>国际同行与考察者</td><td>定标周、基准点</td><td>这套规范能不能拿回去用</td></tr></tbody></table></div>
 <p>P-05 是多数方案缺失的角色。城市 AI 设施最终由基层单位采购和运维，不写这个角色，&quot;可实施性&quot;就是空的。</p>
 <h3>AI 场景卡（agent.3，16 张）</h3>
-<p>**通篇设计约束：没有一张场景卡依赖个体身份识别。** S-13 至 S-16 直接回应征集方向第 7 条点名的 AI+交通、AI+医疗、AI+教育、机器人、自动驾驶与无人配送六类应用；其中涉及未成年人与就医的两张卡，边界写得比其余更严。 这是主动的设计选择，不是被动的合规声明。任务书明令禁止&quot;隐私侵害、过度监控或无法人工复核的场景&quot; <code><span class="evidence evidence-source">[source:AGENT-TASKBOOK]</span></code>。</p>
-<p>| # | 场景卡 | 空间载体 | 人工复核与回退 | 成熟度 | |---|---|---|---|---| | S-01 | 版本可见的街道照明 | 版本线沿线 | 异常时回退为常亮基础照明 | 成熟 | | S-02 | 遗址公园无人配送接驳 | 缝合口 | 限时限路径；行人密度超阈值自动退出转人工 | 试验 | | S-03 | 设施异常市民上报 | 全带 | AI 只做分类去重，处置决定必须人工；上报人可查处理链 | 成熟 | | S-04 | 铁路遗产分层导览 | 遗址公园 | 史实内容锁定人工审定库，AI 不得生成史实表述 | 成熟 | | S-05 | 社区服务窗口 | 首装区 | 资格认定、补助、纠纷一律转人工，AI 仅做材料预检 | 成熟 | | S-06 | 公共空间人流疏导 | 三区节点 | 只输出引导建议不做强制管控；仅统计密度，不做个体识别 | 成熟 | | S-07 | 智能原生商业 | 量产区 | 商户自愿接入；消费者可一键退出个性化且不降低服务 | 成熟 | | S-08 | 小月河水岸环境监测 | 实测翼 | 数据全量公开；超阈值触发人工现场核查而非自动处置 | 成熟 | | S-09 | 无障碍与适老导引 | 全带缝合口 | 必须有非 AI 物理冗余路径（实体扶手、盲道、人工呼叫） | 成熟 | | S-10 | 开发者现场调试通道 | 制标区/实测翼 | 划定可实验区；实验期间实体标识告知公众 | 试验 | | S-11 | 标准件异议受理 | D-02 公议台 | 异议进入公开队列，须在承诺时限内人工回应 | 成熟 | | S-12 | 设施退役与数据销毁 | D-03 退役场 | 全过程留痕公开；数据销毁出具可核查凭证 | 成熟 | | S-13 | AI+教育：校园与社区学习助教 | 首装区教育用地 | **不做学生个体画像与排名**，未成年人数据仅本地处理不回传；教师保留最终评价权，AI 仅辅助备课与资源检索 | 成熟 | | S-14 | AI+医疗：社区健康站辅助导诊 | 首装区医疗卫生用地 | **不做诊断、不推荐用药**；仅做导诊、排队与无障碍引导；任何涉及诊断、处方、检验判读一律转执业医师 | 成熟 | | S-15 | 机器人：公共空间服务机器人 | 缝合口、量产区 | 限定活动区域与速度上限；遇人群密集自动退出并停靠；每台机器人对应一张标准件规格卡与明确责任人 | 试验 | | S-16 | 自动驾驶：低速接驳测试段 | 实测翼、版本线 | 仅限划定测试段运行，安全员在场；测试期间实体标识告知公众；失效模式纳入 T-03 公开清单 | 试验 |</p>
+<p><strong>通篇设计约束：没有一张场景卡依赖个体身份识别。</strong> S-13 至 S-16 直接回应征集方向第 7 条点名的 AI+交通、AI+医疗、AI+教育、机器人、自动驾驶与无人配送六类应用；其中涉及未成年人与就医的两张卡，边界写得比其余更严。 这是主动的设计选择，不是被动的合规声明。任务书明令禁止&quot;隐私侵害、过度监控或无法人工复核的场景&quot; <code>[source:AGENT-TASKBOOK]</code>。</p>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>场景卡</th><th>空间载体</th><th>人工复核与回退</th><th>成熟度</th></tr></thead><tbody><tr><td>S-01</td><td>版本可见的街道照明</td><td>版本线沿线</td><td>异常时回退为常亮基础照明</td><td>成熟</td></tr><tr><td>S-02</td><td>遗址公园无人配送接驳</td><td>缝合口</td><td>限时限路径；行人密度超阈值自动退出转人工</td><td>试验</td></tr><tr><td>S-03</td><td>设施异常市民上报</td><td>全带</td><td>AI 只做分类去重，处置决定必须人工；上报人可查处理链</td><td>成熟</td></tr><tr><td>S-04</td><td>铁路遗产分层导览</td><td>遗址公园</td><td>史实内容锁定人工审定库，AI 不得生成史实表述</td><td>成熟</td></tr><tr><td>S-05</td><td>社区服务窗口</td><td>首装区</td><td>资格认定、补助、纠纷一律转人工，AI 仅做材料预检</td><td>成熟</td></tr><tr><td>S-06</td><td>公共空间人流疏导</td><td>三区节点</td><td>只输出引导建议不做强制管控；仅统计密度，不做个体识别</td><td>成熟</td></tr><tr><td>S-07</td><td>智能原生商业</td><td>量产区</td><td>商户自愿接入；消费者可一键退出个性化且不降低服务</td><td>成熟</td></tr><tr><td>S-08</td><td>小月河水岸环境监测</td><td>实测翼</td><td>数据全量公开；超阈值触发人工现场核查而非自动处置</td><td>成熟</td></tr><tr><td>S-09</td><td>无障碍与适老导引</td><td>全带缝合口</td><td>必须有非 AI 物理冗余路径（实体扶手、盲道、人工呼叫）</td><td>成熟</td></tr><tr><td>S-10</td><td>开发者现场调试通道</td><td>制标区/实测翼</td><td>划定可实验区；实验期间实体标识告知公众</td><td>试验</td></tr><tr><td>S-11</td><td>标准件异议受理</td><td>D-02 公议台</td><td>异议进入公开队列，须在承诺时限内人工回应</td><td>成熟</td></tr><tr><td>S-12</td><td>设施退役与数据销毁</td><td>D-03 退役场</td><td>全过程留痕公开；数据销毁出具可核查凭证</td><td>成熟</td></tr><tr><td>S-13</td><td>AI+教育：校园与社区学习助教</td><td>首装区教育用地</td><td><strong>不做学生个体画像与排名</strong>，未成年人数据仅本地处理不回传；教师保留最终评价权，AI 仅辅助备课与资源检索</td><td>成熟</td></tr><tr><td>S-14</td><td>AI+医疗：社区健康站辅助导诊</td><td>首装区医疗卫生用地</td><td><strong>不做诊断、不推荐用药</strong>；仅做导诊、排队与无障碍引导；任何涉及诊断、处方、检验判读一律转执业医师</td><td>成熟</td></tr><tr><td>S-15</td><td>机器人：公共空间服务机器人</td><td>缝合口、量产区</td><td>限定活动区域与速度上限；遇人群密集自动退出并停靠；每台机器人对应一张标准件规格卡与明确责任人</td><td>试验</td></tr><tr><td>S-16</td><td>自动驾驶：低速接驳测试段</td><td>实测翼、版本线</td><td>仅限划定测试段运行，安全员在场；测试期间实体标识告知公众；失效模式纳入 T-03 公开清单</td><td>试验</td></tr></tbody></table></div>
 <h3>产业测试验证场景（agent.3，3 个）</h3>
 <ul>
-<li>**T-01 一致性测试实验室**（制标区）：验证标准件是否符合 JZ-Gauge 规范，输出认证/不认证，结果公开</li>
-<li>**T-02 首装陪审**（首装区）：真实居民环境下的可接受度与实际效用，输出迭代建议或退版决定</li>
-<li>**T-03 红队压力测试**（制标区+实测翼）：恶意输入、极端天气、断网条件下的失效行为，输出**公开的失效模式清单**</li>
+<li><strong>T-01 一致性测试实验室</strong>（制标区）：验证标准件是否符合 JZ-Gauge 规范，输出认证/不认证，结果公开</li>
+<li><strong>T-02 首装陪审</strong>（首装区）：真实居民环境下的可接受度与实际效用，输出迭代建议或退版决定</li>
+<li><strong>T-03 红队压力测试</strong>（制标区+实测翼）：恶意输入、极端天气、断网条件下的失效行为，输出<strong>公开的失效模式清单</strong></li>
 </ul>
 <p>T-03 的重点是公开失效模式。没有方案敢写自己的东西会怎么坏，这正是专业性的分水岭。</p>
 <h3>场景—空间—运营映射</h3>
@@ -203,82 +232,100 @@ code {
 <p>---</p>
 <h2>用地、建筑规模与拆改留方案</h2>
 <h3>用地构成</h3>
-<p>用地面积按 <code>land_use.geojson</code> 在 EPSG:4548 下复算，各类占比见 <code>metrics.json</code> 的 <code>land_use_area_by_code_sqm</code> <code><span class="evidence evidence-metric">[metric:site_area_sqm]</span></code>。剖分完整性经校验：缝隙 1.51 ㎡、重叠 0.15 ㎡，相对总面积分别为 0.000013% 与 0.000001%。</p>
+<p>用地面积按 <code>land_use.geojson</code> 在 EPSG:4548 下复算，各类占比见 <code>metrics.json</code> 的 <code>land_use_area_by_code_sqm</code> <code>[metric:site_area_sqm]</code>。剖分完整性经校验：缝隙 1.51 ㎡、重叠 0.15 ㎡，相对总面积分别为 0.000013% 与 0.000001%。</p>
 <h3>建筑规模（概念推算）</h3>
-<p>建筑基底按用地类别差异化布设，为**概念性体量示意，非建筑设计成果** <code><span class="evidence evidence-data">[data:geometry/buildings.geojson#BD-0001]</span></code>：</p>
+<p>建筑基底按用地类别差异化布设，为<strong>概念性体量示意，非建筑设计成果</strong> <code>[data:geometry/buildings.geojson#BD-0001]</code>：</p>
 <ul>
-<li>建筑基底面积见 <code><span class="evidence evidence-metric">[metric:building_footprint_area_sqm]</span></code>，建筑密度见 <code><span class="evidence evidence-metric">[metric:building_density]</span></code>，概念总建筑面积见 <code><span class="evidence evidence-metric">[metric:total_floor_area_sqm]</span></code></li>
+<li>建筑基底面积见 <code>[metric:building_footprint_area_sqm]</code>，建筑密度见 <code>[metric:building_density]</code>，概念总建筑面积见 <code>[metric:total_floor_area_sqm]</code></li>
 <li>层数为按用地类别设定的假设值，记录于 <code>assumptions.json</code></li>
-<li><code>floor_area_ratio</code> 保持 <code>status=&amp;quot;unknown&amp;quot;</code>——公开场地包中不含经批准的容积率控制指标，Agent 不代填</li>
-<li>概念推算值单列为 <code><span class="evidence evidence-metric">[metric:conceptual_floor_area_ratio]</span></code>，单位标为 <code>far</code>，明确区别于法定控制指标</li>
+<li><code>floor_area_ratio</code> 保持 <code>status=&quot;unknown&quot;</code>——公开场地包中不含经批准的容积率控制指标，Agent 不代填</li>
+<li>概念推算值单列为 <code>[metric:conceptual_floor_area_ratio]</code>，单位标为 <code>far</code>，明确区别于法定控制指标</li>
 </ul>
-<p>这一处理是本方案在指标表达上的**主动约束**：宁可留空，不制造看起来完整的假数据。</p>
-<p>建筑高度与风貌控制：制标区以水平舒展的实验与测试建筑为主，首装区维持既有社区尺度，量产区允许相对集中的高度聚集；具体高度分区须待官方控制指标发布后核定，本版不给出高度数值 <code><span class="evidence evidence-depth">[depth:height_massing_character]</span></code> <code><span class="evidence evidence-standard">[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</span></code>。</p>
+<p>这一处理是本方案在指标表达上的<strong>主动约束</strong>：宁可留空，不制造看起来完整的假数据。</p>
+<h3>建筑高度与风貌控制</h3>
+<p>制标区以水平舒展的实验与测试建筑为主，首装区维持既有社区尺度，量产区允许相对集中的高度聚集；具体高度分区须待官方控制指标发布后核定，本版不给出高度数值 <code>[depth:height_massing_character]</code> <code>[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]</code>。</p>
 <h3>拆改留逻辑</h3>
-<p>| 分类 | 判定依据 | 主要分布 | |---|---|---| | 留 | 既有社区肌理完整、居民生活稳定 | 首装区为主 | | 改 | 具备承接制标或测试功能的既有建筑 | 制标区、量产区 | | 新建 | 一致性测试实验室等无既有载体的功能 | 制标区 | | 拆 | 本方案不提出任何具体拆除对象 | — |</p>
-<p>**不给出地块级拆迁结论**，不涉及权属判断，不擅自改造企业建筑 <code><span class="evidence evidence-depth">[depth:retain_renovate_demolish]</span></code>。</p>
+<div class="proposal-table"><table><thead><tr><th>分类</th><th>判定依据</th><th>主要分布</th></tr></thead><tbody><tr><td>留</td><td>既有社区肌理完整、居民生活稳定</td><td>首装区为主</td></tr><tr><td>改</td><td>具备承接制标或测试功能的既有建筑</td><td>制标区、量产区</td></tr><tr><td>新建</td><td>一致性测试实验室等无既有载体的功能</td><td>制标区</td></tr><tr><td>拆</td><td>本方案不提出任何具体拆除对象</td><td>—</td></tr></tbody></table></div>
+<p><strong>不给出地块级拆迁结论</strong>，不涉及权属判断，不擅自改造企业建筑 <code>[depth:retain_renovate_demolish]</code>。</p>
 <p>---</p>
 <h2>交通、轨道、市政与公共服务设施</h2>
 <h3>路网组织</h3>
-<p>路网沿用地剖分边界生成，与地块边界严格一致，因此不产生夹缝地 <code><span class="evidence evidence-data">[data:geometry/roads.geojson#RD-2001]</span></code>。道路用地面积见 <code><span class="evidence evidence-metric">[metric:road_area_sqm]</span></code>，道路面积率见 <code><span class="evidence evidence-metric">[metric:road_area_ratio]</span></code> <code><span class="evidence evidence-depth">[depth:traffic_rail_slow_parking]</span></code>。停车按需求管理原则组织，鼓励以缝合口接驳替代地面停车扩张，具体配建指标待官方标准核定。红线宽度（主线 44 m / 次干 26 m / 支路 16 m）为**概念假设值**，记录于 <code>assumptions.json</code>，需按官方控规条件核定。</p>
+<p>路网沿用地剖分边界生成，与地块边界严格一致，因此不产生夹缝地 <code>[data:geometry/roads.geojson#RD-2001]</code>。道路用地面积见 <code>[metric:road_area_sqm]</code>，道路面积率见 <code>[metric:road_area_ratio]</code> <code>[depth:traffic_rail_slow_parking]</code>。停车按需求管理原则组织，鼓励以缝合口接驳替代地面停车扩张，具体配建指标待官方标准核定。红线宽度（主线 44 m / 次干 26 m / 支路 16 m）为<strong>概念假设值</strong>，记录于 <code>assumptions.json</code>，需按官方控规条件核定。</p>
 <h3>东西缝合的具体做法（agent.4）</h3>
-<p>铁路两侧的割裂是这个场地最真实的物理问题。本方案不靠&quot;多修几座桥&quot;回答，而是：**每一处横向连接点都是一次标准件的完整展示断面**。一个缝合口 = 一组标准件的集合示范（照明、感知、算力、交互、无人配送接驳、无障碍导引），东侧接入什么，西侧就必须有对应接口。缝合口本身成为组件库的实体样板间 <code><span class="evidence evidence-data">[data:geometry/public_space.geojson#PS-001]</span></code>。</p>
-<p>本方案布设 6 处缝合口，位置为概念建议，需结合权属与工程条件由专业团队核定。**不提供桥隧、地下空间或任何工程可行性结论。**</p>
+<p>铁路两侧的割裂是这个场地最真实的物理问题。本方案不靠&quot;多修几座桥&quot;回答，而是：<strong>每一处横向连接点都是一次标准件的完整展示断面</strong>。一个缝合口 = 一组标准件的集合示范（照明、感知、算力、交互、无人配送接驳、无障碍导引），东侧接入什么，西侧就必须有对应接口。缝合口本身成为组件库的实体样板间 <code>[data:geometry/public_space.geojson#PS-001]</code>。</p>
+<p>本方案布设 6 处缝合口，位置为概念建议，需结合权属与工程条件由专业团队核定。<strong>不提供桥隧、地下空间或任何工程可行性结论。</strong></p>
 <h3>轨道与市政</h3>
-<p>轨道接驳与市政承载能力需以官方基础设施资料为准，本版无可用公开数据，列为数据缺口 <code><span class="evidence evidence-depth">[depth:municipal_new_infrastructure]</span></code>。新型基础设施（边缘算力、感知供电、数据回传）按标准件规格卡的物理规格字段统一承载，不单独设立不可复核的专项设施。公共服务设施用地已在用地剖分中按教育、医疗、文化、体育四类布点，规模需按官方人口与配建标准复核 <code><span class="evidence evidence-standard">[standard:MOHURD-CONTROL-DETAILED-PLANNING]</span></code>。</p>
+<p>轨道接驳与市政承载能力需以官方基础设施资料为准，本版无可用公开数据，列为数据缺口 <code>[depth:municipal_new_infrastructure]</code>。新型基础设施（边缘算力、感知供电、数据回传）按标准件规格卡的物理规格字段统一承载，不单独设立不可复核的专项设施。公共服务设施用地已在用地剖分中按教育、医疗、文化、体育四类布点，规模需按官方人口与配建标准复核 <code>[standard:MOHURD-CONTROL-DETAILED-PLANNING]</code>。</p>
 <figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间结构图"><figcaption>交通慢行与蓝绿公共空间结构图</figcaption></figure>
 <p>---</p>
 <h2>蓝绿空间、公共空间与城市风貌</h2>
 <h3>蓝绿结构</h3>
-<p>版本线核心绿廊贯穿南北 <code><span class="evidence evidence-data">[data:geometry/green_space.geojson#GS-001]</span></code>，外缘配置防护绿地，缝合口与基准点构成公共空间节点网络 <code><span class="evidence evidence-depth">[depth:blue_green_public_space]</span></code>。绿地总面积见 <code><span class="evidence evidence-metric">[metric:green_space_area_sqm]</span></code>，公共空间总面积见 <code><span class="evidence evidence-metric">[metric:public_space_area_sqm]</span></code>。绿地率见 <code><span class="evidence evidence-metric">[metric:green_ratio]</span></code>，公共空间率见 <code><span class="evidence evidence-metric">[metric:public_space_ratio]</span></code>，均由并集面积复算，避免要素重叠导致重复计算。</p>
+<p>版本线核心绿廊贯穿南北 <code>[data:geometry/green_space.geojson#GS-001]</code>，外缘配置防护绿地，缝合口与基准点构成公共空间节点网络 <code>[depth:blue_green_public_space]</code>。绿地总面积见 <code>[metric:green_space_area_sqm]</code>，公共空间总面积见 <code>[metric:public_space_area_sqm]</code>。绿地率见 <code>[metric:green_ratio]</code>，公共空间率见 <code>[metric:public_space_ratio]</code>，均由并集面积复算，避免要素重叠导致重复计算。</p>
 <h3>AI 朝圣地标 = 基准点（agent.4，4 处）</h3>
-<p>朝圣地标不做打卡雕塑，做**基准点（Datum）**——像水准原点一样，是有实际测量功能的纪念物 <code><span class="evidence evidence-data">[data:geometry/public_space.geojson#PS-007]</span></code>。</p>
-<p>| 编号 | 名称 | 位置 | 功能 | |---|---|---|---| | D-01 | 零号基准 Datum Zero | 制标区核心 | 规范版本的物理发布点，每次更新实体刻录版本号与主要变更 | | D-02 | 公议台 The Objection Stand | 首装区公共空间 | 市民对任一标准件提出异议的实体登记点，异议编号与处理状态公开可查 | | D-03 | 退役场 The Decommission Yard | 量产区边缘 | 陈列被淘汰的标准件实物与退役原因。**展示失败是这套体系的可信度来源** | | D-04 | 贡献碑 Contributor Stones | 版本线沿线 | 规范贡献者按版本分段刻录 |</p>
+<p>朝圣地标不做打卡雕塑，做<strong>基准点（Datum）</strong>——像水准原点一样，是有实际测量功能的纪念物 <code>[data:geometry/public_space.geojson#PS-007]</code>。</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>名称</th><th>位置</th><th>功能</th></tr></thead><tbody><tr><td>D-01</td><td>零号基准 Datum Zero</td><td>制标区核心</td><td>规范版本的物理发布点，每次更新实体刻录版本号与主要变更</td></tr><tr><td>D-02</td><td>公议台 The Objection Stand</td><td>首装区公共空间</td><td>市民对任一标准件提出异议的实体登记点，异议编号与处理状态公开可查</td></tr><tr><td>D-03</td><td>退役场 The Decommission Yard</td><td>量产区边缘</td><td>陈列被淘汰的标准件实物与退役原因。<strong>展示失败是这套体系的可信度来源</strong></td></tr><tr><td>D-04</td><td>贡献碑 Contributor Stones</td><td>版本线沿线</td><td>规范贡献者按版本分段刻录</td></tr></tbody></table></div>
 <h3>荣誉展示体系</h3>
-<p>荣誉不按&quot;评奖&quot;组织，按**版本**组织：每一版规范的贡献者刻录在该版本对应的碑段上。贡献因此可追溯、可分版本归属。</p>
+<p>荣誉不按&quot;评奖&quot;组织，按<strong>版本</strong>组织：每一版规范的贡献者刻录在该版本对应的碑段上。贡献因此可追溯、可分版本归属。</p>
 <h3>公共空间组件库（agent.4，本方案技术核心）</h3>
-<p>评审维度&quot;可实施性&quot;要求清晰的落地路径与可衡量指标。多数概念方案在此给出的是时间轴。**一份带规格、带价格带、带运维责任、带退役条款的组件目录，本身就是落地路径——它可以直接进入政府采购流程。**</p>
+<p>评审维度&quot;可实施性&quot;要求清晰的落地路径与可衡量指标。多数概念方案在此给出的是时间轴。<strong>一份带规格、带价格带、带运维责任、带退役条款的组件目录，本身就是落地路径——它可以直接进入政府采购流程。</strong></p>
 <p>每件标准件的规格卡字段：</p>
-<p>``<code> JZ-Parts / &amp;lt;编号&amp;gt; ├─ 功能定义与适用场景 ├─ 物理规格（尺寸、供电、承重、防护等级、安装条件） ├─ 数据行为（采集什么 / 不采集什么 / 本地处理还是回传 / 保留期限） ├─ 人工复核触发条件（何时必须转人工，谁有权停用） ├─ 价格带（概念性量级区间，非报价、非采购依据） ├─ 全生命周期（预期寿命、维护频次、责任主体） ├─ 退役与回滚（如何拆除、数据如何销毁、恢复到什么状态） └─ 版本与兼容性（适用规范版本、向下兼容说明） </code>``</p>
-<p>**&quot;退役与回滚&quot;是本方案最重要的一个设计决定。** 城市 AI 设施的真实风险不是装不上，是装上以后拆不掉、责任找不到人、数据不知去向。写清楚怎么拆，比写清楚怎么装更能体现治理能力。</p>
+<pre><code>JZ-Parts / &lt;编号&gt;
+├─ 功能定义与适用场景
+├─ 物理规格（尺寸、供电、承重、防护等级、安装条件）
+├─ 数据行为（采集什么 / 不采集什么 / 本地处理还是回传 / 保留期限）
+├─ 人工复核触发条件（何时必须转人工，谁有权停用）
+├─ 价格带（概念性量级区间，非报价、非采购依据）
+├─ 全生命周期（预期寿命、维护频次、责任主体）
+├─ 退役与回滚（如何拆除、数据如何销毁、恢复到什么状态）
+└─ 版本与兼容性（适用规范版本、向下兼容说明）</code></pre>
+<p><strong>&quot;退役与回滚&quot;是本方案最重要的一个设计决定。</strong> 城市 AI 设施的真实风险不是装不上，是装上以后拆不掉、责任找不到人、数据不知去向。写清楚怎么拆，比写清楚怎么装更能体现治理能力。</p>
+<h3>复测触发权：规范必须写明谁有权要求重测（agent.4 / agent.6）</h3>
+<p>一致性测试有一个容易被忽略的漏洞：<strong>测试是一次性的，设备却要用很多年。</strong> 出厂时过了测试，不等于三年后仍然合规——摄像头脏了、算力盒过热降频、传感器被树叶遮挡，规格卡上的每一项都可能悄悄失效。如果只有编制方和厂商有权发起复测，那么&quot;不复测&quot;永远是成本最低的选择，规范会在几年内退化成一张出厂合格证。</p>
+<p>因此本方案主张：<strong>&quot;谁有权触发复测&quot;本身就是一条规范条款，而且触发权不能只握在专业方手里。</strong> 以下均为<strong>概念建议</strong>，具体门槛、周期与流程须由专业团队与主管部门核定：</p>
+<div class="proposal-table"><table><thead><tr><th>触发方</th><th>触发条件</th><th>规范要求的响应</th><th>结果公开方式</th></tr></thead><tbody><tr><td><strong>周边居民</strong></td><td>对就近标准件提出具名复测请求，达到规范设定的门槛（如同一设备在一定周期内累计请求数）</td><td>必须进入复测排期，不得以&quot;运行正常&quot;直接驳回</td><td>受理与结论在 D-01 基准点与该设备铭牌上公示</td></tr><tr><td>巡检班组</td><td>例行核对发现规格卡任一字段与现场不符</td><td>现场挂牌降级，进入复测</td><td>失效原因随退役展示公开</td></tr><tr><td>运营方</td><td>版本升级、更换供应商、数据行为变更</td><td>变更即触发，不得沿用旧版认证</td><td>版本号与认证日期同步刷新</td></tr><tr><td>编制方</td><td>规范版本升级，存量标准件需符合性复核</td><td>给出过渡期与退版清单</td><td>定标周公开发布</td></tr></tbody></table></div>
+<p><strong>居民触发权是这张表里最不寻常、也最必要的一行。</strong> 现有做法普遍把公众放在&quot;被告知&quot;的位置——看得到状态屏、看得到公示栏，但没有一个按钮可以按。公开展示只解决了知情，没有解决<strong>议程设置</strong>：如果居民无法把一件设备推进复测排期，&quot;公开&quot;就只是让人围观一个自己无法改变的事实。规格卡里已有的&quot;人工复核触发条件&quot;与&quot;全生命周期（责任主体）&quot;两个字段正是承接这一请求的接口——把居民请求写成触发条件之一，不需要新增字段，只需要把权限写进规范。</p>
+<p>边界同样要写清楚：须设置<strong>重复与滥用请求的合并规则</strong>，避免复测排期被少数请求淹没；具名不等于公开个人信息，公示的是<strong>请求数量与处理结论，不是请求人身份</strong>；本条款不构成对任何主体的义务设定，须经主管部门依法定程序确认后方可执行 <code>[depth:risk_missing_data]</code>。</p>
+<h3>规范如何不变成死文本：定标与现场核对的互锁</h3>
+<p>一套规范如果只有&quot;编制&quot;和&quot;认证&quot;两个动作，它的生命周期止于发布那天。规范要活着，需要有人<strong>在现场按周期重新核对</strong>每一件已装标准件是否仍符合它当初通过的那一版——这正是上一节复测触发权要落到的执行面。</p>
+<p>因此本方案把&quot;标准件的现场核对&quot;列为公制的必要配套，而不是可选增项：制标区出规范与测试方法，首装区出真实工况与居民陪审，量产区出规模化部署，<strong>三者之间必须有一条把现场读数送回规范修订的回流路径</strong>，否则 D-03 退役场只会陈列过时组件，却说不清它们是怎么过时的。同一作者的另一份投稿 <code>submissions/JIQINGFENG0818/jingzhang-patrol/</code>（京张巡线）把这条回流路径展开为巡区划分、班组编制与装备册；两案可各自独立评审，此处仅说明本方案在执行面上的依赖，不构成对该稿评审结果的任何主张。</p>
 <h3>城市风貌与文化叙事（agent.5）</h3>
-<p>叙事主线：**「一百年前我们自己定了轨距，一百年后我们自己定规范。」** 三层叙事对应空间三区：</p>
-<p>1. **自主**（制标区）——京张铁路的技术自主传统，落到今天的规范编制权 2. **公开**（首装区）——中关村的开放协作文化，落到居民陪审与异议机制 3. **互通**（量产区）——从轨距到规范，标准的价值在于被别人采用</p>
-<p>**导视与符号系统**：全带采用统一的&quot;规格标牌&quot;语言，格式与铁路里程标、水准点标石同源。铭牌即导视，即版本标识，即责任公示——一套语言解决三个问题。</p>
-<p>**国际传播**：不以宣传片为主要载体，输出**可下载、可引用、可采用的规范文本**。传播成功的指标不是播放量，是别的城市引用了 JZ-Gauge 的第几版第几条。</p>
-<p>&gt; 史实表述均需可公开来源支撑，本版相关论述标注 <code>[待证]</code>，正式稿前补齐或删除；不歪曲历史，不未经授权使用他人图像与版权材料。</p>
+<p>叙事主线：<strong>「一百年前我们自己定了轨距，一百年后我们自己定规范。」</strong> 三层叙事对应空间三区：</p>
+<p>1. <strong>自主</strong>（制标区）——京张铁路的技术自主传统，落到今天的规范编制权 2. <strong>公开</strong>（首装区）——中关村的开放协作文化，落到居民陪审与异议机制 3. <strong>互通</strong>（量产区）——从轨距到规范，标准的价值在于被别人采用</p>
+<p><strong>导视与符号系统</strong>：全带采用统一的&quot;规格标牌&quot;语言，格式与铁路里程标、水准点标石同源。铭牌即导视，即版本标识，即责任公示——一套语言解决三个问题。</p>
+<p><strong>国际传播</strong>：不以宣传片为主要载体，输出<strong>可下载、可引用、可采用的规范文本</strong>。传播成功的指标不是播放量，是别的城市引用了 JZ-Gauge 的第几版第几条。</p>
+<blockquote><p>史实表述均需可公开来源支撑，本版相关论述标注 <code>[待证]</code>，正式稿前补齐或删除；不歪曲历史，不未经授权使用他人图像与版权材料。</p></blockquote>
 <p>---</p>
 <h2>更新项目清单、实施政策与分期计划</h2>
 <h3>分期</h3>
-<p>更新项目清单按三期组织，逐项对应空间载体与标志性成果 <code><span class="evidence evidence-depth">[depth:renewal_project_list]</span></code>。分期按三工位就近划分 <code><span class="evidence evidence-data">[data:geometry/phasing.geojson#PH-001]</span></code> <code><span class="evidence evidence-depth">[depth:phasing_implementation]</span></code>，为**概念建议，不构成实施计划、投资承诺或时序安排**。</p>
-<p>| 期 | 阶段 | 更新项目重点 | 标志性成果 | |---|---|---|---| | 一期 | 制标 | 一致性测试实验室、认证与红队能力建设、JZ-Parts v1.0 编制 | D-01 零号基准落成 | | 二期 | 首装 | 缝合口断面实装、居民陪审机制建立、场景卡分批上线 | D-02 公议台启用 | | 三期 | 量产 | 通过认证的标准件规模化部署、智能原生业态导入 | D-03 退役场开放 |</p>
+<p>更新项目清单按三期组织，逐项对应空间载体与标志性成果 <code>[depth:renewal_project_list]</code>。分期按三工位就近划分 <code>[data:geometry/phasing.geojson#PH-001]</code> <code>[depth:phasing_implementation]</code>，为<strong>概念建议，不构成实施计划、投资承诺或时序安排</strong>。</p>
+<div class="proposal-table"><table><thead><tr><th>期</th><th>阶段</th><th>更新项目重点</th><th>标志性成果</th></tr></thead><tbody><tr><td>一期</td><td>制标</td><td>一致性测试实验室、认证与红队能力建设、JZ-Parts v1.0 编制</td><td>D-01 零号基准落成</td></tr><tr><td>二期</td><td>首装</td><td>缝合口断面实装、居民陪审机制建立、场景卡分批上线</td><td>D-02 公议台启用</td></tr><tr><td>三期</td><td>量产</td><td>通过认证的标准件规模化部署、智能原生业态导入</td><td>D-03 退役场开放</td></tr></tbody></table></div>
 <h3>实施政策方向</h3>
 <p>以&quot;认证&quot;替代&quot;审批式招商&quot;是本方案的政策建议核心：企业路径为「接入翼咨询 → 制标区认证 → 首装区实装 → 量产区规模化」。</p>
-<p>本方案**不承诺**任何政府投资、补贴、税收优惠或落地企业数量，不把设想活动写成已确定安排。</p>
+<p>本方案<strong>不承诺</strong>任何政府投资、补贴、税收优惠或落地企业数量，不把设想活动写成已确定安排。</p>
 <h3>长期运营（agent.6）</h3>
 <ul>
-<li>**定标周 Gauge Week（年度）**：不是论坛，是一次公开的规范版本发布 + 一致性测试公开赛 + 退役评审。开发者带实物来测，当场出认证结果</li>
-<li>**开发者社区**：规范以开源方式维护，异议与修订走公开流程，贡献者按版本刻录于 D-04</li>
-<li>**场景开放机制**：实测翼划定可实验区，申请即用，实验期间实体标识告知公众，失败案例强制公开</li>
-<li>**招引转化**：以认证结果替代行政筛选，降低对政策承诺的依赖</li>
+<li><strong>定标周 Gauge Week（年度）</strong>：不是论坛，是一次公开的规范版本发布 + 一致性测试公开赛 + 退役评审。开发者带实物来测，当场出认证结果</li>
+<li><strong>开发者社区</strong>：规范以开源方式维护，异议与修订走公开流程，贡献者按版本刻录于 D-04</li>
+<li><strong>场景开放机制</strong>：实测翼划定可实验区，申请即用，实验期间实体标识告知公众，失败案例强制公开</li>
+<li><strong>招引转化</strong>：以认证结果替代行政筛选，降低对政策承诺的依赖</li>
 </ul>
 <p>---</p>
 <h2>指标体系、面积复算与合规矩阵</h2>
 <h3>复算方法</h3>
-<p>全部几何在 EPSG:4548（CGCS2000 3 度带 39 带）下计算，输出为 EPSG:4326。指标从 GeoJSON 复算，不从叙事文本抄录 <code><span class="evidence evidence-depth">[depth:metrics_recalculation]</span></code>。每项指标记录 <code>status</code>、<code>value</code>、<code>unit</code>、<code>source_files</code>、<code>formula</code>、<code>confidence</code> 与 <code>assumptions</code>。</p>
+<p>全部几何在 EPSG:4548（CGCS2000 3 度带 39 带）下计算，输出为 EPSG:4326。指标从 GeoJSON 复算，不从叙事文本抄录 <code>[depth:metrics_recalculation]</code>。每项指标记录 <code>status</code>、<code>value</code>、<code>unit</code>、<code>source_files</code>、<code>formula</code>、<code>confidence</code> 与 <code>assumptions</code>。</p>
 <h3>核心指标</h3>
-<p>| 指标 | 值来源 | 置信度 | 说明 | |---|---|---|---| | 设计范围面积 | <code><span class="evidence evidence-metric">[metric:site_area_sqm]</span></code> | low | 临时边界，非官方精确面积；与官方口径偏差 0.11% | | 绿地率 | <code><span class="evidence evidence-metric">[metric:green_ratio]</span></code> | medium | 由 <code>green_space.geojson</code> 并集复算 | | 公共空间率 | <code><span class="evidence evidence-metric">[metric:public_space_ratio]</span></code> | medium | 缝合口与基准点节点并集 | | 道路面积率 | <code><span class="evidence evidence-metric">[metric:road_area_ratio]</span></code> | medium | 红线宽度为概念假设值 | | 建筑密度 | <code><span class="evidence evidence-metric">[metric:building_density]</span></code> | low | 概念性体量示意 | | 法定容积率 | <code>floor_area_ratio</code> | **unknown** | 官方控制指标缺失，不代填 | | 概念容积率 | <code>conceptual_floor_area_ratio</code> | low | 层数为假设值，非法定控制指标 |</p>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>值来源</th><th>置信度</th><th>说明</th></tr></thead><tbody><tr><td>设计范围面积</td><td><code>[metric:site_area_sqm]</code></td><td>low</td><td>临时边界，非官方精确面积；与官方口径偏差 0.11%</td></tr><tr><td>绿地率</td><td><code>[metric:green_ratio]</code></td><td>medium</td><td>由 <code>green_space.geojson</code> 并集复算</td></tr><tr><td>公共空间率</td><td><code>[metric:public_space_ratio]</code></td><td>medium</td><td>缝合口与基准点节点并集</td></tr><tr><td>道路面积率</td><td><code>[metric:road_area_ratio]</code></td><td>medium</td><td>红线宽度为概念假设值</td></tr><tr><td>建筑密度</td><td><code>[metric:building_density]</code></td><td>low</td><td>概念性体量示意</td></tr><tr><td>法定容积率</td><td><code>floor_area_ratio</code></td><td><strong>unknown</strong></td><td>官方控制指标缺失，不代填</td></tr><tr><td>概念容积率</td><td><code>conceptual_floor_area_ratio</code></td><td>low</td><td>层数为假设值，非法定控制指标</td></tr></tbody></table></div>
 <h3>拓扑校验</h3>
-<p><code>topology_check</code> 字段记录用地剖分的缝隙与重叠面积，均在 1e-5 量级以下，<code>land_use_partition_complete=true</code>。空间审查器结论为 PASS，仅保留三条 <code>KEY_AREA_PROVISIONAL</code> 提示——该提示源于组织方官方边界缺失，按规则不影响内容评分。</p>
+<p><code>topology_check</code> 字段记录用地剖分的缝隙与重叠面积：<strong>缝隙 14.897 m²、重叠 0.099 m²，<code>land_use_partition_complete=false</code></strong>。相对 11.41 km² 场地约为百万分之一点五量级，来源为浮点求交与坐标精度残差；本方案按实际值披露，不把它写成完全剖分。空间审查器结论为 PASS，仅保留三条 <code>KEY_AREA_PROVISIONAL</code> 提示——该提示源于组织方官方边界缺失，是空间复核的事实记录；官方边界与重点区数据待发布，受影响的几何、指标和图件需在发布后复算，资格与评分由维护者/评审依正式规则判断。</p>
 <h3>合规矩阵对应</h3>
-<p><code>compliance_matrix.json</code> 覆盖公告 1.3、1.4、1.5 全部任务与 agent.1–agent.6；<code>standard_matrix.json</code> 覆盖全部强制性专业标准；<code>design_depth_matrix.json</code> 中必需的 formal 深度项标注完成状态 <code><span class="evidence evidence-depth">[depth:metrics_recomputation]</span></code>。</p>
+<p><code>compliance_matrix.json</code> 覆盖公告 1.3、1.4、1.5 全部任务与 agent.1–agent.6；<code>standard_matrix.json</code> 覆盖全部强制性专业标准；<code>design_depth_matrix.json</code> 中必需的 formal 深度项标注完成状态 <code>[depth:metrics_recomputation]</code>。</p>
 <h3>官方数据替换后的重算范围</h3>
 <p>官方红线与重点区 polygon 发布后需重算：全部 GeoJSON 图层、全部面积与比值指标、分期划分、图件与可视化。几何生成为参数化脚本，替换边界源即可一次性重跑。</p>
 <figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标复算与证据链关系图"><figcaption>指标复算与证据链关系图</figcaption></figure>
 <p>---</p>
 <h2>风险、版权与合规说明</h2>
 <h3>主要风险与处理</h3>
-<p>| 风险 | 处理 | |---|---| | 官方边界缺失 <code><span class="evidence evidence-depth">[depth:risk_missing_data]</span></code> | 全程使用 <code>provisional_constraint</code>，图面以低对比度虚线表达，正文、<code>sources.json</code>、<code>assumptions.json</code>、<code>visual/index.html</code> 四处同步披露，不用于面积评分 | | 标准制定权的行政归属 | 仅提概念建议与机制设想，不涉及行政授权判断 | | 组件库价格带 | 标注为概念性量级区间，非报价、非采购依据 | | 历史叙事准确性 | 所有史实表述须引可公开来源，<code>[待证]</code> 项在正式稿前补齐或删除 | | 场景技术成熟度 | 逐卡标注成熟度，不把未成熟技术写成可全面部署 | | 居民接受度 | 首装以&quot;可拒绝、可回退、有非 AI 冗余路径&quot;为前置条件 |</p>
+<div class="proposal-table"><table><thead><tr><th>风险</th><th>处理</th></tr></thead><tbody><tr><td>官方边界缺失 <code>[depth:risk_missing_data]</code></td><td>全程使用 <code>provisional_constraint</code>，图面以低对比度虚线表达，正文、<code>sources.json</code>、<code>assumptions.json</code>、<code>visual/index.html</code> 四处同步披露，不用于面积评分</td></tr><tr><td>标准制定权的行政归属</td><td>仅提概念建议与机制设想，不涉及行政授权判断</td></tr><tr><td>组件库价格带</td><td>标注为概念性量级区间，非报价、非采购依据</td></tr><tr><td>历史叙事准确性</td><td>所有史实表述须引可公开来源，<code>[待证]</code> 项在正式稿前补齐或删除</td></tr><tr><td>场景技术成熟度</td><td>逐卡标注成熟度，不把未成熟技术写成可全面部署</td></tr><tr><td>居民接受度</td><td>首装以&quot;可拒绝、可回退、有非 AI 冗余路径&quot;为前置条件</td></tr></tbody></table></div>
 <h3>官方性边界</h3>
 <p>本方案不声称使用或披露任何非公开规划图件、非公开空间数据或内部控制指标。涉及建设强度、建筑高度、道路线位的内容均标注为概念建议，不伪装为官方审定结论。所有资料引用均说明来源。</p>
 <h3>隐私与人工复核边界</h3>
@@ -287,9 +334,9 @@ code {
 <p>本方案文本、几何数据、图件与可视化均为原创生成，未使用未清权素材、未授权肖像、商标或版权图像。<code>visual/index.html</code> 完全离线，不加载任何远程脚本、样式、字体、媒体或地图瓦片。</p>
 <p>---</p>
 <h2>参考资料</h2>
-<p>**已引用（仓库内可校验）**</p>
+<p><strong>已引用（仓库内可校验）</strong></p>
 <ul>
-<li><code>brief/site-package/design_brief.json</code>、<code>agent_taskbook.json</code>、<code>allowed_design_space.json</code> <code><span class="evidence evidence-source">[source:SITE-PACKAGE]</span></code></li>
+<li><code>brief/site-package/design_brief.json</code>、<code>agent_taskbook.json</code>、<code>allowed_design_space.json</code> <code>[source:SITE-PACKAGE]</code></li>
 <li><code>brief/site-package/ranges/planning_limits.json</code>（官方面积口径与控制指标状态）</li>
 <li><code>brief/site-package/enums/land_use_codes.json</code>、<code>layers.json</code>、<code>source_types.json</code></li>
 <li><code>brief/site-package/geometry/provisional_boundaries.geojson</code></li>
@@ -297,9 +344,9 @@ code {
 <li><code>data/source_registry.json</code>（来源可用性分级）</li>
 <li><code>docs/data-workflow.md</code>、<code>docs/terminology-glossary.md</code></li>
 </ul>
-<p>**待补（正式稿前必须完成）**</p>
-<p>以下均标注 <code>[待证]</code>，本版**不作事实断言**：全球 AI 创新生态案例 5–8 个的可公开来源、京张铁路与技术标准统一相关史料的可公开出处、轨道与市政基础设施公开数据、官方人口与配建标准。</p>
-<p>**方法与工具**</p>
+<p><strong>待补（正式稿前必须完成）</strong></p>
+<p>以下均标注 <code>[待证]</code>，本版<strong>不作事实断言</strong>：全球 AI 创新生态案例 5–8 个的可公开来源、京张铁路与技术标准统一相关史料的可公开出处、轨道与市政基础设施公开数据、官方人口与配建标准。</p>
+<p><strong>方法与工具</strong></p>
 <ul>
 <li>几何生成：Voronoi 剖分保证相邻图斑共享精确边界坐标；路网沿地块边界生成后从用地扣除</li>
 <li>投影：EPSG:4548 计算，EPSG:4326 输出</li>
