@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>京张地方城市单元 / Jing-Zhang Local Urban Units</title>
+  <style>
+    :root {
+      --paper:#f1f0e8; --ink:#14231e; --muted:#68736d; --line:#c7cbc2;
+      --green:#0c5b48; --green-soft:#d6e2d5; --orange:#e56e31; --orange-soft:#f1c2a4;
+      --blue:#698fa3; --blue-soft:#cadbe0; --white:#fafaf4; --red:#a84f45;
+      --serif: Georgia, "Noto Serif SC", "Songti SC", serif;
+      --sans: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
+      --cond: Bahnschrift, "Arial Narrow", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--paper)}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+    body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.17;z-index:20;background-image:radial-gradient(#183128 0.45px,transparent .6px);background-size:5px 5px;mix-blend-mode:multiply}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    .skip{position:absolute;left:-999px;top:10px;background:var(--ink);color:white;padding:8px 14px;z-index:99}.skip:focus{left:10px}
+    .rail{position:fixed;left:0;top:0;bottom:0;width:78px;border-right:1px solid var(--line);z-index:15;background:rgba(241,240,232,.94);backdrop-filter:blur(8px);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:24px 0}
+    .mark{width:36px;height:54px;position:relative}.mark::before{content:"";position:absolute;left:16px;top:0;width:4px;height:54px;background:var(--green)}
+    .mark i{position:absolute;height:5px;left:0;background:var(--orange);border-radius:3px}.mark i:nth-child(1){top:8px;width:36px}.mark i:nth-child(2){top:24px;width:23px}.mark i:nth-child(3){top:41px;width:31px;background:var(--blue)}
+    .rail nav{display:flex;flex-direction:column;gap:18px}.rail nav a{font-family:var(--cond);font-size:11px;letter-spacing:.12em;writing-mode:vertical-rl;color:var(--muted);transition:.25s}.rail nav a:hover,.rail nav a:focus{color:var(--orange)}
+    .lang{border:1px solid var(--ink);background:transparent;color:var(--ink);width:44px;height:34px;cursor:pointer;font-family:var(--cond);font-size:11px;letter-spacing:.08em}.lang:hover{background:var(--ink);color:var(--paper)}
+    .mobile-lang{display:none;position:fixed;right:18px;top:18px;z-index:30;background:var(--paper)}
+    main{margin-left:78px}
+    .hero{min-height:100vh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(380px,.95fr);border-bottom:1px solid var(--ink);position:relative}
+    .hero-copy{padding:8vh 6vw 8vh 7vw;display:flex;flex-direction:column;justify-content:space-between;min-height:100vh}
+    .eyebrow{font-family:var(--cond);font-size:13px;letter-spacing:.16em;color:var(--orange);text-transform:uppercase}
+    h1{font-family:var(--serif);font-size:clamp(58px,7vw,116px);line-height:.98;font-weight:400;letter-spacing:-.055em;margin:4vh 0 3vh;max-width:920px}
+    .lead{font-family:var(--serif);font-size:clamp(20px,2vw,31px);line-height:1.45;max-width:800px;color:#33443d}
+    .hero-note{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;border-top:1px solid var(--line);padding-top:24px;margin-top:5vh}
+    .hero-note strong{display:block;font-family:var(--cond);font-size:30px;letter-spacing:-.02em}.hero-note span{font-size:12px;color:var(--muted);letter-spacing:.08em}
+    .hero-diagram{position:relative;background:var(--ink);overflow:hidden;display:grid;place-items:center;min-height:100vh}
+    .hero-diagram::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.04) 20.2%,transparent 20.5%);background-size:36px 36px}
+    .datum{height:76vh;width:min(82%,650px);position:relative;z-index:2}
+    .datum::before{content:"";position:absolute;left:27%;top:0;bottom:0;width:7px;background:var(--green-soft)}
+    .uform{position:absolute;left:27%;height:11%;border-radius:2px 12px 12px 2px;display:flex;align-items:center;padding-left:28px;color:var(--white);font-family:var(--cond);font-size:12px;letter-spacing:.12em;box-shadow:0 16px 44px rgba(0,0,0,.18)}
+    .uform.wide{top:11%;width:66%;background:var(--green)}.uform.fine{top:43%;width:42%;background:var(--orange)}.uform.thick{top:72%;width:55%;background:var(--blue)}
+    .datum-label{position:absolute;left:3%;top:0;color:var(--green-soft);font:12px var(--cond);letter-spacing:.14em;writing-mode:vertical-rl}
+    .scroll{position:absolute;right:26px;bottom:30px;color:rgba(255,255,255,.68);font:11px var(--cond);letter-spacing:.12em;writing-mode:vertical-rl}
+    section{padding:110px 7vw;border-bottom:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:170px 1fr;gap:30px;align-items:start;margin-bottom:64px}.num{font-family:var(--cond);color:var(--orange);font-size:18px;letter-spacing:.12em}.section-head h2{font-family:var(--serif);font-size:clamp(38px,5vw,76px);line-height:1.05;font-weight:400;letter-spacing:-.035em;margin:0}.section-head p{grid-column:2;max-width:900px;font-size:18px;color:var(--muted);margin:0}
+    .figure{background:var(--white);border:1px solid var(--line);padding:14px;overflow:hidden}.figure img{display:block;width:100%;height:auto;filter:saturate(.96)}
+    .caption{font:11px var(--cond);letter-spacing:.08em;color:var(--muted);padding:12px 3px 0;text-transform:uppercase}
+    .principles{display:grid;grid-template-columns:repeat(5,1fr);margin-top:42px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+    .principle{min-height:150px;padding:24px 18px;border-right:1px solid var(--line)}.principle:last-child{border-right:0}.principle b{font-family:var(--cond);font-size:12px;color:var(--orange);letter-spacing:.12em}.principle p{font-size:14px;margin:22px 0 0}
+    .tabs{display:grid;grid-template-columns:260px 1fr;min-height:600px;border:1px solid var(--ink);background:var(--white)}
+    .tabs,.tablist,.tabpanels,.panel,.systems,.system-list,.system-item{min-width:0}
+    .tablist{border-right:1px solid var(--ink);display:flex;flex-direction:column}.tabbtn{appearance:none;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;padding:28px;cursor:pointer;color:var(--ink);transition:.25s}.tabbtn strong{display:block;font:30px var(--serif);font-weight:400}.tabbtn span{font:11px var(--cond);letter-spacing:.12em;color:var(--muted)}.tabbtn[aria-selected="true"]{background:var(--ink);color:var(--paper)}.tabbtn[aria-selected="true"] span{color:var(--orange-soft)}
+    .tabpanels{position:relative}.panel{display:none;padding:48px 56px;grid-template-columns:1fr 1fr;gap:54px;min-height:100%}.panel.active{display:grid}.panel h3{font:48px var(--serif);font-weight:400;margin:0 0 24px}.panel ul{padding:0;margin:0;list-style:none}.panel li{padding:13px 0;border-bottom:1px solid var(--line);font-size:15px}.unit-sketch{align-self:stretch;min-height:440px;position:relative;overflow:hidden;background:var(--paper);border:1px solid var(--line)}
+    .unit-sketch .spine{position:absolute;left:48%;top:5%;bottom:5%;width:7%;background:var(--green-soft)}.unit-sketch .cross{position:absolute;left:4%;right:4%;top:48%;height:6%;background:var(--orange)}
+    .wide-sketch .mass,.fine-sketch .mass{position:absolute;background:var(--ink)}
+    .wide-sketch .mass:nth-of-type(3){left:8%;top:13%;width:31%;height:28%}.wide-sketch .mass:nth-of-type(4){right:8%;top:13%;width:35%;height:28%}.wide-sketch .mass:nth-of-type(5){left:8%;bottom:13%;width:31%;height:28%}.wide-sketch .mass:nth-of-type(6){right:8%;bottom:13%;width:35%;height:28%}
+    .fine-sketch{background-image:linear-gradient(90deg,transparent 49%,var(--green-soft) 49%,var(--green-soft) 55%,transparent 55%),repeating-linear-gradient(0deg,transparent 0,transparent 73px,rgba(229,110,49,.75) 73px,rgba(229,110,49,.75) 78px)}
+    .fine-sketch::before{content:"";position:absolute;inset:28px;background:repeating-linear-gradient(90deg,var(--ink) 0,var(--ink) 62px,transparent 62px,transparent 84px),repeating-linear-gradient(0deg,var(--ink) 0,var(--ink) 44px,transparent 44px,transparent 70px);opacity:.92}
+    .thick-sketch .ground{position:absolute;left:6%;right:6%;bottom:20%;height:7px;background:var(--blue)}.thick-sketch .podium{position:absolute;left:13%;right:13%;bottom:21%;height:22%;background:var(--ink)}.thick-sketch .tower{position:absolute;bottom:43%;width:13%;background:#3c5149}.thick-sketch .tower.a{left:18%;height:36%}.thick-sketch .tower.b{left:34%;height:29%}.thick-sketch .tower.c{left:50%;height:22%}.thick-sketch .tower.d{left:66%;height:15%}.thick-sketch .station{position:absolute;left:28%;right:28%;bottom:8%;height:6%;border:2px solid var(--blue);border-radius:999px;background:var(--blue-soft)}
+    .keygrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);margin-top:46px}.keycard{background:var(--paper);padding:34px;min-height:330px;display:flex;flex-direction:column;justify-content:space-between}.keycard .type{font:12px var(--cond);letter-spacing:.14em}.keycard h3{font:37px var(--serif);font-weight:400;margin:18px 0}.keycard p{font-size:14px;color:var(--muted)}.keycard .gate{border-top:1px solid var(--line);padding-top:16px;font-size:13px;color:var(--ink)}
+    .systems{display:grid;grid-template-columns:1.25fr .75fr;gap:50px}.system-list{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--ink)}.system-item{padding:28px 24px 34px 0;border-bottom:1px solid var(--line)}.system-item:nth-child(odd){border-right:1px solid var(--line);padding-right:28px}.system-item:nth-child(even){padding-left:28px}.system-item b{font:12px var(--cond);color:var(--orange);letter-spacing:.13em}.system-item h3{font:27px var(--serif);font-weight:400;margin:12px 0}.system-item p{font-size:13px;color:var(--muted);margin:0}
+    .gateflow{display:grid;grid-template-columns:repeat(5,1fr);position:relative;padding:50px 0 30px}.gateflow::before{content:"";position:absolute;left:8%;right:8%;top:78px;height:3px;background:var(--ink)}.gate-step{text-align:center;position:relative}.gate-step::before{content:"";display:block;width:24px;height:24px;border-radius:50%;background:var(--orange);margin:17px auto 30px;border:4px solid var(--paper);box-shadow:0 0 0 2px var(--orange)}.gate-step:last-child::before{background:var(--ink);box-shadow:0 0 0 2px var(--ink)}.gate-step b{font:12px var(--cond);letter-spacing:.12em}.gate-step p{font-size:12px;color:var(--muted);padding:0 14px}
+    .gateclaim{background:var(--ink);color:var(--paper);padding:58px;display:grid;grid-template-columns:1fr .55fr;gap:50px;align-items:end}.gateclaim blockquote{font:clamp(32px,4vw,65px) var(--serif);line-height:1.15;margin:0}.gateclaim p{color:#c8d2cc;font-size:14px}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink);border:1px solid var(--ink);margin:44px 0}.metric{background:var(--paper);padding:25px;min-height:145px}.metric strong{display:block;font:40px var(--cond)}.metric span{font-size:12px;color:var(--muted);letter-spacing:.06em}.metric i{display:block;height:7px;background:var(--green);margin-top:25px}.metric:nth-child(2n) i{background:var(--orange)}.metric:nth-child(3n) i{background:var(--blue)}
+    .unknown{display:grid;grid-template-columns:180px 1fr;gap:34px;border-top:1px solid var(--red);padding-top:28px;color:var(--red)}.unknown b{font:12px var(--cond);letter-spacing:.12em}.unknown p{margin:0;color:var(--ink);font:25px var(--serif)}
+    .scenario-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:34px}.scenario{padding:18px;background:var(--white);border:1px solid var(--line);min-height:120px}.scenario b{font:12px var(--cond);color:var(--orange)}.scenario p{font-size:13px;margin:12px 0 0}
+    .closing{min-height:78vh;display:grid;grid-template-columns:1fr 1fr;gap:90px;align-items:center}.closing h2{font:clamp(50px,7vw,106px) var(--serif);font-weight:400;line-height:1;margin:0}.closing .limits{border-left:7px solid var(--orange);padding-left:35px}.closing li{margin:16px 0;color:var(--muted)}
+    footer{padding:38px 7vw 50px;margin-left:78px;display:flex;justify-content:space-between;font:11px var(--cond);letter-spacing:.1em;color:var(--muted)}
+    [data-en]{display:none}body.en [data-zh]{display:none}body.en [data-en]{display:initial}
+    .reveal{opacity:1;transform:translateY(12px);transition:transform .8s ease}.reveal.visible{transform:none}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}}
+    @media(max-width:980px){.rail{display:none}.mobile-lang{display:block}main,footer{margin-left:0}.hero{grid-template-columns:1fr}.hero-diagram{min-height:70vh}.hero-copy{min-height:85vh}.principles{grid-template-columns:1fr}.principle{border-right:0;border-bottom:1px solid var(--line)}.tabs{grid-template-columns:minmax(0,1fr);width:100%;overflow:hidden}.tablist{border-right:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.tabbtn{padding:16px 10px}.tabbtn strong{font-size:20px;overflow-wrap:anywhere}.tabbtn span{font-size:9px}.panel{padding:32px 24px;overflow:hidden}.panel.active{grid-template-columns:minmax(0,1fr)}.keygrid,.systems,.metrics{grid-template-columns:minmax(0,1fr)}.system-list{grid-template-columns:minmax(0,1fr)}.system-item:nth-child(odd){border-right:0;padding-right:0}.system-item:nth-child(even){padding-left:0}.section-head{grid-template-columns:1fr}.section-head p{grid-column:1}.scenario-strip{grid-template-columns:1fr 1fr}.closing{grid-template-columns:1fr}.gateclaim{grid-template-columns:1fr}.gateflow{grid-template-columns:1fr;padding:15px 0}.gateflow::before{display:none}.gate-step{display:grid;grid-template-columns:34px 72px minmax(0,1fr);text-align:left;border-bottom:1px solid var(--line);padding:10px 0}.gate-step::before{margin:0;width:18px;height:18px;justify-self:center}.gate-step p{padding:0;margin:0;font-size:11px}.unknown{grid-template-columns:1fr;gap:12px}.unknown p{overflow-wrap:anywhere;font-size:22px}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">跳到正文 / Skip to content</a>
+  <aside class="rail" aria-label="页面导航">
+    <a href="#top" class="mark" aria-label="回到顶部"><i></i><i></i><i></i></a>
+    <nav><a href="#units">UNITS</a><a href="#areas">AREAS</a><a href="#gate">GATE</a><a href="#evidence">EVIDENCE</a></nav>
+    <button class="lang" type="button" aria-label="切换中英文">EN</button>
+  </aside>
+  <button class="lang mobile-lang" type="button" aria-label="切换中英文">EN</button>
+
+  <main id="content">
+    <header class="hero" id="top">
+      <div class="hero-copy">
+        <div>
+          <div class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · Urban Design</div>
+          <h1><span data-zh>京张地方<br>城市单元</span><span data-en>JING-ZHANG<br>LOCAL UNITS</span></h1>
+          <p class="lead"><span data-zh>总体设计的基本单元不是沿线节点，而是跨越京张、包含两侧真实城市关系的地方城市单元。</span><span data-en>The masterplan unit is not a node on the corridor. It is a complete piece of local city crossing Jing-Zhang.</span></p>
+        </div>
+        <div class="hero-note">
+          <div><strong>9</strong><span data-zh>地方城市单元</span><span data-en>LOCAL URBAN UNITS</span></div>
+          <div><strong>3+3+3</strong><span data-zh>宽 / 密 / 厚</span><span data-en>WIDE / FINE / THICK</span></div>
+          <div><strong>9.72 km</strong><span data-zh>南北公共基准</span><span data-en>CIVIC DATUM</span></div>
+        </div>
+      </div>
+      <div class="hero-diagram" aria-hidden="true">
+        <div class="datum"><span class="datum-label">NORTH—SOUTH CIVIC DATUM</span><div class="uform wide">WIDE / 宽</div><div class="uform fine">FINE / 密</div><div class="uform thick">THICK / 厚</div></div>
+        <span class="scroll">SCROLL TO CROSS THE CORRIDOR ↓</span>
+      </div>
+    </header>
+
+    <section class="reveal" id="overall">
+      <div class="section-head"><div class="num">01 / STRUCTURE</div><h2><span data-zh>相同的是公共性能<br>不同的是城市结果</span><span data-en>COMMON CIVIC PERFORMANCE<br>DIFFERENT URBAN RESULTS</span></h2><p><span data-zh>公共基准保持南北连续，地方城市单元负责把两侧用地、首层、交通、服务与实施重新组织成完整城市。</span><span data-en>The datum remains continuous. Local units reorganize land, ground floors, mobility, services and delivery on both sides.</span></p></div>
+      <figure class="figure"><img src="../assets/figures/site-overview.png" data-zh-src="../assets/figures/site-overview.png" data-en-src="../assets/figures/site-overview.en.png" alt="一条南北公共基准与九个跨线地方城市单元"><figcaption class="caption">Provisional geometry · agent-generated conceptual design · EPSG:4548 recalculation</figcaption></figure>
+      <div class="principles">
+        <div class="principle"><b>01 CONTINUITY</b><p data-zh>南北慢行与遗产叙事连续。</p><p data-en>Continuous active travel and heritage reading.</p></div>
+        <div class="principle"><b>02 CROSSING</b><p data-zh>每个单元至少一条完整横向城市街。</p><p data-en>At least one complete cross-city street per unit.</p></div>
+        <div class="principle"><b>03 GROUND</b><p data-zh>两侧首层有可识别公共入口与服务。</p><p data-en>Legible public entrances and services on both sides.</p></div>
+        <div class="principle"><b>04 ACCESS</b><p data-zh>无障碍、静态导视与人工替代共同存在。</p><p data-en>Step-free routes, static signs and human alternatives.</p></div>
+        <div class="principle"><b>05 DELIVERY</b><p data-zh>公共成果不晚于主要开发收益。</p><p data-en>Public outcomes no later than development benefit.</p></div>
+      </div>
+    </section>
+
+    <section class="reveal" id="units">
+      <div class="section-head"><div class="num">02 / UNIT TYPES</div><h2><span data-zh>宽 · 密 · 厚</span><span data-en>WIDE · FINE · THICK</span></h2><p><span data-zh>同一原则穿过不同地方网络后，不是产生三种造型，而是产生三套完整的城市组织方式。</span><span data-en>One rule passing through different local networks produces three complete forms of urban organization, not three shapes.</span></p></div>
+      <div class="tabs">
+        <div class="tablist" role="tablist" aria-label="地方城市单元类型">
+          <button class="tabbtn" role="tab" aria-selected="true" data-tab="wide"><strong>宽 / WIDE</strong><span>U07—U09 · NORTH</span></button>
+          <button class="tabbtn" role="tab" aria-selected="false" data-tab="fine"><strong>密 / FINE</strong><span>U04—U06 · MIDDLE</span></button>
+          <button class="tabbtn" role="tab" aria-selected="false" data-tab="thick"><strong>厚 / THICK</strong><span>U01—U03 · SOUTH</span></button>
+        </div>
+        <div class="tabpanels">
+          <article class="panel active" data-panel="wide"><div><h3 data-zh>把大项目变成城市街区</h3><h3 data-en>Turn large projects into city districts</h3><ul><li data-zh>公共街与基础市政先行，切分大尺度项目。</li><li data-en>Public streets and utilities subdivide large projects first.</li><li data-zh>公共外圈容纳共享服务，安全内核保持受控研发。</li><li data-en>A civic outer ring serves shared uses; secure cores retain controlled R&amp;D.</li><li data-zh>物流和设备后勤外置，不与公共基准争用地面。</li><li data-en>Freight and secure logistics move to outer edges.</li><li data-zh>实施工具：供地、片区更新与基础设施交付条件。</li><li data-en>Instrument: land, district renewal and infrastructure conditions.</li></ul></div><div class="unit-sketch wide-sketch"><div class="spine"></div><div class="cross"></div><i class="mass"></i><i class="mass"></i><i class="mass"></i><i class="mass"></i></div></article>
+          <article class="panel" data-panel="fine"><div><h3 data-zh>让存量首层组成公共网络</h3><h3 data-en>Make existing ground floors a public network</h3><ul><li data-zh>保留细颗粒建筑与街巷，不新建贯穿式大路。</li><li data-en>Retain fine grain; do not cut a new boulevard through it.</li><li data-zh>首层、前场、巷道和院落以开放协议接成网络。</li><li data-en>Connect ground floors, forecourts, alleys and courts by agreement.</li><li data-zh>不假设校园内部通行，必须提供公共替代路线。</li><li data-en>Never assume campus passage; provide a public alternative.</li><li data-zh>实施工具：更新许可、租约、时段开放与维护协议。</li><li data-en>Instrument: permits, leases, timed access and maintenance agreements.</li></ul></div><div class="unit-sketch fine-sketch"></div></article>
+          <article class="panel" data-panel="thick"><div><h3 data-zh>把站点、社区与开发做成一个剖面</h3><h3 data-en>Design station, community and development as one section</h3><ul><li data-zh>四象限地面连续优先于未经论证的桥隧工程。</li><li data-en>Ground-level four-quadrant continuity precedes unproven bridges or tunnels.</li><li data-zh>站务、社区服务、文化与产业共同进入复合基座。</li><li data-en>Station, community, cultural and industry uses share a mixed podium.</li><li data-zh>体量向社区和文化遗产递降，数值高度保持 unknown。</li><li data-en>Massing steps down to communities and heritage; numeric height stays unknown.</li><li data-zh>实施工具：站城联合开发与区域综合更新门槛。</li><li data-en>Instrument: station joint-development and comprehensive-renewal gates.</li></ul></div><div class="unit-sketch thick-sketch"><div class="ground"></div><div class="podium"></div><i class="tower a"></i><i class="tower b"></i><i class="tower c"></i><i class="tower d"></i><div class="station"></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal" id="areas">
+      <div class="section-head"><div class="num">03 / KEY AREAS</div><h2><span data-zh>三处重点区<br>三种现实机制</span><span data-en>THREE KEY AREAS<br>THREE REAL MECHANISMS</span></h2><p><span data-zh>真实公开资料表明，众智园是综合更新组团，AI 原点是高密存量生态，大钟寺是跨街道综合更新。差异必须进入空间和实施。</span><span data-en>Public records identify a district-scale renewal group, a dense existing ecosystem and a cross-subdistrict comprehensive renewal area.</span></p></div>
+      <figure class="figure"><img src="../assets/figures/key-areas.png" data-zh-src="../assets/figures/key-areas.png" data-en-src="../assets/figures/key-areas.en.png" alt="众智园、AI原点和大钟寺三处重点区的概念详细设计"><figcaption class="caption">Wide / fine-grain / thick · key-area polygons remain provisional</figcaption></figure>
+      <div class="keygrid">
+        <article class="keycard"><div><span class="type" style="color:var(--green)">NORTH · WIDE</span><h3 data-zh>众智园研发验证单元</h3><h3 data-en>Zhongzhiyuan R&amp;D-validation unit</h3><p data-zh>两街一厅、公共外圈、安全内核、后勤外置。</p><p data-en>Two streets, one commons, civic outer ring, secure core and outer logistics.</p></div><div class="gate" data-zh>GATE-U08：两条公共路径、公共厅、无障碍、照明排水和维护责任先完成。</div><div class="gate" data-en>GATE-U08: two routes, commons, accessibility, drainage, lighting and maintenance first.</div></article>
+        <article class="keycard"><div><span class="type" style="color:var(--orange)">MIDDLE · FINE</span><h3 data-zh>AI 原点细密单元</h3><h3 data-en>AI Origin fine-grain unit</h3><p data-zh>两条公共主路、六条细巷、九类首层服务接口。</p><p data-en>Two public routes, six alleys and nine types of ground-floor service interface.</p></div><div class="gate" data-zh>GATE-U06：两条独立公共路径与关键首层服务先运行。</div><div class="gate" data-en>GATE-U06: two independent public routes and essential ground-floor services first.</div></article>
+        <article class="keycard"><div><span class="type" style="color:var(--blue)">SOUTH · THICK</span><h3 data-zh>大钟寺站城单元</h3><h3 data-en>Dazhongsi station-city unit</h3><p data-zh>四象限、三层公共地面、复合基座与两向递降。</p><p data-en>Four quadrants, three public grounds, mixed podium and two massing transitions.</p></div><div class="gate" data-zh>GATE-U01：四象限地面无障碍与社区服务先于主要租售。</div><div class="gate" data-en>GATE-U01: ground-level accessibility and community service before main leasing.</div></article>
+      </div>
+    </section>
+
+    <section class="reveal" id="systems">
+      <div class="section-head"><div class="num">04 / SIX SYSTEMS</div><h2><span data-zh>从主命题进入真正空间</span><span data-en>FROM THESIS TO ACTUAL SPACE</span></h2><p><span data-zh>地方单元同时组织用地、建筑与首层、公共空间、交通、公共服务和实施；缺少任一项，就会退化为横向箭头。</span><span data-en>Each unit organizes land, buildings and ground floors, public space, mobility, services and delivery. Remove one and it falls back into an arrow.</span></p></div>
+      <div class="systems"><figure class="figure"><img src="../assets/figures/mobility-bluegreen.png" data-zh-src="../assets/figures/mobility-bluegreen.png" data-en-src="../assets/figures/mobility-bluegreen.en.png" alt="交通慢行和蓝绿公共空间复合系统"><figcaption class="caption">North-south continuity · complete cross-city streets · locally different sections</figcaption></figure><div class="system-list">
+        <article class="system-item"><b>01 LAND</b><h3 data-zh>完整用地关系</h3><h3 data-en>Complete land relations</h3><p data-zh>48 个概念分区零缺口、零重叠。</p><p data-en>48 conceptual zones, zero gap and overlap.</p></article>
+        <article class="system-item"><b>02 GROUND</b><h3 data-zh>建筑与首层</h3><h3 data-en>Buildings and ground</h3><p data-zh>184 个形态基底只检验颗粒和界面，不伪装现状。</p><p data-en>184 massing footprints test grain and interface, not existing facts.</p></article>
+        <article class="system-item"><b>03 PUBLIC</b><h3 data-zh>线—厅—室</h3><h3 data-en>Line—hall—room</h3><p data-zh>公共基准、九个公共厅和侧向绿室。</p><p data-en>Civic datum, nine public halls and side green rooms.</p></article>
+        <article class="system-item"><b>04 MOBILITY</b><h3 data-zh>纵向连续、横向完整</h3><h3 data-en>Long continuity, complete crossings</h3><p data-zh>一条绿道、两条侧街、九条完整地方城市街。</p><p data-en>One greenway, two side streets and nine complete local streets.</p></article>
+        <article class="system-item"><b>05 SERVICE</b><h3 data-zh>公共服务进入首层</h3><h3 data-en>Services enter ground floors</h3><p data-zh>共享研发、学习、社区、卫生、站务与文化服务分布设置。</p><p data-en>R&amp;D, learning, community, health, station and cultural services are distributed.</p></article>
+        <article class="system-item"><b>06 DELIVERY</b><h3 data-zh>一单元一门槛</h3><h3 data-en>One unit, one gate</h3><p data-zh>九个空间单元同时是九个责任闭环。</p><p data-en>Nine spatial units are nine responsibility loops.</p></article>
+      </div></div>
+    </section>
+
+    <section class="reveal" id="gate">
+      <div class="section-head"><div class="num">05 / DELIVERY GATE</div><h2><span data-zh>公共成果<br>不得晚于收益</span><span data-en>PUBLIC OUTCOMES<br>NO LATER THAN BENEFIT</span></h2><p><span data-zh>同一实施原则在北、中、南使用不同法律和项目工具，但必须形成同样清晰的证据链。</span><span data-en>The same rule uses different legal and project instruments in the north, middle and south, but the evidence chain remains clear.</span></p></div>
+      <div class="gateflow"><div class="gate-step"><b data-zh>核验</b><b data-en>VERIFY</b><p data-zh>红线、权属、建筑、交通</p><p data-en>Boundary, ownership, buildings, mobility</p></div><div class="gate-step"><b data-zh>确权</b><b data-en>SECURE</b><p data-zh>道路、地役权、开放协议</p><p data-en>Street, easement, access agreement</p></div><div class="gate-step"><b data-zh>交付</b><b data-en>DELIVER</b><p data-zh>路径、服务、照明、排水</p><p data-en>Route, service, lighting, drainage</p></div><div class="gate-step"><b data-zh>验收</b><b data-en>ACCEPT</b><p data-zh>无障碍、开放、维护与人工服务</p><p data-en>Accessibility, opening, care, staffed service</p></div><div class="gate-step"><b data-zh>收益</b><b data-en>BENEFIT</b><p data-zh>租售、投入使用或合同收益节点</p><p data-en>Lease, occupation or contractual benefit</p></div></div>
+      <div class="gateclaim"><blockquote data-zh>先有可用、可达、可维护的城市，再有主要开发收益。</blockquote><blockquote data-en>A usable, reachable and maintained city comes before the main development benefit.</blockquote><p data-zh>触发节点取主要租售、主体建筑投入使用，或合同开发付款达到 30% 三者中最早者。30% 是方案建议，不是现行法规或已签条款。</p><p data-en>The trigger is the earliest of main leasing/sale, main-building occupation, or 30% contractual development payment. The 30% threshold is a design recommendation, not current law.</p></div>
+    </section>
+
+    <section class="reveal" id="evidence">
+      <div class="section-head"><div class="num">06 / EVIDENCE</div><h2><span data-zh>可复算，但不伪装确定</span><span data-en>RECALCULABLE WITHOUT FALSE CERTAINTY</span></h2><p><span data-zh>known 表示可从当前设计结构或概念几何复算；它不等于现状事实或规划批准。</span><span data-en>Known means computable from the present design structure or conceptual geometry. It does not mean existing fact or planning approval.</span></p></div>
+      <figure class="figure"><img src="../assets/figures/metrics-evidence.png" data-zh-src="../assets/figures/metrics-evidence.png" data-en-src="../assets/figures/metrics-evidence.en.png" alt="指标复算和公共交付门槛"><figcaption class="caption">EPSG:4548 · topology checked · official data gaps remain null</figcaption></figure>
+      <div class="metrics"><div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>11.4 km²</strong><span data-zh>总体设计范围</span><span data-en>MASTERPLAN AREA</span><i></i></div><div class="metric"><strong>9</strong><span data-zh>地方城市单元</span><span data-en>LOCAL UNITS</span><i></i></div><div class="metric" data-metric="green_ratio" data-value="0.150315"><strong>15.03%</strong><span data-zh>概念绿色空间</span><span data-en>CONCEPT GREEN</span><i></i></div><div class="metric" data-metric="public_space_ratio" data-value="0.059089"><strong>5.91%</strong><span data-zh>概念公共空间</span><span data-en>CONCEPT PUBLIC</span><i></i></div><div class="metric"><strong>0 / 0</strong><span data-zh>用地缺口 / 重叠</span><span data-en>LAND GAP / OVERLAP</span><i></i></div><div class="metric"><strong>12</strong><span data-zh>AI 场景节点</span><span data-en>AI SCENARIOS</span><i></i></div><div class="metric"><strong>7</strong><span data-zh>测试验证场景</span><span data-en>VALIDATION PILOTS</span><i></i></div><div class="metric"><strong>3</strong><span data-zh>朝圣 / 荣誉节点</span><span data-en>HONOR NODES</span><i></i></div><div class="metric"><strong>9</strong><span data-zh>公共交付门槛</span><span data-en>PUBLIC GATES</span><i></i></div></div>
+      <div class="principles" aria-label="提交证据索引">
+        <div class="principle"><b>MAP</b><p><span data-zh>总览地图 · 三层范围 · 重点区域</span><span data-en>Overview map · three scales · key areas</span></p></div>
+        <div class="principle"><b>SPACE</b><p><span data-zh>用地分区 · 交通慢行 · 蓝绿公共空间</span><span data-en>Land use · mobility · blue-green public space</span></p></div>
+        <div class="principle"><b>DELIVERY</b><p><span data-zh>更新项目 · 核心指标</span><span data-en>Renewal projects · core metrics</span></p></div>
+        <div class="principle"><b>COMPLIANCE</b><p><span data-zh>任务覆盖 · 自检状态</span><span data-en>Task coverage · self-check status</span></p></div>
+        <div class="principle"><b>SOURCES</b><p><span data-zh>来源：sources.json 与正文证据索引</span><span data-en>Sources: sources.json and in-text evidence index</span></p></div>
+      </div>
+      <div class="unknown"><b>UNKNOWN / DATA GAPS</b><p><span data-zh>容积率 · 总建筑面积 · 建筑高度 · 道路红线 · 真实拆改留数量</span><span data-en>FAR · floor area · numeric height · road redlines · real retain/renovate/demolish counts</span></p></div>
+      <div class="scenario-strip"><div class="scenario"><b>SCN-03 · TEST</b><p data-zh>具身系统公开验证窗，第三方复核与人工急停。</p><p data-en>Visible embodied-system validation with third-party review and emergency stop.</p></div><div class="scenario"><b>SCN-05 · TEST</b><p data-zh>无障碍路径助手，错误路线立即退回静态导视。</p><p data-en>Step-free route assistant with immediate fallback to static guidance.</p></div><div class="scenario"><b>SCN-08 · TEST</b><p data-zh>可回退路缘时段管理，人工执法始终有效。</p><p data-en>Reversible kerb schedule with manual enforcement always available.</p></div><div class="scenario"><b>SCN-10 · TEST</b><p data-zh>四象限换乘助手，站务员与工程消防规则优先。</p><p data-en>Four-quadrant transfer assistant; station staff and safety rules prevail.</p></div></div>
+    </section>
+
+    <section class="closing reveal" id="limits"><h2><span data-zh>设计完整。<br>边界诚实。</span><span data-en>COMPLETE DESIGN.<br>HONEST LIMITS.</span></h2><div class="limits"><ul><li data-zh>总体与重点区 polygon 仍为临时粗略边界。</li><li data-en>Overall and key-area polygons remain provisional.</li><li data-zh>概念建筑基底不是现状、权属或拆迁结论。</li><li data-en>Conceptual footprints are not existing, ownership or demolition facts.</li><li data-zh>道路、站点、文保、市政与控规须专业复核。</li><li data-en>Road, station, heritage, utility and planning controls require professional review.</li><li data-zh>AI 场景上线前须完成数据、隐私、安全和人工兜底审查。</li><li data-en>AI pilots require data, privacy, safety and human-fallback review.</li></ul></div></section>
+  </main>
+  <footer><span>JING-ZHANG LOCAL URBAN UNITS · XBEFORE + OPENAI CODEX</span><span>PROVISIONAL CONCEPT DESIGN · 2026</span></footer>
+  <script>
+    const body=document.body,langBtns=document.querySelectorAll('.lang');
+    langBtns.forEach(btn=>btn.addEventListener('click',()=>{body.classList.toggle('en');const isEn=body.classList.contains('en');langBtns.forEach(b=>b.textContent=isEn?'中':'EN');document.documentElement.lang=isEn?'en':'zh-CN';document.querySelectorAll('img[data-zh-src]').forEach(img=>img.src=isEn?img.dataset.enSrc:img.dataset.zhSrc);}));
+    document.querySelectorAll('.tabbtn').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tabbtn').forEach(b=>b.setAttribute('aria-selected','false'));document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));btn.setAttribute('aria-selected','true');document.querySelector(`[data-panel="${btn.dataset.tab}"]`).classList.add('active');}));
+    const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  </script>
+</body>
+</html>

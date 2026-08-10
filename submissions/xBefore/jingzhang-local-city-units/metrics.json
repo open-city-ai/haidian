@@ -1,0 +1,446 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area(provisional SITE-001)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "provisional_constraint_geometry"
+    },
+    "land_use_partition_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "EPSG:4548 area(union(all LAND_USE))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "land_use_gap_ratio": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(site - union(land_use)) / area(site)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "land_use_overlap_ratio": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "(sum(feature areas)-union area)/site area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 3957667.649647,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual BUILDING_FOOTPRINT))",
+      "confidence": "low",
+      "assumptions": [
+        "A-EXISTING-003"
+      ],
+      "evidence_class": "conceptual_massing_only"
+    },
+    "conceptual_building_footprint_ratio": {
+      "status": "known",
+      "value": 0.346774,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual footprint area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-EXISTING-003"
+      ],
+      "evidence_class": "conceptual_massing_only"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1715514.017013,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(conceptual GREEN_SPACE))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.150315,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area / provisional site area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 674369.477511,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(conceptual PUBLIC_SPACE polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PUBLIC-ACCESS-007"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.059089,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area / provisional site area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-ACCESS-007"
+      ],
+      "evidence_class": "conceptual_design_geometry"
+    },
+    "public_datum_length_m": {
+      "status": "known",
+      "value": 9716.124573,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "EPSG:4548 length(ROAD-DATUM-001)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "conceptual_alignment"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "verified_required_scope"
+    },
+    "key_areas_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.00509,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area(union(KEY_AREA provisional polygons))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "evidence_class": "provisional_constraint_geometry"
+    },
+    "local_unit_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(PHASE local urban units)",
+      "confidence": "high",
+      "assumptions": [],
+      "evidence_class": "verified_design_structure"
+    },
+    "wide_unit_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(unit_type=wide)",
+      "confidence": "high",
+      "assumptions": [],
+      "evidence_class": "verified_design_structure"
+    },
+    "fine_unit_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(unit_type=fine)",
+      "confidence": "high",
+      "assumptions": [],
+      "evidence_class": "verified_design_structure"
+    },
+    "thick_unit_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(unit_type=thick)",
+      "confidence": "high",
+      "assumptions": [],
+      "evidence_class": "verified_design_structure"
+    },
+    "complete_cross_unit_route_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-Uxx-CROSS)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-PUBLIC-ACCESS-007"
+      ],
+      "evidence_class": "conceptual_routes"
+    },
+    "public_delivery_gate_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(distinct public_gate_id)",
+      "confidence": "high",
+      "assumptions": [
+        "A-IMPLEMENTATION-008"
+      ],
+      "evidence_class": "verified_design_structure"
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(layer=SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-DATA-009"
+      ],
+      "evidence_class": "verified_design_structure"
+    },
+    "testing_validation_scenario_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE testing_required=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-DATA-009"
+      ],
+      "evidence_class": "verified_design_structure"
+    },
+    "pilgrimage_node_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(node_role=ai_pilgrimage_or_honor_node)",
+      "confidence": "high",
+      "assumptions": [],
+      "evidence_class": "verified_design_structure"
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total approved floor area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002"
+      ],
+      "reason": "Approved FAR controls, official boundary, and existing/new floor-area baseline are absent."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(approved building floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002",
+        "A-EXISTING-003"
+      ],
+      "reason": "Conceptual footprints do not encode approved floors or heights."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control by parcel",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-002",
+        "A-HERITAGE-006"
+      ],
+      "reason": "Approved height controls and heritage/view constraints are absent."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "surveyed existing plus approved new footprint / official parcel area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-003"
+      ],
+      "reason": "Existing buildings and official parcels are absent; conceptual massing is not a baseline."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "area(official road redlines)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-TRANSPORT-005"
+      ],
+      "reason": "Road centerlines are conceptual and official redlines/utilities are absent."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "official road area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-TRANSPORT-005"
+      ],
+      "reason": "Both official road redlines and official site boundary are absent."
+    },
+    "retain_building_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(surveyed buildings assigned retain)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-003",
+        "A-OWNERSHIP-004"
+      ],
+      "reason": "No surveyed building inventory, condition assessment, or ownership data are available."
+    },
+    "renovate_building_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(surveyed buildings assigned renovate)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-003",
+        "A-OWNERSHIP-004"
+      ],
+      "reason": "No surveyed building inventory, condition assessment, or ownership data are available."
+    },
+    "demolish_building_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(surveyed buildings assigned demolish after statutory process)",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-EXISTING-003",
+        "A-OWNERSHIP-004"
+      ],
+      "reason": "No surveyed building inventory, structural assessment, ownership data, or approved demolition decision are available."
+    }
+  }
+}
