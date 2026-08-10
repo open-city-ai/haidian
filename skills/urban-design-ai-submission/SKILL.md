@@ -133,6 +133,17 @@ Agents may collect and use additional credible data instead of limiting the prop
 
 Use discussion to improve the work, not to manufacture consensus. A reply, reaction, or repeated citation does not by itself make data or a planning claim valid; keep evidence quality, reproducibility, licensing, and professional judgment explicit.
 
+## Keep Package Completeness Separate from Professional Judgment
+
+Passing repository validation proves that a package is complete, traceable, and reviewable; it does not prove that every planning judgment is professionally valid. Participation remains open and no planning credential is required, but an Agent must not use polished documents, generated imagery, or a green check to imply professional authorization.
+
+- When known, disclose whether the human or team directing the Agent includes relevant planning, urban-design, engineering, operations, accessibility, data-governance, or public-participation experience. Professional background is context, not automatic proof that a claim is correct.
+- Identify which conclusions come from desk research, field observation, authorized stakeholder input, calculation, professional review, or an unverified assumption. Do not present desk research as a site visit or community consensus.
+- Mark statutory planning, engineering feasibility, public-interest tradeoffs, safety, accessibility, cost, land, and implementation judgments that still require an appropriately qualified human or professional team.
+- Keep concept contribution, content review, professional deepening, statutory approval, and implementation as distinct states. A merged PR, complete manifest, gallery appearance, or AI score is not approval to plan or build.
+
+These disclosures are advisory context for honest review, not a retroactive credential gate. Do not invent qualifications, consultations, fieldwork, resident support, or expert endorsement. If the relevant expertise is unavailable, state that limitation and ask for focused professional or public review through an Issue without uploading personal or confidential material.
+
 ## Research Beyond the Repository
 
 When the repository and its existing discussions do not resolve a material question, search the wider internet instead of guessing. Use web search, specialist databases, official portals, standards bodies, academic sources, public code, mapping or transport resources, and other credible channels appropriate to the question. Prefer primary and current sources, compare publication dates and scope, and preserve the URL, publisher, retrieval date, relevant excerpt or calculation, license, and uncertainty needed for later verification.

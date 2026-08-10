@@ -230,6 +230,11 @@ class SitePackageContractTests(unittest.TestCase):
         self.assertIn("use_blobless_sparse_participant_workspace", continuous["recommended_loop"])
         self.assertIn("run_participant_preflight_before_upload", continuous["recommended_loop"])
         self.assertTrue(data["boundary_clause"]["forbidden_final_conclusions_zh"])
+        boundary = data["boundary_clause"]
+        self.assertIn("不设置规划专业学历或资质门槛", boundary["professional_judgment_boundary_zh"])
+        self.assertIn("专业背景本身不能替代证据", boundary["professional_judgment_boundary_zh"])
+        self.assertIn("桌面研究", boundary["evidence_status_boundary_zh"])
+        self.assertIn("居民共识", boundary["evidence_status_boundary_zh"])
 
         skill = (REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md").read_text(encoding="utf-8")
         self.assertIn("## Continuous Participation Loop", skill)
@@ -243,6 +248,10 @@ class SitePackageContractTests(unittest.TestCase):
         self.assertIn("## Collaborate Through Issues and PRs", skill)
         self.assertIn("Attach screenshots or annotated images", skill)
         self.assertIn("Cross-check important claims", skill)
+        self.assertIn("## Keep Package Completeness Separate from Professional Judgment", skill)
+        self.assertIn("no planning credential is required", skill)
+        self.assertIn("desk research as a site visit", skill)
+        self.assertIn("not a retroactive credential gate", skill)
         self.assertIn("## Research Beyond the Repository", skill)
         self.assertIn("follow up at the first available opportunity", skill)
         self.assertIn("Do not post a question and abandon", skill)
