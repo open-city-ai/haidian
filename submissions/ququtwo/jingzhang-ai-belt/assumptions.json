@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "详细控规条件、道路红线、权属、市政管线和工程约束需从官方附件确认后方可用于法定用途。",
+      "statement_en": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "方案可作为 formal AI submission 评审，但法定控制条件仍需专业确认。",
+      "recalculation_trigger": "官方发布控规条件或详细规划图则后"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional",
+      "statement": "本方案使用仓库提供的临时粗略边界（provisional_constraint），非官方红线。",
+      "statement_en": "This proposal uses the repository-provided provisional rough boundary, not an official redline.",
+      "impact": "所有面积、比例指标基于临时边界计算，官方边界发布后需全部重算。",
+      "recalculation_trigger": "官方发布精确红线边界文件后",
+      "geometry_ids": ["PROV-SITE-001", "PROV-RESEARCH-001"]
+    },
+    {
+      "id": "A-KEY-AREAS-001",
+      "status": "provisional",
+      "statement": "三处重点片区（众智园、北京AI原点社区、大钟寺）使用临时粗略范围，非官方详细设计边界。",
+      "statement_en": "The three key areas use provisional rough boundaries, not official detailed design boundaries.",
+      "impact": "重点片区面积和布局基于临时范围，官方四至公布后需调整。",
+      "recalculation_trigger": "官方发布三处重点片区精确四至后",
+      "geometry_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"]
+    },
+    {
+      "id": "A-LAND-USE-001",
+      "status": "conceptual_suggestion",
+      "statement": "用地分区方案为概念性建议，供专业团队深化研究，不构成控规调整或法定规划结论。",
+      "statement_en": "Land use zoning is a conceptual suggestion for professional teams to deepen, not a regulatory adjustment or statutory planning conclusion.",
+      "impact": "用地比例和空间布局可作为设计讨论基础，不可直接用于审批。"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "conceptual_suggestion",
+      "statement": "建筑基底和规模为概念性估计，未进行日照、消防、结构等工程分析。",
+      "statement_en": "Building footprints and scale are conceptual estimates without engineering analysis for sunlight, fire safety, or structural requirements.",
+      "impact": "建筑数据仅供空间设计讨论，不可用于工程可行性判断。"
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "status": "conceptual_suggestion",
+      "statement": "AI场景卡和技术应用方案基于公开技术成熟度评估，具体部署需专业评估。",
+      "statement_en": "AI scenario cards and technology applications are based on public technology maturity assessments; specific deployment requires professional evaluation.",
+      "impact": "场景方案可作为创新讨论基础，不可直接视为已批准的运营安排。"
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "provisional",
+      "statement": "所有指标从 GeoJSON 图层在 EPSG:4548 投影下复算，受临时边界精度限制。",
+      "statement_en": "All metrics are recomputed from GeoJSON layers under EPSG:4548 projection, subject to provisional boundary precision limits.",
+      "impact": "指标值可用于方案内部一致性校验，官方边界发布后需重算。",
+      "recalculation_trigger": "官方边界或用地数据更新后"
+    },
+    {
+      "id": "A-CULTURE-001",
+      "status": "verified_public",
+      "statement": "京张铁路历史文化信息来自公开历史资料和北京市官方发布。",
+      "statement_en": "Jing-Zhang Railway historical and cultural information comes from public historical materials and official Beijing releases.",
+      "impact": "文化叙事用于空间设计和品牌定位，历史细节以官方档案为准。"
+    },
+    {
+      "id": "A-INDUSTRY-001",
+      "status": "background_only",
+      "statement": "全球AI创新生态案例来自公开研究报告，仅用于对比研究，不构成海淀规划建议的直接依据。",
+      "statement_en": "Global AI innovation ecosystem cases come from public research reports, used only for comparative study, not as direct basis for Haidian planning.",
+      "impact": "案例分析可作为创新生态设计参考，具体产业布局以实际招商为准。"
+    }
+  ]
+}
