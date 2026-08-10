@@ -86,7 +86,7 @@ iteration: "v0.2"
 | 1401（绿地广场） | 遗址公园、滨水绿廊、开放广场 | 京张遗址公园活力带串联全带 |
 | 1207（交通市政） | 轨道站点、慢行廊、能源站 | 三级交通骨架与市政管廊 |
 
-用地结构以创新生产类（商办+科研）为绝对主体（合计约 49%），居住与公服约 39%，绿地广场约 8%，交通市政约 4%，具体以复算 `metrics.json` 为准（EPSG:4549）[metric:site_area_sqm] [metric:building_footprint_area_sqm]。建筑规模与拆改留遵循"保留历史、改造利用、新建织补"原则，建筑类型覆盖研发、中试、文化地标、人才公寓等（`geometry/buildings.geojson`）[depth:retain_renovate_demolish] [depth:development_intensity_controls]。
+用地结构以创新生产类（商办+科研）为绝对主体（合计约 49%），居住与公服约 39%，绿地广场约 8%，交通市政约 4%，具体以复算 `metrics.json` 为准（EPSG:4548）[metric:site_area_sqm] [metric:building_footprint_area_sqm]。建筑规模与拆改留遵循"保留历史、改造利用、新建织补"原则，建筑类型覆盖研发、中试、文化地标、人才公寓等（`geometry/buildings.geojson`）[depth:retain_renovate_demolish] [depth:development_intensity_controls]。
 
 ![用地结构与空间结构](assets/figures/land-use-structure.png)
 
@@ -100,7 +100,7 @@ iteration: "v0.2"
 
 ### 蓝绿空间与公共空间
 
-绿地率约 13.96%、公共空间率约 17.92%（EPSG:4549 复算），以京张遗址公园为绿轴、南北蓝绿廊为织线、社区口袋公园为节点，构建"一轴两廊多节点"骨架（`geometry/green_space.geojson`、`public_space.geojson`）[metric:green_ratio] [depth:blue_green_public_space]。
+绿地率约 13.96%、公共空间率约 17.92%（EPSG:4548 复算），以京张遗址公园为绿轴、南北蓝绿廊为织线、社区口袋公园为节点，构建"一轴两廊多节点"骨架（`geometry/green_space.geojson`、`public_space.geojson`）[metric:green_ratio] [depth:blue_green_public_space]。
 
 ### 城市风貌
 
@@ -195,7 +195,7 @@ iteration: "v0.2"
 
 ### 蓝绿空间骨架
 
-以京张遗址公园为绿轴、南北蓝绿廊为织线、社区口袋公园为节点，构建"一轴两廊多节点"蓝绿骨架（`geometry/green_space.geojson`）；绿地率约 13.96%（EPSG:4549 复算），通过滨水步道、林荫大道与广场绿廊织密生态与慢行复合图层 [metric:green_ratio] [depth:blue_green_public_space]。
+以京张遗址公园为绿轴、南北蓝绿廊为织线、社区口袋公园为节点，构建"一轴两廊多节点"蓝绿骨架（`geometry/green_space.geojson`）；绿地率约 13.96%（EPSG:4548 复算），通过滨水步道、林荫大道与广场绿廊织密生态与慢行复合图层 [metric:green_ratio] [depth:blue_green_public_space]。
 
 ### 四大 AI 朝圣地标（L1~L4）
 

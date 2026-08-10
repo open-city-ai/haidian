@@ -84,7 +84,7 @@ Six dominant land-use categories are defined across the overall scope per "innov
 | 1401 (green/open) | Heritage park, waterfront green, open plazas | Jingzhang heritage vitality belt |
 | 1207 (transit/municipal) | Transit stations, slow corridors, energy | Three-tier mobility & utility corridor |
 
-Roughly 49% innovation-productive (commerce+research), 39% residential+public-service, 8% green/open, 4% transit & utility, per recomputed `metrics.json` (EPSG:4549) [metric:site_area_sqm] [metric:building_footprint_area_sqm]. Building scale and retain-renovate-demolish follow "retain heritage, retrofit, weave new" principles; building types cover R&D, piloting, cultural landmark and talent housing (`geometry/buildings.geojson`) [depth:retain_renovate_demolish] [depth:development_intensity_controls].
+Roughly 49% innovation-productive (commerce+research), 39% residential+public-service, 8% green/open, 4% transit & utility, per recomputed `metrics.json` (EPSG:4548) [metric:site_area_sqm] [metric:building_footprint_area_sqm]. Building scale and retain-renovate-demolish follow "retain heritage, retrofit, weave new" principles; building types cover R&D, piloting, cultural landmark and talent housing (`geometry/buildings.geojson`) [depth:retain_renovate_demolish] [depth:development_intensity_controls].
 
 ![Land-Use Structure and Spatial Structure](assets/figures/land-use-structure.png)
 
@@ -98,7 +98,7 @@ A three-tier mobility skeleton works in coordination with rail, municipal and pu
 
 ### Blue-Green Network and Public Space
 
-Green ratio ≈ 13.96%; public space ratio ≈ 17.92% (EPSG:4549). The Jingzhang heritage park forms the green spine, north-south blue-green corridors the weave, and pocket parks the nodes: "one axis, two corridors, multi-node" (`geometry/green_space.geojson`, `public_space.geojson`) [metric:green_ratio] [depth:blue_green_public_space].
+Green ratio ≈ 13.96%; public space ratio ≈ 17.92% (EPSG:4548). The Jingzhang heritage park forms the green spine, north-south blue-green corridors the weave, and pocket parks the nodes: "one axis, two corridors, multi-node" (`geometry/green_space.geojson`, `public_space.geojson`) [metric:green_ratio] [depth:blue_green_public_space].
 
 ### Urban Character
 
@@ -194,7 +194,7 @@ Municipally, corridors are reserved for water supply/drainage, power and utility
 
 ### Blue-Green Network Skeleton
 
-With the Jingzhang heritage park as the green axis, two north-south blue-green corridors as threads, and community pocket parks as nodes, a "one axis, two corridors, multiple nodes" skeleton is formed (`geometry/green_space.geojson`); green ratio ≈ 13.96% (EPSG:4549) via waterfront promenades, tree-lined avenues and plaza green corridors [metric:green_ratio] [depth:blue_green_public_space].
+With the Jingzhang heritage park as the green axis, two north-south blue-green corridors as threads, and community pocket parks as nodes, a "one axis, two corridors, multiple nodes" skeleton is formed (`geometry/green_space.geojson`); green ratio ≈ 13.96% (EPSG:4548) via waterfront promenades, tree-lined avenues and plaza green corridors [metric:green_ratio] [depth:blue_green_public_space].
 
 ### Four AI Pilgrimage Landmarks (L1~L4)
 
