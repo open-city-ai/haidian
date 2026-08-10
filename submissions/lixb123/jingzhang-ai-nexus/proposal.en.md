@@ -1,16 +1,16 @@
 ---
-title: "Jing-Zhang AI Nexus: Three Corridors, Three Cores"
+title: "Jing-Zhang AI Nexus: Tiangong Star Atlas for a Future AI City"
 author_github: "lixb123"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Three walkable, experiential, and operable innovation corridors connect Zhongzhiyuan, the Beijing AI Origin Community, and Dazhongsi into a public AI innovation living room."
+summary: "Tianwen knowledge, Nuwa weaving, and Yinglong water-vein corridors connect three innovation cores through a future-facing, auditable AI city interface."
 iteration: "v1.0"
 ---
 
-# Jing-Zhang AI Nexus: Three Corridors, Three Cores
+# Jing-Zhang AI Nexus: Tiangong Star Atlas for a Future AI City
 
 ## Design Basis and Evidence
 
@@ -26,11 +26,11 @@ The 43.6 km2 research scope frames regional innovation; the approximately 11.4 k
 
 ## Innovation and Future City Strategy
 
-“Jing-Zhang AI Nexus” combines a heritage-memory corridor, a civic-experience corridor, and an innovation-service corridor with three cores: Zhongzhiyuan acceleration, AI Origin collaboration, and Dazhongsi industry experience. The proposed identity uses a continuous trace, three nodes, and an open grid. Transferable lessons from Kendall Square, Station F, Vector Institute, Alan Turing Institute, Barcelona Supercomputing Center, and Seoul DMC are walkable shared interfaces, bookable test access, public explanation, and human-reviewed data governance. [source:AGENT-TASKBOOK]
+“Jing-Zhang AI Nexus” becomes the “Tiangong Star Atlas”: a Tianwen Knowledge Corridor for legible research and heritage, a Nuwa Weaving Corridor for civic collaboration and trustworthy data, and an Yinglong Water-Vein Corridor for blue-green climate resilience and slow mobility. These names are contemporary cultural metaphors for inquiry, repair, and water systems, not religious claims, historical reconstruction, or approved projects. Together they connect the Zhongzhiyuan acceleration, AI Origin collaboration, and Dazhongsi industry-experience cores. [source:AGENT-TASKBOOK]
 
 ## Overall Urban Design
 
-The concept is “three corridors, three cores, two wings, one slow-mobility loop.” Land-use and building layers are conceptual design representations, not regulatory amendments or ownership decisions. [data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure]
+The concept is a Tiangong Star Atlas of “three corridors, three cores, two wings, and one slow-mobility loop.” It proposes low-glare, switchable knowledge interfaces; civic data-consent tables; and climate-responsive blue-green nodes rather than spectacle screens. Land-use and building layers remain conceptual design representations, not regulatory amendments or ownership decisions. [data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure]
 
 ## Key Areas
 
@@ -54,7 +54,7 @@ The concept links stations, scenarios, parks, and communities through low-confli
 
 ## Public Realm, Culture, and Character
 
-The heritage corridor is a railway time-line and open interpreter. Three conceptual AI pilgrimage nodes are the Nexus Beacon, Deliberation Table, and Thousand-Question Platform. They support annual contribution recognition, civic co-creation, and multilingual interpretation, without claiming approval or using external copyrighted imagery. [data:geometry/public_space.geojson#PUBLIC-001]
+The heritage corridor is a railway time-line and open interpreter. Three conceptual AI pilgrimage nodes are the Tiangong Cloud Terrace for explainable-AI exhibitions, the Nuwa Weaving Table for civic consent and deliberation, and the Yinglong Water-Vein Platform for multilingual heritage and climate experience. They use mythology as a design-language metaphor, support annual contribution recognition and civic co-creation, and do not claim approval or use external copyrighted imagery. [data:geometry/public_space.geojson#PUBLIC-001]
 
 ## Phasing and Long-Term Operations
 
