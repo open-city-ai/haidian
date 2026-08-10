@@ -602,6 +602,12 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             report = json.loads(completed.stdout)
             self.assertTrue(report["ok"])
             self.assertTrue(report["can_enter_formal_review"])
+            self.assertTrue(report["content_review_eligible"])
+            self.assertFalse(report["professional_scoring_eligible"])
+            self.assertEqual(
+                ["official_site_boundary", "official_key_areas"],
+                report["professional_scoring_blocked_by"],
+            )
             self.assertEqual("professional_design_package", report["package_type"])
             self.assertEqual("formal-review-ready", report["review_status"])
             self.assertEqual([], report["professional_issue_ids"])

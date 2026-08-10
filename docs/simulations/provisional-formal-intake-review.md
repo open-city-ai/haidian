@@ -23,7 +23,9 @@ This document records the former boundary-gated behavior. Current review eligibi
 - Spatial review: PASS with minor warnings for provisional key areas.
 - Visual packaging check: PASS.
 - Professional evidence review: PASS.
-- `can_enter_formal_review`: false.
+- `content_review_eligible`: true.
+- `professional_scoring_eligible`: false because official site and key-area geometry are missing.
+- `can_enter_formal_review`: true (legacy content-review alias).
 
 ## What Is Now Walkable
 

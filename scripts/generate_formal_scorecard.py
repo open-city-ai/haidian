@@ -3,7 +3,8 @@
 
 This script does not score submissions automatically. It only prepares a
 structured scorecard after the maintainer gate has confirmed that a package can
-enter formal professional scoring.
+enter formal professional scoring. Content-review readiness alone is not
+enough when official geometry is still missing.
 """
 
 from __future__ import annotations
@@ -64,18 +65,22 @@ def build_comment(scorecard: dict[str, Any]) -> str:
         f"Submission: `{scorecard['submission_dir']}`",
         f"Scoring status: **{scorecard['scoring_status']}**",
         f"Maintainer gate: **{scorecard['eligibility_gate']['maintainer_recommendation']}**",
-        f"Can enter formal professional scoring: **{'YES' if scorecard['eligibility_gate']['can_enter_formal_review'] else 'NO'}**",
+        f"Can enter content review: **{'YES' if scorecard['eligibility_gate']['content_review_eligible'] else 'NO'}**",
+        f"Eligible for formal professional scoring: **{'YES' if scorecard['eligibility_gate']['professional_scoring_eligible'] else 'NO'}**",
         "",
     ]
     if scorecard["scoring_status"] == "blocked":
         lines.extend(
             [
-                "Formal scoring is blocked. Do not assign professional scores until the maintainer gate returns `formal-review-ready`.",
+                "Formal scoring is blocked. Do not assign professional scores until `professional_scoring_eligible` is true.",
                 "",
                 "Required action:",
                 f"- {scorecard['eligibility_gate']['summary_zh']}",
             ]
         )
+        blockers = scorecard["eligibility_gate"].get("professional_scoring_blocked_by", [])
+        if blockers:
+            lines.append("- Resolve organizer-controlled prerequisites: " + ", ".join(f"`{item}`" for item in blockers))
     else:
         lines.extend(
             [
@@ -96,20 +101,30 @@ def build_comment(scorecard: dict[str, Any]) -> str:
 
 
 def build_scorecard(summary: dict[str, Any]) -> dict[str, Any]:
-    ready = bool(summary.get("can_enter_formal_review"))
+    content_ready = bool(summary.get("content_review_eligible", summary.get("can_enter_formal_review")))
+    ready = bool(summary.get("professional_scoring_eligible", content_ready))
     recommendation = summary.get("recommendation", "request-changes")
     scoring_status = "draft" if ready and recommendation == "formal-review-ready" else "blocked"
     if scoring_status == "draft":
         gate_summary = "维护者 gate 已确认该方案可进入正式专业评分；请由专家组填写评分、证据引用和分歧意见。"
+    elif content_ready and summary.get("professional_scoring_blocked_by"):
+        blocked_by = "、".join(str(item) for item in summary["professional_scoring_blocked_by"])
+        gate_summary = f"方案已通过内容评审门槛，但正式专业评分仍被组织方前置条件阻断：{blocked_by}。"
     else:
-        gate_summary = "维护者 gate 尚未确认 formal-review-ready；请修复参与者可控制的校验问题。组织方缺少正式边界数据本身不得阻断评分。"
+        gate_summary = "维护者 gate 尚未确认内容评审就绪；请修复参与者可控制的校验问题。"
     return {
         "schema_version": "0.1.0",
         "submission_dir": summary["submission_dir"],
         "scoring_status": scoring_status,
         "eligibility_gate": {
             "maintainer_recommendation": recommendation,
-            "can_enter_formal_review": ready,
+            "content_review_eligible": content_ready,
+            "professional_scoring_eligible": ready,
+            "professional_scoring_blocked_by": [
+                str(item) for item in (summary.get("professional_scoring_blocked_by") or [])
+            ],
+            # Legacy alias: this field now means content-review eligibility.
+            "can_enter_formal_review": content_ready,
             "summary_zh": gate_summary,
         },
         "reviewer_panel": [

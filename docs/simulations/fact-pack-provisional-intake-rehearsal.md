@@ -46,7 +46,10 @@ Result:
 - Spatial review: PASS.
 - Visual packaging check: PASS.
 - Professional evidence review: PASS.
-- `can_enter_formal_review`: false.
+- `content_review_eligible`: true.
+- `professional_scoring_eligible`: false.
+- `professional_scoring_blocked_by`: `official_site_boundary`, `official_key_areas`.
+- `can_enter_formal_review`: true (legacy content-review alias).
 
 Expected warnings:
 
@@ -70,7 +73,8 @@ Result:
 
 ```text
 Recommendation: intake-provisional
-Can enter formal professional scoring: NO
+Can enter content review: YES
+Eligible for formal professional scoring: NO
 deterministic_validation: PASS
 spatial_review: PASS
 visual_review: PASS

@@ -35,6 +35,9 @@
       "type": "object",
       "required": [
         "maintainer_recommendation",
+        "content_review_eligible",
+        "professional_scoring_eligible",
+        "professional_scoring_blocked_by",
         "can_enter_formal_review",
         "summary_zh"
       ],
@@ -48,8 +51,26 @@
             "formal-review-ready"
           ]
         },
-        "can_enter_formal_review": {
+        "content_review_eligible": {
           "type": "boolean"
+        },
+        "professional_scoring_eligible": {
+          "type": "boolean"
+        },
+        "professional_scoring_blocked_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "official_site_boundary",
+              "official_key_areas"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "can_enter_formal_review": {
+          "type": "boolean",
+          "description": "Legacy alias for content_review_eligible."
         },
         "summary_zh": {
           "type": "string",

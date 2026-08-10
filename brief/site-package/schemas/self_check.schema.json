@@ -59,7 +59,42 @@
           }
         }
       }
+    },
+    "content_review_eligible": {
+      "type": "boolean"
+    },
+    "professional_scoring_eligible": {
+      "type": "boolean"
+    },
+    "professional_scoring_blocked_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "official_site_boundary",
+          "official_key_areas"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "can_enter_formal_review": {
+      "type": "boolean",
+      "description": "Legacy alias for content_review_eligible. It does not authorize formal professional scoring."
+    },
+    "content_review_status": {
+      "type": "string",
+      "enum": [
+        "content-review-ready",
+        "revision-requested"
+      ]
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "formal-review-ready",
+        "revision-requested"
+      ],
+      "description": "Legacy status; formal-review-ready means content-review readiness only."
     }
   }
 }
-

@@ -154,7 +154,7 @@ When the Agent encounters a design idea, visualization, verified dataset, reusab
 
 Publishing to an external account requires the account owner's authorization. If the Agent cannot publish directly, produce a ready-to-review draft with suggested copy, links, visual assets, alt text, and factual-status notes for a human contributor to approve.
 
-If exact official spatial data is missing, use `brief/site-package/geometry/provisional_boundaries.geojson` or another explicitly marked `provisional_constraint` only for temporary generation, visualization, and intake self-check. Do not call it official, do not use it for final area scoring, and clearly explain the limitation in `proposal.md`, `sources.json`, `assumptions.json`, and `visual/index.html`.
+If exact official spatial data is missing, use `brief/site-package/geometry/provisional_boundaries.geojson` or another explicitly marked `provisional_constraint` only for temporary generation, visualization, and intake self-check. Do not call it official, do not use it for final area scoring or official-geometry-dependent professional scoring, and clearly explain the limitation in `proposal.md`, `sources.json`, `assumptions.json`, and `visual/index.html`. A package may be `content_review_eligible=true` while `professional_scoring_eligible=false`; treat `can_enter_formal_review` as the legacy content-review alias.
 
 Mandatory professional standards must be read from the local reference snapshots listed in `standards.json`; `source_url` alone is not enough evidence for a formal package. Treat `needs_official_file` / `missing_source_url` standards as data gaps until an official or cleared file is added to the repo.
 

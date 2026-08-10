@@ -320,7 +320,7 @@ python3 scripts/render_proposal_html.py submissions/<your-github-login>/<proposa
 python3 scripts/score_submission.py submissions/<your-github-login>/<proposal-slug>/proposal.md
 ```
 
-该命令只检查 `proposal.md` 的轻量建议项；即使显示全绿或 `--strict` 返回 0，也**不表示** formal 投稿已通过。它不会检查目录范围、manifest、图层、图纸、HTML 或专业证据链。完成后仍必须运行下面的 `self_check_submission.py`，并以 `can_enter_formal_review=true` / `formal-review-ready` 作为正式准入证据。
+该命令只检查 `proposal.md` 的轻量建议项；即使显示全绿或 `--strict` 返回 0，也**不表示** formal 投稿已通过。它不会检查目录范围、manifest、图层、图纸、HTML 或专业证据链。完成后仍必须运行下面的 `self_check_submission.py`，并以 `content_review_eligible=true` / `formal-review-ready` 作为内容评审准入证据；正式专业评分还要检查 `professional_scoring_eligible=true`。
 
 exhibit 展示页和 portal 卡片由**维护者策展**:投稿包不包含 `exhibit.json`(deterministic 校验会拒绝它),
 进入 portal 与否由维护者在合并后决定。预览渲染流程可使用 `examples/` 演示样例:
@@ -358,7 +358,7 @@ python3 scripts/maintainer_review.py \
   --comment
 ```
 
-该命令会在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `review-summary.json`、`maintainer-comment.md`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`，并把可复制到 PR 的 comment 打印到 stdout。maintainer review 结果不进入展示页、不提交到仓库。可选七维度评审输出必须符合 `brief/site-package/schemas/advisory_review.schema.json`，也只通过 PR comment 反馈。`request-changes` 表示需要修改，`intake-provisional` 表示可作为临时 intake 合并展示但不能正式评分，`formal-review-ready` 表示可进入正式专业评分。完整操作见 [docs/maintainer-workflow.md](docs/maintainer-workflow.md)。
+该命令会在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `review-summary.json`、`maintainer-comment.md`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`，并把可复制到 PR 的 comment 打印到 stdout。maintainer review 结果不进入展示页、不提交到仓库。可选七维度评审输出必须符合 `brief/site-package/schemas/advisory_review.schema.json`，也只通过 PR comment 反馈。`request-changes` 表示需要修改，`intake-provisional` 表示可作为临时 intake 合并展示但不能正式评分，`formal-review-ready` 是内容评审就绪的兼容状态；是否可以正式评分以 `professional_scoring_eligible` 为准。完整操作见 [docs/maintainer-workflow.md](docs/maintainer-workflow.md)。
 
 需要自动生成赛程七维评分、内容/版权/隐私/官方背书风险、图纸与 HTML 多模态意见时，在维护者本地配置 `OPENAI_API_KEY` 后运行：
 
@@ -372,7 +372,7 @@ python3 scripts/ai_review_submission.py \
 
 AI 评审结果写入 `.maintainer-review/<proposal-slug>/ai-review/`，严格遵守 advisory review schema，并生成 `ai-review.json`、`ai-decision.json`、完整 Markdown 报告和可复制到 PR 的评论。模型不能覆盖本地确定性 gate；缺少版权、授权或资料公开性证据时必须要求补证。API Key 不进入 GitHub Actions。详见 [docs/maintainer-workflow.md](docs/maintainer-workflow.md#8-本地-ai-agent-专业评审)。
 
-若维护者审核结果为 `formal-review-ready`，可生成本地正式评分表：
+若维护者审核结果为 `formal-review-ready` 且 `professional_scoring_eligible=true`，可生成本地正式评分表：
 
 ```bash
 python3 scripts/generate_formal_scorecard.py \
@@ -380,7 +380,7 @@ python3 scripts/generate_formal_scorecard.py \
   --pr-author <your-github-login>
 ```
 
-评分表遵守 `brief/site-package/schemas/formal_scorecard.schema.json`，只作为本地专家评分材料；未达到 `formal-review-ready` 的方案会被标为 `blocked`，不得进入正式评分。
+评分表遵守 `brief/site-package/schemas/formal_scorecard.schema.json`，只作为本地专家评分材料；未达到 `formal-review-ready` 或 `professional_scoring_eligible=true` 的方案会被标为 `blocked`，不得进入正式评分。
 
 导出专家离线评审包可运行：
 

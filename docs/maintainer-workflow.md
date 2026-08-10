@@ -50,10 +50,10 @@ python3 scripts/maintainer_review.py \
 
 - `request-changes`：要求参赛者修复后再审。
 - `intake-provisional`：历史状态，仅用于识别旧审核结果；不得仅因组织方缺少正式 geometry 继续使用该状态。
-- `formal-review-ready`：可进入正式专业评分。
+- `formal-review-ready`：历史兼容状态，表示已通过内容评审门槛，不单独表示可以进行正式专业评分。
 - `reject`：触发强制拒绝条件，关闭或拒绝 PR。
 
-`package_type` 描述提交物种类，`review_status` 描述审核决定。组织方缺少 official boundary/key areas 只能形成精度与复算警示，不得阻断内容评分或导致扣分。
+`package_type` 描述提交物种类，`review_status` 描述审核决定。为避免状态混用，审核结果同时保留三个机器字段：`content_review_eligible` 表示是否可以进入内容评审，`professional_scoring_eligible` 表示是否满足正式专业评分前置条件，`professional_scoring_blocked_by` 列出组织方数据缺口。旧字段 `can_enter_formal_review` 继续保留，但只作为 `content_review_eligible` 的兼容别名。组织方缺少 official boundary/key areas 不得阻断内容评审，却会在正式专业评分阶段保持 blocked。
 
 ### Intake 最低质量门槛
 
@@ -96,7 +96,7 @@ python3 scripts/audit_bilingual_backfill.py
 
 ## 4A. 上线前模拟 PR 审核
 
-公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评分，因此参与者可控制的检查全部通过时，预期建议状态必须是 `formal-review-ready`，同时保留精度警示与复算要求：
+公开前或大改审核流程后，维护者可用仓库内 provisional 样例模拟一次 PR 审核。组织方缺少正式 geometry 不得阻断内容评审，因此参与者可控制的检查全部通过时，预期建议状态仍是兼容值 `formal-review-ready`；同时 `professional_scoring_eligible` 必须为 `false`，并保留精度警示与复算要求：
 
 ```bash
 python3 scripts/maintainer_review.py \
@@ -112,7 +112,7 @@ python3 scripts/generate_submissions_data.py --check
 python3 scripts/prelaunch_check.py
 ```
 
-若输出不是 `Recommendation: **formal-review-ready**`，或 `prelaunch_check.py` 失败，应先修复审核逻辑、展示索引或公开文档，不要发布新的投稿入口。
+若输出不是 `Recommendation: **formal-review-ready**`，或三轴状态与预期不符，或 `prelaunch_check.py` 失败，应先修复审核逻辑、展示索引或公开文档，不要发布新的投稿入口。
 
 ## 5. 合并后更新公开展示与首页精选
 
@@ -160,7 +160,7 @@ python3 scripts/render_portal.py \
 
 ## 6. 正式专业评分
 
-只有 `maintainer_review.py` 返回 `formal-review-ready` 后，才运行正式评分表生成器：
+只有 `maintainer_review.py` 返回 `formal-review-ready` 且 `professional_scoring_eligible=true` 后，才运行正式评分表生成器：
 
 ```bash
 python3 scripts/generate_formal_scorecard.py \
@@ -168,7 +168,7 @@ python3 scripts/generate_formal_scorecard.py \
   --pr-author <github-login>
 ```
 
-该命令会复跑维护者 gate，并在 `.maintainer-review/<proposal-slug>/formal-scorecard/` 生成 `formal-scorecard.json` 和 `formal-scorecard-comment.md`。如果方案仍是 `intake-provisional`、`request-changes` 或 `reject`，命令会返回非零并把 `scoring_status` 标为 `blocked`，不得填写正式分数。
+该命令会复跑维护者 gate，并在 `.maintainer-review/<proposal-slug>/formal-scorecard/` 生成 `formal-scorecard.json` 和 `formal-scorecard-comment.md`。如果方案仍是 `intake-provisional`、`request-changes` 或 `reject`，或者 `professional_scoring_eligible=false`，命令会返回非零并把 `scoring_status` 标为 `blocked`，不得填写正式分数。
 
 正式评分表使用 `brief/site-package/schemas/formal_scorecard.schema.json`，七维度按 0-5 分填写并折算为 100 分。评分 JSON、专家分歧和中间材料不提交到仓库；如需反馈参赛者，只复制最终整理后的 PR comment。
 
