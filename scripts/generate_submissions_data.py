@@ -217,6 +217,10 @@ def package_complete(submission_dir: Path) -> bool:
 
 
 def classify_submission(submission_dir: Path, manifest: Any) -> str:
+    # This is a display classification, not an independent attestation. A
+    # historical package may retain formal_review_ready for gallery continuity
+    # even when it predates the persisted-self-check contract; that label must
+    # not be presented as newly trusted formal evidence.
     rel = submission_dir.as_posix()
     stage = manifest.get("submission_stage") if isinstance(manifest, dict) else None
     if "formal-blocked" in rel or "blocked-draft" in rel:

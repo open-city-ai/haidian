@@ -9,7 +9,7 @@
 ## 二、逐资产权利台账
 
 **图像资产（全部原创矢量绘制，无第三方图片/照片/地图截图/AI图库素材）**
-- assets/figures/site-overview.png 等五张核心图纸：由本包 GeoJSON/metrics 经 matplotlib 程序化绘制，原创，CC-BY-4.0。
+- assets/figures/site-overview.png 等六张核心图纸（含生态图谱）：由本包 GeoJSON/metrics 经 matplotlib 程序化绘制，原创，CC-BY-4.0。
 - assets/figures/brand-logo.png：品牌标识概念稿，原创矢量绘制，图形与文字组合未检索到既有商标冲突，但**尚未进行正式商标近似检索与注册**，正式启用前必须完成查重（图上已标"概念稿未注册"）。
 - drawings/*.pdf、visual/index.html 内嵌 SVG：同上，由同一数据源程序化生成，原创。
 

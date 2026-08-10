@@ -52,6 +52,16 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 这是公共叙事和运营入口，不是注册商标、建筑物、企业合作或现场成效。标识一旦无法说明责任人、停止动作和普通路线，先撤下服务窗口，再保留人工路径。
 
+## 资源与决策板——先确认公共底线，再谈自动化扩展
+
+自动驾驶方案还缺一张能回答“谁持有底线、什么资源可以进入、谁能暂停”的交付板。`resource-decision-board.json` 把人工服务与无障碍、路缘与可逆空间、安全与独立评价、数据与有限算力、撤场与修复分成五类资源；每一类都登记建议的确认渠道、持有的公共底线、最低证据和否决条件。[data:visual/assets/resource-decision-board.json] [depth:phasing_implementation]
+
+这张板只描述确认程序，不填预算金额、机构名称、供应商、保险结果、许可或运营绩效。提案角色可以提出候选，不能单独放行；公共利益、无障碍、安全和独立复核角色可以暂停或退回人工；资源支持不能换取永久路缘、免于复核或更高评分。四道门从观察登记、最小资源核验、可逆窗口与独立回放走到条件扩展或撤场，任何一项缺失都停留在纸面或合成回放。[data:visual/assets/check-resource-decision-board.js] [depth:risk_missing_data]
+
+![资源与决策板——五类资源、四道决策门和暂停边界](assets/figures/resource-decision-board.png)
+
+板上的“资源渠道”不是资金承诺。只有官方边界、权属、消防、无障碍、保险、数据授权、公众基线和可执行的撤场责任同时到位，专业团队才可决定是否进入下一门；在此之前，普通路线、人工服务和公共通行保持优先。[depth:phasing_implementation] [depth:risk_missing_data]
+
 ## 设计依据与资料清单
 
 官方任务要求回应 AI+交通、机器人、自动驾驶、无人配送等场景，并达到三层空间研究、三处重点区和可审查的城市设计深度 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]。本包使用 `brief/site-package/` 的 provisional boundary、key areas、标准快照和来源注册表；`geometry/site_boundary.geojson` 明确 `official_boundary=false`、`geometry_role=provisional_constraint` [data:geometry/site_boundary.geojson#SITE-001]。
@@ -137,7 +147,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 为避免“节点”被误读成一处车辆停靠点，本包把三处节点拆成普通人路径、公开状态与同意、受限服务窗口、人工接管/停止和恢复普通路径五个连续界面。众智园先验收可关闭的安全评测庭，AI 原点先保留纸面/电话/人工等价服务，大钟寺先把轨道到达、安静通行和物流维护窗口分开；尺寸、容量、速度、路权、许可和性能仍为空，节点计划只表达 functional bands，不是道路断面或红线 [data:visual/assets/autonomy-node-interface-plans.json#AV-INTERFACE-001]。
 
-![三处自动驾驶节点的公共界面与功能带](assets/figures/autonomy-node-interface.svg)
+![三处自动驾驶节点的公共界面与功能带](assets/figures/autonomy-node-interface.png)
 
 图注：三行节点计划把“普通路径先行、受限服务可关、证据不足即人工回退”放到同一张图上；颜色表示界面关系，不表示现状测量、工程尺寸或车辆性能。
 

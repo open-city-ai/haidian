@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_PROVISIONAL_VALID",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/site_boundary.geojson",
+      "message": "SITE-001 is explicitly encoded as a provisional rough constraint; it is valid for concept review, not an official redline."
+    },
+    {
+      "check_id": "BOUNDARY_LIMITATION_DISCLOSED",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; sources.json; assumptions.json; visual/index.html",
+      "message": "The provisional-boundary limitation is disclosed in the narrative, source ledger, assumptions, and visual package."
+    },
+    {
+      "check_id": "KEY_AREAS_PROVISIONAL_VALID",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "All three required key areas are present and explicitly marked as provisional constraints."
+    },
+    {
+      "check_id": "LAND_USE_FULL_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Land-use partition gap=0.000003 sqm and outside=0.000003 sqm in EPSG:4548."
+    },
+    {
+      "check_id": "LAND_USE_NO_OVERLAP",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Pairwise land-use overlap=0.000000 sqm in EPSG:4548."
+    },
+    {
+      "check_id": "LAND_USE_CODES_VALID",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Every submitted land-use polygon uses a code from the project land-use enum."
+    },
+    {
+      "check_id": "BUILDING_CONCEPT_ONLY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/buildings.geojson",
+      "message": "Every building feature is disclosed as a low-confidence conceptual program envelope, not an existing-building or construction decision."
+    },
+    {
+      "check_id": "BUILDING_LANDUSE_COMPATIBILITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/buildings.geojson; geometry/land_use.geojson",
+      "message": "No concept building envelope should materially overlap 1401 park land."
+    },
+    {
+      "check_id": "ROAD_INSIDE_SITE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/roads.geojson",
+      "message": "Concept road/slow-mobility lines outside SITE-001 total 0.000 m."
+    },
+    {
+      "check_id": "BLUEGREEN_INSIDE_SITE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/green_space.geojson; geometry/public_space.geojson",
+      "message": "Green/public polygon area outside SITE-001 totals 0.000 sqm."
+    },
+    {
+      "check_id": "SCENARIO_NODE_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "Found 12 SCENARIO_NODE points; the requirement is at least 10 and the proposal declares 12."
+    },
+    {
+      "check_id": "INDUSTRY_TEST_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "Found 3 scenario nodes explicitly marked as industry test/validation scenarios."
+    },
+    {
+      "check_id": "SCENARIO_SPATIAL_ASSIGNMENT_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; geometry/site_boundary.geojson",
+      "message": "All scenario nodes fall inside SITE-001 and carry valid carrier, host and applicable key-area references."
+    },
+    {
+      "check_id": "SCENARIO_PHASE_ASSIGNMENT_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; geometry/phasing.geojson",
+      "message": "Each scenario node is spatially covered by exactly one first-intervention phase polygon."
+    },
+    {
+      "check_id": "SCENARIO_PROTOCOL_INTERFACE_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "Every scenario node declares protocol interfaces and the union covers I1-I7."
+    },
+    {
+      "check_id": "SCENARIO_HUMAN_AUTHORITY_INTERFACE_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "12/12 scenario nodes explicitly include I4 human_authority_fallback; remaining scenarios need an applicability/accountability review."
+    },
+    {
+      "check_id": "LANDMARK_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "Found 3 distinct landmark IDs linked to scenario nodes."
+    },
+    {
+      "check_id": "PROTOCOL_INTERFACE_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson; metrics.json",
+      "message": "The scenario-node registry implements the seven proposed civic protocol interfaces I1-I7."
+    },
+    {
+      "check_id": "CASE_PORTFOLIO_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json; proposal.md",
+      "message": "The six-group comparative portfolio is backed by seven registered primary-source records, with Helsinki and Amsterdam treated as one comparative register group."
+    },
+    {
+      "check_id": "PERSONA_COUNT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md; geometry/public_space.geojson; metrics.json",
+      "message": "The scenario registry contains 25 unique, non-demographic testing personas; the requirement is at least five user types."
+    },
+    {
+      "check_id": "PHASING_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/phasing.geojson",
+      "message": "Three first-intervention phases form a complete partition: gap=0.000000, outside=0.000000, overlap=0.000000 sqm."
+    },
+    {
+      "check_id": "PHASING_STAGE_SEMANTICS",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/phasing.geojson; geometry/land_use.geojson",
+      "message": "PHASE-001 is the central green/interface starter, PHASE-002 the western knowledge/validation package, and PHASE-003 the eastern everyday-service/diffusion package; all carry dependency-only status and entry gates."
+    },
+    {
+      "check_id": "METRIC_RECALC_MATCH",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json; geometry/*.geojson",
+      "message": "All recomputable V0.3 spatial metrics match the current EPSG:4548 geometry."
+    },
+    {
+      "check_id": "CONTROL_METRICS_UNKNOWN",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json; assumptions.json",
+      "message": "FAR, total floor area, statutory building density/height, and road area/ratio remain explicitly unknown pending official controls."
+    },
+    {
+      "check_id": "HERITAGE_LIMIT_DISCLOSED",
+      "result": "pass",
+      "severity": "major",
+      "target": "assumptions.json; sources.json",
+      "message": "Heritage design is supported by public history sources while official protection/control ranges remain a declared data gap."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "The primary visual HTML contains no remote URL, iframe, form, or imported remote stylesheet pattern."
+    },
+    {
+      "check_id": "VISUAL_METRIC_SYNC",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html; metrics.json",
+      "message": "Every data-metric/data-value pair in the primary visual matches metrics.json."
+    },
+    {
+      "check_id": "DRAWINGS_NONEMPTY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "drawings/a3-booklet.pdf; drawings/a3-booklet.en.pdf; drawings/a0-boards.pdf; drawings/a0-boards.en.pdf",
+      "message": "All four required bilingual drawing PDFs contain at least one page."
+    },
+    {
+      "check_id": "BILINGUAL_DISPLAY_COMPLETE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "bilingual display package",
+      "message": "All required English display counterparts are present."
+    },
+    {
+      "check_id": "SCAFFOLD_REMOVED",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md; manifest.json",
+      "message": "The scaffold marker is removed and package_state is no longer scaffold."
+    },
+    {
+      "check_id": "MATRIX_REFERENCE_INTEGRITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json; standard_matrix.json; design_depth_matrix.json",
+      "message": "Every referenced metric, assumption, source, self-check ID, geometry file, and proposal section exists at generation time."
+    },
+    {
+      "check_id": "OPEN_ASSUMPTION_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "assumptions.json; evidence matrices",
+      "message": "All current assumptions are referenced by at least one evidence-matrix record."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE_SPECIFIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json; standard_matrix.json; design_depth_matrix.json",
+      "message": "Every matrix record has a task-specific evidence summary instead of a shared scaffold sentence."
+    }
+  ]
+}

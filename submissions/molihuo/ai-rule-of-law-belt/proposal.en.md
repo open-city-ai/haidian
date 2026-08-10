@@ -15,7 +15,7 @@ iteration: "v0.1"
 
 ## Design Basis and Source Inventory
 
-This proposal takes the "Notice of Pre-qualification for the International Open Call of the Centennial Jing-Zhang AI Innovation Belt Urban Design" issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources as the top-level task basis [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], and uses the machine-readable foundation of provisional boundaries, enums, metrics and professional standards maintained in `brief/site-package/` [source:SITE-PACKAGE]. Before generation the contributor must read `design_brief.json`, `allowed_design_space.json`, `agent_taskbook.json`, `enums/`, `ranges/`, `schemas/`, `data/source_registry.json` and `data/processed/agent_fact_pack.md`, and use `project_scope_summary.csv`, `source_use_matrix.csv` and `missing_data_checklist.csv` to build the task, scope, source-usage and gap lists [source:PROCESSED-FACT-PACK]. The site package at submission time does not contain an official polygon, official redline, official regulatory planning or ownership file — this is a disclosed data gap and does not block content scoring, but means every spatial conclusion must be expressed as "concept suggestion / reference scheme / available for professional deepening" [source:SRC-PROVISIONAL-BOUNDARIES-2026] [depth:risk_missing_data].
+This proposal takes the "Notice of Pre-qualification for the International Open Call of the Centennial Jing-Zhang AI Innovation Belt Urban Design" issued by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources as the top-level task basis [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], and uses the machine-readable foundation of provisional boundaries, enums, metrics and professional standards maintained in `brief/site-package/` [source:SRC-SITE-PACKAGE-2026]. Before generation the contributor must read `design_brief.json`, `allowed_design_space.json`, `agent_taskbook.json`, `enums/`, `ranges/`, `schemas/`, `data/source_registry.json` and `data/processed/agent_fact_pack.md`, and use `project_scope_summary.csv`, `source_use_matrix.csv` and `missing_data_checklist.csv` to build the task, scope, source-usage and gap lists [source:SRC-PROCESSED-FACT-PACK-2026]. The site package at submission time does not contain an official polygon, official redline, official regulatory planning or ownership file — this is a disclosed data gap and does not block content scoring, but means every spatial conclusion must be expressed as "concept suggestion / reference scheme / available for professional deepening" [source:SRC-PROVISIONAL-BOUNDARIES-2026] [depth:risk_missing_data].
 
 Across the six tasks (agent.1-6), this proposal takes "**the First City of AI Rule-of-Law Endeavor**" as its first-tier positioning and signature concept. The wording emphasises that AI rule-of-law is not scattered policy clauses or compliance actions, but a **long-term endeavour** that uses law to shape the order of the AI era for the common good, requiring coordinated construction of spatial carriers, institutional tools, talent teams and public discourse [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. "First City" means this proposal carries the endeavour at full-city scale, building a globally **pioneering, model-setting, enduring** urban interface for AI rule-of-law endeavour. The proposal accordingly raises five groups of original concepts: the «Source / Test / Market / Forum» (法源·法测·法市·法坛) four-space typology, the «AI Rule-of-Law Endeavor Five-Dimensional Loop» methodology, the «Rule-of-Law Endeavor Index (ROL-AI Index)» metric, the «Rule-of-Law Endeavor Community» operating vehicle and the «Three Landmarks of the Rule-of-Law Endeavor». The cited Chinese laws and initiatives (Data Security Law, PIPL, Interim Measures for Generative AI Services, Global AI Governance Initiative, etc.) are public legal background only and are not interpreted as local implementation conclusions [depth:risk_missing_data].
 
@@ -23,9 +23,9 @@ Across the six tasks (agent.1-6), this proposal takes "**the First City of AI Ru
 
 ## Three-Tier Scope Framework
 
-The proposal organises work along the three tiers defined in the official Notice [source:AGENT-TASKBOOK]:
+The proposal organises work along the three tiers defined in the official Notice [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]:
 
-- **Coordinated Research Scope 43.6 km²**: bounded by the North Fifth Ring to the north, the Jingzang Expressway to the east, Xizhimen Outer Street to the south, and Wanquanhe Road to the west [data:geometry/site_boundary.geojson#PROV-RESEARCH-001] [metric:site_area_sqm]. This tier concerns the AI innovation ecosystem, global rule-of-law discourse, and future urban form; no new pseudo-precise redlines are introduced.
+- **Coordinated Research Scope 43.6 km²**: bounded by the North Fifth Ring to the north, the Jingzang Expressway to the east, Xizhimen Outer Street to the south, and Wanquanhe Road to the west (text-based bounds from the official Notice; the provisional package does not provide a corresponding polygon). This tier concerns the AI innovation ecosystem, global rule-of-law discourse, and future urban form; no new pseudo-precise redlines are introduced [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
 - **Overall Design Scope 11.4 km²** (EPSG:4548 recomputation 11.4128 km², relative deviation +0.11%): the 1–2 km belt around the Jingzhang Heritage Park, bounded by the North Fifth Ring to the north, Xueyuan Road / Xitucheng Road to the east, Xizhimen Outer Street to the south, and Dazhongsi East Road / Heqing Road to the west [data:geometry/site_boundary.geojson#SITE-001]. This tier addresses urban renewal, land-use structure, transport and municipal systems, and city character at **concept-suggestion depth**, with formal regulatory depth reserved for professional deepening after official data is available [depth:land_use_layout].
 - **Key Areas Scope 368.4 ha** (EPSG:4548 recomputation 369.29 ha, relative deviation +0.24%): three sub-areas from north to south are Zhongzhiyuan AI Innovation Acceleration Area 192.1 ha, Beijing AI Origin Community 104.3 ha, and Dazhongsi AI Industry Cluster 72.0 ha [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [depth:three_key_area_detailed_design]. The Dazhongsi Area's distinct characteristics are recorded in [data:geometry/key_areas.geojson#PROV-KEY-003].
 
@@ -86,6 +86,10 @@ In one sentence: **under the name "First City" we raise the banner; along the Ji
 
 English mapping: Tier 1 **First City of AI Rule-of-Law Endeavor** (master), Tier 2 **Centennial Jing-Zhang AI Rule-of-Law Belt** (brand), Tier 3 **Zhi-Li Belt, Rule-of-Law Jing-Zhang: Urban Design Proposal for the Centennial Jing-Zhang AI Innovation Belt as the First City of AI Rule-of-Law Endeavor** (full).
 
+#### Name Non-Negotiable Clause
+
+**Regardless of any future iteration or revision, the proposal name must retain the full expression "人工智能法治事业建设第一城" (First City of AI Rule-of-Law Endeavor) — it may not be deleted, abbreviated, substituted or weakened.** Concretely: the official full title (Tier 3) is fixed as "Zhi-Li Belt, Rule-of-Law Jing-Zhang: Urban Design Proposal for the Centennial Jing-Zhang AI Innovation Belt as the First City of AI Rule-of-Law Endeavor"; any version (frontmatter, body heading, visualisation, figures, PDF, PR title, external materials) that cites the proposal name must include the complete expression. "AI Rule-of-Law First City" may be used only as an abbreviation and must be accompanied by the full title at first mention.
+
 ![Proposal logo (direction indication)](assets/figures/logo.png)
 
 Logo visual motif (direction indication only): "scales + rail" as the core — the upper crossbar borrows from rail-tie imagery, the lower part is a stylised justice-symbol, the three key areas embed as three coloured nodes (Source / Test / Market), and the central "Forum" axis is wrapped by a gold ring. No corporate, trademark, font or portrait elements are used [depth:risk_missing_data].
@@ -106,7 +110,7 @@ The VI direction follows "reviewable, clearable, non-entertaining" principles; f
 
 ### AI Innovation Ecosystem — Global Case Briefs
 
-Public references [source:SITE-PACKAGE], used as conceptual background only:
+Public references [source:SRC-SITE-PACKAGE-2026], used as conceptual background only:
 
 | Case / ecosystem | City / country | Distinctive feature | This proposal borrows |
 | --- | --- | --- | --- |
@@ -130,7 +134,7 @@ Future urban form responds to [depth:overall_spatial_structure]: AI is not just 
 
 ### Regional Synergy: Beiwei Community · Future Science City · Huairou Science City · Beijing E-Town · Jing-Jin-Ji
 
-Responding to the review dimension on regional synergy (all concept-level, not confirmed arrangements) [source:AGENT-TASKBOOK]:
+Responding to the review dimension on regional synergy (all concept-level, not confirmed arrangements) [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]:
 
 - **With Beiwei Community**: share talent housing and youth services, building a commuting and life-circle link between the "Rule-of-Law Talent Community" and Beiwei.
 - **With Future Science City**: connect basic research and large-scale facilities; Zhongzhiyuan's "Test" Sandbox can host its model-evaluation and standard-verification needs.
@@ -334,7 +338,7 @@ The above candidate operators, indicators and gates are all concept suggestions;
 
 ### Long-Term Operation: Rule-of-Law Endeavor Community
 
-Using "AI Rule-of-Law Endeavor" as the banner, the long-term operation forms the "**Rule-of-Law Endeavor Community**": ① **Global AI Rule-of-Law Forum** (autumn, belt public-space system): cross-border AI governance dialogue, international arbitration, intelligent mediation [source:AGENT-TASKBOOK]; ② **AI Safety Governance Quarterly Release** (Zhongzhiyuan · Test): Standards Workshop outputs; ③ **Developer Compliance Community Monthly Salon** (Origin Community · Source Open-Source Compliance Station): open-source licence consultancy and compliance audit training; ④ **Data-Element Compliance Port Annual White Paper** (Dazhongsi · Market): cross-border data-flow compliance report; ⑤ **ROL-AI Index Annual Release**: using the five-dimensional metric to observe the belt's rule-of-law endeavour progress year by year, forming an accumulating public-knowledge asset.
+Using "AI Rule-of-Law Endeavor" as the banner, the long-term operation forms the "**Rule-of-Law Endeavor Community**": ① **Global AI Rule-of-Law Forum** (autumn, belt public-space system): cross-border AI governance dialogue, international arbitration, intelligent mediation [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]; ② **AI Safety Governance Quarterly Release** (Zhongzhiyuan · Test): Standards Workshop outputs; ③ **Developer Compliance Community Monthly Salon** (Origin Community · Source Open-Source Compliance Station): open-source licence consultancy and compliance audit training; ④ **Data-Element Compliance Port Annual White Paper** (Dazhongsi · Market): cross-border data-flow compliance report; ⑤ **ROL-AI Index Annual Release**: using the five-dimensional metric to observe the belt's rule-of-law endeavour progress year by year, forming an accumulating public-knowledge asset.
 
 The operating mechanism strictly obeys [depth:risk_missing_data]: do not write imagined events as confirmed government arrangements; do not exaggerate government commitments or effects; do not write slogans without operating mechanisms; preserve conversion paths for talent, enterprises and developers.
 
@@ -373,9 +377,9 @@ The compliance matrix covers all sub-clauses of Notice 1.3 / 1.4 / 1.5 and all a
 
 **Bilingual contract**: the main file is Chinese (`proposal.md`), with a complete English counterpart `proposal.en.md` [depth:risk_missing_data]. The v2 package uses `render_proposal_html.py` to render `report/proposal.html` and `report/proposal.en.html`; A3/A0, HTML and text-bearing figures use the same terminology across languages.
 
-**Key risks** [depth:risk_missing_data]: ① official polygon, regulatory planning conditions, road redlines, ownership and engineering data are missing; all spatial conclusions are concept suggestions [data:geometry/constraints.geojson]; ② AI rule-of-law scenarios do not replace judiciary / law enforcement / approval functions; ③ trademarks, fonts, portraits and corporate identities must be cleared; ④ no secret or sensitive material is exposed; ⑤ HTML pages must not load CDN / remote scripts / iframes / forms / APIs / trackers [source:SITE-PACKAGE].
+**Key risks** [depth:risk_missing_data]: ① official polygon, regulatory planning conditions, road redlines, ownership and engineering data are missing; all spatial conclusions are concept suggestions [data:geometry/constraints.geojson]; ② AI rule-of-law scenarios do not replace judiciary / law enforcement / approval functions; ③ trademarks, fonts, portraits and corporate identities must be cleared; ④ no secret or sensitive material is exposed; ⑤ HTML pages must not load CDN / remote scripts / iframes / forms / APIs / trackers [source:SRC-SITE-PACKAGE-2026].
 
-**Responsibility statement**: this proposal does not claim official approval, ratified regulatory planning, final land ownership, final construction scale or guaranteed implementation. The AI Agent is responsible for facts, sources, copyright, spatial data, metrics and expression. Detailed copyright and sources are in [source:report/copyright_statement.md].
+**Responsibility statement**: this proposal does not claim official approval, ratified regulatory planning, final land ownership, final construction scale or guaranteed implementation. The AI Agent is responsible for facts, sources, copyright, spatial data, metrics and expression. Detailed copyright and sources are in [source:SRC-REPORT-COPYRIGHT-2026].
 
 ## References
 
@@ -388,6 +392,6 @@ Main public sources (machine index in `sources.json`) [source:SRC-2026-BJ-GH-QUA
 - Ministry of Housing and Urban-Rural Development: *Measures for the Compilation and Approval of Regulatory Detailed Planning of Cities and Towns*.
 - Ministry of Natural Resources: *Guide on Land-Use Classification for Territorial Survey, Planning and Use Control* (2023-11-22).
 - Repository maintainers: provisional coarse boundaries and three key-area polygons (2026-06-05, provisional).
-- Public background references such as EU AI Act, Singapore IMDA AI Verify, UK Alan Turing Institute, Montreal MILA, Dubai AI Governance, Beijing AI Safety Governance Institute, Beijing International Data Exchange, Heidelberg AI Ethics Centre [source:SITE-PACKAGE].
+- Public background references such as EU AI Act, Singapore IMDA AI Verify, UK Alan Turing Institute, Montreal MILA, Dubai AI Governance, Beijing AI Safety Governance Institute, Beijing International Data Exchange, Heidelberg AI Ethics Centre [source:SRC-SITE-PACKAGE-2026].
 - Site package: `brief/site-package/` (design_brief.json, agent_taskbook.json, standards, enums, geometry, schemas).
-- Source registry: `data/source_registry.json`, `data/processed/agent_fact_pack.md` [source:PROCESSED-FACT-PACK].
+- Source registry: `data/source_registry.json`, `data/processed/agent_fact_pack.md` [source:SRC-PROCESSED-FACT-PACK-2026].

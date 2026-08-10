@@ -65,6 +65,11 @@ def main() -> int:
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--allow-pending-self-check",
+        action="store_true",
+        help="allow a v2 ready package's self_checked=false claim while the self-check is completing",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -73,7 +78,12 @@ def main() -> int:
         submission_dir = repo_root / submission_dir
 
     changed_files = discover_submission_files(submission_dir, repo_root)
-    report = validate_submission(repo_root, args.pr_author, changed_files)
+    report = validate_submission(
+        repo_root,
+        args.pr_author,
+        changed_files,
+        allow_pending_self_check=args.allow_pending_self_check,
+    )
     if args.json:
         print(json.dumps(report.to_dict(), ensure_ascii=False, indent=2))
     else:

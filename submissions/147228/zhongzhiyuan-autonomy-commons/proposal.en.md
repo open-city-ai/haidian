@@ -38,6 +38,16 @@ The “Jing-Zhang Autonomous Commons” mark is not a vehicle brand and does not
 
 This is a public narrative and operating entrance, not a registered trademark, building, enterprise partnership or field result. If the mark cannot show an owner, a stop action and the ordinary route, the service window is withdrawn while the human path remains.
 
+## Resource and decision board — confirm the public floor before scaling automation
+
+The autonomy proposal needed one delivery surface that answers who holds the public floor, which resources may enter, and who can pause. `resource-decision-board.json` separates human service and accessibility, curb and reversible space, safety and independent evaluation, data and bounded compute, and exit and restoration. Each class records a proposed confirmation route, the public floor it holds, minimum evidence, and veto conditions [data:visual/assets/resource-decision-board.json] [depth:phasing_implementation].
+
+This board describes a confirmation procedure only. It supplies no budget amount, institution name, vendor, insurance result, permit, or operating performance. A proposer may submit a candidate but cannot release it alone. Public-interest, accessibility, safety, and independent-review roles may pause or return it to human service. Support from resources cannot buy permanent curb access, exemption from review, or a higher score. Four gates move from problem registration and minimum-resource review through a reversible window and independent replay to conditional expansion or exit. Any missing item stays in paper or synthetic replay [data:visual/assets/check-resource-decision-board.js] [depth:risk_missing_data].
+
+![Resource and decision board — five resource classes, four decision gates and pause boundaries](assets/figures/resource-decision-board.en.png)
+
+The resource routes on the board are not funding commitments. Only after official geometry, tenure, fire review, accessibility, insurance, data authorization, public baselines, and an executable exit responsibility are available may a professional team decide whether to advance. Until then, ordinary routes, staffed service, and public passage remain the priority [depth:phasing_implementation] [depth:risk_missing_data].
+
 **Acceptance trace quick map (for item-by-item review)**
 
 | Check | Gate | Fixture | Scenario | Boundary fields |
@@ -130,7 +140,7 @@ Until that evidence exists, spatial actions remain removable wayfinding, weather
 
 To prevent a “node” from being read as a vehicle stopping point, this package separates five continuous interfaces: ordinary human route, public status and consent, bounded service window, human handover/stop, and restoration of the ordinary route. Zhongzhiyuan first tests a closable safety-evaluation yard; AI Origin preserves paper, telephone and equivalent human service; Dazhongsi separates rail arrival, quiet movement, and loading/maintenance windows. Dimensions, capacity, speed, right-of-way, permits and performance remain null; the plan expresses functional bands only, not a road section or redline [data:visual/assets/autonomy-node-interface-plans.json#AV-INTERFACE-001].
 
-![Public interface and functional bands for three autonomous-mobility nodes](assets/figures/autonomy-node-interface.en.svg)
+![Public interface and functional bands for three autonomous-mobility nodes](assets/figures/autonomy-node-interface.en.png)
 
 Caption: The three-row plan makes “ordinary route first, closable service, human fallback when evidence is missing” visible in one view. Colors express interface relationships, not existing-condition measurements, engineering dimensions, or vehicle performance.
 

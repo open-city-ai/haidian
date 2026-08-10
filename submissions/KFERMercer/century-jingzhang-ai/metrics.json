@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Boundary is provisional (provisional_constraint, official_boundary=false); area must be recalculated when official polygons are released. Rounded to nearest sqm to avoid false precision."
+      ]
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692872,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_features)) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Key-area polygons are provisional; announced total is 3.684 km2 (368.4 ha). Recalculate when official polygons are released."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Building layer is an agent-generated design layer on provisional geometry; it is a design proposal, not a survey of existing buildings."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated on provisional boundary and design-layer green space; indicative only."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Calculated on provisional boundary and design-layer public space; indicative only."
+      ]
+    },
+    "green_public_composite_ratio": {
+      "status": "known",
+      "value": 0.196,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "(green_space_area_sqm + public_space_area_sqm) / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Composite blue-green and public-space indicator on provisional geometry; indicative only."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package; pending official regulatory-plan conditions."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Announced requirement: three key detailed design areas."
+      ]
+    },
+    "ai_scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario_cards_in_narrative)",
+      "confidence": "high",
+      "assumptions": [
+        "Agent taskbook requires no fewer than 10 AI scenario cards."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(test_and_validation_scenarios_in_narrative)",
+      "confidence": "high",
+      "assumptions": [
+        "Agent taskbook requires no fewer than 3 industry test/validation scenarios."
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(persona_groups_in_narrative)",
+      "confidence": "high",
+      "assumptions": [
+        "Agent taskbook requires no fewer than 5 user persona groups."
+      ]
+    },
+    "ai_pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(landmarks_in_narrative)",
+      "confidence": "high",
+      "assumptions": [
+        "Agent taskbook requires no fewer than 3 AI pilgrimage landmarks or honor-display nodes."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(renewal_projects_in_project_list)",
+      "confidence": "high",
+      "assumptions": [
+        "Project list JZ-01 to JZ-06; each project is a concept suggestion pending professional deepening."
+      ]
+    }
+  }
+}

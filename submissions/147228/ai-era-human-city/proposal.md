@@ -10,7 +10,7 @@ summary: "以人本缓冲、机器可调用的公共规则和可撤回的版本�
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-iteration: "v0.7"
+iteration: "v1.7"
 tracks: "ai-traffic-walkability,civic-agent-governance,youth-friendly-public-space"
 scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-navigation,ai-cultural-guide,enterprise-service-copilot,public-safety-operations-review"
 ---
@@ -99,7 +99,7 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 
 京张遗址公园 AI 公共空间被表达为问题站、静养无屏带、人工服务、可撤回展示的序列。东西缝合是连续导视、可步行问题站与无障碍替代路径的概念策略；南北贯通是技能慢行绿链、公共服务节点和小月河生态缓冲的研究框架；两者都不是桥隧、道路、地下空间或工程可行性结论。[standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/roads.geojson#MOBILITY-03] [depth:key_area_detailed_design]
 
-## v0.8 评分修复｜把公共界面压到节点级
+## v1.3 空间关系读数｜让节点级接口可复核但不冒充路线
 
 上一节回答三处重点区要比较哪些公共性与可逆关系；本节继续压低表达尺度，只读成一条节点序列：**普通到达 → 人工解释/服务 → 受控状态 → 冻结复盘或退出**。`visual/assets/ai-era-spatial-interface-plans.json` 为每处重点区登记现有 provisional geometry 锚点、功能带、进入前证据和停止条件；它不填写尺寸，不改变 geometry，也不把概念界面升级为现状设施或工程方案。[data:visual/assets/ai-era-spatial-interface-plans.json] [depth:overall_spatial_structure]
 
@@ -109,13 +109,64 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 | AI 原点社区 | `MOBILITY-04` → `PUBLIC-02` → `SCN-02` → `GREEN-03` | 日常到达/停留 → 纸面电话人工服务 → 技能再造/代际共学 → 无屏恢复/退出 | 人工入口不可用或普通路径被切断时改回人工服务；结果保持 `unknown` |
 | 大钟寺 | `PUBLIC-05` → `SCN-05` → `SERVICE-ZONE-02` → `PUBLIC-04` | 文化到达/通行 → 多语解释/授权前台 → 可撤回展示/受控服务 → 申诉冻结/夜间回退 | 越权、不可解释或未清权时关闭展示，保留普通通行和人工回退 |
 
+为避免“有锚点”仍停留在口号，本轮增加一份从同一组 GeoJSON 复算的临时关系读数。它取相邻锚点要素顶点之间的最小地理间距，四舍五入到 10 m，供评审复核顺序、近邻和明显断裂；它不是路线长度、服务半径、无障碍结论或工程尺寸，三段数值也不能相加为通行距离。正式边界、道路和现场走测到位后，读数、图件、指标、HTML、PDF 与自检必须一起重算。[data:visual/assets/ai-era-provisional-spatial-readout.json] [metric:provisional_spatial_readout_segment_count]
+
+| 重点区 | 相邻锚点最小顶点间距（km，顺序同上） | 读数的设计用途 |
+|---|---:|---|
+| 众智园 | 1.97 / 2.54 / 2.33 | 检查普通到达—人工接管—受控模拟—安全退避是否存在可追问的空间关系 |
+| AI 原点社区 | 3.24 / 0.09 / 3.42 | 把日常入口、人工服务、技能再造节点和无屏恢复分开核问，不把相邻节点写成已连通设施 |
+| 大钟寺 | 0.12 / 1.62 / 0.33 | 检查文化通行、授权前台、受控展示和夜间回退的关系是否需要现场复核 |
+
 这组节点计划补的是“公共界面如何承接普通人路径和停止动作”的可见中间层，而不是横断面、平面或体量。道路、权属、文保、无障碍、现状设施和运营资料到位前，所有尺寸、容量、通行能力与结果指标仍为待补资料或 `unknown`。[data:geometry/key_areas.geojson#PROV-KEY-001] [depth:risk_missing_data]
 
-![图 06｜节点级公共接口：三处重点区的状态与回退序列](assets/figures/spatial-interface-nodes.svg)
+![图 06｜节点级公共接口：三处重点区的状态与回退序列](assets/figures/spatial-interface-nodes.png)
+
+为降低评审从概念叙事跳到结构化附件的成本，本轮把四张由包内 JSON 合约直接生成的双语审阅图板集中到同一套入口：普通人任务链与停止回路、十张场景卡的任务书—空间—回放覆盖、五个概念项目族的 G0/G1 门与退出动作、任务书—公共空间—年度运营三联读。它们只是已有字段的可视化索引，不新增现场绩效、授权、许可、部署或官方评分结论；图板中的 `result_status=not_run` 与 `not_an_official` 边界应与原始 JSON 一并阅读。[data:visual/assets/run-ai-era-evidence-boards.js] [data:visual/assets/ai-era-traceability-index.json]
+
+## v1.7 空间证据图谱｜把“有接口”落回同一张临时底图
+
+本轮把上一节的节点状态再落回两张表达级图：总览图同时显示临时范围、三处重点区、绿蓝缓冲、人优先线和十个场景节点；重点区图再以同源 polygon 做三处缩放，并把每处问题、四段功能带和人工兜底放在同一阅读面。它们是从 `site_boundary`、`key_areas`、`roads`、`green_space`、`public_space`、`constraints` 与 `ai-era-spatial-interface-plans.json` 生成的空间证据，不新增边界、路线、断面、容量、设施、许可或现场结果。[data:visual/assets/ai-era-spatial-atlas-v17.json] [data:visual/assets/build-ai-era-spatial-atlas-v17.js] [data:geometry/key_areas.geojson#PROV-KEY-001]
+
+场景节点的临时锚点仍回到 `constraints.geojson`，不被图面升级为许可、运行或正式空间控制。[data:geometry/constraints.geojson#SCN-06]
+
+图上的四段不是四个工程阶段，而是公共接口的可讨论顺序：普通到达、人工解释/服务、受限模拟或自愿学习、冻结复盘/退出。每段都保留纸面、电话、人工和无屏替代，并把 `not_authorized_not_run`、`performance_results=null` 与停止条件放在图面边界内。三处重点区、十个场景节点和九类画像因此可以从图回到 JSON，再回到指标和缺口；若正式边界、道路、权属、无障碍、气候、能源或服务基线到位，必须联动重算几何、指标、图件、HTML、PDF 与自检。[metric:key_area_count] [metric:scenario_card_count] [metric:manual_fallback_coverage_ratio]
+
+### 一条可比较的空间决策差分：众智园
+
+四段功能带已经说明“怎么进、谁接管、何时冻结”，但还需要把 AI 规划创新与空间选择直接并置。本节只选众智园一处，不把假设的单一机器展示入口写成现状；它是一个用于比较的反事实设计选项。相较之下，本包把人工解释台、公众观察席、可见退避和可撤回测试边界放在同一组公共界面里，先保障普通到达，再允许受限模拟。这个差异是 `design_target`，不是已建成空间或 AI 绩效结果。[data:visual/assets/ai-era-spatial-delta-readout.json#AI-ERA-SPATIAL-DELTA-001] [data:geometry/roads.geojson#MOBILITY-05] [data:geometry/public_space.geojson#PUBLIC-01]
+
+这条空间差分回应 AI 规划创新维度，但不替代专业测量。[depth:ai_planning_innovation]
+
+| 阶段 | 变化的空间角色 | AI 规划带来的具体约束 | 状态与锚点 |
+|---|---|---|---|
+| 普通到达 | 普通步行、观察和无障碍询问先成立 | 不让机器测试占据唯一公共入口 | `design_target`；`MOBILITY-05` |
+| 人工接管 | 人工解释与接管台朝向普通路径 | 第一动作是可问、可拒绝、可转人工，而不是自动调用 | `design_target`；`PUBLIC-01` |
+| 受限模拟 | API 模拟进入可见、可停用的测试边界 | 授权、责任、日志、回放不齐全就停在 G0 | `design_target`；`SCN-06` |
+| 冻结复盘/退出 | 维护退避、普通路径和人工服务继续可见 | 撤回机器接口，不撤回公众的普通通行和人工服务 | `design_target`；`GREEN-02` |
+
+这张表表达的是空间角色如何随 AI 约束变化，不是尺寸变化；当前不新增 geometry，也不把 `design_target` 升级为专业测量。正式边界、权属、无障碍和现场基线到位后，必须把这条差分与指标、图件、HTML、PDF 和自检一起重算。[data:visual/assets/ai-era-spatial-interface-plans.json#AI-NODE-ZHONGZHIYUAN] [data:visual/assets/scenario-space-operation-matrix.json#SCN-06] [metric:api_governance_gate_count]
+
+正式资料到位后的全链条重算属于指标复核深度项；在触发前，图件只用于概念建议与关系核问。[depth:metrics_recalculation]
+
+## v1.2 任务书·空间·运营三联读｜让 agent.4、agent.5、agent.6 在同一张图上相遇
+
+本轮新增图 10，把任务书中容易被分散阅读的三项要求压到同一张概念设计图：agent.4 先问公共空间和三处地标怎样承接问题、人工接管与退出；agent.5 再问百年京张、中关村与 AI 新文化怎样形成可理解、可质询、可撤回的导视；agent.6 最后问全球活动和长期运营如何以四季节奏、公众观察和 release note 留下版本证据。三者均只使用本包现有 JSON 与 provisional 锚点，不把活动写成已确定安排。[data:visual/assets/taskbook-culture-operations-atlas-v12.json] [data:visual/assets/public-space-landmarks.json] [depth:compliance_and_standard_response]
+
+| 任务书入口 | 空间承接（概念建议） | 年度/运营回读 | 需要补的资料 |
+|---|---|---|---|
+| agent.4 公共空间与地标 | 开源里程标、算法校准庭、人工接管灯塔分别落在三个公共空间锚点；服务普通通行、人工解释和退出提示 | 活动前公开问题与资料边界，活动后保留公众异议和撤回记录 | 正式边界、公共开放条件、无障碍走测、文保与场地审校 |
+| agent.5 文化叙事 | 以“铁路时间—问题版本—人工接管”为文化语法，导视分成时间线、问题线、人工服务线 | 只展示经同意、可核验、可撤回的角色与版本，不做个人或企业排名 | 权威史料、文字与形制审校、授权作品清单 |
+| agent.6 全球活动与长期运营 | 春发布、夏走读、秋协议营、冬 v0.x 体检；空间保持 meanwhile use 和人工入口 | 每季发布保留、暂停、修订和待补数据的 release note | 活动责任角色、保险/安全/版权、公众参与与运营资料 |
+
+图 10 的五个项目族只是空间承接与 G0/G1 研究顺序：人本缓冲、技能与夜间健康、城市 API、蓝绿与人机测试、文化与全球共创。任何一项缺少授权、责任、专业资料或安全门，都保持 G0、冻结或撤回；图面只证明本包字段能够被同一张图回读，不证明官方评分、活动确定、运营主体、文化许可、企业合作或现场结果。[data:visual/assets/implementation-operation-matrix.json] [metric:project_family_count] [depth:implementation_and_phasing]
+
+![图 10｜任务书—公共空间—年度运营](assets/figures/taskbook-culture-operations-board.png)
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
-六类画像使抽象生态落到谁在使用、谁承担风险，原住民与老人、被替代风险劳动者、夜班 AI 从业者、小商户与一人公司、开发者与研究者、行动不便者与照护者。每类画像都有非谈判边界，人工服务、可解释、可拒绝、可申诉、可退出与不依赖设备的替代路径；居民/老人、劳动者、无障碍使用者和开发者至少各有一个可见观察席。[source:AGENT-TASKBOOK] [metric:persona_count] [depth:persona_and_public_interest]
+九类画像使抽象生态落到谁在使用、谁承担风险：原住民与老人、被替代风险劳动者、夜班 AI 从业者、小商户与一人公司、开发者与研究者、行动不便者与照护者、青年学生与初入行者、首次到访者与国际访客、公共服务与一线维护人员。每类画像都有非谈判边界、对应场景与临时空间锚点，并保留人工服务、可解释、可拒绝、可申诉、可退出与不依赖设备的替代路径。[source:AGENT-TASKBOOK] [metric:persona_count] [depth:persona_and_public_interest]
+
+P-07、P-08、P-09 不只是名单扩展：它们分别回放青年就业/学习、陌生人进入与多语解释、以及公共维护与事件处置场景，各自登记 ordinary fallback 和 stop condition；当前仍是概念设计视角，不是人口调查、无障碍认证或现场公平结果。[metric:persona_scenario_coverage_count] [metric:persona_spatial_feature_coverage_count] [data:visual/assets/ai-era-people-fairness-audit.json]
 
 十张场景卡均为 G0 概念协议，且逐卡说明用户、空间、行动理由、数据最小化、责任角色、人工复核、验收指标与退出协议。三类测试验证情境为低速机器人公共观察、低空物流规则沙盒、内涝模拟观察；它们不声称获得路权、空域、数据或运营许可。城市 API 与数据要素城区实验同样只提出目录、授权、日志、申诉、撤销样板间，不接入真实个人或市政数据。[data:geometry/constraints.geojson#SCN-07] [data:geometry/constraints.geojson#SCN-08] [metric:scenario_card_count]
 
@@ -202,7 +253,7 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 
 ## 指标体系、面积复算与合规矩阵
 
-所有已知空间值在 EPSG:4548 下由提交 GeoJSON 重新计算，且只在最终格式化时四舍五入一次，临时范围 11,412,825.386 平方米、绿地概念层 879,519.159 平方米、公共空间概念层 123,473.537 平方米；七个共享边界的用地多边形覆盖率为 1.000000。此前绿地值的 0.464 平方米不一致已通过统一当前算法、舍入规则和 metric-recalculation-audit.json 消除，主文、五图、HTML 和图册使用同一数值格式器。[data:geometry/land_use.geojson#LAND-05] [metric:land_use_coverage_ratio] [depth:metrics_recalculation]
+所有已知空间值在 EPSG:4548 下由提交 GeoJSON 重新计算，且只在最终格式化时四舍五入一次，临时范围 11,412,825.386 平方米、绿地概念层 879,519.159 平方米、公共空间概念层 123,473.537 平方米；七个共享边界的用地多边形覆盖率为 1.000000。此前绿地值的 0.464 平方米不一致已通过统一当前算法、舍入规则和 metric-recalculation-audit.json 消除，主文、五张主地图、五张审阅图板、HTML 和图册使用同一数值格式器。[data:geometry/land_use.geojson#LAND-05] [metric:land_use_coverage_ratio] [depth:metrics_recalculation]
 
 compliance_matrix.json 覆盖公告 1.3/1.4/1.5 全部任务和 agent.1 至 agent.6，且已按任务书原名映射 agent.4 AI 公共空间/地标、agent.5 文化叙事、agent.6 全球活动/长期运营；standard_matrix.json 覆盖本地快照中的全部强制标准；design_depth_matrix.json 的要求项均为 complete，但 complete 仅指概念性证据链完整，不等于现场或审批完成。每个 metric 均含 status、value、unit、source_files、formula、confidence、assumptions。[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [metric:scenario_card_count] [depth:compliance_and_standard_response]
 
@@ -210,7 +261,7 @@ compliance_matrix.json 覆盖公告 1.3/1.4/1.5 全部任务和 agent.1 至 agen
 
 第一风险是边界与基础资料缺口，故任何读者不得以本包申请许可、评估权属、认定法定面积或得出工程结论。第二风险是数据与算法权力，故每张场景卡都有最小必要、人工复核、申诉和退出；无授权就不接入。第三风险是文化、交通、气候与能源条件，故历史资源、路权、空域、水文、热网和安全资料均被写成下一步核验，不由图面替代。第四风险是来源升级，故未登记背景资料在 sources.json 明确禁止 formal 使用。[source:SOURCE-REGISTRY] [data:geometry/constraints.geojson#SCN-09] [depth:risk_missing_data]
 
-权利台账逐资产记录文字、概念 geometry、PNG/PDF、SVG、HTML、外部短引用和字体处理。本投稿不含第三方照片、地图瓦片、人物、企业标识、远程脚本、远程字体或追踪；五图与 PDF 由本地 Python/Pillow 从结构化本包生成，PDF 为栅格页而不嵌入字体文件。HTML 有语义结构、alt、焦点样式和手工对比检查；PDF 的结构化标签/阅读树仍是公开发布前应由专业排版补齐的限制，而非虚报已达标。[source:AGENT-TASKBOOK] [depth:copyright_and_accessibility]
+权利台账逐资产记录文字、概念 geometry、PNG/PDF、SVG、HTML、外部短引用和字体处理。本投稿不含第三方照片、地图瓦片、人物、企业标识、远程脚本、远程字体或追踪；五张主地图、五张审阅图板与 PDF 由本地脚本从结构化本包生成，PDF 为栅格页而不嵌入字体文件。HTML 有语义结构、alt、焦点样式和手工对比检查；PDF 的结构化标签/阅读树仍是公开发布前应由专业排版补齐的限制，而非虚报已达标。[source:AGENT-TASKBOOK] [depth:copyright_and_accessibility]
 
 ## 参考资料
 
@@ -223,3 +274,6 @@ compliance_matrix.json 覆盖公告 1.3/1.4/1.5 全部任务和 agent.1 至 agen
 ![图 03 重点区域，三处公共空间、地标、场景关系](assets/figures/key-areas.png)
 ![图 04 交通与蓝绿，人优先、小月河韧性与 G0 规则](assets/figures/mobility-bluegreen.png)
 ![图 05 指标与证据，面积复算、场景门槛和版本化治理](assets/figures/metrics-evidence.png)
+![图 07 普通人任务链与停止回路](assets/figures/ordinary-service-evidence-board.png)
+![图 08 十张场景卡的任务书—空间—回放覆盖](assets/figures/scenario-coverage-board.png)
+![图 09 五个概念项目族的 G0/G1 门与退出动作](assets/figures/implementation-gates-board.png)
