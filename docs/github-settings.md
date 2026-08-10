@@ -48,6 +48,8 @@
 
 本仓库的 `submission-validation` workflow 使用 `pull_request_target`，只 checkout base branch 的受信任脚本，并通过 GitHub API 读取 PR 文件内容；不要在该 workflow 中 checkout 或执行 PR 分支代码。
 
+该 workflow 的 concurrency 必须按 PR 号隔离：同一个 PR 推送新 head 时取消旧 run，不同 PR 不得共享一个全局 pending 槽位。验证脚本会在只读 API 遇到 secondary rate limit 时按 `Retry-After` 重试，并在每次写标签或评论前回读当前 head；因此不能用全局 concurrency 代替 stale-head 检查，也不要添加未被 GitHub Actions 支持的 `queue` 配置键。
+
 ## AI 评审边界
 
 required CI 不接入 AI，也不配置模型密钥。它只做确定性的路径、格式、文件类型、文件大小、提交阶段语义、基础 GeoJSON 字段和明显红线预检。

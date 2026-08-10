@@ -9,13 +9,14 @@ permissions:
   pull-requests: write
   issues: write
 
-# Every validation run calls the GitHub API to enumerate and hydrate the PR.
-# Serializing those calls avoids secondary-rate-limit 403s when several
-# submissions arrive together.
+# Every validation run calls the GitHub API to enumerate and hydrate one PR.
+# Isolate concurrency by PR: a new head cancels an obsolete run for the same
+# PR, while independent PRs are not trapped behind one global pending slot.
+# github_pr_validation.py already retries read-only secondary-rate-limit
+# responses and rechecks the live head before every mutating side effect.
 concurrency:
-  group: submission-validation
-  cancel-in-progress: false
-  queue: max
+  group: submission-validation-pr-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
   submission-validation:

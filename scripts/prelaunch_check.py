@@ -203,6 +203,17 @@ def check_workflow_trusted_base(repo_root: Path, checks: list[dict[str, Any]]) -
         failures.append("workflow must not checkout the PR head SHA")
     if "python3 scripts/github_pr_validation.py" not in text:
         failures.append("workflow must run the deterministic PR validator")
+    if not re.search(
+        r"(?m)^\s*group:\s*submission-validation-pr-\$\{\{\s*github\.event\.pull_request\.number\s*\|\|\s*github\.run_id\s*\}\}\s*$",
+        text,
+    ):
+        failures.append("workflow must isolate concurrency by pull request number")
+    if "cancel-in-progress: true" not in text:
+        failures.append("workflow must cancel obsolete revisions of the same pull request")
+    if re.search(r"(?m)^\s*group:\s*submission-validation\s*$", text) or re.search(
+        r"(?m)^\s*queue:", text
+    ):
+        failures.append("workflow must not use a global submission queue or unsupported queue key")
     add_check(
         checks,
         "workflow_uses_trusted_base",

@@ -90,6 +90,28 @@ class PrelaunchCheckTests(unittest.TestCase):
         self.assertNotIn("github.event.pull_request.head.sha", workflow)
         self.assertIn("python3 scripts/github_pr_validation.py", workflow)
 
+    def test_workflow_isolates_pr_heads_and_cancels_stale_revisions(self) -> None:
+        workflow = (ROOT / ".github" / "workflows" / "submission-validation.yml").read_text(encoding="utf-8")
+        self.assertIn(
+            "group: submission-validation-pr-${{ github.event.pull_request.number || github.run_id }}",
+            workflow,
+        )
+        self.assertIn("cancel-in-progress: true", workflow)
+        self.assertNotIn("group: submission-validation\n", workflow)
+        self.assertNotIn("queue: max", workflow)
+
+    def test_three_pull_requests_have_independent_concurrency_groups(self) -> None:
+        def group(pr_number: object, run_id: int) -> str:
+            return f"submission-validation-pr-{pr_number if pr_number is not None else run_id}"
+
+        groups = [group(number, 9000 + number) for number in (101, 102, 103)]
+        self.assertEqual(3, len(set(groups)))
+        self.assertEqual("submission-validation-pr-101", groups[0])
+        self.assertEqual("submission-validation-pr-102", groups[1])
+        self.assertEqual("submission-validation-pr-103", groups[2])
+        self.assertEqual(group(101, 1), group(101, 2))
+        self.assertEqual("submission-validation-pr-7001", group(None, 7001))
+
     def test_pr_template_and_gallery_keep_review_results_out_of_public_index(self) -> None:
         template = (ROOT / ".github" / "PULL_REQUEST_TEMPLATE.md").read_text(encoding="utf-8")
         submissions_page = (ROOT / "submissions.html").read_text(encoding="utf-8")
