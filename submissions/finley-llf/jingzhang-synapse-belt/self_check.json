@@ -1,52 +1,103 @@
 {
   "schema_version": "0.1.0",
+  "readiness_contract": "persisted-self-check-v1",
+  "stage": "formal",
   "ok": true,
+  "can_enter_formal_review": true,
   "result": "PASS",
-  "generated_at": "2026-08-10T15:29:45Z",
+  "generated_at": "2026-08-10T20:18:55Z",
   "checks": [
     {
       "id": "chk-structure",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_STRUCTURE",
+      "target": "投稿包目录与必需文件"
     },
     {
       "id": "chk-boundary",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_BOUNDARY",
+      "target": "proposal.md 边界声明"
     },
     {
       "id": "chk-sources",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_SOURCES",
+      "target": "sources.json"
     },
     {
       "id": "chk-matrix",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_MATRIX",
+      "target": "compliance/standard/design_depth 矩阵"
     },
     {
       "id": "chk-geometry",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_GEOMETRY",
+      "target": "geometry/*.geojson"
     },
     {
       "id": "chk-visual",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_VISUAL",
+      "target": "visual/index.html"
     },
     {
       "id": "chk-language",
       "result": "pass",
-      "severity": "info"
+      "severity": "info",
+      "check_id": "CHK_LANGUAGE",
+      "target": "proposal.zh.md / proposal.en.md"
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/finley-llf/jingzhang-synapse-belt",
+      "message": "scripts/validate_local_submission.py 通过：目录结构、必需文件、manifest 哈希、枚举取值、矩阵交叉引用与语言契约均无 error。",
+      "suggested_fix": "如出现 error，按输出逐条修正后重算 manifest.files[].sha256。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/finley-llf/jingzhang-synapse-belt/geometry",
+      "message": "scripts/spatial_review.py（shapely+pyproj+jsonschema 已安装）通过：GeoJSON schema 有效、几何拓扑有效、用地分区在设计范围内全覆盖、所有图层几何均落在场地边界内、六项空间指标与 metrics.json 复算一致；仅余 3 条 KEY_AREA_PROVISIONAL minor 提示（重点区域为临时几何，不作官方红线）。",
+      "suggested_fix": "官方精确边界发布后重跑并同步 metrics.json。"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/finley-llf/jingzhang-synapse-belt/visual/index.html",
+      "message": "scripts/visual_review.py 通过：14 项必需展示章节齐备，site_area_sqm / green_ratio / public_space_ratio 等 14 项指标以 data-metric+data-value 机器可读声明并与 metrics.json 数值一致；页面全静态离线，无 iframe/form/fetch/远程资源/脚本。",
+      "suggested_fix": "新增数值展示时须同步在 metrics.json 注册且 status=known。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/finley-llf/jingzhang-synapse-belt",
+      "message": "scripts/professional_review.py 通过：合规矩阵 / 标准矩阵 / 设计深度矩阵齐备且逐条给出证据，来源与假设登记完整，法定指标缺口以 status=unknown + reason 显式标注，未编造数值。",
+      "suggested_fix": "官方发布法定指标后将 m-far / m-height / m-green-ratio 由 unknown 更新为 known。"
     }
   ],
   "notes": [
-    "结构合规：目录与必需文件齐备（stdlib 校验）。",
-    "边界声明：proposal.md 含边界声明，未编造法定指标。",
-    "来源：仅公开/已清权来源，逐条标注。",
+    "结构合规：目录与必需文件齐备（确定性校验无 error）。",
+    "边界声明：proposal.md 与 visual/index.html 均含边界声明，未编造法定指标。",
+    "来源：仅公开 / 已清权来源，逐条标注；OSM 若使用须 ODbL 署名。",
     "矩阵：compliance 24 条 / standard 6 条 / design_depth 8 条，交叉引用一致。",
-    "几何：使用 provisional 边界，明确不用于正式面积计分。",
-    "语言：proposal.zh.md + proposal.en.md 双语。",
+    "几何：使用 provisional 边界，明确不用于正式面积计分；用地已全覆盖，无越界几何。",
+    "指标：六项空间指标由几何在 EPSG:4548 下自算并与 metrics.json 对账一致。",
+    "视觉：visual/index.html 为全静态离线页面，指标可机器复核。",
+    "语言：proposal.zh.md + proposal.en.md 双语；英文展示副本为 legacy v1 兼容缺口（warning，不阻断）。",
     "局限：因官方精确边界与法定指标缺失，正式专业计分暂不可得（data_gap）。"
   ]
 }

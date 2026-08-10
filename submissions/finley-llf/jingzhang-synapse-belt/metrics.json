@@ -189,7 +189,94 @@
       "assumptions": [
         "asm-no-statutory-metrics"
       ],
-      "reason": "绿地率官方尚未提供，本方案不编造"
+      "reason": "法定绿地率官方尚未提供，本方案不编造；本方案自算的概念绿地占比另见 green_ratio"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/site_boundary.geojson"
+      ],
+      "formula": "shapely area of site_boundary.geojson polygon reprojected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "asm-provisional-boundary"
+      ],
+      "reason": "临时粗略设计范围自算面积，与公告约11.4 km² 相符；非官方红线面积"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 188160.656,
+      "unit": "sqm",
+      "source_files": [
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/green_space.geojson"
+      ],
+      "formula": "unary_union(green_space features).area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "asm-conceptual-geometry"
+      ],
+      "reason": "方案层面概念绿地（遗址公园绿廊）自算面积"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 85745.493,
+      "unit": "sqm",
+      "source_files": [
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/public_space.geojson"
+      ],
+      "formula": "unary_union(public_space features).area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "asm-conceptual-geometry"
+      ],
+      "reason": "三处概念公共空间节点自算面积"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1809517.583,
+      "unit": "sqm",
+      "source_files": [
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/buildings.geojson"
+      ],
+      "formula": "unary_union(buildings features).area in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "asm-conceptual-geometry",
+        "asm-massing-not-statutory"
+      ],
+      "reason": "概念体量占地示意，仅用于结构性比较，不构成建筑退线或审批依据"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.016487,
+      "unit": "ratio",
+      "source_files": [
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/green_space.geojson",
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "asm-conceptual-geometry"
+      ],
+      "reason": "方案新增概念绿地占设计范围比例；不等同法定绿地率（见 m-green-ratio）"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.007513,
+      "unit": "ratio",
+      "source_files": [
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/public_space.geojson",
+        "submissions/finley-llf/jingzhang-synapse-belt/geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "asm-conceptual-geometry"
+      ],
+      "reason": "方案新增概念公共空间占设计范围比例"
     }
   }
 }

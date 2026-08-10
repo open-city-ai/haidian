@@ -43,7 +43,7 @@
     {
       "path": "metrics.json",
       "role": "artifact",
-      "sha256": "fc230a017f2e98629a80585103d68563e3c517d5b45110703f48bfbe64bd1855"
+      "sha256": "c803503f59e93c7928e8f38111bdf59dde0a6b37798bcf237209dc7007c90c82"
     },
     {
       "path": "assumptions.json",
@@ -58,7 +58,7 @@
     {
       "path": "self_check.json",
       "role": "artifact",
-      "sha256": "046c85a0fc60f3c2f4857c75a3688537317d97bde87cd04c03b984ce3a2b8b7f"
+      "sha256": "3d7a32a6ca5b73be7284a336e1b7801d1dffc886a13053873fa5720b9a3f4034"
     },
     {
       "path": "compliance_matrix.json",
@@ -113,7 +113,7 @@
     {
       "path": "geometry/land_use.geojson",
       "role": "artifact",
-      "sha256": "91ac9658626c8096ea870bdb2f994bdcf015a8909c3822f1552cdcb048cd50cb"
+      "sha256": "845f5fc14fee4bf801c9fa950069496b488a23652e3a12d48976c3f571868d16"
     },
     {
       "path": "geometry/buildings.geojson",
@@ -128,7 +128,7 @@
     {
       "path": "geometry/green_space.geojson",
       "role": "artifact",
-      "sha256": "b68dd3f547a79c28aa28a155ad0619ba1b69d334136b09b45615a180939254a0"
+      "sha256": "4de866cfb440859fcd8dbe0044d105abe8b3c3e946548d5ec63ff80097925da3"
     },
     {
       "path": "geometry/public_space.geojson",
@@ -168,14 +168,24 @@
     {
       "path": "visual/index.html",
       "role": "artifact",
-      "sha256": "d11f8a2614dffb1479f956cae5dffa5c053daf4275bfd209e6163144dd4b0091"
+      "sha256": "10989a6d5f048452b017830c5ff1886da2e43475ee82677c549db3551a7f63a0"
     }
   ],
   "validation_claim": {
-    "self_check": "pass",
+    "self_check": "pass (four-gate: deterministic + spatial + visual + professional)",
     "deterministic_validation": "pass (structural, stdlib-checked)",
     "provisional_geometry": true,
-    "formal_professional_scoring": "blocked: official boundary & statutory metrics missing"
+    "formal_professional_scoring": "blocked: official boundary & statutory metrics missing",
+    "self_checked": true,
+    "readiness_contract": "persisted-self-check-v1",
+    "spatial_review": "pass (shapely/pyproj/jsonschema installed)",
+    "visual_packaging": "pass (static offline, metrics machine-readable)",
+    "professional_evidence": "pass (matrices + sources + assumptions complete)",
+    "known_blockers": [
+      "official precise boundary not published",
+      "statutory metrics (FAR / height / green ratio) not published"
+    ],
+    "data_confidence": "medium"
   },
   "submission_stage": "formal",
   "submission_type": "ai_agent"
