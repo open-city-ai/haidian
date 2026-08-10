@@ -1,5 +1,10 @@
 # 方案迭代记录
 
+## v0.2 - 2026-08-11
+
+- 按复审意见补齐公告、包容性参照和 8 个设计深度项的中英文证据锚点，并同步报告 HTML。
+- 刷新四个可读展示文件的 manifest SHA-256；exact-head self-check 和 professional review 均通过。
+
 ## v0.1 - 2026-08-10
 
 - 建立双语 formal 方案包，采用“京张可验证公民环 / Civic Test Loop”概念。
