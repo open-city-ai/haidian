@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以多世界、可消融的城市演化模型评估公共策略：不指定唯一终局，而识别应当承诺、保留选择权或等待触发条件的空间与项目。"
 tracks: ["civic-agent-governance", "ai-traffic-walkability", "ai-origin-community"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.2"
+iteration: "v0.3"
 ---
 
 # Urban Field Dynamics｜城市场演化系统
@@ -26,7 +26,7 @@ iteration: "v0.2"
 
 模型方法遵循 ODD 对 purpose、entities、scales、process scheduling、initialisation、input data 和 submodels 的显式描述要求，并借鉴 UrbanSim 对年度开发与选址、聚合解释和多次运行的边界说明。鲁棒决策部分采用“在多种可能未来中压力测试政策、暴露脆弱条件”的方法，而不是在单一预测上求伪精确最优。[source:ODD-PROTOCOL-2020] [source:URBANSIM-DOCUMENTATION] [source:ROBUST-DECISION-MAKING]
 
-公开 Python engine 固定到 commit `524ee2f1ee5c37b9e77775e327285bf8af1c1f4a`；当前实现只完成 redevelopment / transition-inertia 资格化切片，并通过 34 项测试。随包 `smoke-v1` 含 8 个 matched worlds、P0/P1 两政策和 no-inertia ablation，全部输入均为 synthetic，不能外推真实海淀概率、地价、客流或建设规模。[source:UFD-ENGINE] [source:UFD-SMOKE-V1] 图层与面积证据仍以 [data:geometry/site_boundary.geojson#SITE-001] 和 [metric:site_area_sqm] 为准。
+公开 Python engine 固定到 commit `e4e815f01569f608acd7145b0b7fd2acb0fc874c`，其中 qualification 使用的实现提交为 `518110263155b67295a2e31359cbb9a9cbdd0750`。当前实现已覆盖 weighted household/firm dynamics、multimodal transport surrogate、labor matching、environment、public service、budget、market-clearing、equity、stress 与 replay，并通过 138 项测试；32-world qualification、8-world sweep 和 8-world stress 均完成 bounded export 与完整重放。[source:UFD-ENGINE] [source:UFD-QUALIFICATION-2026-08-10] 随包 `smoke-v1` 仍是初始 intake 的 8-world redevelopment 证据，不因 engine 更新而冒充当前 qualification。所有新结果仍为 synthetic mechanism qualification，不能外推真实海淀概率、地价、客流、成本或建设规模。[source:UFD-SMOKE-V1] 图层与面积证据仍以 [data:geometry/site_boundary.geojson#SITE-001] 和 [metric:site_area_sqm] 为准。
 
 ![资料、模型与决策证据链](assets/figures/site-overview.png)
 
@@ -85,7 +85,7 @@ iteration: "v0.2"
 | 9. Night Light Budget | 夜间活动与居民 | 时段、亮度、遮挡、运营 | 安全、生态和运营联合审核 |
 | 10. Trigger / Optionality 台账 | 投资与公众 | world distributions、阈值 | 每次滚动规划重新确认 |
 
-其中 1、3、4 为产业测试验证场景：分别验证多世界运行与审计、基础设施协调失灵、资产惯性与更新触发。现有 engine 只实现第 4 场景的 synthetic slice；交通 assignment 计划使用 fast surrogate，并在取得 OD 和容量数据后用 AequilibraE 对 selected scenarios 复核。[source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] AI 场景与用户覆盖由 [depth:ai_scenario_system] 约束。
+其中 1、3、4 为产业测试验证场景：分别验证多世界运行与审计、基础设施协调失灵、资产惯性与更新触发。当前 engine 已实现支撑场景 1、3、4、5、6、7 的 synthetic mechanism slices，包括matched policy/ablation、multimodal assignment、cohort/labor dynamics、service capacity 与 heat/environment stress；它没有真实海淀 OD、容量、企业、服务或环境校准。AequilibraE 仍只作为取得真实 OD 和容量数据后 selected scenarios 的未来外部oracle。[source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] AI 场景与用户覆盖由 [depth:ai_scenario_system] 约束。
 
 ## 用地、建筑规模与拆改留方案
 
@@ -97,11 +97,11 @@ iteration: "v0.2"
 
 ## 交通、轨道、市政与公共服务设施
 
-交通构成 `LandUse → Trips → Congestion → Accessibility → LandValue → Development → LandUse` 反馈。比赛版计划使用 walking、cycling、road、bus、metro/rail 的稀疏 multimodal graph；每个 world 运行 fast surrogate，选定政策和年份再用 AequilibraE 做 OD、skim、generalized cost 与 assignment 对照。当前 smoke 的 `accessibility_delta=0.35` 是 synthetic mechanism input，不代表地铁站、道路或实际通达改善值。[source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-SMOKE-V1]
+交通构成 `LandUse → Trips → Congestion → Accessibility → LandValue → Development → LandUse` 反馈。当前 Python engine 已在每个 world 运行 walking、cycling、road、bus、rail 的稀疏 multimodal fast surrogate，使用capacity feedback、BPR travel time、logit mode choice、MSA assignment与generalized-cost skim。该实现仍只有stylised OD和synthetic capacity；取得真实 OD、容量和交通计数后，才可用 AequilibraE 对 selected scenarios 做外部对照。随包旧 smoke 的 `accessibility_delta=0.35` 仍只是synthetic mechanism input，不代表地铁站、道路、客流或实测通达改善值。[source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] [source:UFD-SMOKE-V1]
 
 公共投资能够在潜力区域尚无即时需求时改变协调均衡，但项目评价必须比较长期社会福利、建设与运营成本、环境外部性和最差群体负担。规划控制变量包括轨道/公交、道路空间再分配、慢行修补、公共设施、蓝绿基础设施、税费和环境规则。小型 crossing、公交优先或绿化缓冲与大型基础设施使用同一 leverage 口径，避免“项目越大越重要”。交通和公共空间证据落到 [data:geometry/roads.geojson#ROAD-001] 与 [depth:transport_municipal_system]。
 
-市政和公共服务采用容量约束，不允许模型结果静默超过电力、排水、消防、医疗、教育和社区服务承载。缺少管线、消防、防洪、设施容量和服务人口数据时，本方案只提出模块接口与待核清单。公共设施不会简单追逐最繁华位置，而以 access cost、inequality 和 capacity shortage 共同评价。[standard:MOHURD-CONTROL-DETAILED-PLANNING]
+市政和公共服务采用容量约束，不允许模型结果静默超过承载。当前 synthetic engine 已实现公共服务capacity/quality/crowding feedback，以及交通、服务、资本、运营和更新的年度/累计budget ledger与unmet-demand诊断。由于仍缺少管线、消防、防洪、设施容量、服务人口和公共财政数据，这些结果只证明机制与fail-closed合同，不代表真实供给能力或预算。公共设施不会简单追逐最繁华位置，而以access cost、inequality和capacity shortage共同评价。[source:UFD-QUALIFICATION-2026-08-10] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
 
 ![交通、蓝绿和公共服务反馈](assets/figures/mobility-bluegreen.png)
 
@@ -117,7 +117,7 @@ iteration: "v0.2"
 
 近期（2026—2030）优先建设数据和制度底座：公开资料账本、模型 ODD、provisional geometry 替换接口、慢行断点调查、建筑更新底数、环境与服务容量基线；开展三个可撤回的小型测试——世界转辙台、更新窗口雷达和一处慢行杠杆修补。任何现场试点均需专业核查和主管程序。
 
-中期（2030—2035）在数据与机制通过后，把交通 surrogate、居民/企业 cohort、环境 exposure 和服务容量接入滚动规划；只执行通过 trigger 的项目。长期（2035—2050）每五年重算政策组合，保留对需求、技术、人口和气候变化的适应能力。分期图层 [data:geometry/phasing.geojson#PHASE-001] 当前仅表达概念时序，[depth:implementation_phasing] 不证明资金、主体或工期已落实。
+中期（2030—2035）只有在真实数据接入、校准与专业验证通过后，才把当前已完成synthetic qualification的交通surrogate、居民/企业cohort、环境exposure和服务容量用于滚动规划；只执行通过trigger和法定程序的项目。长期（2035—2050）每五年重算政策组合，保留对需求、技术、人口和气候变化的适应能力。分期图层 [data:geometry/phasing.geojson#PHASE-001] 当前仅表达概念时序，[depth:implementation_phasing] 不证明资金、主体或工期已落实。
 
 长期运营形成“一年四次公开复盘 + 五年滚动规划”：春季更新数据与假设，夏季做热浪和活动压力测试，秋季发布政策/ablation 对比，冬季审查公平、容量和退出事项。开发者社区维护公开 engine、版本和回归测试；专业团队维护数据与规划解释；公众能够查看赢家/受损群体、提出异议和要求人工复核。全球活动、品牌传播和企业招引均是概念运营建议，不代表政府承诺。
 
@@ -133,7 +133,7 @@ iteration: "v0.2"
 
 ## 风险、版权与合规说明
 
-首要风险是把计算精确度误写成事实精度。Provisional polygon、synthetic unit、design target 和 unknown control 在正文与图例中必须分开；模型输出不得继承高于输入的证据等级。第二类风险是 mechanism overclaim：当前只实现 redevelopment slice，其余交通、居民、企业、环境和服务模块仍需开发、资格化和校准。第三类风险是自动决策：系统只支持比较和解释，不自动批准拆除、道路、公共服务分配或招商政策。
+首要风险是把计算精确度误写成事实精度。Provisional polygon、synthetic unit、design target 和 unknown control 在正文与图例中必须分开；模型输出不得继承高于输入的证据等级。第二类风险是mechanism overclaim：交通、居民、企业、labor、环境、服务、预算和market模块虽然已完成synthetic qualification，仍未使用真实海淀数据校准或验证。第三类风险是自动决策：系统只支持比较和解释，不自动批准拆除、道路、公共服务分配或招商政策。
 
 隐私上只使用 aggregated/weighted cohorts，不收集可识别个人轨迹；企业名单、产值、投资额和招商结果不得编造。空间上不引入非公开红线、权属、管线或文保控制数据。工程、运营、活动和地标均写为概念建议，需规划、交通、市政、文保、生态、安全、版权与公众参与审查。[source:SITE-PACKAGE] [source:SOURCE-REGISTRY]
 
@@ -147,7 +147,7 @@ iteration: "v0.2"
 4. UrbanSim documentation：年度城市开发、选址与多次运行解释。
 5. World Bank Policy Research Working Paper 6906：Robust Decision Making under deep uncertainty。
 6. AequilibraE documentation：交通分配、skim 与 generalized cost。
-7. Urban Field Dynamics engine，commit `524ee2f1ee5c37b9e77775e327285bf8af1c1f4a`。
+7. Urban Field Dynamics engine，repository commit `e4e815f01569f608acd7145b0b7fd2acb0fc874c`；qualification implementation commit `518110263155b67295a2e31359cbb9a9cbdd0750`。
 8. 住建部《城市设计管理办法》及控制性详细规划相关规范。
 
 完整机器索引、用途限制和 synthetic evidence 路径见 `sources.json`；引用这些资料不意味着其自动具备官方空间控制效力。[source:UFD-ENGINE] [source:ODD-PROTOCOL-2020]
