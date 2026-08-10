@@ -367,6 +367,146 @@ class AgentDisclosureTests(unittest.TestCase):
 
 
 class ManifestHydrationTests(unittest.TestCase):
+    def test_trusted_download_rejects_symbolic_link_metadata(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(
+            client,
+            "request",
+            return_value=(
+                {
+                    "truncated": False,
+                    "tree": [
+                        {
+                            "path": "submissions/alice/design/asset.bin",
+                            "mode": "120000",
+                            "type": "blob",
+                        }
+                    ],
+                },
+                {},
+            ),
+        ):
+            with self.assertRaisesRegex(
+                RuntimeError,
+                r"path submissions/alice/design/asset.bin is not a regular file",
+            ):
+                client.assert_regular_file(
+                    "fork/repo",
+                    "submissions/alice/design/asset.bin",
+                    "head-sha",
+                )
+
+    def test_trusted_download_accepts_regular_file_metadata(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(
+            client,
+            "request",
+            return_value=(
+                {
+                    "truncated": False,
+                    "tree": [
+                        {
+                            "path": "submissions/alice/design/asset.bin",
+                            "mode": "100644",
+                            "type": "blob",
+                        }
+                    ],
+                },
+                {},
+            ),
+        ):
+            client.assert_regular_file(
+                "fork/repo",
+                "submissions/alice/design/asset.bin",
+                "head-sha",
+            )
+
+    def test_trusted_download_accepts_executable_regular_file(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(
+            client,
+            "request",
+            return_value=(
+                {
+                    "truncated": False,
+                    "tree": [
+                        {
+                            "path": "submissions/alice/design/run.sh",
+                            "mode": "100755",
+                            "type": "blob",
+                        }
+                    ],
+                },
+                {},
+            ),
+        ):
+            client.assert_regular_file("fork/repo", "submissions/alice/design/run.sh", "head-sha")
+
+    def test_trusted_download_rejects_submodule_and_directory_metadata(self) -> None:
+        for mode, object_type in (("160000", "commit"), ("040000", "tree")):
+            client = GitHubClient("token", "owner/repo")
+            with self.subTest(mode=mode), patch.object(
+                client,
+                "request",
+                return_value=(
+                    {
+                        "truncated": False,
+                        "tree": [
+                            {
+                                "path": "submissions/alice/design/asset.bin",
+                                "mode": mode,
+                                "type": object_type,
+                            }
+                        ],
+                    },
+                    {},
+                ),
+            ):
+                with self.assertRaisesRegex(RuntimeError, "not a regular file"):
+                    client.assert_regular_file(
+                        "fork/repo", "submissions/alice/design/asset.bin", "head-sha"
+                    )
+
+    def test_trusted_download_fails_closed_on_truncated_tree(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(
+            client,
+            "request",
+            return_value=({"truncated": True, "tree": []}, {}),
+        ):
+            with self.assertRaisesRegex(RuntimeError, "truncated or malformed"):
+                client.assert_regular_file(
+                    "fork/repo", "submissions/alice/design/asset.bin", "head-sha"
+                )
+
+    def test_trusted_download_caches_tree_for_multiple_files(self) -> None:
+        client = GitHubClient("token", "owner/repo")
+        with patch.object(
+            client,
+            "request",
+            return_value=(
+                {
+                    "truncated": False,
+                    "tree": [
+                        {
+                            "path": "submissions/alice/design/one.bin",
+                            "mode": "100644",
+                            "type": "blob",
+                        },
+                        {
+                            "path": "submissions/alice/design/two.bin",
+                            "mode": "100644",
+                            "type": "blob",
+                        },
+                    ],
+                },
+                {},
+            ),
+        ) as request:
+            client.assert_regular_file("fork/repo", "submissions/alice/design/one.bin", "head-sha")
+            client.assert_regular_file("fork/repo", "submissions/alice/design/two.bin", "head-sha")
+        request.assert_called_once()
+
     def test_download_content_accepts_ten_mib_file(self) -> None:
         client = GitHubClient("token", "owner/repo")
         with tempfile.TemporaryDirectory() as tmp:
