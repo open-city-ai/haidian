@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智脉 · 百年链未来 - 离线可视化</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Microsoft YaHei", sans-serif; background: #1a1a2e; color: #e0e0e0; }
+  .hero { background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460); padding: 60px 20px; text-align: center; }
+  .hero h1 { font-size: 2.8em; background: linear-gradient(90deg, #e94560, #2980b9, #27ae60); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 10px; }
+  .hero p { font-size: 1.2em; color: #aaa; }
+  .spine { position: relative; max-width: 800px; margin: 0 auto; padding: 40px 0; }
+  .spine-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, #e94560, #2980b9, #27ae60); transform: translateX(-50%); }
+  .node { position: relative; margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 12px; border: 1px solid rgba(255,255,255,0.1); }
+  .node::before { content: ''; position: absolute; left: 50%; top: -10px; width: 20px; height: 20px; background: #2980b9; border-radius: 50%; transform: translateX(-50%); z-index: 2; }
+  .node.north::before { background: #27ae60; }
+  .node.south::before { background: #e67e22; }
+  .node h3 { font-size: 1.3em; margin-bottom: 8px; }
+  .node.north h3 { color: #27ae60; }
+  .node.center h3 { color: #2980b9; }
+  .node.south h3 { color: #e67e22; }
+  .node p { font-size: 0.9em; line-height: 1.6; color: #bbb; }
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.8em; margin: 3px; }
+  .tag-scene { background: rgba(41,128,185,0.3); color: #5dade2; }
+  .tag-landmark { background: rgba(231,76,60,0.3); color: #ec7063; }
+  .metrics-bar { display: flex; justify-content: center; gap: 30px; padding: 30px 20px; flex-wrap: wrap; }
+  .metric { text-align: center; }
+  .metric .num { font-size: 2em; font-weight: bold; }
+  .metric .unit { font-size: 0.9em; color: #888; }
+  .metric.green .num { color: #27ae60; }
+  .metric.blue .num { color: #2980b9; }
+  .metric.orange .num { color: #e67e22; }
+  .scenarios { max-width: 900px; margin: 0 auto; padding: 30px 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; }
+  .scenario-card { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 15px; border: 1px solid rgba(255,255,255,0.1); }
+  .scenario-card h4 { color: #5dade2; margin-bottom: 8px; }
+  .scenario-card p { font-size: 0.85em; color: #aaa; }
+  .timeline { max-width: 800px; margin: 0 auto; padding: 30px 20px; }
+  .phase { display: flex; margin: 15px 0; align-items: flex-start; }
+  .phase-year { min-width: 120px; font-weight: bold; color: #5dade2; }
+  .phase-content { flex: 1; padding-left: 15px; border-left: 2px solid #333; }
+  .footer { text-align: center; padding: 30px; color: #555; font-size: 0.8em; border-top: 1px solid #333; margin-top: 30px; }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <h1>京张智脉</h1>
+    <p>百年链未来 · Centennial Chain of the Future</p>
+    <p style="margin-top:15px; font-size:0.9em; color:#888;">一脊三核两翼 | 百年京张文化脉 + AI生活体验脉 + AI融合创新脉</p>
+  </div>
+
+  <div class="metrics-bar">
+    <div class="metric green"><div class="num">43.6</div><div class="unit">km² 统筹研究</div></div>
+    <div class="metric blue"><div class="num">11.4</div><div class="unit">km² 总体设计</div></div>
+    <div class="metric orange"><div class="num">368.4</div><div class="unit">ha 重点区域</div></div>
+    <div class="metric green"><div class="num">12</div><div class="unit">张AI场景卡</div></div>
+    <div class="metric blue"><div class="num">3</div><div class="unit">个朝圣地标</div></div>
+    <div class="metric orange"><div class="num">8</div><div class="unit">个生态案例</div></div>
+  </div>
+
+  <div class="spine">
+    <div class="spine-line"></div>
+
+    <div class="node north">
+      <h3>众智园 · 加速核</h3>
+      <p>192.1 ha | AI全栈自主创新体系与AI治理全球话语权</p>
+      <p>创新加速坊 → 开发者村落 → AI治理实验区 → 铁路遗址公园北段</p>
+      <p>FAR 2.0-2.5 | 低密度合院式 | 清水混凝土+耐候钢</p>
+      <span class="tag tag-scene">AI场景沙盒</span>
+      <span class="tag tag-scene">开发者散步道</span>
+      <span class="tag tag-landmark">AI治理实验区</span>
+    </div>
+
+    <div class="node center">
+      <h3>AI原点 · 社区核</h3>
+      <p>104.3 ha | 世界级AI创新生态</p>
+      <p>AI原点广场 → 创新社区 → AI+公共服务枢纽 → 三重叙事交汇</p>
+      <p>FAR 2.5-3.5 | 中密度混合式 | 透明界面+开放首层</p>
+      <span class="tag tag-landmark">AI原点碑</span>
+      <span class="tag tag-landmark">开发者贡献墙</span>
+      <span class="tag tag-scene">AI社区健康站</span>
+      <span class="tag tag-scene">AI法律咨询点</span>
+    </div>
+
+    <div class="node south">
+      <h3>大钟寺 · 产业核</h3>
+      <p>72.0 ha | 智能原生新业态</p>
+      <p>AI产业总部集群 → 智能原生商业街 → 大钟寺文化节点 → 产业展示中心</p>
+      <p>FAR 3.5-4.5 | 高层集群式 | 智能幕墙系统</p>
+      <span class="tag tag-scene">机器人配送走廊</span>
+      <span class="tag tag-scene">产业展示开放日</span>
+      <span class="tag tag-landmark">京张时光廊</span>
+    </div>
+  </div>
+
+  <h2 style="text-align:center; color:#5dade2; margin-top:30px;">AI+场景卡</h2>
+  <div class="scenarios">
+    <div class="scenario-card"><h4>AI慢行导航</h4><p>实时推荐最优步行/骑行路线，自动避开施工断点和拥挤路段</p></div>
+    <div class="scenario-card"><h4>AI社区健康站</h4><p>社区入口AI健康问诊终端，基础体征检测和健康咨询</p></div>
+    <div class="scenario-card"><h4>开发者散步道</h4><p>沿铁路遗址设置开源项目贡献图谱互动装置</p></div>
+    <div class="scenario-card"><h4>AI原点广场体验</h4><p>互动地面投影，生成式AI视觉体验</p></div>
+    <div class="scenario-card"><h4>机器人配送走廊</h4><p>三核间专用低速机器人配送通道</p></div>
+    <div class="scenario-card"><h4>AI法律咨询点</h4><p>基础法律问题解答、合同审查辅助</p></div>
+    <div class="scenario-card"><h4>京张文化导览</h4><p>AR导览路线，叠加历史影像与AI场景对比</p></div>
+    <div class="scenario-card"><h4>青年夜校空间</h4><p>24小时AI编程环境和项目协作空间</p></div>
+    <div class="scenario-card"><h4>AI场景沙盒</h4><p>受控环境中测试AI应用，公众参与体验</p></div>
+    <div class="scenario-card"><h4>智能体贡献墙</h4><p>实体+数字双模式Agent贡献纪念</p></div>
+    <div class="scenario-card"><h4>AI教育辅导站</h4><p>个性化学习路径推荐和基础学科答疑</p></div>
+    <div class="scenario-card"><h4>产业展示开放日</h4><p>每季度AI产业成果开放日</p></div>
+  </div>
+
+  <h2 style="text-align:center; color:#5dade2; margin-top:30px;">分期实施</h2>
+  <div class="timeline">
+    <div class="phase"><div class="phase-year">2027-2029 一期</div><div class="phase-content">铁路遗址公园全线贯通 + AI原点社区核启动 (104 ha)</div></div>
+    <div class="phase"><div class="phase-year">2029-2031 二期</div><div class="phase-content">众智园加速核 + 中关村服务翼 (200 ha)</div></div>
+    <div class="phase"><div class="phase-year">2031-2034 三期</div><div class="phase-content">大钟寺产业核 + 小月河场景翼 (130 ha)</div></div>
+    <div class="phase"><div class="phase-year">2027- 持续</div><div class="phase-content">AI场景迭代、公共服务升级、社区参与深化</div></div>
+  </div>
+
+  <div class="footer">
+    <p>京张智脉 · 百年链未来 | nhr-nick (GLM-5.1 via Trae) | COMMUNITY-DISPLAY-ONLY</p>
+    <p>百年京张AI创新带城市设计开源征集 | 本方案为概念建议，不替代正式规划</p>
+    <p>provisional边界仅供展示，不得冒充官方红线</p>
+  </div>
+</body>
+</html>
