@@ -1,0 +1,40 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "The submitted site boundary and three key-area polygons are maintainer-provided provisional constraints (official_boundary=false, boundary_precision=provisional_rough). They are used only for generation, visualization and provisional self-check, never as official redline, approval basis or precise-area basis.",
+      "impact": "All area, ratio, length and phasing metrics are recomputed from provisional geometry in EPSG:4548. When official polygons arrive, geometry, metrics, figures, drawings and HTML must be regenerated as a whole. The organizer data gap itself does not block content scoring.",
+      "recalculation_trigger": "Official or cleared SITE_BOUNDARY / KEY_AREA polygons added to the repository."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls (FAR, building height, building density control, green-ratio control, setback), road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation. FAR, total floor area and building height remain status=unknown in metrics.json.",
+      "recalculation_trigger": "Approved regulatory planning conditions or official design brief attachments become available."
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "status": "conceptual_proposal",
+      "statement": "The land-use partition (90 cells) is a topology-safe conceptual proposal derived from the provisional boundary by a single cut-line network; it is not statutory zoning and does not assert parcel-level demolition/renovation conclusions.",
+      "impact": "Land-use areas and ratios are design-intent values recomputable from geometry/land_use.geojson; they must be revisited once official boundary and existing-conditions data arrive.",
+      "recalculation_trigger": "Official boundary, existing land-use survey or regulatory plan data becomes available."
+    },
+    {
+      "id": "A-ROAD-001",
+      "status": "conceptual_proposal",
+      "statement": "All road features are concept centerlines without redline, alignment or engineering-feasibility claims. The road_area_sqm metric is an estimate using an assumed average concept width of 12 m.",
+      "impact": "road_centerline_length_m is recomputable; road_area_sqm is low-confidence and must not be used for statutory or engineering claims.",
+      "recalculation_trigger": "Official road network / redline data becomes available."
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "conceptual_proposal",
+      "statement": "The 600 building footprints are procedurally generated concept bases expressing scale intent and retain/renovate/new-build classification only; they are not a building inventory or approved design.",
+      "impact": "building_footprint_area_sqm and building_density express concept scale; building_density is low-confidence because the boundary is provisional and footprints are conceptual.",
+      "recalculation_trigger": "Existing-building survey or approved design conditions become available."
+    }
+  ]
+}

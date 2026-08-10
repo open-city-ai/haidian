@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is used and labeled official_boundary=false / boundary_precision=provisional_rough; it is never presented as an official redline. Replace with official geometry before professional area scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas (zhongzhiyuan, origin community, dazhongsi) are present as provisional constraints, inside the site boundary and non-overlapping; replace with official polygons when available."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "90 land-use cells derive from one cut-line network over the submitted boundary: shared edges share coordinates, union equals the boundary, no gaps or overlaps (verified by scripts/spatial_review.py)."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Offline static HTML with inline SVG only; no remote assets, scripts, iframes or tracking; displayed metrics match metrics.json via data-metric markers (verified by scripts/visual_review.py)."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal (v2, bilingual) cites sources, standards, depth items, geometry features and metrics adjacent to claims; exhaustive coverage lives in the JSON/matrix evidence layer."
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Chinese primary with complete English counterpart; EN report HTML, visual page, A3/A0 PDFs and all five text-bearing figures are paired."
+    },
+    {
+      "check_id": "METRICS_RECOMPUTED",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "All known metrics recomputed from generated geometry in EPSG:4548; statutory controls (FAR, height, total floor area) remain status=unknown pending official data."
+    }
+  ]
+}
