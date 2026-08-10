@@ -84,6 +84,8 @@ The three key areas share one interface protocol but have three distinct spatial
 
 ![Three key areas and interface nodes](assets/figures/key-areas.en.png)
 
+The B and C concept-scene illustrations are generated with the built-in image-generation tool only to make ground-floor actions and pedestrian experience legible; they do not carry coordinates, distances, road redlines, or engineering dimensions. Location, routes, scale, and functional labels remain governed by the local plan, GeoJSON, and metrics [source:ASSET-IMAGEGEN-CONCEPT-SCENES] [data:geometry/key_areas.geojson#PROV-KEY-001].
+
 ### Zhongzhi Park: VERIFY
 
 Zhongzhi Park is a garden-like full-stack innovation district. A low-carbon interface faces the Qinghe edge; open test benches, standards workshops, and safety-governance displays sit beside green space; entrances, external connections, and civic services form a public forecourt that can be paused. The AI is not hidden in the background: visitors can see what is being tested, who is responsible, and how to exit.
