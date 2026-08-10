@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共空间骨架，以三处AI重点片区为创新锚点，提出一条可复核、可迭代、待官方边界补齐后可复算的AI城市设计概念环。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.2"
+iteration: "v0.3"
 ---
 
 # 京张智环：百年京张AI创新带城市设计方案
@@ -58,15 +58,30 @@ iteration: "v0.2"
 
 大钟寺AI产业聚集区定位为城市型智能经济与国际交往街区。空间动作包括大钟寺站一体化、路口四象限步行连通、智能体与智能终端展示、数据要素会客厅、内容消费和国际路演客厅。该区的商业和公共空间建议偏向可预约展示、企业服务和公众可感知体验，不使用未授权企业标识，也不把活动设想写成政府安排 [data:geometry/key_areas.geojson#PROV-KEY-003] [metric:key_area_count]。
 
+v0.3 进一步采纳社区对 `PROV-KEY-003` 的定位复核：#1029 指出当前临时大钟寺重点区面积与公告 72.0 公顷基本一致，但质心更接近北京北站一带，尚未完成对大钟寺站及四象限路口的空间锚定。本方案不自行平移中央 provisional geometry，以免破坏仓库统一校验；大钟寺站城一体化和四象限步行连通均保留为方向性设计命题，待官方或维护者版本化边界发布后统一重算重点区、用地、道路、公共空间、图件和指标 [source:ISSUE-1029] [source:KEY-AREA-SOURCE] [depth:risk_missing_data]。
+
 ![三处重点区域设计索引图](assets/figures/key-areas.png)
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
-方案定义五类核心用户画像：开源开发者、初创团队、头部企业访客、周边居民和高校师生。开发者需要发布、评测、社群和声誉机制；初创团队需要低成本空间、算力入口和产品试验；企业访客需要展示、商务和国际接待；居民需要低扰动通勤、生活服务和休闲；高校师生需要成果转化、跨校协作和日常慢行。每类画像都对应空间、数据和人工复核边界，避免把城市智能体变成个人监控系统 [depth:municipal_new_infrastructure]。
+方案定义五类核心用户画像：开源开发者、初创团队、头部企业访客、周边居民和高校师生。开发者需要发布、评测、社群和声誉机制；初创团队需要低成本空间、算力入口和产品试验；企业访客需要展示、商务和国际接待；居民需要低扰动通勤、生活服务和休闲；高校师生需要成果转化、跨校协作和日常慢行。v0.3 把这些画像写入 `visual/assets/scenario_cards.json`，每类都绑定公共利益检查，避免把城市智能体变成个人监控系统 [depth:municipal_new_infrastructure] [metric:persona_count]。
 
-十张 AI 场景卡包括：开源发布厅、城市智能体沙盒、慢行断点诊断、人才生活管家、AI安全治理廊、校企转化客厅、数据要素剧场、低碳算力驿站、京张记忆线路和全球AI活动周路线。其中产业测试验证场景至少包括城市智能体沙盒、AI安全治理廊和低碳算力驿站；它们必须采用预约、授权、沙盒、日志审计和人工复核机制，不能用未公开数据或个人隐私作为必要条件 [data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_ratio]。
+十张 AI 场景卡包括：开源发布厅、城市智能体沙盒、慢行断点诊断、人才生活管家、AI安全治理廊、校企转化客厅、数据要素剧场、低碳算力驿站、京张记忆线路和全球AI活动周路线。其中产业测试验证场景至少包括城市智能体沙盒、AI安全治理廊和低碳算力驿站；它们必须采用预约、授权、沙盒、日志审计和人工复核机制，不能用未公开数据或个人隐私作为必要条件 [data:geometry/public_space.geojson#PUBLIC-001] [metric:scenario_card_count] [metric:industry_test_scenario_count]。
 
-场景落位遵循“三类空间、两类运营”的原则。三类空间是重点区展示空间、京张遗址公园公共空间和轨道站点周边日常服务空间；两类运营是专业人群的开发者运营和公众可理解的城市体验运营。所有场景先以概念建议进入合规矩阵和 visual 页面，后续由专业团队根据数据安全、公共安全、工程可行性和运营主体继续深化 [data:geometry/constraints.geojson#CONSTRAINTS]。
+| 场景卡 | 空间锚点 | 初始状态 | 关键边界 |
+|---|---|---|---|
+| 开源发布厅 | AI原点社区 | 绿 | 只处理公开发布材料，权利状态人工复核 |
+| 城市智能体沙盒 | 公共空间受控试验段 | 黄 | 只用合成或公开任务数据，操作员可即时停止 |
+| 慢行断点诊断 | 慢行与道路图层 | 黄 | 匿名反馈与现场复核，不推断个人轨迹 |
+| 人才生活管家 | 生活与服务分区 | 绿 | 资格、法律、医疗和金融问题转人工 |
+| AI安全治理廊 | 众智园 | 黄 | 只展示清权案例和脱敏证据 |
+| 校企转化客厅 | AI原点社区 | 绿 | 不摄入保密研究、专利草稿或 NDA 材料 |
+| 数据要素剧场 | 大钟寺概念片区 | 黄 | 只使用模拟或公开数据，且受 #1029 锚点限制 |
+| 低碳算力驿站 | 公共服务节点 | 黄 | 设备容量、消防和能耗待工程复核 |
+| 京张记忆线路 | 蓝绿公共空间 | 绿 | 历史叙事、图像和无障碍路线需清权复核 |
+| 全球AI活动周路线 | 首期场景开放段 | 绿 | 只使用公开议程和自愿问题，不声称活动已确定 |
+
+场景落位遵循“三类空间、两类运营、一个折返协议”的原则。三类空间是重点区展示空间、京张遗址公园公共空间和轨道站点周边日常服务空间；两类运营是专业人群的开发者运营和公众可理解的城市体验运营；折返协议参考 #1119 的开放模板，将每个场景置于绿、黄、红三色状态，默认 90 天复审，真人接管目标 5 分钟，并保留非智能等价服务路径。所有场景先以概念建议进入合规矩阵、`visual/assets/scenario_cards.json` 和 visual 页面，后续由专业团队根据数据安全、公共安全、工程可行性和运营主体继续深化 [source:SWITCHBACK-PROTOCOL] [metric:scenario_review_cycle_days] [metric:human_takeover_target_minutes]。
 
 ## 用地、建筑规模与拆改留方案
 
@@ -100,13 +115,13 @@ AI朝圣地标建议设置三类：清华园火车站记忆节点与京张历史
 
 中期建议在官方边界、权属、控规和工程资料补齐后，深化建筑更新、首层界面、公共服务设施、道路微循环和蓝绿空间修复；长期建议形成开发者社区运营、场景开放日、国际AI活动周、公共体验路线和知识资产沉淀机制。政策建议只作为可供专业团队研究的方向，包括公共空间共管、场景开放治理、数据安全沙盒、成果转化服务和运营绩效评估 [depth:renewal_project_list]。
 
-分期治理需要把“设计成果交付周期”和“城市更新实施周期”分开。征集投稿可以快速形成可读、可查、可复算的方案包；城市实施则必须接受政府审查、公众参与、专业设计、市政交通校核、资金和权属协调。方案应持续跟踪仓库 Issue、PR、资料更新和同行方案，并在每次更新后重新 render、finalize 和 self-check。
+分期治理需要把“设计成果交付周期”和“城市更新实施周期”分开。征集投稿可以快速形成可读、可查、可复算的方案包；城市实施则必须接受政府审查、公众参与、专业设计、市政交通校核、资金和权属协调。v0.3 将近期试点先限定在 yellow 或 green 概念状态：yellow 场景必须先过虚拟评测、受控场地和真实街区三级门，连续复审缺席或越过隐私、安全、无障碍阈值时转红折返；green 场景也必须保留人工服务路径，不把 AI 入口变成唯一入口。方案应持续跟踪仓库 Issue、PR、资料更新和同行方案，并在每次更新后重新 render、finalize 和 self-check [source:SWITCHBACK-PROTOCOL] [depth:phasing_implementation]。
 
 ## 指标体系、面积复算与合规矩阵
 
-本包的 known metrics 包括临时总体范围复算面积、建筑基底面积、绿地比例、公共空间比例和重点区数量；unknown metrics 包括容积率等待官方控规条件的指标。已知指标由 GeoJSON 派生，未知指标必须保留原因和前置条件，不能在可视化中显示为确定数值 [metric:site_area_sqm] [metric:green_ratio]。
+本包的 known metrics 包括临时总体范围复算面积、建筑基底面积、绿地比例、公共空间比例、重点区数量、场景卡数量、产业测试验证场景数量、用户画像数量、场景复审周期和人工接管目标。unknown metrics 包括容积率等待官方控规条件的指标。已知空间指标由 GeoJSON 派生，已知治理指标由 `visual/assets/scenario_cards.json` 派生；未知指标必须保留原因和前置条件，不能在可视化中显示为确定数值 [metric:site_area_sqm] [metric:green_ratio] [metric:scenario_card_count]。
 
-核心复算结果显示，临时边界内 `site_area_sqm` 为 11412825.386 平方米，`green_ratio` 为 0.123423，`public_space_ratio` 为 0.073281。这些数值只说明当前提交图层的一致性，不能替代正式测绘和规划控制；它们的价值在于帮助评审检查用地、绿地、公共空间和图纸是否来自同一套数据 [metric:public_space_ratio] [data:geometry/site_boundary.geojson#SITE-001]。
+核心复算结果显示，临时边界内 `site_area_sqm` 为 11412825.386 平方米，`green_ratio` 为 0.123423，`public_space_ratio` 为 0.073281；治理层显示 `scenario_card_count` 为 10、`industry_test_scenario_count` 为 3、`persona_count` 为 5、`scenario_review_cycle_days` 为 90、`human_takeover_target_minutes` 为 5。这些数值只说明当前提交图层和场景治理清单的一致性，不能替代正式测绘、规划控制或运营服务承诺 [metric:public_space_ratio] [metric:industry_test_scenario_count] [data:geometry/site_boundary.geojson#SITE-001]。
 
 `compliance_matrix.json` 覆盖公告 1.3、1.4、1.5 以及 agent.1-agent.6，`standard_matrix.json` 覆盖官方公告、智能体任务书、城市设计管理、控规和用地分类标准，`design_depth_matrix.json` 覆盖 15 个 formal 深度项。自检、专业矩阵和图面共同说明方案具备进入机器审查和人工讨论的基础，但不代表已被选中、审定或实施 [metric:key_area_count] [depth:metrics_recalculation]。
 
@@ -114,7 +129,7 @@ AI朝圣地标建议设置三类：清华园火车站记忆节点与京张历史
 
 ## 风险、版权与合规说明
 
-主要风险包括四类：空间资料风险、专业控制风险、数据与隐私风险、版权与传播风险。空间资料风险来自 official polygon 缺失；专业控制风险来自控规、市政、交通、权属和文保资料缺失；数据与隐私风险来自AI场景可能涉及个人行为和企业数据；版权与传播风险来自 Logo、字体、图像、企业案例和地标表达。所有风险均应进入 `assumptions.json`、`self_check.json` 和后续 Issue 跟踪 [depth:risk_missing_data] [source:BOUNDARY-SOURCE]。
+主要风险包括四类：空间资料风险、专业控制风险、数据与隐私风险、版权与传播风险。空间资料风险来自 official polygon 缺失，并包含 #1029 所提示的大钟寺临时锚点待核问题；专业控制风险来自控规、市政、交通、权属和文保资料缺失；数据与隐私风险来自AI场景可能涉及个人行为和企业数据；版权与传播风险来自 Logo、字体、图像、企业案例和地标表达。所有风险均应进入 `assumptions.json`、`self_check.json` 和后续 Issue 跟踪 [depth:risk_missing_data] [source:BOUNDARY-SOURCE] [source:ISSUE-1029]。
 
 本方案只使用公开或仓库已清权资料，不使用未清权空间图件、未清权表格、未授权图像、个人隐私或未清权企业数据。所有 AI 场景均需数据最小化、授权、可解释、人工复核和退出机制；公共空间传感与城市智能体不得输出个人画像或替代行政审批。A3/A0、HTML 和图片是展示层，权威依据仍为结构化文件。
 
@@ -122,7 +137,7 @@ AI朝圣地标建议设置三类：清华园火车站记忆节点与京张历史
 
 ## 参考资料
 
-- 北京市规划和自然资源委员会海淀分局：《百年京张AI创新带城市设计国际方案征集资格预审公告》。
+- 北京市规划和自然资源委员会海淀分局：《百年京张AI创新带城市设计国际方案征集资格预审公告》[source:OFFICIAL-ANNOUNCEMENT]。
 - `brief/site-package/design_brief.json`、`agent_taskbook.json`、`allowed_design_space.json` 与 `planning_limits.json`。
 - `data/source_registry.json` 与 `data/processed/agent_fact_pack.md`。
 - `brief/site-package/standards/references/` 中的本地专业标准快照。

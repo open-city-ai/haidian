@@ -1,0 +1,410 @@
+{
+  "schema_version": "0.1.0",
+  "title_zh": "京张智环 AI 场景卡与折返治理清单",
+  "title_en": "Jing-Zhang AI Civic Loop Scenario Cards and Switchback Governance",
+  "governance_protocol": {
+    "name": "scenario-switchback-lite",
+    "derived_from": "SWITCHBACK-PROTOCOL",
+    "license_note": "Issue #1119 describes the reusable protocol text as CC-BY-4.0; this package records an adapted, proposal-local scenario governance profile.",
+    "state_enum": [
+      "green",
+      "yellow",
+      "red"
+    ],
+    "default_review_cycle_days": 90,
+    "default_human_takeover_target_minutes": 5,
+    "default_public_equivalent_path": "A non-AI or staff-assisted alternative must remain available within the same public-service workflow.",
+    "red_state_rule": "A scenario returns to the previous stable operating state when safety, privacy, authorization, accessibility, or public-complaint triggers cross the agreed threshold.",
+    "non_claim": "All thresholds are conceptual design targets, not government commitments, procurement terms, or approved operating rules."
+  },
+  "cards": [
+    {
+      "scenario_id": "JZAI-SC-01",
+      "title_zh": "开源发布厅",
+      "title_en": "Open-Source Release Hall",
+      "category": "ecosystem_service",
+      "initial_state": "green",
+      "phase": "near_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/key_areas.geojson#PROV-KEY-002",
+        "note": "AI Origin Community is provisional and must be re-anchored when official polygons are published."
+      },
+      "primary_users": [
+        "open_source_developer",
+        "university_researcher",
+        "startup_team"
+      ],
+      "ai_capability": "Release-note translation, dependency-risk explanation, public demo scheduling, and contribution index navigation.",
+      "data_boundary": "Only project-supplied release metadata and voluntarily submitted public repository links may be processed.",
+      "human_review": "Community operator reviews event eligibility, rights status, and public wording before display.",
+      "switchback_trigger": "Unauthorized code, unclear license, unreviewed personal data, or disputed public claim.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "reviewed_release_count",
+        "license_clearance_pass_rate",
+        "developer_feedback_response_time"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-02",
+      "title_zh": "城市智能体沙盒",
+      "title_en": "Urban-Agent Sandbox",
+      "category": "industry_test_validation",
+      "initial_state": "yellow",
+      "phase": "near_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/public_space.geojson#PUBLIC-001",
+        "note": "Use controlled demonstration areas before any real-block trial."
+      },
+      "primary_users": [
+        "startup_team",
+        "enterprise_visitor",
+        "maintainer_operator"
+      ],
+      "ai_capability": "Test constrained urban-service agents against synthetic tasks, safety prompts, fallback paths, and audit logs.",
+      "data_boundary": "Synthetic or fully public task data only; no resident trajectory, face, device identifier, or enterprise confidential data.",
+      "human_review": "A named operator approves each test window, monitors logs, and can stop the trial immediately.",
+      "switchback_trigger": "Unsafe autonomous action, missing audit log, failed human takeover, or any attempt to use non-public data.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "sandbox_task_pass_rate",
+        "human_takeover_time_minutes",
+        "audit_log_completeness"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-03",
+      "title_zh": "慢行断点诊断",
+      "title_en": "Slow-Mobility Gap Diagnosis",
+      "category": "public_service",
+      "initial_state": "yellow",
+      "phase": "near_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/roads.geojson#ROAD-001",
+        "note": "Road links are conceptual centerlines rather than road redlines."
+      },
+      "primary_users": [
+        "nearby_resident",
+        "university_researcher",
+        "visitor"
+      ],
+      "ai_capability": "Convert public reports and field-check tasks into a ranked list of pedestrian, cycling, lighting, and wayfinding gaps.",
+      "data_boundary": "Use anonymous public feedback and field notes; do not infer personal movement patterns.",
+      "human_review": "Transport and public-space reviewers confirm every issue before it becomes a project suggestion.",
+      "switchback_trigger": "False location claim, privacy complaint, accessibility harm, or unresolved public dispute.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "verified_gap_count",
+        "low_disruption_fix_count",
+        "accessibility_issue_resolution_rate"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-04",
+      "title_zh": "人才生活管家",
+      "title_en": "Talent Life Concierge",
+      "category": "public_service",
+      "initial_state": "green",
+      "phase": "mid_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/land_use.geojson#LU-001",
+        "note": "Service placement follows conceptual land-use zones."
+      },
+      "primary_users": [
+        "startup_team",
+        "university_researcher",
+        "nearby_resident"
+      ],
+      "ai_capability": "Explain nearby public services, talent services, event access, and non-AI contact channels.",
+      "data_boundary": "Preference storage must be optional and local to the service session unless explicit consent is recorded.",
+      "human_review": "Human service staff handle housing, legal, medical, financial, or qualification conclusions.",
+      "switchback_trigger": "Unapproved personal profiling, discriminatory suggestion, or missing human handoff.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "human_handoff_completion_rate",
+        "service_information_update_latency",
+        "opt_out_rate"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-05",
+      "title_zh": "AI 安全治理廊",
+      "title_en": "AI Safety Governance Corridor",
+      "category": "industry_test_validation",
+      "initial_state": "yellow",
+      "phase": "near_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/key_areas.geojson#PROV-KEY-001",
+        "note": "Zhongzhiyuan key-area geometry is provisional."
+      },
+      "primary_users": [
+        "enterprise_visitor",
+        "startup_team",
+        "maintainer_operator"
+      ],
+      "ai_capability": "Display model-evaluation, safety-case, red-team, and incident-response workflows in a public-readable sequence.",
+      "data_boundary": "Use public demonstration cases and sanitized aggregate evidence only.",
+      "human_review": "Safety reviewer approves case wording and removes unverified performance claims.",
+      "switchback_trigger": "Unverified benchmark claim, unsafe prompt example, missing incident owner, or license dispute.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "safety_case_review_count",
+        "incident_response_drill_count",
+        "public_explanation_pass_rate"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-06",
+      "title_zh": "校企转化客厅",
+      "title_en": "University-Enterprise Conversion Room",
+      "category": "ecosystem_service",
+      "initial_state": "green",
+      "phase": "mid_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/key_areas.geojson#PROV-KEY-002",
+        "note": "Near-campus interface is conceptual pending campus, ownership, and planning controls."
+      },
+      "primary_users": [
+        "university_researcher",
+        "startup_team",
+        "enterprise_visitor"
+      ],
+      "ai_capability": "Match public research outputs, mentor office hours, IP-service appointments, and demo-day requests.",
+      "data_boundary": "No confidential research, patent draft, student record, or enterprise NDA material may be ingested.",
+      "human_review": "Technology-transfer staff confirm eligibility and route legal/IP questions to professionals.",
+      "switchback_trigger": "Confidential material submitted, IP ownership unclear, or professional advice boundary exceeded.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "reviewed_match_count",
+        "professional_referral_count",
+        "confidentiality_incident_count"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-07",
+      "title_zh": "数据要素剧场",
+      "title_en": "Data-Factor Theatre",
+      "category": "public_experience",
+      "initial_state": "yellow",
+      "phase": "mid_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/key_areas.geojson#PROV-KEY-003",
+        "note": "Dazhongsi anchor is affected by Issue #1029 and must stay conceptual."
+      },
+      "primary_users": [
+        "enterprise_visitor",
+        "nearby_resident",
+        "visitor"
+      ],
+      "ai_capability": "Explain how public datasets, consent, anonymization, licensing, and deletion rights shape city services.",
+      "data_boundary": "Demonstrations use mock or already-public datasets; no live personal data is displayed.",
+      "human_review": "Data-governance reviewer approves examples and removes any dataset with unclear rights.",
+      "switchback_trigger": "Unclear data rights, re-identification risk, or public misunderstanding that cannot be corrected on site.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "rights_reviewed_dataset_count",
+        "public_question_response_rate",
+        "privacy_complaint_count"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "ISSUE-1029",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-KEY003-OFFSET-001",
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-08",
+      "title_zh": "低碳算力驿站",
+      "title_en": "Low-Carbon Compute Station",
+      "category": "industry_test_validation",
+      "initial_state": "yellow",
+      "phase": "mid_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/public_space.geojson#PUBLIC-001",
+        "note": "Facility capacity is pending municipal and energy engineering data."
+      },
+      "primary_users": [
+        "startup_team",
+        "open_source_developer",
+        "maintainer_operator"
+      ],
+      "ai_capability": "Expose small-scale edge-compute demos, energy-use dashboards, and carbon-aware task scheduling as public education.",
+      "data_boundary": "Only aggregate energy and task-class statistics may be displayed.",
+      "human_review": "Municipal and energy professionals must confirm capacity before any equipment installation.",
+      "switchback_trigger": "Energy-load uncertainty, thermal or fire-safety issue, unavailable operator, or misleading carbon claim.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "energy_dashboard_update_rate",
+        "professional_capacity_review_status",
+        "public_demo_session_count"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-CONTROLS-001",
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-09",
+      "title_zh": "京张记忆线路",
+      "title_en": "Jing-Zhang Memory Route",
+      "category": "public_experience",
+      "initial_state": "green",
+      "phase": "near_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/green_space.geojson#GREEN-001",
+        "note": "Route follows the provisional heritage-park and blue-green system."
+      },
+      "primary_users": [
+        "nearby_resident",
+        "visitor",
+        "university_researcher"
+      ],
+      "ai_capability": "Provide bilingual heritage interpretation, accessibility-oriented route explanation, and provenance links.",
+      "data_boundary": "Use public heritage text and cleared package material; do not generate unsupported historical claims.",
+      "human_review": "Heritage and copyright reviewer checks every story card and image before publication.",
+      "switchback_trigger": "Unverified historical statement, rights dispute, accessibility route failure, or public correction not addressed.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "verified_story_count",
+        "accessibility_route_coverage",
+        "public_correction_resolution_time"
+      ],
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-COPYRIGHT-001",
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    },
+    {
+      "scenario_id": "JZAI-SC-10",
+      "title_zh": "全球 AI 活动周路线",
+      "title_en": "Global AI Week Route",
+      "category": "international_communication",
+      "initial_state": "green",
+      "phase": "long_term",
+      "spatial_anchor": {
+        "type": "geojson_ref",
+        "ref": "geometry/phasing.geojson#PHASE-001",
+        "note": "Event route is a conceptual operation layer, not a confirmed public event."
+      },
+      "primary_users": [
+        "enterprise_visitor",
+        "open_source_developer",
+        "visitor"
+      ],
+      "ai_capability": "Arrange multilingual route explanation, agenda navigation, public Q&A summaries, and post-event knowledge capture.",
+      "data_boundary": "Only public agenda and opt-in participant questions may be used.",
+      "human_review": "Event operator, rights reviewer, and public-safety reviewer approve any public release.",
+      "switchback_trigger": "Unapproved event claim, crowd-safety concern, rights issue, or missing non-digital service path.",
+      "review_cycle_days": 90,
+      "success_indicators": [
+        "public_agenda_clearance_status",
+        "multilingual_service_coverage",
+        "post_event_knowledge_card_count"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "SWITCHBACK-PROTOCOL"
+      ],
+      "assumption_ids": [
+        "A-OPERATIONS-001",
+        "A-SCENARIO-GOVERNANCE-001"
+      ]
+    }
+  ],
+  "personas": [
+    {
+      "persona_id": "open_source_developer",
+      "title_zh": "开源开发者",
+      "title_en": "Open-source developer",
+      "public_interest_check": "Needs visible contribution credit, license clarity, and non-exclusive access."
+    },
+    {
+      "persona_id": "startup_team",
+      "title_zh": "初创团队",
+      "title_en": "Startup team",
+      "public_interest_check": "Needs affordable service access and clear separation between testing and public deployment."
+    },
+    {
+      "persona_id": "enterprise_visitor",
+      "title_zh": "头部企业访客",
+      "title_en": "Lead-enterprise visitor",
+      "public_interest_check": "Needs professional reception without crowding out public-service space."
+    },
+    {
+      "persona_id": "nearby_resident",
+      "title_zh": "周边居民",
+      "title_en": "Nearby resident",
+      "public_interest_check": "Needs low-disruption mobility, opt-out paths, and no personal profiling."
+    },
+    {
+      "persona_id": "university_researcher",
+      "title_zh": "高校师生与科研人员",
+      "title_en": "University student, teacher, or researcher",
+      "public_interest_check": "Needs campus-city access, IP boundaries, and ordinary daily services."
+    }
+  ]
+}
