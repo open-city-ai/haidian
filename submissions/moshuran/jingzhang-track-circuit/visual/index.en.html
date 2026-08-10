@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JZ Track Circuit · Visual Overview</title>
+<style>
+:root { --green:#1f6b4f; --amber:#f5a623; --red:#e5484d; --ink:#1f2937; --muted:#6b7280; --paper:#fafaf7; }
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:var(--paper); color:var(--ink); line-height:1.55; }
+.wrap { max-width:1180px; margin:0 auto; padding:28px 22px 60px; }
+header { background:linear-gradient(135deg,#0f2f24,#1f6b4f); color:#fff; padding:30px 0 26px; }
+.wrap h1 { font-size:30px; letter-spacing:1px; }
+.sub { opacity:.88; margin-top:8px; font-size:14px; }
+.chip { display:inline-block; background:var(--amber); color:#1f2937; font-size:12px; font-weight:700; padding:4px 12px; border-radius:999px; margin-top:12px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:18px; margin-top:24px; }
+.panel { background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:18px; box-shadow:0 4px 14px rgba(0,0,0,.04); }
+.panel h2 { font-size:16px; color:var(--green); margin-bottom:12px; border-left:4px solid var(--green); padding-left:10px; }
+.metrics { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+.metric { background:#f3f6f4; border-radius:10px; padding:12px; }
+.m-label { font-size:12px; color:var(--muted); }
+.m-value { font-size:24px; font-weight:800; color:var(--green); }
+.m-unit { font-size:12px; color:var(--muted); margin-left:4px; }
+.map { width:100%; background:#eef2ee; border-radius:10px; }
+.map svg { width:100%; height:auto; }
+.legend { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; font-size:12px; color:var(--muted); }
+.legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:5px; vertical-align:-1px; }
+.task { display:flex; align-items:center; gap:8px; padding:7px 0; border-bottom:1px dashed #e5e7eb; font-size:13px; }
+.task-badge { color:var(--green); font-weight:900; }
+.node-chip { background:var(--amber); color:#1f2937; font-size:11px; font-weight:700; border-radius:6px; padding:2px 8px; margin-right:8px; }
+ul { padding-left:18px; font-size:13px; color:#374151; }
+li { margin:5px 0; }
+.foot { margin-top:26px; font-size:12px; color:var(--muted); border-top:1px solid #e5e7eb; padding-top:14px; }
+.status { color:var(--amber); font-weight:700; }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="chip">Centennial Jing-Zhang AI Belt · Open Call</div>
+  <h1>Jing-Zhang Track Circuit JZ-TC</h1>
+  <div class="sub">From rail current to urban intelligence: one spine, three blocks, two wings, twelve nodes</div>
+</div></header>
+<div class="wrap">
+  <div class="grid">
+    <div class="panel">
+      <h2>Overview Map</h2>
+      <div class="map"><svg viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="方案总览地图"><path d="M 131.5 490.6 L 263.1 490.6 L 263.1 528.0 L 131.5 528.0 L 131.5 490.6 L 131.5 490.6 Z" fill="#F59E0B" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 490.6 L 760.0 490.6 L 760.0 528.0 L 657.7 528.0 L 526.2 528.0 L 526.2 490.6 L 657.7 490.6 L 657.7 490.6 Z" fill="#F59E0B" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 560.0 L 131.5 560.0 L 131.5 528.0 L 263.1 528.0 L 263.1 560.0 L 263.1 560.0 Z" fill="#F6C9B7" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 560.0 L 526.2 560.0 L 526.2 528.0 L 657.7 528.0 L 657.7 560.0 L 657.7 560.0 Z" fill="#F6C9B7" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 425.6 L 657.7 490.6 L 526.2 490.6 L 526.2 425.6 L 657.7 425.6 L 657.7 425.6 Z" fill="#F6C9B7" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 425.6 L 131.5 425.6 L 131.5 329.6 L 263.1 329.6 L 263.1 425.6 L 263.1 425.6 Z" fill="#F6C9B7" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 211.2 L 526.2 211.2 L 526.2 121.6 L 657.7 121.6 L 657.7 211.2 L 657.7 211.2 Z" fill="#F6C9B7" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 425.6 L 526.2 425.6 L 526.2 329.6 L 526.2 275.2 L 657.7 275.2 L 657.7 329.6 L 657.7 425.6 L 657.7 425.6 Z" fill="#E8A9A9" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 275.2 L 263.1 329.6 L 131.5 329.6 L 131.5 275.2 L 263.1 275.2 L 263.1 275.2 Z" fill="#E8A9A9" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 671.9 211.2 L 662.6 233.6 L 687.9 275.2 L 657.7 275.2 L 657.7 211.2 L 671.9 211.2 L 671.9 211.2 Z" fill="#E8A9A9" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 275.2 L 131.5 275.2 L 131.5 211.2 L 263.1 211.2 L 263.1 275.2 L 263.1 275.2 Z" fill="#7C9BDB" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 526.2 275.2 L 394.6 275.2 L 394.6 211.2 L 526.2 211.2 L 526.2 275.2 L 526.2 275.2 Z" fill="#7C9BDB" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 121.6 L 131.5 121.6 L 131.5 60.8 L 131.5 39.4 L 146.2 0.0 L 263.1 0.0 L 263.1 60.8 L 263.1 121.6 L 263.1 121.6 Z" fill="#7C9BDB" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 526.2 121.6 L 394.6 121.6 L 394.6 60.8 L 394.6 0.0 L 526.2 0.0 L 657.7 0.0 L 760.0 0.0 L 734.6 60.8 L 709.3 121.6 L 657.7 121.6 L 526.2 121.6 L 526.2 121.6 Z" fill="#7C9BDB" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 394.6 528.0 L 394.6 490.6 L 526.2 490.6 L 526.2 528.0 L 394.6 528.0 L 394.6 528.0 Z" fill="#B48CD9" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 131.5 425.6 L 263.1 425.6 L 263.1 490.6 L 131.5 490.6 L 131.5 425.6 L 131.5 425.6 Z" fill="#82C9A5" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 526.2 211.2 L 657.7 211.2 L 657.7 275.2 L 526.2 275.2 L 526.2 211.2 L 526.2 211.2 Z" fill="#82C9A5" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 760.0 490.6 L 657.7 490.6 L 657.7 425.6 L 760.0 425.6 L 760.0 490.6 L 760.0 490.6 Z" fill="#6FB7C9" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 425.6 L 657.7 329.6 L 721.0 329.6 L 760.0 393.6 L 760.0 425.6 L 657.7 425.6 L 657.7 425.6 Z" fill="#E58F9D" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 121.6 L 709.3 121.6 L 671.9 211.2 L 657.7 211.2 L 657.7 121.6 L 657.7 121.6 Z" fill="#E58F9D" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 560.0 L 263.1 528.0 L 394.6 528.0 L 526.2 528.0 L 526.2 560.0 L 394.6 560.0 L 263.1 560.0 L 263.1 560.0 Z" fill="#7BC47F" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 490.6 L 263.1 425.6 L 263.1 329.6 L 263.1 275.2 L 394.6 275.2 L 526.2 275.2 L 526.2 329.6 L 526.2 425.6 L 526.2 490.6 L 394.6 490.6 L 263.1 490.6 L 263.1 490.6 Z" fill="#7BC47F" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 211.2 L 263.1 121.6 L 394.6 121.6 L 526.2 121.6 L 526.2 211.2 L 394.6 211.2 L 263.1 211.2 L 263.1 211.2 Z" fill="#7BC47F" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 394.6 0.0 L 394.6 60.8 L 263.1 60.8 L 263.1 0.0 L 394.6 0.0 L 394.6 0.0 Z" fill="#7BC47F" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 42.0 528.0 L 34.0 490.6 L 20.3 425.6 L 0.0 329.6 L 26.7 275.2 L 58.1 211.2 L 97.4 131.2 L 101.0 121.6 L 123.6 60.8 L 131.5 39.4 L 131.5 60.8 L 131.5 121.6 L 131.5 211.2 L 131.5 275.2 L 131.5 329.6 L 131.5 425.6 L 131.5 490.6 L 131.5 528.0 L 131.5 560.0 L 48.7 560.0 L 42.0 528.0 L 42.0 528.0 Z" fill="#B7D9A8" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 760.0 560.0 L 657.7 560.0 L 657.7 528.0 L 760.0 528.0 L 760.0 560.0 L 760.0 560.0 Z" fill="#B7D9A8" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 657.7 329.6 L 657.7 275.2 L 687.9 275.2 L 721.0 329.6 L 657.7 329.6 L 657.7 329.6 Z" fill="#B7D9A8" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 263.1 490.6 L 394.6 490.6 L 394.6 528.0 L 263.1 528.0 L 263.1 490.6 L 263.1 490.6 Z" fill="#E7D9A0" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 394.6 211.2 L 394.6 275.2 L 263.1 275.2 L 263.1 211.2 L 394.6 211.2 L 394.6 211.2 Z" fill="#E7D9A0" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 394.6 60.8 L 394.6 121.6 L 263.1 121.6 L 263.1 60.8 L 394.6 60.8 L 394.6 60.8 Z" fill="#E7D9A0" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 131.5 211.2 L 131.5 121.6 L 263.1 121.6 L 263.1 211.2 L 131.5 211.2 L 131.5 211.2 Z" fill="#D9D9D9" fill-opacity="0.78" stroke="#ffffff" stroke-width="0.8"/><path d="M 131.5 560.0 L 131.5 39.4" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 263.1 560.0 L 263.1 0.0" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 394.6 560.0 L 394.6 0.0" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 526.2 560.0 L 526.2 0.0" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 657.7 560.0 L 657.7 0.0" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 42.0 528.0 L 760.0 528.0" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 34.0 490.6 L 760.0 490.6" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 20.3 425.6 L 760.0 425.6" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 0.0 329.6 L 721.0 329.6" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 26.7 275.2 L 687.9 275.2" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 58.1 211.2 L 671.9 211.2" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 101.0 121.6 L 709.3 121.6" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 123.6 60.8 L 734.6 60.8" fill="none" stroke="#6b7280" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="7 4"/><path d="M 160.8 121.6 L 696.7 121.6 L 696.7 3.2 L 160.8 3.2 L 160.8 121.6 L 160.8 121.6 Z" fill="none" stroke="#e5484d" stroke-width="2.6" stroke-dasharray="10 6"/><path d="M 112.1 275.2 L 647.9 275.2 L 647.9 211.2 L 112.1 211.2 L 112.1 275.2 L 112.1 275.2 Z" fill="none" stroke="#e5484d" stroke-width="2.6" stroke-dasharray="10 6"/><path d="M 112.1 528.0 L 745.4 528.0 L 745.4 490.6 L 112.1 490.6 L 112.1 528.0 L 112.1 528.0 Z" fill="none" stroke="#e5484d" stroke-width="2.6" stroke-dasharray="10 6"/><path d="M 48.7 560.0 L 760.0 560.0 L 760.0 393.6 L 662.6 233.6 L 760.0 0.0 L 146.2 0.0 L 97.4 131.2 L 0.0 329.6 L 48.7 560.0 L 48.7 560.0 Z" fill="none" stroke="#1f6b4f" stroke-width="3.4"/><circle cx="404.4" cy="508.8" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>大钟寺站智能原生消费客厅</title></circle><circle cx="306.9" cy="483.2" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>轨道电路公共测试线·南段</title></circle><circle cx="428.7" cy="457.6" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>遗址公园AI导览信号灯</title></circle><circle cx="282.6" cy="400.0" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>小月河场景赋能翼入口</title></circle><circle cx="380.0" cy="256.0" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>原点社区开源共创工坊</title></circle><circle cx="331.3" cy="230.4" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>清华园旧址AI记忆节点</title></circle><circle cx="550.5" cy="240.0" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>学院路人才服务驿站</title></circle><circle cx="574.9" cy="188.8" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>中关村科技服务翼对接厅</title></circle><circle cx="428.7" cy="92.8" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>众智园全栈测试验证场</title></circle><circle cx="453.1" cy="41.6" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>北五环AI治理会客厅</title></circle><circle cx="428.7" cy="156.8" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>轨道电路信号塔·公共信号中心</title></circle><circle cx="355.6" cy="361.6" r="7" fill="#f5a623" stroke="#ffffff" stroke-width="1.6"><title>京张文化时间轴展廊</title></circle></svg></div>
+      <div class="legend">
+        <span><i style="background:#7C9BDB"></i>Research</span>
+        <span><i style="background:#F59E0B"></i>Commercial</span>
+        <span><i style="background:#7BC47F"></i>Park</span>
+        <span><i style="background:#E7D9A0"></i>Plaza</span>
+        <span><i style="background:#F6C9B7"></i>Residential</span>
+        <span><i style="background:none;border:2px dashed #e5484d"></i>Key area (provisional)</span>
+        <span><i style="background:#6b7280;border-radius:50%"></i>Road centerline</span>
+        <span><i style="background:#f5a623;border-radius:50%"></i>AI scenario node</span>
+      </div>
+    </div>
+    <div class="panel">
+      <h2>Core Metrics</h2>
+      <div class="metrics"><div class="metric"><div class="m-label">Site area</div><div class="m-value"><span data-metric="site_area_sqm" data-value="11412825.386">11.41</span><span class="m-unit">km²</span></div></div><div class="metric"><div class="m-label">Green ratio</div><div class="m-value"><span data-metric="green_ratio" data-value="0.386984">38.7</span><span class="m-unit">%</span></div></div><div class="metric"><div class="m-label">Public-space ratio</div><div class="m-value"><span data-metric="public_space_ratio" data-value="0.314516">31.5</span><span class="m-unit">%</span></div></div><div class="metric"><div class="m-label">Key areas</div><div class="m-value"><span data-metric="key_area_count" data-value="3">3</span><span class="m-unit">areas</span></div></div><div class="metric"><div class="m-label">AI scenario nodes</div><div class="m-value"><span data-metric="scenario_node_count" data-value="12">12</span><span class="m-unit">nodes</span></div></div><div class="metric"><div class="m-label">Concept buildings</div><div class="m-value"><span data-metric="building_count" data-value="64">64</span><span class="m-unit">volumes</span></div></div></div>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px">Values come from metrics.json and are recomputable from geometry in EPSG:4548.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h2>Three-Level Scope</h2>
+      <ul>
+        <li>Coordinated research area · 43.6 km²</li>
+        <li>Overall design area · 11.4 km²</li>
+        <li>Key detailed-design area · 368.4 ha</li>
+      </ul>
+      <h2 style="margin-top:14px">Key Areas</h2>
+      <ul>
+        <li>Zhongzhiyuan Acceleration Area (output)</li>
+        <li>Beijing AI Origin Community (logic)</li>
+        <li>Dazhongsi AI Industry Cluster (input)</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h2>Land Use (concept)</h2>
+      <ul>
+        <li>0802 Research · 2.25 km²</li>
+        <li>05 Commercial · 0.42 km²</li>
+        <li>1401 Park · 2.94 km²</li>
+        <li>0701 Residential · 1.26 km²</li>
+        <li>16 Reserved · 0.36 km²</li>
+      </ul>
+      <h2 style="margin-top:14px">Mobility & Blue-Green Public Space</h2>
+      <ul>
+        <li>Road centerline length · 57.4 km</li>
+        <li>Green ratio · <span data-metric="green_ratio" data-value="0.386984">38.7%</span></li>
+        <li>Public-space ratio · <span data-metric="public_space_ratio" data-value="0.314516">31.5%</span></li>
+      </ul>
+      <h2 style="margin-top:14px">Buildings & Renewal Projects</h2>
+      <ul>
+        <li>Concept building volumes · 64</li>
+        <li>Near-term start belt · 2.97 km²</li>
+        <li>Mid-term community belt · 6.19 km²</li>
+        <li>Long-term innovation belt · 2.26 km²</li>
+      </ul>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h2>AI Scenarios & Nodes</h2>
+      <ul><li><span class="node-chip">SC-01</span>大钟寺站智能原生消费客厅</li><li><span class="node-chip">SC-02</span>轨道电路公共测试线·南段</li><li><span class="node-chip">SC-03</span>遗址公园AI导览信号灯</li><li><span class="node-chip">SC-04</span>小月河场景赋能翼入口</li><li><span class="node-chip">SC-05</span>原点社区开源共创工坊</li><li><span class="node-chip">SC-06</span>清华园旧址AI记忆节点</li><li><span class="node-chip">SC-07</span>学院路人才服务驿站</li><li><span class="node-chip">SC-08</span>中关村科技服务翼对接厅</li><li><span class="node-chip">SC-09</span>众智园全栈测试验证场</li><li><span class="node-chip">SC-10</span>北五环AI治理会客厅</li><li><span class="node-chip">SC-11</span>轨道电路信号塔·公共信号中心</li><li><span class="node-chip">SC-12</span>京张文化时间轴展廊</li></ul>
+    </div>
+    <div class="panel">
+      <h2>Task Coverage</h2>
+      <div class="task"><span class="task-badge">✓</span><span>agent.1 · Belt concept & function coordination</span></div><div class="task"><span class="task-badge">✓</span><span>agent.2 · Full-stack AI ecosystem</span></div><div class="task"><span class="task-badge">✓</span><span>agent.3 · AI+ scenarios & smart city</span></div><div class="task"><span class="task-badge">✓</span><span>agent.4 · Public space & pilgrimage landmarks</span></div><div class="task"><span class="task-badge">✓</span><span>agent.5 · Cultural narrative</span></div><div class="task"><span class="task-badge">✓</span><span>agent.6 · Events & long-term operation</span></div>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px">All six agent tasks and announcement 1.3/1.4/1.5 are covered; see compliance_matrix.json.</p>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="panel">
+      <h2>Self-Check Status</h2>
+      <p class="status">Local self-check PASS (formal review ready candidate)</p>
+      <p style="font-size:12px;color:var(--muted);margin-top:8px">PASS means eligible for machine review and content scoring, not official approval.</p>
+    </div>
+    <div class="panel">
+      <h2>Sources & Assumptions</h2>
+      <ul><li><b>SITE-PACKAGE</b> — 项目简报、枚举、设计空间、规划指标与 schema。</li><li><b>SOURCE-REGISTRY</b> — 公开/清权/provisional 来源可用性登记表。</li><li><b>PROCESSED-FACT-PACK</b> — 范围、任务、来源边界与缺失数据导航层。</li><li><b>BOUNDARY-SOURCE</b> — 总体设计范围 provisional 边界来源。</li><li><b>KEY-AREA-SOURCE</b> — 三处重点区 provisional polygon 来源。</li><li><b>OFFICIAL-ANNOUNCEMENT</b> — 项目名称、三层范围、三处重点区、公告面积、设计任务与成果深度主控依据。</li><li><b>AGENT-TASKBOOK</b> — Agent 六项任务、三大定位、五大功能、三区两翼与边界条款。</li><li><b>THREE-AREAS-WINGS</b> — “三区两翼”产业背景与区域协同叙事。</li><li><b>HAIDIAN-1X1</b> — 海淀“1+X+1”现代化产业体系与 AI 主导产业背景。</li></ul>
+      <ul style="margin-top:10px"><li>官方精确边界、控规条件（容积率、高度、密度、绿地率、退线）、道路红线、权属、市政与工程约束均未进入已清权站点包，须由专业团队依据正式附件确认。</li><li>采用维护者推定的临时粗略边界与三处重点区 polygon（EPSG:4326 交换，EPSG:4548 复算）。</li><li>京张遗址公园活力带主轴、轨道电路公共测试线与蓝绿廊道为概念空间结构，位置以轨道沿线与三区两翼文字线索推定。</li><li>清华园车站旧址等文化节点坐标为概念近似位置，历史建筑与文保范围以文物主管部门公布为准。</li></ul>
+    </div>
+  </div>
+  <div class="foot">This page is an offline static display; authoritative data is in GeoJSON / metrics.json / matrices; boundaries are provisional and must be recalculated when official polygons are published.</div>
+</div>
+</body>
+</html>
