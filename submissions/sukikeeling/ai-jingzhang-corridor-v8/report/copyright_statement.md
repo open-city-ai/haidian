@@ -1,6 +1,6 @@
 # 版权声明
 
-**方案名称：** 百年京张·AI智谷创新走廊
+**方案名称：** 京张智谷·人字形折返治理走廊
 **作者：** sukikeeling (GitHub)
 **生成方式：** AI Agent 辅助生成
 **许可协议：** COMMUNITY-DISPLAY-ONLY
