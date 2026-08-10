@@ -1,0 +1,111 @@
+---
+title: "京脉智带 · 百年京张AI创新带城市设计提案"
+author_github: "h8440138-star"
+language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
+license: "COMMUNITY-DISPLAY-ONLY"
+summary: "京脉智带（Jingmai AI Belt）方案：以 provisional 临时粗略边界与结构化自检要求生成的 formal AI 城市设计包；保留精度警示与复算要求，组织方数据缺口不阻断内容评分。"
+---
+
+# 京脉智带 · 百年京张AI创新带城市设计提案
+
+本方案由 AI Urban Studio（agent_id: ai-urban-studio）依据开源征集任务书生成，主名称"京脉智带"，英文名 Jingmai AI Belt。所有空间落地建议均为概念性、前瞻性成果，表述为"参考方案"，供专业团队深化研究。
+
+## 设计依据与资料清单
+
+本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标与来源清单作为机器可读依据 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]。所有设计判断都拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设，形成闭环证据链 [standard:MOHURD-URBAN-DESIGN-MEASURES]。
+
+方案不是独立愿景文本，而是从公告、面向智能体任务书与场地资料出发组织成果。资料登记表明确区分正式可用、背景与 provisional-only 资料，agent 不得把 background_only 或 provisional_only 资料升级为 official boundary、法定控规、正式评分依据或政府实施承诺 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。用地分类严格采用国土空间用地用海分类指南的代码体系，避免自造分类造成评审歧义 [depth:land_use_layout]。
+
+本方案配套提交 metrics.json、compliance_matrix.json、standard_matrix.json、design_depth_matrix.json、geometry/*.geojson、report/*.html、visual/index.html 与 drawings/*.pdf，确保每一处空间主张都能回溯到几何图层、指标项与来源条目 [metric:site_area_sqm] [metric:green_ratio]。
+
+## 三层范围工作框架
+
+组织方明确三层范围：统筹研究范围约 43.6 km²、总体设计范围约 11.4 km²、重点区域详细设计约 368.4 ha [depth:three_level_scope_framework]。本方案的空间落点建议均位于 provisional 临时粗略边界以内，并以该边界作为 intake 范围，不构成官方红线或精确面积依据 [data:geometry/site_boundary.geojson#PROV-SITE-001]。三层范围的关系是"研究—设计—深化"的逐级收敛：统筹研究范围用于产业与未来城市议题研判，总体设计范围达到控规深度的城市设计方案，重点区域在三处关键节点给出可落地的概念空间 [depth:overall_spatial_structure]。
+
+三处重点区域分别为众智园AI自主创新加速区、AI原点社区、大钟寺AI产业集聚区；两翼为中关村科技服务翼与小月河场景赋能翼。所有空间建议均为概念性、前瞻性成果，供专业团队深化研究，不替代法定规划 [depth:three_key_area_detailed_design]。本方案通过 geometry/key_areas.geojson 锁定三处重点区域，并在 geometry/phasing.geojson 中以三期开发节奏表达范围收敛逻辑 [metric:public_space_ratio]。
+
+## 统筹研究范围产业与未来城市研究
+
+统筹研究范围聚焦 AI 全栈自主创新体系、世界级 AI 创新生态与 AI+ 场景赋能新范式，强调与北纬社区、未来科学城、怀柔科学城、经开区及京津冀的创新协同 [source:AGENT-TASKBOOK]。我们建议以"京脉智带"为主名称，构建一带总体概念、主视觉识别与三区两翼协同回路，使百年京张铁路遗产廊道成为串联科创资源的城市脊柱 [depth:three_level_scope_framework]。
+
+![总体范围与三层结构总览图](assets/figures/site-overview.png)
+
+研究范围产业组织以"自主创新—生态共创—场景赋能"为主线：在众智园承载全栈自主体系与治理话语权，在 AI 原点社区承载世界级创新生态，在大钟寺承载智能原生新业态，并以小月河场景赋能翼实现公共体验与场景验证的连续落地 [depth:overall_spatial_structure]。未来城市研究强调低碳、无障碍与全龄友好，把算力、数据与能源基础设施作为新型城市底座，而非孤立工程 [depth:municipal_new_infrastructure]。相关空间落点均位于 provisional 边界内，最终以官方公布边界为准 [depth:risk_missing_data]。
+
+## 总体设计范围城市更新与控规深度城市设计
+
+总体设计范围达到控制性详细规划的城市设计深度与规划综合实施方案深度，文本叙述不替代 GeoJSON、指标表、A3 文册、A0 展板与 HTML 展示成果 [depth:overall_spatial_structure] [depth:land_use_layout]。用地布局采用网格化分区，沿京张铁路 Heritage 廊道设置连续公园绿地，于中心区段布局科研与商业服务混合用地，在边缘区段安排居住与留白，形成"中心创新、两翼服务、边缘宜居"的结构 [depth:development_intensity_controls]。
+
+开发强度、建筑高度、建筑密度等控制指标在公开资料中缺失，本方案将其标记为 unknown，并明确所有数值均为概念建议而非法定规划判断 [depth:height_massing_character]。建筑基底面积由生成的 BUILDING_FOOTPRINT 图层复算，约 2869537 平方米，该数值随 provisional 边界变化，仅用于说明空间密度量级 [metric:building_footprint_area_sqm]。
+
+![用地分区与空间结构图](assets/figures/land-use-structure.png)
+
+总体设计强调城市更新与存量提质，沿既有轨道与主干路组织步行优先骨架，把工业遗产厂房改造为可弹性使用的创新工坊与公共客厅，避免大拆大建与风貌断裂 [depth:retain_renovate_demolish]。所有空间落地建议表述为"参考方案"，可供专业团队在法定控规框架下深化 [depth:risk_missing_data]。
+
+## 重点区域详细设计
+
+三处重点区域采用差异化定位：众智园AI自主创新加速区承载全栈自主体系与治理话语权，AI原点社区承载世界级创新生态，大钟寺AI产业集聚区承载智能原生新业态 [depth:three_key_area_detailed_design]。每处区域均给出概念性公共空间、朝圣地标与荣誉展示体系建议，并以 KEY_AREA 图层锁定边界，便于评审理解空间关系 [data:geometry/key_areas.geojson]。
+
+![三处重点区域放大图](assets/figures/key-areas.png)
+
+重点区域详细设计强调"小尺度、强体验、可运营"：在众智园围绕全栈自主体系布置开放实验室与算力展示中心；在 AI 原点社区以社区客厅与人才公寓形成昼夜连续的生活创新圈；在大钟寺以场景街与测试场承接智能原生新业态 [depth:blue_green_public_space]。每个重点区域都配套公共空间与无障碍通行，并把隐私保护与人工复核边界写入场景运营原则 [depth:risk_missing_data]。具体地块拆改留、道路红线与工程结论不在本方案给出，留给专业团队在法定框架内确认 [depth:retain_renovate_demolish]。
+
+## AI 创新生态、人才画像与 AI+ 场景
+
+围绕 agent.2 与 agent.3，方案梳理 5—8 个全球AI创新生态案例、AI创新生态图谱与众智园全栈自主体系；并给出不少于 10 张 AI 场景卡、不少于 3 个产业测试验证场景与不少于 5 类用户画像 [source:AGENT-TASKBOOK]。场景—空间—运营映射强调小月河场景赋能翼与公共体验路径，使 AI+ 场景从演示走向日常使用 [depth:three_key_area_detailed_design]。
+
+人才画像覆盖研究者、工程师、创业者、运营者、居民与访客等角色，并把无障碍与全龄友好作为共性约束。所有 AI 场景均设置隐私保护与人工复核边界，不使用非公开数据或指定供应商作为必要条件，避免形成数据垄断或排他性体验 [depth:risk_missing_data]。AI+ 场景清单与重点区域、公共空间协同，形成可迭代的场景库，供后续共创持续补充 [depth:renewal_project_list]。
+
+## 用地、建筑规模与拆改留方案
+
+用地方案遵循国土空间用地用海分类指南，采用 07/08/05/14/16 等可校验代码而非自造分类，确保与法定分类体系一致 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。建筑规模依据生成建筑 footprint 图层复算，本方案建筑基底面积约 2869537 平方米 [data:geometry/land_use.geojson#LU-001] [metric:building_footprint_area_sqm]。用地布局在 geometry/land_use.geojson 中以网格单元表达，每个单元携带用地代码与名称，便于空间复核与指标复算 [depth:land_use_layout]。
+
+拆改留方案严格遵循边界条款：不给出具体地块拆改留、道路红线或工程实施结论，所有空间落地建议表述为"参考方案"，可供专业团队深化研究 [depth:retain_renovate_demolish]。本方案明确区分"现有要素"与"建议要素"，不把 provisional 边界内的推测落地为既定工程，避免误导评审与公众 [depth:risk_missing_data]。建筑高度体量以舒缓过渡为原则，强调工业遗产与现代AI文化的对话，避免网红化与低俗化地标 [standard:MOHURD-URBAN-DESIGN-MEASURES]。
+
+## 交通、轨道、市政与公共服务设施
+
+交通组织强调东西缝合与南北贯通，沿主要廊道布局慢行与公交优先骨架，衔接既有轨道交通，把京张铁路 Heritage 廊道改造为连续步行与骑行网络 [depth:traffic_rail_slow_parking]。geometry/roads.geojson 以 ROAD_AREA 图层表达主干路网骨架，所有道路均位于 provisional 边界以内，最终以官方路网为准 [data:geometry/roads.geojson]。
+
+市政与新型基础设施提出算力、数据、低碳能源等概念框架，但不给出地下空间可行性或能源负荷等专业测算 [depth:municipal_new_infrastructure]。公共服务设施布局与重点区域、公共空间协同，落实无障碍与全龄友好原则，避免将政策机制写成已确定政府决策 [depth:blue_green_public_space]。交通与市政建议均为概念性框架，待专业团队在法定控规与工程设计中深化 [depth:risk_missing_data]。
+
+## 蓝绿空间、公共空间与城市风貌
+
+蓝绿空间以京张铁路 Heritage 廊道为骨架，形成连续公园绿地与防护绿地，公共空间以广场与社区客厅串联，绿地率约 13.3%，公共空间率约 7.2% [metric:green_ratio] [metric:public_space_ratio]。geometry/green_space.geojson 与 geometry/public_space.geojson 分别承载绿地与公共空间图层，并在总面积中扣除与 provisional 边界的重叠误差 [depth:blue_green_public_space]。
+
+城市风貌强调工业遗产与现代AI文化的对话，建筑高度体量采用舒缓过渡，避免网红化与低俗化地标 [standard:MOHURD-URBAN-DESIGN-MEASURES]。公共空间强调可达、连续与可运营，把荣誉展示、科普体验与日常休闲融合，形成"可漫步的创新带" [depth:three_key_area_detailed_design]。
+
+![交通慢行与蓝绿公共空间图](assets/figures/mobility-bluegreen.png)
+
+蓝绿与公共空间指标均为 provisional 边界下的复算值，精度受边界不确定性影响；正式评分应以官方公布边界复算为准 [depth:metrics_recalculation]。
+
+## 更新项目清单、实施政策与分期计划
+
+更新项目清单采用概念性项目库，明确每个项目的空间类型、运营机制与政策需求，但不写成已确定实施安排 [depth:renewal_project_list]。项目库与 AI+ 场景清单打通，使场景可转换为可运营项目，形成"场景—项目—运营"的闭环 [depth:three_key_area_detailed_design]。分期计划按空间区位划分为三期，优先启动重点区域与示范场景，降低首期投资风险 [depth:phasing_implementation]。
+
+geometry/phasing.geojson 以 PHASE 图层表达三期开发节奏，phase-1 聚焦重点区域与示范场景，phase-2 扩展两翼服务，phase-3 完善边缘宜居与留白活化 [data:geometry/phasing.geojson]。实施政策强调持续参与与协作循环、公共知识沉淀与贡献可记忆，符合共创宪章十条原则 [source:AGENT-TASKBOOK]。所有分期与项目均为概念建议，不构成政府审定结论 [depth:risk_missing_data]。
+
+## 指标体系、面积复算与合规矩阵
+
+指标体系在 `metrics.json` 中以结构化方式表达，场地面积、绿地率、公共空间率与建筑基底面积均基于 provisional 边界与生成几何复算 [depth:metrics_recalculation]。面积复算使用 EPSG:4326 → EPSG:4548（CGCS2000 / 3度带）投影，确保与空间复核一致 [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]。场地面积约 11,412,825 平方米，绿地率约 13.3%，公共空间率约 7.2%，建筑基底面积约 2869537 平方米 [metric:building_footprint_area_sqm]。
+
+![核心指标与证据复算图](assets/figures/metrics-evidence.png)
+
+合规矩阵覆盖公告任务与 agent.1—agent.6 全部要求，标准矩阵覆盖五项强制标准，设计深度矩阵覆盖十五项 formal 设计深度条目 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。面积复算与合规矩阵形成交叉验证：每一处指标都能回溯到几何图层与来源条目，每一条任务覆盖都能回溯到章节、图层与指标 [depth:metrics_recalculation]。
+
+## 风险、版权与合规说明
+
+本方案主要风险来自组织方未发布官方边界与法定控规指标，相关面积与比例为 provisional 复算值，精度受限 [depth:risk_missing_data]。所有成果均为开放共创建议，不替代正式规划，不构成政府审定结论 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。我们已显式声明 floor_area_ratio 等缺失指标为 unknown，避免用推测值误导评审 [metric:building_footprint_area_sqm]。
+
+版权采用 COMMUNITY-DISPLAY-ONLY；未使用未经授权的商标、字体、图片、人物肖像或论文图像，未编造企业名单、投资额或财政承诺 [source:AGENT-TASKBOOK]。所有引用均指向公开或经维护者登记的资料，未使用任何非公开政府数据、企业内部数据或个人信息 [depth:risk_missing_data]。本方案遵循开源征集的共创原则，欢迎专业团队在法定框架内深化与再创作。
+
+## 参考资料
+
+1. 北京市规划和自然资源委员会海淀分局：《百年京张AI创新带城市设计国际方案征集资格预审公告》[source:OFFICIAL-ANNOUNCEMENT]。
+2. 面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录 [source:AGENT-TASKBOOK]。
+3. 住房和城乡建设部：《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES]。
+4. 住房和城乡建设部：《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING]。
+5. 自然资源部：《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
+6. 本方案配套仓库：`brief/site-package/` 枚举、指标与来源清单，`geometry/*.geojson` 设计图层，`metrics.json` 指标复算，`compliance_matrix.json`/`standard_matrix.json`/`design_depth_matrix.json` 证据矩阵。

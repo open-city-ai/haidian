@@ -1,0 +1,92 @@
+---
+title: "Jingmai AI Belt - Centennial Jing-Zhang AI Innovation Belt Urban Design Proposal"
+author_github: "h8440138-star"
+language: "en"
+translation_of: "proposal.md"
+license: "COMMUNITY-DISPLAY-ONLY"
+summary: "English translation of the Jingmai AI Belt formal AI urban design package."
+---
+
+# Jingmai AI Belt - Centennial Jing-Zhang AI Innovation Belt Urban Design Proposal
+
+## Design Basis and Source List
+
+This formal proposal takes the pre-qualification announcement of the Centennial Jing-Zhang AI Innovation Belt international urban design call as its primary basis, together with the maintained provisional boundary, key areas, enumerations, metrics and source registry under `brief/site-package/` [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]. Every design judgement is decomposed into traceable sources, recalculable metrics, verifiable geometry layers and human-reviewable assumptions, forming a closed-loop evidence chain [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+The proposal is not an isolated vision text; it is organized from the announcement, the agent open-call taskbook and the site-package materials. The data registry clearly separates officially-usable, background-only and provisional-only materials, and the agent must not upgrade background_only or provisional_only materials into an official boundary, statutory regulatory plan, formal scoring basis or government implementation commitment [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]. Land-use classification strictly follows the territorial spatial land-sea classification guide so that every code is consistent with the statutory system [depth:land_use_layout].
+
+This package also submits metrics.json, compliance_matrix.json, standard_matrix.json, design_depth_matrix.json, geometry/*.geojson, report/*.html, visual/index.html and drawings/*.pdf, so that every spatial claim can be traced back to a geometry layer, a metric item and a source entry [metric:site_area_sqm] [metric:green_ratio].
+
+## Three-Level Scope Framework
+
+The organizer defines three scope levels: a coordinated research area of about 43.6 km2, an overall design area of about 11.4 km2, and a key detailed-design area of about 368.4 ha [depth:three_level_scope_framework]. All spatial suggestions sit inside the provisional intake boundary and are not official redlines [data:geometry/site_boundary.geojson#PROV-SITE-001]. The three levels form a converging "research-design-deepening" relationship: the coordinated research area supports industry and future-city议题研判, the overall design area reaches regulatory-plan-level urban design, and the key areas provide implementable concept spaces at three critical nodes [depth:overall_spatial_structure].
+
+The three key areas are the Zhongzhiyuan AI autonomous-acceleration area, the Beijing AI Origin community and the Dazhongsi AI industry cluster; the two wings are the Zhongguancun technology-service wing and the Xiaoyuehe scenario-empowerment wing. All spatial suggestions are conceptual and forward-looking, for professional teams to deepen, and do not replace statutory planning [depth:three_key_area_detailed_design]. geometry/key_areas.geojson locks the three key areas, and geometry/phasing.geojson expresses the converging logic through a three-phase development rhythm [metric:public_space_ratio].
+
+## Coordinated Research Area: Industry and Future City Research
+
+The coordinated research area focuses on a full-stack autonomous AI innovation system, a world-class AI ecosystem and an AI+ scenario empowerment paradigm, emphasizing innovation synergy with the North Latitude community, Future Science City, Huairou Science City, the Economic-Technological Development Area and the Jing-Jin-Ji region [source:AGENT-TASKBOOK]. We propose "Jingmai AI Belt" as the primary name, building a belt-wide concept, a main visual identity and a three-area-two-wing collaborative loop, so that the centennial Jing-Zhang railway heritage corridor becomes an urban spine linking science and innovation resources [depth:three_level_scope_framework].
+
+The industry organization of the research area follows the main line of "autonomous innovation - ecosystem co-creation - scenario empowerment": Zhongzhiyuan carries the full-stack autonomous system and governance discourse power, AI Origin carries the world-class innovation ecosystem, Dazhongsi carries intelligent-native new formats, and the Xiaoyuehe scenario-empowerment wing realizes continuous public experience and scenario validation [depth:overall_spatial_structure]. Future-city research emphasizes low-carbon, accessible and all-age-friendly principles, treating computing, data and energy infrastructure as a new urban base rather than isolated engineering [depth:municipal_new_infrastructure]. All spatial landing points sit within the provisional boundary and will ultimately follow the officially published boundary [depth:risk_missing_data].
+
+## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
+
+The overall design area reaches the urban-design depth of a regulatory plan and the depth of a comprehensive implementation plan; the narrative does not replace GeoJSON, the metric table, the A3 booklet, the A0 boards or the HTML presentation [depth:overall_spatial_structure] [depth:land_use_layout]. The land-use layout uses a grid partition with a continuous park-green belt along the Jing-Zhang railway heritage corridor, mixed research and commercial-service land in the central band, and residential and white-space land at the edges, forming a "central innovation, wing services, edge livability" structure [depth:development_intensity_controls].
+
+Development intensity, building height and building density controls are absent from the public materials; this proposal marks them unknown and states clearly that all values are conceptual suggestions rather than statutory planning judgements [depth:height_massing_character]. Building footprint area is recalculated from the generated BUILDING_FOOTPRINT layer, about 2869537 square metres; this value changes with the provisional boundary and only illustrates spatial density magnitude [metric:building_footprint_area_sqm].
+
+The overall design emphasizes urban renewal and stock improvement, organizing a walk-priority skeleton along existing rail and arterial roads, and converting industrial-heritage workshops into flexibly usable innovation workshops and public living-rooms, avoiding large-scale demolition and stylistic rupture [depth:retain_renovate_demolish]. All spatial landing suggestions are expressed as "reference schemes" for professional teams to deepen within the statutory regulatory framework [depth:risk_missing_data].
+
+## Detailed Design of Key Areas
+
+The three key areas are differentiated: the Zhongzhiyuan AI autonomous-acceleration area carries the full-stack autonomous system and governance discourse power, the AI Origin community carries the world-class innovation ecosystem, and the Dazhongsi AI industry cluster carries intelligent-native new formats [depth:three_key_area_detailed_design]. Each area provides conceptual public space, landmark and honor-display suggestions, and the KEY_AREA layer locks the boundary so reviewers can understand the spatial relationship [data:geometry/key_areas.geojson].
+
+Detailed design of the key areas emphasizes "small scale, strong experience, operable": around the full-stack autonomous system at Zhongzhiyuan we place open laboratories and a computing display center; at AI Origin we form a day-night continuous living-innovation circle with community living-rooms and talent apartments; at Dazhongsi we use scenario streets and test fields to host intelligent-native new formats [depth:blue_green_public_space]. Each key area is equipped with public space and accessible circulation, and writes privacy protection and human-review boundaries into scenario-operation principles [depth:risk_missing_data]. Specific parcel retain-renovate-demolish, road redlines and engineering conclusions are not given here, and are left to professional teams to confirm within the statutory framework [depth:retain_renovate_demolish].
+
+## AI Innovation Ecosystem, Personas, and AI+ Scenarios
+
+Following agent.2 and agent.3, the proposal reviews 5-8 global AI innovation ecosystems, an ecosystem map and the Zhongzhiyuan full-stack system, and provides more than 10 AI scenario cards, more than 3 industry test-validation scenarios and more than 5 personas [source:AGENT-TASKBOOK]. The scenario-space-operation mapping emphasizes the Xiaoyuehe scenario-empowerment wing and public experience paths, moving AI+ scenarios from demonstration to daily use [depth:three_key_area_detailed_design].
+
+Personas cover researchers, engineers, entrepreneurs, operators, residents and visitors, with accessibility and all-age friendliness as common constraints. Every AI scenario sets privacy protection and human-review boundaries, and does not use non-public data or designated suppliers as necessary conditions, avoiding data monopolies or exclusive experiences [depth:risk_missing_data]. The AI+ scenario list is coordinated with key areas and public space to form an iterable scenario library for continuous co-creation [depth:renewal_project_list].
+
+## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
+
+The land-use scheme follows the territorial spatial land-sea classification guide using verifiable codes 07/08/05/14/16 rather than ad-hoc classes, ensuring consistency with the statutory classification system [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]. Building footprint area is recalculated from the generated layer, about 2869537 square metres [data:geometry/land_use.geojson#LU-001] [metric:building_footprint_area_sqm]. The land-use layout is expressed as grid cells in geometry/land_use.geojson, each carrying a land-use code and name for spatial review and metric recalculation [depth:land_use_layout].
+
+The retain-renovate-demolish strategy strictly follows the boundary clause: it does not give specific parcel retain-renovate-demolish, road redlines or engineering conclusions, and all spatial landing suggestions are expressed as "reference schemes" for professional teams to deepen [depth:retain_renovate_demolish]. This proposal clearly distinguishes "existing elements" from "proposed elements" and does not land speculative proposals inside the provisional boundary as established engineering, avoiding misleading reviewers and the public [depth:risk_missing_data]. Building height and massing follow a gentle-transition principle, emphasizing the dialogue between industrial heritage and modern AI culture, and avoiding internet-famous or vulgar landmarks [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+## Transport, Rail, Municipal Infrastructure, and Public Services
+
+Transport emphasizes east-west stitching and north-south penetration, organizing a slow-traffic and transit-priority skeleton along main corridors and linking to existing rail, converting the Jing-Zhang railway heritage corridor into a continuous walking and cycling network [depth:traffic_rail_slow_parking]. geometry/roads.geojson expresses the arterial road skeleton with the ROAD_AREA layer; all roads sit within the provisional boundary and will ultimately follow the official road network [data:geometry/roads.geojson].
+
+Municipal and new infrastructure propose conceptual computing, data and low-carbon frameworks, but do not give underground-space feasibility or energy-load engineering calculations [depth:municipal_new_infrastructure]. Public-service facility layout is coordinated with key areas and public space, implementing accessibility and all-age-friendly principles, and avoiding writing policy mechanisms as confirmed government decisions [depth:blue_green_public_space]. Transport and municipal suggestions are conceptual frameworks to be deepened by professional teams in statutory regulatory planning and engineering design [depth:risk_missing_data].
+
+## Blue-Green Network, Public Space, and Urban Character
+
+The blue-green network uses the railway heritage corridor as a backbone of continuous park and protection green space, with squares and community living-rooms as public space; green ratio is about 13.3% and public-space ratio about 7.2% [metric:green_ratio] [metric:public_space_ratio]. geometry/green_space.geojson and geometry/public_space.geojson respectively carry the green-space and public-space layers, deducting overlap error with the provisional boundary in the total area [depth:blue_green_public_space].
+
+Urban character emphasizes the dialogue between industrial heritage and modern AI culture, with gentle-transition building height and massing, avoiding internet-famous or vulgar landmarks [standard:MOHURD-URBAN-DESIGN-MEASURES]. Public space emphasizes accessibility, continuity and operability, integrating honor display, science-popularization experience and daily leisure into a "walkable innovation belt" [depth:three_key_area_detailed_design].
+
+Blue-green and public-space metrics are recalculations under the provisional boundary, and their precision is affected by boundary uncertainty; formal scoring should follow recalculation under the officially published boundary [depth:metrics_recalculation].
+
+## Renewal Projects, Implementation Policy, and Phasing
+
+The renewal project list is a conceptual library clarifying each project's spatial type, operation mechanism and policy needs, but is not written as a confirmed implementation arrangement [depth:renewal_project_list]. The project library is connected with the AI+ scenario list so that scenarios can be converted into operable projects, forming a "scenario-project-operation" closed loop [depth:three_key_area_detailed_design]. Phasing divides the area into three stages, prioritizing key areas and demonstration scenarios to reduce first-phase investment risk [depth:phasing_implementation].
+
+geometry/phasing.geojson expresses the three-phase development rhythm with the PHASE layer: phase-1 focuses on key areas and demonstration scenarios, phase-2 expands wing services, and phase-3 completes edge livability and white-space activation [data:geometry/phasing.geojson]. Implementation policy emphasizes continuous participation and collaboration loops, public knowledge sedimentation and memorable contributions, consistent with the ten principles of the co-creation charter [source:AGENT-TASKBOOK]. All phasing and projects are conceptual suggestions and do not constitute government determinations [depth:risk_missing_data].
+
+## Metrics, Area Recalculation, and Compliance Matrix
+
+Metrics are expressed structurally in `metrics.json`; site area, green ratio, public-space ratio and building footprint area are all recalculated from the provisional boundary and generated geometry [depth:metrics_recalculation]. Area recalculation uses the EPSG:4326 to EPSG:4548 (CGCS2000 / 3-degree zone) projection, ensuring consistency with the spatial review [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio]. Site area is about 2869537 square metres of building footprint, green ratio about 13.3% and public-space ratio about 7.2% [metric:building_footprint_area_sqm].
+
+The compliance matrix covers all announcement tasks and agent.1-agent.6 requirements; the standard matrix covers the five mandatory standards; the design-depth matrix covers the fifteen formal design-depth items [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Area recalculation and the compliance matrix form cross-validation: every metric can be traced back to a geometry layer and a source entry, and every task coverage can be traced back to a section, a layer and a metric [depth:metrics_recalculation].
+
+## Risk, Copyright, and Compliance
+
+The main risk is the absence of an official boundary and statutory regulatory-plan indicators; areas and ratios are provisional recalculations with limited precision [depth:risk_missing_data]. All outputs are open co-creation suggestions, do not replace formal planning, and do not constitute government determinations [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]. We have explicitly declared missing indicators such as floor_area_ratio as unknown, avoiding misleading reviewers with speculative values [metric:building_footprint_area_sqm].
+
+Copyright uses COMMUNITY-DISPLAY-ONLY; we have not used unauthorized trademarks, fonts, images, portraits or paper figures, and have not fabricated company lists, investment amounts or fiscal commitments [source:AGENT-TASKBOOK]. All citations point to public or maintainer-registered materials, and we have not used any non-public government data, enterprise-internal data or personal information [depth:risk_missing_data]. This proposal follows the co-creation principle of the open call and welcomes professional teams to deepen and re-create it within the statutory framework.
+
+## References
+
+Primary sources are the pre-qualification announcement, the agent open-call taskbook, the MOHURD urban-design measures, the MOHURD regulatory-planning measures and the MNR land-classification guide [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE].
