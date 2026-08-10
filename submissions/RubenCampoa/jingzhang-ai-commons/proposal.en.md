@@ -23,7 +23,7 @@ AI is treated as a verifiable urban-service and operations method rather than a 
 
 The package follows the official open-call announcement, the agent taskbook and the maintained site package. The 43.6 km² coordinated research area frames the industrial ecosystem and future-city strategy; the 11.4 km² overall design area frames urban renewal, mobility, municipal support and character; the 368.4 ha key-area scope frames detailed design [source:OFFICIAL-ANNOUNCEMENT] [depth:three_level_scope_framework].
 
-The official detailed boundary and the three key-area polygons are not yet supplied as cleared polygons. This package therefore uses the repository's explicitly provisional constraint files. They support intake review, concept generation and reproducible visualization only. They must not be described as an approved redline, cadastral parcel, statutory control or precise professional area basis [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001].
+The official detailed boundary and the three key-area polygons are not yet supplied as cleared polygons. This package therefore uses the repository's explicitly provisional constraint files. They support conceptual review, concept generation and reproducible visualization only. They must not be described as an approved redline, cadastral parcel, statutory control or precise professional area basis. Official data, eligibility, scoring, acceptance, publication and merge remain pending maintainer and organizer decisions [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001].
 
 ## 2. Spatial concept: one belt, three anchors, multiple scenarios
 
@@ -88,4 +88,3 @@ The package currently reports a submitted provisional site area of 11.41 km², a
 ## 10. Risks, copyright and professional boundaries
 
 This is an AI-generated concept submission, not an approved plan, statutory control, construction package or implementation commitment. The provisional boundary and key areas are clearly labeled; official replacement triggers recalculation. Missing controls, ownership, engineering, heritage, transport and municipal information are recorded in `assumptions.json`. Public and cleared sources are recorded in `sources.json`; generated diagrams use original layout and locally bundled assets. Human and professional review remains mandatory [depth:risk_missing_data] [source:SITE-PACKAGE].
-
