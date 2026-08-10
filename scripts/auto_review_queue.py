@@ -144,6 +144,17 @@ def _submission_root_from_paths(paths: list[str]) -> str | None:
     return next(iter(roots)) if len(roots) == 1 else None
 
 
+def _review_commit_sha(review: dict[str, Any]) -> str:
+    """Return the commit reviewed by a GitHub REST or GraphQL review object."""
+    commit_id = review.get("commit_id")
+    if commit_id:
+        return str(commit_id)
+    commit = review.get("commit")
+    if isinstance(commit, dict):
+        return str(commit.get("oid", ""))
+    return ""
+
+
 def historical_best_score(
     merged_prs: list[dict[str, Any]],
     submission_dir: str,
@@ -154,9 +165,15 @@ def historical_best_score(
     for pr in merged_prs:
         if _submission_root_from_paths([str(item.get("path", "")) for item in pr.get("files", [])]) != submission_dir:
             continue
-        head_sha = str(pr.get("headRefOid", ""))
+        final_head_sha = str(pr.get("headRefOid", ""))
         for review in pr.get("reviews", []):
-            score = official_score_from_review(review, head_sha, trusted_reviewers)
+            # A merged PR can have several reviewed revisions.  The final PR
+            # head is not necessarily the revision that earned the highest
+            # trusted score, so bind the score to the review's own commit.
+            review_sha = _review_commit_sha(review) or final_head_sha
+            if not review_sha:
+                continue
+            score = official_score_from_review(review, review_sha, trusted_reviewers)
             if score is not None and (best is None or score > best):
                 best = score
     return best
