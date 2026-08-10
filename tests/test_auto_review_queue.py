@@ -10,7 +10,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from auto_review_queue import (  # noqa: E402
+    Decision,
     WorkerError,
+    append_review_observation,
+    build_review_observation,
     ci_state,
     decide,
     load_cached_review,
@@ -26,6 +29,51 @@ class AutoReviewQueueTests(unittest.TestCase):
         with patch.object(sys, "argv", ["auto_review_queue"]):
             args = parse_args()
         self.assertEqual(18, args.max_images)
+
+    def test_review_observation_is_minimal_and_append_only(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            ledger = Path(temp_dir) / "queue" / "review-observations.jsonl"
+            review = {
+                "rubric_scores": [
+                    {"dimension_id": "brief_alignment", "score": 4, "required_repairs_zh": ["clarify scope"]},
+                    {"dimension_id": "originality", "score": 3, "required_repairs_zh": []},
+                ],
+                "required_next_actions_zh": ["clarify scope"],
+            }
+            decision = {
+                "reviewed_package_sha256": "a" * 64,
+                "review_input_sha256": "b" * 64,
+                "prompt_sha256": "c" * 64,
+                "review_schema_sha256": "d" * 64,
+                "review_policy_sha256": "e" * 64,
+                "model": "gpt-test",
+                "base_url": DEFAULT_BASE_URL,
+                "reasoning_effort": "high",
+                "weighted_score_100": 72.5,
+                "publication_recommendation": "publish-qualified",
+            }
+            first = build_review_observation(
+                number=1190,
+                head_sha="f" * 40,
+                submission_dir="submissions/alice/plan",
+                review=review,
+                decision=decision,
+                outcome=Decision("accept", 72.5, "threshold and all gates passed"),
+                reused_audit=False,
+            )
+            second = dict(first, recorded_at="later", cache_reused=True)
+            append_review_observation(ledger, first)
+            append_review_observation(ledger, second)
+
+            rows = [json.loads(line) for line in ledger.read_text(encoding="utf-8").splitlines()]
+            self.assertEqual(2, len(rows))
+            self.assertEqual({"brief_alignment": 4, "originality": 3}, rows[0]["rubric_scores"])
+            self.assertEqual(1, rows[0]["repair_count"])
+            self.assertEqual(1, rows[0]["required_next_actions_count"])
+            self.assertFalse(rows[0]["cache_reused"])
+            self.assertTrue(rows[1]["cache_reused"])
+            self.assertNotIn("required_repairs_zh", rows[0])
+            self.assertNotIn("comment_zh", rows[0])
 
     def test_accepts_score_at_threshold_when_all_gates_pass(self) -> None:
         review = {

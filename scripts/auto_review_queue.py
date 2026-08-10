@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import datetime, timezone
 import fcntl
 import json
 import os
@@ -29,6 +30,8 @@ CONFLICT_MARKER = "<!-- haidian-auto-review-conflict:{head_sha} -->"
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
+OBSERVATION_LOCK = threading.Lock()
+OBSERVATION_SCHEMA_VERSION = "1.0.0"
 
 
 class WorkerError(RuntimeError):
@@ -40,6 +43,63 @@ class Decision:
     action: str
     score: float | None
     reason: str
+
+
+def build_review_observation(
+    *,
+    number: int,
+    head_sha: str,
+    submission_dir: str,
+    review: dict[str, Any],
+    decision: dict[str, Any],
+    outcome: Decision,
+    reused_audit: bool,
+) -> dict[str, Any]:
+    """Return a minimal local observation without persisting review prose."""
+    rubric_scores = {
+        str(item["dimension_id"]): item["score"]
+        for item in review.get("rubric_scores", [])
+        if isinstance(item, dict) and "dimension_id" in item and "score" in item
+    }
+    repair_count = sum(
+        len(item.get("required_repairs_zh", []))
+        for item in review.get("rubric_scores", [])
+        if isinstance(item, dict) and isinstance(item.get("required_repairs_zh", []), list)
+    )
+    next_actions = review.get("required_next_actions_zh", [])
+    return {
+        "schema_version": OBSERVATION_SCHEMA_VERSION,
+        "recorded_at": datetime.now(timezone.utc).isoformat(),
+        "pr_number": number,
+        "head_sha": head_sha,
+        "submission_dir": submission_dir,
+        "reviewed_package_sha256": decision.get("reviewed_package_sha256"),
+        "review_input_sha256": decision.get("review_input_sha256"),
+        "prompt_sha256": decision.get("prompt_sha256"),
+        "review_schema_sha256": decision.get("review_schema_sha256"),
+        "review_policy_sha256": decision.get("review_policy_sha256"),
+        "model": decision.get("model"),
+        "base_url": decision.get("base_url"),
+        "reasoning_effort": decision.get("reasoning_effort"),
+        "weighted_score_100": decision.get("weighted_score_100"),
+        "rubric_scores": rubric_scores,
+        "repair_count": repair_count,
+        "required_next_actions_count": len(next_actions) if isinstance(next_actions, list) else None,
+        "publication_recommendation": decision.get("publication_recommendation"),
+        "action": outcome.action,
+        "cache_reused": reused_audit,
+    }
+
+
+def append_review_observation(ledger_path: Path, observation: dict[str, Any]) -> None:
+    """Append one JSON observation atomically for same-process queue workers."""
+    ledger_path.parent.mkdir(parents=True, exist_ok=True)
+    line = json.dumps(observation, ensure_ascii=False, sort_keys=True, separators=(",", ":")) + "\n"
+    with OBSERVATION_LOCK:
+        with ledger_path.open("a", encoding="utf-8") as handle:
+            handle.write(line)
+            handle.flush()
+            os.fsync(handle.fileno())
 
 
 def run(command: list[str], *, cwd: Path, capture: bool = True) -> subprocess.CompletedProcess[str]:
@@ -371,6 +431,18 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
             "package_sha256": ai_decision.get("reviewed_package_sha256"),
             "reused_audit": reused_audit,
         }
+        append_review_observation(
+            args.audit_root / "review-observations.jsonl",
+            build_review_observation(
+                number=number,
+                head_sha=head_sha,
+                submission_dir=submission_dir,
+                review=review,
+                decision=ai_decision,
+                outcome=outcome,
+                reused_audit=reused_audit,
+            ),
+        )
         if args.apply:
             with GITHUB_WRITE_LOCK:
                 apply_review(

@@ -235,6 +235,8 @@ python3 scripts/ai_review_submission.py \
 - `pr-comment.md`：可复制到 PR 的最终意见。
 - `review-input.json`、`review-prompt.md`、`request-metadata.json`：本地审计材料。
 
+队列 worker 还会在维护者主机的 `.maintainer-review/queue/review-observations.jsonl` 追加一行最小观察记录。记录包含 PR/head、各维度分数、加权分、`repair_count`、下一步数量、评审身份摘要、发布建议和是否复用了缓存；不包含评语正文、模型原始输出或视觉材料。该文件属于本地维护审计，不提交到仓库，也不作为公开评分表。
+
 发布建议分为 `do-not-publish`、`publish-qualified` 和 `featured-candidate`。它只由 schema 合规输出、本地 gate 和加权分共同派生；`featured-candidate` 仍需通过维护者发布脚本写入 `gallery-publication.json`，AI 脚本本身不修改发布清单、不提交、不评论 PR、不 merge。
 
 AI 无法仅凭文件内容证明现实世界中的版权归属或资料公开性。缺少授权、来源或权属证据时，prompt 要求返回 `request-changes` 和具体补证清单，而不是臆测“已合规”。
