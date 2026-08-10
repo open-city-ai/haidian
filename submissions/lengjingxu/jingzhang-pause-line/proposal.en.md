@@ -65,7 +65,7 @@ The three rhythm courts are distinct public checkpoints in the AI maturity chain
 
 | Key area | Design role | Spatial move | First conceptual projects | Preconditions |
 | --- | --- | --- | --- | --- |
-| Zhongzhiyuan Calm Validation Court | Pre-release validation | Low-stimulation review rooms, low-speed embodied-AI test loop, green meeting edge | Silent red-team room, audible-intent robot test, researcher recovery garden | Official polygon, safety, river, roads and network conditions |
+| Zhongzhiyuan Calm Validation Court | Pre-release validation | Low-stimulation review rooms, low-speed embodied-AI test loop, green meeting edge | Silent red-team room, audible-intent robot test, health-friendly service station | Official polygon, safety, river, roads and network conditions |
 | AI Origin Shared-Learning Pause Court | Reflection during creation | Campus-park walking links, open shared-learning tables, quiet/discussion dual-mode rooms | Open-source pause hall, cross-disciplinary lunch table, low-stimulation demo | Ownership, building survey, fire and event permits |
 | Dazhongsi Civic Reflection Court | Post-adoption review | Station waiting realm, public trial, complaint and exit desk, cultural events | Civic adoption forum, AI service review wall, quiet night route | Station, roads, utilities, commerce and heritage review |
 
