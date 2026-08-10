@@ -94,6 +94,39 @@ class AutoReviewQueueTests(unittest.TestCase):
 
             self.assertNotEqual(before, after)
 
+    def test_policy_hash_changes_for_trusted_fallback_policy(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            trusted_root = root / "trusted"
+            checkout = root / "checkout"
+            scripts = trusted_root / "scripts"
+            scripts.mkdir(parents=True)
+            for name in ai_review_submission.TRUSTED_REVIEW_SCRIPT_NAMES:
+                (scripts / name).write_text(name, encoding="utf-8")
+
+            schema = checkout / "brief" / "site-package" / "schemas" / "advisory_review.schema.json"
+            schema.parent.mkdir(parents=True)
+            schema.write_text("{}", encoding="utf-8")
+            (checkout / "brief" / "site-package").mkdir(exist_ok=True)
+            (checkout / "brief" / "site-package" / "agent_taskbook.json").write_text("{}", encoding="utf-8")
+            (checkout / "data").mkdir()
+            (checkout / "data" / "source_registry.json").write_text("{}", encoding="utf-8")
+
+            fallback_layers = trusted_root / "brief" / "site-package" / "enums" / "layers.json"
+            fallback_layers.parent.mkdir(parents=True)
+            fallback_layers.write_text('{"layers": []}', encoding="utf-8")
+
+            original_file = ai_review_submission.__file__
+            try:
+                ai_review_submission.__file__ = str(scripts / "ai_review_submission.py")
+                before = review_policy_sha256(checkout)
+                fallback_layers.write_text('{"layers": [{"code": "fallback-layer"}]}', encoding="utf-8")
+                after = review_policy_sha256(checkout)
+            finally:
+                ai_review_submission.__file__ = original_file
+
+            self.assertNotEqual(before, after)
+
     def test_review_observation_is_minimal_and_append_only(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             ledger = Path(temp_dir) / "queue" / "review-observations.jsonl"

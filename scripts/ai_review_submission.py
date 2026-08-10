@@ -398,16 +398,36 @@ def review_policy_sha256(repo_root: Path) -> str:
         digest.update(b"\0")
         digest.update(path.read_bytes() if path.is_file() else b"<missing>")
         digest.update(b"\0")
+    trusted_policy_root = script_root.parent
     for pattern in TRUSTED_REVIEW_POLICY_PATHS:
-        matches = sorted(
-            path for path in repo_root.glob(pattern) if path.is_file()
-        )
+        # Some deterministic validators intentionally fall back to the
+        # maintainer checkout when a PR checkout is missing a policy file.
+        # Hash the effective file for every relative match so a change to that
+        # trusted fallback cannot reuse an older advisory review.
+        repo_matches = {
+            path.relative_to(repo_root).as_posix(): path
+            for path in repo_root.glob(pattern)
+            if path.is_file()
+        }
+        trusted_matches = {
+            path.relative_to(trusted_policy_root).as_posix(): path
+            for path in trusted_policy_root.glob(pattern)
+            if path.is_file()
+        }
+        matches = [
+            (
+                relative_path,
+                repo_matches[relative_path]
+                if relative_path in repo_matches
+                else trusted_matches[relative_path],
+            )
+            for relative_path in sorted(set(repo_matches) | set(trusted_matches))
+        ]
         if not matches:
             digest.update(f"package-policy/{pattern}".encode("utf-8"))
             digest.update(b"\0<missing>\0")
             continue
-        for path in matches:
-            relative_path = path.relative_to(repo_root).as_posix()
+        for relative_path, path in matches:
             digest.update(f"package-policy/{relative_path}".encode("utf-8"))
             digest.update(b"\0")
             digest.update(path.read_bytes())
