@@ -1,6 +1,7 @@
 import hashlib
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -22,6 +23,8 @@ if HAS_REVIEW_DEPS:
     from shapely.geometry import shape  # noqa: E402
     from shapely.ops import transform  # noqa: E402
 
+from self_check_submission import run_json_command  # noqa: E402
+
 
 class AgentFacingDocsTests(unittest.TestCase):
     def test_agent_docs_use_scaffold_and_full_self_check_commands(self) -> None:
@@ -41,6 +44,60 @@ class AgentFacingDocsTests(unittest.TestCase):
         self.assertIn("Post-Submission Monitoring", skill)
         self.assertIn("gh pr checks", skill)
         self.assertIn("Uploading is not completion", skill)
+
+
+class SelfCheckEncodingTests(unittest.TestCase):
+    def test_run_json_command_forces_utf8_for_gbk_and_recursive_python_children(self) -> None:
+        nested_child = (
+            "import json; print(json.dumps({'message': '中文全角括号（），²'}, "
+            "ensure_ascii=False))"
+        )
+        parent = (
+            "import subprocess, sys; "
+            f"child = subprocess.run([sys.executable, '-c', {nested_child!r}], "
+            "capture_output=True, text=True, check=True); "
+            "sys.stdout.write(child.stdout)"
+        )
+        with mock.patch.dict(
+            os.environ,
+            {"PYTHONUTF8": "0", "PYTHONIOENCODING": "cp936"},
+        ):
+            result = run_json_command([sys.executable, "-c", parent])
+
+        self.assertEqual(0, result["returncode"])
+        self.assertTrue(result["ok"])
+        self.assertEqual("中文全角括号（），²", result["stdout"]["message"])
+
+    def test_run_json_command_decodes_utf8_diagnostics_independent_of_locale(self) -> None:
+        result = run_json_command(
+            [
+                sys.executable,
+                "-c",
+                "import sys; sys.stdout.buffer.write(('{' + chr(34) + 'message' + chr(34) + ': ' + chr(34) + '中文全角括号（），²' + chr(34) + '}\\n').encode('utf-8'))",
+            ]
+        )
+
+        self.assertEqual(0, result["returncode"])
+        self.assertTrue(result["ok"])
+        self.assertEqual("中文全角括号（），²", result["stdout"]["message"])
+
+    def test_run_json_command_handles_missing_streams_without_secondary_crash(self) -> None:
+        completed = subprocess.CompletedProcess(["fixture"], 1, stdout=None, stderr=None)
+        with mock.patch("self_check_submission.subprocess.run", return_value=completed) as run:
+            result = run_json_command(["fixture"])
+
+        run.assert_called_once_with(
+            ["fixture"],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            check=False,
+            env=mock.ANY,
+        )
+        self.assertEqual("1", run.call_args.kwargs["env"]["PYTHONUTF8"])
+        self.assertEqual("utf-8", run.call_args.kwargs["env"]["PYTHONIOENCODING"])
+        self.assertEqual({"returncode": 1, "ok": False, "stdout": {}, "stderr": ""}, result)
 
 
 def run_scaffold(output_dir: Path, stage: str = "formal", cwd: Path = REPO_ROOT) -> subprocess.CompletedProcess:
@@ -137,6 +194,26 @@ def complete_scaffold(output_dir: Path) -> subprocess.CompletedProcess:
             target.write_bytes(source.read_bytes())
     return subprocess.run(
         [sys.executable, str(REPO_ROOT / "scripts" / "finalize_submission.py"), str(output_dir)],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+
+def mark_self_checked(output_dir: Path) -> subprocess.CompletedProcess:
+    repo_root = output_dir.resolve().parents[2]
+    return subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "self_check_submission.py"),
+            str(output_dir),
+            "--repo-root",
+            str(repo_root),
+            "--pr-author",
+            "alice",
+            "--mark-self-checked",
+            "--json",
+        ],
         capture_output=True,
         text=True,
         check=False,
@@ -363,6 +440,8 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
 
             finalized = complete_scaffold(submission_dir)
             self.assertEqual(finalized.returncode, 0, finalized.stdout + finalized.stderr)
+            marked = mark_self_checked(submission_dir)
+            self.assertEqual(marked.returncode, 0, marked.stdout + marked.stderr)
             rerun = subprocess.run(
                 [
                     sys.executable,
@@ -380,6 +459,78 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             )
             self.assertEqual(rerun.returncode, 0, rerun.stdout + rerun.stderr)
             self.assertTrue(json.loads(rerun.stdout)["can_enter_formal_review"])
+            manifest = json.loads((submission_dir / "manifest.json").read_text(encoding="utf-8"))
+            self.assertTrue(manifest["validation_claim"]["self_checked"])
+            self.assertEqual(
+                "persisted-self-check-v1",
+                manifest["validation_claim"]["readiness_contract"],
+            )
+            persisted = json.loads((submission_dir / "self_check.json").read_text(encoding="utf-8"))
+            self.assertTrue(persisted["ok"])
+            self.assertTrue(persisted["can_enter_formal_review"])
+            self.assertEqual(
+                {
+                    "DETERMINISTIC_VALIDATION",
+                    "SPATIAL_REVIEW",
+                    "VISUAL_PACKAGING",
+                    "PROFESSIONAL_EVIDENCE",
+                },
+                {item["check_id"] for item in persisted["checks"]},
+            )
+            self_check_item = next(item for item in manifest["files"] if item["path"] == "self_check.json")
+            self.assertEqual(
+                self_check_item["sha256"],
+                hashlib.sha256((submission_dir / "self_check.json").read_bytes()).hexdigest(),
+            )
+
+    def test_mark_self_checked_replaces_stale_runtime_evidence_and_refreshes_hash(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "stale-self-check"
+            self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
+            self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+
+            self_check_path = submission_dir / "self_check.json"
+            stale = json.loads(self_check_path.read_text(encoding="utf-8"))
+            stale.update(
+                {
+                    "ok": False,
+                    "can_enter_formal_review": False,
+                    "review_status": "revision-requested",
+                }
+            )
+            self_check_path.write_text(json.dumps(stale, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            item = next(item for item in manifest["files"] if item["path"] == "self_check.json")
+            item["sha256"] = hashlib.sha256(self_check_path.read_bytes()).hexdigest()
+            manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+            marked = mark_self_checked(submission_dir)
+            self.assertEqual(marked.returncode, 0, marked.stdout + marked.stderr)
+            persisted = json.loads(self_check_path.read_text(encoding="utf-8"))
+            self.assertTrue(persisted["ok"])
+            self.assertTrue(persisted["can_enter_formal_review"])
+            import jsonschema
+
+            jsonschema.validate(
+                persisted,
+                json.loads(
+                    (REPO_ROOT / "brief" / "site-package" / "schemas" / "self_check.schema.json").read_text(
+                        encoding="utf-8"
+                    )
+                ),
+            )
+            refreshed = json.loads(manifest_path.read_text(encoding="utf-8"))
+            refreshed_item = next(item for item in refreshed["files"] if item["path"] == "self_check.json")
+            self.assertEqual(
+                refreshed_item["sha256"],
+                hashlib.sha256(self_check_path.read_bytes()).hexdigest(),
+            )
+            from generate_submissions_data import has_blocking_self_check
+
+            self.assertFalse(has_blocking_self_check(submission_dir))
 
     def test_scaffold_does_not_emit_contributor_exhibit(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -390,6 +541,40 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
             # Portal entry is a maintainer decision; contributors do not ship exhibit.json.
             self.assertFalse((submission_dir / "exhibit.json").exists())
+
+    def test_mark_self_checked_can_replace_persisted_blocking_failure(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            write_official_site_package(root)
+            submission_dir = root / "submissions" / "alice" / "blocking-self-check"
+            self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
+            self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+
+            self_check_path = submission_dir / "self_check.json"
+            persisted = json.loads(self_check_path.read_text(encoding="utf-8"))
+            persisted["checks"][0]["result"] = "fail"
+            persisted["checks"][0]["severity"] = "blocking"
+            self_check_path.write_text(
+                json.dumps(persisted, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            manifest_path = submission_dir / "manifest.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            item = next(item for item in manifest["files"] if item["path"] == "self_check.json")
+            item["sha256"] = hashlib.sha256(self_check_path.read_bytes()).hexdigest()
+            manifest_path.write_text(
+                json.dumps(manifest, ensure_ascii=False, indent=2) + "\n",
+                encoding="utf-8",
+            )
+
+            marked = mark_self_checked(submission_dir)
+            self.assertEqual(marked.returncode, 0, marked.stdout + marked.stderr)
+            final_self_check = json.loads(self_check_path.read_text(encoding="utf-8"))
+            self.assertTrue(final_self_check["ok"])
+            self.assertTrue(final_self_check["can_enter_formal_review"])
+            self.assertTrue(
+                all(item["result"] == "pass" for item in final_self_check["checks"])
+            )
 
     def test_validation_rejects_contributor_supplied_exhibit(self) -> None:
         from validate_submission import validate_submission
@@ -583,6 +768,8 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
             finalized = complete_scaffold(submission_dir)
             self.assertEqual(finalized.returncode, 0, finalized.stdout + finalized.stderr)
+            marked = mark_self_checked(submission_dir)
+            self.assertEqual(marked.returncode, 0, marked.stdout + marked.stderr)
             completed = subprocess.run(
             [
                 sys.executable,
@@ -631,6 +818,8 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
             finalized = complete_scaffold(submission_dir)
             self.assertEqual(finalized.returncode, 0, finalized.stdout + finalized.stderr)
+            marked = mark_self_checked(submission_dir)
+            self.assertEqual(marked.returncode, 0, marked.stdout + marked.stderr)
 
             completed = subprocess.run(
                 [

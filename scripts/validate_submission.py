@@ -19,6 +19,7 @@ from typing import Iterable
 
 
 POLICY_ROOT = Path(__file__).resolve().parents[1]
+PERSISTED_READINESS_CONTRACT = "persisted-self-check-v1"
 
 REQUIRED_SECTIONS = [
     "设计依据与资料清单",
@@ -1371,6 +1372,99 @@ def validate_manifest_file(report: ValidationReport, repo_root: Path, proposal_d
     return data, stage
 
 
+def validate_readiness_claim(
+    report: ValidationReport,
+    proposal_dir: str,
+    manifest: dict | None,
+    self_check: dict | None,
+    *,
+    allow_pending_self_check: bool = False,
+    readiness_contract_required: bool = False,
+) -> None:
+    """Keep new ready packages strict without invalidating pre-contract history."""
+    if not isinstance(manifest, dict):
+        return
+    if manifest.get("package_state") != "ready_for_review":
+        return
+    claim = manifest.get("validation_claim")
+    readiness_contract = (
+        claim.get("readiness_contract") if isinstance(claim, dict) else None
+    )
+    enforce_persisted_evidence = readiness_contract == PERSISTED_READINESS_CONTRACT
+    if readiness_contract is not None and not enforce_persisted_evidence:
+        report.add_error(
+            f"{proposal_dir}/manifest.json: unsupported readiness_contract "
+            f"{readiness_contract!r}"
+        )
+    if readiness_contract_required and readiness_contract != PERSISTED_READINESS_CONTRACT:
+        report.add_error(
+            f"{proposal_dir}/manifest.json: trusted base requires "
+            f"validation_claim.readiness_contract={PERSISTED_READINESS_CONTRACT!r} "
+            "for this new or previously contracted ready package"
+        )
+        enforce_persisted_evidence = True
+
+    def report_pending_or_error(message: str) -> None:
+        if allow_pending_self_check:
+            report.add_warning(message + "; pending self-check completion")
+        elif enforce_persisted_evidence:
+            report.add_error(message)
+        else:
+            report.add_warning(
+                message
+                + "; legacy package accepted for intake; run "
+                "self_check_submission.py --mark-self-checked to migrate"
+            )
+
+    if not isinstance(claim, dict) or claim.get("self_checked") is not True:
+        report_pending_or_error(
+            f"{proposal_dir}/manifest.json: packages marked ready_for_review "
+            "must set validation_claim.self_checked=true after running self_check"
+        )
+
+    if not isinstance(self_check, dict):
+        report_pending_or_error(
+            f"{proposal_dir}/self_check.json: packages marked ready_for_review "
+            "must persist a four-gate self-check report"
+        )
+        return
+    if self_check.get("ok") is not True:
+        report_pending_or_error(
+            f"{proposal_dir}/self_check.json: packages marked ready_for_review "
+            "must persist ok=true"
+        )
+    if self_check.get("can_enter_formal_review") is not True:
+        report_pending_or_error(
+            f"{proposal_dir}/self_check.json: packages marked ready_for_review "
+            "must persist can_enter_formal_review=true"
+        )
+
+    required_gates = {
+        "DETERMINISTIC_VALIDATION",
+        "SPATIAL_REVIEW",
+        "VISUAL_PACKAGING",
+        "PROFESSIONAL_EVIDENCE",
+    }
+    checks = self_check.get("checks")
+    persisted_gates = {
+        check.get("check_id"): check
+        for check in checks
+        if isinstance(check, dict) and isinstance(check.get("check_id"), str)
+    } if isinstance(checks, list) else {}
+    incomplete_gates = sorted(
+        gate
+        for gate in required_gates
+        if not isinstance(persisted_gates.get(gate), dict)
+        or persisted_gates[gate].get("result") != "pass"
+        or persisted_gates[gate].get("severity") != "blocking"
+    )
+    if incomplete_gates:
+        report_pending_or_error(
+            f"{proposal_dir}/self_check.json: packages marked ready_for_review "
+            "must persist pass/blocking gates for " + ", ".join(incomplete_gates)
+        )
+
+
 def validate_compliance_matrix_file(report: ValidationReport, path: Path, display_path: str) -> None:
     data = load_json_file(report, path, display_path)
     if not isinstance(data, dict):
@@ -1543,14 +1637,16 @@ def validate_self_check_file(
     path: Path,
     display_path: str,
     stage: str,
-) -> None:
+    *,
+    allow_pending_self_check: bool = False,
+) -> dict | None:
     data = load_json_file(report, path, display_path)
     if not isinstance(data, dict):
-        return
+        return None
     checks = data.get("checks")
     if not isinstance(checks, list):
         report.add_error(f"{display_path}: checks must be an array")
-        return
+        return data
     for index, check in enumerate(checks):
         label = f"{display_path}: checks[{index}]"
         if not isinstance(check, dict):
@@ -1564,9 +1660,12 @@ def validate_self_check_file(
             report.add_error(f"{label}: severity must be blocking, major, minor, or info")
         if result == "fail" and severity == "blocking":
             check_id = check.get("check_id", f"index-{index}")
-            report.add_error(
-                f"{display_path}: formal submission has blocking failed self-check `{check_id}`"
-            )
+            message = f"{display_path}: formal submission has blocking failed self-check `{check_id}`"
+            if allow_pending_self_check:
+                report.add_warning(message + "; pending self-check replacement")
+            else:
+                report.add_error(message)
+    return data
 
 
 def collect_json_ids(data: object, list_key: str, id_key: str) -> set[str]:
@@ -1928,7 +2027,14 @@ def validate_bilingual_display(
                 )
 
 
-def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_dir: str) -> None:
+def validate_ai_package_dir(
+    report: ValidationReport,
+    repo_root: Path,
+    proposal_dir: str,
+    *,
+    allow_pending_self_check: bool = False,
+    readiness_contract_required: bool = False,
+) -> None:
     base = repo_root / proposal_dir
     for required in sorted(REQUIRED_AI_PACKAGE_FILES):
         if not (base / required).exists():
@@ -1949,10 +2055,23 @@ def validate_ai_package_dir(report: ValidationReport, repo_root: Path, proposal_
             if name == "agent.json":
                 validate_agent_disclosure(report, data, f"{proposal_dir}/{name}")
     self_check_path = base / "self_check.json"
+    self_check: dict | None = None
     if self_check_path.exists():
-        validate_self_check_file(
-            report, self_check_path, f"{proposal_dir}/self_check.json", stage
+        self_check = validate_self_check_file(
+            report,
+            self_check_path,
+            f"{proposal_dir}/self_check.json",
+            stage,
+            allow_pending_self_check=allow_pending_self_check,
         )
+    validate_readiness_claim(
+        report,
+        proposal_dir,
+        manifest,
+        self_check,
+        allow_pending_self_check=allow_pending_self_check,
+        readiness_contract_required=readiness_contract_required,
+    )
 
     metrics_path = base / "metrics.json"
     if metrics_path.exists():
@@ -2361,12 +2480,20 @@ def validate_submission(
     pr_author: str,
     changed_files: Iterable[str],
     maintainer_bypass_logins: Iterable[str] = (),
+    *,
+    allow_pending_self_check: bool = False,
+    required_readiness_contract_dirs: Iterable[str] = (),
 ) -> ValidationReport:
     report = ValidationReport()
     repo_root = repo_root.resolve()
     pr_author = pr_author.strip()
     bypass_logins = {login.strip().lower() for login in maintainer_bypass_logins if login.strip()}
     report.maintainer_bypass = pr_author.lower() in bypass_logins
+    required_readiness_contracts = {
+        str(proposal_dir).strip().rstrip("/")
+        for proposal_dir in required_readiness_contract_dirs
+        if str(proposal_dir).strip()
+    }
 
     if not pr_author or not GITHUB_LOGIN_RE.match(pr_author):
         report.add_error(f"invalid PR author `{pr_author}`")
@@ -2587,7 +2714,13 @@ def validate_submission(
     for proposal_dir in sorted(ai_package_dirs):
         if proposal_dir in unsafe_submission_dirs:
             continue
-        validate_ai_package_dir(report, repo_root, proposal_dir)
+        validate_ai_package_dir(
+            report,
+            repo_root,
+            proposal_dir,
+            allow_pending_self_check=allow_pending_self_check,
+            readiness_contract_required=proposal_dir in required_readiness_contracts,
+        )
 
     for changelog_path in sorted(changelog_files):
         if str(PurePosixPath(changelog_path).parent) in unsafe_submission_dirs:

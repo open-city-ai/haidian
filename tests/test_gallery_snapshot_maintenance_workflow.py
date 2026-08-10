@@ -35,8 +35,17 @@ class GallerySnapshotMaintenanceWorkflowTests(unittest.TestCase):
 
     def test_uses_stable_branch_and_safe_force_lease(self) -> None:
         self.assertIn("MAINTENANCE_BRANCH: automation/gallery-snapshot", self.workflow)
+        self.assertIn('git ls-remote --exit-code origin "refs/heads/${branch}"', self.workflow)
         self.assertIn("git push --force-with-lease=", self.workflow)
+        self.assertNotIn("0000000000000000000000000000000000000000", self.workflow)
         self.assertNotIn("HEAD:refs/heads/main", self.workflow)
+
+    def test_missing_maintenance_branch_fails_with_bootstrap_instructions(self) -> None:
+        self.assertIn("bootstrap-required=true", self.workflow)
+        self.assertIn("GITHUB_STEP_SUMMARY", self.workflow)
+        self.assertIn("One-time bootstrap", self.workflow)
+        self.assertIn("administrator must create it", self.workflow)
+        self.assertIn("git push origin origin/main:refs/heads/${branch}", self.workflow)
 
     def test_only_opens_draft_pr_when_snapshot_changed(self) -> None:
         self.assertIn('echo "changed=false"', self.workflow)
