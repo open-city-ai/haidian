@@ -1,0 +1,207 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG4548_polygon_area(site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界或概念设计图层，官方数据补齐后需整体复算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1446431.236,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG4548_area(union(green_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界或概念设计图层，官方数据补齐后需整体复算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.126737,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm/site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界或概念设计图层，官方数据补齐后需整体复算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 484113.161,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "EPSG4548_area(union(public_space))",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界或概念设计图层，官方数据补齐后需整体复算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.042418,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm/site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界或概念设计图层，官方数据补齐后需整体复算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 131271.322,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "EPSG4548_area(union(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "三处基底为可逆更新原型的概念示意，不代表确认建设规模。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.011502,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm/site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "仅为概念基底占临时总体范围的内部复算值，不是法定建筑密度。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [],
+      "formula": "pending approved planning controls",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "批准控规容积率与现状建筑规模未包含在公开资料中。"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "night_route_length_m": {
+      "status": "known",
+      "value": 16042.2,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(EPSG4548_length(night_spine_and_cross_gates))",
+      "confidence": "low",
+      "assumptions": [
+        "概念路线索引，待道路红线、现场审计和交通专项确认。"
+      ]
+    },
+    "dark_refuge_area_sqm": {
+      "status": "known",
+      "value": 1446431.236,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "EPSG4548_area(features where night_role=dark_refuge)",
+      "confidence": "low",
+      "assumptions": [
+        "暗生态范围为概念建议，待生态、文保与照明专项确认。"
+      ]
+    },
+    "night_hub_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space where night_role=staffed_night_hub)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "testing_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards where type=test_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(named_pilgrimage_and_honor_nodes)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}
