@@ -1,0 +1,245 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary only; not an official redline or precise statutory area."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 35904.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(concept_building_prototypes))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept prototypes, not surveyed existing buildings or approved development."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.106483,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual overlay on a provisional boundary; not an approved green-space control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.011623,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-space prototypes; not parcel or ownership conclusions."
+      ]
+    },
+    "response_network_length_m": {
+      "status": "known",
+      "value": 16539.2,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(response_spine_and_cross_links))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept alignments pending official road, heritage, safety, and access data."
+      ]
+    },
+    "response_room_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space where id in PUBLIC-001..003)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "response_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space where id in PUBLIC-004..007)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(AI scenario cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "testing_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenarios marked TVS)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 1638826.442,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2459873.045,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition."
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 2330404.462,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0803)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition."
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 2589336.496,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition."
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 2394392.469,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=05)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual partition."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR controls and official boundary are not available."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official height control or approved urban-design condition",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height, aviation, heritage, and landscape controls are not available."
+    },
+    "building_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building footprint / official site area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing building survey and approved control are not available."
+    }
+  }
+}
