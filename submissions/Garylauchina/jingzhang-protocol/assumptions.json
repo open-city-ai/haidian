@@ -1,0 +1,300 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-RESEARCH-SCOPE-001",
+      "status": "provisional_constraint",
+      "statement": "The coordinated research scope is available only as an official approximate 43.6 km² figure; no submission polygon is provided.",
+      "impact": "The 11.4 km² submitted polygon represents only the overall-design sub-scope and must not be displayed as the full coordinated research range.",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "geometry/site_boundary.geojson"
+      ],
+      "affected_metric_ids": [
+        "announced_coordinated_research_area_sqm",
+        "announced_overall_design_area_sqm",
+        "site_area_sqm"
+      ],
+      "resolution_trigger": "A rights-cleared coordinated-research polygon is formally released.",
+      "replacement_action": "Add the polygon as a distinct verified scope layer and reframe all three-level scope graphics without expanding SITE-001."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint",
+      "statement": "The submitted overall-design boundary is a repository provisional rough polygon, not an official redline.",
+      "impact": "All generated design layers and geometry-derived ratios are internally reproducible but must be recalculated after official geometry is supplied.",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "site_area_sqm",
+        "land_use_coverage_ratio",
+        "green_ratio",
+        "public_space_ratio",
+        "concept_building_coverage_ratio",
+        "phase_coverage_ratio"
+      ],
+      "resolution_trigger": "A trusted official overall-design boundary polygon is supplied.",
+      "replacement_action": "Replace SITE-001, regenerate every editable geometry layer and recalculate all area, length and ratio metrics in EPSG:4548."
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "provisional_constraint",
+      "statement": "The three key-area polygons are provisional rough constraints derived from announced names, north-to-south sequence and approximate areas.",
+      "impact": "Landmark, scenario, building-envelope and public-space locations are area-level concepts rather than parcel or engineering positions.",
+      "affected_files": [
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "key_area_count",
+        "key_area_zhongzhiyuan_geometry_sqm",
+        "key_area_ai_origin_geometry_sqm",
+        "key_area_dazhongsi_geometry_sqm",
+        "landmark_count"
+      ],
+      "resolution_trigger": "Official rights-cleared polygons for all three key areas are supplied.",
+      "replacement_action": "Replace the three provisional KEY_AREA features and relocate or verify every dependent scenario, public-space, landmark and building feature."
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "status": "design_metric_only",
+      "statement": "The twelve land-use faces are a conceptual functional partition generated for the Jing-Zhang Protocol, not existing or statutory land use.",
+      "impact": "Codes test program compatibility and topology only; they create no planning entitlement or parcel-level control conclusion.",
+      "affected_files": [
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "land_use_coverage_ratio",
+        "land_use_overlap_area_sqm",
+        "land_use_gap_area_sqm",
+        "land_use_outside_area_sqm",
+        "land_use_0802_area_sqm",
+        "land_use_0803_area_sqm",
+        "land_use_0804_area_sqm",
+        "land_use_05_area_sqm",
+        "land_use_0702_area_sqm",
+        "land_use_1401_area_sqm",
+        "land_use_1403_area_sqm"
+      ],
+      "resolution_trigger": "Verified current land use and approved detailed-control data are supplied.",
+      "replacement_action": "Crosswalk the concept programs to verified parcels, preserve the protocol logic where compatible, and replace all concept-code areas and ratios."
+    },
+    {
+      "id": "A-SCENARIO-LOCATION-001",
+      "status": "design_metric_only",
+      "statement": "The twelve scenario points are area-level spatial indices for linking service logic to carrier spaces, not surveyed installation coordinates.",
+      "impact": "A point proves conceptual assignment and operating metadata, not parcel availability, construction feasibility or approved siting.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "scenario_node_count",
+        "scenario_node_zhongzhiyuan_count",
+        "scenario_node_ai_origin_count",
+        "scenario_node_dazhongsi_count",
+        "scenario_spatial_assignment_coverage_ratio"
+      ],
+      "resolution_trigger": "Verified carrier spaces, ownership, utilities, access and operator agreements are available for a scenario.",
+      "replacement_action": "Replace that scenario point with a surveyed carrier-space geometry or approved installation record and revalidate every host reference."
+    },
+    {
+      "id": "A-PHASING-001",
+      "status": "conceptual_governance",
+      "statement": "The three phase polygons encode first-intervention packages and evidence dependencies rather than time, investment or construction promises.",
+      "impact": "Sequence numbers cannot be read as government schedules; each package advances only after its stated evidence gate is met.",
+      "affected_files": [
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "phase_count",
+        "phase_1_area_sqm",
+        "phase_2_area_sqm",
+        "phase_3_area_sqm",
+        "phase_coverage_ratio",
+        "phase_gap_area_sqm",
+        "phase_outside_area_sqm",
+        "phase_overlap_area_sqm",
+        "scenario_phase_assignment_coverage_ratio"
+      ],
+      "resolution_trigger": "An authorized implementation body confirms projects, budgets, approvals and dates.",
+      "replacement_action": "Translate dependency packages into an approved delivery plan, retain gate conditions and replace sequence-only language with confirmed milestones."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, fire, flood and engineering constraints are not available.",
+      "impact": "FAR, height, building density, setbacks, road area and confirmed capacity remain unknown and no statutory conclusion is made.",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "total_floor_area_sqm",
+        "floor_area_ratio",
+        "building_density",
+        "building_height_m",
+        "setback_m",
+        "road_area_sqm",
+        "road_ratio"
+      ],
+      "resolution_trigger": "Approved control, utility, fire, flood, transport and ownership packages are available.",
+      "replacement_action": "Populate the empty constraint layer with verified features, replace unknown metrics and rerun professional design and engineering review."
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_source_data",
+      "statement": "A rights-cleared existing-building and ownership survey is not available.",
+      "impact": "Building polygons are program envelopes only; no retain, renovate, demolish, new-build or ownership decision is asserted.",
+      "affected_files": [
+        "geometry/buildings.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "building_footprint_area_sqm",
+        "concept_building_envelope_count",
+        "concept_building_coverage_ratio",
+        "building_action_pending_count",
+        "renewal_project_count"
+      ],
+      "resolution_trigger": "A surveyed existing-building, condition, ownership and occupancy dataset is available.",
+      "replacement_action": "Replace concept envelopes with surveyed buildings and assign retain, renovate, remove or infill actions through professional and stakeholder review."
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Road-centerline features represent conceptual walking, cycling, transit-connection or service relationships.",
+      "impact": "They are not road redlines, construction alignments, traffic-capacity claims or approvals and require transport and engineering verification.",
+      "affected_files": [
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "road_centerline_length_m",
+        "slow_mobility_length_m",
+        "road_area_sqm",
+        "road_ratio"
+      ],
+      "resolution_trigger": "Verified road redlines, rail exits, counts, accessibility audits and engineering conditions are available.",
+      "replacement_action": "Replace design lines with verified network data, recalculate lengths and areas, and test capacity, safety and universal access."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_source_data",
+      "statement": "Official heritage protection ranges and construction-control zones have not been supplied.",
+      "impact": "Heritage-linked landmarks and public-space moves remain conceptual and must be checked against official conservation requirements.",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "landmark_count"
+      ],
+      "resolution_trigger": "Rights-cleared heritage boundaries, object lists and conservation controls are supplied.",
+      "replacement_action": "Add verified heritage constraints and revise landmark programs, sightlines, excavation limits and public-space interventions with conservation professionals."
+    },
+    {
+      "id": "A-INDUSTRY-DATA-001",
+      "status": "pending_source_data",
+      "statement": "No verified project baseline for enterprises, talent, output, vacancies, compute capacity or investment is supplied.",
+      "impact": "Industry claims are limited to proposed validation mechanisms and cannot state present cluster performance or forecast economic output.",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "sources.json"
+      ],
+      "affected_metric_ids": [
+        "industry_validation_scenario_count",
+        "global_case_group_count"
+      ],
+      "resolution_trigger": "A dated official industry baseline with definitions and rights-cleared data is supplied.",
+      "replacement_action": "Add baseline and target series with provenance, uncertainty and owner; revise industry-validation priorities against measured gaps."
+    },
+    {
+      "id": "A-ARCH-STANDARD-001",
+      "status": "pending_source_data",
+      "statement": "The officially designated architectural design-depth standard file is not included in the supplied reference package.",
+      "impact": "Architecture-depth compliance remains a data gap; concept envelopes cannot be represented as construction-document depth.",
+      "affected_files": [
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "geometry/buildings.geojson"
+      ],
+      "affected_metric_ids": [
+        "concept_building_envelope_count",
+        "building_action_pending_count",
+        "building_height_m",
+        "setback_m"
+      ],
+      "resolution_trigger": "The required edition and rights-cleared standard text are formally confirmed.",
+      "replacement_action": "Review the package clause by clause, update the standard matrix and add only the architectural drawings and calculations actually required."
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "conceptual_governance",
+      "statement": "Operators, budgets, authorizations, event schedules and institutional mandates have not been confirmed.",
+      "impact": "Operating roles, recurring programs and renewal projects express governance options rather than government or investor commitments.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "proposal.md",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "scenario_human_review_coverage_ratio",
+        "renewal_project_count",
+        "protocol_interface_count"
+      ],
+      "resolution_trigger": "Accountable entities accept defined mandates, budgets, service levels and redress obligations.",
+      "replacement_action": "Replace proposed roles with signed responsibility records and publish operating, audit, escalation and retirement service levels."
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "design_metric_only",
+      "statement": "Generated land-use, green, public-space, building-envelope and phasing metrics use the provisional boundary denominator.",
+      "impact": "Values test internal consistency and design choices only; they are not approved planning-control indicators or exact site facts.",
+      "affected_files": [
+        "metrics.json",
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "affected_metric_ids": [
+        "site_area_sqm",
+        "green_space_area_sqm",
+        "green_ratio",
+        "public_space_area_sqm",
+        "public_space_ratio",
+        "building_footprint_area_sqm",
+        "concept_building_coverage_ratio",
+        "phase_coverage_ratio"
+      ],
+      "resolution_trigger": "Any source boundary, geometry, code, calculation convention or survey baseline changes.",
+      "replacement_action": "Regenerate affected layers, recalculate in EPSG:4548, record the changed formula and rerun topology, semantic and matrix-reference checks."
+    }
+  ]
+}

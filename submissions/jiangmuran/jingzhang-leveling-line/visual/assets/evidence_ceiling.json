@@ -1,0 +1,388 @@
+{
+ "schema_version": "evidence-ceiling-v1",
+ "note_zh": "「算得准」与「测得可靠」是两根轴，本包此前只有一根。每条指标的证据上限由它读取的文件里最弱的一份决定，因此一个数不可能被声称得比它的输入更强；加入一份比结论更弱的来源会让构建失败，而不是让读者受骗。",
+ "note_en": "“computed exactly” and “measured reliably” are two axes and this package had one. A metric's evidence ceiling is the weakest of the files it reads, so a number cannot be stated above the strength of its inputs; adding a source weaker than the claim fails the build rather than the reader.",
+ "borrowed_from": "公开借鉴：Abreto/REN AXIS 以四轮对抗撤回「只由背景级来源承担的结论」；147228/zhongzhiyuan-autonomy-commons 的勘误册带 found_by。本包的增量是把这件事从手工做成计算：上限由来源文件推出，而不是由作者判断。",
+ "order_weakest_first": [
+  "background_only",
+  "provisional",
+  "self_measured",
+  "official_context",
+  "regulatory_baseline"
+ ],
+ "counts": {
+  "background_only": 3,
+  "provisional": 17,
+  "self_measured": 14,
+  "official_context": 1,
+  "regulatory_baseline": 0
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/site_boundary.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  },
+  "building_footprint_area_sqm": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/buildings.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "low",
+   "confidence_is_about": "computation"
+  },
+  "green_ratio": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  },
+  "public_space_ratio": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  },
+  "floor_area_ratio": {
+   "evidence_ceiling": "official_context",
+   "binding_inputs": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "why": "组织方题面资料包",
+   "how_to_raise": "",
+   "confidence": "unknown",
+   "confidence_is_about": "reading"
+  },
+  "existing_residential_floor_area_sqm": {
+   "evidence_ceiling": null,
+   "binding_inputs": [],
+   "why": "无取值：本包未测，且所需数据未公开，因此没有可被高估的数",
+   "how_to_raise": "权属与现状测绘数据公开后方可赋值",
+   "confidence": "unknown",
+   "confidence_is_about": null
+  },
+  "key_area_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/key_areas.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "leveling_spine_length_m": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/roads.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  },
+  "benchmark_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/public_space.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "green_ratio_in_partition": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  },
+  "phasing_union_area_sqm": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/phasing.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  },
+  "scenario_card_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/scenario_cards.json"
+   ],
+   "why": "本包自定义的场景卡",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "scenario_cards_operational_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/scenario_cards.json"
+   ],
+   "why": "本包自定义的场景卡",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "industry_test_scenario_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/constraints.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "persona_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "proposal.md"
+   ],
+   "why": "本包对自身正文的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "landmark_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "proposal.md",
+    "assets/figures/kit-of-parts.png"
+   ],
+   "why": "本包对自身正文的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "case_study_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "proposal.md",
+    "sources.json"
+   ],
+   "why": "本包对自身正文的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "renewal_project_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "proposal.md"
+   ],
+   "why": "本包对自身正文的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "phase_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/phasing.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "land_use_class_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/land_use.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "land_use_feature_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/land_use.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "road_feature_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/roads.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "benchmark_first_order_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/public_space.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "benchmark_third_order_count": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/public_space.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "taskbook_requirement_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/taskbook_coverage.json"
+   ],
+   "why": "本包对任务书条目的自评",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "taskbook_requirements_answered": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/taskbook_coverage.json"
+   ],
+   "why": "本包对任务书条目的自评",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "matrix_reference_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "compliance_matrix.json",
+    "standard_matrix.json",
+    "design_depth_matrix.json"
+   ],
+   "why": "本包对自身条目的枚举",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "shipped_verification_script_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "manifest.json"
+   ],
+   "why": "本包对自身的枚举",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "tabletop_case_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/s08-tabletop-evidence.json"
+   ],
+   "why": "本包自跑的桌面演练",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "errata_entry_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/errata.json"
+   ],
+   "why": "本包对自身勘误的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "errata_external_finder_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/errata.json"
+   ],
+   "why": "本包对自身勘误的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "rights_ledger_entry_count": {
+   "evidence_ceiling": "self_measured",
+   "binding_inputs": [
+    "visual/assets/rights_ledger.json"
+   ],
+   "why": "本包对自身权利登记的计数",
+   "how_to_raise": "无需升级：它测的就是本包自身，不对外声称",
+   "confidence": "high",
+   "confidence_is_about": "reading"
+  },
+  "osm_vertices_shipped": {
+   "evidence_ceiling": "background_only",
+   "binding_inputs": [
+    "visual/assets/osm_reference.json"
+   ],
+   "why": "OpenStreetMap 众包几何，登记为 A-OSM-001",
+   "how_to_raise": "由权威源替换（官方几何、组织方登记表），或由第三方独立复算后升级",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "field_census_corpus_size": {
+   "evidence_ceiling": "background_only",
+   "binding_inputs": [
+    "visual/assets/field_map.json"
+   ],
+   "why": "对其他方案的关键词普查，登记为 A-CORPUS-001",
+   "how_to_raise": "由权威源替换（官方几何、组织方登记表），或由第三方独立复算后升级",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "track_scan_corpus_size": {
+   "evidence_ceiling": "background_only",
+   "binding_inputs": [
+    "visual/assets/track_scan.json"
+   ],
+   "why": "对其他方案的关键词扫描，计数为下界",
+   "how_to_raise": "由权威源替换（官方几何、组织方登记表），或由第三方独立复算后升级",
+   "confidence": "high",
+   "confidence_is_about": "computation"
+  },
+  "phased_share_of_design_scope": {
+   "evidence_ceiling": "provisional",
+   "binding_inputs": [
+    "geometry/phasing.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "why": "画在推定边界上；官方 polygon 发布后须整体重算",
+   "how_to_raise": "官方 polygon 或官方重点区范围发布后重算，即可升为 official_context",
+   "confidence": "medium",
+   "confidence_is_about": "computation"
+  }
+ }
+}

@@ -1,0 +1,126 @@
+---
+title: "JINGZHANG INDEX: A Readable, Queryable, and Returnable AI Innovation Belt"
+author_github: "Sh7ne"
+language: "en"
+translation_of: "proposal.md"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+license: "COMMUNITY-DISPLAY-ONLY"
+summary: "A public-interest urban-design framework for the Centennial Jingzhang AI Innovation Belt. It uses provisional geometry only as a design and verification aid, and identifies every item that must be recalculated when organizer-issued boundary data becomes available."
+---
+
+# JINGZHANG INDEX: A Readable, Queryable, and Returnable AI Innovation Belt
+
+## Design Basis and Source List
+
+This proposal treats the public call for the Centennial Jingzhang AI Innovation Belt Urban Design as its primary brief. It also uses the repository's structured site package, taskbook, source registry, processed fact pack, enumerations, geometry templates, and validation rules as an auditable production environment. The proposal is not a free-standing vision statement: its spatial claims, figures, metrics, and implementation suggestions are linked to a declared source, a reproducible geometry layer, or a stated assumption. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]
+
+The published brief identifies a coordinated research area, an overall urban-design area, and three detailed-design areas. At the time of submission, organizer-issued parcel, control-plan, and boundary geometry is not included in the public package used here. The package therefore labels its site and key-area polygons as `provisional_constraint`. They support scenario design, diagramming, and self-checking only; they are not an official redline, a statutory control, or a basis for precise approval decisions. [source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001]
+
+The evidence chain is intentionally legible. `sources.json` records provenance and permitted use; `assumptions.json` records the limits of the current reading; `metrics.json` records quantities derived from the submitted geometry; and `self_check.json` records the tests that should be repeated when official data is supplied. The professional team should replace provisional polygons with organizer-issued data, rerun area calculations, revise dependent drawings, and preserve the same audit trail before any statutory or implementation-stage use. [source:SOURCE-REGISTRY] [metric:site_area_sqm]
+
+![Source chain, scope structure, and submission evidence](assets/figures/site-overview.en.png)
+
+## Three-Level Scope Framework
+
+The design works through three nested but connected scales. The 43.6-square-kilometre coordinated research area considers the AI innovation ecology, culture, talent, and future urban form. The 11.4-square-kilometre overall design area converts that research into an urban-regeneration structure, land-use direction, mobility and municipal support, and public-realm character. The 368.4-hectare detailed-design scope tests the strategy in the three named key areas. These published scale figures describe the brief; the submitted provisional polygons are not represented as official survey geometry. [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
+
+The framework moves in both directions. Regional research identifies the innovation chain and the public values it must return to the city. Overall design assigns that chain to a coherent public-space, mobility, and renewal framework. Detailed design then tests whether an individual street, building edge, station approach, or shared facility can make the framework useful in daily life. Feedback from the detailed areas can change the overall strategy rather than merely decorate it. [depth:three_level_scope_framework] [depth:overall_spatial_structure]
+
+JINGZHANG INDEX is the operating idea for this loop. "Index" means that the belt can be read as a civic catalogue: people can identify where research begins, where a question becomes a shared experiment, and where value returns to neighbourhood life. It does not introduce a new statutory corridor. It is a way of connecting the published three-scale task to physical spaces, programmatic relationships, and accountable AI services. [data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count]
+
+![Three nested scopes and the JINGZHANG INDEX working framework](assets/figures/land-use-structure.en.png)
+
+## Coordinated Research Area: Industry and Future City Research
+
+The coordinated research area is organised as an innovation ecology rather than a single technology park. Its working chain is: university and institute research, open collaboration, enterprise translation, public testing, cultural communication, and international exchange. The chain links research and development space to training, housing, everyday services, green movement, civic interfaces, and opportunities for people who are not AI specialists to understand and question a service. This is a spatial interpretation for further study, not a claim that a particular organisation has adopted the model. [source:AGENT-TASKBOOK] [depth:overall_spatial_structure]
+
+The proposal uses three named chapters to make the city-scale narrative practical. Source Yard is associated with Zhongzhiyuan and foregrounds all-stack innovation, standards, safety, and garden-based exchange. Query Commons is associated with the Beijing AI Origin Community and creates a public bridge between campus knowledge, open-source collaboration, early-stage ventures, and the city. Return Market is associated with Dazhongsi and turns enterprise capability into visible, reviewable, and useful urban services. These chapters are a design vocabulary, not administrative renaming. [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002]
+
+Two complementary civic wings extend the three chapters. The Service Catalogue makes support for research, start-ups, employers, residents, and visitors easy to find. The Scenario Handbook makes trial conditions, data limits, accountable operators, and exit conditions equally visible. Together they prevent "AI district" from becoming an opaque brand: an activity must have a public purpose, an understandable location, a human review route, a non-digital alternative, and a condition for suspension. [source:AGENT-TASKBOOK] [depth:municipal_new_infrastructure]
+
+## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
+
+The overall design area is framed as a regenerative urban system, not a clean-slate masterplan. Its structure combines a heritage-and-public-realm spine, three differentiated innovation anchors, local streets that improve short trips, and a continuous blue-green and social-infrastructure network. Existing residential life, small businesses, educational resources, employment areas, and station access are treated as assets that must be connected and improved rather than displaced by a single monoculture. [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:land_use_layout]
+
+Land use, building footprints, roads, green space, public space, constraints, and phasing are all maintained as separate submitted layers. Their role is to show the logic of the design and to make metrics reproducible, not to simulate an unissued statutory plan. Development intensity, height, setbacks, land ownership, approval status, and exact demolition quantities require organizer or statutory data before they can be set as controls. The proposal records them as verification gaps rather than invented values. [data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001] [depth:development_intensity_controls]
+
+The spatial sequence is deliberately everyday in scale: research and enterprise entries lead to shared courts and working streets; green links lead to places for rest, learning, and small events; and station approaches become clear, accessible public thresholds. Three civic landmarks give the sequence memory without turning it into a themed route: Index Terrace makes sources and project status visible; Query Theater hosts demonstration and public review; Return Plaza makes completed services and feedback visible. [data:geometry/public_space.geojson#PUBLIC-001] [depth:height_massing_character]
+
+## Detailed Design of Key Areas
+
+Zhongzhiyuan is proposed as the Source Yard, an independent-innovation accelerator with a garden-based working environment. The focus is on test-and-demonstration space, standards and safety dialogue, flexible research-to-product interfaces, and low-carbon outdoor exchange. Its public edge should enable carefully governed demonstrations without exposing operationally sensitive systems. The detailed-design package should coordinate building interfaces, accessible routes, green shade, service deliveries, and places for industry exchange. [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:three_key_area_detailed_design]
+
+The Beijing AI Origin Community is proposed as Query Commons. It strengthens the connection between nearby education and research resources, open-source practice, venture incubation, talent services, housing and daily amenities, and a readable slow-travel network. The central design move is not a landmark building but a porous sequence of learning, meeting, publishing, and living spaces where a researcher, student, neighbour, or visiting collaborator can understand how to enter and use the district. [data:geometry/key_areas.geojson#PROV-KEY-002] [source:AGENT-TASKBOOK]
+
+Dazhongsi is proposed as Return Market, an urban-facing cluster for intelligent agents, terminals, content, data-related services, business support, and international exchange. Station integration, crossings, street-level commercial continuity, and four-quadrant pedestrian connectivity are central spatial tasks. Enterprise frontage should contribute useful ground-floor services and shaded waiting spaces rather than isolated display walls. The area becomes an exchange point where a service can be tested, explained, questioned, and revised in public. [data:geometry/key_areas.geojson#PROV-KEY-003] [metric:key_area_count]
+
+![The three key areas: Source Yard, Query Commons, and Return Market](assets/figures/key-areas.en.png)
+
+## AI Innovation Ecosystem, Personas, and AI+ Scenarios
+
+The proposal uses six personas to test whether the belt works beyond a single office hour: a student or researcher, a start-up developer, a global collaborator, a resident or small-business operator, an older or disabled visitor, and a front-line public-service worker. Each needs a distinct combination of access, information, affordable service, rest, mobility, learning, and a route to human support. The design asks every AI-enabled service to work for people with different digital confidence and to remain understandable when a device, network, or model is unavailable. [source:AGENT-TASKBOOK] [depth:risk_missing_data]
+
+Ten scenario cards are arranged as a practical catalogue: cultural interpretation; accessible arrival and slow travel; research translation; developer service; enterprise service; civic human-AI collaboration; microclimate guidance; facility-repair triage; multilingual visitor support; and explainable evening service. Each card identifies an intended public value, a possible spatial host, a data boundary, a named human-review role, a non-digital alternative, and a suspension or exit condition. The cards are recommendations for staged co-design; none is represented as an existing public system. [data:geometry/roads.geojson#ROAD-001] [data:geometry/public_space.geojson#PUBLIC-001]
+
+Three pilot conditions demonstrate how the cards become places. At Source Yard, a standards-and-safety workshop can make test protocols and accountability visible. At Query Commons, a research-to-city clinic can connect open-source work, local questions, and human facilitators. At Return Market, an accessible station-to-street guide can test multilingual orientation and pedestrian feedback. All three must use consent-based and minimised data, a clear operator, human escalation, and ordinary wayfinding or service-desk alternatives. [metric:scenario_card_count] [metric:pilot_scenario_count]
+
+## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
+
+The submitted land-use layer distinguishes the spatial roles required by the concept: source-oriented research and exchange, query-oriented collaboration and community support, return-oriented enterprise and urban services, and the green-public network that joins them. It is a design allocation for discussion and recalculation. It does not alter legal land-use rights or replace the control plan. Area shares are calculated from the submitted geometry so that future official boundaries can be substituted and the same method repeated. [data:geometry/land_use.geojson#LU-001] [metric:land_use_research_exchange_sqm]
+
+Building work is organised through a retain-renovate-replace decision framework. Retain means that a building, frontage, mature landscape, or socially useful use supports continuity and can meet safety and accessibility needs. Renovate means that a structure can host new working, learning, service, or public-realm functions with targeted upgrades. Replace is considered only after lifecycle, displacement, safety, carbon, programme, and public-benefit tests have been documented. The current package uses conceptual footprints only and does not assert site-specific ownership, structural condition, or demolition decisions. [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]
+
+Exact gross floor area, plot ratio, building density, permitted height, setbacks, and regulated green-ratio requirements are deliberately marked as unavailable pending the appropriate control and survey data. This restraint is part of the design method: numerical precision should arise from authoritative inputs and transparent recalculation, not from a persuasive-looking diagram. [metric:regulated_far] [metric:regulated_height] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+
+## Transport, Rail, Municipal Infrastructure, and Public Services
+
+Mobility begins with the short trip. The proposal connects rail access, bus and drop-off interfaces, blocks, parks, schools, workplaces, and neighbourhood services through legible walking and cycling routes. Road geometry distinguishes main movement, local circulation, and people-priority links; the final hierarchy, redlines, traffic analysis, parking supply, and emergency access must be checked against official transport and municipal data. Station approaches should be barrier-free, shaded, well lit, and easy to understand without requiring a phone. [data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]
+
+The AI-enabled mobility layer is intentionally modest. It can provide understandable arrival information, accessibility prompts, crowd-aware service guidance, and issue reporting, but it must not become an unreviewable enforcement system. A service should show its data boundary, let people reach a human service point, and provide signage or staff support as a non-digital alternative. This supports public confidence while allowing agencies and operators to test value before scaling. [metric:road_area_ratio] [source:AGENT-TASKBOOK]
+
+Municipal and public-service planning combines physical capacity with operating clarity. Potential locations for distributed energy, digital connectivity, edge computing, waste and delivery coordination, water-sensitive landscape, public toilets, rest facilities, community health access, and talent support should be checked in a later specialist stage. The package maps an implementation question rather than claiming installed systems or secured capacity. [depth:municipal_new_infrastructure] [data:geometry/constraints.geojson#CONSTRAINT-001]
+
+![Mobility, blue-green movement, rail access, and civic service interfaces](assets/figures/mobility-bluegreen.en.png)
+
+## Blue-Green Network, Public Space, and Urban Character
+
+The blue-green network is both infrastructure and social space. It connects shade, stormwater-sensitive landscape, existing vegetation where verified, quiet study and rest areas, movement corridors, small activity spaces, and event-ready public places. Its performance should be checked through connected geometry and local survey rather than a decorative landscape overlay. The submitted green-space and public-space layers permit transparent calculation of conceptual area and ratio, while official ecological and planting requirements remain subject to verification. [data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio]
+
+Public realm design gives the innovation belt a civic face. The proposal prefers active and understandable edges, accessible seating and rest intervals, clear crossings, comfortable microclimate, flexible small-event space, and maintenance-ready materials. Character emerges from the coexistence of historical continuity, research culture, everyday neighbourhood uses, and visible public accountability, rather than from an imposed AI icon. Building form, heritage resources, views, and night-light conditions must be assessed with authoritative field and statutory information in later stages. [data:geometry/public_space.geojson#PUBLIC-001] [depth:blue_green_public_space]
+
+The three landmarks form a common public language. Index Terrace displays sources, project milestones, and readable status; Query Theater enables conversation around prototypes and city questions; Return Plaza gathers feedback, services, and local exchange. They may be delivered as a spectrum of indoor and outdoor settings rather than a single monumental object. Accessibility, noise, security, programming, and local operating partners need detailed coordination before implementation. [metric:public_space_ratio] [depth:height_massing_character]
+
+## Renewal Projects, Implementation Policy, and Phasing
+
+The renewal programme is a portfolio of linked, modestly testable projects rather than one irreversible intervention. It includes: an evidence and status interface at Index Terrace; a shared standards-and-safety workshop at Source Yard; a research translation clinic and open collaboration rooms at Query Commons; an accessible station-to-street interface at Return Market; shaded slow-travel links; public-realm repairs; and a shared service catalogue. Each project should be assessed for land, ownership, approvals, capital, operator, maintenance, accessibility, carbon, and community impact before it is committed. [depth:renewal_project_list] [metric:renewal_project_count]
+
+Phasing follows capability, not spectacle. Phase 1 builds the evidence base, verifies boundaries, improves wayfinding and small public-realm gaps, and establishes human service routes. Phase 2 renovates and connects the three key areas through shared programmes, slow travel, and governed pilots. Phase 3 expands proven services, adapts building and landscape projects to verified demand, and publishes evaluation results. The submitted phasing layer shows this logic spatially but does not assign statutory dates, land parcels, financing, or approval outcomes. [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
+
+Policy recommendations are framed as options for the responsible public authorities, communities, and operators: transparent scenario agreements; fair and accessible procurement; public-benefit commitments for active frontages; evaluation requirements for pilots; open but secure technical interfaces where suitable; and neighbourhood feedback routes. These recommendations do not assume pre-approval or a guaranteed implementation path. [source:AGENT-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES]
+
+## Metrics, Area Recalculation, and Compliance Matrix
+
+The indicator system separates published brief values, geometry-derived concept values, and unconfirmed regulatory values. Site area, conceptual land-use areas, building-footprint area, road area, green-space area, public-space area, key-area count, scenario-card count, pilot count, persona count, project count, standards coverage, and design-depth coverage are recorded as structured metrics. Values tied to provisional polygons are expressly provisional and should be recalculated after authoritative data replacement. [metric:site_area_sqm] [metric:building_footprint_area_sqm] [metric:green_ratio]
+
+The calculation method is documented alongside the geometry: use a suitable projected coordinate system, validate topology, calculate areas from submitted features, aggregate by stated category, and compare the result with the declared metric. No metric is intended to substitute for a cadastral survey, statutory control, or specialist capacity assessment. Contradictions, missing geometry, and uncertain inputs are visible through `assumptions.json` and `self_check.json` rather than being smoothed out in graphics. [depth:metrics_recalculation] [data:geometry/site_boundary.geojson#SITE-001]
+
+`compliance_matrix.json` maps each mandatory call requirement and agent task to report sections, geojson layers, metrics, drawings, visual sections, sources, assumptions, and self-check identifiers. `standard_matrix.json` links the design to the call, the open-call taskbook, urban-design requirements, control-plan depth, and land-use classification guidance. `design_depth_matrix.json` records the required depth topics and evidence paths. This gives reviewers a direct route from a claim to an artefact and a direct route from a missing input to its consequence. [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:risk_missing_data]
+
+![Core indicators, evidence links, and recalculation status](assets/figures/metrics-evidence.en.png)
+
+## Risk, Copyright, and Compliance
+
+The main current risk is spatial authority. Provisional site and key-area polygons support design discussion only and must not be mistaken for official boundary, redline, parcel, or statutory-control information. A second risk is false precision: regulatory plot ratio, density, height, setbacks, transport capacity, municipal capacity, ownership, and existing-building condition cannot be inferred safely from the public package. A third risk is service governance: AI scenarios require purpose limitation, data minimisation, consent where applicable, human review, accessibility, and a non-digital fallback. [source:BOUNDARY-SOURCE] [depth:risk_missing_data]
+
+The package contains original diagrams, generated visual compositions, structured geometry, and text created for this submission. It does not embed unlicensed third-party imagery, logos, maps, personal data, or confidential material. Comparative international references are used only to identify operational questions such as research integrity, governance, collaboration, or public-service delivery; they are not presented as endorsements, partnerships, or transplanted local facts. Copyright and display conditions are stated in `report/copyright_statement.md`. [source:VECTOR-INSTITUTE] [source:MILA] [source:ALAN-TURING-INSTITUTE]
+
+Compliance is treated as a continuing process. Before a public presentation, local implementation, or statutory submission, the responsible professional team should confirm organizer data, survey conditions, land and heritage status, transport and municipal requirements, accessibility, fire and safety provisions, environmental obligations, procurement rules, data-protection duties, copyright clearances, and community consultation arrangements. The present package makes these dependencies explicit; it does not claim that any approval, funding, or delivery commitment has been secured. [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+
+## References
+
+Primary project references are the public call announcement and the agent open-call taskbook, registered in `sources.json` as `OFFICIAL-ANNOUNCEMENT` and `AGENT-TASKBOOK`. The machine-readable source registry, processed fact pack, scope summary, task requirements, source-use matrix, and missing-data checklist are supporting navigation materials; they do not replace the original project sources. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
+
+Professional depth is cross-checked against the registered urban-design, control-detailed-planning, and land-use-classification references. Their use here is limited to a transparent design and review framework; specific local controls require confirmation against the relevant current statutory documents and organizer-issued data. [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+
+Comparative references include the public materials of Vector Institute, Mila, The Alan Turing Institute, Seoul AI Hub, AI Singapore, and the UAE AI Office. They inform questions of research support, integrity, ecosystem building, and responsible governance rather than asserting any formal relationship or direct model transfer. Their full URLs, access dates, and permitted use notes should be retained in `sources.json`. [source:SEOUL-AI-HUB] [source:AI-SINGAPORE] [source:UAE-AI-OFFICE]
