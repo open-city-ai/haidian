@@ -1,4 +1,7 @@
 ---
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
 title: "京张智谷：人字形折返治理走廊"
 author_github: "sukikeeling"
 language: "zh"
