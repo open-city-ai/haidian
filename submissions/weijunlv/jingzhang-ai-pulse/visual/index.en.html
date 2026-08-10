@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang AI Pulse - Visualization Dashboard</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","SimHei",Arial,sans-serif;background:#f1f5f9;color:#1e293b;line-height:1.6}
+.container{max-width:1400px;margin:0 auto;padding:20px}
+.header{background:#fff;border-radius:12px;padding:30px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.header h1{font-size:32px;color:#2563eb;margin-bottom:8px}
+.header .subtitle{font-size:16px;color:#64748b}
+.header .badges{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.badge{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+.badge-blue{background:#dbeafe;color:#1e40af}
+.badge-teal{background:#ccfbf1;color:#0f766e}
+.badge-orange{background:#fed7aa;color:#9a3412}
+.badge-green{background:#dcfce7;color:#166534}
+.badge-red{background:#fee2e2;color:#991b1b}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+.card{background:#fff;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.card .label{font-size:13px;color:#64748b;margin-bottom:8px}
+.card .value{font-size:36px;font-weight:700;color:#1e293b}
+.card .unit{font-size:16px;color:#64748b;margin-left:4px}
+.card .source{font-size:11px;color:#94a3b8;margin-top:8px}
+.card-accent{height:4px;border-radius:2px;margin-bottom:12px}
+.section{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+.section h2{font-size:20px;color:#1e293b;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #e2e8f0}
+.section h3{font-size:15px;color:#475569;margin:12px 0 8px}
+.figures-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.figure-box{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden}
+.figure-box img{width:100%;height:auto;display:block}
+.figure-box .caption{padding:8px 12px;font-size:12px;color:#64748b;background:#f8fafc}
+.tasks-table{width:100%;border-collapse:collapse}
+.tasks-table th,.tasks-table td{padding:10px 12px;text-align:left;border-bottom:1px solid #e2e8f0;font-size:13px}
+.tasks-table th{background:#f1f5f9;font-weight:600;color:#475569}
+.tasks-table .status{padding:2px 8px;border-radius:12px;font-size:11px;font-weight:600}
+.status-complete{background:#dcfce7;color:#166534}
+.status-warn{background:#fed7aa;color:#9a3412}
+.scenario-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.scenario-card{background:#f8fafc;border-radius:8px;padding:14px;border-left:3px solid #2563eb}
+.scenario-card h4{font-size:13px;color:#1e293b;margin-bottom:4px}
+.scenario-card .meta{font-size:11px;color:#64748b}
+.scenario-card.test{border-left-color:#d97706}
+.landmark-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.landmark-card{background:#f8fafc;border-radius:8px;padding:14px;text-align:center}
+.landmark-card .icon{font-size:28px;margin-bottom:8px}
+.landmark-card h4{font-size:14px;color:#1e293b;margin-bottom:4px}
+.landmark-card p{font-size:11px;color:#64748b}
+.evidence-list{list-style:none}
+.evidence-list li{padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:13px;display:flex;justify-content:space-between}
+.evidence-list .level{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.info-item{background:#f8fafc;border-radius:8px;padding:14px}
+.info-item .code{font-size:11px;color:#2563eb;font-weight:600;margin-bottom:4px}
+.info-item .name{font-size:13px;color:#1e293b;margin-bottom:2px}
+.info-item .detail{font-size:11px;color:#64748b}
+.update-list{list-style:none}
+.update-list li{padding:8px 0;border-bottom:1px solid #f1f5f9;font-size:13px;display:flex;gap:8px;align-items:flex-start}
+.update-list .phase{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;white-space:nowrap}
+.check-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.check-item{background:#f8fafc;border-radius:8px;padding:14px;display:flex;justify-content:space-between;align-items:center}
+.check-item .name{font-size:13px;color:#1e293b}
+.check-item .result{padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.result-pass{background:#dcfce7;color:#166534}
+.result-warn{background:#fed7aa;color:#9a3412}
+.footer{text-align:center;padding:20px;color:#94a3b8;font-size:12px}
+@media(max-width:768px){.grid{grid-template-columns:repeat(2,1fr)}.figures-grid,.scenario-grid,.landmark-list,.info-grid,.check-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>Jingzhang AI Pulse · 智脉京张</h1>
+<div class="subtitle">Centennial Jingzhang AI Innovation Belt Urban Design | 百年京张AI创新带城市设计方案</div>
+<div class="badges">
+<span class="badge badge-blue">AI Agent: BUBU</span>
+<span class="badge badge-teal">Package: professional_design_package</span>
+<span class="badge badge-orange">Boundary: Provisional</span>
+<span class="badge badge-green">Bilingual: ZH/EN</span>
+<span class="badge badge-red">v1.0</span>
+</div>
+</div>
+
+<!-- Core Metrics / 核心指标 -->
+<div class="grid">
+<div class="card" data-metric="site_area_sqm" data-value="11412825.386"><div class="card-accent" style="background:#2563eb"></div><div class="label">Core Metric · Site Area 核心指标 · 场地面积</div><div class="value">11.41<span class="unit">km²</span></div><div class="source">geometry/site_boundary.geojson</div></div>
+<div class="card" data-metric="green_ratio" data-value="0.123423"><div class="card-accent" style="background:#16a34a"></div><div class="label">Core Metric · Green Ratio 核心指标 · 绿地率</div><div class="value">12.3<span class="unit">%</span></div><div class="source">geometry/green_space.geojson</div></div>
+<div class="card" data-metric="public_space_ratio" data-value="0.073281"><div class="card-accent" style="background:#0d9488"></div><div class="label">Core Metric · Public Space 核心指标 · 公共空间率</div><div class="value">7.3<span class="unit">%</span></div><div class="source">geometry/public_space.geojson</div></div>
+<div class="card"><div class="card-accent" style="background:#d97706"></div><div class="label">Key Areas 重点区域</div><div class="value">3<span class="unit">zones</span></div><div class="source">geometry/key_areas.geojson</div></div>
+</div>
+
+<!-- Overview Map / 总览地图 -->
+<div class="section">
+<h2>Overview Map 总览地图</h2>
+<p style="font-size:13px;color:#64748b;margin-bottom:16px">The overview map combines land use zoning, mobility & slow-traffic, blue-green public space, buildings & renewal projects, and AI scenario nodes in a single evidence-based diagram. Three-level scope (coordinated research area 43.6km², overall design area 11.4km², key detailed design area 368.4ha) and three key areas are annotated.</p>
+<div class="figures-grid">
+<div class="figure-box"><img src="../assets/figures/site-overview.en.png" alt="Site Overview"><div class="caption">Fig.1 Site Overview & Evidence Chain</div></div>
+<div class="figure-box"><img src="../assets/figures/land-use-structure.en.png" alt="Land Use Structure"><div class="caption">Fig.2 Three-Level Scope & Spatial Structure 三层范围与空间工作框架图</div></div>
+</div>
+</div>
+
+<!-- Land Use Zoning / 用地分区 -->
+<div class="section">
+<h2>Land Use Zoning 用地分区</h2>
+<p style="font-size:13px;color:#64748b;margin-bottom:16px">Based on national territorial spatial survey, planning, and use control classification standards, the overall design area is divided into the following zones. All zones are conceptual suggestions subject to formal regulatory planning.</p>
+<div class="info-grid">
+<div class="info-item"><div class="code">0802</div><div class="name">Research Land</div><div class="detail">Brain Valley · Zhongguancun AI Acceleration core</div></div>
+<div class="info-item"><div class="code">05</div><div class="name">Commercial Service Land</div><div class="detail">Bell Quarter · Dazhongsi AI cluster commerce</div></div>
+<div class="info-item"><div class="code">0701</div><div class="name">Urban Residential Land</div><div class="detail">Origin Community · Beijing AI Origin residential</div></div>
+<div class="info-item"><div class="code">1401</div><div class="name">Park Green Space</div><div class="detail">Jingzhang Railway Heritage Park & blue-green space</div></div>
+<div class="info-item"><div class="code">08</div><div class="name">Public Management Land</div><div class="detail">AI governance sandbox & public facilities</div></div>
+<div class="info-item"><div class="code">1207</div><div class="name">Urban Road Land</div><div class="detail">Mobility & slow-traffic system with AI signals</div></div>
+</div>
+</div>
+
+<!-- Buildings / 建筑 -->
+<div class="section">
+<h2>Buildings 建筑</h2>
+<p style="font-size:13px;color:#64748b;margin-bottom:16px">Building proposals distinguish four categories: retention, renovation, renewal, and new construction. Without existing building ownership and regulatory conditions, only method frameworks and calibration checklists are proposed. Total building footprint ~310,800 m² (computed from buildings.geojson).</p>
+<div class="info-grid">
+<div class="info-item"><div class="code">Retain</div><div class="name">Existing Research/Commercial</div><div class="detail">Zhongguancun & Dazhongsi existing carriers, function fine-tuning</div></div>
+<div class="info-item"><div class="code">Renovate</div><div class="name">Industrial Heritage</div><div class="detail">Jingzhang railway warehouses to AI maker spaces</div></div>
+<div class="info-item"><div class="code">Renew</div><div class="name">Old Community Micro-renewal</div><div class="detail">Origin Community ground-floor AI service nodes</div></div>
+<div class="info-item"><div class="code">New Build</div><div class="name">AI Landmarks</div><div class="detail">Pulse Tower, Open Source Honor Wall (pending controls)</div></div>
+<div class="info-item"><div class="code">Pending</div><div class="name">Height Control</div><div class="detail">FAR, height limits, setbacks all missing, need regulatory plan</div></div>
+<div class="info-item"><div class="code">Pending</div><div class="name">Facade Control</div><div class="detail">Jingzhang heritage corridor + AI tech facade overlay suggested</div></div>
+</div>
+</div>
+
+<!-- Renewal Projects / 更新项目 -->
+<div class="section">
+<h2>Renewal Projects 更新项目</h2>
+<p style="font-size:13px;color:#64748b;margin-bottom:16px">Renewal projects proceed in three phases. All spatial proposals are conceptual suggestions, reference schemes, or material for professional teams to deepen — they do not replace formal planning.</p>
+<ul class="update-list">
+<li><span class="phase" style="background:#dbeafe;color:#1e40af">Phase 1 2026-2028</span><span>Jingzhang Railway Heritage Park (North) AI scenario implantation: AR temporal narrative, AI sports park, distributed energy testing</span></li>
+<li><span class="phase" style="background:#dbeafe;color:#1e40af">Phase 1 2026-2028</span><span>Zhongguancun AI Acceleration · research building function fine-tuning: open labs, AI creative workspaces</span></li>
+<li><span class="phase" style="background:#ccfbf1;color:#0f766e">Phase 2 2028-2030</span><span>Dazhongsi AI Cluster · commercial iteration: AI-native retail, AI generative art exhibition</span></li>
+<li><span class="phase" style="background:#ccfbf1;color:#0f766e">Phase 2 2028-2030</span><span>AI Origin Community · old community micro-renewal: AI neighborhood butler, health monitoring, education lab</span></li>
+<li><span class="phase" style="background:#fed7aa;color:#9a3412">Phase 3 2030-2035</span><span>Pulse Tower and surrounding AI landmark cluster (pending regulatory conditions and ownership)</span></li>
+<li><span class="phase" style="background:#fed7aa;color:#9a3412">Phase 3 2030-2035</span><span>District-wide AI urban perception & emergency response system, AI governance sandbox</span></li>
+</ul>
+</div>
+
+<!-- AI Scenarios / AI 场景 -->
+<div class="section">
+<h2>AI Scenarios AI 场景</h2>
+<p style="font-size:13px;color:#64748b;margin-bottom:16px">8 AI scenario cards, including 3 industrial test scenarios (orange border), covering AI+Industry, AI+Community, AI+Tourism, and AI+Governance.</p>
+<div class="scenario-grid">
+<div class="scenario-card test"><h4>AI Signal & Autonomous Driving Test</h4><div class="meta">Brain Valley | Test Scenario</div></div>
+<div class="scenario-card"><h4>AI Community Health Station</h4><div class="meta">Origin Community | AI+Healthcare</div></div>
+<div class="scenario-card test"><h4>AI Personalized Education Lab</h4><div class="meta">Origin Community | Test Scenario</div></div>
+<div class="scenario-card"><h4>AI Native Retail Experience</h4><div class="meta">Bell Quarter | AI+Commerce</div></div>
+<div class="scenario-card"><h4>AI Urban Perception & Emergency</h4><div class="meta">District-wide | AI+Governance</div></div>
+<div class="scenario-card"><h4>AI Creative Workspace</h4><div class="meta">Brain Valley/Bell | AI+Office</div></div>
+<div class="scenario-card test"><h4>AI Distributed Energy Dispatch</h4><div class="meta">Brain Valley | Test Scenario</div></div>
+<div class="scenario-card"><h4>Jingzhang Railway AR Narrative</h4><div class="meta">Heritage Park | AI+Tourism</div></div>
+</div>
+</div>
+
+<!-- Core Figures / 核心图件 -->
+<div class="section">
+<h2>Core Figures 核心图件</h2>
+<div class="figures-grid">
+<div class="figure-box"><img src="../assets/figures/key-areas.en.png" alt="Key Areas"><div class="caption">Fig.3 Three Key Areas Index & Design Tasks 三处重点区域索引与设计任务图</div></div>
+<div class="figure-box"><img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility Blue-Green"><div class="caption">Fig.4 Mobility & Blue-Green System 交通慢行与蓝绿公共空间复合系统图</div></div>
+<div class="figure-box" style="grid-column:span 2"><img src="../assets/figures/metrics-evidence.en.png" alt="Metrics Evidence"><div class="caption">Fig.5 Core Metrics & Evidence Chain 核心指标复算与证据链图</div></div>
+</div>
+</div>
+
+<!-- Task Coverage / 任务覆盖 -->
+<div class="section">
+<h2>Agent Task Coverage 任务覆盖</h2>
+<table class="tasks-table">
+<tr><th>Task ID</th><th>Task Name</th><th>Key Outputs</th><th>Status</th></tr>
+<tr><td>agent.1</td><td>Overall Concept & Functional Coordination</td><td>Naming system, logo direction, three-zone synergy loop</td><td><span class="status status-complete">Complete</span></td></tr>
+<tr><td>agent.2</td><td>AI Innovation Ecosystem Design</td><td>8 global cases, ecosystem map, industry-space mapping</td><td><span class="status status-complete">Complete</span></td></tr>
+<tr><td>agent.3</td><td>AI+ Scenario & Vitality City</td><td>8 scenario cards, 3 test scenarios, 6 user personas</td><td><span class="status status-complete">Complete</span></td></tr>
+<tr><td>agent.4</td><td>AI Public Space & Landmarks</td><td>3 AI pilgrimage landmarks, honor system, public space components</td><td><span class="status status-complete">Complete</span></td></tr>
+<tr><td>agent.5</td><td>Cultural Narrative Design</td><td>Jingzhang+Zhongguancun+AI three-act narrative, wayfinding</td><td><span class="status status-complete">Complete</span></td></tr>
+<tr><td>agent.6</td><td>Global AI Events & Operations</td><td>Annual event system, developer community, investment path</td><td><span class="status status-complete">Complete</span></td></tr>
+</table>
+</div>
+
+<!-- AI Landmarks -->
+<div class="section">
+<h2>AI Pilgrimage Landmarks AI朝圣地标</h2>
+<div class="landmark-list">
+<div class="landmark-card"><div class="icon">📡</div><h4>Pulse Tower 智脉塔</h4><p>Data visualization landmark<br>Conceptual height 45-60m</p></div>
+<div class="landmark-card"><div class="icon">🏗️</div><h4>Zhan Tianyou AI Memorial Plaza</h4><p>Herringbone paving + AI interaction<br>Open plaza design</p></div>
+<div class="landmark-card"><div class="icon">📜</div><h4>Open Source Honor Wall</h4><p>Agent & developer contributions<br>Engraving + digital screen</p></div>
+</div>
+</div>
+
+<!-- Self-Check Status / 自检状态 -->
+<div class="section">
+<h2>Self-Check Status 自检状态</h2>
+<div class="check-grid">
+<div class="check-item"><span class="name">BOUNDARY_TRUST</span><span class="result result-pass">PASS</span></div>
+<div class="check-item"><span class="name">KEY_AREAS_TRUST</span><span class="result result-pass">PASS</span></div>
+<div class="check-item"><span class="name">LAND_USE_TOPOLOGY</span><span class="result result-pass">PASS</span></div>
+<div class="check-item"><span class="name">VISUAL_STATIC</span><span class="result result-pass">PASS</span></div>
+<div class="check-item"><span class="name">PROFESSIONAL_EVIDENCE</span><span class="result result-pass">PASS</span></div>
+<div class="check-item"><span class="name">PLANNING_CONTROLS</span><span class="result result-warn">PENDING</span></div>
+</div>
+<p style="font-size:12px;color:#94a3b8;margin-top:12px">Provisional boundaries are used for AI generation, visualization, and self-check; official redline boundaries must be substituted before professional scoring. Planning controls (FAR, height, density, green ratio, setbacks) are missing and pending formal regulatory plan release.</p>
+</div>
+
+<!-- Sources / 来源 -->
+<div class="section">
+<h2>Sources Evidence Chain & Sources 来源</h2>
+<ul class="evidence-list">
+<li><span>Official Announcement [source:OFFICIAL-ANNOUNCEMENT]</span><span class="level" style="background:#dcfce7;color:#166534">A0 · Formal-ready</span></li>
+<li><span>Agent Taskbook [source:AGENT-TASKBOOK]</span><span class="level" style="background:#dcfce7;color:#166534">Cleared · Formal-ready</span></li>
+<li><span>Provisional Boundary</span><span class="level" style="background:#fed7aa;color:#9a3412">Provisional · Intake only</span></li>
+<li><span>Urban Design Measures [standard:URBAN-DESIGN-MEASURES]</span><span class="level" style="background:#dcfce7;color:#166534">A0 · Formal-ready</span></li>
+<li><span>Regulatory Planning Measures [standard:REGULATORY-PLANNING-MEASURES]</span><span class="level" style="background:#dcfce7;color:#166534">A0 · Formal-ready</span></li>
+<li><span>Land Use Classification [standard:LAND-USE-CLASSIFICATION]</span><span class="level" style="background:#dcfce7;color:#166534">A0 · Formal-ready</span></li>
+<li><span>Planning Controls</span><span class="level" style="background:#fee2e2;color:#991b1b">Missing · Pending</span></li>
+</ul>
+</div>
+
+<!-- Assumptions / 假设 -->
+<div class="section">
+<h2>Key Assumptions 假设</h2>
+<ul class="evidence-list">
+<li><span>A-CONTROLS-001: Planning controls (FAR, height, density, green ratio, setbacks) are all missing</span><span class="level" style="background:#fed7aa;color:#9a3412">Pending</span></li>
+<li><span>A-BOUNDARY-001: Using provisional boundary; recalculation needed after replacing with official polygon</span><span class="level" style="background:#fed7aa;color:#9a3412">Provisional</span></li>
+<li><span>A-SCENARIO-001: All AI scenarios are conceptual; privacy boundaries and human review mechanisms need refinement at implementation</span><span class="level" style="background:#dbeafe;color:#1e40af">Concept</span></li>
+</ul>
+</div>
+
+<div class="footer">
+<p>Jingzhang AI Pulse · 智脉京张 | Agent: BUBU | v1.0</p>
+<p>All spatial proposals are conceptual suggestions for professional teams to deepen. They do not replace formal planning or constitute government approval.</p>
+<p>所有空间落地建议均为概念建议、参考方案或可供专业团队深化研究，不替代正式规划，不构成政府审定结论。</p>
+</div>
+</div>
+</body>
+</html>

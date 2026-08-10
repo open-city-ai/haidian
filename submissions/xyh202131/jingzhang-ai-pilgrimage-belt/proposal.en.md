@@ -312,6 +312,18 @@ To make those existing requirements handoff-ready, `readiness-closure-contract.j
 
 `implementation-handoff-matrix.json` then crosswalks those 11 items to all 12 existing preregistration scenes. Each item resolves to the current `PHASE-1`, spatial objects, a closure record, and seven handoff packs that collectively cover all nine closure categories; every scene resolves to at least one existing project or protocol. Documentation destinations are now mapped for 12/12 scenes, but all 99 stable real-world evidence IDs still have no submitted artifacts, while approved items, operating items, field tests, known real-world results, and GO decisions remain at 0. This strengthens professional transfer without upgrading implementation maturity [data:visual/assets/implementation-handoff-matrix.json#JZ-IMPLEMENTATION-HANDOFF-V1].
 
+A professional team therefore does not need to reinterpret all 99 slots. It submits real-world evidence through seven existing handoff packs. One artifact may enter more than one review packet, but the NO-GO decision changes only when the corresponding nine closure records are completed one by one:
+
+| Handoff pack | Required real-world material | Closure object | Current state |
+|---|---|---|---|
+| H01 Authority and stop chain | Real accountable-party acceptance, operating-party acceptance, and a reachable stop chain with shift coverage | Role acceptance | Not submitted / NO-GO |
+| H02 Approval and scope | Approval register, approved site and time window, conditions, and expiry | Approval scope | Not submitted / NO-GO |
+| H03 Site and ordinary-use baseline | Dated site survey, ordinary-use baseline, and same-task non-AI comparator | Site/window baseline | Not submitted / NO-GO |
+| H04 Data and safety | Prohibited-data control, minimum-data inventory, and incident/retention procedure | Prohibited-data control | Not submitted / NO-GO |
+| H05 Stop and recovery | Physical or procedural stop test, named restart authority, and rehearsed restoration/acceptance record | Stop authority + recovery rehearsal | Not submitted / NO-GO |
+| H06 Public parity | Community co-test, same-task non-AI parity comparison, and appeal/withdrawal record | Community co-test | Not submitted / NO-GO |
+| H07 Retest and decision | Independent retest package, versioned finding register, and signed go/no-go minute | Independent retest + final decision | Not submitted / NO-GO |
+
 Phasing uses “year window + evidence gate”; a date never automatically grants eligibility to enter the next phase [data:geometry/phasing.geojson#PHASE-1] [metric:phase_count] [depth:phasing_implementation]:
 
 | Window | Status | Admission gate | Graduation gate | Rollback |
@@ -374,7 +386,7 @@ These indicators prove only “what has been designed” in the submission packa
 
 All area ratios using the provisional boundary as their denominator have `low` confidence. Counts of design objects and attribute-completeness rates may have `high` confidence. Route lengths and massing areas have `medium` conceptual-design confidence or `low` confidence where affected by the boundary. Floor area ratio, total floor area, building density, average height, road area and road ratio, parking supply, measured recovery time, and energy per effective service remain pending until statutory material or controlled-test evidence is available; massing-prototype coverage and road centerlines are not substitutes [metric:building_density] [metric:road_ratio]. The fixed evidence chain is “public source / explicit assumption → GeoJSON → EPSG:4548 recalculation or attribute count → `metrics.json` → text / drawings / HTML → machine self-check → human professional judgment” [depth:metrics_recalculation].
 
-`compliance_matrix.json` no longer makes 23 tasks share the same evidence bundle. agent.1 points to branding and the three-zone/two-wing structure; agent.2 to the cases and industrial state machine; agent.3 to scenario passports and test protocols; agent.4 to nine public spaces, three landmarks, and the component library; agent.5 to trustworthy narrative and synthetic-content labeling; and agent.6 to four-season operations and the transformation funnel. Announcement tasks are also mapped separately to the relevant chapter, layer, metric, source, assumption, and self-check. `standard_matrix.json` and `design_depth_matrix.json` likewise assign genuine evidence by professional question instead of using a batch-copied summary.
+`compliance_matrix.json` maps all 23 tasks to task-specific prose, Features, metrics, sources, assumptions, and checks. `standard_matrix.json` and `design_depth_matrix.json` apply the same item-level evidence allocation to professional requirements; none uses a duplicated generic evidence bundle.
 
 ![From field coverage to evidence maturity](assets/figures/metrics-evidence.en.png)
 
@@ -391,6 +403,18 @@ All area ratios using the provisional boundary as their denominator have `low` c
 - Operations and equity risk: Event popularity cannot replace resident satisfaction, accessibility, fairness, or complaint closure. Recognition for contributions must not be used for traffic rankings, employment screening, or administrative evaluation.
 - Tool and evidence risk: Machine checks verify only structure, topology, references, and consistency. They do not replace professional judgment in planning, architecture, transport, municipal engineering, landscape, ecology, fire safety, railway safety, data security, accessibility, community engagement, or law [depth:risk_missing_data].
 - Public-reporting versus field-condition risk: This Firecrawl desk-research pass preserves public-page sources, dates, summaries, and content digests for citation and design judgment only. It did not conduct a site visit, review as-built drawings, or audit facility operations. Every claim involving exact location, built condition, intensity of use, or accessibility performance requires field verification before G1 [data:visual/assets/site-grounding-register.json#SG-001].
+
+The rights matrix strictly separates “reviewable inside the repository” from “cleared for public or professional reuse.” Only disclosed repository review is currently allowed; a PR, machine PASS, or publicly visible file never releases any other use automatically:
+
+| Use context | Current decision | Missing evidence |
+|---|---|---|
+| Repository validation, Issues, and PR review | Disclosed review only | No additional licence; author, tool, source, and provisional-boundary disclosures must remain |
+| Organizer use or modification within this Jing-Zhang project | Needs confirmation | Clause applicability and third-party authorization audit |
+| Organizer printing, publication, exhibition, or promotion | Needs confirmation | Clause applicability, attribution form, and release audit |
+| Entrant external media, publication, or exhibition | Blocked | Written consent, complete licence terms, and independent file-level audit |
+| Reuse in another design project | Blocked | Authoritative rights decision or new project-specific authorization |
+| Translation, derivative editing, or professional deepening | Blocked pending scope confirmation | Derivative/professional-use authorization and complete editable-source inventory |
+| Release of OSM, fonts, logo, software, or generated assets | Blocked pending component audit | ODbL, font-embedding, trademark, and tool-output terms audit |
 
 All current AI scenarios are in G0 conceptual status. The eight projects and four-season events are proposals: they are not approved, built, or operating, and no organization has committed to them. Entry to a higher operating gate may be discussed only after statutory approval, responsible entities, professional review, public participation, funding and operations, and incident response are all defined.
 

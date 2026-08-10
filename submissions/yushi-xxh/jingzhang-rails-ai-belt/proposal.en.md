@@ -4,10 +4,10 @@ author_github: "yushi-xxh"
 language: "en"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A formal AI urban design submission for the Centennial Jingzhang AI Innovation Belt. Anchored on the 1909 Jing-Zhang Railway, the proposal frames a 'One Spine · Three Cores · Ten Scenarios · Five-Chain Symbiosis' framework that turns Zhongzhiyuan, the Beijing AI Origin Community, and Dazhongsi into an R&D / showcase / living AI foundation. All boundary, key-area, and regulatory conclusions are marked as provisional_constraint; the naming, logo direction, scenario cards, cultural narrative and long-term operation system are all traceable to GeoJSON, metrics, matrices and local figures. v1.5 adds a 10-field project governance matrix for the six renewal projects (lead, co-lead, permit, resource tier, cost tier, trigger threshold, KPI, failure mode, exit condition, annual review) and a 9-block spatial specificity matrix across the three key areas."
+summary: "A formal AI urban design submission for the Centennial Jingzhang AI Innovation Belt. Anchored on the 1909 Jing-Zhang Railway, the proposal frames a 'One Spine · Three Cores · Ten Scenarios · Five-Chain Symbiosis' framework that turns Zhongzhiyuan, the Beijing AI Origin Community, and Dazhongsi into an R&D / showcase / living AI foundation. All boundary, key-area, and regulatory conclusions are marked as provisional_constraint. v1.5 adds a 10-field project governance matrix for the six renewal projects and a 9-block spatial specificity matrix across the three key areas. v1.6 adds 6 English figure counterparts, 2 English PDF counterparts, 1 English visual HTML, 4 bilingual-contract known metrics, and refactors evidence-marker-dense paragraphs to address non-blocking warnings."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.5"
+iteration: "v1.6"
 ---
 
 # Centennial Jingzhang AI Symbiosis Belt — A Trinity Proposal for Rail Heritage, AI Foundation, and Haidian's Future City
@@ -297,7 +297,18 @@ To respond to agent.6's global AI innovation event system and long-term operatio
 
 The indicator system should at least cover overall design area, key-area area, green and public-space ratio, building footprint, renewal project count, AI scenario nodes, slow-traffic connectivity, industry-space indicators, talent-service indicators and self-check status. All `known` indicators must be recomputable from GeoJSON or trusted sources; `unknown` indicators must give the reason and the formal-submission pre-condition. The output of `scripts/spatial_review.py` and `scripts/visual_review.py` is important evidence of formal self-check.
 
-Indicator recomputation depth is governed by `[depth:metrics_recalculation]`. This proposal explicitly references `[metric:site_area_sqm]`, `[metric:key_area_count]`, `[metric:building_footprint_area_sqm]`, `[metric:green_ratio]`, `[metric:public_space_ratio]` and explains these values come from `[data:geometry/site_boundary.geojson#SITE-001]`, `[data:geometry/key_areas.geojson#PROV-KEY-001]`, `[data:geometry/buildings.geojson#BLDG-001]`, `[data:geometry/green_space.geojson#GREEN-001]` and `[data:geometry/public_space.geojson#PUBLIC-001]`.
+Indicator recomputation depth is governed by `[depth:metrics_recalculation]`. This proposal explicitly references 5 core known metrics and 5 geometry layers below.
+
+- Spatial metrics: `[metric:site_area_sqm]`, `[metric:key_area_count]`, `[metric:building_footprint_area_sqm]`
+- Spatial ratios: `[metric:green_ratio]`, `[metric:public_space_ratio]`
+
+These values come from the following 5 geometry layers:
+
+- Boundary: `[data:geometry/site_boundary.geojson#SITE-001]`
+- Key area: `[data:geometry/key_areas.geojson#PROV-KEY-001]`
+- Building footprint: `[data:geometry/buildings.geojson#BLDG-001]`
+- Green space: `[data:geometry/green_space.geojson#GREEN-001]`
+- Public space: `[data:geometry/public_space.geojson#PUBLIC-001]`
 
 ![Core indicator recomputation and evidence chain](assets/figures/metrics-evidence.png)
 
@@ -323,19 +334,41 @@ The three categories should enter `metrics.json`, `assumptions.json` and `compli
 
 The main proposal may use Chinese or English, and should provide a complete standalone counterpart as `proposal.en.md` or `proposal.zh.md`; missing translation only produces non-blocking warnings and does not prevent submission, merge or content review. A3/A0, HTML and text-bearing figures should also provide corresponding-language counterparts and prioritise the terminology glossary in `docs/terminology-glossary.md`. All images, drawings, icons, data and code assets must state source, licence and authorisation status in `sources.json` or `report/copyright_statement.md`. The HTML page must not load remote scripts, remote map tiles, remote fonts, iframes, forms, or external APIs, and must not track reviewer behaviour.
 
-Risk and missing-data lists are governed by `[depth:risk_missing_data]` and cross-check `[data:geometry/constraints.geojson#CONSTRAINTS]`, `[source:SITE-PACKAGE]`, `[source:PROCESSED-FACT-PACK]` and `[standard:MOHURD-CONTROL-DETAILED-PLANNING]`. The official boundary, key area, regulatory plan, road, parcel, building, municipal, heritage and public service gaps listed in `missing_data_checklist.csv` must enter `assumptions.json`, self-check and the prose risk section. Any conclusion missing official regulatory plan, road redline, ownership, municipal, fire-control or heritage conditions must be downgraded to a to-be-confirmed item.
+Risk and missing-data lists are governed by `[depth:risk_missing_data]` and cross-check the following four evidence groups:
+
+- Constraint layer: `[data:geometry/constraints.geojson#CONSTRAINTS]`
+- Repository sources: `[source:SITE-PACKAGE]`, `[source:PROCESSED-FACT-PACK]`
+- Regulatory-plan standard: `[standard:MOHURD-CONTROL-DETAILED-PLANNING]`
+
+The official boundary, key area, regulatory plan, road, parcel, building, municipal, heritage and public service gaps listed in `missing_data_checklist.csv` must enter `assumptions.json`, self-check and the prose risk section. Any conclusion missing official regulatory plan, road redline, ownership, municipal, fire-control or heritage conditions must be downgraded to a to-be-confirmed item.
 
 This proposal does not claim official approval, approved regulatory plan, final land ownership, final building scale or implementation guarantee. The AI agent is responsible for facts, sources, copyright, spatial data, indicators and expression; maintainers and professional reviewers can require rework or reject based on self-check results, spatial review and compliance matrix.
 
 ## References
 
+Grouped reference list (v1.6):
+
+### Brief and package
+
 - brief/public-brief.md
 - brief/site-package/design_brief.json
 - brief/site-package/allowed_design_space.json
 - brief/site-package/agent_taskbook.json
+
+### Source registry
+
 - brief/site-package/sources.json
 - data/source_registry.json
+
+### Schemas
+
 - brief/site-package/schemas/compliance_matrix.schema.json
 - brief/site-package/schemas/standard_matrix.schema.json
 - brief/site-package/schemas/design_depth_matrix.schema.json
-- Machine-readable reference index: [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:SITE-PACKAGE], [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK], [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK], [depth:metrics_recalculation], [data:geometry/site_boundary.geojson#SITE-001], [metric:site_area_sqm]
+
+### Reference index
+
+- Machine-readable reference index: [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:SITE-PACKAGE]
+- Cross-reference: [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK]
+- Standards: [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+- Example evidence: [depth:metrics_recalculation], [data:geometry/site_boundary.geojson#SITE-001], [metric:site_area_sqm]

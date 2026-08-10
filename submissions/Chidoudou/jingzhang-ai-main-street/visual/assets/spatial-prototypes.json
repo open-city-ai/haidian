@@ -1,0 +1,572 @@
+{
+  "schema_version": "1.0.0",
+  "status": "conceptual_not_authorized",
+  "title_zh": "京张上街 v2.2：三处首发100米与一套可逆构件",
+  "title_en": "Jing-Zhang AI MAIN STREET v2.2: three first-use 100-m studies and one reversible kit",
+  "boundary_note_zh": "每处均为代表性的100米概念研究窗口，不是官方片区边界、道路红线、实测总平面、工程尺寸、投资或实施承诺；须在正式数据、权属、遗产、交通、消防、市政、运营授权与专业审查后深化。",
+  "boundary_note_en": "Each is a representative 100-m concept study window, not an official area boundary, road line, surveyed plan, engineering dimension, investment or delivery commitment. It requires official data, ownership, heritage, transport, fire, utility, operating-authority and professional review before development.",
+  "palette": {
+    "public_base": "#0B1733",
+    "prove": "#58D9C0",
+    "translate": "#FFD166",
+    "first_use": "#FF9855",
+    "pause": "#FF668C",
+    "paper": "#F4F0E7"
+  },
+  "components": [
+    {
+      "id": "C1",
+      "title_zh": "街票与低亮状态板",
+      "title_en": "Street Pass and low-light status board",
+      "function_zh": "现场显示用途、状态、责任角色、非AI入口、暂停或退场原因。",
+      "function_en": "Shows purpose, status, accountable roles, the non-AI entry and reasons for pause or exit on site.",
+      "ai_off_zh": "保留普通导视、人工服务时间和申诉入口。",
+      "ai_off_en": "Keeps ordinary wayfinding, staffed hours and appeal access."
+    },
+    {
+      "id": "C2",
+      "title_zh": "人工窗与纸面台",
+      "title_en": "Human desk and paper counter",
+      "function_zh": "提供需求拆解、人工说明、复核、申诉和纸面等价服务。",
+      "function_en": "Provides need framing, human explanation, review, appeal and an equivalent paper service.",
+      "ai_off_zh": "继续作为普通咨询与社区服务台。",
+      "ai_off_en": "Continues as an ordinary information and community-service desk."
+    },
+    {
+      "id": "C3",
+      "title_zh": "双高可达台与实体地图",
+      "title_en": "Dual-height accessible counter and physical map",
+      "function_zh": "让轮椅使用者、儿童、长者和无智能设备者完成同一流程。",
+      "function_en": "Lets wheelchair users, children, older people and people without smart devices complete the same process.",
+      "ai_off_zh": "保留无App导向、等候和纸面办理。",
+      "ai_off_en": "Keeps no-app wayfinding, waiting and paper handling."
+    },
+    {
+      "id": "C4",
+      "title_zh": "可逆试验口袋",
+      "title_en": "Reversible test pocket",
+      "function_zh": "用可移动桌、软隔离、地贴和限定电源承载短时试验。",
+      "function_en": "Holds time-limited trials with movable tables, soft barriers, floor marks and bounded power.",
+      "ai_off_zh": "恢复为休息、共读、店前经营或普通活动面。",
+      "ai_off_en": "Returns to seating, shared reading, ordinary shopfront use or everyday activity."
+    },
+    {
+      "id": "C5",
+      "title_zh": "急停、断电与检修柜",
+      "title_en": "Emergency-stop, power-off and maintenance cabinet",
+      "function_zh": "把人工接管、停机、工具和检修责任放在现场可见处。",
+      "function_en": "Makes human takeover, shutdown, tools and maintenance responsibility visible on site.",
+      "ai_off_zh": "转为普通公共设施检修与储物点。",
+      "ai_off_en": "Becomes an ordinary public-facility maintenance and storage point."
+    },
+    {
+      "id": "C6",
+      "title_zh": "退出与恢复车",
+      "title_en": "Exit-and-recovery cart",
+      "function_zh": "收纳试验物件、纸面替代材料与普通空间恢复清单。",
+      "function_en": "Stores trial objects, paper alternatives and the ordinary-space restoration checklist.",
+      "ai_off_zh": "公开退场原因、恢复检查和删除/撤回回执。",
+      "ai_off_en": "Publishes the exit reason, restoration check and deletion or withdrawal receipt."
+    }
+  ],
+  "prototypes": [
+    {
+      "id": "PROTOTYPE-ZZY-100M",
+      "area_ref": "geometry/key_areas.geojson#PROV-KEY-001",
+      "gate": "PROVE",
+      "name_zh": "众智园验证庭",
+      "name_en": "Zhongzhiyuan Garden Validation Yard",
+      "question_zh": "能否在不挤占普通通行的前提下安全工作？",
+      "question_en": "Can it work safely without displacing ordinary movement?",
+      "accent": "#58D9C0",
+      "rendering": "assets/renderings/zhongzhiyuan-prove-v22.jpg",
+      "evidence_refs": [
+        "visual/assets/pilot-matrix.json#PILOT-EMBODIED-01",
+        "geometry/public_space.geojson#SCN-04",
+        "visual/assets/first-use-rights.json#R3",
+        "visual/assets/first-use-rights.json#R4",
+        "visual/assets/first-use-rights.json#R7"
+      ],
+      "plan_sequence_zh": [
+        "连续树荫与无障碍日常底板",
+        "C1状态板与C2安全员窗",
+        "观察廊与可坐边界",
+        "C4软隔离低速验证环",
+        "C5后场急停/检修",
+        "C6撤场收纳与恢复面"
+      ],
+      "plan_sequence_en": [
+        "Continuous shaded accessible everyday base",
+        "C1 status board and C2 safety desk",
+        "Observation porch and sittable edge",
+        "C4 soft-bounded low-speed validation loop",
+        "C5 rear emergency stop and maintenance",
+        "C6 exit storage and restored surface"
+      ],
+      "flows": {
+        "public_zh": "行人、轮椅与骑行者沿公共底板直行，不穿越验证环。",
+        "public_en": "Pedestrians, wheelchair users and cyclists continue on the public base without crossing the loop.",
+        "service_zh": "设备只在环内闭合运行；维护从后场进入C5。",
+        "service_en": "Equipment circulates only inside the loop; maintenance reaches C5 from the rear.",
+        "failure_zh": "故障时设备沿最短回收线进入C6，公共流线保持连续。",
+        "failure_en": "On failure, equipment follows the shortest recovery route to C6 while public movement remains continuous."
+      },
+      "states": [
+        {
+          "id": "daily",
+          "zh": "日常：花园步行、观察、休憩；验证设备收纳。",
+          "en": "DAILY: garden walking, observation and rest; test equipment is stored."
+        },
+        {
+          "id": "test",
+          "zh": "试验：限定时段、围栏内、现场安全员可见的低速运行。",
+          "en": "TEST: low-speed operation within a bounded window and the visible reach of a safety steward."
+        },
+        {
+          "id": "failure",
+          "zh": "故障：实体急停、状态转粉、人工引导保持外侧通行。",
+          "en": "FAILURE: physical stop, pink status and human guidance keep the outside route open."
+        },
+        {
+          "id": "exit",
+          "zh": "退场：设备与围栏入C6，恢复树荫、座椅与普通活动。",
+          "en": "EXIT: equipment and barriers return to C6; shade, seating and ordinary activity are restored."
+        }
+      ],
+      "stop_conditions_zh": [
+        "设备越出地理围栏",
+        "人工接管超时",
+        "无障碍通道被阻断",
+        "碰撞或近失未报告",
+        "无法撤除设备恢复通行"
+      ],
+      "stop_conditions_en": [
+        "Equipment leaves the geo-fence",
+        "Human takeover times out",
+        "The accessible route is blocked",
+        "A collision or near miss is not reported",
+        "Equipment cannot be removed to restore movement"
+      ],
+      "ai_off_zh": "一处完整的花园、观察廊和安全咨询点。",
+      "ai_off_en": "A complete garden, observation porch and safety-information point."
+    },
+    {
+      "id": "PROTOTYPE-ORIGIN-100M",
+      "area_ref": "geometry/key_areas.geojson#PROV-KEY-002",
+      "gate": "TRANSLATE",
+      "name_zh": "AI原点转译街屋与廊院",
+      "name_en": "AI Origin Translation Street House and Courtyard",
+      "question_zh": "普通人能否理解、拒绝、修正并安全采用？",
+      "question_en": "Can ordinary people understand, refuse, correct and safely adopt it?",
+      "accent": "#FFD166",
+      "rendering": "assets/renderings/ai-origin-translate-v22.jpg",
+      "evidence_refs": [
+        "visual/assets/pilot-matrix.json#PILOT-PUBLIC-01",
+        "visual/assets/pilot-matrix.json#PILOT-INDUSTRY-01",
+        "geometry/public_space.geojson#SCN-01",
+        "geometry/public_space.geojson#SCN-02",
+        "visual/assets/first-use-rights.json#R5"
+      ],
+      "plan_sequence_zh": [
+        "沿街无App入口与C1状态板",
+        "C2人工需求拆解窗",
+        "C3模型卡墙与实体服务图",
+        "共测廊、C4移动桌与社区院",
+        "待授权敏感信息静室",
+        "C6普通社区服务出口"
+      ],
+      "plan_sequence_en": [
+        "No-app street entry and C1 status board",
+        "C2 human need-framing desk",
+        "C3 model-card wall and physical service map",
+        "Co-test porch, C4 movable tables and community yard",
+        "Sensitive-information quiet room pending authority",
+        "C6 exit to ordinary community service"
+      ],
+      "flows": {
+        "public_zh": "居民、人才与访客可沿街—廊—院环行，不经过静室。",
+        "public_en": "Residents, talent and visitors can loop from street to porch to yard without entering the quiet room.",
+        "service_zh": "问题从人工窗进入共测，结果以普通语言和纸面卡返回。",
+        "service_en": "Questions enter through the human desk and return from co-testing as plain-language paper cards.",
+        "failure_zh": "撤回与申诉直接返回C2，数字服务停止而人工流程继续。",
+        "failure_en": "Withdrawal and appeal return directly to C2; digital service stops while the human route continues."
+      },
+      "states": [
+        {
+          "id": "daily",
+          "zh": "日常：咨询、共读、休息与社区活动；共测桌收纳。",
+          "en": "DAILY: information, shared reading, rest and community activity; co-test tables are stored."
+        },
+        {
+          "id": "test",
+          "zh": "试验：预约小样本共测，目的、限制和人工责任现场公开。",
+          "en": "TEST: booked small-sample co-testing with purpose, limits and human responsibility published on site."
+        },
+        {
+          "id": "failure",
+          "zh": "故障：停止对话与屏幕，转入纸面/人工服务和更正流程。",
+          "en": "FAILURE: dialogue and screens stop; paper/human service and correction take over."
+        },
+        {
+          "id": "exit",
+          "zh": "退场：C4回收，模型卡、人工咨询和院落活动持续。",
+          "en": "EXIT: C4 is removed while model cards, human information and courtyard activity continue."
+        }
+      ],
+      "stop_conditions_zh": [
+        "不能用普通语言说明用途、局限、责任与撤回",
+        "没有人工解释或等价服务",
+        "强制使用AI或持续身份追踪",
+        "撤回后仍处理数据",
+        "无障碍主链中断"
+      ],
+      "stop_conditions_en": [
+        "Purpose, limits, responsibility and withdrawal cannot be explained in plain language",
+        "No human explanation or equivalent service",
+        "AI is forced or identity is continuously tracked",
+        "Data processing continues after withdrawal",
+        "The accessible main route is interrupted"
+      ],
+      "ai_off_zh": "一处人才与居民共享的咨询、共读、休息和社区院落。",
+      "ai_off_en": "A shared information, reading, resting and community courtyard for residents and talent."
+    },
+    {
+      "id": "PROTOTYPE-DZS-100M",
+      "area_ref": "geometry/key_areas.geojson#PROV-KEY-003",
+      "gate": "FIRST USE",
+      "name_zh": "大钟寺首用市集与站前角",
+      "name_en": "Dazhongsi First-use Market and Station Corner",
+      "question_zh": "真实小微组织能否持续使用、纠错并退出？",
+      "question_en": "Can a real small organisation keep using, correcting and exiting it?",
+      "accent": "#FF9855",
+      "rendering": "assets/renderings/dazhongsi-first-use-v22.jpg",
+      "evidence_refs": [
+        "visual/assets/pilot-matrix.json#PILOT-INDUSTRY-01",
+        "geometry/public_space.geojson#SCN-03",
+        "geometry/public_space.geojson#SCN-09",
+        "geometry/public_space.geojson#SCN-10",
+        "visual/assets/first-use-rights.json#R7"
+      ],
+      "plan_sequence_zh": [
+        "站点方向连续步行与等候底板",
+        "C1状态板与C2人工台",
+        "C3纸面需求/非AI经营模板",
+        "C4小店、多语内容与维修轮换桌",
+        "商户确认、删除与撤回窗",
+        "C5轻维护柜与C6退场车"
+      ],
+      "plan_sequence_en": [
+        "Continuous walking and waiting base toward transit",
+        "C1 status board and C2 human desk",
+        "C3 paper need/non-AI business templates",
+        "C4 rotating shop, multilingual-content and repair tables",
+        "Merchant confirmation, deletion and withdrawal window",
+        "C5 light-maintenance cabinet and C6 exit cart"
+      ],
+      "flows": {
+        "public_zh": "通勤、购物与无障碍主线直行，不穿越试用桌。",
+        "public_en": "Commuting, shopping and accessible movement continues straight without crossing trial tables.",
+        "service_zh": "商户问题经人工拆解、限时试用、最终确认后返回经营。",
+        "service_en": "A merchant question passes through human framing, time-limited use and final confirmation before returning to business.",
+        "failure_zh": "撤回直达删除回执，桌面断电，普通经营模板立即接管。",
+        "failure_en": "Withdrawal leads directly to a deletion receipt; tables power off and the ordinary business template takes over."
+      },
+      "states": [
+        {
+          "id": "daily",
+          "zh": "日常：通勤、坐等、店前经营、人工与纸面服务。",
+          "en": "DAILY: commuting, waiting, shopfront trade and human/paper service."
+        },
+        {
+          "id": "test",
+          "zh": "试验：限定时段、商户和工作人员共同确认的可选首用。",
+          "en": "TEST: optional first use in a defined window, co-confirmed by the merchant and staff."
+        },
+        {
+          "id": "failure",
+          "zh": "故障：状态转粉、桌面断电、纸面经营模板接管。",
+          "en": "FAILURE: status turns pink, tables power off and paper business templates take over."
+        },
+        {
+          "id": "exit",
+          "zh": "退场：试用桌收纳，保留经营、等候、维修与人工多语服务。",
+          "en": "EXIT: trial tables are stored; trade, waiting, repair and human multilingual service remain."
+        }
+      ],
+      "stop_conditions_zh": [
+        "要求上传顾客身份",
+        "形成差别定价或歧视",
+        "建议无法解释或商户不同意",
+        "删除/撤回没有回执",
+        "试用阻断可达通行"
+      ],
+      "stop_conditions_en": [
+        "Customer identity must be uploaded",
+        "Differential pricing or discrimination occurs",
+        "Advice cannot be explained or the merchant does not agree",
+        "Deletion/withdrawal has no receipt",
+        "The trial blocks accessible movement"
+      ],
+      "ai_off_zh": "一处可经营、等候、维修、会面和获得人工多语服务的普通店前空间。",
+      "ai_off_en": "An ordinary shopfront for trade, waiting, repair, meeting and human multilingual service."
+    }
+  ],
+  "journey": {
+    "id": "JOURNEY-COMPOSITE-LIN-LAN",
+    "persona_zh": "林岚：合成、非识别性角色；大钟寺小店经营者兼照护者",
+    "persona_en": "Lin Lan: a composite, non-identifying shopkeeper and caregiver in Dazhongsi",
+    "problem_zh": "希望改善多语商品说明与无障碍到店信息，不上传顾客身份。",
+    "problem_en": "Wants better multilingual product information and accessible arrival guidance without uploading customer identity.",
+    "steps": [
+      {
+        "time": "07:30",
+        "gate": "PUBLIC BASE",
+        "title_zh": "遗址公园先保证普通到达",
+        "title_en": "The heritage park first guarantees ordinary arrival",
+        "result_zh": "无App导向、遮荫座椅、实体地图与人工求助先成立。",
+        "result_en": "No-app wayfinding, shaded seating, a physical map and human help work first."
+      },
+      {
+        "time": "09:30",
+        "gate": "PROVE",
+        "title_zh": "众智园决定能不能试",
+        "title_en": "Zhongzhiyuan decides whether it may be tested",
+        "result_zh": "范围、急停、近失和撤场线清楚；失败也是有效结果。",
+        "result_en": "Boundary, emergency stop, near miss and exit route are clear; failure is a valid result."
+      },
+      {
+        "time": "12:30",
+        "gate": "TRANSLATE",
+        "title_zh": "原点社区决定能不能听懂",
+        "title_en": "AI Origin decides whether people can understand it",
+        "result_zh": "林岚能复述用途、局限、人工责任和撤回方法才盖章。",
+        "result_en": "The stamp is given only if Lin can restate purpose, limits, human responsibility and withdrawal."
+      },
+      {
+        "time": "16:30",
+        "gate": "FIRST USE",
+        "title_zh": "大钟寺决定能不能真实采用",
+        "title_en": "Dazhongsi decides whether it can be adopted in real use",
+        "result_zh": "限时、脱敏、人工在场；店主确认、删除回执和非AI模板齐全。",
+        "result_en": "Time-limited, minimised and staffed; merchant confirmation, deletion receipt and non-AI template are complete."
+      },
+      {
+        "time": "20:00",
+        "gate": "FEEDBACK",
+        "title_zh": "公众决定扩展、暂停还是退场",
+        "title_en": "The public decides expansion, pause or exit",
+        "result_zh": "成功、暂停和失败同权记录；桌子撤走后普通经营继续。",
+        "result_en": "Success, pause and failure are recorded equally; ordinary trade continues after tables leave."
+      }
+    ]
+  },
+  "co_review": {
+    "roles": [
+      {
+        "id": "affected_users",
+        "zh": "受影响使用者（含长者、残障者、商户）",
+        "en": "Affected users, including older and disabled people and merchants"
+      },
+      {
+        "id": "maintainers",
+        "zh": "现场维护者",
+        "en": "On-site maintainers"
+      },
+      {
+        "id": "professional_reviewers",
+        "zh": "专业复核者",
+        "en": "Professional reviewers"
+      },
+      {
+        "id": "accountable_operator",
+        "zh": "可被授权的运营责任人",
+        "en": "Potentially authorised accountable operator"
+      }
+    ],
+    "rule_zh": "任何一方均可提出暂停；扩展不得由提案者或运营者单独决定。",
+    "rule_en": "Any party may request a pause; expansion cannot be decided by the proposer or operator alone.",
+    "evidence_cards": [
+      {
+        "id": "access",
+        "zh": "可达：无App路线与人工援助是否可用",
+        "en": "Access: whether the no-app route and human help work"
+      },
+      {
+        "id": "understanding",
+        "zh": "可理解：能否复述边界、责任与退出",
+        "en": "Understanding: whether limits, responsibility and exit can be restated"
+      },
+      {
+        "id": "safety_maintenance",
+        "zh": "安全维护：急停、近失关闭与普通空间复原",
+        "en": "Safety and maintenance: stop, near-miss closure and ordinary-space restoration"
+      },
+      {
+        "id": "fair_value",
+        "zh": "公平收益：问题来源、回流、申诉、纠正与删除回执",
+        "en": "Fair value: problem origin, return, appeal, correction and deletion receipt"
+      }
+    ]
+  },
+  "delivery_horizons": [
+    {
+      "id": "H1",
+      "label_zh": "0–6月｜可逆原型",
+      "label_en": "0–6 months | reversible prototypes",
+      "boundary_zh": "概念成熟序列，不是获批工期。",
+      "boundary_en": "A conceptual maturity sequence, not an approved programme."
+    },
+    {
+      "id": "H2",
+      "label_zh": "6–18月｜证据后复制",
+      "label_en": "6–18 months | evidence-gated replication",
+      "boundary_zh": "只有使用者、维护者与专业复核共同通过才扩展。",
+      "boundary_en": "Expansion follows only joint user, maintainer and professional review."
+    },
+    {
+      "id": "H3",
+      "label_zh": "18–36月｜网络与年度复盘",
+      "label_en": "18–36 months | network and annual review",
+      "boundary_zh": "每个新点位重新授权，不以一次试点替代。",
+      "boundary_en": "Every new site is authorised again; one pilot does not authorise the network."
+    }
+  ],
+  "action_packages": [
+    {
+      "id": "SP-01",
+      "title_zh": "上街票与状态板",
+      "title_en": "Street Pass and status board",
+      "h1_zh": "纸质票、人工台、停机演练",
+      "h1_en": "Paper pass, human desk, shutdown drill",
+      "h2_zh": "统一状态字段与申诉回执",
+      "h2_en": "Shared status fields and appeal receipt",
+      "h3_zh": "跨节点版本账本",
+      "h3_en": "Cross-node version ledger",
+      "gate_zh": "无现场人、非AI路线或停机演练则不启用",
+      "gate_en": "No launch without on-site staff, a non-AI route and a shutdown drill"
+    },
+    {
+      "id": "SP-02",
+      "title_zh": "众智园验证庭",
+      "title_en": "Zhongzhiyuan Validation Yard",
+      "h1_zh": "封闭/物理隔离口袋",
+      "h1_en": "Closed or physically bounded pocket",
+      "h2_zh": "安全数据通过后的可控环",
+      "h2_en": "Controlled loop after safety evidence",
+      "h3_zh": "独立复核后复制",
+      "h3_en": "Replication after independent review",
+      "gate_zh": "近失闭环、接管与撤场复原",
+      "gate_en": "Near-miss closure, takeover and restored exit"
+    },
+    {
+      "id": "SP-03",
+      "title_zh": "原点转译窗",
+      "title_en": "AI Origin Translation Window",
+      "h1_zh": "模型卡与人工解释",
+      "h1_en": "Model cards and human explanation",
+      "h2_zh": "预约共测与需求回流",
+      "h2_en": "Booked co-testing and need return",
+      "h3_zh": "一公里转化圈节点",
+      "h3_en": "One-kilometre translation-loop nodes",
+      "gate_zh": "可理解、可更正、可撤回",
+      "gate_en": "Understandable, correctable and withdrawable"
+    },
+    {
+      "id": "SP-04",
+      "title_zh": "大钟寺首用台",
+      "title_en": "Dazhongsi First-use Desk",
+      "h1_zh": "移动纸面服务台",
+      "h1_en": "Movable paper service desk",
+      "h2_zh": "限时店内/店前试用",
+      "h2_en": "Time-limited in-shop/shopfront use",
+      "h3_zh": "逐商户重新同意后复制",
+      "h3_en": "Replication after each merchant re-consents",
+      "gate_zh": "商户确认、删除回执与普通模板",
+      "gate_en": "Merchant confirmation, deletion receipt and ordinary template"
+    },
+    {
+      "id": "SP-05",
+      "title_zh": "无障碍同行链",
+      "title_en": "Accessible Journey Chain",
+      "h1_zh": "物理路线审计与人工协助",
+      "h1_en": "Physical-route audit and human help",
+      "h2_zh": "断点闭合后的自愿AI建议",
+      "h2_en": "Optional AI advice after gaps close",
+      "h3_zh": "扩展到十二站",
+      "h3_en": "Extension to twelve nodes",
+      "gate_zh": "主链连通、响应与无App可达",
+      "gate_en": "Connected main route, response and no-app access"
+    },
+    {
+      "id": "SP-06",
+      "title_zh": "十二站服务构件",
+      "title_en": "Twelve-node service kit",
+      "h1_zh": "双高台、低亮状态与维修门样段",
+      "h1_en": "Dual-height, low-light and maintenance samples",
+      "h2_zh": "按维护能力复制",
+      "h2_en": "Replication matched to maintenance capacity",
+      "h3_zh": "年度替换与修复协议",
+      "h3_en": "Annual replacement and repair protocol",
+      "gate_zh": "不占通道、可关闭、有人维护",
+      "gate_en": "No route obstruction, switchable and maintained"
+    },
+    {
+      "id": "SP-07",
+      "title_zh": "可纠错贡献记录",
+      "title_en": "Correctable Contribution Record",
+      "h1_zh": "贡献模板与首件核验",
+      "h1_en": "Contribution template and first verification",
+      "h2_zh": "四处地标串线",
+      "h2_en": "Four landmarks linked",
+      "h3_zh": "全球可修订档案",
+      "h3_en": "Globally correctable archive",
+      "gate_zh": "证据、许可、版本与更正入口",
+      "gate_en": "Evidence, licence, version and correction access"
+    },
+    {
+      "id": "SP-08",
+      "title_zh": "四季公共运营",
+      "title_en": "Four-season public operation",
+      "h1_zh": "一次问题征集与一次共测",
+      "h1_en": "One problem call and one co-test",
+      "h2_zh": "四季完整闭环",
+      "h2_en": "Complete four-season loop",
+      "h3_zh": "年度维护者审阅",
+      "h3_en": "Annual maintainers’ review",
+      "gate_zh": "公开档案、失败复盘与退出路线",
+      "gate_en": "Public archive, failure review and exit route"
+    }
+  ],
+  "heritage_kit": [
+    {
+      "id": "HK-01",
+      "zh": "双平行嵌线：铁路+数据的连续导向，不作炫光",
+      "en": "Twin inlaid lines: rail-plus-data wayfinding without spectacle lighting"
+    },
+    {
+      "id": "HK-02",
+      "zh": "深色可维修边框：承载状态、版本与责任",
+      "en": "Dark repairable frame: carries status, version and responsibility"
+    },
+    {
+      "id": "HK-03",
+      "zh": "可替换搪瓷/金属牌：像时刻牌而非巨屏",
+      "en": "Replaceable enamel/metal plate: like a timetable, not a giant screen"
+    },
+    {
+      "id": "HK-04",
+      "zh": "轨枕尺度坐凳/树池边：仅借用尺度语言，不挪用遗存",
+      "en": "Sleeper-scale bench/tree edge: a scale reference, not reused heritage fabric"
+    },
+    {
+      "id": "HK-05",
+      "zh": "低亮琥珀安全灯：表示暂停与人工接管",
+      "en": "Low-glare amber safety light: signals pause and human takeover"
+    },
+    {
+      "id": "HK-06",
+      "zh": "可拆遮棚、桌与双高柜台：每件可收纳、修复和退出",
+      "en": "Demountable canopy, table and dual-height desk: each can be stored, repaired and exited"
+    }
+  ]
+}

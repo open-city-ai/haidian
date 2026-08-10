@@ -1,0 +1,77 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "assumption_id": "ASM-PROVISIONAL-BOUNDARY",
+      "title_zh": "采用临时粗略边界",
+      "description_zh": "在官方精确边界未发布前，使用 provisional_boundaries.geojson 生成；所有面积、比例与空间结论待官方边界发布后复算。",
+      "severity": "blocking_if_ignored",
+      "affects_metrics": [],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-CONCEPT-CORRIDOR",
+      "title_zh": "交通走廊为概念性建议",
+      "description_zh": "智脉走廊与连接走廊为概念建议，非道路红线，待官方交通规划条件后复核。",
+      "severity": "major",
+      "affects_metrics": [],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-ECOSYSTEM-PORTRAIT",
+      "title_zh": "生态案例为企业画像非承诺",
+      "description_zh": "所列高校、企业、机构为生态画像，不构成招商、投资额、产值或财政承诺。",
+      "severity": "major",
+      "affects_metrics": [],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-SCENARIO-CONCEPT",
+      "title_zh": "AI场景为概念建议",
+      "description_zh": "AI场景卡与验证场景为概念建议，未成熟技术不写成已可全面部署，均设隐私与人工复核边界。",
+      "severity": "major",
+      "affects_metrics": [],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-CULTURE-NARRATIVE",
+      "title_zh": "文化叙事为创意建议",
+      "description_zh": "文化叙事与导视为创意建议，不歪曲历史，不未经授权使用肖像/商标/版权材料。",
+      "severity": "major",
+      "affects_metrics": [],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-OPERATION-CONCEPT",
+      "title_zh": "运营机制为设想",
+      "description_zh": "年度活动与运营机制为设想，不写成已确定安排，不夸大政府承诺或效果。",
+      "severity": "major",
+      "affects_metrics": [],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-MISSING-CONTROL",
+      "title_zh": "控规条件缺失",
+      "description_zh": "容积率、建筑高度、建筑密度、法定绿地率因组织方暂未提供控规条件标注为 unknown，待补齐后复算。",
+      "severity": "blocking_if_ignored",
+      "affects_metrics": [
+        "floor_area_ratio",
+        "building_height_m",
+        "building_density"
+      ],
+      "review_status": "disclosed"
+    },
+    {
+      "assumption_id": "ASM-BUILDING-MASSING",
+      "title_zh": "建筑为概念体量",
+      "description_zh": "建筑为概念性体量示意，容积率区间仅为示意范围，非真实建筑普查或法定结论。",
+      "severity": "major",
+      "affects_metrics": [
+        "floor_area_ratio",
+        "building_height_m",
+        "building_density"
+      ],
+      "review_status": "disclosed"
+    }
+  ]
+}

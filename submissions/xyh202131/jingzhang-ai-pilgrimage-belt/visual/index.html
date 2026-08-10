@@ -1,21 +1,936 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 朝圣·铁轨新生带</title><style>
-    :root{--ink:#12202f;--paper:#f3f4ef;--green:#36a269;--blue:#246b83;--gold:#d49a36;--red:#d96850;--muted:#657483}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Microsoft YaHei",Arial,sans-serif;line-height:1.75}header{background:var(--ink);color:white;padding:64px max(5vw,30px)}header b{color:var(--gold);letter-spacing:.15em}h1{font-size:clamp(40px,6vw,76px);line-height:1.12;margin:.2em 0}header p{max-width:980px;font-size:19px}main{max-width:1420px;margin:auto;padding:48px 30px}nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}nav a{color:var(--ink);background:white;border:1px solid #d8dbd4;border-radius:99px;padding:9px 16px;text-decoration:none}section{margin:58px 0}h2{font-size:34px;border-left:8px solid var(--green);padding-left:18px;line-height:1.25}h3{margin-top:28px}.metrics,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.metric,.card{background:white;border:1px solid #d8dbd4;border-radius:18px;padding:24px}.metric strong{display:block;font-size:34px;line-height:1.2;margin:10px 0}.metric span{color:var(--red);font-weight:bold}figure{margin:22px 0;background:white;border-radius:20px;padding:12px;border:1px solid #d8dbd4}img{display:block;width:100%;height:auto;border-radius:14px}.notice{border:2px solid var(--red);background:#fff7f3;padding:20px;border-radius:15px}table{width:100%;border-collapse:collapse;background:white;font-size:15px}th,td{border:1px solid #d8dbd4;padding:12px;text-align:left;vertical-align:top}th{background:var(--ink);color:white}code{background:#e6e8e2;padding:2px 5px}footer{background:var(--ink);color:white;padding:36px 5vw;line-height:1.8}.tag{display:inline-block;padding:3px 10px;border-radius:99px;background:#e4eceb;margin:3px}</style></head><body>
-    <header><b>JZ-AIOS · OPEN EVIDENCE URBAN DESIGN</b><h1>AI 朝圣·铁轨新生带<br>Jing-Zhang AI Pilgrimage &amp; Proof Line</h1><p>百年京张不是摆放 AI 产品的科技走廊，而是一条把城市问题转化为可共创、可验证、可暂停、可复现、可向社会交付的公共创新生产线。</p></header><main>
-    <nav><a href="#first-test">首测协议</a><a href="#baseline">现实基线</a><a href="#overview">总览</a><a href="#system">创新系统</a><a href="#scope">三层范围</a><a href="#areas">重点区域</a><a href="#scenario">AI 场景</a><a href="#mobility">交通蓝绿</a><a href="#building">建筑</a><a href="#projects">更新项目</a><a href="#metrics">指标</a><a href="#coverage">任务覆盖</a><a href="#check">自检</a><a href="#rights">权利证据</a><a href="#sources">来源与假设</a></nav>
-    <section id="review-path"><h2>命名与评审路径</h2><p>空间接口使用 I01—I06；G0—G3 只表示场景成熟度；GeoJSON 的 GATE-01—GATE-06 仅为机器兼容标识。评审路径（概念协议，不是审批或结果）：已建公园基线 → 公共问题 → 同任务非 AI 对照 → G1 影子测试 → 停止/恢复 → 独立复测 → 升级或退出。当前全部节点仍为 G0。</p></section>
-    <section id="first-test"><h2>先定义怎样失败，再谈怎样升级</h2><div class="notice">12 个场景已各有一份 G1 预注册结构：同任务非 AI 对照、唯一主指标与分母、采样框、时间窗、硬性无伤害规则、停止恢复和独立复测。12/12 是文档字段覆盖，不是测试成绩；已完成预注册、获批窗口、现场执行和已知结果均为 0，全部节点仍为 G0。</div><figure><img src="../assets/figures/implementation-roadmap.png" alt="G1 预注册、停止恢复与独立复测路径"></figure><div class="grid"><article class="card"><b>T-03 · 空间与公共利益示例测试</b><p>以可逆公共空间为例，先离线比较 AI 增量是否挤占日常使用；这是概念协议，尚未获批且没有现场结果。</p></article><article class="card"><b>T-02 · 首个 G0 离线证据包</b><p>固定五问及来源闭包、停止恢复和人工转接合同。已完成 1 次无个人信息合成治理回放：10/10 决策精确匹配，4 个不同的声明停止事件分别精确映射到各自恢复动作，13/13 负向变异控制覆盖合同未知字段、回答模式漂移、完整来源闭包、canonical RACI 闭包、现实服务授权和摘要计数篡改并按预期 fail-closed。实质回答、模型/API/现实服务调用、现场测试、审批、责任主体确认、现实独立复测和 G1 结果仍为 0 或 unknown，门级保持 G0；临时边界不构成精确地块、面积或审批依据。</p><p><code>g0-offline-enterprise-service-baseline.json</code> 固定合同，<code>t02-g0-g1-replay-result.json</code> 固定合成回放结果。</p></article><article class="card"><b>T-01 · 低速配送</b><p>相同任务比较人工配送；碰撞、越界、实体急停失败或接管链断裂即停止。</p></article></div><p><code>g1-preregistration-register.json</code> 保存完整 12 条记录。责任主体、准确位置、样本、时间窗和现场阈值必须在测试前确认，不能由本方案代填。</p></section>
-    <section id="baseline"><h2>2026-08-06 之后：从已开放公园出发</h2><div class="notice">公开报道显示京张铁路遗址公园二期已于 2026-08-06 开放。本方案不再把连续绿廊、基础慢行和全龄活动写成待建成果，而只提出可逆、可退出、必须证明净增益的服务层。桌面研究不等于现场踏勘、竣工图或审批证据。</div><table><thead><tr><th>公开报道的现实基线</th><th>本方案只增加什么</th><th>进入 G1 前必须核验</th></tr></thead><tbody><tr><td>约 9 km 绿廊，南段社区活力、北段自然休闲；报道提及 9 条街巷连通与鱼骨慢行网络</td><td>将 I01—I06 六个空间接口降为审计/服务类型；用场景护照比较 AI 增量与非 AI 基线</td><td>开园后 30 日现场审计、精确位置、连续无障碍、通勤与静音冲突</td></tr><tr><td>全龄活动、铁路遗产利用与海绵设施已有公开描述</td><td>不复制设施；只在不挤占日常使用时测试导引、共测、失败公开和人工服务</td><td>无公共空间净损失、人工兜底、可拆除恢复、社区共同测试与独立复测</td></tr></tbody></table><p><code>site-grounding-register.json</code> 保存来源、日期、用途限制和待核事项；当前已完成现场审计数为 <strong>0</strong>。</p></section>
-    <section id="overview"><h2>总览地图：一条验证线、三座状态站、两条供给翼</h2><p>小月河翼输入真实问题，原点社区共创，众智园验证，大钟寺发布与服务，中关村科技服务翼支撑合规、知识产权、人才与转化，运行结果再回到下一轮问题。</p><figure><img src="../assets/figures/site-overview.png" alt="总体概念和证据边界"></figure><div class="notice"><strong>边界基准提示：</strong>OSM 映射公园与临时总体设计范围 <code>PROV-SITE-001</code> 的自动比对读数为相交覆盖 0%、最近约 412.5 m；OSM 与临时 polygon 均不完整，因此该读数不裁决任何一方、不改变现有 geometry，也不用于评分或精确面积。正式 polygon 到位后，须全量复算图层、图纸、HTML 与指标。</div></section>
-    <section id="system"><h2>核心创新：JZ-AIOS 可验证场景操作系统</h2><figure><img src="../assets/figures/innovation-system.png" alt="四门制可验证场景操作系统"></figure><div class="grid"><article class="card"><b>可逆时空公园</b><p>日常、公共学习、限域 Beta、静音无屏和离线人工五种模式可切换。</p></article><article class="card"><b>开放基准走廊</b><p>公开问题、协议、匿名结果和失败记录，不公开原始隐私数据。</p></article><article class="card"><b>可信叙事双螺旋</b><p>铁路工程史与 AI 失败—修正史并行，生成内容显式和元数据标识。</p></article><article class="card"><b>四季运营协议</b><p>问题季—开源季—城市 Beta 季—Proof Week，按年度形成证据闭环。</p></article></div></section>
-    <section id="scope"><h2>三层范围与用地分区</h2><p>43.6 km² 统筹层研究协同机制，约 11.4 km² 总体层表达概念结构，三处临时重点区表达可继续深化的状态站。36 个单元完整分区；法定红线、容积率、高度与道路控制保持未知。</p><figure><img src="../assets/figures/land-use-structure.png" alt="用地与三层范围传导"></figure></section>
-    <section id="areas"><h2>三处重点区域</h2><figure><img src="../assets/figures/key-areas.png" alt="三处重点区差异化概念平面、G1 前置与四态切换"></figure><figure><img src="../assets/figures/key-area-sections.png" alt="三处重点区差异化概念剖面与可逆模式切换"></figure><p>平面、剖面与证据矩阵使用同一套四态名称：众智园为生态日常—预约离线验证—未来获批限域共测—事故隔离；原点社区为社区日常—问题门诊与共学—未来获批共创共测—静音与保障恢复；大钟寺为通勤与休憩—预约证据发布—未来获批服务试用—来源与服务恢复。12 项均为 G0 概念状态。</p><div class="notice">平面与剖面只显示关系；淡色虚线为临时范围，图面不按比例，全部节点仍为 G0。正式边界、测绘/竣工证据、权属/责任角色、专业控制、批准和现场复测均尚未取得；现场审计、责任主体确认、批准、测试执行和已知结果仍全部为 0。证据交叉矩阵把每处临时重点区连到状态站、公共锚点、I/GATE 接口、AI 服务区、场景节点和概念验收包；矩阵字段覆盖率 100% 只表示文档字段齐全，不代表现场覆盖或运行效果。<code>key-area-evidence-matrix.json</code></div><table><thead><tr><th>重点区</th><th>状态站 / 空间响应</th><th>场景</th><th>G1 前置</th><th>边界</th></tr></thead><tbody><tr><td>PROV-KEY-001 众智园</td><td>VERIFY · 一园一栈两界面</td><td>AI-ZONE-001 · SCENE-001—004</td><td>场地、安全、责任、非 AI 基线、独立复测</td><td>临时 / 未获批 / 未测试</td></tr><tr><td>PROV-KEY-002 原点社区</td><td>CO-CREATE · 一街两院四节点</td><td>AI-ZONE-002 · SCENE-005—008</td><td>场地保障、权利同意、撤回、非技术参与、复测</td><td>临时 / 无合作承诺 / 未测试</td></tr><tr><td>PROV-KEY-003 大钟寺</td><td>PUBLISH · 四象限步行 + 一厅一台</td><td>AI-ZONE-003 · SCENE-009—012</td><td>路线权属、人工窗口、来源维护、同任务对照、复测</td><td>临时 / 无批准服务点 / 未测试</td></tr></tbody></table></section>
-    <section id="scenario"><h2>AI 场景：从清单到护照</h2><p>十个服务场景另配置两个公共治理节点。每个节点绑定版本、风险级、空间分区、人工责任、退出和年度到期条件。</p><p><strong>人类可读场景定位：</strong>安全与可达：SCENE-001 / 003 / 009 / 010；可信公共服务：SCENE-002 / 005 / 011 / 012；公共学习与协作：SCENE-004 / 006 / 007 / 008。各组均为 G0 概念，不代表批准、部署或现场结果。</p><table><thead><tr><th>Feature</th><th>场景</th><th>风险</th><th>当前运行门</th><th>公共保护</th></tr></thead><tbody><tr><td>SCENE-001</td><td>低速配送安全沙盒</td><td>R3</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-002</td><td>公共空间能耗助手</td><td>R2</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-003</td><td>安全事件辅助研判</td><td>R3</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-004</td><td>失败与修正公开档案</td><td>R1</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-005</td><td>京张可信文化导览</td><td>R1</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-006</td><td>开源协作匹配</td><td>R2</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-007</td><td>教育体验工坊</td><td>R1</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-008</td><td>气候与无障碍共同测试</td><td>R1</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-009</td><td>无障碍路径助手</td><td>R1</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-010</td><td>慢行拥堵提示</td><td>R2</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-011</td><td>企业服务智能体</td><td>R2</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr><tr><td>SCENE-012</td><td>社区健康导航</td><td>R2</td><td>G0_concept_only</td><td>人工兜底 / 非AI通道 / 到期复核</td></tr></tbody></table></section>
-    <section id="mobility"><h2>交通慢行与蓝绿公共空间</h2><p>I01—I06 六个空间接口把横向缝合从口号变成可追踪接口；主绿脊、六条海绵缝合带、九处可逆公共空间和十二个场景节点形成线—面—点网络。</p><figure><img src="../assets/figures/mobility-bluegreen.png" alt="六个空间接口、慢行与蓝绿公共空间"></figure></section>
-    <section id="building"><h2>建筑</h2><p><strong>180</strong> 个体量原型用于表达干预容量，其中 <strong>135</strong> 个落在三处重点区。它们不是现状测绘，也不构成拆除、层数、总建面或建设规模承诺；保留评估、适应性改造、新建候选仍须等待测绘、权属、结构与控规证据。</p></section>
-    <section id="projects"><h2>更新项目与阶段门</h2><div class="grid"><article class="card"><b>JZ-01 六接口无障碍缝合</b></article><article class="card"><b>JZ-02 可逆时空公园</b></article><article class="card"><b>JZ-03 众智验证公共栈</b></article><article class="card"><b>JZ-04 原点开源共创街</b></article><article class="card"><b>JZ-05 大钟寺城市服务门户</b></article><article class="card"><b>JZ-06 可信叙事双螺旋</b></article><article class="card"><b>JZ-07 场景护照与开放基准</b></article><article class="card"><b>JZ-08 四季运营与 Proof Week</b></article></div><p><code>pilot-readiness-register.json</code> 为 8 个项目与 T-01—T-03 三个先行协议配置概念级 RACI、审批触发、禁止数据、事故停机、恢复、社区共测和独立复测。<code>readiness-closure-contract.json</code> 再把同一批要求统一为责任接受、审批范围、场地/时段基线、禁采控制、停机权限、恢复演练、社区共测、独立复测和最终纪要九类现实交付材料。11/11 项均已有 9 个稳定关闭材料 ID，99/99 槽仍开放、0 已关闭，11/11 仍为 G0/NO-GO。<code>implementation-handoff-matrix.json</code> 将全部 12 个预注册场景回指到既有项目或试点及其关闭记录；12/12 只表示移交路径清楚，责任主体确认、批准、现场测试、现实结果与独立复测完成数仍均为 0。</p><h3>年份窗口 + 证据门</h3><table><thead><tr><th>阶段</th><th>进入条件</th><th>毕业条件</th><th>回滚触发</th></tr></thead><tbody><tr><td>近期：离线与影子验证</td><td>来源、责任、风险分级和基线完整</td><td>仅域测试可安全回滚且公共价值门通过</td><td>任何重大安全、隐私或无障碍失败</td></tr><tr><td>中期：限域城市 Beta</td><td>完成独立复测、社区评议和专业审查</td><td>达到毕业立方体并形成公开复测包</td><td>连续失败、申诉无响应或公共红利未交付</td></tr><tr><td>远期：接力、扩展或退役</td><td>正式审批和运行资源明确</td><td>年度证据报告确认扩展、修正或主动退役</td><td>边界、控制条件或社会影响发生重大变化</td></tr></tbody></table></section>
-    <section id="metrics"><h2>核心指标</h2><div class="metrics"><article class="metric" data-metric="site_area_sqm" data-value="11412825.385554"><small>临时范围</small><strong>11.41 km²</strong><span>LOW</span></article><article class="metric" data-metric="land_use_unit_count" data-value="36"><small>空间单元</small><strong>36</strong><span>HIGH</span></article><article class="metric" data-metric="building_count" data-value="180"><small>体量原型</small><strong>180</strong><span>HIGH</span></article><article class="metric" data-metric="green_ratio" data-value="0.126157"><small>绿地比例</small><strong>12.6%</strong><span>LOW</span></article><article class="metric" data-metric="public_space_ratio" data-value="0.012831"><small>公共空间比例</small><strong>1.3%</strong><span>LOW</span></article><article class="metric" data-metric="public_space_node_count" data-value="9"><small>公共节点</small><strong>9</strong><span>HIGH</span></article><article class="metric" data-metric="gateway_count" data-value="6"><small>城市接口</small><strong>6</strong><span>HIGH</span></article><article class="metric" data-metric="mapped_scenario_node_count" data-value="12"><small>场景护照节点</small><strong>12</strong><span>HIGH</span></article><article class="metric" data-metric="ai_service_zone_count" data-value="3"><small>AI 服务区</small><strong>3</strong><span>HIGH</span></article><article class="metric" data-metric="scenario_passport_coverage_ratio" data-value="1.0"><small>护照覆盖</small><strong>100.0%</strong><span>HIGH</span></article><article class="metric" data-metric="manual_fallback_coverage_ratio" data-value="1.0"><small>人工兜底覆盖</small><strong>100.0%</strong><span>HIGH</span></article><article class="metric" data-metric="non_ai_access_coverage_ratio" data-value="1.0"><small>非 AI 通道覆盖</small><strong>100.0%</strong><span>HIGH</span></article><article class="metric" data-metric="phase_count" data-value="3"><small>阶段门</small><strong>3</strong><span>HIGH</span></article></div><figure><img src="../assets/figures/metrics-evidence.png" alt="指标与置信度证据链"></figure></section>
-    <section id="coverage"><h2>任务覆盖</h2><p><span class="tag">agent.1 品牌与三区两翼</span><span class="tag">agent.2 生态与要素机制</span><span class="tag">agent.3 场景护照</span><span class="tag">agent.4 公共空间与地标</span><span class="tag">agent.5 可信文化叙事</span><span class="tag">agent.6 四季运营</span></p><p>每项映射到特定正文、Feature ID、指标、图纸、来源、假设和自检；详细证据见 <code>compliance_matrix.json</code>、<code>standard_matrix.json</code> 和 <code>design_depth_matrix.json</code>。</p></section>
-    <section id="check"><h2>自检状态</h2><p>21 项检查覆盖边界信任、重点区、用地零缝隙、空间越界、指标复算、场景协议、T-02 合成治理回放、静态 HTML、专业证据、风险来源、实施移交、使用权决策和权利证据链接。<code>G0_T02_SYNTHETIC_REPLAY</code> 的 PASS 只证明严格合同可确定性重放；<code>RIGHTS_DISCLOSURE_AND_LINK_CLOSURE</code> 为 PASS 只表示结构可审计；<code>PUBLIC_OR_PROFESSIONAL_REUSE_RIGHTS</code> 保持 UNKNOWN / major。机器通过仍不替代规划、交通、结构、消防、生态、数据安全、无障碍、社区和版权人工复核。</p></section>
-    <section id="rights"><h2>来源—资产—权利证据</h2><div class="grid"><article class="card"><strong>29 / 29</strong><p>来源记录与 schema 化权利证据一一对应；缺失发布日期、原格式、摘要或条款时明确记为 unknown。</p></article><article class="card"><strong>120 / 120</strong><p>OSM way 具有 source_id、element id 与署名；固定查询和快照摘要仍未知。</p></article><article class="card"><strong>68 / 68</strong><p>manifest 预期路径与逐文件资产记录严格对应；5 个粗组仅保留兼容用途，最终摘要待从最终 Git blobs 刷新。</p></article><article class="card"><strong>0</strong><p>已完成独立逐文件清权审计；总体仍为 not_fully_cleared。</p></article></div><div class="notice"><code>RIGHTS-OPEN-01</code> 完整许可条款、<code>RIGHTS-OPEN-02</code> 独立逐文件审计、<code>RIGHTS-OPEN-03</code> ODbL 义务均保持 P0 open。仓库评审为 disclosure-ready；公共展示、专业深化或其他复用继续 <strong>blocked pending terms and audit</strong>。结构完整或机器 PASS 不等于权利清除。</div><p>可机读依据：<code>source-rights-evidence.schema.json</code>、<code>source-rights-evidence.json</code>、<code>rights-clearance-ledger.json</code>、<code>agent.json</code> 与 <code>manifest.json</code>。</p></section>
-    <section id="sources"><h2>来源与假设</h2><p><code>sources.json</code> 登记 29 条来源及用途边界，并以稳定 <code>rights_evidence_id</code> 回链权利证据。4 条公开网页证据记录包外 Firecrawl 抓取摘要，15 条网页没有内容摘要；抓取缓存均不进入投稿包。<code>assumptions.json</code> 登记 13 项临时边界、空间表达、场景、现场与权利缺口。OSM 只作背景，公开报道不等于踏勘，任何外部区域协同均为建议，不代表机构已承诺。</p></section></main>
-    <footer>COMMUNITY-DISPLAY-ONLY · Offline static artifact · No remote scripts, tracking, forms or APIs. Provisional geometry / Concept design / Human and professional review required.</footer></body></html>
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>AI 朝圣·铁轨新生带</title>
+    <style>
+      :root {
+        --ink: #12202f;
+        --paper: #f3f4ef;
+        --green: #36a269;
+        --blue: #246b83;
+        --gold: #d49a36;
+        --red: #d96850;
+        --muted: #657483;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Microsoft YaHei", Arial, sans-serif;
+        line-height: 1.75;
+      }
+      header {
+        background: var(--ink);
+        color: white;
+        padding: 64px max(5vw, 30px);
+      }
+      header b {
+        color: var(--gold);
+        letter-spacing: 0.15em;
+      }
+      h1 {
+        font-size: clamp(40px, 6vw, 76px);
+        line-height: 1.12;
+        margin: 0.2em 0;
+      }
+      header p {
+        max-width: 980px;
+        font-size: 19px;
+      }
+      main {
+        max-width: 1420px;
+        margin: auto;
+        padding: 48px 30px;
+      }
+      nav {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 36px;
+      }
+      nav a {
+        color: var(--ink);
+        background: white;
+        border: 1px solid #d8dbd4;
+        border-radius: 99px;
+        padding: 9px 16px;
+        text-decoration: none;
+      }
+      section {
+        margin: 58px 0;
+      }
+      h2 {
+        font-size: 34px;
+        border-left: 8px solid var(--green);
+        padding-left: 18px;
+        line-height: 1.25;
+      }
+      h3 {
+        margin-top: 28px;
+      }
+      .metrics,
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 18px;
+      }
+      .metric,
+      .card {
+        background: white;
+        border: 1px solid #d8dbd4;
+        border-radius: 18px;
+        padding: 24px;
+      }
+      .metric strong {
+        display: block;
+        font-size: 34px;
+        line-height: 1.2;
+        margin: 10px 0;
+      }
+      .metric span {
+        color: var(--red);
+        font-weight: bold;
+      }
+      figure {
+        margin: 22px 0;
+        background: white;
+        border-radius: 20px;
+        padding: 12px;
+        border: 1px solid #d8dbd4;
+      }
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+      }
+      .notice {
+        border: 2px solid var(--red);
+        background: #fff7f3;
+        padding: 20px;
+        border-radius: 15px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        font-size: 15px;
+      }
+      th,
+      td {
+        border: 1px solid #d8dbd4;
+        padding: 12px;
+        text-align: left;
+        vertical-align: top;
+      }
+      th {
+        background: var(--ink);
+        color: white;
+      }
+      code {
+        background: #e6e8e2;
+        padding: 2px 5px;
+      }
+      footer {
+        background: var(--ink);
+        color: white;
+        padding: 36px 5vw;
+        line-height: 1.8;
+      }
+      .tag {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 99px;
+        background: #e4eceb;
+        margin: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <b>JZ-AIOS · OPEN EVIDENCE URBAN DESIGN</b>
+      <h1>AI 朝圣·铁轨新生带<br />Jing-Zhang AI Pilgrimage &amp; Proof Line</h1>
+      <p>
+        百年京张不是摆放 AI
+        产品的科技走廊，而是一条把城市问题转化为可共创、可验证、可暂停、可复现、可向社会交付的公共创新生产线。
+      </p>
+    </header>
+    <main>
+      <nav>
+        <a href="#first-test">首测协议</a><a href="#baseline">现实基线</a
+        ><a href="#overview">总览</a><a href="#system">创新系统</a
+        ><a href="#scope">三层范围</a><a href="#areas">重点区域</a
+        ><a href="#scenario">AI 场景</a><a href="#mobility">交通蓝绿</a
+        ><a href="#building">建筑</a><a href="#projects">更新项目</a
+        ><a href="#metrics">指标</a><a href="#coverage">任务覆盖</a
+        ><a href="#check">自检</a><a href="#rights">权利证据</a
+        ><a href="#sources">来源与假设</a>
+      </nav>
+      <section id="review-path">
+        <h2>命名与评审路径</h2>
+        <p>
+          空间接口使用 I01—I06；G0—G3 只表示场景成熟度；GeoJSON 的
+          GATE-01—GATE-06
+          仅为机器兼容标识。评审路径（概念协议，不是审批或结果）：已建公园基线 →
+          公共问题 → 同任务非 AI 对照 → G1 影子测试 → 停止/恢复 → 独立复测 →
+          升级或退出。当前全部节点仍为 G0。
+        </p>
+      </section>
+      <section id="first-test">
+        <h2>先定义怎样失败，再谈怎样升级</h2>
+        <div class="notice">
+          12 个场景已各有一份 G1 预注册结构：同任务非 AI
+          对照、唯一主指标与分母、采样框、时间窗、硬性无伤害规则、停止恢复和独立复测。12/12
+          是文档字段覆盖，不是测试成绩；已完成预注册、获批窗口、现场执行和已知结果均为
+          0，全部节点仍为 G0。
+        </div>
+        <figure>
+          <img
+            src="../assets/figures/implementation-roadmap.png"
+            alt="G1 预注册、停止恢复与独立复测路径"
+          />
+        </figure>
+        <div class="grid">
+          <article class="card">
+            <b>T-03 · 空间与公共利益示例测试</b>
+            <p>
+              以可逆公共空间为例，先离线比较 AI
+              增量是否挤占日常使用；这是概念协议，尚未获批且没有现场结果。
+            </p>
+          </article>
+          <article class="card">
+            <b>T-02 · 首个 G0 离线证据包</b>
+            <p>
+              固定五问及来源闭包、停止恢复和人工转接合同。已完成 1
+              次无个人信息合成治理回放：10/10 决策精确匹配，4
+              个不同的声明停止事件分别精确映射到各自恢复动作，13/13
+              负向变异控制覆盖合同未知字段、回答模式漂移、完整来源闭包、canonical
+              RACI 闭包、现实服务授权和摘要计数篡改并按预期
+              fail-closed。实质回答、模型/API/现实服务调用、现场测试、审批、责任主体确认、现实独立复测和
+              G1 结果仍为 0 或 unknown，门级保持
+              G0；临时边界不构成精确地块、面积或审批依据。
+            </p>
+            <p>
+              <code>g0-offline-enterprise-service-baseline.json</code>
+              固定合同，<code>t02-g0-g1-replay-result.json</code>
+              固定合成回放结果。
+            </p>
+          </article>
+          <article class="card">
+            <b>T-01 · 低速配送</b>
+            <p>
+              相同任务比较人工配送；碰撞、越界、实体急停失败或接管链断裂即停止。
+            </p>
+          </article>
+        </div>
+        <p>
+          <code>g1-preregistration-register.json</code> 保存完整 12
+          条记录。责任主体、准确位置、样本、时间窗和现场阈值必须在测试前确认，不能由本方案代填。
+        </p>
+      </section>
+      <section id="baseline">
+        <h2>2026-08-06 之后：从已开放公园出发</h2>
+        <div class="notice">
+          公开报道显示京张铁路遗址公园二期已于 2026-08-06
+          开放。本方案不再把连续绿廊、基础慢行和全龄活动写成待建成果，而只提出可逆、可退出、必须证明净增益的服务层。桌面研究不等于现场踏勘、竣工图或审批证据。
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>公开报道的现实基线</th>
+              <th>本方案只增加什么</th>
+              <th>进入 G1 前必须核验</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                约 9 km 绿廊，南段社区活力、北段自然休闲；报道提及 9
+                条街巷连通与鱼骨慢行网络
+              </td>
+              <td>
+                将 I01—I06 六个空间接口降为审计/服务类型；用场景护照比较 AI
+                增量与非 AI 基线
+              </td>
+              <td>
+                开园后 30 日现场审计、精确位置、连续无障碍、通勤与静音冲突
+              </td>
+            </tr>
+            <tr>
+              <td>全龄活动、铁路遗产利用与海绵设施已有公开描述</td>
+              <td>
+                不复制设施；只在不挤占日常使用时测试导引、共测、失败公开和人工服务
+              </td>
+              <td>
+                无公共空间净损失、人工兜底、可拆除恢复、社区共同测试与独立复测
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <code>site-grounding-register.json</code>
+          保存来源、日期、用途限制和待核事项；当前已完成现场审计数为
+          <strong>0</strong>。
+        </p>
+      </section>
+      <section id="overview">
+        <h2>总览地图：一条验证线、三座状态站、两条供给翼</h2>
+        <p>
+          小月河翼输入真实问题，原点社区共创，众智园验证，大钟寺发布与服务，中关村科技服务翼支撑合规、知识产权、人才与转化，运行结果再回到下一轮问题。
+        </p>
+        <figure>
+          <img
+            src="../assets/figures/site-overview.png"
+            alt="总体概念和证据边界"
+          />
+        </figure>
+        <div class="notice">
+          <strong>边界基准提示：</strong>OSM 映射公园与临时总体设计范围
+          <code>PROV-SITE-001</code> 的自动比对读数为相交覆盖 0%、最近约 412.5
+          m；OSM 与临时 polygon 均不完整，因此该读数不裁决任何一方、不改变现有
+          geometry，也不用于评分或精确面积。正式 polygon
+          到位后，须全量复算图层、图纸、HTML 与指标。
+        </div>
+      </section>
+      <section id="system">
+        <h2>核心创新：JZ-AIOS 可验证场景操作系统</h2>
+        <figure>
+          <img
+            src="../assets/figures/innovation-system.png"
+            alt="四门制可验证场景操作系统"
+          />
+        </figure>
+        <div class="grid">
+          <article class="card">
+            <b>可逆时空公园</b>
+            <p>日常、公共学习、限域 Beta、静音无屏和离线人工五种模式可切换。</p>
+          </article>
+          <article class="card">
+            <b>开放基准走廊</b>
+            <p>公开问题、协议、匿名结果和失败记录，不公开原始隐私数据。</p>
+          </article>
+          <article class="card">
+            <b>可信叙事双螺旋</b>
+            <p>铁路工程史与 AI 失败—修正史并行，生成内容显式和元数据标识。</p>
+          </article>
+          <article class="card">
+            <b>四季运营协议</b>
+            <p>问题季—开源季—城市 Beta 季—Proof Week，按年度形成证据闭环。</p>
+          </article>
+        </div>
+      </section>
+      <section id="scope">
+        <h2>三层范围与用地分区</h2>
+        <p>
+          43.6 km² 统筹层研究协同机制，约 11.4 km²
+          总体层表达概念结构，三处临时重点区表达可继续深化的状态站。36
+          个单元完整分区；法定红线、容积率、高度与道路控制保持未知。
+        </p>
+        <figure>
+          <img
+            src="../assets/figures/land-use-structure.png"
+            alt="用地与三层范围传导"
+          />
+        </figure>
+      </section>
+      <section id="areas">
+        <h2>三处重点区域</h2>
+        <figure>
+          <img
+            src="../assets/figures/key-areas.png"
+            alt="三处重点区差异化概念平面、G1 前置与四态切换"
+          />
+        </figure>
+        <figure>
+          <img
+            src="../assets/figures/key-area-sections.png"
+            alt="三处重点区差异化概念剖面与可逆模式切换"
+          />
+        </figure>
+        <p>
+          平面、剖面与证据矩阵使用同一套四态名称：众智园为生态日常—预约离线验证—未来获批限域共测—事故隔离；原点社区为社区日常—问题门诊与共学—未来获批共创共测—静音与保障恢复；大钟寺为通勤与休憩—预约证据发布—未来获批服务试用—来源与服务恢复。12
+          项均为 G0 概念状态。
+        </p>
+        <div class="notice">
+          平面与剖面只显示关系；淡色虚线为临时范围，图面不按比例，全部节点仍为
+          G0。正式边界、测绘/竣工证据、权属/责任角色、专业控制、批准和现场复测均尚未取得；现场审计、责任主体确认、批准、测试执行和已知结果仍全部为
+          0。证据交叉矩阵把每处临时重点区连到状态站、公共锚点、I/GATE 接口、AI
+          服务区、场景节点和概念验收包；矩阵字段覆盖率 100%
+          只表示文档字段齐全，不代表现场覆盖或运行效果。<code
+            >key-area-evidence-matrix.json</code
+          >
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>重点区</th>
+              <th>状态站 / 空间响应</th>
+              <th>场景</th>
+              <th>G1 前置</th>
+              <th>边界</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PROV-KEY-001 众智园</td>
+              <td>VERIFY · 一园一栈两界面</td>
+              <td>AI-ZONE-001 · SCENE-001—004</td>
+              <td>场地、安全、责任、非 AI 基线、独立复测</td>
+              <td>临时 / 未获批 / 未测试</td>
+            </tr>
+            <tr>
+              <td>PROV-KEY-002 原点社区</td>
+              <td>CO-CREATE · 一街两院四节点</td>
+              <td>AI-ZONE-002 · SCENE-005—008</td>
+              <td>场地保障、权利同意、撤回、非技术参与、复测</td>
+              <td>临时 / 无合作承诺 / 未测试</td>
+            </tr>
+            <tr>
+              <td>PROV-KEY-003 大钟寺</td>
+              <td>PUBLISH · 四象限步行 + 一厅一台</td>
+              <td>AI-ZONE-003 · SCENE-009—012</td>
+              <td>路线权属、人工窗口、来源维护、同任务对照、复测</td>
+              <td>临时 / 无批准服务点 / 未测试</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="scenario">
+        <h2>AI 场景：从清单到护照</h2>
+        <p>
+          十个服务场景另配置两个公共治理节点。每个节点绑定版本、风险级、空间分区、人工责任、退出和年度到期条件；护照字段完整是机器可读的设计事实，不是批准或部署证据。
+        </p>
+        <p>
+          <strong>人类可读场景定位：</strong>安全与可达：SCENE-001 / 003 / 009 /
+          010；可信公共服务：SCENE-002 / 005 / 011 /
+          012；公共学习与协作：SCENE-004 / 006 / 007 / 008。各组均为 G0
+          概念，不代表批准、部署或现场结果。
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>场景</th>
+              <th>风险</th>
+              <th>当前运行门</th>
+              <th>空间边界</th>
+              <th>时段边界</th>
+              <th>公共保护</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>SCENE-001</code></td>
+              <td>低速配送安全沙盒</td>
+              <td>R3</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-001_provisional_concept_zone</td>
+              <td>approved_closed_course_window_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-002</code></td>
+              <td>公共空间能耗助手</td>
+              <td>R2</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-001_provisional_concept_zone</td>
+              <td>approved_operations_window_outside_quiet_hours</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-003</code></td>
+              <td>安全事件辅助研判</td>
+              <td>R3</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-001_provisional_concept_zone</td>
+              <td>authorized_shadow_review_window_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-004</code></td>
+              <td>失败与修正公开档案</td>
+              <td>R1</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-001_provisional_concept_zone</td>
+              <td>published_review_sessions_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-005</code></td>
+              <td>京张可信文化导览</td>
+              <td>R1</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-002_provisional_concept_zone</td>
+              <td>daily_public_information_window_with_manual_curation</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-006</code></td>
+              <td>开源协作匹配</td>
+              <td>R2</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-002_provisional_concept_zone</td>
+              <td>opt_in_co_creation_sessions_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-007</code></td>
+              <td>教育体验工坊</td>
+              <td>R1</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-002_provisional_concept_zone</td>
+              <td>supervised_course_session_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-008</code></td>
+              <td>气候与无障碍共同测试</td>
+              <td>R1</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-002_provisional_concept_zone</td>
+              <td>scheduled_inclusive_field_test_outside_extreme_weather</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-009</code></td>
+              <td>无障碍路径助手</td>
+              <td>R1</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-003_provisional_concept_zone</td>
+              <td>public_service_hours_with_live_manual_confirmation</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-010</code></td>
+              <td>慢行拥堵提示</td>
+              <td>R2</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-003_provisional_concept_zone</td>
+              <td>event_or_peak_window_with_static_fallback</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-011</code></td>
+              <td>企业服务智能体</td>
+              <td>R2</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-003_provisional_concept_zone</td>
+              <td>staffed_service_desk_hours_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+            <tr>
+              <td><code>SCENE-012</code></td>
+              <td>社区健康导航</td>
+              <td>R2</td>
+              <td>G0_concept_only</td>
+              <td>AI-ZONE-003_provisional_concept_zone</td>
+              <td>staffed_information_service_hours_only</td>
+              <td>人工接管 · 申诉 · 非 AI 选项 · 到期复核</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="mobility">
+        <h2>交通慢行与蓝绿公共空间</h2>
+        <p>
+          I01—I06
+          六个空间接口把横向缝合从口号变成可追踪接口；主绿脊、六条海绵缝合带、九处可逆公共空间和十二个场景节点形成线—面—点网络。
+        </p>
+        <figure>
+          <img
+            src="../assets/figures/mobility-bluegreen.png"
+            alt="六个空间接口、慢行与蓝绿公共空间"
+          />
+        </figure>
+      </section>
+      <section id="building">
+        <h2>建筑</h2>
+        <p>
+          <strong>180</strong> 个体量原型用于表达干预容量，其中
+          <strong>135</strong>
+          个落在三处重点区。它们不是现状测绘，也不构成拆除、层数、总建面或建设规模承诺；保留评估、适应性改造、新建候选仍须等待测绘、权属、结构与控规证据。
+        </p>
+      </section>
+      <section id="projects">
+        <h2>更新项目与阶段门</h2>
+        <div class="grid">
+          <article class="card"><b>JZ-01 六接口无障碍缝合</b></article>
+          <article class="card"><b>JZ-02 可逆时空公园</b></article>
+          <article class="card"><b>JZ-03 众智验证公共栈</b></article>
+          <article class="card"><b>JZ-04 原点开源共创街</b></article>
+          <article class="card"><b>JZ-05 大钟寺城市服务门户</b></article>
+          <article class="card"><b>JZ-06 可信叙事双螺旋</b></article>
+          <article class="card"><b>JZ-07 场景护照与开放基准</b></article>
+          <article class="card"><b>JZ-08 四季运营与 Proof Week</b></article>
+        </div>
+        <p>
+          <code>pilot-readiness-register.json</code> 为 8 个项目与 T-01—T-03
+          三个先行协议配置概念级
+          RACI、审批触发、禁止数据、事故停机、恢复、社区共测和独立复测。<code
+            >readiness-closure-contract.json</code
+          >
+          再把同一批要求统一为责任接受、审批范围、场地/时段基线、禁采控制、停机权限、恢复演练、社区共测、独立复测和最终纪要九类现实交付材料。11/11
+          项均已有 9 个稳定关闭材料 ID，99/99 槽仍开放、0 已关闭，11/11 仍为
+          G0/NO-GO。<code>implementation-handoff-matrix.json</code> 将全部 12
+          个预注册场景回指到既有项目或试点及其关闭记录；12/12
+          只表示移交路径清楚，责任主体确认、批准、现场测试、现实结果与独立复测完成数仍均为
+          0。
+        </p>
+        <h3>年份窗口 + 证据门</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>阶段</th>
+              <th>进入条件</th>
+              <th>毕业条件</th>
+              <th>回滚触发</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>近期：离线与影子验证</td>
+              <td>来源、责任、风险分级和基线完整</td>
+              <td>仅域测试可安全回滚且公共价值门通过</td>
+              <td>任何重大安全、隐私或无障碍失败</td>
+            </tr>
+            <tr>
+              <td>中期：限域城市 Beta</td>
+              <td>完成独立复测、社区评议和专业审查</td>
+              <td>达到毕业立方体并形成公开复测包</td>
+              <td>连续失败、申诉无响应或公共红利未交付</td>
+            </tr>
+            <tr>
+              <td>远期：接力、扩展或退役</td>
+              <td>正式审批和运行资源明确</td>
+              <td>年度证据报告确认扩展、修正或主动退役</td>
+              <td>边界、控制条件或社会影响发生重大变化</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="metrics">
+        <h2>核心指标</h2>
+        <div class="metrics">
+          <article
+            class="metric"
+            data-metric="site_area_sqm"
+            data-value="11412825.385554"
+          >
+            <small>临时范围</small><strong>11.41 km²</strong><span>LOW</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="land_use_unit_count"
+            data-value="36"
+          >
+            <small>空间单元</small><strong>36</strong><span>HIGH</span>
+          </article>
+          <article class="metric" data-metric="building_count" data-value="180">
+            <small>体量原型</small><strong>180</strong><span>HIGH</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="key_area_building_count"
+            data-value="135"
+          >
+            <small>重点区体量原型</small><strong>135</strong><span>MEDIUM</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="green_ratio"
+            data-value="0.126157"
+          >
+            <small>绿地比例</small><strong>12.6%</strong><span>LOW</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="public_space_ratio"
+            data-value="0.012831"
+          >
+            <small>公共空间比例</small><strong>1.3%</strong><span>LOW</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="public_space_node_count"
+            data-value="9"
+          >
+            <small>公共节点</small><strong>9</strong><span>HIGH</span>
+          </article>
+          <article class="metric" data-metric="gateway_count" data-value="6">
+            <small>城市接口</small><strong>6</strong><span>HIGH</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="mapped_scenario_node_count"
+            data-value="12"
+          >
+            <small>场景护照节点</small><strong>12</strong><span>HIGH</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="ai_service_zone_count"
+            data-value="3"
+          >
+            <small>AI 服务区</small><strong>3</strong><span>HIGH</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="scenario_passport_coverage_ratio"
+            data-value="1.0"
+          >
+            <small>护照覆盖</small><strong>100.0%</strong><span>HIGH</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="manual_fallback_coverage_ratio"
+            data-value="1.0"
+          >
+            <small>人工兜底覆盖</small><strong>100.0%</strong><span>HIGH</span>
+          </article>
+          <article
+            class="metric"
+            data-metric="non_ai_access_coverage_ratio"
+            data-value="1.0"
+          >
+            <small>非 AI 通道覆盖</small><strong>100.0%</strong
+            ><span>HIGH</span>
+          </article>
+          <article class="metric" data-metric="phase_count" data-value="3">
+            <small>阶段门</small><strong>3</strong><span>HIGH</span>
+          </article>
+        </div>
+        <figure>
+          <img
+            src="../assets/figures/metrics-evidence.png"
+            alt="指标与置信度证据链"
+          />
+        </figure>
+      </section>
+      <section id="coverage">
+        <h2>任务覆盖</h2>
+        <p>
+          <span class="tag">agent.1 品牌与三区两翼</span
+          ><span class="tag">agent.2 生态与要素机制</span
+          ><span class="tag">agent.3 场景护照</span
+          ><span class="tag">agent.4 公共空间与地标</span
+          ><span class="tag">agent.5 可信文化叙事</span
+          ><span class="tag">agent.6 四季运营</span>
+        </p>
+        <p>
+          每项映射到特定正文、Feature
+          ID、指标、图纸、来源、假设和自检；详细证据见
+          <code>compliance_matrix.json</code>、<code>standard_matrix.json</code>
+          和 <code>design_depth_matrix.json</code>。
+        </p>
+      </section>
+      <section id="check">
+        <h2>自检状态：证据与边界</h2>
+        <div class="grid">
+          <article class="card">
+            <strong>23</strong>
+            <p>项任务映射到特定章节、图层、指标、来源、假设与检查</p>
+          </article>
+          <article class="card">
+            <strong>29</strong>
+            <p>条来源分别记录允许与禁止用途</p>
+          </article>
+          <article class="card">
+            <strong>13</strong>
+            <p>项已声明假设与证据缺口</p>
+          </article>
+          <article class="card">
+            <strong>8 / 0</strong>
+            <p>结构化桌面观察 / 已完成现场审计</p>
+          </article>
+          <article class="card">
+            <strong>11 / 0</strong>
+            <p>G0 准备记录 / 获批或运行项目</p>
+          </article>
+          <article class="card">
+            <strong>22</strong>
+            <p>项包内自检，含双语视觉等价检查与一项明确 UNKNOWN 的权利放行门</p>
+          </article>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>检查</th>
+              <th>结果</th>
+              <th>含义</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>BOUNDARY_TRUST</code></td>
+              <td>PASS</td>
+              <td>
+                临时边界保持
+                official_boundary=false、低置信且非法定；相关指标继承 LOW。
+              </td>
+            </tr>
+            <tr>
+              <td><code>KEY_AREAS_TRUST</code></td>
+              <td>PASS</td>
+              <td>
+                三处重点区齐全且明确为
+                provisional，不作为官方边界或精确面积依据。
+              </td>
+            </tr>
+            <tr>
+              <td><code>LAND_USE_TOPOLOGY</code></td>
+              <td>PASS</td>
+              <td>36 个无重叠单元完整覆盖临时范围，末单元吸收浮点残差。</td>
+            </tr>
+            <tr>
+              <td><code>SPATIAL_EVIDENCE</code></td>
+              <td>PASS</td>
+              <td>
+                空间证据含 180 个体量原型、12 条设计线、10 处绿地、9
+                处公共空间、6 个接口、3 个服务区和 12 个场景节点。
+              </td>
+            </tr>
+            <tr>
+              <td><code>METRIC_RECALCULATION</code></td>
+              <td>PASS</td>
+              <td>
+                已知指标来自 EPSG:4548
+                复算或机器属性计数；无依据法定与运行指标保持未知。
+              </td>
+            </tr>
+            <tr>
+              <td><code>SCENARIO_PROTOCOL</code></td>
+              <td>PASS</td>
+              <td>
+                12 个 G0
+                节点均记录责任、风险、最小数据、时空边界、受影响人群、接管、申诉、非
+                AI 选项、停止、复测和到期。
+              </td>
+            </tr>
+            <tr>
+              <td><code>G0_T02_SYNTHETIC_REPLAY</code></td>
+              <td>PASS</td>
+              <td>
+                10/10 合成决策、4/4 停止恢复映射和 13/13 负向控制通过，只证明 G0
+                合同逻辑。
+              </td>
+            </tr>
+            <tr>
+              <td><code>PUBLIC_INTEREST_FALLBACK</code></td>
+              <td>PASS</td>
+              <td>
+                9 个公共节点均保留非 AI 通道、人工兜底、静音时段和无屏默认。
+              </td>
+            </tr>
+            <tr>
+              <td><code>TASK_EVIDENCE_SPECIFICITY</code></td>
+              <td>PASS</td>
+              <td>23 项任务使用特定证据，不重复同一泛化证据包。</td>
+            </tr>
+            <tr>
+              <td><code>VISUAL_STATIC</code></td>
+              <td>PASS</td>
+              <td>
+                离线 HTML
+                无远程依赖并覆盖范围、空间、项目、场景、指标、来源和假设。
+              </td>
+            </tr>
+            <tr>
+              <td><code>PROFESSIONAL_EVIDENCE</code></td>
+              <td>PASS</td>
+              <td>正文链接 6 项标准、15 项设计深度和完整 v2 结构审计。</td>
+            </tr>
+            <tr>
+              <td><code>RISK_AND_SOURCE_BOUNDARIES</code></td>
+              <td>PASS</td>
+              <td>
+                各类来源记录允许与禁止用途，协同、文化和场景保持建议状态。
+              </td>
+            </tr>
+            <tr>
+              <td><code>PAPER_DIMENSIONS</code></td>
+              <td>PASS</td>
+              <td>A3 文册与 A0 展板采用真实纸张尺寸和可搜索矢量标题。</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="notice">
+          所有边界、重点区、体量、公共空间范围、功能、时序和机构均为概念建议。公开网页桌面研究不是现场调查；法定控制、工程可行性、权属、资金和运行表现须由责任部门和专业团队核验。
+        </div>
+      </section>
+      <section id="rights">
+        <h2>来源—资产—权利证据</h2>
+        <div class="grid">
+          <article class="card">
+            <strong>29 / 29</strong>
+            <p>
+              来源记录与 schema
+              化权利证据一一对应；缺失发布日期、原格式、摘要或条款时明确记为
+              unknown。
+            </p>
+          </article>
+          <article class="card">
+            <strong>120 / 120</strong>
+            <p>
+              OSM way 具有 source_id、element id
+              与署名；固定查询和快照摘要仍未知。
+            </p>
+          </article>
+          <article class="card">
+            <strong>68 / 68</strong>
+            <p>
+              manifest 预期路径与逐文件资产记录严格对应；5
+              个粗组仅保留兼容用途，最终摘要待从最终 Git blobs 刷新。
+            </p>
+          </article>
+          <article class="card">
+            <strong>0</strong>
+            <p>已完成独立逐文件清权审计；总体仍为 not_fully_cleared。</p>
+          </article>
+        </div>
+        <div class="notice">
+          <code>RIGHTS-OPEN-01</code> 完整许可条款、<code>RIGHTS-OPEN-02</code>
+          独立逐文件审计、<code>RIGHTS-OPEN-03</code> ODbL 义务均保持 P0
+          open。仓库评审为 disclosure-ready；公共展示、专业深化或其他复用继续
+          <strong>blocked pending terms and audit</strong>。结构完整或机器 PASS
+          不等于权利清除。
+        </div>
+        <p>
+          <code>submission-use-rights-matrix.json</code> 将公告
+          8.1、仓库评审、主办方项目内使用、投稿人对外展示、跨项目复用和第三方组件分开决策；本次开源
+          Agent 征集的适用关系仍待维护者或主办方确认。可机读依据还包括
+          <code>source-rights-evidence.schema.json</code
+          >、<code>source-rights-evidence.json</code>、<code>rights-clearance-ledger.json</code>、<code
+            >agent.json</code
+          >
+          与 <code>manifest.json</code>。
+        </p>
+      </section>
+      <section id="sources">
+        <h2>来源与假设</h2>
+        <p>
+          <code>sources.json</code> 登记 29 条来源及用途边界，并以稳定
+          <code>rights_evidence_id</code> 回链权利证据。4 条公开网页证据记录包外
+          Firecrawl 抓取摘要，15
+          条网页没有内容摘要；抓取缓存均不进入投稿包。<code
+            >assumptions.json</code
+          >
+          登记 13 项临时边界、空间表达、场景、现场与权利缺口。OSM
+          只作背景，公开报道不等于踏勘，任何外部区域协同均为建议，不代表机构已承诺。
+        </p>
+      </section>
+    </main>
+    <footer>
+      COMMUNITY-DISPLAY-ONLY · Offline static artifact · No remote scripts,
+      tracking, forms or APIs. Provisional geometry / Concept design / Human and
+      professional review required.
+    </footer>
+  </body>
+</html>

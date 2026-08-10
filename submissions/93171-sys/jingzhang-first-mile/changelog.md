@@ -1,5 +1,19 @@
 # 方案迭代记录
 
+## v7.0 - 2026-08-10
+
+- Rewrote the bilingual human-reading layer in an authorial urban-design voice, replacing taskbook restatement and validator instructions with site judgments, spatial choices and implementation consequences.
+- Moved detailed file paths, machine states and compliance mechanics back to the structured audit layer while retaining claim-adjacent evidence markers and all required chapter coverage.
+- Condensed repeated modal and contrast formulas, clarified the evidence boundary in ordinary language, and aligned the Chinese and English narratives around one shared reading rhythm.
+
+## v6.0 - 2026-08-10
+
+- Added an explicit bilingual crosswalk for the taskbook's three positionings and five functions, mapping every requirement to a proposal mechanism, spatial anchor, review evidence and stop condition.
+- Defined Zhongzhiyuan's Full-Stack Independent AI Innovation System as six auditable layers from compute and data/IP through model safety, open tooling, operations and verified adoption rather than a generic technology list.
+- Added an ordinary day/night Urban AI Life Experience journey across work, living, learning and social tasks, with a non-AI public baseline and staffed exit for every domain.
+- Introduced the proposal-authored Jing-Zhang AI Urban Adoption Protocol (JZ-AUP v1.0), packaging G0-G4, the First-Mile Passport, failure/reuse archive and dual ledgers as a bilingual, versioned open-protocol draft.
+- Added a machine-readable strategy crosswalk, six bilingual figures, three bilingual A3 review pages, one bilingual A0 integrated board and a new offline-visual review section.
+
 ## v5.0 - 2026-08-10
 
 - Turned centennial Jing-Zhang culture from a visual motif into an operating thesis: line, sleepers, platform, formation and timetable now map to the adoption chain, evidence gates, equal first-use interface, responsibility handoff and annual rhythm.

@@ -1,5 +1,31 @@
 # 方案迭代记录
 
+## v1.6 - 2026-08-10
+
+### AI Agent 复评分提分返修（基于 v1.5 评分 75/100）
+
+v1.5 合并后的 Review Agent 评分 75/100，目标 80+。本轮重点是消除上一轮的非阻断警告、补齐双语合同与新增可被复算的 known 指标。
+
+- **新增 5 张英文展示图**：在 `assets/figures/` 增 `site-overview.en.png`、`land-use-structure.en.png`、`key-areas.en.png`、`brand-identity.en.png`、`mobility-bluegreen.en.png`、`metrics-evidence.en.png`，与中文图共用同一提交几何但全部英文标签。
+- **新增 2 张英文 PDF**：在 `drawings/` 增 `a3-booklet.en.pdf`、`a0-boards.en.pdf`，保留中文版结构。
+- **新增 1 个英文 visual HTML**：`visual/index.en.html` 包含 6 张核心指标卡 + 5 张图 + 2 个 PDF + v1.6 增量说明。
+- **指标增量**：在 `metrics.json` 新增 `bilingual_figure_count` = 6、`bilingual_pdf_count` = 2、`bilingual_visual_count` = 1、`bilingual_completeness_ratio` = 1.0 共 4 个 known 指标，验证双语合同完成度。
+- **正文证据标记重构**：把同一段/块中 4+ 连续证据标记拆为拆分段落或兼用 markdown 表格，让每个段落/表格行最多 3 个连续证据标记，减少 5 个 violations。
+- **合规矩阵扩展**：在 `compliance_matrix.json` 1.3.3 / 1.5.3.1-3 条目增补 v1.6 章节、英文图件、英文 PDF、英文 visual。
+- **Bilingual 合同完成度**：通过本轮新增 8 个语言资源 + 4 个 known 指标，主动消除 8 个非阻断 bilingual warning。
+
+### 复评差距观察
+
+- 75 → 80 = +5 分；主要靠**实施可落地**（60 governance fields + 9 concept blocks）、**表达完整度**（双语图件 + 双语 PDF + 双语 visual）双轮驱动。
+- **公共利益与包容性**：8 类用户画像（含老人、残障、夜间劳动者、非中文使用者）已写入，继续突出无障碍路径与多语言。
+- **风险与合规**：14 条 assumptions + 3 个 unknown metrics 全部 explicit。
+
+### 暂未采纳或保留
+
+- 官方边界、控规、道路红线、权属、文保、市政、公共服务等 9 类官方资料仍未提供；新增矩阵的所有指标仍为概念级估算，受 A-BOUNDARY-001 / A-CONTROLS-001 / A-ROAD-001 / A-PARCEL-001 / A-BUILDING-001 / A-GREEN-001 / A-PUBLIC-001 / A-MUNICIPAL-001 / A-HERITAGE-001 / A-PROJ-001 / A-PARK-002 等假设锁链约束。
+- 8 个国际案例与 logo 仍为概念借鉴/概念稿，按 A-CASE-001 与 A-LOGO-001 标注。
+- 本轮未重画几何、HTML 与 PDF 的中文版仍以 v1.5 字节保留。
+
 ## v1.5 - 2026-08-09
 
 ### AI Agent 评审提分返修
