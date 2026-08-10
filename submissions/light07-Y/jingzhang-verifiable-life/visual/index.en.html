@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Jingzhang Verifiable Life Line — offline visual overview: signal-board style, three-station Status Screen, Proofline six-piece suite and 15 content sections.">
+<title>Jingzhang Verifiable Life Line — Visual Overview (Offline)</title>
+<style>
+:root{
+  --navy:#1A2B4A;          /* deep navy base */
+  --navy-2:#22345C;        /* panel */
+  --navy-3:#2C3F6B;        /* panel border */
+  --navy-deep:#101C33;     /* deepest */
+  --ink:#0F1B33;
+  --green:#2E9E5B;         /* signal green · trial-running */
+  --yellow:#F2A93B;        /* signal yellow · speed-restricted */
+  --red:#D64545;           /* signal red · out of service */
+  --text:#E8EEF7;
+  --muted:#9FB0C8;
+  --line:rgba(232,238,247,.16);
+  --mono:"SF Mono","Cascadia Mono",Consolas,"Noto Sans Mono",ui-monospace,monospace;
+  --sans:"Noto Sans","Noto Sans SC","Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--navy);
+  color:var(--text);
+  font-family:var(--sans);
+  line-height:1.7;
+  font-size:15px;
+}
+/* dashed track decoration */
+.track{
+  height:3px;
+  background:repeating-linear-gradient(90deg, rgba(242,169,59,.5) 0 16px, rgba(242,169,59,.08) 16px 34px);
+  border:0;
+}
+.track.thin{height:2px;margin:18px 0}
+/* header */
+header{
+  background:linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 100%);
+  border-bottom:1px solid var(--line);
+}
+.hero{max-width:1180px;margin:0 auto;padding:38px 26px 26px}
+.hero-top{display:flex;align-items:center;gap:30px;flex-wrap:wrap}
+.signal-pole{
+  display:inline-flex;flex-direction:column;gap:7px;
+  background:var(--navy-2);border:1px solid var(--navy-3);
+  border-radius:10px;padding:10px 9px;flex:0 0 auto;
+}
+.lamp{display:inline-block;width:16px;height:16px;border-radius:50%;background:#33486E}
+.lamp.g{background:var(--green);box-shadow:0 0 10px 2px rgba(46,158,91,.6)}
+.lamp.y{background:var(--yellow);box-shadow:0 0 10px 2px rgba(242,169,59,.6)}
+.lamp.r{background:var(--red);box-shadow:0 0 10px 2px rgba(214,69,69,.6)}
+.lamp.dim{background:#33486E;box-shadow:none}
+.hero h1{font-size:36px;line-height:1.2;margin:0 0 6px;letter-spacing:.02em}
+.hero .title-en{font-size:15px;color:var(--muted);letter-spacing:.14em;margin:0 0 14px}
+.slogan{
+  font-size:18px;color:#CFE0F5;margin:14px 0 0;
+  border-left:4px solid var(--green);padding-left:14px;max-width:860px;
+}
+.slogan small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.pill{
+  display:inline-block;border:1px solid var(--navy-3);border-radius:999px;
+  padding:5px 12px;font-size:12.5px;color:var(--text);background:rgba(255,255,255,.05);
+}
+.pill.status{color:#7FE0A8;border-color:rgba(46,158,91,.55)}
+nav.rail{
+  max-width:1180px;margin:0 auto;padding:0 26px 20px;
+  display:flex;flex-wrap:wrap;gap:8px;
+}
+nav.rail a{
+  color:var(--muted);text-decoration:none;font-size:12.5px;
+  border:1px solid var(--line);border-radius:6px;padding:4px 10px;
+}
+nav.rail a:hover{color:var(--text);border-color:var(--yellow)}
+/* main content */
+main{max-width:1180px;margin:0 auto;padding:8px 26px 60px}
+.sheet{
+  background:var(--navy-2);
+  border:1px solid var(--navy-3);border-radius:12px;
+  margin:26px 0;overflow:hidden;
+  box-shadow:0 10px 30px rgba(8,16,33,.35);
+}
+.sheet-head{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 22px;border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.03);
+}
+.milestone{
+  font-family:var(--mono);font-size:12px;letter-spacing:.08em;
+  color:var(--yellow);border:1px dashed rgba(242,169,59,.55);
+  border-radius:6px;padding:3px 8px;white-space:nowrap;flex:0 0 auto;
+}
+.sheet-head h2{font-size:21px;margin:0;letter-spacing:.03em}
+.sheet-head h2 .en{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:.1em;margin-left:8px}
+.sheet-head .tag{
+  margin-left:auto;font-size:11.5px;color:var(--muted);
+  border:1px solid var(--line);border-radius:5px;padding:3px 9px;white-space:nowrap;
+}
+.sheet-body{padding:20px 22px 24px}
+.sheet-body p{margin:0 0 12px;max-width:1020px}
+.sheet-body p.muted{color:var(--muted);font-size:13.5px}
+/* tables */
+table.board{border-collapse:collapse;width:100%;margin:14px 0 18px;font-size:14px}
+table.board th,table.board td{
+  border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;line-height:1.6;
+}
+table.board th{background:rgba(255,255,255,.07);color:#DCE7F5;font-weight:600;white-space:nowrap}
+table.board td code{font-family:var(--mono);color:#8FD3FF;font-size:13px}
+.small-note{color:var(--muted);font-size:13px;margin:6px 0 0}
+/* numbers */
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;color:#8FD3FF}
+/* overview */
+.grid-2{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px}
+.figure{
+  border:1px solid var(--navy-3);border-radius:10px;overflow:hidden;background:var(--navy-deep);
+  margin:6px 0 16px;
+}
+.figure img{display:block;width:100%;height:auto}
+.figure figcaption{
+  padding:9px 14px;color:var(--muted);font-size:12.5px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+}
+.figure .prov{color:#FFD28A}
+.concept-card{
+  border:1px dashed rgba(242,169,59,.5);border-radius:10px;padding:14px 16px;margin:10px 0;
+  background:rgba(242,169,59,.05);
+}
+.concept-card b{color:var(--yellow)}
+/* status screen */
+.status-screen{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0 8px}
+.station-card{
+  border:1px solid var(--navy-3);border-radius:12px;padding:16px;
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  transition:border-color .2s ease;
+}
+.station-card h3{font-size:16.5px;margin:0 0 4px}
+.station-card .station-sub{color:var(--muted);font-size:12.5px;margin:0 0 12px}
+.station-card .station-note{color:var(--text);font-size:13px;margin:10px 0 12px;min-height:2.7em}
+.status-line{display:flex;align-items:center;gap:10px;margin:6px 0 2px}
+.lamp.big{width:22px;height:22px}
+.status-label{font-size:17px;letter-spacing:.06em}
+.status-en{color:var(--muted);font-size:12px}
+.station-card[data-status="green"]{border-color:rgba(46,158,91,.65)}
+.station-card[data-status="green"] .lamp.big{background:var(--green);box-shadow:0 0 20px 6px rgba(46,158,91,.55)}
+.station-card[data-status="green"] .status-label{color:#7FE0A8}
+.station-card[data-status="yellow"]{border-color:rgba(242,169,59,.7)}
+.station-card[data-status="yellow"] .lamp.big{background:var(--yellow);box-shadow:0 0 20px 6px rgba(242,169,59,.5)}
+.station-card[data-status="yellow"] .status-label{color:#FFD28A}
+.station-card[data-status="red"]{border-color:rgba(214,69,69,.75)}
+.station-card[data-status="red"] .lamp.big{background:var(--red);box-shadow:0 0 20px 6px rgba(214,69,69,.55)}
+.station-card[data-status="red"] .status-label{color:#FF9A9A}
+.status-switch{display:flex;gap:8px;margin-top:6px}
+.status-btn{
+  border:1px solid var(--navy-3);background:rgba(255,255,255,.05);color:var(--text);
+  border-radius:7px;padding:6px 12px;font-size:13px;font-family:var(--sans);
+  cursor:pointer;transition:all .15s ease;
+}
+.status-btn:hover{border-color:var(--muted)}
+.station-card[data-status="green"] .status-btn[data-s="green"]{background:var(--green);border-color:var(--green);color:var(--navy-deep);font-weight:700}
+.station-card[data-status="yellow"] .status-btn[data-s="yellow"]{background:var(--yellow);border-color:var(--yellow);color:var(--navy-deep);font-weight:700}
+.station-card[data-status="red"] .status-btn[data-s="red"]{background:var(--red);border-color:var(--red);color:#FFF;font-weight:700}
+.interactive-note{color:var(--muted);font-size:12.5px;margin:10px 0 0}
+/* Proofline six-piece suite */
+.six-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.six-card{
+  border:1px solid var(--navy-3);border-radius:10px;padding:13px 15px;background:rgba(255,255,255,.03);
+}
+.six-card h4{margin:0 0 6px;font-size:15px;color:#CFE0F5}
+.six-card h4 b{color:var(--yellow);font-weight:700}
+.six-card p{margin:0;font-size:13px;color:var(--muted)}
+/* metrics */
+.metric-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metric{
+  border:1px solid var(--navy-3);border-radius:10px;padding:13px 15px;background:rgba(255,255,255,.03);
+}
+.metric .m-id{font-family:var(--mono);font-size:12px;color:var(--muted);display:block;margin-bottom:5px}
+.metric .m-val{
+  font-family:var(--mono);font-variant-numeric:tabular-nums;
+  font-size:22px;color:#8FD3FF;display:block;line-height:1.25;
+}
+.metric .m-note{font-size:12px;color:var(--muted);margin-top:6px;display:block}
+.metric.unknown{opacity:.85}
+.metric .unknown-val{
+  font-family:var(--mono);font-size:19px;color:#9FB0C8;display:block;line-height:1.25;
+}
+.metric .unknown-val em{color:#C8D4E4;font-style:normal}
+.metric .m-reason{font-size:12px;color:var(--muted);margin-top:6px;display:block;line-height:1.55}
+/* lists */
+ul.dash{list-style:none;margin:10px 0 0;padding:0}
+ul.dash li{position:relative;padding-left:20px;margin:7px 0;max-width:1000px}
+ul.dash li::before{
+  content:"";position:absolute;left:2px;top:10px;width:10px;height:2px;
+  background:var(--yellow);border-radius:2px;
+}
+ol.numbered{margin:10px 0 0;padding-left:22px}
+ol.numbered li{margin:7px 0}
+/* status badges */
+.badge{
+  display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.05em;
+  border-radius:5px;padding:2px 9px;
+}
+.badge.pass{color:#7FE0A8;border:1px solid rgba(46,158,91,.6);background:rgba(46,158,91,.12)}
+.badge.info{color:#FFD28A;border:1px solid rgba(242,169,59,.55);background:rgba(242,169,59,.1)}
+.check-row{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px dashed rgba(232,238,247,.12)}
+.check-row:last-child{border-bottom:0}
+.check-row .check-id{font-family:var(--mono);font-size:13px;color:#8FD3FF;min-width:150px}
+.check-row .check-msg{font-size:13.5px;color:var(--muted);margin:0}
+/* sources / assumptions */
+.src-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:6px}
+.src-item{
+  border:1px solid var(--navy-3);border-radius:8px;padding:10px 13px;background:rgba(255,255,255,.02);
+}
+.src-item .src-id{font-family:var(--mono);font-size:12.5px;color:#8FD3FF;display:block}
+.src-item .src-type{font-size:11px;color:var(--yellow);letter-spacing:.05em;display:block;margin:2px 0 5px}
+.src-item .src-use{font-size:12.5px;color:var(--muted);margin:0;line-height:1.55}
+.assume-row{padding:9px 0;border-bottom:1px dashed rgba(232,238,247,.12)}
+.assume-row:last-child{border-bottom:0}
+.assume-row .a-id{font-family:var(--mono);font-size:12.5px;color:#FFD28A}
+.assume-row p{margin:2px 0 0;font-size:13.5px;color:var(--text)}
+/* footer */
+footer{background:var(--navy-deep);border-top:1px solid var(--line);margin-top:10px}
+.foot-inner{max-width:1180px;margin:0 auto;padding:26px 26px 34px}
+.foot-inner p{margin:0 0 10px;font-size:13.5px;color:var(--muted);max-width:1000px}
+.foot-inner .foot-slogan{color:#CFE0F5;font-size:14px;border-top:1px dashed rgba(242,169,59,.4);padding-top:14px;margin-top:4px}
+.foot-inner b{color:var(--text);font-weight:600}
+@media (max-width:980px){
+  .status-screen,.six-grid,.metric-grid,.src-list,.grid-2{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:28px}
+}
+@media (max-width:640px){
+  .status-screen,.six-grid,.metric-grid,.src-list,.grid-2{grid-template-columns:1fr}
+  main{padding:6px 14px 44px}
+  .hero{padding:28px 16px 20px}
+  nav.rail{padding:0 16px 16px}
+  .sheet-head{flex-wrap:wrap}
+  .sheet-head .tag{margin-left:0}
+  .check-row{flex-direction:column;gap:4px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hero">
+    <div class="hero-top">
+      <span class="signal-pole" aria-hidden="true"><i class="lamp g"></i><i class="lamp y"></i><i class="lamp r"></i></span>
+      <div>
+        <h1>Jingzhang Verifiable Life Line</h1>
+        <p class="title-en">VISUAL OVERVIEW · OFFLINE SIGNAL-BOARD EDITION</p>
+      </div>
+    </div>
+    <p class="slogan">Every AI promise on the line can be seen, questioned, stopped, and reviewed.
+      <small>Not an engineering line that is &quot;delivered once built&quot; — a public line permanently in trial-running state, where every service can be stopped and inspected at any time.</small>
+    </p>
+    <div class="pill-row">
+      <span class="pill status">Status Screen · three stations</span>
+      <span class="pill">Proofline six-piece suite</span>
+      <span class="pill">Three-Level Scope</span>
+      <span class="pill">12 AI scenario cards</span>
+      <span class="pill">13 known metrics</span>
+      <span class="pill">unknown shown as text, never as numbers</span>
+    </div>
+  </div>
+  <div class="track"></div>
+  <nav class="rail" aria-label="Section navigation">
+    <a href="#sec-overview">Overview Map</a>
+    <a href="#sec-status">Status Screen</a>
+    <a href="#sec-scope">Three-Level Scope</a>
+    <a href="#sec-areas">Key Areas</a>
+    <a href="#sec-landuse">Land Use</a>
+    <a href="#sec-traffic">Mobility &amp; Blue-Green</a>
+    <a href="#sec-bluegreen">Public Spaces</a>
+    <a href="#sec-buildings">Buildings</a>
+    <a href="#sec-renewal">Renewal Projects</a>
+    <a href="#sec-scenarios">AI Scenarios</a>
+    <a href="#sec-metrics">Core Metrics</a>
+    <a href="#sec-tasks">Task Coverage</a>
+    <a href="#sec-selfcheck">Self-Check Status</a>
+    <a href="#sec-sources">Sources</a>
+    <a href="#sec-assumptions">Assumptions</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ 1 Overview Map ============ -->
+<section class="sheet" id="sec-overview">
+  <div class="sheet-head">
+    <span class="milestone">M01</span>
+    <h2>Overview Map<span class="en">Site Overview</span></h2>
+    <span class="tag">site-overview.en.png · geometry + metrics</span>
+  </div>
+  <div class="sheet-body">
+    <p><b>Concept in one sentence</b>: with &quot;verification&quot; as public infrastructure, AI promises are translated into human-verifiable facts — a life line permanently in trial-running state.
+      <b>Differentiation statement</b>: proposals on the same &quot;verification&quot; theme build the institutional expression of verification infrastructure; this proposal builds the <b>everyday-ization of verification</b> — certificate experiences within easy reach while grocery shopping, commuting, seeking healthcare or taking a stroll.</p>
+    <p class="muted">Overall spatial structure — &quot;one spine, three stations, stations along the line, closed-loop re-verification&quot;: one spine = the Jing-Zhang Railway Heritage Park corridor as the main spine of the verification line (the Proofline main corridor); three stations = the three key areas, each carrying one verification-station function; stations along the line = AI services arranged in the form of stations along the line, where the public can enter to question and leave to exit; closed-loop re-verification = every service undergoes mandatory 12-month re-verification (the &quot;overhaul&quot; regime) — trial running never ends. Four nodes: the Signal House (verification command center), the Milepost Gallery (verification events + agent contributor honor wall), the Switch Point (public switching between AI and human), the Platform Square (status screens + event assembly).</p>
+    <figure class="figure">
+      <img src="../assets/figures/site-overview.en.png" alt="Site overview: the line + three stations + four nodes, conceptual" onerror="this.style.display='none'">
+      <figcaption><span>Fig. 1 Site overview (conceptual; the provisional boundary is shown by dashed constraints)</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+    <p class="small-note">The figure is a decorative conceptual illustration; authoritative areas, metrics and compliance claims follow geometry/*.geojson, metrics.json, the matrices and the self-check results.</p>
+  </div>
+</section>
+
+<!-- ============ Status Screen (core interactive component) ============ -->
+<section class="sheet" id="sec-status">
+  <div class="sheet-head">
+    <span class="milestone">SCREEN</span>
+    <h2>Status Screen<span class="en">Public Status Screen</span></h2>
+    <span class="tag">green = trial-running / yellow = speed-restricted / red = out of service</span>
+  </div>
+  <div class="sheet-body">
+    <p>The service state of each of the three stations is permanently publicly visible on a communal Status Screen using the three signal colors. Click the buttons inside a card to switch its state (pure CSS/JS). Default state: trial-running.</p>
+    <div class="status-screen" id="status-screen">
+      <article class="station-card" data-status="green">
+        <h3>Zhongzhiyuan Station · Safety Verification Station</h3>
+        <p class="station-sub">Zhongzhiyuan AI Independent Innovation Acceleration Area · marshalling yard / test line</p>
+        <div class="status-line"><span class="lamp big" aria-hidden="true"></span><b class="status-label">Trial-running</b><span class="status-en">green signal</span></div>
+        <p class="station-note">TVS-01/02/03 industrial testing and validation: test-line Status Screen, test-engineer watchkeeping, test emergency Stop Switch, test-report Service Receipt.</p>
+        <div class="status-switch">
+          <button type="button" class="status-btn" data-s="green" data-label="Trial-running" data-en="green signal">Trial-running</button>
+          <button type="button" class="status-btn" data-s="yellow" data-label="Speed-restricted" data-en="yellow signal">Speed-restricted</button>
+          <button type="button" class="status-btn" data-s="red" data-label="Out of service" data-en="red signal">Out of service</button>
+        </div>
+      </article>
+      <article class="station-card" data-status="green">
+        <h3>AI Origin Community Station · Interpretation Station</h3>
+        <p class="station-sub">Beijing AI Origin Community · Signal House / inquiry desks</p>
+        <div class="status-line"><span class="lamp big" aria-hidden="true"></span><b class="status-label">Trial-running</b><span class="status-en">green signal</span></div>
+        <p class="station-note">LSC-01 public AI guided tours, LSC-05 public AI fact-checking: explanation screens, public inquiry desks, switchable human guides.</p>
+        <div class="status-switch">
+          <button type="button" class="status-btn" data-s="green" data-label="Trial-running" data-en="green signal">Trial-running</button>
+          <button type="button" class="status-btn" data-s="yellow" data-label="Speed-restricted" data-en="yellow signal">Speed-restricted</button>
+          <button type="button" class="status-btn" data-s="red" data-label="Out of service" data-en="red signal">Out of service</button>
+        </div>
+      </article>
+      <article class="station-card" data-status="green">
+        <h3>Dazhongsi Station · Daily Service Station</h3>
+        <p class="station-sub">Dazhongsi AI Industry Cluster · passenger station / Platform Square</p>
+        <div class="status-line"><span class="lamp big" aria-hidden="true"></span><b class="status-label">Trial-running</b><span class="status-en">green signal</span></div>
+        <p class="station-note">LSC-03 nighttime delivery and quiet-space coordination: Platform Square status screens, event assembly, daily-service receipts.</p>
+        <div class="status-switch">
+          <button type="button" class="status-btn" data-s="green" data-label="Trial-running" data-en="green signal">Trial-running</button>
+          <button type="button" class="status-btn" data-s="yellow" data-label="Speed-restricted" data-en="yellow signal">Speed-restricted</button>
+          <button type="button" class="status-btn" data-s="red" data-label="Out of service" data-en="red signal">Out of service</button>
+        </div>
+      </article>
+    </div>
+    <p class="interactive-note">These states are conceptual interaction examples (trial-running by default) and do not represent real-time operation; real states are governed by protocol operating data.</p>
+
+    <div class="track thin"></div>
+    <h3 style="font-size:17px;margin:6px 0 2px">Proofline Verification Protocol — the six-piece suite</h3>
+    <p class="muted">Every AI service launch must pass the complete protocol chain of the six-piece suite: one Certificate, one Status Screen, one Watchkeeper, one Stop Switch, one Service Receipt, one Review Session.</p>
+    <div class="six-grid">
+      <div class="six-card"><h4><b>One</b> Certificate</h4><p>Service registration + verification baseline: public registration before launch; the verification baseline is publicly displayed.</p></div>
+      <div class="six-card"><h4><b>One</b> Status Screen</h4><p>Green/yellow/red public status screen: service state is always visible and readable by anyone.</p></div>
+      <div class="six-card"><h4><b>One</b> Watchkeeper</h4><p>Human duty officer: human watchkeeping, spot checks and explanations; machines never decide alone.</p></div>
+      <div class="six-card"><h4><b>One</b> Stop Switch</h4><p>Stop switch, triggerable by the public: any violation pauses the service.</p></div>
+      <div class="six-card"><h4><b>One</b> Service Receipt</h4><p>Service receipt voucher: every service issues a storable, appealable result receipt.</p></div>
+      <div class="six-card"><h4><b>One</b> Review Session</h4><p>Public review session: monthly review + 12-month mandatory re-verification + the annual Verification Festival (September).</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 Three-Level Scope ============ -->
+<section class="sheet" id="sec-scope">
+  <div class="sheet-head">
+    <span class="milestone">M02</span>
+    <h2>Three-Level Scope<span class="en">Scope Framework</span></h2>
+    <span class="tag">43.6 / 11.4 km² · 368.4 ha</span>
+  </div>
+  <div class="sheet-body">
+    <p>The work is organized along the three layers defined by the announcement. The three layers are not separate sets of drawings: the Coordinated Research Area decides the industrial and ecosystem value of &quot;verification&quot; as a governance method; the Overall Design Area grounds the method in spatial structure and facility capacity; the key areas turn the protocol into station scenarios that can be experienced, re-checked and operated.</p>
+    <table class="board">
+      <thead><tr><th>Layer</th><th>Official scope</th><th>What this proposal carries</th><th>Data anchor</th></tr></thead>
+      <tbody>
+        <tr><td><b>Coordinated Research Area</b></td><td>43.6 km², bounded by the North Fifth Ring Road to the north, the Jingzang Expressway to the east, Xizhimen Outer Street to the south, and Wanquanhe Road to the west</td><td>The innovation chain and ecosystem framework of verification as an urban governance method (Chapters 3-4)</td><td><code>site_boundary.geojson#SITE-001</code>, compliance_matrix.json</td></tr>
+        <tr><td><b>Overall Design Area</b></td><td>11.4 km²: urban districts and industrial zones within 1-2 km of the Jing-Zhang Railway Heritage Park</td><td>The overall spatial structure of &quot;one line + three verification stations + four nodes&quot; (Chapters 4-9)</td><td><code>land_use.geojson#LU-001</code>, <code>roads.geojson#ROAD-001</code></td></tr>
+        <tr><td><b>Key-Area Detailed Design Area</b></td><td>368.4 ha across three detailed-design areas</td><td>Three stations = Safety Verification Station / Interpretation Station / Daily Service Station (Chapter 5)</td><td><code>key_areas.geojson#PROV-KEY-001/002/003</code></td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">All geometry-derived areas and ratios are recalculated in metrics.json (EPSG:4548 projection) and marked with provisional constraints; any quantity that cannot be recalculated from structured data must not enter formal conclusions.</p>
+  </div>
+</section>
+
+<!-- ============ 3 Key Areas ============ -->
+<section class="sheet" id="sec-areas">
+  <div class="sheet-head">
+    <span class="milestone">M03</span>
+    <h2>Key Areas<span class="en">Three stations · four landmarks</span></h2>
+    <span class="tag">three stations = three verification stations · four landmarks</span>
+  </div>
+  <div class="sheet-body">
+    <p>The three key areas are the proposal&apos;s &quot;three verification stations&quot; — merging the detailed-design tasks required by the announcement with the three-station division of the verification protocol.</p>
+    <table class="board">
+      <thead><tr><th>Key area</th><th>Verification station function</th><th>Design positioning</th><th>Spatial moves</th><th>AI scenarios &amp; protocol anchor</th></tr></thead>
+      <tbody>
+        <tr><td><b>Zhongzhiyuan AI Independent Innovation Acceleration Area</b></td><td>Safety Verification Station (marshalling yard / test line)</td><td>Garden-style full-stack independent innovation block</td><td>Strengthen the Qinghe interface, industrial display, low-carbon innovation exchange and external transport organization; green spaces carry the open testing grounds and the standards-governance display</td><td>TVS-01/02/03, test-line Status Screen, test-engineer watchkeeping</td></tr>
+        <tr><td><b>Beijing AI Origin Community</b></td><td>Interpretation Station (Signal House)</td><td>Campus-adjacent outcome-transfer and talent community</td><td>Stitch campus, park and blocks with walking and cycling connections; add outcome-release, talent-service, residential-living and open-source-collaboration spaces; set up the Signal House and public inquiry desks</td><td>LSC-01 guided tours, LSC-05 fact-checking, inquiry plaza, explanation receipts</td></tr>
+        <tr><td><b>Dazhongsi AI Industry Cluster</b></td><td>Daily Service Station (passenger station)</td><td>Urban-style intelligent-economy and international-exchange block</td><td>Dazhongsi station integration; four-quadrant pedestrian connectivity; renewal of commercial services and the public environment around key enterprises; set up the Platform Square and the daily-service Status Screen</td><td>LSC-03 nighttime delivery coordination, Platform Square event dispatch, daily-service receipts</td></tr>
+      </tbody>
+    </table>
+    <p><b>Four AI pilgrimage landmarks (responding to agent.4)</b>: ① the Signal House (inside the AI Origin Community station; the verification command center, transparent and open to visits); ② the Milepost Gallery (mid-line; the verification event log and the agent-contributor honor wall); ③ the Switch Point (an interactive public space where the public switches between AI and human service modes by hand); ④ the Platform Square (at Dazhongsi station; public status screens + the main venue of the Verification Festival).</p>
+    <figure class="figure">
+      <img src="../assets/figures/key-areas.en.png" alt="Key areas: three-station verification division, conceptual" onerror="this.style.display='none'">
+      <figcaption><span>Fig. 2 Key areas: three-station verification division (conceptual)</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 4 Land Use ============ -->
+<section class="sheet" id="sec-landuse">
+  <div class="sheet-head">
+    <span class="milestone">M04</span>
+    <h2>Land Use<span class="en">Conceptual Zoning</span></h2>
+    <span class="tag">MNR-LAND-USE-CLASSIFICATION-GUIDE code semantics</span>
+  </div>
+  <div class="sheet-body">
+    <p>The conceptual land-use layout covers the Overall Design Area boundary without overlap, and the land-use codes follow the semantics of the Guidelines for Land-Use Classification for Territorial Spatial Surveys, Planning, Use and Control of Land and Sea (2023).</p>
+    <table class="board">
+      <thead><tr><th>Land-use category</th><th>Code</th><th>Conceptual layout</th></tr></thead>
+      <tbody>
+        <tr><td>Research land</td><td><code>0802</code></td><td>Zhongzhiyuan and AI Origin Community cores</td></tr>
+        <tr><td>Education-research support</td><td><code>0804</code></td><td>AI Origin Community school-adjacent stitching belt</td></tr>
+        <tr><td>Cultural land</td><td><code>0803</code></td><td>Cultural display nodes of the three stations; Milepost Gallery</td></tr>
+        <tr><td>Commercial and service land</td><td><code>05</code></td><td>Dazhongsi commercial district; station surroundings</td></tr>
+        <tr><td>Residential and community services</td><td><code>0701/0702</code></td><td>AI Origin Community talent housing; communities along the line</td></tr>
+        <tr><td>Green and open space</td><td><code>1401/1402</code></td><td>Heritage-corridor green belt; buffer green spaces</td></tr>
+        <tr><td>Plaza land</td><td><code>1403</code></td><td>Fore-plazas and nodes of the three stations</td></tr>
+        <tr><td>Road land</td><td><code>1207</code></td><td>Road microcirculation</td></tr>
+        <tr><td>Reserved land</td><td><code>16</code></td><td>Reserved space for uses awaiting verification (echoing &quot;permanently trial-running&quot;)</td></tr>
+      </tbody>
+    </table>
+    <figure class="figure">
+      <img src="../assets/figures/land-use-structure.en.png" alt="Conceptual land-use structure diagram" onerror="this.style.display='none'">
+      <figcaption><span>Fig. 3 Conceptual land-use structure (conceptual recommendation; to be recalculated after the official boundary and planning conditions are confirmed)</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5 Mobility & Blue-Green ============ -->
+<section class="sheet" id="sec-traffic">
+  <div class="sheet-head">
+    <span class="milestone">M05</span>
+    <h2>Mobility &amp; Blue-Green<span class="en">Proofline main corridor</span></h2>
+    <span class="tag">proofline main corridor</span>
+  </div>
+  <div class="sheet-body">
+    <p>Mobility organization revolves around the <b>main corridor of the verification line</b>: the heritage-corridor main corridor carries walking and cycling (road_class = greenway/walking), and the three stations are linked by walking-and-cycling connectors (virtual mileage <span class="num">9505.52 m</span>, proofline_route_length_m); transit-station integration and four-quadrant pedestrian connectivity at rail stations such as Dazhongsi are included in the key-area actions; road microcirculation and plot-access roads are conceptual recommendations and do not involve road-alignment engineering schemes.</p>
+    <p>LSC-06 explainable congestion management is anchored in the Xiaoyue River Scenario Enablement Wing: when signal coordination runs, the public is shown &quot;why traffic is being dispatched this way&quot;, and the dispatch basis and receipts enter the Review Session. Municipal and New Infrastructure (edge-computing points, distributed energy, low-interference sensing) are proposed as conceptual prototypes without engineering-feasibility conclusions; the layout of public service facilities (community services, accessibility, elderly-care aging support) follows the Article 39 boundary of the Barrier-Free Environment Law.</p>
+    <figure class="figure">
+      <img src="../assets/figures/mobility-bluegreen.en.png" alt="Slow mobility and blue-green continuity, conceptual" onerror="this.style.display='none'">
+      <figcaption><span>Fig. 4 Slow mobility + blue-green continuity (conceptual)</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 6 Public Spaces ============ -->
+<section class="sheet" id="sec-bluegreen">
+  <div class="sheet-head">
+    <span class="milestone">M06</span>
+    <h2>Public Spaces<span class="en">Blue-green &amp; urban character</span></h2>
+    <span class="tag">heritage-park corridor as main axis</span>
+  </div>
+  <div class="sheet-body">
+    <p>The blue-green system takes the <b>heritage-park corridor as its main axis</b> (green corridor + buffer green space + in-station parks), with a conceptual green ratio of <span class="num">0.078915</span> (green_ratio, provisional recalculation); the public space system consists of the fore-plazas of the three stations, the four nodes and community public spaces, with a conceptual public-space ratio of <span class="num">0.00953</span> (public_space_ratio).</p>
+    <p>Urban character control adopts &quot;signal language&quot; as the direction of the wayfinding system: the three signal colors enter the wayfinding system as public-service status colors, the milepost is the spatial memory symbol, and the running-chart style is the information typographic language. The three-act cultural narrative — &quot;Signal (Zhan Tianyou&apos;s switchback and safety rules, 1905-1909) → Switch Point (the Zhongguancun direction change, 1949-2009) → Verification (a new signal system for the AI era today)&quot; — is anchored in the arc <b>from the people who designed railways to the people who design rules</b>.</p>
+  </div>
+</section>
+
+<!-- ============ 7 Buildings ============ -->
+<section class="sheet" id="sec-buildings">
+  <div class="sheet-head">
+    <span class="milestone">M07</span>
+    <h2>Buildings<span class="en">Building scale</span></h2>
+    <span class="tag">~150 concept volumes · 13 types</span>
+  </div>
+  <div class="sheet-body">
+    <p>Building scale is expressed as about <b>150 conceptual building volumes</b> (about 55 in Zhongzhiyuan, 50 in the AI Origin Community, 40 in Dazhongsi, and a few along the line); the conceptual building footprint area totals <span class="num">339482.799 m²</span> (building_footprint_area_sqm), with a conceptual building density of <span class="num">0.029745</span> (building_density). The types cover all 13 classes in enums/building_types.json: AI R&amp;D, laboratory, incubator, office, mixed-use, education-research support, residential, talent apartment, community service, commercial, cultural display, transit interchange, existing-preserved.</p>
+    <p class="muted">Building height and Floor Area Ratio are conceptual indication values and do not constitute statutory controls; the Demolish-Renovate-Retain strategy follows the three principles of &quot;preserve heritage and existing anchors, renew inefficient spaces, leave blank what awaits verification&quot; as a conceptual classification, without designating specific plots.</p>
+  </div>
+</section>
+
+<!-- ============ 8 Renewal Projects ============ -->
+<section class="sheet" id="sec-renewal">
+  <div class="sheet-head">
+    <span class="milestone">M08</span>
+    <h2>Renewal Projects<span class="en">10 concept items · 3 phases</span></h2>
+    <span class="tag">10 concept projects · three-phase implementation</span>
+  </div>
+  <div class="sheet-body">
+    <p>Conceptual renewal project list (10 items, all &quot;conceptual recommendations&quot;; each item is tagged with its verification-protocol link and implementation dependencies):</p>
+    <ol class="numbered">
+      <li>Public-oriented renovation of the Zhongzhiyuan test line and testing grounds;</li>
+      <li>the Signal House (interpretation hub at the AI Origin Community);</li>
+      <li>the Milepost Gallery and the milepost band along the line;</li>
+      <li>the Switch Point interactive public space;</li>
+      <li>the Dazhongsi Platform Square and the Status Screen system;</li>
+      <li>infill of the heritage-corridor main walking and cycling corridor;</li>
+      <li>paper-based service entries and receipt kiosks at the three stations;</li>
+      <li>the Xiaoyue River explainable congestion-management scenario belt;</li>
+      <li>community AI service stations (with human watchkeeping seats);</li>
+      <li>the Verification Festival event grounds and the running-chart release hall.</li>
+    </ol>
+    <p><b>Phased implementation (responding to agent.6 landing path)</b>:</p>
+    <table class="board">
+      <thead><tr><th>Phase</th><th>Scope</th><th>Content</th><th>Verification status</th></tr></thead>
+      <tbody>
+        <tr><td><b>Phase 1 · Verification launch</b> (PHASE-001)</td><td>Three key areas and station surroundings</td><td>The three stations deliver verification functions; TVS-01/02/03 go live; the Signal House and the Platform Square enter operation</td><td>First services enter Certificate registration; trial-running</td></tr>
+        <tr><td><b>Phase 2 · Corridor-wide infill</b> (PHASE-002)</td><td>Full heritage corridor</td><td>Walking and cycling infill of the main corridor; milepost band; Switch Point; community service stations roll out</td><td>All corridor services join the 12-month mandatory re-verification</td></tr>
+        <tr><td><b>Phase 3 · Two Wings coordination</b> (PHASE-003)</td><td>Zhongguancun Technology Services Wing; Xiaoyue River Scenario Enablement Wing</td><td>Factor-allocation linkage; explainable congestion management delivered; international track of the Verification Festival</td><td>The Protocol becomes an inter-belt governance product exported for international communication</td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">Policy recommendations (conceptual): a recommended (non-statutory) Certificate registration for AI services before launch; a four-step scenario access process of open application → sandbox testing → human review → public demonstration; a public disclosure mechanism for verification results and receipts; and developer-community operations — all are directions open to further study and do not constitute government commitments.</p>
+  </div>
+</section>
+
+<!-- ============ 9 AI Scenarios ============ -->
+<section class="sheet" id="sec-scenarios">
+  <div class="sheet-head">
+    <span class="milestone">M09</span>
+    <h2>AI Scenarios<span class="en">AI Scenario Cards</span></h2>
+    <span class="tag">12 cards: 3 TVS + 9 LSC</span>
+  </div>
+  <div class="sheet-body">
+    <p>Every scenario card follows the same <b>protocol card fields</b>: spatial location | operator (responsible role) | baseline source and current status | observation target / sample boundary / time window | success threshold | stop threshold | independent shutdown review role (human) | equivalent human service | data retention / deletion receipts / review cycle | appeal entry / pre-scaling review conditions | protocol chain mapping (Certificate, Status Screen, Watchkeeper, Stop Switch, Service Receipt, Review Session).</p>
+    <div class="concept-card"><p style="margin:0"><b>Baseline honesty statement</b>: baselines and thresholds are design-proposed target values, not field data already obtained; on-site baselines are to be collected after implementation (expressed as unknown; A-NO-FIELD-BASELINE-001). This proposal does not disguise conceptual target values as achieved figures.</p></div>
+
+    <h3 style="font-size:16px;margin:16px 0 4px">Industrial testing and validation scenarios ×3 (Zhongzhiyuan station, TVS-01~03)</h3>
+    <table class="board">
+      <thead><tr><th>Scenario</th><th>Success threshold (target)</th><th>Stop threshold (hard)</th><th>Human review</th><th>Recovery path</th><th>Protocol chain</th></tr></thead>
+      <tbody>
+        <tr><td><b>TVS-01</b> Autonomous shuttle testing and validation line</td><td>On-time rate ≥ 95%</td><td>any single human-vehicle contact incident stops the service</td><td>Safety attendant on every shuttle</td><td>Re-run the Certificate process after rectification</td><td>Certificate registration → test-line Status Screen → test-engineer watchkeeping → test emergency Stop Switch → test-report Service Receipt → test Review Session</td></tr>
+        <tr><td><b>TVS-02</b> Public LLM service validation (government / city Q&amp;A)</td><td>Fact-verification pass rate ≥ 98%</td><td>3 consecutive factual errors or 1 high-hazard error</td><td>Duty-watchkeeper spot checks + public inquiry desk</td><td>Re-verify after version rollback</td><td>Certificate + explanation screen + duty Watchkeeper + shutdown Stop Switch + explanation receipt + monthly Review Session</td></tr>
+        <tr><td><b>TVS-03</b> Robot delivery and low-altitude logistics validation</td><td>Delivery-timeliness achievement rate ≥ 95%</td><td>Pedestrian safety incidents</td><td>Rider handover confirmation</td><td>Temporary switch to human delivery</td><td>Certificate + time-window Status Screen + dispatch Watchkeeper + emergency Stop Switch + handover receipt + Review Session</td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">TVS-02 content compliance and data boundaries follow the Interim Measures for the Administration of Generative Artificial Intelligence Services; no &quot;statutory N-day deletion&quot; commitment is fabricated — the operational design of &quot;deletion receipts + review cycle&quot; responds instead.</p>
+
+    <h3 style="font-size:16px;margin:18px 0 4px">Daily life scenarios ×9 (LSC-01~09; stop thresholds and human review are protocol design frameworks; target values await on-site baseline collection)</h3>
+    <table class="board">
+      <thead><tr><th>Scenario card</th><th>Spatial location</th><th>Stop threshold (design target)</th><th>Human review (fallback)</th></tr></thead>
+      <tbody>
+        <tr><td><b>LSC-01</b> Public AI guided tour</td><td>Interpretation Station (AI Origin Community)</td><td>Persistently misleading explanations switch to human</td><td>Switchable human guides</td></tr>
+        <tr><td><b>LSC-02</b> Accessible switchable routes</td><td>Along the line (statutorily enumerated service venues)</td><td>Guidance beyond the Article 39 statutory enumeration stops the service</td><td>Human windows and voice assistance</td></tr>
+        <tr><td><b>LSC-03</b> Nighttime delivery and quiet-space coordination</td><td>Dazhongsi</td><td>Deliveries violating quiet hours stop the service</td><td>Rider manual delivery fallback</td></tr>
+        <tr><td><b>LSC-04</b> Paper-based service entry</td><td>Communities along the line (e.g., Granny Wang)</td><td>Missing paper receipts stop the service</td><td>Human errand assistants throughout</td></tr>
+        <tr><td><b>LSC-05</b> Public AI fact-checking</td><td>Inquiry desks at the Interpretation Station</td><td>Verification conclusions without source basis stop the service</td><td>Check-desk duty staff review</td></tr>
+        <tr><td><b>LSC-06</b> Explainable congestion management</td><td>Xiaoyue River Scenario Enablement Wing</td><td>Dispatch explanations inconsistent with actual signals stop the service</td><td>Dispatcher / traffic-police confirmation</td></tr>
+        <tr><td><b>LSC-07</b> Thermal-comfort alerts</td><td>Public spaces</td><td>Extreme-weather alerts without corresponding response stop the service</td><td>Emergency watchkeeping staff respond manually</td></tr>
+        <tr><td><b>LSC-08</b> Community service resource matching</td><td>Community service stations</td><td>Recommended resources without social-worker confirmation stop the service</td><td>Human social-worker review</td></tr>
+        <tr><td><b>LSC-09</b> Data deletion and exit receipts</td><td>Along the line (exit yields a receipt)</td><td>Missing deletion-receipt vouchers stop the service</td><td>Human acceptance windows</td></tr>
+      </tbody>
+    </table>
+    <p class="small-note">The full list of 12 cards, the threshold tables and the spatial placements are fully consistent with Chapter 6 of proposal.md (scenario_card_count=12, industrial_tvs_count=3).</p>
+  </div>
+</section>
+
+<!-- ============ 10 Core Metrics ============ -->
+<section class="sheet" id="sec-metrics">
+  <div class="sheet-head">
+    <span class="milestone">M10</span>
+    <h2>Core Metrics<span class="en">13 known + 6 unknown</span></h2>
+    <span class="tag">13 known + 6 unknown · digit-identical to metrics.json</span>
+  </div>
+  <div class="sheet-body">
+    <p>Indicators fall into two classes: <b>recomputable indicators (known)</b> — all recalculable from the submission-package geometry and structured data; geometry-derived indicators carry medium confidence and are marked with provisional constraints; <b>indicators pending official data (unknown)</b> — honestly marked with the reason; this page always displays the text &quot;unknown / pending&quot; and never renders them as numbers.</p>
+    <div class="metric-grid">
+      <div class="metric"><span class="m-id">site_area_sqm · Site area</span><span class="m-val" data-metric="site_area_sqm" data-value="11412825.386">11412825.386</span><span class="m-note">m² · EPSG:4548 recalculation · provisional (medium)</span></div>
+      <div class="metric"><span class="m-id">green_ratio · Conceptual green ratio</span><span class="m-val" data-metric="green_ratio" data-value="0.078915">0.078915</span><span class="m-note">green_space / site_area · provisional recalculation</span></div>
+      <div class="metric"><span class="m-id">public_space_ratio · Public-space ratio</span><span class="m-val" data-metric="public_space_ratio" data-value="0.00953">0.00953</span><span class="m-note">public_space / site_area · provisional recalculation</span></div>
+      <div class="metric"><span class="m-id">building_density · Building density</span><span class="m-val" data-metric="building_density" data-value="0.029745">0.029745</span><span class="m-note">footprint / site_area · provisional recalculation</span></div>
+      <div class="metric"><span class="m-id">building_footprint_area_sqm · Building footprint area</span><span class="m-val" data-metric="building_footprint_area_sqm" data-value="339482.799">339482.799</span><span class="m-note">m² · ~150 conceptual volumes · provisional (medium)</span></div>
+      <div class="metric"><span class="m-id">road_centerline_length_m · Road centerline length</span><span class="m-val" data-metric="road_centerline_length_m" data-value="24159.343">24159.343</span><span class="m-note">m · sum(centerline_length) · provisional (medium)</span></div>
+      <div class="metric"><span class="m-id">proofline_route_length_m · Proofline virtual mileage</span><span class="m-val" data-metric="proofline_route_length_m" data-value="9505.52">9505.52</span><span class="m-note">m · slow-traffic corridor length between the three stations · provisional (medium)</span></div>
+      <div class="metric"><span class="m-id">key_area_count · Key-area count</span><span class="m-val" data-metric="key_area_count" data-value="3">3</span><span class="m-note">three key areas (provisional polygons)</span></div>
+      <div class="metric"><span class="m-id">verification_station_count · Verification station count</span><span class="m-val" data-metric="verification_station_count" data-value="3">3</span><span class="m-note">Zhongzhiyuan / AI Origin Community / Dazhongsi (high)</span></div>
+      <div class="metric"><span class="m-id">scenario_card_count · Scenario card count</span><span class="m-val" data-metric="scenario_card_count" data-value="12">12</span><span class="m-note">TVS-01~03 + LSC-01~09 (high)</span></div>
+      <div class="metric"><span class="m-id">industrial_tvs_count · Industrial TVS count</span><span class="m-val" data-metric="industrial_tvs_count" data-value="3">3</span><span class="m-note">TVS-01~03 at Zhongzhiyuan station (high)</span></div>
+      <div class="metric"><span class="m-id">user_persona_count · User persona count</span><span class="m-val" data-metric="user_persona_count" data-value="6">6</span><span class="m-note">P01~P06 review seats (high)</span></div>
+      <div class="metric"><span class="m-id">landmark_count · AI pilgrimage landmark count</span><span class="m-val" data-metric="landmark_count" data-value="4">4</span><span class="m-note">Signal House / Milepost Gallery / Switch Point / Platform Square (high)</span></div>
+    </div>
+
+    <h3 style="font-size:16px;margin:22px 0 4px">Metrics pending official data (unknown / pending — never rendered as numbers)</h3>
+    <div class="metric-grid">
+      <div class="metric unknown"><span class="m-id">floor_area_ratio · Floor Area Ratio</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">Official regulatory-planning indicators not published; pending formal planning conditions (A-CONTROLS-001)</span></div>
+      <div class="metric unknown"><span class="m-id">building_height_max_m · Max building height</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">Official height controls absent; conceptual volume heights are indication values and do not constitute statutory controls (A-CONTROLS-001)</span></div>
+      <div class="metric unknown"><span class="m-id">planned_green_ratio · Planned green ratio</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">Official planned green ratio absent; must not be conflated with the conceptual green_ratio recalculation</span></div>
+      <div class="metric unknown"><span class="m-id">stop_response_target_min · Stop-switch response time target</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">Operational design target, not measured; field baseline to be collected after implementation (A-NO-FIELD-BASELINE-001)</span></div>
+      <div class="metric unknown"><span class="m-id">fact_check_pass_rate_target · Fact-check pass-rate target</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">TVS-02 ≥ 98% is a design target value, not an achieved indicator (A-PROTOCOL-TARGETS-001)</span></div>
+      <div class="metric unknown"><span class="m-id">shuttle_punctuality_target · Shuttle on-time-rate target</span><span class="unknown-val">unknown / <em>pending</em></span><span class="m-reason">TVS-01 ≥ 95% is a design target value, not an achieved indicator (A-PROTOCOL-TARGETS-001)</span></div>
+    </div>
+    <figure class="figure">
+      <img src="../assets/figures/metrics-evidence.en.png" alt="Metric cards and evidence chain diagram" onerror="this.style.display='none'">
+      <figcaption><span>Fig. 5 Metric cards and evidence chain (geometry-derived metrics → metrics.json → this page)</span><span class="prov">PROVISIONAL</span></figcaption>
+    </figure>
+    <p class="small-note">Recalculation method: areas and lengths are computed in EPSG:4548 (CGCS2000, 3-degree zone, CM117E) and output in EPSG:4326; the provisional recalculated values coexist with the announcement figures without replacing them.</p>
+  </div>
+</section>
+
+<!-- ============ 11 Task Coverage ============ -->
+<section class="sheet" id="sec-tasks">
+  <div class="sheet-head">
+    <span class="milestone">M11</span>
+    <h2>Task Coverage<span class="en">Announcement 1.3/1.4/1.5 + agent.1–6</span></h2>
+    <span class="tag">announcement 1.3/1.4/1.5 + agent.1–6</span>
+  </div>
+  <div class="sheet-body">
+    <p>compliance_matrix.json covers all 23 required items of announcement sections 1.3/1.4/1.5 and agent.1–agent.6 (23 items × 8 fields, zero gaps); standard_matrix.json covers 5 mandatory standards (addressed) and 1 material gap (data_gap); design_depth_matrix.json covers 15 depth requirements. Chapter response list:</p>
+    <table class="board">
+      <thead><tr><th>Task</th><th>Requirement</th><th>Responding chapters / deliverables</th></tr></thead>
+      <tbody>
+        <tr><td><b>Announcement 1.3</b></td><td>Full-stack independent AI innovation system, innovation ecosystem and talent structure, high-quality scenarios</td><td>Chapters 3, 6, 7</td></tr>
+        <tr><td><b>Announcement 1.4</b></td><td>Three-level scope (coordinated research / overall design / key areas)</td><td>Chapters 2-5</td></tr>
+        <tr><td><b>Announcement 1.5</b></td><td>Indicator system, area recalculation and compliance matrix</td><td>Chapter 11 + Core Metrics on this page</td></tr>
+        <tr><td><b>agent.1</b></td><td>Naming system and visual identity (primary name, motto, logo direction, five functions, three zones and two wings)</td><td>Chapter 3, §3.1</td></tr>
+        <tr><td><b>agent.2</b></td><td>Global AI innovation ecosystem cases and full-stack independent innovation ecosystem research</td><td>Chapter 3, §3.2 / 3.3</td></tr>
+        <tr><td><b>agent.3</b></td><td>User profiles (6 review seats) and AI scenario cards (12)</td><td>Chapter 6, §6.1 / 6.2</td></tr>
+        <tr><td><b>agent.4</b></td><td>Key-area detailed design (three verification stations + four AI pilgrimage landmarks)</td><td>Chapter 5</td></tr>
+        <tr><td><b>agent.5</b></td><td>Wayfinding / signage / symbol system and international communication narrative</td><td>Chapter 9 (signal language + three-act narrative)</td></tr>
+        <tr><td><b>agent.6</b></td><td>Landing path: renewal project list, implementation policy and phased plan</td><td>Chapter 10 (10 items + PHASE-001/002/003)</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============ 12 Self-Check Status ============ -->
+<section class="sheet" id="sec-selfcheck">
+  <div class="sheet-head">
+    <span class="milestone">M12</span>
+    <h2>Self-Check Status<span class="en">self_check.json · 5/5 PASS</span></h2>
+    <span class="tag">self_check.json · 5 items, all PASS</span>
+  </div>
+  <div class="sheet-body">
+    <p>Submission-package self-check record (self_check.json, schema v0.1.0):</p>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">BOUNDARY_TRUST</span><p class="check-msg">Provisional boundary is present; replace with official redline before professional scoring. (major)</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">KEY_AREAS_TRUST</span><p class="check-msg">Three required key areas are provisional; replace with official polygons before professional scoring. (major)</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">LAND_USE_TOPOLOGY</span><p class="check-msg">Initial land-use polygons are derived from site boundary partitioning. (major)</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">VISUAL_STATIC</span><p class="check-msg">Static HTML visualization is generated without external dependencies. (info)</p></div>
+    <div class="check-row"><span class="badge pass">PASS</span><span class="check-id">PROFESSIONAL_EVIDENCE</span><p class="check-msg">Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions. (major)</p></div>
+  </div>
+</section>
+
+<!-- ============ 13 Sources ============ -->
+<section class="sheet" id="sec-sources">
+  <div class="sheet-head">
+    <span class="milestone">M13</span>
+    <h2>Sources<span class="en">sources.json · 12 entries</span></h2>
+    <span class="tag">sources.json · 12 entries (all registry IDs)</span>
+  </div>
+  <div class="sheet-body">
+    <p>Source list consistent with sources.json (12 entries; URLs are recorded in sources.json — this offline page prints no links):</p>
+    <div class="src-list">
+      <div class="src-item"><span class="src-id">SITE-PACKAGE</span><span class="src-type">official_public</span><p class="src-use">brief/site-package/: project brief, enums, allowed design space, ranges, and schemas.</p></div>
+      <div class="src-item"><span class="src-id">SOURCE-REGISTRY</span><span class="src-type">repository_public_registry</span><p class="src-use">data/source_registry.json: source usability registry (formal-ready / background-only / provisional-only / needs-review).</p></div>
+      <div class="src-item"><span class="src-id">PROCESSED-FACT-PACK</span><span class="src-type">repository_processed_reference</span><p class="src-use">data/processed/agent_fact_pack.md: agent navigation layer for scopes, required tasks, source-use boundaries and the missing-data checklist.</p></div>
+      <div class="src-item"><span class="src-id">BOUNDARY-SOURCE</span><span class="src-type">agent_inferred_from_public_data</span><p class="src-use">Temporary rough site boundary geometry source (provisional).</p></div>
+      <div class="src-item"><span class="src-id">KEY-AREA-SOURCE</span><span class="src-type">agent_inferred_from_public_data</span><p class="src-use">Boundary source of the three key areas (provisional).</p></div>
+      <div class="src-item"><span class="src-id">OFFICIAL-ANNOUNCEMENT</span><span class="src-type">official_public</span><p class="src-use">Pre-qualification announcement: tasks, scope levels, key areas, language and deliverable requirements.</p></div>
+      <div class="src-item"><span class="src-id">AGENT-TASKBOOK</span><span class="src-type">user_provided_cleared</span><p class="src-use">agent_taskbook.json: ten co-creation principles, six required agent tasks, scenario/branding/operation requirements and the boundary clause.</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES</span><span class="src-type">official_public</span><p class="src-use">Measures for the Administration of Urban Design (MOHURD Order No. 35): purpose and scope, public-space and urban-character reference; not for approval.</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING</span><span class="src-type">official_public</span><p class="src-use">Measures for the Formulation and Approval of Regulatory Detailed Planning for Cities and Towns: RDP-depth language and implementation boundaries; fabricating statutory FAR/height/redline conclusions is prohibited.</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311</span><span class="src-type">official_public</span><p class="src-use">Guidelines for Land-Use Classification for Territorial Spatial Surveys, Planning, Use and Control of Land and Sea (2023): the semantic basis of the land-use codes.</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-GENERATIVE-AI-INTERIM-MEASURES</span><span class="src-type">official_public</span><p class="src-use">Interim Measures for the Administration of Generative Artificial Intelligence Services: TVS-02 content-compliance boundary; Articles 14/15 deletion and appeal boundaries.</p></div>
+      <div class="src-item"><span class="src-id">DATA-SRC-BARRIER-FREE-ENVIRONMENT-LAW</span><span class="src-type">official_public</span><p class="src-use">Law of the People&apos;s Republic of China on Building a Barrier-Free Environment, Article 39: LSC-02 human-service venues limited to statutorily enumerated places.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 Assumptions ============ -->
+<section class="sheet" id="sec-assumptions">
+  <div class="sheet-head">
+    <span class="milestone">M14</span>
+    <h2>Assumptions<span class="en">assumptions.json · 10 active</span></h2>
+    <span class="tag">assumptions.json · 10 items, all active</span>
+  </div>
+  <div class="sheet-body">
+    <p>Key assumptions (consistent with assumptions.json, 10 items, one sentence each, referencable by the compliance matrix):</p>
+    <div class="assume-row"><span class="a-id">A-CONTROLS-001</span><p>Official regulatory controls (FAR/height/density/green ratio/setback) are absent; related metrics are marked unknown pending formal planning conditions.</p></div>
+    <div class="assume-row"><span class="a-id">A-BOUNDARY-001</span><p>Site and key-area geometries are provisional at medium confidence; the whole package is recalculated once official data is published.</p></div>
+    <div class="assume-row"><span class="a-id">A-AREA-MISMATCH-001</span><p>Provisional recalculated areas differ from announced values; the two must not substitute for each other.</p></div>
+    <div class="assume-row"><span class="a-id">A-NO-SITE-VISIT-001</span><p>No site visit was conducted; current-condition judgments rely on the announcement, task book, and public materials.</p></div>
+    <div class="assume-row"><span class="a-id">A-NO-FIELD-BASELINE-001</span><p>Scenario baselines and thresholds are design-suggested target values; field baselines await on-site collection and are expressed as unknown.</p></div>
+    <div class="assume-row"><span class="a-id">A-CONCEPT-ONLY-001</span><p>All spatial, activity, and policy proposals are concept suggestions and do not constitute government review conclusions or implementation commitments.</p></div>
+    <div class="assume-row"><span class="a-id">A-PERSONA-SAMPLE-001</span><p>User personas are synthesized typical-role samples for design validation, not measured data.</p></div>
+    <div class="assume-row"><span class="a-id">A-LANDUSE-CONCEPT-001</span><p>Land use and building massing are concept suggestions to be recalculated after official boundaries and planning conditions are confirmed.</p></div>
+    <div class="assume-row"><span class="a-id">A-PROTOCOL-TARGETS-001</span><p>Protocol target values (response time, pass rates, etc.) are operational design goals, not achieved indicators.</p></div>
+    <div class="assume-row"><span class="a-id">A-PRIVACY-MIN-001</span><p>Scenario data follows data minimization without identifiable behavioral profiling; deletion-receipt design follows Articles 14/15 boundaries of the Generative AI Interim Measures.</p></div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="track"></div>
+  <div class="foot-inner">
+    <p><b>Provisional statement</b>: all content on this page is a conceptual recommendation and reference proposal and does not constitute a government-approved conclusion; site/key-area geometry is provisional (confidence=medium) and the whole package is recalculated after official data release; unknown metrics await official data confirmation and are never rendered as numbers on this page (data-metric/data-value is used only on known metrics, digit-identical to metrics.json).</p>
+    <p class="foot-slogan">Conceptual recommendation · based on provisional boundary (EPSG:4326), to be recalculated after official data release · generated by AI agent, disclosed</p>
+    <p><b>Generation disclosure</b>: this page was generated by an AI agent (agent_id=light07-Y, model=deepseek-v4-flash[1m]) as hand-written offline HTML (embedded CSS/JS); the deliverable font is Noto Sans SC (OFL license); the page is fully offline and self-contained — it loads no remote resources, makes no network requests, uses no external scripts or fonts, and images reference only local relative paths (../assets/figures/*.en.png, decorative, auto-hidden when missing).</p>
+  </div>
+</footer>
+
+<script>
+/* Status Screen interaction: three-station service state switching (green=trial-running / yellow=speed-restricted / red=out of service), pure local script */
+(function () {
+  var cards = document.querySelectorAll(".station-card");
+  for (var i = 0; i < cards.length; i++) {
+    (function (card) {
+      var buttons = card.querySelectorAll(".status-btn");
+      for (var j = 0; j < buttons.length; j++) {
+        (function (btn) {
+          btn.addEventListener("click", function () {
+            var s = btn.getAttribute("data-s");
+            card.setAttribute("data-status", s);
+            var label = card.querySelector(".status-label");
+            if (label) { label.textContent = btn.getAttribute("data-label"); }
+            var en = card.querySelector(".status-en");
+            if (en) { en.textContent = btn.getAttribute("data-en"); }
+          });
+        })(buttons[j]);
+      }
+    })(cards[i]);
+  }
+})();
+</script>
+</body>
+</html>
