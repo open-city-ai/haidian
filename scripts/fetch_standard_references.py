@@ -91,6 +91,24 @@ def slugify(value: str) -> str:
     return slug or "standard"
 
 
+def validate_unique_reference_slugs(standards: Any) -> None:
+    if not isinstance(standards, list):
+        return
+    seen: dict[str, str] = {}
+    for standard in standards:
+        if not isinstance(standard, dict) or not standard.get("standard_id"):
+            continue
+        standard_id = str(standard["standard_id"])
+        slug = slugify(standard_id)
+        previous = seen.get(slug)
+        if previous is not None:
+            raise ValueError(
+                f"standard reference filename collision for `{slug}.md`: "
+                f"`{previous}` and `{standard_id}`"
+            )
+        seen[slug] = standard_id
+
+
 def decode_html(raw: bytes, content_type: str | None) -> str:
     candidates: list[str] = []
     if content_type:
@@ -232,8 +250,12 @@ def main() -> int:
     repo_root = Path(args.repo_root)
     standards_path = repo_root / args.standards
     output_dir = repo_root / args.output_dir
-    output_dir.mkdir(parents=True, exist_ok=True)
     data = json.loads(standards_path.read_text(encoding="utf-8"))
+    try:
+        validate_unique_reference_slugs(data.get("standards"))
+    except ValueError as exc:
+        parser.error(str(exc))
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     index: list[dict[str, Any]] = []
     for standard in data.get("standards", []):
