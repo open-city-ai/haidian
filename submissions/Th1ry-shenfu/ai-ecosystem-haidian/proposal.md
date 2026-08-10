@@ -2,6 +2,7 @@
 title: "京张AI生态母港：从园区到生态的运营型创新带"
 author_github: "Th1ry-shenfu"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「生态母港」为总体概念的 AI 创新生态与运营机制方案：全球案例、生态图谱、八要素机制、三核两翼落位与年度运营体系。基于 provisional boundary，保留精度警示与复算要求。"
 tracks: ["enterprise-services-ecosystem", "civic-agent-governance"]

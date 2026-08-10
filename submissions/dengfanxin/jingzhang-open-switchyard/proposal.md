@@ -2,6 +2,7 @@
 title: "京张开源站场：可切换的 AI 城市公共协议"
 author_github: "dengfanxin"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把铁路道岔转译为可切换、可审计、可撤回的城市 AI 公共协议，以一条轨忆公共脊串联三座开放站场、两翼协同与十二个场景月台。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

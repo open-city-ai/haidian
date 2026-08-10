@@ -2,6 +2,7 @@
 title: "共智京张 COMMONLINE：一条可学习、可验证、可共建的AI城市公共母线"
 author_github: "LangQi99"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以共智公共母线串联众智园、北京AI原点社区与大钟寺，建立从根技术、开源转化到城市生活应用的三条创新回路；方案同时提交可复算空间数据、十二个场景站、治理闸门和实施分期。"
 tracks: ["ai-traffic-walkability", "ai-origin-community", "civic-agent-governance"]

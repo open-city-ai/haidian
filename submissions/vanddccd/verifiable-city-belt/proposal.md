@@ -2,6 +2,7 @@
 title: "可验证城市：百年京张AI创新带总体概念与场景验证轨设计"
 author_github: "vanddccd"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "提出「可验证城市 The Verifiable City」总体概念，把 11.4 平方公里总体设计范围沿京张遗址公园组织为一条南北贯通的「验证轨」，让 AI 的每一次城市决策都在物理空间中留下可被市民复核的痕迹；据此形成三层范围工作框架、五段分带用地结构、九处可验证公共空间节点、12 张 AI 场景卡与长期运营机制，全部成果为开放共创建议。"
 tracks: ["jingzhang-heritage-narrative", "civic-agent-governance", "ai-origin-community"]

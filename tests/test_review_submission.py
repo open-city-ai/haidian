@@ -83,7 +83,7 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
             self.assertIn("Pull Request comment", prompt)
             self.assertIn("pr_comment_markdown", prompt)
             self.assertIn("submissions-data.js", prompt)
-            self.assertIn("Bilingual-file warnings are advisory only", prompt)
+            self.assertIn("Version 2 bilingual deliverables are mandatory", prompt)
             self.assertTrue((out_dir / "advisory-review.md").exists())
 
     def test_advisory_review_schema_defines_pr_comment_contract(self) -> None:

@@ -9,7 +9,9 @@
 | 九个 GeoJSON | 总体/重点区几何来自仓库临时资料；其余由提交者生成 | 始终保留来源和 `provisional` 标记；不能升级为官方边界 | 内部拓扑、绘图和指标复算 |
 | JSON 指标、来源、假设、自检与矩阵 | Shawn Shi 与 Codex；结构依据仓库 schema | 机器可读原创编排；引用文件保持独立权利 | 校验、审查和专业交接 |
 | 官方公告与政策/标准页面 | 相应政府发布者 | 只做事实释义、链接和本地快照校验 | 项目范围、专业语言和资料边界 |
-| 六个国际机制案例 | JTC、La Cocina、Eastern Market、Teurastamo、Comune di Milano、Ville de Paris | 只做归因释义；未识别开放媒体复用许可 | 机制对照与设计推演；不构成合作或绩效证明 |
+| 八个采用案例 | FOODPOLIS、FIPWA、La Cocina、Eastern Market、Milan Food Hubs、Agrotopia、BlueCity、Teurastamo | 只做归因释义；未识别开放媒体复用许可 | 五项能力的机制对照；不构成合作、准入或绩效证明 |
+| 三个警示样本 | JTC AFIP、Plant Chicago、Dubai Food Tech Valley | 只做成熟度与退出教训的归因释义 | 形成停止条件；规划发布、局部退出或开发进度不等于稳定运营 |
+| 海淀官方产业与成果转化资料 | 北京市与海淀区政府公开页面 | 只做地区背景和政策机制释义 | 四种技术协议；不构成伙伴、资金、平台使用权或空间控制依据 |
 | NIST AI RMF 页面 | NIST | 只做短释义 | 风险记录、人工控制和退出词汇；不构成安全认证 |
 
 ## 未嵌入内容

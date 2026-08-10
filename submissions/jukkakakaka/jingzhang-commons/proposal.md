@@ -2,6 +2,7 @@
 title: "京张智环：一轨三环十二场景的开放智能城市共同体"
 author_github: "jukkakakaka"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗产公共空间为一条共同脊，把众智园、AI原点社区和大钟寺组织为三类创新闭环，并用十二个可治理场景连接科研、产业与日常生活。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

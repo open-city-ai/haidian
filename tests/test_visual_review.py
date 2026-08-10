@@ -84,6 +84,93 @@ class VisualReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("VISUAL_METRIC_MISMATCH", {issue.check_id for issue in report.issues})
 
+    def test_metric_attribute_order_does_not_change_validation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                'data-metric="green_ratio" data-value="0.2"',
+                'data-value="0.2" data-metric="green_ratio"',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+        self.assertEqual(0.2, report.metrics_seen["green_ratio"])
+
+    def test_unknown_extra_metric_claim_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Official planning controls are not available.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            html = VALID_HTML.replace(
+                "</body>",
+                '<span data-metric="floor_area_ratio" data-value="2.0">2.0</span></body>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_NON_KNOWN_CLAIM", {issue.check_id for issue in report.issues})
+
+    def test_unknown_extra_metric_claim_is_order_independent(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            metrics_path = submission / "metrics.json"
+            metrics = json.loads(metrics_path.read_text(encoding="utf-8"))
+            metrics["metrics"]["floor_area_ratio"] = {
+                "status": "unknown",
+                "value": None,
+                "reason": "Official planning controls are not available.",
+            }
+            metrics_path.write_text(json.dumps(metrics), encoding="utf-8")
+            html = VALID_HTML.replace(
+                "</body>",
+                '<span data-value="2.0" data-metric="floor_area_ratio">2.0</span></body>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_NON_KNOWN_CLAIM", {issue.check_id for issue in report.issues})
+
+    def test_unregistered_extra_metric_claim_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission = write_valid_visual_package(Path(tmp))
+            html = VALID_HTML.replace(
+                "</body>",
+                '<span data-metric="unregistered_ratio" data-value="0.4">0.4</span></body>',
+            )
+            (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+            report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_SOURCE_MISSING", {issue.check_id for issue in report.issues})
+
+    def test_nonfinite_metric_cannot_bypass_consistency_check(self) -> None:
+        for raw_value in ["NaN", "Inf"]:
+            with self.subTest(raw_value=raw_value), tempfile.TemporaryDirectory() as tmp:
+                submission = write_valid_visual_package(Path(tmp))
+                html = VALID_HTML.replace(
+                    'data-metric="green_ratio" data-value="0.2"',
+                    f'data-metric="green_ratio" data-value="{raw_value}"',
+                )
+                (submission / "visual" / "index.html").write_text(html, encoding="utf-8")
+
+                report = review_visual(submission)
+
+            self.assertFalse(report.ok)
+            self.assertIn("VISUAL_METRIC_NONFINITE_VALUE", {issue.check_id for issue in report.issues})
+
 
 if __name__ == "__main__":
     unittest.main()

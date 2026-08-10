@@ -2,6 +2,7 @@
 title: "京张智脉：可验证的AI城市创新织补系统"
 author_github: "yxdx1014"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共脊，组织三处差异化创新核、两翼服务回路、六项更新项目与十二个可审计AI场景；全部空间判断可回到真实GeoJSON对象，临时边界保持可替换、可重算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

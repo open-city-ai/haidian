@@ -2,6 +2,7 @@
 title: "人字纪 · 京张AI创新带 The Y-Line"
 author_github: "heyuxuan0209"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以詹天佑人字形线路为元符号的总体概念方案：一轨两撇三芯的空间结构、以人为名的纪元叙事（Y-Era）、开源共建的城市运营系统（city-as-repo），配套拓扑完整的用地剖分、EPSG:4548 复算指标、12 张场景卡、6 类画像与 5 处 AI 朝圣地标。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

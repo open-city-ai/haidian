@@ -1,0 +1,34 @@
+{
+  "fixture_version": "1.0",
+  "scope": "offline_synthetic_desktop_only",
+  "cases": [
+    {
+      "id": "F01-clear-route",
+      "route_state": "clear",
+      "handoff_available": true,
+      "physical_break_isolated": true,
+      "expected": "continue_limited"
+    },
+    {
+      "id": "F02-severe-misroute",
+      "route_state": "severe_safety_mislead",
+      "handoff_available": true,
+      "physical_break_isolated": true,
+      "expected": "suspend"
+    },
+    {
+      "id": "F03-handoff-down",
+      "route_state": "uncertain",
+      "handoff_available": false,
+      "physical_break_isolated": true,
+      "expected": "suspend"
+    },
+    {
+      "id": "F04-break-open",
+      "route_state": "clear",
+      "handoff_available": true,
+      "physical_break_isolated": false,
+      "expected": "suspend"
+    }
+  ]
+}

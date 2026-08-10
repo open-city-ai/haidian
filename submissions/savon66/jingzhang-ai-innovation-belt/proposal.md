@@ -2,6 +2,7 @@
 title: "智脉一带：从百年京张铁路到全球AI创新带的城市设计开源方案"
 author_github: "savon66"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路历史动脉为底，提出‘智脉一带’概念：一带三核两翼多节点的空间结构、全栈自主创新与场景开放运营机制，并以12张AI场景卡、7个朝圣地标节点和14项更新项目构成可深化方案。所有空间建议均为概念建议，待官方红线与控规条件补齐后整包重算。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

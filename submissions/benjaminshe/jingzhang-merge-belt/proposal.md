@@ -2,6 +2,8 @@
 title: "京张合流带｜Jingzhang Merge Belt —— 一条铁路汇出一座开源城市"
 author_github: "benjaminshe"
 language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以 Git 合流(Merge)为总体隐喻,把百年京张铁路的合流精神转译为城市开源共建机制:上游(众智园)开源释放、维护者社区(原点社区)成果转化、发行区(大钟寺)场景分发,京张走廊为主干,中关村科技服务翼为基础设施、小月河场景赋能翼为集成测试;合流是选择而非强制,保留支流(人工/离线/无账户路径),以冲突裁决厅承载人类最终判断。"
@@ -18,7 +20,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 本方案以北京市规划和自然资源委员会海淀分局 2026-05-09 发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 [source:OFFICIAL-ANNOUNCEMENT]，以仓库 `brief/site-package/` 中经维护者登记的临时粗略边界、重点区域、枚举、指标和来源清单为机器可读依据 [source:SITE-PACKAGE]。生成前已读取 `design_brief.json`、`allowed_design_space.json`、`agent_taskbook.json`、`sources.json`、`ranges/planning_limits.json`、`schemas/` 与 `data/source_registry.json`，并依据 `data/processed/` 的 `project_scope_summary.csv`、`agent_task_requirements.csv`、`source_use_matrix.csv`、`missing_data_checklist.csv` 建立任务、范围、资料用途与缺口清单。所有设计判断均拆分为可追溯来源、可复算指标、可校验图层和可人工复核假设。
 
-本节证据链引用 [source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]，以及 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]，由 [depth:existing_conditions_diagnosis] 检查现状诊断与资料缺口。
+本节证据链以 [source:OFFICIAL-ANNOUNCEMENT] 为入口、[standard:MOHURD-URBAN-DESIGN-MEASURES] 为专业标准、[depth:existing_conditions_diagnosis] 检查现状诊断与资料缺口；完整来源与标准索引见 sources.json、compliance_matrix.json、standard_matrix.json 与 design_depth_matrix.json。
 
 资料登记表使用边界：`data/source_registry.json` 中 `usable_for_formal="yes"` 的资料可用于正式证据；`provisional_only` 资料仅用于生成、可视化与 intake 自检。本方案**未使用**任何非公开规划图件、非公开空间数据或个人隐私信息。
 
@@ -150,7 +152,18 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 ## 用地、建筑规模与拆改留方案
 
-用地以 [metric:land_use_zone_count] 个概念分区构成拓扑完整剖分，完整覆盖总体设计范围、无缝隙无叠压（空间审查已验证）[data:geometry/land_use.geojson#LU-001]；分类全部来自国土空间用地用海分类允许集合 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，不用"AI 用地"等自造类别替代法定分类接口。构成（EPSG:4548 复算）：科研用地约 [metric:landuse_research_area_sqm] m²、居住与社区服务约 [metric:landuse_residential_area_sqm] m²、商业服务业约 [metric:landuse_commercial_area_sqm] m²、教育用地约 [metric:landuse_education_area_sqm] m²、文化用地约 [metric:landuse_culture_area_sqm] m²、公园绿地约 [metric:landuse_green_open_area_sqm] m²、战略留白约 [metric:landuse_reserved_white_area_sqm] m²。布局逻辑：主脊连续（公园绿地贯穿全线）、科研两端强（上游与维护者两芯）、职住内嵌（走廊中段与东侧）、消费在钟（发行区与站前）、留白可进化（承接年度合流公议滚动激活）。当前用地为概念分区，不改变既有土地权属与用途；正式深化须将官方地块、现状用地与控规图则叠加后，逐块形成"保持、微更新、功能置换、综合更新、留白"建议，并记录依据与审批路径。
+用地以 [metric:land_use_zone_count] 个概念分区构成拓扑完整剖分，完整覆盖总体设计范围、无缝隙无叠压（空间审查已验证）[data:geometry/land_use.geojson#LU-001]；分类全部来自国土空间用地用海分类允许集合 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]，不用"AI 用地"等自造类别替代法定分类接口。
+
+构成（EPSG:4548 复算）：
+- 科研用地约 [metric:landuse_research_area_sqm] m²
+- 居住与社区服务约 [metric:landuse_residential_area_sqm] m²
+- 商业服务业约 [metric:landuse_commercial_area_sqm] m²
+- 教育用地约 [metric:landuse_education_area_sqm] m²
+- 文化用地约 [metric:landuse_culture_area_sqm] m²
+- 公园绿地约 [metric:landuse_green_open_area_sqm] m²
+- 战略留白约 [metric:landuse_reserved_white_area_sqm] m²
+
+布局逻辑：主脊连续（公园绿地贯穿全线）、科研两端强（上游与维护者两芯）、职住内嵌（走廊中段与东侧）、消费在钟（发行区与站前）、留白可进化（承接年度合流公议滚动激活）。当前用地为概念分区，不改变既有土地权属与用途；正式深化须将官方地块、现状用地与控规图则叠加后，逐块形成"保持、微更新、功能置换、综合更新、留白"建议，并记录依据与审批路径。
 
 拆改留采用"**合并请求四道门槛**"：第一道产权与现状调查；第二道结构、消防、节能与历史价值评估；第三道公共利益与全寿命碳比较；第四道法定程序与公众合流公议。任一门槛缺失不进入拆除清单 [depth:retain_renovate_demolish]。因此 [data:geometry/buildings.geojson#BLDG-001] 只表达可逆容量块，用于检验街廓开敞关系，不是批准建设规模；"拆改留"的完成含义是"方法与证据门槛已明确"，不是"逐栋决定已完成"。
 
@@ -201,7 +214,26 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 ## 指标体系、面积复算与合规矩阵
 
-指标分三组。**空间已知组**由当前 GeoJSON 直接计算：范围 [metric:site_area_sqm]、绿地 [metric:green_space_area_sqm] 与绿比 [metric:green_ratio]、公共空间 [metric:public_space_area_sqm] 与比例 [metric:public_space_ratio]、建筑容量基底 [metric:building_footprint_area_sqm]、重点区数量 [metric:key_area_count]，以及数据层扩展的 20 分区与分用途面积（科研/居住/商业/教育/文化/绿地/留白 [metric:landuse_research_area_sqm]）、三期面积（[metric:phase1_area_sqm]/[metric:phase2_area_sqm]/[metric:phase3_area_sqm]）、路网长度 [metric:road_network_length_m]、示范建筑数 [metric:catalyst_building_count]、场景卡数 [metric:scenario_card_count]、画像数 [metric:persona_count]、朝圣地标数、分期数 [metric:phase_count]；**方案计数组**由结构化成果统计（工作包数 [metric:merge_request_count]、贡献者阶梯数 [metric:contribution_ladder_stage_count]）；**法定或运营未知组**保持 null，包括容积率 [metric:floor_area_ratio]、高度、密度、退线、批准拆除、总建筑面积与支流等价差。任何 known 值均有 source_files、formula、confidence 与 assumptions；任何 unknown 值均有 reason。
+指标分三组。
+
+**空间已知组**由当前 GeoJSON 直接计算：
+- 范围 [metric:site_area_sqm]
+- 绿地 [metric:green_space_area_sqm] 与绿比 [metric:green_ratio]
+- 公共空间 [metric:public_space_area_sqm] 与比例 [metric:public_space_ratio]
+- 建筑容量基底 [metric:building_footprint_area_sqm]
+- 重点区数量 [metric:key_area_count]
+- 分用途面积：科研 [metric:landuse_research_area_sqm] 等
+- 三期面积：[metric:phase1_area_sqm]/[metric:phase2_area_sqm]/[metric:phase3_area_sqm]
+- 路网长度 [metric:road_network_length_m]
+- 示范建筑数 [metric:catalyst_building_count]
+- 场景卡数 [metric:scenario_card_count]
+- 画像数 [metric:persona_count] 与分期数 [metric:phase_count]
+
+**方案计数组**由结构化成果统计：工作包数 [metric:merge_request_count]、贡献者阶梯数 [metric:contribution_ladder_stage_count]。
+
+**法定或运营未知组**保持 null，包括容积率 [metric:floor_area_ratio]、高度、密度、退线、批准拆除、总建筑面积与支流等价差。
+
+任何 known 值均有 source_files、formula、confidence 与 assumptions；任何 unknown 值均有 reason。
 
 复算顺序（[depth:metrics_recalculation]）：先验证 site 与 key area 的来源角色 → 投影至 EPSG:4548 → 检查用地完整覆盖与重叠 → 对绿地、公共空间、建筑取 union 后面积 → 对中心线求长度 → 结果回写 metrics 与 HTML data attributes。边界面积约 11,412,825 平方米，置信度 medium，不写成精确官方统计。
 
@@ -217,12 +249,12 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 ## 参考资料
 
-机器可读来源索引：[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:LINUX-FOUNDATION]、[source:APACHE-FOUNDATION]、[source:HUGGINGFACE]、[source:MOZILLA]、[source:SINGAPORE-AI-VERIFY]、[source:PUBLIC-PARTICIPATION-CASES]。
+核心入口引用 [source:OFFICIAL-ANNOUNCEMENT] 与 [source:AGENT-TASKBOOK]；机器可读来源索引（含官方公告、任务书、site-package，以及开源治理与 AI 评测等背景研究）见 sources.json，正文仅在结论处保留与主张直接相关的锚点。
 
-专业标准索引：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
+专业标准索引（公告、任务书、住建部城市设计与控规办法、用地分类、建筑设计深度）见 standard_matrix.json。
 
-空间数据索引：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-001]、[data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/constraints.geojson#SCENE-01]、[data:geometry/phasing.geojson#PHASE-001]。
+空间数据索引（边界、重点区、用地、建筑、路网、蓝绿、公共空间、约束场景、分期）见 geometry/ 目录与 constraints.geojson；正文仅在结论处保留与主张直接相关的锚点。
 
-设计深度索引：[depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。
+设计深度索引（现状诊断、三层次框架、空间结构、用地、强度、风貌、拆改留、交通、市政、蓝绿、重点区、更新项目、分期、指标复算、风险缺口）见 design_depth_matrix.json，正文仅在结论处保留与主张直接相关的锚点。
 
 本案还读取 `brief/site-package/design_brief.json`、`allowed_design_space.json`、`agent_taskbook.json`、`ranges/planning_limits.json`、`standards/standards.json`、`data/source_registry.json`、`data/processed/agent_fact_pack.md` 与 `docs/terminology-glossary.md`。最终交付包括 proposal.md（含 en 译稿）、九类 GeoJSON、metrics/assumptions/sources/三类矩阵、自检、五张核心图、A3 文册、A0 展板、离线报告与离线总览页。

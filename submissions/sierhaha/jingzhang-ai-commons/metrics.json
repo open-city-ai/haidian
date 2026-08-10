@@ -1,0 +1,313 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional boundary calibrated to official 11.4 km2 text area; recalculate on official polygon."
+   ]
+  },
+  "land_use_area_by_code": {
+   "status": "known",
+   "value": 11412846.58,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use features, EPSG:4548) group by land_use_code)",
+   "confidence": "high",
+   "assumptions": [
+    "Land-use partition covers the submitted boundary with no gaps or overlaps.",
+    "Per-code breakdown (ha): 0701=322.1, 0802=255.1, 1401=138.8, 05=132.2, 0804=97.3, 0803=49.5, 1403=37.0, 1402=36.4, 0702=27.9, 16=26.1, 0806=19.0"
+   ]
+  },
+  "total_floor_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official floor area / FAR controls are not included in the cleared site package; indicative building footprints are for spatial expression only, not statutory scale.",
+   "required_for_formal_submission": true
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official floor area ratio controls are missing; FAR must be confirmed from approved regulatory planning conditions.",
+   "required_for_formal_submission": true
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.0565,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Indicative building footprints; density based on footprints only, not storey area."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 644681.36,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Indicative footprints of 12 proposed/retained buildings; not statutory."
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(building_footprint features)",
+   "confidence": "medium",
+   "assumptions": [
+    "Indicative catalog of proposed/retained buildings."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1751410.89,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space features, EPSG:4548))",
+   "confidence": "high",
+   "assumptions": [
+    "Includes park green (1401) and buffer green (1402) cells."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.1535,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 369575.87,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space features, EPSG:4548))",
+   "confidence": "high",
+   "assumptions": [
+    "Plaza cells (1403); park interior nodes are counted in green space."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0324,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 38104.17,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(road centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Centerline representation of 9 proposed corridor lines."
+   ]
+  },
+  "road_count": {
+   "status": "known",
+   "value": 11,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(road centerline features)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "road_area_sqm": {
+   "status": "unknown",
+   "value": null,
+   "unit": null,
+   "source_files": [],
+   "formula": null,
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Road layer is centerline-only for concept expression; road area/redline requires official road network and redline data.",
+   "required_for_formal_submission": true
+  },
+  "phasing_area_sqm": {
+   "status": "known",
+   "value": 11412846.62,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(phase features, EPSG:4548) group by phase)",
+   "confidence": "high",
+   "assumptions": [
+    "Three-phase indicative implementation split; no commitment to timing.",
+    "Per-phase breakdown (ha): phase_1=395.6, phase_2=283.9, phase_3=461.8"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_area features)",
+   "confidence": "high",
+   "assumptions": [
+    "Three required key detailed-design areas; provisional polygons."
+   ]
+  },
+  "key_area_area_sqm": {
+   "status": "known",
+   "value": 3692893.01,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(key_area features, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional key-area polygons; close to official text values (192.1/104.3/72.0 ha). Recalculate on official polygons.",
+    "Per-area breakdown (ha): K001=192.9, K002=104.3, K003=72.0"
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario cards mapped to spatial nodes in proposal.md)",
+   "confidence": "high",
+   "assumptions": [
+    "Ten AI scenario cards; spatial nodes are described in proposal.md and visualized in figures."
+   ]
+  },
+  "ai_scenario_card_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario cards in proposal.md section AI 创新生态)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "case_study_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(global AI ecosystem case studies in proposal.md)",
+   "confidence": "high",
+   "assumptions": [
+    "Six named global AI ecosystem cases; concept-level reference only."
+   ]
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(user persona types in proposal.md)",
+   "confidence": "high",
+   "assumptions": [
+    "Five user personas; representative archetypes, not exhaustive census."
+   ]
+  },
+  "test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI industry test/validation scenarios in proposal.md)",
+   "confidence": "high",
+   "assumptions": [
+    "Three test/validation scenario proposals; all require separate approval."
+   ]
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI pilgrimage landmark proposals in proposal.md)",
+   "confidence": "high",
+   "assumptions": [
+    "Three landmark proposals; conceptual."
+   ]
+  },
+  "annual_event_system_count": {
+   "status": "known",
+   "value": 1,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(annual event system proposal in proposal.md)",
+   "confidence": "high",
+   "assumptions": [
+    "One integrated annual event + community operation system."
+   ]
+  }
+ }
+}

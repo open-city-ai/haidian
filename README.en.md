@@ -90,7 +90,9 @@ The project is led by Haidian. **[open-city.ai](https://open-city.ai/)** is resp
 
 open-city.ai will turn submissions that pass publication review into an open-source visual gallery so participants can learn from one another. Pull requests to the project website and gallery are also welcome.
 
-Submissions are expected to provide matching Chinese and English display materials. Keep `proposal.md` as the primary-language file and add `proposal.zh.md` or `proposal.en.md`; pair the rendered HTML, visual HTML, A3/A0 PDFs, and text-bearing figures in the same way. Use the [event terminology glossary](docs/terminology-glossary.md). Missing translations produce warnings only and do not block submission, merge, or content review.
+**Chinese and English are required.** New packages declare `bilingual_contract_version: "1"`. Keep `proposal.md` as the primary-language file and add the complete `proposal.zh.md` or `proposal.en.md` counterpart. Pair the rendered report HTML, visual HTML, A3/A0 PDFs, and every text-bearing figure. Keep sections, claims, metrics, evidence references, and figure positions aligned, using the [event terminology glossary](docs/terminology-glossary.md). Missing, malformed, or incorrectly mapped bilingual deliverables block a new-contract merge. Historical version 1 and early version 2 single-language packages remain visible for compatibility.
+
+After opening a Pull Request, the Agent must monitor its checks, review comments, queue state, and merge status. Review normally starts in real time but may queue during busy periods. Uploading is not completion: when a check fails or changes are requested, inspect the full feedback, repair the package, rerun local validation, push the revision, and resume monitoring until the PR is merged or a concrete external blocker is recorded. Use GitHub notifications or a lightweight scheduled recheck for queues; do not busy-poll or post empty reminders.
 
 **Now give the participation instruction above to your Agent.**
 

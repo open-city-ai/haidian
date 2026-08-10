@@ -1,7 +1,212 @@
 {
+  "schema_version": "0.2.0",
   "agent_id": "xyh202131",
   "agent_name": "xyh202131 opencode AI agent",
   "role": "ai_agent_submission_author",
-  "model": "agent-declared-model",
-  "generated_with": "scripts/scaffold_ai_submission.py"
+  "model": "OpenAI Codex (GPT-5)",
+  "model_family": "gpt",
+  "model_detail": "OpenAI Codex agent based on GPT-5; exact serving snapshot not asserted by the package",
+  "provider": "OpenAI",
+  "generated_with": "scripts/scaffold_ai_submission.py; OpenAI Codex skill-alignment, key-area evidence, source-rights lineage, and T-02 synthetic governance replay passes; Node.js zero-dependency replay; deterministic SVG-to-PNG export; ReportLab invariant PDF generation with three-panel A3 evidence tiling; PyMuPDF and Pillow QA",
+  "authoring_mode": "agent-maintained package extraction",
+  "tools_used": [
+    "OpenAI Codex (GPT-5 family; exact serving snapshot not asserted)",
+    "Python 3.13.12",
+    "Node.js 22.22.3",
+    "Git 2.54.0",
+    "GitHub CLI 2.95.0",
+    "Firecrawl CLI 1.19.30",
+    "ReportLab 5.0.0",
+    "fontTools 4.63.0",
+    "PyMuPDF 1.27.2.3",
+    "Pillow 12.2.0",
+    "scripts/score_submission.py",
+    "scripts/validate_local_submission.py",
+    "scripts/spatial_review.py",
+    "scripts/visual_review.py",
+    "scripts/professional_review.py",
+    "scripts/self_check_submission.py",
+    "scripts/participant_preflight.py"
+  ],
+  "tool_evidence_contract": {
+    "stable_id_rule": "Every toolchain entry has one unique TOOL-* identifier referenced by the file-level asset ledger or output_provenance; a provenance reference does not constitute an independent rights review.",
+    "terms_evidence_state": "reported_metadata_or_service_terms_not_independently_audited",
+    "source_rights_evidence": "visual/assets/source-rights-evidence.json",
+    "rights_effect": "Tool disclosure and output mapping do not clear model, software, font, or generated-output rights."
+  },
+  "toolchain": [
+    {
+      "tool_id": "TOOL-CODEX",
+      "name": "OpenAI Codex",
+      "version": "GPT-5 family; exact serving snapshot not asserted",
+      "usage": "协助整理双语方案、结构化证据和规则对齐；最终事实、数字和边界由包内来源、GeoJSON、指标与验证脚本约束。",
+      "license_or_terms_status": "Service and output terms are not embedded in this package and have not been independently audited.",
+      "redistribution_status": "Generated text is included only as submission content pending the package-wide rights review; no model weights or service assets are redistributed.",
+      "reproduction_path": "The final Git blobs are the review object; identical model output is not claimed to be reproducible."
+    },
+    {
+      "tool_id": "TOOL-PYTHON",
+      "name": "Python",
+      "version": "3.13.12",
+      "usage": "运行确定性评分、空间、视觉、专业、自检和参与者预检。",
+      "license_or_terms_status": "PSF license family; runtime license observed from the installed distribution, not independently audited here.",
+      "redistribution_status": "Runtime not redistributed by this submission.",
+      "reproduction_path": "Use the repository validation commands recorded in report/narrative.md against the final Git tree."
+    },
+    {
+      "tool_id": "TOOL-NODEJS",
+      "name": "Node.js",
+      "version": "22.22.3",
+      "usage": "以 fs、path、crypto 三个内置模块运行 T-02 零依赖、离线、确定性合成治理回放；默认和 --check 只读，只有显式 --write 更新 result。",
+      "license_or_terms_status": "Runtime license and bundled-component notices are not embedded in this package and have not been independently audited here.",
+      "redistribution_status": "Node.js runtime and third-party packages are not redistributed; the checked-in runner uses built-in modules only.",
+      "reproduction_path": "Run node submissions/xyh202131/jingzhang-ai-pilgrimage-belt/visual/assets/run_t02_g0_g1_replay.js --check against the final Git tree; the result records contract, fixture, runner, and sources.json SHA-256 values."
+    },
+    {
+      "tool_id": "TOOL-HAIDIAN-VALIDATION",
+      "name": "Haidian repository validation scripts",
+      "version": "main@c54b8b9ba93a167b377cd7ef58ed036e39e7f48e",
+      "usage": "对最终投稿包执行 formal stage gates。",
+      "license_or_terms_status": "No repository-root license file was present in the validation checkout; reuse terms remain not independently established by this package.",
+      "redistribution_status": "Scripts are referenced in place and are not copied into this submission package.",
+      "reproduction_path": "Run the named scripts from repository commit c54b8b9ba93a167b377cd7ef58ed036e39e7f48e."
+    },
+    {
+      "tool_id": "TOOL-GIT",
+      "name": "Git",
+      "version": "2.54.0.windows.1",
+      "usage": "固定最终内容、读取 staged Git blob 并生成 manifest SHA-256。",
+      "license_or_terms_status": "GPL-2.0-only tool distribution; not independently audited by the package.",
+      "redistribution_status": "Executable not redistributed by this submission.",
+      "reproduction_path": "Stage every non-manifest path, hash each staged blob, then stage manifest.json last."
+    },
+    {
+      "tool_id": "TOOL-GH",
+      "name": "GitHub CLI",
+      "version": "2.95.0",
+      "usage": "创建非 Draft PR、读取 trusted validation 和维护者反馈。",
+      "license_or_terms_status": "MIT license reported by the upstream CLI distribution; not independently audited here.",
+      "redistribution_status": "Executable not redistributed by this submission.",
+      "reproduction_path": "Use gh against the final pushed commit; remote review state is time-varying and must be read live."
+    },
+    {
+      "tool_id": "TOOL-FIRECRAWL",
+      "name": "Firecrawl CLI",
+      "version": "1.19.30",
+      "usage": "检索与抓取海淀区及国家科技创新中心公开网页，形成带发布日期、访问日期、摘要和用途限制的桌面研究证据；检索缓存不进入投稿包。",
+      "license_or_terms_status": "ISC license reported by the locally installed firecrawl-cli package; service and retrieved-content terms remain separately applicable and unaudited.",
+      "redistribution_status": "CLI, API responses, and retrieval caches are not redistributed; only citation-level source records and bounded summaries are retained.",
+      "reproduction_path": "Revisit the URLs and dates in sources.json; a successful recrawl does not preserve content identity or authority."
+    },
+    {
+      "tool_id": "TOOL-REPORTLAB",
+      "name": "ReportLab",
+      "version": "5.0.0",
+      "usage": "以 invariant=1、固定元数据、固定输入顺序和页压缩，从包内中英文正文及八组 PNG 图件生成确定性 A3/A0 PDF；A3 将每组 1800×1100 图件的有效内容区拆为三个带 30px 重叠的 620×892 竖向细节页，A0 保留整板总览；嵌入由 NotoSansSC-VF.ttf 内存实例化的 NotoSansSC-Regular / NotoSansSC-Bold 子集。生成记录不证明内容权利或现实执行。",
+      "license_or_terms_status": "BSD license reported by installed package metadata. The NotoSansSC-VF.ttf source name table declares SIL OFL 1.1, version 2.04;241114210130;non-release, source SHA-256 763146584cf0710223441356b4395e279021b0806c196614377a7a0174ae074a; embedding compliance remains pending independent review.",
+      "redistribution_status": "Library not redistributed; generated PDFs remain within the package-wide rights gate.",
+      "reproduction_path": "Use the final bilingual Markdown and eight paired 1800 x 1100 PNG figures with canvas invariant=1; for every A3 figure use crops [0,168,620,1060], [590,168,1210,1060], and [1180,168,1800,1060] at 245 mm display width, while retaining whole-board A0 placement. No source font binary is shipped."
+    },
+    {
+      "tool_id": "TOOL-FONTTOOLS",
+      "name": "fontTools",
+      "version": "4.63.0",
+      "usage": "使用 instantiateVariableFont(..., optimize=True, updateFontNames=True, static=True) 从 NotoSansSC-VF.ttf 在内存中确定性实例化 400/700 字重，供 ReportLab 嵌入 PDF；临时静态字体不落入投稿包。",
+      "license_or_terms_status": "MIT license reported by installed package metadata; source-font license applicability remains a separate independent-review item.",
+      "redistribution_status": "Library, source variable font, and temporary static instances are not redistributed by this submission.",
+      "reproduction_path": "Use the source-font version and SHA-256 plus the instancing parameters recorded in report/narrative.md; save in memory with reorderTables=False."
+    },
+    {
+      "tool_id": "TOOL-PYMUPDF",
+      "name": "PyMuPDF",
+      "version": "1.27.2.3",
+      "usage": "将两组双语 SVG 可编辑源栅格化为四张 1800×1100 PNG，并对四份 A0/A3 PDF 执行 1.6 倍渲染、文本/字体提取、页面尺寸、图像与裁片顺序、对象边界和可读性 QA；核对两种语言各 8 组/24 个 A3 裁片、443/443 个可搜索逻辑块及 85 页全包联系表，不作为设计事实来源。",
+      "license_or_terms_status": "Installed package metadata reports dual AGPL-3.0 or Artifex commercial licensing; applicability to the QA workflow has not been independently audited.",
+      "redistribution_status": "Library and temporary QA renders are not redistributed by this submission.",
+      "reproduction_path": "Rasterize the checked-in SVG pairs with the fixed viewBox/output size, then render all checked-in PDF pages locally and inspect page geometry, searchable text, fonts, exact crop boxes, overlaps, image order, content bounds, and 100% page legibility."
+    },
+    {
+      "tool_id": "TOOL-PILLOW",
+      "name": "Pillow",
+      "version": "12.2.0",
+      "usage": "读取、比较并拼接 PNG QA 资产，校验 1800×1100 图件及 A3 620×892 裁片的像素内容、裁片覆盖、30px 重叠与 PDF 内嵌图像。",
+      "license_or_terms_status": "HPND license reported by installed package metadata; not independently audited here.",
+      "redistribution_status": "Library and QA intermediates are not redistributed by this submission.",
+      "reproduction_path": "Compare checked-in PNG pixels and exact expected crops with PDF image objects, then build local-only contact sheets for visual inspection."
+    }
+  ],
+  "output_provenance": [
+    {
+      "output_scope": "proposal, structured JSON/GeoJSON, SVG, and evidence records",
+      "tool_ids": [
+        "TOOL-CODEX",
+        "TOOL-PYTHON"
+      ],
+      "asset_mapping": "visual/assets/rights-clearance-ledger.json#asset_records",
+      "recipe_state": "file_specific_status_recorded_in_asset_ledger",
+      "rights_effect": "not_fully_cleared"
+    },
+    {
+      "output_scope": "offline rendered proposal and visual HTML",
+      "tool_ids": [
+        "TOOL-CODEX",
+        "TOOL-PYTHON"
+      ],
+      "asset_mapping": "visual/assets/rights-clearance-ledger.json#asset_records",
+      "recipe_state": "bounded_reproduction_commands_recorded",
+      "rights_effect": "not_fully_cleared"
+    },
+    {
+      "output_scope": "A0 and A3 PDF publications",
+      "tool_ids": [
+        "TOOL-PYTHON",
+        "TOOL-REPORTLAB",
+        "TOOL-FONTTOOLS",
+        "TOOL-PYMUPDF",
+        "TOOL-PILLOW"
+      ],
+      "asset_mapping": "visual/assets/rights-clearance-ledger.json#asset_records",
+      "recipe_state": "deterministic_parameters_and_qa_recorded",
+      "rights_effect": "not_fully_cleared"
+    },
+    {
+      "output_scope": "PNG display figures and SVG-to-PNG pairs",
+      "tool_ids": [
+        "TOOL-PYTHON",
+        "TOOL-PYMUPDF",
+        "TOOL-PILLOW"
+      ],
+      "asset_mapping": "visual/assets/rights-clearance-ledger.json#asset_records",
+      "recipe_state": "partial_renderer_environment_record",
+      "rights_effect": "not_fully_cleared"
+    },
+    {
+      "output_scope": "source retrieval citations",
+      "tool_ids": [
+        "TOOL-FIRECRAWL"
+      ],
+      "asset_mapping": "visual/assets/source-rights-evidence.json#source_records",
+      "recipe_state": "capture_digest_available_for_four_external_caches_only",
+      "rights_effect": "citation_only_terms_not_independently_audited"
+    },
+    {
+      "output_scope": "validation, manifest integrity, and repository delivery",
+      "tool_ids": [
+        "TOOL-PYTHON",
+        "TOOL-HAIDIAN-VALIDATION",
+        "TOOL-GIT",
+        "TOOL-GH"
+      ],
+      "asset_mapping": "self_check.json and manifest.json",
+      "recipe_state": "commands_recorded_remote_state_time_varying",
+      "rights_effect": "validation_does_not_establish_clearance"
+    }
+  ],
+  "self_declared_limits": [
+    "不掌握官方红线、控规指标、权属、市政与文保管控条件。",
+    "OSM 背景与仓库临时总体范围存在未裁决的坐标/覆盖不确定性；不据此修改、升级或否定任何边界。",
+    "不承诺任何政府实施安排，成果为可讨论、可复核、可替换官方数据后重算的设计建议。",
+    "不采集、不推断、不发布任何个人身份信息。",
+    "Firecrawl 只用于公开网页桌面检索与引用记录；工具抓取成功不提升来源权威等级，也不等于现场踏勘、竣工核验、合作确认或审批。"
+  ]
 }

@@ -2,6 +2,7 @@
 title: "京张智联带：一轨三核两翼的百年AI开源创新带"
 author_github: "0x-focus"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以百年京张铁路遗址为文化主轴，提出“一轨三核两翼一环”的AI原生城市结构：京张智联主轴串联众智园、AI原点社区与大钟寺三处重点区域，中关村科技服务翼与小月河场景赋能翼分列东西，蓝绿智联环串联10个AI场景节点；全部空间建议为概念方案，供专业团队深化。"
 tracks: ["ai-traffic-walkability", "ai-origin-community", "enterprise-services-ecosystem"]

@@ -2,6 +2,7 @@
 title: "京张开源共生环：可验证公共智能的三核两翼城市设计"
 author_github: "takeItIzzy"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共脊、三处重点区域为三种创新循环，把 AI 从封闭园区能力转化为可验证、可撤回、有人类复核的城市公共能力。"
 tracks: ["jingzhang-heritage-narrative", "enterprise-services-ecosystem", "civic-agent-governance"]

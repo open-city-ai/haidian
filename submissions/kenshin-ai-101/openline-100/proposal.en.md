@@ -52,7 +52,7 @@ All three tiers share one “project passport”: every research or city problem
 1. **Research｜Basic research**: Universities and national labs propose principle breakthroughs; OPENLINE Fellows lower disciplinary barriers through public forums and cross-campus pairing. Outputs are papers, benchmarks, and risk statements—paper count is not the sole KPI.
 2. **PoC & IP｜Proof of concept and rights clearing**: The central “Station Zero” provides engineering managers, IP, ethics, and clinical/education/public-service advisors; reversible choices among open source, patents, and trade secrets. The gate is demand-side signature and a minimum viable validation plan.
 3. **Open Source｜Open collaboration**: Establish a city-scale repository, maintainer microgrants, model cards/data cards, and contributor agreements. Open source is not unconditional open data—it means code, docs, interfaces, and governance are auditable.
-4. **Validation｜Trusted testing**: The northern Agent Garden provides red-team, energy, accessibility, bias, and real-task testing; high-risk domains keep humans responsible. Fail thresholds trigger rollback—never pass “already displayed” off as “already validated.”
+4. **Validation｜Trusted testing**: The northern Agent Garden provides red-team, energy, accessibility, bias, and real-task testing; high-risk domains keep humans responsible. Fail thresholds mean return for retest—they shall not pass the gate; never pass “already displayed” off as “already validated.”
 5. **Incubation｜Industry incubation**: Origin community supports teams with divisible small units, shared equipment, and 12-week product sprints; exit criteria are a clear customer, compliance path, and unit economics—or timely stop.
 6. **Capital｜Patient capital**: The west-wing “Capital Platform” combines PoC vouchers, first scene orders, IP pledge advisory, industry capital, and long-term funds; each tranche binds to the next milestone—no park rental-subsidy race.
 7. **City Adoption｜City adoption**: Hospitals, schools, commerce, and city operators become first problem owners. Before adoption, publish impact assessment, pilot scope, appeal and exit mechanisms; reuse successful interfaces and procurement clauses, not personal data copies.
@@ -69,15 +69,41 @@ The placement rule is **one axis, three gates + two-wing supply + micro-nodes al
 
 ### Seven Global Cases: Do Not Copy Buildings—Translate Mechanisms
 
-- **Boston / Kendall—The Engine**: Organizes technology, IP, market, and financing readiness into a “blueprint”; Haidian translates this as on-site engineering managers and stage gates—not desks alone. [source:CASE-KENDALL]
-- **Toronto / MaRS**: Adjacent to universities and hospitals, aggregating labs, startups, and capital services in one center; Haidian translates this as medical first users, a public atrium, and a unified project passport—without copying institutional governance. [source:CASE-TORONTO]
-- **Paris-Saclay**: Links PoC, technology maturation, prototyping, incubation, and seed capital; Haidian adds an OPENLINE oriented to the public and city orders. [source:CASE-PARIS]
-- **Singapore / AI Singapore 100 Experiments**: Real problem owners, engineering teams, and project managers deliver together; Haidian forms “100 City Pull Requests,” with all data and procurement following separate procedures. [source:CASE-SINGAPORE]
-- **Helsinki / Maria 01**: Converts a former hospital into a startup community, retaining most old buildings and expanding in phases; Haidian adopts heritage-friendly renewal of “operate first, light retrofit next, build last.” [source:CASE-HELSINKI]
-- **Seoul AI Hub**: City-established, jointly operated with universities and national research institutes as multi-node R&D infrastructure, incubation, and international collaboration; Haidian adds open microgrants and public-value thresholds so resources do not flow only to leading firms. [source:CASE-SEOUL]
-- **Tsukuba**: Industry–academia–government–finance alliance, urban living labs, and social implementation; Haidian uses linear public space to remedy the common science-city pattern of “strong institutions, weak streets.” [source:CASE-TSUKUBA]
+The table states **this scheme translates**—not “Haidian already adopted.” Selection rule: serve this project’s three unique loads—**linear rail-heritage host, seven-gate/passport stages, east-wing city-problem intake**. Generic adjacency campuses (e.g. Toronto / MaRS) and megaproject footprints (e.g. Paris-Saclay) leave the master table and remain background-only; local health policy and the seven-gate chain carry those loads instead. [source:CASE-TORONTO] [source:CASE-PARIS] [assumption:A-EXTERNAL-CASES-001]
 
-The shared lesson: a world-class innovation ecosystem is not one landmark, but **strong research sources + a neutral translation layer + real first users + layered capital + rules that can be trusted**. Haidian’s distinctive increment is joining Zhongguancun’s technical density with a century of railway public narrative on one walkable, experiential, contributable line. [metric:global_case_count]
+- **Boston / Kendall—The Engine**: Readiness blueprint + stage gates → on-site engineering managers and passport gates. Fit: the chain needs human translation, not desk parks. [source:CASE-KENDALL]
+- **Paris / Station F**: Rail freight hall Halle Freyssinet → startup campus → heritage rail as innovation host with open program space. Fit: same genus as Jing-Zhang linear rail reuse. [source:CASE-STATIONF]
+- **Nesta Challenge Prizes**: Define problem → open call → staged reward/support → judge by outcome → City Pull Request and scene-voucher grammar. Fit: east-wing intake needs a challenge syntax, not a tenant list. [source:CASE-NESTA]
+- **Singapore / AI Singapore 100 Experiments**: Real problem owners + engineers + PMs co-deliver AI PoC → 100 City PRs with passport seats. Fit: fills the on-axis Validation→Adoption AI co-delivery gap. [source:CASE-SINGAPORE]
+- **Helsinki / Maria 01**: Reuse stock, phase expansion, operate first → operate → light retrofit → build last. Fit: heritage park is the host; site package forbids early tear-down locks. [source:CASE-HELSINKI]
+- **Seoul AI Hub**: City multi-node R&D + incubate + international → microgrants and public-value thresholds mapped to three stations. Fit: prevent resource capture by top firms only. [source:CASE-SEOUL]
+- **Tsukuba**: Industry–academia–gov–finance + living lab → linear public commons and Commit Plinths. Fit: Haidian lacks walkable public display, not another closed campus. [source:CASE-TSUKUBA]
+
+Medical first-users rest on Haidian’s public AI+health references (scenario SC-02), not a foreign campus charter. [source:HAIDIAN-HEALTH-AI-2026]
+
+The shared lesson: a world-class innovation ecosystem is not one landmark, but **strong research sources + a neutral translation layer + real first users + layered capital + rules that can be trusted**; this project’s increment is joining Zhongguancun density to a century of railway public narrative. [metric:global_case_count]
+
+**Case comparison table (checkable).** Five columns: mechanism extracted · this scheme translates · why it fits THIS project · explicitly not copied. Institutions only—no campus scale, charters, datasets, or contracts; not a signed partnership or investment claim. [assumption:A-EXTERNAL-CASES-001]
+
+![Global case comparison: extract · translate · fit · do not copy](assets/figures/case-comparison.en.png)
+
+### Eight Factor Master Table (Same Grammar)
+
+The task book requires **land, space, industry, capital, talent, compute, data, and scenario**. One four-column grammar closes uneven depth—each row must answer three questions, aligned to passport stages: [source:AGENT-TASKBOOK]
+
+1. **Landing (where / who)**: name a checkable place or seat—land topology and sensitivity envelopes, seven axis spaces and three station forms, three-district / two-wing roles, Capital Dock, seven talent personas, trusted-test slots and SC-07 display, passport/data cards, twelve scenario cards and demand intake—not slogans.
+2. **Entry gate (must be true)**: hard preconditions before the next stage—no FAR lock without control plan; heritage/fire/owner/removal triggers before fixed install; industry seats filled and capital only after Validation; talent voluntary only; compute needs facility metering and verified carbon; data needs purpose limits / minimize / human responsibility / appeal path; scenario cards need place · owner · boundary · KPI · stop key.
+3. **Exit / stop (trigger)**: operable stop keys—official controls arrive → recompute constraints; two seasons unmaintained or commons capture → withdraw; missing critical seat → no closed-loop claim; two cycles without maintainer / real demander / safety → leave pool; harassment or appeal over line → freeze; no verified benefit → exhibit-only, no machine room; purpose creep → freeze and audit; stop key → log to passport and Failure Cabinet.
+
+Detail remains in land-use, stations/forms, the three-factor page, and twelve scenario cards; this table only makes eight rows checkable side by side. **Judge primary read prefers crossing surgery / capillary / eye-level strip**—this table demotes to an index page. Concept mechanisms only—not approved policy, funding, compute capacity, or data-sharing agreements.
+
+![Eight factor master table (index page, not primary read)](assets/figures/eight-factors.en.png)
+
+### Capital / Compute / Data: Three Factor Mechanisms (One Checkable Page)
+
+Above the master table, **capital, compute, and data** get a deeper page. Each answers four questions: **who asks · entry gate · service stack · exit trigger**. Capital seats activate only after the validation gate; compute requires facility metering and fire/energy pre-clear—no machine room without net environmental gain; data rests on purpose limits, minimization, human responsibility, and passport appeals—no personal trajectories for heatmaps. Concept mechanisms only—not approved funding, compute capacity, or data-sharing agreements. [assumption:A-PRIVACY-001] [assumption:A-AI-SAFETY-001]
+
+![Three factor mechanisms: capital · compute · data](assets/figures/factor-mechanisms.en.png)
 
 ### Three Positionings, Five Functions, and the “Three Districts, Two Wings” Coordination Loop
 
@@ -87,9 +113,38 @@ OPENLINE 100 responds item by item to the task book’s original names. The **th
 
 Regional coordination uses a proposed “**five places, one protocol**,” without inventing existing partnerships: exchange community problems, maintainers, and light prototypes with **Bewei Community**; establish joint PoC interfaces for frontier outcomes with **Future Science City**; establish public translation of scientific outcomes and interdisciplinary residencies with **Huairou Science City**; connect robotics, smart terminals, and other engineering/manufacturing validation with **Beijing E-Town**; and build a portable library of city problems, evaluation, and procurement clauses for the **Beijing–Tianjin–Hebei** region. The annual Lab-to-City Forum only publishes a shared problem list, mutually recognized test templates, and next-year owners; any cooperation must be separately confirmed by the relevant institutions and cannot be inferred as already signed from scheme text.
 
-### Naming and Visual Standards: Make the Brand a Wayfinding Protocol
+### Naming and Visual Identity: Belt Brand VI (Not Drawing Layout)
 
-The mark forms the letter **O** from two parallel rails, with an umber “commit line” through the midpoint forming **1**; at small sizes keep only the O/1 structure—no complex gradients or figurative robots. Primary color **Rail Ink #1A1A1A** marks industrial skeleton and ink hierarchy; **Axis Steel #2F4A5C** marks structural axes and public interfaces; **Signal Umber #8B5342** marks only events and interactive nodes; **Ballast Paper #F7F6F3** keeps the quiet paper feel of architectural drawings. Naming follows the dual rule: drawings and spatial structure use Chinese **“Jing-Zhang Intelligence Axis (京张智轴)”** (paragraphs called “Space,” the sequence called “Intelligence Axis Seven Spaces”); platform, passport, and event mechanism layers use **“OPENLINE 100”**; nodes use “Station,” projects use “Commit,” annual outcomes use “Release,” and milestone language pairs Suzhou numerals with Arabic numerals [metric:milestone_count] [assumption:A-MOTIF-001]. Wayfinding must be bilingual Chinese–English, high-contrast, tactile, and non-digital alternatives; before formal use, complete trademark, domain, typeface, and Suzhou-numeral historical rights clearance. [assumption:A-BRAND-001] [assumption:A-ACCESS-001]
+This section answers taskbook agent.1 “visual identity and Logo direction.” The object is the **place brand of the AI innovation belt**, not A0/A3 page layout. Cultural wayfinding/sign systems belong to agent.5 and **must not be confused** with the belt’s overall Logo. [source:AGENT-TASKBOOK]
+
+**Mark construction.** Jing-Zhang dual rails close into an open ring **O** (OPEN); an umber “commit line” crosses the midpoint to form digit **1** (LINE)—read as OPENLINE / O·1. Small sizes keep O·1 only; no complex gradients or figurative robots. Clear space ≥ 0.5× mark radius.
+
+**Color system (four colors max).**
+
+| Name | Hex | Heritage metaphor | Use |
+| --- | --- | --- | --- |
+| Rail Ink | `#1A1A1A` | 1909 steel & ink drawings | Industrial skeleton, type hierarchy |
+| Axis Steel | `#2F4A5C` | Line as civic infrastructure | Axis, interfaces, structure |
+| Signal Umber | `#8B5342` | Signal lamp / commit pulse | **Only** events & interactive nodes |
+| Ballast Paper | `#F7F6F3` | Ballast bed & drawing paper | Quiet ground field |
+
+Umber is a signal, not wallpaper; no neon wash.
+
+**Dual naming lockups.** Space layer: Chinese **「百年京张 · AI 智轴」** / Century Jing-Zhang · AI Axis (drawings, segments, landmarks, spatial wayfinding). Mechanism layer: **OPENLINE 100** / Jing-Zhang Open Intelligence Line (passport, events, platform, international). Vocabulary: nodes = Station; projects = Commit; annual outcomes = Release; segments = Space; mileage = Suzhou numerals + Arabic [metric:milestone_count] [assumption:A-MOTIF-001].
+
+**Type & wayfinding.** Chinese space names: Song/Heiti stack; OPENLINE: geometric sans. Wayfinding bilingual, high-contrast, braille/tactile, paper offline fallback. Character in three phrases: **industrial skeleton · garden base · digital ignition**—light only at entries and state changes.
+
+**Don’t.** Neon streets, robot statues, continuous sound-light, fake heritage purple lines, “shown” pretending to be “verified,” or mixing belt Logo with cultural wayfinding. Clear trademark, domain, typeface, and Suzhou-numeral rights before formal use; this is a concept VI direction, not a registered mark or procured design system. [assumption:A-BRAND-001] [assumption:A-ACCESS-001]
+
+![OPENLINE 100 belt brand visual identity: mark · palette · naming · don’ts](assets/figures/visual-identity.en.png)
+
+**Application mockups (three panels).** VI does not stop at a palette: wayfinding carries place-layer naming and mileage dual-notation; the Commit Plinth is street-facing interactive furniture; the project passport cover lands mechanism-layer ID / GATE / TRL / RIGHTS on a holdable object. Concept mockups only—not procured products or legal IDs. [assumption:A-BRAND-001]
+
+![OPENLINE 100 VI applications: wayfinding · Commit Plinth · passport cover](assets/figures/visual-applications.en.png)
+
+**Four-sense calibration (patch layer).** The core VI leans industrial-drawing; this patch closes the gap without changing O·1 or the four primaries: history via paper grain / sleeper wood / rail grit; ecology via auxiliary Garden Leaf `#5A7560` (green corridor and garden rooms only); livelihood warmth via visible seat, kid sightline, and paper offline; future tech as thin ignition only at entry / gate / commit—idle off, no neon wash. [assumption:A-BRAND-001]
+
+![OPENLINE 100 VI patch: four-sense calibration](assets/figures/visual-four-senses.en.png)
 
 ## Overall Design Scope: Urban Renewal and Control-Plan-Depth Urban Design
 
@@ -125,6 +180,10 @@ The seven section families are drawn as conceptual sections at the **same horizo
 
 ![Seven section-family conceptual sections: same-scale rhythm of compression/release and strip grammar](assets/figures/axis-sections.en.png)
 
+If section families stay only as tables and cuts, reviewers may “understand yet not remember.” The seven spaces are therefore gathered into one **same eye-height, same daylight continuous strip**—the judge primary read, preferred over stacking more framework tables; vertical clearances and cover depth still await official verification and are not engineering sections. [assumption:A-AXIS-001]
+
+![Seven spaces continuous eye-level strip: judge primary read](assets/figures/axis-eyelevel.en.png)
+
 ### Three-Level Grammar of the Public Display Layer
 
 The “display layer” is this scheme’s core idea, so display must be a **checkable spatial grammar**, not an accidental set of five point landmarks. The grammar has three levels: **line**—continuous display interfaces along high-intensity Intelligence Axis segments (exhibition signs, Commit interfaces, enterable ground floors), with bilateral conceptual length recalculated by [metric:display_frontage_length_m]; **plane**—indoor/outdoor exhibition fields at the three stations (Agent Garden, Station Zero, Next Station Hall); **point**—OPENKIT’s K04 Commit Plinth and Suzhou-numeral milestones [metric:milestone_count]. Design guidelines suggest a “display frontage ratio” (length of ground-floor display interface as a share of total ground-floor frontage along the line) of 40%–60% as a target range for high-display segments—this number is a guideline suggestion for parcel deepening, not a statutory indicator. Display carriers preferentially use heritage elements themselves: platform remnants as stages, switches as interactive nodes, embankment edges as seating bleachers; contributors retain withdrawal and correction rights over any displayed content.
@@ -156,9 +215,9 @@ The Xiaoyuehe east wing remains the master demand intake; the three stations are
 Positioned as **from autonomous technology to trusted validation**.
 
 - **Supply gate｜Trusted validation**: Agent Garden as a watchable test field that does not leak data; quiet R&D courtyards, red-team labs, standards workshops, low-carbon compute experience, and visitor center. Models and robots validate in controlled environments; accessibility and energy tests can be publicly understood; sensitive tests stay indoors.
-- **Demand gate｜Acceptance demand**: Industry, regulators, safety and standards parties propose the “gate-pass evidence list” here—what to test, who signs, how to roll back if unmet. Red-team and standards workshops are demand seats, not mere lab annexes.
+- **Demand gate｜Acceptance demand**: Industry, regulators, safety and standards parties propose the “gate-pass evidence list” here—what to test, who signs, how to return for retest if unmet. Red-team and standards workshops are demand seats, not mere lab annexes.
 
-The spatial move is “one Qinghe slow-mobility interface, two park open gates, three types of test courtyards.” This station’s spatial motif is the **Switchback Loop** [data:geometry/public_space.geojson#PUBLIC-FORM-01]—translating Qinglongqiao’s “人”-shaped alignment wisdom of “overcoming grade by switchback” into a watchable validation loop: projects enter, public testing, fail threshold then switchback rollback; rollback becomes a visible public event on the spatial path, not a hidden failure. Any river, flood, compute, power, and transport measures await official conditions—no facility capacity is promised. [data:geometry/buildings.geojson#BLDG-001] [assumption:A-MUNICIPAL-001] [assumption:A-MOTIF-001]
+The spatial move is “one Qinghe slow-mobility interface, two park open gates, three types of test courtyards.” This station’s spatial motif is the **Switchback Loop** [data:geometry/public_space.geojson#PUBLIC-FORM-01]—translating Qinglongqiao’s “人”-shaped alignment wisdom of “overcoming grade by switchback” into a watchable validation loop: projects enter, public testing, fail threshold then switchback return for retest; that return becomes a visible public event on the spatial path, not a hidden failure. Any river, flood, compute, power, and transport measures await official conditions—no facility capacity is promised. [data:geometry/buildings.geojson#BLDG-001] [assumption:A-MUNICIPAL-001] [assumption:A-MOTIF-001]
 
 ### 02 Central Station｜Beijing AI Origin “0-to-1 Engine”
 
@@ -168,6 +227,10 @@ Positioned as **from university outcomes to the first city order**.
 - **Demand gate｜Problem translation**: University labs, clinicians and teachers, and community co-creators send real problems into City Pull Requests; Origin teams turn problems into doable PoCs, rights paths, and open/closed-source choices—demand parties are seen at the merge point, not patched with a post-hoc “user study.”
 
 This station’s spatial motif is **Renzi Plaza** [data:geometry/public_space.geojson#PUBLIC-FORM-02]—academic and industry tracks as two ramps from campus and city sides, merging before Station Zero into a Renzi (人-shaped) plaza: the merge point is the outcomes-release point and also the Failure Cabinet’s location, metaphor for 0-to-1 requiring both tracks together. Valuable buildings preferentially accommodate studios via light retrofit; any retain/renovate/demolish conclusion requires existing-conditions survey and tenure negotiation. [data:geometry/public_space.geojson#PUBLIC-LM-02] [depth:retain_renovate_demolish] [assumption:A-MOTIF-001]
+
+**Capillaries land on parcels.** Renzi is no longer a symbol alone: north gate anchors Tsinghua East Road (medium severance), south gate anchors Chengfu Road / Wudaokou memory; campus appointment door G1, Academic Town Porch G2, city appointment door G3, and Developer Walk DW form an 80–120 m opening rhythm (guideline pending tenure); Failure Cabinet FC faces the merge; Station Zero ground floor hosts release and IP clinic. This round adds a **real-fabric overlay**: campus/city concept fabric blocks + open-door target vs concept closed-frontage band along Renzi—closed band is an audit queue, not a demolition list. Five hard rules: opening spacing, enterable frontage, Failure Cabinet orientation, Chengfu audit-before-rebuild, no fixed kit in unverified heritage zones. [metric:capillary_node_count] [assumption:A-HERITAGE-001] [assumption:A-MOTIF-001]
+
+![Origin capillary: fabric overlay + open vs closed frontage](assets/figures/origin-capillary.en.png)
 
 ### 03 South Station｜Dazhongsi “City Adoption Engine”
 
@@ -195,6 +258,20 @@ The three key areas share project passport, open-scenario protocol, test-report 
 
 ![Three stations, three forms compared: Switchback Loop / Renzi Plaza / Four-Way Walk Stitch](assets/figures/station-forms.en.png)
 
+### Three-Station Surgery Plans: Push Motifs to Buildable Decisions
+
+Motifs are not the end. Each station upgrades to a **surgery plan** with the same delivery set: conceptual plan (entries, walk priority, removable kit, Failure Cabinet, demand seats) + key section agreements (under-bridge clear height / cover / acoustic assumptions stated) + door-to-door walk breaks + retain/adapt stance (retain / light retrofit / new-build candidate, still marked pending survey). South Station locks one sentence: **if the ground path does not work, do not draw a skybridge first**—four-way stitch must answer how four interchange-cut pieces reconnect door-to-door. All are conceptual projections; recalculate when official red lines and station mouths arrive—not bridge/tunnel engineering. [depth:three_key_area_detailed_design] [assumption:A-TRANSIT-001] [assumption:A-MOTIF-001]
+
+![Station surgery: south walk-first](assets/figures/station-surgery.en.png)
+
+### Two Crossing Surgeries: Zhichun Dark Gallery + Dazhongsi Four-Way Stitch
+
+Along nine kilometers, the easiest place to stay “grammar-pretty, site-thin” is strong severance. This round loads proof onto two crossings: **Zhichun Dark Gallery portal** (strong · segment 07|06) and **Dazhongsi Four-Way Stitch hub** (strong · south station-city surgery). Same delivery each—concept plan, **field constraint ranges with error bars**, **door-to-door break table**, a11y bypass, retain/adapt stance, stop triggers—plus shared pre-flight: measure clear height and slope on site, ownership/traffic contacts, fire/flood/heritage screen, removable-kit passport before fixing, failures into cabinet and passport. [metric:severance_crossing_count] [metric:surgery_crossing_count] [assumption:A-SEVERANCE-001]
+
+Zhichun: under-span dark gallery pocket; clear-height concept range ~2.0–3.6 m (±0.4); stop if <2.2 m or flood risk → no fixed kit, with bypass ramp (concept detour ~120–220 m). Dazhongsi: Next Station Hall as core; NW commerce / NE living / SW green / SE hall door-to-door breaks registered item by item; under-bridge walk before overpass fantasy; green never permanently commercialized—if stitch steals free passage, cut night schedules. Ranges are public-corridor common-sense estimates; replace after field measure and red-line verify.
+
+![Two crossings: field ranges + door-to-door breaks](assets/figures/crossing-surgery-pair.en.png)
+
 ## AI Innovation Ecosystem, Talent Personas, and AI+ Scenarios
 
 ### Seven People, Seven Kinds of Day on One Line
@@ -209,19 +286,19 @@ The three key areas share project passport, open-scenario protocol, test-report 
 
 ### Twelve Neighborhood Scenario Cards
 
-Every card must answer “who is responsible, where, what data, who reviews, how to stop.” Public-space carriers: [data:geometry/public_space.geojson#PUBLIC-DEVELOPER-WALK]; blue–green carriers: [data:geometry/green_space.geojson#GREEN-OPENLINE].
+Every card must answer “who is responsible, where, what data, who reviews, how to stop.” Landings pin to **seven spaces / nine stitches / Xiaoyuehe east wing** as concept pins (see pin map)—no street numbers, clinic names, or school names; replace when official public facility lists arrive. [data:geometry/public_space.geojson#PUBLIC-DEVELOPER-WALK] [data:geometry/green_space.geojson#GREEN-OPENLINE]
 
-**SC-01 Open-source outcomes exhibition gallery｜Culture + research.** Origin community and Developer Walk; operators with university maintainers turn papers, model cards, code, and failure records into bilingual exhibition signs. Only authorized public materials are shown; contributors may withdraw and correct. KPIs are reproducible-outcomes rate and public understanding; unmaintained for two consecutive seasons → take down.
+**SC-01 Open-source outcomes exhibition gallery｜Culture + research.** Origin Renzi square segment (E04) Developer Walk; operators with university maintainers turn papers, model cards, code, and failure records into bilingual exhibition signs. Only authorized public materials are shown; contributors may withdraw and correct. KPIs are reproducible-outcomes rate and public understanding; unmaintained for two consecutive seasons → take down.
 
-**SC-02 Primary eye-health collaboration station｜AI+ healthcare, validation scenario A.** North Station indoor controlled space and community service points; community health institutions responsible; AI only assists screening; doctors review and decide referral—no automatic diagnosis. Use minimized health data, separated access, and expiry deletion. Haidian’s public cases of primary screening with specialist review may serve as mechanism reference—this project does not claim clinical efficacy. [source:HAIDIAN-HEALTH-AI-2026] KPIs are review completion rate, referral arrival rate, and error stratification; clinical safety thresholds or appeal response unmet → immediate pause.
+**SC-02 Primary eye-health collaboration station｜AI+ healthcare, validation scenario A.** **Street pin:** North Station indoor controlled screening desk + east-side community health interface reached via Jimen / Xiaoyuehe everyday stitches (concept interface—not a named clinic). Community health institutions responsible; AI only assists screening; doctors review and decide referral—no automatic diagnosis. Use minimized health data, separated access, and expiry deletion. Haidian’s public cases of primary screening with specialist review may serve as mechanism reference—this project does not claim clinical efficacy. [source:HAIDIAN-HEALTH-AI-2026] KPIs are review completion rate, referral arrival rate, and error stratification; clinical safety thresholds or appeal response unmet → immediate pause.
 
-**SC-03 Teacher lesson co-creation room｜AI+ education, validation scenario B.** Origin near-campus interface; proposed subjects are schools/teaching-research institutions; teachers choose tools and review outputs; student work defaults out of training; ban automatic grading penalties and covert emotion recognition. Haidian “AI+ education” policy calibrates pilot, norms, safety, and ethics direction—it does not prove scheme approval. [source:HAIDIAN-EDU-AI-POLICY] KPIs are teacher time saved, material error rate, and student/parent informed rate; error rate or opt-out complaints over line → rollback.
+**SC-03 Teacher lesson co-creation room｜AI+ education, validation scenario B.** **Street pin:** near-campus porch of the Origin school-city strategic stitch (E03–E04 junction)—no claim on interior campus rooms. Proposed subjects are schools/teaching-research institutions; teachers choose tools and review outputs; student work defaults out of training; ban automatic grading penalties and covert emotion recognition. Haidian “AI+ education” policy calibrates pilot, norms, safety, and ethics direction—it does not prove scheme approval. [source:HAIDIAN-EDU-AI-POLICY] KPIs are teacher time saved, material error rate, and student/parent informed rate; error rate or opt-out complaints over line → pause the pilot and return for revision.
 
-**SC-04 Unobtrusive but non-surveillance slow-mobility assistant｜AI+ mobility, validation scenario C.** Nine east–west interfaces; proposed subjects are transport/park management and accessibility organizations; only on-site human observation, anonymous counts, or approved aggregate sensing identify breakpoints—no personal trajectories or restricted rider/ride-hail/delivery platform data. Outputs are explainable crowding indices and accessibility work orders—not enforcement. Haidian district slow-mobility construction is network-direction background only. [source:HAIDIAN-MOBILITY-2023] KPIs are breakpoint fix time and wheelchair/stroller reachability; re-identification risk or excessive false alarms → stop collection.
+**SC-04 Unobtrusive but non-surveillance slow-mobility assistant｜AI+ mobility, validation scenario C.** Nine east–west stitch mouths (3 strategic + 6 everyday); proposed subjects are transport/park management and accessibility organizations; only on-site human observation, anonymous counts, or approved aggregate sensing identify breakpoints—no personal trajectories or restricted rider/ride-hail/delivery platform data. Outputs are explainable crowding indices and accessibility work orders—not enforcement. Haidian district slow-mobility construction is network-direction background only. [source:HAIDIAN-MOBILITY-2023] KPIs are breakpoint fix time and wheelchair/stroller reachability; re-identification risk or excessive false alarms → stop collection.
 
-**SC-05 Shop operations copilot｜AI+ commerce, validation scenario D.** Dazhongsi living street; proposed subjects are commercial operators and merchant representatives; merchants voluntarily upload de-identified order summaries; system assists scheduling, inventory, and bilingual service—no single-shop trade secrets shared, no consumer sensitive profiling. KPIs are food waste, merchant retention, and human correction rate; unexplainable differential pricing or drop in merchant net income → exit.
+**SC-05 Shop operations copilot｜AI+ commerce, validation scenario D.** **Street pin:** ground-floor living-street band after the Dazhongsi four-way walk stitch (E07 outer shopfront)—not a closed showroom. Proposed subjects are commercial operators and merchant representatives; merchants voluntarily upload de-identified order summaries; system assists scheduling, inventory, and bilingual service—no single-shop trade secrets shared, no consumer sensitive profiling. KPIs are food waste, merchant retention, and human correction rate; unexplainable differential pricing or drop in merchant net income → exit.
 
-**SC-06 City maintenance Pull Request｜AI+ governance.** Corridor seats, lighting, ramps, and green space; residents submit problems by text/photo; operators merge duplicates and publish status. Images default to local face/plate blur; AI only classifies, does not adjudicate. KPIs are close time, repeat-repair decline, and appeal satisfaction; persistent classification bias → revert to human classification.
+**SC-06 City maintenance Pull Request｜AI+ governance.** **East-wing host:** Xiaoyuehe scenario wing community seats, lighting, ramps, and green as primary demand intake; along-axis assets accepted in parallel. Residents submit problems by text/photo; operators merge duplicates and publish status. Images default to local face/plate blur; AI only classifies, does not adjudicate. KPIs are close time, repeat-repair decline, and appeal satisfaction; persistent classification bias → revert to human classification.
 
 **SC-07 Low-carbon compute heat-recovery display｜AI+ energy.** Zhongzhiyuan indoor display and Qinghe interface; proposed subjects are facility ops and independent energy/carbon verifiers; real-time display of verified facility-level energy use and waste-heat destinations—no enterprise-sensitive loads. KPIs are measurement completeness and energy per task decline; without energy, municipal, and fire conditions, exhibition/education only—no engineering systems built.
 
@@ -237,20 +314,34 @@ Every card must answer “who is responsible, where, what data, who reviews, how
 
 **Scenario–space–operations overview.** This matrix checks at a glance whether technology lands on the street and responsibility lands on an organization; detailed governance still follows the scenario cards above.
 
-| Scenario | Primary space | Proposed operating subject | Primary stop condition |
+| Scenario | Street pin / primary space | Proposed operating subject | Primary stop condition |
 | --- | --- | --- | --- |
-| SC-01 Exhibition gallery | Origin—Developer Walk | University maintainers + corridor operators | No maintenance or authorization withdrawn |
-| SC-02 Eye health | North Station indoor + community service points | Community health institutions | Clinical safety / appeal over line |
-| SC-03 Teacher co-creation | Origin near-campus interface | Schools / teaching-research institutions | Error or opt-out complaints over line |
-| SC-04 Slow-mobility assistant | Nine stitch interfaces | Transport/park + accessibility orgs | Re-identification risk or high false alarms |
-| SC-05 Shop copilot | Dazhongsi living street | Commercial ops + merchant reps | Differential pricing or net income drop |
-| SC-06 Maintenance PR | Corridor public facilities | City/park operators | Classification bias long unimproved |
-| SC-07 Compute display | Zhongzhiyuan indoor | Ops + independent verification | Energy/fire conditions not obtained |
+| SC-01 Exhibition gallery | Origin E04 Developer Walk | University maintainers + corridor operators | No maintenance or authorization withdrawn |
+| SC-02 Eye health | N station → Jimen/Xiaoyuehe clinic interface | Community health institutions | Clinical safety / appeal over line |
+| SC-03 Teacher co-creation | Origin school-city stitch · near-campus porch | Schools / teaching-research institutions | Error or opt-out complaints over line |
+| SC-04 Slow-mobility assistant | Nine stitch mouths (3+6) | Transport/park + accessibility orgs | Re-identification risk or high false alarms |
+| SC-05 Shop copilot | Living-street GF after 4-way stitch | Commercial ops + merchant reps | Differential pricing or net income drop |
+| SC-06 Maintenance PR | Xiaoyuehe east wing · community assets | City/park operators | Classification bias long unimproved |
+| SC-07 Compute display | Zhongzhiyuan indoor + Qinghe edge | Ops + independent verification | Energy/fire conditions not obtained |
 | SC-08 IP clinic | Station Zero | Lawyers / patent agencies | Machine opinion mistaken as formal opinion |
 | SC-09 Memory decoder | Historic interpretation points | Curators / cultural operators | Heritage prerequisites unmet |
-| SC-10 Quiet hours | Five garden rooms | Park ops + community | Events long crowding out publicness |
+| SC-10 Quiet hours | E05 five garden rooms | Park ops + community | Events long crowding out publicness |
 | SC-11 Collaboration passport | Three-station service desks | International service office | Bias / harassment appeals over line |
-| SC-12 Red-team contest | Agent Garden | Independent evaluation + Zhongzhiyuan | Major issues unfixed |
+| SC-12 Red-team contest | North Station Agent Garden field | Independent evaluation + Zhongzhiyuan | Major issues unfixed |
+
+![Scenario pin map: twelve SC on seven spaces · nine stitches · east wing](assets/figures/scenario-pins.en.png)
+
+![Twelve street-level scenario cards: place, boundary, and stop conditions](assets/figures/scenario-cards.en.png)
+
+### A Future Day on the Axis: Cards Walked by People
+
+A card list is not future life. Three personas thread five to six cards into one day—narrative only, not a scheduled program; every stop keeps its card’s stop key. [metric:persona_count]
+
+1. **Clinician / teacher:** morning SC-02 assist at the east clinic interface (doctor reviews) → commute touches SC-04 at a stitch → midday SC-03 lesson co-create on the school-city porch → evening quiet garden SC-10 → file SC-06 if a curb is broken.
+2. **Founder / maintainer:** morning SC-08 IP clinic at Station Zero → SC-01 Commit exhibit on Developer Walk → synthetic red-team slot SC-12 → living-street SC-05 shop pilot feedback → south passport desk SC-11 → retract a label if needed.
+3. **Community organizer:** Xiaoyuehe morning intake SC-06 → escort an elder to the health interface SC-02 → flag a stitch access gap SC-04 → book a quiet room for kids SC-10 → help a shop opt in SC-05 (no profiling) → host a visitor at the compiler desk SC-11.
+
+![A future day on the axis: three persona threads](assets/figures/scenario-day.en.png)
 
 All twelve scenarios follow data minimization, purpose limitation, aggregate-first, human responsibility, explainability, appealability, and exitability; formal pilots must complete ethics/safety, procurement, data, and professional review. [assumption:A-PRIVACY-001]
 
@@ -266,6 +357,10 @@ Retain–renovate–demolish judgment uses eight scores: historic culture, struc
 
 That intensity metrics are all unknown is data discipline, but “unknown” is not “unthought.” This scheme gives three **intensity scenario envelopes** [metric:intensity_scenario_count] as a first-round sensitivity-test framework once official control plans and existing-conditions data arrive; each defines only assumptions, required data, and test questions—no FAR, height, or density numbers [assumption:A-INTENSITY-001]: **S1 Low-disturbance scenario** assumes light retrofit and operations of existing buildings, new build limited to small public facilities; needs existing-building survey and structural appraisal; test question: “can three-station operations’ financial and spatial needs be met without adding development volume?”; **S2 Weave-in scenario** assumes medium-intensity weave-in on clear-tenure, non-heritage-conflict inefficient parcels; needs control plan, tenure, and inefficient-land inventory; test question: “can weave-in volume meet talent housing, incubation space, and public interface needs together?”; **S3 Ambition scenario** assumes higher-intensity development for global functions around rail-candidate interfaces; needs rail station mouths, aviation height limits, daylight, and view-corridor conditions; test question: “does high intensity sacrifice display-layer publicness and heritage scale?” All three share the same recalculation pipeline: once official data arrive, any scenario should regenerate nine layers and all metrics, and submit the three results side by side for professional review—not pre-lock one scenario.
 
+Side-by-side evidence writes each envelope as five checkable columns—**assumption · required data · spatial consequence · ops consequence · veto condition**. One hard veto for S3: display-frontage ratio falling out of the 40%–60% guideline band means high intensity mortgages the public display layer—reject that envelope rather than beautify it. [assumption:A-INTENSITY-001]
+
+![Development intensity scenarios S1/S2/S3 side-by-side evidence](assets/figures/intensity-scenarios.en.png)
+
 ## Transport, Rail, Municipal, and Public Service Facilities
 
 The slow-mobility network comprises one OPENLINE, two parallel roaming lines, and nine east–west stitch interfaces—together [metric:mobility_link_count] conceptual links; total schematic centerline length is [metric:road_centerline_length_m]; buffered estimated area and ratio are [metric:road_area_sqm], [metric:road_ratio]. OPENLINE’s own schematic length [metric:openline_length_m] must not be read as the heritage park’s official length. [depth:traffic_rail_slow_parking]
@@ -280,6 +375,10 @@ Public services use “small stations along the line + professional institutions
 
 The blue–green system is not an AI-equipment showroom strip, but the innovation belt’s most stable public infrastructure. [depth:blue_green_public_space] Inside the provisional boundary this scheme generates one continuous conceptual green spine, five functionalized “garden rooms,” and two water-interface green belts [data:geometry/green_space.geojson#GREEN-OPENLINE]; recalculated conceptual green area and ratio are [metric:green_space_area_sqm], [metric:green_ratio]; public space is jointly composed of Intelligence Axis seven spaces, Developer Walk, five landmarks, three stations three forms, and Suzhou-numeral milestones [data:geometry/public_space.geojson#PUBLIC-DEVELOPER-WALK]; area and ratio are [metric:public_space_area_sqm], [metric:public_space_ratio]. 16.6% and 2.5% are only this design layer’s share of the provisional boundary—never statutory green ratio or public-service indicators. Haidian district park green and 500 m coverage data are not scaled down to the site. [source:HAIDIAN-GREEN-2024]
 
+**Host layer × design overlay (kill the 2.5% misread).** The Jing-Zhang park corridor and Qinghe/Xiaoyuehe blue–green intent are the **host layer**; Intelligence Axis seven spaces, five landmarks, OPENKIT, and nine stitches are the **design overlay**. If a jury only glances at 2.5%, it misreads civic shortfall—so the plate must show side-by-side: **host green continuity** (real commons floor) vs **overlay public space ≈2.5%** (design furniture on the host). Publish three together: host continuity, design overlay, and a **minimum operable public set** that holds even under S1 (≥4 m clear walk, seating every 150–200 m, toilet/water/quiet room with non-digital twin, a11y bypass at every strong severance). Statutory parks are not counted short from the overlay. [assumption:A-PARK-001]
+
+![Host continuity vs design overlay: kill the 2.5% misread](assets/figures/host-design-layers.en.png)
+
 **Garden rooms upgrade from decoration to functional units.** Each of the five rooms has a clear ecological or social role: stormwater retention garden receives surrounding hardscape runoff (capacity and overflow paths await hydrology special study); habitat & pollinator garden conserves native plants and bans night lighting; quiet reading lawn prioritizes acoustic environment; children & intergenerational play shares by time slots; performance & test lawn hosts removable pavilions and outdoor trusted testing. Rooms are not evenly distributed elliptical decorations—they are why the Intelligence Axis “slows down.”
 
 **Axis–river intertwine: Qinghe and Xiaoyuehe are the second system.** The Intelligence Axis is a north–south artificial sequence; Qinghe (north) and Xiaoyuehe (east) are this site’s real natural skeleton. This scheme expresses “axis–river” intertwine intent with two conceptual water-interface green belts [metric:water_interface_count]: the north Qinghe interface belt is the landing of a strategic stitch interface, and also Zhongzhiyuan’s slow-mobility interface and low-carbon compute exhibition/education waterfront bleachers; the east Xiaoyuehe interface belt is the green corridor by which the scenario empowerment wing permeates into communities. Official blue lines, flood, and ecological conditions for both water systems are not in the repository; this scheme does not digitize pseudo blue lines; any bank, section, and ecological measures await official data and water special studies. [assumption:A-WATER-001]
@@ -292,17 +391,47 @@ The blue–green system is not an AI-equipment showroom strip, but the innovatio
 4. **Commons Compiler**: Resident problems, developer responses, and ops work orders “compile” openly on one table—participation is not reduced to opinion collection.
 5. **Next Station Hall**: Dazhongsi’s four-way walk confluence and city-adoption hub; publishes annual Release; hosts roadshows and removable nightlife; also hosts merchant/resident order feedback and reasons for stopped projects. [metric:landmark_count]
 
-All five landmarks are conceptual, reversible public facilities; after professional approval, designate ops, maintenance, safety, and accessibility owners; if approval fails or two consecutive ops cycles have no maintenance, remove and restore to general public space.
+All five landmarks are conceptual, reversible public facilities; after professional approval, designate ops, maintenance, safety, and accessibility owners; if approval fails or two consecutive ops cycles have no maintenance, remove and restore to general public space. The master table below uses the same checkable grammar as scenario pins—**public act · street pin · kit · honor/exit**—so landmarks cannot collapse into a sculpture list.
+
+![Five pilgrimage landmarks master table: act · pin · kit · honor/exit](assets/figures/landmark-catalog.en.png)
+
+**Contribution Visibility Band** folds Developer Walk, SC-01 open-source exhibit signs, and City Commit Wall / K04 Commit Plinth into one N–S strip: movement → gallery → honor wall → quiet edge; approach → read → commit → retract. Honor ranks by reproducible contribution, public value, and years maintained—never by funding size; voluntary, withdrawable, correctable; unresolved dispute or two empty seasons → take down. Not three separate props—the continuous interface where contribution is *seen*.
+
+![Contribution visibility band: Walk × SC-01 gallery × Commit Wall / K04](assets/figures/contrib-band.en.png)
 
 **OPENKIT public-space component library** makes landmarks maintainable rather than one-shot stage sets: K01 **Rail Bench** organizes replaceable seats and wheelchair companion seats at tie scale; K02 **Shade Loop** provides seasonal shade and canopy interfaces; K03 **Power Dock** provides only professionally verified low-voltage power/charging—no uncontrolled networks; K04 **Commit Plinth** holds physical exhibition signs, low-data QR, and braille; K05 **Accessible Dock** provides continuous ramps, tactile wayfinding, and adjustable interaction height; K06 **Quiet Edge** protects quiet activity with planting and sound-absorbing interfaces; K07 **Sensor Sleeve** reserves only removable mounts for approved anonymous environmental sensing; K08 **Pop-up Frame** supports removable exhibits, roadshows, and markets. All use unified module, replaceable parts, material passports, and offline alternatives; each labels owner, inspection cycle, open hours, and removal triggers; no fixed install without heritage, fire, or accessibility confirmation.
 
 ![OPENKIT public-space component library: K01–K08 modules and removable rules](assets/figures/openkit-components.en.png)
 
+### Three Cultures Fused: Rail × Zhongguancun × AI New Culture
+
+This section closes taskbook agent.5: fuse Jing-Zhang railway culture, Zhongguancun culture, and AI new culture into **one checkable narrative**—not three parallel slogans. [source:AGENT-TASKBOOK] [source:JZ-HISTORY]
+
+**Zhongguancun is not only the west service wing.** It enters public storytelling as the **CODE cultural layer**: dare to try, fail and restart, lab→venture, forum-style open discussion—pinned at the Origin school–city stitch, Station Zero Failure Cabinet, and the west-wing everyday service door (capital still enters only after the Validation gate). The railway layer supplies touchable engineering spirit and mileage language; the AI commons layer supplies Commit / Release / stop keys and retractable honor. Each layer has spirit, public historical anchor, street pin, readable object, and do-nots.
+
+![Three-cultures narrative table (appendix index)](assets/figures/culture-triptych.en.png)
+
+**Cultural tour overlay** shares the same N→S spine as the pilgrimage path but with different jobs: lower band = agent.4 innovation pilgrimage (validate → translate → see → adopt); upper band = agent.5 cultural program (Rail read/memory → Code restart → Commons see/city). Belt brand VI (agent.1) does not replace cultural wayfinding symbols; child / access / night lines are shared.
+
+![Dual-rail score: culture stave over pilgrimage · same axis, different job](assets/figures/culture-overlay.en.png)
+
+**Cultural nodes catalog** uses the same grammar as landmarks / scenario pins—**layer · street pin · carrier · clearance/exit**—for ten stops (C01–C10). A03 Rail→Code spring Commit Walk and P11 Passport tour consume this catalog; concept pins, not parcel IDs. [assumption:A-HERITAGE-001] [assumption:A-MOTIF-001]
+
+![Cultural nodes catalog: ten checkable stops](assets/figures/culture-nodes.en.png)
+
 ### Rail → Code → Commons: ~90-Minute Conceptual Tour
 
-Tour beats are isomorphic with the innovation chain: **tested → translated → adopted**, **seen throughout**. North segment at Agent Garden: understand trusted testing and rollback (validation—not spectacle first); middle segment via lawfully open Tsinghuayuan historic interpretation points to Station Zero: see how research becomes translatable PoCs, open source, and failure archives (translation); along Developer Walk and Commit Wall, contribution is visible throughout (seen); at Commons Compiler join a City Pull Request; south segment arrives at Next Station Hall: see how an outcome enters urban everyday life and markets (adoption). Throughout, **Suzhou-numeral milestones** are the mileage language [metric:milestone_count]—Chinese numerals from Jing-Zhang Railway historical marking tradition (〡, 〢, 〣…) placed kilometer by kilometer, with Arabic numeral counterparts, braille, and voice alternatives; this is a unique wayfinding system no other linear park can copy; formal adoption requires historical rights verification. [assumption:A-MOTIF-001] ~90 minutes is conceptual curation rhythm only; actual duration is set after official alignment, entrances, and walking networks are verified. Children’s route uses a “find the switch” game narrative; accessible route provides tactile maps, captions, sign-language booking, and paper booklets; night route lights only necessary nodes to protect residents and ecology. Any fixed facility near heritage objects requires surveying and professional approval first. [source:QINGHUAYUAN-HERITAGE]
+Tour beats are isomorphic with the innovation chain: **validate → translate → see → adopt**. The path diagram below draws the ~90-minute concept pilgrimage N→S, with child / access / night alternatives—this is the **agent.4 pilgrimage layer**; cultural reading sits in the overlay above.
+
+![Pilgrimage path: validate → translate → see → adopt](assets/figures/pilgrimage-path.en.png)
+
+Tour detail: **tested → translated → adopted**, **seen throughout**. North segment at Agent Garden: understand trusted testing and failed-gate switchback (validation—not spectacle first); middle segment via lawfully open Tsinghuayuan historic interpretation points to Station Zero: see how research becomes translatable PoCs, open source, and failure archives (translation)—here also hosting **CODE culture** fail-and-restart; along Developer Walk and Commit Wall, contribution is visible throughout (seen); at Commons Compiler join a City Pull Request; south segment arrives at Next Station Hall: see how an outcome enters urban everyday life and markets (adoption). Throughout, **Suzhou-numeral milestones** are the mileage language [metric:milestone_count]—Chinese numerals from Jing-Zhang Railway historical marking tradition (〡, 〢, 〣…) placed kilometer by kilometer, with Arabic numeral counterparts, braille, and voice alternatives; this is a unique wayfinding system no other linear park can copy; formal adoption requires historical rights verification. [assumption:A-MOTIF-001] ~90 minutes is conceptual curation rhythm only; actual duration is set after official alignment, entrances, and walking networks are verified. Children’s route uses a “find the switch” game narrative; accessible route provides tactile maps, captions, sign-language booking, and paper booklets; night route lights only necessary nodes to protect residents and ecology. Any fixed facility near heritage objects requires surveying and professional approval first. [source:QINGHUAYUAN-HERITAGE]
 
 Urban character adopts “industrial skeleton, garden base, digital ignition”: retain abstract proportions of ties, rivets, platform edges—no fake antiquity; plants and permeable ground form everyday background; steel-blue and umber light only at entries, commits, and state changes—no neon saturation. Ban street-full screens, robot sculptures, and continuous sound–light interaction. Accessibility, low disturbance, and real contribution are themselves the future feel.
+
+**Rail texture field: make the host layer visible.** Grammar can be complete and the body still forget ties, platform edges, under-bridge rooms, and Wudaokou memory—then the scheme reads like a management manual. The texture field pins six readable objects—tie seating, platform-edge bleachers, under-bridge rooms, crossing memory, turnout interact nodes, Suzhou mile markers—and states bans: neon streets, robot statues, continuous sound-light, fake purple lines, “shown = validated.” [assumption:A-MOTIF-001] [assumption:A-HERITAGE-001]
+
+![Rail texture field: ties · platform edge · under-bridge · Wudaokou memory](assets/figures/rail-texture-field.en.png)
 
 ## Renewal Project List, Implementation Policy, and Phasing
 
@@ -325,9 +454,34 @@ Three phases fully cover the provisional boundary [data:geometry/phasing.geojson
 
 ### Eight Annual Operating Products: From Festival Footfall to Sustained Contribution
 
-The annual calendar contains [metric:annual_program_count] product families: **A01 January Openline Call** (outputs problem pool); **A02 March Maintainers-in-Residence** (outputs resident teams); **A03 April Rail→Code Spring Commit Walk** (outputs cultural tour); **A04 June Trust Test trusted-agent contest** (outputs test reports); **A05 September OPENLINE Week** (outputs annual release); **A06 October Global Lab-to-City Forum** (outputs international cooperation list); **A07 monthly Station Night / Failure Review Night** (outputs failure archives); **A08 year-round City Pull Request + Microgrants** (outputs problem-close records and microgrant ledgers). Annual Week is only one week of year-round operations; the other 51 weeks close the loop via problems, residencies, microgrants, testing, and first orders.
+This section closes taskbook agent.6: turn pilgrimage from concept into a **checkable annual operating system**—not another festival list. [source:AGENT-TASKBOOK]
 
-Proposed governance uses a “four-seat roundtable”: public sector/property & professional institutions, research & enterprise, community & public-interest organizations, independent safety & audit—each with veto boundaries; ops revenue may come from compliant venue rent, membership services, enterprise challenges, funds, and public-service procurement, but park passage, basic exhibition, and problem submission stay free. Quarterly Release publishes investment, project stages, failures, corrections, and public value; projects with no maintainers, no real demand parties, or unmet safety for two consecutive periods exit the resource pool. Thus “pilgrimage places” rely not on one spectacle, but on annual returnable shared rituals and trustworthy records. [assumption:A-INDUSTRY-001]
+The annual calendar contains [metric:annual_program_count] product families. The table below uses the same grammar as scenario cards—**rhythm · host · proposed owner · in→out · KPI/stop**—to pin A01–A08. Annual Week (A05) is only one week; the other 51 weeks close the loop via A01/A02/A04/A07/A08.
+
+![Annual ops catalog: A01–A08](assets/figures/ops-catalog.en.png)
+
+**Pilgrimage → ops closed loop**: outer ring = annual products; inner ring = seven passport gates; anchors = North Agent Garden / Origin Zero & Commit Wall / South Next Station Hall. Quarterly Release writes spend, stage, failure, fix, and public value back to passport and problem pool; two consecutive cycles without maintainer, real demander, or safety → exit the resource pool.
+
+![Ops machine · track loop: outer calendar · inner passport · RELEASE/EXIT gate](assets/figures/ops-loop.en.png)
+
+**Global collaboration band** splits “global-facing” into inbound / on-site / outbound—not one October forum: remote City PR and intl residency (inbound), Week / Forum / Commit Walk (on-site), portable problem packs and test templates (outbound). The five-place protocol is interface grammar only—do not infer signed deals from this text.
+
+![Global port section (interface grammar, not primary read)](assets/figures/global-band.en.png)
+
+Product-family digest: **A01 January Openline Call** (problem pool); **A02 March Maintainers-in-Residence** (resident teams); **A03 April Rail→Code Spring Commit Walk** (cultural tour); **A04 June Trust Test** (test reports); **A05 September OPENLINE Week** (annual release); **A06 October Global Lab-to-City Forum** (cooperation list); **A07 monthly Station Night / Failure Review Night** (failure archives); **A08 year-round City Pull Request + Microgrants** (close records and microgrant ledgers).
+
+Proposed governance uses a “four-seat roundtable”: public sector/property & professional institutions, research & enterprise, community & public-interest organizations, independent safety & audit—each with veto boundaries; ops revenue may come from compliant venue rent, membership services, enterprise challenges, funds, and public-service procurement, but park passage, basic exhibition, and problem submission stay free. Thus “pilgrimage places” rely not on one spectacle, but on annual returnable shared rituals and trustworthy records. [assumption:A-INDUSTRY-001] [assumption:A-OPS-001]
+
+### Delivery & Money Plate: Who Holds / Who Vetoes / Who Pays
+
+A complete ecosystem diagram is not delivery. This plate writes “proposed” as checkable institutional boundaries: [assumption:A-OPS-001] [assumption:A-INDUSTRY-001]
+
+- **Four-seat roundtable**: public sector/property (legal veto: park passage & safety); research/enterprise (may propose but must not skip Validation); community/public interest (veto commons privatization: quiet hours & access); independent audit/safety (veto unsafe release; Failure Cabinet accumulates in public).
+- **Passport issuance**: proposed ops entity issues; independent audit countersigns; capital seat activates only after trusted-test gate.
+- **Money boundaries**: passage, basic exhibition, and City PR submission permanently free; compliant venue rent, challenges, membership, and public-service procurement chargeable; buying/selling personal data, forced face ID, ranking by financing forever forbidden.
+- **Phase 1 first money (0–12 months)**: brand commons & bilingual wayfinding clearance (P01, concept ¥0.15–0.40M), City PR platform trial & data-governance procurement (P02, concept ¥0.30–0.80M), walk/a11y audit labor (P05, concept ¥0.20–0.50M), light ops for removable events and Failure Review Nights (A07/A08, concept ¥0.25–0.60M/yr)—kickstart band ≈ **¥0.9–2.3M** (excl. bridges/new build/data halls). Prefer **public-service procurement + compliant venue rent + microgrants**, not rent-subsidy races for footfall; bridges/new build/compute rooms wait until red lines and specials clear. Concept estimate bands only—not an investment commitment or procurement quote. [assumption:A-OPS-001]
+
+![Delivery & money: kickstart ¥ bands](assets/figures/delivery-money.en.png)
 
 ## Metrics System, Area Recalculation, and Compliance Matrix
 
@@ -356,17 +510,17 @@ Materials are in five groups, strictly graded by use. Group one is the call’s 
 
 Group three is primary public background on Jing-Zhang Railway, park, and heritage—used to build the Rail→Code→Commons narrative and conservative heritage prerequisites, not to derive engineering alignment. [source:JZ-HISTORY] [source:JZ-PARK-OFFICIAL] [source:QINGHUAYUAN-HERITAGE] Group four is Haidian and Beijing statistics, policy, and public cases—used to judge regional innovation, education, healthcare, green space, slow mobility, and R&D environment; all data keep administrative scale and year, and are not area-scaled. [source:HAIDIAN-STATS-2025] [source:HAIDIAN-ECON-CENSUS-2023] [source:HAIDIAN-EDU-AI-POLICY] [source:HAIDIAN-HEALTH-AI-2026] [source:HAIDIAN-GREEN-2024] [source:HAIDIAN-MOBILITY-2023] [source:BEIJING-RD-2024]
 
-Group five is institutional primary pages for seven international cases—used to compare outcomes translation, real-problem validation, heritage renewal, multi-node governance, and internationalization mechanisms; the scheme translates institutions only—no images, scale, investment, or policy promises copied. [source:CASE-KENDALL] [source:CASE-TORONTO] [source:CASE-PARIS] [source:CASE-SINGAPORE] [source:CASE-HELSINKI] [source:CASE-SEOUL] [source:CASE-TSUKUBA] Every external public material’s URL, publisher, access date, specific use and limits, and every repository material’s local path and use, are registered in sources.json; copyright and license boundaries are in report/copyright_statement.md.
+Group five is institutional primary pages for seven international cases—used to compare outcomes translation, rail-heritage hosting, challenge-prize grammar, real-problem validation, heritage renewal, multi-node governance, and linear public commons; the scheme translates institutions only—no images, scale, investment, or policy promises copied. [source:CASE-KENDALL] [source:CASE-STATIONF] [source:CASE-NESTA] [source:CASE-SINGAPORE] [source:CASE-HELSINKI] [source:CASE-SEOUL] [source:CASE-TSUKUBA] Toronto / MaRS and Paris-Saclay remain background-only after leaving the master table. [source:CASE-TORONTO] [source:CASE-PARIS] Every external public material’s URL, publisher, access date, specific use and limits, and every repository material’s local path and use, are registered in sources.json; copyright and license boundaries are in report/copyright_statement.md.
 
 ### Machine-Readable Evidence Index
 
 This index ensures review Agents can return from narrative to sources, standards, depth, layers, and metrics; it does not substitute citation count for professional judgment.
 
 
-- Sources: [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:SITE-PACKAGE], [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK], [source:BOUNDARY-SOURCE], [source:KEY-AREA-SOURCE], [source:JZ-PARK-OFFICIAL], [source:QINGHUAYUAN-HERITAGE], [source:JZ-HISTORY], [source:CASE-KENDALL], [source:CASE-TORONTO], [source:CASE-PARIS], [source:CASE-SINGAPORE], [source:CASE-HELSINKI], [source:CASE-SEOUL], [source:CASE-TSUKUBA], [source:HAIDIAN-STATS-2025], [source:HAIDIAN-ECON-CENSUS-2023], [source:HAIDIAN-EDU-AI-POLICY], [source:HAIDIAN-HEALTH-AI-2026], [source:HAIDIAN-GREEN-2024], [source:HAIDIAN-MOBILITY-2023], [source:BEIJING-RD-2024]
+- Sources: [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:SITE-PACKAGE], [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK], [source:BOUNDARY-SOURCE], [source:KEY-AREA-SOURCE], [source:JZ-PARK-OFFICIAL], [source:QINGHUAYUAN-HERITAGE], [source:JZ-HISTORY], [source:CASE-KENDALL], [source:CASE-STATIONF], [source:CASE-NESTA], [source:CASE-SINGAPORE], [source:CASE-HELSINKI], [source:CASE-SEOUL], [source:CASE-TSUKUBA], [source:CASE-TORONTO], [source:CASE-PARIS], [source:HAIDIAN-STATS-2025], [source:HAIDIAN-ECON-CENSUS-2023], [source:HAIDIAN-EDU-AI-POLICY], [source:HAIDIAN-HEALTH-AI-2026], [source:HAIDIAN-GREEN-2024], [source:HAIDIAN-MOBILITY-2023], [source:BEIJING-RD-2024]
 - Standards: [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK], [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE], [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 - Depth: [depth:existing_conditions_diagnosis], [depth:three_level_scope_framework], [depth:overall_spatial_structure], [depth:land_use_layout], [depth:development_intensity_controls], [depth:height_massing_character], [depth:retain_renovate_demolish], [depth:traffic_rail_slow_parking], [depth:municipal_new_infrastructure], [depth:blue_green_public_space], [depth:three_key_area_detailed_design], [depth:renewal_project_list], [depth:phasing_implementation], [depth:metrics_recalculation], [depth:risk_missing_data]
-- Metrics: [metric:site_area_sqm], [metric:land_use_area_sqm], [metric:land_use_coverage_ratio], [metric:green_space_area_sqm], [metric:green_ratio], [metric:public_space_area_sqm], [metric:public_space_ratio], [metric:building_footprint_area_sqm], [metric:road_centerline_length_m], [metric:road_area_sqm], [metric:road_ratio], [metric:openline_length_m], [metric:phasing_area_sqm], [metric:key_detailed_design_area_sqm], [metric:key_area_count], [metric:land_use_parcel_count], [metric:building_prototype_count], [metric:mobility_link_count], [metric:landmark_count], [metric:scenario_count], [metric:test_validation_scenario_count], [metric:persona_count], [metric:global_case_count], [metric:renewal_project_count], [metric:annual_program_count], [metric:axis_segment_count], [metric:display_frontage_length_m], [metric:renzi_motif_count], [metric:milestone_count], [metric:strategic_interface_count], [metric:severance_crossing_count], [metric:water_interface_count], [metric:intensity_scenario_count], [metric:land_use_05_area_sqm], [metric:land_use_0701_area_sqm], [metric:land_use_0702_area_sqm], [metric:land_use_0802_area_sqm], [metric:land_use_0803_area_sqm], [metric:land_use_0804_area_sqm], [metric:land_use_0806_area_sqm], [metric:land_use_1401_area_sqm], [metric:phase_1_area_sqm], [metric:phase_2_area_sqm], [metric:phase_3_area_sqm], [metric:key_area_1_calculated_sqm], [metric:key_area_2_calculated_sqm], [metric:key_area_3_calculated_sqm]
+- Metrics: [metric:site_area_sqm], [metric:land_use_area_sqm], [metric:land_use_coverage_ratio], [metric:green_space_area_sqm], [metric:green_ratio], [metric:public_space_area_sqm], [metric:public_space_ratio], [metric:building_footprint_area_sqm], [metric:road_centerline_length_m], [metric:road_area_sqm], [metric:road_ratio], [metric:openline_length_m], [metric:phasing_area_sqm], [metric:key_detailed_design_area_sqm], [metric:key_area_count], [metric:land_use_parcel_count], [metric:building_prototype_count], [metric:mobility_link_count], [metric:landmark_count], [metric:scenario_count], [metric:test_validation_scenario_count], [metric:persona_count], [metric:global_case_count], [metric:renewal_project_count], [metric:annual_program_count], [metric:axis_segment_count], [metric:display_frontage_length_m], [metric:renzi_motif_count], [metric:milestone_count], [metric:strategic_interface_count], [metric:severance_crossing_count], [metric:water_interface_count], [metric:intensity_scenario_count], [metric:land_use_05_area_sqm], [metric:land_use_0701_area_sqm], [metric:land_use_0702_area_sqm], [metric:land_use_0802_area_sqm], [metric:land_use_0803_area_sqm], [metric:land_use_0804_area_sqm], [metric:land_use_0806_area_sqm], [metric:land_use_1401_area_sqm], [metric:phase_1_area_sqm], [metric:phase_2_area_sqm], [metric:phase_3_area_sqm], [metric:key_area_1_calculated_sqm], [metric:key_area_2_calculated_sqm], [metric:key_area_3_calculated_sqm], [metric:surgery_crossing_count], [metric:capillary_node_count]
 - Assumptions and boundaries: [assumption:A-BOUNDARY-001], [assumption:A-CONTROLS-001], [assumption:A-LANDUSE-001], [assumption:A-EXISTING-001], [assumption:A-TRANSIT-001], [assumption:A-HERITAGE-001], [assumption:A-MUNICIPAL-001], [assumption:A-PARK-001], [assumption:A-AXIS-001], [assumption:A-SEVERANCE-001], [assumption:A-MOTIF-001], [assumption:A-WATER-001], [assumption:A-INTENSITY-001], [assumption:A-PRIVACY-001], [assumption:A-AI-SAFETY-001], [assumption:A-INDUSTRY-001], [assumption:A-BRAND-001], [assumption:A-OPS-001], [assumption:A-ACCESS-001], [assumption:A-EXTERNAL-CASES-001]
 
 **One-sentence delivery: Let a century of railway be more than memorial—let the next century of public intelligence be co-committed here.**

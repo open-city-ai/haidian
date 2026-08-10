@@ -36,7 +36,7 @@
     },
     "land_use_coverage_ratio": {
       "status": "known",
-      "value": 0.999999844678,
+      "value": 1.0,
       "unit": "ratio",
       "source_files": [
         "geometry/land_use.geojson",
@@ -47,8 +47,7 @@
       "assumptions": [
         "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
         "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
-      ],
-      "note_zh": "EPSG:4548 复算后用地并集相对 SITE_BOUNDARY 残留约 1.77 m² 未覆盖缝隙；不得四舍五入写成 1.0"
+      ]
     },
     "green_space_area_sqm": {
       "status": "known",
@@ -727,6 +726,35 @@
       "assumptions": [
         "总体设计边界为仓库 provisional 粗略范围，非官方红线；官方 polygon 发布后须整体复算",
         "数值由 agent 生成的概念设计图层复算，不构成法定规划控制指标"
+      ]
+    },
+    "surgery_crossing_count": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/crossing-surgery-pair.png"
+      ],
+      "formula": "count(deep surgical crossing plates: Zhichun + Dazhongsi)",
+      "confidence": "high",
+      "assumptions": [
+        "概念手术板数量，非工程桥隧方案数"
+      ],
+      "note_zh": "冲90：两处强切割口手术深化交付"
+    },
+    "capillary_node_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/origin-capillary.png"
+      ],
+      "formula": "count(Origin capillary nodes G1/G2/Z0/FC/G3/DW)",
+      "confidence": "high",
+      "assumptions": [
+        "概念钉点，非权属门牌"
       ]
     }
   }

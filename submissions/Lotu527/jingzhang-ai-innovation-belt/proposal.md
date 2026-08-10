@@ -2,6 +2,7 @@
 title: "京张智脉 · NeuroRail：会自检的AI共生创新带"
 author_github: "Lotu527"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为脊、三处重点区为神经核、AI场景为可复核突触，提出“场景即基础设施”的多智能体共生城市设计；所有AI落点都是可预约、可审计、数据最小化的开放测试单元，形成一带三核·多突触·双翼的空间组织与长期运营机制。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "civic-agent-governance"]

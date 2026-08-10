@@ -45,7 +45,9 @@ class TestSubmissionsGallery(unittest.TestCase):
         registry = json.loads((ROOT / "gallery-publication.json").read_text(encoding="utf-8"))
         publication = {entry["path"]: entry for entry in registry["entries"]}
         expected = {
-            path.name: publication.get(path.relative_to(ROOT).as_posix(), {}).get("featured", False)
+            "/".join(path.relative_to(ROOT).parts[1:]): publication.get(
+                path.relative_to(ROOT).as_posix(), {}
+            ).get("featured", False)
             for path in discover_submissions(ROOT)
             if publication.get(path.relative_to(ROOT).as_posix(), {}).get("published", True)
         }
@@ -72,7 +74,8 @@ class TestSubmissionsGallery(unittest.TestCase):
             )
             items = build_data(root)
             self.assertEqual(1, len(items))
-            self.assertEqual("example", items[0]["id"])
+            self.assertEqual("alice/example", items[0]["id"])
+            self.assertEqual("example", items[0]["slug"])
             self.assertFalse(items[0]["featured"])
             self.assertEqual(
                 "proposal-view.html?proposal=submissions/alice/example",
@@ -237,6 +240,15 @@ class TestSubmissionsGallery(unittest.TestCase):
         )
         self.assertEqual(expected, len(self.load_gallery_items()))
 
+    def test_gallery_item_ids_are_unique_and_path_scoped(self):
+        items = self.load_gallery_items()
+        ids = [item["id"] for item in items]
+        self.assertEqual(len(ids), len(set(ids)))
+        for item in items:
+            source_dir = Path(item["sourceUrl"]).parent
+            self.assertEqual("/".join(source_dir.parts[1:]), item["id"])
+            self.assertEqual(source_dir.name, item["slug"])
+
     def test_human_readable_report_viewer_loads_structured_evidence(self):
         viewer = (ROOT / "proposal-view.html").read_text(encoding="utf-8")
         artifact_viewer = (ROOT / "proposal-artifact-viewer.js").read_text(encoding="utf-8")
@@ -254,6 +266,11 @@ class TestSubmissionsGallery(unittest.TestCase):
             "normalizeInlineMarkdown",
             "normalizeTables",
             "normalizeBareDataReferences",
+            "normalizeHumanStatusTerms",
+            "collapseEvidenceRuns",
+            "evidence-bundle",
+            "MACHINE_FILE_LABELS",
+            "待正式数据补齐",
             "dataTokenLabel",
             "hasRelatedDataMarker",
             "data-token",
@@ -271,7 +288,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             "浏览方案资料",
             "核对方案证据",
             "activateFilter",
-            "正文中的圆形编号使用同一套编号",
+            "正文中的“依据”与“多条依据”均可点击",
             "proposal-artifact-viewer.js",
             "proposal-artifact-viewer.css",
             "方案资料库",

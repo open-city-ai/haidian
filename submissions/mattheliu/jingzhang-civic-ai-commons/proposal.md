@@ -2,6 +2,7 @@
 title: "京张智脉：可验证的城市AI公共实验带"
 author_github: "mattheliu"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一条开放智能公共主脉连接三座创新港、五座公共客厅与十二个可审计AI场景的临时边界版formal方案；所有法定与工程结论保留人工和专业复核。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

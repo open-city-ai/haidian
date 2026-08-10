@@ -13,6 +13,45 @@ from render_proposal_html import render_html  # noqa: E402
 
 
 class RenderProposalHtmlTests(unittest.TestCase):
+    def test_render_html_supports_emphasis_without_reformatting_inline_code(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "正文 **重点**、*补充*、***都要***、\\*字面星号\\*，以及 `**不要格式化**`。\n\n"
+                "```python\n"
+                "score = 0.4 * density + 0.4 * load + 0.2 * activity\n"
+                "```\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<strong>重点</strong>", html)
+            self.assertIn("<em>补充</em>", html)
+            self.assertIn("<strong><em>都要</em></strong>", html)
+            self.assertIn("*字面星号*", html)
+            self.assertIn("<code>**不要格式化**</code>", html)
+            self.assertIn(
+                "<pre><code>score = 0.4 * density + 0.4 * load + 0.2 * activity</code></pre>",
+                html,
+            )
+            self.assertNotIn("0.4 <em>", html)
+
+    def test_render_html_supports_blockquotes(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                "> **引用结论** [source:SITE-PACKAGE]\n> 第二行。\n>\n> 独立第二段。\n",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn("<blockquote><p><strong>引用结论</strong> ", html)
+            self.assertIn('class="evidence evidence-source"', html)
+            self.assertIn("第二行。</p><p>独立第二段。</p></blockquote>", html)
+            self.assertNotIn("&gt;", html)
+
     def test_render_html_rewrites_local_figure_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)
@@ -49,6 +88,9 @@ summary: "离线阅读版"
             self.assertIn('<main>', html)
             self.assertIn('../assets/figures/site-overview.png', html)
             self.assertIn('class="evidence evidence-source"', html)
+            self.assertIn('data-evidence-kind="source"', html)
+            self.assertIn('data-evidence-value="SITE-PACKAGE"', html)
+            self.assertIn('>来源</sup>', html)
 
     def test_render_html_renders_markdown_tables(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

@@ -2,6 +2,7 @@
 title: "京张智脉：AI产业生态与全栈创新城市设计"
 author_github: "letr007"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张文化与蓝绿公共空间为共享主轴，组织众智园全栈测试、AI原点开源转化、大钟寺市场交付三核，形成研发—协作—测试—转化—生活—传播的 AI 创新回路。"
 tracks: ["enterprise-services-ecosystem", "civic-agent-governance", "ai-traffic-walkability"]

@@ -7,7 +7,6 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把京张铁路遗址公园做成海淀创新链的公共展示层——研究成果在这里被验证、被转化、被采用——全程被看见；空间上以七段空间序列的京张智轴、三台创新引擎、两翼缝合与三站三形承载，机制上以 OPENLINE 100 项目护照贯通研究到城市采用的七级链路。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v0.3-bilingual"
 ---
 
 # 百年京张 · AI 智轴｜OPENLINE 100
@@ -31,6 +30,10 @@ iteration: "v0.3-bilingual"
 
 京张公园一期 2023 年开放约 2.5 公里、16.8 公顷，支持“遗产保护与公共空间并重”的背景判断，但不提供全线工程边界。[source:JZ-PARK-OFFICIAL] 清华园车站旧址存在依法公布的保护范围和建设控制地带；因本包未取得清权测绘 polygon，不自行数字化“伪紫线”，任何相邻节点必须在文保审查后定位。[source:QINGHUAYUAN-HERITAGE] 这套边界与缺资料治理同时写入 [assumption:A-BOUNDARY-001]、[assumption:A-CONTROLS-001]、[assumption:A-HERITAGE-001]。
 
+资料纪律不能只活在 assumptions 文件里，必须成为**可检查的图面**。下图把可引用的公开事实、必须保持为空的官方缺口、以及明确禁止伪造的红线并排展示；官方资料包一到，九图层与全部指标按同一管线重生，禁止局部改图。[depth:existing_conditions_diagnosis] [assumption:A-CONTROLS-001]
+
+![现状诊断板：已知 / 空约束 / 禁止伪造](assets/figures/existing-conditions.png)
+
 ## 三层范围工作框架
 
 三层不是三张彼此无关的地图，而是由大到小的空间递进，并由一条协同主链贯穿：战略层看出题与组合，总体层看空间供给，重点区看下一道门槛。[depth:three_level_scope_framework]
@@ -52,7 +55,7 @@ iteration: "v0.3-bilingual"
 1. **Research｜基础研究**：高校与国家实验室提出原理突破；OPENLINE Fellow 以公共讲坛和跨校配对降低学科壁垒。输出论文、基准、风险声明，不以论文数作为唯一 KPI。
 2. **PoC & IP｜概念验证与确权**：中部“零号站”提供工程经理、知识产权、伦理、临床/教育/公共服务顾问；在开源、专利、商业秘密之间做可逆选择。门槛是需求方签字和最小可行验证方案。
 3. **Open Source｜开源协作**：建立城市级仓库、维护者微资助、模型卡/数据卡和贡献者协议。开源并非无条件开放数据，而是代码、文档、接口和治理可审计。
-4. **Validation｜可信测试**：北部智能体花园提供红队、能耗、无障碍、偏差与真实任务测试；高风险领域保持人类负责。未达到阈值就回滚，不以“已展示”冒充“已验证”。
+4. **Validation｜可信测试**：北部智能体花园提供红队、能耗、无障碍、偏差与真实任务测试；高风险领域保持人类负责。未达到阈值即退回重测、不得过门，不以“已展示”冒充“已验证”。
 5. **Incubation｜产业孵化**：原点社区用可拆分小单元、共享设备和 12 周产品冲刺支撑团队；退出标准是形成明确客户、合规路径和单位经济性，或及时停止。
 6. **Capital｜耐心资本**：西翼“资本站台”组合概念验证券、场景首单、知识产权质押咨询、产业资本和长期基金；每笔资金绑定下一里程碑，不做园区租赁补贴竞赛。
 7. **City Adoption｜城市采用**：医院、学校、商业和城市运营机构成为首批问题方。采用前公开影响评估、试点范围、申诉与退出机制；复用成功的接口和采购条款，而非复制个人数据。
@@ -69,15 +72,41 @@ iteration: "v0.3-bilingual"
 
 ### 七个全球案例，不复制建筑，转译机制
 
-- **Boston / Kendall—The Engine**：把技术、IP、市场与融资准备组织成“蓝图”；海淀转译为驻场工程经理和阶段门，而非只提供办公桌。[source:CASE-KENDALL]
-- **Toronto / MaRS**：与大学、医院邻接，中心内聚合实验室、创业企业与资本服务；海淀转译为医疗首用户、公共中庭和统一项目护照，不照搬机构治理。[source:CASE-TORONTO]
-- **Paris-Saclay**：PoC、技术成熟化、原型、孵化与种子资本相连；海淀补上一条面向公众和城市订单的 OPENLINE。[source:CASE-PARIS]
-- **Singapore / AI Singapore 100 Experiments**：真实问题方、工程团队、项目经理共同交付；海淀形成“100 个 City Pull Requests”，所有数据与采购另行履行程序。[source:CASE-SINGAPORE]
-- **Helsinki / Maria 01**：旧医院改造为创业社区、保留多数旧建筑并分期扩建；海淀据此采用“先运营、再轻改、后建设”的遗产友好更新。[source:CASE-HELSINKI]
-- **Seoul AI Hub**：市政府设立、大学与国家研究机构联合运营多节点研发基础设施、孵化和国际协作；海淀增加开放微资助与公共价值门槛，避免资源只流向头部企业。[source:CASE-SEOUL]
-- **Tsukuba**：产学官金联盟、城市实证场与社会实施协同；海淀用沿线公共空间补足科学城常见的“机构强、街道弱”。[source:CASE-TSUKUBA]
+对照表写的是 **本方案转译**，不是「海淀已采纳」。遴选标准只有一条：能否服务本项目三件独有物——**线性铁路遗产宿主、七级链/护照阶段门、东翼城市问题进水**；通用科技园邻接案例（如 Toronto / MaRS）与巨型校园足迹（如 Paris-Saclay）退出主表，改由本地政策与七级链自身承担，仅作背景对照保留。[source:CASE-TORONTO] [source:CASE-PARIS] [assumption:A-EXTERNAL-CASES-001]
 
-共同启示是：世界级创新生态不是一座地标，而是 **强研究源 + 中立转译层 + 真实首用户 + 分层资本 + 可被信任的规则**。海淀的独特增量，是把中关村的技术密度与百年铁路的公共叙事合在一条可步行、可体验、可贡献的线上。[metric:global_case_count]
+- **Boston / Kendall—The Engine**：技术/IP/市场/融资就绪蓝图 + 阶段门 → 转译为驻场工程经理与护照阶段门。契合点：七级链需要人来转译，不是工位园区。[source:CASE-KENDALL]
+- **Paris / Station F**：铁路货站 Halle Freyssinet 转为创业校园 → 转译为「铁路遗产作创新宿主」的项目制开放空间。契合点：与京张同属线性铁路遗产再利用，而非另造封闭园区。[source:CASE-STATIONF]
+- **Nesta Challenge Prizes**：定义问题→公开征集→分阶段奖励与支持→按结果评判 → 转译为 City Pull Request 与场景券语法。契合点：东翼需求进水需要出题语法，不是招商名单。[source:CASE-NESTA]
+- **Singapore / AI Singapore 100 Experiments**：真实问题方、工程团队、项目经理共同交付 AI PoC → 转译为 100 个 City PR 与护照席位。契合点：补上轴上验证→采用的 AI 专项共交付。[source:CASE-SINGAPORE]
+- **Helsinki / Maria 01**：旧医院存量、分期扩建、先运营 → 转译为先运营→再轻改→后建设。契合点：遗址公园是宿主层，场地包禁止早锁拆改留。[source:CASE-HELSINKI]
+- **Seoul AI Hub**：市府多节点研发 + 孵化 + 国际协作 → 转译为开放微资助与公共价值门槛，映射三站。契合点：防资源只流向头部企业。[source:CASE-SEOUL]
+- **Tsukuba**：产学官金 + 城市实证场 → 转译为线性公共空间与 Commit 基座。契合点：海淀缺的不是封闭园区，而是可步行公共展示层。[source:CASE-TSUKUBA]
+
+医疗首用户不以海外园区章程为据，而以海淀公开 AI+健康政策为本地锚点（见场景卡 SC-02）。[source:HAIDIAN-HEALTH-AI-2026]
+
+共同启示是：世界级创新生态不是一座地标，而是 **强研究源 + 中立转译层 + 真实首用户 + 分层资本 + 可被信任的规则**；本项目的增量是把中关村技术密度接到百年铁路的公共叙事上。[metric:global_case_count]
+
+**案例对照表（可检查）。** 七案例统一五列：提取机制 · 本方案转译 · 为何契合本项目 · 明确不抄。只转译制度，不复制建筑规模、机构章程、数据集或合同；不构成已签约合作或投资承诺。[assumption:A-EXTERNAL-CASES-001]
+
+![全球案例对照表：提取机制 · 本方案转译 · 为何契合 · 明确不抄](assets/figures/case-comparison.png)
+
+### 八要素总表（同一语法）
+
+任务书要求覆盖 **土地、空间、产业、资金、人才、算力、数据、场景**。本方案用同一四列语法收束不均——每行必须同时回答三问，且与项目护照阶段对齐：[source:AGENT-TASKBOOK]
+
+1. **空间落点（何处 / 谁）**：写到可核对的空间单元或席位——用地拓扑与强度包络、七空间与三站三形、三区两翼分工、资本站台、七类人才落点、可信测试与 SC-07 展窗、护照/数据卡、十二场景卡与需求进水口；不写空泛口号。
+2. **过门条件（必须为真）**：进入下一阶段前的硬前置——无控规前不锁容积率；装置前完成文保/消防/业主/撤场触发；产业席位齐备且资本只在 Validation 后激活；人才仅自愿画像；算力须设施计量与能碳核验；数据须目的限定/最小化/人类负责/申诉路径；场景卡须齐备落点·主体·边界·KPI·停止键。
+3. **退出 / 停止（触发）**：可操作的停止键——官方资料到位则复算约束；连续两季无人维护或挤占公共性则撤场；关键席位缺席不得宣称闭环；两期无维护者/无真实需求/安全不达标退出资源池；骚扰或申诉越线冻结；无核验收益不建机房；目的漂移冻结审计；停止键触发写入护照与失败展柜。
+
+细部仍见用地分区、三站/三形、三要素机制页与十二场景卡；总表只负责「八行可对表检查」，**评委主读优先切割口手术 / 毛细血管 / 人视条带**，本表降为索引页。总表为概念机制索引，不构成已批政策、资金、算力容量或数据共享协议。
+
+![八要素总表（索引页，非主读图）](assets/figures/eight-factors.png)
+
+### 资金 / 算力 / 数据：三要素机制（一页可检查）
+
+八要素总表之上，**资金、算力、数据**另立一页加深：每要素回答四问——**谁出题 · 过哪道门 · 服务栈 · 退出触发**。资本席位仅在可信测试过门后激活；算力以设施级计量与消防/能源预审为前置，无净环境收益不建机房；数据以目的限定、最小化、人类负责与护照申诉路径为底线，不以个人轨迹换热力图。均为概念机制，不构成已批准资金、算力容量或数据共享协议。[assumption:A-PRIVACY-001] [assumption:A-AI-SAFETY-001]
+
+![三要素机制页：资金 · 算力 · 数据](assets/figures/factor-mechanisms.png)
 
 ### 三大定位、五大功能与“三区两翼”协同回路
 
@@ -87,9 +116,38 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 区域协同采用拟议的“**五地一协议**”，不虚构现有合作：与 **北纬社区**交换社区问题、维护者和轻量原型；与 **未来科学城**建立前沿成果的联合PoC接口；与 **怀柔科学城**建立科学成果公众翻译与跨学科驻留；与 **北京经开区**衔接机器人、智能终端等工程化与制造验证；面向 **京津冀**建立可移植的城市问题、评测与采购条款库。年度 Lab-to-City Forum 只发布共同问题清单、互认测试模板和下一年责任人；任何合作须由相应机构另行确认，不能从方案文字推定已签约。
 
-### 名称与视觉规范：让品牌成为一套寻路协议
+### 名称与视觉规范：一带品牌 VI（非图纸排版）
 
-标志以两条平行轨道形成字母 **O**，一道赭色“提交线”穿过中点形成 **1**；在小尺寸只保留 O/1 结构，禁止复杂渐变和拟物机器人。主色 **Rail Ink #1A1A1A** 表示工业骨架与墨线层级，**Axis Steel #2F4A5C** 表示结构轴线与公共接口，**Signal Umber #8B5342** 只标示事件和可交互节点，**Ballast Paper #F7F6F3** 保持建筑设计图纸的素雅纸本感。命名执行双层规则：图纸与空间结构统一用中文 **“京张智轴”**（段落称“空间 / Space”，序列称“智轴七空间”），平台、护照与活动等机制层统一用 **“OPENLINE 100”**；节点采用“站 / Station”，项目采用“提交 / Commit”，年度成果采用“版本 / Release”，里程语言采用苏州码子与阿拉伯数字对照 [metric:milestone_count] [assumption:A-MOTIF-001]。导视必须有中英双语、高对比、触觉与非数字替代；正式使用前完成商标、域名、字体与苏州码子史料的清权核证。[assumption:A-BRAND-001] [assumption:A-ACCESS-001]
+本条回应任务书 agent.1「视觉识别与 Logo 方向」——规范对象是 **AI 创新带的场所品牌**，不是方案 A0/A3 的排版样式。文化导视符号系统属 agent.5，与一带整体 Logo **不得混用**。[source:AGENT-TASKBOOK]
+
+**标志构造。** 京张双轨闭合为开环字母 **O**（开放 / OPEN）；赭色「提交线」横切中点形成数字 **1**（线路 / LINE）——合读 OPENLINE / O·1。小尺寸只保留 O·1 结构；禁止复杂渐变与拟物机器人。安全净空不小于标志半径的 0.5 倍。
+
+**色彩系统（四色封顶）。**
+
+| 色名 | 色值 | 来源隐喻 | 用法 |
+| --- | --- | --- | --- |
+| Rail Ink | `#1A1A1A` | 1909 钢轨与墨线图纸 | 工业骨架、正文层级 |
+| Axis Steel | `#2F4A5C` | 线路即公共基础设施 | 轴线、接口、结构强调 |
+| Signal Umber | `#8B5342` | 信号灯 / 提交脉冲 | **仅**事件与可交互节点 |
+| Ballast Paper | `#F7F6F3` | 道砟床与图纸底 | 安静底场 |
+
+赭色是信号，不是墙纸；忌霓虹铺满。
+
+**双层命名锁定。** 空间层用中文 **「百年京张 · AI 智轴」**（图纸、段落、地标、导视空间层）；机制层用 **「OPENLINE 100」** / Jing-Zhang Open Intelligence Line（护照、活动、平台、国际传播）。词汇统一：节点称「站 / Station」，项目称「提交 / Commit」，年度成果称「版本 / Release」，段落称「空间 / Space」，里程用苏州码子与阿拉伯数字对照 [metric:milestone_count] [assumption:A-MOTIF-001]。
+
+**字体与导视。** 空间中文名用宋/黑体栈；OPENLINE 用几何无衬线。导视中英双语、高对比、盲文/触觉与纸质离线替代。风貌三句：**工业骨架 · 花园底盘 · 数字点火**——只在入口与状态变化处点亮。
+
+**禁止。** 霓虹铺街、机器人雕塑、持续声光、伪紫线假文保、以「已展示」冒充「已验证」、把一带 Logo 与文化导视系统混为一谈。正式使用前完成商标、域名、字体与苏州码子史料清权；本规范为概念方向，不构成已注册商标或已采购设计系统。[assumption:A-BRAND-001] [assumption:A-ACCESS-001]
+
+![OPENLINE 100 一带品牌视觉规范：标志·色板·命名·禁令](assets/figures/visual-identity.png)
+
+**应用样张（三格）。** VI 不只停留在色板：导视牌承载空间层命名与里程对照；Commit 基座是沿街可交互的提交家具；项目护照封面把机制层 ID / GATE / TRL / RIGHTS 落到可持有物。均为概念样张，非采购产品或法定证件。[assumption:A-BRAND-001]
+
+![OPENLINE 100 VI 应用样张：导视牌 · Commit 基座 · 护照封面](assets/figures/visual-applications.png)
+
+**四感校准（补丁层）。** 主规范偏工业图纸，补丁补齐四感而不改 O·1 与四主色：历史厚度用图纸纸纹 / 轨枕木色 / 钢轨微砂；生态颜值增加辅色 Garden Leaf `#5A7560`（仅绿脉与花园房间）；民生温度要求座椅、儿童视线、纸质离线可见；未来科技只在入口 / 过门 / 提交处数字点火，闲时熄灭，禁霓虹铺街。[assumption:A-BRAND-001]
+
+![OPENLINE 100 VI 补丁：四感校准](assets/figures/visual-four-senses.png)
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -125,6 +183,10 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 ![七个断面族概念断面：同一比例的收放节奏与分带语法](assets/figures/axis-sections.png)
 
+断面族若只停留在表格与剖面，评委仍可能“读懂却记不住”。因此七个空间被收成一条**同一视高、同一日光规则的连续人视条带**——这是评委主读图，优先于再堆框架表；竖向净空与覆土条件仍待官方核验，不构成工程断面。[assumption:A-AXIS-001]
+
+![七空间人视连续条带：评委主读图](assets/figures/axis-eyelevel.png)
+
 ### 公共展示层的三级语法
 
 “展示层”是本方案的核心理念，因此展示必须是一套**可检查的空间语法**，而不是五个点状地标的偶然集合。语法分三级：**线**——沿智轴高展示强度段落的连续展示界面（展签、Commit 界面、可进入首层），双侧概念长度由 [metric:display_frontage_length_m] 复算；**面**——三站的室内外展场（智能体花园、零号站、下一站大厅）；**点**——OPENKIT 的 K04 Commit Plinth 与苏州码子里程碑 [metric:milestone_count]。设计导则建议高展示段的“展示界面率”（首层展示性界面长度占沿线首层界面总长的比例）以 40%—60% 为目标区间——该数值是导则建议，待地块深化校核，不是法定指标。展示的载体优先使用遗产构件本身：站台遗构即展台，道岔即互动节点，路基边缘即座席看台；贡献者对任何展示内容保有撤回与更正权。
@@ -156,9 +218,9 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 定位为 **从自主技术到可信验证**。
 
 - **供给门｜可信验证**：智能体花园作为可观看但不泄露数据的测试场；安静研发庭院、红队实验室、标准工作坊、低碳算力体验与访客中心。模型与机器人在受控环境验证，无障碍和能耗测试可被公众理解，敏感测试留在室内。
-- **需求门｜验收需求**：行业、监管、安全与标准方在此提出“过门证据清单”——测什么、谁签字、未达标如何回滚。红队与标准工作坊是需求席，不只是实验室附属设施。
+- **需求门｜验收需求**：行业、监管、安全与标准方在此提出“过门证据清单”——测什么、谁签字、未达标如何退回重测。红队与标准工作坊是需求席，不只是实验室附属设施。
 
-空间动作是“一条清河慢行界面、两个园区开放门、三类测试院落”。本站空间母题为**折返环 Switchback Loop** [data:geometry/public_space.geojson#PUBLIC-FORM-01]——把青龙桥人字形线路“以折返克服高差”的工程智慧，转译为可观看的验证环：项目进入、公开测试、未达标即折返回滚，回滚在空间动线上成为可见的公共事件，而不是被隐藏的失败。任何涉河、防洪、算力、电力和交通措施均等待官方条件，不承诺设施容量。[data:geometry/buildings.geojson#BLDG-001] [assumption:A-MUNICIPAL-001] [assumption:A-MOTIF-001]
+空间动作是“一条清河慢行界面、两个园区开放门、三类测试院落”。本站空间母题为**折返环 Switchback Loop** [data:geometry/public_space.geojson#PUBLIC-FORM-01]——把青龙桥人字形线路“以折返克服高差”的工程智慧，转译为可观看的验证环：项目进入、公开测试、未达标即折返重测，折返在空间动线上成为可见的公共事件，而不是被隐藏的失败。任何涉河、防洪、算力、电力和交通措施均等待官方条件，不承诺设施容量。[data:geometry/buildings.geojson#BLDG-001] [assumption:A-MUNICIPAL-001] [assumption:A-MOTIF-001]
 
 ### 02 中站｜北京 AI 原点“从 0 到 1 引擎”
 
@@ -168,6 +230,10 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 - **需求门｜问题转译**：高校实验室、临床与教师、社区共创方把真实问题送入 City Pull Request；原点组队把问题转成可做 PoC、确权路径与开源/闭源选择——需求方在并轨点被看见，而不是事后补一句“用户调研”。
 
 本站空间母题为**人字广场 Renzi Plaza** [data:geometry/public_space.geojson#PUBLIC-FORM-02]——学术轨与产业轨两条坡道自校、城两侧展开，在零号站前并轨为一个人字形广场：并轨点即成果发布点，也是失败展柜的位置，隐喻从 0 到 1 必须两轨同行。保留有价值建筑优先以轻改容纳工作室；任何拆改留结论需现状普查和权属协商。[data:geometry/public_space.geojson#PUBLIC-LM-02] [depth:retain_renovate_demolish] [assumption:A-MOTIF-001]
+
+**毛细血管落到地块。** 人字不再是符号：北门锚定清华东路（中切割）、南门锚定成府路/五道口记忆点；校园预约门 G1、学镇门廊 G2、城市预约门 G3 与开发者散步道 DW 形成 80–120 米级开口节奏（导则为建议，待权属核验）；失败展柜 FC 正对并轨点，零号站首层承接发布与 IP 门诊。本轮补上**真肌理叠层**：校城两侧概念肌理块 + 人字沿边“开口目标 vs 概念封闭界面带”对照——封闭带是审计队列，不是拆除清单。硬规则五条：开口间距、首层可进入界面、失败展柜朝向、成府路先审计后重建、文保未核验区禁固定件。[metric:capillary_node_count] [assumption:A-HERITAGE-001] [assumption:A-MOTIF-001]
+
+![原点毛细血管：真肌理叠层 + 开口/封闭对照](assets/figures/origin-capillary.png)
 
 ### 03 南站｜大钟寺“城市采用引擎”
 
@@ -195,6 +261,20 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 ![三站三形对照：折返环 / 人字广场 / 四向步行缝合](assets/figures/station-forms.png)
 
+### 三站手术平面：把母题推到可施工决策
+
+母题不是终点。每站按同一套交付升格为**手术平面**：概念总平面（入口、步行优先序、可撤装置、失败展柜、需求席）+ 关键断面约定（桥下净空 / 覆土 / 声环境假设写明）+ 门到门步行断点 + 拆改留态度（保留 / 微改 / 新建候选，仍标注待普查）。南站写死一句：**地面走不通，不许先画天桥**——四向缝合必须先回答被立交切开的四块如何门到门重连。全部为概念投影，官方红线与站口到位后整体复算，不构成桥隧工程结论。[depth:three_key_area_detailed_design] [assumption:A-TRANSIT-001] [assumption:A-MOTIF-001]
+
+![三站手术平面：南站先走通](assets/figures/station-surgery.png)
+
+### 两处切割口手术深化：知春路暗展 + 大钟寺四向缝合
+
+九公里轴上最容易停在“语法漂亮、场地发虚”的，是强切割口。本轮把证明负担压到两处：**知春路暗展口**（强切割 · 段界 07|06）与**大钟寺四向缝合核**（强切割 · 南站城手术）。每一处同一套交付——概念平面、**带误差条的现场约束区间**、**门到门断点表**、无障碍替代、拆改留态度、停止触发——并共用起飞前检查：现场量净空与坡度、权属与交通对接人、消防/防洪/文保筛、可撤组件护照后再固定、失败写入展柜与护照。[metric:severance_crossing_count] [metric:surgery_crossing_count] [assumption:A-SEVERANCE-001]
+
+知春路侧：桥跨下做暗展口袋；净空概念区间约 2.0–3.6 m（±0.4），停止阈值为 <2.2 m 或涝风险 → 禁固定件，并设绕行坡道（概念绕行约 120–220 m）。大钟寺侧：下一站大厅为核，西北商业 / 东北住区 / 西南绿地 / 东南站厅四向门到门断点分项登记；桥下走通优先于幻想天桥；绿地不可永久商业化，缝合若挤占免费通行则削减夜间排期。区间来自公开走廊常识级估计，现场量测与红线核验后整体替换。
+
+![两处切割口：现场约束区间 + 门到门断点](assets/figures/crossing-surgery-pair.png)
+
 ## AI 创新生态、人才画像与 AI+ 场景
 
 ### 七类人，一条线上的七种一天
@@ -209,19 +289,19 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 ### 十二张街区场景卡
 
-每张卡都必须回答“谁负责、在哪里、用什么数据、谁复核、怎样停止”。公共空间载体见 [data:geometry/public_space.geojson#PUBLIC-DEVELOPER-WALK]，蓝绿载体见 [data:geometry/green_space.geojson#GREEN-OPENLINE]。
+每张卡都必须回答“谁负责、在哪里、用什么数据、谁复核、怎样停止”。落点钉到**七空间 / 九缝合 / 小月河东翼**的概念点位（见钉点图），不写门牌、诊所名或学校名；官方设施公开名录到位后替换。[data:geometry/public_space.geojson#PUBLIC-DEVELOPER-WALK] [data:geometry/green_space.geojson#GREEN-OPENLINE]
 
-**SC-01 开源成果展示廊｜文化+科研。** 原点社区与开发者散步道；运营方联合高校维护者将论文、模型卡、代码和失败记录转成双语展签。只展示授权公开资料；贡献者可撤回、更正。KPI 是可复现成果率与公众理解度，连续两季无人维护则下架。
+**SC-01 开源成果展示廊｜文化+科研。** 原点人字广场段（E04）开发者散步道；运营方联合高校维护者将论文、模型卡、代码和失败记录转成双语展签。只展示授权公开资料；贡献者可撤回、更正。KPI 是可复现成果率与公众理解度，连续两季无人维护则下架。
 
-**SC-02 基层眼健康协作站｜AI+医疗，验证场景 A。** 北站室内受控空间与社区服务点；社区卫生机构负责，AI 只辅助筛查，医生复核并决定转诊，不自动诊断。采用最小化健康数据、分权访问和到期删除。海淀已有基层筛查与专家复核的公开案例可作机制参照，但不能宣称本项目疗效。[source:HAIDIAN-HEALTH-AI-2026] KPI 为复核完成率、转诊到达率和误差分层；临床安全阈值或申诉响应不达标立即暂停。
+**SC-02 基层眼健康协作站｜AI+医疗，验证场景 A。** **街区钉**：北站室内受控筛查台 + 经蓟门社区 / 小月河东翼日常缝合到达的东侧社区卫生服务界面（概念接口，非具体诊所名）。社区卫生机构负责，AI 只辅助筛查，医生复核并决定转诊，不自动诊断。采用最小化健康数据、分权访问和到期删除。海淀已有基层筛查与专家复核的公开案例可作机制参照，但不能宣称本项目疗效。[source:HAIDIAN-HEALTH-AI-2026] KPI 为复核完成率、转诊到达率和误差分层；临床安全阈值或申诉响应不达标立即暂停。
 
-**SC-03 教师备课共创室｜AI+教育，验证场景 B。** 原点社区近校界面；拟议主体为学校/教研机构，教师选择工具并审阅输出，学生作品默认不进入训练，禁止自动评分处分和隐性情绪识别。海淀“人工智能+教育”政策用于校准试点、规范、安全与伦理方向，不证明方案获批。[source:HAIDIAN-EDU-AI-POLICY] KPI 为教师节省时间、材料错误率和学生/家长知情率；错误率或选择退出投诉越线即回滚。
+**SC-03 教师备课共创室｜AI+教育，验证场景 B。** **街区钉**：原点校城战略缝合的近校侧门廊界面（学镇门廊段 E03 与原点广场段 E04 交接），不宣称校内房间权属。拟议主体为学校/教研机构，教师选择工具并审阅输出，学生作品默认不进入训练，禁止自动评分处分和隐性情绪识别。海淀“人工智能+教育”政策用于校准试点、规范、安全与伦理方向，不证明方案获批。[source:HAIDIAN-EDU-AI-POLICY] KPI 为教师节省时间、材料错误率和学生/家长知情率；错误率或选择退出投诉越线即暂停试点并退回修订。
 
-**SC-04 无感但非监控的慢行助手｜AI+交通，验证场景 C。** 九个东西接口；拟议主体为交通/公园管理单位与无障碍组织，仅用现场人工观察、匿名计数或经批准的聚合传感识别断点，不调用个人轨迹、骑手/网约车/快递平台受限数据。输出是可解释的拥挤指数和无障碍工单，不执法。海淀区级慢行建设只作网络方向背景。[source:HAIDIAN-MOBILITY-2023] KPI 为断点修复时长、轮椅/婴儿车可达率；重识别风险或误报过高即停采。
+**SC-04 无感但非监控的慢行助手｜AI+交通，验证场景 C。** 九个东西缝合口（3 战略 + 6 日常）；拟议主体为交通/公园管理单位与无障碍组织，仅用现场人工观察、匿名计数或经批准的聚合传感识别断点，不调用个人轨迹、骑手/网约车/快递平台受限数据。输出是可解释的拥挤指数和无障碍工单，不执法。海淀区级慢行建设只作网络方向背景。[source:HAIDIAN-MOBILITY-2023] KPI 为断点修复时长、轮椅/婴儿车可达率；重识别风险或误报过高即停采。
 
-**SC-05 小店经营副驾驶｜AI+商业，验证场景 D。** 大钟寺生活街；拟议主体为商业运营方与商户代表，商户自愿上传去标识订单汇总，系统辅助排班、库存和双语服务，不共享单店商业秘密，不做消费者敏感画像。KPI 为食物浪费、商户留存与人工纠错率；无法解释的差别定价或商户净收益下降则退出。
+**SC-05 小店经营副驾驶｜AI+商业，验证场景 D。** **街区钉**：大钟寺四向步行缝合之后的生活街首层带（下一站厅段 E07 外缘店招界面），不是封闭展厅。拟议主体为商业运营方与商户代表，商户自愿上传去标识订单汇总，系统辅助排班、库存和双语服务，不共享单店商业秘密，不做消费者敏感画像。KPI 为食物浪费、商户留存与人工纠错率；无法解释的差别定价或商户净收益下降则退出。
 
-**SC-06 城市维修 Pull Request｜AI+治理。** 沿线座椅、照明、坡道和绿地；居民用文字/照片提交问题，运营人员合并重复项并公开处理状态。图像默认本地模糊人脸和车牌，AI 只分类不裁决。KPI 为关闭时长、重复报修下降和申诉满意度；工单偏差长期不改善则改回人工分类。
+**SC-06 城市维修 Pull Request｜AI+治理。** **东翼宿主**：小月河场景赋能翼社区侧座椅、照明、坡道与绿地为需求进水主界面，轴上公共设施同步受理。居民用文字/照片提交问题，运营人员合并重复项并公开处理状态。图像默认本地模糊人脸和车牌，AI 只分类不裁决。KPI 为关闭时长、重复报修下降和申诉满意度；工单偏差长期不改善则改回人工分类。
 
 **SC-07 低碳算力热回收展窗｜AI+能源。** 众智园室内展示与清河界面；拟议主体为设施运维方与独立能碳核验机构，实时展示经核验的设施级能耗和余热去向，不展示企业敏感负载。KPI 是测量完整率和单位任务能耗下降；未取得能源、市政和消防条件时只做展教，不建设工程系统。
 
@@ -237,26 +317,40 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 **场景—空间—运营一览。** 该矩阵用于一眼检查“技术有没有落到街区、责任人有没有落到组织”，详细治理仍以上述场景卡为准。
 
-| 场景 | 首要空间 | 拟议运营主体 | 首要停止条件 |
+| 场景 | 街区钉 / 首要空间 | 拟议运营主体 | 首要停止条件 |
 | --- | --- | --- | --- |
-| SC-01 展示廊 | 原点—开发者散步道 | 高校维护者+沿线运营方 | 无维护或授权撤回 |
-| SC-02 眼健康 | 北站室内+社区服务点 | 社区卫生机构 | 临床安全/申诉越线 |
-| SC-03 教师共创 | 原点近校界面 | 学校/教研机构 | 错误或退出投诉越线 |
-| SC-04 慢行助手 | 九个缝合接口 | 交通/公园+无障碍组织 | 重识别风险或高误报 |
-| SC-05 小店副驾 | 大钟寺生活街 | 商业运营+商户代表 | 差别定价或净收益下降 |
-| SC-06 维修 PR | 沿线公共设施 | 城市/公园运营方 | 分类偏差长期不改善 |
-| SC-07 算力展窗 | 众智园室内 | 运维方+独立核验 | 未获能源/消防条件 |
+| SC-01 展示廊 | 原点 E04 开发者散步道 | 高校维护者+沿线运营方 | 无维护或授权撤回 |
+| SC-02 眼健康 | 北站→蓟门/小月河侧社区卫生界面 | 社区卫生机构 | 临床安全/申诉越线 |
+| SC-03 教师共创 | 原点校城缝合·近校侧门廊 | 学校/教研机构 | 错误或退出投诉越线 |
+| SC-04 慢行助手 | 九个缝合口（3+6） | 交通/公园+无障碍组织 | 重识别风险或高误报 |
+| SC-05 小店副驾 | 四向缝合后生活街首层带 | 商业运营+商户代表 | 差别定价或净收益下降 |
+| SC-06 维修 PR | 小月河东翼·社区公共设施 | 城市/公园运营方 | 分类偏差长期不改善 |
+| SC-07 算力展窗 | 众智园室内+清河界面 | 运维方+独立核验 | 未获能源/消防条件 |
 | SC-08 IP 门诊 | 零号站 | 律师/专利代理机构 | 机器意见被误认正式意见 |
 | SC-09 记忆译码 | 历史解释点 | 馆员/文化运营方 | 文保前置未满足 |
-| SC-10 安静时段 | 五个花园房间 | 公园运营+社区 | 活动长期挤占公共性 |
+| SC-10 安静时段 | E05 五个花园房间 | 公园运营+社区 | 活动长期挤占公共性 |
 | SC-11 协作护照 | 三站服务台 | 国际服务办公室 | 偏差/骚扰申诉越线 |
-| SC-12 红队赛 | 智能体花园 | 独立评测+众智园 | 重大问题未修复 |
+| SC-12 红队赛 | 北站智能体花园受控场 | 独立评测+众智园 | 重大问题未修复 |
+
+![场景钉点图：十二 SC 钉到七空间·九缝合·东翼](assets/figures/scenario-pins.png)
+
+![十二张街区场景卡：落点、边界与停止条件](assets/figures/scenario-cards.png)
+
+### 智轴上的未来一天：场景卡被人走完
+
+场景清单不等于未来生活。下面用三条画像把五至六张卡串成一天——叙事示意，不构成已排定活动；每一站仍服从其场景卡的停止键。[metric:persona_count]
+
+1. **临床 / 教师专业者**：晨间在东侧社区卫生界面用 SC-02 辅助筛查（医生复核）→ 通勤途经缝合口触达 SC-04 → 午前在校城门廊近校侧做 SC-03 备课共创 → 傍晚花园安静时段 SC-10 → 若路缘破损则提交 SC-06。
+2. **初创 / 开源维护者**：上午零号站 SC-08 IP 门诊 → 开发者散步道 SC-01 提交展签 → 北站合成红队档期 SC-12 → 生活街首层 SC-05 收集小店试点反馈 → 南站护照台 SC-11 → 必要时撤回一条展签。
+3. **社区共创组织者**：小月河东翼晨间需求进水 SC-06 → 陪同长者前往卫生服务界面 SC-02 → 标记缝合口无障碍缺口 SC-04 → 为儿童预约安静房间 SC-10 → 协助商户自愿接入 SC-05（禁画像）→ 编译场接待访客 SC-11。
+
+![智轴上的未来一天：三条画像串线](assets/figures/scenario-day.png)
 
 十二场景共同遵循数据最小化、目的限定、聚合优先、人工负责、可解释、可申诉和可退出；正式试点必须完成伦理/安全、采购、数据和专业审查。[assumption:A-PRIVACY-001]
 
 ## 用地、建筑规模与拆改留方案
 
-概念用地近乎完整覆盖暂定边界，覆盖率由 [metric:land_use_coverage_ratio] 复算（残留约 1.77 m² 缝隙，不得记为 1.0），总面积为 [metric:land_use_area_sqm]。分类面积分别为研发转化 [metric:land_use_0802_area_sqm]、教育科研 [metric:land_use_0804_area_sqm]、医疗协同 [metric:land_use_0806_area_sqm]、科技服务商业 [metric:land_use_05_area_sqm]、人才生活 [metric:land_use_0701_area_sqm]、公共服务 [metric:land_use_0702_area_sqm]、文化展示 [metric:land_use_0803_area_sqm] 和概念公园绿地 [metric:land_use_1401_area_sqm]。这些值只描述本方案的功能配比，不代表现状或法定用地性质。[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+概念用地完整覆盖暂定边界，覆盖率由 [metric:land_use_coverage_ratio] 复算，总面积为 [metric:land_use_area_sqm]。分类面积分别为研发转化 [metric:land_use_0802_area_sqm]、教育科研 [metric:land_use_0804_area_sqm]、医疗协同 [metric:land_use_0806_area_sqm]、科技服务商业 [metric:land_use_05_area_sqm]、人才生活 [metric:land_use_0701_area_sqm]、公共服务 [metric:land_use_0702_area_sqm]、文化展示 [metric:land_use_0803_area_sqm] 和概念公园绿地 [metric:land_use_1401_area_sqm]。这些值只描述本方案的功能配比，不代表现状或法定用地性质。[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 
 建筑图层 [data:geometry/buildings.geojson#BLDG-001] 只包含三处重点区的原型包络，以小体量、首层可进入、院落共享和可逆改造验证空间关系；建筑基底概念面积见 [metric:building_footprint_area_sqm]。不把它用于推导全域建筑密度、容积率或建筑规模；[metric:floor_area_ratio]、[metric:total_floor_area_sqm]、[metric:building_density] 和 [metric:building_height_m] 明确为 unknown。
 
@@ -265,6 +359,10 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 ### 开发强度情景包络：不给数值，给可检验的方法框架
 
 强度指标全部 unknown 是数据纪律，但“未知”不等于“未思考”。本方案给出三档**强度情景包络** [metric:intensity_scenario_count]，作为官方控规与现状数据到位后的第一轮敏感性测试框架，每档只定义假设、需要的数据与检验问题，不含任何容积率、高度或密度数值 [assumption:A-INTENSITY-001]：**S1 低扰动情景**假设以既有建筑轻改和运营为主、新建仅限小体量公共设施，需要现状建筑普查与结构鉴定，检验问题是“不新增开发量能否支撑三站运营的财务与空间需求”；**S2 织补情景**假设在权属清晰、无文保冲突的低效地块做中等强度织补，需要控规、权属与低效用地清单，检验问题是“织补量能否同时满足人才居住、孵化空间与公共界面三类需求”；**S3 雄心情景**假设在轨道候选接口周边做面向全球功能的较高强度开发，需要轨道站口、航空限高、日照与视廊条件，检验问题是“高强度是否以牺牲展示层的公共性与遗产尺度为代价”。三档情景共用同一套复算管线：任何一档在官方数据到位后，都应重新生成九个图层与全部指标，并把三档结果并排提交专业评审，而不是预先锁定一档。
+
+并排证据页把每一档写成五列可检查项——**假设 · 需要的数据 · 空间后果 · 运营后果 · 否决条件**。S3 的硬否决之一是：展示界面率掉出 40%–60% 导则带，即高强度以透支公共展示层为代价，该档应被拒绝而非美化。[assumption:A-INTENSITY-001]
+
+![开发强度情景 S1/S2/S3 并排证据](assets/figures/intensity-scenarios.png)
 
 ## 交通、轨道、市政与公共服务设施
 
@@ -280,6 +378,10 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 蓝绿系统不是 AI 设备展销带，而是创新带最稳定的公共基础设施。[depth:blue_green_public_space] 本方案在暂定边界内生成一条连续概念绿脉、五个功能化“花园房间”和两条水界面绿带 [data:geometry/green_space.geojson#GREEN-OPENLINE]，复算概念绿地面积和比例为 [metric:green_space_area_sqm]、[metric:green_ratio]；公共空间由智轴七空间、开发者散步道、五个地标、三站三形与苏州码子里程碑共同构成 [data:geometry/public_space.geojson#PUBLIC-DEVELOPER-WALK]，面积与比例为 [metric:public_space_area_sqm]、[metric:public_space_ratio]。16.6% 与 2.5% 仅为本设计图层占暂定边界比例，绝非法定绿地率或公服指标。海淀区级公园绿地和 500 米覆盖数据不下推到场地。[source:HAIDIAN-GREEN-2024]
 
+**宿主层 × 设计叠加层（公空光学灭火）。** 京张公园走廊与清河/小月河蓝绿意图是**宿主层**；智轴七空间、五地标、OPENKIT 与九个缝合口是**设计叠加层**。评委若只扫到 2.5%，会误读为公服不足——故图面必须并排：**宿主连续绿脉**（真正公共底盘）vs **设计叠加公空 ≈2.5%**（宿主上的设计家具）。发布时三件同出：宿主连续性、设计叠加、以及即便 S1 也成立的**最小可运营公空集**（通行净宽≥4 m、座席 150–200 m、厕所/饮水/安静室非数字替代、强切割口无障碍绕行）。法定公服不以设计叠加层计缺。[assumption:A-PARK-001]
+
+![宿主连续性 vs 设计叠加：灭掉 2.5% 误读](assets/figures/host-design-layers.png)
+
 **花园房间从装饰升级为功能单元。**五个房间各有明确的生态或社会职能：雨洪调蓄花园承接周边硬质汇水（容量与溢流路径待水文专项）、生境与传粉花园保育本土植物并禁止夜间亮化、安静阅读草坪实行声环境优先、儿童与代际游园错时共享、展演与测试草坪承载可撤走展亭与户外可信测试。房间不是均布的椭圆装饰，而是智轴节奏中“慢下来”的原因。
 
 **轴河交织：清河与小月河是第二系统。**智轴是南北向的人工序列，清河（北）与小月河（东）是这片场地真实的自然骨架。本方案以两条概念水界面绿带表达“轴—河”交织意图 [metric:water_interface_count]：北端清河界面带是战略缝合接口的落点，也是众智园慢行界面与低碳算力展教的滨水看台；东侧小月河界面带是场景赋能翼向社区渗透的绿色通道。两条水系的官方蓝线、防洪与生态条件均未入库，本方案不数字化伪蓝线，任何驳岸、断面与生态措施待官方数据与水务专项。[assumption:A-WATER-001]
@@ -292,17 +394,47 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 4. **共创编译场 Commons Compiler**：居民问题、开发者响应、运营工单在同一张桌上公开“编译”，不让参与沦为意见收集。
 5. **下一站大厅 Next Station Hall**：大钟寺四向步行交汇的城市采用中枢，发布年度 Release，承接路演与可撤夜间生活，也承接商户/居民订单反馈与停止项目理由。[metric:landmark_count]
 
-五个地标均为概念、可逆公共设施，须在专业审批后指定运营、维护、安全与无障碍责任人；审批未通过或连续两个运营周期无人维护，即撤场并恢复为通用公共空间。
+五个地标均为概念、可逆公共设施，须在专业审批后指定运营、维护、安全与无障碍责任人；审批未通过或连续两个运营周期无人维护，即撤场并恢复为通用公共空间。下表用与场景钉点同一套可对表语法——**公共行为 · 空间钉 · 组件 · 荣誉/退出**——把五座地标钉死，避免沦为雕塑清单。
+
+![五地标总表：公共行为 · 空间钉 · 组件 · 荣誉/退出](assets/figures/landmark-catalog.png)
+
+**贡献可见带**把开发者散步道、SC-01 开源成果展签与城市提交墙 / K04 Commit Plinth 收成同一条南北带：通行带 → 展示廊 → 荣誉墙 → 安静边；走近 → 阅读 → 提交 → 撤回。荣誉排序按可复现贡献、公共价值与维护年限，永不按融资额；自愿、可撤回、可更正，争议未决或连续两季无人维护即下架。这不是三件散装道具，而是展示层里“贡献被看见”的连续界面。
+
+![贡献可见带：散步道 × SC-01 展签 × Commit Wall / K04](assets/figures/contrib-band.png)
 
 **OPENKIT 公共空间组件库**让地标可以维护而不是一次性搭景：K01 **Rail Bench** 以轨枕尺度组织可替换座面与轮椅伴坐位；K02 **Shade Loop** 提供季节遮荫与雨棚接口；K03 **Power Dock** 只提供经专业核验的低压供电/充电，不开放不受控网络；K04 **Commit Plinth** 同时容纳实体展签、低数据二维码和盲文；K05 **Accessible Dock** 提供连续坡道、触觉定位与可调交互高度；K06 **Quiet Edge** 用种植和吸声界面保护安静活动；K07 **Sensor Sleeve** 仅为经批准的匿名环境传感预留可拆支座；K08 **Pop-up Frame** 支持可撤展、路演和市集。全部采用统一模数、可替换零件、材料护照和离线替代；每件标注业主、巡检周期、开放时段和撤场触发器，未获文保、消防或无障碍确认不得固定安装。
 
 ![OPENKIT 公共空间组件库：K01–K08 模数与可撤场规则](assets/figures/openkit-components.png)
 
+### 三文化融合：Rail × 中关村 × AI 新文化
+
+本条闭合任务书 agent.5：把百年铁路文化、中关村文化与 AI 新文化融成**一套可对表叙事**，而不是三句并列口号。[source:AGENT-TASKBOOK] [source:JZ-HISTORY]
+
+**中关村不是只活在西翼服务里。** 它作为 **CODE 文化层**进入公共讲述：敢闯敢试、失败再出发、实验室→创业、论坛式公开讨论——空间钉在原点校城缝合、零号站失败展柜，以及西翼日常缝合口的专业服务窗（资本仍只在 Validation 过门后进场）。铁路层提供可触摸的工程精神与里程语言；AI 新文化层提供 Commit / Release / 停止键与可撤回荣誉。三层各有精神、公开史实锚、空间钉、可读物与禁止项。
+
+![三文化叙事总表（附录索引）](assets/figures/culture-triptych.png)
+
+**文化导览叠层**与朝圣路径共用同一北→南脊骨，但职责不同：下层是 agent.4 的创新链朝圣（验证→转化→看见→采用）；上层是 agent.5 的文化节目单（Rail 阅读/记忆 → Code 再出发 → Commons 看见/入城）。一带品牌 VI（agent.1）不替代文化导视符号；儿童线 / 无障碍线 / 夜间线两层共用。
+
+![双轨乐谱：文化谱叠在朝圣谱上 · 同轴不同职](assets/figures/culture-overlay.png)
+
+**文化节点目录**用与地标/场景钉同一语法——**叙事层 · 空间钉 · 载体 · 清权/退出**——钉住十处停靠（C01–C10）。A03 Rail→Code 春季 Commit Walk 与 P11 护照导览消费本目录；概念点位，非门牌。[assumption:A-HERITAGE-001] [assumption:A-MOTIF-001]
+
+![文化节点目录：十处可对表停靠](assets/figures/culture-nodes.png)
+
 ### Rail → Code → Commons：约 90 分钟概念导览
 
-导览节拍与创新链同构：**被验证 → 被转化 → 被采用**，**全程被看见**。北段在智能体花园读懂可信测试与回滚（验证，而非先看热闹）；中段经依法开放条件下的清华园历史解释点到零号站，看科研如何变成可转化的 PoC、开源与失败档案（转化）；沿开发者散步道与 Commit Wall，贡献过程全程可见（看见）；于 Commons Compiler 参与一场 City Pull Request；南段抵达 Next Station Hall，看一项成果如何进入城市日常与市场（采用）。全程以**苏州码子里程碑**作里程语言 [metric:milestone_count]——京张铁路历史标识传统中的中国数码（〡、〢、〣……）逐公里落位，配阿拉伯数字对照、盲文与语音替代；这是任何其他线性公园都复制不了的独家寻路系统，正式采用前须完成史料核证。[assumption:A-MOTIF-001] 约 90 分钟仅为概念策展节奏，实际时长须在 official 线位、入口与步行网络核验后确定。儿童线以“找道岔”游戏叙事，无障碍线提供触觉图、字幕、手语预约和纸质册，夜间线只点亮必要节点，保护居民与生态。任何固定设施靠近文保对象前须取得测绘和专业审批。[source:QINGHUAYUAN-HERITAGE]
+导览节拍与创新链同构：**被验证 → 被转化 → 被看见 → 被采用**。下图把约 90 分钟概念朝圣画成北→南路径，并标出儿童线 / 无障碍线 / 夜间线——此为 **agent.4 朝圣层**；文化层读法见上文叠层图。
+
+![朝圣路径：验证 → 转化 → 看见 → 采用](assets/figures/pilgrimage-path.png)
+
+导览节拍详述：**被验证 → 被转化 → 被采用**，**全程被看见**。北段在智能体花园读懂可信测试与未过门折返（验证，而非先看热闹）；中段经依法开放条件下的清华园历史解释点到零号站，看科研如何变成可转化的 PoC、开源与失败档案（转化）——此处同时承接 **CODE 文化**的失败再出发；沿开发者散步道与 Commit Wall，贡献过程全程可见（看见）；于 Commons Compiler 参与一场 City Pull Request；南段抵达 Next Station Hall，看一项成果如何进入城市日常与市场（采用）。全程以**苏州码子里程碑**作里程语言 [metric:milestone_count]——京张铁路历史标识传统中的中国数码（〡、〢、〣……）逐公里落位，配阿拉伯数字对照、盲文与语音替代；这是任何其他线性公园都复制不了的独家寻路系统，正式采用前须完成史料核证。[assumption:A-MOTIF-001] 约 90 分钟仅为概念策展节奏，实际时长须在 official 线位、入口与步行网络核验后确定。儿童线以“找道岔”游戏叙事，无障碍线提供触觉图、字幕、手语预约和纸质册，夜间线只点亮必要节点，保护居民与生态。任何固定设施靠近文保对象前须取得测绘和专业审批。[source:QINGHUAYUAN-HERITAGE]
 
 城市风貌采用“工业骨架、花园底盘、数字点火”：保留轨枕尺度、铆接、站台边缘等抽象比例，不仿古造假；植物与透水地面形成日常背景；钢青与赭色仅在入口、提交和状态变化处点亮，忌霓虹铺满。禁止满街屏幕、机器人雕塑和持续声光互动。可访问性、低扰动和真实贡献本身就是未来感。
+
+**铁路纹理场：让宿主层被看见。** 语法再完整，若身体记不住轨枕、站台边、桥下与五道口记忆，方案仍像管理说明书。纹理场把六种可读物钉死——轨枕座席、站台边缘看台、桥下房间、道口记忆、道岔互动、苏州码子里程——并写明禁止项：霓虹铺街、机器人雕塑、持续声光、伪紫线、以“已展示”冒充“已验证”。[assumption:A-MOTIF-001] [assumption:A-HERITAGE-001]
+
+![铁路纹理场：轨枕 · 站台边 · 桥下 · 五道口记忆](assets/figures/rail-texture-field.png)
 
 ## 更新项目清单、实施政策与分期计划
 
@@ -325,9 +457,34 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 ### 八个年度运营产品：从节庆客流到持续贡献
 
-年度日历含 [metric:annual_program_count] 个产品族：**A01 一月 Openline Call**（输出问题池）；**A02 三月 Maintainers-in-Residence**（输出驻留团队）；**A03 四月 Rail→Code 春季 Commit Walk**（输出文化导览）；**A04 六月 Trust Test 可信智能体赛**（输出测试报告）；**A05 九月 OPENLINE Week**（输出年度发布）；**A06 十月 Global Lab-to-City Forum**（输出国际合作清单）；**A07 每月 Station Night / 失败复盘夜**（输出失败档案）；**A08 全年 City Pull Request + Microgrants**（输出问题关闭记录与微资助账本）。年度周只占全年运营的一周，其余 51 周靠问题、驻留、微资助、测试与首单形成闭环。
+本条闭合任务书 agent.6：把朝圣地从概念变成**可对表的年度操作系统**——不是再堆节庆名单。[source:AGENT-TASKBOOK]
 
-拟议治理采用“四席圆桌”：公共部门/产权与专业机构、科研与企业、社区与公共利益组织、独立安全与审计，各有否决边界；运营收入可来自合规场租、会员服务、企业挑战、基金与公共服务采购，但公园通行、基础展览和问题提交保持免费。季度 Release 公布投入、项目阶段、失败、纠错与公共价值；连续两期无维护者、无真实需求方或安全不达标的项目退出资源池。这样“朝圣地”不靠一座奇观，而靠每年可回来的共同仪式和可信记录。[assumption:A-INDUSTRY-001]
+年度日历含 [metric:annual_program_count] 个产品族。下表用与场景卡同一语法——**节律 · 宿主 · 拟议主体 · 输入→输出 · KPI/停止**——把 A01–A08 钉死。年度周（A05）只占全年一周；其余 51 周靠 A01/A02/A04/A07/A08 形成闭环。
+
+![年度运营产品总表：A01–A08](assets/figures/ops-catalog.png)
+
+**朝圣 → 运营闭环**：外环是年历产品，内环是护照七阶段门，锚点是北站智能体花园 / 原点零号站与提交墙 / 南站下一站大厅。季度 Release 把投入、阶段、失败、纠错与公共价值写回护照与问题池；连续两期无维护者、无真实需求方或安全不达标，即退出资源池。
+
+![运营机器·轨道闭环：外轨年历 · 内轨护照 · RELEASE/EXIT 闸机](assets/figures/ops-loop.png)
+
+**全球协作带**把「面向全球」拆成进场 / 在场 / 出场三带，而不是只办一个十月论坛：远程 City PR 与国际驻留（进场）、Week / Forum / Commit Walk（在场）、可移植问题包与评测模板（出场）。五地一协议是接口语法，不从正文推定已签约。
+
+![全球口岸断面（接口语法，非主读图）](assets/figures/global-band.png)
+
+产品族摘要：**A01 一月 Openline Call**（输出问题池）；**A02 三月 Maintainers-in-Residence**（输出驻留团队）；**A03 四月 Rail→Code 春季 Commit Walk**（输出文化导览）；**A04 六月 Trust Test 可信智能体赛**（输出测试报告）；**A05 九月 OPENLINE Week**（输出年度发布）；**A06 十月 Global Lab-to-City Forum**（输出国际合作清单）；**A07 每月 Station Night / 失败复盘夜**（输出失败档案）；**A08 全年 City Pull Request + Microgrants**（输出问题关闭记录与微资助账本）。
+
+拟议治理采用“四席圆桌”：公共部门/产权与专业机构、科研与企业、社区与公共利益组织、独立安全与审计，各有否决边界；运营收入可来自合规场租、会员服务、企业挑战、基金与公共服务采购，但公园通行、基础展览和问题提交保持免费。这样“朝圣地”不靠一座奇观，而靠每年可回来的共同仪式和可信记录。[assumption:A-INDUSTRY-001] [assumption:A-OPS-001]
+
+### 交付与资金板：谁持有 / 谁否决 / 谁出钱
+
+生态图完整不等于能交付。本页把“拟议”写成可检查的制度边界：[assumption:A-OPS-001] [assumption:A-INDUSTRY-001]
+
+- **四席圆桌**：公共部门/产权（法定否决：公园通行与安全）、科研/企业（可提案但不得跳过 Validation）、社区/公共利益（否决公地私有化：安静时段与可达）、独立审计/安全（否决不安全发布，失败展柜公开累积）。
+- **护照签发**：拟议运营主体签发，独立审计会签；资本席位仅在可信测试过门后激活。
+- **资金边界**：通行、基础展览与 City PR 提交永久免费；合规场租、挑战赛、会员服务与公共服务采购可收费；买卖个人数据、强制人脸、按融资额排名永不可为。
+- **Phase 1 第一笔钱从哪来（0–12 个月）**：品牌公地与双语导视清权（P01，概念 ¥15–40 万）、City PR 平台试验与数据治理采购（P02，概念 ¥30–80 万）、步行/无障碍审计劳务（P05，概念 ¥20–50 万）、可撤活动与失败复盘夜轻运营（A07/A08，概念 ¥25–60 万/年）——启动包量级合计约 **¥90–230 万**（不含桥隧/新建/机房）。优先走**公共服务采购 + 合规场租 + 微资助**，不以园区租金补贴竞赛换人气；桥隧/新建/机房在红线与专项未清前必须等待。上述为概念估算区间，不构成投资承诺或采购报价。[assumption:A-OPS-001]
+
+![交付与资金：启动包量级区间](assets/figures/delivery-money.png)
 
 ## 指标体系、面积复算与合规矩阵
 
@@ -356,17 +513,17 @@ OPENLINE 100 对任务书原名逐项响应。**三大定位**是：以 Rail→C
 
 第三组是京张铁路、公园与文保的一手公开背景，用来建立 Rail→Code→Commons 叙事和保守的文保前置，不用来推导工程线位。[source:JZ-HISTORY] [source:JZ-PARK-OFFICIAL] [source:QINGHUAYUAN-HERITAGE] 第四组是海淀区与北京市统计、政策和公开案例，用于判断区域创新、教育、医疗、绿地、慢行与研发环境；所有数据保留行政尺度和年份，不按面积折算。[source:HAIDIAN-STATS-2025] [source:HAIDIAN-ECON-CENSUS-2023] [source:HAIDIAN-EDU-AI-POLICY] [source:HAIDIAN-HEALTH-AI-2026] [source:HAIDIAN-GREEN-2024] [source:HAIDIAN-MOBILITY-2023] [source:BEIJING-RD-2024]
 
-第五组是七个国际案例的机构一手页面，用于比较成果转化、真实问题验证、遗产更新、多节点治理和国际化机制；方案只转译制度，不复制图片、规模、投资或政策承诺。[source:CASE-KENDALL] [source:CASE-TORONTO] [source:CASE-PARIS] [source:CASE-SINGAPORE] [source:CASE-HELSINKI] [source:CASE-SEOUL] [source:CASE-TSUKUBA] 每条外部公开资料的 URL、发布者、访问日期、具体用途和局限，以及每条仓库资料的本地路径与用途，均登记在 sources.json；版权和许可边界见 report/copyright_statement.md。
+第五组是七个国际案例的机构一手页面，用于比较成果转化、铁路遗产宿主、问题悬赏语法、真实问题验证、遗产更新、多节点治理与线性公共层；方案只转译制度，不复制图片、规模、投资或政策承诺。[source:CASE-KENDALL] [source:CASE-STATIONF] [source:CASE-NESTA] [source:CASE-SINGAPORE] [source:CASE-HELSINKI] [source:CASE-SEOUL] [source:CASE-TSUKUBA] 另保留 Toronto / MaRS 与 Paris-Saclay 为退出主表后的背景页，不作主读对照。[source:CASE-TORONTO] [source:CASE-PARIS] 每条外部公开资料的 URL、发布者、访问日期、具体用途和局限，以及每条仓库资料的本地路径与用途，均登记在 sources.json；版权和许可边界见 report/copyright_statement.md。
 
 ### 机器可读证据索引
 
 以下索引确保评审 Agent 可从叙事回到来源、标准、深度、图层和指标；它不是用引用数量替代专业判断。
 
 
-- 来源：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:JZ-PARK-OFFICIAL]、[source:QINGHUAYUAN-HERITAGE]、[source:JZ-HISTORY]、[source:CASE-KENDALL]、[source:CASE-TORONTO]、[source:CASE-PARIS]、[source:CASE-SINGAPORE]、[source:CASE-HELSINKI]、[source:CASE-SEOUL]、[source:CASE-TSUKUBA]、[source:HAIDIAN-STATS-2025]、[source:HAIDIAN-ECON-CENSUS-2023]、[source:HAIDIAN-EDU-AI-POLICY]、[source:HAIDIAN-HEALTH-AI-2026]、[source:HAIDIAN-GREEN-2024]、[source:HAIDIAN-MOBILITY-2023]、[source:BEIJING-RD-2024]
+- 来源：[source:OFFICIAL-ANNOUNCEMENT]、[source:AGENT-TASKBOOK]、[source:SITE-PACKAGE]、[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]、[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:JZ-PARK-OFFICIAL]、[source:QINGHUAYUAN-HERITAGE]、[source:JZ-HISTORY]、[source:CASE-KENDALL]、[source:CASE-STATIONF]、[source:CASE-NESTA]、[source:CASE-SINGAPORE]、[source:CASE-HELSINKI]、[source:CASE-SEOUL]、[source:CASE-TSUKUBA]、[source:CASE-TORONTO]、[source:CASE-PARIS]、[source:HAIDIAN-STATS-2025]、[source:HAIDIAN-ECON-CENSUS-2023]、[source:HAIDIAN-EDU-AI-POLICY]、[source:HAIDIAN-HEALTH-AI-2026]、[source:HAIDIAN-GREEN-2024]、[source:HAIDIAN-MOBILITY-2023]、[source:BEIJING-RD-2024]
 - 标准：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 - 深度：[depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]
-- 指标：[metric:site_area_sqm]、[metric:land_use_area_sqm]、[metric:land_use_coverage_ratio]、[metric:green_space_area_sqm]、[metric:green_ratio]、[metric:public_space_area_sqm]、[metric:public_space_ratio]、[metric:building_footprint_area_sqm]、[metric:road_centerline_length_m]、[metric:road_area_sqm]、[metric:road_ratio]、[metric:openline_length_m]、[metric:phasing_area_sqm]、[metric:key_detailed_design_area_sqm]、[metric:key_area_count]、[metric:land_use_parcel_count]、[metric:building_prototype_count]、[metric:mobility_link_count]、[metric:landmark_count]、[metric:scenario_count]、[metric:test_validation_scenario_count]、[metric:persona_count]、[metric:global_case_count]、[metric:renewal_project_count]、[metric:annual_program_count]、[metric:axis_segment_count]、[metric:display_frontage_length_m]、[metric:renzi_motif_count]、[metric:milestone_count]、[metric:strategic_interface_count]、[metric:severance_crossing_count]、[metric:water_interface_count]、[metric:intensity_scenario_count]、[metric:land_use_05_area_sqm]、[metric:land_use_0701_area_sqm]、[metric:land_use_0702_area_sqm]、[metric:land_use_0802_area_sqm]、[metric:land_use_0803_area_sqm]、[metric:land_use_0804_area_sqm]、[metric:land_use_0806_area_sqm]、[metric:land_use_1401_area_sqm]、[metric:phase_1_area_sqm]、[metric:phase_2_area_sqm]、[metric:phase_3_area_sqm]、[metric:key_area_1_calculated_sqm]、[metric:key_area_2_calculated_sqm]、[metric:key_area_3_calculated_sqm]
+- 指标：[metric:site_area_sqm]、[metric:land_use_area_sqm]、[metric:land_use_coverage_ratio]、[metric:green_space_area_sqm]、[metric:green_ratio]、[metric:public_space_area_sqm]、[metric:public_space_ratio]、[metric:building_footprint_area_sqm]、[metric:road_centerline_length_m]、[metric:road_area_sqm]、[metric:road_ratio]、[metric:openline_length_m]、[metric:phasing_area_sqm]、[metric:key_detailed_design_area_sqm]、[metric:key_area_count]、[metric:land_use_parcel_count]、[metric:building_prototype_count]、[metric:mobility_link_count]、[metric:landmark_count]、[metric:scenario_count]、[metric:test_validation_scenario_count]、[metric:persona_count]、[metric:global_case_count]、[metric:renewal_project_count]、[metric:annual_program_count]、[metric:axis_segment_count]、[metric:display_frontage_length_m]、[metric:renzi_motif_count]、[metric:milestone_count]、[metric:strategic_interface_count]、[metric:severance_crossing_count]、[metric:water_interface_count]、[metric:intensity_scenario_count]、[metric:land_use_05_area_sqm]、[metric:land_use_0701_area_sqm]、[metric:land_use_0702_area_sqm]、[metric:land_use_0802_area_sqm]、[metric:land_use_0803_area_sqm]、[metric:land_use_0804_area_sqm]、[metric:land_use_0806_area_sqm]、[metric:land_use_1401_area_sqm]、[metric:phase_1_area_sqm]、[metric:phase_2_area_sqm]、[metric:phase_3_area_sqm]、[metric:key_area_1_calculated_sqm]、[metric:key_area_2_calculated_sqm]、[metric:key_area_3_calculated_sqm]、[metric:surgery_crossing_count]、[metric:capillary_node_count]
 - 假设与边界：[assumption:A-BOUNDARY-001]、[assumption:A-CONTROLS-001]、[assumption:A-LANDUSE-001]、[assumption:A-EXISTING-001]、[assumption:A-TRANSIT-001]、[assumption:A-HERITAGE-001]、[assumption:A-MUNICIPAL-001]、[assumption:A-PARK-001]、[assumption:A-AXIS-001]、[assumption:A-SEVERANCE-001]、[assumption:A-MOTIF-001]、[assumption:A-WATER-001]、[assumption:A-INTENSITY-001]、[assumption:A-PRIVACY-001]、[assumption:A-AI-SAFETY-001]、[assumption:A-INDUSTRY-001]、[assumption:A-BRAND-001]、[assumption:A-OPS-001]、[assumption:A-ACCESS-001]、[assumption:A-EXTERNAL-CASES-001]
 
 **一句话交付：让百年铁路不只被纪念，让下一百年的公共智能在这里被共同提交。**

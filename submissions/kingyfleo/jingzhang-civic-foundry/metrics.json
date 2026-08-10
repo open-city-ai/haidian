@@ -1,0 +1,608 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "announced_research_area_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_announced_approximate_area",
+      "confidence": "high",
+      "assumptions": [
+        "公告近似总量，不对应当前提交中的精确polygon。"
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "临时边界面积仅用于方案复算；官方polygon发布后整体重算。"
+      ]
+    },
+    "announced_key_area_total_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(announced_key_area_approximate_values)",
+      "confidence": "high",
+      "assumptions": [
+        "公告近似总量，不把临时重点区矩形作为精确红线。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 96121.858,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(concept_courtyard_carriers))",
+      "confidence": "medium",
+      "assumptions": [
+        "概念载体不代表现状建筑或确认建设规模。"
+      ]
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "value": 0.008422,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "concept_building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1259635.956,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(civic_floor_and_climate_gardens))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.11037,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 87801.346,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(scene_contract_public_spaces))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.007693,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "civic_floor_length_m": {
+      "status": "known",
+      "value": 9538.544,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-CIVIC-FLOOR projected to EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "making_line_length_m": {
+      "status": "known",
+      "value": 9538.544,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "compatibility_alias_of_civic_floor_length_m",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_area_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_partition_features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "urban_room_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(ROAD-ROOM-01..09)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "east_west_stitch_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(ROAD-ROOM features)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(SC-01..SC-12)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "ai_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(public_scene_features where testing_validation=true)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_rows)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(civic_credit_landmarks)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(P01..P12)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "global_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "sources.json",
+        "proposal.md"
+      ],
+      "formula": "count(background_case_studies)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "adoption_core_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(culture_driven_civic_ai_adoption_core)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "workflow_stage_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(brief_to_public_reinvestment_stages)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "flagship_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(named_flagship_area_roles)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "civic_product_type_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(reusable_content_experience_service_outputs)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "four_clock_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(heritage_daily_creative_ai_time_layers)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "five_ledger_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(public_culture_rights_safety_operations_ledgers)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "civic_adoption_dimension_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(civic_adoption_review_dimensions)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "annual_cycle_stage_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual_operating_stages)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方控规条件、官方边界和现状建筑数据，不能给出确认容积率。"
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved_building_height_controls)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "缺少官方高度、景观、遗产与航空等控制条件。"
+    },
+    "land_use_research_ratio": {
+      "status": "known",
+      "value": 0.207528,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code=0802)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计比例，不是审定控规指标。"
+      ]
+    },
+    "land_use_culture_ratio": {
+      "status": "known",
+      "value": 0.234382,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code=0803)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计比例，不是审定控规指标。"
+      ]
+    },
+    "land_use_community_ratio": {
+      "status": "known",
+      "value": 0.152576,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code=0702)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计比例，不是审定控规指标。"
+      ]
+    },
+    "land_use_education_ratio": {
+      "status": "known",
+      "value": 0.151394,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code=0804)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计比例，不是审定控规指标。"
+      ]
+    },
+    "land_use_commercial_ratio": {
+      "status": "known",
+      "value": 0.160995,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code=05)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计比例，不是审定控规指标。"
+      ]
+    },
+    "land_use_park_ratio": {
+      "status": "known",
+      "value": 0.093125,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(area(LAND_USE where land_use_code=1401)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "概念设计比例，不是审定控规指标。"
+      ]
+    },
+    "conversion_accountability_chain_schema_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json"
+      ],
+      "formula": "count(machine_readable_jingzhang_conversion_accountability_chain_schemas)",
+      "confidence": "high",
+      "assumptions": [
+        "只表示概念协议结构完整，不表示政府许可、认证、部署或采用。"
+      ]
+    },
+    "conversion_layer_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(technical_conversion,social_conversion,value_conversion)",
+      "confidence": "high",
+      "assumptions": [
+        "三重转化是设计与交付框架，不表示任何项目已完成成果转化、社会采用或价值实现。"
+      ]
+    },
+    "adoption_gate_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json",
+        "proposal.md"
+      ],
+      "formula": "count(G1_PUBLIC_NECESSITY..G5_ADOPT_RENEW_OR_EXIT)",
+      "confidence": "high",
+      "assumptions": [
+        "五道门是设计协议，不替代法定审批和专业审查。"
+      ]
+    },
+    "spatial_access_level_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-room-control-code.json"
+      ],
+      "formula": "count(L1_CONTROLLED_VALIDATION,L2_CO_CREATION,L3_PUBLIC_PREMIERE)",
+      "confidence": "high",
+      "assumptions": [
+        "空间等级为概念性准入结构，不是法定分区。"
+      ]
+    },
+    "spatial_layer_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/urban-room-control-code.json"
+      ],
+      "formula": "count(permanent_public_baseline,reversible_civic_interface,time_limited_ai_service)",
+      "confidence": "high",
+      "assumptions": [
+        "空间层为性能与运营概念，不生成高度、退线、容量或工程结论。"
+      ]
+    },
+    "public_safeguard_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/jingzhang-civic-conversion-accountability-chain.schema.json"
+      ],
+      "formula": "count(free_basic_service,non_ai_channel,staffed_override,field_accessibility,no_scan_bypass,complaint_and_restoration)",
+      "confidence": "medium",
+      "assumptions": [
+        "只表示方案规定的底线数量，真实可用性须现场测试。"
+      ]
+    },
+    "funding_channel_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/delivery-program.json",
+        "proposal.md"
+      ],
+      "formula": "count(public_baseline,research_and_innovation,public_interest,disclosed_sponsorship,earned_revenue)",
+      "confidence": "medium",
+      "assumptions": [
+        "只表示资金责任类别，不表示已获资金、预算或投资承诺。"
+      ]
+    },
+    "first_100_day_action_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/delivery-program.json",
+        "proposal.md"
+      ],
+      "formula": "count(A100-01..A100-05)",
+      "confidence": "medium",
+      "assumptions": [
+        "100天为概念行动窗口，不是政府工期或实施承诺。"
+      ]
+    },
+    "delivery_package_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/delivery-program.json",
+        "proposal.md"
+      ],
+      "formula": "count(PKG-01..PKG-06)",
+      "confidence": "medium",
+      "assumptions": [
+        "交付包是责任组合，不预设六个新机构、预算或采购。"
+      ]
+    },
+    "spatial_pattern_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "assets/figures/key-areas.png",
+        "assets/figures/key-areas.en.png"
+      ],
+      "formula": "count(P1_CIVIC_COMMISSION_PORCH..P6_MAINTENANCE_AND_EXIT_BENCH)",
+      "confidence": "high",
+      "assumptions": [
+        "只表示方案定义的可复用空间模式数量，不代表六类设施已经建设、批准或适用于全部场地。"
+      ]
+    },
+    "public_life_observation_window_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "proposal.en.md",
+        "assets/figures/mobility-bluegreen.png",
+        "assets/figures/mobility-bluegreen.en.png"
+      ],
+      "formula": "count(weekday,weekend) * count(morning,noon,evening)",
+      "confidence": "high",
+      "assumptions": [
+        "只表示建议的2×3公共生活观察时段，不虚构任何客流、停留或满意度实测结果；冷热雨雪与活动日另行复测。"
+      ]
+    }
+  }
+}

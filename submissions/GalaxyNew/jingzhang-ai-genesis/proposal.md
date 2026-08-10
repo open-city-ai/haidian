@@ -2,6 +2,7 @@
 title: "智脉京张：Agent原生城市设计——百年铁路的精神传承与AI创新带空间蓝图"
 author_github: "GalaxyNew"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为历史主轴，构建'三核驱动、双翼展开、一脉贯通'的AI创新带空间结构。方案提出'智脉共生'核心理念，将百年铁路的工程精神与AI时代的数据脉动同构：詹天佑的人字形线路是对地理约束的空间智慧回应，今天的AI创新带是对城市治理约束的智能体原生回应。方案包含12个AI场景卡、5类用户画像、3个朝圣地标、5-8个全球案例转译、完整用地分区（39个概念单元）、36公里慢行网络和三期实施计划，全部基于provisional边界生成，待官方polygon发布后可整包重算。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "civic-agent-governance"]

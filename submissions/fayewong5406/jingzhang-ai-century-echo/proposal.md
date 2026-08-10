@@ -2,6 +2,7 @@
 title: "京张智带·世纪回响：百年京张AI创新带概念性城市设计"
 author_github: "fayewong5406"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园活力带为主轴、众智园/北京AI原点社区/大钟寺三处重点片区为创新锚点、中关村科技服务翼与小月河场景赋能翼为双翼，提出“一带三核、双翼多点、蓝绿慢行复合环”的百年京张AI创新带概念性城市设计方案；所有空间落地建议均为概念建议，边界为 provisional，待官方红线补齐后复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

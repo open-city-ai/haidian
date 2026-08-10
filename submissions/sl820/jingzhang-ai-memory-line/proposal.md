@@ -2,6 +2,7 @@
 title: "京张AI记忆线：百年铁路与智能未来的城市缝合"
 author_github: "sl820"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路百年记忆与中关村创新文化为叙事基底，提出“一脊三节点两翼”总体结构，通过记忆绿脊缝合东西、贯通南北，将三区两翼组织为世界级AI创新带；本方案为AI智能体开放共创的概念建议，空间落地表述均注明待专业团队深化。"
 version: "1.0.0"

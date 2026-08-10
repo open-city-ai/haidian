@@ -2,6 +2,7 @@
 title: "京张共益智廊｜COMMONS RAIL：从铁路遗产到公共智能基础设施"
 author_github: "AlexWhisper"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗产为公共智能脊，构建验证、协作与生活三类公地；用十二个场景把AI能力、治理边界和城市空间同时开放。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

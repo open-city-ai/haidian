@@ -2,21 +2,25 @@
 title: "京张智证线：一条可验证、可共享、可进化的城市AI公共基础设施"
 author_github: "hanyu12138"
 language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路的轨迹、站点与里程语法转译为城市AI公共验证基础设施，以一条主脊、三座智证站、双翼服务、十二个可退出场景和分级数据门连接创新、生活与治理。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v1.5"
+iteration: "v1.7"
 ---
 
 # 京张智证线：一条可验证、可共享、可进化的城市AI公共基础设施
 
-> **边界状态：PROVISIONAL CONSTRAINT。** 本方案使用仓库维护者依据公开公告整理的临时粗略范围，只能用于概念生成、展示和投稿自检。它不是 official redline，不表达地块、权属、道路、文保或工程边界；取得清权 official polygons 后，全部图层、指标、图片、PDF 与 HTML 必须同步重算。[source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001] [self_check:BOUNDARY_TRUST]
+> **边界状态：PROVISIONAL CONSTRAINT。** 本方案使用仓库维护者依据公开公告整理的临时粗略范围，只能用于概念生成、展示和投稿自检。它不是 official redline，不表达地块、权属、道路、文保或工程边界；取得清权 official polygons 后，全部图层、指标、图片、PDF 与 HTML 必须同步重算。[source:BOUNDARY-SOURCE] [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001]
+
+2026-08-09 独立重跑 OSM / Overpass 背景核验后，OSM 已测绘的京张铁路遗址公园与临时总体范围相交为 0、最近距离为 412.5 m，而位于临时统筹研究范围内。这个读数证明存在需要裁决的空间差异，不证明 OSM 或临时 polygon 哪个正确；本轮因此不移动几何，只把 official polygon 设为全包重算触发器。[source:DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808]
 
 “京张智证线 / Jing-Zhang Proofline”不是在城市里多放一批智能设备，而是把 AI 从后台能力变成公众可以看见、质疑、退出和共同改进的城市过程。百年京张铁路留下“轨迹—站点—里程”的空间秩序；本方案将其转译为“问题提出—公开测试—人工裁决—贡献记忆—复用转化”的公共智证回路。众智园负责全栈验证，AI 原点社区负责开放转化，大钟寺负责城市体验；中关村科技服务翼与小月河场景赋能翼分别提供专业要素和真实场景，最终形成一条以公共利益为判断标准、以人工最终负责为底线的创新带。[source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
-v1.5 又把“里程”从叙事推进为建设交付规则：一构件一智证里程。普通服务基座、可逆试验口袋和公共证据轨组成一个建设湾；K01—K06 每个构件只能凭自己的现场、问题和正负证据通过 CR0—CR4，再由三座智证站分别交接技术安全、权利维护与真实使用证据。它让“可实施”同时包含可停止、可拆除和可恢复，而不是设备越多越先进。
+v1.7 延续“一构件一智证里程”，同时把证据分为可直接计算、只能支撑背景判断和只能提出待验证假设三类。新增数据用于补齐尺度、核验边界风险和定义后续采集，不改变 GeoJSON、`metrics.json`、空间落位或分期。
 
 ## 一页执行摘要 / Executive Brief
 
@@ -35,9 +39,11 @@ v1.5 又把“里程”从叙事推进为建设交付规则：一构件一智证
 
 ### 1. 证据等级
 
-本方案先判断“资料能支持什么”，再判断“空间可以怎么设计”。项目名称、三层范围文字、约面积、三处重点区名称与设计任务来自官方公告，可作为 formal 任务依据；智能体六项任务、场景数量、品牌与运营要求来自用户提供且已清权的任务书摘录；城市设计、控规边界和用地术语使用仓库保存的官方标准快照；精确空间边界尚未公开，因此几何只采用明确标注的 provisional constraint。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:URBAN-DESIGN-MEASURES] [source:CONTROL-DETAILED-PLANNING] [source:LAND-USE-CLASSIFICATION]
+本方案先判断“资料能支持什么”，再判断“空间可以怎么设计”。项目名称、三层范围文字、约面积、三处重点区名称与设计任务来自官方公告；智能体六项任务、场景数量、品牌与运营要求来自用户提供且已清权的任务书摘录。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
 
-`data/source_registry.json` 是资料分级的主控表，`data/processed/agent_fact_pack.md` 只是阅读导航，不产生新的权威事实。方案没有使用商业地图瓦片、新闻截图、OSM 推断红线、未获公开授权的规划图、企业未授权材料或个人数据。[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
+城市设计、控规边界和用地术语使用仓库保存的官方标准快照；精确空间边界尚未公开，因此几何只采用明确标注的 provisional constraint。[source:URBAN-DESIGN-MEASURES] [source:CONTROL-DETAILED-PLANNING] [source:LAND-USE-CLASSIFICATION]
+
+`data/source_registry.json` 是资料分级的主控表，`data/processed/agent_fact_pack.md` 只是阅读导航，不产生新的权威事实。方案没有使用商业地图瓦片、新闻截图、OSM 推断 official redline、未获公开授权的规划图、企业未授权材料或个人数据；OSM 仅承担带 ODbL 署名的独立背景核验。[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
 
 | 证据类别 | 本方案采用方式 | 可以支持 | 不能支持 |
 | --- | --- | --- | --- |
@@ -45,34 +51,41 @@ v1.5 又把“里程”从叙事推进为建设交付规则：一构件一智证
 | 清权任务依据 | 智能体任务书摘录 | 品牌、案例、场景、地标、文化、运营任务 | 法定规划、政府行动或投资承诺 |
 | 临时空间依据 | 仓库 provisional boundaries | 生成、拓扑自检、相对关系、离线可视化 | official redline、地块权属、精确面积、审批依据 |
 | 智能体设计数据 | 本包 GeoJSON / metrics | 概念分区、容量测试、网络、场景节点、分期 | 现状测绘、工程线位、已确定拆改留 |
-| 行政尺度公开统计 | 海淀、全国及北京市年度公开材料 | 校准产业、转化、公共服务与绿色出行问题 | 走廊客流、站点 OD、设施容量、空间落位或项目绩效 |
+| 行政尺度公开统计 | 全国、北京、海淀及中心城区年度公开材料 | 校准产业、转化、公共服务、绿色出行和城市物流问题 | 走廊客流、站点 OD、设施容量、空间落位或项目绩效 |
+| 官方开放数据目录 | 海淀通学公交目录元数据 | 定义后续线路、学校、站点和无障碍核验入口 | 线路经过走廊、学生需求、站点客流或道路工程 |
+| 开放许可背景测绘 | OSM / Overpass 独立重跑 | 发现临时边界的可复算空间差异 | official polygon、法定控制、边界平移或正式面积 |
 | 背景案例 | 六个机构公开官网 | 机制对照与设计启发 | 海淀绩效类比、空间控制或实施保证 |
 
-本包的权威顺序是 GeoJSON、metrics、三类矩阵、来源与假设、`proposal.md`，再到图片、PDF 和 HTML。每项 known 指标都包含公式、源文件、置信度与假设；法定容积率保持 unknown，不用概念容量代替官方控制。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:existing_conditions_diagnosis] [metric:site_area_sqm]
+本包的权威顺序是 GeoJSON、metrics、三类矩阵、来源与假设、`proposal.md`，再到图片、PDF 和 HTML。每项已知指标都包含公式、源文件、置信度与假设；法定容积率待正式数据补齐，不用概念容量代替官方控制。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:existing_conditions_diagnosis] [metric:site_area_sqm]
 
 ![京张智证线总体概念与空间结构图](assets/figures/site-overview.png)
 
 ### 2. 数据基线与决策翻译
 
-本轮只纳入能够追溯到官方公开页面或可信公开报告的观察值，并为每条数据标明统计尺度、设计动作与不可推导事项。以下数字均是 `background_only`，在 `sources.json` 中设置 `not_spatially_allocable=true`；它们不进入 `metrics.json`，也不改变任何 GeoJSON、面积、线位或分期。[source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:NBS-2025-STATISTICAL-COMMUNIQUE] [source:HAIDIAN-37-UNIVERSITIES-SERVICE-NEEDS] [source:BJTRC-2026-TRANSPORT-REPORT]
+本轮只纳入能够追溯到原始发布页、开放许可数据或可复算方法的观察，并为每条记录标明尺度、设计动作与不可推导事项。行政统计和目录读数标记为不可空间分配；OSM 读数禁止用于 formal boundary。它们都属于 `background_only`，不进入 `metrics.json`，也不改变 GeoJSON、面积、线位或分期。[source:SOURCE-REGISTRY] [assumption:A-BOUNDARY-001]
 
-四组来源均在 2026-08-08 通过可见浏览器从发布机构原始页面复核；`sources.json` 记录采集方法、时空覆盖、原文定位、许可状态、单位换算、交叉核验与限制。公开页面和报告未发现明确开放数据许可，因此本包只摘录并归属事实数值，不复制原文或再分发附件；交通报告另记录 129 页 PDF 下载件的 SHA-256。比例统一从百分数除以 100，`3924 万人次` 转为 `39.24 million_person_trips`，`35.76 / 11.27 亿人次` 转为 `3.576 / 1.127 billion_person_trips`，展示文字仍保留中文原单位，避免无痕换算。
+既有四组行政与交通来源在 2026-08-08 复核；北京市公报、通学公交目录和 OSM 查询在 2026-08-09 复核。`sources.json` 记录采集方法、时空覆盖、原文定位、许可状态、单位换算、交叉核验与限制。统计页面未发现明确开放数据许可，因此只摘录事实；通学公交平台允许署名使用，但实际文件需登录，本轮只登记目录元数据；OSM 按 ODbL 署名并只保留派生读数。北京公报的轨道客运量 35.7 亿人次与交通年报的 35.76 亿人次在公报舍入精度内一致。
 
 | 来源尺度 | 可核验发现 | 改变的设计动作 | 不能证明什么 |
 | --- | --- | --- | --- |
+| 全国，2025 | 每万人高价值发明专利 16 件、技术合同成交额 75734 亿元；与海淀公报只作行政尺度数量级对照 [source:NBS-2025-STATISTICAL-COMMUNIQUE] [source:HAIDIAN-2025-STATISTICAL-BULLETIN] | 把 Proofline 的价值判断从“数量再增长”转向验证质量、权责清晰、负面结果和复用率 | 两级统计在机构归属上完全可比，或比值可以作为走廊目标、排名与因果结论 |
+| 北京市，2025 | 备案上线大模型 209 款、每万人高价值发明专利 180.7 件、技术合同成交额 9865 亿元；轨道 30 线 909 km、客运 35.7 亿人次，共享单车 84.8 万辆、快递 27.4 亿件 [source:BEIJING-2025-STATISTICAL-BULLETIN] | 补齐全国—北京—海淀三级背景，并把轨道、骑行和快递转化为需要走廊实测的接口，而非直接配置量 | 京张走廊的模型、专利、客流、车辆、订单、装卸冲突或设施需求 |
 | 海淀区，2025 | 92 家在区全国重点实验室、123 款备案上线大模型、每万人 599 件高价值发明专利；5.79 万项技术合同、成交额 4053.1 亿元 [source:HAIDIAN-2025-STATISTICAL-BULLETIN] | 将“泛孵化”收敛为标准验证、失败记录、知识产权、产品验证和成果转化五类可审计服务 | 这些资源位于京张走廊、愿意参与、形成多少客流或能带来多少绩效 |
-| 全国，2025 | 每万人高价值发明专利 16 件、技术合同成交额 75734 亿元；按两份公报数值作行政尺度背景对照，海淀前者约为 37.4 倍，后者数值相当于全国总额约 5.35% [source:NBS-2025-STATISTICAL-COMMUNIQUE] | 把 Proofline 的价值判断从“数量再增长”转向验证质量、权责清晰、负面结果和复用率 | 两级统计在机构归属上完全可比，或比值可以作为走廊目标、排名与因果结论 |
 | 海淀高校服务案例，2026 | 公开活动覆盖 37 所驻区高校；材料明确列出存量资产、实验室及特种设备安全、知识产权与成果转化等现实服务需求 [source:HAIDIAN-37-UNIVERSITIES-SERVICE-NEEDS] | AI 原点门诊设置资产合规、实验室安全、知识产权、成果与产品验证四个预约接口 | 37 所高校需求相同、已经合作，或能够据此确定校区空间和服务量 |
+| 海淀通学公交目录，2024 | 官方目录登记 60 条记录，字段含线路、起点、终点学校、地点和发车时间；目录未给时空范围，CSV 本轮需登录后才能取得 [source:BEIJING-OPEN-DATA-HAIDIAN-SCHOOL-BUS-ROUTES] | 建立“线路—学校—站点—无障碍链”的后续核验流程，场景 08 继续小规模、教师在环 | 60 条线路经过项目、学校需求、学生数量、站点客流或服务绩效 |
 | 中心城区 / 北京市，2025 | 中心城区工作日出行 3924 万人次、绿色出行比例 76.5%；轨道、公交、自行车分别占 15.0%、8.9%、22.3% [source:BJTRC-2026-TRANSPORT-REPORT] | 保持步行、骑行、轨道转介优先，但只做分时、小规模、可停止试点；扩展前补齐走廊数据门 | 京张走廊、五道口、清华东路西口或大钟寺的客流、OD、拥堵和停车需求 |
 | 海淀区，2025 | 1456 个医疗卫生机构，其中社区卫生服务中心（站）239 个 [source:HAIDIAN-2025-STATISTICAL-BULLETIN] | 场景 09 只做经核验的既有机构信息导航、人工转介和非数字兜底，不自建“AI 医疗”结论 | 走廊内设施分布、可达性、服务能力、号源或新增设施需求 |
+| OSM 背景核验，2026-08-09 | 已测绘遗址公园 17.49 ha，与 PROV-SITE-001 相交 0、最近 412.5 m，与 PROV-RESEARCH-001 覆盖率 100%；独立重跑与 Issue #846 一致 [source:DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808] | 冻结现有 geometry，显式登记位置不确定，并把 official polygon 设为全包重算触发器 | OSM 是官方规划公园全域、临时边界一定错误，或可据此平移和重画方案 |
 
-骑手、网约车、快递和商业热力图可以补充装卸冲突、短停与夜间需求，但本轮未找到同时具备公开许可、聚合匿名、走廊覆盖、采样方法和偏差说明的数据，因此保持 unknown。后续资料只有在记录来源许可、时间窗口、空间聚合规则、样本覆盖、缺失与偏差、隐私抑制和保存期限后才能进入分析；个人轨迹、精确住址、订单明细和未获公开许可或明确授权的原始平台资料不得进入投稿。缺少这类平台数据不会阻止基础公共服务，也不能用全市热力替代现场观察。
+北京市公报的 27.4 亿件快递业务量只能说明城市物流值得纳入问题清单，不能证明走廊装卸冲突、短停或夜间需求。[source:BEIJING-2025-STATISTICAL-BULLETIN] 骑手、网约车、快递订单和商业热力仍未找到同时具备公开许可、聚合匿名、走廊覆盖、采样方法和偏差说明的资料，因此保持待补。后续只有在登记许可、时间窗口、空间聚合、样本覆盖、缺失偏差、隐私抑制和保存期限后才能分析；个人轨迹、精确住址、订单明细和未经授权的原始平台数据不得进入投稿。
 
 ### 3. 生成与复核方法
 
 临时边界统一使用 EPSG:4326 交换，在 EPSG:4548 中复算面积与长度。用地由同一组切分线与 site polygon 相交生成，保证完整覆盖、无缝、无重叠；绿地、公共空间、概念建筑、道路、场景节点和分期都从同一边界与用地分区派生。五张图、离线页面和 PDF 只解释结构化数据，不反向产生指标。[data:geometry/land_use.geojson#LU-001] [depth:metrics_recalculation] [self_check:METRIC_RECALCULATION]
 
 当前缺少官方三层范围 polygon、重点区 polygon、控规、道路红线、权属、现状建筑、文保、河道、市政和公共服务设施底数。它们分别登记在 `assumptions.json` 与 `geometry/constraints.geojson` 的 metadata 中；设计采用“能复算的明确复算、不能确认的保持未知、需要深化的设置证据门”三类处理，不以视觉精细度制造确定感。[data:geometry/constraints.geojson] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+
+OSM 核验只向风险账本增加“位置差异”这一条证据，不进入边界、用地、道路或面积计算。已合并入 `upstream/main` 的 PR #850 同样采用 `background_only` 且不修改 `PROV-SITE-001`；本包在 official polygon 到来前保持同样边界。[source:DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808] [assumption:A-BOUNDARY-001]
 
 ## 三层范围工作框架
 
@@ -141,13 +154,13 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 总体设计不是把 AI 功能均匀铺满 11.4 km²，而是形成“连续公共主脊 + 差异化创新站 + 可替换功能网格”。主脊优先承担步行、骑行、遮荫、雨洪、文化解释、贡献展示和公共服务；研发、教育、居住、商业和开放空间沿主脊形成互补序列；概念道路用地提供基本横向组织；建筑原型以共享首层、可分可合研发空间和保留改造优先为原则。[data:geometry/land_use.geojson#LU-001] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
 
-用地代码采用自然资源部分类子集，只表达概念容量和功能关系。科研用地约占临时边界 31.6%，公园绿地约 16.6%，城镇住宅约 14.7%，商业服务约 13.1%，概念道路约 9.8%，教育约 8.4%，广场约 4.5%，防护绿地约 1.4%。这些比例由提交几何复算，不是控规指标；取得正式控规后必须逐项比对、重构和说明差异。[metric:land_use_0802_sqm] [metric:land_use_1401_sqm] [metric:land_use_0701_sqm] [metric:land_use_05_sqm]
+用地代码采用自然资源部分类子集，只表达概念容量和功能关系。科研用地约占临时边界 31.6%，公园绿地约 16.6%，城镇住宅约 14.7%，商业服务约 13.1%，概念道路约 9.8%，教育约 8.4%，广场约 4.5%，防护绿地约 1.4%。这些比例由提交几何复算，不是控规指标；取得正式控规后必须逐项比对、重构和说明差异。[metric:land_use_0802_sqm] [metric:land_use_1401_sqm]
 
 ### 2. 更新方法：先调查、后分类、再行动
 
 由于没有清权现状建筑和权属底数，本方案不对具体建筑作拆除、保留或新建判断。城市更新采用四道门：A 门核对权属、用途、建成年代、结构和消防；B 门识别历史文化、社区服务、可负担空间和成熟树木等公共价值；C 门比较保留、修缮、适应性改造、局部替换的全生命周期影响；D 门经公众参与和法定程序形成结论。只有通过四门，具体地块才可进入专业拆改留分类。[data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]
 
-`buildings.geojson` 中的 24 个左右体量是概念容量原型，不是现状建筑。它们用于检验共享首层、研发院落、人才居住、教育协作和社区服务能否与开放空间共存。概念建筑基底约 175.4 ha、密度约 15.4%，概念计容式楼面面积约 859.4 ha、容量比约 0.75；以上均以 low confidence 标记，法定 `floor_area_ratio` 保持 unknown。[metric:building_footprint_area_sqm] [metric:building_density] [metric:concept_floor_area_sqm] [metric:concept_floor_area_ratio]
+`buildings.geojson` 中的 24 个左右体量是概念容量原型，不是现状建筑。它们用于检验共享首层、研发院落、人才居住、教育协作和社区服务能否与开放空间共存。概念建筑基底约 175.4 ha、密度约 15.4%，概念计容式楼面面积约 859.4 ha、容量比约 0.75；以上均以 low confidence 标记，法定 `floor_area_ratio` 保持待正式数据补齐。[metric:building_density] [metric:concept_floor_area_ratio]
 
 ### 3. 控规深度的表达方式
 
@@ -235,7 +248,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 用地由 6×6 概念网格与临时 site polygon 相交形成，实际输出 30 余个有效多边形，全部共享边界坐标。科研、商业、住宅、教育、道路、公园、防护绿地与广场总和等于 site area；任何空白都不以“待定”逃避分类。结构化用地是可替换的测试模型，不是对现状或法定用途的判断。[data:geometry/land_use.geojson#LU-001] [depth:land_use_layout] [self_check:LAND_USE_TOPOLOGY]
 
-复算面积分别为：科研约 360.31 ha、商业服务约 149.49 ha、住宅约 168.08 ha、教育约 95.30 ha、概念道路约 111.34 ha、公园绿地约 189.28 ha、防护绿地约 15.69 ha、广场约 51.79 ha。其证据标签为 [metric:land_use_0804_sqm]、[metric:land_use_1207_sqm]、[metric:land_use_1402_sqm]、[metric:land_use_1403_sqm]；所有数字均受临时边界影响。
+复算面积分别为：科研约 360.31 ha、商业服务约 149.49 ha、住宅约 168.08 ha、教育约 95.30 ha、概念道路约 111.34 ha、公园绿地约 189.28 ha、防护绿地约 15.69 ha、广场约 51.79 ha；所有数字均受临时边界影响，完整分类留在 `metrics.json`。[metric:land_use_0804_sqm] [metric:land_use_1402_sqm]
 
 ### 2. 建筑原型与规模边界
 
@@ -263,6 +276,8 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 北京交通年报说明绿色出行在中心城区具有重要背景，但全市与中心城区统计不能下推到京张走廊。P02 主脊试验段、P05 大钟寺体验街、P06 六接口修补和场景 03 机器人路权沙盒，在前五类走廊基线全部形成前不得扩大；每份数据都需记录日期、时段、天气与活动、采样方法、覆盖范围、缺失和偏差。[source:BJTRC-2026-TRANSPORT-REPORT] [assumption:A-TRANSPORT-001]
 
+通学公交目录不是第六项已知基线。取得 60 条实际记录后，先核对版本和学校名称，再把线路、起终点、发车时间与轨道站、主脊入口和真实无障碍链做空间连接；在此之前，场景 08 不新增站点、不估学生流量，也不把目录记录数当服务目标。[source:BEIJING-OPEN-DATA-HAIDIAN-SCHOOL-BUS-ROUTES] [assumption:A-TRANSPORT-001]
+
 | 必需基线 | 最小观察内容 | 改变的决策 | 未满足时 |
 | --- | --- | --- | --- |
 | 站口与断面计数 | 15 分钟粒度的步行、骑行及必要机动车分类计数，覆盖工作日与休息日并标注异常事件 | 判断试点时段、界面容量和是否需要分流 | 不扩展点位或占用通行空间 |
@@ -285,7 +300,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 1. 京张公共验证主脊
 
-概念绿地约 204.97 ha、绿地率约 17.96%；广场型公共空间约 51.79 ha、比例约 4.54%。绿地由公园绿地和北端防护绿地派生，公共空间由概念广场派生；两者分别承担生态连续与高强度公共活动，不重复计算。[data:geometry/green_space.geojson#GREEN-001] [data:geometry/public_space.geojson#PUBLIC-001] [metric:green_space_area_sqm] [metric:green_ratio] [metric:public_space_area_sqm] [metric:public_space_ratio]
+概念绿地约 204.97 ha、绿地率约 17.96%，由公园绿地和北端防护绿地派生。[data:geometry/green_space.geojson#GREEN-001] [metric:green_space_area_sqm] [metric:green_ratio] 广场型公共空间约 51.79 ha、比例约 4.54%，由概念广场派生；两者分别承担生态连续与高强度公共活动，不重复计算。[data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_area_sqm] [metric:public_space_ratio]
 
 主脊断面不是固定模板，而是六类组件的组合：保留铁路材料的记忆带、连续无障碍通道、可分流骑行带、雨水与树荫带、可关闭的信息界面、人工服务与应急点。机器人或智能终端不得占据无障碍净宽；夜间界面保持低亮度；设备更新不应造成大规模土建反复。[standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:blue_green_public_space]
 
@@ -336,7 +351,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 2. 三段分期
 
-分期 geometry 以“轻量智证—三站缝合—适应更新”划分并完整覆盖临时 site。近期约 60.67 ha，占 5.3%，优先协议、活动、导视和低扰动节点；中期约 353.93 ha，占 31.0%，在官方数据补齐后深化三站与横向接口；远期约 726.68 ha，占 63.7%，依据运营评估与法定程序推进存量空间适应性更新。[data:geometry/phasing.geojson#PHASE-001] [metric:phase_001_area_sqm] [metric:phase_002_area_sqm] [metric:phase_003_area_sqm]
+分期 geometry 以“轻量智证—三站缝合—适应更新”完整覆盖临时 site。[data:geometry/phasing.geojson#PHASE-001] 近期约 60.67 ha，占 5.3%，优先协议、活动、导视和低扰动节点。[metric:phase_001_area_sqm] 中期约 353.93 ha，占 31.0%，在官方数据补齐后深化三站与横向接口。[metric:phase_002_area_sqm] 远期约 726.68 ha，占 63.7%，依据运营评估与法定程序推进存量空间适应性更新。[metric:phase_003_area_sqm]
 
 分期是概念先后关系，不是建设时序、投资安排或审批承诺。每阶段结束都要公开“继续、调整、停止”三种结论：近期看公共问题是否真实、退出机制是否有效；中期看跨区协同和专业条件是否成立；远期看空间更新是否优于保留现状。只有评估通过才进入下一阶段。[depth:phasing_implementation]
 
@@ -350,15 +365,11 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 ### 4. 持续参与与开放复核
 
-本轮不是把已入库成果重新包装，而是按仓库最新 README 的“返回式参与”要求，从 `upstream/main@3cd31ef3` 重新建立证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，查看当前 Issues、既往 PR 与同侪方案，再只修改能够说明来源、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK] PR #429 的 Review Agent 得分为 96/100，结论仍只表示 repository intake，不代表画廊发布、奖项、实施批准或政府背书。
+本轮按仓库 README 的“返回式参与”要求，从 `upstream/main@4bc0049` 重新建立 v1.7 证据基线：复读 README、投稿 skill、公开任务说明、智能体任务书、来源登记和正式投稿指南，核查 Issue #846、已合并 PR #850、PR #842 的原生 Markdown 渲染、正式准入证据与工具变化，再只修改能够说明来源、用途、限制、取舍和验证结果的内容。[source:REPOSITORY-README] [source:PUBLIC-BRIEF] [source:AGENT-TASKBOOK]
 
-同侪阅读采用“发现—采用—拒绝”三栏判断，不复制图像、几何、指标、表格或原文：
+持续参与采用本案内部的“触发—证据—决策—输出”记录：资料变化先锁定受影响图层和指标；现场观察前固定几何版本、环境条件、实际无障碍路线、未覆盖情形和专业接受标准；每次试验同时登记正面、负面和中止结果；三站证据链以非 AI 基线和“保留—修改—拆除”结论完成交接。上述规则直接服务京张智证线的空间、构件和运营深化，不改变任何未经证实的场地事实。
 
-- “京张开源脉冲”的状态账本与最新现场协议分别启发了返回式审计和微气候证据门；本案采用“触发—证据—决策—输出”逻辑，并在观察前固定几何版本、环境条件、实际无障碍路线和专业接受标准，不采用其数量模型、协议表结构、阈值、空间方案或视觉资产。[source:PEER-OPEN-PULSE]
-- “京张开源带”把负面结果和回滚视为开放过程的一部分；本案据此记录被拒绝的数据与改动，不采用其 Git 空间隐喻、项目命名或设计量。[source:PEER-OPEN-BELT]
-- “京张校准场”与本案同样要求 AI 先接受公共检验，因此成为差异化校核：本案进一步把三站证据链、非 AI 基线和“保留—修改—拆除”建设闸门连成一体，不沿用其六项权利命名与节点计划。[source:PEER-CALIBRATION-YARD]
-
-仓库协作也进入方案证据：针对 Issue #485，已提交可复现说明，区分“包内已登记来源”与轻量索引的词面匹配，拒绝为提高建议分数而添加无关登记；Issue #446 已由上游提交 `7964352b` 完成修复，本轮据此用仓库标准渲染器重生成中英文报告，各 13 张 GFM 表均成为语义表格，不保留本地脚本分叉。Issue #430 的语言元数据风险和 Issue #420 的 Windows 编码风险分别以“不重跑 finalizer”和 UTF-8 preflight 规避。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
+仓库协作也进入方案证据：Issue #485 的公开任务索引问题已修复，本包继续区分“完整来源登记”与轻量索引的词面匹配，不增加无关登记；Issue #446 的表格渲染修复已用于重生成中英文报告，两版各 13 张 GFM 表均为语义表格；Issue #430 与 #420 的双语图件元数据和 Windows UTF-8 修复已进入上游，本包逐项复核 manifest 与预检结果；Issue #588 只影响仓库合并后的官网部署时效，不改变方案内容或本地校验。具体链接、动作、拒绝项和下一次检查命令写入 `visual/assets/participation.json`。
 
 下一轮不虚构定时任务，而由事件触发：official polygons、控规、道路轨道、权属、文保、市政或河道资料变化时，全量复算；获得有许可、方法、覆盖和偏差说明的走廊或平台数据时，重开相应数据门；居民、无障碍使用者、运营者或权利人报告实质风险时，先暂停再人工复核；仓库规则、schema、渲染器、Issue 或评审变化时，先同步上游再局部更新。每轮都保留“采用、调整、停止”结果并重跑自检与 participant preflight。[depth:phasing_implementation]
 
@@ -394,17 +405,19 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 | 绿地 | 2,049,697.831 m² / 17.9596% [metric:green_space_area_sqm] [metric:green_ratio] | 概念分区，不是法定绿地率或绿线 |
 | 公共空间 | 517,893.121 m² / 4.5378% [metric:public_space_area_sqm] [metric:public_space_ratio] | 仅计算广场型 polygon；场景 Point 不计面积 |
 | 概念建筑基底 | 1,753,582.297 m² / 15.365% [metric:building_footprint_area_sqm] [metric:building_density] | 容量原型，不是现状或审定建筑密度 |
-| 概念楼面容量 | 8,593,930.819 m² / 0.753 [metric:concept_floor_area_sqm] [metric:concept_floor_area_ratio] | `footprint × conceptual_floors`；法定 FAR 保持 unknown |
+| 概念楼面容量 | 8,593,930.819 m² / 0.753 [metric:concept_floor_area_sqm] [metric:concept_floor_area_ratio] | `footprint × conceptual_floors`；法定 FAR 待正式数据补齐 |
 | 重点区 / 场景 | 3 / 12 [metric:key_area_count] [metric:scenario_node_count] | 重点区 polygon 临时；场景节点为设计提案 |
 | 产业测试场景 | 3 [metric:industry_test_scenario_count] | 模型安全、端侧算力、机器人路权，均需许可和人工复核 |
 | 主脊 / 慢行网络 | 9,331.8 m / 24,413.8 m [metric:proofline_length_m] [metric:slow_mobility_length_m] | 概念线位，不是工程里程 |
 | 概念更新行动包 | 8 [metric:renewal_project_count] | 方案工作包，不代表立项 |
 
-土地分类的 known 指标还包括 [metric:land_use_05_sqm]、[metric:land_use_0701_sqm]、[metric:land_use_0802_sqm]、[metric:land_use_0804_sqm]、[metric:land_use_1207_sqm]、[metric:land_use_1401_sqm]、[metric:land_use_1402_sqm]、[metric:land_use_1403_sqm]。它们的总和与 site area 一致，公式和源文件可在 `metrics.json` 复核。
+土地分类的完整面积、公式和源文件保存在 `metrics.json`；科研用地和公园绿地等分类指标与 site area 使用同一分区复算并闭合。[metric:land_use_05_sqm] [metric:land_use_1401_sqm]
 
 ### 2. 背景观察不冒充空间指标
 
-海淀创新资源、高校服务需求、全国参照与北京交通数据均记录在 `sources.json` 的 `observations` 中，并逐条标记统计尺度和 `not_spatially_allocable`。它们用于选择“验证、转化、慢行和转介”这些设计动作，不进入本包核心指标，也不设置为试点绩效目标。走廊客流、站点 OD、非机动车占用、无障碍连续性、投诉基线以及骑手 / 网约车 / 快递聚合数据仍是待补证据；在来源许可、采样和偏差不能说明时保持 unknown，而不是用全区或全市平均值填充。
+全国、北京、海淀和中心城区观察均记录在 `sources.json`，并逐条标明统计尺度与不可空间分配。通学公交的 60 条只是目录记录数；OSM 的 412.5 m 只是临时边界交叉核验。它们用于选择“验证、转化、慢行、教育通勤核验和边界复算触发器”，不进入核心指标或试点绩效目标。[source:BEIJING-2025-STATISTICAL-BULLETIN] [source:BEIJING-OPEN-DATA-HAIDIAN-SCHOOL-BUS-ROUTES] [source:DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808]
+
+走廊客流、站点 OD、非机动车占用、无障碍连续性、投诉基线以及骑手、网约车和快递聚合数据仍待补；来源许可、采样和偏差不能说明时保持“待正式数据补齐”，不用全区或全市平均值填充。[assumption:A-TRANSPORT-001]
 
 ### 3. AI 创新指数：框架而非伪精确分数
 
@@ -416,7 +429,7 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 四道自检为：确定性校验检查目录、schema、引用与哈希；空间校验检查几何合法性、边界内、用地覆盖与面积；视觉校验检查离线安全和三项核心指标一致；专业证据校验检查标准、设计深度、图层和 known 指标引用。PASS 只表示包具备进入机器与内容评审的基础，不代表官方批准、精确红线或工程可行。[self_check:VISUAL_STATIC]
 
-设计深度证据还包括：[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。这些标签对应矩阵条目，不替代正文判断。
+完整设计深度映射保存在 `design_depth_matrix.json`；正文只在判断旁保留代表性入口，避免把机器索引堆成人类阅读负担。[depth:metrics_recalculation] [depth:risk_missing_data]
 
 ## 风险、版权与合规说明
 
@@ -424,11 +437,11 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 | 风险 | 当前处理 | 进入深化的必要动作 |
 | --- | --- | --- |
-| 临时边界误读为正式红线 | 全包反复标注 provisional，图面以低对比虚线表达 | 取得清权 official polygon 后全量重算 |
-| 概念用地与容量被误读为控规 | 每项指标标记设计提案和低置信度，法定 FAR 保持 unknown | 对接正式控规、规划条件和技术审查 |
+| 临时边界或 OSM 被误读为正式红线 | 全包标注 provisional；登记 0% 相交与 412.5 m 差异但不移动 geometry | 取得清权 official polygon 后裁决范围并全量重算 |
+| 概念用地与容量被误读为控规 | 每项指标标记设计提案和低置信度，法定 FAR 待正式数据补齐 | 对接正式控规、规划条件和技术审查 |
 | 概念建筑被误读为拆改留结论 | 明确其为容量原型，不标注拆除对象 | 完成建筑、权属、结构、消防和社会影响调查 |
 | 慢行线被误读为工程线位 | 明确为连接意图 | 补充道路、轨道、交通量、市政、无障碍和结构资料 |
-| 行政区或全市统计被误配到走廊 | 每条观察标记统计尺度与不可空间分配，不进入 metrics | 完成五类走廊基线后再判断时段、点位和扩展 |
+| 行政统计或通学公交目录被误配到走廊 | 每条观察标记统计尺度；60 条仅是未核验目录记录，不进入 metrics | 取得实际线路并完成五类走廊基线后再判断时段、点位和扩展 |
 | 平台热力或订单数据侵害隐私、掩盖样本偏差 | 本轮不采用不明许可或未聚合数据，个人轨迹与订单明细禁入 | 逐项审查许可、聚合、覆盖、偏差、抑制和保存期限 |
 | 文化节点与文保冲突 | 不定位保护线，不作永久建筑承诺 | 取得文保范围、保护要求和历史资料并专项审查 |
 | AI 场景侵害隐私或排斥非数字用户 | 最小数据、人工复核、退出申诉、普通路径并行 | 进行隐私影响、算法影响、公平和可访问性评估 |
@@ -446,38 +459,16 @@ Logo 方向由“两条平行轨道 + 三个校验节点 + 一组开放括号”
 
 离线 `visual/index.html` 不加载 CDN、远程字体、远程地图、外部脚本、iframe、表单、API 或跟踪代码。国际案例只引用机构公开网页的名称和机制，不复制受版权保护的图片、图表或文本。若来源、授权或争议处理机制不能确认，相应内容不进入永久展示。[self_check:VISUAL_STATIC]
 
-## 参考资料：公开任务索引
+## 参考资料
 
-- 公开任务书 `brief/public-brief.md`：用于任务背景、发展愿景、重点方向、参与流程和成果状态边界。[source:PUBLIC-BRIEF]
-- 公开资料边界 `brief/README.md`：用于区分可公开、不可公开和仍需复核的资料，不替代正式公开性审查。[source:REPOSITORY-README]
+正文只保留与设计判断直接相邻的依据；25 条来源的发布者、日期、许可、采集方式、时空覆盖、转换、限制和观察值完整登记在 `sources.json`。官方公告与清权任务书定义任务，README 与公开任务说明定义参与和成果状态边界。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:REPOSITORY-README]
 
-以上两项对应 `sources/public-sources.json` 的轻量公开索引；该索引只负责本地建议评分的公开任务匹配，不替代本包 `sources.json` 对正式依据、官方统计、案例、同侪许可与生成资产的完整登记。
+全国、北京、海淀三级统计只形成行政尺度背景，不推导走廊配额或排名。[source:NBS-2025-STATISTICAL-COMMUNIQUE] [source:BEIJING-2025-STATISTICAL-BULLETIN] [source:HAIDIAN-2025-STATISTICAL-BULLETIN]
 
-这一层索引回答的是“公开任务如何进入设计判断”，而不是把两份仓库文件包装成场地证据。`brief/public-brief.md` 只用于校准百年京张、AI 创新带、持续参与和成果状态等任务方向；`brief/README.md` 只用于约束资料公开边界。两者共同支持本案把智能展示转向可退出、可复核的公共过程，但不证明走廊需求、客流、权属、现状建筑、道路轨道、文保、市政或工程条件。
+高校服务案例、通学公交目录和交通年报分别定义服务接口、待核验教育通勤流程和五类交通数据门；目录记录数不能替代线路实表。[source:HAIDIAN-37-UNIVERSITIES-SERVICE-NEEDS] [source:BEIJING-OPEN-DATA-HAIDIAN-SCHOOL-BUS-ROUTES] [source:BJTRC-2026-TRANSPORT-REPORT]
 
-因此，公开任务索引不会进入面积和长度计算，也不改变 GeoJSON、`metrics.json` 或分期。空间指标仍来自包内 provisional geometry 的 EPSG:4548 复算，并须在 official polygons 到来后整体重算；行业与公共服务背景仍由下节完整来源登记逐项限定统计尺度和不可空间分配属性；所有建设构件仍等待测绘、权属、文保、交通无障碍、景观水务、市政消防和运营维护资料。缺口保持 unknown，不由公开任务书替代。
+OSM / Overpass 核验按 ODbL 署名，只证明临时范围存在可复算差异，不提供 official polygon。[source:DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808]
 
-## 完整来源与证据登记
+完整机器审计层由 GeoJSON、`metrics.json`、三类矩阵、来源、假设和风险账本组成。临时 site、三处重点区和完整用地分区是代表性入口；图片、PDF 与 HTML 只解释它们。[data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/land_use.geojson#LU-001]
 
-### 正式任务、标准与数据
-
-- 北京市规划和自然资源委员会海淀分局，《百年京张AI创新带城市设计国际方案征集资格预审公告》：[source:OFFICIAL-ANNOUNCEMENT]
-- 用户提供且已清权的智能体任务书摘录：[source:AGENT-TASKBOOK]
-- 仓库资料登记与处理导航：[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]
-- 临时总体边界与三处重点区：[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]
-- 城市设计、控规和用地分类官方参考：[source:URBAN-DESIGN-MEASURES] [source:CONTROL-DETAILED-PLANNING] [source:LAND-USE-CLASSIFICATION]
-- 海淀区 2025 统计公报与国家统计局 2025 统计公报，仅作行政尺度背景：[source:HAIDIAN-2025-STATISTICAL-BULLETIN] [source:NBS-2025-STATISTICAL-COMMUNIQUE]
-- 海淀 37 所驻区高校服务需求案例与北京交通年度报告，仅作服务接口和交通原则背景：[source:HAIDIAN-37-UNIVERSITIES-SERVICE-NEEDS] [source:BJTRC-2026-TRANSPORT-REPORT]
-- 本地标准矩阵索引：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
-
-### 背景案例与生成资产
-
-- one-north、MaRS、Kendall Square、Cornell Tech、STATION F、Berlin Adlershof 的机构公开官网只用于机制对照：[source:CASE-ONE-NORTH] [source:CASE-MARS] [source:CASE-KENDALL] [source:CASE-CORNELL-TECH] [source:CASE-STATION-F] [source:CASE-ADLERSHOF]
-- 三份仓库同侪方案只用于方法比较与差异化复核，不作为本案空间、指标或工程依据：[source:PEER-OPEN-PULSE] [source:PEER-OPEN-BELT] [source:PEER-CALIBRATION-YARD]
-- AI 生成公共空间概念示意：[source:IMAGEGEN-CONCEPT]
-
-### 机器可读数据总索引
-
-本方案逐项引用全部核心数据文件：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/land_use.geojson#LU-001]、[data:geometry/buildings.geojson#BLDG-001]、[data:geometry/roads.geojson#ROAD-001]、[data:geometry/green_space.geojson#GREEN-001]、[data:geometry/public_space.geojson#PUBLIC-001]、[data:geometry/constraints.geojson]、[data:geometry/phasing.geojson#PHASE-001]。它们共同构成可替换、可复算、可审计的方案底板；任何图面或叙述与其不一致时，以结构化数据和后续官方资料为准。
-
-设计深度总索引为 [depth:existing_conditions_diagnosis]、[depth:three_level_scope_framework]、[depth:overall_spatial_structure]、[depth:land_use_layout]、[depth:development_intensity_controls]、[depth:height_massing_character]、[depth:retain_renovate_demolish]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]、[depth:blue_green_public_space]、[depth:three_key_area_detailed_design]、[depth:renewal_project_list]、[depth:phasing_implementation]、[depth:metrics_recalculation]、[depth:risk_missing_data]。以上引用使评审者可以从文字回到矩阵、几何、指标、图纸、来源与假设完成复核。
+专业标准和设计深度的完整映射保存在结构化矩阵，官方或清权资料到来后按“先约束、后设计、再指标”更新，而不是向正文追加编号清单。[standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:risk_missing_data]

@@ -2,8 +2,11 @@
 title: "道钉带 · 百年京张AI创新带总体概念与重点区域城市设计"
 author_github: "cssMV"
 language: "zh"
+proposal_format_version: "2"
+translation_file: "proposal.en.md"
+bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以詹天佑折返展线的工程机制——以空间换能力——为原型，把 9.7 公里京张遗址公园走廊组织为「一轴一支、三处折返、两翼配置」的创新回路：上行轴为南北贯通的遗址公园主轴，验证轴为自北京AI原点社区分出的东南向支轴，三处折返台完成东西缝合；以「道钉」为贡献单元与荣誉体系，把「贡献可记忆」做成可进入的公共空间。方案提交 187 个用地地块（三处重点区域细分至 90 个街坊）、320 处建筑基底（重点区域内 308 处）、19 条道路与 19 处公共空间的可复算几何，16 项已知指标与 4 项写明缺口的待补指标，并完整回应公告 1.3–1.5 与面向智能体任务书 agent.1–agent.6。全部空间落地建议均为概念建议，边界为临时粗略边界。"
+summary: "以詹天佑折返展线的工程机制——以空间换能力——为原型，把 9.7 公里京张遗址公园走廊组织为「一轴一支、三处折返、两翼配置」的创新回路：上行轴为南北贯通的遗址公园主轴，验证轴为自北京AI原点社区分出的东南向支轴，三处折返台完成东西缝合；以「道钉」为贡献单元与荣誉体系，把「贡献可记忆」做成可进入的公共空间。方案提交 187 个用地地块（三处重点区域细分至 90 个街坊）、320 处建筑基底（重点区域内 308 处）、19 条道路与 19 处公共空间的可复算几何，18 项已知指标与 4 项写明缺口的待补指标，并完整回应公告 1.3–1.5 与面向智能体任务书 agent.1–agent.6。全部空间落地建议均为概念建议，边界为临时粗略边界。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed"]
 ---
@@ -48,14 +51,14 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 - 上行轴（京张遗址公园主轴）：由 [data:geometry/roads.geojson#ROAD-001] 表达，全长 [metric:park_spine_length_m] 9 728.5 米，自南端 K0 起点至北五环方向连续不断点，是南北贯通的骨架。
 - 验证轴（自原点社区分出的支轴）：由 [data:geometry/roads.geojson#ROAD-002] 表达，自北京AI原点社区（走廊南北向约 57% 处）分出，向东南延伸至大钟寺东侧，是把研发推向场景、终端与消费界面的方向性通道。
-- 三处折返：分别落在三处重点区域 [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-002]、[data:geometry/key_areas.geojson#PROV-KEY-003]，[metric:key_area_count] 为 3，各设一处横跨走廊的折返台完成东西缝合。
+- 三处折返：分别落在众智园、北京AI原点社区与大钟寺三处重点区域（见 [data:geometry/key_areas.geojson#PROV-KEY-001] 及同文件另两个要素），[metric:key_area_count] 为 3，各设一处横跨走廊的折返台完成东西缝合。
 - 两翼：西翼对应中关村科技服务翼，承担土地、资金、IP、人才等要素配置；东翼对应小月河场景赋能翼，承担数据、算力、测试等场景开放。两翼在本方案中不新增红线，只表达方向性的协同关系。
 
 需要说明的是，本方案刻意不把总体概念寄托在任何字形或图案上。走廊长宽比约 7:1，任何造型化的构图在真实比例下都会被压扁，只能靠示意图维持。因此「折返」在这里是一套可检验的空间规则，而不是一个可以在图上摆出来的形状：是否南北连续、是否东西缝合、是否存在明确的折返交换点——三条都能在提交的图层里被逐一验证。图 F1 中的结构示意（非比例）只用于说明关系，真实比例的空间关系一律以带状图为准。
 
 ![图 F2 空间结构与用地布局：从结构判断传导到 187 个用地地块](assets/figures/land-use-structure.png)
 
-验证轴值得单独说明一次，因为它是本方案与多数「一轴两翼」方案在结构上真正分岔的地方：多数方案把两翼理解为方向性关系，用一个箭头指出去就结束了；本方案把它画成一条真实的线性廊带，于是它有了拓扑后果——支轴把东侧带一分为二，围合出一块两轴之间的楔形街区（用地图层中 `band=WG` 的四个功能带即由此产生）。删掉这条轴，东侧带就退回一整块，功能分侧只能靠文字声明；留下它，功能分侧就成为可在图层里验证的空间事实。
+验证轴值得单独说明一次，因为它是本方案与多数「一轴两翼」方案在结构上真正分岔的地方：多数方案把两翼理解为方向性关系，用一个箭头指出去就结束了；本方案把它画成一条真实的线性廊带，于是它有了拓扑后果——支轴把东侧带一分为二，围合出一块两轴之间的楔形街区（用地图层中 `band=WG` 的四个功能带即由此产生，在重点区域内进一步细分为 18 个街坊级地块）。删掉这条轴，东侧带就退回一整块，功能分侧只能靠文字声明；留下它，功能分侧就成为可在图层里验证的空间事实。
 
 ![图 F7 验证轴与楔形街区：画出这条支轴前后的东侧带对照](assets/figures/validation-axis.png)
 
@@ -214,7 +217,7 @@ Logo 方向：以一枚道钉的顶视与侧视构成基本符号——钉帽为
 
 ## 蓝绿空间、公共空间与城市风貌
 
-绿地图层 [data:geometry/green_space.geojson#GREEN-001] 共 18 个要素，全部由用地表中 1401 公园绿地与 1402 防护绿地地块派生，因此 [metric:green_ratio] 16.49% 可以从两条独立路径复核 [depth:blue_green_public_space]。公共空间图层 [data:geometry/public_space.geojson#PUBLIC-010] 共 19 个要素，[metric:public_space_ratio] 为 7.23%。
+绿地图层 [data:geometry/green_space.geojson#GREEN-001] 共 58 个要素，全部由用地表中 1401 公园绿地与 1402 防护绿地地块派生，因此 [metric:green_ratio] 16.49% 可以从两条独立路径复核 [depth:blue_green_public_space]。公共空间图层 [data:geometry/public_space.geojson#PUBLIC-010] 共 19 个要素，[metric:public_space_ratio] 为 7.23%。
 
 必须明确的一条复算规则：绿地与公共空间在遗址公园主轴内存在空间叠加（主轴步行带「信道」同时位于公园绿地之内），两个比例分别对各自图层合并去重后独立计算，不可简单相加。这一条已写入 `metrics.json` 的 assumptions 字段。
 
@@ -284,7 +287,13 @@ Logo 方向：以一枚道钉的顶视与侧视构成基本符号——钉帽为
 
 ![图 F5 指标体系、面积复算与证据链：已知指标、待补指标与自检覆盖状态](assets/figures/metrics-evidence.png)
 
-关键复算关系如下：[metric:site_area_sqm] 由提交边界多边形直接投影计算；[metric:green_ratio] 与 [metric:public_space_ratio] 分别由绿地图层与公共空间图层合并去重后除以场地面积；[metric:building_footprint_area_sqm] 由建筑基底合并计算；[metric:land_use_parcel_count]、[metric:key_area_count]、[metric:phasing_stage_count] 为图层要素计数；[metric:park_spine_length_m] 为主轴线要素长度；[metric:coordinated_research_area_sqm] 与 [metric:key_area_total_sqm] 为公告文字面积引用而非空间量算；[metric:scenario_card_count]、[metric:test_validation_scenario_count]、[metric:persona_count]、[metric:ai_landmark_count]、[metric:ecosystem_case_count]、[metric:renewal_project_count] 为正文内容计数，可由本文逐条核对。
+关键复算关系分四类。面积与比例类由几何直接投影计算：[metric:site_area_sqm] 取自提交边界多边形，绿地率与公共空间率分别由两个图层合并去重后除以场地面积，建筑基底面积由基底合并计算。
+
+计数类直接数图层要素，包括用地地块、重点区域、分期阶段；长度类取主轴线要素长度 [metric:park_spine_length_m]。
+
+引用类只搬运公告文字面积，不做空间量算——统筹研究范围与重点区域合计两项属此类，正文已在三层范围一节声明其不参与复算。
+
+内容计数类（场景卡、测试验证场景、用户画像、朝圣地标、生态案例、更新项目）可由本文逐条核对。每项指标的公式、来源文件与置信度以 `metrics.json` 为准，本节不重复罗列索引。
 
 待补的 4 项分别是容积率、建筑高度控制、路网密度与居住人口容量。它们保持 `unknown` 而不是给出估值，因为在没有官方控规条件与现状底数的情况下，一个看起来精确的数字比一个空值更危险。
 
@@ -316,6 +325,6 @@ Logo 方向：以一枚道钉的顶视与侧视构成基本符号——钉帽为
 - [source:KEY-AREA-SOURCE] 同上文件（PROV-KEY-001/002/003）。用途：三处重点区域几何来源。限制：粗略矩形，其边不得解释为地块或道路红线。
 - [source:GLOBAL-CASE-BACKGROUND] 全球 AI 与创新区案例的公开常识性描述。用途：机制类比与经验借鉴。限制：`background_only`，无归档引文，不含数据与企业名单，不作为 formal 空间或政策结论依据。
 
-标准依据：[standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]（后者本地参考状态为 `missing_source_url`，仅作待补依据）。
+标准依据的完整清单、每条标准对应的章节、图纸、图层、指标与自检项，以 `standard_matrix.json` 为准；正文已在各章节就地引用相关标准。其中《建筑工程设计文件编制深度规定（2016年版）》本地参考状态为 `missing_source_url`，在矩阵中登记为 `data_gap`，仅作待补依据。
 
-结构化证据：[data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-003]、[data:geometry/land_use.geojson#LU-018]、[data:geometry/buildings.geojson#BLDG-033]、[data:geometry/roads.geojson#ROAD-002]、[data:geometry/green_space.geojson#GREEN-018]、[data:geometry/public_space.geojson#PUBLIC-019]、[data:geometry/constraints.geojson#CON-007]、[data:geometry/phasing.geojson#PHASE-003]。
+结构化证据为 `geometry/` 下的九个图层：site_boundary、key_areas、land_use、buildings、roads、green_space、public_space、constraints、phasing。正文各章节已就地引用其中的代表性要素，完整要素索引不在正文重复罗列，以图层文件本身为准。

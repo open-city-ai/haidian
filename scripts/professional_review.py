@@ -16,9 +16,12 @@ from pathlib import Path
 from typing import Any
 
 from validate_submission import (
+    PROPOSAL_FORMAT_VERSION,
     PROPOSAL_READABLE_DATA_REFS,
     REQUIRED_DESIGN_DEPTH_IDS,
     load_required_standard_ids,
+    parse_front_matter,
+    proposal_format_version,
 )
 
 
@@ -106,6 +109,8 @@ def build_professional_review(repo_root: Path, submission_dir: Path) -> Professi
     depth_matrix = load_json(submission_dir / "design_depth_matrix.json", report, "design_depth_matrix.json")
     metrics = load_json(submission_dir / "metrics.json", report, "metrics.json")
 
+    metadata, _ = parse_front_matter(proposal_text)
+    format_version = proposal_format_version(metadata)
     refs = extract_refs(proposal_text)
     required_standard_ids = load_required_standard_ids(repo_root)
     matrix_standard_ids = collect_ids(standard_matrix, "standards", "standard_id")
@@ -117,9 +122,10 @@ def build_professional_review(repo_root: Path, submission_dir: Path) -> Professi
             "standard_matrix.json",
             f"Missing required standard responses: {', '.join(missing_standard_matrix)}.",
         )
-    for standard_id in sorted(matrix_standard_ids):
-        if standard_id not in refs["standard"]:
-            report.add("STANDARD_PROPOSAL_REF", "major", "proposal.md", f"Missing [standard:{standard_id}] reference.")
+    if format_version != PROPOSAL_FORMAT_VERSION:
+        for standard_id in sorted(matrix_standard_ids):
+            if standard_id not in refs["standard"]:
+                report.add("STANDARD_PROPOSAL_REF", "major", "proposal.md", f"Missing [standard:{standard_id}] reference.")
 
     matrix_depth_ids = collect_ids(depth_matrix, "items", "item_id")
     missing_depth = sorted(REQUIRED_DESIGN_DEPTH_IDS - matrix_depth_ids)
@@ -130,13 +136,15 @@ def build_professional_review(repo_root: Path, submission_dir: Path) -> Professi
             "design_depth_matrix.json",
             f"Missing required design depth items: {', '.join(missing_depth)}.",
         )
-    for item_id in sorted(matrix_depth_ids):
-        if item_id not in refs["depth"]:
-            report.add("DEPTH_PROPOSAL_REF", "major", "proposal.md", f"Missing [depth:{item_id}] reference.")
+    if format_version != PROPOSAL_FORMAT_VERSION:
+        for item_id in sorted(matrix_depth_ids):
+            if item_id not in refs["depth"]:
+                report.add("DEPTH_PROPOSAL_REF", "major", "proposal.md", f"Missing [depth:{item_id}] reference.")
 
-    for rel_path in sorted(PROPOSAL_READABLE_DATA_REFS):
-        if not data_ref_present(refs["data"], rel_path):
-            report.add("DATA_PROPOSAL_REF", "major", "proposal.md", f"Missing [data:{rel_path}#...] reference.")
+    if format_version != PROPOSAL_FORMAT_VERSION:
+        for rel_path in sorted(PROPOSAL_READABLE_DATA_REFS):
+            if not data_ref_present(refs["data"], rel_path):
+                report.add("DATA_PROPOSAL_REF", "major", "proposal.md", f"Missing [data:{rel_path}#...] reference.")
 
     metric_items = metrics.get("metrics") if isinstance(metrics, dict) else {}
     known_metric_ids = {
@@ -144,14 +152,17 @@ def build_professional_review(repo_root: Path, submission_dir: Path) -> Professi
         for name, value in metric_items.items()
         if isinstance(value, dict) and value.get("status") == "known"
     } if isinstance(metric_items, dict) else set()
-    for metric_id in sorted(known_metric_ids):
-        if metric_id not in refs["metric"]:
-            report.add("METRIC_PROPOSAL_REF", "major", "proposal.md", f"Missing [metric:{metric_id}] reference.")
+    if format_version != PROPOSAL_FORMAT_VERSION:
+        for metric_id in sorted(known_metric_ids):
+            if metric_id not in refs["metric"]:
+                report.add("METRIC_PROPOSAL_REF", "major", "proposal.md", f"Missing [metric:{metric_id}] reference.")
 
     report.summary = {
         "standard_matrix_items": len(matrix_standard_ids),
         "design_depth_items": len(matrix_depth_ids),
         "known_metric_refs_required": len(known_metric_ids),
+        "proposal_format_version": format_version,
+        "evidence_contract": "section-anchors-plus-structured-audit" if format_version == PROPOSAL_FORMAT_VERSION else "legacy-exhaustive-inline",
         "proposal_reference_counts": {kind: len(values) for kind, values in refs.items()},
     }
     return report

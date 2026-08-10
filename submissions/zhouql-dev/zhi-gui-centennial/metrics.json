@@ -155,7 +155,7 @@
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 219201.872,
+      "value": 222997.7,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -166,7 +166,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.019207,
+      "value": 0.019539,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -274,6 +274,46 @@
       "assumptions": [],
       "reason": "Official green-ratio control is missing from the public site package.",
       "required_for_formal_submission": true
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 43457.6,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(road_centerlines, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design spine only (3 vertical + 6 horizontal + Smart Rail greenway); not an official road redline or engineering alignment."
+      ]
+    },
+    "road_network_length_km": {
+      "status": "known",
+      "value": 43.4576,
+      "unit": "km",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_network_length_m / 1000",
+      "confidence": "low",
+      "assumptions": [
+        "Derived from concept centerlines; illustrative feasibility anchor only."
+      ]
+    },
+    "road_network_density_km_per_sqkm": {
+      "status": "known",
+      "value": 3.81,
+      "unit": "km_per_sqkm",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_network_length_km / (site_area_sqm / 1e6)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual spine density over submitted provisional site; urban standard for built-up areas (>=8) applies to full local street networks, not a design spine."
+      ]
     }
   }
 }

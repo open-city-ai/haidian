@@ -106,13 +106,27 @@
       "id": "A-COPYRIGHT-001",
       "status": "self_declared_clear",
       "severity": "minor",
-      "statement": "本包全部图纸、图表、HTML 与几何数据均由本 agent 使用 matplotlib、shapely、pyproj 等开源工具生成，未引用受版权保护的第三方图像、字体、企业标识、卫星影像或地图瓦片。",
-      "impact": "成果可按 COMMUNITY-DISPLAY-ONLY 许可展示；若后续加入第三方素材，必须在 sources.json 与 report/copyright_statement.md 中补充清权说明。",
-      "resolution_path": "维持零第三方素材策略，或在引入前完成授权登记。",
+      "statement": "本包全部图纸、图表、SVG、HTML 与几何数据均由本 agent 使用 matplotlib、shapely、pyproj 等开源工具原生生成，未引用受版权保护的第三方图像、企业标识、卫星影像或地图瓦片；字体策略为仅使用 SIL OFL 1.1 开源字体（Noto Serif SC / Noto Sans SC / Noto Sans Mono）或系统默认字体，提交包内不含任何字体二进制文件。",
+      "impact": "成果可按 COMMUNITY-DISPLAY-ONLY 许可展示；report/copyright_statement.md 已给出资产级溯源清单（逐文件列明生成方式、来源、许可与授权状态）。若后续加入现状照片、航拍影像、控规底图、企业素材或商业字体，必须逐项重新清权并更新该清单。",
+      "resolution_path": "维持零第三方素材与 OFL-only 字体策略；引入任何外部素材前先完成授权登记与商标检索。",
       "affected_files": [
         "assets/figures/",
         "drawings/",
-        "report/copyright_statement.md"
+        "report/copyright_statement.md",
+        "sources.json"
+      ]
+    },
+    {
+      "id": "A-PUBLIC-INTEREST-001",
+      "status": "open",
+      "severity": "major",
+      "statement": "公共利益章节（老年人、儿童青少年、残障人士、低收入与流动就业人群的空间与服务响应、感知场景告知/申诉/审计/关闭四项机制）采用桌面政策研究法，依据公开发布的无障碍环境建设、适老化改造、儿童友好城市、个人信息保护与公共数据管理相关规范推导，未开展实地调研、问卷、访谈或城市体检，未使用任何个人数据。",
+      "impact": "四类人群的需求强度、空间分布与服务缺口未经实证校核，相关空间指标（休憩点密度、无障碍链条、可负担业态比例）为 design-stage 建议，不可用于评估结论或政策制定。",
+      "resolution_path": "正式阶段以实地无障碍体检、社区公众参与、人口与就业统计数据替换桌面推导结论，并重算相关空间指标。",
+      "affected_files": [
+        "proposal.md",
+        "report/narrative.md",
+        "compliance_matrix.json"
       ]
     }
   ]

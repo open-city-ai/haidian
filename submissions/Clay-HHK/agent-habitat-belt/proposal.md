@@ -2,6 +2,7 @@
 title: "京张智栖带：面向人机共栖的百年京张AI创新带城市设计概念方案"
 author_github: "Clay-HHK"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“人机共栖”为核心命题，把 11.4 平方公里总体设计范围组织为“一脉三栖两翼五节点”结构：9.7 公里京张智脉贯通南北，三处重点区分别承担自主创新栖、开源共栖与智能消费栖，东西两翼提供要素配置与场景赋能。全部空间、场景与运营内容均为概念建议，基于组织方提供的 provisional 临时边界生成，官方红线发布后须整体复算。"
 tracks: ["robotics-autonomous-mobility", "ai-traffic-walkability", "ai-origin-community"]

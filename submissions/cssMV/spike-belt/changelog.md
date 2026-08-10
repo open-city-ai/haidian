@@ -1,5 +1,24 @@
 # 方案迭代记录
 
+## v1.2.0 - 2026-08-09
+
+- 补齐英文成果：7 张英文图、`proposal.en.md`、`report/proposal.en.html`、
+  英文电子展示页与 16 页 A3、7 张 A0 英文图纸。术语按方案命名体系统一
+  （道钉 spike、零号道钉 Spike Zero、公里标 K-MARK、折返台 DECK、
+  信道 CHANNEL、上行轴 Ascent Axis、验证轴 Validation Axis），
+  中英两页共用同一套 GeoJSON 派生 SVG，结构逐节点对应。
+- 声明 `proposal_format_version: "2"` 与 `bilingual_contract_version: "1"`。
+  正文四处并列引用堆改写为贴着论断的锚点并指向 `standard_matrix.json`、
+  `geometry/`、`metrics.json`——完整索引本就在结构化文件里，正文不再重复穷举。
+- 计数根治：图纸与展示页中的地块数、建筑数、街坊数等改由 `geometry/*.geojson`
+  与 `metrics.json` 在渲染时派生，不再硬编码，几何一改数字自动跟随。
+- 图纸无损重压：四份 PDF 由 10.19 MB 降至 8.49 MB，逐页渲染校验 46 页
+  像素完全一致，内容与页序未变；提交包 19.53 → 17.83 MB（上限 20 MB）。
+- 修英文标题自重复：中文页的「中文标题 + 英文副题」结构译成英文后，
+  主副标题头部重复（如 Buildings BUILDINGS &amp; RETAIN / …）。展示页 6 处
+  改为只保留副题真正新增的部分（Buildings &amp; RETAIN / …、Key metrics ·
+  EPSG:4548），完全重复的直接去掉副题；A3 文册第 15 页同样处理。
+
 ## v1.1.0 - 2026-08-07
 
 - 概念更名为「道钉带 SPIKE BELT」：设计、几何与指标不变，换掉与已有方案重名的概念外壳；

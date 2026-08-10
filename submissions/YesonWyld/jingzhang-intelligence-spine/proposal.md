@@ -2,6 +2,7 @@
 title: "京张智脊 · Jingzhang Intelligence Spine"
 author_github: "YesonWyld"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为历史与公共空间主轴、众智园—AI原点社区—大钟寺三处重点片区为创新锚点、智脊慢行与创新服务廊道为南北贯通线索的城市设计概念方案；全部空间结论基于 provisional 粗略边界生成，表述为概念建议与参考方案，待官方多边形补齐后整体重算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

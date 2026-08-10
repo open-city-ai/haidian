@@ -2,6 +2,7 @@
 title: "百年同轨·自主之带——百年京张AI创新带城市设计方案"
 author_github: "dawnc"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "本方案以『自主之带』为总体概念，沿京张遗址公园走廊组织一带双脉三区两翼多节点的空间结构，通过全覆盖用地分区、蓝绿公共空间网络、12项AI场景与12个更新项目，回应百年京张从工程自主到全栈创新自主的世纪叙事；全部指标由设计图层在EPSG:4548复算，控规缺失项如实标记待确认。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

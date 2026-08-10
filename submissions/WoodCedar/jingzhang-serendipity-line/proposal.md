@@ -2,6 +2,7 @@
 title: "不被推荐的京张｜THE UNRECOMMENDED LINE：给城市保留有用的弯路"
 author_github: "WoodCedar"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "当算法不断缩短路径，城市反而需要保留有用的弯路。方案以一条非推荐线、三座偏航场、六种空间材料和十二个可逆节点，让异质知识与日常经验发生意外连接。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

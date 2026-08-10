@@ -476,7 +476,18 @@
         "A-BUILDING-001",
         "A-CONTROLS-001"
       ],
-      "reason": "缺少现状建筑普查、层数、许可建筑面积与审定规划条件；概念类型单元不能外推总建筑面积。"
+      "reason": "缺少现状建筑普查、层数、许可建筑面积与审定规划条件；概念类型单元不能外推总建筑面积。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "total_floor_area_sqm",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "普查完成后一次性赋值，其后随许可变更更新",
+        "denominator": null,
+        "assignment_precondition": "现状建筑逐栋普查与许可数据。",
+        "baseline": null,
+        "target": null
+      }
     },
     "building_density": {
       "status": "unknown",
@@ -491,7 +502,18 @@
         "A-BUILDING-001",
         "A-CONTROLS-001"
       ],
-      "reason": "当前 buildings.geojson 是类型试验单元而非现状建筑清单，不能充当法定或现状建筑密度。"
+      "reason": "当前 buildings.geojson 是类型试验单元而非现状建筑清单，不能充当法定或现状建筑密度。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "building_density",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "普查完成后一次性赋值",
+        "denominator": "该单元的法定用地面积",
+        "assignment_precondition": "现状建筑逐栋普查与官方用地边界。",
+        "baseline": null,
+        "target": null
+      }
     },
     "road_area_sqm": {
       "status": "unknown",
@@ -505,7 +527,18 @@
       "assumptions": [
         "A-TRANSPORT-001"
       ],
-      "reason": "当前 roads.geojson 只有概念连接线，缺少官方道路红线与断面宽度，不能把线长换算为道路面积。"
+      "reason": "当前 roads.geojson 只有概念连接线，缺少官方道路红线与断面宽度，不能把线长换算为道路面积。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "road_area_sqm",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "道路红线发布或调整后一次性赋值",
+        "denominator": null,
+        "assignment_precondition": "官方道路红线与断面宽度。",
+        "baseline": null,
+        "target": null
+      }
     },
     "road_ratio": {
       "status": "unknown",
@@ -521,7 +554,18 @@
         "A-BOUNDARY-001",
         "A-TRANSPORT-001"
       ],
-      "reason": "道路面积与官方场地面积均须由正式红线复算；概念中心线不足以计算道路率。"
+      "reason": "道路面积与官方场地面积均须由正式红线复算；概念中心线不足以计算道路率。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "road_ratio",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "道路面积与官方场地面积同时可用后赋值",
+        "denominator": "官方场地面积",
+        "assignment_precondition": "官方道路红线与官方场地边界。",
+        "baseline": null,
+        "target": null
+      }
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -535,7 +579,18 @@
       "assumptions": [
         "A-CONTROLS-001"
       ],
-      "reason": "公开资料包未提供审定容积率、建筑规模与正式用地边界。"
+      "reason": "公开资料包未提供审定容积率、建筑规模与正式用地边界。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "floor_area_ratio",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "控规批复或调整后一次性赋值",
+        "denominator": "该单元的法定用地面积",
+        "assignment_precondition": "审定控规批复与官方用地边界。",
+        "baseline": null,
+        "target": null
+      }
     },
     "maximum_building_height_m": {
       "status": "unknown",
@@ -550,7 +605,18 @@
         "A-CONTROLS-001",
         "A-HERITAGE-001"
       ],
-      "reason": "公开资料包未提供审定高度分区、视线廊道和文保建设控制要求。"
+      "reason": "公开资料包未提供审定高度分区、视线廊道和文保建设控制要求。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "maximum_building_height_m",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "高度分区批复或调整后一次性赋值",
+        "denominator": null,
+        "assignment_precondition": "审定高度分区与文保建设控制要求。",
+        "baseline": null,
+        "target": null
+      }
     },
     "ai_innovation_index": {
       "status": "unknown",
@@ -571,7 +637,18 @@
         "A-BASELINE-001",
         "A-OPERATIONS-001"
       ],
-      "reason": "公告要求研提AI创新指数；子项需要一带范围内的公开贡献台账与场景运行记录，目前无公开数据，赋值会形成不可复核的伪精度。"
+      "reason": "公告要求研提AI创新指数；子项需要一带范围内的公开贡献台账与场景运行记录，目前无公开数据，赋值会形成不可复核的伪精度。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "ai_innovation_index",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "每季度一次，且任一场景停用时即时补记",
+        "denominator": "当期已授权运行的场景数",
+        "assignment_precondition": "一带范围内的公开贡献台账与场景运行记录。",
+        "baseline": null,
+        "target": null
+      }
     },
     "talent_density": {
       "status": "unknown",
@@ -585,7 +662,18 @@
       "assumptions": [
         "A-BASELINE-001"
       ],
-      "reason": "公告要求研提人才密度；需官方就业、学籍统计与用地权属数据，仓库未提供，暂不赋值。"
+      "reason": "公告要求研提人才密度；需官方就业、学籍统计与用地权属数据，仓库未提供，暂不赋值。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "talent_density",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "官方统计年度发布后一次性赋值",
+        "denominator": "该统计小区的就业用地面积",
+        "assignment_precondition": "官方就业、学籍统计与用地权属数据。",
+        "baseline": null,
+        "target": null
+      }
     },
     "output_scale": {
       "status": "unknown",
@@ -599,7 +687,18 @@
       "assumptions": [
         "A-BASELINE-001"
       ],
-      "reason": "公告要求研提产值规模；需统计部门口径与企业名录，仓库未提供，暂不赋值。"
+      "reason": "公告要求研提产值规模；需统计部门口径与企业名录，仓库未提供，暂不赋值。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "output_scale",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "官方统计年度发布后一次性赋值",
+        "denominator": null,
+        "assignment_precondition": "统计部门口径与企业名录。",
+        "baseline": null,
+        "target": null
+      }
     },
     "renewed_building_scale_sqm": {
       "status": "unknown",
@@ -612,7 +711,18 @@
         "A-BUILDING-001",
         "A-CONTROLS-001"
       ],
-      "reason": "公告要求明确更新后区域规划建筑总规模；需现状建筑普查、控规与许可数据，缺失时不得推断。"
+      "reason": "公告要求明确更新后区域规划建筑总规模；需现状建筑普查、控规与许可数据，缺失时不得推断。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "renewed_building_scale_sqm",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "各单元规划条件核发后累加更新",
+        "denominator": null,
+        "assignment_precondition": "更新单元规划条件与现状建筑面积。",
+        "baseline": null,
+        "target": null
+      }
     },
     "ai_enterprise_target_count": {
       "status": "unknown",
@@ -624,7 +734,18 @@
       "assumptions": [
         "A-BASELINE-001"
       ],
-      "reason": "公告要求明确AI企业聚集目标；目标值属产业主管部门决策，方案不代为设定。"
+      "reason": "公告要求明确AI企业聚集目标；目标值属产业主管部门决策，方案不代为设定。",
+      "measurement_protocol": {
+        "path": "visual/assets/governance/measurement-protocol.json",
+        "metric_id": "ai_enterprise_target_count",
+        "collecting_role": "R-INDEPENDENT-REVIEW",
+        "role_spec": "visual/assets/governance/role-spec.json",
+        "frequency_or_trigger": "主管部门设定目标后记录，方案不代为设定",
+        "denominator": null,
+        "assignment_precondition": "产业主管部门的目标决策与企业名录。",
+        "baseline": null,
+        "target": null
+      }
     }
   }
 }

@@ -7,7 +7,7 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 summary: "A public spatial-intelligence commons built from an open 3D semantic city model, reproducible experiments, controlled field validation, and public audit. Three key areas support benchmark validation, open co-creation, and everyday service while keeping AI understandable, simulatable, accountable, and reversible."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]
-iteration: "v1.2"
+iteration: "v1.3"
 ---
 
 # Jing-Zhang City Model Commons
@@ -46,6 +46,30 @@ The proposal is based on the official qualification announcement, the cleared ag
 The submission uses EPSG:4326 exchange GeoJSON and recalculates areas and lengths in EPSG:4548. The current provisional overall boundary recalculates to approximately **11.413 km²**, about 0.11% from the announced approximately 11.4 km². This agreement only shows that the provisional geometry is useful for concept work; it does not make it an official planning boundary or approved area. [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:site_area_deviation_ratio]
 
 Floor Area Ratio, building height, statutory building coverage, road setbacks, existing building footprint, municipal capacity, and heritage-control area remain **unknown**. Buildings, roads, land use, and phasing are reference proposals for professional elaboration, not approval, demolition, construction, engineering alignment, investment, or implementation commitments. [metric:floor_area_ratio] [metric:building_height_m] [metric:official_building_density] [metric:road_redline_setback_m] [metric:existing_building_footprint_sqm] [depth:existing_conditions_diagnosis] [depth:risk_missing_data]
+
+### Haidian evidence baseline and regional interfaces: public fact → design response → verification gate
+
+This section records traceable public signals without turning statistics into a future forecast. Regional collaboration is proposed as an interface, not a partnership, investment, mutual-recognition, or government-endorsement claim. The machine-readable register is `[data:visual/assets/site_evidence_baseline.json#OBS-BJ-POP-2024]`.
+
+| Public signal (as of 2026-08-09) | Design response | Next evidence gate |
+| --- | --- | --- |
+| Beijing's 2024 resident population was approximately 21.832 million; the official release also supplies rail and regional-development context [source:DATA-SRC-BEIJING-2024-STATISTICS] | Do not assume population growth or future footfall; test service reliability and adaptive reuse by time, user, and person-hours | Obtain official station, walking, service-coverage, and time-of-day observations before sizing or phasing |
+| Haidian's 2024 bulletin describes a knowledge- and service-intensive economy, with tertiary industry at 92.49% of regional GDP and a high-tech innovation base [source:DATA-SRC-HAIDIAN-2024-STATISTICS] | Make research → validation → public explanation → everyday adoption a spatial chain, not an AI-only district | Confirm institutions, building capacity, ownership, demand, and operating responsibility through official or commissioned surveys |
+| Beijing's public ageing report supplies an ageing-society context [source:DATA-SRC-BEIJING-AGEING-2024] | Shade, seating, physical signs, human help, and accessible continuity come before optional AI; older adults, disabled users, carers, and people who decline data collection retain non-digital routes | Run a consented all-ages accessibility and heat-safety walk and publish breaks, help demand, and negative findings |
+| The official public description presents the Jing-Zhang heritage park as an approximately 9 km urban-renewal and green-space system, including bridge-space and Line 13 context [source:DATA-SRC-JINGZHANG-PARK-20230630] | Treat the heritage green spine as an open version line with station–park–service handoffs; do not invent stations, redlines, or bridge engineering | Reconcile official station, road, heritage, ownership, fire, and emergency data before fixing a physical line |
+| The current public Haidian work-report context places AI, data, safety, and the innovation belt in an ongoing district-development conversation [source:DATA-SRC-HAIDIAN-2026-WORK-REPORT] | Make the commons a translation layer for research, safe testing, public service, and accountability, without calling it an approved programme | Assign a confirmed owner, data permission, safety review, public-service baseline, and exit decision to each future pilot |
+
+**Five regional interfaces.** The proposal uses a problem–capability–credential exchange rather than a list of institutions. Each direction requires separate consent, uses de-identified or public material, and records rights/IP, safety responsibility, maintenance ownership, refusal, withdrawal, and non-recognition paths in the interface contract. [source:DATA-SRC-HAIDIAN-15FYP-20251208] [assumption:A-REGIONAL-SYNERGY-001] [data:visual/assets/site_evidence_baseline.json#REG-NORTH-LATITUDE]
+
+| Directional counterpart | Jing-Zhang input | Minimum exchange output | Intake and exit gate |
+| --- | --- | --- | --- |
+| Beiwèi Community / AI Origin Community | Resident questions, accessibility gaps, non-digital service experience | De-identified problem card, human-service gap, close reason | Community consent, rights/privacy review, named safety/operating owner, maintenance-record owner, and withdrawal path; participation does not authorize deployment |
+| Future Science City | Edge models, embodied devices, engineering-validation questions | Model card, device passport, failure list, re-test condition | Voluntary test participation; test owner, IP, safety scope, maintenance/recall owner, and withdrawal/re-test path are explicit; results are not automatically recognized |
+| Huairou Science City | Measurement, calibration, and research-method questions | Calibration note, uncertainty statement, independent-review question | Consent/permission, professional safety responsibility, rights/IP, maintenance handoff, and withdrawal path are confirmed; no assumed facility or data access |
+| Beijing E-Town | Engineering, manufacturing, supply-chain, and maintenance questions | Interoperability evidence, maintenance requirement, stop/recall condition | Voluntary participation, product-safety/consumer-rights review, maintenance/recall owner, and withdrawal path; no procurement claim |
+| Beijing-Tianjin-Hebei | Cross-city common problems and portable rules | Location-agnostic schema, negative result, version difference, maintenance handoff | Local consent and legal, safety, operating, rights/IP, maintenance-handoff, and withdrawal/no-recognition review in each jurisdiction; no copying of coordinates, personal data, or approval conclusions |
+
+The value of this regional loop is lower duplication and translation cost, not the number of signed partners. Without an operating baseline, no collaboration-performance value is filled in. [metric:regional_interface_count]
 
 ## Three-Level Scope Framework
 
@@ -298,6 +322,21 @@ Four honor/pilgrimage nodes are continuing public-evidence interfaces rather tha
 | C-04 Observation walk and handover window | Zhongzhiyuan test boundary; separate people, robots, equipment | Scenario operator | Physical separation, speed cap, stop, clear evacuation |
 | C-05 Algorithm notice kiosk | Origin Community and Dazhongsi arcade | Model-card owner | Purpose, limits, appeal, and exit readable |
 | C-06 Honor / contribution plaque | Submission wall and museum; public contribution | Independent evaluator | No unauthorized portrait, trademark, or third-party material |
+
+### Component proof-mile handoff: from “a component exists” to “a team can take it over”
+
+Each component has a spatial anchor, user group, owner type, minimum data and retention, human takeover, maintenance record, positive and negative evidence, and a stop/retirement decision. These are small acceptance contracts for a future professional or operating team, not proof that anything has been built, funded, approved, or operated. The machine register is `[data:visual/assets/proof_mile_delivery.json#C-01]`.
+
+| Component | Opening gate | Positive evidence | Negative evidence and exit |
+| --- | --- | --- | --- |
+| C-01 Shade seating | Consented all-ages heat/accessibility walk; owner and repair record first | Continuous usable seat, wheelchair companion space, and answered help request | Unsafe surface/shade or unmaintainable condition → close/relocate and publish why |
+| C-02 Version marker | Maintainer reviews source, version, date, confidence, and change note | A person can identify source, uncertainty, and challenge route | Stale source, unexplained change, or no correction → hide/revert |
+| C-03 Accessible co-pilot edge | Opt-in AI plus phone, in-person, and physical-wayfinding channels | User can choose understandable AI or human help and complete/recover a route | AI-only barrier, failed explanation, or lost service after opt-out → disable AI |
+| C-04 Observation walk and handover window | Permission, risk assessment, separation, training, and stop drill | Reproducible run, successful handover, clear people/equipment boundary | Boundary breach, near miss, stop failure, or irreproducible result → return to simulation |
+| C-05 Algorithm notice kiosk | Model card, on-site notice, appeal owner, and sunset date | People understand purpose, limits, human owner, and challenge route | Stale notice, unfair effect, or unanswered appeal → withdraw algorithmic service |
+| C-06 Honor / contribution plaque | Licence, consent, review state, withdrawal, and accessible display | Contribution is reproducible, attributable by consent, challengeable, and retractable | Rights, privacy, accuracy, or access unresolved → quarantine/remove |
+
+This proof mile changes “use return” from a promotional number into handover evidence. A component moves from concept to a small live use only when positive and negative evidence, repair responsibility, and an exit decision are all legible; no effect value is filled without an operating baseline.
 
 Wayfinding has three language levels: Z1 **Version Line** for continuous walking/cycling, version markers, direction, and service; Z2 **Landmark** for staying, explanation, honor, and cultural narrative; Z3 **Service** for help, handover, observation, and exit. International short line: **A city model people can question.** It describes a public-interface direction and is not an official brand authorization.
 

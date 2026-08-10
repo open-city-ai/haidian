@@ -437,6 +437,177 @@
         "A-OPERATIONS-001"
       ]
     },
+    "relay_receipt_stage_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/relay-receipt.schema.json"
+      ],
+      "formula": "count(required execution-stage objects from problem through rollback_retirement)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_pilot_gate_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/operations-matrix.json"
+      ],
+      "formula": "count(SC-04 pilot gates G0 through G6)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_synthetic_ticket_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(bundled synthetic test fixtures; no real service records)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001"
+      ]
+    },
+    "sc04_acceptance_criterion_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(operational acceptance criteria; results remain null until an authorized sandbox run)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_stop_condition_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(hard stop conditions in the SC-04 synthetic pilot contract)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_rollback_action_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json"
+      ],
+      "formula": "count(ordered rollback and retirement actions)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_tabletop_rehearsal_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/run_sc04_tabletop.js",
+        "visual/assets/sc04-tabletop-evidence.json"
+      ],
+      "formula": "count(reproducible local synthetic tabletop rehearsals; no real system or participant)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_tabletop_fixture_pass_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc04-tabletop-evidence.json"
+      ],
+      "formula": "count(synthetic fixtures that preserved identity and reached the expected manual queue in the local tabletop)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_tabletop_acceptance_pass_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc04-tabletop-evidence.json"
+      ],
+      "formula": "count(tabletop acceptance checks with result=pass; not operational acceptance)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_tabletop_stop_check_pass_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc04-tabletop-evidence.json"
+      ],
+      "formula": "count(hard-stop branches reproduced as fail-closed in the local tabletop)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_tabletop_rollback_step_pass_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/sc04-tabletop-evidence.json"
+      ],
+      "formula": "count(ordered rollback steps rehearsed in memory; no live system changed)",
+      "confidence": "high",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "sc04_performance_results": {
+      "status": "unknown",
+      "value": null,
+      "unit": "result",
+      "source_files": [
+        "visual/assets/example-sc04-relay-receipt.json",
+        "visual/assets/sc04-tabletop-evidence.json"
+      ],
+      "formula": "record verified operational results only after an authorized sandbox run",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DATA-001",
+        "A-OPERATIONS-001"
+      ],
+      "reason": "A local synthetic tabletop passed its bounded checks, but the operational sandbox and field pilot remain not authorized and not run; no service performance, real human takeover, public acceptance or deployment safety is claimed."
+    },
     "human_handoff_gate_count": {
       "status": "known",
       "value": 3,

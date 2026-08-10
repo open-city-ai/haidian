@@ -2,6 +2,7 @@
 title: "京张共证之路 / Jingzhang Evidence Line"
 author_github: "4210666"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年京张铁路转译为公众可理解、系统可验证、试点可回滚的城市智能验证走廊，以一条共证主线、三个验证舱和两翼资源网络连接产业、生活、文化与治理。"
 tracks: ["civic-agent-governance", "jingzhang-heritage-narrative", "ai-public-services"]

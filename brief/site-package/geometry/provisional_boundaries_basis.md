@@ -33,6 +33,19 @@
 4. 公告没有提供三处重点区四至，因此矩形只承担生成、展示和讨论的占位作用，不表达道路红线、地块边界或权属边界。
 5. 面积拟合不能把推定 geometry 升级为官方红线；所有要素继续设置 `official_boundary=false`、`geometry_role=provisional_constraint`。
 
+## 独立背景交叉核对
+
+2026-08-08，基于 OpenStreetMap / Overpass 的独立公开数据做了一次背景核对，结果记录在 [Issue #846](https://github.com/open-city-ai/haidian/issues/846)。该核对使用 EPSG:4548 计算，并明确保留 OSM 的众包数据局限和 ODbL 署名边界：
+
+| 测项 | 背景核对读数 |
+| --- | ---: |
+| OSM 测绘的京张铁路遗址公园面积 | 17.49 ha |
+| 与 `PROV-SITE-001` 相交面积 / 覆盖率 | 0.00 ha / 0% |
+| 与 `PROV-SITE-001` 最近距离 | 412.5 m |
+| 与 `PROV-RESEARCH-001` 覆盖率 | 100% |
+
+这组结果**不证明** `PROV-SITE-001` 一定错误：OSM 可能只测绘了已建成的一段，临时 polygon 也只是按公告文字四至推定。它只证明总体设计范围存在一个需要官方 polygon 裁决的空间不确定性；在官方资料发布前，不能把 OSM 反向升级成正式边界，也不能用它阻断或替代方案评分。对应的 OSM 结果目前仅保留在本背景记录和 [Issue #846](https://github.com/open-city-ai/haidian/issues/846) 中，未作为中央 `data/source_registry.json` 的可重放来源；若未来需要登记，必须先固定查询、抓取元数据和快照哈希，并记录 ODbL 处理边界。
+
 ## 替换条件
 
 取得资格预审文件、正式任务书、补遗答疑或其他清权官方 CAD/GIS/PDF 后，应登记文件哈希、发布机构、发布日期、版本、坐标系和转换方法，并同时替换三层范围与三处重点区。随后重新生成所有方案图层、图纸、HTML和指标，不能只替换单个边界文件。

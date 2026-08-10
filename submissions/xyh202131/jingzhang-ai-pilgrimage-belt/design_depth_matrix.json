@@ -19,23 +19,35 @@
         "geometry/site_boundary.geojson",
         "geometry/constraints.geojson"
       ],
+      "evidence_files": [
+        "visual/assets/site-grounding-register.json"
+      ],
       "metric_refs": [
-        "site_area_sqm"
+        "site_area_sqm",
+        "site_grounding_observation_count",
+        "completed_post_opening_field_audit_count"
       ],
       "source_ids": [
         "SOURCE-REGISTRY",
-        "BOUNDARY-SOURCE",
-        "OSM-CONTEXT"
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "PROVISIONAL-BOUNDARY-BASIS",
+        "OSM-CONTEXT",
+        "HAIDIAN-JZ-PHASE2-OPEN-2026",
+        "HAIDIAN-AI-TRIAL-FIELD-2026",
+        "HAIDIAN-JZ-MIDTERM-2026",
+        "HAIDIAN-15FYP-2026"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
-        "A-OSM-001"
+        "A-OSM-001",
+        "A-POST-OPENING-007",
+        "A-SITE-LOCATION-008"
       ],
       "self_check_ids": [
         "BOUNDARY_TRUST",
         "RISK_AND_SOURCE_BOUNDARIES"
       ],
-      "evidence_summary_zh": "以七项不足、现有空间计量和缺资料清单形成诊断；现状 OSM 与设计建议明确分层。"
+      "evidence_summary_zh": "以七项不足、现有空间计量和缺资料清单形成诊断，并用公开网页桌面研究记录二期开放后的已建公园基线、官方意向和设计后果；当前现场审计、竣工图核验与精确落位均为 0，OSM、媒体报道和设计建议保持分层。"
     },
     {
       "item_id": "three_level_scope_framework",
@@ -60,8 +72,10 @@
         "key_area_total_sqm"
       ],
       "source_ids": [
-        "OFFICIAL-ANNOUNCEMENT",
-        "AGENT-TASKBOOK"
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "AGENT-TASKBOOK",
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "PROVISIONAL-BOUNDARY-BASIS"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001"
@@ -379,26 +393,37 @@
         "geometry/public_space.geojson",
         "geometry/constraints.geojson"
       ],
+      "evidence_files": [
+        "visual/assets/site-grounding-register.json",
+        "visual/assets/pilot-readiness-register.json"
+      ],
       "metric_refs": [
         "key_area_building_count",
         "key_area_building_footprint_ratio",
-        "mapped_scenario_node_count"
+        "mapped_scenario_node_count",
+        "site_grounding_observation_count",
+        "pilot_readiness_protocol_coverage_ratio"
       ],
       "source_ids": [
-        "KEY-AREA-SOURCE",
-        "AGENT-TASKBOOK"
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "PROVISIONAL-BOUNDARY-BASIS",
+        "AGENT-TASKBOOK",
+        "HAIDIAN-AI-TRIAL-FIELD-2026",
+        "HAIDIAN-JZ-MIDTERM-2026",
+        "HAIDIAN-15FYP-2026"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
         "A-SPATIAL-REPRESENTATION-002",
-        "A-SCENARIO-PROTOCOL-004"
+        "A-SCENARIO-PROTOCOL-004",
+        "A-SITE-LOCATION-008"
       ],
       "self_check_ids": [
         "KEY_AREAS_TRUST",
         "SPATIAL_EVIDENCE",
         "SCENARIO_PROTOCOL"
       ],
-      "evidence_summary_zh": "三个状态站分别说明矛盾、空间结构、项目、场景、进入门和概念验收。"
+      "evidence_summary_zh": "三个状态站分别说明矛盾、空间结构、项目、场景、进入门和概念验收，并把官方公开的重点节点与人本目标转为可复核设计响应；所有具体落位仍待官方几何和现场核验，不把桌面证据写成现状测绘。"
     },
     {
       "item_id": "renewal_project_list",
@@ -418,23 +443,42 @@
         "geometry/constraints.geojson",
         "geometry/phasing.geojson"
       ],
+      "evidence_files": [
+        "visual/assets/pilot-readiness-register.json",
+        "visual/assets/site-grounding-register.json",
+        "visual/assets/g1-preregistration-register.json",
+        "visual/assets/g0-offline-enterprise-service-baseline.json",
+        "visual/assets/t02-g0-g1-replay-result.json"
+      ],
       "metric_refs": [
         "gateway_count",
         "ai_service_zone_count",
-        "phase_count"
+        "phase_count",
+        "pilot_readiness_project_coverage_ratio",
+        "pilot_readiness_protocol_coverage_ratio",
+        "g1_preregistration_required_field_coverage_ratio",
+        "completed_g1_preregistration_count",
+        "completed_g0_offline_replay_count",
+        "g0_offline_expected_decision_match_ratio"
       ],
       "source_ids": [
-        "OFFICIAL-ANNOUNCEMENT",
-        "AGENT-TASKBOOK"
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+        "AGENT-TASKBOOK",
+        "HAIDIAN-JZ-PHASE2-OPEN-2026",
+        "HAIDIAN-JZ-MIDTERM-2026"
       ],
       "assumption_ids": [
-        "A-SCENARIO-PROTOCOL-004"
+        "A-SCENARIO-PROTOCOL-004",
+        "A-POST-OPENING-007",
+        "A-SITE-LOCATION-008",
+        "A-G0-OFFLINE-009"
       ],
       "self_check_ids": [
         "TASK_EVIDENCE_SPECIFICITY",
-        "SCENARIO_PROTOCOL"
+        "SCENARIO_PROTOCOL",
+        "G0_T02_SYNTHETIC_REPLAY"
       ],
-      "evidence_summary_zh": "八个项目分别绑定 Feature、前置条件、责任组合和验收口径。"
+      "evidence_summary_zh": "八个项目分别绑定 Feature、前置条件、概念级责任角色、审批触发、禁采数据、事故责任、共同测试、恢复、独立复测和 go/no-go；12 个场景另有 G1 预注册合同。T-02 已完成一次十案例合成治理回放，证明固定规则、停机和恢复分支可复现；责任主体、审批、真实服务、G1 窗口与现场执行仍为 0 或 unknown。"
     },
     {
       "item_id": "phasing_implementation",
@@ -452,20 +496,39 @@
       "geometry_refs": [
         "geometry/phasing.geojson"
       ],
+      "evidence_files": [
+        "visual/assets/pilot-readiness-register.json",
+        "visual/assets/innovation-register.json",
+        "visual/assets/g1-preregistration-register.json",
+        "visual/assets/g0-offline-enterprise-service-baseline.json",
+        "visual/assets/t02-g0-g1-replay-result.json"
+      ],
       "metric_refs": [
-        "phase_count"
+        "phase_count",
+        "pilot_readiness_project_coverage_ratio",
+        "pilot_readiness_protocol_coverage_ratio",
+        "completed_post_opening_field_audit_count",
+        "approved_g1_test_window_count",
+        "g1_field_execution_count",
+        "completed_g0_offline_replay_count",
+        "g0_offline_stop_recovery_branch_coverage_ratio"
       ],
       "source_ids": [
         "AGENT-TASKBOOK",
-        "JZ-COCREATION-2021"
+        "JZ-COCREATION-2021",
+        "HAIDIAN-JZ-PHASE2-OPEN-2026",
+        "HAIDIAN-JZ-MIDTERM-2026"
       ],
       "assumption_ids": [
-        "A-SCENARIO-PROTOCOL-004"
+        "A-SCENARIO-PROTOCOL-004",
+        "A-POST-OPENING-007",
+        "A-G0-OFFLINE-009"
       ],
       "self_check_ids": [
-        "SCENARIO_PROTOCOL"
+        "SCENARIO_PROTOCOL",
+        "G0_T02_SYNTHETIC_REPLAY"
       ],
-      "evidence_summary_zh": "0—2、3—5、5 年后只是时间窗口；进入、毕业和回滚证据共同决定阶段。"
+      "evidence_summary_zh": "0—2、3—5、5 年后只是时间窗口；责任、审批、预注册、社区共测、独立复测、已建公园增量和恢复证据共同决定进入、毕业与回滚。T-02 的一次合成治理回放只补足 G0 决策逻辑证据；获批 G1 窗口、真实独立复测和现场执行数均为 0，当前仍停留在 G0。"
     },
     {
       "item_id": "metrics_recalculation",
@@ -536,27 +599,43 @@
         "geometry/key_areas.geojson",
         "geometry/constraints.geojson"
       ],
+      "evidence_files": [
+        "visual/assets/site-grounding-register.json",
+        "visual/assets/pilot-readiness-register.json",
+        "visual/assets/rights-clearance-ledger.json"
+      ],
       "metric_refs": [
         "site_area_sqm",
         "building_representation_ratio",
-        "scenario_passport_coverage_ratio"
+        "scenario_passport_coverage_ratio",
+        "site_grounding_observation_count",
+        "completed_post_opening_field_audit_count",
+        "pilot_readiness_project_coverage_ratio"
       ],
       "source_ids": [
         "SOURCE-REGISTRY",
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+        "PROVISIONAL-BOUNDARY-BASIS",
         "STD-ARCH-DEPTH-GAP",
-        "AI-CONTENT-LABEL-2025"
+        "AI-CONTENT-LABEL-2025",
+        "HAIDIAN-JZ-PHASE2-OPEN-2026",
+        "HAIDIAN-AI-TRIAL-FIELD-2026",
+        "HAIDIAN-JZ-MIDTERM-2026",
+        "HAIDIAN-15FYP-2026"
       ],
       "assumption_ids": [
         "A-BOUNDARY-001",
         "A-CONTROLS-001",
         "A-CULTURE-CONTENT-006",
-        "A-EXTERNAL-COLLAB-005"
+        "A-EXTERNAL-COLLAB-005",
+        "A-POST-OPENING-007",
+        "A-SITE-LOCATION-008"
       ],
       "self_check_ids": [
         "RISK_AND_SOURCE_BOUNDARIES",
         "BOUNDARY_TRUST"
       ],
-      "evidence_summary_zh": "十类风险覆盖边界、规划、空间表达、公共利益、AI 数据、安全韧性、文化版权、协同、运营与工具边界。"
+      "evidence_summary_zh": "风险覆盖边界、规划、空间表达、公共利益、AI 数据、安全韧性、文化版权、协同、运营、工具与开园后基线；公开网页只支持桌面判断，现场审计与竣工核验为 0，权利状态继续 not_fully_cleared。"
     }
   ]
 }

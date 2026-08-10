@@ -1,4 +1,6 @@
+import json
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -6,7 +8,14 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
-from auto_review_queue import WorkerError, ci_state, decide, submission_dir_from_files  # noqa: E402
+from auto_review_queue import (  # noqa: E402
+    WorkerError,
+    ci_state,
+    decide,
+    load_cached_review,
+    submission_dir_from_files,
+)
+from generate_submissions_data import package_sha256  # noqa: E402
 
 
 class AutoReviewQueueTests(unittest.TestCase):
@@ -97,6 +106,92 @@ class AutoReviewQueueTests(unittest.TestCase):
                 }
             ),
         )
+
+    def test_ci_state_uses_latest_validation_run(self) -> None:
+        self.assertEqual(
+            "success",
+            ci_state(
+                {
+                    "statusCheckRollup": [
+                        {
+                            "name": "submission-validation",
+                            "status": "COMPLETED",
+                            "conclusion": "FAILURE",
+                            "startedAt": "2026-08-08T15:00:00Z",
+                        },
+                        {
+                            "name": "submission-validation",
+                            "status": "COMPLETED",
+                            "conclusion": "SUCCESS",
+                            "startedAt": "2026-08-08T16:00:00Z",
+                        },
+                    ]
+                }
+            ),
+        )
+        self.assertEqual(
+            "pending",
+            ci_state(
+                {
+                    "statusCheckRollup": [
+                        {
+                            "name": "submission-validation",
+                            "status": "COMPLETED",
+                            "conclusion": "SUCCESS",
+                            "startedAt": "2026-08-08T15:00:00Z",
+                        },
+                        {
+                            "name": "submission-validation",
+                            "status": "IN_PROGRESS",
+                            "conclusion": "",
+                            "startedAt": "2026-08-08T16:00:00Z",
+                        },
+                    ]
+                }
+            ),
+        )
+
+    def test_reuses_only_complete_matching_exact_head_audit(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            checkout = Path(temp_dir) / "checkout"
+            submission = checkout / "submissions" / "alice" / "plan"
+            submission.mkdir(parents=True)
+            (submission / "proposal.md").write_text("proposal", encoding="utf-8")
+            (submission / "manifest.json").write_text('{"files": []}', encoding="utf-8")
+            digest = package_sha256(submission)
+            audit = Path(temp_dir) / "audit"
+            audit.mkdir()
+            review = {
+                "submission_dir": "submissions/alice/plan",
+                "mandatory_rejection": {"result": "pass"},
+                "gate_checks": {
+                    name: {"status": "pass"}
+                    for name in [
+                        "deterministic_validation",
+                        "spatial_review",
+                        "visual_review",
+                        "professional_evidence_review",
+                    ]
+                },
+            }
+            decision = {
+                "submission_dir": "submissions/alice/plan",
+                "reviewed_package_sha256": digest,
+                "weighted_score_100": 61,
+                "dry_run": False,
+                "model_output_schema_valid": True,
+            }
+            (audit / "ai-review.json").write_text(json.dumps(review), encoding="utf-8")
+            (audit / "ai-decision.json").write_text(json.dumps(decision), encoding="utf-8")
+            (audit / "pr-comment.md").write_text("review", encoding="utf-8")
+
+            cached = load_cached_review(audit, "submissions/alice/plan", checkout, 60)
+            self.assertIsNotNone(cached)
+            assert cached is not None
+            self.assertEqual("accept", cached[2].action)
+
+            (submission / "proposal.md").write_text("updated", encoding="utf-8")
+            self.assertIsNone(load_cached_review(audit, "submissions/alice/plan", checkout, 60))
 
 
 if __name__ == "__main__":

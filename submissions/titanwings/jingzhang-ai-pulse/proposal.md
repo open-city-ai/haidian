@@ -2,6 +2,7 @@
 title: "智脉京张：百年京张AI创新带总体城市设计与场景运营概念方案"
 author_github: "titanwings"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「智脉京张（JINGZHANG AIPULSE）」为总体概念，沿京张铁路遗址公园主轴构建“一带三核双翼、蓝绿复合环、多点场景网络”的空间结构，对众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区开展详细设计，并以命名体系、6个全球生态案例、12张AI场景卡、6类用户画像、4处朝圣地标、文化叙事与全球AI活动运营机制完整回应面向智能体任务书。全部空间建议均为概念建议与参考方案，可供专业团队深化研究。"
 tracks: ["ai-origin-community", "jingzhang-heritage-narrative", "enterprise-services-ecosystem"]

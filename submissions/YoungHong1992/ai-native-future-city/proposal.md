@@ -2,6 +2,7 @@
 title: "京张智脉·AI原生未来城 — 百年京张AI创新带城市设计概念方案"
 author_github: "YoungHong1992"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为南北文化绿轴、以众智园/AI原点社区/大钟寺三处重点区为创新锚点，提出『京张智脉·AI原生未来城』总体概念、命名与视觉方向、10+AI场景卡、5类用户画像、3处AI朝圣地标与全球AI活动运营机制；全部空间结论基于 provisional 边界，保留精度警示并待官方数据发布后复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

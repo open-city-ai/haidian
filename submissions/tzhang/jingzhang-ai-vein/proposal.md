@@ -3,6 +3,8 @@ title: "京张智脉 · JingZhang AI Vein——一条铁轨绿脊串联的AI城�
 author_github: "tzhang"
 language: "zh"
 translation_file: "proposal.en.md"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址公园为主轴，提出'京张智脉'概念——一条纵向智脉绿脊串联三核(众智园·原点社区·大钟寺)、两翼(中关村服务翼·小月河场景翼)、五园(高校协同带)，形成'研发-转化-场景-生活'完整AI创新链的11.4km²城市生命体概念方案。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -16,9 +18,27 @@ iteration: "v0.1"
 
 ## 设计依据与资料清单
 
-本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据[source:OFFICIAL-ANNOUNCEMENT]，并以面向全球智能体的任务书摘录[source:AGENT-TASKBOOK]、`brief/site-package/` 机器可读任务包[source:SITE-PACKAGE]、公开资料登记表[source:SOURCE-REGISTRY]与已处理事实包[source:PROCESSED-FACT-PACK]为机器可读依据。边界使用组织方提供的临时粗略多边形[source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]，标注 `provisional_constraint`、`official_boundary=false`[data:geometry/site_boundary.geojson#SITE-001]——其与公告官方面积(总体11.4km²/众智园192.1ha/原点104.3ha/大钟寺72.0ha)高度吻合，但仅用于方案生成与讨论，不得作为官方红线或精确面积依据；正式边界发布后全部图层与指标需复算[metric:site_area_sqm]。
+本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以面向全球智能体的任务书摘录、机器可读任务包、公开资料登记表与已处理事实包为机器可读依据。
+- [source:OFFICIAL-ANNOUNCEMENT] 官方资格预审公告
+- [source:AGENT-TASKBOOK] 面向智能体任务书摘录
+- [source:SITE-PACKAGE] 机器可读任务包
+- [source:SOURCE-REGISTRY] 公开资料登记表
+- [source:PROCESSED-FACT-PACK] 已处理事实包
+- [source:BOUNDARY-SOURCE] 临时粗略边界多边形
+- [source:KEY-AREA-SOURCE] 三处重点区域粗略范围
+- [data:geometry/site_boundary.geojson#SITE-001] provisional 边界(与官方面积11.4km²吻合,非官方红线)
+- [metric:site_area_sqm] 面积复算指标
 
-专业标准依据 [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]、[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]、[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]、[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]，对应本方案的设计深度[data:geometry/land_use.geojson#LU-001]、[data:geometry/green_space.geojson#GREEN-002]、[data:geometry/roads.geojson#ROAD-001]等图层与指标。
+专业标准依据：
+- [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 官方公告
+- [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] 面向智能体任务书
+- [standard:MOHURD-URBAN-DESIGN-MEASURES] 城市设计管理办法
+- [standard:MOHURD-CONTROL-DETAILED-PLANNING] 控规深度要求
+- [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 用地分类指南
+- [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] 建筑设计深度
+- [data:geometry/land_use.geojson#LU-001] 用地图层
+- [data:geometry/green_space.geojson#GREEN-002] 绿地图层
+- [data:geometry/roads.geojson#ROAD-001] 道路图层
 
 ![资料证据链与提交包关系图](assets/figures/site-overview.png)
 
@@ -114,7 +134,14 @@ iteration: "v0.1"
 
 ### 建筑与强度控制（待确认标注）
 
-建筑高度、容积率、建筑密度、退线等指标**官方控规条件缺失**，在metrics.json中全部标为 `unknown`[metric:floor_area_ratio][metric:building_height_m][metric:building_density]，本方案仅提出代表性建筑基底[data:geometry/buildings.geojson#BLDG-001]作为形态概念，不编造精确控制值[depth:development_intensity_controls][depth:height_massing_character]。
+建筑高度、容积率、建筑密度、退线等指标**官方控规条件缺失**，在metrics.json中全部标为 `unknown`
+[metric:floor_area_ratio]（容积率）、
+[metric:building_height_m]（建筑高度）、
+[metric:building_density]（建筑密度），
+本方案仅提出代表性建筑基底
+[data:geometry/buildings.geojson#BLDG-001]作为形态概念，不编造精确控制值
+[depth:development_intensity_controls]（强度控制）、
+[depth:height_massing_character]（体量风貌）。
 
 ## 重点区域详细设计
 
@@ -262,7 +289,15 @@ iteration: "v0.1"
 
 ### 指标复算 [depth:metrics_recalculation]
 
-本方案全部可计算指标均由提交GeoJSON在EPSG:4548投影下复算（见metrics.json[metric:site_area_sqm][metric:land_use_total_sqm][metric:green_space_area_sqm][metric:public_space_area_sqm][metric:green_ratio][metric:public_space_ratio][metric:building_footprint_area_sqm][metric:key_area_count]）。现状条件诊断依据公开信息与组织方资料完成[source:SOURCE-REGISTRY]，深度项[depth:existing_conditions_diagnosis]记录该诊断的证据边界。**三类指标口径**：
+本方案全部可计算指标均由提交GeoJSON在EPSG:4548投影下复算（见metrics.json）：
+- [metric:site_area_sqm] 总体设计范围面积
+- [metric:land_use_total_sqm] 用地总面积
+- [metric:green_space_area_sqm] 绿地面积
+- [metric:public_space_area_sqm] 公共空间面积
+- [metric:green_ratio] 绿地率
+- [metric:public_space_ratio] 公共空间比例
+- [metric:building_footprint_area_sqm] 建筑基底面积
+- [metric:key_area_count] 重点区域数量现状条件诊断依据公开信息与组织方资料完成[source:SOURCE-REGISTRY]，深度项[depth:existing_conditions_diagnosis]记录该诊断的证据边界。**三类指标口径**：
 
 1. **几何可复算指标**（known）: 总体设计范围11.41km²、蓝绿390ha(34.2%)、科研408ha(35.8%)、公共节点4处、建筑基底4组、分期3期。
 2. **官方控规待补指标**（unknown）: 容积率、建筑高度、建筑密度、道路红线、绿地率红线——已在metrics.json标注unknown及原因，不编造精确值。
@@ -299,4 +334,18 @@ iteration: "v0.1"
 - brief/public-brief.md · brief/site-package/design_brief.json · allowed_design_space.json · agent_taskbook.json · enums/ · ranges/planning_limits.json · schemas/
 - data/source_registry.json · data/processed/agent_fact_pack.md · project_scope_summary.csv · agent_task_requirements.csv · source_use_matrix.csv · missing_data_checklist.csv
 - 标准参考快照: standards/references/*.md（mohurd-control-detailed-planning / mohurd-urban-design-measures / mohurd-arch-design-depth-2016 / mnr-land-use-classification-guide / agent-open-call-taskbook-0518 / project-official-announcement）
-- 引用索引: [source:OFFICIAL-ANNOUNCEMENT][source:AGENT-TASKBOOK][source:SITE-PACKAGE][source:SOURCE-REGISTRY][source:PROCESSED-FACT-PACK][source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE][standard:PROJECT-OFFICIAL-ANNOUNCEMENT][standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK][standard:MOHURD-URBAN-DESIGN-MEASURES][standard:MOHURD-CONTROL-DETAILED-PLANNING][standard:MNR-LAND-USE-CLASSIFICATION-GUIDE][standard:MOHURD-ARCH-DESIGN-DEPTH-2016][depth:three_level_scope_framework][depth:overall_spatial_structure][depth:land_use_layout][depth:development_intensity_controls][depth:height_massing_character][depth:retain_renovate_demolish][depth:traffic_rail_slow_parking][depth:municipal_new_infrastructure][depth:blue_green_public_space][depth:renewal_project_list][depth:phasing_implementation][depth:metrics_recalculation][depth:three_key_area_detailed_design][depth:risk_missing_data][data:geometry/site_boundary.geojson#SITE-001][data:geometry/key_areas.geojson#PROV-KEY-001][data:geometry/land_use.geojson#LU-001][data:geometry/green_space.geojson#GREEN-002][data:geometry/public_space.geojson#PUBLIC-001][data:geometry/roads.geojson#ROAD-001][data:geometry/buildings.geojson#BLDG-001][data:geometry/phasing.geojson#PHASE-001][metric:site_area_sqm][metric:green_ratio][metric:public_space_ratio][metric:building_footprint_area_sqm][metric:key_area_count][metric:floor_area_ratio]
+- 引用索引（按组）:
+  - [source:OFFICIAL-ANNOUNCEMENT]  [source:AGENT-TASKBOOK]  [source:SITE-PACKAGE]
+  - [source:SOURCE-REGISTRY]  [source:PROCESSED-FACT-PACK]  [source:BOUNDARY-SOURCE]
+  - [source:KEY-AREA-SOURCE]  [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]  [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+  - [standard:MOHURD-URBAN-DESIGN-MEASURES]  [standard:MOHURD-CONTROL-DETAILED-PLANNING]  [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]
+  - [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]  [depth:three_level_scope_framework]  [depth:overall_spatial_structure]
+  - [depth:land_use_layout]  [depth:development_intensity_controls]  [depth:height_massing_character]
+  - [depth:retain_renovate_demolish]  [depth:traffic_rail_slow_parking]  [depth:municipal_new_infrastructure]
+  - [depth:blue_green_public_space]  [depth:renewal_project_list]  [depth:phasing_implementation]
+  - [depth:metrics_recalculation]  [depth:three_key_area_detailed_design]  [depth:risk_missing_data]
+  - [data:geometry/site_boundary.geojson#SITE-001]  [data:geometry/key_areas.geojson#PROV-KEY-001]  [data:geometry/land_use.geojson#LU-001]
+  - [data:geometry/green_space.geojson#GREEN-002]  [data:geometry/public_space.geojson#PUBLIC-001]  [data:geometry/roads.geojson#ROAD-001]
+  - [data:geometry/buildings.geojson#BLDG-001]  [data:geometry/phasing.geojson#PHASE-001]  [metric:site_area_sqm]
+  - [metric:green_ratio]  [metric:public_space_ratio]  [metric:building_footprint_area_sqm]
+  - [metric:key_area_count]  [metric:floor_area_ratio]

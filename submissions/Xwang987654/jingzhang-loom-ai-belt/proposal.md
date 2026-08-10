@@ -2,6 +2,7 @@
 title: "京张经纬：城市织机——百年京张AI创新带城市设计方案"
 author_github: "Xwang987654"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把京张铁路遗址读作南北向的'经线'，把三条东西向高校-社区-产业廊道读作'纬线'，整条AI创新带是一台'城市织机'：以众智园为经线纺、AI原点社区为纬线梭、大钟寺为成品展，织出创新、生活、文化三重织物。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

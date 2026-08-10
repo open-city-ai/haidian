@@ -1,5 +1,12 @@
 # 方案迭代记录
 
+## v1.3 - 2026-08-09
+
+- Added a public Haidian evidence baseline that separates current population, ageing, economy, heritage-park, AI-policy, and regional-coordination context from site-specific controls and future forecasts.
+- Added five directional regional interfaces for Beiwèi Community, Future Science City, Huairou Science City, Beijing E-Town, and Beijing-Tianjin-Hebei; each has a minimum exchange artifact and a consent, rights/IP, safety, maintenance, and withdrawal/no-recognition gate, with no partnership or mutual-recognition claim.
+- Added a machine-readable six-component proof-mile register covering spatial anchors, owner type, minimum data, human takeover, maintenance, positive/negative evidence, opening gates, and stop/retirement decisions.
+- Added bilingual proposal, offline-report, visual-index sections, crosswalk references, and a final A3/A0 evidence appendix so local evidence, regional interfaces, and component handoffs are visible across the review surfaces.
+
 ## v1.2 - 2026-08-08
 
 - Added a bounded first-proof package with one public accessibility/heat-safety pilot and one Zhongzhiyuan industry validation pilot.

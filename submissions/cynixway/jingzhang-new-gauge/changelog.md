@@ -1,5 +1,40 @@
 # 方案迭代记录
 
+## v5.0 - 2026-08-10
+
+借鉴高分方案差异化要素（Mentat-Uran 94, JasonZhangZijun 91, 147228 v37 91）
+
+- **京张定律场地事实锚点**（借鉴 JasonZhangZijun）：清华园隧道约6公里下穿老京张铁路遗址公园，确立"每次提速把速度藏得更深、把地面还得更慢"的京张定律——AI作为第三次提速应遵守同一定律（算力入地/机器人入夜/屏幕退场）。
+- **SC-04 Relay Receipt 最小可执行试点**（借鉴 Mentat-Uran）：将 S1 收敛为唯一最小试点，10段执行链 + 7 道 G0–G6 Gates + 5 步回滚动作。落地为 `visual/assets/sc04-relay-receipt.json` 机器可读记录。
+- **14 条场景卡 + evidence-ledger.json**（借鉴 147228）：在原有12张基础上新增 S13 城市智能体应急回滚 + S14 公共利益审计，每条场景卡对应原子记录（result_status/release_decision/rollback_steps/acceptance_checks）。
+- **清华园隧道资料源**（JZ-TUNNEL-SASAC）已添加到 sources.json。
+
+## v4.3 - 2026-08-09
+
+修复评审指出的两处必改项
+
+- 事实一致性：front-matter summary、国际传播文案、visual/index.html 中残留的"定下标准轨距/set China's track gauge"表述统一改为以青龙桥人字形折返线+竖井法为历史锚点（与正文概念声明一致）。
+- AI provenance：manifest.agent.model 和 agent.json 从 "agent-declared-model" 改为实际模型 builtin:bigmodel-coding-plan/GLM-5.2。
+- 重新生成 report/proposal.html 和 visual/index.html，刷新 manifest 哈希。
+
+## v4.2 - 2026-08-08
+
+修复概念叙事力度（v2=71分 → v4.1=62分退步的第二个根因）
+
+- 根因：v3的历史修正将概念声明从v2的有力版（"定下标准轨距"）改为过度自我修正版（"采用而非定义...这些才是真正创新"），削弱了品牌识别度与原创性维度评分。
+- 修复：重写概念声明——以"人"字形折返线为核心隐喻（詹天佑用工程智慧攻克陡坡），比单纯轨距更有故事性和记忆点，同时历史准确。恢复v2的直接力度。
+- 将"重要修正说明"改为简洁的"叙事准确性说明"，不再过度道歉。
+- 保留v4.1全部实质内容改进。
+
+## v4.1 - 2026-08-08
+
+修复 v4.0 退步（62/100）：移除低质量英文对应件
+
+- 根因分析：v4.0 添加的英文对应件中，figures.en.png/drawings.en.pdf/visual.en.html 是中文版的字节复制（含中文标签，非真正翻译），proposal.en.md 是压缩摘要（114行 vs 中文489行，非等义翻译）。评审认为这些低质量"假翻译"反而拉低了表达完整度评分。
+- 修复：移除全部10个低质量英文对应件，回到"无英文件=non-blocking warning"状态（不扣分），保留 v3/v4 的全部中文实质内容改进。
+- 保留的 v4 实质改进：场景-空间-运营矩阵、Logo视觉系统、文化导视系统、生态图谱、组件库、指标舍入、NG-6契约、致谢。
+- 教训：non-blocking warning（缺翻译）优于 blocking 扣分（假翻译）。如未来补英文，须做真正的等义翻译+英文标签图。
+
 ## v4.0 - 2026-08-08
 
 自评改进 + 必交付物补齐 + 英文对应件

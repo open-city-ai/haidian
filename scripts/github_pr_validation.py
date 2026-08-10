@@ -21,15 +21,25 @@ import urllib.request
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from validate_submission import ValidationReport, format_report, validate_submission
+from validate_submission import (
+    PARTICIPANT_PROTECTED_GLOBAL_FILES,
+    PROTECTED_REVIEW_ARTIFACT_PREFIXES,
+    ValidationReport,
+    format_report,
+    validate_submission,
+)
 
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
 MAX_API_ATTEMPTS = 4
+MAX_DOWNLOAD_BYTES = 10 * 1024 * 1024
 MAX_RETRY_DELAY_SECONDS = 30
 RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
-RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503, 504})
+# A fork's Contents API can briefly lag the PR event's head commit. Keep 404
+# retries bounded and limited to GETs; a permanent missing file still fails
+# with the path and head-specific download error after the retry budget.
+RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -79,6 +89,15 @@ def _retry_delay_seconds(error: urllib.error.HTTPError, attempt: int) -> float:
         except ValueError:
             pass
     return min(MAX_RETRY_DELAY_SECONDS, float(2**attempt))
+
+
+def _is_download_not_found(error: Exception, path: str) -> bool:
+    """Recognize an optional manifest asset that is still absent after retries."""
+    if isinstance(error, urllib.error.HTTPError):
+        return error.code == 404
+    return isinstance(error, RuntimeError) and str(error).startswith(
+        f"GitHub API download {path} failed with HTTP 404:"
+    )
 
 
 class GitHubClient:
@@ -135,7 +154,7 @@ class GitHubClient:
         path: str,
         ref: str,
         destination: Path,
-        max_bytes: int = 6 * 1024 * 1024,
+        max_bytes: int = MAX_DOWNLOAD_BYTES,
     ) -> None:
         # Fetch raw bytes through the Contents API on api.github.com. Unlike the
         # github.com raw_url, this honors the Bearer token on private repos (the
@@ -160,8 +179,6 @@ class GitHubClient:
                     break
             except urllib.error.HTTPError as error:
                 message = _http_error_message(error)
-                if error.code == 404:
-                    raise
                 if attempt + 1 >= MAX_API_ATTEMPTS or not _is_retryable_http_error(
                     "GET", error, message
                 ):
@@ -233,6 +250,21 @@ def next_link(link_header: str) -> str | None:
     return None
 
 
+def is_current_pull_request_head(
+    client: GitHubClient, issue_number: int, expected_sha: str
+) -> bool:
+    """Return whether the event SHA is still the PR's current head."""
+    payload, _ = client.request(
+        "GET", f"/repos/{client.repository}/pulls/{issue_number}"
+    )
+    if not isinstance(payload, dict):
+        raise RuntimeError("GitHub pull request response was not an object")
+    head = payload.get("head")
+    if not isinstance(head, dict) or not isinstance(head.get("sha"), str):
+        raise RuntimeError("GitHub pull request response did not include head.sha")
+    return head["sha"] == expected_sha
+
+
 def proposal_paths_for(changed_files: list[str]) -> set[str]:
     proposals = set()
     for filename in changed_files:
@@ -243,11 +275,11 @@ def proposal_paths_for(changed_files: list[str]) -> set[str]:
 
 
 def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str]:
-    """Exclude maintainer-authorized removals from content validation."""
+    """Return paths present in the PR checkout for content validation."""
     return [
         item["filename"]
         for item in files
-        if not (maintainer_bypass and item.get("status") == "removed")
+        if item.get("status") != "removed"
     ]
 
 
@@ -263,7 +295,11 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
 
 
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
-    """Return true only when current and renamed paths are outside submissions/."""
+    """Return true only for ordinary non-submission paths.
+
+    Maintainer-controlled gallery data and local review artifacts must still
+    enter the strict validator even though they live outside submissions/.
+    """
     paths: list[str] = []
     for item in files:
         if isinstance(item, dict):
@@ -275,7 +311,12 @@ def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
                 paths.append(previous_filename)
         elif isinstance(item, str):
             paths.append(item)
-    return bool(paths) and all(filename.split("/", 1)[0] != "submissions" for filename in paths)
+    return bool(paths) and all(
+        filename.split("/", 1)[0] != "submissions"
+        and filename not in PARTICIPANT_PROTECTED_GLOBAL_FILES
+        and not filename.startswith(PROTECTED_REVIEW_ARTIFACT_PREFIXES)
+        for filename in paths
+    )
 
 
 def safe_manifest_paths(manifest: object) -> set[str]:
@@ -326,8 +367,8 @@ def hydrate_proposal_package(
                 head_sha,
                 destination,
             )
-        except urllib.error.HTTPError as exc:
-            if exc.code != 404:
+        except (urllib.error.HTTPError, RuntimeError) as exc:
+            if not _is_download_not_found(exc, f"{proposal_dir}/{relative}"):
                 raise
 
 
@@ -357,7 +398,20 @@ def main() -> int:
     head_sha = pull_request["head"]["sha"]
     client = GitHubClient(token, repository)
 
+    if not is_current_pull_request_head(client, pr_number, head_sha):
+        print(
+            f"Skipping stale validation event for PR #{pr_number}: "
+            f"event head {head_sha} no longer matches the current PR head."
+        )
+        return 0
+
     files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
+    if not is_current_pull_request_head(client, pr_number, head_sha):
+        print(
+            f"Skipping stale validation event for PR #{pr_number}: "
+            f"the PR head changed while its file list was being read."
+        )
+        return 0
     changed_files = [item["filename"] for item in files]
     bypass = [
         item.strip()
@@ -366,6 +420,33 @@ def main() -> int:
     ]
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
+    queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+
+    # Code/docs/test PRs do not need participant-package hydration.  Decide
+    # this immediately after the file listing so a non-submission change
+    # cannot spend API calls downloading its whole diff before receiving the
+    # informational validation comment.
+    if is_non_submission_pr(files):
+        validation = ValidationReport(changed_files=changed_files)
+        validation.add_warning(
+            "non-submission code/docs/test PR; participant package validation was not applicable"
+        )
+        validation_markdown = format_report(validation)
+        comment = (
+            f"{COMMENT_MARKER}\n"
+            "# Haidian Submission Validation\n\n"
+            f"{validation_markdown}\n\n"
+            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+        )
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"event head {head_sha} no longer matches the current PR head."
+            )
+            return 0
+        write_step_summary(comment)
+        client.upsert_comment(pr_number, comment)
+        return 0
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
     try:
@@ -387,23 +468,29 @@ def main() -> int:
                 proposal_path,
             )
 
-        queue_candidate = is_review_queue_candidate(changed_files, pr_author)
-        if is_non_submission_pr(files):
-            validation = ValidationReport(changed_files=changed_files)
-            validation.add_warning(
-                "non-submission code/docs/test PR; participant package validation was not applicable"
-            )
-        elif not validation_files and maintainer_bypass:
+        if not validation_files and (maintainer_bypass or queue_candidate):
             validation = ValidationReport(
                 changed_files=changed_files,
-                maintainer_bypass=True,
+                maintainer_bypass=maintainer_bypass,
             )
-            validation.add_warning(
-                "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
-            )
+            if maintainer_bypass:
+                validation.add_warning(
+                    "maintainer-authorized deletion-only PR; removed files were not executed or content-validated"
+                )
+            else:
+                validation.add_warning(
+                    "participant deletion-only PR; removed files were not content-validated"
+                )
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
         validation_markdown = format_report(validation)
+
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"event head {head_sha} no longer matches the current PR head."
+            )
+            return 0
 
         comment = (
             f"{COMMENT_MARKER}\n"

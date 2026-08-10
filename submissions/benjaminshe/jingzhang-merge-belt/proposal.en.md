@@ -2,6 +2,8 @@
 title: "Jingzhang Merge Belt — One Railway, One Open-Source City"
 author_github: "benjaminshe"
 language: "en"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Using the Git merge as the organizing metaphor, this proposal translates the confluence spirit of the century-old Jing-Zhang Railway into an open-source urban co-creation mechanism: Upstream (Zhongzhiyuan) releases openly, the Maintainer Community (AI Origin Community) converts research into products, and the Release District (Dazhongsi) distributes scenarios; the Jing-Zhang corridor is the mainline, the Zhongguancun Technology Services Wing is infrastructure, and the Xiaoyue River Scenario Enablement Wing is integration testing. Merging is a choice, not a mandate: tributary paths (manual, offline, account-free) remain fully usable, and the Review Chamber embodies final human judgment."
@@ -18,7 +20,7 @@ scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "enterprise-service-c
 
 This proposal takes the *Prequalification Announcement for the International Open Call for the Centennial Jing-Zhang AI Innovation Belt Urban Design*, published on 2026-05-09 by the Haidian Branch of the Beijing Municipal Commission of Planning and Natural Resources, as its primary basis [source:OFFICIAL-ANNOUNCEMENT], and the maintainer-registered provisional boundaries, key areas, enums, metrics, and source inventory under `brief/site-package/` as its machine-readable basis [source:SITE-PACKAGE]. Before generation, the agent read `design_brief.json`, `allowed_design_space.json`, `agent_taskbook.json`, `sources.json`, `ranges/planning_limits.json`, `schemas/`, and `data/source_registry.json`, and used `project_scope_summary.csv`, `agent_task_requirements.csv`, `source_use_matrix.csv`, and `missing_data_checklist.csv` under `data/processed/` to build task, scope, source-use, and data-gap checklists. Every design judgment is decomposed into traceable sources, recomputable metrics, verifiable layers, and human-reviewable assumptions.
 
-The evidence chain of this section cites [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:SITE-PACKAGE], [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK], [source:BOUNDARY-SOURCE], [source:KEY-AREA-SOURCE], and [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK], [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE], [standard:MOHURD-ARCH-DESIGN-DEPTH-2016], checked by [depth:existing_conditions_diagnosis] for baseline diagnosis and data gaps.
+The evidence chain of this section uses [source:OFFICIAL-ANNOUNCEMENT] as its entry, [standard:MOHURD-URBAN-DESIGN-MEASURES] as the professional standard, and [depth:existing_conditions_diagnosis] for baseline diagnosis and data gaps; the full source and standard index lives in sources.json, compliance_matrix.json, standard_matrix.json, and design_depth_matrix.json.
 
 Source registry boundaries: materials with `usable_for_formal="yes"` in `data/source_registry.json` may support formal evidence; `provisional_only` materials are used for generation, visualization, and intake self-check only. This proposal **does not** use any non-public planning drawings, non-public spatial data, or personal private information.
 
@@ -150,7 +152,18 @@ Each card shares a "three-part proof": **Before** — before cameras, QR scans, 
 
 ## Land Use, Building Scale, and Demolish–Renovate–Retain
 
-Land use forms a topologically complete partition of [metric:land_use_zone_count] conceptual zones fully covering the overall design scope without gaps or overlaps (verified by spatial review) [data:geometry/land_use.geojson#LU-001]; every zone uses a statutory land-use code from the permitted set [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] rather than self-invented categories. Composition (recalculated in EPSG:4548): research approx. [metric:landuse_research_area_sqm] m², residential and community services approx. [metric:landuse_residential_area_sqm] m², commercial approx. [metric:landuse_commercial_area_sqm] m², education approx. [metric:landuse_education_area_sqm] m², culture approx. [metric:landuse_culture_area_sqm] m², park/green approx. [metric:landuse_green_open_area_sqm] m², strategic reserve approx. [metric:landuse_reserved_white_area_sqm] m². Layout logic: continuous spine (park/green through the belt), research strong at both cores, jobs–housing interlocking (mid-corridor and east), consumption at the Release district, and reservable growth (annual Public Merge Review roll-out). The current land use is a conceptual partition and does not change existing ownership or use; formal deepening must overlay official parcels, current use, and regulatory-plan maps, then propose block-by-block "retain, minor renewal, functional conversion, comprehensive renewal, or reserve" suggestions with recorded basis and approval paths.
+Land use forms a topologically complete partition of [metric:land_use_zone_count] conceptual zones fully covering the overall design scope without gaps or overlaps (verified by spatial review) [data:geometry/land_use.geojson#LU-001]; every zone uses a statutory land-use code from the permitted set [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] rather than self-invented categories.
+
+Composition (recalculated in EPSG:4548):
+- Research approx. [metric:landuse_research_area_sqm] m²
+- Residential and community services approx. [metric:landuse_residential_area_sqm] m²
+- Commercial approx. [metric:landuse_commercial_area_sqm] m²
+- Education approx. [metric:landuse_education_area_sqm] m²
+- Culture approx. [metric:landuse_culture_area_sqm] m²
+- Park/green approx. [metric:landuse_green_open_area_sqm] m²
+- Strategic reserve approx. [metric:landuse_reserved_white_area_sqm] m²
+
+Layout logic: continuous spine (park/green through the belt), research strong at both cores, jobs–housing interlocking (mid-corridor and east), consumption at the Release district, and reservable growth (annual Public Merge Review roll-out). The current land use is a conceptual partition and does not change existing ownership or use; formal deepening must overlay official parcels, current use, and regulatory-plan maps, then propose block-by-block "retain, minor renewal, functional conversion, comprehensive renewal, or reserve" suggestions with recorded basis and approval paths.
 
 Demolish–renovate–retain applies a "**four-gate merge-request**" process: gate 1 ownership and baseline survey; gate 2 structural, fire, energy, and heritage-value assessment; gate 3 public interest and whole-life carbon comparison; gate 4 statutory procedure and Public Merge Review. No block enters a demolition list without all four gates [depth:retain_renovate_demolish]. Therefore the seven demo blocks express a reversible catalyst package for testing block openness, not approved construction scale — [data:geometry/buildings.geojson#BLDG-001] through BLDG-007 are `capacity_test_only` with `demolition_decision=false`, combined footprint [metric:building_footprint_area_sqm], demo count [metric:catalyst_building_count]; the assumed-floors estimate (A-DEMO-FLOORS-001) expresses only "catalyst package" intensity, not total district floor area.
 
@@ -201,7 +214,26 @@ Long-term operation (agent.6) follows "**one monthly merge log, four quarterly a
 
 ## Indicator System, Area Recalculation, and Compliance Matrix
 
-Indicators fall into three groups. **Spatial-known group** computed directly from current GeoJSON: scope [metric:site_area_sqm], green area [metric:green_space_area_sqm] and ratio [metric:green_ratio], public-space area [metric:public_space_area_sqm] and ratio [metric:public_space_ratio], building capacity footprint [metric:building_footprint_area_sqm], key-area count [metric:key_area_count], plus data-layer extensions: 20 zones with use-segregated areas (research/residential/commercial/education/culture/green/reserve, e.g. [metric:landuse_research_area_sqm]), three-phase areas ([metric:phase1_area_sqm]/[metric:phase2_area_sqm]/[metric:phase3_area_sqm]), road length [metric:road_network_length_m], demo count [metric:catalyst_building_count], scenario cards [metric:scenario_card_count], personas [metric:persona_count], landmarks, and phases [metric:phase_count]; **design-count group** from structured artifacts (work packages [metric:merge_request_count], contributor-ladder stages [metric:contribution_ladder_stage_count]); **statutory-or-operations-unknown group** stays null, including FAR [metric:floor_area_ratio], height, density, setback, approved demolition, total floor area, and tributary parity gap. Every known value has source_files, formula, confidence, and assumptions; every unknown value has a reason.
+Indicators fall into three groups.
+
+**Spatial-known group** computed directly from current GeoJSON:
+- Scope [metric:site_area_sqm]
+- Green area [metric:green_space_area_sqm] and ratio [metric:green_ratio]
+- Public-space area [metric:public_space_area_sqm] and ratio [metric:public_space_ratio]
+- Building capacity footprint [metric:building_footprint_area_sqm]
+- Key-area count [metric:key_area_count]
+- Use-segregated areas: research [metric:landuse_research_area_sqm], etc.
+- Three-phase areas: [metric:phase1_area_sqm]/[metric:phase2_area_sqm]/[metric:phase3_area_sqm]
+- Road length [metric:road_network_length_m]
+- Demo count [metric:catalyst_building_count]
+- Scenario cards [metric:scenario_card_count]
+- Personas [metric:persona_count] and phases [metric:phase_count]
+
+**Design-count group** from structured artifacts: work packages [metric:merge_request_count], contributor-ladder stages [metric:contribution_ladder_stage_count].
+
+**Statutory-or-operations-unknown group** stays null, including FAR [metric:floor_area_ratio], height, density, setback, approved demolition, total floor area, and tributary parity gap.
+
+Every known value has source_files, formula, confidence, and assumptions; every unknown value has a reason.
 
 Recalculation order ([depth:metrics_recalculation]): verify the source roles of site and key areas → project to EPSG:4548 → check full coverage and overlaps of land use → union green, public, and building areas → length of centerlines → write results back into metrics and HTML data attributes. The boundary area is approximately 11,412,825 square meters with medium confidence, not written as an exact official statistic.
 
@@ -217,12 +249,12 @@ This proposal does not claim approval, land ownership, construction scale, or im
 
 ## References
 
-Machine-readable source index: [source:SITE-PACKAGE], [source:SOURCE-REGISTRY], [source:PROCESSED-FACT-PACK], [source:BOUNDARY-SOURCE], [source:KEY-AREA-SOURCE], [source:OFFICIAL-ANNOUNCEMENT], [source:AGENT-TASKBOOK], [source:LINUX-FOUNDATION], [source:APACHE-FOUNDATION], [source:HUGGINGFACE], [source:MOZILLA], [source:SINGAPORE-AI-VERIFY], [source:PUBLIC-PARTICIPATION-CASES].
+Core entry citations are [source:OFFICIAL-ANNOUNCEMENT] and [source:AGENT-TASKBOOK]; the machine-readable source index (official announcement, taskbook, site-package, and background research such as open-source governance and AI evaluation) lives in sources.json; prose keeps only claim-adjacent anchors.
 
-Professional standards index: [standard:PROJECT-OFFICIAL-ANNOUNCEMENT], [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK], [standard:MOHURD-URBAN-DESIGN-MEASURES], [standard:MOHURD-CONTROL-DETAILED-PLANNING], [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE], [standard:MOHURD-ARCH-DESIGN-DEPTH-2016].
+Professional standards index (announcement, taskbook, MOHURD urban-design and control-detailed-planning measures, land-use classification, architectural design depth) lives in standard_matrix.json.
 
-Spatial data index: [data:geometry/site_boundary.geojson#SITE-001], [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/land_use.geojson#LU-001], [data:geometry/buildings.geojson#BLDG-001], [data:geometry/roads.geojson#ROAD-001], [data:geometry/green_space.geojson#GREEN-001], [data:geometry/public_space.geojson#PUBLIC-001], [data:geometry/constraints.geojson#SCENE-01], [data:geometry/phasing.geojson#PHASE-001].
+Spatial data index (boundary, key areas, land use, buildings, roads, green, public space, scenario constraints, phasing) lives in the geometry/ directory and constraints.geojson; prose keeps only claim-adjacent anchors.
 
-Design depth index: [depth:existing_conditions_diagnosis], [depth:three_level_scope_framework], [depth:overall_spatial_structure], [depth:land_use_layout], [depth:development_intensity_controls], [depth:height_massing_character], [depth:retain_renovate_demolish], [depth:traffic_rail_slow_parking], [depth:municipal_new_infrastructure], [depth:blue_green_public_space], [depth:three_key_area_detailed_design], [depth:renewal_project_list], [depth:phasing_implementation], [depth:metrics_recalculation], [depth:risk_missing_data].
+Design-depth index (baseline diagnosis, three-level framework, spatial structure, land use, intensity, character, retain-renovate-demolish, mobility, municipal, blue-green, key areas, renewal projects, phasing, metrics recalculation, risk gaps) lives in design_depth_matrix.json; prose keeps only claim-adjacent anchors.
 
 This proposal also reads `brief/site-package/design_brief.json`, `allowed_design_space.json`, `agent_taskbook.json`, `ranges/planning_limits.json`, `standards/standards.json`, `data/source_registry.json`, `data/processed/agent_fact_pack.md`, and `docs/terminology-glossary.md`. Final deliverables include proposal.md (with the en counterpart), nine GeoJSON layers, metrics/assumptions/sources and three matrices, self-check, five core figures, the A3 booklet, the A0 boards, the offline report, and the offline overview page.

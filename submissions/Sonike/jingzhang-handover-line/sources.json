@@ -6,7 +6,8 @@
     "regulatory_baseline": "现行法律法规与规范性文件，用于校验本方案红线是否与法定义务一致；本方案只作合规对照，不作法律意见。",
     "provisional_geometry": "临时几何，只支持生成、自检与比较，不得作为法定红线或精确面积依据。",
     "background_only": "行政或城市尺度的公开统计事实，只用于校准设计问题与服务口径，不可空间分配、不可作为走廊绩效目标。",
-    "mechanism_reference": "境外机构公开材料，只提取组织机制，不移植绩效、土地制度或治理安排。"
+    "mechanism_reference": "境外机构公开材料，只提取组织机制，不移植绩效、土地制度或治理安排。",
+    "build_toolchain": "生成本包成果所使用的软件与字体本身。登记它们是为了让权利与可复现性可被独立核验，而不是把它们当作设计依据。"
   },
   "sources": [
     {
@@ -183,6 +184,99 @@
         "法定规划、政府行动或投资承诺"
       ],
       "limitations": "是清权任务摘录，正式审定仍归人类专业团队。"
+    },
+    {
+      "id": "FONT-PDF-BASE14",
+      "source_type": "standard_resource",
+      "evidence_class": "build_toolchain",
+      "authority_level": "T0",
+      "title": "PDF 内置基础字体（Helvetica / Helvetica-Bold / Helvetica-BoldOblique）",
+      "publisher": "PDF 规范内置基础十四款字体",
+      "retrieved_at": "2026-08-09",
+      "accessed_date": "2026-08-09",
+      "collection_method": "由 reportlab 以标准字体名引用；用 `pdffonts` 对四套 PDF 逐一核验，结果为 type=Type 1、encoding=WinAnsi、emb=no。",
+      "spatial_coverage": "不适用",
+      "temporal_coverage": "不适用",
+      "license_or_reuse_terms": "PDF 规范内置基础字体，按字体名引用，不在文件中嵌入或再分发任何字体文件，因此本包不承载字体授权义务。",
+      "usage": "图纸中全部拉丁文字（页眉编号、页脚、英文标签）。",
+      "usable_for": [
+        "证明拉丁文字的排版不依赖任何需授权的第三方字体文件"
+      ],
+      "not_usable_for": [
+        "证明 CJK 字形的来源",
+        "证明打印效果或字距在任意阅读器中一致"
+      ],
+      "limitations": "emb=no 意味着字形由阅读器提供；不同阅读器的度量差异可能造成轻微版面位移。"
+    },
+    {
+      "id": "FONT-ADOBE-CID",
+      "source_type": "standard_resource",
+      "evidence_class": "build_toolchain",
+      "authority_level": "T0",
+      "title": "Adobe Asian 标准 CID 字体（STSong-Light、Song）",
+      "publisher": "Adobe Asian 标准字体与 CMap 集",
+      "retrieved_at": "2026-08-09",
+      "accessed_date": "2026-08-09",
+      "collection_method": "由 reportlab 的 UnicodeCIDFont 与 PyMuPDF 的标准 CJK 字体名引用；`pdffonts` 核验结果为 CID Type 0、encoding=UniGB-UCS2-H 或 UniGB-UTF16-H、emb=no。",
+      "spatial_coverage": "不适用",
+      "temporal_coverage": "不适用",
+      "license_or_reuse_terms": "以标准 CID 字体名与 CMap 引用，不嵌入、不再分发字体文件，本包不承载字体授权义务。",
+      "usage": "图纸中全部中文文字。",
+      "usable_for": [
+        "证明中文排版未嵌入或再分发任何字体文件"
+      ],
+      "not_usable_for": [
+        "保证任意阅读器都能显示中文",
+        "证明字形外观与设计稿完全一致"
+      ],
+      "limitations": "emb=no 且为 CJK：**阅读器必须自带中文字体包，否则中文可能不显示**。这是本包成果的已知阅读依赖，需在正式出版前改为嵌入获授权字体。"
+    },
+    {
+      "id": "FONT-STHEITI-RASTER",
+      "source_type": "standard_resource",
+      "evidence_class": "build_toolchain",
+      "authority_level": "T0",
+      "title": "macOS 系统字体 STHeiti Medium.ttc（仅用于栅格图件）",
+      "publisher": "随 macOS 分发的系统字体",
+      "retrieved_at": "2026-08-09",
+      "accessed_date": "2026-08-09",
+      "collection_method": "Pillow 在本机以系统字体路径加载并直接栅格化为 PNG 像素；生成物为字形图像，包内不含 .ttc/.ttf 文件。",
+      "spatial_coverage": "不适用",
+      "temporal_coverage": "不适用",
+      "license_or_reuse_terms": "仅在本机渲染阶段使用，输出为栅格像素；未复制、未嵌入、未再分发字体文件本身。",
+      "usage": "assets/figures/ 下全部 PNG 图件的文字。",
+      "usable_for": [
+        "说明图件文字的渲染来源"
+      ],
+      "not_usable_for": [
+        "主张对该字体的任何权利",
+        "在其他机器上复现完全一致的字形"
+      ],
+      "limitations": "在未安装该字体的机器上重跑生成脚本会得到不同字形；图件因此按当前栅格产物归档，而非按运行时重绘。"
+    },
+    {
+      "id": "TOOLCHAIN-BUILD",
+      "source_type": "agent_generated",
+      "evidence_class": "build_toolchain",
+      "authority_level": "T0",
+      "title": "本包成果的生成工具链与依赖许可",
+      "publisher": "本投稿自制",
+      "retrieved_at": "2026-08-09",
+      "accessed_date": "2026-08-09",
+      "collection_method": "逐个依赖读取其自身分发元数据（importlib.metadata）取版本与许可，不引用二手说法。",
+      "spatial_coverage": "不适用",
+      "temporal_coverage": "不适用",
+      "license_or_reuse_terms": "Python 3.12.13（PSF）；reportlab 4.4.3（BSD）；Pillow 12.3.0（MIT-CMU）；shapely 2.1.2（BSD 3-Clause）；pyproj 3.7.2（MIT）；PyMuPDF 1.27.2.3（AGPL-3.0 或 Artifex 商业许可，二选一）。",
+      "usage": "几何复算、指标复算、图件栅格渲染、PDF 排版与页脚重刷。",
+      "usable_for": [
+        "核验成果由哪些工具生成及各自许可",
+        "判断是否存在需随成果传播的许可义务"
+      ],
+      "not_usable_for": [
+        "证明生成脚本本身已随包提交",
+        "证明在他机可逐字节复现"
+      ],
+      "limitations": "PyMuPDF 为 AGPL/商业双许可，本包仅将其作为**工具**用于页脚文本重刷，未分发其代码，也未将其链接进任何交付物；若后续需分发生成脚本，须先确认该依赖的分发条件。生成脚本目前不在包内，因此本包不主张逐字节可复现，只主张几何与指标可由 metrics.json 的公式与源文件独立复算。"
     },
     {
       "id": "HAIDIAN-2025-STATISTICAL-BULLETIN",

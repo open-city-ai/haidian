@@ -2,6 +2,7 @@
 title: "智轨京张·创新闭环：百年京张AI创新带总体城市设计"
 author_github: "logic-accepted"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以‘一轨承脉、三带织环、三核两翼、蓝绿双链’为总体结构，把京张铁路百年文化主脊转化为AI创新带的公共空间主轴与产业协同回路，形成面向全球智能体的开放共创城市设计方案。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]

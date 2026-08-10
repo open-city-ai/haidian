@@ -2,6 +2,7 @@
 title: "源线 The Origin Line：百年京张AI创新带总体城市设计方案"
 author_github: "leepokai"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以「源」为总概念，把 1909 年京张铁路的自主创新起点、中关村的创业原点与开源协作的开放原点叠合为一条 9 公里的「源线」；通过一廊三段、三区两翼、十二处 AI 场景驿站的概念方案，把 11.4 平方公里总体设计范围组织为可复算、可体验、可持续运营的 AI 创新街区。"
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "ai-traffic-walkability"]

@@ -7,7 +7,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Core concept 'One Track, A Century Relay': translating the Jing-Zhang Railway's spirit of independent innovation into the spatial grammar of the AI era — one belt (Jing-Zhang Smart Rail), three stations (Origin Station at the AI Origin Community, Acceleration Station at Zhongzhiyuan, Bell Station at Dazhongsi), two wings (Zhongguancun tech-service wing, Xiaoyuehe scenario wing). All machine-readable layers and metrics are derived from the repository's provisional boundary; the package covers announcement tasks 1.3/1.4/1.5 and agent tasks agent.1-6, with 12 scenario cards, 5 personas, 3 AI pilgrimage landmarks, 7 global cases and a three-phase framework. Every spatial suggestion is conceptual; missing official redlines and controls are disclosed as pending."
 tracks: ["jingzhang-heritage-narrative", "ai-origin-community", "enterprise-services-ecosystem"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "ai-cultural-guide", "ai-health-service-navigation", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v0.1"
+iteration: "v0.3"
 ---
 
 # A Century on the Smart Rail — Urban Design for the Centennial Jing-Zhang AI Innovation Belt
@@ -38,9 +38,42 @@ Methodologically the three levels follow [depth:three_level_scope_framework]: re
 
 **Overall concept: One Track, A Century Relay.** In 1909 the Jing-Zhang Railway opened — the first trunk railway independently surveyed, designed and built by China. Today the same corridor carries an AI innovation belt. The proposal establishes "independent innovation" as the century-spanning geo-narrative spine and translates railway semantics (stations, rails, corridors, level crossings, timetables) into the belt's spatial grammar: the master name **Jing-Zhang Smart Rail** with a four-level naming system — belt (Jing-Zhang Smart Rail), stations (Origin / Acceleration / Bell Station), corridor (Smart Rail Corridor), nodes (Origin Stele / Bell of Intelligence / Tianyou New-Track). All names are original; no enterprise, park or trademark names are copied. Logo direction: a zigzag motif (abstraction of the switchback line + letter Z + data pulse), primary color Jing-Zhang teal, accent Smart-Rail glow. This responds to agent.1 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
-**Three positionings, five functions, three-area-two-wing loop**: the century Jing-Zhang culture belt is carried by narrative and pilgrimage systems; the urban AI life experience belt by scenario cards and public space; the AI integration innovation belt by the full-stack system and ecosystem mechanisms. The loop: ideas originate at the Origin Community → accelerate at Zhongzhiyuan → arrive in the city at Dazhongsi → factor allocation via the Zhongguancun wing → scenario validation along the Xiaoyuehe wing → feedback to the origin; spatialized in [data:geometry/phasing.geojson#PHASE-01].
+**Three positionings, five functions, three-areas-two-wings loop**: the three positionings are the Centennial Jing-Zhang culture belt (carried by narrative and pilgrimage systems), the urban AI living-experience belt (carried by scenario cards and public space), and the AI-integration innovation belt (carried by the full-stack system and ecosystem mechanisms). The five functions are explicitly enumerated and mapped to chapters and spatial carriers below [source:AGENT-TASKBOOK]:
 
-**Global AI ecosystem case benchmarks (7 publicly verifiable cases)**: San Francisco SoMa/Mission Bay (anchor institutions + mixed blocks), London King's Cross (hub-gateway renewal with university linkage), Paris Station F (super-incubator in existing fabric), Singapore one-north (phased industry-city integration), Seoul DDP (cultural landmark-led), Shenzhen Bay (public-space quality), and Zhongguancun's own evolution (respecting indigenous paths). Benchmarking extracts space-ecosystem-governance mechanisms only, without copying form or fabricating data — responding to agent.2, organized per [depth:overall_spatial_structure] and [source:SOURCE-REGISTRY].
+| Five functions (taskbook) | Carried by this proposal | Main spatial carrier |
+|---|---|---|
+| AI full-stack independent innovation system | Zhongzhiyuan Acceleration Station: compute/eval clusters, scenario marshalling yard, green compute | Zhongzhiyuan (192.1 ha) |
+| World-class AI innovation ecosystem | Origin Community: scholar-developer mixed blocks, open-source market, researcher collaboration stations | Beijing AI Origin Community (104.3 ha) |
+| AI+ scenario empowerment new paradigm | 12 Scenario Passports and the Departure Protocol (incl. 3 industry-test cards) | All three stations and two wings |
+| Intelligent AI vibrant city | Urban AI living-experience belt: Smart Rail Corridor, smart-native commerce, waterfront test strip | Dazhongsi (72.0 ha) + Xiaoyuehe wing |
+| Global AI governance voice | Governance Plaza, Bell Witness, model cards / algorithm registry, annual governance forum | Zhongzhiyuan Governance Plaza + Dazhongsi Bell of Intelligence |
+
+The loop: ideas originate at the Origin Community → accelerate at Zhongzhiyuan → arrive in the city at Dazhongsi → factor allocation via the Zhongguancun wing → scenario validation along the Xiaoyuehe wing → feedback to the origin; spatialized in [data:geometry/phasing.geojson#PHASE-01].
+
+**Global AI ecosystem case benchmarks (7 publicly verifiable cases)**: benchmarking extracts space-ecosystem-governance mechanisms only, without copying form or fabricating data. Each case is presented as a two-column contrast of "verifiable local translation" vs "explicitly not to be copied", with per-case sources [source:CASE-SF-SOMA] [source:CASE-LONDON-KINGS-CROSS] [source:CASE-PARIS-STATION-F] [source:CASE-SG-ONE-NORTH] [source:CASE-SEOUL-DDP] [source:CASE-SZ-BAY] [source:CASE-ZGC-SELF-EVOLUTION]; cases only show that a mechanism was publicly practiced — not that its performance, law or resources transfer — responding to agent.2, organized per [depth:overall_spatial_structure] and [source:SOURCE-REGISTRY].
+
+| Case (publicly verifiable) | Verifiable local translation | Explicitly not to be copied |
+|---|---|---|
+| San Francisco SoMa / Mission Bay [source:CASE-SF-SOMA] | Anchor institution + mixed-block "research-living" co-location → Origin Community scholar-developer mixed block | US land regime, rent structures, company lists |
+| London King's Cross [source:CASE-LONDON-KINGS-CROSS] | Railway-heritage hub-gateway renewal with university linkage → Dazhongsi hub gateway + Bell of Intelligence | Concentrated ownership, international hub, landmark cloning |
+| Paris Station F [source:CASE-PARIS-STATION-F] | Existing-fabric super-incubator conversion → renewal-first "point insertion" of innovation functions | Single-landlord operation model and building form |
+| Singapore one-north [source:CASE-SG-ONE-NORTH] | Phased industry-city integration → "ignite—form—mature" three-phase framework | Single-developer regime and "built-equals-success" narrative |
+| Seoul DDP [source:CASE-SEOUL-DDP] | Cultural-landmark-led innovation district → Bell of Intelligence "ancient bell—new bell" cultural-tech landmark | Landmark form and influencer-style operation |
+| Shenzhen Bay [source:CASE-SZ-BAY] | HQ cluster with public-space quality → public space as the means of innovation production | HQ morphology and land-use ratios |
+| Zhongguancun's own evolution [source:CASE-ZGC-SELF-EVOLUTION] | From electronics street to innovation origin → respect indigenous paths, no top-down master plan | Turning history into a fixed replicable formula |
+
+**Regional synergy matrix (responding to review dimension regional_synergy)** [source:AGENT-TASKBOOK] [source:PUBLIC-REGIONAL-CONTEXT]: Haidian's AI belt is not an island; competitiveness depends on interface quality with municipal and Jing-Jin-Ji innovation nodes. The matrix uses "complementary capability — spatial interface — data/IP boundary"; all conceptual, no administrative boundaries or investment commitments:
+
+| Partner | Complementary capability | Interface and factor flows | Data/IP boundary |
+|---|---|---|---|
+| Beiwai community [source:AGENT-TASKBOOK] | Youth-oriented living and community scenario trials | Xiaoyuehe wing north extension; commute and community pilot interfaces | No personal data sharing; authorized and anonymized trials |
+| Future Science City [source:PUBLIC-REGIONAL-CONTEXT] | Basic research and frontier science facilities | Research collaboration interface with Zhongzhiyuan evaluation/compute clusters | Institutional agreements; data stays in-domain |
+| Huairou Science City [source:PUBLIC-REGIONAL-CONTEXT] | Big-science facilities and original innovation | Corridor interface between Origin "idea origination" and research translation | Outputs/IP by agreement |
+| E-Town (Beijing Economic-Technological Development Area) [source:PUBLIC-REGIONAL-CONTEXT] | Intelligent manufacturing and industrial landing | Southbound interface: Dazhongsi "arrival monetization" and industrial uptake | Industrial data under authorized use |
+| Jing-Jin-Ji coordination [source:PUBLIC-REGIONAL-CONTEXT] | Regional talent, scenarios and markets | Belt-wide exhibition and annual-event regional radiation interface | Public outputs reusable; classified/non-public data excluded |
+| Zhongguancun Science City (this belt) [source:CASE-ZGC-SELF-EVOLUTION] | Existing tech-service factors: IP, capital, legal | Directly carried by Zhongguancun tech-service wing | Follows source_registry usage boundaries |
+
+The regional synergy matrix is also written into compliance_matrix (agent.2), the visual page and drawings as a deepen-able interface list.
 
 **Future-city assessment**: AI new-quality productive forces change the "interface" of space, not the "essence" of cities — talent density, walkability, public-space quality and scenario accessibility remain decisive. Three design principles follow: renewal-first, scenario-as-infrastructure, public space as the means of innovation production.
 
@@ -64,13 +97,41 @@ Each key area forms a complete mini-scheme: positioning, spatial structure, rene
 
 **③ Dazhongsi AI Industry Cluster (Bell Station, announced 72.0 ha)**: the "arrival experience field" of smart-native business formats. Strategies: the Bell of Intelligence landmark in dialogue with Juesheng Temple's ancient bell (heritage constraints strictly respected; conceptual avoidance in [data:geometry/constraints.geojson#CON-HER-001]); a smart-native business district around the hub; a gateway plaza carrying the arrival narrative; TOD-organized industry buildings (intensity pending official controls). Scenarios: smart-native commerce, AI cultural tourism guide, urban vital signs. Risks: heritage control-zone requirements and hub crowd management need specialized review.
 
+**Three spatial prototypes (conceptual, responding to spatial_clarity and planning innovation)**: each station offers one prototype a professional team can deepen — ① Origin Community (Origin Station) "public ground floor, shared platforms": ground floors host open-source review, demo corners and showcase windows; upper floors host research and incubation — an "open-source below, research above, showcase along the street" vertical mixed section (conceptual section, consistent with the existing-fabric interface activation of [data:geometry/buildings.geojson#BLDG-O01]); ② Zhongzhiyuan (Acceleration Station) "open engineering yard in a garden": evaluation and compute clusters enclose bookable test courtyards; research buildings open ground-floor visualization interfaces to developers and the public; the acceleration green ring separates clusters to avoid a mega-campus (per [data:geometry/buildings.geojson#BLDG-Z01] cluster schematic); ③ Dazhongsi (Bell Station) "four-quadrant station-city interface": around the hub, four quadrants organize industry towers, smart-native commerce, the gateway plaza and the Bell of Intelligence cultural node; ground floors preserve non-consumptive stay and direct pedestrian access (per [data:geometry/public_space.geojson#PUBLIC-P01] and TOD intensity logic, intensity pending official controls). All three prototypes follow the baseline "public ground floor, shared platforms, livable access, controlled testing, legible heritage" and make no block-level conclusions.
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 This chapter responds to agent.3 with 12 scenario cards (including 3 industry test/validation scenarios), 5 personas, and the scenario-space-operation mapping with privacy boundaries. Card-to-registry mapping is declared in the front matter `scenarios` field.
 
-**Scenario cards (12)**: S01 AI tutoring block (Origin Community, livelihood); S02 open-source market (Origin Community, ecosystem); S03 researcher collaboration station (Origin Community, research); S04 **LLM evaluation sandbox** (Zhongzhiyuan, industry test ★); S05 **robotics proving ground** (Zhongzhiyuan, industry test ★); S06 **autonomous shuttle test segment** (Smart Rail belt, industry test ★); S07 scenario dispatch center (Zhongzhiyuan, governance); S08 smart-native business district (Dazhongsi, consumption); S09 urban vital signs (belt-wide, governance); S10 Jing-Zhang cultural AI guide (Smart Rail belt, tourism); S11 waterfront scenario test strip (Xiaoyuehe wing); S12 community AI health station (Origin/Dazhongsi, livelihood). Each card specifies spatial mapping, users, data needs, privacy boundary, human-review mechanism, operator suggestion, risks and exit conditions.
+**Scenario cards (12)**: S01 AI tutoring block (Origin Community, livelihood); S02 open-source market (Origin Community, ecosystem); S03 researcher collaboration station (Origin Community, research); S04 **LLM evaluation sandbox** (Zhongzhiyuan, industry test ★); S05 **robotics proving ground** (Zhongzhiyuan, industry test ★); S06 **autonomous shuttle test segment** (Smart Rail belt, industry test ★); S07 scenario dispatch center (Zhongzhiyuan, governance); S08 smart-native business district (Dazhongsi, consumption); S09 urban vital signs (belt-wide, governance); S10 Jing-Zhang cultural AI guide (Smart Rail belt, tourism); S11 waterfront scenario test strip (Xiaoyuehe wing); S12 community AI health station (Origin/Dazhongsi, livelihood). Each card specifies spatial mapping, users, data needs, privacy boundary, human-review mechanism, operator suggestion, risks and exit conditions — and is upgraded to a **Scenario Passport** with six operational fields: admission criteria, RACI (who operates / who supervises / who is the fallback), KPIs and evaluation cycle, stop thresholds and pause conditions, appeal and withdrawal channels, and data retention period with deletion obligation. The 12-card six-field matrix follows (S04/S05/S06 industry-test cards carry full run cards additionally):
 
-**Personas (5)**: university researchers (compute and translation pathways); AI developers/entrepreneurs (scenarios and community belonging); industry engineers (test environments and standards); nearby residents (quality of life and participation); international visitors (understanding and partnership). Personas drive spatial allocation: the Origin serves researchers and developers, Zhongzhiyuan serves engineers and testing, Dazhongsi serves residents and visitors.
+| Card | Admission | RACI summary | KPI (illustrative) | Stop threshold / pause | Appeal & withdrawal | Data retention |
+|---|---|---|---|---|---|---|
+| S01 AI tutoring block | Institution-led + parental consent | School operates / district supervises / teachers fallback | Term satisfaction, participation | Privacy complaint or safety incident → stop | Parent & school dual channels | Deleted end of term |
+| S02 open-source market | Open registration + OSS license statement | Community committee + operator | Projects, conversions | Order risk → pause | Organizer channel | No personal data collected |
+| S03 researcher station | Inter-institutional agreement | University alliance + operator | Compute utilization, outputs | Data violation → stop | Institutional appeal | Destroyed per agreement |
+| S04 LLM eval sandbox ★ | Third-party application + red-team vetting | Evaluator runs / governance committee supervises / safety officer fallback | Reports, fix rates | Major safety event → stop | Public appeal + review | Isolated, retained |
+| S05 robotics proving ground ★ | Enclosed site + safety assessment + insurance | Operator / safety regulator / emergency fallback | Task success, incident rate | Incident → stop + postmortem | On-site + written appeal | Anonymized sensor data |
+| S06 autonomous shuttle ★ | Speed/segment limits + regulatory sandbox permit + safety attendant | Operator / traffic police / attendant fallback | Ridership, takeover rate | Takeover rate over limit → stop | Passenger & public channels | Trip data deleted after period |
+| S07 scenario dispatch center | Open application + review trail | Operator + third-party review | Scenarios, graduation rate | Review violation → pause | Appeal + review | Applications retained limited-term |
+| S08 smart-native district | Merchant compliance + informed consent | District operator + market regulator | Experience score, complaints | Data violation → stop | Consumer complaint channel | Minimal consumption data |
+| S09 urban vital signs | Statistical caliber + anonymization review | Government data office + third-party audit | Coverage, accuracy | Anonymization failure → stop | Public data objection channel | Statistics only, no individual identification |
+| S10 cultural AI guide | Content review + history expert check | Culture department + operator | Usage, correction rate | Factual error → freeze update | Visitor feedback channel | No location data stored |
+| S11 waterfront test strip | Ecological avoidance review + device disclosure | Water authority + subdistrict + operator | Pilots, ecological impact | Ecological impact → stop | Resident feedback channel | Anonymized sensing data |
+| S12 community AI health station | Licensed institution + voluntary | Medical institution + subdistrict + practitioners fallback | Service count, satisfaction | Medical incident → stop | Resident appeal + doctor-patient channel | Minimal retention of health data |
+
+**Personas (5+1)**: university researchers (compute and translation pathways); AI developers/entrepreneurs (scenarios and community belonging); industry engineers (test environments and standards); nearby residents (quality of life and participation); international visitors (understanding and partnership); plus a 6th persona **non-digital users / people with reduced mobility** (accessibility, equivalent human-window channels, opt-out rights). Personas drive spatial allocation: the Origin serves researchers and developers, Zhongzhiyuan serves engineers and testing, Dazhongsi serves residents and visitors. Each persona carries a "public-interest boundary" so ordinary people are not obscured by an "AI talent" narrative:
+
+| Persona | Core needs | Main touchpoints | Public-interest boundary |
+|---|---|---|---|
+| University researchers | Compute, data, translation | Collaboration stations, eval sandbox | Fair cross-institution access; data stays in-domain |
+| AI developers/entrepreneurs | Scenarios, capital, belonging | Open-source market, Origin Stele, dispatch center | Open admission and pricing; not serving only top firms |
+| Industry engineers | Test environments, standards, talent | Proving grounds, governance plaza | Tiered test permits; safety never downgraded by "sandbox" |
+| Nearby residents | Quality of life, participation, not being disturbed | Health station, waterfront, Bell of Intelligence | Non-consumptive stay preserved; opt-out and detour |
+| International visitors | Understanding China's AI ecosystem, partnership | Smart Rail experience line, governance forum | Multilingual, accessible, verifiable narrative |
+| Non-digital users / reduced mobility | Equivalent service, not excluded | Human windows, audio guide, accessible routes | Non-digital alternatives, human fallback, complaint & withdrawal |
+
+**Accessibility and inclusion (responding to public_interest_inclusion)** [source:AGENT-TASKBOOK]: accessible slow-mobility routes and audio guides along the Smart Rail experience line; every smart pole and guide post provides an equivalent human-window channel; scenario cards default to "non-digital alternative" and "opt-out / detour" options; quarterly public-issue sessions and appeal channels are written into every card; vulnerable groups (elderly, children, people with disabilities, low-income and non-digital users) are explicitly covered as personas and scenario boundaries to avoid digital exclusion from a tech-first narrative.
 
 **Privacy and human-review principles**: data minimization, purpose limitation, opt-out, human takeover, no fully automated sensitive decisions — written into every scenario card, keeping the design inside agent.3's anti-surveillance redline. Spatial mapping: [data:geometry/public_space.geojson#PUBLIC-P02] and [data:geometry/roads.geojson#ROAD-GW01].
 
@@ -86,7 +147,7 @@ This chapter converts the land-use layout into a recomputable ledger; all areas 
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-**Transport and rail**: the corridor relies on existing rail stations (Dazhongsi station etc., per public information) as arrival/departure anchors; the design network is a conceptual three-vertical-six-horizontal secondary/branch system [data:geometry/roads.geojson#ROAD-V01], road surfaces in [data:geometry/land_use.geojson#LU-R001] (code 1207). The Smart Rail experience line combines slow-traffic priority with low-speed autonomous shuttles (test-segment logic, regulatory-sandbox precondition) [data:geometry/roads.geojson#ROAD-GW01]. East-west stitching adds pedestrian/cycle-friendly crossings at key sections (conceptual; no bridge/tunnel engineering conclusions). Organization follows [depth:traffic_rail_slow_parking]: consolidated hub parking, pedestrian priority, short-distance transfers.
+**Transport and rail**: the corridor relies on existing rail stations (Dazhongsi station etc., per public information) as arrival/departure anchors; the design network is a conceptual three-vertical-six-horizontal secondary/branch system [data:geometry/roads.geojson#ROAD-V01] with total centerline length [metric:road_network_length_m] (≈[metric:road_network_length_km]) and a submitted-scope density of ≈[metric:road_network_density_km_per_sqkm], including about 8.4 km of Smart Rail greenway — the value expresses network relations and a feasibility anchor only, not road redlines or engineering alignments; road surfaces in [data:geometry/land_use.geojson#LU-R001] (code 1207). The Smart Rail experience line combines slow-traffic priority with low-speed autonomous shuttles (test-segment logic, regulatory-sandbox precondition) [data:geometry/roads.geojson#ROAD-GW01]. East-west stitching adds pedestrian/cycle-friendly crossings at key sections (conceptual; no bridge/tunnel engineering conclusions). Organization follows [depth:traffic_rail_slow_parking]: consolidated hub parking, pedestrian priority, short-distance transfers.
 
 **Municipal and new infrastructure**: directional only — energy/cooling for green compute, power/comms for sensing, co-mounted smart poles in public space, all conceptual [depth:municipal_new_infrastructure]. No utility-routing conclusions (no existing utility data).
 
@@ -109,6 +170,18 @@ This chapter converts the land-use layout into a recomputable ledger; all areas 
 **Phasing (three phases)** [depth:phasing_implementation]: Phase 1 Kick-off (2026-2027) focuses on the Origin Community demonstration, area [metric:phase_1_area_sqm] sqm, [data:geometry/phasing.geojson#PHASE-01]; Phase 2 Belt Formation (2028-2029) covers Zhongzhiyuan and the full Smart Rail line, area [metric:phase_2_area_sqm] sqm, [data:geometry/phasing.geojson#PHASE-02]; Phase 3 Maturity (2030-2033) completes the Dazhongsi bell segment and belt-wide network, area [metric:phase_3_area_sqm] sqm, [data:geometry/phasing.geojson#PHASE-03].
 
 **Policy instruments (directional)**: scenario list system (publish — apply — review — time-limited test — evaluate and graduate), scenario vouchers, developer points and badges, dual-track community governance (self-governance committee + professional operator). Event system: spring AI Departure Day, summer Open-Source Week, autumn Global AI Governance Forum, winter Bell Festival, year-round scenario open days — all conceptual, not confirmed arrangements. Developer conversion path: market projects → incubation linkage → scenario testing → deployment. This responds to agent.6, with no government commitments or confirmed investment arrangements.
+
+**Operation protocol: the Departure Protocol** [source:AGENT-TASKBOOK] [depth:phasing_implementation]. To upgrade the scenario list system from a mechanism name into a nameable, checkable, iterable operation loop, this proposal binds the railway semantics of "marshalling — test — departure — arrival" to scenario-open operation as a six-step protocol: **Issue → Review → Sandbox (time-limited test) → Bell Witness (public witnessing with third-party review) → Depart (into the city) → Postmortem**, plus a seventh **Rollback** step for pause, withdrawal and site restoration. The protocol binds to the three stations and two wings: the Origin Community hosts "Review" (ideas and provenance), Zhongzhiyuan hosts "Test" (controlled validation), the Bell of Intelligence at Dazhongsi hosts "Bell Witness" (public witnessing and honor records), and Xiaoyuehe hosts "back-testing" (real-use feedback flowing back). The whole loop is publicly traced, appealable and exitable, and **human final judgment overrides automated decisions at every step (Human Override)**, honoring co-creation charter.7 and agent.3's human-review redline.
+
+**Implementation governance and risk response (responding to implementation_feasibility and risk_compliance)** [source:AGENT-TASKBOOK] [depth:phasing_implementation] [depth:renewal_project_list]:
+
+1. **Per-project entry/exit gates (P1–P7)**: every renewal project has an entry gate (prerequisites, hosting body, budget source and permit procedure complete before start) and an exit gate (pause or withdraw if KPIs unmet, safety incident, public veto, or postmortem conclusion triggers). Example: P1 Origin Stele Plaza (entry: heritage and site permits; exit: disclosure veto or structural-safety risk); P4 evaluation sandbox (entry: safety assessment + third-party review; exit: stop on major safety event).
+2. **Named human-review roles**: professional planning team (spatial and regulatory caliber), transport specialists (connectors and test segments), heritage authority (Bell of Intelligence and heritage control zone), data-security and legal-compliance (scenario passports and data retention), community representatives (public participation and appeal ledger), third-party review (Bell Witness) — role recommendations, not designated institutions.
+3. **P0/P1/P2 response targets (conceptual)**: P0 life/serious safety incident — immediate stop + response within 15 minutes + postmortem within 24 hours; P1 data or privacy event — handled within 4 hours with affected-party notification; P2 general complaints and appeals — acknowledged within 48 hours with a trail. Targets are operational suggestions, not service commitments.
+4. **Conditional cost envelope (conceptual, not investment commitment)**: organized in three tiers — low-cost reversible pilots first → medium demonstration segments → belt-wide network; Phase 1 focuses on lightweight pilots, Phase 2 forms demonstration segments, Phase 3 reaches network level; specific amounts and funding sources are determined by professional teams and relevant bodies per law; this proposal fabricates no investment figures.
+5. **Model cards / algorithm registry (Model Passport)**: every "Bell Witness" requires a model card — purpose, data sources and retention, responsible body, human-review method, exit and restoration conditions — registered in a public (anonymized) ledger as precondition for departure into the city; together with scenario passports these form an auditable AI governance archive.
+
+**AI city-form translation (responding to ai_planning_innovation)** [source:AGENT-TASKBOOK]: AI new-quality productive forces land in urban form as three perceptible classes of change — ① Buildings: bookable shared labs, open-source review and industry-exchange spaces (Origin collaboration stations, Zhongzhiyuan evaluation clusters); ② Streets: Smart Rail experience-line slow-mobility spine + east-west stitching crossings + accessible equivalent human channels (Xiaoyuehe test strip, the 3-vertical-6-horizontal network); ③ Governance: scenario passports + stop thresholds + refusal lists + failure archives (Departure Protocol and Bell Witness). All three classes bind to layers, metrics and scenario cards, avoiding "AI as sticker on tech icons".
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -147,23 +220,29 @@ This chapter converts the land-use layout into a recomputable ledger; all areas 
 
 Fig.1 Site overview — three scope levels, provisional boundary, three-station structure
 
-![Site overview with three scope levels, provisional boundary and belt structure, dashed lines are provisional constraints](assets/figures/site-overview.png)
+![Site overview with three scope levels, provisional boundary and belt structure, dashed lines are provisional constraints](assets/figures/site-overview.en.png)
 
 Fig.2 Land-use structure — conceptual zoning ledger
 
-![Land-use structure showing zoning codes and area ledger including roads, green and plazas](assets/figures/land-use-structure.png)
+![Land-use structure showing zoning codes and area ledger including roads, green and plazas](assets/figures/land-use-structure.en.png)
 
 Fig.3 Key areas — detailed design structure of the three areas
 
-![Key areas detailed design structure for the three key detailed-design areas](assets/figures/key-areas.png)
+![Key areas detailed design structure for the three key detailed-design areas](assets/figures/key-areas.en.png)
 
 Fig.4 Mobility and blue-green — network, experience line, green and public space
 
-![Mobility and blue-green network with design roads, experience line, green network and public space](assets/figures/mobility-bluegreen.png)
+![Mobility and blue-green network with design roads, experience line, green network and public space](assets/figures/mobility-bluegreen.en.png)
 
 Fig.5 Metrics evidence — recomputed core metrics and compliance coverage
 
-![Metrics evidence cards with recomputed core metrics, task coverage and self-check status](assets/figures/metrics-evidence.png)
+![Metrics evidence cards with recomputed core metrics, task coverage and self-check status](assets/figures/metrics-evidence.en.png)
 
 ---
-*Proposal version: v0.1-r3 (2026-08-08), AI-generated; later iterations in changelog.md.*
+
+Fig.6 Three spatial prototypes — conceptual prototypes for the three stations
+
+![Three spatial prototypes: public ground floor / open engineering yard in a garden / four-quadrant station-city interface](assets/figures/spatial-prototypes.en.png)
+
+---
+*Proposal version: v0.3 (2026-08-08), AI-generated; later iterations in changelog.md.*

@@ -55,14 +55,21 @@
       "result": "pass",
       "severity": "major",
       "target": "visual/assets/relay-receipt.schema.json",
-      "message": "Relay Receipt schema is valid Draft 2020-12 JSON Schema and the synthetic SC-04 example validates against it."
+      "message": "Relay Receipt 0.3 is a valid Draft 2020-12 JSON Schema; its ten required execution objects map problem through rollback_retirement, and the SC-04 example validates against it."
     },
     {
       "check_id": "MINIMUM_SLICE",
       "result": "pass",
       "severity": "info",
       "target": "visual/assets/example-sc04-relay-receipt.json",
-      "message": "The one synthetic sandbox slice is structurally reproducible and explicitly carries null performance results; it is not deployment evidence."
+      "message": "The SC-04 operational contract contains four synthetic fixtures, six acceptance criteria, four hard stops and five rollback actions; operational results remain null/not_run."
+    },
+    {
+      "check_id": "SC04_TABLETOP_REHEARSAL",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/assets/sc04-tabletop-evidence.json",
+      "message": "The bundled deterministic harness reproduces 4/4 fixture routes, 6/6 tabletop checks, 4/4 fail-closed stop branches, an in-memory 4-to-0 deletion check and 5/5 rollback steps. It uses no real service, participant, personal data or external system, and does not clear G2 or prove operational performance."
     },
     {
       "check_id": "ASSET_RIGHTS_LEDGER",

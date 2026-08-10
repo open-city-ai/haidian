@@ -2,6 +2,7 @@
 title: "京张智脉环：公共可审计的AI创新带城市设计概念建议"
 author_github: "Regulus44"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为公共脊柱，把AI进入城市的声明、沙盒、许可、观察、复盘和退出转译为空间制度；形成一环三核两翼、七段三带、六个公共审计节点、十二张场景卡和十项更新项目。全部结论均为概念建议，基于provisional geometry生成，待官方边界与专业底数发布后整体复算。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

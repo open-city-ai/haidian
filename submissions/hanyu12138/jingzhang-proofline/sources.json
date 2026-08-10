@@ -1,6 +1,6 @@
 {
   "schema_version": "0.1.0",
-  "accessed_date": "2026-08-08",
+  "accessed_date": "2026-08-09",
   "sources": [
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
@@ -85,6 +85,91 @@
         "地块、权属、拆改留、开发规模结论"
       ],
       "path": "brief/site-package/geometry/provisional_boundaries.geojson"
+    },
+    {
+      "id": "DATA-SRC-OSM-BOUNDARY-CROSSCHECK-20260808",
+      "title": "OpenStreetMap / Overpass 京张铁路遗址公园背景交叉核对",
+      "publisher": "OpenStreetMap contributors",
+      "published_date": null,
+      "accessed_date": "2026-08-09",
+      "authority_level": "OPEN_LICENSE_REFERENCE",
+      "evidence_class": "background_only",
+      "statistical_scope": "公开测绘数据与仓库临时边界的独立空间交叉核验",
+      "spatial_coverage": "Overpass bbox 39.925,116.315,40.035,116.375；京张铁路遗址公园已测绘段及废弃铁路要素",
+      "temporal_coverage": "2026-08-09 查询快照",
+      "collection_method": "2026-08-09 通过 Overpass API 独立重跑 Issue #846 公布的 park 与 railway 查询；将 OSM geometry 和 brief/site-package/geometry/provisional_boundaries.geojson 投影至 EPSG:4548，用 Shapely 复算面积、相交、最近距离与长度。",
+      "source_locator": "Overpass 查询 bbox 与 Issue #846 复核脚本；已合并上游 PR #850 的登记记录",
+      "public_access_status": "public_overpass_query",
+      "license_or_reuse_terms": "Data © OpenStreetMap contributors，ODbL 1.0；保留署名、查询日期和数据库许可边界。本包只登记派生读数与方法，不再分发 OSM 原始数据库。",
+      "reproduction": {
+        "query_date": "2026-08-09",
+        "bbox": "39.925,116.315,40.035,116.375",
+        "query_filters": [
+          "name~京张铁路遗址公园",
+          "railway~disused|abandoned"
+        ],
+        "calculation_crs": "EPSG:4548",
+        "independent_result": "与 Issue #846 公布读数一致"
+      },
+      "cross_check_note": "OSM 与仓库临时 polygon 都可能不完整；一致复算只能证明两条独立路径存在可量化差异，不能判断哪一个是 official boundary。官方 polygon 发布后本组读数失效，并触发全包重算。",
+      "usable_for": [
+        "背景核验临时边界的不确定性",
+        "记录可复现的空间差异和官方 polygon 到来后的重算触发器",
+        "规划后续公开数据采集与现场核对"
+      ],
+      "not_usable_for": [
+        "official site boundary、法定规划控制或精确包含关系",
+        "平移、替换或修补 PROV-SITE-001",
+        "正式面积评分、工程线位或实施结论"
+      ],
+      "observations": [
+        {
+          "id": "osm_mapped_jingzhang_heritage_park_area_20260809",
+          "value": 17.49,
+          "unit": "ha",
+          "scope": "OSM 已测绘的京张铁路遗址公园要素",
+          "formal_spatial_use_prohibited": true
+        },
+        {
+          "id": "osm_park_vs_provisional_site_intersection_20260809",
+          "value": 0.0,
+          "unit": "percent",
+          "scope": "OSM 公园要素与 PROV-SITE-001",
+          "formal_spatial_use_prohibited": true
+        },
+        {
+          "id": "osm_park_to_provisional_site_distance_20260809",
+          "value": 412.5,
+          "unit": "m",
+          "scope": "OSM 公园要素至 PROV-SITE-001 最近距离",
+          "formal_spatial_use_prohibited": true
+        },
+        {
+          "id": "osm_park_within_provisional_research_coverage_20260809",
+          "value": 100.0,
+          "unit": "percent",
+          "scope": "OSM 公园要素与 PROV-RESEARCH-001",
+          "formal_spatial_use_prohibited": true
+        },
+        {
+          "id": "osm_disused_rail_length_20260809",
+          "value": 3028.1,
+          "unit": "m",
+          "scope": "查询 bbox 内 14 段 railway=disused|abandoned 要素",
+          "formal_spatial_use_prohibited": true
+        },
+        {
+          "id": "osm_disused_rail_inside_provisional_site_20260809",
+          "value": 683.7,
+          "unit": "m",
+          "scope": "OSM 废弃铁路要素与 PROV-SITE-001 相交长度",
+          "formal_spatial_use_prohibited": true
+        }
+      ],
+      "url": "https://overpass-api.de/api/interpreter",
+      "method_url": "https://github.com/open-city-ai/haidian/issues/846",
+      "upstream_registry_pr": "https://github.com/open-city-ai/haidian/pull/850",
+      "upstream_registry_commit": "fd3e61184bc7a215b178d6e0250a9369f8d306e7"
     },
     {
       "id": "URBAN-DESIGN-MEASURES",
@@ -294,6 +379,115 @@
       "url": "https://www.stats.gov.cn/sj/zxfb/202602/t20260228_1962662.html"
     },
     {
+      "id": "BEIJING-2025-STATISTICAL-BULLETIN",
+      "title": "北京市2025年国民经济和社会发展统计公报",
+      "publisher": "北京市统计局、国家统计局北京调查总队",
+      "published_date": "2026-03-25",
+      "accessed_date": "2026-08-09",
+      "authority_level": "A0",
+      "evidence_class": "background_only",
+      "statistical_scope": "北京市2025年度行政统计",
+      "spatial_coverage": "北京市行政区",
+      "temporal_coverage": "2025-01-01/2025-12-31",
+      "collection_method": "2026-08-09 通过可见浏览器打开北京市人民政府门户官方 HTML，按“交通运输和邮政电信”“城市建设和安全生产”“科技和教育”段逐项核对并人工转录。",
+      "source_locator": "正文第四、九、十一节",
+      "public_access_status": "official_public_html",
+      "license_or_reuse_terms": "页面公开可访问，但未发现明确开放数据许可；本包只摘录事实数值并保留发布者、标题和原始链接，不复制页面全文或图表。",
+      "transformations": [
+        {
+          "field": "beijing_rail_annual_ridership_2025_bulletin",
+          "source_value": "35.7亿人次",
+          "method": "35.7 / 10",
+          "stored_value": 3.57,
+          "stored_unit": "billion_person_trips"
+        },
+        {
+          "field": "beijing_express_parcels_2025",
+          "source_value": "27.4亿件",
+          "method": "27.4 / 10",
+          "stored_value": 2.74,
+          "stored_unit": "billion_items"
+        },
+        {
+          "field": "beijing_shared_bikes_2025",
+          "source_value": "84.8万辆",
+          "method": "84.8 * 10000",
+          "stored_value": 848000,
+          "stored_unit": "count"
+        }
+      ],
+      "cross_check_note": "公报的轨道客运量 35.7 亿人次与《2026北京市交通发展年度报告》的 35.76 亿人次在公报舍入精度内一致。北京市、海淀区和全国创新统计的机构归属及登记口径可能不同，因此只形成全国—北京—海淀三级背景，不计算排名、因果或走廊配额。",
+      "usable_for": [
+        "补齐全国—北京—海淀三级创新与城市服务背景",
+        "交叉核验北京市交通年度报告的全市轨道数量级",
+        "识别快递、共享单车和技术转化需要走廊级补采的问题"
+      ],
+      "not_usable_for": [
+        "京张走廊企业、模型、人才、客流、快递订单、共享单车或设施容量推断",
+        "空间落位、控规指标、项目目标、绩效承诺或海淀占比排名",
+        "替代站点 OD、路段流量、装卸冲突和无障碍现场调查"
+      ],
+      "observations": [
+        {
+          "id": "beijing_high_value_invention_patents_per_10000_2025",
+          "value": 180.7,
+          "unit": "count_per_10000_people",
+          "scope": "北京市",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_technology_contract_value_2025",
+          "value": 9865.0,
+          "unit": "100_million_cny",
+          "scope": "北京市",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_registered_large_models_2025",
+          "value": 209,
+          "unit": "count",
+          "scope": "北京市累计备案上线",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_rail_lines_2025",
+          "value": 30,
+          "unit": "count",
+          "scope": "北京市轨道交通运营线路",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_rail_network_length_2025",
+          "value": 909,
+          "unit": "km",
+          "scope": "北京市轨道交通运营线路",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_rail_annual_ridership_2025_bulletin",
+          "value": 3.57,
+          "unit": "billion_person_trips",
+          "scope": "北京市轨道交通",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_shared_bikes_2025",
+          "value": 848000,
+          "unit": "count",
+          "scope": "北京市年末共享单车保有规模",
+          "not_spatially_allocable": true
+        },
+        {
+          "id": "beijing_express_parcels_2025",
+          "value": 2.74,
+          "unit": "billion_items",
+          "scope": "北京市邮政业快递业务量",
+          "not_spatially_allocable": true
+        }
+      ],
+      "url": "https://www.beijing.gov.cn/cs/gncs/zcwj/202603/t20260327_4568228.html"
+    },
+    {
       "id": "HAIDIAN-37-UNIVERSITIES-SERVICE-NEEDS",
       "title": "海淀37所驻区高校“组团充电”，解锁校园运营“超能力”",
       "publisher": "北京市海淀区市场监督管理局",
@@ -336,6 +530,52 @@
         }
       ],
       "url": "https://zyk.bjhd.gov.cn/jbdt/auto4504_56266/auto4504_53332/auto4504/auto4504/202604/t20260403_4810979.shtml"
+    },
+    {
+      "id": "BEIJING-OPEN-DATA-HAIDIAN-SCHOOL-BUS-ROUTES",
+      "title": "海淀区通学公交车线路",
+      "publisher": "北京市公共数据开放平台（数据提供者：海淀区）",
+      "published_date": "2024-10-29",
+      "accessed_date": "2026-08-09",
+      "authority_level": "A1_OFFICIAL_OPEN_DATA_CATALOG",
+      "evidence_class": "background_only",
+      "statistical_scope": "海淀区通学公交线路官方开放数据目录",
+      "spatial_coverage": "目录页未提供地理范围；实际线路记录尚未取得并核验",
+      "temporal_coverage": "目录页未提供时间范围；更新频率标为年度",
+      "collection_method": "2026-08-09 通过可见浏览器核对官方目录页、字段、开放条件、记录数和法律声明，并跟随 CSV 下载链接；下载重定向至北京市统一身份认证登录，因此未读取或转换线路记录。",
+      "source_locator": "目录页“数据信息”“数据提供者”和法律声明",
+      "public_access_status": "official_catalog_public_dataset_file_requires_registered_login",
+      "license_or_reuse_terms": "平台法律声明允许免费获取、非排他使用、自由利用传播和分享，要求成果注明来源为“北京市公共数据开放平台”；交通领域数据还应遵循平台列明的专项要求。本包没有再分发未取得的数据文件。",
+      "cross_check_note": "60 条记录和字段名称只来自目录元数据，尚未与下载文件、学校名录、线路几何或京张走廊相交关系交叉核验；取得文件后必须先做版本、坐标、重复、时间和覆盖检查。",
+      "usable_for": [
+        "登记教育通勤可用的官方候选数据源",
+        "定义后续线路—学校—站点—无障碍接口的核验流程",
+        "支持场景 08 在取得实际记录前保持小规模、教师在环和非画像原则"
+      ],
+      "not_usable_for": [
+        "声称 60 条线路位于或服务京张走廊",
+        "推断学生数量、学校需求、站点客流、路线覆盖或服务绩效",
+        "生成道路、站点、学校边界或交通工程线位"
+      ],
+      "observations": [
+        {
+          "id": "haidian_school_bus_catalog_records_2024",
+          "value": 60,
+          "unit": "catalog_records",
+          "scope": "官方目录元数据",
+          "not_spatially_allocable": true,
+          "artifact_content_verified": false
+        }
+      ],
+      "catalog_fields": [
+        "序号",
+        "线路",
+        "起点",
+        "终点学校",
+        "地点",
+        "发车时间"
+      ],
+      "url": "https://data.beijing.gov.cn/zyml/wnkfsj/b9ac8245d9e247d8a5366f2bc315c0e6.htm"
     },
     {
       "id": "BJTRC-2026-TRANSPORT-REPORT",
@@ -548,23 +788,23 @@
       "id": "REPOSITORY-README",
       "title": "open-city-ai/haidian README",
       "publisher": "open-city-ai/haidian maintainers",
-      "accessed_date": "2026-08-08",
+      "accessed_date": "2026-08-09",
       "authority_level": "repository_process_guidance",
       "usable_for": [
-        "持续参与、上游同步、同侪阅读、Issue/PR 协作和预检流程"
+        "持续参与、上游同步、Issue/PR 协作和预检流程"
       ],
       "not_usable_for": [
         "法定规划、official polygon、空间现状、工程可行性或政府承诺"
       ],
-      "repository_commit": "3cd31ef30e0e7485c62786e088139a80a2085f18",
+      "repository_commit": "4bc0049d330fe0c7ec567914c4601984f572abb3",
       "path": "README.md",
-      "url": "https://github.com/open-city-ai/haidian/blob/3cd31ef30e0e7485c62786e088139a80a2085f18/README.md"
+      "url": "https://github.com/open-city-ai/haidian/blob/4bc0049d330fe0c7ec567914c4601984f572abb3/README.md"
     },
     {
       "id": "PUBLIC-BRIEF",
       "title": "百年京张 AI 创新带城市设计开源征集公开任务说明",
       "publisher": "open-city-ai/haidian maintainers",
-      "accessed_date": "2026-08-08",
+      "accessed_date": "2026-08-09",
       "authority_level": "repository_public_brief",
       "usable_for": [
         "开放征集参与方式、成果边界与后续专业深化说明"
@@ -572,61 +812,9 @@
       "not_usable_for": [
         "official polygon、法定规划、建设批准、奖项或政府背书"
       ],
-      "repository_commit": "3cd31ef30e0e7485c62786e088139a80a2085f18",
+      "repository_commit": "4bc0049d330fe0c7ec567914c4601984f572abb3",
       "path": "brief/public-brief.md",
-      "url": "https://github.com/open-city-ai/haidian/blob/3cd31ef30e0e7485c62786e088139a80a2085f18/brief/public-brief.md"
-    },
-    {
-      "id": "PEER-OPEN-PULSE",
-      "title": "京张开源脉冲：一条可验证的 AI 创新公共带",
-      "publisher": "GitHub user 147228 via open-city-ai/haidian",
-      "accessed_date": "2026-08-08",
-      "authority_level": "peer_proposal_background",
-      "license_or_reuse_terms": "COMMUNITY-DISPLAY-ONLY；本轮仅作比较阅读，不复制文本、图像、几何、指标或资产。",
-      "usable_for": [
-        "触发事件—证据—决策—输出的参与审计方法比较",
-        "现场观察预登记、几何版本和实际路线校准原则比较"
-      ],
-      "not_usable_for": [
-        "本案 official boundary、空间落位、数量指标、同侪现场协议、阈值、数据表结构、工程判断或视觉资产"
-      ],
-      "repository_commit": "ec99c76ea15d2b16042acaded651399bc532d190",
-      "path": "submissions/147228/jingzhang-open-pulse/proposal.md",
-      "url": "https://github.com/open-city-ai/haidian/blob/ec99c76ea15d2b16042acaded651399bc532d190/submissions/147228/jingzhang-open-pulse/proposal.md"
-    },
-    {
-      "id": "PEER-OPEN-BELT",
-      "title": "京张开源带：从自主铁路到开源城市的城市级开源协议",
-      "publisher": "GitHub user liulingfei-1 via open-city-ai/haidian",
-      "accessed_date": "2026-08-08",
-      "authority_level": "peer_proposal_background",
-      "license_or_reuse_terms": "CC-BY-4.0；本轮仅作比较阅读，采用负面结果与回滚的原则，不复制文本、图像、几何、指标或资产。",
-      "usable_for": [
-        "开放过程中的负面结果、版本记录与回滚方法比较"
-      ],
-      "not_usable_for": [
-        "本案空间隐喻、项目命名、数量指标、工程判断或视觉资产"
-      ],
-      "repository_commit": "ec99c76ea15d2b16042acaded651399bc532d190",
-      "path": "submissions/liulingfei-1/jingzhang-open-belt/proposal.md",
-      "url": "https://github.com/open-city-ai/haidian/blob/ec99c76ea15d2b16042acaded651399bc532d190/submissions/liulingfei-1/jingzhang-open-belt/proposal.md"
-    },
-    {
-      "id": "PEER-CALIBRATION-YARD",
-      "title": "京张校准场：让 AI 先在公共空间证明自己",
-      "publisher": "GitHub user leeight via open-city-ai/haidian",
-      "accessed_date": "2026-08-08",
-      "authority_level": "peer_proposal_background",
-      "license_or_reuse_terms": "COMMUNITY-DISPLAY-ONLY；本轮仅作差异化比较，不复制文本、图像、几何、指标或资产。",
-      "usable_for": [
-        "公共验证命题的同题比较与本案差异化复核"
-      ],
-      "not_usable_for": [
-        "本案六项权利命名、节点计划、空间落位、指标或工程判断"
-      ],
-      "repository_commit": "ec99c76ea15d2b16042acaded651399bc532d190",
-      "path": "submissions/leeight/jingzhang-calibration-yard/proposal.md",
-      "url": "https://github.com/open-city-ai/haidian/blob/ec99c76ea15d2b16042acaded651399bc532d190/submissions/leeight/jingzhang-calibration-yard/proposal.md"
+      "url": "https://github.com/open-city-ai/haidian/blob/4bc0049d330fe0c7ec567914c4601984f572abb3/brief/public-brief.md"
     }
   ]
 }

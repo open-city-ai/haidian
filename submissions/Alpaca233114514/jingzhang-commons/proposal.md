@@ -2,6 +2,7 @@
 title: "京张原点：面向公共智能的开放城市共生带"
 author_github: "Alpaca233114514"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以“一脊三锚六站”为唯一总体空间结构：京张铁路遗产与南北公共智能/蓝绿慢行主轴为脊，三处重点区为锚，六个公共客厅为站，并以四条东西缝合线和蓝绿慢行专项系统支撑可复算、可审计的公共智能城市共生带。"
 iteration: "v1.0"

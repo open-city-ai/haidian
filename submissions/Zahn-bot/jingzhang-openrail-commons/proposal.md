@@ -2,6 +2,7 @@
 title: "京张开源轨：可验证的AI城市公共协议"
 author_github: "Zahn-bot"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "把百年铁路的共享轨距转译为AI城市公共协议，以PROVE—SHARE—SCALE闭环连接众智园、北京AI原点与大钟寺；方案采用临时粗略边界，所有空间动作均为可复算、可退出、可供专业团队深化的概念建议。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]

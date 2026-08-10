@@ -2,6 +2,7 @@
 title: "京张可证城：从百年工程线到城市智能的公开验证场"
 author_github: "jingxun998"
 language: "zh"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以一条可证脊、三座验证城和城市智能公开证据链，将百年京张工程精神转译为可验证、可质询、可复用的AI城市更新方法。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
