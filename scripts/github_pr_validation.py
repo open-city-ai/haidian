@@ -40,6 +40,31 @@ RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
 # retries bounded and limited to GETs; a permanent missing file still fails
 # with the path and head-specific download error after the retry budget.
 RETRYABLE_STATUS_CODES = frozenset({404, 429, 500, 502, 503, 504})
+# These root-level paths are package entry points in the participant contract.
+# A non-maintainer PR that creates them outside submissions/<author>/ is a
+# misplaced submission, not an ordinary code/docs/test PR.
+ROOT_SUBMISSION_ENTRY_PATHS = frozenset(
+    {
+        "manifest.json",
+        "agent.json",
+        "proposal.md",
+        "proposal.en.md",
+        "self_check.json",
+    }
+)
+ROOT_NON_SUBMISSION_DIRS = frozenset(
+    {
+        ".github",
+        "brief",
+        "collections",
+        "data",
+        "docs",
+        "examples",
+        "scripts",
+        "skills",
+        "tests",
+    }
+)
 
 
 def _http_error_message(error: urllib.error.HTTPError) -> str:
@@ -147,6 +172,34 @@ class GitHubClient:
             results.extend(page)
             url = next_link(headers.get("Link", ""))
         return results
+
+    def tree_blob_map(self, sha: str) -> dict[str, str]:
+        """Return the recursive blob map for a trusted base or head commit."""
+        encoded_sha = urllib.parse.quote(sha, safe="")
+        data, _ = self.request(
+            "GET",
+            f"/repos/{self.repository}/git/trees/{encoded_sha}?recursive=1",
+        )
+        if not isinstance(data, dict) or data.get("truncated"):
+            raise RuntimeError(
+                f"GitHub tree response for `{sha}` was missing or truncated"
+            )
+        entries = data.get("tree")
+        if not isinstance(entries, list):
+            raise RuntimeError(f"GitHub tree response for `{sha}` was malformed")
+        blobs: dict[str, str] = {}
+        for entry in entries:
+            if not isinstance(entry, dict):
+                continue
+            path = entry.get("path")
+            blob_sha = entry.get("sha")
+            if (
+                entry.get("type") == "blob"
+                and isinstance(path, str)
+                and isinstance(blob_sha, str)
+            ):
+                blobs[path] = blob_sha
+        return blobs
 
     def download_content(
         self,
@@ -283,6 +336,20 @@ def validation_paths_for(files: list[dict], maintainer_bypass: bool) -> list[str
     ]
 
 
+def _pull_request_paths(files: list[dict] | list[str]) -> list[str]:
+    """Return current and previous GitHub PR paths in one normalized list."""
+    paths: list[str] = []
+    for item in files:
+        if isinstance(item, dict):
+            for key in ("filename", "previous_filename"):
+                value = item.get(key)
+                if isinstance(value, str):
+                    paths.append(value)
+        elif isinstance(item, str):
+            paths.append(item)
+    return paths
+
+
 def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
     """Return true only for a single participant-owned submission directory."""
     roots: set[str] = set()
@@ -292,6 +359,66 @@ def is_review_queue_candidate(changed_files: list[str], pr_author: str) -> bool:
             return False
         roots.add("/".join(parts[:3]))
     return bool(changed_files) and len(roots) == 1
+
+
+def participant_scope_violations(
+    files: list[dict] | list[str], pr_author: str
+) -> list[str]:
+    """Return every current or previous path outside a participant package.
+
+    Removed files are intentionally included here.  They are excluded from
+    content validation because they are absent from the PR checkout, but a
+    participant must not use that exclusion to delete repository-owned files.
+    """
+    prefix = f"submissions/{pr_author.strip()}/".casefold()
+    paths = {path.strip() for path in _pull_request_paths(files) if path.strip()}
+    return sorted(path for path in paths if not path.casefold().startswith(prefix))
+
+
+def participant_tree_scope_violations(
+    base_tree: dict[str, str],
+    head_tree: dict[str, str],
+    pr_author: str,
+    maintainer_bypass: bool,
+) -> list[str]:
+    """Return changed tree paths outside a participant package.
+
+    This catches deletions hidden by a pull request's merge-base calculation,
+    including a branch based on the first parent of a merge commit.
+    """
+    if maintainer_bypass:
+        return []
+
+    prefix = f"submissions/{pr_author.strip()}/".casefold()
+    changed_paths = {
+        path
+        for path in base_tree.keys() | head_tree.keys()
+        if base_tree.get(path) != head_tree.get(path)
+    }
+    return sorted(path for path in changed_paths if not path.casefold().startswith(prefix))
+
+
+def is_root_submission_pr(files: list[dict] | list[str]) -> bool:
+    """Return true for root files or a nested package-shaped root directory.
+
+    A package placed at ``jingzhang-zhiji-submission/manifest.json`` is just as
+    misplaced as a root ``manifest.json``.  Without this grouped check, a PR
+    containing only non-``submissions/`` paths is classified as ordinary code
+    and skips the participant package validator entirely.
+    """
+    nested_entries: dict[str, set[str]] = {}
+    for raw_path in _pull_request_paths(files):
+        path = raw_path.strip().casefold()
+        if not path:
+            continue
+        if path in ROOT_SUBMISSION_ENTRY_PATHS:
+            return True
+        parts = PurePosixPath(path).parts
+        if len(parts) < 2 or parts[0] in ROOT_NON_SUBMISSION_DIRS or parts[0] == "submissions":
+            continue
+        if parts[-1] in ROOT_SUBMISSION_ENTRY_PATHS:
+            nested_entries.setdefault(parts[0], set()).add(parts[-1])
+    return any(len(entries) >= 2 for entries in nested_entries.values())
 
 
 def is_non_submission_pr(files: list[dict] | list[str]) -> bool:
@@ -421,12 +548,73 @@ def main() -> int:
     maintainer_bypass = pr_author.lower() in {item.lower() for item in bypass}
     validation_files = validation_paths_for(files, maintainer_bypass)
     queue_candidate = is_review_queue_candidate(changed_files, pr_author)
+    scope_violations = participant_scope_violations(files, pr_author)
+    root_submission_pr = is_root_submission_pr(files)
+    scope_verification_error = None
+    base_sha = pull_request.get("base", {}).get("sha")
+    tree_scope_check = (
+        not maintainer_bypass
+        and isinstance(base_sha, str)
+        and bool(base_sha)
+        and (not is_non_submission_pr(files) or root_submission_pr)
+    )
+    if tree_scope_check:
+        try:
+            base_tree = client.tree_blob_map(base_sha)
+            head_tree = client.tree_blob_map(head_sha)
+            scope_violations.extend(
+                participant_tree_scope_violations(
+                    base_tree,
+                    head_tree,
+                    pr_author,
+                    maintainer_bypass,
+                )
+            )
+            scope_violations = sorted(set(scope_violations))
+        except RuntimeError as exc:
+            scope_verification_error = str(exc)
+
+    if tree_scope_check and (scope_verification_error or scope_violations):
+        validation = ValidationReport(
+            changed_files=changed_files,
+            maintainer_bypass=maintainer_bypass,
+        )
+        if root_submission_pr:
+            validation.add_error(
+                "participant submission artifacts must be under submissions/"
+                f"{pr_author}/; root-level package entry files are not accepted"
+            )
+        if scope_verification_error:
+            validation.add_error(
+                "submission path ownership could not be verified: "
+                f"{scope_verification_error}"
+            )
+        for path in scope_violations:
+            validation.add_error(
+                f"{path}: participant PRs may only change submissions/{pr_author}/"
+            )
+        validation_markdown = format_report(validation)
+        if not is_current_pull_request_head(client, pr_number, head_sha):
+            print(
+                f"Skipping stale validation side effects for PR #{pr_number}: "
+                f"the PR head changed before the submission-scope failure was reported."
+            )
+            return 0
+        comment = (
+            f"{COMMENT_MARKER}\n"
+            "# Haidian Submission Validation\n\n"
+            f"{validation_markdown}\n\n"
+            "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
+        )
+        write_step_summary(comment)
+        client.upsert_comment(pr_number, comment)
+        return 1
 
     # Code/docs/test PRs do not need participant-package hydration.  Decide
     # this immediately after the file listing so a non-submission change
     # cannot spend API calls downloading its whole diff before receiving the
     # informational validation comment.
-    if is_non_submission_pr(files):
+    if is_non_submission_pr(files) and (not root_submission_pr or maintainer_bypass):
         validation = ValidationReport(changed_files=changed_files)
         validation.add_warning(
             "non-submission code/docs/test PR; participant package validation was not applicable"
@@ -468,7 +656,17 @@ def main() -> int:
                 proposal_path,
             )
 
-        if not validation_files and (maintainer_bypass or queue_candidate):
+        if root_submission_pr and not maintainer_bypass:
+            validation = ValidationReport(changed_files=changed_files)
+            validation.add_error(
+                "participant submission artifacts must be under submissions/"
+                f"{pr_author}/; root-level package entry files are not accepted"
+            )
+            for path in scope_violations:
+                validation.add_error(
+                    f"{path}: participant PRs may only change submissions/{pr_author}/"
+                )
+        elif not validation_files and (maintainer_bypass or queue_candidate):
             validation = ValidationReport(
                 changed_files=changed_files,
                 maintainer_bypass=maintainer_bypass,
@@ -483,6 +681,16 @@ def main() -> int:
                 )
         else:
             validation = validate_submission(worktree, pr_author, validation_files, bypass)
+            if not maintainer_bypass:
+                for path in scope_violations:
+                    validation.add_error(
+                        f"{path}: participant PRs may only change submissions/{pr_author}/"
+                    )
+            # Content validation receives only files present in the PR
+            # checkout.  The published report must still describe the full PR
+            # diff, including deletions, so scope defects cannot disappear
+            # from the CI summary.
+            validation.changed_files = changed_files
         validation_markdown = format_report(validation)
 
         if not is_current_pull_request_head(client, pr_number, head_sha):
