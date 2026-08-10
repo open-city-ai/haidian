@@ -1,0 +1,129 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "announcement_value",
+      "confidence": "medium",
+      "assumptions": ["基于公告文字值，非测绘复算值。", "基于临时粗略边界（provisional_rough）派生；官方红线到位后须重新复算。"]
+    },
+    "announced_overall_design_area_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "announcement_value(总体设计范围)",
+      "confidence": "high",
+      "assumptions": ["公告文字面积值，非测绘复算值。"]
+    },
+    "announced_research_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "design_proposal_value(统筹研究范围)",
+      "confidence": "low",
+      "reason": "统筹研究范围未在公告中明确，需官方确认具体数值。当前仅参考同类项目估算。",
+      "assumptions": ["统筹研究范围参考同类项目；需官方确认。"]
+    },
+    "autonomous_road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "design_target",
+      "confidence": "low",
+      "reason": "85%路权用于自动驾驶为设计目标，待交通专项研究验证。",
+      "assumptions": ["85%路权用于L3-L4自动驾驶车辆为设计目标。"]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.175698,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "spatial_recalculation",
+      "confidence": "medium",
+      "assumptions": ["17.57%绿化率基于空间重算结果，基于临时粗略边界派生；官方红线到位后须重新复算。"]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.017457,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "spatial_recalculation",
+      "confidence": "medium",
+      "assumptions": ["1.75%公共空间比基于空间重算结果，基于临时粗略边界派生；官方红线到位后须重新复算。"]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(key_areas)",
+      "confidence": "high",
+      "assumptions": ["包含：众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业聚集区。"]
+    },
+    "building_footprint_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "concept_footprint_area",
+      "confidence": "low",
+      "reason": "建筑基底为概念示意，需待官方红线确定后依据设计图测算。",
+      "assumptions": ["建筑基底为概念示意，不代表实际建设规模。", "基于临时粗略边界（provisional_rough）派生；官方红线到位后须重新复算。"]
+    },
+    "shuttle_stop_density": {
+      "status": "known",
+      "value": 200,
+      "unit": "meters",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "average_distance_between_shuttle_stops",
+      "confidence": "low",
+      "assumptions": ["200m站点间距为概念目标，需交通研究验证。"]
+    },
+    "shuttle_stop_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "count(road_class=='shuttle_stop')",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_1_recalc_sqm": {
+      "status": "known",
+      "value": 1920000,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "announcement_value(zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "high",
+      "assumptions": ["公告约面积 192ha（1920000 sqm）。", "基于临时粗略边界（provisional_rough）派生；官方红线到位后须重新复算。"]
+    },
+    "key_area_2_recalc_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "announcement_value(beijing_ai_origin_community)",
+      "confidence": "high",
+      "assumptions": ["公告约面积 104.3ha（1043000 sqm）。", "基于临时粗略边界（provisional_rough）派生；官方红线到位后须重新复算。"]
+    },
+    "key_area_3_recalc_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "announcement_value(dazhongsi_ai_industry_cluster)",
+      "confidence": "high",
+      "assumptions": ["公告约面积 72ha（720000 sqm）。", "基于临时粗略边界（provisional_rough）派生；官方红线到位后须重新复算。"]
+    }
+  }
+}
