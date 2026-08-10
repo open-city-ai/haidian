@@ -147,7 +147,35 @@ class DiagnoseTests(unittest.TestCase):
                                                  b"/Type /ObjStm /Type /Catalog", 1))
         report = diagnose(pdf)
         self.assertEqual(report.status, INDETERMINATE)
-        self.assertIn("no conclusion drawn", report.note)
+        self.assertIn("no conclusion is drawn", report.note)
+
+    def test_object_streams_do_not_block_a_visible_font(self) -> None:
+        """Raised by @147228 on #1273: the conservative branch must be one-directional.
+
+        A PDF may keep unrelated metadata in an object stream while its font
+        references sit in ordinary top-level objects. That file is measurable
+        and must be measured; INDETERMINATE is only for the case where nothing
+        was found *and* something unreadable is present.
+        """
+        pdf = self.dir / "objstm_with_font.pdf"
+        minimal_pdf(pdf, [b"TAG001" + b"A" * 20000, b"TAG002" + b"A" * 20000])
+        pdf.write_bytes(pdf.read_bytes().replace(
+            b"/Type /Catalog", b"/Type /Catalog /Metadata << /Type /ObjStm >>", 1))
+        report = diagnose(pdf)
+        self.assertEqual(report.status, MEASURED,
+                         "an object stream elsewhere must not suppress a visible font")
+        self.assertEqual(report.stored_programs, 2)
+        self.assertGreater(report.duplicated_bytes, 0)
+
+    def test_indeterminate_note_does_not_overclaim(self) -> None:
+        pdf = self.dir / "objstm_only.pdf"
+        minimal_pdf(pdf, [])
+        pdf.write_bytes(pdf.read_bytes().replace(
+            b"/Type /Catalog", b"/Type /Catalog /Metadata << /Type /ObjStm >>", 1))
+        report = diagnose(pdf)
+        self.assertEqual(report.status, INDETERMINATE)
+        self.assertIn("'not found', not", report.note)
+        self.assertIn("declines to rule it out", report.note)
 
     def test_reports_both_limits_separately(self) -> None:
         a = minimal_pdf(self.dir / "a.pdf", [b"A" * 1000])

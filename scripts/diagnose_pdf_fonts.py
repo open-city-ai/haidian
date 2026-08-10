@@ -25,8 +25,12 @@ This tool reports both and nothing else. It is deliberately not a gate:
   majority of the field.
 * **It says INDETERMINATE when it cannot parse.** Font references living
   inside compressed object streams are not visible to a standard-library
-  scan; the tool detects that case and declines to conclude rather than
-  reporting zero.
+  scan. When no reference is found at the top level *and* the file holds an
+  object stream, the tool declines to conclude rather than reporting zero.
+  This is deliberately one-directional: it never claims the references are in
+  the object stream, only that it cannot rule that out. A file whose
+  references are visible at the top level is measured normally, whatever else
+  it keeps in object streams.
 * **It reports the two intake limits separately** — the per-file cap and the
   changed-file total — because a submission can approach the second while
   every individual file is comfortably under the first.
@@ -174,8 +178,13 @@ def diagnose(path: Path) -> Report:
     if not references:
         if OBJECT_STREAM.search(raw):
             return Report(str(path), size, INDETERMINATE, pages, note=(
-                "font references may live in a compressed object stream, which a "
-                "standard-library scan cannot read; no conclusion drawn"))
+                "no /FontFile reference was found among the top-level objects, and the "
+                "file contains at least one compressed object stream that a "
+                "standard-library scan cannot read — so this is 'not found', not "
+                "'not present', and no conclusion is drawn. It does not assert that "
+                "font references are inside the object stream; it declines to rule it "
+                "out. A file whose font references *are* visible at the top level is "
+                "measured normally, whatever else it keeps in object streams."))
         rasterised = bool(IMAGE_XOBJECT.search(raw))
         return Report(str(path), size, SKIP_NO_GLYPHS, pages, note=(
             "no embedded glyph data" + (" (page content is imagery)" if rasterised else "")
