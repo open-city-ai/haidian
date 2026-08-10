@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时边界已显著披露，仅用于内容评分与 intake；官方边界到位后全量复算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区均为 provisional_constraint，未冒充官方边界。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区由统一边界切分，完整覆盖且无重叠。"
+    },
+    {
+      "check_id": "METRICS_RECALCULATED",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "空间指标由 EPSG:4548 投影复算，运营数量指标与正文一致。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线 HTML 无远程脚本、字体、瓦片、iframe、表单、API 或跟踪。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文、五张图、矩阵、GeoJSON、指标、A3/A0 与资料缺口构成一致证据链。"
+    }
+  ]
+}
