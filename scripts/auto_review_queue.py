@@ -30,6 +30,8 @@ SCORE_REVIEW_PATTERN = re.compile(
     r"<!-- haidian-auto-review:(?P<head>[0-9a-f]{40}) -->\s*"
     r"Maintainer intake decision: Review Agent score (?P<score>[0-9]+(?:\.[0-9]+)?)/100\."
 )
+DEFAULT_TRUSTED_REVIEWERS = frozenset({"cocosgt"})
+TRUSTED_REVIEWERS_ENV = "HAIDIAN_TRUSTED_REVIEWERS"
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
@@ -105,9 +107,29 @@ def submission_dir_from_files(paths: list[str], author: str) -> str:
     return roots.pop()
 
 
-def official_score_from_review(body: str, head_sha: str) -> float | None:
-    """Read only the trusted exact-head score marker emitted by this worker."""
-    match = SCORE_REVIEW_PATTERN.search(body)
+def trusted_reviewer_logins() -> set[str]:
+    """Return the explicit maintainer/bot reviewer allowlist used for history."""
+    configured = {
+        item.strip().casefold()
+        for item in os.getenv(TRUSTED_REVIEWERS_ENV, "").split(",")
+        if item.strip()
+    }
+    return configured or set(DEFAULT_TRUSTED_REVIEWERS)
+
+
+def official_score_from_review(
+    review: dict[str, Any],
+    head_sha: str,
+    trusted_reviewers: set[str] | None = None,
+) -> float | None:
+    """Read only an approved exact-head score from an explicitly trusted reviewer."""
+    if str(review.get("state", "")).upper() != "APPROVED":
+        return None
+    author = review.get("author") or review.get("user") or {}
+    login = str(author.get("login", "")).casefold() if isinstance(author, dict) else ""
+    if login not in (trusted_reviewers or trusted_reviewer_logins()):
+        return None
+    match = SCORE_REVIEW_PATTERN.search(str(review.get("body", "")))
     if match is None or match.group("head") != head_sha.casefold():
         return None
     return float(match.group("score"))
@@ -122,7 +144,11 @@ def _submission_root_from_paths(paths: list[str]) -> str | None:
     return next(iter(roots)) if len(roots) == 1 else None
 
 
-def historical_best_score(merged_prs: list[dict[str, Any]], submission_dir: str) -> float | None:
+def historical_best_score(
+    merged_prs: list[dict[str, Any]],
+    submission_dir: str,
+    trusted_reviewers: set[str] | None = None,
+) -> float | None:
     """Return the highest trusted score for one package across merged PRs."""
     best: float | None = None
     for pr in merged_prs:
@@ -130,7 +156,7 @@ def historical_best_score(merged_prs: list[dict[str, Any]], submission_dir: str)
             continue
         head_sha = str(pr.get("headRefOid", ""))
         for review in pr.get("reviews", []):
-            score = official_score_from_review(str(review.get("body", "")), head_sha)
+            score = official_score_from_review(review, head_sha, trusted_reviewers)
             if score is not None and (best is None or score > best):
                 best = score
     return best
@@ -376,7 +402,7 @@ def process_pr(
             if author not in history_cache:
                 history_cache[author] = merged_prs_for_author(args.repo, author, repo_root)
             merged_prs = history_cache[author]
-        historical_best = historical_best_score(merged_prs, submission_dir)
+        historical_best = historical_best_score(merged_prs, submission_dir, trusted_reviewer_logins())
         cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold, historical_best)
         if cached is None:
             command = [

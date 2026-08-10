@@ -96,21 +96,50 @@ class AutoReviewQueueTests(unittest.TestCase):
             f"<!-- haidian-auto-review:{head} -->\n"
             "Maintainer intake decision: Review Agent score 93/100. Mandatory rejection and all four local gates passed."
         )
-        self.assertEqual(93, official_score_from_review(body, head))
-        self.assertIsNone(official_score_from_review(body, "b" * 40))
+        approved = {"state": "APPROVED", "author": {"login": "CocoSgt"}, "body": body}
+        self.assertEqual(93, official_score_from_review(approved, head, {"cocosgt"}))
+        self.assertIsNone(official_score_from_review(approved, "b" * 40, {"cocosgt"}))
+        self.assertIsNone(
+            official_score_from_review(
+                {**approved, "state": "CHANGES_REQUESTED"}, head, {"cocosgt"}
+            )
+        )
+        self.assertIsNone(
+            official_score_from_review(
+                {**approved, "author": {"login": "untrusted-contributor"}}, head, {"cocosgt"}
+            )
+        )
         merged_prs = [
             {
                 "headRefOid": head,
                 "files": [{"path": "submissions/alice/plan/manifest.json"}],
-                "reviews": [{"body": body}],
+                "reviews": [approved],
             },
             {
                 "headRefOid": head,
                 "files": [{"path": "submissions/alice/other/manifest.json"}],
-                "reviews": [{"body": body}],
+                "reviews": [approved],
             },
         ]
-        self.assertEqual(93, historical_best_score(merged_prs, "submissions/alice/plan"))
+        self.assertEqual(93, historical_best_score(merged_prs, "submissions/alice/plan", {"cocosgt"}))
+
+    def test_non_approved_or_untrusted_reviews_never_raise_historical_best(self) -> None:
+        head = "b" * 40
+        body = (
+            f"<!-- haidian-auto-review:{head} -->\n"
+            "Maintainer intake decision: Review Agent score 100/100. Mandatory rejection and all four local gates passed."
+        )
+        merged_prs = [
+            {
+                "headRefOid": head,
+                "files": [{"path": "submissions/alice/plan/manifest.json"}],
+                "reviews": [
+                    {"state": "CHANGES_REQUESTED", "author": {"login": "CocoSgt"}, "body": body},
+                    {"state": "APPROVED", "author": {"login": "untrusted-contributor"}, "body": body},
+                ],
+            }
+        ]
+        self.assertIsNone(historical_best_score(merged_prs, "submissions/alice/plan", {"cocosgt"}))
 
     def test_failed_gate_overrides_high_score(self) -> None:
         review = {
