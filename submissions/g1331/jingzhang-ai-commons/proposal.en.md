@@ -28,6 +28,10 @@ This map QA uses public POIs as place anchors: AI Origin Community returns Cheng
 
 Using the Wudaokou park POI as a representative anchor, the walking observation is about 636 m from AI Origin Community to the park and about 3,451 m onward to Dazhongsi station. Because the park is a linear, multi-segment POI, these are current route observations rather than design metrics or an accessibility audit. They support a “near-neighbor verification before long-spine stitching” mobility narrative without changing submitted geometry [source:MAP-AMAP-WALKING-QA-2026-08-10]. Searching 众智园 returned a same-name POI in Tianjin, so this package does not use that result to define Zhongzhi Park and continues to follow the taskbook and provisional key area [source:MAP-AMAP-POI-QA-2026-08-10] [source:KEY-AREA-SOURCE].
 
+This round also checked the official call notice, the Haidian control-plan consultation notice, and the first public-space project approval. The official call states an approximately 368.4-hectare set of three key areas within an approximately 11.4-square-kilometre overall design area; the NDRC approval confirms an approximately 2.5-kilometre, 168,000-square-metre first public-space project between Qinghua East Road and Zhichun Road [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL].
+
+The municipal garden authority records the opened first phase and the northward phase-two extension. Figure 01 therefore uses an attributed Esri World Imagery export, overlaid with Amap POIs, named OpenStreetMap roads, and proposal layers, so a reader recognises the city before reading the design lines [source:SRC-2026-BJ-GARDEN-JZ-PHASE2] [source:MAP-ESRI-WORLD-IMAGERY-QA-2026-08-10] [source:MAP-OSM-CONTEXT-QA-2026-08-10].
+
 ![Overall spatial structure and evidence chain](assets/figures/site-overview.en.png)
 
 ## Three-Level Scope Framework
@@ -37,7 +41,7 @@ The three scales form one chain rather than three isolated drawing sets. The coo
 | Scale | Question | JINGZHANG LOOP response | Evidence |
 | --- | --- | --- | --- |
 | Coordinated research | How can industry, talent, culture, and future urban life reinforce each other? | A chain of origin, translation, experience, verification, and communication | [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS], [depth:existing_conditions_diagnosis] |
-| Overall design | How can renewal, mobility, municipal systems, and character become one network? | One heritage slow spine, two cross-city seams, and three interface stations | [data:geometry/land_use.geojson#LU-001], [data:geometry/roads.geojson#ROAD-RAIL-SPINE] |
+| Overall design | How can renewal, mobility, municipal systems, and character become one network? | One heritage slow spine, two cross-city seams, and three interface stations | Official approximately 11.4 sq km area [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]; [data:geometry/land_use.geojson#LU-001], [data:geometry/roads.geojson#ROAD-RAIL-SPINE] |
 | Key areas | How can the strategy become an operable urban experience? | Zhongzhi Park verifies, Beijing AI Origin Community translates, and Dazhongsi exchanges | [data:geometry/key_areas.geojson#PROV-KEY-001], [data:geometry/key_areas.geojson#PROV-KEY-002], [data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 The spatial structure is “one spine, two seams, three stations, four safeguards.” The spine follows Jingzhang heritage and the Jingzhang Relics Park slow network. The two seams are the Zhongguancun technology-service wing and the Xiaoyuehe scenario-enablement wing. The three stations are VERIFY, TRANSLATE, and EXCHANGE. The safeguards are legibility, opt-out, human stewardship, and low-tech fallback. This interprets the taskbook’s three key areas and two wings [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS] without creating a new statutory boundary.
@@ -66,7 +70,9 @@ The overall design translates one spine, two seams, and three stations into five
 
 These five bands are a design allocation tool, not statutory parcel or land-use approval [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:land_use_layout] [data:geometry/land_use.geojson#LU-001]. The building layer contains 18 conceptual carriers [metric:building_carrier_count] marked retain, renovate, or new concept. Each requires ownership, structural, fire, accessibility, heritage, and planning review [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish].
 
-Controls follow a “relationships first, numbers second” rule. Public ground floors, pedestrian continuity, blue-green buffers, interfaces, and views are established first. Floor area ratio, total floor area, height, density, setbacks, green controls, road redlines, and facility standards remain unknown until official planning and engineering inputs arrive [depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING]. This preserves room for professional correction instead of presenting guessed controls as approval values.
+Controls follow a “relationships first, numbers second” rule. Public ground floors, pedestrian continuity, blue-green buffers, interfaces, and views are established first. This round checked the official call, the control-plan consultation notice, and the first- and second-phase public project records for scope, road context, and park status. Those public pages do not publish a complete machine-readable parcel redline, ownership, building-height, floor-area-ratio, utility, fire, or flood-control layer, so this package does not invent values [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL] [source:SRC-2026-BJ-GARDEN-JZ-PHASE2].
+
+The package does not present provisional geometry as approval data. Each missing control object is listed in the constraints and source records so a formal layer can replace it and the package can be recomputed on the same coordinate and topology rules [depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
 
 The character language is railway structure, campus-scale public life, transparent AI interfaces, and a low-carbon riverside base. Large masses stay in the background; public ground floors and crossings form the readable edge. New structures should be repairable, demountable, and reusable. Urban-design coordination, public space, and character return to [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:overall_spatial_structure].
 
@@ -129,7 +135,7 @@ The package contains 18 conceptual building carriers. Its footprint is [metric:b
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-Mobility has three layers: the Jingzhang slow spine; rail and bus interchange; and local circulation with service access. The road layer has 8 conceptual centerlines totaling [metric:road_centerline_length_m]. They are not road redlines. Dazhongsi prioritizes four-quadrant crossings; the Origin Community stitches campus, park, and neighborhood walking; Zhongzhi Park creates low-carbon access at the Qinghe edge [data:geometry/roads.geojson#ROAD-RAIL-SPINE] [depth:traffic_rail_slow_parking].
+Mobility has three layers: the Jingzhang slow spine; rail and bus interchange; and local circulation with service access. The road layer has 8 conceptual centerlines totaling [metric:road_centerline_length_m]. They are not road redlines. Dazhongsi prioritizes four-quadrant crossings; the Origin Community stitches campus, park, and neighborhood walking; Zhongzhi Park creates low-carbon access at the Qinghe edge [data:geometry/roads.geojson#ROAD-RAIL-SPINE] [depth:traffic_rail_slow_parking]. This round also adds an OpenStreetMap context layer for named roads, transit nodes, the Jingzhang heritage park, and schools, so the boards can be read against recognizable city fabric; it remains public-map QA, not statutory control [data:visual/assets/context_osm_qa.json] [source:MAP-OSM-CONTEXT-QA-2026-08-10].
 
 Slow mobility does not remove emergency, service, or accessible access. Each public node has time windows for service vehicles, emergency response, accessible movement, bicycle parking, and loading. Cross-sections, junctions, parking supply, and station-city works need professional transport and operations review. Reversible markings and mobile elements come before permanent engineering, using the mechanism of pilotable street reallocation [source:CASE-BARCELONA-SUPERBLOCK].
 
@@ -167,6 +173,8 @@ Three phases provide the rhythm “prove, stitch, govern.” Phase 01 establishe
 
 An open week is not only promotion. It includes demonstrations, public questioning, developer contributions, professional review, and a next-year pause or retirement list. Policy proposals include a public-interface register, reversible-pilot procurement, low-tech fallback budgets, data minimization, cross-department stewardship, and resident response loops. They are not government commitments or funding promises [depth:phasing_implementation].
 
+![Phasing scopes, spatial outputs, and stewardship gates](assets/figures/phase-operations.en.png)
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 Metrics are separated into geometry-recalculable values, unknown planning or engineering controls, and operational performance measures. This makes a clear distinction between what this package has calculated and what a professional team must measure later [depth:metrics_recalculation] [depth:risk_missing_data].
@@ -189,13 +197,15 @@ The compliance matrix maps official tasks 1.3.1 through 1.5.3.3 and agent.1 thro
 
 ## Risk, Copyright, and Compliance
 
-The main risk is turning provisional data into certainty. Site, key areas, land use, buildings, roads, green space, public space, constraints, and phasing must be recalculated together when official inputs arrive. The constraints layer records the provisional site, heritage uncertainty, water-data gap, and missing controls [data:geometry/constraints.geojson#CONSTRAINT-PROVISIONAL-SITE] [depth:risk_missing_data]. Before replacement, every area, location, and count is conceptual evidence only.
+The main risk is turning provisional data into certainty. This round searched the official call, the Haidian control-plan consultation notice, the NDRC approval, the garden authority’s phase-one opening record, and its phase-two update. Those sources now support the published scope, road-node context, and park implementation status, but they still do not expose complete parcel ownership, building survey, utilities, fire, flood, heritage, or approval-grade road-redline data. That is an evidence-audit result, not a generic placeholder: the constraints layer records each object, its status, and its replacement trigger [data:geometry/constraints.geojson#CONSTRAINT-PROVISIONAL-SITE]. The official pages and project records are [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL] [source:SRC-2026-BJ-GARDEN-JZ-PHASE2].
+
+Areas, locations, and counts are therefore concept-design evidence; aerial imagery, map context, route QA, and design geometry are separately labelled and can be recomputed when control layers are connected [depth:risk_missing_data].
 
 AI governance uses four safeguards: every interface shows purpose, data freshness, owner, and stop method; people can opt out and receive human service; stewards can pause, downgrade, and roll back; and the low-tech base keeps working during network, power, model, or sensor failure. Personal data is minimized, aggregated, or synthetic. Implementation must still test equity, accessibility, cybersecurity, vendor lock-in, model bias, operating cost, and public acceptance.
 
 The text, GeoJSON, metrics, HTML, PDFs, and figures were generated by g1331 with Codex and are disclosed in the copyright statement. Figures load no remote maps, scripts, fonts, or images. No uncleared brand, portrait, or corporate mark is used. Case links and reuse boundaries are recorded in sources.json [source:CASE-SEOUL-S-MAP] [source:CASE-VIRTUAL-SINGAPORE]. The package is COMMUNITY-DISPLAY-ONLY: it may support review, display, and open discussion, but it is not government approval, statutory planning, an engineering commitment, or a commercial license.
 
-The minimum professional inputs for the next stage are official site and key-area polygons, terrain and building surveys, land and ownership, planning controls, road redlines and traffic counts, station-city engineering, river and flood controls, utilities, fire review, heritage, public services, energy, finance, and implementation owners [depth:height_massing_character] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
+The next-stage control-layer list is explicit: official site and key-area polygons, terrain and building surveys, land and ownership, planning controls, road redlines and traffic counts, station-city engineering, river and flood controls, utilities, fire review, heritage, public services, energy, finance, and implementation owners. The package already maps each object to a constraint and source entry instead of using an empty placeholder [depth:height_massing_character] [depth:traffic_rail_slow_parking] [depth:municipal_new_infrastructure] [standard:MOHURD-CONTROL-DETAILED-PLANNING].
 
 ## References
 
@@ -203,6 +213,8 @@ The minimum professional inputs for the next stage are official site and key-are
 - Agent taskbook and human-review boundary: [source:AGENT-TASKBOOK] [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK].
 - Three key areas, two wings, and site package: [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS] [source:SRC-2026-HAIDIAN-1X1] [source:SITE-PACKAGE].
 - Source registry and fact navigation: [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK].
+- Official control-plan, park, and project records: [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL] [source:SRC-2026-BJ-GARDEN-JZ-PHASE2].
+- Aerial and map-context QA: [source:MAP-ESRI-WORLD-IMAGERY-QA-2026-08-10] [source:MAP-OSM-CONTEXT-QA-2026-08-10].
 - Provisional geometry: [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:SRC-PROVISIONAL-BOUNDARIES-2026].
 - Urban design, planning, land-use, and architecture references: [source:SRC-2017-MOHURD-URBAN-DESIGN-MEASURES] [source:SRC-MOHURD-CONTROL-DETAILED-PLANNING] [source:SRC-2023-MNR-LAND-USE-CLASSIFICATION] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016].
 - Map-tool cross-check: [source:MAP-AMAP-POI-QA-2026-08-10] [source:MAP-AMAP-WALKING-QA-2026-08-10]. Background QA only; it does not define formal boundaries, areas, or engineering controls.

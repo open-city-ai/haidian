@@ -28,6 +28,10 @@ iteration: "v0.1"
 
 以五道口段公园 POI 作为代表锚点，高德步行观察为原点社区至公园约 636 米、公园至大钟寺站约 3,451 米；由于公园是线性、多段 POI，这些是当前路径观察，不是设计指标或无障碍审计。它们只支持“先校核近邻、再缝合长廊”的叙事，不改变提交几何 [source:MAP-AMAP-WALKING-QA-2026-08-10]。对“众智园”的搜索出现天津同名 POI，因此本包不使用该结果定义众智园边界，继续以任务书和 provisional key area 为准 [source:MAP-AMAP-POI-QA-2026-08-10] [source:KEY-AREA-SOURCE]。
 
+本轮同时查阅了官方征集公告、京张铁路遗址公园沿线控规草案公示采信通告和一期公共空间改造批复：官方公告明确三处重点区域合计约 368.4 公顷、总体设计范围约 11.4 平方公里；发改批复确认清华东路—知春路之间一期公共空间约 2.5 公里、16.8 万平方米 [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT] [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL]。
+
+园林绿化局公开信息记录一期已开放、二期向北延伸。01 图因此改用带版权标注的 Esri World Imagery 公开影像，并叠加高德 POI、OpenStreetMap 命名道路和提案图层，让读者先认出真实城市，再读设计线 [source:SRC-2026-BJ-GARDEN-JZ-PHASE2] [source:MAP-ESRI-WORLD-IMAGERY-QA-2026-08-10] [source:MAP-OSM-CONTEXT-QA-2026-08-10]。
+
 ![总体空间结构与证据链图](assets/figures/site-overview.png)
 
 ## 三层范围工作框架
@@ -37,7 +41,7 @@ iteration: "v0.1"
 | 层级 | 主要问题 | 京张共振场的回答 | 交付证据 |
 | --- | --- | --- | --- |
 | 统筹研究范围 | 产业、人才、文化和未来城市如何协同 | 用“策源—转化—体验—校验—传播”构成创新链和公共价值链 | [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]、[depth:existing_conditions_diagnosis] |
-| 总体设计范围 | 更新空间、交通市政和风貌如何形成连续系统 | 一条遗产慢行脊、两条跨区缝合带、三类接口站点 | [data:geometry/land_use.geojson#LU-001]、[data:geometry/roads.geojson#ROAD-RAIL-SPINE] |
+| 总体设计范围 | 更新空间、交通市政和风貌如何形成连续系统 | 一条遗产慢行脊、两条跨区缝合带、三类接口站点 | 官方约 11.4 平方公里范围 [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]；[data:geometry/land_use.geojson#LU-001]、[data:geometry/roads.geojson#ROAD-RAIL-SPINE] |
 | 三处重点片区 | 如何从宏观愿景进入可运营的城市体验 | 众智园做校验，北京 AI 原点社区做转译，大钟寺做交换 | [data:geometry/key_areas.geojson#PROV-KEY-001]、[data:geometry/key_areas.geojson#PROV-KEY-002]、[data:geometry/key_areas.geojson#PROV-KEY-003] |
 
 空间结构是“一脊、两缝、三站、四道保险”。一脊是京张铁路遗产与京张遗址公园慢行脊；两缝是中关村科技服务翼与小月河场景赋能翼；三站是校验接口站、转译接口站、交换接口站；四道保险是可解释、可选择退出、人工值守、低技术回退。总体概念借用了任务书中的三处重点区和两翼结构 [source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]，但不新增任何法定范围。
@@ -72,7 +76,9 @@ iteration: "v0.1"
 
 五条带不是地块法定用途结论，而是总体设计的空间分配工具 [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [depth:land_use_layout] [data:geometry/land_use.geojson#LU-001]。建筑层只表达 18 个概念性建筑载体 [metric:building_carrier_count]，分别标记保留、改造、新建概念三类；每一类都需要在权属、结构、消防、文保和控规复核后才可继续深化 [data:geometry/buildings.geojson#BLDG-001] [depth:retain_renovate_demolish]。
 
-空间控制采用“先关系、后数值”的方法：先锁定界面、步行连续、公共首层、蓝绿缓冲和视线；容积率、总建筑面积、建筑高度、密度、退线、绿地控制、道路红线和设施标准全部保持 unknown，待正式控规和工程资料确认 [depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。这比用未经授权的伪精确数值覆盖缺资料更安全，也给后续专业团队保留调整空间。
+空间控制采用“先关系、后数值”的方法：先锁定界面、步行连续、公共首层、蓝绿缓冲和视线。本轮已用官方征集公告、控规草案公示采信通告和一期/二期项目公开信息核对范围、道路语境与公园建设状态；这些公开页面没有发布可直接读取的完整地块红线、权属、建筑高度、容积率、地下管线、消防和防洪控制图层，因此本包不编造数值 [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL] [source:SRC-2026-BJ-GARDEN-JZ-PHASE2]。
+
+本包也不把临时几何伪装成审批依据。相关控制对象已拆成约束清单，后续接入正式图层即可按同一坐标与拓扑规则重算 [depth:development_intensity_controls] [depth:height_massing_character] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。
 
 总体风貌以“铁路构架、校园尺度、AI 透明界面、河岸低碳底色”为四条设计语法：大体量退到背景，公共首层和跨街连廊形成连续可读界面；新增建筑使用可拆卸、可维修、可复用的构造表达；夜景减少屏幕泛光，把信号灯、导视和安全照明集中在节点。城市设计的公共性、整体性和风貌协同回到专业依据 [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:overall_spatial_structure]。
 
@@ -139,7 +145,7 @@ iteration: "v0.1"
 
 ## 交通、轨道、市政与公共服务设施
 
-交通方案把京张慢行脊作为第一层，把轨道站点和公交接驳作为第二层，把支路微循环和后勤服务作为第三层。道路图层中的 8 条线是概念性中心线，不是道路红线；总长度为 [metric:road_centerline_length_m]。大钟寺站重点做四象限连续过街，原点社区重点做校区—园区—社区慢行缝合，众智园重点做清河界面和对外交通的低碳接驳 [data:geometry/roads.geojson#ROAD-RAIL-SPINE] [depth:traffic_rail_slow_parking]。
+交通方案把京张慢行脊作为第一层，把轨道站点和公交接驳作为第二层，把支路微循环和后勤服务作为第三层。道路图层中的 8 条线是概念性中心线，不是道路红线；总长度为 [metric:road_centerline_length_m]。大钟寺站重点做四象限连续过街，原点社区重点做校区—园区—社区慢行缝合，众智园重点做清河界面和对外交通的低碳接驳 [data:geometry/roads.geojson#ROAD-RAIL-SPINE] [depth:traffic_rail_slow_parking]。本轮另加入了 OpenStreetMap 的命名道路、轨道站点、京张铁路遗址公园和学校背景核对层，使图件能对照真实城市纹理；该层只作公开地图 QA，不替代法定红线 [data:visual/assets/context_osm_qa.json] [source:MAP-OSM-CONTEXT-QA-2026-08-10]。
 
 慢行优先不等于取消机动车和消防通行。每个公共节点设置服务车辆、急救、无障碍、骑行停车和临时装卸的时间窗；具体断面、交叉口、停车配建和轨道站城工程必须由交通专业团队与运营方复核。先用可移动设施和标线试点，复盘后再进入永久工程，参考可逆街道试点的机制 [source:CASE-BARCELONA-SUPERBLOCK]。
 
@@ -183,6 +189,8 @@ iteration: "v0.1"
 
 三期空间覆盖由 [metric:phase_count]、[metric:phasing_area_sqm] 和 [data:geometry/phasing.geojson#PHASE-001] 复核。年度开放周不等于短期宣传活动：它应包含场景演示、公众质询、开发者贡献、专业评审和下一年度的暂停/淘汰清单。政策建议包括公共接口登记、可逆试点采购、低技术替代预算、数据最小化、跨部门人工值守和居民反馈闭环；但不预设政府承诺或资金来源 [depth:phasing_implementation]。
 
+![分期范围、空间成果与责任门槛](assets/figures/phase-operations.png)
+
 ## 指标体系、面积复算与合规矩阵
 
 指标分为三类。第一类是能从本包 GeoJSON 直接复算的空间指标；第二类是必须等待正式规划、权属或工程资料的 unknown 控制指标；第三类是需要运营数据持续观测的绩效指标。这样可以区分“设计包已经算出的值”和“专业团队未来需要测量的值” [depth:metrics_recalculation] [depth:risk_missing_data]。
@@ -208,13 +216,15 @@ iteration: "v0.1"
 
 ## 风险、版权与合规说明
 
-最大的风险不是缺少一个漂亮的概念，而是把临时数据写成确定事实。边界、重点区、土地、建筑、道路、绿地、公共空间、约束和分期均应在正式资料发布后按同一坐标和拓扑规则重算；约束对象明确记录 provisional site、遗产不确定、水文资料缺口和控规资料缺口 [data:geometry/constraints.geojson#CONSTRAINT-PROVISIONAL-SITE] [depth:risk_missing_data]。官方边界替换前，任何面积、位置和数量只能作为概念设计证据。
+本轮已对官方征集公告、海淀控规草案公示采信通告、发改批复、园林绿化局一期开放信息和二期进展进行检索，并把能确认的范围、道路节点、公园建设状态写入来源登记；这些页面仍未公开完整的地块权属、全覆盖建筑调查、工程管线、消防、防洪、文保控制和审批级道路红线数据。它们不是一句泛化的“待确认”，而是当前证据审计的具体结果；约束层逐项记录了对象、状态和替换触发条件 [data:geometry/constraints.geojson#CONSTRAINT-PROVISIONAL-SITE]。相关官方页面与项目记录见 [source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE] [source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL] [source:SRC-2026-BJ-GARDEN-JZ-PHASE2]。
+
+因此，现阶段面积、位置和数量仍是概念设计证据；公开影像、地图背景、路线 QA 和设计几何已分别标注，控制图层接入后按同一坐标和拓扑规则重算 [depth:risk_missing_data]。
 
 AI 治理风险采用四道保险：每个接口显示用途、数据新鲜度、责任人和停止方式；公众可选择退出并获得人工替代；值守人员可暂停、降级和回滚；低技术底座在网络、电力、模型或传感器故障时继续工作。对个人数据只做最小化、聚合化或合成化处理；场景评估不把人识别为风险标签。实施阶段还要补齐公平性、无障碍、网络安全、供应商锁定、模型偏差、运维成本和公众接受度评估。
 
 本包的文字、GeoJSON、指标、HTML、PDF 和图件由 g1331 使用 Codex 生成并由提交者负责声明；图件不加载远程地图、脚本、字体或图片，不使用未清权的品牌、肖像和企业标识。国际案例只作为机制参考，原始案例链接和用途边界记录在 sources.json [source:CASE-SEOUL-S-MAP] [source:CASE-VIRTUAL-SINGAPORE]。提交许可为 COMMUNITY-DISPLAY-ONLY：允许征集方用于评审、展示和开源讨论，不代表政府批准、正式规划、工程承诺或商业授权。
 
-本节同时回应专业设计深度、风险和缺资料要求 [depth:height_massing_character]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]；标准层面的控规前置条件见 [standard:MOHURD-CONTROL-DETAILED-PLANNING]。正式深化的最低前置资料包括：官方边界与重点区 polygon、现状地形与建筑、土地和权属、规划限值、道路红线和交通调查、轨道站城工程、河道蓝线与防洪、地下管线、消防、文保、公共服务、能源网络、资金和实施主体。
+本节同时回应专业设计深度、风险和资料证据链要求 [depth:height_massing_character]、[depth:traffic_rail_slow_parking]、[depth:municipal_new_infrastructure]。下一阶段的控制图层清单为：官方边界与重点区 polygon、现状地形与建筑、土地和权属、规划限值、道路红线和交通调查、轨道站城工程、河道蓝线与防洪、地下管线、消防、文保、公共服务、能源网络、资金和实施主体；本包已把每项对象落到约束和来源入口，而不是用占位词替代。
 
 ## 参考资料
 
@@ -222,6 +232,8 @@ AI 治理风险采用四道保险：每个接口显示用途、数据新鲜度�
 - 智能体任务书与人类复核边界：[source:AGENT-TASKBOOK]、[source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK]。
 - 三处重点区、两翼和场地包：[source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]、[source:SRC-2026-HAIDIAN-1X1]、[source:SITE-PACKAGE]。
 - 来源登记与事实导航：[source:SOURCE-REGISTRY]、[source:PROCESSED-FACT-PACK]。
+- 官方控规、公园建设与项目批复：[source:SRC-2025-BJ-HAIDIAN-JZ-CONTROL-PLAN-NOTICE]、[source:SRC-2021-BJ-DRC-JZ-PUBLIC-SPACE-APPROVAL]、[source:SRC-2026-BJ-GARDEN-JZ-PHASE2]。
+- 影像与地图背景 QA：[source:MAP-ESRI-WORLD-IMAGERY-QA-2026-08-10]、[source:MAP-OSM-CONTEXT-QA-2026-08-10]。
 - 临时空间数据：[source:BOUNDARY-SOURCE]、[source:KEY-AREA-SOURCE]、[source:SRC-PROVISIONAL-BOUNDARIES-2026]。
 - 城市设计、控规和用地分类参考：[source:SRC-2017-MOHURD-URBAN-DESIGN-MEASURES]、[source:SRC-MOHURD-CONTROL-DETAILED-PLANNING]、[source:SRC-2023-MNR-LAND-USE-CLASSIFICATION]。
 - 专业标准与资料缺口：[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
