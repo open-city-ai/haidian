@@ -18,7 +18,7 @@ iteration: "v0.1"
 
 **核心创意**：一百年前詹天佑以自主设计建成京张铁路，实现了中国铁路从「依赖」到「自主」的跨越；一百年后，海淀在这条铁路沿线建设 AI 创新带，正在完成从「算力自主」到「智能自主」的又一次跨越。方案以「双轨」作为贯穿命名、空间、叙事与运营的核心隐喻：**铁轨记忆线**（京张遗址公园，承载百年文化）与**算力轨道线**（沿学院路一线的 AI 产业与创新服务走廊，指向智能未来）双轨并行、互相咬合，交汇于 AI 原点社区——这里是双轨的「原点」，也是创新的「原点」[source:AGENT-TASKBOOK]。
 
-**资料与证据清单**：方案使用的正式任务依据为官方资格预审公告（任务 1.3/1.4/1.5、三层范围、三处重点区面积）[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 与面向智能体任务书（十大共创原则、三大定位、五大功能、三区两翼、agent.1-agent.6、统一边界条款）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]；专业标准采用《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING] [source:MOHURD-CONTROL-DETAILED-PLANNING]，《国土空间调查、规划、用途管制用地用海分类指南》与 [source:MNR-LAND-USE-CLASSIFICATION] 提供用地代码语义。
+**资料与证据清单**：方案使用的正式任务依据为官方资格预审公告（任务 1.3/1.4/1.5、三层范围、三处重点区面积）[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] 与面向智能体任务书（十大共创原则、三大定位、五大功能、三区两翼、agent.1-agent.6、统一边界条款）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]；专业标准采用《城市设计管理办法》[standard:MOHURD-URBAN-DESIGN-MEASURES] [source:MOHURD-URBAN-DESIGN-MEASURES]、《城市、镇控制性详细规划编制审批办法》[standard:MOHURD-CONTROL-DETAILED-PLANNING] [source:MOHURD-CONTROL-DETAILED-PLANNING]，《国土空间调查、规划、用途管制用地用海分类指南》[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] 与 [source:MNR-LAND-USE-CLASSIFICATION] 提供用地代码语义。
 
 空间数据登记于 `sources.json`：`OFFICIAL-ANNOUNCEMENT`、`AGENT-TASKBOOK`、`SITE-PACKAGE`、`SOURCE-REGISTRY` 为 formal-ready 来源；`BOUNDARY-SOURCE`、`KEY-AREA-SOURCE` 为 provisional-only 边界来源；`OSM-BASE`、`HERITAGE-PUBLIC`、`PUBLIC-NARRATIVE` 为背景资料 [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。
 
@@ -83,7 +83,7 @@ AI 原生城市形态的五个方向：**可感知**（场景可见、可体验�
 
 ### 功能布局与更新框架
 
-功能布局以「科研教育 15.1%、商业服务 22.9%、居住 31.6%、绿地 18.6%、广场 1.7%」为概念配比 [metric:research_education_ratio] [metric:commercial_ratio] [metric:residential_ratio]，绿地率为 [metric:green_ratio]，通过 `land_use.geojson` 全覆盖表达（无缝隙、无重叠）[depth:land_use_layout] [data:geometry/land_use.geojson#LU-003]。
+功能布局以「科研教育 15.1%、商业服务 22.9%、居住 31.6%、绿地 18.6%、广场 1.7%」为概念配比 [metric:research_education_ratio] [metric:commercial_ratio] [metric:residential_ratio]，绿地率为 [metric:green_ratio]，广场比例 [metric:public_space_ratio]，通过 `land_use.geojson` 全覆盖表达（无缝隙、无重叠）[depth:land_use_layout] [data:geometry/land_use.geojson#LU-003]。
 
 城市更新总体框架按「保留—改造—更新—新建」四类组织 [depth:retain_renovate_demolish] [standard:MOHURD-URBAN-DESIGN-MEASURES]：
 - **保留**：清华园车站旧址等文保单位、遗址公园、绿地水系（`constraints.geojson`）[data:geometry/constraints.geojson#CONST-HER-001]；
