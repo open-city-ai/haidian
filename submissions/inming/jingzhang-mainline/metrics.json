@@ -1,0 +1,462 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary.geojson)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_areas.geojson features)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "key_area_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas.geojson))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "land_use_coverage_ratio": {
+   "status": "known",
+   "value": 1.0,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson)) / polygon_area(site_boundary.geojson)",
+   "confidence": "high",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0802_area_sqm": {
+   "status": "known",
+   "value": 1396820.375,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0802)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0701_area_sqm": {
+   "status": "known",
+   "value": 3179892.277,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0701)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0702_area_sqm": {
+   "status": "known",
+   "value": 901764.213,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0702)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_05_area_sqm": {
+   "status": "known",
+   "value": 1729082.774,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=05)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0803_area_sqm": {
+   "status": "known",
+   "value": 230071.742,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0803)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0804_area_sqm": {
+   "status": "known",
+   "value": 964241.014,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0804)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0805_area_sqm": {
+   "status": "known",
+   "value": 101462.294,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0805)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_0806_area_sqm": {
+   "status": "known",
+   "value": 71869.125,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=0806)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_1401_area_sqm": {
+   "status": "known",
+   "value": 1554579.929,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=1401)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_1402_area_sqm": {
+   "status": "known",
+   "value": 638366.466,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=1402)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_1403_area_sqm": {
+   "status": "known",
+   "value": 50075.902,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=1403)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "lu_16_area_sqm": {
+   "status": "known",
+   "value": 594599.274,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use.geojson) where land_use_code=16)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3778420.247,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space.geojson))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.331,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space.geojson)) / polygon_area(site_boundary.geojson)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 995340.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space.geojson))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.087,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space.geojson)) / polygon_area(site_boundary.geojson)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 375,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(buildings.geojson features)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2548224.566,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(buildings.geojson))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.223,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(buildings.geojson)) / polygon_area(site_boundary.geojson)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "road_centerline_length_m": {
+   "status": "known",
+   "value": 55908.491,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(roads.geojson))",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "mainline_greenway_length_m": {
+   "status": "known",
+   "value": 9563.47,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(roads.geojson) where road_class=greenway)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "merge_point_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/green_space.geojson"
+   ],
+   "formula": "count(public_space.geojson where space_type=merge_plaza)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "east_west_connector_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(roads.geojson where merge_point_id is not null)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space.geojson where scenario_id is not null)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "milestone_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(public_space.geojson where landmark_id is not null)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "phasing_phase1_area_sqm": {
+   "status": "known",
+   "value": 2328998.838,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phasing.geojson where phase_id=P1)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "phasing_phase2_area_sqm": {
+   "status": "known",
+   "value": 5192561.119,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phasing.geojson where phase_id=P2)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  },
+  "phasing_phase3_area_sqm": {
+   "status": "known",
+   "value": 3891265.429,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(phasing.geojson where phase_id=P3)",
+   "confidence": "medium",
+   "assumptions": [
+    "面积按 EPSG:4548 复算,暂以仓库 provisional 边界为底,官方 polygon 发布后需整体重算",
+    "概念图层为 AI 生成设计,不表达法定红线、控规指标或权属"
+   ]
+  }
+ }
+}

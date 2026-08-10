@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present; replace with official redline before professional scoring. Source: brief/site-package/boundaries/provisional_boundaries.geojson, property official_boundary=false."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are present as PROV-KEY-001/002/003. Replace with official polygons before professional scoring. Recalculated total 369.29 ha, within +0.24% of announcement text."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "258 land parcels deliver seamless full coverage; recalculation gap 2.87 m², max overlap 0.0607 m², both well below tolerance 1141.28 m² (1% of site area)."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization contains all 14 required text markers (总览地图/三层范围/重点区域/用地分区/交通慢行/蓝绿公共空间/建筑/更新项目/AI 场景/核心指标/任务覆盖/自检状态/来源/假设) and all three REQUIRED_METRICS data-metric declarations with values matching metrics.json within 1e-6 relative tolerance. No remote URLs, scripts, iframes or external fonts."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal front matter declares proposal_format_version=2 and bilingual_contract_version=1 with translation_file=proposal.en.md. Each of the 13 REQUIRED_SECTIONS contains at least one [source:/standard:/depth:/data:/metric:] reference. All 29 known metrics appear inline as [metric:...] in the body."
+    },
+    {
+      "check_id": "METRICS_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Independent recalculation via shapely union_all + area on EPSG:4548 geometry, identical to scripts/spatial_review.py. 29 known + 8 unknown = 37 total. spatial_review returns PASS."
+    },
+    {
+      "check_id": "FIGURE_QUALITY",
+      "result": "pass",
+      "severity": "minor",
+      "target": "assets/figures/*.png",
+      "message": "Five required figures (site-overview/land-use-structure/key-areas/mobility-bluegreen/metrics-evidence) plus five bilingual .en copies are produced from the GeoJSON data via matplotlib with CJK font fallback. All figures are >100 KB and embedded as relative paths in proposal.md."
+    },
+    {
+      "check_id": "DRAWING_PAGES",
+      "result": "pass",
+      "severity": "major",
+      "target": "drawings/*.pdf",
+      "message": "a3-booklet.pdf (8 pages) and a0-boards.pdf (4 landscape panels) are produced with reportlab. PDF page count > 0 confirmed. Bilingual .en copies present."
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "manifest.json",
+      "message": "Bilingual contract satisfied: zh primary + en translation_file; 9 bilingual display file pairs (proposal.md/proposal.en.md, report/proposal.html/report/proposal.en.html, visual/index.html/visual/index.en.html, drawings/a3-booklet.pdf/drawings/a3-booklet.en.pdf, drawings/a0-boards.pdf/drawings/a0-boards.en.pdf, plus 5 figures with .en.png siblings)."
+    },
+    {
+      "check_id": "RISK_PATTERNS",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "No hard-risk patterns (identity numbers, phone numbers, fabricated official approvals). No remote URLs or unsafe media references."
+    }
+  ]
+}

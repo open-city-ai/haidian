@@ -1,0 +1,85 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_geometry",
+      "statement": "SITE-001 is derived from the repository-maintained provisional rough boundary and is not an official planning boundary.",
+      "impact": "All design geometry, area calculations, maps, figures, and phasing support conceptual review only and must be rebuilt when an official polygon is supplied.",
+      "next_action": "Replace only from a rights-cleared official CAD/GIS/PDF source with documented CRS and conversion method.",
+      "evidence_refs": ["geometry/site_boundary.geojson#SITE-001", "PROVISIONAL-BOUNDARY-SOURCE"]
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "pending_official_geometry",
+      "statement": "PROV-KEY-001 through PROV-KEY-003 are provisional placeholders constrained by announced sequence and area, not surveyed key-area polygons.",
+      "impact": "Detailed-design layouts, building prototypes, neighbor stations, road links, public spaces, and key-area metrics remain directional.",
+      "next_action": "Rebuild all three key-area designs after official polygons and site-survey constraints are available.",
+      "evidence_refs": ["geometry/key_areas.geojson", "PROVISIONAL-BOUNDARY-SOURCE"]
+    },
+    {
+      "id": "A-OSM-DELTA-001",
+      "status": "known_background_discrepancy",
+      "statement": "Issue #846 reports an approximately 412.5 metre background difference between the repository provisional overall range and an OSM-mapped heritage-park trace.",
+      "impact": "The OSM trace is background only and cannot move, validate, or replace the submitted provisional boundary.",
+      "next_action": "Resolve the discrepancy only against organizer-issued or otherwise rights-cleared official geometry.",
+      "evidence_refs": ["ISSUE-846", "A-BOUNDARY-001"]
+    },
+    {
+      "id": "A-DZ-ANCHOR-001",
+      "status": "known_background_discrepancy",
+      "statement": "Issue #1029 reports that PROV-KEY-003 is approximately 2.26 kilometres from the Dazhongsi station name anchor and currently preserves sequence and announced area rather than station anchoring.",
+      "impact": "No station-city integration, four-quadrant connection, access route, or facility location is represented as surveyed or approved.",
+      "next_action": "Confirm the official Dazhongsi key-area polygon and transport interfaces before spatial deepening.",
+      "evidence_refs": ["ISSUE-1029", "geometry/key_areas.geojson#PROV-KEY-003"]
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Official floor-area ratio, building height, building coverage, setback, green-ratio, parcel, and other regulatory controls are unavailable.",
+      "impact": "The proposal does not state statutory development intensity; conceptual land use and prototype footprints cannot be used for planning permission.",
+      "next_action": "Confirm all controls from approved regulatory planning conditions and specialist constraints.",
+      "evidence_refs": ["brief/site-package/ranges/planning_limits.json", "metrics.json"]
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "pending_site_survey_and_ownership",
+      "statement": "Current building footprints, structure, ownership, occupancy, heritage status, and retain-renovate-demolish conditions are unavailable.",
+      "impact": "BLDG-* features are removable conceptual prototypes and do not identify existing buildings or demolition decisions.",
+      "next_action": "Complete survey, ownership, structural, heritage, fire, and stakeholder review before building-level decisions.",
+      "evidence_refs": ["geometry/buildings.geojson", "A-CONTROLS-001"]
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_transport_confirmation",
+      "statement": "Road redlines, intersection geometry, rail interfaces, bridges, tunnels, parking, loading, and verified accessibility conditions are unavailable.",
+      "impact": "ROAD-* features are conceptual walking and cycling centerlines and do not establish rights of way or approved traffic organization.",
+      "next_action": "Undertake transport, accessibility, safety, and field surveys with responsible authorities and operators.",
+      "evidence_refs": ["geometry/roads.geojson", "A-DZ-ANCHOR-001"]
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "pending_specialist_confirmation",
+      "statement": "Municipal utilities, flood-control, drainage, fire access, energy capacity, heritage controls, and construction conditions are unavailable.",
+      "impact": "Blue-green, rain-garden, edge-computing, energy, and permanent-facility proposals remain principles rather than engineering conclusions.",
+      "next_action": "Complete municipal, water, fire, energy, heritage, and engineering coordination before permanent works.",
+      "evidence_refs": ["geometry/green_space.geojson", "geometry/constraints.geojson"]
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "pending_governance_and_funding",
+      "statement": "No government implementation commitment, operator appointment, budget, event approval, procurement path, or long-term funding is assumed.",
+      "impact": "Programs, the Jing-Zhang New Neighbors Week, service counters, sandboxes, and public-benefit contracts are conceptual recommendations with evidence gates and exit conditions.",
+      "next_action": "Confirm accountable operators, paid labour terms, data governance, public participation, approvals, budgets, maintenance, and exit duties before pilots.",
+      "evidence_refs": ["proposal.md", "risk.json"]
+    },
+    {
+      "id": "A-HASH-001",
+      "status": "tooling_risk_under_monitoring",
+      "statement": "Issue #1062 is open and the general Git-blob manifest fix in PR #1064 was not merged into upstream/main@d7459c5c when the scaffold was created.",
+      "impact": "Windows CRLF/LF conversion can make locally calculated manifest hashes differ from committed Git blobs even when content is unchanged.",
+      "next_action": "Keep repository-local core.autocrlf=false, normalize final text deliberately, and compare manifest SHA-256 values with an isolated temporary Git index before commit.",
+      "evidence_refs": ["ISSUE-1062", "PR-1064"]
+    }
+  ]
+}

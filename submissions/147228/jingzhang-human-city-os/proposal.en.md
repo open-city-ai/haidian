@@ -6,17 +6,81 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v1.5"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v1.5 connects the three key areas as a human-first mainline, adds a fixed-seed offline search of 128 candidates across four lenses, and compresses existing project families and release gates into one conceptual delivery spine. Provisional geometry, known metrics, and unknowns remain unchanged."
+iteration: "v2.2"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.2 puts the shared display-transformed geometry, three focus areas, and five spatial-action stages on the reviewer first screen, with human equivalents, machine limits, stop/replay actions, and data gaps visible together. Provisional geometry, known metrics, and unknowns remain unchanged."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
+
+## v1.9 One-page execution brief | from taskbook to spatial response
+
+This page answers three reviewer questions first: what the brief asks for, how the concept translates it into space, and where each claim can be checked. The package remains a conceptual suggestion / reference scheme for professional teams to deepen. The three focus areas and two wings are `official_boundary=false` and `geometry_role=provisional_constraint`; they are not official redlines or implementation boundaries.[source:AGENT-TASKBOOK] [data:visual/assets/brief-alignment-atlas-v19.json]
+
+### Three positions, five functions, three areas and two wings
+
+| Brief layer | Spatial translation in this proposal | Shortest review entry |
+| --- | --- | --- |
+| Three positions | Jing-Zhang Centennial Heritage Belt: retain a continuous public memory in the Dazhongsi and Jing-Zhang narrative; Urban AI Everyday-Life Belt: make human channels, intergenerational learning and screen-free everyday life work first in the AI Origin Community; AI Integration and Innovation Belt: place innovation in pausable, replayable interfaces around Zhongzhiyuan and the Zhongguancun service wing. | `assets/figures/brief-alignment-atlas.en.png`; `proposal.en.md`; `geometry/key_areas.geojson` |
+| Five functions | Full-stack AI self-innovation system, world-class AI innovation ecosystem, AI+ scenario enablement paradigm, intelligent/vibrant AI city, and global voice in AI governance return to controlled tests, case/region interfaces, 17 scenario cards, public-space/mobility blue-green moves, and versioned release gates. | `visual/assets/brief-alignment-atlas-v19.json`; `compliance_matrix.json` |
+| Three areas + two wings | Zhongzhiyuan AI Self-innovation Accelerator, Beijing AI Origin Community, Dazhongsi AI Industry Cluster; Zhongguancun Technology-Service Wing and Xiaoyuehe Scenario-Enablement Wing. Each unit has an action, scenario, data gap, and exit condition, without adding engineering dimensions or an operating entity. | `geometry/key_areas.geojson`; `visual/assets/spatial-action-atlas.json`; `visual/assets/regional-interface-ledger.json` |
+
+### Four differentiated chains land in scenes, metrics and gaps
+
+| Chain | Visible spatial move | Scenes / metric | What the package cannot yet prove |
+| --- | --- | --- | --- |
+| A Human dignity | Community-retention forum, human and intergenerational channels, skill-transition corridor, screen-free recovery landscape | `SC-A01` / `SC-A03` / `SC-A05`; `community_retention_support_area_ratio` | Resident/shop baselines, sustained employment, equivalent human-service walk-through, informed consent |
+| B Machine usability | City API exchange, constrained embodied-AI test, silicon right-of-way and conceptual low-altitude layering | `SC-B01` / `SC-B02` / `SC-B04`; `silicon_right_of_way_length_m` | Road, airspace, safety, insurance, responsibility and interface authorization sections |
+| C Hard constraints | Compute-energy/heat audit, flood/sponge simulation, regulatory-sandbox incident replay, public-data authorization room | `SC-C01`—`SC-C05`; `operational_pue` remains `unknown` | Energy/heat network, hydrology, insurance responsibility, formal data authorization and professional review |
+| D Spillovers | OPC shared experiment, standards studio, version release note, international service room | `SC-D01`—`SC-D04`; `version_release_count` | Actors, IP licensing, cross-region cooperation and service-capacity verification |
+
+Figure 22 compresses this map into a reviewer-facing board; the JSON records each row's `spatial_refs`, `scenario_refs`, `metric_refs` and `data_gap`. It demonstrates that the brief, spatial move and evidence can be traced together. It generates no official score and does not turn visual completeness into field performance.[data:assets/figures/brief-alignment-atlas.en.png] [depth:overall_spatial_structure] [depth:risk_missing_data]
+
+![Figure 22 | Brief-to-spatial-response atlas: three positions, five functions, three areas/two wings and four differentiated chains](assets/figures/brief-alignment-atlas.en.png)
+
+## v2.0 Public space, cultural narrative and annual operation | Bring agent.4–agent.6 onto the drawing
+
+The brief's public space, landmarks, cultural narrative and annual operation meet in one concept board: landmarks carry readable everyday public actions, the four-season rhythm carries versioned governance, and the project families connect spatial moves to evidence gates and exit conditions. All remain conceptual suggestions for professional teams to deepen; no operator, venue, permit, funding or performance is named.[source:AGENT-TASKBOOK] [data:visual/assets/public-culture-operations-atlas-v20.json]
+
+| Design layer | Three readable landmarks | Four-season rhythm | Current evidence and gaps |
+| --- | --- | --- | --- |
+| Public space + new industry | People's Version Hall: issues, changes, withdrawals; Rail Interface Clock: railway time and city versions; Screen-free Recovery Beacon: shade, sound, night safety and no forced interaction | Spring: public problem open week; summer: city API + embodied test month; autumn: work transition + OPC co-creation; winter: city version conference | `SC-C05`, `SC-D02`, `GREEN-A-QUIET-1`, 17 scenario cards; formal venue, accessibility, thermal comfort, night safety and participation baselines remain pending |
+| Project families + release gates | PF-A human buffer, PF-B city API, PF-C human-machine/climate/compute-energy, PF-D data authorization/version governance, PF-E ecology/spillovers return to the three areas/two wings and v0.1/v0.2/v1.0 concept gates | Each season opens only the concept moves covered by its evidence gate; without human explanation, independent replay, accountable response or public-objection handling it stays at the prior gate | `visual/assets/implementation-operation-matrix.json`; no schedule, budget, capacity or operating commitment is generated |
+
+The cultural grammar is “rail — time — interface”: rail carries Jing-Zhang continuity, time carries the annual version, and interface carries public explanation and final human authority. The three landmarks are not corporate showcases; they place history, ordinary-person recovery and a question-able city version on one public spine.[data:assets/figures/public-culture-operations-atlas.en.png] [depth:renewal_project_list] [depth:overall_spatial_structure]
+
+Figure 23 expresses conceptual relationships and replayable operating boundaries only. Every anchor remains `official_boundary=false` and `geometry_role=provisional_constraint`. When formal public-space, heritage, road, accessibility, thermal, night-safety, energy, venue-authorization and resident-feedback inputs arrive, the landmarks, annual rhythm, matrices, metrics, HTML and PDFs must be recalculated together.[data:visual/assets/public-culture-operations-atlas-v20.json] [depth:risk_missing_data]
+
+![Figure 23 | Public space + culture + annual operation atlas: three concept landmarks, four-season rhythm and five project families](assets/figures/public-culture-operations-atlas.en.png)
+
+## v2.1 spatial action rooms | Read each focus area as a walkable sequence
+
+v2.0 answered how public space and annual rhythm receive the brief. v2.1 makes each provisional focus area's first question legible through five continuous spatial rooms: arrival / staffed edge → public explanation / choice → bounded machine interface → blue-green pause / recovery → exit, appeal and replay. Each room states the human equivalent, machine limit, and stop/return action so the spatial proposal does not depend on a reviewer reconstructing the move from governance ledgers.[data:visual/assets/spatial-action-rooms-v21.json] [depth:three_key_area_detailed_design] [depth:overall_spatial_structure]
+
+Figure 24 is a presentation-level concept board, not a debug screenshot or engineering section. The left column returns to the three `official_boundary=false`, `geometry_role=provisional_constraint` GeoJSON anchors; the five color blocks represent spatial-action stages, not distance, area, storeys, capacity, or alignment. Scenario and metric references, data gaps, and the recomputation trigger are registered in the paired JSON.[data:assets/figures/spatial-action-rooms-v21.en.png] [data:geometry/key_areas.geojson#PROV-KEY-001]
+
+![Figure 24 | Spatial action rooms for the three focus areas: one five-stage path, three human questions](assets/figures/spatial-action-rooms-v21.en.png)
+
+All three focus areas remain conceptual suggestions / reference schemes for professional teams to deepen. If official geometry, roads/airspace, rights, accessibility, energy, climate, accountability, public baselines, or authorization inputs change, this board, the five core figures, metrics, HTML, PDFs and self-check must be recomputed together; no formal geometry or metric changes in this iteration.[data:visual/assets/spatial-action-rooms-v21.json] [depth:metrics_recalculation] [depth:risk_missing_data]
+
+## v2.2 reviewer first screen | Put spatial evidence and human action on one board
+
+The five-stage rooms in v2.1 are replayable node by node. v2.2 puts them back into the first `site-overview.png` a reviewer sees: the left panel is the same GeoJSON in a display transform, the right panel is a compact three-area × five-stage action sequence, and the bottom records the retained human path, the EPSG:4548 metric source, and the missing official boundary/rights/safety/energy/field-baseline inputs. “Where does the spatial relationship sit?” and “How does a person enter, refuse, pause, and exit?” can now be read together instead of reconstructed across two figures.[data:visual/assets/reviewer-facing-atlas-v22.json] [data:assets/figures/site-overview.en.png]
+
+This first screen responds to the taskbook dimensions of scenario perceptibility and spatial clarity. Three-key-area detailed design carries the first formal depth evidence [depth:three_key_area_detailed_design], while overall spatial structure carries the second [depth:overall_spatial_structure].
+
+![Figure 25 | Reviewer-facing spatial evidence atlas: shared geometry, three areas × five actions, and human/stop contract](assets/figures/site-overview.en.png)
+
+Figure 25 improves expression-level urban-design readability only. The belt is a display transform for legibility; pixel distance is not used as metric evidence. The provisional boundary remains `official_boundary=false` and `geometry_role=provisional_constraint`, and every action card remains a conceptual suggestion / reference scheme for professional teams to deepen. If official polygons, road/airspace sections, rights, accessibility, energy, climate, accountability or public baselines change, recompute the five core figures, Figure 24, metrics, HTML, PDFs and self-check together.[data:visual/assets/reviewer-facing-atlas-v22.json] [data:geometry/site_boundary.geojson#SITE-001] [depth:metrics_recalculation]
+
+Risk and data-gap fallback continues under [depth:risk_missing_data]; the board does not upgrade a provisional display transform into official measurement or an implementation conclusion.
 
 ## One-page read | Spatial moves first, governance evidence second
 
 ### Design judgment
 
-“From an AI showcase to a city for people in the AI era” does not paste technology language onto a conventional plan. It translates rapid AI iteration into urban interfaces that are **enterable, rejectable, pausable, and reversible**.[source:AGENT-TASKBOOK] [depth:three_level_scope_framework] Three provisional key areas, a six-layer spatial operating system, four value chains, 16 spatial scenario nodes and three release gates resolve to one evidence chain.[metric:key_area_count] [metric:scenario_node_count] [metric:version_release_count]
+“From an AI showcase to a city for people in the AI era” does not paste technology language onto a conventional plan. It translates rapid AI iteration into urban interfaces that are **enterable, rejectable, pausable, and reversible**.[source:AGENT-TASKBOOK] [depth:three_level_scope_framework]
+
+Three provisional key areas, a six-layer spatial operating system, four value chains, 17 spatial scenario nodes and three release gates resolve to one evidence chain.[metric:key_area_count] [metric:scenario_node_count] [metric:version_release_count]
 
 ### Four value chains become spatial moves
 
@@ -95,17 +159,61 @@ Governance ledgers no longer occupy the first visual read on their own. Figure 1
 
 Every family remains `conceptual_governance_not_commitment`, and suggested roles are not confirmed operators. After official boundaries, rights, energy, climate, mobility, accessibility, accountability, and public inputs arrive, professional teams may selectively recompute and deepen the package.[data:visual/assets/implementation-operation-matrix.json] [data:geometry/site_boundary.geojson#SITE-001] [depth:risk_missing_data]
 
+## v1.6 spatial evidence figures | Let the reviewer see the relationships first
+
+This round replaces the five review-visible core figures with one-source spatial evidence maps. The overview overlays the provisional site boundary, six bands, three focus areas, five conceptual centerlines, green spaces, public interfaces, and sixteen scenario nodes. The focus-area figure then enlarges the three true submitted outlines in the same coordinate frame and places differentiated actions beside their local geometry: community retention and skills transition, staffed access and intergenerational learning, and the regulatory sandbox with the public-data interface.[data:visual/assets/spatial-proof-v16.json] [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:overall_spatial_structure]
+
+Areas, shares, and lengths in the figures are recomputed from `metrics.json` and the GeoJSON in EPSG:4548. The northward rotation makes the long corridor legible from left to right; the scale note describes only the provisional display frame. `official_boundary=false`, `geometry_role=provisional_constraint`, and `operational_status=not_authorized_not_run` remain explicit in the figure labels and evidence record.[data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [depth:metrics_recalculation]
+
+![Figure 19 | v1.6 spatial evidence overview: outlines, nodes, corridors, and metrics from one source](assets/figures/site-overview.en.png)
+
+These figures make the spatial relationships inspectable; they do not replace official boundaries, controls, road redlines, rights, blue lines, airspace review, existing-condition surveys, resident baselines, or operational tests. Once those inputs arrive, the five figures, matrices, metrics, HTML, and PDFs must be recomputed as one package. All spatial moves remain conceptual suggestions or reference schemes for professional teams to deepen.[data:visual/assets/spatial-proof-v16.json] [depth:risk_missing_data]
+
+## v1.7 spatial expression upgrade | Make node actions legible in the review window
+
+v1.6 replaced abstract bands with the submitted geometry. v1.7 addresses the reading scale. The overview now carries three focus-area zooms that return to `PROV-KEY-001`, `PROV-KEY-002`, and `PROV-KEY-003`; the focus-area board places each outline beside its differentiated action chain; the human-machine figure places skill transition, silicon right-of-way, the conceptual low-air layer, and Xiaoyue River sponge resilience beside a repeated crossing rule; and the metric board makes the geometry → metric → missing-input sequence explicit.[data:visual/assets/spatial-proof-v17.json] [data:geometry/key_areas.geojson#PROV-KEY-001]
+
+This expression supports the reading of detailed focus-area design and overall spatial structure; `ROAD-B-SILICON` and the other actions still return to the structured ledgers for review.[data:geometry/roads.geojson#ROAD-B-SILICON] [depth:three_key_area_detailed_design] [depth:overall_spatial_structure]
+
+![Figure 20 | v1.7 focus-area zooms, corridor crossings, and metric readback](assets/figures/key-areas.en.png)
+
+The zooms help a reviewer check node relationships, but they are not surveys or engineering details. The short axis is expanded for reading; pixels do not enter area, ratio, or length calculations.[data:visual/assets/spatial-proof-v17.json]
+
+Numbers still come from `metrics.json` and GeoJSON recomputation in EPSG:4548; the package can currently replay site area and the community-retention support-area proxy.[metric:site_area_sqm] [metric:community_retention_support_area_ratio] [depth:metrics_recalculation]
+
+Every unknown remains a data gate; resident retention, employment transition, manual-service equivalence, PUE, green power, and recovered heat do not become outcomes because the figure is more complete.[depth:risk_missing_data]
+
+## v1.8 seven-dimension reviewer readback | Put the question, evidence, and boundary on one page
+
+This round connects the seven repository formal-workflow questions to their shortest in-package paths. `formal-scorecard-readback-v18.json` records each question, known evidence, remaining boundary, and next authorized verification; it governs review order and produces no score.[data:visual/assets/formal-scorecard-readback-v18.json] [data:visual/assets/reviewer-navigation-index.json]
+
+Figure 21 places the seven reading routes and five evidence spines on one page. The 20%, 10%, 15%, 20%, 10%, 10%, and 15% values belong only to the repository workflow template; they are not an organizer score. Provisional geometry, unknowns, conceptual suggestions, and not-authorized states remain at their declared evidence levels.[data:assets/figures/reviewer-scorecard-map.en.png] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:risk_missing_data]
+
+The page asks the reviewer to start with a question, return to the prose, ledgers, drawings, and manifest, and then see which verification must be supplied by an authorized professional team. It creates no score for this submission, official review conclusion, award prediction, or implementation proof; the bilingual text and audit ledger are updated together.[data:visual/assets/bilingual-equivalence-audit.json] [depth:risk_missing_data]
+
+![Figure 21 | Seven-dimension reviewer evidence map: question, shortest path, boundary, and next verification](assets/figures/reviewer-scorecard-map.en.png)
+
 ## v0.2 score repair | Read the three key areas as spatial action chains
 
-This iteration does not add another abstract AI slogan. It decomposes each provisional key area into four actions. Each action names a spatial carrier, role class, entry evidence, and stop condition, so a reviewer can move from the figure back to GeoJSON, scenario cards, and metrics instead of treating an “AI showcase” as an urban-design conclusion. Full fields are in `visual/assets/spatial-action-atlas.json`; every move remains a conceptual suggestion for professional teams to deepen.[data:visual/assets/spatial-action-atlas.json] [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]
+This iteration does not add another abstract AI slogan. It decomposes each provisional key area into four actions. Each action names a spatial carrier, role class, entry evidence, and stop condition, so a reviewer can move from the figure back to GeoJSON, scenario cards, and metrics instead of treating an “AI showcase” as an urban-design conclusion. Full fields are in `visual/assets/spatial-action-atlas.json`; every move remains a conceptual suggestion for professional teams to deepen.[data:visual/assets/spatial-action-atlas.json] [data:geometry/key_areas.geojson#PROV-KEY-001]
+
+The other two provisional outlines are recorded beside it in the same ledger, with no upgrade beyond temporary constraints.[data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
 ![Figure 12 | Spatial action atlas for the three key areas, from entry and bounded testing to human takeover and exit](assets/figures/spatial-action-atlas.en.png)
 
-Zhongzhiyuan sequences a pedestrian-priority edge, bounded embodied-AI test, compute-power audit, and incident-review court into a closable test chain. It references `SC-B02`, `SC-C01`, and the silicon-right-of-way geometry; it does not imply real airspace, traffic-safety, PUE, green-power, or recovered-heat outcomes.[data:geometry/constraints.geojson#SC-B02] [data:geometry/constraints.geojson#SC-C01] [metric:silicon_right_of_way_length_m] [metric:operational_pue] [metric:recovered_heat_mwh]
+Zhongzhiyuan sequences a pedestrian-priority edge, bounded embodied-AI test, compute-power audit, and incident-review court into a closable test chain. It references `SC-B02`, `SC-C01`, and the silicon-right-of-way geometry.[data:geometry/constraints.geojson#SC-B02] [data:geometry/constraints.geojson#SC-C01] [metric:silicon_right_of_way_length_m]
 
-The Beijing AI Origin Community connects a resident-retention room, staffed and intergenerational learning, a skills-transition handoff, and a screen-free recovery garden into an ordinary-person path. The spatial support area and corridor can be recomputed, but resident retention, small-business return, sustained employment, and equivalent human-service availability remain `unknown`; area, training counts, or web accessibility cannot substitute for those outcomes.[data:geometry/constraints.geojson#SC-A01] [data:geometry/constraints.geojson#SC-A03] [data:geometry/roads.geojson#ROAD-A-SKILL] [metric:community_retention_support_area_ratio] [metric:resident_retention_rate] [metric:sustained_employment_transition_rate] [metric:manual_service_equivalence_rate]
+The chain does not imply real airspace, traffic-safety, PUE, green-power, or recovered-heat outcomes; those checks remain open.[metric:operational_pue] [metric:recovered_heat_mwh]
 
-Dazhongsi sequences a public urban-API interface, an OPC shared lab, a standards spillover studio, and an international service room into a “question—authorization—replay—exit” interface chain. Regional cooperation exchanges reviewable questions, evidence, and versions; it does not claim partners, companies, administrative agreements, compute coupons, or international institutions.[data:geometry/constraints.geojson#SC-D01] [data:geometry/constraints.geojson#SC-D02] [data:geometry/constraints.geojson#SC-D03] [metric:version_release_count]
+The Beijing AI Origin Community connects a resident-retention room, staffed and intergenerational learning, a skills-transition handoff, and a screen-free recovery garden into an ordinary-person path. The spatial support area and corridor can be recomputed.[data:geometry/constraints.geojson#SC-A01] [data:geometry/constraints.geojson#SC-A03] [data:geometry/roads.geojson#ROAD-A-SKILL]
+
+Resident retention, small-business return, and sustained employment remain `unknown`; area, training counts, or web accessibility cannot substitute for those outcomes.[metric:community_retention_support_area_ratio] [metric:resident_retention_rate] [metric:sustained_employment_transition_rate]
+
+Equivalent human-service availability also remains `unknown`.[metric:manual_service_equivalence_rate]
+
+Dazhongsi sequences a public urban-API interface, an OPC shared lab, a standards spillover studio, and an international service room into a “question—authorization—replay—exit” interface chain. Regional cooperation exchanges reviewable questions, evidence, and versions; it does not claim partners, companies, administrative agreements, compute coupons, or international institutions.[data:geometry/constraints.geojson#SC-D01] [data:geometry/constraints.geojson#SC-D02] [data:geometry/constraints.geojson#SC-D03]
+
+The version-release count and international-service anchors remain in the structured ledger.[metric:version_release_count]
 
 ## Regional interfaces | Exchange questions before claiming cooperation
 
@@ -113,7 +221,9 @@ The taskbook-named Jing-Jin-Ji manufacturing/application link, standards spillov
 
 ![Figure 13 | Regional interface ledger: technical, standards, knowledge, small-team, and international layers](assets/figures/regional-interface-ledger.en.png)
 
-The technical interface moves a Haidian research question toward a Jing-Jin-Ji manufacturing/application discussion. The standards interface outputs only a draft for professional review. The knowledge interface learns through public question lists, incident replays, and annual release notes. The small-team interface keeps fair application and conflict disclosure visible. The international interface is only a to-be-verified service directory for language, medical navigation, IP, and daily support. Any missing authorization, accountability, rights, copyright, or service capacity returns the interface to the data gate rather than becoming a delivery claim.[data:geometry/constraints.geojson#SC-D01] [data:geometry/constraints.geojson#SC-D02] [data:geometry/constraints.geojson#SC-D03] [depth:risk_missing_data]
+The technical interface moves a Haidian research question toward a Jing-Jin-Ji manufacturing/application discussion. The standards interface outputs only a draft for professional review. The knowledge interface learns through public question lists, incident replays, and annual release notes. The small-team interface keeps fair application and conflict disclosure visible. The international interface is only a to-be-verified service directory for language, medical navigation, IP, and daily support.[data:geometry/constraints.geojson#SC-D01] [data:geometry/constraints.geojson#SC-D02] [data:geometry/constraints.geojson#SC-D03]
+
+Any missing authorization, accountability, rights, copyright, or service capacity returns the interface to the data gate rather than becoming a delivery claim.[depth:risk_missing_data]
 
 ## Identity and spatial cards | Make “human city” a legible design language
 
@@ -248,7 +358,9 @@ Together these mechanisms turn “from an AI showcase to a city for people” fr
 
 ## Design Basis and Source List
 
-The proposal first follows the three planning extents, three key areas, and design tasks established by the official call, and uses the six agent tasks in the cleared taskbook as its delivery checklist. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] The five formally usable records in the repository source registry support only the uses explicitly permitted there. Provisional boundaries are used for generation, visualization, and intake checks; they are not represented as statutory redlines, official parcels, or exact regulatory controls. [source:SOURCE-REGISTRY] [data:geometry/site_boundary.geojson#SITE-001]
+The proposal first follows the three planning extents, three key areas, and design tasks established by the official call, and uses the six agent tasks in the cleared taskbook as its delivery checklist. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
+
+The five formally usable records in the repository source registry support only the uses explicitly permitted there. Provisional boundaries are used for generation, visualization, and intake checks; they are not represented as statutory redlines, official parcels, or exact regulatory controls. [source:SOURCE-REGISTRY] [data:geometry/site_boundary.geojson#SITE-001]
 
 ### 1. Evidence hierarchy and human-first decision boundary
 
@@ -322,7 +434,9 @@ Reversible design uses modular components, removable service pods, short-cycle l
 
 ### Parametric study: a replayable candidate set for spatial trade-offs
 
-`visual/assets/parametric-tradeoff-study.json` uses the current six-band geometry allocation as a baseline and compares people-first, balanced, and machine-ready parameter sets. Each area is computed as `share × provisional site_area_sqm`; the offline runner checks share sums, derived areas, and baseline reconnection to the current metrics, with evidence written to `parametric-tradeoff-study-evidence.json`. The study puts community retention, learning, reversible space, city API, and screen-free resilience on one comparison page for professional review after formal inputs arrive. [data:geometry/land_use.geojson#LU-H01] [metric:community_retention_support_area_ratio] [metric:reversible_space_ratio] [depth:metrics_recalculation]
+`visual/assets/parametric-tradeoff-study.json` uses the current six-band geometry allocation as a baseline and compares people-first, balanced, and machine-ready parameter sets. Each area is computed as `share × provisional site_area_sqm`; the offline runner checks share sums, derived areas, and baseline reconnection to the current metrics, with evidence written to `parametric-tradeoff-study-evidence.json`. [data:geometry/land_use.geojson#LU-H01] [metric:community_retention_support_area_ratio]
+
+The study puts community retention, learning, reversible space, city API, and screen-free resilience on one comparison page for professional review after formal inputs arrive. [metric:reversible_space_ratio] [depth:metrics_recalculation]
 
 The three sets remain low-confidence conceptual suggestions. They do not change formal geometry, areas, ratios, drawings, or `scenario_node_count=16`; `SC-D04` reuses existing spatial anchors while the scenario registry contains seventeen cards. Any next-round choice must recheck official boundaries, rights, controls, buildings, mobility, utilities, energy, climate, and public baselines. [data:geometry/site_boundary.geojson#SITE-001] [metric:scenario_node_count] [depth:risk_missing_data]
 
