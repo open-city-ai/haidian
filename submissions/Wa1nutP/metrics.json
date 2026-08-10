@@ -1,0 +1,65 @@
+{
+  "schema_version": "0.1.0",
+  "metrics": [
+    {
+      "metric_id": "site_area_sqm",
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": ["Provisional boundary used. Official boundary pending."]
+    },
+    {
+      "metric_id": "autonomous_road_ratio",
+      "status": "known",
+      "value": 0.85,
+      "unit": "ratio",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "autonomous_road_area / site_area",
+      "confidence": "medium",
+      "assumptions": ["85% of road capacity dedicated to L3-L4 autonomous vehicles"]
+    },
+    {
+      "metric_id": "green_ratio",
+      "status": "known",
+      "value": 0.32,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "green_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": ["Green space reclaimed from car-free transformation"]
+    },
+    {
+      "metric_id": "public_space_ratio",
+      "status": "known",
+      "value": 0.18,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "public_space_area / site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    {
+      "metric_id": "shuttle_stop_density",
+      "status": "design_proposal",
+      "value": 200,
+      "unit": "meters",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "average_distance_between_shuttle_stops",
+      "confidence": "low",
+      "assumptions": ["200m stop spacing is conceptual target, requires traffic study"]
+    },
+    {
+      "metric_id": "key_area_count",
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  ]
+}
