@@ -136,10 +136,16 @@ def official_score_from_review(
 
 
 def _submission_root_from_paths(paths: list[str]) -> str | None:
+    if not paths:
+        return None
+    if any(
+        len(path.split("/")) < 4 or path.split("/")[0] != "submissions"
+        for path in paths
+    ):
+        return None
     roots = {
         "/".join(path.split("/")[:3])
         for path in paths
-        if len(path.split("/")) >= 4 and path.split("/")[0] == "submissions"
     }
     return next(iter(roots)) if len(roots) == 1 else None
 

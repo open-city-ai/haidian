@@ -141,6 +141,26 @@ class AutoReviewQueueTests(unittest.TestCase):
         ]
         self.assertIsNone(historical_best_score(merged_prs, "submissions/alice/plan", {"cocosgt"}))
 
+    def test_mixed_scope_merged_pr_cannot_establish_package_history(self) -> None:
+        head = "b" * 40
+        body = (
+            f"<!-- haidian-auto-review:{head} -->\n"
+            "Maintainer intake decision: Review Agent score 100/100. Mandatory rejection and all four local gates passed."
+        )
+        merged_prs = [
+            {
+                "headRefOid": head,
+                "files": [
+                    {"path": "submissions/alice/plan/manifest.json"},
+                    {"path": "scripts/auto_review_queue.py"},
+                ],
+                "reviews": [
+                    {"state": "APPROVED", "author": {"login": "CocoSgt"}, "body": body}
+                ],
+            }
+        ]
+        self.assertIsNone(historical_best_score(merged_prs, "submissions/alice/plan", {"cocosgt"}))
+
     def test_historical_best_keeps_higher_score_from_non_final_merged_pr_revision(self) -> None:
         reviewed_head = "c" * 40
         final_head = "d" * 40
