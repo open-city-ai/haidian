@@ -1,0 +1,102 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area_EPSG4548(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "The organizer's exact official polygon is not public; this value is only a reproducible intake baseline."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 414341.205,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area_EPSG4548(concept_building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept prototypes, not approved building envelopes."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.17016,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_union_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept ratio; not a statutory green-space control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.041656,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_union_area / provisional_site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept ratio; nodes may be recalibrated after boundary and rights data arrive."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official boundary, and verified existing floor area are not public."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(submitted_provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "All three geometries are provisional placeholders."
+      ]
+    },
+    "ai_scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(concept_no_login_scenario_nodes)",
+      "confidence": "high",
+      "assumptions": [
+        "Twelve concept cards include three industrial validation scenarios."
+      ]
+    }
+  }
+}
