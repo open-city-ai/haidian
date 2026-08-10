@@ -12,6 +12,16 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **英文名：Jingzhang AI Valley — Switchback Governance Corridor；口号：让每一次城市智能，都沿轨道可查、可停、可回头。**
 
+## Executive Summary (English)
+
+**Jingzhang AI Valley — Switchback Governance Corridor**
+
+This proposal designs an AI innovation corridor along the Centennial Jingzhang Railway Heritage Park in Haidian, Beijing (43.6 km² strategic study area / 11.4 km² overall design area / 368.4 ha three key areas). Its core institution is the **Switchback Governance Protocol**, modeled on the "Ren-shaped" switchback line at Qinglongqiao — where a train climbing a steep grade must stop at a switchback point, change direction, and continue. Urban AI applications follow the same discipline: no scenario continues automatically; each must stop at its switchback node and face a three-party review (responsible entity, professional review, public representative) deciding **pass / turn back / pull into depot**.
+
+Four mechanisms: (1) **Switchback Nodes** — fixed review points where any party's veto forces a turn-back; (2) **Grade-based Access** — scenarios graded by difficulty as gentle / medium / steep, higher grades face stricter admission review; (3) **K-marker Versioning** — each official data update or recalculation records a new kilometer-marker version; (4) **Switch States** — scenarios run in one of three states (mainline / siding turn-back / depot maintenance), with no automatic recovery.
+
+The corridor follows a "one belt, three cores, two wings" spatial structure: the heritage park as public spine, Zhongzhi Park (full-stack AI validation), AI Origin Community (research–startup–community loop), Dazhongsi (AI-native consumption), the Zhongguancun service wing and the Xiaoyue River scenario wing. Twelve scenario cards each bind a grade and a switchback condition; metrics are evaluation criteria rather than target values — baselines are marked pending until the first survey, no fabricated output or investment figures. All spatial boundaries are provisional; full recalculation is required when official polygons are released.
+
 ## 设计依据与资料清单
 本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告、智能体任务书、公开场地包及仓库登记资料 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:BOUNDARY-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。
 
@@ -35,7 +45,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 - **两翼**：中关村科技服务翼配置资本、知识产权、人才和国际服务；小月河场景翼承载交通、生态、健康与机器人受控测试。
 - **四环节**：发现问题→沙盒验证→公众体验→折返审议，形成可逆的城市更新机制。
 
-空间证据见 [data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001] 与 [data:geometry/roads.geojson#ROAD-001]。总体控制不是新增大拆大建，而是优先激活存量建筑首层、铁路节点、桥下与边角空间；任何桥隧、地下空间、文保和交通方案均需专项论证。[depth:three_level_scope_framework] [depth:overall_spatial_structure]
+空间证据见 [data:geometry/site_boundary.geojson#SITE-001]、[data:geometry/key_areas.geojson#PROV-KEY-001] 与 [data:geometry/roads.geojson#RD-001]。总体控制不是新增大拆大建，而是优先激活存量建筑首层、铁路节点、桥下与边角空间；任何桥隧、地下空间、文保和交通方案均需专项论证。[depth:three_level_scope_framework] [depth:overall_spatial_structure]
 
 ![三层范围与三区两翼工作框架](assets/figures/land-use-structure.png)
 
@@ -58,7 +68,7 @@ Logo 方向为"人字形折返 + 轨道双轨 + K标锚点"，以深轨蓝、验
 对标仅作方法背景，不支撑法定空间控制。正式空间与任务结论仍以仓库登记资料为准。生态指标采用"评测口径而非目标值"：开放测试任务数、独立评测覆盖率、公众问题关闭率、中小团队使用率、无障碍参与率、折返/入段记录数；基线缺失项标为待调查，不编造产值和投资额。
 
 ## 总体设计范围城市更新与控规深度城市设计
-总体设计以"铁路文化脊+折返治理环+横向缝合口"为骨架，保留可再用存量、补足连续慢行与公共服务，新增量只在官方控规、权属、文保和市政条件确认后落位。四类概念用地承担创新研发、混合服务、文化公共与蓝绿开放功能 [data:geometry/land_use.geojson#LU-001] [metric:ai_industry_land_ratio] [metric:green_space_area_sqm]；建筑规模仅复算概念基底 [data:geometry/buildings.geojson#BLDG-001] [metric:building_footprint_area_sqm]，不推导法定容量。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:land_use_layout] [depth:development_intensity_controls]
+总体设计以"铁路文化脊+折返治理环+横向缝合口"为骨架，保留可再用存量、补足连续慢行与公共服务，新增量只在官方控规、权属、文保和市政条件确认后落位。四类概念用地承担创新研发、混合服务、文化公共与蓝绿开放功能 [data:geometry/land_use.geojson#LU-001] [metric:ai_industry_land_ratio] [metric:green_space_area_sqm]；建筑规模仅复算概念基底 [data:geometry/buildings.geojson#BLD-001] [metric:building_footprint_area_sqm]，不推导法定容量。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:land_use_layout] [depth:development_intensity_controls]
 
 更新对象分为保留利用、适应性改造、条件性拆除与可逆新建：在现状建筑普查缺失时不判定具体拆除；高度、体量、天际线以低层公共界面和铁路视廊保护为方向，待控规核验 [depth:height_massing_character] [depth:retain_renovate_demolish]。市政采用需求侧减量、分布式能源和端侧算力概念，工程容量待专项论证 [depth:municipal_new_infrastructure]。
 
@@ -95,18 +105,18 @@ Logo 方向为"人字形折返 + 轨道双轨 + K标锚点"，以深轨蓝、验
 A"模型上街前"评测场：偏见、幻觉、鲁棒、隐私和无障碍测试；B"机器人慢行共存"场：限定区域、速度、时段、远程接管与事故入段；C"公共服务智能体联测"场：跨部门流程沙盒，只用合成/清权数据，未通过不接生产系统。测试状态用"正线/侧线/入段"三态公开，任何非正线状态不得表述为已部署。
 
 ## 用地、建筑规模与拆改留方案
-概念用地以混合创新、公共服务、文化展示和蓝绿开放四类互补，不将研发办公单一化；图层面积可复算，但规划比例与容积率待官方边界和控规确定 [data:geometry/land_use.geojson#LU-002] [metric:floor_area_ratio] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。现阶段建筑图层只表达一个参与者控制的适应性改造基底 [data:geometry/buildings.geojson#BLDG-001]：优先"留结构、改首层、补无障碍"，拆除须经过安全、文保、碳排与公众程序，新增采用可拆卸小体量。[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+概念用地以混合创新、公共服务、文化展示和蓝绿开放四类互补，不将研发办公单一化；图层面积可复算，但规划比例与容积率待官方边界和控规确定 [data:geometry/land_use.geojson#LU-002] [metric:floor_area_ratio] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。现阶段建筑图层只表达一个参与者控制的适应性改造基底 [data:geometry/buildings.geojson#BLD-001]：优先"留结构、改首层、补无障碍"，拆除须经过安全、文保、碳排与公众程序，新增采用可拆卸小体量。[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
 
 ## 交通、轨道、市政与公共服务设施
-折返走廊优先步行、骑行和公共交通接驳，以一条概念慢行脊连接三区，横向缝合既有道路断点 [data:geometry/roads.geojson#ROAD-001] [metric:road_length_m] [depth:traffic_rail_slow_parking]。站点与河道线位已按 OpenStreetMap 公开要素核验（含 Overpass 查询与 ODbL 署名，见 `visual/assets/osm-context.json`）[source:OSM-BASE]，仅作现状参照，非测绘级精度。停车以共享、错峰和外围转换为深化方向；新增桥隧不作为承诺。公共服务嵌入15分钟节点，包含无障碍咨询、人才服务、开源法务和人工兜底窗口；新型基础设施实行端侧优先、最小采集、分布式能源与传统市政协同，容量和站点均待专项复核 [depth:municipal_new_infrastructure]。
+折返走廊优先步行、骑行和公共交通接驳，以一条概念慢行脊连接三区，横向缝合既有道路断点 [data:geometry/roads.geojson#RD-001] [metric:road_length_m] [depth:traffic_rail_slow_parking]。站点与河道线位已按 OpenStreetMap 公开要素核验（含 Overpass 查询与 ODbL 署名，见 `visual/assets/osm-context.json`）[source:OSM-BASE]，仅作现状参照，非测绘级精度。停车以共享、错峰和外围转换为深化方向；新增桥隧不作为承诺。公共服务嵌入15分钟节点，包含无障碍咨询、人才服务、开源法务和人工兜底窗口；新型基础设施实行端侧优先、最小采集、分布式能源与传统市政协同，容量和站点均待专项复核 [depth:municipal_new_infrastructure]。
 
 ![交通慢行与蓝绿公共空间复合系统](assets/figures/mobility-bluegreen.png)
 
 ## 蓝绿空间、公共空间与城市风貌
 **已建成事实与规划目标分层（可复核）：** 京张铁路遗址公园**一期已于 2023 年 6 月建成开放**，长 2.4 公里、面积 16.8 公顷，形成面向市民的公园、慢步道与骑行空间 [source:JZ-PARK-PHASE1-OPENED] [source:JZ-PARK-PHASE1-REPORT]；五道口启动区于 2019 年 9 月完成约 800 米、约 1.7 公顷的绿化景观初步提升 [source:JZ-PARK-STARTUP-2019]。公园一期 2025 年举办 60 余场主题活动、接待游客 430 余万人次（运营方统计口径）[source:JZ-PARK-2025-EVENTS]。**二期仍为在建/推进中**，规划形成京张水韵、社区活力、京张遗址纪念、青年国际交往、自然休闲五个组团，其"全长约 9 公里、服务沿线近 70 个社区约 45 万人"为规划服务目标，非已建成现状 [source:JZ-PARK-PHASE2-PLANNED]。本方案所有"约 9.7km 主轴"表述均指规划目标，空间证据以 provisional 边界为准。
 
-概念蓝绿基底由京张遗址公园、清河/小月河联系与口袋花园组成 [data:geometry/green_space.geojson#GREEN-001] [depth:blue_green_public_space]；实际岸线、生态和文保边界待官方资料复核。
-公共空间采用"连续慢行脊—横向缝合口—折返验证站"三级结构 [metric:scenario_node_count] [metric:public_space_area_sqm]：公园主轴连续组织步行、骑行、休憩和文化；横向缝合优先改善现有过街与可达性，新增桥隧仅作为待专项研究概念；验证站以可移动、可拆卸组件嵌入存量空间 [data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_ratio]。
+概念蓝绿基底由京张遗址公园、清河/小月河联系与口袋花园组成 [data:geometry/green_space.geojson#GRN-001] [depth:blue_green_public_space]；实际岸线、生态和文保边界待官方资料复核。
+公共空间采用"连续慢行脊—横向缝合口—折返验证站"三级结构 [metric:scenario_node_count] [metric:public_space_area_sqm]：公园主轴连续组织步行、骑行、休憩和文化；横向缝合优先改善现有过街与可达性，新增桥隧仅作为待专项研究概念；验证站以可移动、可拆卸组件嵌入存量空间 [data:geometry/public_space.geojson#PUB-001] [metric:public_space_ratio]。
 
 1. **AI原点·开源穹顶**：可进入的开源成果年轮与实时评测墙，展示数据来源、版本、失败记录和贡献者；不展示商业排名。
 2. **京张百年·时序站**：用折返信号语言串联1909、创新年代与AI未来，所有史实由专业机构审校。
@@ -153,7 +163,7 @@ A"模型上街前"评测场：偏见、幻觉、鲁棒、隐私和无障碍测�
 以上评测口径均纳入可复算指标登记：独立评测覆盖率 [metric:independent_ai_evaluation_coverage]、公众问题关闭率 [metric:public_issue_closure_rate]、申诉关闭时长 [metric:appeal_resolution_time_hours]、人工接管率 [metric:human_override_rate]、折返/入段记录数 [metric:sunset_clause_trigger_count]。基线在一期普查建立；未获真实数据前不填虚假目标值。风险优先级：① provisional 边界与法定条件缺失——获取官方包后全量替换、EPSG:4548复算；②算法歧视与数字排斥——离线/人工替代、分组评测、无障碍共测；③监控扩张——禁止人脸识别默认部署、数据影响评估和折返条款；④机器人安全——物理隔离、限速、远程接管、事故即入段；⑤文保与工程冲突——文保、消防、交通、市政专项论证；⑥运营烂尾——每项场景绑定责任人、预算来源假设、维护SLA和退出计划。
 
 ## 风险、版权与合规说明
-现状约束图层目前为空，明确表示权属、文保、市政、消防、洪涝与道路红线尚未获得，不得误读为"无约束" [data:geometry/constraints.geojson#CONSTRAINTS-PENDING] [depth:risk_missing_data] [source:SOURCE-REGISTRY]。
+现状约束图层目前为空，明确表示权属、文保、市政、消防、洪涝与道路红线尚未获得，不得误读为"无约束" [data:geometry/constraints.geojson#CON-999] [depth:risk_missing_data] [source:SOURCE-REGISTRY]。
 - 五张核心图：总体证据与概念、三区两翼结构、三重点区角色、慢行蓝绿与折返环、指标治理闭环。
 - 机器可读：geometry、metrics、assumptions、sources、compliance/standard/depth matrices。
 - 人类可读：本报告、离线 visual、A3文册与A0展板。
