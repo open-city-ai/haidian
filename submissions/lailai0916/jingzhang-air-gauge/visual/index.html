@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="把校准测量、路线与空间比较、室内空气证据室、产品声明核验，组织成可公开复核的城市基础设施。系统只处理环境与空间，不建立个人轨迹、健康档案或商业标签。">
+  <link rel="icon" href="data:,">
+  <title>京张风尺｜从蒸汽到呼吸</title>
+  <style>
+:root {
+  color-scheme: light dark;
+  --paper: #eee8da;
+  --paper-deep: #e4ddce;
+  --paper-bright: #f7f2e7;
+  --ink: #171915;
+  --ink-soft: #4b4e46;
+  --copper: #49685c;
+  --copper-strong: #2f5145;
+  --amber: #bd7128;
+  --amber-strong: #8a4c16;
+  --line: #87877d;
+  --line-soft: #c9c4b7;
+  --land-0802: #bdc9bf;
+  --land-1401: #8fa598;
+  --land-0702: #d5c7aa;
+  --land-05: #d7a97e;
+  --land-0806: #aebac0;
+  --display: "Songti SC", "STSong", "Iowan Old Style", "Baskerville", serif;
+  --body: "Avenir Next", -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --mono: "SFMono-Regular", "Menlo", "Monaco", monospace;
+  --unit: 8px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; background: var(--ink); }
+body {
+  margin: 0;
+  background: var(--paper-deep);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+a { color: inherit; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+a:focus-visible, summary:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+.skip-link { position: fixed; z-index: 99; top: 8px; left: 8px; min-height: 44px; display: flex; align-items: center; padding: 8px 12px; background: var(--ink); color: var(--paper); transform: translateY(-160%); }
+.skip-link:focus { transform: none; }
+.board { width: min(1560px, calc(100% - 32px)); margin: 16px auto; border: 1px solid var(--ink); background: var(--paper); }
+.masthead { display: grid; grid-template-columns: minmax(270px, .9fr) minmax(0, 1.4fr) auto; min-height: 72px; border-bottom: 1px solid var(--ink); }
+.brand, .mast-meta, .language { display: flex; align-items: center; min-width: 0; padding: 12px 16px; }
+.brand { gap: 12px; border-right: 1px solid var(--ink); text-decoration: none; }
+.brand-mark { position: relative; width: 36px; height: 36px; flex: 0 0 auto; border: 1px solid var(--ink); }
+.brand-mark::before { content: ""; position: absolute; top: 6px; bottom: 6px; left: 17px; width: 1px; background: var(--ink); }
+.brand-mark::after { content: ""; position: absolute; top: 9px; left: 7px; width: 21px; height: 1px; background: var(--ink); box-shadow: 0 8px 0 var(--ink), 0 16px 0 var(--ink); }
+.brand-copy strong { display: block; font-size: 13px; letter-spacing: .12em; }
+.brand-copy small, .mast-meta { color: var(--ink-soft); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; }
+.language { border-left: 1px solid var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.nav { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--ink); }
+.nav a { min-height: 44px; display: inline-flex; align-items: center; padding: 8px 14px; border-right: 1px solid var(--line-soft); color: var(--ink-soft); font-size: 11px; font-weight: 700; letter-spacing: .06em; text-decoration: none; }
+.nav a:hover { color: var(--paper-bright); background: var(--copper-strong); }
+.hero { display: grid; grid-template-columns: minmax(0, .92fr) minmax(540px, 1.08fr); border-bottom: 1px solid var(--ink); }
+.hero-copy { display: flex; flex-direction: column; justify-content: space-between; gap: 72px; min-width: 0; padding: clamp(32px, 5.2vw, 84px); border-right: 1px solid var(--ink); }
+.eyebrow, .section-kicker, .micro, .flag, .datum-label { font-size: 10px; font-weight: 700; line-height: 1.35; letter-spacing: .12em; text-transform: uppercase; }
+.eyebrow { color: var(--copper-strong); }
+h1, h2, h3, p { margin-top: 0; }
+h1 { margin: 22px 0 24px; font-family: var(--display); font-size: clamp(54px, 7vw, 108px); font-weight: 600; line-height: .9; letter-spacing: -.065em; }
+h1 .en-title { display: block; margin-top: 22px; color: var(--copper-strong); font-family: var(--body); font-size: clamp(18px, 2vw, 31px); font-weight: 700; line-height: 1.05; letter-spacing: .035em; }
+.hero-subtitle { margin-bottom: 18px; font-family: var(--display); font-size: clamp(22px, 2.5vw, 38px); line-height: 1.15; }
+.hero-definition { max-width: 690px; color: var(--ink-soft); font-size: 15px; }
+.hero-proof { display: grid; grid-template-columns: 42px 1fr; gap: 16px; padding-top: 20px; border-top: 1px solid var(--line); }
+.hero-proof .index { color: var(--amber-strong); font: 700 11px/1.3 var(--mono); }
+.hero-proof strong { display: block; margin-bottom: 6px; font-family: var(--display); font-size: clamp(19px, 2vw, 28px); font-weight: 600; }
+.hero-proof p { margin-bottom: 0; color: var(--ink-soft); font-size: 13px; }
+.map-column { min-width: 0; padding: 24px; background: var(--paper-deep); }
+.map-topline { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.map-topline h2 { margin: 0; font-family: var(--display); font-size: 24px; }
+.provisional { max-width: 310px; padding: 8px 10px; border: 1px dashed var(--line); color: var(--ink-soft); font-size: 10px; line-height: 1.4; }
+.map-stage { border: 1px solid var(--ink); background: var(--paper-bright); }
+.master-map { display: block; width: 100%; height: auto; max-height: 870px; }
+.map-paper { fill: var(--paper-bright); stroke: none; }
+.map-grid { fill: none; stroke: var(--line-soft); stroke-width: .55; vector-effect: non-scaling-stroke; }
+.land { stroke: var(--paper-bright); stroke-width: 1.15; vector-effect: non-scaling-stroke; }
+.land-0802 { fill: var(--land-0802); }
+.land-1401 { fill: var(--land-1401); }
+.land-0702 { fill: var(--land-0702); }
+.land-05 { fill: var(--land-05); }
+.land-0806 { fill: var(--land-0806); }
+.green-layer { fill: none; stroke: var(--copper-strong); stroke-width: 1.1; vector-effect: non-scaling-stroke; }
+.public-spine { fill: var(--copper); stroke: var(--copper-strong); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.public-node { fill: var(--amber); stroke: var(--paper-bright); stroke-width: 1.5; vector-effect: non-scaling-stroke; }
+.building-layer { fill: var(--ink); stroke: var(--paper-bright); stroke-width: .6; vector-effect: non-scaling-stroke; }
+.road-spine { fill: none; stroke: var(--paper-bright); stroke-width: 3.4; vector-effect: non-scaling-stroke; }
+.road-link { fill: none; stroke: var(--ink-soft); stroke-width: 1.2; vector-effect: non-scaling-stroke; }
+.road-cross { fill: none; stroke: var(--amber-strong); stroke-width: 2.3; stroke-dasharray: 7 5; vector-effect: non-scaling-stroke; }
+.key-area, .site-outline { fill: none; stroke: var(--ink); stroke-width: 1.4; stroke-dasharray: 8 7; vector-effect: non-scaling-stroke; }
+.site-outline { stroke: var(--line); stroke-width: 2.2; stroke-dasharray: 12 9; }
+.key-label rect { fill: var(--paper-bright); stroke: var(--ink); stroke-width: .8; }
+.key-label text { fill: var(--ink); font: 700 10px var(--body); letter-spacing: .04em; }
+.scenario-dot circle { fill: var(--ink); stroke: var(--paper-bright); stroke-width: 2; }
+.scenario-dot text { fill: var(--paper-bright); font: 700 7px var(--mono); }
+.scenario-dot.tvs circle { fill: var(--amber-strong); }
+.scope-note rect { fill: var(--paper-bright); stroke: var(--line); stroke-dasharray: 4 3; }
+.scope-note text { fill: var(--ink-soft); font: 700 8px var(--body); letter-spacing: .08em; }
+.north path { fill: var(--ink); }
+.north text { fill: var(--ink); font: 700 10px var(--body); }
+.map-legend { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border: 1px solid var(--ink); border-top: 0; }
+.legend-item { min-width: 0; padding: 9px 10px; border-right: 1px solid var(--line-soft); color: var(--ink-soft); font-size: 9px; line-height: 1.35; }
+.legend-item:last-child { border-right: 0; }
+.legend-item i { display: inline-block; width: 18px; height: 8px; margin-right: 5px; border: 1px solid var(--ink); vertical-align: 0; }
+.legend-item .sw-spine { background: var(--copper); }
+.legend-item .sw-key { background: var(--paper-bright); border-style: dashed; }
+.legend-item .sw-tvs { background: var(--amber-strong); }
+.legend-item .sw-building { background: var(--ink); }
+.legend-item .sw-scope { background: var(--paper-bright); border-color: var(--line); border-style: dashed; }
+.metrics { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border-bottom: 1px solid var(--ink); }
+.metric { min-width: 0; min-height: 150px; padding: 18px 16px; border-right: 1px solid var(--ink); }
+.metric:last-child { border-right: 0; }
+.metric strong { display: block; margin: 22px 0 4px; font-family: var(--display); font-size: clamp(24px, 2.8vw, 42px); font-weight: 600; line-height: 1; font-variant-numeric: tabular-nums; }
+.metric small { display: block; color: var(--ink-soft); font-size: 10px; line-height: 1.35; }
+.section { display: grid; grid-template-columns: 176px minmax(0, 1fr); border-bottom: 1px solid var(--ink); }
+.section-rail { min-width: 0; padding: 24px 16px; border-right: 1px solid var(--ink); }
+.section-kicker { position: sticky; top: 16px; color: var(--copper-strong); }
+.section-kicker span { display: block; margin-top: 12px; color: var(--ink-soft); font-family: var(--mono); }
+.section-content { min-width: 0; }
+.section-intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, .48fr); gap: 32px; padding: clamp(28px, 4vw, 56px); border-bottom: 1px solid var(--line-soft); }
+.section-intro h2 { margin: 0; font-family: var(--display); font-size: clamp(32px, 4vw, 60px); font-weight: 600; line-height: 1; letter-spacing: -.035em; }
+.section-intro p { margin: 0; align-self: end; color: var(--ink-soft); font-size: 13px; }
+.grid-3, .grid-4, .grid-2 { display: grid; }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cell { min-width: 0; padding: 28px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.grid-3 .cell:nth-child(3n), .grid-4 .cell:nth-child(4n), .grid-2 .cell:nth-child(2n) { border-right: 0; }
+.cell h3 { margin-bottom: 10px; font-family: var(--display); font-size: 23px; font-weight: 600; line-height: 1.18; }
+.cell p { margin-bottom: 0; color: var(--ink-soft); font-size: 13px; }
+.datum { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--line-soft); }
+.datum strong { font: 700 18px/1 var(--mono); font-variant-numeric: tabular-nums; }
+.flag { display: inline-block; padding: 4px 7px; border: 1px solid var(--ink); }
+.flag.copper { color: var(--paper-bright); border-color: var(--copper-strong); background: var(--copper-strong); }
+.flag.amber { color: var(--paper-bright); border-color: var(--amber-strong); background: var(--amber-strong); }
+.flow { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-bottom: 1px solid var(--ink); }
+.flow-step { position: relative; min-width: 0; padding: 28px 20px 32px; border-right: 1px solid var(--ink); }
+.flow-step:last-child { border-right: 0; }
+.flow-step::after { content: ""; position: absolute; right: -5px; top: 31px; z-index: 2; width: 9px; height: 9px; border-top: 1px solid var(--ink); border-right: 1px solid var(--ink); background: var(--paper); transform: rotate(45deg); }
+.flow-step:last-child::after { display: none; }
+.flow-step b { display: block; margin: 20px 0 8px; font-family: var(--display); font-size: 19px; }
+.flow-step p { margin: 0; color: var(--ink-soft); font-size: 11px; }
+.scenario-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.scenario { min-width: 0; min-height: 210px; padding: 20px; border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.scenario:nth-child(4n) { border-right: 0; }
+.scenario-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 26px; }
+.scenario-number { font: 700 11px/1 var(--mono); letter-spacing: .08em; }
+.scenario h3 { margin-bottom: 8px; font-family: var(--display); font-size: 20px; font-weight: 600; line-height: 1.18; }
+.scenario p { margin: 0; color: var(--ink-soft); font-size: 11px; }
+.project-list { list-style: none; margin: 0; padding: 0; }
+.project-list li { display: grid; grid-template-columns: 68px minmax(0, 1fr) auto; gap: 16px; align-items: center; min-height: 62px; padding: 10px 20px; border-bottom: 1px solid var(--line-soft); }
+.project-list code { color: var(--amber-strong); font: 700 11px var(--mono); }
+.project-list span { font-size: 13px; }
+.project-list small { color: var(--ink-soft); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.phase-band { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.phase { padding: 24px; border-right: 1px solid var(--ink); }
+.phase:last-child { border-right: 0; }
+.phase b { display: block; margin: 18px 0 8px; font-family: var(--display); font-size: 20px; }
+.phase p { margin: 0; color: var(--ink-soft); font-size: 11px; }
+.coverage { display: grid; grid-template-columns: .75fr 1.25fr; }
+.coverage-numbers { display: grid; grid-template-columns: repeat(3, 1fr); border-right: 1px solid var(--ink); }
+.coverage-number { padding: 26px 16px; border-right: 1px solid var(--line-soft); }
+.coverage-number:last-child { border-right: 0; }
+.coverage-number strong { display: block; margin-bottom: 8px; font: 600 clamp(30px, 4vw, 52px)/1 var(--display); }
+.coverage-number span { color: var(--ink-soft); font-size: 10px; }
+.coverage-tasks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.coverage-task { padding: 20px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.coverage-task:nth-child(2n) { border-right: 0; }
+.coverage-task code { color: var(--amber-strong); font: 700 10px var(--mono); }
+.coverage-task b { display: block; margin-top: 9px; font-size: 12px; }
+.check-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.check { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 16px; padding: 18px 20px; border-right: 1px solid var(--line-soft); border-bottom: 1px solid var(--line-soft); }
+.check:nth-child(2n) { border-right: 0; }
+.check code { font: 700 9px/1.35 var(--mono); overflow-wrap: anywhere; }
+.check p { margin: 0; color: var(--ink-soft); font-size: 11px; }
+.status-pass, .status-pending { display: inline-block; width: 8px; height: 8px; margin-right: 6px; border: 1px solid var(--ink); }
+.status-pass { background: var(--copper); }
+.status-pending { background: var(--amber); }
+.evidence-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.evidence-panel { min-width: 0; padding: 30px; border-right: 1px solid var(--ink); }
+.evidence-panel:last-child { border-right: 0; }
+.evidence-panel h3 { font-family: var(--display); font-size: 28px; font-weight: 600; }
+.evidence-panel p { color: var(--ink-soft); font-size: 12px; }
+.evidence-line { margin-top: 14px; padding: 10px 0; border-top: 1px solid var(--line-soft); font: 10px/1.5 var(--mono); overflow-wrap: anywhere; }
+.unknowns { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.unknown { min-width: 0; padding: 18px; border-right: 1px solid var(--ink); border-top: 1px solid var(--ink); }
+.unknown:last-child { border-right: 0; }
+.unknown b { display: block; margin: 12px 0 6px; font-size: 12px; }
+.unknown p { margin: 0; color: var(--ink-soft); font-size: 10px; }
+.footer { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; padding: 28px; }
+.footer p { max-width: 900px; margin: 0; color: var(--ink-soft); font-size: 10px; }
+.footer strong { font: 700 11px var(--mono); letter-spacing: .08em; }
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #191b18; --paper-deep: #111310; --paper-bright: #22251f; --ink: #f0eadc; --ink-soft: #c2bbad;
+    --copper: #779688; --copper-strong: #9eb7ab; --amber: #ce8440; --amber-strong: #e09a55;
+    --line: #77786f; --line-soft: #44473f; --land-0802: #48564e; --land-1401: #50685a;
+    --land-0702: #635b48; --land-05: #725540; --land-0806: #4c585d;
+  }
+}
+@media (max-width: 1120px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-copy { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .metric:nth-child(3n) { border-right: 0; }
+  .metric:nth-child(-n+3) { border-bottom: 1px solid var(--ink); }
+  .scenario-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .scenario:nth-child(4n) { border-right: 1px solid var(--ink); }
+  .scenario:nth-child(3n) { border-right: 0; }
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-4 .cell:nth-child(odd) { border-right: 1px solid var(--ink); }
+  .grid-4 .cell:nth-child(even) { border-right: 0; }
+  .flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .flow-step:nth-child(3) { border-right: 0; }
+  .flow-step:nth-child(-n+3) { border-bottom: 1px solid var(--ink); }
+  .flow-step:nth-child(3)::after { display: none; }
+  .unknowns { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .unknown:nth-child(3) { border-right: 0; }
+}
+@media (max-width: 760px) {
+  .board { width: 100%; margin: 0; border-left: 0; border-right: 0; }
+  .masthead { grid-template-columns: 1fr auto; }
+  .mast-meta { display: none; }
+  .brand { border-right: 0; }
+  .nav { overflow: hidden; }
+  .nav a { flex: 1 1 33.333%; border-bottom: 1px solid var(--line-soft); }
+  .hero-copy { gap: 48px; padding: 36px 20px; }
+  .map-column { padding: 16px; }
+  .map-topline { display: block; }
+  .provisional { margin-top: 10px; max-width: none; }
+  .map-legend { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .legend-item { border-bottom: 1px solid var(--line-soft); }
+  .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .metric, .metric:nth-child(3n) { border-right: 1px solid var(--ink); border-bottom: 1px solid var(--ink); }
+  .metric:nth-child(2n) { border-right: 0; }
+  .section { grid-template-columns: 1fr; }
+  .section-rail { padding: 14px 16px; border-right: 0; border-bottom: 1px solid var(--ink); }
+  .section-kicker { position: static; }
+  .section-kicker span { display: inline; margin-left: 10px; }
+  .section-intro { grid-template-columns: 1fr; padding: 32px 20px; }
+  .grid-3, .grid-4, .grid-2 { grid-template-columns: 1fr; }
+  .grid-3 .cell, .grid-4 .cell, .grid-2 .cell { border-right: 0 !important; }
+  .flow { grid-template-columns: 1fr; }
+  .flow-step { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .flow-step::after { display: none; }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .scenario { min-height: 0; border-right: 0 !important; }
+  .project-list li { grid-template-columns: 56px minmax(0, 1fr); }
+  .project-list small { display: none; }
+  .phase-band { grid-template-columns: 1fr; }
+  .phase { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .coverage { grid-template-columns: 1fr; }
+  .coverage-numbers { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .coverage-tasks, .check-grid, .evidence-grid { grid-template-columns: 1fr; }
+  .coverage-task, .check, .evidence-panel { border-right: 0 !important; }
+  .unknowns { grid-template-columns: 1fr; }
+  .unknown { border-right: 0; }
+  .footer { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+@media print {
+  :root { color-scheme: light; --paper:#eee8da; --paper-deep:#e4ddce; --paper-bright:#f7f2e7; --ink:#171915; --ink-soft:#4b4e46; --copper:#49685c; --copper-strong:#2f5145; --amber:#bd7128; --amber-strong:#8a4c16; --line:#87877d; --line-soft:#c9c4b7; --land-0802:#bdc9bf; --land-1401:#8fa598; --land-0702:#d5c7aa; --land-05:#d7a97e; --land-0806:#aebac0; }
+  body { background: var(--paper); }
+  .board { width: 100%; margin: 0; }
+  .nav, .language, .skip-link { display: none; }
+  .section, .hero, .metrics { break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">跳至正文</a>
+<div class="board">
+  <header>
+    <div class="masthead">
+      <a class="brand" href="#overview" aria-label="京张风尺">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-copy"><strong>京张风尺 / JING-ZHANG AIR GAUGE</strong><small>从蒸汽到呼吸</small></span>
+      </a>
+      <div class="mast-meta">百年京张 AI 创新带 · 城市设计开源征集 · 2026</div>
+      <a class="language" href="index.en.html" hreflang="en">English</a>
+    </div>
+    <nav class="nav" aria-label="成果目录"><a href="#overview">总览地图</a><a href="#scope">三层范围</a><a href="#areas">重点区域</a><a href="#systems">用地·交通·蓝绿·建筑</a><a href="#scenarios">AI 场景</a><a href="#projects">更新项目</a><a href="#evidence">任务覆盖</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="overview" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div>
+          <div class="eyebrow">NO-PROFILE AIR-EQUITY INFRASTRUCTURE / 无个人画像的空气暴露公平基础设施</div>
+          <h1 id="hero-title">京张风尺<span class="en-title">JING-ZHANG AIR GAUGE</span></h1>
+          <p class="hero-subtitle">从蒸汽到呼吸</p>
+          <p class="hero-definition">把校准测量、路线与空间比较、室内空气证据室、产品声明核验，组织成可公开复核的城市基础设施。系统只处理环境与空间，不建立个人轨迹、健康档案或商业标签。</p>
+        </div>
+        <div class="hero-proof"><span class="index">00</span><div><strong>可信，不靠更响的数字；公平，不靠更细的个人画像。</strong><p>每条结论附来源、假设和验证条件。没有现场资料的成效保持待验证。</p></div></div>
+      </div>
+      <div class="map-column">
+        <div class="map-topline"><h2>总览地图</h2><div class="provisional">当前范围与三处重点区为仓库临时粗略几何。它不用于官方红线、精确面积或法定控制结论。官方 polygon 到位后统一复算；当前内容仍可接受设计评审。</div></div>
+        <div class="map-stage"><svg class="master-map" viewBox="0 0 780 980" role="img" aria-labelledby="map-title-zh map-desc-zh"><title id="map-title-zh">京张风尺总览地图</title><desc id="map-desc-zh">临时范围内的用地、空气证据脊、交通联系、建筑容量包络、三处重点区和十二个场景节点。</desc><rect class="map-paper" x="0.5" y="0.5" width="779" height="979"/><path class="map-grid" d="M78 0V980"/><path class="map-grid" d="M156 0V980"/><path class="map-grid" d="M234 0V980"/><path class="map-grid" d="M312 0V980"/><path class="map-grid" d="M390 0V980"/><path class="map-grid" d="M468 0V980"/><path class="map-grid" d="M546 0V980"/><path class="map-grid" d="M624 0V980"/><path class="map-grid" d="M702 0V980"/><path class="map-grid" d="M0 98H780"/><path class="map-grid" d="M0 196H780"/><path class="map-grid" d="M0 294H780"/><path class="map-grid" d="M0 392H780"/><path class="map-grid" d="M0 490H780"/><path class="map-grid" d="M0 588H780"/><path class="map-grid" d="M0 686H780"/><path class="map-grid" d="M0 784H780"/><path class="map-grid" d="M0 882H780"/><path class="land land-05" d="M338.07,926.00 L331.78,630.14 L360.37,629.93 L362.54,926.00 L338.07,926.00 Z"/><path class="land land-0702" d="M362.54,926.00 L360.37,629.93 L387.39,629.73 L389.55,926.00 L362.54,926.00 Z"/><path class="land land-1401" d="M389.55,926.00 L387.39,629.73 L414.41,629.53 L416.56,926.00 L389.55,926.00 Z"/><path class="land land-0806" d="M416.56,926.00 L414.41,629.53 L447.26,629.30 L449.56,666.89 L449.56,926.00 L416.56,926.00 Z"/><path class="land land-0802" d="M341.57,342.08 L358.26,341.95 L360.37,629.93 L331.78,630.14 L330.44,567.23 L341.57,342.08 Z"/><path class="land land-0802" d="M360.37,629.93 L358.26,341.95 L385.29,341.76 L387.39,629.73 L360.37,629.93 Z"/><path class="land land-1401" d="M387.39,629.73 L385.29,341.76 L412.32,341.56 L414.41,629.53 L387.39,629.73 Z"/><path class="land land-05" d="M434.29,417.75 L447.26,629.30 L414.41,629.53 L412.32,341.56 L437.49,341.37 L434.29,417.75 Z"/><path class="land land-0802" d="M356.15,54.00 L358.26,341.95 L341.57,342.08 L345.71,258.30 L353.35,54.00 L356.15,54.00 Z"/><path class="land land-0702" d="M383.19,54.00 L385.29,341.76 L358.26,341.95 L356.15,54.00 L383.19,54.00 Z"/><path class="land land-1401" d="M410.23,54.00 L412.32,341.56 L385.29,341.76 L383.19,54.00 L410.23,54.00 Z"/><path class="land land-0806" d="M437.49,341.37 L412.32,341.56 L410.23,54.00 L449.56,54.00 L437.49,341.37 Z"/><path class="green-layer" d="M389.55,926.00 L387.39,629.73 L414.41,629.53 L416.56,926.00 L389.55,926.00 Z"/><path class="green-layer" d="M387.39,629.73 L385.29,341.76 L412.32,341.56 L414.41,629.53 L387.39,629.73 Z"/><path class="green-layer" d="M410.23,54.00 L412.32,341.56 L385.29,341.76 L383.19,54.00 L410.23,54.00 Z"/><path class="public-spine" d="M400.47,54.00 L406.80,925.97 L403.05,926.00 L401.78,926.00 L399.30,926.00 L392.95,54.03 L396.71,54.00 L400.47,54.00 Z"/><path class="public-node" d="M407.49,860.82 L407.37,861.30 L407.21,861.76 L407.00,862.21 L406.75,862.64 L406.46,863.03 L406.14,863.40 L405.77,863.74 L405.38,864.03 L404.96,864.29 L404.52,864.50 L404.06,864.67 L403.58,864.80 L403.10,864.87 L402.61,864.90 L402.12,864.88 L401.63,864.81 L401.16,864.69 L400.69,864.53 L400.25,864.32 L399.82,864.07 L399.43,863.78 L399.06,863.45 L398.73,863.09 L398.43,862.70 L398.18,862.28 L397.96,861.83 L397.80,861.37 L397.67,860.89 L397.60,860.40 L397.57,859.91 L397.59,859.42 L397.66,858.93 L397.77,858.45 L397.94,857.98 L398.14,857.54 L398.39,857.11 L398.68,856.71 L399.01,856.35 L399.37,856.01 L399.76,855.72 L400.18,855.46 L400.62,855.24 L401.09,855.07 L401.56,854.95 L402.05,854.88 L402.54,854.85 L403.03,854.87 L403.51,854.94 L403.99,855.05 L404.45,855.22 L404.90,855.42 L405.32,855.67 L405.72,855.97 L406.08,856.29 L406.42,856.66 L406.71,857.05 L406.97,857.47 L407.18,857.92 L407.35,858.38 L407.47,858.86 L407.55,859.34 L407.58,859.84 L407.56,860.33 L407.49,860.82 Z"/><path class="public-node" d="M407.30,835.21 L407.19,835.69 L407.02,836.16 L406.82,836.60 L406.57,837.03 L406.28,837.43 L405.95,837.79 L405.59,838.13 L405.20,838.42 L404.78,838.68 L404.34,838.90 L403.87,839.06 L403.40,839.19 L402.91,839.26 L402.42,839.29 L401.93,839.27 L401.45,839.20 L400.97,839.09 L400.51,838.92 L400.06,838.72 L399.64,838.47 L399.24,838.17 L398.87,837.85 L398.54,837.48 L398.25,837.09 L397.99,836.67 L397.78,836.22 L397.61,835.76 L397.49,835.28 L397.41,834.79 L397.38,834.30 L397.40,833.81 L397.47,833.32 L397.59,832.84 L397.75,832.38 L397.96,831.93 L398.21,831.50 L398.50,831.11 L398.82,830.74 L399.18,830.40 L399.58,830.11 L400.00,829.85 L400.44,829.64 L400.90,829.47 L401.37,829.34 L401.86,829.27 L402.35,829.24 L402.84,829.26 L403.33,829.33 L403.80,829.45 L404.27,829.61 L404.71,829.82 L405.14,830.07 L405.53,830.36 L405.90,830.69 L406.23,831.05 L406.53,831.44 L406.78,831.86 L407.00,832.31 L407.16,832.77 L407.29,833.25 L407.36,833.74 L407.39,834.23 L407.37,834.72 L407.30,835.21 Z"/><path class="public-node" d="M404.54,455.56 L404.43,456.04 L404.27,456.51 L404.06,456.96 L403.81,457.38 L403.52,457.78 L403.19,458.15 L402.83,458.48 L402.44,458.78 L402.02,459.04 L401.58,459.25 L401.12,459.42 L400.64,459.54 L400.15,459.62 L399.66,459.65 L399.17,459.63 L398.69,459.56 L398.21,459.44 L397.74,459.28 L397.30,459.07 L396.88,458.82 L396.48,458.53 L396.11,458.20 L395.78,457.84 L395.48,457.44 L395.23,457.02 L395.02,456.58 L394.85,456.11 L394.72,455.64 L394.65,455.15 L394.62,454.66 L394.64,454.16 L394.71,453.68 L394.83,453.20 L394.99,452.73 L395.19,452.28 L395.44,451.86 L395.73,451.46 L396.06,451.09 L396.42,450.76 L396.82,450.46 L397.23,450.21 L397.68,449.99 L398.14,449.82 L398.61,449.70 L399.10,449.62 L399.59,449.59 L400.08,449.62 L400.57,449.68 L401.05,449.80 L401.51,449.96 L401.95,450.17 L402.38,450.42 L402.77,450.71 L403.14,451.04 L403.47,451.40 L403.77,451.80 L404.02,452.22 L404.24,452.66 L404.41,453.13 L404.53,453.60 L404.61,454.09 L404.63,454.58 L404.61,455.08 L404.54,455.56 Z"/><path class="public-node" d="M404.23,411.72 L404.11,412.20 L403.95,412.66 L403.74,413.11 L403.49,413.53 L403.20,413.93 L402.87,414.30 L402.51,414.63 L402.12,414.93 L401.70,415.19 L401.26,415.40 L400.80,415.57 L400.32,415.69 L399.83,415.77 L399.34,415.80 L398.85,415.78 L398.37,415.71 L397.89,415.59 L397.43,415.43 L396.98,415.22 L396.56,414.97 L396.16,414.68 L395.79,414.35 L395.46,413.99 L395.17,413.59 L394.91,413.17 L394.70,412.73 L394.53,412.27 L394.40,411.79 L394.33,411.30 L394.30,410.81 L394.32,410.32 L394.39,409.83 L394.51,409.35 L394.67,408.88 L394.88,408.43 L395.12,408.01 L395.41,407.61 L395.74,407.24 L396.10,406.91 L396.50,406.61 L396.92,406.36 L397.36,406.14 L397.82,405.97 L398.30,405.85 L398.78,405.77 L399.27,405.75 L399.76,405.77 L400.25,405.83 L400.73,405.95 L401.19,406.11 L401.64,406.32 L402.06,406.57 L402.46,406.86 L402.82,407.19 L403.15,407.55 L403.45,407.95 L403.71,408.37 L403.92,408.81 L404.09,409.28 L404.21,409.75 L404.29,410.24 L404.31,410.73 L404.29,411.23 L404.23,411.72 Z"/><path class="public-node" d="M402.63,192.67 L402.52,193.15 L402.35,193.61 L402.15,194.06 L401.90,194.49 L401.61,194.88 L401.28,195.25 L400.92,195.59 L400.53,195.88 L400.11,196.14 L399.66,196.35 L399.20,196.52 L398.73,196.65 L398.24,196.72 L397.75,196.75 L397.26,196.73 L396.77,196.66 L396.29,196.54 L395.83,196.38 L395.38,196.17 L394.96,195.92 L394.56,195.63 L394.20,195.30 L393.86,194.94 L393.57,194.55 L393.31,194.13 L393.10,193.68 L392.93,193.22 L392.81,192.74 L392.73,192.25 L392.70,191.76 L392.73,191.27 L392.79,190.78 L392.91,190.30 L393.07,189.84 L393.28,189.39 L393.53,188.96 L393.82,188.56 L394.15,188.20 L394.51,187.86 L394.90,187.57 L395.32,187.31 L395.76,187.10 L396.22,186.93 L396.70,186.80 L397.19,186.73 L397.68,186.70 L398.17,186.72 L398.65,186.79 L399.13,186.90 L399.60,187.07 L400.04,187.28 L400.46,187.53 L400.86,187.82 L401.23,188.15 L401.56,188.51 L401.86,188.90 L402.11,189.32 L402.33,189.77 L402.49,190.23 L402.62,190.71 L402.69,191.20 L402.72,191.69 L402.70,192.18 L402.63,192.67 Z"/><path class="public-node" d="M402.04,111.55 L401.93,112.03 L401.76,112.49 L401.56,112.94 L401.31,113.37 L401.02,113.76 L400.69,114.13 L400.33,114.47 L399.93,114.76 L399.52,115.02 L399.07,115.23 L398.61,115.40 L398.13,115.53 L397.65,115.60 L397.16,115.63 L396.67,115.61 L396.18,115.54 L395.70,115.42 L395.24,115.26 L394.79,115.05 L394.37,114.80 L393.97,114.51 L393.61,114.18 L393.27,113.82 L392.98,113.43 L392.72,113.01 L392.51,112.56 L392.34,112.10 L392.22,111.62 L392.14,111.13 L392.11,110.64 L392.13,110.15 L392.20,109.66 L392.32,109.18 L392.48,108.71 L392.69,108.27 L392.94,107.84 L393.23,107.44 L393.55,107.08 L393.92,106.74 L394.31,106.45 L394.73,106.19 L395.17,105.97 L395.63,105.81 L396.11,105.68 L396.59,105.61 L397.09,105.58 L397.58,105.60 L398.06,105.67 L398.54,105.78 L399.00,105.95 L399.45,106.15 L399.87,106.40 L400.27,106.70 L400.64,107.02 L400.97,107.39 L401.27,107.78 L401.52,108.20 L401.74,108.65 L401.90,109.11 L402.03,109.59 L402.10,110.07 L402.13,110.57 L402.11,111.06 L402.04,111.55 Z"/><path class="building-layer" d="M344.52,829.07 L344.45,820.46 L350.53,820.41 L350.59,829.03 L344.52,829.07 Z"/><path class="building-layer" d="M343.83,735.71 L343.77,727.10 L349.84,727.05 L349.91,735.67 L343.83,735.71 Z"/><path class="building-layer" d="M372.30,829.00 L372.24,820.38 L378.31,820.34 L378.38,828.95 L372.30,829.00 Z"/><path class="building-layer" d="M371.62,735.58 L371.55,726.96 L377.63,726.92 L377.69,735.53 L371.62,735.58 Z"/><path class="building-layer" d="M430.25,828.86 L430.19,820.25 L436.27,820.20 L436.33,828.82 L430.25,828.86 Z"/><path class="building-layer" d="M429.58,735.30 L429.51,726.69 L435.59,726.64 L435.65,735.26 L429.58,735.30 Z"/><path class="building-layer" d="M341.91,535.77 L341.84,527.15 L347.92,527.11 L347.98,535.72 L341.91,535.77 Z"/><path class="building-layer" d="M341.24,445.00 L341.18,436.38 L347.25,436.33 L347.32,444.95 L341.24,445.00 Z"/><path class="building-layer" d="M370.15,535.56 L370.09,526.95 L376.17,526.90 L376.23,535.52 L370.15,535.56 Z"/><path class="building-layer" d="M369.49,444.79 L369.43,436.17 L375.51,436.13 L375.57,444.74 L369.49,444.79 Z"/><path class="building-layer" d="M427.05,535.14 L426.99,526.53 L433.07,526.48 L433.13,535.10 L427.05,535.14 Z"/><path class="building-layer" d="M426.40,444.37 L426.33,435.75 L432.41,435.71 L432.47,444.32 L426.40,444.37 Z"/><path class="building-layer" d="M352.34,249.71 L352.40,258.32 L347.86,258.36 L348.18,249.74 L352.34,249.71 Z"/><path class="building-layer" d="M351.75,168.93 L351.81,177.55 L350.88,177.56 L351.20,168.94 L351.75,168.93 Z"/><path class="building-layer" d="M368.05,247.60 L367.98,238.98 L374.06,238.94 L374.13,247.55 L368.05,247.60 Z"/><path class="building-layer" d="M367.38,156.83 L367.32,148.22 L373.40,148.17 L373.46,156.79 L367.38,156.83 Z"/><path class="building-layer" d="M428.20,247.29 L428.14,238.67 L434.22,238.63 L434.28,247.25 L428.20,247.29 Z"/><path class="building-layer" d="M427.54,156.65 L427.48,148.04 L433.56,147.99 L433.63,156.61 L427.54,156.65 Z"/><path class="road-spine" d="M403.05,926.00 L396.71,54.00"/><path class="road-link" d="M397.87,926.00 L391.52,54.00"/><path class="road-cross" d="M331.78,630.14 L447.26,629.30"/><path class="road-cross" d="M341.57,342.08 L437.49,341.37"/><path class="road-cross" d="M348.13,193.67 L443.73,192.97"/><path class="road-link" d="M351.49,926.00 L346.45,238.64"/><path class="key-area" d="M355.64,243.35 L439.63,243.35 L439.63,58.98 L355.64,58.98 L355.64,243.35 Z"/><g class="key-label" transform="translate(397.64 151.17)"><rect x="-58" y="-14" width="116" height="28"/><text text-anchor="middle" y="4">众智园</text></g><path class="key-area" d="M348.00,482.53 L432.00,482.53 L432.00,382.87 L348.00,382.87 L348.00,482.53 Z"/><g class="key-label" transform="translate(390.00 432.70)"><rect x="-58" y="-14" width="116" height="28"/><text text-anchor="middle" y="4">AI 原点</text></g><path class="key-area" d="M348.00,876.17 L447.27,876.17 L447.27,817.97 L348.00,817.97 L348.00,876.17 Z"/><g class="key-label" transform="translate(397.64 847.07)"><rect x="-58" y="-14" width="116" height="28"/><text text-anchor="middle" y="4">大钟寺</text></g><g class="scenario-dot tvs" transform="translate(397.69 188.04)"><circle r="11"/><text text-anchor="middle" y="3.4">01</text></g><g class="scenario-dot" transform="translate(399.61 452.63)"><circle r="11"/><text text-anchor="middle" y="3.4">02</text></g><g class="scenario-dot tvs" transform="translate(402.56 858.71)"><circle r="11"/><text text-anchor="middle" y="3.4">03</text></g><g class="scenario-dot tvs" transform="translate(402.40 835.43)"><circle r="11"/><text text-anchor="middle" y="3.4">04</text></g><g class="scenario-dot tvs" transform="translate(397.15 114.29)"><circle r="11"/><text text-anchor="middle" y="3.4">05</text></g><g class="scenario-dot" transform="translate(401.15 664.40)"><circle r="11"/><text text-anchor="middle" y="3.4">06</text></g><g class="scenario-dot" transform="translate(400.20 533.60)"><circle r="11"/><text text-anchor="middle" y="3.4">07</text></g><g class="scenario-dot" transform="translate(401.91 769.04)"><circle r="11"/><text text-anchor="middle" y="3.4">08</text></g><g class="scenario-dot" transform="translate(398.74 333.04)"><circle r="11"/><text text-anchor="middle" y="3.4">09</text></g><g class="scenario-dot" transform="translate(400.65 594.64)"><circle r="11"/><text text-anchor="middle" y="3.4">10</text></g><g class="scenario-dot" transform="translate(398.36 280.72)"><circle r="11"/><text text-anchor="middle" y="3.4">11</text></g><g class="scenario-dot" transform="translate(399.32 412.76)"><circle r="11"/><text text-anchor="middle" y="3.4">12</text></g><path class="site-outline" d="M338.07,926.00 L449.56,926.00 L449.56,666.89 L434.29,417.75 L449.56,54.00 L353.35,54.00 L345.71,258.30 L330.44,567.23 L338.07,926.00 Z"/><g class="scope-note" transform="translate(24 948)"><rect width="306" height="24"/><text x="10" y="16">临时范围 · 非官方红线</text></g><g class="north" transform="translate(723 44)"><path d="M0 34L13 0l13 34-13-7z"/><text x="13" y="49" text-anchor="middle">北</text></g></svg></div>
+        <div class="map-legend"><span class="legend-item"><i class="sw-spine"></i>空气证据脊</span><span class="legend-item"><i class="sw-key"></i>重点区临时范围</span><span class="legend-item"><i class="sw-tvs"></i>TVS 节点</span><span class="legend-item"><i class="sw-building"></i>概念建筑包络</span><span class="legend-item"><i class="sw-scope"></i>临时总体范围</span></div>
+      </div>
+    </section>
+    <section class="metrics" id="metrics" aria-label="核心指标"><article class="metric"><span class="datum-label">核心指标 · site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386</strong><small>m² · 临时几何复算</small></article><article class="metric"><span class="datum-label">green_ratio</span><strong data-metric="green_ratio" data-value="0.257342">25.7342%</strong><small>设计绿地比例</small></article><article class="metric"><span class="datum-label">public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.072254">7.2254%</strong><small>设计公共空间比例</small></article><article class="metric"><span class="datum-label">scenario_node_count</span><strong data-metric="scenario_node_count" data-value="12">12</strong><small>AI 场景节点</small></article><article class="metric"><span class="datum-label">industry_test_scenario_count</span><strong data-metric="industry_test_scenario_count" data-value="4">4</strong><small>产业测试验证场景</small></article><article class="metric"><span class="datum-label">renewal_project_count</span><strong data-metric="renewal_project_count" data-value="9">9</strong><small>可拆分更新项目</small></article></section>
+
+    <section class="section" id="scope" aria-labelledby="scope-title">
+      <aside class="section-rail" aria-label="三层范围 01"><div class="section-kicker">三层范围<span>01 / 07</span></div></aside>
+      <div class="section-content"><div class="section-intro"><h2 id="scope-title">三层范围</h2><p>三层工作由同一证据链串联。统筹层定义产业与文化议题；总体层组织空间系统；重点区把方法落到可验证项目。</p></div><div class="grid-3"><article class="cell"><span class="flag">01</span><h3>统筹研究范围</h3><p>公告约 43.6 km²。组织产业生态、未来城市、人才服务与文化叙事。</p><div class="datum"><span class="datum-label">战略层</span></div></article><article class="cell"><span class="flag">02</span><h3>总体设计范围</h3><p>公告约 11.4 km²。当前临时几何复算 11,412,825.386 m²。</p><div class="datum"><span class="datum-label">空间层</span></div></article><article class="cell"><span class="flag">03</span><h3>重点区域范围</h3><p>众智园、AI 原点、大钟寺三处临时粗略范围。官方边界到位后重算。</p><div class="datum"><span class="datum-label">项目层</span></div></article></div></div>
+    </section>
+
+    <section class="section" id="areas" aria-labelledby="areas-title">
+      <aside class="section-rail" aria-label="重点区域 02"><div class="section-kicker">重点区域<span>02 / 07</span></div></aside>
+      <div class="section-content"><div class="section-intro"><h2 id="areas-title">重点区域</h2><p>三区两翼围绕空气证据脊分工。三处重点区保持不同角色，不复制同一种空间。</p></div><div class="grid-3"><article class="cell"><span class="flag copper">01</span><h3>众智园 AI 自主创新加速区</h3><span class="datum-label">校准与可信设备</span><p>共置校准、算法比较、设备声明核验。面积为临时几何复算，不作官方范围。</p><div class="datum"><strong>1,929,201.877 m²</strong><span class="datum-label">PROVISIONAL</span></div></article><article class="cell"><span class="flag copper">02</span><h3>北京 AI 原点社区</h3><span class="datum-label">公共服务与开放质询</span><p>开放数据、开发者协作、无画像路线比较与公众纠错。</p><div class="datum"><strong>1,043,236.909 m²</strong><span class="datum-label">PROVISIONAL</span></div></article><article class="cell"><span class="flag copper">03</span><h3>大钟寺 AI 产业聚集区</h3><span class="datum-label">室内证据与可信消费</span><p>室内空气证据室、产品核验、城市服务与国际展示。</p><div class="datum"><strong>720,454.219 m²</strong><span class="datum-label">PROVISIONAL</span></div></article></div><div class="grid-2"><article class="cell"><span class="flag">W-01</span><h3>中关村科技服务翼</h3><p>法律、标准、知识产权与创业服务。</p></article><article class="cell"><span class="flag">W-02</span><h3>小月河场景赋能翼</h3><p>户外路线、蓝绿空间和活动日运行测试。</p></article></div></div>
+    </section>
+
+    <section class="section" id="systems" aria-labelledby="systems-title">
+      <aside class="section-rail" aria-label="空间系统 03"><div class="section-kicker">空间系统<span>03 / 07</span></div></aside>
+      <div class="section-content"><div class="section-intro"><h2 id="systems-title">用地分区 · 交通慢行<br>蓝绿公共空间 · 建筑</h2><p>用地、交通、蓝绿、建筑均由同一临时边界派生。几何表达设计关系，不替代控规、道路红线或工程结论。</p></div><div class="grid-4"><article class="cell"><span class="flag copper">12 ZONES</span><h3>用地分区</h3><p>12 个设计单元覆盖临时范围。0802、1401、0702、05、0806 仅作方案分类，不代表法定调整。</p></article><article class="cell"><span class="flag copper">3 CROSS-LINKS</span><h3>交通慢行</h3><p>一条 9,716.124 m 空气证据脊、3 条东西联系和 6 条设计线。它们不是批准道路。</p></article><article class="cell"><span class="flag copper">EVIDENCE SPINE</span><h3>蓝绿公共空间</h3><p>绿地 2,937,004.670 m²；公共空间 824,627.833 m²。效果须经现场验证。</p></article><article class="cell"><span class="flag copper">18 ENVELOPES</span><h3>建筑</h3><p>18 个概念容量包络，基底 109,917.954 m²。高度、容积率、权属和拆改留均待确认。</p></article></div><div class="flow"><article class="flow-step"><span class="scenario-number">01</span><b>共置校准</b><p>先说明仪器与参比条件。</p></article><article class="flow-step"><span class="scenario-number">02</span><b>差异解释</b><p>逐污染物显示质量与不确定性。</p></article><article class="flow-step"><span class="scenario-number">03</span><b>路线与空间选择</b><p>不保存个人轨迹，不宣称暴露下降。</p></article><article class="flow-step"><span class="scenario-number">04</span><b>室内空气证据室</b><p>检测、运维和适用标准共同约束。</p></article><article class="flow-step"><span class="scenario-number">05</span><b>产品声明核验</b><p>公开边界、失败、更正与撤回。</p></article></div></div>
+    </section>
+
+    <section class="section" id="scenarios" aria-labelledby="scenarios-title">
+      <aside class="section-rail" aria-label="AI 场景 04"><div class="section-kicker">AI 场景<span>04 / 07</span></div></aside>
+      <div class="section-content"><div class="section-intro"><h2 id="scenarios-title">AI 场景</h2><p>十二个节点对应十二张场景卡。四个产业测试验证场景标记为 TVS。每个场景都写明数据边界与人工复核。</p></div><div class="scenario-grid"><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-01</span><span class="flag amber">TVS</span></div><h3>街道传感器共址台</h3><p>记录设备与参考仪器，不采集人。专业人员审核校准，场地运营方维护。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-02</span><span class="flag">PUBLIC</span></div><h3>低暴露步行比较</h3><p>使用分级环境数据与路径条件，不保存出行身份。运营员复核异常。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-03</span><span class="flag amber">TVS</span></div><h3>室内空气证据室核验</h3><p>记录房间与检测批次，不识别人。合格机构和物业共同复核。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-04</span><span class="flag amber">TVS</span></div><h3>通风调试工位</h3><p>使用室内环境与设备工况，不接入个人健康数据。专业工程师签认。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-05</span><span class="flag amber">TVS</span></div><h3>传感产品声明核验</h3><p>对比说明书、共址结果和漂移。评审小组发布带限制的测试记录。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-06</span><span class="flag">PUBLIC</span></div><h3>无障碍空气信息柱</h3><p>提供触觉、语音和高对比解释。不摄像，不做生物识别。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-07</span><span class="flag">PUBLIC</span></div><h3>骑行季节采样线</h3><p>固定路线重复采样，不上传骑行者身份。研究团队审核时空可比性。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-08</span><span class="flag">PUBLIC</span></div><h3>室内外切换提示</h3><p>仅比较空间测点与通风状态。人工决定开窗、净化或暂停提示。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-09</span><span class="flag">PUBLIC</span></div><h3>蓝绿空间维护观察</h3><p>记录植被、扬尘与设备维护。不以绿化自动推断降污。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-10</span><span class="flag">PUBLIC</span></div><h3>户外劳动休息导航</h3><p>显示设施与环境状态，不记录职业或班次。服务运营方参与评估。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-11</span><span class="flag">PUBLIC</span></div><h3>活动日空气运行台</h3><p>使用场地级观测和人工巡查。组织者保留暂停、改线和撤除权限。</p></article><article class="scenario"><div class="scenario-head"><span class="scenario-number">SC-12</span><span class="flag">PUBLIC</span></div><h3>开放数据质询会</h3><p>公开版本、缺测、许可与申诉记录。主持人确认修订，不公开个人日志。</p></article></div></div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <aside class="section-rail" aria-label="更新项目 05"><div class="section-kicker">更新项目<span>05 / 07</span></div></aside>
+      <div class="section-content"><div class="section-intro"><h2 id="projects-title">更新项目</h2><p>九项项目可独立退出、替换或分期。它们是实施建议，不是已确定建设计划。</p></div><ol class="project-list"><li><code>JZ-01</code><span>空气证据脊导视与公共解释</span><small>拟实施单元</small></li><li><code>JZ-02</code><span>众智园共置校准场</span><small>拟实施单元</small></li><li><code>JZ-03</code><span>AI 原点开放数据与质询空间</span><small>拟实施单元</small></li><li><code>JZ-04</code><span>大钟寺室内空气证据室</span><small>拟实施单元</small></li><li><code>JZ-05</code><span>低暴露步行比较线</span><small>拟实施单元</small></li><li><code>JZ-06</code><span>无障碍空气信息柱</span><small>拟实施单元</small></li><li><code>JZ-07</code><span>小月河季节观察线</span><small>拟实施单元</small></li><li><code>JZ-08</code><span>四处朝圣与荣誉节点</span><small>拟实施单元</small></li><li><code>JZ-09</code><span>年度运营与公开评估</span><small>拟实施单元</small></li></ol><div class="phase-band"><article class="phase"><span class="scenario-number">PHASE 01</span><b>北段众智园校准基础</b><p>先建共置、治理、基线调查和公共解释基础。</p></article><article class="phase"><span class="scenario-number">PHASE 02</span><b>中段公共服务验证</b><p>分批试验路线、开放质询和无障碍信息。</p></article><article class="phase"><span class="scenario-number">PHASE 03</span><b>南段室内验证与全线复核</b><p>复核证据室、产品声明、维护和退出条件。</p></article></div></div>
+    </section>
+
+    <section class="section" id="evidence" aria-labelledby="evidence-title">
+      <aside class="section-rail" aria-label="任务覆盖 06"><div class="section-kicker">任务覆盖<span>06 / 07</span></div></aside>
+      <div class="section-content">
+        <div class="section-intro"><h2 id="evidence-title">任务覆盖 · 自检状态</h2><p>矩阵把公告任务、智能体任务、专业深度、图层、指标、来源、假设和自检逐项相连。这里显示覆盖，不替代外部审查。</p></div>
+        <div class="coverage"><div class="coverage-numbers"><div class="coverage-number"><strong>23</strong><span>公告与智能体任务已映射</span></div><div class="coverage-number"><strong>15/15</strong><span>设计深度矩阵标记完成</span></div><div class="coverage-number"><strong>5/5</strong><span>必选标准已回应</span></div></div><div class="coverage-tasks"><div class="coverage-task"><code>agent.1</code><b>一带总体概念与功能统筹方案设计</b></div><div class="coverage-task"><code>agent.2</code><b>AI全栈自主创新体系与世界级AI创新生态设计</b></div><div class="coverage-task"><code>agent.3</code><b>AI+场景赋能新范式与智能化AI活力城市设计</b></div><div class="coverage-task"><code>agent.4</code><b>AI公共空间、智能原生新业态与朝圣地标设计</b></div><div class="coverage-task"><code>agent.5</code><b>百年京张文化、中关村文化与AI新文化融合叙事设计</b></div><div class="coverage-task"><code>agent.6</code><b>一带全球AI创新活动体系与长期运营设计</b></div></div></div>
+        <div class="check-grid"><div class="check"><code><span class="status-pass"></span>DETERMINISTIC_VALIDATION<br>通过</code><p>Dependency-free package validation passed after finalization.</p></div><div class="check"><code><span class="status-pass"></span>SPATIAL_REVIEW<br>通过</code><p>EPSG:4548 topology and metric recomputation passed; three provisional key-area notices remain non-blocking.</p></div><div class="check"><code><span class="status-pass"></span>VISUAL_PACKAGING<br>通过</code><p>Offline, bilingual visual packaging and required metric declarations passed.</p></div><div class="check"><code><span class="status-pass"></span>PROFESSIONAL_EVIDENCE<br>通过</code><p>Required standards, design-depth items, source anchors, and task coverage passed.</p></div><div class="check"><code><span class="status-pass"></span>LAND_USE_TOPOLOGY<br>通过</code><p>Land-use polygons cover the submitted provisional boundary without material gaps or overlaps.</p></div><div class="check"><code><span class="status-pass"></span>METRICS_RECALCULATION<br>通过</code><p>Site, green, public-space, building-footprint, and route metrics were recalculated from submitted geometry.</p></div><div class="check"><code><span class="status-pass"></span>BILINGUAL_PARITY<br>通过</code><p>Primary and translated proposal, report, visual, figures, and PDFs are paired in the manifest.</p></div><div class="check"><code><span class="status-pass"></span>PDF_RENDER<br>通过</code><p>All four PDFs have non-zero pages and were visually checked from rendered PNG pages.</p></div><div class="check"><code><span class="status-pass"></span>CLAIM_BOUNDARIES<br>通过</code><p>Provisional geometry, sensor grade, standard transition, foreign methods, health quantification, and implementation limits are explicit.</p></div><div class="check"><code><span class="status-pass"></span>PRIVACY_BY_DESIGN<br>通过</code><p>Scenarios exclude personal profiling and retain human review, shutdown, correction, and withdrawal paths.</p></div><div class="check"><code><span class="status-pass"></span>PACKAGE_INPUT_DIGEST<br>通过</code><p>Digest records the exact checked package input state.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="sources-assumptions" aria-labelledby="sources-title">
+      <aside class="section-rail" aria-label="来源 · 假设 07"><div class="section-kicker">来源 · 假设<span>07 / 07</span></div></aside>
+      <div class="section-content">
+        <div class="section-intro"><h2 id="sources-title">来源 · 假设</h2><p>来源限定能说什么；假设限定何时必须停下补证。</p></div>
+        <div class="evidence-grid"><article class="evidence-panel"><h3>来源</h3><p>26 条来源记录分为：6 条项目与规划依据、13 条空气政策／标准／方法、7 个可迁移案例。城市级背景不替代场地基线，域外方法不升级为本地法定要求。</p><div class="evidence-line">DATA-SRC-AGENT-TASKBOOK-20260518 / DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311 / DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING / DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES / DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509 / DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 / …</div></article><article class="evidence-panel"><h3>假设</h3><p>16 条假设覆盖临时边界、规划控制、场地空气基线、标准口径、传感器共置、扩散、室内、健康、公平、数据治理与运营。触发条件和补证路径写入 assumptions.json。</p><div class="evidence-line">A-GEO-PROVISIONAL-001 / A-PLANNING-CONTROLS-001 / A-AIR-BASELINE-001 / A-AIR-STANDARD-TRANSITION-001 / A-AIR-SENSOR-COLLOCATION-001 / …</div></article></div>
+        <div class="unknowns"><article class="unknown"><span class="flag amber">待验证</span><b>边界与控制</b><p>官方红线、官方面积、容积率、高度、密度、退线。</p></article><article class="unknown"><span class="flag amber">待验证</span><b>交通与市政</b><p>道路面积、停车、市政和能源容量。</p></article><article class="unknown"><span class="flag amber">待验证</span><b>空气基线</b><p>场地 PM₂.₅、NO₂、O₃ 代表性基线。</p></article><article class="unknown"><span class="flag amber">待验证</span><b>成效</b><p>暴露变化、因果改善与健康收益。</p></article><article class="unknown"><span class="flag amber">待验证</span><b>室内</b><p>室内空气达标状态和长期运维表现。</p></article></div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer"><p>权威事实以 GeoJSON、metrics.json、sources.json、assumptions.json 和三类矩阵为准。页面无远程资源、地图瓦片、外部字体、表单或网络请求。</p><strong>证据板 01 / 离线静态成果</strong></footer>
+</div>
+</body>
+</html>
