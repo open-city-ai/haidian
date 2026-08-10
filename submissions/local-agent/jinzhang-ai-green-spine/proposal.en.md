@@ -93,6 +93,54 @@ The compliance matrix covers the announcement’s three scope tasks and agent.1-
 
 ![Metrics and evidence relationships](assets/figures/metrics-evidence.en.png)
 
++## A visitor is the first user: an executable journey from arrival to return
+
+This refinement turns the city design into a journey that a visitor can actually walk, understand, pause within, and critique. Visitors do not need planning vocabulary or a phone app: every node has physical wayfinding, a paper route card, a visible service desk, and a human takeover option. Distances are scheme-level estimates and must be rechecked after official boundaries, streets, and accessibility surveys are released.
+
+### Four reasons to visit
+
+1. **Railway memory comes first.** The arrival foyer uses the old Jing-Zhang railway story, a timeline, and touchable material before introducing AI.
+2. **The green spine is an everyday street.** The heritage park connects rail, neighborhoods, innovation campuses, and the Qinghe edge beyond event days.
+3. **The AI Origin Open Courtyard explains responsibility.** Open-source publishing, translation, service consultation, and shaded seating share one legible public room; every demo is labeled real, test, or pending.
+4. **The Zhongzhiyuan Test Harbor shows stoppable intelligence.** Robot yielding, interoperability, offline degradation, and human takeover are visible short tests with a stop line, button, and result board.
+
+### Three executable visitor routes
+
+| Route | Visitor | Sequence | Distance/time | Convenience promise |
+| --- | --- | --- | --- | --- |
+| First Visit: Railway Memory Loop | First-time, family, overseas visitor | Arrival foyer—Memory Yard—heritage park—AI Origin Courtyard—north return | 2.4 km / 120 min | Seat, water, and wayfinding every 300–400 m; fully usable without a phone |
+| Half Day: Three-Anchor Innovation Line | Professional visitor, group, weekend visitor | Arrival—AI Origin—Zhongzhiyuan—Dazhongsi pitch lounge—rail return | 5.2 km / 240 min | Each anchor can be skipped or revisited; staff can replace the route |
+| Slow and Quiet: Accessible Experience Loop | Older adult, wheelchair user, child, sensory-sensitive visitor | Arrival—rain garden—quiet yard—family service point—arrival | 1.6 km / 90 min | Low slope, continuous rest, accessible toilet, quiet hours; avoids the test area |
+
+The journey data is stored in visual/assets/visitor_journey.json and the route diagram in visual/assets/visitor_routes.json (GeoJSON content). Both are provisional design geometry for discussion, not road redlines or statutory boundaries.
+
+### Ten service nodes from arrival to return
+
+| Node | Visitor action | Space and service | Failure fallback |
+| --- | --- | --- | --- |
+| 01 Arrival foyer | Find entry, water, and map | Railway timeline, staffed desk, paper route card, water, toilet | Paper map works without a phone; staff escort visitors back |
+| 02 No-app welcome | Choose route and language | Large-print board, color coding, icons, sign-language/visual cues | No identity collection; only anonymous route feedback |
+| 03 Railway Memory Yard | Touch, listen, photograph | Heritage replicas, shade, child-height labels | Covered detour in rain; one-way loop when crowded |
+| 04 Everyday Green Spine | Walk, cycle, watch daily life | Continuous slow path, resting edge, low-glare night lighting | Tree-shade branch in heat; step-free branch for wheelchairs |
+| 05 Rain Garden | See the blue-green system | Visible water path, seasonal planting, water point | Close the sunken zone in storms; switch to safe hardscape route |
+| 06 AI Origin Open Courtyard | See publishing and ask questions | Open-source hall, results wall, shared tables, service desk | Static cases and paper boards remain if demo is canceled |
+| 07 Human Takeover Station | Decide whether to continue | Red takeover button, staff, event explanation | Anyone may pause; reason is recorded without tracking people |
+| 08 Zhongzhiyuan Test Harbor | Watch low-risk interaction | Robot yielding, interoperability, offline mode, stop line, result board | Offline demo during outage; immediate shutdown on anomaly |
+| 09 Family/Quiet Yard | Rest and reduce stimulation | Nursing place, child-visible boundary, quiet seats, accessible toilet | Visitors may return directly without finishing the route |
+| 10 North Return Point | Choose rail or short shuttle | Return signs, human verbal update, commemorative stamp | Paper alternative and escorted walk during service interruption |
+
+### Weather, fatigue, and device-failure branches
+
+- **Heat or poor air:** recommend the 1.6 km quiet loop, shade, and indoor nodes; signs show the distance to the next seat.
+- **Rain or ponding:** the test harbor and rain garden become view-only; use covered paths and hardscape, never making wading a visitor duty.
+- **Lost child or item:** return to the nearest human takeover station; use route numbers, never personal data on public screens.
+- **Dead phone or no network:** paper maps, physical color bands, and staff service remain complete; AI is an enhancement layer.
+- **Test anomaly:** press the physical stop button first; staff explain stopped, testing, or pending review; model output is not a city-management decision.
+
+### Validate the design with visitors
+
+Before opening, run three small walk-throughs: find a route within three minutes; complete 30 minutes with older, wheelchair, and family visitors; then simulate heat, rain, network loss, and test failure. Record wayfinding time, missed nodes, time to toilet/water, continuation after rest, human-takeover success, and whether visitors understand real/test/pending labels. These are design-validation measures, not an official operations promise.
+
 ## Risks, copyright, and public-claim boundaries
 
 The primary risks are provisional geometry, missing planning controls, incomplete building and infrastructure surveys, heritage-rights confirmation, accessibility verification, data licensing, and the possibility that AI suggestions are mistaken for official decisions. All public claims must distinguish official facts, design proposals, and pending professional confirmation. External images, fonts, logos, portraits, and enterprise examples must be cleared or omitted [depth:risk_missing_data] [data:geometry/constraints.geojson#CONSTRAINTS].

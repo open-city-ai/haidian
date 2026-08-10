@@ -181,6 +181,25 @@ code {
 <figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
 <p>合规矩阵是任务响应性的主控文件。每条公告任务和 agent_taskbook 任务必须对应到报告章节、图层、指标、图纸、HTML 页面、来源、假设和自检项。未能覆盖公告 1.3、1.4、1.5 或 agent.1-agent.6 的任一必选任务，方案不得进入 formal professional scoring。</p>
 <p>正式深化时，agent 还应把每个指标分为三类：第一类是可由提交几何直接复算的空间指标，例如边界面积、绿地比例、公共空间比例、建筑基底面积和分期面积；第二类是需要官方控规或任务书附件支撑的管控指标，例如容积率、建筑高度、建筑密度、退线、道路红线和设施标准；第三类是需要运营或产业数据持续校准的绩效指标，例如 AI 创新指数、人才密度、产业服务满意度、慢行可达性、活动参与度和场景使用频次。三类指标应分别进入 <code>metrics.json</code>、<code>assumptions.json</code> 和 <code>compliance_matrix.json</code>，避免把运营愿景误写成审定规划条件。</p>
+<p>+## 把游客当作第一用户：一场从到达到回程的可执行游览</p>
+<p>这次深化把城市设计转译为一段可被游客实际走完、看懂、休息和反馈的旅程。游客不需要先理解规划术语，也不必依赖手机应用；每个节点都有实体导视、纸质折页、可见服务台和人工接管。路线里程是方案级估算，需在正式边界、道路和无障碍测绘发布后复核。</p>
+<h3>四个值得专程到访的体验</h3>
+<p>1. <strong>先看铁路，再看AI。</strong> 到达厅用老京张线索、时间轴和可触摸材料建立第一印象，避免AI成为悬空的屏幕展览。 2. <strong>把绿脉当作日常街道。</strong> 京张遗址公园不是只在活动日使用的景点，而是连接轨道、社区、园区和清河界面的连续慢行公共空间。 3. <strong>AI原点开放院落讲清楚“谁在用、谁负责”。</strong> 开源发布、成果转化、服务咨询和休息座椅共处一个可停留的院落，所有演示注明真实、测试或待确认状态。 4. <strong>众智园测试港展示“可暂停的智能”。</strong> 机器人礼让、设备互操作、离线降级和人工接管都以短时体验呈现；出现异常时，游客能看见停止线、人工按钮和结果板。</p>
+<h3>三条可直接执行的游览路线</h3>
+<div class="proposal-table"><table><thead><tr><th>路线</th><th>适用游客</th><th>顺序</th><th>里程/时间</th><th>便利性承诺</th></tr></thead><tbody><tr><td>首次到访·铁轨记忆线</td><td>第一次来、亲子、海外访客</td><td>到达厅—记忆庭—遗址公园活力段—原点开放院落—北端回程</td><td>2.4 km / 120 min</td><td>每 300–400 m 有座椅、饮水和导视；不使用手机也能完成</td></tr><tr><td>半日三核·创新接力线</td><td>专业访客、团队、周末游客</td><td>到达厅—原点开放院落—众智园测试港—大钟寺路演客厅—轨道返程</td><td>5.2 km / 240 min</td><td>每个核节点可独立停留或折返；服务台可替换路线</td></tr><tr><td>慢行友好·安静体验线</td><td>老年人、轮椅、儿童、感官敏感游客</td><td>到达厅—雨水花园—安静庭院—家庭服务点—到达厅</td><td>1.6 km / 90 min</td><td>低坡度、连续休息位、无障碍卫生间和安静时段；不穿越测试活动区</td></tr></tbody></table></div>
+<p>路线作为独立结构化数据保存于 visual/assets/visitor_journey.json，示意路线保存于 visual/assets/visitor_routes.geojson；两者都是设计讨论用的 provisional geometry，不是道路红线或法定边界。</p>
+<h3>从入口到回程的十个服务节点</h3>
+<div class="proposal-table"><table><thead><tr><th>节点</th><th>游客动作</th><th>空间与服务</th><th>失败时怎么办</th></tr></thead><tbody><tr><td>01 到达前厅</td><td>找入口、买水、拿纸图</td><td>京张时间轴、人工台、纸质路线卡、饮水和卫生间</td><td>手机无电仍可领取纸图；迷路由工作人员带回前厅</td></tr><tr><td>02 无应用欢迎点</td><td>选择路线和语言</td><td>大字路线板、颜色编码、手语/图标提示</td><td>不收集个人身份；只记录匿名路线反馈</td></tr><tr><td>03 铁路记忆庭</td><td>触摸、拍照、听故事</td><td>遗产构件复制件、阴凉座椅、儿童高度的信息牌</td><td>雨天转入有顶廊道；拥挤时单向绕行</td></tr><tr><td>04 日常绿脉街</td><td>走路、骑行、看社区生活</td><td>连续慢行、可停留边界、夜间低眩光照明</td><td>高温时缩短为树荫支线；轮椅走无台阶线</td></tr><tr><td>05 雨水花园</td><td>观察蓝绿系统</td><td>可见雨水路径、季节植物和饮水点</td><td>暴雨时关闭下沉区，导视切换至硬质安全路线</td></tr><tr><td>06 AI原点开放院落</td><td>看发布、咨询、休息</td><td>开源发布厅、成果墙、共享桌和可预约服务台</td><td>演示取消时保留静态展板和纸质案例</td></tr><tr><td>07 人工接管站</td><td>确认是否继续测试</td><td>红色接管按钮、工作人员、事件说明牌</td><td>任一参与者可暂停；工作人员记录原因，不追踪个人</td></tr><tr><td>08 众智园测试港</td><td>观看低风险互动测试</td><td>机器人礼让、设备互操作、离线模式、停止线和结果板</td><td>网络中断时切换离线演示；异常时立即停机</td></tr><tr><td>09 家庭/安静庭院</td><td>休息、照看儿童、降低刺激</td><td>母婴位、儿童可见边界、安静座椅和无障碍厕位</td><td>感到疲劳可直接折返，不需完成全程</td></tr><tr><td>10 北端回程点</td><td>选择轨道或短接驳</td><td>返程方向牌、实时人工口头提示、纪念印章</td><td>服务中断时提供纸质替代路线和人工陪行</td></tr></tbody></table></div>
+<h3>天气、疲劳和设备故障的现场分支</h3>
+<ul>
+<li><strong>高温/空气质量不佳：</strong> 默认推荐 1.6 km 慢行友好线，开启树荫和室内节点；每一处路线牌直接标出下一座椅距离。</li>
+<li><strong>降雨/积水：</strong> 测试港与雨水花园转为“只看不进”，路线切换到有顶廊道和硬质铺装；不把涉水体验作为游客责任。</li>
+<li><strong>儿童走失/物品遗失：</strong> 统一回到最近人工接管站，沿路线编号广播和纸图定位；不在公开屏幕显示个人信息。</li>
+<li><strong>手机没电/网络中断：</strong> 纸质图、实体色带和人工服务保持完整；AI服务只作为增强层，断网不影响回程。</li>
+<li><strong>测试异常：</strong> 先按实体停止按钮，再由工作人员解释“已停止/测试中/待复核”；不把模型输出直接当作城市管理结论。</li>
+</ul>
+<h3>以游客反馈闭环设计验证</h3>
+<p>首次开放前做三轮小规模走访：第一轮看能否在 3 分钟内找到路线；第二轮看老年、轮椅和亲子游客能否连续完成 30 分钟；第三轮模拟高温、暴雨、断网和测试异常。记录指标包括找路时间、漏掉节点数、找到卫生间/饮水的时间、休息后继续率、人工接管成功率以及游客对“真实/测试/待确认”标签的理解率。上述指标只用于设计验证，不代表官方运营承诺。</p>
 <h2>风险、版权与合规说明</h2>
 <p><strong>要求双语言。</strong> 方案主文件可使用中文或英文，但必须通过 <code>proposal.en.md</code> 或 <code>proposal.zh.md</code> 提供完整对照译文；A3/A0、HTML 和含文字图件也必须提供对应语言副本，并优先使用 <code>docs/terminology-glossary.md</code> 的赛事推荐译法。v2 包缺少任一必需译稿、语言映射或有效文件时，finalize 与 CI 会阻断提交。所有图片、图纸、图标、数据和代码资产必须在 <code>sources.json</code> 或 <code>report/copyright_statement.md</code> 中说明来源、许可和授权状态。HTML 页面不得加载远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不得跟踪评审者行为。</p>
 <p>风险和缺资料清单由风险深度项、约束图层和场地包共同校核 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>。<code>missing_data_checklist.csv</code> 中列出的 official boundary、key area、控规、道路、地块、建筑、市政、文保和公共服务缺口，必须进入 <code>assumptions.json</code>、自检和正文风险章节。任何缺少官方控规、道路红线、权属、市政、消防或文保条件的结论，都必须降级为待确认事项；完整专业核对保存在标准矩阵中。</p>
