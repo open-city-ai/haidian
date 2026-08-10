@@ -97,11 +97,11 @@ iteration: "v0.3"
 
 ## 交通、轨道、市政与公共服务设施
 
-交通构成 `LandUse → Trips → Congestion → Accessibility → LandValue → Development → LandUse` 反馈。当前 Python engine 已在每个 world 运行 walking、cycling、road、bus、rail 的稀疏 multimodal fast surrogate，使用capacity feedback、BPR travel time、logit mode choice、MSA assignment与generalized-cost skim。该实现仍只有stylised OD和synthetic capacity；取得真实 OD、容量和交通计数后，才可用 AequilibraE 对 selected scenarios 做外部对照。随包旧 smoke 的 `accessibility_delta=0.35` 仍只是synthetic mechanism input，不代表地铁站、道路、客流或实测通达改善值。[source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] [source:UFD-SMOKE-V1]
+交通构成 `LandUse → Trips → Congestion → Accessibility → LandValue → Development → LandUse` 反馈。当前 Python engine 已在每个 world 运行 walking、cycling、road、bus、rail 的稀疏 multimodal fast surrogate，使用 capacity feedback、BPR travel time、logit mode choice、MSA assignment 与 generalized-cost skim。该实现仍只有 stylised OD 和 synthetic capacity；取得真实 OD、容量和交通计数后，才可用 AequilibraE 对 selected scenarios 做外部对照。随包旧 smoke 的 `accessibility_delta=0.35` 仍只是 synthetic mechanism input，不代表地铁站、道路、客流或实测通达改善值。[source:AEQUILIBRAE-DOCUMENTATION] [source:UFD-ENGINE] [source:UFD-SMOKE-V1]
 
 公共投资能够在潜力区域尚无即时需求时改变协调均衡，但项目评价必须比较长期社会福利、建设与运营成本、环境外部性和最差群体负担。规划控制变量包括轨道/公交、道路空间再分配、慢行修补、公共设施、蓝绿基础设施、税费和环境规则。小型 crossing、公交优先或绿化缓冲与大型基础设施使用同一 leverage 口径，避免“项目越大越重要”。交通和公共空间证据落到 [data:geometry/roads.geojson#ROAD-001] 与 [depth:transport_municipal_system]。
 
-市政和公共服务采用容量约束，不允许模型结果静默超过承载。当前 synthetic engine 已实现公共服务capacity/quality/crowding feedback，以及交通、服务、资本、运营和更新的年度/累计budget ledger与unmet-demand诊断。由于仍缺少管线、消防、防洪、设施容量、服务人口和公共财政数据，这些结果只证明机制与fail-closed合同，不代表真实供给能力或预算。公共设施不会简单追逐最繁华位置，而以access cost、inequality和capacity shortage共同评价。[source:UFD-QUALIFICATION-2026-08-10] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+市政和公共服务采用容量约束，不允许模型结果静默超过承载。当前 synthetic engine 已实现公共服务 capacity/quality/crowding feedback，以及交通、服务、资本、运营和更新的年度/累计 budget ledger 与 unmet-demand 诊断。由于仍缺少管线、消防、防洪、设施容量、服务人口和公共财政数据，这些结果只证明机制与 fail-closed 合同，不代表真实供给能力或预算。公共设施不会简单追逐最繁华位置，而以 access cost、inequality 和 capacity shortage 共同评价。[source:UFD-QUALIFICATION-2026-08-10] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
 
 ![交通、蓝绿和公共服务反馈](assets/figures/mobility-bluegreen.png)
 
