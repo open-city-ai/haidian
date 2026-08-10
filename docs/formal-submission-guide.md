@@ -481,7 +481,7 @@ python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-sl
 - visual packaging check
 - professional evidence review
 
-全部 PASS 只说明 package 具备进入机器检查和内容评审的基础条件。provisional boundary 会保留精度警示和复算要求，不会因组织方数据缺口阻断内容评审，但会阻断依赖官方边界的正式专业评分。PASS 不代表方案优秀、正式评分资格或获得官方批准。机器输出中的 `content_review_eligible`、`professional_scoring_eligible` 和 `professional_scoring_blocked_by` 分别记录这三个边界；旧字段 `can_enter_formal_review` 仅是内容评审资格的兼容别名。
+全部 PASS 只说明 package 具备进入机器检查和内容评审的基础条件。provisional boundary 会保留精度警示和复算要求，不会因组织方数据缺口阻断内容评审，但会阻断依赖官方边界的正式专业评分。PASS 不代表方案优秀、正式评分资格或获得官方批准。机器输出中的 `package_state`、`content_review_eligible`、`professional_scoring_eligible` 和 `professional_scoring_blocked_by` 分别记录这些边界；旧字段 `can_enter_formal_review` 仅是内容评审资格的兼容别名。
 
 维护者审核 PR 时会运行 `scripts/maintainer_review.py --comment`，并在本地忽略目录 `.maintainer-review/<proposal-slug>/` 生成 `maintainer-comment.md`、`review-summary.json`、`review-input.json`、`review-prompt.md` 和 `advisory-review.md`。维护者只把命令输出复制到 PR comment；maintainer review 结果不提交到仓库，也不进入公开展示页。方案合并到 `main` 后自动进入全部方案页；维护者通过 `gallery-publication.json` 明确暂停展示或决定首页精选，再运行 `scripts/generate_submissions_data.py`。参赛者只提交自己的投稿目录，不修改发布清单或 `submissions-data.js`。
 

@@ -59,7 +59,9 @@ class SubmissionPacket:
     agent_name: str
     status_key: str
     status_label: str
-    can_enter_formal_review: bool | None
+    content_review_eligible: bool | None
+    professional_scoring_eligible: bool | None
+    professional_scoring_blocked_by: list[str]
     proposal_body: str
     manifest: dict[str, Any]
     self_check: dict[str, Any]
@@ -231,7 +233,17 @@ def load_key_files(submission_dir: Path, repo_root: Path) -> list[dict[str, Any]
     return files
 
 
-def self_check_readiness(self_check: dict[str, Any]) -> bool | None:
+def self_check_content_readiness(self_check: dict[str, Any]) -> bool | None:
+    if isinstance(self_check.get("content_review_eligible"), bool):
+        return bool(self_check["content_review_eligible"])
+    if isinstance(self_check.get("can_enter_formal_review"), bool):
+        return bool(self_check["can_enter_formal_review"])
+    return None
+
+
+def self_check_professional_readiness(self_check: dict[str, Any]) -> bool | None:
+    if isinstance(self_check.get("professional_scoring_eligible"), bool):
+        return bool(self_check["professional_scoring_eligible"])
     if isinstance(self_check.get("can_enter_formal_review"), bool):
         return bool(self_check["can_enter_formal_review"])
     return None
@@ -252,9 +264,15 @@ def load_submission_packet(repo_root: Path, submission_dir: Path) -> SubmissionP
     )
     status_key = classify_submission(submission_dir, manifest)
     status_label = text(STATUS_META.get(status_key, {}).get("status"), status_key)
-    readiness = self_check_readiness(self_check)
-    if readiness is None and status_key in {"formal_review_ready", "intake_provisional", "needs_revision", "blocked_fixture"}:
-        readiness = status_key == "formal_review_ready"
+    content_readiness = self_check_content_readiness(self_check)
+    professional_readiness = self_check_professional_readiness(self_check)
+    blocked_by = self_check.get("professional_scoring_blocked_by", [])
+    if not isinstance(blocked_by, list):
+        blocked_by = []
+    if content_readiness is None and status_key in {"formal_review_ready", "intake_provisional", "needs_revision", "blocked_fixture"}:
+        content_readiness = status_key == "formal_review_ready"
+    if professional_readiness is None and status_key in {"formal_review_ready", "intake_provisional", "needs_revision", "blocked_fixture"}:
+        professional_readiness = status_key == "formal_review_ready"
     return SubmissionPacket(
         submission_dir=submission_dir,
         rel_dir=relpath(submission_dir, repo_root),
@@ -269,7 +287,9 @@ def load_submission_packet(repo_root: Path, submission_dir: Path) -> SubmissionP
         agent_name=agent_name,
         status_key=status_key,
         status_label=status_label,
-        can_enter_formal_review=readiness,
+        content_review_eligible=content_readiness,
+        professional_scoring_eligible=professional_readiness,
+        professional_scoring_blocked_by=[str(item) for item in blocked_by],
         proposal_body=body,
         manifest=manifest,
         self_check=self_check,
@@ -413,13 +433,18 @@ def append_packet_markdown(lines: list[str], packet: SubmissionPacket, index: in
             f"- 作者 / Agent：{packet.owner} / {packet.agent_name}",
             f"- 投稿阶段：{packet.stage}",
             f"- 展示状态：{packet.status_label} (`{packet.status_key}`)",
-            f"- 可进入正式专业评分：{readiness_label(packet.can_enter_formal_review)}",
+            f"- 可进入内容评审：{readiness_label(packet.content_review_eligible)}",
+            f"- 可进行正式专业评分：{readiness_label(packet.professional_scoring_eligible)}",
             f"- 版本 / 迭代：{packet.version or '未声明'} / {packet.iteration or '未声明'}",
             f"- 生成时间：{packet.generated_at or '未声明'}",
         ]
     )
     if packet.summary:
         lines.extend(["", f"> {packet.summary}"])
+
+    if packet.professional_scoring_blocked_by:
+        lines.extend(["", "### 正式专业评分阻断项", ""])
+        lines.extend(f"- `{item}`" for item in packet.professional_scoring_blocked_by)
 
     blockers = known_blockers(packet)
     if blockers:
@@ -464,14 +489,15 @@ def render_markdown(packets: list[SubmissionPacket], title: str, output_dir: Pat
     ]
     lines.extend(
         markdown_table(
-            ["#", "方案", "作者", "展示状态", "正式评分", "路径"],
+            ["#", "方案", "作者", "展示状态", "内容评审", "正式评分", "路径"],
             [
                 [
                     idx,
                     packet.title,
                     packet.owner,
                     packet.status_label,
-                    readiness_label(packet.can_enter_formal_review),
+                    readiness_label(packet.content_review_eligible),
+                    readiness_label(packet.professional_scoring_eligible),
                     packet.rel_dir,
                 ]
                 for idx, packet in enumerate(packets, 1)
@@ -603,6 +629,10 @@ def render_packet_html_section(packet: SubmissionPacket, output_dir: Path, index
         blocker_html = "<h3>已知阻断项</h3><ul>" + "".join(
             f"<li>{html.escape(item)}</li>" for item in blockers
         ) + "</ul>"
+    if packet.professional_scoring_blocked_by:
+        blocker_html += "<h3>正式专业评分阻断项</h3><ul>" + "".join(
+            f"<li><code>{html.escape(item)}</code></li>" for item in packet.professional_scoring_blocked_by
+        ) + "</ul>"
     summary_html = f"<p class=\"summary\">{html.escape(packet.summary)}</p>" if packet.summary else ""
     return f"""
 <article class="proposal">
@@ -612,7 +642,8 @@ def render_packet_html_section(packet: SubmissionPacket, output_dir: Path, index
     <div><span>投稿路径</span><strong>{html.escape(packet.rel_dir)}</strong></div>
     <div><span>作者 / Agent</span><strong>{html.escape(packet.owner)} / {html.escape(packet.agent_name)}</strong></div>
     <div><span>展示状态</span><strong>{html.escape(packet.status_label)}</strong></div>
-    <div><span>正式评分</span><strong>{html.escape(readiness_label(packet.can_enter_formal_review))}</strong></div>
+    <div><span>内容评审</span><strong>{html.escape(readiness_label(packet.content_review_eligible))}</strong></div>
+    <div><span>正式评分</span><strong>{html.escape(readiness_label(packet.professional_scoring_eligible))}</strong></div>
     <div><span>阶段</span><strong>{html.escape(packet.stage)}</strong></div>
     <div><span>版本 / 迭代</span><strong>{html.escape(packet.version or '未声明')} / {html.escape(packet.iteration or '未声明')}</strong></div>
   </section>
@@ -644,7 +675,8 @@ def render_html(packets: list[SubmissionPacket], title: str, output_dir: Path) -
             packet.title,
             packet.owner,
             packet.status_label,
-            readiness_label(packet.can_enter_formal_review),
+            readiness_label(packet.content_review_eligible),
+            readiness_label(packet.professional_scoring_eligible),
             packet.rel_dir,
         ]
         for idx, packet in enumerate(packets, 1)
@@ -795,10 +827,10 @@ code {{
 <p class="lead">本评审包由本地脚本整理生成，面向专家离线阅读。它汇总投稿状态、风险、公开资料、指标、关键文件和完整方案正文；不替代人工评审，也不代表官方审定结论。</p>
 </section>
 <h2>包内方案</h2>
-{html_table(["#", "方案", "作者", "展示状态", "正式评分", "路径"], overview_rows)}
+{html_table(["#", "方案", "作者", "展示状态", "内容评审", "正式评分", "路径"], overview_rows)}
 <h2>阅读顺序建议</h2>
 <ol>
-  <li>先看“快速判断”确认投稿状态、是否可正式评分和版本。</li>
+  <li>先看“快速判断”确认投稿状态、两种评审资格和版本。</li>
   <li>再看“风险与待补条件”确认缺资料、边界、隐私、实施和运维风险。</li>
   <li>查看“公开资料引用”和“核心指标”，判断证据链是否足够支撑方案。</li>
   <li>最后阅读“完整方案正文”和原始 HTML/PDF 材料。</li>
@@ -821,7 +853,11 @@ def render_manifest(packets: list[SubmissionPacket], files: dict[str, str]) -> d
                 "title": packet.title,
                 "author": packet.owner,
                 "status": packet.status_key,
-                "can_enter_formal_review": packet.can_enter_formal_review,
+                "content_review_eligible": packet.content_review_eligible,
+                "professional_scoring_eligible": packet.professional_scoring_eligible,
+                "professional_scoring_blocked_by": packet.professional_scoring_blocked_by,
+                # Legacy alias: content-review eligibility only.
+                "can_enter_formal_review": packet.content_review_eligible,
             }
             for packet in packets
         ],

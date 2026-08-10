@@ -53,7 +53,7 @@ python3 scripts/maintainer_review.py \
 - `formal-review-ready`：历史兼容状态，表示已通过内容评审门槛，不单独表示可以进行正式专业评分。
 - `reject`：触发强制拒绝条件，关闭或拒绝 PR。
 
-`package_type` 描述提交物种类，`review_status` 描述审核决定。为避免状态混用，审核结果同时保留三个机器字段：`content_review_eligible` 表示是否可以进入内容评审，`professional_scoring_eligible` 表示是否满足正式专业评分前置条件，`professional_scoring_blocked_by` 列出组织方数据缺口。旧字段 `can_enter_formal_review` 继续保留，但只作为 `content_review_eligible` 的兼容别名。组织方缺少 official boundary/key areas 不得阻断内容评审，却会在正式专业评分阶段保持 blocked。
+`package_type` 描述提交物种类，`review_status` 描述审核决定。审核结果还要分别记录 `package_state`、`content_review_eligible`、`professional_scoring_eligible` 和 `professional_scoring_blocked_by`。旧字段 `can_enter_formal_review` 继续保留，但只作为内容评审资格的兼容别名。组织方缺少 official boundary/key areas 不得阻断内容评审，却会在正式专业评分阶段保持 blocked。
 
 ### Intake 最低质量门槛
 
