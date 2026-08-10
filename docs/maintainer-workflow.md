@@ -235,7 +235,9 @@ python3 scripts/ai_review_submission.py \
 - `pr-comment.md`：可复制到 PR 的最终意见。
 - `review-input.json`、`review-prompt.md`、`request-metadata.json`：本地审计材料。
 
-发布建议分为 `do-not-publish`、`publish-qualified` 和 `featured-candidate`。它只由 schema 合规输出、本地 gate 和加权分共同派生；`featured-candidate` 仍需通过维护者发布脚本写入 `gallery-publication.json`，AI 脚本本身不修改发布清单、不提交、不评论 PR、不 merge。
+发布建议分为 `do-not-publish`、`publish-qualified` 和 `featured-candidate`。它是内容评审与发布政策的 advisory 轴，和 `professional_scoring_eligible` 分开记录；组织方 geometry 缺口不会因为这两个字段被自动追溯改写为历史发布撤销。`featured-candidate` 仍需通过维护者发布脚本写入 `gallery-publication.json`，AI 脚本本身不修改发布清单、不提交、不评论 PR、不 merge。
+
+实际 merge/publication promotion 仍由维护者 queue 的可信 exact-head gate 决定，包括四项确定性门、绝对分数阈值和同一投稿目录的历史分数保护。新候选低于受保护的可信历史最高分时，只能 hold/request-changes；已经合并或已经公开的版本不回溯删除，下一次恢复必须通过新的 exact head 达到对应分数。旧投稿在迁移前继续沿用既有公开状态，新增三轴字段不会触发 retroactive reclassification。
 
 AI 无法仅凭文件内容证明现实世界中的版权归属或资料公开性。缺少授权、来源或权属证据时，prompt 要求返回 `request-changes` 和具体补证清单，而不是臆测“已合规”。
 
