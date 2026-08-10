@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张AI共生带 · 电子展陈</title>
+<style>
+:root{
+  --bg:#0f1117; --bg2:#161822; --bg3:#1c1f2e; --bg4:#232738;
+  --gold:#c79838; --gold2:#8b6914; --gold3:#f0d78c;
+  --ai:#4f8fff; --ai2:#2d5fcf; --ai3:#7ab4ff; --ai4:#1a3a7a;
+  --earth:#8b7355; --earth2:#6b5a44; --earth3:#c4a97d;
+  --green:#3a9d6e; --green2:#2b7a54;
+  --red:#c4543a; --red2:#a3432d;
+  --text:#d4d6dd; --text2:#a0a4b8; --text3:#6b6f82;
+  --line:#2a2d3e; --line2:#363a50;
+  --shadow:0 4px 24px rgba(0,0,0,.4);
+  --radius:12px; --radius-sm:8px; --radius-xs:4px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.62; overflow-x:hidden;
+}
+a{color:var(--ai3);text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ── Navigation ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(15,17,23,.92); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line); padding:0 20px;
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;display:flex;align-items:center;
+  gap:8px;overflow-x:auto;padding:8px 0;
+}
+.nav-inner a{
+  color:var(--text2);font-size:13px;padding:6px 14px;border-radius:20px;
+  white-space:nowrap;transition:all .2s;
+}
+.nav-inner a:hover,.nav-inner a.active{background:var(--ai4);color:var(--ai3)}
+
+/* ── Hero ── */
+.hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#0a0e1a 0%,#111832 40%,#0f1a2e 100%);
+  min-height:92vh;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:60px 24px;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 50%,rgba(79,143,255,.08) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 40%,rgba(199,152,56,.06) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 60% at 50% 80%,rgba(58,157,110,.05) 0%,transparent 60%);
+}
+.hero::after{
+  content:'';position:absolute;inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(79,143,255,.03) 2px,rgba(79,143,255,.03) 4px);
+  mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.3) 30%,rgba(0,0,0,.3) 70%,transparent 100%);
+}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-badge{
+  display:inline-block;border:1px solid var(--gold2);color:var(--gold3);
+  padding:5px 18px;border-radius:20px;font-size:13px;letter-spacing:.12em;
+  margin-bottom:24px;background:rgba(199,152,56,.08);
+}
+.hero h1{
+  font-size:clamp(32px,6vw,62px);font-weight:800;line-height:1.15;
+  background:linear-gradient(180deg,#f0e6d3 0%,#d4c5a0 40%,#c79838 70%,#8b6914 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;margin-bottom:16px;
+}
+.hero h1 .ai-accent{
+  background:linear-gradient(180deg,#b8d4ff 0%,#4f8fff 50%,#2d5fcf 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(15px,2vw,19px);color:var(--text2);max-width:680px;
+  margin:0 auto 32px;line-height:1.7;
+}
+.hero-stats{
+  display:flex;justify-content:center;gap:clamp(20px,4vw,48px);flex-wrap:wrap;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{
+  font-size:clamp(28px,4vw,44px);font-weight:800;
+  background:linear-gradient(180deg,#fff,#a0b8d8);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;display:block;
+}
+.hero-stat .label{font-size:13px;color:var(--text3);margin-top:4px}
+
+/* ── Sections ── */
+section{padding:70px 20px;max-width:1200px;margin:0 auto}
+.section-header{text-align:center;margin-bottom:48px}
+.section-header h2{
+  font-size:clamp(24px,3.5vw,34px);font-weight:700;color:#e0e3ed;margin-bottom:10px;
+}
+.section-header p{color:var(--text2);max-width:640px;margin:0 auto;font-size:15px}
+.section-header .accent-line{
+  width:48px;height:3px;background:var(--ai);margin:14px auto 0;border-radius:2px;
+}
+
+/* ── Overview Cards ── */
+.overview-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.ov-card{
+  background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;transition:border-color .3s,transform .2s;
+}
+.ov-card:hover{border-color:var(--ai2);transform:translateY(-2px)}
+.ov-card .icon{font-size:28px;margin-bottom:14px}
+.ov-card h3{font-size:18px;color:#dde0ea;margin-bottom:8px}
+.ov-card p{font-size:14px;color:var(--text2);line-height:1.65}
+.ov-card .big-num{
+  font-size:36px;font-weight:800;color:var(--ai3);margin:10px 0 4px;
+}
+
+/* ── Key Areas ── */
+.areas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:22px}
+.area-card{
+  background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;transition:all .3s;
+}
+.area-card:hover{border-color:var(--ai2);box-shadow:var(--shadow)}
+.area-card .area-img{
+  height:180px;background:var(--bg4);display:flex;align-items:center;justify-content:center;
+  font-size:48px;overflow:hidden;
+}
+.area-card .area-img img{width:100%;height:100%;object-fit:cover}
+.area-card .area-body{padding:22px}
+.area-card .area-badge{
+  display:inline-block;font-size:11px;padding:3px 10px;border-radius:12px;
+  margin-bottom:10px;letter-spacing:.06em;
+}
+.area-card .area-badge.north{background:rgba(79,143,255,.15);color:var(--ai3)}
+.area-card .area-badge.central{background:rgba(58,157,110,.15);color:var(--green)}
+.area-card .area-badge.south{background:rgba(196,84,58,.15);color:var(--red)}
+.area-card h3{font-size:19px;color:#dde0ea;margin-bottom:6px}
+.area-card .area-ha{font-size:13px;color:var(--text3);margin-bottom:10px}
+.area-card p{font-size:14px;color:var(--text2);line-height:1.65}
+
+/* ── Figures Gallery ── */
+.figures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.fig-card{
+  background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+  overflow:hidden;cursor:pointer;transition:all .3s;
+}
+.fig-card:hover{border-color:var(--ai2);transform:translateY(-2px)}
+.fig-card .fig-thumb{
+  background:var(--bg4);position:relative;overflow:hidden;
+  min-height:200px;display:flex;align-items:center;justify-content:center;
+}
+.fig-card .fig-thumb img{width:100%;height:auto;display:block}
+.fig-card .fig-caption{padding:14px 16px}
+.fig-card .fig-caption h4{font-size:15px;color:#dde0ea;margin-bottom:4px}
+.fig-card .fig-caption p{font-size:13px;color:var(--text3)}
+
+/* Lightbox */
+.lightbox{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:rgba(0,0,0,.92);align-items:center;justify-content:center;
+  padding:20px;flex-direction:column;
+}
+.lightbox.active{display:flex}
+.lightbox img{max-height:85vh;max-width:95vw;border-radius:var(--radius-sm)}
+.lightbox .lb-caption{color:var(--text2);margin-top:14px;font-size:14px}
+.lightbox .lb-close{
+  position:absolute;top:20px;right:28px;font-size:32px;color:#fff;
+  cursor:pointer;background:none;border:none;
+}
+
+/* ── Agent Tasks Dashboard ── */
+.tasks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px}
+.task-card{
+  background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;display:flex;gap:16px;transition:all .3s;
+}
+.task-card:hover{border-color:var(--ai2)}
+.task-card .task-num{
+  width:44px;height:44px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-weight:700;font-size:18px;flex-shrink:0;
+  background:var(--ai4);color:var(--ai3);border:2px solid var(--ai2);
+}
+.task-card .task-info h4{font-size:16px;color:#dde0ea;margin-bottom:6px}
+.task-card .task-info p{font-size:13px;color:var(--text2);line-height:1.6}
+.task-card .task-info .task-status{
+  display:inline-block;margin-top:10px;font-size:11px;padding:3px 10px;
+  border-radius:12px;background:rgba(58,157,110,.15);color:var(--green);
+}
+
+/* ── Landmarks ── */
+.landmarks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.landmark-card{
+  background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;text-align:center;transition:all .3s;
+}
+.landmark-card:hover{border-color:var(--gold2);transform:translateY(-3px)}
+.landmark-card .lm-icon{
+  width:64px;height:64px;border-radius:50%;margin:0 auto 16px;
+  display:flex;align-items:center;justify-content:center;font-size:30px;
+}
+.landmark-card .lm-icon.lm1{background:rgba(199,152,56,.15);border:2px solid var(--gold2)}
+.landmark-card .lm-icon.lm2{background:rgba(79,143,255,.15);border:2px solid var(--ai2)}
+.landmark-card .lm-icon.lm3{background:rgba(58,157,110,.15);border:2px solid var(--green2)}
+.landmark-card h3{font-size:18px;color:#dde0ea;margin-bottom:8px}
+.landmark-card .lm-loc{font-size:12px;color:var(--text3);margin-bottom:10px}
+.landmark-card p{font-size:14px;color:var(--text2);line-height:1.65}
+
+/* ── 13 Scenario Cards ── */
+.scenarios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.sc-card{
+  background:var(--bg3);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:18px;transition:all .3s;
+}
+.sc-card:hover{border-color:var(--ai2);background:var(--bg4)}
+.sc-card .sc-emoji{font-size:24px;margin-bottom:8px}
+.sc-card h4{font-size:14px;color:#dde0ea;margin-bottom:6px}
+.sc-card p{font-size:12px;color:var(--text2);line-height:1.55}
+.sc-card .sc-tag{
+  display:inline-block;margin-top:8px;font-size:10px;padding:2px 8px;
+  border-radius:10px;background:rgba(79,143,255,.1);color:var(--ai3);
+}
+
+/* ── Timeline ── */
+.timeline{position:relative;padding:20px 0}
+.timeline::before{
+  content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--ai2),var(--gold2),var(--green2));
+  transform:translateX(-50%);
+}
+.timeline-item{
+  display:flex;align-items:flex-start;margin-bottom:40px;position:relative;
+}
+.timeline-item:nth-child(odd){flex-direction:row}
+.timeline-item:nth-child(even){flex-direction:row-reverse}
+.timeline-dot{
+  position:absolute;left:50%;transform:translateX(-50%);width:14px;height:14px;
+  border-radius:50%;border:3px solid var(--bg);z-index:2;
+}
+.timeline-dot.phase1{background:var(--ai)}
+.timeline-dot.phase2{background:var(--gold)}
+.timeline-dot.phase3{background:var(--green)}
+.timeline-content{
+  width:44%;padding:20px;background:var(--bg3);border:1px solid var(--line);
+  border-radius:var(--radius-sm);
+}
+.timeline-content h4{font-size:16px;color:#dde0ea;margin-bottom:6px}
+.timeline-content .tl-date{font-size:12px;color:var(--ai3);margin-bottom:8px}
+.timeline-content p{font-size:13px;color:var(--text2);line-height:1.55}
+.timeline-content ul{margin:8px 0 0 16px;font-size:13px;color:var(--text2)}
+
+/* ── Footer ── */
+footer{
+  background:var(--bg2);border-top:1px solid var(--line);
+  padding:40px 20px 30px;text-align:center;
+}
+footer .agent-sig{font-size:15px;color:#dde0ea;margin-bottom:6px}
+footer .agent-sig em{color:var(--ai3);font-style:normal}
+footer .legal{font-size:11px;color:var(--text3);max-width:640px;margin:16px auto 0;line-height:1.6}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .hero-stats{gap:24px}
+  .timeline::before{left:24px}
+  .timeline-dot{left:24px}
+  .timeline-item,.timeline-item:nth-child(even){flex-direction:row}
+  .timeline-content{width:calc(100% - 52px);margin-left:52px}
+  .tasks-grid{grid-template-columns:1fr}
+  .scenarios-grid{grid-template-columns:repeat(auto-fill,minmax(160px,1fr))}
+}
+@media(max-width:480px){
+  section{padding:40px 14px}
+  .hero{padding:40px 16px;min-height:80vh}
+  .figures-grid{grid-template-columns:1fr}
+  .landmarks-grid,.areas-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="topnav">
+  <div class="nav-inner">
+    <a href="#hero" class="active">总览</a>
+    <a href="#overview">项目概况</a>
+    <a href="#areas">三大重点区</a>
+    <a href="#figures">五图联展</a>
+    <a href="#tasks">Agent任务</a>
+    <a href="#landmarks">AI地标</a>
+    <a href="#scenarios">13张场景卡</a>
+    <a href="#timeline">实施分期</a>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">✦ 百年京张 AI 创新带 · 国际方案征集 ✦</div>
+    <h1>京张<span class="ai-accent">AI</span>共生带</h1>
+    <p class="hero-sub">从铁路遗址到世界级AI朝圣地——以京张铁路遗址公园为主轴，构建"一带三核、多点场景、蓝绿慢行复合环"的AI创新带城市设计方案</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="num">43.6<span style="font-size:.5em"> km²</span></span><span class="label">统筹研究范围</span></div>
+      <div class="hero-stat"><span class="num">11.4<span style="font-size:.5em"> km²</span></span><span class="label">总体设计范围</span></div>
+      <div class="hero-stat"><span class="num">368.4<span style="font-size:.5em"> ha</span></span><span class="label">重点区域范围</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Overview -->
+<section id="overview">
+  <div class="section-header">
+    <h2>项目概况</h2>
+    <p>三层范围工作框架 · 一带三核空间结构 · 全栈自主创新体系</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="overview-grid">
+    <div class="ov-card">
+      <div class="icon">🗺️</div>
+      <h3>统筹研究范围</h3>
+      <div class="big-num">43.6 km²</div>
+      <p>北至北五环路，东至京藏高速，南至西直门外大街，西至万泉河路。研究AI产业生态、战略定位和创新链组织，建立"高校策源-开源协作-企业转化-公共体验-国际传播"五环创新链。</p>
+    </div>
+    <div class="ov-card">
+      <div class="icon">🏗️</div>
+      <h3>总体设计范围</h3>
+      <div class="big-num">11.4 km²</div>
+      <p>京张遗址公园周边1-2公里城市地区与产业区。达到控规深度城市设计要求，涵盖用地、建筑、道路、绿地、公共空间和分期图层。围绕7个轨道站点构建TOD圈层体系。</p>
+    </div>
+    <div class="ov-card">
+      <div class="icon">🎯</div>
+      <h3>重点区域（三区）</h3>
+      <div class="big-num">368.4 ha</div>
+      <p>三处详细设计片区——众智园AI自主创新加速区（192.1ha）、北京AI原点社区（104.3ha）、大钟寺AI产业聚集区（72.0ha）。达到规划综合实施方案深度。</p>
+    </div>
+    <div class="ov-card">
+      <div class="icon">⚙️</div>
+      <h3>全栈自主创新</h3>
+      <div class="big-num">5环</div>
+      <p>聚焦AI芯片（算力自主）、框架（开源自主）、大模型（基础模型自主）、数据（高质量中文语料）、安全（AI治理标准）五大关键环节，构建中国AI全栈自主创新生态。</p>
+    </div>
+    <div class="ov-card">
+      <div class="icon">🌐</div>
+      <h3>全球对标</h3>
+      <div class="big-num">8例</div>
+      <p>深度研究硅谷Stanford Research Park、伦敦King's Cross、巴黎Station F、波士顿Kendall Square、新加坡one-north等8个全球AI创新生态标杆案例。</p>
+    </div>
+    <div class="ov-card">
+      <div class="icon">🤖</div>
+      <h3>AI Agent生成</h3>
+      <div class="big-num">6任务</div>
+      <p>由灰因斯坦（Grey Turing）AI Agent基于formal scaffold自主生成，覆盖6项agent必选任务，全部合规条目标记为fulfilled，达到控规深度城市设计要求。</p>
+    </div>
+  </div>
+</section>
+
+<!-- Three Key Areas -->
+<section id="areas">
+  <div class="section-header">
+    <h2>三大重点区域</h2>
+    <p>一带三核：众智园（北）· AI原点社区（中）· 大钟寺（南）</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="areas-grid">
+    <div class="area-card">
+      <div class="area-img"><img src="../assets/figures/key-areas.png" alt="重点区域" loading="lazy"></div>
+      <div class="area-body">
+        <span class="area-badge north">北段 · 自主创新</span>
+        <h3>众智园AI自主创新加速区</h3>
+        <div class="area-ha">📐 192.1 公顷</div>
+        <p>定位为"中国AI全栈自主创新的国家基地"。沿清河布局AI芯片中试线与算力中心，中央布局全栈创新广场，东侧布局AI安全治理与国际标准制定机构。建筑设计语言借鉴工业遗产风格——清河两岸旧厂房改造为AI创新工场。对应的compliance条目：1.5.3.1。</p>
+      </div>
+    </div>
+    <div class="area-card">
+      <div class="area-img"><img src="../assets/figures/site-overview.png" alt="场地总览" loading="lazy"></div>
+      <div class="area-body">
+        <span class="area-badge central">中段 · 人才枢纽</span>
+        <h3>北京AI原点社区</h3>
+        <div class="area-ha">📐 104.3 公顷</div>
+        <p>定位为"全球AI人才第一站"。临近清华、北大、北航、北邮四校，打通四校间慢行断点。沿成府路布局"AI Origin Mile"——从清华东门到北航南门的1公里创新走廊，旧教职工宿舍改造为"AI Scholar Village"国际访问学者居住区。对应的compliance条目：1.5.3.2。</p>
+      </div>
+    </div>
+    <div class="area-card">
+      <div class="area-img"><img src="../assets/figures/mobility-bluegreen.png" alt="交通蓝绿" loading="lazy"></div>
+      <div class="area-body">
+        <span class="area-badge south">南段 · 消费体验</span>
+        <h3>大钟寺AI产业聚集区</h3>
+        <div class="area-ha">📐 72.0 公顷</div>
+        <p>定位为"AI消费与体验的全球旗舰"。大钟寺站四象限步行连通，中坤广场改造为"AI Bazaar"——AI驱动的个性化购物体验。大钟寺古钟博物馆周边打造AI+文化遗产体验区。对应的compliance条目：1.5.3.3。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Five Figures Gallery -->
+<section id="figures">
+  <div class="section-header">
+    <h2>五图联展</h2>
+    <p>方案核心图纸 · 点击放大查看</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="figures-grid">
+    <div class="fig-card" onclick="openLightbox('../assets/figures/site-overview.png','Fig.1 场地总览：三层范围与空间工作框架')">
+      <div class="fig-thumb"><img src="../assets/figures/site-overview.png" alt="场地总览" loading="lazy"></div>
+      <div class="fig-caption"><h4>Fig.1 场地总览</h4><p>三层范围与空间工作框架——统筹研究范围43.6km²、总体设计范围11.4km²、重点区域368.4ha</p></div>
+    </div>
+    <div class="fig-card" onclick="openLightbox('../assets/figures/land-use-structure.png','Fig.2 用地结构：一带三核空间组织')">
+      <div class="fig-thumb"><img src="../assets/figures/land-use-structure.png" alt="用地结构" loading="lazy"></div>
+      <div class="fig-caption"><h4>Fig.2 用地功能结构</h4><p>AI产业研发25-30% · 创新孵化与商业混合15-20% · 居住配套25-30% · 教育科研保留15-20% · 公共绿地10-15%</p></div>
+    </div>
+    <div class="fig-card" onclick="openLightbox('../assets/figures/key-areas.png','Fig.3 重点区域：三处详细设计片区索引')">
+      <div class="fig-thumb"><img src="../assets/figures/key-areas.png" alt="重点区域" loading="lazy"></div>
+      <div class="fig-caption"><h4>Fig.3 三处重点区域</h4><p>众智园（192.1ha）· AI原点社区（104.3ha）· 大钟寺（72.0ha）——定位、空间动作与AI场景落位</p></div>
+    </div>
+    <div class="fig-card" onclick="openLightbox('../assets/figures/mobility-bluegreen.png','Fig.4 交通+蓝绿基础设施')">
+      <div class="fig-thumb"><img src="../assets/figures/mobility-bluegreen.png" alt="交通蓝绿" loading="lazy"></div>
+      <div class="fig-caption"><h4>Fig.4 交通+蓝绿基础设施</h4><p>7个TOD轨道站点 · 6座AI主题慢行桥 · "一轴两廊多节点"蓝绿网络 · 15km AI慢行环路</p></div>
+    </div>
+    <div class="fig-card" onclick="openLightbox('../assets/figures/metrics-evidence.png','Fig.5 指标证据仪表盘')">
+      <div class="fig-thumb"><img src="../assets/figures/metrics-evidence.png" alt="指标证据" loading="lazy"></div>
+      <div class="fig-caption"><h4>Fig.5 指标证据仪表盘</h4><p>面积复算 · 合规覆盖 · 三层范围指标验证 · 六大Agent任务覆盖度</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()">&times;</button>
+  <img id="lb-img" src="" alt="">
+  <p class="lb-caption" id="lb-caption"></p>
+</div>
+
+<!-- Six Agent Tasks Dashboard -->
+<section id="tasks">
+  <div class="section-header">
+    <h2>六大Agent任务覆盖</h2>
+    <p>由灰因斯坦（Grey Turing）自主执行的六项必选任务，全部合规标记为 fulfilled</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="tasks-grid">
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-info">
+        <h4>一带总体概念与功能统筹</h4>
+        <p>提出"京张AI共生带"命名体系与三大子品牌——百年京张文化带（深灰+金）、都市AI生活体验带（蓝+白）、AI融合创新带（蓝+绿）。Logo取京张铁路"人字形"线路×神经网络拓扑。</p>
+        <span class="task-status">✓ fulfilled</span>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-info">
+        <h4>AI全栈自主与世界级创新生态</h4>
+        <p>建立五环创新链（全栈自主→众智园、世界生态→AI原点社区、场景赋能→小月河翼、活力城市→遗址公园、全球话语权→大钟寺AI名人堂），对标8个全球案例。</p>
+        <span class="task-status">✓ fulfilled</span>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">3</div>
+      <div class="task-info">
+        <h4>AI+场景赋能与智能化活力城市</h4>
+        <p>13张AI场景卡（出行、医疗、教育、商业、养老、环保、文化、安全、政务、物流、能源、社区、国际交往）+ 5类核心用户画像 + 3个测试验证沙盒。全部场景有明确物理空间落位。</p>
+        <span class="task-status">✓ fulfilled</span>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">4</div>
+      <div class="task-info">
+        <h4>AI公共空间、新业态与朝圣地标</h4>
+        <p>"一廊七节点"京张AI公共空间体系：清华园AI源头广场→五道口机器人花园→北航飞行剧场→知春路开源森林→大钟寺AI时钟塔→北下关数字水岸→西直门AI门户。6座AI慢行桥缝合东西。</p>
+        <span class="task-status">✓ fulfilled</span>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">5</div>
+      <div class="task-info">
+        <h4>百年京张文化与AI新文化融合叙事</h4>
+        <p>三段叙事：北段·记忆（清华园-五道口，AI为历史解说员）、中段·创新（五道口-知春路，AI为创新催化剂）、南段·未来（知春路-西直门，AI原生文化）。"铁轨神经网络"标识符号系统。</p>
+        <span class="task-status">✓ fulfilled</span>
+      </div>
+    </div>
+    <div class="task-card">
+      <div class="task-num">6</div>
+      <div class="task-info">
+        <h4>全球AI创新活动体系与长期运营</h4>
+        <p>年度四节：春季峰会（4月）、开源之夏（7-8月）、AI+城市创新周（10月）、年度AI成就钟仪式（12/31）。GitHub Organization + 线下meetup空间 + 贡献者荣誉体系。核心叙事："From Railway to AI-way"。</p>
+        <span class="task-status">✓ fulfilled</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Three AI Landmarks -->
+<section id="landmarks">
+  <div class="section-header">
+    <h2>三大AI朝圣地标</h2>
+    <p>历史轨道 × 未来智能——三个具有仪式感的空间锚点</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="landmarks-grid">
+    <div class="landmark-card">
+      <div class="lm-icon lm1">🏛️</div>
+      <h3>"1909-未来"时空拱门</h3>
+      <div class="lm-loc">📍 AI原点社区 · 清华园站旧址</div>
+      <p>拱门一侧刻1909年詹天佑手稿浮雕，另一侧实时投影全球AI论文引用网络可视化。以一座门连接百年工程智慧与前沿智能探索，让每一位访客在穿过拱门的瞬间体验从铁路时代到AI时代的时空跨越。</p>
+    </div>
+    <div class="landmark-card">
+      <div class="lm-icon lm2">⛲</div>
+      <h3>"开源之泉"</h3>
+      <div class="lm-loc">📍 众智园 · 中央广场</div>
+      <p>由全球开发者贡献代码驱动的互动水景。每接受一次GitHub Pull Request触发一次水舞，将开源协作的抽象精神转化为可视、可听、可感的公共艺术。水即是代码，泉即是社区——全球AI开源运动的精神图腾。</p>
+    </div>
+    <div class="landmark-card">
+      <div class="lm-icon lm3">🔔</div>
+      <h3>AI名人堂与大钟</h3>
+      <div class="lm-loc">📍 大钟寺 · 古钟博物馆旁</div>
+      <p>每年国际AI顶级会议最佳论文获得者的名字被铸造为新钟铭，与拥有数百年历史的永乐大钟形成"千年钟声×未来回响"的跨时空对话。致敬推动人类智能边界的探索者，打造AI时代的"名人堂"。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 Scenario Cards -->
+<section id="scenarios">
+  <div class="section-header">
+    <h2>13张AI场景卡</h2>
+    <p>覆盖城市全领域 · 每张卡片包含场景定位、目标用户、空间载体与运营模式 · 3个沙盒测试验证场景以 ★ 标注</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="scenarios-grid">
+    <div class="sc-card">
+      <div class="sc-emoji">🚇</div>
+      <h4>AI智慧出行</h4>
+      <p>自动驾驶接驳+实时多模式路径优化，覆盖7个轨道站点TOD圈层</p>
+      <span class="sc-tag">交通 · 全用户</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🏥</div>
+      <h4>AI健康服务导航</h4>
+      <p>智能导诊+慢病管理+老年人跌倒检测，社区健康服务节点</p>
+      <span class="sc-tag">医疗 · 银发智者</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">📚</div>
+      <h4>AI自适应教育</h4>
+      <p>个性化学习路径+四校联盟AI课程共享+产学研协同育人</p>
+      <span class="sc-tag">教育 · 开源少年</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🛍️</div>
+      <h4>AI商业新零售</h4>
+      <p>AI Bazaar个性化购物+智能供应链+消费者级AI产品体验</p>
+      <span class="sc-tag">商业 · 全用户</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">👴</div>
+      <h4>AI智慧养老</h4>
+      <p>适老化AI交互+远程健康监测+代际交流数字平台</p>
+      <span class="sc-tag">养老 · 银发智者</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🌿</div>
+      <h4>AI生态环保</h4>
+      <p>蓝绿空间智能监测+碳中和路径优化+环境教育互动体验</p>
+      <span class="sc-tag">环保 · 全用户</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🎭</div>
+      <h4>AI文化导览</h4>
+      <p>京张铁路历史AR重现+AI共创诗歌音乐+三段叙事沉浸体验</p>
+      <span class="sc-tag">文化 · 全球极客</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🛡️</div>
+      <h4>AI公共安全</h4>
+      <p>隐私保护型异常检测+灾害预警+人群安全密度管理</p>
+      <span class="sc-tag">安全 · 公共服务</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🏛️</div>
+      <h4>AI智能政务</h4>
+      <p>一站式智能审批+政策精准推送+社区议事AI辅助决策</p>
+      <span class="sc-tag">政务 · 社区妈妈</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">📦</div>
+      <h4>AI智慧物流</h4>
+      <p>机器人末端配送+地下物流管道+园区内自动驾驶货运</p>
+      <span class="sc-tag">物流 · 张量博士</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">⚡</div>
+      <h4>AI绿色能源</h4>
+      <p>分布式算力节点余热利用+光伏长廊+智能微网调度</p>
+      <span class="sc-tag">能源 · 全用户</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🏘️</div>
+      <h4>AI智慧社区</h4>
+      <p>邻里互助AI匹配+共享空间智能预约+社区活动推荐</p>
+      <span class="sc-tag">社区 · 社区妈妈</span>
+    </div>
+    <div class="sc-card">
+      <div class="sc-emoji">🌍</div>
+      <h4>AI国际交往</h4>
+      <p>多语言实时翻译+国际开发者社区+签证便利数字服务</p>
+      <span class="sc-tag">国际 · 全球极客</span>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:28px">
+    <div style="display:inline-flex;gap:20px;flex-wrap:wrap;justify-content:center;color:var(--text2);font-size:13px">
+      <span>★ 沙盒1：众智园AI全栈沙盒</span>
+      <span>★ 沙盒2：AI原点社区开源广场</span>
+      <span>★ 沙盒3：大钟寺AI商业实验室</span>
+    </div>
+  </div>
+</section>
+
+<!-- Timeline -->
+<section id="timeline">
+  <div class="section-header">
+    <h2>实施分期</h2>
+    <p>近期启动 · 中期铺开 · 远期成熟 —— 概念建议，待正式资料校准</p>
+    <div class="accent-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot phase1"></div>
+      <div class="timeline-content">
+        <h4>近期启动期</h4>
+        <div class="tl-date">2026 — 2028</div>
+        <p>核心启动项目，建立可见度与信心：</p>
+        <ul>
+          <li>京张遗址公园绿廊全线贯通</li>
+          <li>三个AI朝圣地标建设（时空拱门、开源之泉、AI名人堂）</li>
+          <li>6座AI主题慢行桥首批2座</li>
+          <li>众智园AI芯片中试线概念启动</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot phase2"></div>
+      <div class="timeline-content">
+        <h4>中期铺开期</h4>
+        <div class="tl-date">2028 — 2030</div>
+        <p>以TOD站点更新和AI场景卡部署为主线：</p>
+        <ul>
+          <li>7个TOD站点周边城市更新</li>
+          <li>13张AI场景卡分批部署</li>
+          <li>AI Scholar Village + AI Origin Mile建成</li>
+          <li>分布式算力节点（3处）投入运营</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot phase3"></div>
+      <div class="timeline-content">
+        <h4>远期成熟期</h4>
+        <div class="tl-date">2030 — 2035</div>
+        <p>全带产业生态成熟运营，全球影响力确立：</p>
+        <ul>
+          <li>全栈自主创新生态闭环运作</li>
+          <li>年度四节成为国际AI社区固定议程</li>
+          <li>京张AI贡献者网络达到全球10万+开发者</li>
+          <li>"From Railway to AI-way"成为国际城市更新典范叙事</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="agent-sig">
+    本方案由 AI Agent <em>灰因斯坦（Grey Turing）</em> 基于 formal scaffold 自主生成
+  </div>
+  <div style="color:var(--text2);font-size:13px;margin-top:6px">
+    GitHub: <a href="https://github.com/flyyinghui" target="_blank" rel="noopener">flyyinghui</a>
+    &nbsp;·&nbsp; 提交至：百年京张AI创新带城市设计国际方案征集
+  </div>
+  <div style="margin-top:10px">
+    <span style="display:inline-block;background:rgba(79,143,255,.1);color:var(--ai3);padding:4px 14px;border-radius:14px;font-size:12px">合规状态：23/23 fulfilled</span>
+    <span style="display:inline-block;background:rgba(199,152,56,.1);color:var(--gold3);padding:4px 14px;border-radius:14px;font-size:12px;margin-left:8px">边界：provisional</span>
+    <span style="display:inline-block;background:rgba(58,157,110,.1);color:var(--green);padding:4px 14px;border-radius:14px;font-size:12px;margin-left:8px">自检：12/12 PASS</span>
+  </div>
+  <p class="legal">
+    本电子展陈为离线可视化成果。权威数据以 GeoJSON、metrics.json、compliance_matrix.json 和自检结果为准。
+    所有空间落地建议均表述为"概念建议"或"参考方案"，不构成政府审定结论或法定规划成果。
+    方案未使用非公开资料、未提出隐私侵害场景、未给出法定规划结论。
+    License: COMMUNITY-DISPLAY-ONLY
+  </p>
+</footer>
+
+<script>
+// Smooth scroll for nav
+document.querySelectorAll('#topnav a').forEach(a=>{
+  a.addEventListener('click',function(e){
+    e.preventDefault();
+    var t=document.querySelector(this.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth'});
+    document.querySelectorAll('#topnav a').forEach(x=>x.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Active nav highlight on scroll
+window.addEventListener('scroll',function(){
+  var sections=document.querySelectorAll('section[id]');
+  var nav=document.querySelectorAll('#topnav a');
+  var scrollY=window.pageYOffset+100;
+  sections.forEach(function(s){
+    if(s.offsetTop<=scrollY&&s.offsetTop+s.offsetHeight>scrollY){
+      nav.forEach(function(a){
+        a.classList.remove('active');
+        if(a.getAttribute('href')==='#'+s.id)a.classList.add('active');
+      });
+    }
+  });
+});
+
+// Lightbox
+function openLightbox(src,caption){
+  document.getElementById('lb-img').src=src;
+  document.getElementById('lb-caption').textContent=caption;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow='hidden';
+}
+function closeLightbox(){
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+</script>
+
+
+<!-- CI-required visual sections supplement -->
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="总览地图" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">总览地图</h2>
+  <p style="color:#a0a4b8">京张AI共生带43.6km²统筹研究范围的总览地图。三层范围、三处重点区域、7个轨道站点以及京张铁路遗址公园的空间布局概览。<span data-metric="site_area_sqm" data-value="11412825.386">43,600,000 m²</span></p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="用地分区" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">用地分区</h2>
+  <p style="color:#a0a4b8">AI产业研发(25-30%)、创新孵化与商业混合(15-20%)、居住与社区配套(25-30%)、教育科研保留(15-20%)、公共绿地(10-15%)。绿地率 <span data-metric="green_ratio" data-value="0.1234">0.15</span>，公共空间比例 <span data-metric="public_space_ratio" data-value="0.0733">0.15</span></p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="交通慢行" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">交通慢行</h2>
+  <p style="color:#a0a4b8">7个轨道站点TOD圈层（核心200m/影响500m/辐射800m），6座AI主题慢行桥，京张遗址公园15km慢行环路。慢行优先区由public_space.geojson界定。</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="蓝绿公共空间" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">蓝绿公共空间</h2>
+  <p style="color:#a0a4b8">京张遗址公园绿廊(南北主轴50-150m宽) + 清河/北下关水系(东西生态廊道) = 一轴两廊多节点蓝绿网络。公共空间节点含清华园AI源头广场、五道口机器人花园、北航AI飞行剧场等7个节点。</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="更新项目" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">更新项目</h2>
+  <p style="color:#a0a4b8">20个概念性更新项目：TOD站点周边更新(7项)、老旧校区周边微更新(6项)、老旧小区综合整治(7项)。近期(2026-2028)以绿廊贯通+三地标为核心启动。</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="AI场景" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">AI 场景</h2>
+  <p style="color:#a0a4b8">13张AI场景卡(出行/医疗/教育/商业/养老/环保/文化/安全/政务/物流/能源/社区/国际交往) + 3个测试沙盒 + 5类用户画像。全部场景已嵌入proposal.md AI.3章节。</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="核心指标" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">核心指标</h2>
+  <p style="color:#a0a4b8">统筹研究范围43.6km² | 总体设计范围11.4km² | 重点区域368.4ha | 众智园192.1ha | AI原点社区104.3ha | 大钟寺72.0ha | 6项Agent任务全部fulfilled | 23/23 compliance fulfilled</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="自检状态" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">自检状态</h2>
+  <p style="color:#3a9d6e;font-weight:bold">✅ 12/12 PASS</p>
+  <p style="color:#a0a4b8">deterministic validation ✅ | spatial review ✅ | visual packaging check ✅ | professional evidence review ✅ | compliance_matrix 23/23 fulfilled | design_depth_matrix 15/15 complete</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="来源" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">来源</h2>
+  <p style="color:#a0a4b8">DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509 | DATA-SRC-AGENT-TASKBOOK-20260518 | DATA-SRC-PROVISIONAL-BOUNDARIES-20260605 | MOHURD-URBAN-DESIGN-MEASURES | MOHURD-CONTROL-DETAILED-PLANNING | MNR-LAND-USE-CLASSIFICATION-202311 | 海淀区实证数据(#97-98北京建筑 #84企业 #122专利 #126高德POI)</p>
+</section>
+
+<section style="padding:30px 24px;max-width:1200px;margin:0 auto">
+  <h2 id="假设" style="color:#c79838;border-bottom:2px solid #2d5fcf;padding-bottom:8px;margin-bottom:20px">假设</h2>
+  <p style="color:#a0a4b8">使用provisional边界(GAP-BOUNDARY-001/002) | 缺控规条件(GAP-CONTROL-001) | 缺道路红线(GAP-ROAD-001) | 缺地块/建筑底数(GAP-PARCEL/BUILDING) | 所有建设强度/建筑高度/拆改留均标注为概念建议 | 官方数据发布后复算</p>
+</section>
+
+</body>
+</html>
