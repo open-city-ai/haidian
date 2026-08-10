@@ -52,7 +52,15 @@ Eight global case studies inform the proposal [source:CASE-SILICON-VALLEY] [sour
 
 ### Naming and Visual Identity
 
-The proposal name **"京张智脉共生带"** (Jing-Zhang Intelligence Co-Thriving Belt) expresses the fusion of railway heritage ("脉" = vein/pulse) with AI intelligence ("智"). English name: **"JZ AI Nexus"**.
+The proposal name **"京张智脉共生带"** (Jing-Zhang Intelligence Co-Thriving Belt) expresses the fusion of railway heritage ("脉" = vein/pulse) with AI intelligence ("智"). **English primary brand name: "JZ AI Nexus"** — where JZ stands for Jing-Zhang and Nexus represents the intersection of railway heritage and AI innovation. The full name "Jing-Zhang AI Symbiotic Belt" is used in formal documents; "JZ AI Nexus" is used for branding, logo, wayfinding, and digital interfaces.
+
+**Logo concept**: A stylized railway track cross-section (I-beam profile) transitioning into a neural network node topology. Three horizontal lines represent the three railway tracks of Jing-Zhang line; the middle line deforms into a connecting arc of a neural node, creating a "track→network" visual evolution sequence. A luminous hexagonal node marks the transformation point, with six directions pointing to: Open Source, Algorithm, Compute, Data, Scenario, Governance — the six dimensions of AI innovation. Logo variants include horizontal, vertical, icon-only (hexagonal node for favicon/app icon/ground paving), and wordmark.
+
+**Color palette**: Rail Rust #8B3A3A (primary, railway heritage), AI Violet #4F46E5 (primary, AI future), Nexus Gold #C79838 (accent, landmarks/honor), Ink Navy #162033 (body text), Frost #F6F8FB (background), Code Green #15803D (parks/mobility), Open Orange #FF6B35 (events/hackathons).
+
+**Typography**: System fonts (PingFang SC, SF Pro, SF Mono) — no embedded font licenses required.
+
+**Wayfinding concept**: Signage combining rust-colored weathering steel posts (railway heritage) with e-ink digital panels (AI data display) showing location, walking time to next youth node, and live open source contribution streams. All visual identity elements are conceptual suggestions for professional branding teams to deepen. Complete asset clearance is documented in `report/copyright_statement.md`.
 
 Logo concept: A stylized railway track transitioning into a neural network node, rendered in deep blue (#1a3a5c, railway heritage) and electric purple (#7b2d8e, AI future). Three horizontal bands represent the three positioning themes, with five connection points for the five core functions [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
