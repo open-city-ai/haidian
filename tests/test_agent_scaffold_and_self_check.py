@@ -22,6 +22,8 @@ if HAS_REVIEW_DEPS:
     from shapely.geometry import shape  # noqa: E402
     from shapely.ops import transform  # noqa: E402
 
+from self_check_submission import run_json_command  # noqa: E402
+
 
 class AgentFacingDocsTests(unittest.TestCase):
     def test_agent_docs_use_scaffold_and_full_self_check_commands(self) -> None:
@@ -41,6 +43,31 @@ class AgentFacingDocsTests(unittest.TestCase):
         self.assertIn("Post-Submission Monitoring", skill)
         self.assertIn("gh pr checks", skill)
         self.assertIn("Uploading is not completion", skill)
+
+
+class SelfCheckCommandTests(unittest.TestCase):
+    @mock.patch("self_check_submission.subprocess.run")
+    def test_run_json_command_uses_utf8_and_handles_empty_streams(self, run) -> None:
+        run.side_effect = [
+            subprocess.CompletedProcess(
+                ["validator"],
+                0,
+                stdout='{"message":"中文：全角括号"}',
+                stderr="提示：继续检查",
+            ),
+            subprocess.CompletedProcess(["validator"], 1, stdout=None, stderr=None),
+        ]
+
+        decoded = run_json_command(["validator"])
+        failed = run_json_command(["validator"])
+
+        kwargs = run.call_args_list[0].kwargs
+        self.assertEqual("utf-8", kwargs["encoding"])
+        self.assertEqual("replace", kwargs["errors"])
+        self.assertEqual({"message": "中文：全角括号"}, decoded["stdout"])
+        self.assertEqual("提示：继续检查", decoded["stderr"])
+        self.assertEqual({}, failed["stdout"])
+        self.assertEqual("", failed["stderr"])
 
 
 def run_scaffold(output_dir: Path, stage: str = "formal", cwd: Path = REPO_ROOT) -> subprocess.CompletedProcess:
