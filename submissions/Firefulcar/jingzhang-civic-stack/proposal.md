@@ -21,13 +21,13 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 数据使用分为三道门：第一道门是 `data/source_registry.json` 的用途资格；第二道门是出处、访问日期、转换和限制的结构化登记；第三道门是来源与空间/指标能否独立复核。六个国际案例只提取可迁移机制，不套用其规模、主体和绩效。外部图片、商标、人物和专有图纸均未进入成果，五张图全部由本包 GeoJSON、指标和自编图形生成 [source:SOURCE-REGISTRY] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
 
-资料缺口不是“空白许可”。正式边界、现状建筑、权属、道路红线、轨道接口、市政管线、文保、消防、建筑高度和开发强度仍待正式资料补齐。方案因此把建筑基底解释为公栈原型单元，把道路解释为概念慢行/缝合中心线，把用地解释为结构性分区建议；后续专业团队需按来源、坐标、日期和审批状态逐项替换 [depth:risk_data_gap_register] [data:geometry/site_boundary.geojson#SITE-001]。
+资料缺口不是“空白许可”。正式边界、现状建筑、权属、道路红线、轨道接口、市政管线、文保、消防、建筑高度和开发强度仍待正式资料补齐。方案因此把建筑基底解释为公栈原型单元，把道路解释为概念慢行/缝合中心线，把用地解释为结构性分区建议；后续专业团队需按来源、坐标、日期和审批状态逐项替换 [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [depth:risk_missing_data] [data:geometry/site_boundary.geojson#SITE-001]。
 
 ![总体结构、范围与临时约束说明 / Overall structure, scope, and provisional constraint note](assets/figures/site-overview.png)
 
 ## 三层范围工作框架
 
-三层范围采用“策略—结构—原型”递进。43.6 平方公里统筹研究范围负责产业、人才、算力、数据、场景和国际网络的协同，不产生新的法定边界；约 11.4 平方公里总体设计范围负责一轨三庭两翼的完整空间结构；三处重点区域负责可供专业团队深化的公共空间、建筑原型、慢行接口、运营流程和试验治理。三层成果通过同一套来源、指标、矩阵和风险登记相互校验 [source:SITE-PACKAGE] [depth:scope_framework]。
+三层范围采用“策略—结构—原型”递进。43.6 平方公里统筹研究范围负责产业、人才、算力、数据、场景和国际网络的协同，不产生新的法定边界；约 11.4 平方公里总体设计范围负责一轨三庭两翼的完整空间结构；三处重点区域负责可供专业团队深化的公共空间、建筑原型、慢行接口、运营流程和试验治理。三层成果通过同一套来源、指标、矩阵和风险登记相互校验 [source:SITE-PACKAGE] [depth:three_level_scope_framework]。
 
 “一轨”是京张遗产生态慢行绿脊，既承载南北体验，也用可识别的公共界面串联三庭；“三庭”自北向南是众智验证庭、原点开源庭、大钟寺共创庭；“两翼”是西侧知识与社区服务翼、东侧产业与城市生活场景翼。公栈不是新增封闭园区，而是让两翼的研发、生活、商业和服务能够在公共底座上交换成果、问题与反馈 [data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure]。
 
@@ -76,7 +76,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 ![三庭详细设计索引 / Three-court detailed-design index](assets/figures/key-areas.png)
 
-三庭共享“测试护照”：目的、对象、空间、数据、期限、风险、人工复核、投诉入口、停止阈值、撤场复原和证据发布日期。护照先于设备进入现场，且按低风险离线演练、受控场地测试、限时公共试验三级推进。该流程是概念运营参考，仍需项目主体、专业团队和相应管理程序深化 [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:risk_data_gap_register]。
+三庭共享“测试护照”：目的、对象、空间、数据、期限、风险、人工复核、投诉入口、停止阈值、撤场复原和证据发布日期。护照先于设备进入现场，且按低风险离线演练、受控场地测试、限时公共试验三级推进。该流程是概念运营参考，仍需项目主体、专业团队和相应管理程序深化 [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:risk_missing_data]。
 
 ## AI 创新生态、人才画像与 AI+ 场景
 
@@ -117,7 +117,7 @@ AI 生态图谱以“算力—模型—工具—行业—服务—公众反馈�
 
 ![交通、蓝绿与公共空间复合系统 / Mobility, blue-green, and public-space system](assets/figures/mobility-bluegreen.png)
 
-交通 AI 只做建议与异常提示，信号配时、应急处置和公共服务决定由具备职责的人员复核。无障碍路线需要轮椅、视障、听障、老人、推车家庭和临时行动不便者的共同测试；任何算法评分不能降低基本通行权。临时边界与大钟寺定位争议已在公开 Issues 中出现，因此本方案将站城连接写成问题清单并设置官方数据到达后的重定位触发器 [source:BOUNDARY-SOURCE] [depth:risk_data_gap_register]。
+交通 AI 只做建议与异常提示，信号配时、应急处置和公共服务决定由具备职责的人员复核。无障碍路线需要轮椅、视障、听障、老人、推车家庭和临时行动不便者的共同测试；任何算法评分不能降低基本通行权。临时边界与大钟寺定位争议已在公开 Issues 中出现，因此本方案将站城连接写成问题清单并设置官方数据到达后的重定位触发器 [source:BOUNDARY-SOURCE] [depth:risk_missing_data]。
 
 ## 蓝绿空间、公共空间与城市风貌
 
@@ -158,11 +158,11 @@ AI 生态图谱以“算力—模型—工具—行业—服务—公众反馈�
 
 ## 风险、版权与合规说明
 
-首要风险是临时边界和重点片区定位偏差：任何站城、用地、面积和分期结论都可能随正式数据移动。第二类风险是现状与权属缺失：原型建筑不能变成拆改留清单。第三类风险是 AI 场景越界：目的漂移、持续追踪、歧视性结果、无人工入口和不可回退均为停止条件。第四类风险是运营空心化：活动、设施和数据维护若无责任主体与预算机制，不进入承诺清单 [source:KEY-AREA-SOURCE] [depth:risk_data_gap_register]。
+首要风险是临时边界和重点片区定位偏差：任何站城、用地、面积和分期结论都可能随正式数据移动。第二类风险是现状与权属缺失：原型建筑不能变成拆改留清单。第三类风险是 AI 场景越界：目的漂移、持续追踪、歧视性结果、无人工入口和不可回退均为停止条件。第四类风险是运营空心化：活动、设施和数据维护若无责任主体与预算机制，不进入承诺清单 [source:KEY-AREA-SOURCE] [depth:risk_missing_data]。
 
 版权上，文字、几何、图形、HTML 和 PDF 为本次投稿生成；国际案例仅作事实摘要并在 `sources.json` 登记链接，未复制其图像和标识。Logo 方向只描述原创构形，不使用商业字体、企业商标、人物肖像或受限素材。提交许可证 `COMMUNITY-DISPLAY-ONLY` 仅用于本征集展示语境，任何扩大使用需复核仓库和作者条款 [source:SOURCE-REGISTRY] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
-本方案的空间、建筑、交通、市政、活动和运营均为概念建议或供专业团队深化的参考方案，不是法定规划、政府承诺、工程可行性结论、投资决定或具体地块拆改结论。正式深化前需完成边界、控规、文保、交通、市政、生态、消防、权属、公众参与、数据治理与伦理审查 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:risk_data_gap_register]。
+本方案的空间、建筑、交通、市政、活动和运营均为概念建议或供专业团队深化的参考方案，不是法定规划、政府承诺、工程可行性结论、投资决定或具体地块拆改结论。正式深化前需完成边界、控规、文保、交通、市政、生态、消防、权属、公众参与、数据治理与伦理审查 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:risk_missing_data]。
 
 ## 参考资料
 

@@ -21,13 +21,13 @@ The proposal is governed by the official announcement, the cleared Agent Taskboo
 
 Evidence passes three gates. First, `data/source_registry.json` defines eligible uses. Second, each record states publisher, retrieval date, transformation, and limitation. Third, a claim must be independently checkable against geometry, metrics, or a primary page. Six international cases contribute transferable mechanisms only; none supplies a boundary, statutory control, investment assumption, or performance promise for Haidian. All five figures are generated from this package; no external image, logo, portrait, or proprietary drawing is reused [source:SOURCE-REGISTRY] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT].
 
-Missing information is not permission to fabricate precision. Official polygons, existing-building surveys, ownership, road redlines, rail interfaces, utilities, heritage constraints, fire safety, height, and development intensity remain pending. Building footprints therefore represent civic-stack prototypes; road features are conceptual slow-mobility and stitch centerlines; land use is a structural proposal. Professional teams must replace each pending layer with a dated and traceable source before statutory or engineering use [depth:risk_data_gap_register] [data:geometry/site_boundary.geojson#SITE-001].
+Missing information is not permission to fabricate precision. Official polygons, existing-building surveys, ownership, road redlines, rail interfaces, utilities, heritage constraints, fire safety, height, and development intensity remain pending. Building footprints therefore represent civic-stack prototypes; road features are conceptual slow-mobility and stitch centerlines; land use is a structural proposal. Professional teams must replace each pending layer with a dated and traceable source before statutory or engineering use [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [depth:risk_missing_data] [data:geometry/site_boundary.geojson#SITE-001].
 
 ![Overall structure, scope, and provisional constraint note / 总体结构、范围与临时约束说明](assets/figures/site-overview.png)
 
 ## Three-Level Scope Framework
 
-The three levels progress from strategy to structure to prototype. The 43.6 km² research area coordinates industry, talent, compute, data, scenarios, and international networks without inventing new legal boundaries. The approximately 11.4 km² design area carries the complete one-line, three-court, two-wing structure. The three key areas develop public-space rooms, building prototypes, mobility interfaces, operating workflows, and test governance for later professional development. All levels share one evidence and risk system [source:SITE-PACKAGE] [depth:scope_framework].
+The three levels progress from strategy to structure to prototype. The 43.6 km² research area coordinates industry, talent, compute, data, scenarios, and international networks without inventing new legal boundaries. The approximately 11.4 km² design area carries the complete one-line, three-court, two-wing structure. The three key areas develop public-space rooms, building prototypes, mobility interfaces, operating workflows, and test governance for later professional development. All levels share one evidence and risk system [source:SITE-PACKAGE] [depth:three_level_scope_framework].
 
 The “one line” is a heritage ecological and slow-mobility spine. The “three courts” are Zhongzhiyuan Validation Court, Origin Open-Source Court, and Dazhongsi Co-Creation Court. The “two wings” are a western knowledge/community service wing and an eastern industry/urban-life scenario wing. CIVIC STACK is not another fenced campus: it is a public interface through which research, daily life, business, and services can exchange results, questions, and feedback [data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure].
 
@@ -76,7 +76,7 @@ Dazhongsi Co-Creation Court places AI-native products in a real but controlled u
 
 ![Three-court detailed-design index / 三庭详细设计索引](assets/figures/key-areas.png)
 
-All courts share a test passport: purpose, users, location, data, duration, risk, human review, complaint channel, stop threshold, restoration, and evidence-release date. Work advances from low-risk offline exercise to controlled-site test to time-limited public trial. The passport is a conceptual operating reference that still needs a responsible entity, professional development, and applicable procedures [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:risk_data_gap_register].
+All courts share a test passport: purpose, users, location, data, duration, risk, human review, complaint channel, stop threshold, restoration, and evidence-release date. Work advances from low-risk offline exercise to controlled-site test to time-limited public trial. The passport is a conceptual operating reference that still needs a responsible entity, professional development, and applicable procedures [standard:MOHURD-URBAN-DESIGN-MEASURES] [depth:risk_missing_data].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -117,7 +117,7 @@ Municipal and digital infrastructure combines shared service rooms, edge nodes, 
 
 ![Mobility, blue-green, and public-space system / 交通、蓝绿与公共空间复合系统](assets/figures/mobility-bluegreen.png)
 
-Transport AI supplies advice and anomaly alerts only; qualified people review signal timing, emergencies, and service decisions. Accessibility routes must be co-tested with wheelchair users, people with visual or hearing disabilities, elders, stroller users, and people with temporary mobility constraints. Algorithmic scoring never reduces the basic right to pass. Open Issues have already raised provisional-location concerns, so station-city links remain a problem list with an explicit relocation trigger [source:BOUNDARY-SOURCE] [depth:risk_data_gap_register].
+Transport AI supplies advice and anomaly alerts only; qualified people review signal timing, emergencies, and service decisions. Accessibility routes must be co-tested with wheelchair users, people with visual or hearing disabilities, elders, stroller users, and people with temporary mobility constraints. Algorithmic scoring never reduces the basic right to pass. Open Issues have already raised provisional-location concerns, so station-city links remain a problem list with an explicit relocation trigger [source:BOUNDARY-SOURCE] [depth:risk_missing_data].
 
 ## Blue-Green Network, Public Space, and Urban Character
 
@@ -158,11 +158,11 @@ Metrics fall into three classes. Spatial facts derive from GeoJSON; future opera
 
 ## Risk, Copyright, and Compliance
 
-The first risk is provisional location: station-city, land-use, area, and phasing outputs may move when official data arrives. The second is missing baseline and ownership: prototype footprints cannot become a demolition or construction list. The third is AI-scenario overreach: purpose drift, continuous tracking, discriminatory outcomes, missing human service, and irreversible operation are stop conditions. The fourth is hollow operations: events, equipment, and data maintenance do not enter the commitment register without accountable operators and resources [source:KEY-AREA-SOURCE] [depth:risk_data_gap_register].
+The first risk is provisional location: station-city, land-use, area, and phasing outputs may move when official data arrives. The second is missing baseline and ownership: prototype footprints cannot become a demolition or construction list. The third is AI-scenario overreach: purpose drift, continuous tracking, discriminatory outcomes, missing human service, and irreversible operation are stop conditions. The fourth is hollow operations: events, equipment, and data maintenance do not enter the commitment register without accountable operators and resources [source:KEY-AREA-SOURCE] [depth:risk_missing_data].
 
 Text, geometry, graphics, HTML, and PDFs were generated for this submission. International cases are summarized as facts with links in `sources.json`; their media and marks are not copied. The logo direction describes an original construction and does not use commercial fonts, corporate marks, portraits, or restricted assets. `COMMUNITY-DISPLAY-ONLY` applies to the open-call display context; broader reuse must check repository and author terms [source:SOURCE-REGISTRY] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK].
 
-All spatial, building, mobility, infrastructure, event, and operating moves are conceptual suggestions or references for professional development. They are not statutory plans, government commitments, engineering-feasibility findings, investment decisions, or parcel-level retain/renovate/demolish conclusions. Official development requires boundaries, controls, heritage, transport, utilities, ecology, fire safety, ownership, participation, data governance, and ethics review [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:risk_data_gap_register].
+All spatial, building, mobility, infrastructure, event, and operating moves are conceptual suggestions or references for professional development. They are not statutory plans, government commitments, engineering-feasibility findings, investment decisions, or parcel-level retain/renovate/demolish conclusions. Official development requires boundaries, controls, heritage, transport, utilities, ecology, fire safety, ownership, participation, data governance, and ethics review [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:risk_missing_data].
 
 ## References
 
