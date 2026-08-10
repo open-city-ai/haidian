@@ -9,7 +9,7 @@ license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A time-windowed curb ledger brings metro, bus, bicycle, walking/accessibility, cars, parking and loading into one auditable system, while external commuting, people flow and multimodal simulation remain explicit; future air mobility is only a conditional, reversible, ground-first experiment."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
-iteration: "v2.32"
+iteration: "v2.33"
 ---
 
 # Jing-Zhang Mobility Commons: An Enterprise–Resident Mobility Operating System
@@ -158,17 +158,17 @@ Zhongzhiyuan tests enterprise arrival, shuttle consolidation and loading. The AI
 
 The first pilot is a small morning and evening window in Zhongzhiyuan, an accessible daily-route comparison in the Origin Community, and a rail/curb separation rehearsal at Dazhongsi. Enterprise bookings cannot become permanent community bans. Shared vehicles cannot occupy a fire route, accessible path or emergency corridor.
 
-### Conceptual Massing and Public Interfaces for the Three Key Areas
+### Public Interfaces and Reversible Service Relations for the Three Key Areas
 
-Mobility operations do not replace urban design. The following massing ledger translates each area’s mobility role into a provisional interface and intensity range; it does not change the geometry or present a regulatory-plan control. The announcement-scale areas are approximately 192.1, 104.3 and 72.0 ha for task scale only; they are not existing building area, parcel boundaries or regulatory-plan indicators [data:geometry/key_areas.geojson#PROV-KEY-001] [source:OFFICIAL-ANNOUNCEMENT].
+Mobility operations do not replace urban design. This section translates each area’s mobility role into comparable public interfaces, service sequence and reversible relations; it does not change the geometry or substitute for regulatory, ownership or engineering controls. The announcement-scale areas are approximately 192.1, 104.3 and 72.0 ha for task scale only; they are not existing building area, parcel boundaries or development-control indicators [data:geometry/key_areas.geojson#PROV-KEY-001] [source:OFFICIAL-ANNOUNCEMENT].
 
-| Key area | Spatial relationship | Conceptual intensity | Public-facing height | First professional evidence to collect |
-| --- | --- | --- | --- | --- |
-| Zhongzhiyuan AI Autonomous Innovation Acceleration Zone | Separate enterprise arrival, shuttle waiting, loading and fire-clearance layers; keep the ground interface service-oriented | FAR 1.2–1.8 for design comparison only | 2–4 storeys; upper height unknown | Existing buildings, energy/fire review, ownership, enterprise OD and curb survey |
-| Beijing AI Origin Community | Place community services, continuous walking/accessibility, weather shelter and daily needs on one human-first interface | FAR 1.0–1.5 for design comparison only | 2–3 storeys; upper height unknown | Accessibility walk, resident-service baseline, ownership, care and night-safety evidence |
-| Dazhongsi AI Industry Cluster | Distinguish rail transfer, bicycle parking, public ground-floor frontage and timed loading | FAR 0.8–1.3 for design comparison only | 1–3 storeys; upper height unknown | Station flow, curb counts, traffic organisation, fire and municipal interfaces |
+| Key area | Spatial relationship | Reversible service relation | First professional evidence to collect |
+| --- | --- | --- | --- |
+| Zhongzhiyuan AI Autonomous Innovation Acceleration Zone | Separate enterprise arrival, shuttle waiting, loading and fire-clearance layers; keep the public ground interface service-oriented | Open a staffed mobility ledger and observation point first; embodied tests, interface simulations and maintenance back-of-house can pause or withdraw without cutting the walking/accessibility spine | Existing buildings, energy/fire review, ownership, enterprise OD and curb survey |
+| Beijing AI Origin Community | Place community services, continuous walking/accessibility, weather shelter and daily needs on one human-first interface | Provide human, telephone and paper routes first; skill transition and intergenerational learning can open in segments, and basic service never depends on an account or device | Accessibility walk, resident-service baseline, ownership, care and night-safety evidence |
+| Dazhongsi AI Industry Cluster | Distinguish rail transfer, bicycle parking, public ground-floor frontage and timed loading | Start with rail arrival, staffed explanation and curb observation; events, data display and interface tests can withdraw without occupying residents’ daily route | Station flow, curb counts, traffic organisation, fire and municipal interfaces |
 
-FAR and storeys are conceptual design ranges, not official planning conditions, building permits or construction commitments. A formal scheme must recalculate them after survey, regulatory-plan review, ownership, fire, structural, municipal and public-participation evidence is complete [depth:height_massing_character] [depth:development_intensity_controls].
+These relations answer only which public interfaces to compare first, who can pause them and where evidence is missing; they do not answer final development control, building scale or engineering sections. A professional team must deepen them after survey, regulatory-plan review, ownership, fire, structural, municipal and public-participation evidence is complete [depth:height_massing_character] [depth:development_intensity_controls].
 
 Until that evidence exists, the first spatial moves remain removable signs, weather shelters, bicycle parking, accessible ramps and curb-state boards. No road widening, building increment or demolition conclusion follows from this ledger [standard:MOHURD-CONTROL-DETAILED-PLANNING].
 
