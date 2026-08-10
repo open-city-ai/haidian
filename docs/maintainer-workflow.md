@@ -265,7 +265,7 @@ export HAIDIAN_REVIEW_MODEL="gpt-5.6-sol"
 # 先评审并生成审计材料，不修改 GitHub
 python3 scripts/auto_review_queue.py --limit 10
 
-# 正式回写 review/label；通过 60 分门槛和四项 gate 的 PR 自动合并
+# 正式回写 review/label；通过 60 分门槛、四项 gate 且不低于历史最高分的 PR 自动合并
 python3 scripts/auto_review_queue.py --limit 10 --concurrency 3 --apply --admin-merge
 ```
 
@@ -277,6 +277,20 @@ PR 不调用模型；draft 不进入队列。合并仅表示仓库 intake，展�
 worker 每轮按 PR 编号从旧到新处理，避免持续新增投稿使早期稿件饥饿。
 模型调用和本地视觉检查默认三路并行；worktree 创建/清理以及 GitHub review、标签、
 SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 base-branch merge 竞态。
+
+### 分数保护与恢复
+
+`--apply` 在决定合并前，会读取该投稿作者已合并 PR 中带有
+`haidian-auto-review:<exact-head-sha>` 标记的维护者 Review Agent 评论，并按投稿目录计算
+历史官方最高分。新 exact head 的分数低于该最高分时，worker 会发布
+`score-preservation hold`、请求修改并保持 PR 不合并；达到或超过最高分才有资格继续走
+原有 intake 合并流程。没有历史官方分数的首个投稿不受这条比较规则阻塞，但仍必须通过
+60 分绝对门槛、四项 gate 和强制退件检查。
+
+这条保护只依据 exact-head 的官方维护者评论，不把本地自检、advisory scorer、草稿或
+公共 gallery 位置当作正式分数。若历史最高包已经被更低分版本覆盖，维护者应从历史
+exact head 建立恢复 PR，并在新的 exact head 重新评分达到原最高分前保持候选不合并；不
+使用 force-push 或重写 `main`。
 
 `submission-validation` 成功时会自动清除旧的 CI/修改/低质量标签并添加
 `review/queued`；投稿人推送修订后无需维护者手动重新排队。CI 失败时 workflow

@@ -13,7 +13,9 @@ from auto_review_queue import (  # noqa: E402
     WorkerError,
     ci_state,
     decide,
+    historical_best_score,
     load_cached_review,
+    official_score_from_review,
     parse_args,
     submission_dir_from_files,
 )
@@ -55,6 +57,60 @@ class AutoReviewQueueTests(unittest.TestCase):
             },
         }
         self.assertEqual("low-quality", decide(review, {"weighted_score_100": 59.9}, 60).action)
+
+    def test_score_regression_is_not_merged_even_above_absolute_threshold(self) -> None:
+        review = {
+            "mandatory_rejection": {"result": "pass"},
+            "gate_checks": {
+                name: {"status": "pass"}
+                for name in [
+                    "deterministic_validation",
+                    "spatial_review",
+                    "visual_review",
+                    "professional_evidence_review",
+                ]
+            },
+        }
+        outcome = decide(review, {"weighted_score_100": 79}, 60, historical_best=93)
+        self.assertEqual("score-regression", outcome.action)
+        self.assertIn("historical exact-head best 93", outcome.reason)
+
+    def test_equal_historical_score_remains_eligible(self) -> None:
+        review = {
+            "mandatory_rejection": {"result": "pass"},
+            "gate_checks": {
+                name: {"status": "pass"}
+                for name in [
+                    "deterministic_validation",
+                    "spatial_review",
+                    "visual_review",
+                    "professional_evidence_review",
+                ]
+            },
+        }
+        self.assertEqual("accept", decide(review, {"weighted_score_100": 93}, 60, historical_best=93).action)
+
+    def test_historical_score_requires_exact_head_marker_and_package_path(self) -> None:
+        head = "a" * 40
+        body = (
+            f"<!-- haidian-auto-review:{head} -->\n"
+            "Maintainer intake decision: Review Agent score 93/100. Mandatory rejection and all four local gates passed."
+        )
+        self.assertEqual(93, official_score_from_review(body, head))
+        self.assertIsNone(official_score_from_review(body, "b" * 40))
+        merged_prs = [
+            {
+                "headRefOid": head,
+                "files": [{"path": "submissions/alice/plan/manifest.json"}],
+                "reviews": [{"body": body}],
+            },
+            {
+                "headRefOid": head,
+                "files": [{"path": "submissions/alice/other/manifest.json"}],
+                "reviews": [{"body": body}],
+            },
+        ]
+        self.assertEqual(93, historical_best_score(merged_prs, "submissions/alice/plan"))
 
     def test_failed_gate_overrides_high_score(self) -> None:
         review = {
