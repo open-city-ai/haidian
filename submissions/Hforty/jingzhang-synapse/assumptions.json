@@ -1,0 +1,145 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "proposal_slug": "jingzhang-synapse",
+  "agent_id": "Hforty",
+  "summary": "本包除公告文本面积与三层范围面积为官方已知值外，空间几何、规划控制指标（容积率/建筑高度/建筑密度/绿地率/退线）均为临时或缺失，需待正式资料补齐后重算。下列每条假设均标注影响与重算触发条件。",
+  "assumptions": [
+    {
+      "id": "ASM-001",
+      "category": "geometry",
+      "statement_zh": "总体设计范围、三层范围与三处重点区均使用仓库临时粗略 polygon（provisional_boundaries），未使用官方红线。",
+      "impact_zh": "所有面积、拓扑、空间关系为 intake 级，不能用于法定面积或红线判断。",
+      "trigger_for_recalculation_zh": "获得官方 SITE_BOUNDARY / KEY_AREA GeoJSON 后，重新运行 tools/gen_geometry.py 并重算 metrics.json 与全部图层。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-002",
+      "category": "geometry",
+      "statement_zh": "面积计算采用 EPSG:4548 本地等距投影近似（flat-earth approximation），非大地测量级精度。",
+      "impact_zh": "几何复算面积与官方面积存在偏差，仅供可视化与空间关系推演，不替代官方公告文本面积。",
+      "trigger_for_recalculation_zh": "获得官方 polygon 后，使用专业 GIS 工具以官方指定投影重新计算面积并核对公告文本。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-003",
+      "category": "building_massing",
+      "statement_zh": "建筑体量为概念性体量模型（conceptual massing only），代表性建筑 footprint × 示意容积率 2.5 推演，非建筑方案设计。",
+      "impact_zh": "建筑总规模、开发强度、空间形态仅为体量推演，不构成建筑方案或审定指标。",
+      "trigger_for_recalculation_zh": "获得容积率与完整现状/方案建筑清单后，由建筑专业团队重新推演并校核。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-004",
+      "category": "planning_control",
+      "statement_zh": "容积率、建筑高度、建筑密度、绿地率、退线等规划控制指标在官方资料中尚未提供，本包未编造数值，相关字段标记为 missing。",
+      "impact_zh": "建筑总规模、开发强度、绿地率、建筑密度均标记为 provisional_assumption 或 missing，不含审定指标。",
+      "trigger_for_recalculation_zh": "获得已批控规条件或官方设计任务书附件后，更新 metrics.json 与 design_depth_matrix.json。",
+      "confidence": "high"
+    },
+    {
+      "id": "ASM-005",
+      "category": "demolition_renovation",
+      "statement_zh": "无确认的地块级拆除/改造/保留决定，拆改留分类为基于公开信息与功能推导的方向性建议。",
+      "impact_zh": "拆改留方案为概念建议，待与现状权属、已批控规、房屋安全鉴定等校核后确定。",
+      "trigger_for_recalculation_zh": "获得现状权属数据、房屋安全鉴定报告与已批控规后，逐地块校核拆改留分类。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-006",
+      "category": "engineering_feasibility",
+      "statement_zh": "未进行工程可行性论证，市政基础设施、交通组织、地下空间等工程方案为概念策略，未经过岩土、结构、市政等专业校核。",
+      "impact_zh": "工程方案不具备实施条件，需专业团队开展可行性研究后修正。",
+      "trigger_for_recalculation_zh": "获得地质勘察、地下管线、现状市政容量等资料后，由市政/结构专业团队开展工程可行性论证。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-007",
+      "category": "investment",
+      "statement_zh": "无官方投资承诺或资金安排确认，年度活动体系、开发者社区运营、场景开放运营等运营内容均为概念建议。",
+      "impact_zh": "运营内容表述为概念建议，不含确定性政府安排或资金承诺。",
+      "trigger_for_recalculation_zh": "与主办方/运营主体/投资方确认后转为实施方案与资金计划。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-008",
+      "category": "cultural_heritage",
+      "statement_zh": "京张铁路遗址的文化遗产保护范围与建控地带未获得官方文保红线，本方案按京张铁路遗址公园公开信息推导文化节点位置与保护策略。",
+      "impact_zh": "文化节点与文保策略为概念建议，待与文物保护主管部门核定保护范围后修正。",
+      "trigger_for_recalculation_zh": "获得官方文保保护范围与建控地带 polygon 后，更新 geometry/constraints.geojson 并校核文化节点位置。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-009",
+      "category": "traffic_transit",
+      "statement_zh": "地铁13号线扩能改造工程正在进行中，站点一体化设计（TOD）按公开信息推导，未获得轨道部门正式技术条件与接驳方案。",
+      "impact_zh": "TOD 设计与慢行接驳为概念方向，具体站点出入口、换乘通道与红线需轨道部门确认。",
+      "trigger_for_recalculation_zh": "获得轨道部门正式技术条件与站点方案后，更新 geometry/roads.geojson 并校核 TOD 设计。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-010",
+      "category": "ecological_buffer",
+      "statement_zh": "小月河蓝绿复合带的生态缓冲宽度与蓝线范围依据公开信息推导，未获得水务部门正式蓝线/绿线数据。",
+      "impact_zh": "蓝绿空间面积与缓冲范围为概念建议，待与水务/园林部门核定后修正。",
+      "trigger_for_recalculation_zh": "获得官方蓝线/绿线 polygon 后，更新 geometry/green_space.geojson 并重算绿地面积与绿地率。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-011",
+      "category": "phasing",
+      "statement_zh": "分期时间表（近期2026-2028、中期2028-2031、远期2031-2035）为概念性分期，未与官方实施计划或土地供应计划对齐。",
+      "impact_zh": "分期方案为方向性建议，实际实施时序以官方计划为准。",
+      "trigger_for_recalculation_zh": "获得官方实施计划与土地供应计划后，更新 geometry/phasing.geojson 与分期策略。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-012",
+      "category": "ai_scenarios",
+      "statement_zh": "所有AI场景卡（12张）与产业测试验证场景（3张）均为概念设计，未经过技术验证、伦理审查或监管批准。",
+      "impact_zh": "场景卡用于方法论与空间映射表达，不构成已批准运营或已部署系统。",
+      "trigger_for_recalculation_zh": "与技术团队、伦理委员会、监管部门确认后，逐场景更新技术可行性与合规状态。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-013",
+      "category": "land_ownership",
+      "statement_zh": "未使用官方土地权属数据，用地布局依据公告功能定位与公开信息推导，非现状或已批用地。",
+      "impact_zh": "用地分区为概念性，待与现状权属、已批控规校核。",
+      "trigger_for_recalculation_zh": "获得现状用地/权属与已批控规后校核并修正 geometry/land_use.geojson 分区。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-014",
+      "category": "community_engagement",
+      "statement_zh": "社区参与与人本设计假设基于公开的人口结构（9.5万AI人才、37所高校）与行业常识，未开展实地调研或公众参与活动。",
+      "impact_zh": "用户画像与社区场景为推导性设计，待公众参与反馈后修正。",
+      "trigger_for_recalculation_zh": "开展公众参与活动后，更新用户画像与社区场景设计。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-015",
+      "category": "data_gaps",
+      "statement_zh": "官方技术标准中部分指标（如AI创新产业用地容积率基准、智能基础设施配建标准）尚未发布或处于征求意见阶段，本方案按现有标准推导。",
+      "impact_zh": "涉及AI产业用地的控制指标与创新基础设施配建标准为推导值，待官方标准发布后修正。",
+      "trigger_for_recalculation_zh": "官方AI产业用地标准与创新基础设施配建标准发布后，更新 standard_matrix.json 与 metrics.json。",
+      "confidence": "medium"
+    },
+    {
+      "id": "ASM-016",
+      "category": "floor_area",
+      "statement_zh": "建筑总规模按代表性建筑 footprint × 示意容积率 2.5 推算，仅为空间体量推演，非审定开发强度。",
+      "impact_zh": "total_floor_area_provisional 与 floor_area_ratio_provisional 置信度低，不可作为开发强度依据。",
+      "trigger_for_recalculation_zh": "获得容积率与完整现状/方案建筑清单后重算。",
+      "confidence": "low"
+    },
+    {
+      "id": "ASM-017",
+      "category": "compliance",
+      "statement_zh": "生成式人工智能服务管理暂行办法、无障碍环境建设法、老年人智能技术困难方案等仅在与本方案直接相关的边界内引用，不推定普遍法定义务。",
+      "impact_zh": "合规条款按原文适用边界引用，避免扩大解释。",
+      "trigger_for_recalculation_zh": "个案法律意见或备案/安全评估以主管部门结论为准。",
+      "confidence": "high"
+    }
+  ]
+}
