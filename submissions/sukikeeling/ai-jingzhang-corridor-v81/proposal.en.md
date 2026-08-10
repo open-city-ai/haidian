@@ -164,6 +164,37 @@ The current constraint layer is empty, explicitly indicating that ownership, her
 
 This proposal responds to the three positioning statements, five functions, three areas and two wings, and agent.1–agent.6. Its core is not to predict a "fully automated city" but to establish a set of institutional and spatial infrastructure that lets urban AI **stay traceable, stoppable, and reversible along the track** in real public space. Humans and professional teams retain final judgment.
 
+## Regional Collaboration Matrix [depth:regional_collaboration]
+
+| Partner | Task | Element | Loop | Body |
+|---------|------|---------|------|------|
+| Beixi Communities | Commerce relief, commute linkage | Slow-traffic connection, shared services, employment | Commute OD analysis → slow-traffic → shared services | Sub-districts + this proposal |
+| Future Science City | Frontier research → corridor | R&D outcomes, validation scenarios, talent sharing | Outcome list → joint validation → scenario deployment | Future Science City + this proposal |
+| Huairou Science City | Big science + AI crossover | Basic research, compute synergy, crossover community | Topic co-design → joint research → outcome feedback | Huairou Science City + this proposal |
+| Beijing E-Town | Manufacturing + AI | Manufacturing scenarios, supply chain, production testing | Scenario push → production test → data return | E-Town + this proposal |
+| Jing-Jin-Ji region | Industrial chain coordination | Division of labor, factor flow, standard mutual recognition | Division list → factor allocation → mutual recognition | Municipal bodies + this proposal |
+
+Each collaboration is a verifiable task/element/loop list, not a vision statement. Formal execution mechanisms await partnership agreements [source:AGENT-TASKBOOK].
+
+## Brand & Identity Specification [depth:brand_identity]
+
+### Logo Minimum Standards
+- **Primary mark**: Switchback symbol + "JZ Valley" wordmark, horizontal primary, vertical secondary
+- **Minimum size**: Horizontal ≥ 32mm (print) / ≥ 48px (screen), vertical ≥ 24mm (print) / ≥ 36px (screen)
+- **Clear space**: 0.5x logo height on all sides
+- **Usage rules**: No color change, no stroke, no complex background, no rotation/skew
+- **Color system**: Track Blue #071A2B (primary), Verify Green #00D8C6 (available), Heritage Copper #C8964A (accent), Test Yellow #FFC857 (warning), Track Silver #A0AAB5 (auxiliary), Human Red #FF6B6B (danger)
+- **Application**: A0/A3 print uses Track Blue background with Verify Green data; digital uses dark mode (#1a1a2e)
+
+## Public Participation Mechanism [depth:public_participation]
+
+- **Representative selection**: 2-4 each from 6 groups (commuters, elderly/disabled, students/researchers, SMEs, tourists, operators); open recruitment + community recommendation
+- **Term**: 6 months, renewable once; re-recruited each term
+- **Compensation**: 1.5x Beijing minimum wage/hour, transport reimbursement or 50 yuan/meeting, caregiving supplement 50 yuan/hour
+- **Non-digital channels**: Paper forms, assisted filling, phone feedback, drop boxes; at least one offline meeting before major decisions, announced 14 days in advance
+- **Grouped evaluation**: Participation effectiveness evaluated by group, not aggregated; results published annually with satisfaction, closure rate, response time
+- **Veto right**: Public representatives can veto at switchback points for data collection, surveillance, restrictive measures (triggers mandatory switchback) [depth:switchback_governance]
+
 ## References
 - [source:OFFICIAL-ANNOUNCEMENT] Official qualification pre-announcement.
 - [source:AGENT-TASKBOOK] Open-call taskbook excerpt for global agents.
