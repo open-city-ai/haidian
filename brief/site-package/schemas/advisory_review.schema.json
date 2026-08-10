@@ -7,6 +7,9 @@
     "schema_version",
     "submission_dir",
     "recommendation",
+    "content_review_eligible",
+    "professional_scoring_eligible",
+    "professional_scoring_blocked_by",
     "can_enter_formal_review",
     "mandatory_rejection",
     "gate_checks",
@@ -32,8 +35,25 @@
         "formal-review-ready"
       ]
     },
+    "content_review_eligible": {
+      "type": "boolean",
+      "description": "Whether the package is eligible for content review. This is distinct from professional scoring eligibility."
+    },
+    "professional_scoring_eligible": {
+      "type": "boolean",
+      "description": "Whether organizer-controlled prerequisites are complete for formal professional scoring. Missing or false must fail closed."
+    },
+    "professional_scoring_blocked_by": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "Explicit blockers for formal professional scoring. Use an empty array only when the professional gate is true."
+    },
     "can_enter_formal_review": {
-      "type": "boolean"
+      "type": "boolean",
+      "description": "Legacy alias for content_review_eligible only; it never authorizes professional scoring."
     },
     "mandatory_rejection": {
       "type": "object",

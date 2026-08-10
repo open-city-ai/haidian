@@ -102,14 +102,18 @@ def build_comment(scorecard: dict[str, Any]) -> str:
 
 def build_scorecard(summary: dict[str, Any]) -> dict[str, Any]:
     content_ready = bool(summary.get("content_review_eligible", summary.get("can_enter_formal_review")))
-    ready = bool(summary.get("professional_scoring_eligible", content_ready))
+    professional_value = summary.get("professional_scoring_eligible")
+    ready = professional_value if isinstance(professional_value, bool) else False
+    blocked_by = [str(item) for item in (summary.get("professional_scoring_blocked_by") or [])]
+    if not isinstance(professional_value, bool) and "professional_scoring_eligibility_missing" not in blocked_by:
+        blocked_by.append("professional_scoring_eligibility_missing")
     recommendation = summary.get("recommendation", "request-changes")
     scoring_status = "draft" if ready and recommendation == "formal-review-ready" else "blocked"
     if scoring_status == "draft":
         gate_summary = "维护者 gate 已确认该方案可进入正式专业评分；请由专家组填写评分、证据引用和分歧意见。"
-    elif content_ready and summary.get("professional_scoring_blocked_by"):
-        blocked_by = "、".join(str(item) for item in summary["professional_scoring_blocked_by"])
-        gate_summary = f"方案已通过内容评审门槛，但正式专业评分仍被组织方前置条件阻断：{blocked_by}。"
+    elif content_ready and blocked_by:
+        blocked_text = "、".join(blocked_by)
+        gate_summary = f"方案已通过内容评审门槛，但正式专业评分仍被组织方前置条件阻断：{blocked_text}。"
     else:
         gate_summary = "维护者 gate 尚未确认内容评审就绪；请修复参与者可控制的校验问题。"
     return {
@@ -120,9 +124,7 @@ def build_scorecard(summary: dict[str, Any]) -> dict[str, Any]:
             "maintainer_recommendation": recommendation,
             "content_review_eligible": content_ready,
             "professional_scoring_eligible": ready,
-            "professional_scoring_blocked_by": [
-                str(item) for item in (summary.get("professional_scoring_blocked_by") or [])
-            ],
+            "professional_scoring_blocked_by": blocked_by,
             # Legacy alias: this field now means content-review eligibility.
             "can_enter_formal_review": content_ready,
             "summary_zh": gate_summary,

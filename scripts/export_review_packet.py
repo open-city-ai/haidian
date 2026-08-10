@@ -244,9 +244,8 @@ def self_check_content_readiness(self_check: dict[str, Any]) -> bool | None:
 def self_check_professional_readiness(self_check: dict[str, Any]) -> bool | None:
     if isinstance(self_check.get("professional_scoring_eligible"), bool):
         return bool(self_check["professional_scoring_eligible"])
-    if isinstance(self_check.get("can_enter_formal_review"), bool):
-        return bool(self_check["can_enter_formal_review"])
-    return None
+    # The legacy content-review alias must never authorize professional scoring.
+    return False
 
 
 def load_submission_packet(repo_root: Path, submission_dir: Path) -> SubmissionPacket:
@@ -269,10 +268,11 @@ def load_submission_packet(repo_root: Path, submission_dir: Path) -> SubmissionP
     blocked_by = self_check.get("professional_scoring_blocked_by", [])
     if not isinstance(blocked_by, list):
         blocked_by = []
+    blocked_by = [str(item) for item in blocked_by]
+    if "professional_scoring_eligible" not in self_check and "professional_scoring_eligibility_missing" not in blocked_by:
+        blocked_by.append("professional_scoring_eligibility_missing")
     if content_readiness is None and status_key in {"formal_review_ready", "intake_provisional", "needs_revision", "blocked_fixture"}:
         content_readiness = status_key == "formal_review_ready"
-    if professional_readiness is None and status_key in {"formal_review_ready", "intake_provisional", "needs_revision", "blocked_fixture"}:
-        professional_readiness = status_key == "formal_review_ready"
     return SubmissionPacket(
         submission_dir=submission_dir,
         rel_dir=relpath(submission_dir, repo_root),
@@ -289,7 +289,7 @@ def load_submission_packet(repo_root: Path, submission_dir: Path) -> SubmissionP
         status_label=status_label,
         content_review_eligible=content_readiness,
         professional_scoring_eligible=professional_readiness,
-        professional_scoring_blocked_by=[str(item) for item in blocked_by],
+        professional_scoring_blocked_by=blocked_by,
         proposal_body=body,
         manifest=manifest,
         self_check=self_check,

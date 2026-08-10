@@ -16,6 +16,7 @@ from export_review_packet import (  # noqa: E402
     export_review_packet,
     normalize_submission_dirs,
     render_pdf,
+    self_check_professional_readiness,
 )
 
 
@@ -131,6 +132,13 @@ version: "0.2"
         },
     )
     return submission_dir
+
+
+class ReadinessBoundaryTests(unittest.TestCase):
+    def test_legacy_content_alias_is_not_a_professional_score_gate(self) -> None:
+        self.assertFalse(
+            self_check_professional_readiness({"can_enter_formal_review": True})
+        )
 
 
 class ExportReviewPacketTests(unittest.TestCase):

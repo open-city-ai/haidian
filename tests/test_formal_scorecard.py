@@ -10,6 +10,9 @@ from pathlib import Path
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+
+from generate_formal_scorecard import build_scorecard  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 HAS_REVIEW_DEPS = all(
     importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
@@ -53,6 +56,22 @@ class FormalScorecardSchemaTests(unittest.TestCase):
         dimension_enum = schema["properties"]["dimensions"]["items"]["properties"]["dimension_id"]["enum"]
         self.assertEqual(len(dimension_enum), 7)
         self.assertIn("implementation_feasibility", dimension_enum)
+
+    def test_legacy_content_alias_cannot_open_a_scorecard(self) -> None:
+        scorecard = build_scorecard(
+            {
+                "submission_dir": "submissions/alice/legacy",
+                "recommendation": "formal-review-ready",
+                "can_enter_formal_review": True,
+            }
+        )
+        self.assertEqual("blocked", scorecard["scoring_status"])
+        self.assertTrue(scorecard["eligibility_gate"]["content_review_eligible"])
+        self.assertFalse(scorecard["eligibility_gate"]["professional_scoring_eligible"])
+        self.assertIn(
+            "professional_scoring_eligibility_missing",
+            scorecard["eligibility_gate"]["professional_scoring_blocked_by"],
+        )
 
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run formal scorecard tests")

@@ -43,6 +43,9 @@ def valid_review() -> dict:
         "schema_version": "0.1.0",
         "submission_dir": SUBMISSION_REL,
         "recommendation": "formal-review-ready",
+        "content_review_eligible": True,
+        "professional_scoring_eligible": True,
+        "professional_scoring_blocked_by": [],
         "can_enter_formal_review": True,
         "mandatory_rejection": {
             "result": "pass",
@@ -99,13 +102,19 @@ class AIReviewSubmissionTests(unittest.TestCase):
                 "author": "alice",
                 "pre_submit_self_check": {
                     "stdout": {
-                        key: {"ok": True}
-                        for key in [
-                            "deterministic_validation",
-                            "spatial_review",
-                            "visual_review",
-                            "professional_review",
-                        ]
+                        "content_review_eligible": True,
+                        "professional_scoring_eligible": True,
+                        "professional_scoring_blocked_by": [],
+                        "can_enter_formal_review": True,
+                        **{
+                            key: {"ok": True}
+                            for key in [
+                                "deterministic_validation",
+                                "spatial_review",
+                                "visual_review",
+                                "professional_review",
+                            ]
+                        },
                     }
                 },
             },
@@ -426,6 +435,45 @@ class AIReviewSubmissionTests(unittest.TestCase):
         self.assertEqual([], result["review"]["required_next_actions_zh"])
         self.assertIn("组织方：发布官方几何后重算指标。", result["review"]["data_gaps_zh"])
         self.assertTrue(any("moved organizer-owned" in item for item in result["decision"]["local_gate_overrides"]))
+
+    def test_legacy_content_alias_cannot_authorize_professional_scoring(self) -> None:
+        review = valid_review()
+        client = FakeClient(review)
+        legacy_input = {
+            "submission_dir": SUBMISSION_REL,
+            "author": "alice",
+            "pre_submit_self_check": {
+                "stdout": {
+                    "can_enter_formal_review": True,
+                    **{
+                        key: {"ok": True}
+                        for key in [
+                            "deterministic_validation",
+                            "spatial_review",
+                            "visual_review",
+                            "professional_review",
+                        ]
+                    },
+                }
+            },
+        }
+        with tempfile.TemporaryDirectory() as tmp, mock.patch(
+            "ai_review_submission.build_review_input", return_value=legacy_input
+        ), mock.patch(
+            "ai_review_submission.collect_visual_inputs", return_value=([], [], [])
+        ), mock.patch("ai_review_submission.content_preflight", return_value=[]):
+            result = run_ai_review(
+                ROOT, SUBMISSION, "alice", Path(tmp), client, "gpt-test",
+                "https://api.openai.com/v1", "high", 7, 1024 * 1024, False,
+            )
+        self.assertTrue(result["review"]["content_review_eligible"])
+        self.assertTrue(result["review"]["can_enter_formal_review"])
+        self.assertFalse(result["review"]["professional_scoring_eligible"])
+        self.assertIn(
+            "professional_scoring_eligibility_missing",
+            result["review"]["professional_scoring_blocked_by"],
+        )
+        self.assertEqual("do-not-publish", result["decision"]["publication_recommendation"])
 
     def test_participant_repair_mentioning_official_geometry_stays_blocking(self) -> None:
         review = valid_review()

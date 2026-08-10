@@ -106,12 +106,14 @@ def build_summary(repo_root: Path, submission_dir: Path, pr_author: str, self_ch
     content_review_eligible = bool(
         self_check.get("content_review_eligible", self_check.get("can_enter_formal_review"))
     )
-    professional_scoring_eligible = bool(
-        self_check.get("professional_scoring_eligible", content_review_eligible)
-    )
+    professional_value = self_check.get("professional_scoring_eligible")
+    professional_scoring_eligible = professional_value if isinstance(professional_value, bool) else False
     professional_scoring_blocked_by = self_check.get("professional_scoring_blocked_by", [])
     if not isinstance(professional_scoring_blocked_by, list):
         professional_scoring_blocked_by = []
+    professional_scoring_blocked_by = [str(item) for item in professional_scoring_blocked_by]
+    if not isinstance(professional_value, bool) and "professional_scoring_eligibility_missing" not in professional_scoring_blocked_by:
+        professional_scoring_blocked_by.append("professional_scoring_eligibility_missing")
     return {
         "submission_dir": relpath(submission_dir, repo_root),
         "pr_author": pr_author,

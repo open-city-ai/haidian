@@ -104,6 +104,9 @@ summary: "围绕百年京张 AI 创新带提出可审查方案。"
         )
         self.assertEqual(len(dimension_enum), 7)
         self.assertIn("brief_alignment", dimension_enum)
+        self.assertIn("content_review_eligible", schema["required"])
+        self.assertIn("professional_scoring_eligible", schema["required"])
+        self.assertIn("professional_scoring_blocked_by", schema["required"])
         self.assertIn("pr_comment_markdown", schema["required"])
 
 

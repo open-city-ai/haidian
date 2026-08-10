@@ -11,6 +11,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(REPO_ROOT / "scripts"))
+from maintainer_review import build_summary  # noqa: E402
 HAS_REVIEW_DEPS = all(
     importlib.util.find_spec(name) is not None for name in ["shapely", "pyproj", "jsonschema"]
 )
@@ -66,6 +68,22 @@ def run_maintainer_comment(submission_dir: Path, pr_author: str, repo_root: Path
     if out_dir is not None:
         command.extend(["--out", str(out_dir)])
     return subprocess.run(command, capture_output=True, text=True, check=False)
+
+
+class MaintainerReadinessBoundaryTests(unittest.TestCase):
+    def test_legacy_content_alias_does_not_authorize_professional_scoring(self) -> None:
+        summary = build_summary(
+            REPO_ROOT,
+            REPO_ROOT / "submissions" / "alice" / "legacy",
+            "alice",
+            {"stdout": {"ok": True, "can_enter_formal_review": True}},
+        )
+        self.assertTrue(summary["content_review_eligible"])
+        self.assertFalse(summary["professional_scoring_eligible"])
+        self.assertIn(
+            "professional_scoring_eligibility_missing",
+            summary["professional_scoring_blocked_by"],
+        )
 
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run maintainer review tests")
