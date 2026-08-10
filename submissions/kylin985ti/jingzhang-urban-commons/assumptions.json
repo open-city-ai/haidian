@@ -1,0 +1,214 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Official detailed-plan controls, road redlines, parcel ownership and engineering constraints have not been supplied as cleared project inputs.",
+      "impact": "No parcel-level development intensity, demolition, permanent construction, road, bridge, tunnel or utility commitment may be inferred from this package.",
+      "required_actions": [
+        "obtain official attachments",
+        "register provenance and hashes",
+        "recalculate affected geometry and metrics"
+      ],
+      "affects_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/constraints.geojson",
+        "metrics.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-GEOMETRY-001",
+      "status": "provisional_constraint",
+      "statement": "The site and three key-area polygons are repository provisional rough intake geometry, not official redlines.",
+      "impact": "Calculated areas support topology and intake review only; official polygons require full recalculation.",
+      "source_ids": [
+        "BOUNDARY-SOURCE",
+        "KEY-AREA-SOURCE",
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "affects_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/land_use.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "baseline_unknown",
+      "statement": "No cleared parcel-linked existing-building inventory is available; buildings.geojson therefore contains only 18 schematic test-fit envelopes, never existing-building geometry.",
+      "impact": "Schematic footprint, floor-area, FAR, density, height bands and program types are proposal sensitivity outputs. Existing conditions and parcel-level retain/adapt/demolish/infill decisions remain unknown.",
+      "required_actions": [
+        "replace schematic envelopes with a verified building inventory",
+        "link parcel, ownership, lease, structure, fire, energy, heritage and construction status",
+        "repeat professional and public review before any parcel decision"
+      ],
+      "affects_files": [
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson",
+        "metrics.json",
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-MOBILITY-001",
+      "status": "conceptual_not_approved",
+      "statement": "The north-south axis and three cross-links are audit relations derived from provisional key-area geometry, not roads, rail, entrances, bridges or tunnels.",
+      "impact": "They may organize fieldwork and OD tests only; no engineering alignment, right-of-way or implementation conclusion is created.",
+      "required_actions": [
+        "obtain official roads/rail/entrances",
+        "complete multi-time field audit",
+        "clear G0/G1/G2/G7/G8"
+      ],
+      "affects_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "metrics.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-PLATFORMS-001",
+      "status": "conceptual_not_approved",
+      "statement": "The three reciprocity platforms are programmatic point symbols located at provisional key-area centroids.",
+      "impact": "They are not buildings, parcels, approved public-space sites, operating licenses or investment commitments.",
+      "required_actions": [
+        "verify existing reusable spaces",
+        "confirm ownership and access",
+        "approve operator, budget, safety and exit plan"
+      ],
+      "affects_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-BASELINE-001",
+      "status": "baseline_unknown",
+      "statement": "Enterprise, employment, rent, public service, accessibility, traffic, heat, ecology, flood, CSO and municipal-capacity baselines have not been collected at the official project scope.",
+      "impact": "All corresponding current-performance metrics remain status=unknown and value=null; citywide or district totals are not area-prorated.",
+      "required_actions": [
+        "obtain official polygon and denominators",
+        "execute documented field/operational data protocols",
+        "publish missingness and confidence"
+      ],
+      "affects_files": [
+        "metrics.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-TARGETS-001",
+      "status": "proposal_not_approved",
+      "statement": "Numeric targets, budget scenarios, scenario counts and professional gates are proposal parameters, not current baselines, government targets or approvals.",
+      "impact": "Known values with value_role=proposal_target/proposal_gate/computed_scenario must retain approval_status=not_approved; gate records remain not_cleared.",
+      "required_actions": [
+        "establish baseline",
+        "confirm method and authority",
+        "complete professional/public review before implementation"
+      ],
+      "affects_files": [
+        "metrics.json",
+        "compliance_matrix.json",
+        "design_depth_matrix.json",
+        "standard_matrix.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Webpage text does not substitute for georeferenced heritage protection and construction-control drawings.",
+      "impact": "No fixed installation, excavation, lighting, foundation, statutory-line or compliance claim may be located in a heritage-sensitive area without official drawings and review.",
+      "source_ids": [
+        "QINGHUAYUAN-CONTROL-2026"
+      ],
+      "affects_files": [
+        "geometry/constraints.geojson",
+        "metrics.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "baseline_unknown",
+      "statement": "Utility networks, approved capacities, existing peak loads and expansion conditions are unavailable.",
+      "impact": "No centralized compute, microgrid, underground facility, drainage intervention or high-load service is committed; municipal capacity margin remains unknown.",
+      "required_actions": [
+        "obtain owner-verified networks and capacities",
+        "complete flood/fire/energy/environment reviews",
+        "clear G3/G6/G8"
+      ],
+      "affects_files": [
+        "geometry/constraints.geojson",
+        "metrics.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-SOURCES-001",
+      "status": "participant_verified_with_scope_limits",
+      "statement": "Externally collected official sources are recorded in the submission but are not silently upgraded to central-registry approved status.",
+      "impact": "Each source's allowed and prohibited uses remain binding; background and project-status sources cannot establish official boundaries, statutory controls or implementation quality.",
+      "affects_files": [
+        "sources.json",
+        "standard_matrix.json",
+        "compliance_matrix.json"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-SCHEMATIC-DETAIL-001",
+      "status": "conceptual_not_approved",
+      "statement": "Three key-area plans, 18 test-fit envelopes, program zones, scenario nodes and two sections use normalized relationships inside repository provisional rectangles.",
+      "impact": "They can be used to compare spatial organization and operating responsibilities, but not to infer actual location, parcel boundaries, land ownership, development rights, demolition, road alignment, station access, engineering feasibility or approval.",
+      "source_ids": [
+        "OFFICIAL-ANNOUNCEMENT",
+        "KEY-AREA-SOURCE",
+        "GITHUB-ISSUE-1029"
+      ],
+      "required_actions": [
+        "obtain and georeference official key-area and parcel polygons",
+        "verify buildings, roads, rail entrances, heritage, utilities and ownership in the field",
+        "replace normalized test fits and recalculate every affected metric and drawing"
+      ],
+      "affects_files": [
+        "geometry/buildings.geojson",
+        "geometry/constraints.geojson",
+        "geometry/roads.geojson",
+        "metrics.json",
+        "proposal.md",
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "as_of_date": "2026-08-10"
+    },
+    {
+      "id": "A-AGENT6-001",
+      "status": "proposal_not_approved",
+      "statement": "The Open Loop event brand, developer community, scenario-access service levels, international conversion pathway and landmark operating contracts are proposal mechanisms only.",
+      "impact": "No event, partnership, operator, venue, sponsor, budget, participant count, conversion result or government commitment is claimed as approved or delivered.",
+      "required_actions": [
+        "confirm authority and operators",
+        "co-design with affected groups",
+        "approve budget, safety, data, accessibility, heritage, quiet-hours and exit contracts",
+        "publish an operating calendar only after approval"
+      ],
+      "affects_files": [
+        "proposal.md",
+        "metrics.json",
+        "compliance_matrix.json",
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "as_of_date": "2026-08-10"
+    }
+  ]
+}
