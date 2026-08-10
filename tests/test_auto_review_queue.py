@@ -141,6 +141,29 @@ class AutoReviewQueueTests(unittest.TestCase):
         ]
         self.assertIsNone(historical_best_score(merged_prs, "submissions/alice/plan", {"cocosgt"}))
 
+    def test_historical_best_keeps_higher_score_from_non_final_merged_pr_revision(self) -> None:
+        reviewed_head = "c" * 40
+        final_head = "d" * 40
+        body = (
+            f"<!-- haidian-auto-review:{reviewed_head} -->\n"
+            "Maintainer intake decision: Review Agent score 94/100. Mandatory rejection and all four local gates passed."
+        )
+        merged_prs = [
+            {
+                "headRefOid": final_head,
+                "files": [{"path": "submissions/alice/plan/proposal.md"}],
+                "reviews": [
+                    {
+                        "state": "APPROVED",
+                        "author": {"login": "CocoSgt"},
+                        "body": body,
+                        "commit": {"oid": reviewed_head},
+                    }
+                ],
+            }
+        ]
+        self.assertEqual(94, historical_best_score(merged_prs, "submissions/alice/plan", {"cocosgt"}))
+
     def test_failed_gate_overrides_high_score(self) -> None:
         review = {
             "mandatory_rejection": {"result": "pass"},
