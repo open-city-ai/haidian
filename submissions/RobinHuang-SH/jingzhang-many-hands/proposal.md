@@ -3,7 +3,9 @@ title: "京张百工线：让支撑 AI 城市的人被看见"
 author_github: "RobinHuang-SH"
 language: "zh"
 proposal_format_version: "2"
-iteration: "v0.3.0"
+iteration: "v0.4.0"
+translation_file: "proposal.en.md"
+bilingual_contract_version: "1"
 license: "CC-BY-4.0"
 summary: "以京张遗址绿脊为24小时百工线，用官方产业统计、劳动条件数据和开放地图功能代理，把研究、运维、物流、服务与照护组织为可见、可交接、可验证的AI城市基础设施。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -18,7 +20,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 本方案从一个朴素问题出发：一座 AI 城市每天由谁真正托住？答案不仅是研究员和工程师，也包括实验技术员、设备运维者、物业与环卫人员、骑手和零售餐饮服务者、照护者与家庭，以及需要无障碍服务的老年人、残障者和新来者。设计把这些常被隐藏的劳动、交接与修复活动变成公共空间和治理基础设施，以京张遗址绿脊串起一条全天候“百工线”。项目范围、六项任务和开放征集原则以公告和智能体任务书为直接依据。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
 
-v0.3.0 评审修订版把产业、教育、物流、平台劳动和开放地图证据接入同一质量闸门：数据越接近个体和地块，越不能仅凭公开聚合数作决定；任何 D 级代理都只能触发核查，而不能直接触发建设或管理动作。[source:SOURCE-REGISTRY] [assumption:A-DATA-GRAIN-001]
+v0.4.0 复审版把产业、教育、物流、平台劳动和开放地图证据接入同一质量闸门：数据越接近个体和地块，越不能仅凭公开聚合数作决定；任何 D 级代理都只能触发核查，而不能直接触发建设或管理动作。[source:SOURCE-REGISTRY] [assumption:A-DATA-GRAIN-001]
 
 空间资料以项目站点包和来源登记为真源，面积、边界和专业限制不从网页截图或示意图反推。总体范围与三处重点区采用维护者发布的临时粗略 polygon，属性明确标记 `official_boundary=false` 与 `boundary_precision=provisional_rough`；获得正式 CAD/GIS 后，九个图层、面积指标和图纸必须成套替换重算。[source:SITE-PACKAGE] [data:geometry/site_boundary.geojson#SITE-001] [assumption:A-BOUNDARY-001]
 
@@ -139,7 +141,7 @@ Agent.1 的独立输出是 7 个全球案例转译表、八类资源机制和五
 
 Agent.2—3 对应总体与重点区：AI 原点形成“课程—照护—开发者—社区验证”的世界级 AI 创新生态；众智园形成“模型—硬件—运维—安全—治理”的全栈自主创新与可信测试系统；大钟寺承接智能原生新业态和抵达展示；中关村科技服务翼提供标准、IP、资本和国际转化，小月河场景赋能翼承接生活、物流、慢行与气候场景。所有图面都有图名、图例、北箭头、比例尺和临时边界警示；这些比例尺基于临时投影几何，只供概念判断。[data:geometry/key_areas.geojson#PROV-KEY-001]
 
-Agent.4 的独立输出是 12 张场景卡。每张卡都明确人物、地点、空间载体、运营责任、数据边界、SLA、暂停/退出阈值，并遵守人工复核、非数字兜底和数据最小化。它们与空间和运营的完整矩阵见 `visual/assets/scenario-cards.json` 及 `assets/figures/scenario-operations.png`，不再只停留在场景名称清单。[metric:scenario_node_count]
+Agent.4 的独立输出是 12 张场景卡。每张卡都明确人物、地点、空间载体、运营责任、数据边界、SLA、暂停/退出阈值，并遵守人工复核、非数字兜底和数据最小化。它们与空间和运营的完整矩阵见 `visual/assets/scenario-cards.json` 及 `assets/figures/mobility-bluegreen.png`，不再只停留在场景名称清单。[metric:scenario_node_count]
 
 Agent.5 的四地标为百工谱、交班厅、修复园、贡献标尺；历史文化资源分成铁路遗产本体、工业与技术劳动史、当代数字劳动史三层。Logo 由交接手势和铁路双线构成开放环；深蓝、青、琥珀、珊瑚、绿色分别表达责任、协作、交班、人工关注和修复。禁止覆盖遗产本体、暗示政府背书、仅靠颜色传意或复制企业商标，见 `visual/assets/landmark-culture-system.json`。
 
@@ -156,3 +158,18 @@ HTML、PDF、PNG 和实体导视均需人工无障碍审计：键盘顺序、替
 海淀经济普查总公报的就业数据定位到 PDF 第 3—4 页表 3；服务业公报的信息软件数据定位到第 7—8 页表 9—11；美团骑手数据定位到报告标示页 15、19、21、25。缓存文件 SHA-256、转换公式和再利用边界登记在 `visual/assets/source-audit.json`。政府和平台材料只转录有限事实、表名与页码，不复制图片或版式；OSM 只分发聚合计数并保留 ODbL 署名。[source:HAIDIAN-ECON-CENSUS-OVERALL-2023] [source:MEITUAN-RIDER-2024-2025]
 
 建筑占地采用 EPSG:4548 投影后 `area(unary_union(footprints))` 统一计算，并另列“逐图斑求和减合并面积”的重叠诊断值；只有重叠为 0 才通过。该口径与空间复核脚本一致，避免重复计数。[metric:building_footprint_area_sqm] [metric:building_footprint_overlap_sqm]
+
+
+## 从仓库收录到百日原型：v0.4.0 可验证交付
+
+本轮不以增加设备或扩大面积证明“深化”，而把三处重点区各压缩为一本可验证的原型护照。大钟寺“交班门廊”先用长椅、饮水、纸面时刻与人工服务建立普通基线，再测试本地端无跟踪路径；AI 原点“共学照护台”先提供可调桌、纸面课程和人工预约，再测试不建家庭画像的当次课程匹配；众智园“修复与公平共测湾”先建立隔离场、实体急停、纸面工单和人工申诉，再测试不关联个人绩效的设备遥测与聚合排班审计。每个原型都写明空间载体、责任人、公开凭证、验收门槛、暂停条件和撤除数字层后的恢复方式。[data:visual/assets/prototype-passports.json#PP-01] [assumption:A-SCENARIO-001]
+
+百日交付分成四个不能跳级的闸门：0—30 日补底图、资产安全责任、参与补偿与普通服务基线；31—60 日搭建无数据 1:1 原型并完成人工流程、无障碍和申诉演练；61—90 日才允许最小数据、本地端和急停测试；91—100 日由独立评估联合体与使用者评审团公开作出继续、暂停或退出决定。证据不完整、关键参与组缺席或利益冲突未披露时默认暂停，不以工期压力替代公共利益门槛。[data:visual/assets/first-100-days-delivery.json] [data:visual/assets/governance-raci.json]
+
+实施责任分成空间资产、日常运营、数据模型、独立评价和资金退出五条线。每条线都有唯一问责角色和对公众开放的“收据”：底图与事故账本、开放时段与申诉工单、数据清单与删除证明、原始评分与利益冲突登记、维护预算与退出准备金。相对成本仍只用低/中/高表示，不虚构投资估算；法定强度、道路、权属和市政容量继续保持 unknown。[data:visual/assets/governance-raci.json] [metric:floor_area_ratio]
+
+数字交付已完成可计算的无障碍预检：正文和展示页具有语言声明、语义标题、替代文本和离线资源；图纸字体可嵌入并可抽取文本；色彩系统的关键前景/背景组合按 WCAG 2.2 对比度公式记录。真实残障者、老年人、夜班人员和照护者走查，以及实体导视的触觉、视高、眩光和轮椅回转审计尚未完成，继续被明确列为实施前硬门槛，而不是用自动化检查冒充参与式验收。[data:visual/assets/accessibility-audit.json] [assumption:A-LABOR-001]
+
+为国际复审同步提交英文叙事、网页、五张主图、A3 图册和 A0 展板；术语统一使用 Many Hands Line、Handover Hall、Non-digital fallback 与 Exit reserve，并在所有英文界面保留“临时边界、非审批、非投资承诺、非政府背书”的状态说明。国际传播的目标是邀请维护者、劳动者、残障者、照护者和独立评估者共同测试，而不是把开源概念包装成已落地样板。[data:visual/assets/international-communication-kit.json]
+
+![证据、百日交付与独立评价闭环](assets/figures/metrics-evidence.png)
