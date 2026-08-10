@@ -1,0 +1,230 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11406000,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "polygon_area(site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": ["使用provisional边界，非官方红线", "面积约1140.6ha"]
+    },
+    "site_area_ha": {
+      "status": "known",
+      "value": 1140.6,
+      "unit": "ha",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "site_area_sqm / 10000",
+      "confidence": "medium",
+      "assumptions": ["provisional边界复算"]
+    },
+    "research_area_km2": {
+      "status": "known",
+      "value": 43.6,
+      "unit": "km2",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "公告1.3统筹研究范围",
+      "confidence": "high",
+      "assumptions": ["公告数据"]
+    },
+    "design_area_km2": {
+      "status": "known",
+      "value": 11.4,
+      "unit": "km2",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "公告1.4总体设计范围",
+      "confidence": "high",
+      "assumptions": ["公告数据"]
+    },
+    "vine_length_km": {
+      "status": "known",
+      "value": 9.8,
+      "unit": "km",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "linestring_length(vine, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": ["概念设计长度，藤脉复合脊柱"]
+    },
+    "vine_area_ha": {
+      "status": "known",
+      "value": 117.0,
+      "unit": "ha",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "vine_length * avg_width(119m)",
+      "confidence": "medium",
+      "assumptions": ["概念面积"]
+    },
+    "total_floor_area_wan_m2": {
+      "status": "known",
+      "value": 900,
+      "unit": "wan_m2",
+      "source_files": ["geometry/land_use.geojson", "geometry/buildings.geojson"],
+      "formula": "sum(area * far) per TOD ring, with 0.6 reduction factor",
+      "confidence": "medium",
+      "assumptions": ["FAR为概念建议，需控规批复确认"]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 96,
+      "unit": "count",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "feature_count(buildings)",
+      "confidence": "medium",
+      "assumptions": ["概念建筑布局"]
+    },
+    "green_space_ratio": {
+      "status": "known",
+      "value": 30.3,
+      "unit": "percent",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "sum(green_space.area) / site_area * 100",
+      "confidence": "medium",
+      "assumptions": ["约345ha，概念估算"]
+    },
+    "road_network_density": {
+      "status": "known",
+      "value": 9.5,
+      "unit": "km/km2",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(road.length) / site_area",
+      "confidence": "medium",
+      "assumptions": ["概念路网"]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "feature_count(key_areas where type=KEY_AREA)",
+      "confidence": "high",
+      "assumptions": ["众智园M3、AI原点社区M2、大钟寺M1"]
+    },
+    "phasing_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "feature_count(phasing)",
+      "confidence": "high",
+      "assumptions": ["2026-2038分四期"]
+    },
+    "scenario_cards_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count scenario cards in proposal appendix B",
+      "confidence": "high",
+      "assumptions": ["12张AI场景卡，满足>=10"]
+    },
+    "test_validation_scenarios": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count test scenarios in proposal",
+      "confidence": "high",
+      "assumptions": ["满足>=3"]
+    },
+    "user_personas_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count personas in proposal appendix C",
+      "confidence": "high",
+      "assumptions": ["研究员/创业者/高管/居民/学生"]
+    },
+    "landmarks_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count landmarks in proposal chapter 11",
+      "confidence": "high",
+      "assumptions": ["算力方碑、火花塔、回响之钟AI编钟塔"]
+    },
+    "global_case_studies": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count case studies in proposal appendix D",
+      "confidence": "high",
+      "assumptions": ["8个全球AI创新生态案例对比"]
+    },
+    "geojson_layers": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": ["geometry/"],
+      "formula": "count geojson files in geometry/",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "total_investment_yi_yuan": {
+      "status": "known",
+      "value": 1200,
+      "unit": "yi_yuan",
+      "source_files": ["proposal.md"],
+      "formula": "GFA * construction cost per m2 estimate",
+      "confidence": "low",
+      "assumptions": ["概念估算，需可研确认"]
+    },
+    "far_core": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": ["概念建议，需控规批复"],
+      "reason": "核心圈（0-300m）容积率4.0-6.0为概念建议，法定控规批复前不作为正式指标。"
+    },
+    "far_inner": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": ["概念建议，需控规批复"],
+      "reason": "内层圈（300-600m）容积率2.5-4.0为概念建议，法定控规批复前不作为正式指标。"
+    },
+    "far_outer": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": ["概念建议，需控规批复"],
+      "reason": "外层圈（600-1000m）容积率1.0-1.5为概念建议，法定控规批复前不作为正式指标。"
+    },
+    "predicted_jobs_2038": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["proposal.md"],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": ["预测值，受经济周期影响"],
+      "reason": "2038年预测就业岗位12-15万为模型预测区间，需后续统计校核。"
+    },
+    "predicted_population_2038": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": ["proposal.md"],
+      "formula": "n/a",
+      "confidence": "unknown",
+      "assumptions": ["预测值"],
+      "reason": "2038年预测常住人口8-10万为模型预测区间，需后续统计校核。"
+    }
+  }
+}
