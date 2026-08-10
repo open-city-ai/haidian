@@ -48,7 +48,7 @@
 
 本仓库的 `submission-validation` workflow 使用 `pull_request_target`，只 checkout base branch 的受信任脚本，并通过 GitHub API 读取 PR 文件内容；不要在该 workflow 中 checkout 或执行 PR 分支代码。
 
-该 workflow 的 concurrency 必须按 PR 号隔离：同一个 PR 推送新 head 时取消旧 run，不同 PR 不得共享一个全局 pending 槽位。验证脚本会在只读 API 遇到 secondary rate limit 时按 `Retry-After` 重试，并在每次写标签或评论前回读当前 head；因此不能用全局 concurrency 代替 stale-head 检查，也不要添加未被 GitHub Actions 支持的 `queue` 配置键。
+该 workflow 的 concurrency 必须按 PR 号隔离：同一个 PR 推送新 head 时取消旧 run，不同 PR 不得共享一个全局 pending 槽位。GitHub 的 `queue: max` 是合法配置，但单个 concurrency group 最多只能积压 100 个等待运行；在投稿高峰期继续把所有 PR 放进同一组，会让新运行在创建 job 前被拒绝。验证脚本会在只读 API 遇到 secondary rate limit 时按 `Retry-After` 重试，并在每次写标签或评论前回读当前 head；因此这里移除全局 queue cap，不能用全局 concurrency 代替 stale-head 检查。
 
 ## AI 评审边界
 

@@ -213,7 +213,7 @@ def check_workflow_trusted_base(repo_root: Path, checks: list[dict[str, Any]]) -
     if re.search(r"(?m)^\s*group:\s*submission-validation\s*$", text) or re.search(
         r"(?m)^\s*queue:", text
     ):
-        failures.append("workflow must not use a global submission queue or unsupported queue key")
+        failures.append("workflow must not use a global submission queue or queue cap")
     add_check(
         checks,
         "workflow_uses_trusted_base",
