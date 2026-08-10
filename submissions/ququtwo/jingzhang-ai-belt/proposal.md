@@ -260,6 +260,10 @@ scenario: ["traffic-walkability", "enterprise-services-ecosystem", "public-safet
 - **更新类**：既有低效产业用地、老旧居住区，通过功能置换与空间改造实现价值提升
 - **新建类**：在存量更新基础上适度新增创新空间与配套设施
 
+**城市更新机制设计（概念建议）：** [source:AGENT-TASKBOOK]
+
+本方案概念建议建立"规划引领-场景驱动-社区参与-数字治理"四位一体的城市更新运作体系，通过AI场景实验室、开源社区平台和智能治理网络，将传统城市更新模式升级为AI赋能的智慧更新模式，形成可复制、可推广的城市更新新范式。
+
 ### 4.2 控规深度城市设计导则
 
 本方案概念建议为整体设计范围提供以下控规深度城市设计导则框架：[source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]
