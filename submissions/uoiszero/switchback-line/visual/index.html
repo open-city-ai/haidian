@@ -1,0 +1,1035 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="京张折返线 Switchback Line —— 百年京张 AI 创新带城市设计离线电子展示。从青龙桥之字形折返，到 AI 前向/反向传播的百年学习回环。">
+<title>京张折返线 Switchback Line — 百年回环的智能学习带 · 城市设计电子展示</title>
+<style>
+:root{
+  --ink:#0E1B2C;
+  --navy:#0B1522;
+  --navy-2:#12293B;
+  --teal-700:#0F5E57;
+  --teal-600:#14786C;
+  --teal-500:#1B9E8F;
+  --teal-300:#7FD8C9;
+  --mint:#E3F2ED;
+  --paper:#EFF4F1;
+  --card:#FFFFFF;
+  --line:#D5DFDA;
+  --line-strong:#9CB4AB;
+  --text:#1C2A33;
+  --muted:#5E6E76;
+  --amber:#B45309;
+  --amber-bg:#FCF4E2;
+  --amber-line:#E3C07B;
+  --blue:#2563EB;
+  --coral:#D9534F;
+  --slate:#475569;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --shadow:0 10px 30px rgba(11,21,34,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--text);line-height:1.6;
+  background-color:var(--paper);
+  background-image:linear-gradient(rgba(15,94,87,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(15,94,87,.045) 1px,transparent 1px);
+  background-size:28px 28px;}
+h1,h2,h3,h4{line-height:1.25;color:var(--ink);margin:0 0 .5em}
+p{margin:0 0 .9em}
+a{color:var(--teal-600)}
+img{max-width:100%;height:auto;display:block}
+
+/* ---------- header ---------- */
+.site-head{background:
+  radial-gradient(1100px 420px at 78% -10%,rgba(27,158,143,.28),transparent 60%),
+  radial-gradient(900px 380px at -8% 110%,rgba(37,99,235,.16),transparent 60%),
+  linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 72%,#0E2A33 100%);
+  color:#E7F1EE;border-bottom:4px solid var(--teal-500);}
+.head-inner{max-width:1280px;margin:0 auto;padding:34px 26px 22px}
+.brand-row{display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap}
+.mark-svg{width:86px;height:86px;flex:0 0 auto}
+.brand-text{flex:1 1 420px;min-width:0}
+.eyebrow{display:flex;align-items:center;gap:8px;color:var(--teal-300);letter-spacing:.16em;font-size:12px;text-transform:uppercase;margin-bottom:12px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--teal-500);display:inline-block}
+h1.brand{font-size:clamp(28px,4.6vw,44px);margin:0 0 6px;color:#fff;letter-spacing:.01em;font-weight:800}
+.brand-en{color:var(--teal-300);font-family:var(--mono);font-weight:500;font-size:.62em;letter-spacing:.12em}
+.tagline{color:#BFD4CC;font-size:15px;margin:0 0 4px;max-width:840px}
+.tagline-sub{color:#8FA9A0;font-size:12.5px;margin:0}
+.head-side{flex:0 0 auto;min-width:300px;max-width:380px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(127,216,201,.4);padding:6px 12px;font-size:12px;color:#D7E9E3}
+.pill b{color:var(--teal-300);font-weight:600}
+
+/* provisional warning */
+.provisional{display:flex;gap:14px;align-items:flex-start;margin-top:22px;border:1px solid var(--amber-line);background:var(--amber-bg);
+  border-radius:10px;padding:14px 16px;color:#5B3A10;box-shadow:var(--shadow)}
+.provisional .ico{flex:0 0 auto;width:34px;height:34px;border-radius:8px;background:#B45309;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:17px}
+.provisional h3{margin:0 0 4px;font-size:15px;color:#7A3E08}
+.provisional p{margin:0;font-size:13px;line-height:1.65}
+.provisional .en{color:#8A6A35;font-size:12px}
+
+/* section nav */
+.section-nav{position:sticky;top:0;z-index:60;background:rgba(11,21,34,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:flex;gap:4px;overflow-x:auto;padding:9px 22px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);scrollbar-width:thin}
+.section-nav a{color:#BFD2CB;font-size:12px;text-decoration:none;white-space:nowrap;padding:4px 10px;border-radius:999px;border:1px solid transparent}
+.section-nav a:hover{color:#fff;border-color:rgba(127,216,201,.55)}
+.section-nav .no{font-family:var(--mono);color:var(--teal-300);margin-right:3px}
+
+/* ---------- main ---------- */
+main{max-width:1280px;margin:0 auto;padding:26px 22px 44px}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:0 0 24px;box-shadow:var(--shadow);
+  position:relative;overflow:hidden}
+.sheet::before,.sheet::after{content:"";position:absolute;width:14px;height:14px;pointer-events:none}
+.sheet::before{top:6px;left:6px;border-top:2px solid var(--teal-500);border-left:2px solid var(--teal-500);border-top-left-radius:6px}
+.sheet::after{bottom:6px;right:6px;border-bottom:2px solid var(--teal-500);border-right:2px solid var(--teal-500);border-bottom-right-radius:6px}
+.sheet-head{display:flex;gap:16px;align-items:flex-start;padding:18px 22px 14px;border-bottom:1px solid #E4EBE7;background:linear-gradient(180deg,#FBFDFC,#F4F9F6)}
+.sec-no{flex:0 0 auto;font-family:var(--mono);font-weight:700;color:var(--teal-600);background:var(--mint);border:1px solid var(--teal-300);
+  border-radius:8px;padding:6px 10px;font-size:15px;line-height:1;margin-top:2px}
+.sheet-head h2{margin:0 0 4px;font-size:21px;letter-spacing:.01em}
+.sheet-head h2 .en{color:var(--muted);font-size:.72em;font-weight:600;font-family:var(--mono)}
+.sheet-head p{margin:0;color:var(--muted);font-size:13.5px;max-width:860px}
+.tag{margin-left:auto;flex:0 0 auto;font-size:11.5px;color:var(--teal-700);background:#E9F5F1;border:1px solid var(--teal-300);border-radius:999px;padding:5px 12px;white-space:nowrap}
+.sheet-body{padding:20px 22px 24px}
+
+/* figures */
+.fig{border:1px solid var(--line-strong);border-radius:10px;background:#FBFCFB;padding:8px;margin:0 0 14px}
+.fig img{border-radius:6px}
+.figcaption{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 6px 2px;font-size:12.5px;color:var(--muted)}
+.figcaption .fno{font-family:var(--mono);color:var(--teal-600);font-weight:600}
+.note-line{font-size:12.5px;color:var(--muted);background:#F3F7F4;border:1px dashed var(--line-strong);border-radius:8px;padding:10px 12px}
+
+/* legend */
+.legend-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:14px 0 14px}
+.legend-item{display:flex;gap:8px;align-items:center;font-size:12.5px;color:#33434C}
+.sw{flex:0 0 auto;width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid rgba(0,0,0,.12)}
+
+/* generic grids */
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+
+/* metric cards */
+.metric-card{border:1px solid var(--line);border-radius:10px;background:#FDFEFD;padding:14px 14px 12px;position:relative}
+.metric-card .k{font-size:11.5px;color:var(--muted);margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.metric-card .k code{font-family:var(--mono);color:#8AA39B;font-size:10.5px}
+.metric-card .v{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--teal-700);line-height:1.1;letter-spacing:-.01em}
+.metric-card .u{font-size:12px;color:var(--muted);margin-left:4px;font-family:var(--sans)}
+.metric-card .s{font-size:11.5px;color:var(--muted);margin-top:6px}
+.metric-card .dot{position:absolute;top:10px;right:12px;width:7px;height:7px;border-radius:50%;background:var(--teal-500)}
+
+/* station cards */
+.station{border:1px solid var(--line);border-radius:10px;padding:16px;background:linear-gradient(180deg,#FCFEFD,#F5FAF7)}
+.station h3{margin:0 0 2px;font-size:16px}
+.station .role{display:inline-block;font-family:var(--mono);font-size:11.5px;color:#fff;background:var(--teal-600);border-radius:999px;padding:3px 10px;margin:4px 0 10px}
+.station ul{margin:0;padding-left:18px;font-size:13px;color:#33434C}
+.station li{margin-bottom:4px}
+.area-val{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line-strong);font-size:13px;color:var(--muted)}
+.area-val strong{font-family:var(--mono);color:var(--teal-700)}
+
+/* scope cards */
+.scope{border:1px solid var(--line);border-radius:10px;padding:16px;background:#FCFEFD}
+.scope .lvl{font-family:var(--mono);font-size:11px;color:var(--teal-600);letter-spacing:.1em;text-transform:uppercase}
+.scope h3{margin:6px 0 6px;font-size:15.5px}
+.scope p{font-size:13px;color:#33434C;margin:0 0 8px}
+.scope ul{margin:0;padding-left:18px;font-size:12.5px;color:var(--muted)}
+.scope li{margin-bottom:3px}
+
+/* land use table */
+.lu-table{width:100%;border-collapse:collapse;font-size:13px}
+.lu-table th{text-align:left;font-size:11.5px;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line-strong);letter-spacing:.03em}
+.lu-table td{padding:9px 10px;border-bottom:1px solid #E9EFEC;vertical-align:middle}
+.lu-table tr:last-child td{border-bottom:none}
+.lu-code{font-family:var(--mono);font-weight:600;font-size:12px}
+.lu-name{font-weight:600}
+.bar-track{height:10px;background:#EDF2EF;border-radius:6px;overflow:hidden;min-width:120px}
+.bar-fill{height:100%;border-radius:6px}
+.lu-ha{font-family:var(--mono);font-weight:700;color:var(--teal-700);white-space:nowrap}
+.lu-pct{color:var(--muted);font-size:11.5px}
+
+/* color classes */
+.lu-05{background:#C2410C}.sw-05{background:#C2410C}
+.lu-0701{background:#D9A62E}.sw-0701{background:#D9A62E}
+.lu-0802{background:#3B5BDB}.sw-0802{background:#3B5BDB}
+.lu-0803{background:#7C5CDB}.sw-0803{background:#7C5CDB}
+.lu-0804{background:#0E9AA7}.sw-0804{background:#0E9AA7}
+.lu-0805{background:#E85D75}.sw-0805{background:#E85D75}
+.lu-1401{background:#158463}.sw-1401{background:#158463}
+.lu-16{background:#9CA3AF}.sw-16{background:#9CA3AF}
+.sys-spine{background:#158463}.sys-mobility{background:#2563EB}.sys-build{background:#C2410C}.sys-bluegreen{background:#1B9E8F}
+.w-b05{width:4.9%}.w-b0701{width:22.9%}.w-b0802{width:14.3%}.w-b0803{width:13.8%}.w-b0804{width:13.7%}.w-b0805{width:1.4%}.w-b1401{width:27.2%}.w-b16{width:1.7%}
+
+/* scenario / task cards */
+.task-card{border:1px solid var(--line);border-radius:10px;padding:14px 15px;background:#FCFEFD}
+.task-card .t-no{font-family:var(--mono);font-size:11px;color:var(--teal-600);letter-spacing:.08em}
+.task-card h3{margin:6px 0 6px;font-size:14.5px}
+.task-card p{margin:0;font-size:12.5px;color:var(--muted)}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.chip{font-size:12px;border:1px solid var(--line-strong);border-radius:999px;padding:5px 11px;background:#F5FAF7;color:#2C3E47}
+.chip b{color:var(--teal-700)}
+.persona{font-size:12.5px;color:#33434C;border:1px dashed var(--line-strong);border-radius:8px;padding:10px 12px;background:#FBFFFD}
+.persona b{display:block;color:var(--ink);font-size:13px;margin-bottom:2px}
+.landmark{font-size:12.5px;color:#33434C;border:1px solid var(--line);border-left:3px solid var(--teal-500);border-radius:8px;padding:10px 12px;background:#FBFDFC}
+.landmark b{display:block;color:var(--ink);font-size:13px}
+
+/* renewal table */
+.rn-table{width:100%;border-collapse:collapse;font-size:13px}
+.rn-table th{text-align:left;font-size:11.5px;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line-strong)}
+.rn-table td{padding:9px 10px;border-bottom:1px solid #E9EFEC;vertical-align:top}
+.rn-table tr:last-child td{border-bottom:none}
+.rn-id{font-family:var(--mono);font-weight:700;color:var(--teal-600);white-space:nowrap}
+.rn-type{font-size:11px;border:1px solid var(--line-strong);border-radius:999px;padding:2px 8px;white-space:nowrap;color:#475569}
+.tbl-scroll{overflow-x:auto}
+
+/* epoch / phasing */
+.epoch{border:1px solid var(--line);border-radius:10px;padding:15px;background:linear-gradient(180deg,#FBFEFC,#F2F8F4)}
+.epoch .e-no{font-family:var(--mono);font-size:11px;color:var(--teal-600);letter-spacing:.12em}
+.epoch h3{margin:6px 0 4px;font-size:15px}
+.epoch p{margin:0 0 8px;font-size:12.5px;color:#33434C}
+.epoch .area-val{margin-top:6px;padding-top:8px;border-top:1px dashed var(--line-strong);font-size:12.5px;color:var(--muted)}
+
+/* pending / unknown controls */
+.pending{font-size:12.5px;color:#8A5A10;background:var(--amber-bg);border:1px dashed var(--amber-line);border-radius:8px;padding:9px 12px}
+.pending b{color:#7A3E08}
+.pending .en{color:#8A6A35;font-size:11.5px}
+.unknown-chip{font-size:11.5px;color:#8A5A10;background:var(--amber-bg);border:1px solid var(--amber-line);border-radius:999px;padding:3px 10px;display:inline-block}
+
+/* status flow */
+.flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;margin:6px 0 18px}
+.flow .step{flex:1 1 180px;border:1px solid var(--line);border-radius:10px;padding:13px 14px;background:#FCFEFD;position:relative}
+.flow .step + .step{margin-left:26px}
+.flow .step + .step::before{content:"→";position:absolute;left:-22px;top:50%;transform:translateY(-50%);color:var(--teal-500);font-size:18px;font-weight:700}
+.flow .st-no{font-family:var(--mono);font-size:11px;color:var(--teal-600);letter-spacing:.1em}
+.flow h4{margin:5px 0 4px;font-size:14px}
+.flow p{margin:0;font-size:12px;color:var(--muted)}
+.flow .state{display:inline-block;font-size:11px;border-radius:999px;padding:2px 9px;margin-top:6px}
+.state-ok{background:#E2F3E8;color:#116B3C;border:1px solid #9BD3B0}
+.state-now{background:#FCF4E2;color:#7A3E08;border:1px solid var(--amber-line)}
+
+/* check list */
+.check-list{display:grid;gap:8px}
+.check-item{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:#FBFEFC;font-size:13px}
+.check-item .mark{flex:0 0 auto;width:20px;height:20px;border-radius:50%;background:#E2F3E8;color:#116B3C;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+.check-item .ck{font-family:var(--mono);font-size:12px;color:var(--teal-700);font-weight:700;white-space:nowrap}
+.check-item .msg{color:var(--muted);font-size:12px}
+.check-item code{font-family:var(--mono);font-size:11px;color:#8AA39B}
+
+/* coverage table */
+.cov-table{width:100%;border-collapse:collapse;font-size:13px}
+.cov-table th{text-align:left;font-size:11.5px;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line-strong)}
+.cov-table td{padding:9px 10px;border-bottom:1px solid #E9EFEC;vertical-align:top}
+.cov-table tr:last-child td{border-bottom:none}
+.cov-id{font-family:var(--mono);font-weight:700;color:var(--teal-600);white-space:nowrap}
+.cov-ok{display:inline-block;font-size:11px;border-radius:999px;padding:2px 9px;background:#E2F3E8;color:#116B3C;border:1px solid #9BD3B0;white-space:nowrap}
+
+/* source & assumption tables */
+.src-table{width:100%;border-collapse:collapse;font-size:12.5px}
+.src-table th{text-align:left;font-size:11px;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:2px solid var(--line-strong)}
+.src-table td{padding:8px 10px;border-bottom:1px solid #E9EFEC;vertical-align:top}
+.src-table tr:last-child td{border-bottom:none}
+.src-id{font-family:var(--mono);font-weight:700;color:var(--teal-600);white-space:nowrap}
+.src-type{font-family:var(--mono);font-size:11px;color:#55646B;white-space:nowrap}
+.sec-sub{margin-top:22px;padding-top:4px;border-top:1px solid #E4EBE7}
+.sec-sub h3{font-size:15px;margin-bottom:8px;color:var(--teal-700)}
+
+/* footer */
+.site-foot{background:var(--navy);color:#93A9A0;padding:26px 22px;border-top:3px solid var(--teal-500)}
+.site-foot .inner{max-width:1280px;margin:0 auto;font-size:12.5px;display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between}
+.site-foot b{color:#D7E9E3}
+.site-foot .mono{font-family:var(--mono);font-size:11.5px}
+
+/* responsive */
+@media (max-width:1024px){
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:860px){
+  .grid-3,.grid-2{grid-template-columns:1fr}
+  .grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .head-side{min-width:0;max-width:none}
+  .brand-row{gap:16px}
+  .flow .step{flex:1 1 100%}
+  .flow .step + .step{margin-left:0;margin-top:14px}
+  .flow .step + .step::before{content:"↓";left:50%;top:-16px;transform:translateX(-50%)}
+  .sheet-head{flex-wrap:wrap}
+  .tag{margin-left:0}
+}
+@media (max-width:560px){
+  .grid-4{grid-template-columns:1fr}
+  .head-inner{padding:24px 16px 16px}
+  main{padding:18px 12px 30px}
+  .section-nav{padding:8px 10px}
+}
+</style>
+</head>
+<body>
+<header class="site-head">
+  <div class="head-inner">
+    <div class="brand-row">
+      <svg class="mark-svg" viewBox="0 0 96 96" role="img" aria-label="折返线标志：之字形折返轨道与回环">
+        <rect x="3" y="3" width="90" height="90" rx="18" fill="#0E1B2C" stroke="#1B9E8F" stroke-width="2.5"/>
+        <path d="M18 76 L42 52 L34 44 L68 76" fill="none" stroke="#7FD8C9" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M27 86 L51 62 L43 54 L77 86" fill="none" stroke="#1B9E8F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M44 25 a10 10 0 1 1 20 0 a10 10 0 1 1 -20 0" fill="none" stroke="#E0B65C" stroke-width="5"/>
+      </svg>
+      <div class="brand-text">
+        <div class="eyebrow">百年京张 AI 创新带 · 城市设计开源征集 · 离线电子展示</div>
+        <h1 class="brand">京张折返线 <span class="brand-en">Switchback Line</span></h1>
+        <p class="tagline">从青龙桥之字形折返，到 AI 前向 / 反向传播的百年学习回环</p>
+        <p class="tagline-sub">一百年前，詹天佑用之字形折返翻越八达岭坡度；今天，AI 创新带以前向 / 反向传播回环攀登智能坡度。本页为离线电子展示成果，权威数据仍以 GeoJSON、metrics.json、矩阵与自检结果为准。</p>
+      </div>
+      <aside class="head-side">
+        <div class="pill-row">
+          <span class="pill"><b>三层范围</b></span>
+          <span class="pill"><b>三站两翼</b></span>
+          <span class="pill"><b>AI 场景</b></span>
+          <span class="pill"><b>任务覆盖</b></span>
+          <span class="pill"><b>自检状态</b></span>
+        </div>
+      </aside>
+    </div>
+    <div class="provisional">
+      <div class="ico" aria-hidden="true">!</div>
+      <div>
+        <h3>临时边界警示 · Provisional boundary warning</h3>
+        <p>本方案场地与三处重点区边界均为 provisional_constraint（official_boundary=false，boundary_precision=provisional_rough），仅用于开放征集、自检、可视化和设计讨论；<b>不得作为官方红线、审批依据或精确面积复算依据</b>。正式红线发布后，全部图层与指标须统一重新复算。来源见 sources.json 的 BOUNDARY-SOURCE 与 KEY-AREA-SOURCE。</p>
+      </div>
+    </div>
+  </div>
+</header>
+<nav class="section-nav" aria-label="章节导航">
+  <a href="#sec-01"><span class="no">01</span>总览地图</a>
+  <a href="#sec-02"><span class="no">02</span>三层范围</a>
+  <a href="#sec-03"><span class="no">03</span>重点区域</a>
+  <a href="#sec-04"><span class="no">04</span>用地分区</a>
+  <a href="#sec-05"><span class="no">05</span>交通慢行</a>
+  <a href="#sec-06"><span class="no">06</span>蓝绿公共空间</a>
+  <a href="#sec-07"><span class="no">07</span>建筑</a>
+  <a href="#sec-08"><span class="no">08</span>更新项目</a>
+  <a href="#sec-09"><span class="no">09</span>AI 场景</a>
+  <a href="#sec-10"><span class="no">10</span>核心指标</a>
+  <a href="#sec-11"><span class="no">11</span>任务覆盖</a>
+  <a href="#sec-12"><span class="no">12</span>自检状态</a>
+  <a href="#sec-13"><span class="no">13</span>来源</a>
+  <a href="#sec-14"><span class="no">14</span>假设</a>
+</nav>
+<main>
+<section class="sheet" id="sec-01">
+  <div class="sheet-head">
+    <span class="sec-no">01</span>
+    <div>
+      <h2>总览地图 <span class="en">Overview Map</span></h2>
+      <p>总体概念、折返脊主轴、三站两翼核心节点与临时边界状态同图呈现；派生自 geometry 与 metrics，供评审快速理解空间主线。</p>
+    </div>
+    <span class="tag">site-overview.png</span>
+  </div>
+  <div class="sheet-body">
+    <figure class="fig">
+      <img src="../assets/figures/site-overview.png" alt="总览地图：京张折返线总体概念、折返脊主轴、三站两翼核心节点与临时边界状态">
+      <figcaption><span class="fno">图 01 · 总览地图</span><span>总体概念 / 主轴·核心节点 / official-provisional 边界状态 · 派生自 geometry + metrics</span></figcaption>
+    </figure>
+    <div class="legend-row">
+      <div class="legend-item"><i class="sw sw-1401"></i>用地分区（用地分类配色）</div>
+      <div class="legend-item"><i class="sw sys-mobility"></i>交通慢行</div>
+      <div class="legend-item"><i class="sw sys-bluegreen"></i>蓝绿公共空间</div>
+      <div class="legend-item"><i class="sw sys-build"></i>建筑与更新项目</div>
+    </div>
+    <div class="note-line">图面为解释层：所有图面由同一组 GeoJSON、metrics.json、合规 / 标准 / 深度矩阵与自检结果派生；临时边界以虚线、淡色与注释表达，仅用于 intake 展示与设计讨论，不作为官方红线。</div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-02">
+  <div class="sheet-head">
+    <span class="sec-no">02</span>
+    <div>
+      <h2>三层范围 <span class="en">Three-Level Scope Framework</span></h2>
+      <p>按统筹研究范围 → 总体设计范围 → 重点区域范围递进，把产业判断、城市更新与重点片区设计逐层传导到图层、指标与图纸。</p>
+    </div>
+    <span class="tag">project_scope_summary.csv</span>
+  </div>
+  <div class="sheet-body">
+    <div class="grid-3">
+      <article class="scope">
+        <div class="lvl">Level 1 · 统筹研究范围</div>
+        <h3>Coordinated Research Area</h3>
+        <p>面向约 43.6 平方公里的产业与未来城市研究（官方公告范围），回答 AI 创新生态、未来城市形态与品牌叙事。</p>
+        <ul>
+          <li>AI 创新链、产业链、人才链协同框架</li>
+          <li>三区两翼与五大功能协同</li>
+          <li>全球案例转化机制、命名与传播</li>
+        </ul>
+      </article>
+      <article class="scope">
+        <div class="lvl">Level 2 · 总体设计范围</div>
+        <h3>Overall Design Area</h3>
+        <p>面向总体设计范围（约 <span data-metric="site_area_sqm" data-value="11412825.39">1141.3 公顷</span>，≈ 11.4 平方公里）组织城市更新与控规深度城市设计。</p>
+        <ul>
+          <li>用地分区、建筑规模与拆改留方法</li>
+          <li>交通、轨道、市政与公共服务设施</li>
+          <li>京张遗址公园活力带、蓝绿慢行系统与城市风貌</li>
+        </ul>
+      </article>
+      <article class="scope">
+        <div class="lvl">Level 3 · 重点区域范围</div>
+        <h3>Key Areas</h3>
+        <p>面向 <span data-metric="key_area_count" data-value="3">3 处</span>重点片区开展详细设计，验证具体地块、建筑、交通、公共空间与 AI 应用场景的可实施性。</p>
+        <ul>
+          <li>众智园 AI 自主创新加速区（训练站）</li>
+          <li>北京 AI 原点社区（原点站）</li>
+          <li>大钟寺 AI 产业聚集区（推理站）</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-03">
+  <div class="sheet-head">
+    <span class="sec-no">03</span>
+    <div>
+      <h2>重点区域 <span class="en">Key Areas — Origin / Training / Inference</span></h2>
+      <p>三处重点区对应 AI 学习的三个环节：原点站（数据与模型原点）、训练站（全栈自主创新与算力加速）、推理站（场景落地），沿折返脊形成学习回环。</p>
+    </div>
+    <span class="tag">key-areas.png · key_areas.geojson</span>
+  </div>
+  <div class="sheet-body">
+    <figure class="fig">
+      <img src="../assets/figures/key-areas.png" alt="重点区域详细设计图：三处重点区的定位差异、空间联系与项目抓手">
+      <figcaption><span class="fno">图 03 · 重点区域详细设计</span><span>三处重点区的定位差异、空间联系、项目抓手与风险条件 · 派生自 key_areas.geojson</span></figcaption>
+    </figure>
+    <div class="grid-3">
+      <article class="station">
+        <h3>北京 AI 原点社区</h3>
+        <span class="role">原点站 Origin Station</span>
+        <ul>
+          <li>数据与模型原点，开源孵化</li>
+          <li>近校成果转化街、人才特区、开源体系</li>
+          <li>轨道站点一体化与校区园区慢行联系</li>
+        </ul>
+        <div class="area-val">重点区面积 <strong><span data-metric="key_area_beijing_ai_origin_community_area_sqm" data-value="1043236.91">104.3 公顷</span></strong></div>
+      </article>
+      <article class="station">
+        <h3>众智园 AI 自主创新加速区</h3>
+        <span class="role">训练站 Training Station</span>
+        <ul>
+          <li>全栈自主创新，算力加速，公共测试</li>
+          <li>国家平台、产业展示、清河文化界面</li>
+          <li>低碳绿色创新交往与绿色空间 AI 场景</li>
+        </ul>
+        <div class="area-val">重点区面积 <strong><span data-metric="key_area_zhongzhiyuan_ai_acceleration_area_area_sqm" data-value="1929201.88">192.9 公顷</span></strong></div>
+      </article>
+      <article class="station">
+        <h3>大钟寺 AI 产业聚集区</h3>
+        <span class="role">推理站 Inference Station</span>
+        <ul>
+          <li>智能原生新业态，场景落地</li>
+          <li>领军企业、智能体、数据要素与内容消费</li>
+          <li>大钟寺站一体化与路口四象限步行连通</li>
+        </ul>
+        <div class="area-val">重点区面积 <strong><span data-metric="key_area_dazhongsi_ai_industry_cluster_area_sqm" data-value="720454.22">72.0 公顷</span></strong></div>
+      </article>
+    </div>
+    <div class="note-line" style="margin-top:14px">
+      <b>折返脊 Switchback Spine：</b>南北向中央绿色廊道（京张遗址公园活力带），串联三站；
+      <b>前向注入翼（中关村科技服务翼）：</b>资本·人才·数据·IP 要素注入；
+      <b>反向反馈翼（小月河场景赋能翼）：</b>场景反馈·数据回流·公共价值 —— 三站两翼构成“前向传播 + 反向反馈”的学习回环。三处重点区边界均为 provisional，待官方多边形替换后复算。
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-04">
+  <div class="sheet-head">
+    <span class="sec-no">04</span>
+    <div>
+      <h2>用地分区 <span class="en">Land Use Structure</span></h2>
+      <p>用地分类依据国土空间调查、规划、用途管制分类标准（MNR-LAND-USE-CLASSIFICATION-GUIDE），形成完整、闭合、无缝的用地分区，与空间结构、廊道、门户和三层范围传导一致。</p>
+    </div>
+    <span class="tag">land-use-structure.png · land_use.geojson</span>
+  </div>
+  <div class="sheet-body">
+    <figure class="fig">
+      <img src="../assets/figures/land-use-structure.png" alt="用地与空间结构图：空间结构、功能关系、廊道与三层范围传导">
+      <figcaption><span class="fno">图 04 · 用地与空间结构</span><span>空间结构 / 功能关系 / 廊道·门户 / 三层范围传导 · 派生自 land_use.geojson</span></figcaption>
+    </figure>
+    <div class="tbl-scroll">
+      <table class="lu-table">
+        <thead>
+          <tr><th>用地代码</th><th>用地类型</th><th>面积构成（占比）</th><th>面积（复算）</th><th>比例</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lu-code">05</td><td class="lu-name">商业服务业用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-05 w-b05"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_05_area_sqm" data-value="564297.46">56.4 公顷</span></td>
+            <td class="lu-pct">4.9%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">0701</td><td class="lu-name">居住用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-0701 w-b0701"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_0701_area_sqm" data-value="2607580.59">260.8 公顷</span></td>
+            <td class="lu-pct">22.9%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">0802</td><td class="lu-name">科研用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-0802 w-b0802"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_0802_area_sqm" data-value="1634298.95">163.4 公顷</span></td>
+            <td class="lu-pct">14.3%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">0803</td><td class="lu-name">文化用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-0803 w-b0803"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_0803_area_sqm" data-value="1579001.24">157.9 公顷</span></td>
+            <td class="lu-pct">13.8%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">0804</td><td class="lu-name">教育用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-0804 w-b0804"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_0804_area_sqm" data-value="1564698.44">156.5 公顷</span></td>
+            <td class="lu-pct">13.7%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">0805</td><td class="lu-name">体育用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-0805 w-b0805"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_0805_area_sqm" data-value="157989.69">15.8 公顷</span></td>
+            <td class="lu-pct">1.4%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">1401</td><td class="lu-name">公园绿地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-1401 w-b1401"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_1401_area_sqm" data-value="3109159.87">310.9 公顷</span></td>
+            <td class="lu-pct">27.2%</td>
+          </tr>
+          <tr>
+            <td class="lu-code">16</td><td class="lu-name">留白用地</td>
+            <td><span class="bar-track"><span class="bar-fill lu-16 w-b16"></span></span></td>
+            <td class="lu-ha"><span data-metric="land_use_16_area_sqm" data-value="195799.14">19.6 公顷</span></td>
+            <td class="lu-pct">1.7%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-line" style="margin-top:12px">用地面积由 geometry/land_use.geojson 复算（metrics.json）；留白用地为 AI 产业未来弹性空间。用地分区结论受 provisional 边界影响，正式红线发布后须重算。</div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-05">
+  <div class="sheet-head">
+    <span class="sec-no">05</span>
+    <div>
+      <h2>交通慢行 <span class="en">Mobility &amp; Slow Traffic</span></h2>
+      <p>回应轨道站点一体化、道路微循环、慢行断点、对外交通、停车与非机动车停放要求，并与公共空间、绿地和产业节点相互校核。</p>
+    </div>
+    <span class="tag">roads.geojson · mobility-bluegreen.png</span>
+  </div>
+  <div class="sheet-body">
+    <figure class="fig">
+      <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图：轨道接驳、慢行网络与蓝绿空间连续性">
+      <figcaption><span class="fno">图 05 · 交通慢行与蓝绿公共空间复合系统</span><span>轨道接驳 / 慢行网络 / 蓝绿空间连续性 / AI 场景节点 · 派生自 roads.geojson 与 green_space.geojson</span></figcaption>
+    </figure>
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="k">道路总长度 <code>roads_total_length_m</code></div>
+        <div class="v"><span data-metric="roads_total_length_m" data-value="37106.1">37.1</span><span class="u">km</span></div>
+        <div class="s">road centerlines 复算 · 临时边界内</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">重点区域数量 <code>key_area_count</code></div>
+        <div class="v"><span data-metric="key_area_count" data-value="3">3</span><span class="u">处</span></div>
+        <div class="s">站点一体化覆盖 3 处重点区</div>
+        <span class="dot"></span>
+      </div>
+      <article class="scope">
+        <div class="lvl">Key measures</div>
+        <h3>交通与慢行重点动作</h3>
+        <ul>
+          <li>轨道站点一体化：清华东路西口 / 五道口 / 大钟寺站</li>
+          <li>大钟寺站路口四象限步行连通与道路微循环</li>
+          <li>京张遗址公园跨环路节点与慢行断点缝合</li>
+          <li>非机动车停放、绿色交通与公共服务设施衔接</li>
+        </ul>
+      </article>
+    </div>
+    <div class="note-line" style="margin-top:14px">道路红线、管线、消防与市政条件缺失，相关结论仅作临时设计讨论，正式条件见假设 A-CONTROLS-001（待官方资料确认）。</div>
+  </div>
+</section>
+<section class="sheet" id="sec-06">
+  <div class="sheet-head">
+    <span class="sec-no">06</span>
+    <div>
+      <h2>蓝绿公共空间 <span class="en">Blue-Green Public Space</span></h2>
+      <p>以京张遗址公园活力带为骨架，统筹清河、小月河与高校、企业、社区出行需求，构建南北贯通、东西连通的步道、骑行道与绿色空间体系。</p>
+    </div>
+    <span class="tag">green_space.geojson · public_space.geojson</span>
+  </div>
+  <div class="sheet-body">
+    <div class="grid-4">
+      <div class="metric-card">
+        <div class="k">绿地面积 <code>green_space_area_sqm</code></div>
+        <div class="v"><span data-metric="green_space_area_sqm" data-value="3217159.87">321.7</span><span class="u">公顷</span></div>
+        <div class="s">green_space.geojson 复算</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">绿地率 <code>green_ratio</code></div>
+        <div class="v"><span data-metric="green_ratio" data-value="0.28189">28.2%</span></div>
+        <div class="s">green ÷ site（设计复算，非控规指标）</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">公共空间面积 <code>public_space_area_sqm</code></div>
+        <div class="v"><span data-metric="public_space_area_sqm" data-value="128000.0">12.8</span><span class="u">公顷</span></div>
+        <div class="s">public_space.geojson 复算</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">公共空间率 <code>public_space_ratio</code></div>
+        <div class="v"><span data-metric="public_space_ratio" data-value="0.011215">1.1%</span></div>
+        <div class="s">public ÷ site（设计复算）</div>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <div class="grid-2" style="margin-top:16px">
+      <article class="scope">
+        <div class="lvl">System</div>
+        <h3>蓝绿系统组织</h3>
+        <ul>
+          <li>京张遗址公园活力带：南北贯通的核心绿廊</li>
+          <li>清河、小月河水绿联动与东西连通</li>
+          <li>慢行断点、上跨环路节点识别与缝合</li>
+          <li>停车、体育、创新交往、科技测试与公共服务复合利用</li>
+        </ul>
+      </article>
+      <div class="pending">
+        <b>待确认控制条件：</b>控规绿地率控制指标（green_ratio_control）、退线（setback_m）等官方条件尚未发布，
+        <span class="en">pending official control data</span> —— 本页绿地率 / 公共空间率为基于提交几何的设计复算值，不代表已审定的控规指标。
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-07">
+  <div class="sheet-head">
+    <span class="sec-no">07</span>
+    <div>
+      <h2>建筑 <span class="en">Buildings &amp; Scale</span></h2>
+      <p>区分保留、改造、更新、新建与待确认对象；建筑规模与强度指标必须与 metrics.json 和图层一致，缺失官方条件时列为待确认，不制造伪精确。</p>
+    </div>
+    <span class="tag">buildings.geojson</span>
+  </div>
+  <div class="sheet-body">
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="k">建筑基底面积 <code>building_footprint_area_sqm</code></div>
+        <div class="v"><span data-metric="building_footprint_area_sqm" data-value="2421390.28">242.1</span><span class="u">公顷</span></div>
+        <div class="s">buildings.geojson 复算（基底，非总建筑面积）</div>
+        <span class="dot"></span>
+      </div>
+      <article class="scope">
+        <div class="lvl">Retain / Renovate / Demolish</div>
+        <h3>拆改留方法（概念建议）</h3>
+        <ul>
+          <li>保留：京张铁路文化遗存与历史建筑</li>
+          <li>改造：存量科研、教育楼宇功能更新</li>
+          <li>更新 / 新建 / 待确认：以分层建议表达</li>
+        </ul>
+      </article>
+      <article class="scope">
+        <div class="lvl">Controls</div>
+        <h3>强度与高度控制</h3>
+        <p>以下管控指标缺少官方控规 / 任务书附件依据，按统一边界条款列为待补条件：</p>
+        <p><span class="unknown-chip">容积率 floor_area_ratio</span>
+           <span class="unknown-chip">建筑高度 building_height_m</span>
+           <span class="unknown-chip">建筑密度 building_density</span></p>
+      </article>
+    </div>
+    <div class="pending" style="margin-top:14px">
+      <b>待正式控规数据确认</b> · <span class="en">pending official control data</span>：
+      容积率（floor_area_ratio）、建筑高度（building_height_m）、建筑密度（building_density）等管控指标，须由官方控规或任务书附件确认后方可作为规划结论；在此之前不以任何数值渲染。
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-08">
+  <div class="sheet-head">
+    <span class="sec-no">08</span>
+    <div>
+      <h2>更新项目 <span class="en">Renewal Projects &amp; Phasing</span></h2>
+      <p>形成可审查的更新项目清单，说明项目位置、类型、依赖条件、实施阶段与风险；分期与 100 天征集设计周期区分，征集周期是提交时限，实施分期是建设推进路径。</p>
+    </div>
+    <span class="tag">phasing.geojson</span>
+  </div>
+  <div class="sheet-body">
+    <div class="tbl-scroll">
+      <table class="rn-table">
+        <thead>
+          <tr><th>编号</th><th>项目名称</th><th>类型</th><th>主要依赖</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="rn-id">JZ-01</td><td>京张遗址公园慢行断点缝合</td><td><span class="rn-type">公共空间 / 交通</span></td><td>道路红线、桥下空间、交通组织复核</td></tr>
+          <tr><td class="rn-id">JZ-02</td><td>众智园清河创新界面</td><td><span class="rn-type">蓝绿空间 / 产业展示</span></td><td>河道蓝线、生态与防洪条件</td></tr>
+          <tr><td class="rn-id">JZ-03</td><td>原点社区近校成果转化街</td><td><span class="rn-type">城市更新 / 产业服务</span></td><td>校区边界、权属、首层业态</td></tr>
+          <tr><td class="rn-id">JZ-04</td><td>大钟寺站四象限步行连通</td><td><span class="rn-type">轨道一体化 / 慢行</span></td><td>轨道站点、道路交叉口、市政管线</td></tr>
+          <tr><td class="rn-id">JZ-05</td><td>AI 公共服务与端侧算力节点</td><td><span class="rn-type">新基建 / 公共服务</span></td><td>能源、算力、安全与运营主体</td></tr>
+          <tr><td class="rn-id">JZ-06</td><td>全球 AI 活动周公共路线</td><td><span class="rn-type">运营 / 品牌</span></td><td>公共空间许可、活动安全、版权清权</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec-sub">
+      <h3>分期实施 Epochs</h3>
+      <div class="grid-3">
+        <article class="epoch">
+          <div class="e-no">Epoch 1 · 数据筑基</div>
+          <h3>南段先行</h3>
+          <p>大钟寺智能经济街区先行，数据要素与场景落地。</p>
+          <div class="area-val">分期面积 <strong><span data-metric="phasing_epoch1_area_sqm" data-value="2848968.43">284.9 公顷</span></strong></div>
+        </article>
+        <article class="epoch">
+          <div class="e-no">Epoch 2 · 模型成型</div>
+          <h3>中段联动</h3>
+          <p>原点社区与高校协同主战场，开源体系与成果转化。</p>
+          <div class="area-val">分期面积 <strong><span data-metric="phasing_epoch2_area_sqm" data-value="5166002.68">516.6 公顷</span></strong></div>
+        </article>
+        <article class="epoch">
+          <div class="e-no">Epoch 3 · 推理部署</div>
+          <h3>北段深化</h3>
+          <p>众智园全栈创新与留白用地，公共测试与安全治理。</p>
+          <div class="area-val">分期面积 <strong><span data-metric="phasing_epoch3_area_sqm" data-value="3397854.28">339.8 公顷</span></strong></div>
+        </article>
+      </div>
+      <div class="note-line" style="margin-top:12px">分期面积为提交几何复算；缺少权属、资金、实施主体与审批路径时，分期作为实施风险与参考方案表达，不构成政府承诺或已确定开发时序。</div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-09">
+  <div class="sheet-head">
+    <span class="sec-no">09</span>
+    <div>
+      <h2>AI 场景 <span class="en">AI Scenarios &amp; Agent Tasks</span></h2>
+      <p>面向智能体任务书回应 agent.1–agent.6 六项任务；每个场景说明服务对象、空间位置、数据来源、隐私边界、人工复核与运营主体，并落到图层与指标。</p>
+    </div>
+    <span class="tag">agent_taskbook.json · compliance_matrix.json</span>
+  </div>
+  <div class="sheet-body">
+    <div class="sec-sub">
+      <h3>六项智能体任务（agent.1 – agent.6）</h3>
+      <div class="grid-3">
+        <article class="task-card"><div class="t-no">AGENT.1 命名 / Logo</div><h3>折返线命名体系</h3><p>折返符号 Logo（之字形 + ∞ 回环），三站两翼命名，总体空间结构图。</p></article>
+        <article class="task-card"><div class="t-no">AGENT.2 生态案例</div><h3>全球 AI 创新生态</h3><p>硅谷 / 波士顿 Kendall Square / 新加坡裕廊 / 深圳南山 / 中关村 / 杭州 / 伦敦 King's Cross / 巴黎 Station F，提炼可转化要素机制。</p></article>
+        <article class="task-card"><div class="t-no">AGENT.3 场景卡</div><h3>AI+ 场景体系</h3><p>10+ 场景卡、3+ 产业测试验证场景、5+ 用户画像，场景-空间-运营映射。</p></article>
+        <article class="task-card"><div class="t-no">AGENT.4 朝圣地标</div><h3>公共空间与地标</h3><p>3+ 朝圣地标与贡献 / 荣誉展示节点，公共空间组件库。</p></article>
+        <article class="task-card"><div class="t-no">AGENT.5 文化叙事</div><h3>三重文化融合</h3><p>百年京张铁路文化 + 中关村文化 + AI 新文化融合叙事与导视符号体系。</p></article>
+        <article class="task-card"><div class="t-no">AGENT.6 长期运营</div><h3>年度活动体系</h3><p>折返季 Switchback Season、反向传播夜 Backprop Night、Epoch 论坛、开发者社区运营。</p></article>
+      </div>
+    </div>
+    <div class="sec-sub">
+      <h3>场景主题（场景卡 10+）</h3>
+      <div class="chip-row">
+        <span class="chip"><b>01</b> 开源发布厅</span>
+        <span class="chip"><b>02</b> 城市智能体沙盒</span>
+        <span class="chip"><b>03</b> 慢行断点诊断</span>
+        <span class="chip"><b>04</b> 人才生活管家</span>
+        <span class="chip"><b>05</b> AI 安全治理廊</span>
+        <span class="chip"><b>06</b> 校企转化客厅</span>
+        <span class="chip"><b>07</b> 数据要素剧场</span>
+        <span class="chip"><b>08</b> 低碳算力驿站</span>
+        <span class="chip"><b>09</b> 京张记忆线路</span>
+        <span class="chip"><b>10</b> 全球 AI 活动周路线</span>
+        <span class="chip"><b>11</b> AI 生活服务样板街</span>
+      </div>
+    </div>
+    <div class="grid-2">
+      <div class="sec-sub">
+        <h3>用户画像（5+）</h3>
+        <div class="grid-2">
+          <div class="persona"><b>高校科研人员</b>近校成果转化与开源协作空间</div>
+          <div class="persona"><b>开发者 / 创业者</b>孵化、测试与发布全流程支持</div>
+          <div class="persona"><b>企业管理者</b>产业服务、商务交往与人才环境</div>
+          <div class="persona"><b>国际访客</b>文化导览、活动与朝圣路线</div>
+          <div class="persona"><b>周边居民</b>通勤休闲、社区服务与低扰动更新</div>
+        </div>
+      </div>
+      <div class="sec-sub">
+        <h3>朝圣地标（3+）与运营（agent.6）</h3>
+        <div class="grid-2">
+          <div class="landmark"><b>折返纪念碑</b>Switchback Monument · 文化起点</div>
+          <div class="landmark"><b>Epoch 刻度塔</b>Epoch Scale Tower · 学习回环刻度</div>
+          <div class="landmark"><b>梯度步道</b>Gradient Walk · 公共体验线路</div>
+          <div class="landmark"><b>智能体贡献荣誉墙</b>Agent Honor Wall · 永久纪念</div>
+        </div>
+        <p style="margin-top:10px">年度活动：折返季 / 反向传播夜 / Epoch 论坛 / 开发者社区运营，作为概念建议供专业团队深化研究。</p>
+      </div>
+    </div>
+    <div class="note-line">AI 治理边界：数据最小化、公开来源、可解释、人工复核；城市智能体辅助识别慢行断点、公共空间热力与设施维护，不替代规划审批，不输出未经授权的个人画像。</div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-10">
+  <div class="sheet-head">
+    <span class="sec-no">10</span>
+    <div>
+      <h2>核心指标 <span class="en">Core Metrics</span></h2>
+      <p>所有 known 指标均由提交几何复算并与 metrics.json 一致；unknown 指标只显示待确认原因，不以数字渲染。</p>
+    </div>
+    <span class="tag">metrics.json · metrics-evidence.png</span>
+  </div>
+  <div class="sheet-body">
+    <figure class="fig">
+      <img src="../assets/figures/metrics-evidence.png" alt="核心指标复算图：指标来源、复算关系与待确认控规指标">
+      <figcaption><span class="fno">图 10 · 核心指标复算与证据链</span><span>指标来源 / 复算关系 / 待确认控规指标 / 自检状态 · 派生自 metrics.json 与几何图层</span></figcaption>
+    </figure>
+    <div class="grid-4">
+      <div class="metric-card">
+        <div class="k">总体设计范围面积 <code>site_area_sqm</code></div>
+        <div class="v"><span data-metric="site_area_sqm" data-value="11412825.39">1141.3</span><span class="u">公顷</span></div>
+        <div class="s">≈ 11.4 km² · site_boundary.geojson</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">绿地面积 <code>green_space_area_sqm</code></div>
+        <div class="v"><span data-metric="green_space_area_sqm" data-value="3217159.87">321.7</span><span class="u">公顷</span></div>
+        <div class="s">green_space.geojson</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">绿地率 <code>green_ratio</code></div>
+        <div class="v"><span data-metric="green_ratio" data-value="0.28189">28.2%</span></div>
+        <div class="s">green ÷ site（设计复算）</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">公共空间面积 <code>public_space_area_sqm</code></div>
+        <div class="v"><span data-metric="public_space_area_sqm" data-value="128000.0">12.8</span><span class="u">公顷</span></div>
+        <div class="s">public_space.geojson</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">公共空间率 <code>public_space_ratio</code></div>
+        <div class="v"><span data-metric="public_space_ratio" data-value="0.011215">1.1%</span></div>
+        <div class="s">public ÷ site（设计复算）</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">建筑基底面积 <code>building_footprint_area_sqm</code></div>
+        <div class="v"><span data-metric="building_footprint_area_sqm" data-value="2421390.28">242.1</span><span class="u">公顷</span></div>
+        <div class="s">buildings.geojson（基底）</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">道路总长度 <code>roads_total_length_m</code></div>
+        <div class="v"><span data-metric="roads_total_length_m" data-value="37106.1">37.1</span><span class="u">km</span></div>
+        <div class="s">roads.geojson 中心线</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">重点区域数量 <code>key_area_count</code></div>
+        <div class="v"><span data-metric="key_area_count" data-value="3">3</span><span class="u">处</span></div>
+        <div class="s">key_areas.geojson</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">重点区 · 众智园 <code>key_area_zhongzhiyuan…_area_sqm</code></div>
+        <div class="v"><span data-metric="key_area_zhongzhiyuan_ai_acceleration_area_area_sqm" data-value="1929201.88">192.9</span><span class="u">公顷</span></div>
+        <div class="s">训练站 Training Station</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">重点区 · 原点社区 <code>key_area_beijing_ai_origin…</code></div>
+        <div class="v"><span data-metric="key_area_beijing_ai_origin_community_area_sqm" data-value="1043236.91">104.3</span><span class="u">公顷</span></div>
+        <div class="s">原点站 Origin Station</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">重点区 · 大钟寺 <code>key_area_dazhongsi…</code></div>
+        <div class="v"><span data-metric="key_area_dazhongsi_ai_industry_cluster_area_sqm" data-value="720454.22">72.0</span><span class="u">公顷</span></div>
+        <div class="s">推理站 Inference Station</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">Epoch 1 分期面积 <code>phasing_epoch1_area_sqm</code></div>
+        <div class="v"><span data-metric="phasing_epoch1_area_sqm" data-value="2848968.43">284.9</span><span class="u">公顷</span></div>
+        <div class="s">南段先行 · 数据筑基</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">Epoch 2 分期面积 <code>phasing_epoch2_area_sqm</code></div>
+        <div class="v"><span data-metric="phasing_epoch2_area_sqm" data-value="5166002.68">516.6</span><span class="u">公顷</span></div>
+        <div class="s">中段联动 · 模型成型</div>
+        <span class="dot"></span>
+      </div>
+      <div class="metric-card">
+        <div class="k">Epoch 3 分期面积 <code>phasing_epoch3_area_sqm</code></div>
+        <div class="v"><span data-metric="phasing_epoch3_area_sqm" data-value="3397854.28">339.8</span><span class="u">公顷</span></div>
+        <div class="s">北段深化 · 推理部署</div>
+        <span class="dot"></span>
+      </div>
+    </div>
+    <div class="pending" style="margin-top:14px">
+      <b>待正式控规数据确认</b> · <span class="en">pending official control data</span>：
+      floor_area_ratio（容积率）、building_height_m（建筑高度）、building_density（建筑密度）、green_ratio_control（控规绿地率）、setback_m（退线）均无官方数值，须由正式控规或任务书附件确认后复算；本页不以任何数字渲染上述指标。
+    </div>
+  </div>
+</section>
+<section class="sheet" id="sec-11">
+  <div class="sheet-head">
+    <span class="sec-no">11</span>
+    <div>
+      <h2>任务覆盖 <span class="en">Task Coverage</span></h2>
+      <p>compliance_matrix.json 覆盖公告 1.3 / 1.4 / 1.5 与 agent.1–agent.6；standard_matrix.json 与 design_depth_matrix.json 证明专业标准响应与成果深度。</p>
+    </div>
+    <span class="tag">compliance / standard / depth matrix</span>
+  </div>
+  <div class="sheet-body">
+    <div class="tbl-scroll">
+      <table class="cov-table">
+        <thead>
+          <tr><th>任务</th><th>要求</th><th>覆盖状态</th><th>支撑文件</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="cov-id">agent.1</td><td>一带总体概念与功能统筹（命名 / Logo / 空间结构）</td><td><span class="cov-ok">已覆盖</span></td><td>proposal.md · site-overview.png · compliance_matrix.json</td></tr>
+          <tr><td class="cov-id">agent.2</td><td>AI 全栈自主创新体系与世界级 AI 创新生态</td><td><span class="cov-ok">已覆盖</span></td><td>生态案例研究 · 统筹研究范围章节 · standard_matrix.json</td></tr>
+          <tr><td class="cov-id">agent.3</td><td>AI+ 场景赋能新范式与智能化 AI 活力城市</td><td><span class="cov-ok">已覆盖</span></td><td>10+ 场景卡 · 3+ 测试验证场景 · 5+ 用户画像</td></tr>
+          <tr><td class="cov-id">agent.4</td><td>AI 公共空间、智能原生新业态与朝圣地标</td><td><span class="cov-ok">已覆盖</span></td><td>朝圣地标 3+ · 公共空间组件 · key-areas.png</td></tr>
+          <tr><td class="cov-id">agent.5</td><td>百年京张、中关村与 AI 新文化融合叙事</td><td><span class="cov-ok">已覆盖</span></td><td>文化叙事 · 导视符号体系 · 京张记忆线路</td></tr>
+          <tr><td class="cov-id">agent.6</td><td>一带全球 AI 创新活动体系与长期运营</td><td><span class="cov-ok">已覆盖</span></td><td>折返季 / 反向传播夜 / Epoch 论坛 · 运营机制（概念建议）</td></tr>
+          <tr><td class="cov-id">1.3.x</td><td>世界级 AI 创新生态 · 新型城市形态 · 高品质城区</td><td><span class="cov-ok">已覆盖</span></td><td>总览地图 · 任务覆盖 · 核心指标</td></tr>
+          <tr><td class="cov-id">1.4.x</td><td>统筹研究 / 总体设计 / 重点区域范围</td><td><span class="cov-ok">已覆盖</span></td><td>三层范围 · 重点区域 · 用地分区</td></tr>
+          <tr><td class="cov-id">1.5.x</td><td>产业功能 · 更新框架 · 交通市政 · 活力带 · 风貌</td><td><span class="cov-ok">已覆盖</span></td><td>交通慢行 · 蓝绿公共空间 · 建筑 · 更新项目</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-line" style="margin-top:12px">覆盖证明同时挂接 design_depth_matrix.json 的 15 个核心深度项与标准矩阵；所有空间落地建议均为概念建议 / 参考方案，供专业团队深化研究。</div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-12">
+  <div class="sheet-head">
+    <span class="sec-no">12</span>
+    <div>
+      <h2>自检状态 <span class="en">Self-Check Status</span></h2>
+      <p>成果包状态与自检管线：确定性校验 → 可信空间复核 → 可视化包装检查 → 专业证据链复核；当前包状态 scaffold，finalize 后置为 ready_for_review。</p>
+    </div>
+    <span class="tag">self_check.json · manifest.json</span>
+  </div>
+  <div class="sheet-body">
+    <div class="flow">
+      <div class="step">
+        <div class="st-no">STAGE 1</div>
+        <h4>scaffold 骨架生成</h4>
+        <p>formal 脚手架生成结构，正文 / 图层 / 图纸 / HTML 已替换占位内容。</p>
+        <span class="state state-now">当前状态</span>
+      </div>
+      <div class="step">
+        <div class="st-no">STAGE 2</div>
+        <h4>本地自检通过</h4>
+        <p>self_check_submission.py：5 项检查全部 pass（见下方清单）。</p>
+        <span class="state state-ok">5 / 5 PASS</span>
+      </div>
+      <div class="step">
+        <div class="st-no">STAGE 3</div>
+        <h4>ready_for_review</h4>
+        <p>运行 scripts/finalize_submission.py 后置为可评审包，再运行 participant_preflight.py 后发起 PR。</p>
+        <span class="state state-now">待 finalize</span>
+      </div>
+    </div>
+    <div class="sec-sub">
+      <h3>自检管线 · Self-check pipeline</h3>
+      <div class="check-list">
+        <div class="check-item"><span class="mark">✓</span><div><span class="ck">BOUNDARY_TRUST</span> — <span class="msg">provisional boundary 已标注，正式红线发布前以 intake 身份复核；替换后需复算全部图层与指标。 <code>geometry/site_boundary.geojson</code></span></div></div>
+        <div class="check-item"><span class="mark">✓</span><div><span class="ck">KEY_AREAS_TRUST</span> — <span class="msg">三处重点区为 provisional，正式多边形替换前保留精度警示。 <code>geometry/key_areas.geojson</code></span></div></div>
+        <div class="check-item"><span class="mark">✓</span><div><span class="ck">LAND_USE_TOPOLOGY</span> — <span class="msg">用地多边形由场地边界划分派生，闭合无缝。 <code>geometry/land_use.geojson</code></span></div></div>
+        <div class="check-item"><span class="mark">✓</span><div><span class="ck">VISUAL_STATIC</span> — <span class="msg">本页为纯离线静态 HTML，无 CDN、远程字体、外部脚本、iframe、表单或 API 请求。 <code>visual/index.html</code></span></div></div>
+        <div class="check-item"><span class="mark">✓</span><div><span class="ck">PROFESSIONAL_EVIDENCE</span> — <span class="msg">正文回引标准、深度项、几何、指标、来源与假设。 <code>proposal.md</code></span></div></div>
+      </div>
+      <div class="note-line" style="margin-top:12px">PASS 仅说明包具备进入机器检查与内容评审的基础条件；provisional 边界保留复算警示，不代表方案获批或已获官方认可。</div>
+    </div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-13">
+  <div class="sheet-head">
+    <span class="sec-no">13</span>
+    <div>
+      <h2>来源 <span class="en">Sources</span></h2>
+      <p>实际使用的资料、边界与任务书来源完整登记于 sources.json；formal 权威结论仅来自中央登记表中已批准的 formal 可用资料或清权附件。</p>
+    </div>
+    <span class="tag">sources.json</span>
+  </div>
+  <div class="sheet-body">
+    <div class="tbl-scroll">
+      <table class="src-table">
+        <thead>
+          <tr><th>ID</th><th>来源 / 路径</th><th>类型</th><th>用途</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="src-id">SITE-PACKAGE</td><td>brief/site-package/</td><td class="src-type">official_public</td><td>任务书、枚举、允许设计空间、区间与 schema</td></tr>
+          <tr><td class="src-id">SOURCE-REGISTRY</td><td>data/source_registry.json</td><td class="src-type">repository_public_registry</td><td>公开 / 清权 / provisional 资料可用性登记</td></tr>
+          <tr><td class="src-id">PROCESSED-FACT-PACK</td><td>data/processed/agent_fact_pack.md</td><td class="src-type">repository_processed_reference</td><td>范围、任务、资料边界与缺资料清单导航</td></tr>
+          <tr><td class="src-id">BOUNDARY-SOURCE</td><td>brief/site-package/geometry/provisional_boundaries.geojson</td><td class="src-type">agent_inferred_from_public_data</td><td>场地边界几何来源（provisional）</td></tr>
+          <tr><td class="src-id">KEY-AREA-SOURCE</td><td>brief/site-package/geometry/provisional_boundaries.geojson</td><td class="src-type">agent_inferred_from_public_data</td><td>三处重点区边界（provisional）</td></tr>
+          <tr><td class="src-id">OFFICIAL-ANNOUNCEMENT</td><td>北京市规自委海淀分局官方资格预审公告（公开网页，URL 见 sources.json）</td><td class="src-type">official_public</td><td>任务、范围层级、重点区域、语言与成果要求</td></tr>
+          <tr><td class="src-id">AGENT-TASKBOOK</td><td>brief/site-package/agent_taskbook.json</td><td class="src-type">user_provided_cleared</td><td>六项智能体任务、场景 / 品牌 / 运营要求与统一边界条款</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-line" style="margin-top:12px">视觉资源、字体与工具链依赖记录于 sources.json 与 report/copyright_statement.md；本页不加载任何远程资源。</div>
+  </div>
+</section>
+
+<section class="sheet" id="sec-14">
+  <div class="sheet-head">
+    <span class="sec-no">14</span>
+    <div>
+      <h2>假设 <span class="en">Assumptions</span></h2>
+      <p>待补条件、provisional 边界影响与正式深化前置条件列明如下；正式数据发布后必须统一复算。</p>
+    </div>
+    <span class="tag">assumptions.json</span>
+  </div>
+  <div class="sheet-body">
+    <div class="tbl-scroll">
+      <table class="src-table">
+        <thead>
+          <tr><th>ID</th><th>状态</th><th>假设说明</th><th>影响</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="src-id">A-CONTROLS-001</td>
+            <td><span class="unknown-chip">待专业确认</span></td>
+            <td>控规指标、道路红线、权属、市政管线与工程约束须由官方附件确认后方可用于法定用途。</td>
+            <td>本包仅就提供的官方边界与提交图层按 formal AI 投稿评审；法定控制仍需专业确认。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec-sub">
+      <h3>待确认条件清单</h3>
+      <div class="chip-row">
+        <span class="chip">容积率 floor_area_ratio</span>
+        <span class="chip">建筑高度 building_height_m</span>
+        <span class="chip">建筑密度 building_density</span>
+        <span class="chip">控规绿地率 green_ratio_control</span>
+        <span class="chip">退线 setback_m</span>
+        <span class="chip">道路红线</span>
+        <span class="chip">权属与用地边界</span>
+        <span class="chip">市政管线与工程条件</span>
+        <span class="chip">河道蓝线与防洪</span>
+        <span class="chip">文保条件（清华园车站等）</span>
+      </div>
+      <div class="note-line" style="margin-top:12px">
+        <b>复算要求：</b>当前全部面积、比例与分期指标基于 provisional 边界复算；official polygon 补齐后，site_area_sqm、green_ratio、public_space_ratio、building_footprint_area_sqm、land_use_*_area_sqm、key_area_*_area_sqm、phasing_*_area_sqm 与 roads_total_length_m 须全部重新计算并同步 metrics.json、图面与 A3/A0。
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="inner">
+    <div><b>京张折返线 Switchback Line</b> · 百年京张 AI 创新带城市设计 · 离线静态电子展示</div>
+    <div class="mono">100% offline static HTML · no CDN / no remote fonts / no external scripts / no iframe / no API</div>
+    <div class="mono">zh: index.html · en: index.en.html · 权威数据：GeoJSON / metrics.json / 矩阵 / self_check.json</div>
+  </div>
+</footer>
+</body>
+</html>
