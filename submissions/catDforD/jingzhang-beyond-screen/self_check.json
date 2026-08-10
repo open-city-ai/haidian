@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "The site boundary is explicitly provisional, traceable, and never described as an official redline."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "All three required key areas are present and explicitly provisional."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Six conceptual land-use polygons partition the submitted boundary without intended gaps or overlaps."
+    },
+    {
+      "check_id": "METRICS_RECALC",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Spatial metrics are derived from the submitted GeoJSON in EPSG:4548; operational metrics are counted from structured scenario/persona files."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "The visual pages are offline UTF-8 HTML without remote assets, forms, trackers, or external APIs."
+    },
+    {
+      "check_id": "BILINGUAL_DISPLAY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Chinese and English proposal, figure, HTML, A3, and A0 counterparts are generated from the same evidence set."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "All required sections contain claim-adjacent source, standard, depth, data, or metric references and link to structured evidence."
+    },
+    {
+      "check_id": "PDF_RENDER",
+      "result": "pass",
+      "severity": "minor",
+      "target": "drawings/",
+      "message": "All 20 pages across the bilingual A3 booklets and A0 boards were rendered with Poppler and visually inspected for clipping, overlap, missing glyphs, black blocks, page numbering, and margin defects."
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>屏外京张｜无屏依赖的AI公共基础设施</title>
+  <style>
+    :root{--ink:#10212b;--paper:#f4f0e8;--white:#fff;--coral:#f05d45;--teal:#20a39e;--blue:#2878b5;--lime:#a7c957;--gold:#e9b44c;--purple:#7a6fac;--grey:#697780}
+    *{box-sizing:border-box} body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans SC","Microsoft YaHei",Arial,sans-serif;line-height:1.6}
+    a{color:inherit} .wrap{max-width:1280px;margin:auto;padding:28px} header{min-height:58vh;padding:70px 7vw 45px;background:var(--ink);color:var(--paper);display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end}
+    .kicker{letter-spacing:.14em;text-transform:uppercase;color:var(--teal);font-weight:800} h1{font-size:clamp(42px,7vw,92px);line-height:1.02;margin:.25em 0} header p{font-size:clamp(17px,2vw,25px);max-width:850px}
+    .lang{position:absolute;right:34px;top:28px;border:1px solid #ffffff55;border-radius:999px;padding:8px 16px;text-decoration:none} .hero-rule{border-left:6px solid var(--coral);padding-left:22px}
+    .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px} .hero-stat{background:#ffffff12;border:1px solid #ffffff22;border-radius:18px;padding:18px} .hero-stat strong{font-size:33px;display:block;color:var(--gold)}
+    nav.marker-grid,.marker-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;padding:16px;background:var(--white);border-bottom:1px solid #d8d1c7} .marker-grid span{font-size:13px;padding:8px 5px;text-align:center;border-radius:9px;background:#eef1ef}
+    section{padding:54px 0} h2{font-size:34px;margin:0 0 20px} .lede{font-size:20px;max-width:950px} .metric-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .metric{background:var(--white);border-radius:18px;padding:22px;border-top:7px solid var(--teal)} .metric strong{display:block;font-size:34px;line-height:1.1} .metric small{color:var(--grey)}
+    .figure-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px} figure{margin:0;background:var(--white);border-radius:20px;overflow:hidden;box-shadow:0 8px 30px #10212b12} figure:first-child{grid-column:1/-1} figure img{width:100%;display:block} figcaption{padding:12px 18px;color:var(--grey)}
+    .principles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px} .principle{padding:22px;border-radius:18px;background:var(--ink);color:var(--paper)} .principle b{color:var(--coral);font-size:25px;display:block}
+    .persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px} .persona{background:var(--white);padding:18px;border-radius:14px;display:flex;flex-direction:column;gap:5px} .persona span{color:var(--grey);font-size:14px}
+    .scenario-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px} .scenario-card{background:var(--white);border-radius:18px;padding:18px;border:1px solid #d9d4ca} .scenario-card h3{margin:.6em 0 .3em;font-size:18px} .scenario-top{display:flex;justify-content:space-between;align-items:center} .scenario-id{font-weight:900;color:var(--coral)} .badge{font-size:10px;border-radius:999px;padding:4px 8px;background:#dcebe8;color:#12635f} .badge.test{background:#f5d9d4;color:#9a2e1c} dl{font-size:13px} dt{font-weight:800;margin-top:8px} dd{margin:0;color:var(--grey)}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:22px} .panel{background:var(--white);padding:26px;border-radius:18px} .panel li{margin-bottom:9px}
+    .status{display:inline-block;padding:6px 10px;border-radius:999px;background:#dcebe8;color:#12635f;font-weight:800} .warning{border-left:8px solid var(--coral);background:#fff3f0;padding:20px;border-radius:12px}
+    footer{padding:40px 7vw;background:var(--ink);color:var(--paper)}
+    @media(max-width:900px){header{grid-template-columns:1fr}.metric-grid,.principles,.scenario-grid,.persona-grid{grid-template-columns:1fr 1fr}.figure-grid,.split{grid-template-columns:1fr}.marker-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:600px){.metric-grid,.principles,.scenario-grid,.persona-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <a class="lang" href="index.en.html">English</a>
+    <div><div class="kicker">CENTENNIAL JING-ZHANG AI INNOVATION BELT · OPEN SUBMISSION</div><h1>屏外京张｜无屏依赖的AI公共基础设施</h1><p class="hero-rule">AI退到后台，公共生活回到前台。所有公共场景均保留非智能手机路径和人工兜底。</p></div>
+    <div class="hero-stats">
+      <div class="hero-stat"><strong>01</strong>屏外公共脊</div>
+      <div class="hero-stat"><strong>03</strong>界面院</div>
+      <div class="hero-stat"><strong>02</strong>服务回路</div>
+      <div class="hero-stat"><strong>12</strong>场景原型</div>
+    </div>
+  </header>
+  
+      <section class="marker-grid" aria-label="任务覆盖导航">
+        <span>总览地图</span><span>三层范围</span><span>重点区域</span><span>用地分区</span>
+        <span>交通慢行</span><span>蓝绿公共空间</span><span>建筑</span><span>更新项目</span>
+        <span>AI 场景</span><span>核心指标</span><span>任务覆盖</span><span>自检状态</span>
+        <span>来源</span><span>假设</span>
+      </section>
+  <main class="wrap">
+    <section id="concept"><h2>设计命题</h2><p class="lede">AI退到后台，公共生活回到前台。所有公共场景均保留非智能手机路径和人工兜底。 数字渠道可以存在，但不得成为公共权利的唯一入口。</p>
+      <div class="principles">
+        <article class="principle"><b>01</b>同一事项，数字与非数字渠道等效</article>
+        <article class="principle"><b>02</b>自动化可失败，人工服务不可消失</article>
+        <article class="principle"><b>03</b>测试可观察、可绕行、可停止</article>
+        <article class="principle"><b>04</b>只收必要数据，公开责任边界</article>
+      </div>
+    </section>
+    <section id="metrics"><h2>核心指标</h2>
+      <div class="metric-grid">
+        <article class="metric" data-metric="site_area_sqm" data-value="11412825.386"><strong>11.413 km²</strong><small>临时总体范围｜非官方红线</small></article>
+        <article class="metric" data-metric="green_ratio" data-value="0.092709"><strong>9.3%</strong><small>概念绿地比例</small></article>
+        <article class="metric" data-metric="public_space_ratio" data-value="0.022896"><strong>2.3%</strong><small>概念公共空间比例</small></article>
+        <article class="metric" data-metric="human_fallback_ratio" data-value="1.0"><strong>100%</strong><small>人工兜底覆盖率</small></article>
+      </div>
+    </section>
+    <section id="figures"><h2>总览地图、三层范围、重点区域与证据图</h2><div class="figure-grid"><figure><img src="../assets/figures/site-overview.png" alt="总览地图与临时证据状态"><figcaption>总览地图与临时证据状态</figcaption></figure><figure><img src="../assets/figures/land-use-structure.png" alt="三层范围与用地分区"><figcaption>三层范围与用地分区</figcaption></figure><figure><img src="../assets/figures/key-areas.png" alt="三处重点区域与界面院"><figcaption>三处重点区域与界面院</figcaption></figure><figure><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间"><figcaption>交通慢行与蓝绿公共空间</figcaption></figure><figure><img src="../assets/figures/metrics-evidence.png" alt="核心指标与证据链"><figcaption>核心指标与证据链</figcaption></figure></div></section>
+    <section id="personas"><h2>AI 创新生态与六类画像</h2><p>画像描述障碍与需求，不用于预测个人偏好，也不通过公共空间摄像自动推断。</p><div class="persona-grid"><article class="persona"><strong>低视力通勤者</strong><span>触觉连续性、声光过街、真人问询</span></article><article class="persona"><strong>不熟悉智能手机的老人</strong><span>纸本流程、实体按钮、电话预约</span></article><article class="persona"><strong>携童家庭</strong><span>可见安全边界、遮阴停留、低速试验</span></article><article class="persona"><strong>开源开发者与高校师生</strong><span>成果转译、测试台、协作工坊</span></article><article class="persona"><strong>中小AI企业团队</strong><span>合规咨询、验证场、路演与服务</span></article><article class="persona"><strong>国际访客与新来者</strong><span>双语符号、人工接待、无需本地App</span></article></div></section>
+    <section id="scenarios"><h2>AI 场景｜十二个无屏依赖原型</h2><div class="scenario-grid"><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S01</span><span class="badge ">公共原型</span></div>
+              <h3>触觉方向轨</h3>
+              <p>连续纹理、形状编码与高对比导视，不要求手机导航。</p>
+              <dl><dt>人工兜底</dt><dd>现场服务员与纸本地图</dd><dt>数据边界</dt><dd>不采集个人轨迹；仅使用人工巡查记录。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S02</span><span class="badge ">公共原型</span></div>
+              <h3>声光过街信标</h3>
+              <p>可听、可触、可见的过街提示，优先服务低视力与老人。</p>
+              <dl><dt>人工兜底</dt><dd>人工交通引导与传统信号</dd><dt>数据边界</dt><dd>只记录设备状态，不记录人脸或身份。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S03</span><span class="badge ">公共原型</span></div>
+              <h3>公共服务双通道窗</h3>
+              <p>语音、纸本、实体按钮与人工窗口并行，不把二维码设为门槛。</p>
+              <dl><dt>人工兜底</dt><dd>人工办理与电话预约</dd><dt>数据边界</dt><dd>敏感事项不进入公共终端；记录最小化。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S04</span><span class="badge ">公共原型</span></div>
+              <h3>站城换乘陪伴点</h3>
+              <p>用颜色、地面纹理与真人引导连接站口、街角和公共空间。</p>
+              <dl><dt>人工兜底</dt><dd>固定时段志愿者与站务协同</dd><dt>数据边界</dt><dd>只做匿名问题分类，不保存个体出行档案。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S05</span><span class="badge ">公共原型</span></div>
+              <h3>城市维修铃</h3>
+              <p>居民可用实体拉环、电话或人工台报告设施故障。</p>
+              <dl><dt>人工兜底</dt><dd>纸本工单和定期巡检</dd><dt>数据边界</dt><dd>只保留位置、故障类型和处理状态。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S06</span><span class="badge ">公共原型</span></div>
+              <h3>热舒适会呼吸的廊架</h3>
+              <p>遮阴、雾化与通风依据环境传感调节，同时保留手动开关。</p>
+              <dl><dt>人工兜底</dt><dd>固定遮阴与人工维护</dd><dt>数据边界</dt><dd>仅使用温湿度等环境数据。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S07</span><span class="badge test">产业测试</span></div>
+              <h3>机器人共道验证场</h3>
+              <p>低速机器人在触觉边界和人工观察下测试让行、停靠与异常处置。</p>
+              <dl><dt>人工兜底</dt><dd>现场安全员可立即接管</dd><dt>数据边界</dt><dd>测试日志脱敏；禁止无目的公共影像留存。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S08</span><span class="badge test">产业测试</span></div>
+              <h3>具身无障碍试验室</h3>
+              <p>与残障体验者共测扶手、语音、触觉与机器人辅助，不以屏幕评分代替现场体验。</p>
+              <dl><dt>人工兜底</dt><dd>人工辅助与停止测试权</dd><dt>数据边界</dt><dd>知情同意、分级授权、可撤回。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S09</span><span class="badge test">产业测试</span></div>
+              <h3>端侧模型检验台</h3>
+              <p>用实体样本和公开测试卡展示端侧模型的能耗、偏差与失败模式。</p>
+              <dl><dt>人工兜底</dt><dd>人工专家复核与纸质报告</dd><dt>数据边界</dt><dd>只使用清权测试集和可审计记录。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S10</span><span class="badge ">公共原型</span></div>
+              <h3>开源成果转译廊</h3>
+              <p>把模型卡、代码贡献和风险说明转成可触摸模型、纸本卡片和现场讲解。</p>
+              <dl><dt>人工兜底</dt><dd>定时人工导览</dd><dt>数据边界</dt><dd>只展示公开许可内容并保留署名。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S11</span><span class="badge ">公共原型</span></div>
+              <h3>健康教育法律联合问询桌</h3>
+              <p>AI只做公开信息导航；现场人员负责解释、转介和高风险事项。</p>
+              <dl><dt>人工兜底</dt><dd>专业人员预约与纸本目录</dd><dt>数据边界</dt><dd>不在开放空间输入病历、学籍或案件隐私。</dd></dl>
+            </article><article class="scenario-card">
+              <div class="scenario-top"><span class="scenario-id">S12</span><span class="badge ">公共原型</span></div>
+              <h3>屏外城市周</h3>
+              <p>以实体徽章、公共桌、步行路线和真人对话组织年度开放活动。</p>
+              <dl><dt>人工兜底</dt><dd>现场公告板与社区联络人</dd><dt>数据边界</dt><dd>参与统计仅为聚合计数。</dd></dl>
+            </article></div></section>
+    <section id="implementation"><h2>建筑、更新项目与分期</h2><div class="split">
+      <article class="panel"><h3>建筑与拆改留边界</h3><p>十二个建筑基底只表达界面院的实验室、孵化器、社区服务和混合功能载体。没有现状测绘和权属时，不对真实建筑作拆改留判断。</p></article>
+      <article class="panel"><h3>更新项目与运营</h3><p>九个工作包按轻量界面、公共脊连续化和长期治理分期。每周人工服务、每月维修、每季开放测试、每年公共复盘。</p></article>
+    </div></section>
+    <section id="coverage"><h2>任务覆盖与自检状态</h2><p><span class="status">结构化自检记录：PASS / PDF视觉质检待最终确认</span></p><p>公告1.3、1.4、1.5与agent.1—agent.6通过合规矩阵关联到正文、图层、指标、图纸和本页。最终资格以仓库校验器和维护者评审为准。</p></section>
+    <section id="sources"><h2>来源与假设</h2><div class="split"><article class="panel"><h3>来源</h3><ul><li>北京市规划和自然资源委员会海淀分局资格预审公告</li><li>仓库 site package、source registry、agent fact pack 与标准本地快照</li><li>one-north、Smart Kalasatama、Cornell Tech、Woven City、STATION F、MaRS、Adlershof 官方网页</li><li>提交 GeoJSON、metrics、scenarios、personas 与 assumptions</li></ul></article><article class="panel"><h3>假设</h3><ul><li>总体与重点区域均为临时推定边界，取得官方 polygon 后整体复算。</li><li>法定用地、容积率、高度、道路红线、权属、市政、消防、防洪和文保条件未知。</li><li>建筑基底只代表三座界面院的概念载体，不是现状建筑清单。</li><li>人工兜底、非智能手机通道和可撤回试点是参与者设计规则，不是官方政策。</li></ul></article></div>
+      <p class="warning">临时边界只用于概念生成、可视化和自检。不得据此声称官方红线、法定控规、建设批准、工程可行性或政府承诺。</p>
+    </section>
+  </main>
+  <footer><strong>JING-ZHANG BEYOND THE SCREEN</strong><br>提交者 catDforD｜中英双语｜离线静态页面｜2026-08-10</footer>
+</body>
+</html>

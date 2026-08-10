@@ -1,0 +1,295 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "projected_area(PROV-SITE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(projected_area(PROV-KEY-001..003, EPSG:4548))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-KEYAREAS-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEYAREAS-001"
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(non_overlapping_land_use_features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1058074.856,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.092709,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 261303.145,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.022896,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 39312.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual_building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BASEMAP-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "screen_optional_spine_length_m": {
+      "status": "known",
+      "value": 9439.542,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-ACCESS-001"
+      ]
+    },
+    "service_loop_length_m": {
+      "status": "known",
+      "value": 17891.522,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-002) + length(ROAD-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "cross_connector_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(interface_yard_cross_links)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEYAREAS-001"
+      ]
+    },
+    "interface_courtyard_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_interface_yards)",
+      "confidence": "high",
+      "assumptions": [
+        "A-KEYAREAS-001"
+      ]
+    },
+    "scenario_prototype_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "count(screen_optional_scenario_prototypes)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCREEN-OPTIONAL-001"
+      ]
+    },
+    "industrial_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "count(scenarios where industrial_test=true)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCREEN-OPTIONAL-001"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/personas.json"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": [
+        "A-ACCESS-001"
+      ]
+    },
+    "human_fallback_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "scenarios_with_human_fallback / scenario_prototype_count",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCREEN-OPTIONAL-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "screen_required_public_service_count": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenarios.json"
+      ],
+      "formula": "count(public_scenarios requiring app, QR, or personal screen)",
+      "confidence": "high",
+      "assumptions": [
+        "A-SCREEN-OPTIONAL-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official FAR controls, total floor area, and official boundary are not available."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official height controls and heritage view-corridor requirements are not available."
+    },
+    "road_redline_width_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_road_redline_width",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Official road redlines and engineering cross-sections are not available."
+    }
+  }
+}
