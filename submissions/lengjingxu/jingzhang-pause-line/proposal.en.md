@@ -6,14 +6,14 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Keep computation running while allowing the city to pause: one slow-mobility pause spine, three rhythm courts, six transition crossings and twelve pause stations offer a choice of quiet, social and event intensity."
+summary: "Keep computation running while preserving the city's right to pause, explain, care and reflect: one slow-mobility pause spine, three rhythm courts, six transition crossings and twelve pause stations turn AI innovation into a walk-in, contestable and collectively maintained everyday city."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "ai-cultural-guide", "ai-health-service-navigation", "enterprise-service-copilot", "public-safety-operations-review", "robot-delivery-low-speed"]
 ---
 
 # Jing-Zhang Pause Line / 京张留白线
 
-> **Keep computation running while allowing the city to pause.** “Pause” means selectable low-stimulation, stopping and reflection spaces. It is not statutory land-use code 16 and it does not ask innovation to stop.
+> **Keep computation running while preserving the city's right to pause.** An AI-facing city should not train people to become more efficient data interfaces. It should also let them hesitate, rest, meet, dissent, and return home safely in rain or after dark. “Pause” means selectable low-stimulation, stopping and reflection spaces. It is not statutory land-use code 16 and it does not ask innovation to stop.
 
 ## Design Basis and Source List
 
@@ -42,6 +42,14 @@ The name “Jing-Zhang Pause Line” uses two railway rails interrupted by a bre
 Six international cases compare mechanisms only: Kendall Square links innovation development with public review [source:CASE-KENDALL]; one-north provides a work-live-play-learn reference [source:CASE-ONE-NORTH]; Smart Kalasatama demonstrates resident co-creation and agile pilots [source:CASE-KALASATAMA]; Barcelona Superblocks shows streets shifting from throughput to public life [source:CASE-SUPERBLOCK]; New York POPS makes public-access obligations visible and inspectable [source:CASE-NYC-POPS]; Toronto Quayside links development with public benefits and inclusive public realm [source:CASE-QUAYSIDE]. No foreign metric, zoning power, investment or governance authority is transferred.
 
 The five required functions form an auditable loop. Zhongzhiyuan focuses on full-stack technology and safety validation; the AI Origin Community on open-source collaboration and talent learning; Dazhongsi on public adoption and international exchange. The Zhongguancun wing supplies legal, capital, talent and IP services, while the Xiaoyuehe wing supplies public scenarios and resident feedback. Every AI scenario moves through calm assessment, small-group discussion, public activity and archived reflection rather than using popularity as proof [depth:overall_spatial_structure] [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+This is not an industrial chain drawn as a one-way investment arrow. It gives innovation three publicly legible gates: a technology-and-safety validation gate; a conversion gate where open-source collaboration, legal and IP support, and patient capital meet; and an urban-adoption gate where residents, vendors, maintainers and users can dissent. Capital does not decide public judgment; it gives proposals that survive small-scale testing, rights review and public reflection time to continue [source:AGENT-TASKBOOK] [depth:overall_spatial_structure].
+
+| Collaborative phase | Spatial setting | Operating action | Public boundary |
+| --- | --- | --- | --- |
+| Research and trustworthy validation | Zhongzhiyuan Calm Validation Court | Open problem ledger, controlled low-speed test, independent safety review | Demonstration popularity never substitutes for safety evidence |
+| Conversion and support | Origin Shared-Learning Court—technology-service wing | Shared learning, legal/IP clinic, scenario matching, staged capital dialogue | No investment, attraction or tenant commitment |
+| Adoption and feedback | Dazhongsi Reflection Court—Xiaoyuehe scenario wing | Public trial, vendor/resident feedback, exit and grievance, knowledge archive | Human moderation; dissent and failure remain visible |
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -75,7 +83,7 @@ The three rhythm courts are distinct public checkpoints in the AI maturity chain
 
 *AI-generated conceptual visualization for atmosphere, user choice and component relationships only. It does not establish a redline, metric, regulatory condition, engineering-feasibility finding or implementation commitment.*
 
-The three pilgrimage and honor nodes are the Centennial Waiting Hall, Origin Pause Court and Dazhongsi Reflection Platform. They display the question, test conditions, failure records, responsible human and current status; a submission is not presented as selected, and a pilot is not presented as implemented.
+The three pilgrimage and honor nodes are explicit, walkable public instruments: the **Developer Walking Route** links the three courts and twelve stations into a line for stopping, conversation and detour; the **Open-Source Results Gallery** shows reusable methods, data boundaries and version changes; the **Agent Contribution Honor Wall** records contributors, questions, test conditions, failures, responsible humans and current status. Honor belongs not to the loudest launch, but to those who leave a reviewable process. A submission is not presented as selected, a pilot is not presented as implemented, and enterprise promotion cannot substitute for public contribution [source:AGENT-TASKBOOK] [depth:blue_green_public_space].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -85,18 +93,20 @@ The six personas are high-intensity researchers, neurodivergent users, residents
 | --- | --- | --- | --- | --- |
 | 01 | Low-stimulation wayfinding | Entire line; sensory-sensitive users, visitors | Suggest quiet/social/event routes only after explicit choice | No diagnosis inference or personal trajectory log |
 | 02 | Public seat status | Twelve stations; residents, workers | Report aggregate available-space state | No face recognition or individual dwell analysis |
-| 03 | Research recovery scheduling | Zhongzhiyuan; research teams | Flag conflicts between meetings and quiet periods | No health data; team confirms manually |
+| 03 | Health-friendly navigation | Entire line—community service points; older adults, visitors with chronic conditions, carers | After explicit user choice, identify rest, water, human-counter and accessible-route options | No diagnosis, triage or health profiling; emergencies continue through people and professional systems |
 | 04 | Audible robot-intent test★ | Zhongzhiyuan; robot teams, pedestrians | Test whether non-speech cues are understandable | Enclosed low-speed trial; safety officer can stop immediately |
 | 05 | Multimodal accessible-signage test★ | Origin; users with varied sensory and mobility needs | Combine tactile, text, light and sound cues | Affected users participate; accessibility expert releases |
 | 06 | Privacy-preserving sound-environment test★ | Origin; public-space operators | Extract anonymous level and frequency statistics only | No voice storage or speaker recognition |
 | 07 | Cross-disciplinary lunch table | Origin; students, developers | Match tables by public topic | Explicit opt-in; no talent scoring |
-| 08 | Low-stimulation public-service mode | Service points; older adults, families | Simplify interface and extend response time | Human counter remains permanently available |
+| 08 | Education, shared learning and low-stimulation service | Origin; students, young developers, older adults and families | Match shared-learning tables through public topics and offer simple interfaces with longer response | Explicit opt-in; human counter remains permanently available; no talent scoring |
 | 09 | Civic adoption forum | Dazhongsi; firms, residents | Summarize support, opposition and disagreements | Raw comments inspectable; human moderator concludes |
-| 10 | Quiet night route home | Dazhongsi-community; night users | Aggregate public lighting and opening information | No individual tracking or crime conclusion |
+| 10 | Night-market-friendly route home | Dazhongsi-community; night users, vendors, people walking with pets | Aggregate public lighting, opening, service-pedestal and passability state to support daily market setup and reset | No individual tracking or crime conclusion; permits and onsite order remain human responsibilities |
 | 11 | Jing-Zhang waiting-history guide | Heritage public space; visitors | Source-traceable station and innovation narrative | Historical and copyright review by humans |
 | 12 | Global Urban Rhythm Week | Entire line; international teams, communities | Multilingual agenda and venue conflict alerts | Event, safety and copyright approvals item by item |
 
 The three starred cards are industrial validation scenarios. Twelve cards, three validation tests and twelve spatial stations are recomputed by [metric:scenario_card_count], [metric:industry_validation_scenario_count] and [metric:pause_station_count]. AI reduces spatial conflict and expands choice; it does not compete for attention or decide who “needs rest.”
+
+Health, education and commerce are not three isolated AI showrooms. Health-friendly navigation translates care pressure into understandable street support; shared learning brings campus knowledge to accessible public edges; and the night-market-friendly route places vendor loading, restocking and rest in the same operating ledger as citizens' evening walk. Their common test is not whether the algorithm looks impressive, but whether the city excludes fewer people [source:AGENT-TASKBOOK] [depth:three_key_area_detailed_design].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -173,6 +183,18 @@ The character system draws from rail, station, waiting and signal: continuous de
 
 *AI-generated conceptual visualization for the relationship between heritage atmosphere and contemporary public discussion only. It is not an authentic reconstruction of any named station or protected building and does not establish a conservation, alteration or implementation commitment.*
 
+### From Railway Line to Question Line: a Walkable Cultural Guide
+
+Jing-Zhang culture, Zhongguancun culture and a new AI culture should not sit side by side as three exhibition panels. They share an ethic of time: railways teach that arrival requires waiting; early Zhongguancun teaches that trial and error need companions; the AI era must learn again that technology requires explanation, dissent and memory before it enters public life. Five movable, renewable nodes organize the guide without prescribing permanent exhibitions or heritage alteration [source:AGENT-TASKBOOK] [depth:blue_green_public_space].
+
+| Guide node | Relationship narrated | On-site action |
+| --- | --- | --- |
+| 01 Scale of waiting | Jing-Zhang railway and human waiting | Sit/lean surfaces, oral-history listening and non-digital time markers |
+| 02 Scale of trial and error | Zhongguancun experimentation and collaboration | Open problem board, failed versions and human revision record |
+| 03 Scale of openness | How knowledge is collectively maintained | Gallery of provenance, license, reuse and credit |
+| 04 Scale of adoption | How technology enters the street | Small trials, exit button, and resident/vendor feedback desk |
+| 05 Scale of reflection | How the city remembers experience | Honor wall, annual archive and the next public agenda |
+
 
 ## Drainage, Special-Safety Protection, and Age-Friendly Adaptation
 
@@ -240,6 +262,8 @@ Preconditions: market and night-operation permits; fire and public-safety review
 The three phases are Measure Rhythms First, Connect Spaces Second and Deepen Construction Last. Official data, rights impact, professional safety and public reflection gate every scale-up; phase areas prove coverage only and do not claim a government schedule [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list] [depth:phasing_implementation].
 
 The phase readings are [metric:phase_1_area_sqm], [metric:phase_2_area_sqm] and [metric:phase_3_area_sqm]. A reference annual cycle is spring problem collection, summer controlled testing, autumn civic adoption and winter public reflection; names, dates, funding and organizers are not confirmed.
+
+Long-term operation does not read a pilgrimage site as a once-a-year launch. It is a public compact that keeps growing: in spring communities, developers, schools, vendors and maintenance workers formulate questions together; in summer only reversible small-scale validations open; in autumn projects able to explain rights effects, maintenance cost and dissent return to the civic adoption forum; in winter methods, contributors, failures and next year's questions enter the public archive. International teams may enter this process, but cannot bypass local life. What travels is not one event's footfall but public knowledge that can be reused, credited and questioned [source:AGENT-TASKBOOK] [depth:phasing_implementation].
 
 ![Concept vision: reversible operation from morning maintenance through daytime learning and evening review to night-time reset](assets/figures/concept-day-night.jpg)
 
