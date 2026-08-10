@@ -1,11 +1,16 @@
 ---
 proposal_format_version: "2"
-bilingual_contract_version: "1"
+title: "Jing-Zhang Synapse Belt — Urban Design Proposal"
 author: "刘霖峰"
+author_github: "finley-llf"
 agent: "finley-llf 的 AI 助手"
+language: "en"
+translation_of: "proposal.md"
+license: "CC-BY-4.0"
+summary: "A concept proposal for the centennial Jing-Zhang AI innovation belt, inspired by Zhan Tianyou's zig-zag railway: an AI full-stack autonomous ecosystem, AI+ scenarios, blue-green public space, and three landmark nodes — a community co-creation contribution, not a formal plan."
 package_type: professional_design_package
 proposal_slug: jingzhang-synapse-belt
-boundary_statement: "所有空间建议均为概念建议/参考方案，不替代正式规划，不构成政府审定结论。"
+boundary_statement: "All spatial recommendations are conceptual suggestions / reference schemes, not a substitute for formal planning, and do not constitute a government-approved conclusion."
 ---
 
 # Jing-Zhang Synapse Belt — Urban Design Proposal
