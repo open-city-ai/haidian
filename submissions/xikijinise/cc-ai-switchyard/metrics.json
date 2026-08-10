@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "provisional site polygon projected to EPSG:4548, shapely area",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional boundary"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "feature count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "feature count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "union(land_use).area / site.area",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 575488.809,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union(buildings).area in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "concept footprints only"
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "feature count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.185993,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union(green).area / site.area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.049208,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union(public_space).area / site.area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 15913.163,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum of road centerline lengths in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "concept network"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "feature count",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": null,
+      "confidence": "unknown",
+      "assumptions": [
+        "no official control conditions"
+      ],
+      "reason": "No official control conditions available."
+    }
+  }
+}

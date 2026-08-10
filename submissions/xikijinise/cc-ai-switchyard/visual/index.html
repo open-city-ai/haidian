@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CC 编组场｜AI Switchyard — 方案可视化</title>
+<style>
+  :root {
+    --gray:#3A3F44; --red:#E14B3B; --teal:#00A6A6; --gold:#C9A227; --blue:#1B3A5C;
+    --bg:#F7F5F0; --ink:#2B2F33; --muted:#7A756C; --line:#D8D2C7;
+  }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Microsoft YaHei","PingFang SC",sans-serif; background:var(--bg); color:var(--ink); line-height:1.6; }
+  header { background:var(--gray); color:#fff; padding:28px 24px 20px; }
+  header h1 { font-size:26px; letter-spacing:1px; }
+  header p { color:#CFC9BF; margin-top:4px; font-size:13px; }
+  .tagline { display:inline-block; margin-top:10px; background:rgba(255,255,255,.12); padding:4px 12px; border-radius:20px; font-size:12px; }
+  .wrap { max-width:1180px; margin:0 auto; padding:24px 20px 48px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:18px; margin-top:20px; }
+  .card { background:#fff; border:1px solid var(--line); border-radius:10px; padding:18px; box-shadow:0 2px 8px rgba(58,63,68,.06); }
+  .card h2 { font-size:16px; color:var(--gray); border-bottom:2px solid var(--line); padding-bottom:8px; margin-bottom:12px; }
+  .card h3 { font-size:14px; margin-top:12px; color:var(--blue); }
+  .kpi { display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; }
+  .kpi div { flex:1 1 140px; background:#F1EEE8; border-radius:8px; padding:10px; text-align:center; }
+  .kpi b { display:block; font-size:20px; color:var(--blue); }
+  .kpi span { font-size:11px; color:var(--muted); }
+  .signal { display:flex; align-items:center; gap:10px; padding:8px 10px; border-radius:8px; margin-top:8px; border:1px solid var(--line); }
+  .signal .dot { width:16px; height:16px; border-radius:50%; flex:0 0 auto; }
+  .signal b { font-size:13px; }
+  .signal span { font-size:12px; color:var(--muted); margin-left:auto; }
+  .scenario { font-size:12.5px; padding:6px 0; border-bottom:1px dashed var(--line); display:flex; justify-content:space-between; }
+  .scenario:last-child { border-bottom:none; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; margin-top:8px; }
+  th, td { border:1px solid var(--line); padding:6px 8px; text-align:left; }
+  th { background:#EFEBE3; }
+  .warn { background:#FDF3E4; border:1px solid #E8D3A2; border-radius:8px; padding:10px 14px; font-size:12px; color:#6B5B32; margin-top:14px; }
+  .note { font-size:11.5px; color:var(--muted); margin-top:18px; }
+  img { max-width:100%; height:auto; border:1px solid var(--line); border-radius:8px; }
+  footer { text-align:center; color:var(--muted); font-size:11.5px; padding:18px; border-top:1px solid var(--line); }
+</style>
+</head>
+<body>
+<header>
+  <h1>CC 编组场｜AI Switchyard</h1>
+  <p>百年京张 AI 创新带城市设计 · 概念方案 · v1.0</p>
+  <span class="tagline">AI 能力像列车一样：进站 → 编组 → 测试 → 过信号 → 发车 → 检修</span>
+</header>
+<div class="wrap">
+
+  <div class="grid">
+    <div class="card">
+      <h2>五色信号 · 治理状态机</h2>
+      <div class="signal"><span class="dot" style="background:var(--red)"></span><b>红灯 · Hold / Reject</b><span>数据/安全/公平否决即停车</span></div>
+      <div class="signal"><span class="dot" style="background:var(--gold)"></span><b>黄灯 · Sandbox</b><span>限定时空试运行</span></div>
+      <div class="signal"><span class="dot" style="background:var(--teal)"></span><b>绿灯 · Merge</b><span>人工评审通过进入深化</span></div>
+      <div class="signal"><span class="dot" style="background:var(--gray)"></span><b>白灯 · Changelog</b><span>全程留痕、可撤回</span></div>
+      <div class="signal"><span class="dot" style="background:var(--blue)"></span><b>蓝灯 · Retired</b><span>退役归档，进入检修库</span></div>
+      <div class="warn">任何能力在获得信号灯放行前，都不算已经进入城市。红灯期间不得扩大运行；蓝灯场景进入“未合并未来档案”。</div>
+    </div>
+
+    <div class="card">
+      <h2>核心指标（EPSG:4548 复算）</h2>
+      <div class="kpi">
+        <div data-metric="site_area_sqm" data-value="11412825.386"><b>11.41</b><span>场地面积 km²</span></div>
+        <div data-metric="land_use_coverage_ratio" data-value="1.0"><b>100%</b><span>用地覆盖</span></div>
+        <div data-metric="green_ratio" data-value="0.185993"><b>18.6%</b><span>绿地比例</span></div>
+        <div data-metric="public_space_ratio" data-value="0.049208"><b>4.9%</b><span>公共空间比例</span></div>
+        <div data-metric="building_count" data-value="36"><b>36</b><span>概念建筑基底</span></div>
+        <div data-metric="road_network_length_m" data-value="15913.163"><b>15.9</b><span>概念线网 km</span></div>
+        <div data-metric="land_use_parcel_count" data-value="7"><b>7</b><span>概念功能带</span></div>
+        <div data-metric="phase_count" data-value="3"><b>3</b><span>实施分期</span></div>
+      </div>
+      <p style="font-size:12px;color:var(--muted);margin-top:10px">容积率 / 高度 / 密度 / 退线 / 道路红线保持 <b>unknown</b>，待官方控制条件确认。</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>总览地图 · 总体概念</h2>
+      <img src="../assets/figures/site-overview.png" alt="总体概念图">
+    </div>
+    <div class="card">
+      <h2>三层范围 · 用地分区</h2>
+      <img src="../assets/figures/land-use-structure.png" alt="三层范围与功能带">
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>重点区域 · 三个站场</h2>
+      <img src="../assets/figures/key-areas.png" alt="三个站场详细设计">
+      <table>
+        <tr><th>站场</th><th>角色</th><th>核心场景</th></tr>
+        <tr><td>众智园</td><td>编组场 Stack Yard</td><td>红队 / 机器人沙盒 / 算力调度</td></tr>
+        <tr><td>原点社区</td><td>零号站 Origin Station</td><td>素养课堂 / 社区助手 / 无障碍导航</td></tr>
+        <tr><td>大钟寺</td><td>交换场 Exchange Yard</td><td>AI 商业 / 互操作周 / 夜间灯带</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>交通慢行 · 蓝绿公共空间</h2>
+      <img src="../assets/figures/mobility-bluegreen.png" alt="慢行与蓝绿系统">
+      <h3>三座朝圣地标</h3>
+      <p style="font-size:12.5px">编组场开放庭院 · 零号站人审大厅 · 交换场未合并未来档案墙</p>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>指标证据链</h2>
+      <img src="../assets/figures/metrics-evidence.png" alt="指标复算证据">
+    </div>
+    <div class="card">
+      <h2>更新项目 · 四季调图 · 长期运营</h2>
+      <table>
+        <tr><th>季节</th><th>活动</th><th>信号</th></tr>
+        <tr><td>春分</td><td>城市 Issue 季：公开征题</td><td>黄灯</td></tr>
+        <tr><td>夏至</td><td>沙盒试运行周：集中测试</td><td>黄灯→绿灯</td></tr>
+        <tr><td>秋分</td><td>Merge 节：发布合并与拒绝清单</td><td>绿灯/红灯</td></tr>
+        <tr><td>冬至</td><td>检修季：复盘与退役</td><td>蓝灯</td></tr>
+      </table>
+      <h3>AI 场景 · 14 张场景卡（含 4 项产业验证）</h3>
+      <div class="scenario"><span>SCN-01 模型安全红队场</span><b style="color:var(--red)">产业验证</b></div>
+      <div class="scenario"><span>SCN-02 具身机器人混行沙盒</span><b style="color:var(--red)">产业验证</b></div>
+      <div class="scenario"><span>SCN-03 算力—能耗协同</span><b style="color:var(--red)">产业验证</b></div>
+      <div class="scenario"><span>SCN-04 AI 原生商业试营业</span><b style="color:var(--red)">产业验证</b></div>
+      <div class="scenario"><span>SCN-05 多智能体协同编组台</span><span>黄灯准入</span></div>
+      <div class="scenario"><span>SCN-06 社区事务可解释助手</span><span>黄灯试运行</span></div>
+      <div class="scenario"><span>SCN-07 适老生活协作员</span><span>本人/照护者确认</span></div>
+      <div class="scenario"><span>SCN-08 无障碍连续导航</span><span>实地复核后绿</span></div>
+      <div class="scenario"><span>SCN-09 开放 AI 素养课堂</span><span>教师终审</span></div>
+      <div class="scenario"><span>SCN-10 京张文化证据导览</span><span>逐条审校</span></div>
+      <div class="scenario"><span>SCN-11 公园生态养护助手</span><span>专业人员决定</span></div>
+      <div class="scenario"><span>SCN-12 夜间安全共治灯带</span><span>值守人员复核</span></div>
+      <div class="scenario"><span>SCN-13 城市议题路由台</span><span>议题委员会确认</span></div>
+      <div class="scenario"><span>SCN-14 全球开发者互操作周</span><span>联合评审后绿</span></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>任务覆盖</h2>
+      <p style="font-size:12.5px">方案逐条回应公告 17 项任务与智能体任务书 agent.1—agent.6 共 23 项必答项，映射到正文章节、GeoJSON 图层、指标、图纸、来源、假设与自检项，完整矩阵见 <code>compliance_matrix.json</code>。</p>
+      <h3>六项智能体任务</h3>
+      <p style="font-size:12.5px">命名/Logo（CC 编组场）· 生态案例（6 个机制转译）· 场景卡（14 张）· 朝圣地标（3 处）· 文化叙事（铁路记忆 × 中关村 × AI）· 长期运营（四季调图）</p>
+    </div>
+    <div class="card">
+      <h2>自检状态 · 来源 · 假设</h2>
+      <table>
+        <tr><th>检查项</th><th>结果</th></tr>
+        <tr><td>边界信任（provisional）</td><td>PASS（官方边界到位后重算）</td></tr>
+        <tr><td>重点区信任（provisional）</td><td>PASS（官方 polygon 到位后重算）</td></tr>
+        <tr><td>用地拓扑（完整覆盖）</td><td>PASS（覆盖 100%）</td></tr>
+        <tr><td>可视化离线静态</td><td>PASS（无外部资源）</td></tr>
+        <tr><td>专业证据链</td><td>PASS</td></tr>
+      </table>
+      <h3>来源</h3>
+      <p style="font-size:12px">官方公告 · 智能体任务书 · 站点包 · 公开资料登记表 · provisional 边界派生说明（完整见 <code>sources.json</code>）</p>
+      <h3>假设</h3>
+      <p style="font-size:12px">控规、道路红线、权属、市政与工程条件待官方确认（A-CONTROLS-001）；官方几何到位后整包重算。</p>
+    </div>
+  </div>
+
+  <div class="warn" style="margin-top:22px">
+    <b>边界声明：</b>本方案全部空间落地建议均为“概念建议、参考方案、可供专业团队深化研究”，不替代正式规划，不构成政府审定结论、工程可行性结论、投资承诺或已确定实施安排。当前几何基于仓库 provisional 临时边界生成（<code>official_boundary=false</code>），不是官方红线；官方 polygon 到位后须整包重算。本方案由 AI 生成，未包含任何个人隐私、账号凭据或非公开资料。
+  </div>
+  <p class="note">提交人：GitHub xikijinise · Agent cc (Codex) · 2026-08-10 · 详细正文见 proposal.md / proposal.en.md，结构化证据见 geometry / metrics.json / 矩阵文件</p>
+</div>
+<footer>CC 编组场｜AI Switchyard — 百年京张 AI 创新带城市设计开源征集 · 概念方案</footer>
+</body>
+</html>
