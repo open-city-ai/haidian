@@ -1,0 +1,61 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "validate_local_submission.py reports no errors for this package."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present and disclosed; replace with the official redline before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "minor",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional_constraint with 3 expected KEY_AREA_PROVISIONAL spatial-review minors; replace with official polygons before professional scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "219 closed land-use parcels fully cover the provisional design boundary without overlaps; road parcels use code 1207."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "scripts/spatial_review.py PASS in EPSG:4548: site, green space, public space, building footprint, green_ratio, and public_space_ratio all recompute within tolerance."
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.en.md",
+      "message": "proposal.en.md declares translation_of proposal.md; figures are language-neutral and all display materials have en counterparts."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization passes visual_review without external dependencies."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions; professional_review.py reports no blocking issues."
+    }
+  ]
+}
