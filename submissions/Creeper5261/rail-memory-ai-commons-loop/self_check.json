@@ -2,39 +2,112 @@
   "schema_version": "0.1.0",
   "checks": [
     {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "validate_submission.py passed for the complete participant-scoped package; no blocking errors were reported.",
+      "confidence": "high",
+      "affected_files": [
+        {
+          "path": "proposal.md",
+          "sha256": "2a52331dee654af0b284ff5cbe2febbc68e41433190a9eb83276e21c06225c4f"
+        }
+      ]
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "message": "Spatial review passed. The only reported issues are three non-blocking KEY_AREA_PROVISIONAL disclosures.",
+      "confidence": "medium",
+      "affected_files": [
+        {
+          "path": "geometry/land_use.geojson",
+          "sha256": "b570432adfa0f997ebb82aff011b9154e14dd0d75c173c55778633699d2d74d7"
+        },
+        {
+          "path": "geometry/key_areas.geojson",
+          "sha256": "ec6eac2cef233f82918cb9b026d36e521714d40fbfde4f2ae847ea9eee336568"
+        },
+        {
+          "path": "geometry/site_boundary.geojson",
+          "sha256": "2c716e4b9a2bf00622d560ff9d3889d25f1b83abf33570011834a8ee70573bd0"
+        }
+      ]
+    },
+    {
+      "check_id": "VISUAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Visual packaging review passed with no visual issues.",
+      "confidence": "high",
+      "affected_files": [
+        {
+          "path": "visual/index.html",
+          "sha256": "a1de4eb3a8fa3f69b4e4ec41a3bd4e5ed5213847df6fe3aa4939119e98fb7c17"
+        }
+      ]
+    },
+    {
+      "check_id": "PROFESSIONAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "design_depth_matrix.json",
+      "message": "Professional evidence review passed with no issues; standards, design depth, metrics, and claim-adjacent evidence references are present.",
+      "confidence": "high",
+      "affected_files": [
+        {
+          "path": "standard_matrix.json",
+          "sha256": "7764019cf2a11c30b4021c0b34ffe134fe6668ff6b8491a3c502e94a6088a77d"
+        },
+        {
+          "path": "design_depth_matrix.json",
+          "sha256": "66aa68787443a68131504c281cf6848e876e04f16fa26daff7977930b32d65c2"
+        },
+        {
+          "path": "metrics.json",
+          "sha256": "f781df4f4bbb84f1540d85414306ce7ca1e034f6b7294a45ee15f790aa8220f2"
+        }
+      ]
+    },
+    {
+      "check_id": "PARTICIPANT_PREFLIGHT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "participant_preflight.py passed, including participant scope, package size, fork remote, and push dry-run checks.",
+      "confidence": "high"
+    },
+    {
       "check_id": "BOUNDARY_TRUST",
       "result": "pass",
       "severity": "major",
       "target": "geometry/site_boundary.geojson",
-      "message": "Provisional boundary is present; replace with official redline before professional scoring."
+      "message": "Provisional boundary is explicitly disclosed and is not represented as an official redline or precise-area basis.",
+      "confidence": "low",
+      "affected_files": [
+        {
+          "path": "geometry/site_boundary.geojson",
+          "sha256": "2c716e4b9a2bf00622d560ff9d3889d25f1b83abf33570011834a8ee70573bd0"
+        }
+      ]
     },
     {
       "check_id": "KEY_AREAS_TRUST",
       "result": "pass",
       "severity": "major",
       "target": "geometry/key_areas.geojson",
-      "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
-    },
-    {
-      "check_id": "LAND_USE_TOPOLOGY",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "Initial land-use polygons are derived from site boundary partitioning."
-    },
-    {
-      "check_id": "VISUAL_STATIC",
-      "result": "pass",
-      "severity": "info",
-      "target": "visual/index.html",
-      "message": "Static HTML visualization is generated without external dependencies."
-    },
-    {
-      "check_id": "PROFESSIONAL_EVIDENCE",
-      "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+      "message": "Three required key areas are explicitly marked provisional and require replacement when official polygons become available.",
+      "confidence": "low",
+      "affected_files": [
+        {
+          "path": "geometry/key_areas.geojson",
+          "sha256": "ec6eac2cef233f82918cb9b026d36e521714d40fbfde4f2ae847ea9eee336568"
+        }
+      ]
     }
   ]
 }
