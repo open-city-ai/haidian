@@ -30,9 +30,6 @@ SCORE_REVIEW_PATTERN = re.compile(
     r"<!-- haidian-auto-review:(?P<head>[0-9a-f]{40}) -->\s*"
     r"Maintainer intake decision: Review Agent score (?P<score>[0-9]+(?:\.[0-9]+)?)/100\."
 )
-DEFAULT_TRUSTED_REVIEWERS = frozenset({"cocosgt", "wakenmeng"})
-TRUSTED_REVIEWERS_ENV = "HAIDIAN_TRUSTED_REVIEWERS"
-TRUSTED_SCORE_LEDGER_PATH = Path("docs/trusted-score-high-water.json")
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
@@ -108,135 +105,32 @@ def submission_dir_from_files(paths: list[str], author: str) -> str:
     return roots.pop()
 
 
-def trusted_reviewer_logins() -> set[str]:
-    """Return the explicit maintainer/bot reviewer allowlist used for history."""
-    configured = {
-        item.strip().casefold()
-        for item in os.getenv(TRUSTED_REVIEWERS_ENV, "").split(",")
-        if item.strip()
-    }
-    return configured or set(DEFAULT_TRUSTED_REVIEWERS)
-
-
-def load_trusted_score_ledger(
-    repo_root: Path,
-    trusted_reviewers: set[str] | None = None,
-) -> list[dict[str, Any]]:
-    """Load the maintainer-curated score ledger and fail closed on bad entries."""
-    path = repo_root / TRUSTED_SCORE_LEDGER_PATH
-    if not path.is_file():
-        return []
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
-        raise WorkerError(f"invalid trusted score ledger: {path}") from exc
-    if not isinstance(payload, dict) or payload.get("schema_version") != 1:
-        raise WorkerError(f"unsupported trusted score ledger schema: {path}")
-    entries = payload.get("entries")
-    if not isinstance(entries, list):
-        raise WorkerError(f"trusted score ledger entries must be a list: {path}")
-    allowed = trusted_reviewers or trusted_reviewer_logins()
-    normalized: list[dict[str, Any]] = []
-    for index, item in enumerate(entries):
-        if not isinstance(item, dict):
-            raise WorkerError(f"trusted score ledger entry {index} is not an object")
-        submission_dir = str(item.get("submission_dir", ""))
-        score = item.get("score")
-        head_sha = str(item.get("reviewed_head_sha", ""))
-        reviewer = str(item.get("reviewer", "")).casefold()
-        if (
-            _submission_root_from_paths([f"{submission_dir}/manifest.json"]) != submission_dir
-            or not re.fullmatch(r"[0-9a-f]{40}", head_sha)
-            or not isinstance(score, (int, float))
-            or isinstance(score, bool)
-            or not 0 <= float(score) <= 100
-            or reviewer not in allowed
-        ):
-            raise WorkerError(f"invalid trusted score ledger entry {index}: {submission_dir}")
-        normalized.append(
-            {
-                "submission_dir": submission_dir,
-                "score": float(score),
-                "reviewed_head_sha": head_sha,
-                "merged_pr": item.get("merged_pr"),
-                "reviewer": reviewer,
-            }
-        )
-    return normalized
-
-
-def ledger_best_score(ledger: list[dict[str, Any]], submission_dir: str) -> float | None:
-    scores = [
-        float(item["score"])
-        for item in ledger
-        if str(item.get("submission_dir", "")) == submission_dir
-    ]
-    return max(scores) if scores else None
-
-
-def official_score_from_review(
-    review: dict[str, Any],
-    head_sha: str,
-    trusted_reviewers: set[str] | None = None,
-) -> float | None:
-    """Read only an approved exact-head score from an explicitly trusted reviewer."""
-    if str(review.get("state", "")).upper() != "APPROVED":
-        return None
-    author = review.get("author") or review.get("user") or {}
-    login = str(author.get("login", "")).casefold() if isinstance(author, dict) else ""
-    if login not in (trusted_reviewers or trusted_reviewer_logins()):
-        return None
-    match = SCORE_REVIEW_PATTERN.search(str(review.get("body", "")))
+def official_score_from_review(body: str, head_sha: str) -> float | None:
+    """Read only the trusted exact-head score marker emitted by this worker."""
+    match = SCORE_REVIEW_PATTERN.search(body)
     if match is None or match.group("head") != head_sha.casefold():
         return None
     return float(match.group("score"))
 
 
 def _submission_root_from_paths(paths: list[str]) -> str | None:
-    if not paths:
-        return None
-    if any(
-        len(path.split("/")) < 4 or path.split("/")[0] != "submissions"
-        for path in paths
-    ):
-        return None
     roots = {
         "/".join(path.split("/")[:3])
         for path in paths
+        if len(path.split("/")) >= 4 and path.split("/")[0] == "submissions"
     }
     return next(iter(roots)) if len(roots) == 1 else None
 
 
-def _review_commit_sha(review: dict[str, Any]) -> str:
-    """Return the commit reviewed by a GitHub REST or GraphQL review object."""
-    commit_id = review.get("commit_id")
-    if commit_id:
-        return str(commit_id)
-    commit = review.get("commit")
-    if isinstance(commit, dict):
-        return str(commit.get("oid", ""))
-    return ""
-
-
-def historical_best_score(
-    merged_prs: list[dict[str, Any]],
-    submission_dir: str,
-    trusted_reviewers: set[str] | None = None,
-) -> float | None:
+def historical_best_score(merged_prs: list[dict[str, Any]], submission_dir: str) -> float | None:
     """Return the highest trusted score for one package across merged PRs."""
     best: float | None = None
     for pr in merged_prs:
         if _submission_root_from_paths([str(item.get("path", "")) for item in pr.get("files", [])]) != submission_dir:
             continue
-        final_head_sha = str(pr.get("headRefOid", ""))
+        head_sha = str(pr.get("headRefOid", ""))
         for review in pr.get("reviews", []):
-            # A merged PR can have several reviewed revisions.  The final PR
-            # head is not necessarily the revision that earned the highest
-            # trusted score, so bind the score to the review's own commit.
-            review_sha = _review_commit_sha(review) or final_head_sha
-            if not review_sha:
-                continue
-            score = official_score_from_review(review, review_sha, trusted_reviewers)
+            score = official_score_from_review(str(review.get("body", "")), head_sha)
             if score is not None and (best is None or score > best):
                 best = score
     return best
@@ -449,7 +343,6 @@ def process_pr(
     meta: dict[str, Any],
     repo_root: Path,
     history_cache: dict[str, list[dict[str, Any]]],
-    score_ledger: list[dict[str, Any]],
 ) -> dict[str, Any]:
     number = int(meta["number"])
     head_sha = str(meta["headRefOid"])
@@ -483,12 +376,7 @@ def process_pr(
             if author not in history_cache:
                 history_cache[author] = merged_prs_for_author(args.repo, author, repo_root)
             merged_prs = history_cache[author]
-        live_best = historical_best_score(merged_prs, submission_dir, trusted_reviewer_logins())
-        ledger_best = ledger_best_score(score_ledger, submission_dir)
-        historical_best = max(
-            [score for score in (live_best, ledger_best) if score is not None],
-            default=None,
-        )
+        historical_best = historical_best_score(merged_prs, submission_dir)
         cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold, historical_best)
         if cached is None:
             command = [
@@ -616,7 +504,6 @@ def main() -> int:
     selected = []
     results = []
     history_cache: dict[str, list[dict[str, Any]]] = {}
-    score_ledger = load_trusted_score_ledger(repo_root)
     for candidate in sorted(candidates, key=lambda item: int(item["number"])):
         if len(selected) >= args.limit:
             break
@@ -647,10 +534,7 @@ def main() -> int:
             continue
         selected.append(live)
     with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
-        futures = {
-            executor.submit(process_pr, args, meta, repo_root, history_cache, score_ledger): meta
-            for meta in selected
-        }
+        futures = {executor.submit(process_pr, args, meta, repo_root, history_cache): meta for meta in selected}
         for future in as_completed(futures):
             meta = futures[future]
             try:

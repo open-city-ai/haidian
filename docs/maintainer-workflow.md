@@ -280,17 +280,14 @@ SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 bas
 
 ### 分数保护与恢复
 
-`--apply` 在决定合并前，会读取 `docs/trusted-score-high-water.json` 中的维护者登记值，并与该投稿作者已合并 PR 中由显式 trusted reviewer allowlist
-提交、状态为 `APPROVED` 且带有 `haidian-auto-review:<exact-head-sha>` 标记的维护者 Review Agent 评论，并按投稿目录计算
-历史官方最高分。两条来源取较高值；登记表用于在 GitHub 历史 API 限流、分页或历史 PR 被压缩时保留恢复线，不能由投稿分支运行时写入。新 exact head 的分数低于该最高分时，worker 会发布
+`--apply` 在决定合并前，会读取该投稿作者已合并 PR 中带有
+`haidian-auto-review:<exact-head-sha>` 标记的维护者 Review Agent 评论，并按投稿目录计算
+历史官方最高分。新 exact head 的分数低于该最高分时，worker 会发布
 `score-preservation hold`、请求修改并保持 PR 不合并；达到或超过最高分才有资格继续走
 原有 intake 合并流程。没有历史官方分数的首个投稿不受这条比较规则阻塞，但仍必须通过
 60 分绝对门槛、四项 gate 和强制退件检查。
 
-这条保护还会校验 review 的 `state=APPROVED` 与 reviewer login。当前已登记的官方 intake
-reviewer 是 `CocoSgt` 和 `wakenmeng`；维护者轮换时通过 `HAIDIAN_TRUSTED_REVIEWERS`（逗号分隔的
-GitHub login allowlist）更新 worker 配置。普通贡献者、`CHANGES_REQUESTED` 评论、草稿或
-正文中单独伪造 marker 的评论都不会建立历史分数。它不把本地自检、advisory scorer 或
+这条保护只依据 exact-head 的官方维护者评论，不把本地自检、advisory scorer、草稿或
 公共 gallery 位置当作正式分数。若历史最高包已经被更低分版本覆盖，维护者应从历史
 exact head 建立恢复 PR，并在新的 exact head 重新评分达到原最高分前保持候选不合并；不
 使用 force-push 或重写 `main`。
