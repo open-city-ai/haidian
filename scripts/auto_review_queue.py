@@ -12,6 +12,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import fcntl
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -25,9 +26,14 @@ from generate_submissions_data import package_sha256
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
 CONFLICT_MARKER = "<!-- haidian-auto-review-conflict:{head_sha} -->"
+SCORE_REVIEW_PATTERN = re.compile(
+    r"<!-- haidian-auto-review:(?P<head>[0-9a-f]{40}) -->\s*"
+    r"Maintainer intake decision: Review Agent score (?P<score>[0-9]+(?:\.[0-9]+)?)/100\."
+)
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
 GITHUB_WRITE_LOCK = threading.Lock()
+HISTORY_LOCK = threading.Lock()
 
 
 class WorkerError(RuntimeError):
@@ -99,7 +105,63 @@ def submission_dir_from_files(paths: list[str], author: str) -> str:
     return roots.pop()
 
 
-def decide(review: dict[str, Any], decision: dict[str, Any], threshold: float) -> Decision:
+def official_score_from_review(body: str, head_sha: str) -> float | None:
+    """Read only the trusted exact-head score marker emitted by this worker."""
+    match = SCORE_REVIEW_PATTERN.search(body)
+    if match is None or match.group("head") != head_sha.casefold():
+        return None
+    return float(match.group("score"))
+
+
+def _submission_root_from_paths(paths: list[str]) -> str | None:
+    roots = {
+        "/".join(path.split("/")[:3])
+        for path in paths
+        if len(path.split("/")) >= 4 and path.split("/")[0] == "submissions"
+    }
+    return next(iter(roots)) if len(roots) == 1 else None
+
+
+def historical_best_score(merged_prs: list[dict[str, Any]], submission_dir: str) -> float | None:
+    """Return the highest trusted score for one package across merged PRs."""
+    best: float | None = None
+    for pr in merged_prs:
+        if _submission_root_from_paths([str(item.get("path", "")) for item in pr.get("files", [])]) != submission_dir:
+            continue
+        head_sha = str(pr.get("headRefOid", ""))
+        for review in pr.get("reviews", []):
+            score = official_score_from_review(str(review.get("body", "")), head_sha)
+            if score is not None and (best is None or score > best):
+                best = score
+    return best
+
+
+def merged_prs_for_author(repo: str, author: str, cwd: Path) -> list[dict[str, Any]]:
+    """Fetch merged package PRs once per author for score-preservation checks."""
+    return gh_json(
+        repo,
+        [
+            "pr",
+            "list",
+            "--state",
+            "merged",
+            "--author",
+            author,
+            "--limit",
+            "1000",
+            "--json",
+            "headRefOid,files,reviews",
+        ],
+        cwd=cwd,
+    )
+
+
+def decide(
+    review: dict[str, Any],
+    decision: dict[str, Any],
+    threshold: float,
+    historical_best: float | None = None,
+) -> Decision:
     mandatory = review.get("mandatory_rejection", {})
     if mandatory.get("result") != "pass":
         return Decision("request-changes", decision.get("weighted_score_100"), "mandatory rejection hit")
@@ -118,6 +180,12 @@ def decide(review: dict[str, Any], decision: dict[str, Any], threshold: float) -
         raise WorkerError("AI decision has no numeric weighted_score_100")
     if float(score) < threshold:
         return Decision("low-quality", float(score), f"score below {threshold:g}")
+    if historical_best is not None and float(score) < historical_best:
+        return Decision(
+            "score-regression",
+            float(score),
+            f"score below historical exact-head best {historical_best:g}",
+        )
     return Decision("accept", float(score), "threshold and all gates passed")
 
 
@@ -184,6 +252,7 @@ def load_cached_review(
     submission_dir: str,
     checkout_root: Path,
     threshold: float,
+    historical_best: float | None = None,
 ) -> tuple[dict[str, Any], dict[str, Any], Decision] | None:
     try:
         review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
@@ -204,7 +273,7 @@ def load_cached_review(
     if decision.get("reviewed_package_sha256") != expected_hash:
         return None
     try:
-        outcome = decide(review, decision, threshold)
+        outcome = decide(review, decision, threshold, historical_best)
     except WorkerError:
         return None
     return review, decision, outcome
@@ -219,6 +288,7 @@ def apply_review(
     cwd: Path,
     *,
     admin_merge: bool,
+    historical_best: float | None = None,
 ) -> None:
     live = pr_meta(repo, number, cwd)
     assert_live(live, head_sha, require_success=True)
@@ -231,6 +301,8 @@ def apply_review(
             "Mandatory rejection and all four local gates passed. Accepted for repository intake only; "
             "this is not gallery publication, award selection, implementation approval, or government endorsement."
         )
+        if historical_best is not None:
+            body += f" Historical exact-head best for this submission: {historical_best:g}/100; this score does not regress it."
         run(["gh", "pr", "review", str(number), "--repo", repo, "--approve", "--body", body], cwd=cwd)
         assert_live(pr_meta(repo, number, cwd), head_sha, require_success=True)
         merge = ["gh", "pr", "merge", str(number), "--repo", repo, "--merge"]
@@ -247,7 +319,15 @@ def apply_review(
         return
 
     body = comment_file.read_text(encoding="utf-8")
-    body = f"{marker}\n{body}"
+    if outcome.action == "score-regression" and historical_best is not None:
+        body = (
+            f"{marker}\nScore-preservation hold: Review Agent score {outcome.score:g}/100 is below the "
+            f"historical exact-head best {historical_best:g}/100 for this submission. Do not merge this PR; "
+            "keep the higher-scoring merged version as the public recovery target.\n\n"
+            + body
+        )
+    else:
+        body = f"{marker}\n{body}"
     run(["gh", "pr", "review", str(number), "--repo", repo, "--request-changes", "--body", body], cwd=cwd)
     add = ["review/changes-requested"]
     if outcome.action == "low-quality":
@@ -258,7 +338,12 @@ def apply_review(
     )
 
 
-def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) -> dict[str, Any]:
+def process_pr(
+    args: argparse.Namespace,
+    meta: dict[str, Any],
+    repo_root: Path,
+    history_cache: dict[str, list[dict[str, Any]]],
+) -> dict[str, Any]:
     number = int(meta["number"])
     head_sha = str(meta["headRefOid"])
     author = str(meta["author"]["login"])
@@ -287,7 +372,12 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
         checked = run(["git", "rev-parse", "HEAD"], cwd=worktree).stdout.strip()
         if checked != head_sha:
             raise WorkerError("fetched worktree SHA does not match live PR head")
-        cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold)
+        with HISTORY_LOCK:
+            if author not in history_cache:
+                history_cache[author] = merged_prs_for_author(args.repo, author, repo_root)
+            merged_prs = history_cache[author]
+        historical_best = historical_best_score(merged_prs, submission_dir)
+        cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold, historical_best)
         if cached is None:
             command = [
                 sys.executable,
@@ -315,7 +405,7 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
             run(command, cwd=worktree)
             review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
             ai_decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
-            outcome = decide(review, ai_decision, args.threshold)
+            outcome = decide(review, ai_decision, args.threshold, historical_best)
             reused_audit = False
         else:
             review, ai_decision, outcome = cached
@@ -327,6 +417,7 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
             "score": outcome.score,
             "result": outcome.action,
             "reason": outcome.reason,
+            "historical_best_score": historical_best,
             "package_sha256": ai_decision.get("reviewed_package_sha256"),
             "reused_audit": reused_audit,
         }
@@ -340,6 +431,7 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
                     audit_dir / "pr-comment.md",
                     repo_root,
                     admin_merge=args.admin_merge,
+                    historical_best=historical_best,
                 )
             result["applied"] = True
         return result
@@ -411,6 +503,7 @@ def main() -> int:
     )
     selected = []
     results = []
+    history_cache: dict[str, list[dict[str, Any]]] = {}
     for candidate in sorted(candidates, key=lambda item: int(item["number"])):
         if len(selected) >= args.limit:
             break
@@ -441,7 +534,7 @@ def main() -> int:
             continue
         selected.append(live)
     with ThreadPoolExecutor(max_workers=args.concurrency) as executor:
-        futures = {executor.submit(process_pr, args, meta, repo_root): meta for meta in selected}
+        futures = {executor.submit(process_pr, args, meta, repo_root, history_cache): meta for meta in selected}
         for future in as_completed(futures):
             meta = futures[future]
             try:
