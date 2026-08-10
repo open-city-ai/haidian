@@ -1,0 +1,178 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Using provisional boundary; exact area will change with official polygon."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.22,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space area derived from provisional design layers.",
+        "Recomputed from spatial green_space.geojson with clipped youth features"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.006,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Includes youth-focused public spaces; area from provisional layers.",
+        "Recomputed from spatial public_space.geojson with clipped youth features"
+      ]
+    },
+    "youth_public_space_ratio": {
+      "status": "known",
+      "value": 0.25,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "youth_designated_public_space_area / total_public_space_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Target ratio for youth-designated spaces within total public space.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "youth_programming_nodes_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with public_space_type in [coding_garden, hackathon_plaza, night_code_cafe, developer_social_steps, youth_maker_space])",
+      "confidence": "medium",
+      "assumptions": [
+        "Nodes are design proposals; actual count depends on detailed planning.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "hackathon_plaza_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with public_space_type='hackathon_plaza')",
+      "confidence": "medium",
+      "assumptions": [
+        "One plaza per key area; expandable in later phases.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "coding_garden_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(features with public_space_type='coding_garden' or sub_type='coding_garden_corridor')",
+      "confidence": "medium",
+      "assumptions": [
+        "Distributed along Jing-Zhang park corridor; count includes both standalone and corridor nodes.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "sports_code_trail_length_km": {
+      "status": "known",
+      "value": 8.2,
+      "unit": "km",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "line_length(features with public_space_type='sports_code_trail') / 1000",
+      "confidence": "medium",
+      "assumptions": [
+        "Length measured from provisional design geometry.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "youth_maker_space_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features with building_type='youth_maker_space' or public_space_type='youth_maker_space')",
+      "confidence": "medium",
+      "assumptions": [
+        "Includes both standalone maker spaces and those integrated into innovation hubs.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features with public_space_type='ai_pilgrimage_landmark')",
+      "confidence": "medium",
+      "assumptions": [
+        "Three core landmarks: Hello World Monument, Contributors Wall, AI Timeline Walk.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    },
+    "night_economy_zones": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features with public_space_type='night_code_cafe' or operating_hours='24h')",
+      "confidence": "medium",
+      "assumptions": [
+        "Night economy zones include 24h cafes, night markets, and evening event spaces.",
+        "Design target; actual values depend on detailed planning and official data."
+      ]
+    }
+  }
+}

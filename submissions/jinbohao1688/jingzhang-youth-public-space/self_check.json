@@ -1,0 +1,98 @@
+{
+  "schema_version": "0.1.0",
+  "checked_at": "2026-08-10T04:30:00Z",
+  "checker": "jinbohao1688 (Claude Code)",
+  "checks": [
+    {
+      "check_id": "PACKAGE_STRUCTURE",
+      "detail": "All required files present: proposal.md, manifest.json, agent.json, metrics.json, sources.json, assumptions.json, compliance_matrix.json, standard_matrix.json, design_depth_matrix.json, self_check.json, report/proposal.html, report/copyright_statement.md, drawings/a3-booklet.pdf, drawings/a0-boards.pdf, visual/index.html, assets/figures/*.png, geometry/*.geojson",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "detail": "Provisional boundaries are labeled official_boundary=false, geometry_role=provisional_constraint. Warning: all areas and metrics must be recalculated when official polygons are released.",
+      "result": "pass",
+      "severity": "major"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "detail": "Three key areas present in geometry/key_areas.geojson with provisional_constraint role. Each area addressed in proposal.md and compliance_matrix.json.",
+      "result": "pass",
+      "severity": "major"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "detail": "Land use partition covers design boundary. Youth-focused LU-YOUTH-01 zone added for youth innovation public space.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "detail": "visual/index.html is offline static HTML with no CDN resources, remote scripts, external fonts, iframes, or tracking code.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "detail": "proposal.md (zh primary) declares bilingual_contract_version: 1 and translation_file: proposal.en.md.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "FORMAT_VERSION",
+      "detail": "proposal.md declares proposal_format_version: 2.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "REQUIRED_FIGURES",
+      "detail": "Five required figures present: site-overview.png, land-use-structure.png, key-areas.png, mobility-bluegreen.png, metrics-evidence.png.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "AGENT_TASK_COVERAGE",
+      "detail": "All six agent tasks (agent.1 through agent.6) covered in proposal.md and compliance_matrix.json.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "YOUTH_SCENARIO_COVERAGE",
+      "detail": "10+ AI scenario cards with youth focus, 5+ user personas, 3+ test/validation scenarios, 5-8 global case studies, 3+ AI pilgrimage landmarks - all documented in proposal.md.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "METRIC_COMPLETENESS",
+      "detail": "12 metrics defined in metrics.json including youth-focused metrics (youth_public_space_ratio, hackathon_plaza_count, coding_garden_count, sports_code_trail_length_km, youth_maker_space_count, ai_landmark_count, night_economy_zones).",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "SOURCE_PROVENANCE",
+      "detail": "All sources registered in sources.json with usage boundaries. Case study sources and youth statistics added.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "COMPLIANCE_MATRIX",
+      "detail": "All mandatory requirements (1.3.1-1.5.3.3, agent.1-agent.6) mapped to report sections, GeoJSON layers, metrics, drawings, and visual sections.",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "NO_FORBIDDEN_CLAIMS",
+      "detail": "No forbidden claims detected: no official approval, no statutory FAR/heights, no guaranteed implementation, no false official redlines.",
+      "result": "pass",
+      "severity": "minor"
+    }
+  ],
+  "overall_result": "pass",
+  "warnings": [
+    "Provisional boundaries used - all areas approximate. Recalculate when official polygons release.",
+    "Building-scale proposals are conceptual only - require existing building surveys.",
+    "Infrastructure proposals are conceptual only - require engineering assessment.",
+    "Youth demographic data from public statistics - validate with official census data."
+  ]
+}
