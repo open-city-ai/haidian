@@ -11,3 +11,11 @@
 ## v0.2 - 2026-08-10
 
 - 依据正式机器评审（CHANGES_REQUESTED）修正：模型族标准化（model_family=claude）、几何图层枚举与环闭合修复、中英方案章节对齐官方必备结构并内嵌 5 张核心图、证据引用补齐、评审备注补齐。
+
+## v0.3 - 2026-08-10
+
+- 依据增强专业评审（CHANGES_REQUESTED）的空间/指标/双语反馈深度修正：
+- **空间底稿重建**：land_use 重构为基于临时 site_boundary 的无缝、无重叠、全覆盖分区（internal_overlap=0、out-of-site=0、coverage=100%）；green_space/public_space/phasing 裁剪至范围内。
+- **面积与指标重算**：以 EPSG:4549（CGCS2000 3°带 zone 40）复算全部面积（site≈11,439,314㎡、green_ratio≈0.1396、public_ratio≈0.1792、building_footprint≈807,951㎡），同步 metrics.json 与中英方案。
+- **状态一致性**：修正 metrics.json 的官方边界错误假设（降为 provisional/medium），统一 manifest.validation_claim（self_checked=true、data_confidence=medium）。
+- **双语图件本地化**：引入 Noto CJK 中文字体，重新生成 5 张核心图（中英各 5 张，中文图用中文标签、英文图用英文标签，两版不再相同），并同步更新 A3/A0 PDF 图纸。
