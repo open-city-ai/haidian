@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang AI Vitality Co-evolution Belt — Urban Design Dashboard</title>
+<style>
+:root {
+  --bg: #0a1628;
+  --panel: #111d33;
+  --panel2: #162340;
+  --accent: #2090e0;
+  --accent2: #20c0a0;
+  --text: #d8e4f0;
+  --text2: #8899bb;
+  --border: #1e3050;
+  --red: #e05050;
+  --orange: #e09040;
+  --purple: #9050d0;
+  --green: #20a060;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font-family: "Segoe UI", Arial, system-ui, sans-serif; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #0a2040, #103060, #184080); padding: 30px 40px; border-bottom: 3px solid var(--accent); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.header h1 { font-size: 2em; letter-spacing: 2px; color: white; }
+.header .sub { color: var(--text2); font-size: 0.95em; margin-top: 5px; }
+.header .badge { background: var(--red); color: white; padding: 6px 14px; border-radius: 4px; font-size: 0.8em; font-weight: bold; }
+.container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+.notice { background: rgba(224,80,80,0.1); border: 1px solid var(--red); border-left: 4px solid var(--red); padding: 15px 20px; border-radius: 4px; margin: 20px 0; color: #ffaaaa; font-size: 0.9em; }
+.metrics-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin: 25px 0; }
+.metric-card { background: linear-gradient(135deg, var(--panel), var(--panel2)); border: 1px solid var(--border); border-radius: 10px; padding: 20px; text-align: center; transition: transform 0.2s; }
+.metric-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.metric-val { font-size: 2.2em; font-weight: bold; background: linear-gradient(135deg, #40a0ff, #20c0e0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.metric-label { color: var(--text2); font-size: 0.85em; margin-top: 5px; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 20px; margin: 25px 0; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin: 25px 0; }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+.card-header { background: linear-gradient(90deg, var(--accent), #1860b0); padding: 12px 18px; font-weight: bold; font-size: 1.05em; }
+.card-body { padding: 15px; }
+.card-body img { width: 100%; border-radius: 4px; display: block; }
+.caption { font-size: 0.8em; color: var(--text2); text-align: center; padding: 8px; background: var(--panel2); }
+.zone-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 20px; border-top: 4px solid var(--accent); }
+.zone-card h3 { color: var(--accent); margin-bottom: 8px; }
+.zone-card .area { font-size: 1.8em; font-weight: bold; color: white; }
+.zone-card .type { color: var(--text2); font-size: 0.9em; margin-bottom: 10px; }
+.scenario-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin: 15px 0; }
+.scenario-item { background: var(--panel2); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; }
+.scenario-item .id { color: var(--accent); font-weight: bold; font-size: 0.85em; }
+.scenario-item .name { color: white; font-weight: bold; margin: 4px 0; }
+.scenario-item .desc { color: var(--text2); font-size: 0.85em; }
+.persona-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 15px 0; }
+.persona-item { background: var(--panel2); border: 1px solid var(--border); border-radius: 8px; padding: 14px; text-align: center; }
+.persona-item .name { color: white; font-weight: bold; margin-top: 5px; }
+.persona-item .desc { color: var(--text2); font-size: 0.8em; margin-top: 5px; }
+.self-check { background: #0a3020; border: 1px solid #20a060; border-radius: 8px; padding: 20px; margin: 20px 0; }
+.self-check h2 { color: #20c080; }
+.check-item { display: flex; align-items: center; margin: 8px 0; }
+.check-item .icon { color: #20c080; margin-right: 10px; font-size: 1.2em; }
+.footer { background: var(--panel); border-top: 1px solid var(--border); padding: 20px; text-align: center; color: var(--text2); font-size: 0.85em; margin-top: 30px; }
+h2 { color: var(--accent); margin: 30px 0 15px; }
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .header { flex-direction: column; gap: 15px; }
+  .header h1 { font-size: 1.4em; }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1>Jingzhang AI Vitality Co-evolution Belt</h1>
+    <div class="sub">Centennial Jingzhang AI Innovation Belt Urban Design</div>
+    <div class="sub" style="margin-top:3px">Location: Haidian District, Beijing | Design Unit: HG-Wang | Provisional Boundary</div>
+  </div>
+  <div class="badge">⚠ PROVISIONAL</div>
+</div>
+
+<div class="container">
+
+<div class="notice">
+  <strong>⚠ Boundary Notice:</strong> All spatial data shown on this page are provisional boundaries (provisional_constraint, official_boundary=false).
+  Areas, ratios, and spatial relationships are for design discussion only and must be recalculated upon official data release.
+</div>
+
+<div class="metrics-bar">
+  <div style="display:none" data-metric="green_ratio" data-value="unknown">Green space ratio pending official survey</div>
+  <div style="display:none" data-metric="public_space_ratio" data-value="unknown">Public space ratio pending official survey</div>
+  <div class="metric-card"><div class="metric-val">11.4 km²</div><div class="metric-label">Overall Design Scope</div></div>
+  <div class="metric-card"><div class="metric-val">368.4 ha</div><div class="metric-label">Key Areas (3 zones)</div></div>
+  <div class="metric-card"><div class="metric-val">12</div><div class="metric-label">AI Scenario Cards</div></div>
+  <div class="metric-card"><div class="metric-val">6</div><div class="metric-label">User Personas</div></div>
+  <div class="metric-card"><div class="metric-val">3</div><div class="metric-label">AI Landmarks</div></div>
+  <div class="metric-card"><div class="metric-val">3</div><div class="metric-label">Key Zones</div></div>
+</div>
+
+<h2>▌ Three Zones & Two Wings Layout</h2>
+<div class="grid-3">
+  <div class="zone-card" style="border-top-color:#e05050">
+    <h3>Zhongzhiyuan AI Acceleration Area</h3>
+    <div class="area">192.1 ha</div>
+    <div class="type">Garden-type Full-Stack Autonomous Innovation Block</div>
+    <p style="color:var(--text2);font-size:0.9em">• 5 AI R&D HQ buildings (80–160m)<br>• Qinghe Waterfront Innovation Corridor<br>• National AI Platform & Standards Hub<br>• Security Governance Sandbox<br>• Low-Carbon Green Innovation Environment</p>
+  </div>
+  <div class="zone-card" style="border-top-color:#9050d0">
+    <h3>Beijing AI Origin Community</h3>
+    <div class="area">104.3 ha</div>
+    <div class="type">Near-University Achievement Transformation & Talent Community</div>
+    <p style="color:var(--text2);font-size:0.9em">• 7 Incubator buildings (25–55m)<br>• Open Source Release Hall & Code Wall<br>• Campus-Park-Block Slow Mobility<br>• Near-University Achievement Street<br>• Talent Services & Residence</p>
+  </div>
+  <div class="zone-card" style="border-top-color:#e09040">
+    <h3>Dazhongsi AI Industry Cluster</h3>
+    <div class="area">72.0 ha</div>
+    <div class="type">Urban-Type Intelligent Economy & International Exchange Block</div>
+    <p style="color:var(--text2);font-size:0.9em">• 5 Industry Complex buildings (60–120m)<br>• Dazhongsi Station 4-Quadrant Integration<br>• International Road Show Living Room<br>• Intelligent Agent & Terminal Display<br>• Data Element & Digital Asset Hub</p>
+  </div>
+</div>
+
+<h2>▌ Analysis Figures</h2>
+<div class="grid-2">
+  <div class="card">
+    <div class="card-header">Site Overview</div>
+    <div class="card-body"><img src="assets/figures/site-overview.en.png" alt="Site Overview"></div>
+    <div class="caption">Site context: research scope, overall design scope, and three key areas</div>
+  </div>
+  <div class="card">
+    <div class="card-header">Land Use Structure Plan</div>
+    <div class="card-body"><img src="assets/figures/land-use-structure.en.png" alt="Land Use Structure"></div>
+    <div class="caption">9-category land use structure across 11.4 km² overall design scope</div>
+  </div>
+  <div class="card">
+    <div class="card-header">Three Key Areas Detailed Design</div>
+    <div class="card-body"><img src="assets/figures/key-areas.en.png" alt="Key Areas"></div>
+    <div class="caption">Zhongzhiyuan, AI Origin Community, and Dazhongsi detailed strategies</div>
+  </div>
+  <div class="card">
+    <div class="card-header">Mobility & Blue-Green Public Space System</div>
+    <div class="card-body"><img src="assets/figures/mobility-bluegreen.en.png" alt="Mobility & Blue-Green"></div>
+    <div class="caption">Road network, rail transit, slow mobility, and blue-green corridors</div>
+  </div>
+</div>
+
+<div class="card" style="margin:20px 0">
+  <div class="card-header">Key Metrics & Design Evidence</div>
+  <div class="card-body"><img src="assets/figures/metrics-evidence.en.png" alt="Metrics Evidence"></div>
+  <div class="caption">Core indicators, land use breakdown, and evidence chain from provisional geometry</div>
+</div>
+
+<h2>▌ AI Scenario Cards</h2>
+<div class="scenario-list">
+  <div class="scenario-item"><div class="id">[01]</div><div class="name">Open Source Release Hall</div><div class="desc">Beijing AI Origin Community — achievement release, code display, road shows</div></div>
+  <div class="scenario-item"><div class="id">[02]</div><div class="name">Security Governance Sandbox</div><div class="desc">Zhongzhiyuan — standard formulation, model testing, security evaluation display</div></div>
+  <div class="scenario-item"><div class="id">[03]</div><div class="name">Edge Computing Station</div><div class="desc">Overall scope nodes — new infrastructure prototype, publicly auditable compute</div></div>
+  <div class="scenario-item"><div class="id">[04]</div><div class="name">AI Slow-Mobility Navigation</div><div class="desc">Jingzhang Heritage Park Belt — explainable guidance, no individual tracking</div></div>
+  <div class="scenario-item"><div class="id">[05]</div><div class="name">Dazhongsi International Road Show Living Room</div><div class="desc">Dazhongsi — display, negotiation, simultaneous interpretation, virtual exhibition</div></div>
+  <div class="scenario-item"><div class="id">[06]</div><div class="name">Qinghe Low-Carbon Innovation Corridor</div><div class="desc">Zhongzhiyuan waterfront — green space, cycling, water quality & carbon data</div></div>
+  <div class="scenario-item"><div class="id">[07]</div><div class="name">Near-University Achievement Street</div><div class="desc">AI Origin Community — incubation, IP, investment services, authorization required</div></div>
+  <div class="scenario-item"><div class="id">[08]</div><div class="name">Data Element Living Room</div><div class="desc">Dazhongsi — data circulation interface, no raw data display, compliance first</div></div>
+  <div class="scenario-item"><div class="id">[09]</div><div class="name">AI Life Service Model Street</div><div class="desc">Community intersections — healthcare, education, legal, life services AI+</div></div>
+  <div class="scenario-item"><div class="id">[10]</div><div class="name">Global AI Activity Week Route</div><div class="desc">One-belt public space — walkable experience route, heritage to international road shows</div></div>
+  <div class="scenario-item"><div class="id">[11]</div><div class="name">Smart Parking Guidance System</div><div class="desc">Overall road network — real-time availability, no license plate recording</div></div>
+  <div class="scenario-item"><div class="id">[12]</div><div class="name">AI Barrier-Free Guide</div><div class="desc">Heritage Park & rail stations — multimodal guide, local storage only</div></div>
+</div>
+
+<h2>▌ User Personas</h2>
+<div class="persona-list">
+  <div class="persona-item"><div class="name">Open Source Contributor</div><div class="desc">Publishing, collaboration, testing, flexible nighttime office</div></div>
+  <div class="persona-item"><div class="name">Startup Team</div><div class="desc">Low-cost office, compute access, product testing, mentor network</div></div>
+  <div class="persona-item"><div class="name">Leading Enterprise Visitor</div><div class="desc">Display, business, international reception, talent recruitment</div></div>
+  <div class="persona-item"><div class="name">Local Resident</div><div class="desc">Commuting, leisure, community services, low-disturbance renewal</div></div>
+  <div class="persona-item"><div class="name">University Student/Faculty</div><div class="desc">Achievement transformation, cross-campus collaboration, academic exchange</div></div>
+  <div class="persona-item"><div class="name">International Innovator</div><div class="desc">Language services, visa consultation, cross-border collaboration</div></div>
+</div>
+
+<div class="self-check">
+  <h2>✓ Self-Check Status</h2>
+  <div class="check-item"><span class="icon">✓</span> 5 English analysis figures generated (PNG 2400×1800px)</div>
+  <div class="check-item"><span class="icon">✓</span> a3-booklet.en.pdf generated (6 pages, A3 @ 150dpi)</div>
+  <div class="check-item"><span class="icon">✓</span> a0-boards.en.pdf generated (4 pages, A0 @ 150dpi)</div>
+  <div class="check-item"><span class="icon">✓</span> visual/index.en.html generated (pure static, no CDN, responsive)</div>
+  <div class="check-item"><span class="icon">✓</span> All boundaries labeled provisional_constraint / official_boundary=false</div>
+  <div class="check-item"><span class="icon">✓</span> Source references and self-check status complete</div>
+  <div class="check-item"><span class="icon">✓</span> Bilingual contract v1 compliance verified</div>
+</div>
+
+<div class="footer">
+  <p>Centennial Jingzhang AI Innovation Belt Urban Design | Jingzhang AI Vitality Co-evolution Belt</p>
+  <p>HG-Wang | Haidian District, Beijing | Provisional Boundary — pending official data release</p>
+  <p>Reference: Beijing MCPNR Haidian Branch Announcement (2026-05-09)</p>
+</div>
+
+</div>
+</body>
+</html>
