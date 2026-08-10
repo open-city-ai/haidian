@@ -1,82 +1,120 @@
 ---
-title: "Jingzhang Civic Prototyping Foundry: An Open Component Chain from AI Experiment to Everyday Life"
+title: "Jingzhang Civic Prototype Foundry: An Open Component Chain from AI Trials to Everyday Life"
 author_github: "baizhi958216"
 language: "en"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "A formal AI urban-design package that treats urban AI as a procureable, testable, repairable and reusable component chain: Zhongzhiyuan develops and verifies components, AI Origin opens interfaces, and Dazhongsi repairs and reconfigures them. The boundary is provisional and must be recalculated when official data is released."
+summary: "A reversible public-innovation chain linking R&D validation at Zhongzhiyuan, co-creation at the AI Origin Community, and repair/reconfiguration at Dazhongsi."
 tracks: ["enterprise-services-ecosystem", "ai-origin-community", "civic-agent-governance"]
 scenarios: ["enterprise-service-copilot", "robot-delivery-low-speed", "public-safety-operations-review"]
-iteration: "v1.0"
+iteration: "v2.0-review-repair"
 ---
 
-# Jingzhang Civic Prototyping Foundry: An Open Component Chain from AI Experiment to Everyday Life
+# Jingzhang Civic Prototype Foundry
 
-The proposal treats AI urban value as more than a model demonstration. Sensors, wayfinding, shade, seating, service terminals and maintenance tools should become civic components that can be specified, procured, tested, repaired and reused. Jingzhang Heritage Park becomes a public test street for these components. The spatial chain is “making—interface—maintenance”: Zhongzhiyuan is the prototype foundry, AI Origin is the open-interface community, and Dazhongsi is the civic repair and reconfiguration market. This is an open co-creation proposal, not an approved plan or a substitute for procurement, engineering or professional review.[source:AGENT-TASKBOOK] [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
+## Summary and status
 
-## Distinct proposition: a civic prototyping commons
+The proposal treats the AI belt as a component chain through which the city can **frame problems, develop, trial, accept through human review, repair, retire, and publicly archive** civic prototypes. Zhongzhiyuan handles R&D and safety validation; the AI Origin Community provides open interfaces and public co-creation; Dazhongsi handles small-batch making, repair, and reconfiguration. The Zhongguancun Technology Service Wing connects optional IP, capital, and enterprise services; the Xiaoyuehe Scenario Wing provides public test settings and feedback. Everything is an open co-creation proposal, not an approval, procurement decision, ownership statement, or engineering-feasibility conclusion. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
 
-The proposal gives every component a traceable lifecycle: **problem framing → component design → small-batch making → public-space trial → human acceptance → repair/reconfiguration → open archive**. A “civic component passport” records provenance, version or material, users, location, maintenance responsibility, procurement conditions, exit conditions and public feedback. It records authorised public-asset information only; it does not collect personal trajectories.[source:AGENT-TASKBOOK] [depth:ai_ecosystem_and_talent]
+SITE_BOUNDARY and all three KEY_AREA polygons remain provisional repository geometry. Their rectangles are not redlines. Areas, ratios, clipping, and spatial relationships must be recalculated together when official polygons arrive. FAR, height/density, setbacks, road redlines, and approved uses remain unknown. This gap does not block concept review, but it blocks precise area and statutory conclusions. [data:geometry/site_boundary.geojson#SITE-001] [metric:floor_area_ratio]
 
-Three component families make the idea spatial:
+![Brand, evidence, and collaboration overview](assets/figures/site-overview.en.png)
 
-1. **Everyday components:** shade seats, accessible wayfinding, movable stalls, drinking-water and rest points for residents, older people, children and commuters.
-2. **Innovation components:** edge-computing boxes, model-evaluation interfaces, sensor poles and low-speed robot docking bays inside governed test boundaries.
-3. **Maintenance components:** replaceable paving, lighting-power boxes, rainwater modules and inspection interfaces, with a named maintainer and removal path.
+## Brand and overall collaboration mechanism (agent.1)
 
-Zhongzhiyuan specifies compatibility and safety; AI Origin hosts open design, public trials and contributor training; Dazhongsi supports small-batch production, demonstration, repair and reconfiguration. Public procurement is proposed as a “lease/test first, purchase/standardise later” concept flow; budgets, ownership, procurement law and engineering conditions remain subject to professional confirmation.[data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
+The full name is **Jingzhang Civic Prototype Foundry**, with **JZ Foundry** as the short public name. The logo direction combines a J/Z rail line, a replaceable square component, and an open interface gap. Navy marks governance baselines, teal public space, gold trial status, and red only risks or exits. Extensions include component-passport frames, node numbers, event stamps, test-boundary markings, and bilingual wayfinding. This is an original direction only; final type, accessible contrast, and registration checks require professional review.
 
-## Evidence basis and data limits
+The three positions become mechanisms: railway culture supports a timeline and repair ethic; urban AI life is delivered through a public problem ledger and ten scenario cards; AI convergence uses the R&D-interface-maintenance chain. The five functions become full-stack validation, ecosystem matching, scenario opening, active public realm, and governance/public records. [source:AGENT-TASKBOOK]
 
-The package follows the official announcement, the agent open-call taskbook and the maintained site package. `data/source_registry.json`, `sources.json`, `assumptions.json`, the standards matrix and the design-depth matrix are the machine-auditable layer. The submitted site boundary and three detailed-design areas are explicitly provisional constraints: they support discussion, visualisation and intake self-check, but are not official redlines or precise scoring geometry.[source:SITE-PACKAGE] [data:geometry/site_boundary.geojson#SITE-001]
+The Three Areas and Two Wings operate as a loop: **Xiaoyuehe gathers consented public problems → AI Origin co-designs briefs and open interfaces → Zhongzhiyuan validates models, hardware, and safety → Dazhongsi designs small-batch making and maintenance → Jingzhang Park hosts public trials → Zhongguancun offers optional IP, procurement, capital, and enterprise-service advice → acceptance evidence returns to the problem ledger**. Each handoff uses a component passport with owner, version, data boundary, maintenance term, and exit trigger. Beiwei Community is proposed as a resident interface. Links to Future Science City, Huairou Science City, BDA, and the Beijing-Tianjin-Hebei region are only voluntary concepts for joint challenges, mutual test-record recognition, and roadshows; no existing partnership is claimed. [depth:overall_spatial_structure]
 
-The three working scales are the 43.6 km² coordinated research area, the 11.4 km² overall design area around the park, and the 368.4 ha key-area range. Areas, ratios and layer counts are recomputed from GeoJSON; FAR, height, density, setbacks, road redlines and municipal standards remain pending official controls.[metric:site_area_sqm] [standard:MOHURD-CONTROL-DETAILED-PLANNING]
+![Land use, Three Areas-Two Wings loop, and lifecycle](assets/figures/land-use-structure.en.png)
 
-![Evidence chain and package structure](assets/figures/site-overview.en.png)
+## International cases and AI ecosystem map (agent.2)
 
-## Spatial strategy
+Cases provide mechanisms, not rankings or copied urban form:
 
-The belt is structured by the heritage park and its railway narrative. The three anchors are: Zhongzhiyuan AI Acceleration Area as a garden-like full-stack innovation and governance district; Beijing AI Origin Community as a near-campus open-source, talent and transfer neighbourhood; and Dazhongsi AI Industry Cluster as a transit-connected urban showroom for intelligent enterprises, agents, terminals and digital services.[data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]
+| Case | Mechanism evidenced by the primary source | Jingzhang translation | Boundary |
+| --- | --- | --- | --- |
+| Toronto Vector Institute | Research, talent, adoption, and responsible AI | Validation and adoption gate | No local investment/job target [source:CASE-VECTOR] |
+| Montréal Mila / Mile-Ex | Open science, university collaboration, transfer, ethics | Open contributions and civic deliberation | No copied governance/brand [source:CASE-MILA] |
+| AI Singapore | Research, governance, co-creation, talent, open tools | Problem-to-prototype-to-training bundle | No presumed national resources [source:CASE-AISG] |
+| Seoul AI Hub | Training, startup support, community, overseas expansion | Repair market and international clinic | No copied firms or performance [source:CASE-SEOUL] |
+| ELLIS Network | Multi-centric research and joint training | Mutual test-record concept across regions | No membership claim [source:CASE-ELLIS] |
+| Cyber Valley | Links among research, startups, investors, public ethics | Quarterly evidence gates | No copied funding/partner promise [source:CASE-CYBERVALLEY] |
 
-The land-use partition, building-footprint layer, streets, green space and public space are coordinated around three moves: protect an everyday public realm, concentrate innovation services at walkable nodes, and make new construction conditional on professional confirmation. The blue-green loop connects the park, river interfaces, campus edges, neighbourhood services and station approaches. The mobility proposal prioritises legible walking and cycling, accessible crossings, station interchange, bicycle parking and low-speed service pilots; it does not claim a final transport scheme.[data:geometry/land_use.geojson#LU-001] [data:geometry/roads.geojson#ROAD-001] [data:geometry/green_space.geojson#GREEN-001]
+The local ecosystem map connects eight auditable factors: land (provisional and reversible only), space (R&D/co-creation/repair/park trial), industry (unnamed research, startups, makers and maintainers), finance (unconfirmed competition/rental/procurement-advice channels), talent (students, engineers, maintainers and resident experts), compute (authorized cloud/edge/device resources), data (licence ledger and minimal datasets), and scenarios (open calls plus human acceptance). The Zhongguancun Wing offers optional IP screening, compliance advice, procurement pathways, and investor demos, with provider and conflicts logged. Zhongzhiyuan hosts model evaluation, edge compatibility and safety sandboxes; AI Origin hosts open-source releases, problem clinics and talent services; Dazhongsi hosts small-batch workshops, repair archives and circular displays. Open specifications, test reports and component passports connect them without vendor lock-in. [depth:ai_ecosystem_and_talent]
 
-![Land-use structure](assets/figures/land-use-structure.en.png)
-![Mobility and blue-green network](assets/figures/mobility-bluegreen.en.png)
+## Ten scenario cards, personas, and public route (agent.3)
 
-## Three key-area reference schemes
+Five core personas are residents/caregivers, commuters/cyclists, developers/students, startups/maintenance teams, and enterprise/international visitors. Wheelchair users, people with sensory disabilities, night workers, and non-Chinese speakers form cross-cutting accessibility panels. Personas are never used for commercial recommendations.
 
-**Zhongzhiyuan AI Acceleration Area.** Create a “garden test commons” combining open model testing, standards workshops, safety review, low-carbon computing demonstrations and a clear Qinghe edge. Proposed projects are the Qinghe innovation interface, a public test courtyard and a governed demonstration route. Any ecological, flood-control, traffic or building-control conclusion remains subject to official data.[depth:three_key_area_detailed_design]
+| # / scenario / place | Minimum data and model capability | Operator and human review | Failure / exit |
+| --- | --- | --- | --- |
+| 01 Open Release Hall / Origin | Voluntary project cards; search/captioning | Community operator; author confirmation | Misattribution/leak; remove with version record |
+| 02 Safety Sandbox / Zhongzhiyuan | Synthetic/cleared tests; robustness/bias tests | Independent evaluators; two-person signoff | Overcollection/non-repeatability; stop, seal, review |
+| 03 Edge Compute Box / Zhongzhiyuan | Device telemetry; resource scheduling | Facility operator; physical cutoff | Heat/network loss; degrade or disconnect |
+| 04 Low-speed Robot Bay / park | Anonymous occupancy; low-speed routing | Site steward; on-site takeover | Conflict/tactile-path blockage; stop and remove |
+| 05 AI Walking Guide / Xiaoyuehe | Open roads + active user input; accessible routing | Mobility operator; user confirmation | Wrong/stale route; revert to static signs |
+| 06 Stormwater Assistant / park | Asset status + public weather; anomaly hints | Landscape maintainer; field check | False alert/miss; suggestion only, no auto action |
+| 07 Multilingual City Room / Dazhongsi | Cleared public info; translation/Q&A | Host; sensitive issues to staff | Mistranslation/hallucination; source, stop, correct |
+| 08 Community Service Desk / Origin | User-entered answers; form classification | Community staff; human closure | Misroute/leak; delete and process manually |
+| 09 Mobile Night Market / Dazhongsi | Bookings/device state; scheduling | Market operator; daily inspection | Noise/crowding/electric risk; reduce or stop |
+| 10 Passport & Repair Library / belt | Versions/materials/work orders; search/life hints | Asset owner; repair signoff | Missing owner/conflict; freeze purchase and remove |
 
-**Beijing AI Origin Community.** Stitch campus, incubator, housing and daily services through a near-campus transfer street. Provide an open-source release hall, talent service desk, small-scale showcase spaces and a protected everyday walking route. Retain/renovate/new-build categories are design hypotheses until ownership, existing buildings and heritage conditions are verified.[data:geometry/key_areas.geojson#PROV-KEY-002] [depth:retain_renovate_demolish]
+Cards 02, 03, and 04 are industry test/validation scenarios. No face recognition, continuous personal tracking, automated enforcement, or automated eligibility decisions are proposed. The public route is Xiaoyuehe problem entry → Origin co-creation → Zhongzhiyuan transparent test window → park trial street → Dazhongsi repair theatre. Every node has a non-digital alternative. [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/roads.geojson#ROAD-001]
 
-**Dazhongsi AI Industry Cluster.** Use the station and four-quadrant crossings as the public address of intelligent industry. Propose an international demo lounge, data-governance salon, content-and-terminal showroom and a low-speed delivery/service test street. These are operational and spatial reference schemes, not investment or implementation commitments.[data:geometry/key_areas.geojson#PROV-KEY-003] [depth:traffic_rail_slow_parking]
+## AI public space, landmarks, and honors (agent.4)
 
-## AI ecosystem, people and scenario cards
+East-west stitching uses reversible at-grade measures: continuous accessible crossing cues, level interfaces, movable seating, and shade. North-south continuity follows the conceptual walking line and component trial street. No bridge, tunnel, underground-space, redline, or traffic-feasibility conclusion is made. [standard:MOHURD-URBAN-DESIGN-MEASURES]
 
-The ecosystem links university research, open-source collaboration, start-up acceleration, enterprise transfer, public-service pilots and international exchange. Candidate cases include an open-source release hall, a safety-evaluation sandbox, an edge-computing service point, a Qinghe low-carbon innovation corridor, a near-campus transfer street, a data-governance salon, an AI life-service street and a global AI week route. Each case requires a public source, an accountable operator, data minimisation, a visible human-review path and a way to stop or roll back the pilot.[source:AGENT-TASKBOOK] [depth:ai_ecosystem_and_talent]
+Three pilgrimage landmarks are working civic facilities: **Prototype Gate** at Zhongzhiyuan publishes current tests, passes/fails and human evaluators; **Open-source Table** at AI Origin provides wheelchair-integrated seating, tactile IDs and bilingual e-ink agendas, reverting to an ordinary table between events; **Repair Theatre** at Dazhongsi exposes repair, disassembly and reconfiguration, crediting maintainers before products.
 
-Ten scenario cards are anchored to space: (01) open-source release hall, (02) safety-governance sandbox, (03) edge-computing service point, (04) explainable walking guidance, (05) Dazhongsi international demo lounge, (06) Qinghe low-carbon innovation corridor, (07) near-campus transfer street, (08) data-governance salon, (09) AI everyday-service street, and (10) global AI week route. The three initial industrial validation scenarios are model safety testing, enterprise-service navigation and low-speed robot/service operations. They are evaluation prototypes with consent, audit logs and human override—not automated public decisions.[data:geometry/public_space.geojson#PUBLIC-001] [source:SOURCE-REGISTRY]
+The honor system recognizes contribution, care, reproducibility, and correction, never popularity. It shows versions, evidence links, roles, disputes/corrections, and expiry; contributors may remain anonymous or withdraw their name. The component library comprises everyday components, innovation components, and maintenance components, all with passports. [metric:component_families]
 
-Five user groups guide the design: open-source developers, start-up teams, enterprise visitors, nearby residents and university students. The spaces answer release, testing, service, commuting, rest, learning and social needs without using unauthorised personal profiles. Public-space heat, route feedback and event information are aggregated and minimised.[depth:ai_ecosystem_and_talent]
+![Three key areas, landmarks, and trial nodes](assets/figures/key-areas.en.png)
 
-![Three anchors and detailed-design evidence](assets/figures/key-areas.en.png)
+## Cultural narrative and wayfinding (agent.5)
 
-## Culture, identity and long-term operation
+The storyline is: “Rail connected knowledge and people; AI connects problems, models, and care.” Railway history is limited to the verified project context; Zhongguancun culture appears through problem-led experimentation, open source, and maintenance; AI culture foregrounds model limits, human judgment, and public correction. Spatial media progress through a timeline, Prototype Gate, Open-source Table, Trial Street, Repair Theatre, and public archive.
 
-The working name “Jingzhang Intelligence Link” translates railway continuity into a contemporary civic identity. A visual identity direction combines a railway line, a link node and a human-scale public square; a final logo, typeface and any historic image use require clearance. Three proposed AI pilgrimage landmarks are the Heritage Memory Gate, the Open Model Commons and the Human-AI Public Service Forum. They are public-space concepts for professional deepening, not official monuments.[depth:identity_and_cultural_narrative]
+Wayfinding uses the JZ line, node numbers, and four status rings: blue=public service, teal=participatory, gold=testing, red=paused/retired. Each sign includes Chinese, English, graphics, tactile ID, and a non-QR text route. International line: **Build in public. Test with care. Repair for the city. / 公开制造，审慎试用，为城市而维修。** Cultural signs remain distinct from the belt logo and use no portraits, corporate marks, or paper imagery.
 
-The operating proposal is a quarterly open-source review, a seasonal public test week and an annual global AI exchange. A community steward maintains the public knowledge base, publishes evidence and unresolved assumptions, and convenes professional review for any spatial or safety claim. Contribution records remain attributable; public participation, accessibility and privacy are first-class measures.[depth:long_term_global_ai_operations]
+## Reversible project cards and gates (agent.1/4)
 
-## Renewal, infrastructure and phasing
+| Project | Boundary / roles | Preconditions and gates | Cost / acceptance / maintenance / exit |
+| --- | --- | --- | --- |
+| JZ-01 Prototype Gate | Zhongzhiyuan node; pilot consortium + site/evaluation/access panels | Boundary → safety test → timed opening | Medium; repeatable evidence and offline fallback; monthly; remove on failure |
+| JZ-02 Open-source Table | Origin public edge; community lead | Owner consent → accessible prototype → event trial | Low; wheelchair place + tactile IDs; weekly; ordinary-table fallback |
+| JZ-03 Repair Theatre | Reversible Dazhongsi interior/canopy; maintainer alliance | Fire/electric check → training → booking | Medium; work-order closure as trial metric; daily; dismantle at term |
+| JZ-04 Component Trial Street | Jingzhang Park concept corridor; park coordination | Traffic/heritage/green review → segments → public acceptance | Medium; no access degradation; weekly; remove item by item |
+| JZ-05 Xiaoyuehe Problem Station | Scenario-wing entry; civic group | Flood/green review → anonymous intake → quarterly screen | Low; anonymous feedback + receipt; monthly disclosure; seasonal removal |
+| JZ-06 Passport Library | Digital + paper beltwide; asset owner | Data dictionary → privacy review → small sample | Low; complete fields + paper access; quarterly audit; export then close |
 
-Six candidate projects organise implementation: park walking-gap stitching, Qinghe innovation interface, origin-community transfer street, Dazhongsi station crossings, AI public-service/edge-computing nodes, and the global AI week route. Phase 1 focuses on reversible public-realm and service pilots; Phase 2 tests the three anchors with professional review; Phase 3 deepens statutory, municipal, ownership and capital coordination. Each phase has stop conditions and a recalculation gate when official geometry arrives.[data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list]
+Cost uses low/medium/high classes only. Common gates are G0 ownership/constraints, G1 access/safety/privacy, G2 30-90 day trial, G3 human acceptance, G4 procure/rent/redesign/exit. Any accident, tactile-path blockage, data overreach, two consecutive critical failures, or missing maintainer pauses a pilot.
 
-The package provides a municipal/new-infrastructure strategy for shared service points, distributed low-carbon energy, edge computing, station interchange, bicycle storage, maintenance and accessible public facilities. Exact pipe, fire, drainage, flood, road-redline and energy parameters are deliberately marked as pending official confirmation.[depth:municipal_new_infrastructure] [data:geometry/constraints.geojson#CONSTRAINTS]
+## Annual operations, open scenarios, and conversion (agent.6)
 
-![Core metrics and evidence chain](assets/figures/metrics-evidence.en.png)
+The annual portfolio is Q1 City Problems, Q2 Open Specifications, Q3 Park Trials, and Q4 Repair & Reproduction. JZ Foundry is the master brand; the seasons use a problem bubble, interface bracket, test ring, and wrench-square. Developer operations use public issues, a contributor covenant, rotating mentors, reproducible repositories, and conflict disclosure. The open-scenario funnel is call → public-interest screen → data/rights review → sandbox → site-risk review → timed trial → human acceptance → disclosure → procurement advice or exit.
 
-## Metrics, risk and rights
+International conversion follows visit → challenge match → joint test → evidence review → voluntary landing advice, with no promise of landing, finance, or policy. Quarterly reports disclose entry/exit counts and reasons without personal or confidential business data. Roles are split among a public-site owner, independent safety/privacy review, community jury, and technical/maintenance team; a model cannot be both operator and final reviewer. [depth:phasing_implementation]
 
-Known metrics are derived from the submitted layers: site area, green ratio, public-space ratio, building footprint area and three key areas. Unknown controls are not invented. The provisional-boundary warning is repeated in the narrative, source records, assumptions and visual materials. No proprietary data, private map, unlicensed image, remote tile, external script or tracking service is used. PDFs and HTML are presentation layers; GeoJSON and structured records remain authoritative.[metric:green_ratio] [metric:public_space_ratio] [depth:metrics_recalculation]
+## Inclusion, participation, and appeal
 
-Before any formal design or implementation decision, the professional team should replace provisional boundaries, verify existing buildings and roads, confirm heritage and ownership conditions, review municipal and safety systems, and rerun all geometry, metrics, figures, HTML and self-checks. Human and professional judgement remains final.[depth:risk_missing_data] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]
+Every pilot checks continuous wheelchair passage and gradients on site, tactile-path continuity, rest points, child entrapment/fall hazards, night glare, multilingual information, and non-digital alternatives. Exact engineering values await statutory standards, surveys, and professional design. Recruitment covers residents, older people/caregivers, disability representatives, guardians, night workers, maintainers, and non-Chinese speakers. Compensation is suggested but subject to an approved budget.
+
+Feedback is accepted by paper card, phone/in-person desk, or anonymous web form. Suggested service targets are acknowledgement in two working days and a status response in ten; safety reports cause immediate shutdown. Appeals are reviewed by someone outside the original decision. Quarterly disclosure lists de-identified issues, decisions, corrections, and reasons for rejection. Low-speed robots yield absolutely to people, never occupy tactile paths, use geofencing and on-site takeover, and publish incident reviews.
+
+## Metrics, mobility-blue-green system, and evidence boundary
+
+![Walking, blue-green, public-space, and governance layers](assets/figures/mobility-bluegreen.en.png)
+
+![Metric status, provenance, and recalculation triggers](assets/figures/metrics-evidence.en.png)
+
+Current machine values serve only as internal checks against provisional geometry: site_area_sqm=11,412,825.386; green_ratio=0.113723; public_space_ratio=0.038980; key_area_count=3; floor_area_ratio=unknown. [metric:site_area_sqm] [metric:green_ratio] [metric:public_space_ratio] [metric:key_area_count] [metric:floor_area_ratio] Official polygons trigger a full rebuild of geometry, metrics, all five figures, HTML, A3/A0, manifest hashes, and the bilingual checklist.
+
+## Risk, rights, and human judgment
+
+No photorealistic images are used. Five information graphics and all A0/A3 pages are generated from the same bilingual data model. Maps use no remote tiles. Microsoft YaHei/Arial are operating-system fonts embedded in PDFs only, not distributed as assets. Generation, licence, and limits are itemized in sources.json and report/copyright_statement.md. AI output, translation, accessibility, fire, electrical, drainage, transport, heritage, privacy, procurement, and planning judgments require final review by relevant professionals and authorities. [source:SOURCE-REGISTRY]
