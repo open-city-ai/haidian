@@ -26,7 +26,7 @@ Four mechanisms: (1) **Switchback Nodes** — fixed review points where any part
 The corridor follows a "one belt, three cores, two wings" spatial structure: the heritage park as public spine, Zhongzhi Park (full-stack AI validation), AI Origin Community (research–startup–community loop), Dazhongsi (AI-native consumption), the Zhongguancun service wing and the Xiaoyue River scenario wing. Twelve scenario cards each bind a grade and a switchback condition; metrics are evaluation criteria rather than target values — baselines are marked pending until the first survey, no fabricated output or investment figures. All spatial boundaries are provisional; full recalculation is required when official polygons are released.
 
 ## 设计依据与资料清单
-本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告、智能体任务书、公开场地包及仓库登记资料 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:BOUNDARY-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。
+本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告 [source:OFFICIAL-ANNOUNCEMENT]、智能体任务书 [source:AGENT-TASKBOOK]、公开场地包 [source:SITE-PACKAGE] 及仓库登记资料 [source:SOURCE-REGISTRY]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:BOUNDARY-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。
 
 方法为"证据—折返—指标—版本"四联单：每项策略绑定来源、空间图层、折返条件、可复核指标与版本记录。所有城市AI遵循最小数据、可选择、可申诉、人工终审、日志留痕与独立评测。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:existing_conditions_diagnosis]
 
@@ -71,7 +71,7 @@ Logo 方向为"人字形折返 + 轨道双轨 + K标锚点"，以深轨蓝、验
 对标仅作方法背景，不支撑法定空间控制。正式空间与任务结论仍以仓库登记资料为准。生态指标采用"评测口径而非目标值"：开放测试任务数、独立评测覆盖率、公众问题关闭率、中小团队使用率、无障碍参与率、折返/入段记录数；基线缺失项标为待调查，不编造产值和投资额。
 
 ## 总体设计范围城市更新与控规深度城市设计
-总体设计以"铁路文化脊+折返治理环+横向缝合口"为骨架，保留可再用存量、补足连续慢行与公共服务，新增量只在官方控规、权属、文保和市政条件确认后落位。四类概念用地承担创新研发、混合服务、文化公共与蓝绿开放功能 [data:geometry/land_use.geojson#LU-001] [metric:ai_industry_land_ratio] [metric:green_space_area_sqm]；建筑规模仅复算概念基底 [data:geometry/buildings.geojson#BLD-001] [metric:building_footprint_area_sqm]，不推导法定容量。[standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:land_use_layout] [depth:development_intensity_controls]
+总体设计以"铁路文化脊+折返治理环+横向缝合口"为骨架，保留可再用存量、补足连续慢行与公共服务，新增量只在官方控规、权属、文保和市政条件确认后落位。四类概念用地承担创新研发、混合服务、文化公共与蓝绿开放功能 [data:geometry/land_use.geojson#LU-001]，并登记产业用地比例与绿地面积指标 [metric:ai_industry_land_ratio] [metric:green_space_area_sqm]；建筑规模仅复算概念基底 [data:geometry/buildings.geojson#BLD-001] 与建筑基底面积指标 [metric:building_footprint_area_sqm]，不推导法定容量，深度对应控规深度的城市设计阶段 [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:land_use_layout] [depth:development_intensity_controls]
 
 更新对象分为保留利用、适应性改造、条件性拆除与可逆新建：在现状建筑普查缺失时不判定具体拆除；高度、体量、天际线以低层公共界面和铁路视廊保护为方向，待控规核验 [depth:height_massing_character] [depth:retain_renovate_demolish]。市政采用需求侧减量、分布式能源和端侧算力概念，工程容量待专项论证 [depth:municipal_new_infrastructure]。
 
@@ -116,7 +116,7 @@ A"模型上街前"评测场：偏见、幻觉、鲁棒、隐私和无障碍测�
 ![交通慢行与蓝绿公共空间复合系统](assets/figures/mobility-bluegreen.png)
 
 ## 蓝绿空间、公共空间与城市风貌
-**已建成事实与规划目标分层（可复核）：** 京张铁路遗址公园**一期已于 2023 年 6 月建成开放**，长 2.4 公里、面积 16.8 公顷，形成面向市民的公园、慢步道与骑行空间 [source:JZ-PARK-PHASE1-OPENED] [source:JZ-PARK-PHASE1-REPORT]；五道口启动区于 2019 年 9 月完成约 800 米、约 1.7 公顷的绿化景观初步提升 [source:JZ-PARK-STARTUP-2019]。公园一期 2025 年举办 60 余场主题活动、接待游客 430 余万人次（运营方统计口径）[source:JZ-PARK-2025-EVENTS]。**二期仍为在建/推进中**，规划形成京张水韵、社区活力、京张遗址纪念、青年国际交往、自然休闲五个组团，其"全长约 9 公里、服务沿线近 70 个社区约 45 万人"为规划服务目标，非已建成现状 [source:JZ-PARK-PHASE2-PLANNED]。本方案所有"约 9.7km 主轴"表述均指规划目标，空间证据以 provisional 边界为准。
+**已建成事实与规划目标分层（可复核）：** 京张铁路遗址公园**一期已于 2023 年 6 月建成开放**，长 2.4 公里、面积 16.8 公顷，形成面向市民的公园、慢步道与骑行空间 [source:JZ-PARK-PHASE1-OPENED]，相关城市更新行动案例见 [source:JZ-PARK-PHASE1-REPORT]；五道口启动区于 2019 年 9 月完成约 800 米、约 1.7 公顷的绿化景观初步提升 [source:JZ-PARK-STARTUP-2019]。公园一期 2025 年举办 60 余场主题活动、接待游客 430 余万人次（运营方统计口径）[source:JZ-PARK-2025-EVENTS]。**二期仍为在建/推进中**，规划形成京张水韵、社区活力、京张遗址纪念、青年国际交往、自然休闲五个组团，其"全长约 9 公里、服务沿线近 70 个社区约 45 万人"为规划服务目标，非已建成现状 [source:JZ-PARK-PHASE2-PLANNED]。本方案所有"约 9.7km 主轴"表述均指规划目标，空间证据以 provisional 边界为准。
 
 概念蓝绿基底由京张遗址公园、清河/小月河联系与口袋花园组成 [data:geometry/green_space.geojson#GRN-001] [depth:blue_green_public_space]；实际岸线、生态和文保边界待官方资料复核。
 公共空间采用"连续慢行脊—横向缝合口—折返验证站"三级结构 [metric:scenario_node_count] [metric:public_space_area_sqm]：公园主轴连续组织步行、骑行、休憩和文化；横向缝合优先改善现有过街与可达性，新增桥隧仅作为待专项研究概念；验证站以可移动、可拆卸组件嵌入存量空间 [data:geometry/public_space.geojson#PUB-001] [metric:public_space_ratio]。
