@@ -15,7 +15,11 @@ concurrency:
   cancel-in-progress: false
 
 env:
-  MAINTENANCE_BRANCH: automation/gallery-snapshot
+  # The repository ruleset allows updates to existing refs but forbids
+  # creating new branches. Reuse the pre-existing maintainer branch that
+  # already carried the gallery refresh workflow instead of creating a new
+  # automation ref on every first run.
+  MAINTENANCE_BRANCH: codex/refresh-gallery-after-pr-868
 
 jobs:
   refresh:

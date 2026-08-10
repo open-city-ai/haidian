@@ -34,7 +34,10 @@ class GallerySnapshotMaintenanceWorkflowTests(unittest.TestCase):
         self.assertIn("tests.test_prelaunch_check", self.workflow)
 
     def test_uses_stable_branch_and_safe_force_lease(self) -> None:
-        self.assertIn("MAINTENANCE_BRANCH: automation/gallery-snapshot", self.workflow)
+        self.assertIn(
+            "MAINTENANCE_BRANCH: codex/refresh-gallery-after-pr-868", self.workflow
+        )
+        self.assertIn("forbids", self.workflow)
         self.assertIn("git push --force-with-lease=", self.workflow)
         self.assertNotIn("HEAD:refs/heads/main", self.workflow)
 
