@@ -114,6 +114,12 @@ python3 scripts/prelaunch_check.py
 
 若输出不是 `Recommendation: **formal-review-ready**`，或 `prelaunch_check.py` 失败，应先修复审核逻辑、展示索引或公开文档，不要发布新的投稿入口。
 
+### Schema 来源复核信号
+
+`submission-validation` 会对本次新增或修改的 `*.schema.json`，与当前受信任主线中**其他投稿**的既有 Schema 做一个窄的结构比较。只有顶层 `required` 字段至少 8 项且同序，并且至少 3 个同名嵌套对象的 `required` 字段是保序的同集/子集，CI 才会输出 provenance warning。
+
+该 warning 不判定抄袭、侵权、作者意图或改编许可，也不自动阻断投稿。维护者应回看提交历史、原始来源、逐资产署名和实际许可；若来源或授权仍不清楚，应要求补证、独立重设计，或在权利结论前暂停公开展示。不要以补一行 attribution 代替权利人确认。
+
 ## 5. 合并后更新公开展示与首页精选
 
 合并到 `main` 的方案会自动进入 `submissions.html`。维护者只在需要首页精选或明确暂停展示时编辑 `gallery-publication.json`：

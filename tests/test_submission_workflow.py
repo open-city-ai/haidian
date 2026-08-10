@@ -41,6 +41,7 @@ from github_pr_validation import (  # noqa: E402
     validation_paths_for,
 )
 from validate_local_submission import discover_submission_files  # noqa: E402
+from schema_provenance_review import SchemaSimilarityFinding  # noqa: E402
 
 
 class _Response:
@@ -490,6 +491,100 @@ class ManifestHydrationTests(unittest.TestCase):
         client.fetch_content.assert_not_called()
         comment = client.upsert_comment.call_args.args[1]
         self.assertIn("non-submission code/docs/test PR", comment)
+
+    def test_provenance_signal_is_reported_without_deciding_rights(self) -> None:
+        candidate = "submissions/alice/design/visual/assets/receipt.schema.json"
+        event = {
+            "pull_request": {
+                "number": 648,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [{"filename": candidate, "status": "added"}]
+
+        def download_content(_repo, path, _sha, destination, *_args):
+            if path == candidate:
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_text('{"type":"object","required":[]}', encoding="utf-8")
+
+        finding = SchemaSimilarityFinding(
+            candidate_path=candidate,
+            peer_path="submissions/peer/design/visual/assets/receipt.schema.json",
+            top_level_required_count=14,
+            nested_paths=("rights", "handoff", "evaluation"),
+        )
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
+            client.paginate.return_value = files
+            client.download_content.side_effect = download_content
+            client.fetch_content.return_value = False
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client), patch(
+                "github_pr_validation.review_changed_schema_files", return_value=[finding]
+            ):
+                self.assertEqual(1, main())
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("maintainer provenance, attribution, and licence review required", comment)
+        self.assertIn("not an automated plagiarism", comment)
+
+    def test_maintainer_submission_schema_still_receives_provenance_signal(self) -> None:
+        candidate = "submissions/maintainer/design/visual/assets/receipt.schema.json"
+        event = {
+            "pull_request": {
+                "number": 649,
+                "user": {"login": "maintainer"},
+                "head": {"repo": {"full_name": "maintainer/haidian"}, "sha": "head-sha"},
+            }
+        }
+        files = [{"filename": candidate, "status": "added"}]
+
+        def download_content(_repo, path, _sha, destination, *_args):
+            if path == candidate:
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                destination.write_text('{"type":"object","required":[]}', encoding="utf-8")
+
+        finding = SchemaSimilarityFinding(
+            candidate_path=candidate,
+            peer_path="submissions/peer/design/visual/assets/receipt.schema.json",
+            top_level_required_count=14,
+            nested_paths=("rights", "handoff", "evaluation"),
+        )
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.repository = "open-city-ai/haidian"
+            client.request.return_value = ({"head": {"sha": "head-sha"}}, {})
+            client.paginate.return_value = files
+            client.download_content.side_effect = download_content
+            client.fetch_content.return_value = False
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                    "MAINTAINER_BYPASS_LOGINS": "maintainer",
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client), patch(
+                "github_pr_validation.review_changed_schema_files", return_value=[finding]
+            ):
+                self.assertEqual(1, main())
+        comment = client.upsert_comment.call_args.args[1]
+        self.assertIn("maintainer provenance, attribution, and licence review required", comment)
 
     def test_review_queue_candidate_is_one_author_owned_submission(self) -> None:
         self.assertTrue(
