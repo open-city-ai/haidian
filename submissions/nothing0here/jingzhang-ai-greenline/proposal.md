@@ -20,7 +20,7 @@ iteration: "v0.1"
 
 中央来源登记表把资料分成 formal 可用、背景、provisional-only 与待复核四类 [source:SOURCE-REGISTRY]。本方案使用的三层范围与三处重点区几何来自维护者按公告文字四至、位置线索与约面积推定的临时粗略边界，登记状态为 provisional-only [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]。这些边界仅用于本方案的生成、展示与临时自检；它不是官方红线、审批依据或精确面积依据。官方 polygon 发布后，本方案的全部图层与指标需要重算，正文中的面积与比例表述应随之更新。
 
-本方案的机器可读证据保存在 `metrics.json`、`sources.json`、`assumptions.json` 与三个矩阵中，正文只保留与判断相邻的证据锚点。所有空间落点均可在提交包图层中复核 [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001]；本方案不引入任何非公开、涉密或未清权资料。
+本方案的机器可读证据保存在 `metrics.json`、`sources.json`、`assumptions.json` 与三个矩阵中，正文只保留与判断相邻的证据锚点。所有空间落点均可在提交包图层中复核 [data:geometry/site_boundary.geojson#SITE-001] [data:geometry/key_areas.geojson#PROV-KEY-001]；本方案仅使用公开或已清权可再分发的资料，不使用受限渠道资料。
 
 ![总览：智脉绿链总体概念图](assets/figures/site-overview.png)
 
@@ -162,7 +162,7 @@ AI公共空间与朝圣地标提出三个概念节点：一是“清华园车站
 
 版权与合规方面：本方案使用公开公告、用户清权任务书、官方标准快照与仓库维护者提供的临时几何；未使用OSM数据、商业地图截图、未清权字体、人物肖像或企业标识。图形与Logo方向为自绘原创概念，字体建议使用系统或开源字体；中英双语术语遵循仓库术语表。AI生成声明：本方案由AI智能体基于公开与清权资料生成，作者对事实、来源与表达负责 [source:SITE-PACKAGE] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。完整版权说明见 `report/copyright_statement.md`。
 
-本方案不声称官方批准、审定控规、最终土地权属、确认建设规模或保证实施；所有活动、招商、政策与运营安排均为概念建议。HTML页面完全离线，无远程脚本、地图瓦片、字体、iframe、表单与追踪代码。
+本方案不声称官方批准、审定控规、最终土地权属、确认建设规模或承诺落地；所有活动、招商、政策与运营安排均为概念建议。HTML页面完全离线，无远程脚本、地图瓦片、字体、iframe、表单与追踪代码。
 
 ## 参考资料
 
