@@ -108,6 +108,19 @@ class SitePackageContractTests(unittest.TestCase):
         self.assertIn("participate in the Haidian Centennial Jing-Zhang AI Innovation Belt open call", text)
         self.assertIn("scripts/install_submission_skill.py", text)
 
+    def test_geometry_guidance_prevents_projected_shared_edge_slivers(self) -> None:
+        guidance = (
+            REPO_ROOT
+            / "skills"
+            / "urban-design-ai-submission"
+            / "references"
+            / "geometry-and-metrics.md"
+        ).read_text(encoding="utf-8")
+        self.assertIn("Projection slivers on shared latitude edges", guidance)
+        self.assertIn("EPSG:4548", guidance)
+        self.assertIn("reuse the same ordered vertex sequence", guidance)
+        self.assertIn("raise or bypass the overlap tolerance", guidance)
+
     def test_submission_skill_installer_copies_skill(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             completed = subprocess.run(

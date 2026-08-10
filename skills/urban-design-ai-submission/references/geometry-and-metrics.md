@@ -40,6 +40,22 @@ Avoid these failure patterns:
 - a `site_boundary.geojson` outline that does not include vertices used by the land-use partition
 - metrics copied from narrative text instead of recomputed from geometry
 
+### Projection slivers on shared latitude edges
+
+An edge that follows a constant WGS84 latitude is curved after projection to
+`EPSG:4548`, while GeoJSON joins only the stored vertices with straight chords.
+If adjacent polygons approximate the same latitude edge with different spans
+or vertex densities, their projected chords can diverge and create a thin
+false overlap even though the WGS84 edges appear coincident. A precision-grid
+snap alone does not fix this because the mismatch lies between the vertices.
+
+Build each shared cut line once, densify it on one common longitude grid, and
+reuse the same ordered vertex sequence on both adjacent polygons. Do not
+densify each polygon independently. Reproject the finished partition and
+verify both zero overlap and zero coverage gap before finalization. Do not
+raise or bypass the overlap tolerance to hide a projection sliver; a relaxed
+tolerance could also hide a real small overlap.
+
 For a safe starter package, run `scripts/scaffold_ai_submission.py --stage formal`. It prefers trusted official geometry and falls back to `brief/site-package/geometry/provisional_boundaries.geojson` when official polygons are absent. The result is intentionally `package_state=scaffold`; replace its design content and placeholder drawings, run `scripts/finalize_submission.py`, then run `scripts/self_check_submission.py` before opening a PR.
 
 ## Metric Rules
