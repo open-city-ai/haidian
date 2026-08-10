@@ -21,8 +21,9 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from ai_review_submission import DEFAULT_BASE_URL, review_policy_sha256
+from ai_review_submission import DEFAULT_BASE_URL, review_identity
 from generate_submissions_data import package_sha256
+from review_submission import ADVISORY_REVIEW_SCHEMA_PATH, build_review_input
 
 
 REVIEW_MARKER = "<!-- haidian-auto-review:{head_sha} -->"
@@ -255,6 +256,8 @@ def load_cached_review(
         decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
         comment = (audit_dir / "pr-comment.md").read_text(encoding="utf-8")
         metadata = json.loads((audit_dir / "request-metadata.json").read_text(encoding="utf-8"))
+        cached_input = json.loads((audit_dir / "review-input.json").read_text(encoding="utf-8"))
+        schema = json.loads((checkout_root / ADVISORY_REVIEW_SCHEMA_PATH).read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
     if not comment.strip():
@@ -262,6 +265,8 @@ def load_cached_review(
     if review.get("submission_dir") != submission_dir or decision.get("submission_dir") != submission_dir:
         return None
     if decision.get("dry_run") is not False or decision.get("model_output_schema_valid") is not True:
+        return None
+    if not isinstance(cached_input, dict) or not isinstance(schema, dict):
         return None
     try:
         expected_hash = package_sha256(checkout_root / submission_dir)
@@ -294,7 +299,56 @@ def load_cached_review(
         return None
     if metadata["reasoning_effort"] != reasoning_effort:
         return None
-    if metadata["review_policy_sha256"] != review_policy_sha256(checkout_root):
+    visual_inputs = metadata.get("visual_inputs")
+    visual_warnings = metadata.get("visual_warnings")
+    visual_preflight_issues = metadata.get("visual_preflight_issues")
+    content_preflight_issues = metadata.get("content_preflight_issues")
+    if not all(
+        isinstance(value, list)
+        for value in [visual_inputs, visual_warnings, visual_preflight_issues, content_preflight_issues]
+    ):
+        return None
+
+    try:
+        current_input = build_review_input(checkout_root, checkout_root / submission_dir)
+        current_input["ai_visual_input_summary"] = {
+            "included": visual_inputs,
+            "warnings": visual_warnings,
+            "preflight_issues": visual_preflight_issues,
+        }
+        current_input["ai_content_preflight_issues"] = content_preflight_issues
+        cached_identity = review_identity(
+            checkout_root,
+            checkout_root / submission_dir,
+            cached_input,
+            schema,
+            model,
+            base_url,
+            reasoning_effort,
+        )
+        current_identity = review_identity(
+            checkout_root,
+            checkout_root / submission_dir,
+            current_input,
+            schema,
+            model,
+            base_url,
+            reasoning_effort,
+        )
+    except Exception:
+        return None
+
+    if cached_input.get("submission_dir") != submission_dir or current_input.get("submission_dir") != submission_dir:
+        return None
+    if any(
+        any(record.get(field) != expected.get(field) for field in identity_fields)
+        for record, expected in [
+            (metadata, cached_identity),
+            (decision, cached_identity),
+            (metadata, current_identity),
+            (decision, current_identity),
+        ]
+    ):
         return None
     try:
         outcome = decide(review, decision, threshold)

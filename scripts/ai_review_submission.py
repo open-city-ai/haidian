@@ -363,7 +363,9 @@ def review_policy_sha256(repo_root: Path) -> str:
     script_names = [
         "ai_review_submission.py",
         "auto_review_queue.py",
+        "generate_submissions_data.py",
         "review_submission.py",
+        "source_registry_utils.py",
         "validate_submission.py",
         "self_check_submission.py",
         "spatial_review.py",
