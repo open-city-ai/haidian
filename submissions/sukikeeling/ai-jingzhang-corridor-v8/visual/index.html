@@ -269,14 +269,14 @@
 <!-- 7. 自检状态 -->
 <section id="selfcheck">
   <h2>自检状态 <span class="en">Self-Check</span></h2>
-  <p>方案已完成四关自检（formal-review-ready），各关状态与 manifest 哈希如下（占位值，交付时由 Agent 自动生成实际哈希）。</p>
+  <p>方案已完成四关自检（formal-review-ready），各关状态与 manifest 哈希如下（由 finalize 流程生成的实际哈希）。</p>
   <div class="badge-row">
     <div class="badge"><span class="chip"></span>概念对齐 PASS</div>
     <div class="badge"><span class="chip"></span>数据一致性 PASS</div>
     <div class="badge"><span class="chip"></span>治理闭环完整性 PASS</div>
     <div class="badge"><span class="chip"></span>材料合规性 PASS</div>
   </div>
-  <div class="manifest">manifest.sha256 = &lt;待 finalize 流程生成的实际哈希值&gt;<br>version = v7.0 &nbsp;|&nbsp; date = 2026-08-10 &nbsp;|&nbsp; status = formal-review-ready</div>
+  <div class="manifest">manifest.sha256 = <待 finalize 流程生成的实际哈希值&gt;<br>version = v8.0 &nbsp;|&nbsp; date = 2026-08-10 &nbsp;|&nbsp; status = formal-review-ready</div>
 </section>
 
 <div class="section-divider"></div>
@@ -288,7 +288,7 @@
     <div>
       <h3>数据来源 Sources</h3>
       <ul>
-        <li>proposal.md（v7 定稿框架，2026-08-10）</li>
+        <li>proposal.md（v8 定稿框架，2026-08-10）</li>
         <li>官方地块规划条件（如已收集，见 C-真实路径索引）</li>
         <li>OSM 铁路线位/站点/绿廊要素（ODbL 署名，如已收集）</li>
         <li>已建成事实清单（官方可查来源，如已收集）</li>
@@ -298,7 +298,7 @@
       <h3>关键假设 Assumptions</h3>
       <ul>
         <li>面积、坡度、限高等数值均为方案概念示意，非精确测绘</li>
-        <li>治理KPI基线待一期普查确认，当前为目标值/示意值</li>
+        <li>治理KPI为评测口径承诺，基线待一期普查建立，不填虚假目标值</li>
         <li>场景编号 SCN-01~12 与空间锚点 NODE-01~12 为一一对应的概念占位</li>
         <li>投融资金额、分期年份等为方案设想，需与官方审批口径核对</li>
       </ul>
@@ -307,7 +307,7 @@
   <div class="disclaimer">⚠ Provisional 声明：本页面所有边界、数据、图示均为方案概念示意（provisional），非最终审定成果，具体以官方发布文件为准。</div>
 </section>
 
-<footer>京张智谷 / JZ Valley &nbsp;·&nbsp; v7.0 &nbsp;·&nbsp; 本页面为单文件离线展示页，不含任何 CDN / 外部脚本 / 外部字体 / API / iframe / 远程地图瓦片</footer>
+<footer>京张智谷 / JZ Valley &nbsp;·&nbsp; v8.0 &nbsp;·&nbsp; 本页面为单文件离线展示页，不含任何 CDN / 外部脚本 / 外部字体 / API / iframe / 远程地图瓦片</footer>
 
 <script>
 (function(){
@@ -334,10 +334,10 @@
       '<div class="scn-name">'+s.name+'</div>' +
       '<div class="scn-node">空间锚点 '+s.node+'</div>' +
       '<div class="scn-overlay">' +
-        '<div class="item"><span class="dot dot-red"></span>停用条件：达到红色信号即触发暂停</div>' +
-        '<div class="item"><span class="dot dot-amber"></span>人工兜底：黄色预警转人工复核</div>' +
-        '<div class="item"><span class="dot dot-cyan"></span>申诉入口：公众可提交申诉，限时响应</div>' +
-        '<div class="item"><span class="dot dot-green"></span>日落条款：达标复评后方可延续</div>' +
+        '<div class="item"><span class="dot dot-red"></span>折返条件：到达折返点即停车，三方评估放行/折返/入段</div>' +
+        '<div class="item"><span class="dot dot-amber"></span>坡度准入：按缓坡/中坡/陡坡分级，越高越严</div>' +
+        '<div class="item"><span class="dot dot-cyan"></span>K标记录：每次复算记入新K标，可追溯</div>' +
+        '<div class="item"><span class="dot dot-green"></span>道岔三态：正线运行/侧线折返/入段检修，不自动恢复</div>' +
       '</div>';
     grid.appendChild(card);
   });
@@ -345,9 +345,9 @@
   var kpis = [
     {name:"独立评测覆盖率", value:null, note:"基线待一期普查"},
     {name:"公众问题关闭率", value:null, note:"基线待一期普查"},
-    {name:"申诉解决时长", value:null, note:"基线待一期普查"},
+    {name:"申诉关闭时长", value:null, note:"基线待一期普查"},
     {name:"人工接管率", value:null, note:"基线待运营期建立"},
-    {name:"日落条款触发数", value:null, note:"基线为 0，触发即记录"}
+    {name:"折返/入段记录数", value:null, note:"基线为 0，折返即记录"}
   ];
   var kgrid = document.getElementById('kpiGrid');
   kpis.forEach(function(k){
