@@ -4,7 +4,7 @@ author_github: "h8440138-star"
 language: "en"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "English translation of the Jingmai AI Belt formal AI urban design package."
+summary: "Jingmai AI Belt (京脉智带) formal AI urban design package, generated from the organizer-registered provisional boundary and a structured self-check workflow. Site-area and ratio metrics are recalculated under the provisional boundary and affected by its uncertainty; full recalculation will follow the officially published geometry. Eligibility, scoring and acceptance are determined by the maintainers and reviewers under the formal rules."
 ---
 
 # Jingmai AI Belt - Centennial Jing-Zhang AI Innovation Belt Urban Design Proposal

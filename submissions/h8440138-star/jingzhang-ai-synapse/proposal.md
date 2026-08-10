@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "京脉智带（Jingmai AI Belt）方案：以 provisional 临时粗略边界与结构化自检要求生成的 formal AI 城市设计包；保留精度警示与复算要求，组织方数据缺口不阻断内容评分。"
+summary: "京脉智带（Jingmai AI Belt）方案：基于组织方登记的 provisional 临时粗略边界与结构化自检要求生成的 formal AI 城市设计包；场地面积与各类比率指标均在 provisional 边界下复算，精度受边界不确定性影响，待官方几何公布后整体复算。资格、评分与接受条件由维护者及评审依正式规则判定。"
 ---
 
 # 京脉智带 · 百年京张AI创新带城市设计提案
