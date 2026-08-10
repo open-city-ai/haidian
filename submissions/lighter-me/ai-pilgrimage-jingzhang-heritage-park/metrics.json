@@ -1,0 +1,347 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(geometry/site_boundary.geojson) after EPSG:4548 projection",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional boundary derived from official text bounds; area matches 11.4 km2 official value within 0.1%."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features in geometry/key_areas.geojson)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon fitted to announced 192.1 ha; replace with official polygon before professional scoring."
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon fitted to announced 104.3 ha; replace with official polygon before professional scoring."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720454.221,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon fitted to announced 72.0 ha; replace with official polygon before professional scoring."
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 2238432.04,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 1674722.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 2136858.26,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 591739.67,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=0803)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 864851.46,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=0804)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 1748460.85,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 2157781.76,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area of LAND_USE features with land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "Design partition of provisional boundary; concept only."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2157781.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space.geojson features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Green-space polygons are design proposals within provisional boundary."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.189066,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio is concept-level; official green controls pending."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 218538.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space.geojson features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Public-space polygons are design proposals."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.019149,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio is concept-level; official public-space controls pending."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 231199.833,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(buildings.geojson features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints express concept massing; not approved parcels."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.020258,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept footprint density; statutory building density pending official controls."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(floor_area of buildings) - requires official floor-area conditions",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official floor-area ratio and height conditions are missing from the cleared site package; pending professional confirmation."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls are missing; pending official regulatory planning conditions."
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 38289.4,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(roads.geojson)) after EPSG:4548 projection",
+      "confidence": "medium",
+      "assumptions": [
+        "Road centerlines are concept schematic lines, not approved road redlines."
+      ]
+    },
+    "road_area_estimated_sqm": {
+      "status": "known",
+      "value": 918945.6,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_centerline_length_m * 24 m average concept right-of-way",
+      "confidence": "low",
+      "assumptions": [
+        "Right-of-way estimate is conceptual; official road redlines pending."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.080519,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_estimated_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Estimate pending official road redlines."
+      ]
+    },
+    "phase1_area_ha": {
+      "status": "known",
+      "value": 626.36,
+      "unit": "none",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area of PHASE-1 in hectares",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing parcels are concept-level."
+      ]
+    },
+    "phase2_area_ha": {
+      "status": "known",
+      "value": 289.0,
+      "unit": "none",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area of PHASE-2 in hectares",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing parcels are concept-level."
+      ]
+    },
+    "phase3_area_ha": {
+      "status": "known",
+      "value": 225.92,
+      "unit": "none",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area of PHASE-3 in hectares",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing parcels are concept-level."
+      ]
+    }
+  }
+}
