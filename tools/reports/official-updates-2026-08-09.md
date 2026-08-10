@@ -1,0 +1,29 @@
+# 官方更新日报 · 2026-08-09
+
+## 一、官网公告页
+- 首次快照已记录：`4ce8e97c4940`
+- 来源：https://www.beijing.gov.cn/ywdt/gzdt/202605/t20260507_4639102.html
+
+## 二、GitHub 官方仓库（open-city-ai/haidian）
+- ⚠️ `git fetch upstream` 失败：git 超时
+- 官方最新提交：`14bce12f` · 2026-08-09 · fix: parse visual metric attributes in any order (#783)
+
+### 最近 15 条官方提交
+- `14bce12f` · 2026-08-09 · fix: parse visual metric attributes in any order (#783)
+- `2c6ae754` · 2026-08-08 · Merge pull request #770 from open-city-ai/codex/backfill-bilingual-submissions
+- `6e62f7f4` · 2026-08-08 · Merge remote-tracking branch 'origin/main' into codex/backfill-bilingual-submissions
+- `59a93440` · 2026-08-08 · feat: backfill bilingual historical submissions
+- `66a57ab1` · 2026-08-09 · fix: regenerate gallery data after merged submissions (#730)
+- `d71aab1d` · 2026-08-09 · Merge pull request #752 from open-city-ai/codex/require-bilingual-submissions
+- `20a1efa5` · 2026-08-09 · Enforce bilingual contract across manifest figures
+- `4687ed3b` · 2026-08-09 · Preserve early v2 packages behind explicit bilingual contract
+- `c4fb0c51` · 2026-08-08 · Merge pull request #716 from 147228/submission/147228/jingzhang-open-pulse-v30
+- `1fed842b` · 2026-08-09 · Merge remote-tracking branch 'origin/main' into codex/require-bilingual-submissions
+- `6e831e54` · 2026-08-09 · Require bilingual v2 submissions and PR follow-up
+- `7603b1ab` · 2026-08-08 · Merge pull request #655 from xusu-ai/submissions/xusu-ai-jingzhang-ai-vein
+- `2c62fc2f` · 2026-08-08 · Merge pull request #726 from shangshuo/main
+- `f6d3cbd2` · 2026-08-08 · Merge pull request #724 from xyh202131/xyh202131/jingzhang-formal-repro-command
+- `1206d775` · 2026-08-08 · Merge pull request #725 from xyh202131/xyh202131/jingzhang-osm-engineering-boundary
+
+## 三、结论
+- 今日官方暂无明显更新。

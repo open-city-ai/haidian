@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""官方网站每日更新检查脚本。
+用法：设置 OFFICIAL_URL 为官方提交/公告页地址，通过系统计划任务/ cron 每日运行一次。
+逻辑：抓取页面 -> 计算内容哈希 -> 与上次结果比对 -> 有变化则输出提示（可接入通知）。
+"""
+import hashlib
+import os
+import sys
+from pathlib import Path
+
+OFFICIAL_URL = os.environ.get("OFFICIAL_URL", "https://www.beijing.gov.cn/ywdt/gzdt/202605/t20260507_4639102.html")
+OFFICIAL_URL = os.environ.get("OFFICIAL_URL", "https://example.com/official-updates")
+STATE_FILE = Path(__file__).parent / ".official_updates_state"
+
+
+def fetch(url):
+    import urllib.request
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=30) as resp:
+        return resp.read()
+
+
+def main():
+    body = fetch(OFFICIAL_URL)
+    digest = hashlib.sha256(body).hexdigest()
+    prev = STATE_FILE.read_text().strip() if STATE_FILE.exists() else None
+    STATE_FILE.write_text(digest)
+    if prev is None:
+        print(f"[init] 已记录首次快照 {digest[:12]}（{OFFICIAL_URL}）")
+        return 0
+    if prev == digest:
+        print("[no-change] 官方页面内容无更新")
+        return 0
+    print(f"[changed] 官方页面内容已更新！旧 {prev[:12]} -> 新 {digest[:12]}")
+    return 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

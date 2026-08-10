@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""「百年京张 AI 创新带」每日官方更新自动检查脚本。
+
+来源（两个同时检查）：
+  1. 官网公告页（beijing.gov.cn 官方通告，见 OFFICIAL_URL）
+  2. GitHub 官方仓库（open-city-ai/haidian，本地 remote 名为 upstream）
+
+行为：
+  - 抓取官网页面 -> 内容哈希 -> 与上次快照比对 -> 有变则标记 changed。
+  - `git fetch upstream` 拉取官方仓库 -> 记录上次已见的提交 -> 输出今日新增提交清单。
+  - 把今日结果整理成一份 Markdown 报告，写到 tools/reports/official-updates-YYYY-MM-DD.md。
+  - 返回码：0=无变化，1=有变化/有新增提交。
+
+用法（每日运行一次）：
+    python tools/daily_official_updates.py
+"""
+import hashlib
+import json
+import subprocess
+import sys
+import urllib.request
+from datetime import datetime
+from pathlib import Path
+
+TOOLS = Path(__file__).parent
+STATE_FILE = TOOLS / ".daily_official_state.json"
+REPORTS_DIR = TOOLS / "reports"
+REPORTS_DIR.mkdir(exist_ok=True)
+
+OFFICIAL_URL = (
+    "https://www.beijing.gov.cn/ywdt/gzdt/202605/t20260507_4639102.html"
+)
+REPO_UPSTREAM_BRANCH = "upstream/main"
+GIT_TIMEOUT = 15   # 秒；GitHub 网络慢时降级用本地缓存数据
+
+
+def fetch_web(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        return resp.read()
+
+
+def git(*args):
+    try:
+        proc = subprocess.run(
+            ["git", *args],
+            capture_output=True,
+            text=True,
+            cwd=str(TOOLS.parent),
+            timeout=GIT_TIMEOUT,
+        )
+        return proc.returncode, proc.stdout, proc.stderr
+    except subprocess.TimeoutExpired:
+        return -1, "", "git 超时"
+    except FileNotFoundError:
+        return -1, "", "未找到 git 命令"
+
+
+def load_state():
+    if STATE_FILE.exists():
+        try:
+            return json.loads(STATE_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def save_state(state):
+    STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def main():
+    today = datetime.now().strftime("%Y-%m-%d")
+    report_lines = [f"# 官方更新日报 · {today}", ""]
+    changed_any = False
+    state = load_state()
+
+    # ---- 来源 1：官网公告页哈希比对 ----
+    report_lines.append("## 一、官网公告页")
+    try:
+        body = fetch_web(OFFICIAL_URL)
+        digest = hashlib.sha256(body).hexdigest()
+        prev_web = state.get("web_digest")
+        state["web_digest"] = digest
+        if prev_web is None:
+            report_lines.append(f"- 首次快照已记录：`{digest[:12]}`")
+            report_lines.append(f"- 来源：{OFFICIAL_URL}")
+        elif prev_web == digest:
+            report_lines.append("- 页面内容 **无变化**。")
+        else:
+            report_lines.append(f"- 页面内容 **已更新**：`{prev_web[:12]} → {digest[:12]}`")
+            changed_any = True
+    except Exception as e:
+        report_lines.append(f"- ⚠️ 官网抓取失败：{e}")
+    report_lines.append("")
+
+    # ---- 来源 2：GitHub 官方仓库（upstream）----
+    report_lines.append("## 二、GitHub 官方仓库（open-city-ai/haidian）")
+    rc, out, err = git("fetch", "upstream")
+    if rc != 0:
+        report_lines.append(f"- ⚠️ `git fetch upstream` 失败/超时：{err or out}（降级用本地缓存数据）")
+    else:
+        report_lines.append("- `git fetch upstream` 完成。")
+
+    # 取最近 15 条提交
+    rc, out, _ = git(
+        "log", REPO_UPSTREAM_BRANCH, "-15", "--date=short",
+        "--format=%h|%ad|%s",
+    )
+    prev_head = state.get("repo_head")
+    new_commits = []
+    if rc == 0 and out.strip():
+        lines = [ln for ln in out.splitlines() if "|" in ln]
+        if lines:
+            latest = lines[0].split("|")
+            report_lines.append(f"- 官方最新提交：`{latest[0]}` · {latest[1]} · {latest[2]}")
+            state["repo_head"] = latest[0]
+            # 与上次已见提交对比，收集新增
+            if prev_head and prev_head != latest[0]:
+                for ln in lines:
+                    h, d, s = ln.split("|", 2)
+                    if h == prev_head:
+                        break
+                    new_commits.append(f"- `{h}` · {d} · {s}")
+        report_lines.append("")
+        report_lines.append("### 最近 15 条官方提交")
+        for ln in lines:
+            h, d, s = ln.split("|", 2)
+            report_lines.append(f"- `{h}` · {d} · {s}")
+    else:
+        report_lines.append("- ⚠️ 无法读取 upstream 提交记录。")
+
+    if new_commits:
+        report_lines.append("")
+        report_lines.append("### 🔔 自上次检查以来的**新增**提交")
+        report_lines.extend(reversed(new_commits))
+        changed_any = True
+    report_lines.append("")
+
+    # ---- 汇总 ----
+    report_lines.append("## 三、结论")
+    report_lines.append(
+        "- 有内容更新/新增提交。请人工查看上方变更。"
+        if changed_any
+        else "- 今日官方暂无明显更新。"
+    )
+
+    report = "\n".join(report_lines) + "\n"
+    out_file = REPORTS_DIR / f"official-updates-{today}.md"
+    out_file.write_text(report, encoding="utf-8")
+    save_state(state)
+
+    print(report)
+    print(f"[report] 已写入 {out_file}")
+    return 1 if changed_any else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
