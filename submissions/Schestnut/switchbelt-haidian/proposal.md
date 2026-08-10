@@ -214,3 +214,7 @@ agent 生成的AI治理建议必须遵守数据最小化、公开来源、可解
 - data/processed/missing_data_checklist.csv
 - 完整机器索引：见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json` 与 `design_depth_matrix.json`
 - 本节书目入口依据场地包登记，完整出处和许可见结构化来源清单 [source:SITE-PACKAGE]
+
+---
+
+*本方案为正式提交版 v1.1（revision v1.1b）：几何为 provisional，官方 SITE_BOUNDARY 发布后需复算 GeoJSON 与 metrics；历史表述均带来源，AI 未来表述为愿景而非既成事实。*（changelog 见 changelog.md）
