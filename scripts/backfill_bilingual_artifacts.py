@@ -36,6 +36,9 @@ OCR_CACHE = Path("/tmp/haidian-bilingual-backfill/ocr-translation-v3.jsonl")
 FONT_PATHS = [
     Path("/Library/Fonts/Arial Unicode.ttf"),
     Path("/System/Library/Fonts/Supplemental/Arial Unicode.ttf"),
+    Path("C:/Windows/Fonts/simhei.ttf"),
+    Path("C:/Windows/Fonts/simsunb.ttf"),
+    Path("C:/Windows/Fonts/Deng.ttf"),
 ]
 
 
@@ -411,64 +414,72 @@ def backfill_pdfs(dirs: list[Path]) -> int:
     styles.add(ParagraphStyle(name="BiBody", fontName="BilingualSans", fontSize=9, leading=13, alignment=TA_LEFT, spaceAfter=5))
     changed = 0
     for directory in dirs:
-        _source_language, target_language = languages(directory)
-        proposal_path = directory / f"proposal.{target_language}.md"
-        if not proposal_path.exists():
-            continue
+        source_language, target_language = languages(directory)
         localize_translation_image_paths(directory, target_language)
-        text = proposal_path.read_text(encoding="utf-8")
-        front, _body = parse_front_matter(text)
-        title = front_value(front, "title") or directory.name
+        render_specs = [
+            (source_language, directory / "proposal.md", "a3-booklet.pdf", "a0-boards.pdf"),
+            (target_language, directory / f"proposal.{target_language}.md", f"a3-booklet.{target_language}.pdf", f"a0-boards.{target_language}.pdf"),
+        ]
         drawings = directory / "drawings"
         drawings.mkdir(parents=True, exist_ok=True)
-        a3_path = drawings / f"a3-booklet.{target_language}.pdf"
-        story: list[Any] = [Paragraph(html.escape(title), styles["BiTitle"])]
-        skipped_document_title = False
-        for kind, value in plain_markdown_lines(text):
-            if kind == "h1" and not skipped_document_title and value.strip() == title.strip():
-                skipped_document_title = True
+        for language, proposal_path, a3_name, a0_name in render_specs:
+            if not proposal_path.exists():
                 continue
-            if kind == "image":
-                image_path = directory / localized_path(value, target_language)
-                if not image_path.exists():
-                    image_path = directory / value
-                if image_path.exists():
-                    image = PdfImage(str(image_path))
-                    max_width, max_height = 250 * mm, 150 * mm
-                    scale = min(max_width / image.imageWidth, max_height / image.imageHeight, 1)
-                    image.drawWidth = image.imageWidth * scale
-                    image.drawHeight = image.imageHeight * scale
-                    story.extend([image, Spacer(1, 6 * mm)])
-                continue
-            style = styles["BiTitle"] if kind == "h1" else styles["BiH2"] if kind == "h2" else styles["BiH3"] if kind == "h3" else styles["BiBody"]
-            story.append(Paragraph(html.escape(value), style))
-        document = SimpleDocTemplate(
-            str(a3_path), pagesize=A3, leftMargin=18 * mm, rightMargin=18 * mm,
-            topMargin=18 * mm, bottomMargin=18 * mm,
-        )
-        document.build(story)
+            text = proposal_path.read_text(encoding="utf-8")
+            front, _body = parse_front_matter(text)
+            title = front_value(front, "title") or directory.name
+            a3_path = drawings / a3_name
+            story: list[Any] = [Paragraph(html.escape(title), styles["BiTitle"])]
+            skipped_document_title = False
+            for kind, value in plain_markdown_lines(text):
+                if kind == "h1" and not skipped_document_title and value.strip() == title.strip():
+                    skipped_document_title = True
+                    continue
+                if kind == "image":
+                    image_path = directory / (value if language == source_language else localized_path(value, language))
+                    if not image_path.exists():
+                        image_path = directory / value
+                    if image_path.exists():
+                        image = PdfImage(str(image_path))
+                        max_width, max_height = 250 * mm, 150 * mm
+                        scale = min(max_width / image.imageWidth, max_height / image.imageHeight, 1)
+                        image.drawWidth = image.imageWidth * scale
+                        image.drawHeight = image.imageHeight * scale
+                        story.extend([image, Spacer(1, 6 * mm)])
+                    continue
+                style = styles["BiTitle"] if kind == "h1" else styles["BiH2"] if kind == "h2" else styles["BiH3"] if kind == "h3" else styles["BiBody"]
+                story.append(Paragraph(html.escape(value), style))
+            document = SimpleDocTemplate(
+                str(a3_path), pagesize=A3, leftMargin=18 * mm, rightMargin=18 * mm,
+                topMargin=18 * mm, bottomMargin=18 * mm,
+            )
+            document.build(story)
 
-        a0_path = drawings / f"a0-boards.{target_language}.pdf"
-        board_story: list[Any] = [Paragraph(html.escape(title), styles["BiTitle"]), Spacer(1, 8 * mm)]
-        figures = sorted((directory / "assets" / "figures").glob(f"*.{target_language}.png"))
-        for index, figure_path in enumerate(figures):
-            board_story.append(Paragraph(html.escape(figure_path.stem), styles["BiH2"]))
-            image = PdfImage(str(figure_path))
-            max_width, max_height = 1080 * mm, 760 * mm
-            scale = min(max_width / image.imageWidth, max_height / image.imageHeight)
-            image.drawWidth = image.imageWidth * scale
-            image.drawHeight = image.imageHeight * scale
-            board_story.append(image)
-            if index < len(figures) - 1:
-                board_story.append(PageBreak())
-        if not figures:
-            board_story.append(Paragraph("No localized figures available.", styles["BiBody"]))
-        board_document = SimpleDocTemplate(
-            str(a0_path), pagesize=landscape(A0), leftMargin=20 * mm, rightMargin=20 * mm,
-            topMargin=20 * mm, bottomMargin=20 * mm,
-        )
-        board_document.build(board_story)
-        changed += 2
+            a0_path = drawings / a0_name
+            figure_glob = f"*.{language}.png" if language != source_language else "*.png"
+            figures = sorted(
+                path for path in (directory / "assets" / "figures").glob(figure_glob)
+                if language != source_language or not re.search(r"\.(?:zh|en)\.png$", path.name)
+            )
+            board_story: list[Any] = [Paragraph(html.escape(title), styles["BiTitle"]), Spacer(1, 8 * mm)]
+            for index, figure_path in enumerate(figures):
+                board_story.append(Paragraph(html.escape(figure_path.stem), styles["BiH2"]))
+                image = PdfImage(str(figure_path))
+                max_width, max_height = 1080 * mm, 760 * mm
+                scale = min(max_width / image.imageWidth, max_height / image.imageHeight)
+                image.drawWidth = image.imageWidth * scale
+                image.drawHeight = image.imageHeight * scale
+                board_story.append(image)
+                if index < len(figures) - 1:
+                    board_story.append(PageBreak())
+            if not figures:
+                board_story.append(Paragraph("No localized figures available.", styles["BiBody"]))
+            board_document = SimpleDocTemplate(
+                str(a0_path), pagesize=landscape(A0), leftMargin=20 * mm, rightMargin=20 * mm,
+                topMargin=20 * mm, bottomMargin=20 * mm,
+            )
+            board_document.build(board_story)
+            changed += 2
         print(f"pdf: {display_path(directory)}", flush=True)
     return changed
 
