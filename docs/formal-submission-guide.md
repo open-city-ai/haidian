@@ -351,6 +351,8 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 
 `report/proposal.html` 是从 `proposal.md` 自动渲染出的离线阅读版，用于解决不同 Markdown 预览器对图片路径、中文排版和证据标签显示不一致的问题。它不是第二套主体文本，也不能替代 `proposal.md`、GeoJSON、metrics 或图纸。
 
+当 PR 修改 `proposal.md`、`proposal.zh.md` / `proposal.en.md` 或对应的 `report/proposal*.html` 时，GitHub 的确定性校验会在内存中用仓库可信渲染器重新生成并比对报告。不要手工维护报告；先运行渲染命令，再刷新 manifest hash 与 self-check。历史包不会因渲染器演进被自动重写，普通全包 self-check 也不会因此阻断；需要在本地预演该 PR gate 时，可在 `validate_local_submission.py` 后加 `--check-generated-reports`。
+
 提交者每次手动修改 `proposal.md` 后都应运行：
 
 ```bash
@@ -365,6 +367,12 @@ python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug
 - 图片引用必须指向本地派生图，例如 `../assets/figures/site-overview.png`。
 - 不得加载远程图片、外部脚本、iframe、表单、API 请求或跟踪代码。
 - HTML 阅读版应让评审者直接看到正文、图片、图注和 `[source:...]`、`[standard:...]`、`[depth:...]`、`[data:...]`、`[metric:...]` 证据标签。
+
+已修改报告或任何清单内文件时，可用下列命令只刷新 `manifest.json` 已登记文件的 sha256；脚本不会新增清单项，并会拒绝路径穿越：
+
+```bash
+python3 scripts/refresh_manifest_hashes.py submissions/<github-login>/<proposal-slug>
+```
 
 ## 8. A3 文册与 A0 展板
 

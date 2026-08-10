@@ -482,7 +482,13 @@ def main() -> int:
                     "participant deletion-only PR; removed files were not content-validated"
                 )
         else:
-            validation = validate_submission(worktree, pr_author, validation_files, bypass)
+            validation = validate_submission(
+                worktree,
+                pr_author,
+                validation_files,
+                bypass,
+                check_generated_reports=True,
+            )
         validation_markdown = format_report(validation)
 
         if not is_current_pull_request_head(client, pr_number, head_sha):
