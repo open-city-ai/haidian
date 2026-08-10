@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.2.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is explicit and traceable; content review may proceed, while official-geometry-dependent professional scoring remains pending."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are explicit provisional constraints and must be replaced/recalculated when official polygons arrive."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Seven adjacent land-use polygons cover the submitted site without overlap."
+    },
+    {
+      "check_id": "GEOMETRY_CONTAINMENT",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/*.geojson",
+      "message": "Design polygons and scenario points are clipped to the provisional site."
+    },
+    {
+      "check_id": "METRICS_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Known spatial metrics are recomputed in EPSG:4548 from submitted geometry."
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Chinese and English proposal, report, visual, figure and drawing counterparts are generated and mapped."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static offline HTML uses only local images and inline CSS."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Sections, standards, depth items, matrices, geometry, metrics, sources and assumptions are linked."
+    },
+    {
+      "check_id": "PROFESSIONAL_SCORING_GATE",
+      "result": "unknown",
+      "severity": "info",
+      "target": "official SITE_BOUNDARY and KEY_AREA files",
+      "message": "Formal professional scoring that depends on official geometry remains a documented organizer-data gate; this is not a participant defect."
+    }
+  ]
+}
