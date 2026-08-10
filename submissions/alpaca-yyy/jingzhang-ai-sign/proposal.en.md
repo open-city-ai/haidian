@@ -32,6 +32,75 @@ The overall design reaches control-detailed-planning urban design depth: renewal
 
 Three key areas receive detailed design: Zhongzhiyuan AI independent-innovation acceleration zone, Beijing AI Origin Community, and Dazhongsi AI industry cluster [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003] [depth:three_key_area_detailed_design]. Each area covers program, building scale, retain-renovate-demolish classification, public space, transport, and implementation projects.
 
+## Brand System and Visual Identity (agent.5)
+
+This proposal introduces the brand direction "Jingzhang AI Symbiosis Belt": using the linear rhythm of the Jingzhang railway tracks as the visual motif, superimposing "rail-data flow-innovation artery" imagery into a recognizable spatial language.
+
+- **Logo concept**: twin tracks merging into an "∞" data loop, symbolizing the digital rebirth of the heritage railway; standard palette of "steel gray #1e293b + AI purple #7c3aed + Jingzhang green #15803d".
+- **Wayfinding**: three levels along the Jingzhang Heritage Park — regional (cultural narrative), campus (function), node (AI scene interaction), using modular sign components.
+- **Component library (agent.4)**: reusable street furniture: ①sleeper benches ②signal-light interaction posts ③"timetable" info screens ④station-arch arcade frames ⑤signpost-style direction markers.
+- **International narrative**: "From Jingzhang Railway to AI Open Source" as the storytelling spine, bilingual copy system and pilgrimage route; all visual assets cleared.
+
+## Three Zones Two Wings and Regional Coordination (agent.1)
+
+Under the announcement's "three zones, two wings" framework, the proposal adds cross-regional coordination loops (conceptual):
+
+- **West Wing (Zhongguancun tech-service wing)**: along Zhongguancun Avenue linking campuses, institutes, incubators.
+- **East Wing (Xiaoyue River scenario wing)**: along the Xiaoyue River blue-green corridor linking communities and industry nodes.
+- **Regional links (conceptual)**: north to Beihang/BIT (Beiwai clusters), east to Future Science City and Huairou Science City, south to Yizhuang intelligent manufacturing, and a conceptual interface to the Beijing-Tianjin-Hebei innovation corridor — all "conceptual proposals", not statutory commitments.
+
+## Industry Cases and Ecosystem Map (agent.2, 5-8 cases)
+
+| ID | Case | Type | Spatial anchor | Source |
+|---|---|---|---|---|
+| C-01 | Open-source LLM community & evaluation | Open source | Origin community launch hall | Public info |
+| C-02 | Edge AI & intelligent terminal R&D | Terminal | Zhongzhiyuan | Public info |
+| C-03 | Data annotation & dataset governance | Data element | Dazhongsi data hall | Public info |
+| C-04 | University tech transfer & PoC | Transfer | Origin community | Public info |
+| C-05 | AI safety evaluation & red-team | Governance | Zhongzhiyuan sandbox | Public info |
+| C-06 | Intelligent connected & autonomous testing | Test | Qinghe low-carbon corridor | Public info |
+| C-07 | AI healthcare & education pilots | Civic service | Community nodes | Public info |
+
+Cases illustrate the "university-origin-open-source-enterprise-public" innovation chain; tenants require separate authorization.
+
+## Industry Test & Verification Scenarios (agent.3, 3 scenarios)
+
+| Scenario | Space | Verification | Suggested operator | Metric |
+|---|---|---|---|---|
+| T-01 Open model evaluation | Zhongzhiyuan sandbox | capability benchmark, safety | third-party evaluator | report count, fix cycle |
+| T-02 Edge compute trial street | Zhongzhiyuan station | latency, energy | chip/terminal firms | latency, energy, concurrency |
+| T-03 City-agent sandbox | Origin community public space | gap detection, facility patrol | platform + sub-district | accuracy, closure rate |
+
+## Pilgrimage Landmarks, Honor System, and Digital Twin Observatory (agent.4 + concept)
+
+- **Three landmarks**: ①Qinghuayuan Railway Station (origin) ②AI Origin Community open-source launch hall (open-source shrine) ③Dazhongsi international roadshow hall (global exchange) — forming an "heritage-open-source-future" pilgrimage route.
+- **Honor system**: "Jingzhang Contributor Wall" (digital + physical), recording open-source contributions, co-created scenarios, volunteers; aggregate statistics only.
+- **Digital Twin Observatory mechanism** (core concept): not a city dashboard but a "data-loop governance interface" — ①sensing: public-space sensors (aggregate only) ②modeling: city agents detect gaps/congestion/facility state ③loop: results feed scenario-open mechanisms ④governance: human review + privacy boundary + appeal channel. Outputs recomputable metrics linked to metrics.json.
+
+## Scenario-Space-Operator-Data-Metric Matrix (agent.3)
+
+| Scenario | Space | Operator | Data | Metric | Privacy |
+|---|---|---|---|---|---|
+| Open source | Origin hall | community org | event aggregates | sessions/participation | no personal tracking |
+| Governance | Zhongzhiyuan sandbox | evaluator | eval results | reports | anonymized |
+| Edge compute | Zhongzhiyuan station | firms + park | service logs | latency/energy | authorized |
+| AI mobility | Heritage park | platform + street | aggregate sensing | gap detection rate | aggregate only |
+| Roadshow | Dazhongsi hall | operator | event registry | sessions/visitors | minimal registry |
+
+## Accessibility and Digital Inclusion (agent.6)
+
+- **Expanded personas**: elderly, persons with disabilities, caregivers, low-digital-literacy users, night workers — each with spatial needs and AI dependency analysis.
+- **Human fallback & offline channels**: every AI node keeps a manual service desk and offline process; large-type and voice-assist modes; physical wayfinding alternatives.
+- **Notice & appeal**: AI-assisted signage with data-usage and human-review notice; unified complaint/feedback and pilot exit mechanism.
+- **Night-friendly**: graded lighting and safe-path design included in public-space metrics.
+
+## Operation Mechanism (agent.6)
+
+- **Annual events**: developer conference, open-source week, scenario open days, international roadshow season — a "monthly activity, quarterly theme" calendar (conceptual).
+- **Developer community**: online + offline open-source community at Origin Community, with the Contributor Wall as honor carrier.
+- **Scenario opening**: city-agent sandbox opens test scenarios in batches; enterprises may apply, exit, and be audited.
+- **Risk control**: every activity defines responsible body, frequency, conversion path, and risk boundary; no implementation commitment.
+
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 Five user personas (open-source developers, startups, enterprise visitors, residents, faculty/students) and ten AI scenario cards (open-source launch hall, governance sandbox, edge-compute station, AI slow-mobility navigation, international roadshow hall, etc.) are tied to spatial layers and governance boundaries [data:geometry/public_space.geojson#PUBLIC-001] [data:geometry/roads.geojson#ROAD-001].
