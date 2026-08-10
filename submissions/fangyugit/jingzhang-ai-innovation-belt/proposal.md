@@ -253,7 +253,7 @@ iteration: "v0.2"
 
 指标分三类，复算路径见 `metrics.json` [depth:metrics_recalculation]：
 
-- **空间类**：site_area_sqm（≈11439314，EPSG:4549 复算）、building_footprint_area_sqm（≈807951）、green_ratio（≈0.1396）、public_space_ratio（≈0.1792）、key_area_count=3 [metric:site_area_sqm]，其中建筑总量见 [metric:building_footprint_area_sqm]、绿地与公共空间比率见 [metric:green_ratio] 与 [metric:public_space_ratio]、重点区数量见 [metric:key_area_count]。因缺 approved FAR 控制，floor_area_ratio 以 unknown 声明 [metric:floor_area_ratio]，官方控规发布后复算。
+- **空间类**：site_area_sqm（≈11412825，EPSG:4548 复算）、building_footprint_area_sqm（≈806082）、green_ratio（≈0.1396）、public_space_ratio（≈0.1792）、key_area_count=3 [metric:site_area_sqm]，其中建筑总量见 [metric:building_footprint_area_sqm]、绿地与公共空间比率见 [metric:green_ratio] 与 [metric:public_space_ratio]、重点区数量见 [metric:key_area_count]。因缺 approved FAR 控制，floor_area_ratio 以 unknown 声明 [metric:floor_area_ratio]，官方控规发布后复算。
 - **管控类**：用地结构比例、开发强度梯度、交通与蓝绿管控要求，见 `compliance_matrix.json`、`standard_matrix.json`。
 - **绩效类**：场景数（10）、画像（5）、测试场景（3）、朝圣地标（4）、项目（6）等可评分项。
 

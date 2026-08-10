@@ -253,7 +253,7 @@ The scheme specifies the operations owners, mechanisms and appraisal that go bey
 
 Indicators fall into three categories, recomputed in `metrics.json` [depth:metrics_recalculation]:
 
-- **Spatial**: site_area_sqm (≈11439314, EPSG:4549), building_footprint_area_sqm (≈807951), green_ratio (≈0.1396), public_space_ratio (≈0.1792), key_area_count=3 [metric:site_area_sqm], with building total at [metric:building_footprint_area_sqm], green/public ratios at [metric:green_ratio] and [metric:public_space_ratio], and key-area count at [metric:key_area_count]. Floor_area_ratio is declared unknown absent an approved FAR control [metric:floor_area_ratio], to be recomputed once official regulatory data are released.
+- **Spatial**: site_area_sqm (≈11412825, EPSG:4548), building_footprint_area_sqm (≈806082), green_ratio (≈0.1396), public_space_ratio (≈0.1792), key_area_count=3 [metric:site_area_sqm], with building total at [metric:building_footprint_area_sqm], green/public ratios at [metric:green_ratio] and [metric:public_space_ratio], and key-area count at [metric:key_area_count]. Floor_area_ratio is declared unknown absent an approved FAR control [metric:floor_area_ratio], to be recomputed once official regulatory data are released.
 - **Regulatory**: land-use structural ratios, development-intensity gradients, transport and blue-green controls, in `compliance_matrix.json`, `standard_matrix.json`.
 - **Performance**: scenario count (10), personas (5), test scenarios (3), landmarks (4), projects (6), etc.
 
