@@ -17,6 +17,7 @@ from auto_review_queue import (  # noqa: E402
     parse_args,
     submission_dir_from_files,
 )
+from ai_review_submission import DEFAULT_BASE_URL, review_policy_sha256  # noqa: E402
 from generate_submissions_data import package_sha256  # noqa: E402
 
 
@@ -184,21 +185,59 @@ class AutoReviewQueueTests(unittest.TestCase):
             decision = {
                 "submission_dir": "submissions/alice/plan",
                 "reviewed_package_sha256": digest,
+                "review_input_sha256": "b" * 64,
+                "prompt_sha256": "c" * 64,
+                "review_schema_sha256": "d" * 64,
+                "review_policy_sha256": review_policy_sha256(checkout),
+                "model": "gpt-test",
+                "base_url": DEFAULT_BASE_URL,
+                "reasoning_effort": "high",
                 "weighted_score_100": 61,
                 "dry_run": False,
                 "model_output_schema_valid": True,
             }
             (audit / "ai-review.json").write_text(json.dumps(review), encoding="utf-8")
             (audit / "ai-decision.json").write_text(json.dumps(decision), encoding="utf-8")
+            (audit / "request-metadata.json").write_text(json.dumps(decision), encoding="utf-8")
             (audit / "pr-comment.md").write_text("review", encoding="utf-8")
 
-            cached = load_cached_review(audit, "submissions/alice/plan", checkout, 60)
+            cached = load_cached_review(
+                audit,
+                "submissions/alice/plan",
+                checkout,
+                60,
+                model="gpt-test",
+                base_url=DEFAULT_BASE_URL,
+                reasoning_effort="high",
+            )
             self.assertIsNotNone(cached)
             assert cached is not None
             self.assertEqual("accept", cached[2].action)
 
+            self.assertIsNone(
+                load_cached_review(
+                    audit,
+                    "submissions/alice/plan",
+                    checkout,
+                    60,
+                    model="gpt-new",
+                    base_url=DEFAULT_BASE_URL,
+                    reasoning_effort="high",
+                )
+            )
+
             (submission / "proposal.md").write_text("updated", encoding="utf-8")
-            self.assertIsNone(load_cached_review(audit, "submissions/alice/plan", checkout, 60))
+            self.assertIsNone(
+                load_cached_review(
+                    audit,
+                    "submissions/alice/plan",
+                    checkout,
+                    60,
+                    model="gpt-test",
+                    base_url=DEFAULT_BASE_URL,
+                    reasoning_effort="high",
+                )
+            )
 
 
 if __name__ == "__main__":

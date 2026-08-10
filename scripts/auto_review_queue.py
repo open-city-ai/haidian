@@ -20,6 +20,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from ai_review_submission import DEFAULT_BASE_URL, review_policy_sha256
 from generate_submissions_data import package_sha256
 
 
@@ -184,11 +185,16 @@ def load_cached_review(
     submission_dir: str,
     checkout_root: Path,
     threshold: float,
+    *,
+    model: str,
+    base_url: str,
+    reasoning_effort: str,
 ) -> tuple[dict[str, Any], dict[str, Any], Decision] | None:
     try:
         review = json.loads((audit_dir / "ai-review.json").read_text(encoding="utf-8"))
         decision = json.loads((audit_dir / "ai-decision.json").read_text(encoding="utf-8"))
         comment = (audit_dir / "pr-comment.md").read_text(encoding="utf-8")
+        metadata = json.loads((audit_dir / "request-metadata.json").read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return None
     if not comment.strip():
@@ -202,6 +208,33 @@ def load_cached_review(
     except SystemExit:
         return None
     if decision.get("reviewed_package_sha256") != expected_hash:
+        return None
+    identity_fields = [
+        "reviewed_package_sha256",
+        "review_input_sha256",
+        "prompt_sha256",
+        "review_schema_sha256",
+        "review_policy_sha256",
+        "model",
+        "base_url",
+        "reasoning_effort",
+    ]
+    if any(
+        not isinstance(metadata.get(field), str)
+        or metadata.get(field) != decision.get(field)
+        for field in identity_fields
+    ):
+        return None
+    expected_base_url = os.getenv("OPENAI_BASE_URL", DEFAULT_BASE_URL)
+    if (
+        metadata["model"] != model
+        or metadata["base_url"] != base_url
+        or metadata["base_url"] != expected_base_url
+    ):
+        return None
+    if metadata["reasoning_effort"] != reasoning_effort:
+        return None
+    if metadata["review_policy_sha256"] != review_policy_sha256(checkout_root):
         return None
     try:
         outcome = decide(review, decision, threshold)
@@ -287,7 +320,15 @@ def process_pr(args: argparse.Namespace, meta: dict[str, Any], repo_root: Path) 
         checked = run(["git", "rev-parse", "HEAD"], cwd=worktree).stdout.strip()
         if checked != head_sha:
             raise WorkerError("fetched worktree SHA does not match live PR head")
-        cached = load_cached_review(audit_dir, submission_dir, worktree, args.threshold)
+        cached = load_cached_review(
+            audit_dir,
+            submission_dir,
+            worktree,
+            args.threshold,
+            model=args.model,
+            base_url=os.getenv("OPENAI_BASE_URL", DEFAULT_BASE_URL),
+            reasoning_effort=args.reasoning_effort,
+        )
         if cached is None:
             command = [
                 sys.executable,

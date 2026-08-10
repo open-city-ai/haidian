@@ -201,6 +201,15 @@ class AIReviewSubmissionTests(unittest.TestCase):
             self.assertTrue((out / "ai-decision.json").is_file())
             self.assertTrue((out / "ai-review-report.md").is_file())
             self.assertTrue((out / "pr-comment.md").is_file())
+            metadata = json.loads((out / "request-metadata.json").read_text(encoding="utf-8"))
+            for field in [
+                "review_input_sha256",
+                "prompt_sha256",
+                "review_schema_sha256",
+                "review_policy_sha256",
+            ]:
+                self.assertRegex(metadata[field], r"^[0-9a-f]{64}$")
+            self.assertEqual("high", metadata["reasoning_effort"])
             self.assertEqual("json_schema", client.payload["text"]["format"]["type"])
             self.assertNotIn("$schema", client.payload["text"]["format"]["schema"])
             self.assertNotIn("$id", client.payload["text"]["format"]["schema"])

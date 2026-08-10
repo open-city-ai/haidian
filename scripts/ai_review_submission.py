@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import base64
 from datetime import datetime, timezone
+import hashlib
 import json
 import mimetypes
 import os
@@ -350,6 +351,70 @@ def compact_review_input(review_input: dict[str, Any]) -> dict[str, Any]:
     result = dict(review_input)
     result.pop("advisory_review_schema", None)
     return result
+
+
+def stable_json_sha256(value: Any) -> str:
+    payload = json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(payload.encode("utf-8")).hexdigest()
+
+
+def review_policy_sha256(repo_root: Path) -> str:
+    """Fingerprint the trusted review code and current package policy inputs."""
+    script_names = [
+        "ai_review_submission.py",
+        "auto_review_queue.py",
+        "review_submission.py",
+        "validate_submission.py",
+        "self_check_submission.py",
+        "spatial_review.py",
+        "visual_review.py",
+        "professional_review.py",
+    ]
+    policy_paths = [
+        ADVISORY_REVIEW_SCHEMA_PATH,
+        "brief/site-package/agent_taskbook.json",
+        "data/source_registry.json",
+    ]
+    digest = hashlib.sha256()
+    script_root = Path(__file__).resolve().parent
+    for script_name in script_names:
+        path = script_root / script_name
+        digest.update(f"trusted-scripts/{script_name}".encode("utf-8"))
+        digest.update(b"\0")
+        digest.update(path.read_bytes() if path.is_file() else b"<missing>")
+        digest.update(b"\0")
+    for relative_path in policy_paths:
+        path = repo_root / relative_path
+        digest.update(f"package-policy/{relative_path}".encode("utf-8"))
+        digest.update(b"\0")
+        if path.is_file():
+            digest.update(path.read_bytes())
+        else:
+            digest.update(b"<missing>")
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def review_identity(
+    repo_root: Path,
+    submission_dir: Path,
+    review_input: dict[str, Any],
+    schema: dict[str, Any],
+    model: str,
+    base_url: str,
+    reasoning_effort: str,
+) -> dict[str, str]:
+    prompt = system_instructions() + "\n\n" + build_prompt(review_input)
+    return {
+        "reviewed_package_sha256": package_sha256(submission_dir),
+        "review_input_sha256": stable_json_sha256(compact_review_input(review_input)),
+        "prompt_sha256": hashlib.sha256(prompt.encode("utf-8")).hexdigest(),
+        "review_schema_sha256": stable_json_sha256(schema),
+        "review_policy_sha256": review_policy_sha256(repo_root),
+        "model": model,
+        "base_url": base_url,
+        "reasoning_effort": reasoning_effort,
+    }
 
 
 def api_response_schema(schema: dict[str, Any]) -> dict[str, Any]:
@@ -781,13 +846,12 @@ def run_ai_review(
             "preflight_issues": visual_preflight_issues,
         }
         review_input["ai_content_preflight_issues"] = content_preflight_issues
+        identity = review_identity(repo_root, submission_dir, review_input, schema, model, base_url, reasoning_effort)
         payload = build_request_payload(review_input, schema, model, visual_content, reasoning_effort)
         metadata = {
             "schema_version": "1.0.0",
             "submission_dir": review_input["submission_dir"],
-            "reviewed_package_sha256": package_sha256(submission_dir),
-            "model": model,
-            "base_url": base_url,
+            **identity,
             "generated_at": datetime.now(timezone.utc).isoformat(),
             "visual_inputs": visual_inputs,
             "visual_warnings": visual_warnings,
