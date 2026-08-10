@@ -80,6 +80,12 @@ class MaintainerReviewTests(unittest.TestCase):
             summary = json.loads(completed.stdout)
             self.assertEqual("formal-review-ready", summary["recommendation"])
             self.assertTrue(summary["can_enter_formal_review"])
+            self.assertTrue(summary["content_review_eligible"])
+            self.assertFalse(summary["professional_scoring_eligible"])
+            self.assertEqual(
+                ["official_site_boundary", "official_key_areas"],
+                summary["professional_scoring_blocked_by"],
+            )
             self.assertTrue((out_dir / "review-summary.json").exists())
             self.assertTrue((out_dir / "maintainer-comment.md").exists())
             advisory = (out_dir / "advisory-review.md").read_text(encoding="utf-8")
@@ -137,6 +143,7 @@ class MaintainerReviewTests(unittest.TestCase):
             summary = json.loads(completed.stdout)
             self.assertEqual("formal-review-ready", summary["recommendation"])
             self.assertTrue(summary["can_enter_formal_review"])
+            self.assertTrue(summary["professional_scoring_eligible"])
             self.assertEqual("PASS", summary["checks"]["spatial_review"])
 
 

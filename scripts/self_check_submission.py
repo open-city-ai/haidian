@@ -180,6 +180,59 @@ def can_enter_formal_review(stage: str, report: dict[str, Any]) -> bool:
     return stage == "formal" and bool(report.get("ok"))
 
 
+def manifest_package_state(submission_dir: Path) -> str:
+    """Read package state without turning a missing field into readiness."""
+
+    path = submission_dir / "manifest.json"
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return "unknown"
+    state = data.get("package_state") if isinstance(data, dict) else None
+    return str(state) if isinstance(state, str) and state else "unknown"
+
+
+def has_official_geometry(path: Path) -> bool:
+    """Return whether every feature in a required boundary layer is official."""
+
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+        return False
+    features = data.get("features") if isinstance(data, dict) else None
+    if not isinstance(features, list) or not features:
+        return False
+    return all(
+        isinstance(feature, dict)
+        and isinstance(feature.get("properties"), dict)
+        and feature["properties"].get("official_boundary") is True
+        and feature["properties"].get("geometry_role") == "official_constraint"
+        for feature in features
+    )
+
+
+def status_axes(submission_dir: Path, stage: str, report: dict[str, Any]) -> dict[str, Any]:
+    """Expose content readiness separately from professional-scoring readiness."""
+
+    content_ready = can_enter_formal_review(stage, report)
+    blocked_by: list[str] = []
+    if stage != "formal":
+        blocked_by.append("formal_package_required")
+    else:
+        if not has_official_geometry(submission_dir / "geometry" / "site_boundary.geojson"):
+            blocked_by.append("official_site_boundary")
+        if not has_official_geometry(submission_dir / "geometry" / "key_areas.geojson"):
+            blocked_by.append("official_key_areas")
+    if not content_ready:
+        blocked_by.insert(0, "participant_package_gates")
+    return {
+        "package_state": manifest_package_state(submission_dir),
+        "content_review_eligible": content_ready,
+        "professional_scoring_eligible": content_ready and not blocked_by,
+        "professional_scoring_blocked_by": blocked_by,
+    }
+
+
 def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> dict[str, Any]:
     repo_root = repo_root.resolve()
     submission_dir = submission_dir.resolve()
@@ -249,6 +302,7 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
         "missing_review_dependencies": missing,
     }
     report["can_enter_formal_review"] = can_enter_formal_review(stage, report)
+    report.update(status_axes(submission_dir, stage, report))
     report["package_type"] = "professional_design_package" if stage == "formal" else "unknown"
     report["review_status"] = "formal-review-ready" if report["can_enter_formal_review"] else "revision-requested"
     report["next_actions"] = next_actions(report)
@@ -258,9 +312,20 @@ def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> d
 def format_markdown(report: dict[str, Any]) -> str:
     lines = ["# Submission self-check", ""]
     lines.append(f"Result: {'PASS' if report.get('ok') else 'FAIL'}")
+    lines.append(f"Package state: {report.get('package_state')}")
     lines.append(f"Package type: {report.get('package_type')}")
     lines.append(f"Review status: {report.get('review_status')}")
-    lines.append(f"Can enter formal review: {'YES' if report.get('can_enter_formal_review') else 'NO'}")
+    lines.append(
+        f"Content review eligible: {'YES' if report.get('content_review_eligible') else 'NO'}"
+    )
+    lines.append(
+        f"Professional scoring eligible: {'YES' if report.get('professional_scoring_eligible') else 'NO'}"
+    )
+    if report.get("professional_scoring_blocked_by"):
+        lines.append(
+            "Professional scoring blocked by: "
+            + ", ".join(report["professional_scoring_blocked_by"])
+        )
     deterministic = report.get("deterministic_validation", {})
     spatial = report.get("spatial_review", {})
     visual = report.get("visual_review", {})

@@ -202,7 +202,7 @@ def build_prompt(review_input: dict) -> str:
             "The JSON must include:",
             "- Mandatory rejection check result",
             "- Gate check summaries for deterministic validation, spatial review, machine visual-packaging checks, and professional evidence review",
-            "- Whether the package can enter formal professional review",
+            "- Separate content_review_eligible from professional_scoring_eligible and list professional_scoring_blocked_by",
             "- Seven-dimension rubric scores and comments using the supplied `rubric_dimensions[].dimension_id` values",
             "- Agent taskbook comments inside the relevant rubric comments when agent_taskbook_review_dimensions is present",
             "- Data gaps and repair actions",
@@ -235,8 +235,17 @@ def build_template(review_input: dict) -> str:
     lines.append("## Formal Review Readiness")
     self_check = review_input.get("pre_submit_self_check", {}).get("stdout", {})
     if isinstance(self_check, dict):
-        ready = "YES" if self_check.get("can_enter_formal_review") else "NO"
+        professional_ready = self_check.get(
+            "professional_scoring_eligible", self_check.get("can_enter_formal_review")
+        )
+        content_ready = self_check.get(
+            "content_review_eligible", self_check.get("can_enter_formal_review")
+        )
+        ready = "YES" if professional_ready else "NO"
         lines.append(f"- Pre-submit self-check: {'PASS' if self_check.get('ok') else 'FAIL'}")
+        lines.append(
+            f"- Content review eligible: {'YES' if content_ready else 'NO'}"
+        )
         professional = self_check.get("professional_review", {})
         if isinstance(professional, dict):
             lines.append(f"- Professional evidence review: {'PASS' if professional.get('ok') else 'FAIL'}")

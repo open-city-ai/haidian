@@ -64,13 +64,14 @@ def build_comment(scorecard: dict[str, Any]) -> str:
         f"Submission: `{scorecard['submission_dir']}`",
         f"Scoring status: **{scorecard['scoring_status']}**",
         f"Maintainer gate: **{scorecard['eligibility_gate']['maintainer_recommendation']}**",
+        f"Content review eligible: **{'YES' if scorecard['eligibility_gate']['content_review_eligible'] else 'NO'}**",
         f"Can enter formal professional scoring: **{'YES' if scorecard['eligibility_gate']['can_enter_formal_review'] else 'NO'}**",
         "",
     ]
     if scorecard["scoring_status"] == "blocked":
         lines.extend(
             [
-                "Formal scoring is blocked. Do not assign professional scores until the maintainer gate returns `formal-review-ready`.",
+                "Formal scoring is blocked. Do not assign professional scores until `professional_scoring_eligible` is true.",
                 "",
                 "Required action:",
                 f"- {scorecard['eligibility_gate']['summary_zh']}",
@@ -96,19 +97,33 @@ def build_comment(scorecard: dict[str, Any]) -> str:
 
 
 def build_scorecard(summary: dict[str, Any]) -> dict[str, Any]:
-    ready = bool(summary.get("can_enter_formal_review"))
+    content_ready = bool(
+        summary.get("content_review_eligible", summary.get("can_enter_formal_review"))
+    )
+    ready = bool(
+        summary.get("professional_scoring_eligible", summary.get("can_enter_formal_review"))
+    )
     recommendation = summary.get("recommendation", "request-changes")
+    blocked_by = summary.get("professional_scoring_blocked_by", [])
+    if not isinstance(blocked_by, list):
+        blocked_by = []
     scoring_status = "draft" if ready and recommendation == "formal-review-ready" else "blocked"
     if scoring_status == "draft":
         gate_summary = "维护者 gate 已确认该方案可进入正式专业评分；请由专家组填写评分、证据引用和分歧意见。"
     else:
-        gate_summary = "维护者 gate 尚未确认 formal-review-ready；请修复参与者可控制的校验问题。组织方缺少正式边界数据本身不得阻断评分。"
+        if content_ready and blocked_by:
+            gate_summary = "内容审稿可以进入，但正式专业评分仍等待官方边界；请在 official polygons 到位后重算并重新确认。"
+        else:
+            gate_summary = "维护者 gate 尚未确认内容审稿或正式专业评分资格；请修复参与者可控制的校验问题。"
     return {
         "schema_version": "0.1.0",
         "submission_dir": summary["submission_dir"],
         "scoring_status": scoring_status,
         "eligibility_gate": {
             "maintainer_recommendation": recommendation,
+            "content_review_eligible": content_ready,
+            "professional_scoring_eligible": ready,
+            "professional_scoring_blocked_by": [str(item) for item in blocked_by],
             "can_enter_formal_review": ready,
             "summary_zh": gate_summary,
         },

@@ -103,12 +103,27 @@ def build_summary(repo_root: Path, submission_dir: Path, pr_author: str, self_ch
     if not isinstance(self_check, dict):
         self_check = {}
     recommendation = recommendation_for(self_check)
+    blocked_by = self_check.get("professional_scoring_blocked_by", [])
+    if not isinstance(blocked_by, list):
+        blocked_by = []
     return {
         "submission_dir": relpath(submission_dir, repo_root),
         "pr_author": pr_author,
         "recommendation": recommendation,
         "ok": bool(self_check.get("ok")),
         "can_enter_formal_review": bool(self_check.get("can_enter_formal_review")),
+        "package_state": self_check.get("package_state", "unknown"),
+        "content_review_eligible": bool(
+            self_check.get(
+                "content_review_eligible", self_check.get("can_enter_formal_review")
+            )
+        ),
+        "professional_scoring_eligible": bool(
+            self_check.get(
+                "professional_scoring_eligible", self_check.get("can_enter_formal_review")
+            )
+        ),
+        "professional_scoring_blocked_by": [str(item) for item in blocked_by],
         "checks": {
             "deterministic_validation": check_status(self_check, "deterministic_validation"),
             "spatial_review": check_status(self_check, "spatial_review"),
@@ -129,7 +144,8 @@ def build_comment(summary: dict[str, Any]) -> str:
         "",
         f"Submission: `{summary['submission_dir']}`",
         f"Recommendation: **{summary['recommendation']}**",
-        f"Can enter formal professional scoring: **{'YES' if summary['can_enter_formal_review'] else 'NO'}**",
+        f"Content review eligible: **{'YES' if summary['content_review_eligible'] else 'NO'}**",
+        f"Professional scoring eligible: **{'YES' if summary['professional_scoring_eligible'] else 'NO'}**",
         "",
         "## Gate Checks",
     ]
@@ -143,11 +159,17 @@ def build_comment(summary: dict[str, Any]) -> str:
         lines.extend(f"- {item}" for item in summary["next_actions"][:20])
     else:
         lines.extend(["", "## Required Next Actions", "- None from automated maintainer review. Human review still required."])
+    if summary["professional_scoring_blocked_by"]:
+        lines.extend(["", "## Professional Scoring Boundary"])
+        lines.append(
+            "- Blocked by: "
+            + ", ".join(summary["professional_scoring_blocked_by"])
+        )
     lines.extend(
         [
             "",
             "## Maintainer Decision Guide",
-            "- `formal-review-ready`: eligible for formal professional scoring.",
+            "- Legacy `formal-review-ready` means the package can enter content review; use the explicit professional-scoring field for formal scoring.",
             "- `intake-provisional`: may be merged/displayed for intake discussion, but not formal scoring.",
             "- `request-changes`: ask contributor to repair listed issues.",
             "- `reject`: close or reject due to mandatory rejection condition.",
@@ -175,7 +197,8 @@ def build_advisory(summary: dict[str, Any], review_input: dict[str, Any]) -> str
             "",
             "## Formal Review Readiness",
             f"- Pre-submit self-check: {'PASS' if summary['ok'] else 'FAIL'}",
-            f"- Can enter formal professional review: {'YES' if summary['can_enter_formal_review'] else 'NO'}",
+            f"- Content review eligible: {'YES' if summary['content_review_eligible'] else 'NO'}",
+            f"- Professional scoring eligible: {'YES' if summary['professional_scoring_eligible'] else 'NO'}",
             f"- Result: {summary['recommendation']}",
             "",
             "## Seven-Dimension Review",

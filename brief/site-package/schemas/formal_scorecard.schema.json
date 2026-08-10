@@ -35,6 +35,9 @@
       "type": "object",
       "required": [
         "maintainer_recommendation",
+        "content_review_eligible",
+        "professional_scoring_eligible",
+        "professional_scoring_blocked_by",
         "can_enter_formal_review",
         "summary_zh"
       ],
@@ -47,6 +50,19 @@
             "intake-provisional",
             "formal-review-ready"
           ]
+        },
+        "content_review_eligible": {
+          "type": "boolean"
+        },
+        "professional_scoring_eligible": {
+          "type": "boolean"
+        },
+        "professional_scoring_blocked_by": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
         },
         "can_enter_formal_review": {
           "type": "boolean"

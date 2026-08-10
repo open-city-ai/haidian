@@ -232,6 +232,8 @@ def load_key_files(submission_dir: Path, repo_root: Path) -> list[dict[str, Any]
 
 
 def self_check_readiness(self_check: dict[str, Any]) -> bool | None:
+    if isinstance(self_check.get("professional_scoring_eligible"), bool):
+        return bool(self_check["professional_scoring_eligible"])
     if isinstance(self_check.get("can_enter_formal_review"), bool):
         return bool(self_check["can_enter_formal_review"])
     return None
