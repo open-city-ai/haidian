@@ -74,6 +74,8 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertIn("sparse-checkout", flattened)
         self.assertIn("scenarios", flattened)
         self.assertIn("sources", flattened)
+        self.assertIn("requirements-review.txt", flattened)
+        self.assertIn("requirements-translation.txt", flattened)
         self.assertIn("submissions/octocat/agent-city", flattened)
         self.assertIn("submission/octocat/agent-city", flattened)
         self.assertIn("upstream", flattened)
@@ -127,6 +129,19 @@ class LightweightParticipantFlowTests(unittest.TestCase):
             with mock.patch.object(bootstrap, "run", return_value="true"):
                 complete_report = bootstrap.build_report(args, target, [])
             self.assertTrue(complete_report["ok"])
+
+    def test_bootstrap_text_failure_reports_validation_details(self) -> None:
+        bootstrap = load_bootstrap_module()
+        rendered = bootstrap.render_failure(
+            {
+                "ok": False,
+                "missing_required_files": ["requirements-review.txt"],
+                "missing_required_directories": ["scenarios"],
+            }
+        )
+        self.assertIn("requirements-review.txt", rendered)
+        self.assertIn("scenarios", rendered)
+        self.assertNotIn("KeyError", rendered)
 
     def test_peer_catalog_reads_local_index_without_materializing_media(self) -> None:
         completed = self.run_command(

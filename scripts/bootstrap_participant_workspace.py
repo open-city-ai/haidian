@@ -25,6 +25,8 @@ DEFAULT_SPARSE_PATHS = (
     "scenarios",
     "sources",
     "templates",
+    "requirements-review.txt",
+    "requirements-translation.txt",
 )
 REQUIRED_FILES = (
     "skills/urban-design-ai-submission/SKILL.md",
@@ -211,6 +213,25 @@ def render_text(report: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def render_failure(report: dict[str, Any]) -> str:
+    """Render validation failures without assuming command errors are present."""
+    if report.get("error"):
+        return f"Bootstrap failed: {report['error']}"
+
+    details: list[str] = []
+    missing_files = report.get("missing_required_files", [])
+    if missing_files:
+        details.append("missing required files: " + ", ".join(str(item) for item in missing_files))
+    missing_directories = report.get("missing_required_directories", [])
+    if missing_directories:
+        details.append(
+            "missing required directories: " + ", ".join(str(item) for item in missing_directories)
+        )
+    if not details:
+        details.append("validation failed without additional details")
+    return "Bootstrap failed: " + "; ".join(details)
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--target", default="haidian", help="New workspace directory")
@@ -246,7 +267,7 @@ def main(argv: list[str] | None = None) -> int:
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:
-        print(render_text(report) if report.get("ok") else f"Bootstrap failed: {report['error']}")
+        print(render_text(report) if report.get("ok") else render_failure(report))
     return 0 if report.get("ok") else 1
 
 
