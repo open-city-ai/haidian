@@ -1,0 +1,200 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "基于临时粗略边界（provisional_rough）复算，官方红线发布后需整链重算",
+        "公告名义面积约 11.4 平方公里，复算值 1141.3 公顷与其接近但不作为官方精确面积"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 355000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "22 个概念建筑载体，仅表达载体类型与规模量级，保留/改造/新建待现状调查与官方条件确认",
+        "不构成建筑总量、容积率或建设规模结论"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1335,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "绿地比例基于概念绿地系统（京张遗址公园绿脊与滨水绿地）在 EPSG:4548 复算",
+        "官方绿地红线与现状绿地底数补齐后可校准"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0237,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "公共空间比例基于三处重点区站前/社区公共庭概念节点复算",
+        "不含公园绿地重复计算；官方公共空间底数补齐后可校准"
+      ]
+    },
+    "road_area_ratio": {
+      "status": "known",
+      "value": 0.0157,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_corridor_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "仅统计概念南北主脉与五条东西缝合线走廊，非官方道路红线面积",
+        "道路红线、断面与市政条件补齐后可校准"
+      ]
+    },
+    "land_use_coverage_sqm": {
+      "status": "known",
+      "value": 11409369.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_partitions, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "用地分区无间隙无重叠覆盖提交边界，覆盖间隙 3456 m²（0.03%）为数值容差",
+        "用地分区为概念建议，不代表已批法定用地"
+      ]
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2489000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0802, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "科研策源用地（LU-001 84.3ha）与产业加速用地（LU-002 164.6ha）合计约 248.9 公顷，对应高校院所成果转化与全栈自主创新加速职能"
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 631000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=05, EPSG:4548))",
+      "confidence": "low",
+      "assumptions": [
+        "大钟寺智能经济集聚用地（LU-003）约 63.1 公顷，为概念分区，重点区公告面积 72 公顷含周边道路与绿地"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "众智园、北京AI原点社区、大钟寺三处重点区均在 key_areas.geojson 中"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_scenario_cards_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "不少于 10 张 AI 场景卡，其中 3 张为产业测试验证场景"
+      ]
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_test_validation_scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "满足任务书不少于 3 个 AI 产业测试验证场景要求（实际提供 4 个：开源发布庭、全栈测试沙盒、安全治理评测廊、具身智能测试街）"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "high",
+      "assumptions": [
+        "满足任务书不少于 5 类用户画像要求"
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "满足任务书不少于 3 个 AI 朝圣地标要求"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规容积率与官方边界不在公开场地包中，待正式数据补齐"
+    }
+  }
+}

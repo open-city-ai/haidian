@@ -1,0 +1,113 @@
+{
+  "schema_version": "0.1.0",
+  "package_iteration": "v1.8",
+  "status": "offline_reviewer_evidence_only",
+  "not_a_score": true,
+  "purpose_zh": "把仓库七项 formal workflow 维度压成评审者可直接回读的证据路线；它不生成分数、不替代官方评审，也不把模板权重写成主办方评分。",
+  "purpose_en": "Compress the repository's seven formal-workflow dimensions into reviewer-readable evidence routes; it generates no score, does not replace official review, and does not present template weights as an organizer score.",
+  "source_contract": {
+    "rubric": "docs/review-rubric.md",
+    "dimension_source": "scripts/review_submission.py",
+    "weight_source": "scripts/generate_formal_scorecard.py",
+    "weight_scope": "repository workflow template only",
+    "official_jury_rubric": false
+  },
+  "review_sequence": [
+    "question",
+    "shortest_evidence_path",
+    "known_and_unknown_boundary",
+    "next_authorized_verification"
+  ],
+  "figure_refs": [
+    "assets/figures/reviewer-scorecard-map.png",
+    "assets/figures/reviewer-scorecard-map.en.png"
+  ],
+  "dimensions": [
+    {
+      "dimension_id": "brief_alignment",
+      "workflow_weight_percent": 20,
+      "reviewer_question_zh": "是否逐项回应公告、任务书、三层范围与成果深度？",
+      "reviewer_question_en": "Does the package answer the call, taskbook, three scopes, and required depth item by item?",
+      "evidence_paths": ["proposal.md", "compliance_matrix.json", "standard_matrix.json", "design_depth_matrix.json", "visual/assets/scenario-cards.json"],
+      "known_evidence_zh": "23 项公告/任务覆盖、15 项设计深度、17 张场景卡与双语正文共同回读。",
+      "known_evidence_en": "Twenty-three call/task requirements, fifteen depth items, seventeen scenario cards, and bilingual prose form one readback.",
+      "remaining_boundary_zh": "临时边界与概念成果不等于官方红线、法定控制或实施方案。",
+      "remaining_boundary_en": "Provisional boundaries and conceptual deliverables are not official redlines, statutory controls, or an implementation scheme.",
+      "next_authorized_verification": "official boundary and professional planning review"
+    },
+    {
+      "dimension_id": "originality",
+      "workflow_weight_percent": 10,
+      "reviewer_question_zh": "是否把 AI 从展示物转成可拒绝、可暂停、可回滚的空间—服务机制？",
+      "reviewer_question_en": "Does the proposal turn AI from spectacle into rejectable, pausable, reversible spatial-service mechanisms?",
+      "evidence_paths": ["proposal.md", "visual/assets/human-city-ordinary-journey.json", "visual/assets/scenario-space-operation-matrix.json", "visual/assets/release-gate-ledger.json"],
+      "known_evidence_zh": "普通人服务链、四条价值链、城市 API、硅基通行权和三道发布门形成独特主线。",
+      "known_evidence_en": "The ordinary-person journey, four value chains, city API, silicon right-of-way, and three release gates form the differentiated line.",
+      "remaining_boundary_zh": "离线契约证明结构可审阅，不证明现实服务绩效、公众接受或已部署能力。",
+      "remaining_boundary_en": "Offline contracts prove reviewable structure, not real service performance, public acceptance, or deployed capability.",
+      "next_authorized_verification": "professional concept review and public co-reading"
+    },
+    {
+      "dimension_id": "ai_planning_innovation",
+      "workflow_weight_percent": 15,
+      "reviewer_question_zh": "AI 是否参与了可复算、可审阅、有人接管的规划推演？",
+      "reviewer_question_en": "Does AI participate in recalculable and reviewable planning with human takeover?",
+      "evidence_paths": ["visual/assets/parametric-search.json", "visual/assets/parametric-tradeoff-study.json", "visual/assets/human-city-receipt.json", "visual/assets/run-human-city-ordinary-journey.js", "metrics.json"],
+      "known_evidence_zh": "固定种子 128 组候选、四个目标镜头、参数化取舍、合成交接凭证和负样本均可离线回放。",
+      "known_evidence_en": "A fixed-seed 128-candidate search, four objective lenses, parametric trade-offs, synthetic receipt, and negative tests replay offline.",
+      "remaining_boundary_zh": "脚本不替代专业模型、许可、现场测试或真实 AI 能力。",
+      "remaining_boundary_en": "Scripts do not replace professional models, permits, field tests, or real AI capability.",
+      "next_authorized_verification": "professional model, safety, and field-test review"
+    },
+    {
+      "dimension_id": "implementation_feasibility",
+      "workflow_weight_percent": 20,
+      "reviewer_question_zh": "是否说明责任、资料前置、发布门、停止条件与下一步证据？",
+      "reviewer_question_en": "Does the package state accountability, prerequisites, release gates, stop conditions, and next evidence?",
+      "evidence_paths": ["visual/assets/implementation-operation-matrix.json", "visual/assets/human-city-receipt.json", "visual/assets/data-readiness-register.json", "visual/assets/release-gate-ledger.json", "assumptions.json"],
+      "known_evidence_zh": "六道合成交接门、资料就绪度台账、责任字段、进入/停止/回滚动作相互绑定。",
+      "known_evidence_en": "Six synthetic handoff gates, data-readiness records, accountability fields, and enter/stop/rollback actions are bound together.",
+      "remaining_boundary_zh": "建议角色不是已确认运营方；保险、审批、预算、真实 OD 与现场基线仍待有权主体补齐。",
+      "remaining_boundary_en": "Suggested roles are not confirmed operators; insurance, approvals, budget, real OD, and field baselines remain for authorized parties.",
+      "next_authorized_verification": "authorized operator, insurance, mobility, and site-baseline review"
+    },
+    {
+      "dimension_id": "public_interest_inclusion",
+      "workflow_weight_percent": 10,
+      "reviewer_question_zh": "普通人、老人、低数字能力者、无障碍使用者与受影响劳动者是否有等效入口、拒绝权和复核路径？",
+      "reviewer_question_en": "Do ordinary, older, low-digital-capability, disabled, and affected-worker users have equivalent access, refusal, and review paths?",
+      "evidence_paths": ["visual/assets/personas-and-fairness.json", "visual/assets/accessibility-audit.json", "visual/assets/human-city-ordinary-journey.json", "proposal.md"],
+      "known_evidence_zh": "六类画像、人工/电话/纸面入口、代际共学、技能再造、无屏恢复与申诉/停止动作均有登记。",
+      "known_evidence_en": "Six personas, staffed/phone/paper access, intergenerational learning, skills transition, screen-free recovery, appeal, and stop actions are registered.",
+      "remaining_boundary_zh": "真实覆盖率、群体体验、同意与社会结果必须通过走读、抽样和独立评估获得。",
+      "remaining_boundary_en": "Real coverage, group experience, consent, and social outcomes require walk-throughs, sampling, and independent evaluation.",
+      "next_authorized_verification": "resident, older-user, accessibility, and worker co-review"
+    },
+    {
+      "dimension_id": "risk_compliance",
+      "workflow_weight_percent": 10,
+      "reviewer_question_zh": "隐私、版权、数据授权、临时边界、能源气候与安全风险是否成为暂停条件？",
+      "reviewer_question_en": "Are privacy, rights, data authorization, provisional geometry, energy-climate, and safety risks pause conditions?",
+      "evidence_paths": ["assumptions.json", "visual/assets/rights-clearance-ledger.json", "visual/assets/data-readiness-register.json", "sources.json", "standard_matrix.json"],
+      "known_evidence_zh": "来源等级、版权台账、最小授权、PUE/绿电/余热 unknown、气候和机器安全停止规则分开登记。",
+      "known_evidence_en": "Source levels, rights ledger, least-privilege authorization, PUE/green-power/recovered-heat unknowns, climate, and machine-safety stops are separately registered.",
+      "remaining_boundary_zh": "登记和概念停止规则不等于取得许可、权属清理、数据授权或安全审查。",
+      "remaining_boundary_en": "Registration and conceptual stop rules are not permits, rights clearance, data authorization, or safety review.",
+      "next_authorized_verification": "rights, privacy, energy, hydrology, and safety review"
+    },
+    {
+      "dimension_id": "expression_completeness",
+      "workflow_weight_percent": 15,
+      "reviewer_question_zh": "评审者能否在双语正文、图纸、可视化、台账与 manifest 之间回到同一证据？",
+      "reviewer_question_en": "Can a reviewer return to the same evidence across bilingual text, drawings, visualizations, ledgers, and the manifest?",
+      "evidence_paths": ["proposal.md", "proposal.en.md", "report/proposal.html", "visual/index.html", "visual/assets/formal-scorecard-readback-v18.json", "manifest.json"],
+      "known_evidence_zh": "v1.8 七维证据地图把每个问题、最短路径、边界和下一核验放到同一张图，并由 manifest 回接。",
+      "known_evidence_en": "The v1.8 seven-dimension map puts each question, shortest path, boundary, and next verification on one page and returns through the manifest.",
+      "remaining_boundary_zh": "导航完整度不提高证据等级；图纸和 HTML 不能替代正式资料或现场验证。",
+      "remaining_boundary_en": "Navigation completeness does not raise evidence level; drawings and HTML cannot replace formal data or field validation.",
+      "next_authorized_verification": "independent professional read-through"
+    }
+  ],
+  "claim_boundary_zh": "本记录是包内离线证据路线，不是评分器、官方评分、评审结论、获奖预测或实施证明。",
+  "claim_boundary_en": "This record is an offline in-package evidence route, not a scorer, official score, review conclusion, award prediction, or implementation proof."
+}

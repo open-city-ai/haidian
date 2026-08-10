@@ -1,7 +1,50 @@
 # 方案迭代记录
 
+## v2.2 - 2026-08-10
+
+- 将 `site-overview.png` / `.en.png` 改为评审首屏空间证据复合板：左侧从七个包内 GeoJSON 读取同源显示变换底图，右侧把三处重点区 × 五段空间动作、人工等效与停止/回退压成可读卡片，底部显式列出 EPSG:4548 指标输入和未补齐资料。
+- 新增 `visual/assets/reviewer-facing-atlas-v22.json`、确定性构建器和离线 checker；checker 约束 3 区、5 阶段、每区 5 节点、7 个几何图层、`official_boundary=false`、`geometry_role=provisional_constraint` 与 `not_authorized_not_run` 边界。
+- 中英文 proposal 增加图 25 及首屏阅读说明，修正正文“16 个空间场景节点”的过期表述为当前包内 17 个；HTML、PDF、manifest 在本轮随后重渲染和刷新。
+- 本轮只改善评审首屏的空间清晰度与场景可感知度，不改变正式 geometry、metrics、来源等级、运营授权或公共排序，不修改 `submissions-data.js` / `gallery-publication.json`。
+
+## v2.1 - 2026-08-10
+
+- 新增双语图 24“空间动作房间”和 `visual/assets/spatial-action-rooms-v21.json`：三处临时重点区分别回答人本问题，并共同沿“到达与人工入口—公共解释与选择—受限机器接口—蓝绿停留与恢复—退出、申诉与回放”五段空间路径展开；每个节点同时登记人工等效、机器边界、停止/回退动作、GeoJSON 锚点、场景与指标引用。
+- 将图 24 作为表达级城市设计板接入中英文 proposal、离线 visual index、PDF 与 manifest；修正中文 visual index 重复出现图 22 的导航噪音。
+- 新增离线构建脚本，输出 3 个重点区 × 5 个节点的确定性结构；所有节点仅重排既有 provisional geometry 与场景证据，不新增几何、正式 metrics、工程断面、容量、运营主体、许可或政策结论。
+- 本轮继续明确 `official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run`；不修改来源等级、公共排序、`submissions-data.js` 或 `gallery-publication.json`。
+
+## v2.0 - 2026-08-10
+
+- 新增双语图 23“公共空间—文化—运营年度图谱”和 `visual/assets/public-culture-operations-atlas-v20.json`，把三座概念地标、四季版本节奏、五个项目族和“钢轨—时间—接口”文化语法接回空间锚点、资料门与退出动作。
+- 前置中英文 proposal 的 v2.0 章节，补足任务书 agent.4（公共空间/地标）、agent.5（文化叙事）和 agent.6（年度运营）的可见设计证据；所有内容仍是概念建议 / 参考方案，供专业团队深化研究。
+- 同步离线 visual index、制图方法、双语审计、reviewer navigation、PDF 图册与 manifest；checker 增加 3 landmarks / 4 seasons / 5 project families / cultural grammar 的结构回归。
+- 本轮不修改 geometry、正式 metrics、来源等级、公共排序或 `submissions-data.js` / `gallery-publication.json`，不指定运营方、场地、许可、资金、容量或绩效。
+
+## v1.9 - 2026-08-10
+
+- 新增双语图 22“任务书—空间响应一页图”和 `visual/assets/brief-alignment-atlas-v19.json`，把任务书三大定位、五大功能、三区两翼与四条差异化主线逐行接回空间锚点、场景、metrics 和资料缺口。
+- 将 v1.9 一页执行摘要前置到中英文 proposal，离线 visual index 增加同源图件与台账入口；每个空间单元继续明确 `official_boundary=false`、`geometry_role=provisional_constraint`，不新增工程尺寸、运营主体、投资或政策确定性。
+- 扩展 `check-human-city-v15-assets.js` 的双语回归门禁，检查 3 positions / 5 functions / 3 areas / 2 wings / 4 chains、图 22 双语路径及非评分边界；更新制图方法、双语审计与 reviewer navigation。
+- 本轮是任务书契合度与表达完整度的实质空间证据补强，不修改 geometry、正式 metrics、来源等级、公共排序或 `submissions-data.js` / `gallery-publication.json`。
+
+## v1.8 - 2026-08-10
+
+- 新增 `visual/assets/formal-scorecard-readback-v18.json` 与图 21 双语证据地图，把仓库七个 formal workflow 问题、模板权重、最短证据路径、已知边界和下一步授权核验放到同一回读顺序中；明确不生成分数、不代表主办方评分。
+- 同步 `reviewer-navigation-index.json`、制图方法、双语审计、proposal、离线 visual HTML、PDF 图册和 manifest，使 v1.8 入口可从图面回到结构化证据；模板权重、临时几何和 unknown 的证据边界保持原级别。
+- 这轮只补评审可读性与证据导航，不修改 geometry、正式 metrics、来源等级、公共排序或 `submissions-data.js` / `gallery-publication.json`。
+
+## v1.7 - 2026-08-10
+
+- 在五张评审核心图中增加三处重点区放大框、场景节点族、廊道交叉规则和几何到指标到缺口的回读链；放大框读取同一批 GeoJSON，不产生新的边界、线位或指标。
+- 新增 `visual/assets/spatial-proof-v17.json`，记录短轴展开仅为阅读、像素不参与度量、重点区放大只作临时锚点的显示规则；同步双语 proposal、visual HTML、制图方法和双语审计。
+- 以 v1.7 图件重建五页双语 A3 图册与 A0 展板；保留 `official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run` 与所有 unknown。
+- 这轮改进只针对场景可感知度、空间明确性和表达完整度，不改正式 geometry、metrics、来源等级、公共排序或 `submissions-data.js` / `gallery-publication.json`。
+
 ## v1.6 - 2026-08-10
 
+- 将评审窗口中的五张中英核心图改为同源真实空间证据图：临时总体边界、六块分区、三处重点区真实轮廓、五条概念中心线、绿地、公共接口和十六个场景节点均从包内 GeoJSON 读取；新增 `visual/assets/spatial-proof-v16.json` 记录输入、EPSG:4548 显示变换和精度边界。
+- 以 v1.6 图件重建五页双语 A3 图册与 A0 展板，并同步中英文 proposal、离线 HTML、双语审计和制图方法；图上北向旋转只用于长廊阅读，临时边界、未知指标和未授权/未运行状态不变。
 - 在中英文设计依据入口前置六层“证据等级与人本决策边界”表，分别说明任务/标准、来源登记、临时空间、包内推演、行政背景和合成方法能支持什么、不能支持什么。
 - 明确 `provisional`、`unknown`、`design_target`、`not_authorized_not_run` 与本地 checker PASS 的审阅含义，不把包内回放升级为现场证据、专业批准、政府实施结论或竞赛分数。
 - 重新生成双语 proposal report，并刷新 manifest 与清权台账哈希；不改变 geometry、正式 metrics、来源等级或公开排序。

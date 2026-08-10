@@ -1,9 +1,9 @@
 {
   "schema_version": "0.2.0",
-  "package_iteration": "v1.5",
+  "package_iteration": "v2.0",
   "status": "conceptual_display_evidence_not_official_survey",
-  "purpose_zh": "记录 v1.5 双语空间图、资料就绪图、空间接口原型、人本验收图谱、固定种子搜索、人本主轴、概念交付主线、参数化取舍图、合成人本交接凭证、授权前启动程序、AI 取舍回放、评审证据地图与图册的派生方法，使临时空间证据和阅读路径在不升级为官方边界、法定控制、评分结论或实施结论的前提下可读、可复核。",
-  "purpose_en": "Records how v1.5 bilingual spatial figures, data-readiness figure, spatial-interface prototypes, human-city acceptance atlas, fixed-seed search, human-first mainline, conceptual delivery spine, parametric trade-off figure, synthetic human-city receipt, pre-authorization startup protocol, AI choice replay, review-evidence map, and drawing sets are derived, making provisional spatial evidence and reading paths legible and reviewable without upgrading them into an official boundary, statutory control, scoring finding, or implementation conclusion.",
+  "purpose_zh": "记录 v1.7 双语真实空间证据图、三处重点区放大框、廊道交叉规则、指标回读图，以及既有资料就绪图、空间接口原型、人本验收图谱、固定种子搜索、人本主轴、概念交付主线、参数化取舍图、合成人本交接凭证、授权前启动程序、AI 取舍回放、评审证据地图、任务书—空间响应一页图、公共空间—文化—运营年度图谱与图册的派生方法，使临时空间证据和阅读路径在不升级为官方边界、法定控制、评分结论或实施结论的前提下可读、可复核。",
+  "purpose_en": "Records how v1.7 bilingual spatial evidence figures with three focus-area zooms, corridor-crossing rules, metric readback, and the existing data-readiness figure, spatial-interface prototypes, human-city acceptance atlas, fixed-seed search, human-first mainline, conceptual delivery spine, parametric trade-off figure, synthetic human-city receipt, pre-authorization startup protocol, AI choice replay, review-evidence map, brief-to-spatial-response atlas, public-space/culture/annual-operation atlas, and drawing sets are derived, making provisional spatial evidence and reading paths legible and reviewable without upgrading them into an official boundary, statutory control, scoring finding, or implementation conclusion.",
   "inputs": {
     "geometry_files": [
       "geometry/site_boundary.geojson",
@@ -33,22 +33,27 @@
       "visual/assets/human-city-mainline.json",
       "visual/assets/parametric-search.json",
       "visual/assets/parametric-search-evidence.json",
-      "visual/assets/human-city-delivery-spine.json"
+      "visual/assets/human-city-delivery-spine.json",
+      "visual/assets/spatial-proof-v16.json",
+      "visual/assets/spatial-proof-v17.json",
+      "visual/assets/formal-scorecard-readback-v18.json",
+      "visual/assets/brief-alignment-atlas-v19.json",
+      "visual/assets/public-culture-operations-atlas-v20.json"
     ],
     "source_boundary": "All input geometries retain the package's provisional-geometry status. Their display does not establish an official redline, parcel, road alignment, blue line, construction boundary, or legal area."
   },
   "coordinate_and_display_method": {
     "metric_crs": "EPSG:4548",
-      "metric_rule": "Known areas and proportions remain those recomputed from the package GeoJSON in EPSG:4548; v1.0 does not alter coordinate values, metric values, confidence, assumptions, or unknown results.",
-    "display_transform": "For legibility only, projected east/north coordinates are displayed after a 90-degree clockwise rotation. Original north therefore points to the right and is explicitly labelled as N → / 北 → in the figures.",
-    "scale_rule": "The 0–2 km scale bars describe only the submitted provisional geometry after its display transform. They are not a survey, legal, engineering, or official control scale.",
+    "metric_rule": "Known areas and proportions remain those recomputed from the package GeoJSON in EPSG:4548; v1.7 does not alter coordinate values, metric values, confidence, assumptions, or unknown results.",
+    "display_transform": "For legibility only, projected east/north coordinates are displayed after a 90-degree clockwise rotation. The short axis may be expanded inside a display panel; original north therefore points to the right and the display-only rule is stated on the figures.",
+    "scale_rule": "No pixel distance or pixel area is measured. Any length shown is read from metrics.json or recomputed EPSG:4548 geometry; the display panels are not a survey, legal, engineering, or official control scale.",
     "shared_geometry_rule": "Each figure reads the same source coordinates directly; no hand-drawn substitute boundary, parcel, line alignment, or numeric value is introduced."
   },
   "figure_outputs": [
     {
       "id": "fig-01",
       "files": ["assets/figures/site-overview.png", "assets/figures/site-overview.en.png"],
-      "evidence": "Site boundary, six conceptual land-use polygons, scenario anchors, key-area anchors, and conceptual corridor lines.",
+      "evidence": "The provisional site boundary, six complete land-use polygons, five proposed centerlines, green/public layers, sixteen scenario anchors and three true key-area outlines are rendered from the same package-local geometry, with three linked focus-area insets.",
       "key_area_legend_zh": "1=众智园; 2=北京 AI 原点社区; 3=大钟寺 AI 产业聚集区; all provisional.",
       "key_area_legend_en": "1=Zhongzhiyuan; 2=Beijing AI Origin Community; 3=Dazhongsi AI Industry Cluster; all provisional."
     },
@@ -60,17 +65,17 @@
     {
       "id": "fig-03",
       "files": ["assets/figures/key-areas.png", "assets/figures/key-areas.en.png"],
-      "evidence": "Three provisional key-area constraints and scenario anchors."
+      "evidence": "Three provisional key-area constraints are shown at true submitted outlines with local roads, green/public interfaces, selected scenario anchors, and a differentiated action chain beside each zoom."
     },
     {
       "id": "fig-04",
       "files": ["assets/figures/mobility-bluegreen.png", "assets/figures/mobility-bluegreen.en.png"],
-      "evidence": "Conceptual road/service corridors, green-space geometry, and key-area anchors."
+      "evidence": "Conceptual road/service corridors, green-space geometry, key-area anchors, corridor lengths, and a repeated human-takeover rule at crossings."
     },
     {
       "id": "fig-05",
       "files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
-      "evidence": "Site, land-use, green-space, public-space, and scenario geometry together with known/unknown metric states."
+      "evidence": "Site, land-use, green-space, public-space, and scenario geometry together with known/unknown metric states and an explicit geometry-to-metric-to-gap chain."
     },
     {
       "id": "fig-06",
@@ -131,6 +136,21 @@
       "id": "fig-18",
       "files": ["assets/figures/human-city-delivery-spine.svg", "assets/figures/human-city-delivery-spine.en.svg"],
       "evidence": "A readable compression of the existing PF-A–PF-E families, release gates, entry evidence, and stop actions; suggested roles remain unconfirmed and no budget, schedule, permit, or operating claim is added."
+    },
+    {
+      "id": "fig-21",
+      "files": ["assets/figures/reviewer-scorecard-map.png", "assets/figures/reviewer-scorecard-map.en.png"],
+      "evidence": "Seven repository workflow questions, their template-only weights, shortest evidence paths, known boundaries, and next authorized verification are shown as a reviewer reading aid; it creates no score or official rubric."
+    },
+    {
+      "id": "fig-22",
+      "files": ["assets/figures/brief-alignment-atlas.png", "assets/figures/brief-alignment-atlas.en.png"],
+      "evidence": "The brief's three positions, five functions, three provisional areas/two conceptual wings, and four differentiated chains are connected to package-local spatial refs, scenario refs, metric refs, and data gaps; the board is an alignment aid, not a score or implementation finding."
+    },
+    {
+      "id": "fig-23",
+      "files": ["assets/figures/public-culture-operations-atlas.png", "assets/figures/public-culture-operations-atlas.en.png"],
+      "evidence": "Three conceptual landmarks, a four-season version rhythm, five project families, and the rail-time-interface cultural grammar are connected to package-local anchors, gates, and missing-input limits; the board is a public-space and operation reading aid, not evidence of an operator or field result."
     }
   ],
   "drawing_outputs": [
@@ -143,12 +163,18 @@
     "所有图层均为概念建议或参考方案，供专业团队深化研究。",
     "未取得官方 polygon、控规、权属、道路、市政、蓝线、文保、现状和运营资料前，不得把图示范围、线位、比例尺或指标写成精确官方结论。",
     "居民保留率、运行 PUE、绿电占比和余热回收量继续保持 unknown；本图不以视觉完整度替代测量。",
-    "v0.8 不以日期、slug、公共排序文件或公共发布流程作为设计迭代对象。"
+    "v1.7 不以日期、slug、公共排序文件或公共发布流程作为设计迭代对象。",
+    "v1.8 七维评审回读只提供离线阅读路径；仓库模板权重不是主办方评分，图件和 JSON 不预测结果。",
+    "v1.9 任务书—空间响应一页图只证明包内回读路径，三区两翼仍是临时约束，四条主线的社会、能源、气候、运营结果保持 unknown 或待授权核验。",
+    "v2.0 公共空间—文化—运营年度图谱只表达概念地标、版本节奏与项目族关系，不指定运营方、场地、许可、资金、容量或绩效。"
   ],
   "limits_en": [
     "All layers are conceptual suggestions or reference schemes for professional teams to deepen.",
     "Until official polygons, controls, rights, roads, utilities, blue lines, heritage, existing-condition, and operational data are obtained, no depicted area, alignment, scale bar, or metric may be treated as an exact official conclusion.",
     "Resident retention, operating PUE, green-power share, and recovered heat remain unknown; visual completeness does not substitute for measurement.",
-    "v0.8 does not treat date, slug, public ordering files, or the public-release process as design-iteration objects."
+    "v1.7 does not treat date, slug, public ordering files, or the public-release process as design-iteration objects.",
+    "The v1.8 seven-dimension readback is an offline reading route only; repository template weights are not an organizer score, and the figure and JSON do not predict a result.",
+    "The v1.9 brief-to-spatial-response atlas is a package-local traceability aid; the three areas/two wings remain provisional constraints and social, energy, climate, and operational outcomes remain unknown or pending authorized verification.",
+    "The v2.0 public-space/culture/annual-operation atlas expresses conceptual landmarks, version rhythm, and project-family relationships only; it does not name an operator, venue, permit, funding, capacity, or performance."
   ]
 }
