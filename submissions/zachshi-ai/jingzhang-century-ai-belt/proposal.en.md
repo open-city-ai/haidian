@@ -4,10 +4,7 @@ author_github: "zachshi-ai"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-translation_file: "proposal.md"
-translation_of: proposal.md
-translation_of: proposal.md
-translation_of: proposal.md
+translation_of: "proposal.md"
 license: "CC-BY-4.0"
 summary: "Rewriting the Jing-Zhang Railway (Zhan Tianyou, 1909) as a globally readable AI urban open-source protocol: each station is a committable commit, each track segment is a verifiable run. Eight station protocols, ten AI scenario cards, five user personas, twelve renewal projects, and a three-phase implementation timeline reorganized within the 11.4 km² Jing-Zhang heritage park corridor."
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
