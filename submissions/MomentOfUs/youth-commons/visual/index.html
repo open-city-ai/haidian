@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="京张遗址公园AI青年共创活力带——青年友好公共空间与AI场景赋能设计提案 · 可视化总览（离线展示）">
+<title>京张遗址公园AI青年共创活力带 · 可视化总览｜青年友好公共空间赛道</title>
+<style>
+/* ============================================================
+   京张青年脉动带 · 可视化总览
+   设计系统：暖纸底 × 墨蓝 × 铁路金（衬线标题）+ 青绿环（蓝绿空间）
+   ============================================================ */
+:root{
+  --paper:#f4f1e8;          /* 暖骨纸底 */
+  --paper-2:#ece7da;
+  --card:#fffdf7;           /* 卡片面 */
+  --ink:#1b2434;            /* 墨蓝正文 */
+  --ink-2:#46536b;          /* 次级文字 */
+  --muted:#8a8171;          /* 暖灰弱化 */
+  --line:#e0d8c6;           /* 发丝线 */
+  --line-2:#cdc3ac;
+  --navy:#0e1626;           /* 首屏底 */
+  --navy-2:#16233d;
+  --gold:#b08a3e;           /* 铁路金 · 传承 */
+  --gold-soft:#e7d9b4;
+  --ember:#c95a30;          /* 青春活力 · 余烬橙 */
+  --green:#2e7d50;          /* 蓝绿环 · 绿 */
+  --water:#1c7c9c;          /* 蓝绿环 · 水 */
+  --ai:#5b6ee1;             /* AI 靛 */
+  --sans:"Helvetica Neue","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Segoe UI",sans-serif;
+  --serif:Georgia,"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);
+  background-image:radial-gradient(rgba(27,36,52,.05) 1px,transparent 1px);
+  background-size:22px 22px;
+  color:var(--ink);font-family:var(--sans);line-height:1.7;font-size:15.5px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+a{color:inherit}
+/* ---------------- 首屏 ---------------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(158deg,#0c1424 0%,#111d33 55%,#1a2a45 100%);color:#e9eef6;border-bottom:5px solid var(--gold)}
+.hero::before{content:"";position:absolute;inset:0;background:
+  repeating-linear-gradient(90deg,transparent 0 43px,rgba(255,255,255,.04) 43px 46px),
+  repeating-linear-gradient(0deg,transparent 0 63px,rgba(255,255,255,.028) 63px 65px);pointer-events:none}
+.hero::after{content:"";position:absolute;right:-110px;bottom:-120px;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(176,138,62,.16),transparent 64%);pointer-events:none}
+.hero-mark{position:absolute;right:26px;bottom:14px;text-align:right;font-family:var(--serif);font-weight:700;line-height:1.08;color:rgba(255,255,255,.05);font-size:54px;pointer-events:none;letter-spacing:.06em}
+.hero-mark span{font-size:16px;letter-spacing:.32em;text-transform:uppercase}
+.hero-inner{position:relative;z-index:1;padding:64px 0 46px}
+.eyebrow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;color:var(--gold-soft);font-size:12.5px;letter-spacing:.26em;text-transform:uppercase;margin-bottom:20px}
+.eyebrow::before{content:"";width:44px;height:2px;background:var(--gold)}
+h1{font-family:var(--serif);font-weight:700;font-size:42px;line-height:1.16;margin:0 0 6px;letter-spacing:.02em;color:#fff}
+.hero-en{font-family:var(--serif);font-size:17px;letter-spacing:.14em;color:#c9d3e2;margin:0 0 22px}
+.lead{max-width:860px;font-size:16px;color:#cdd7e4;margin:0 0 24px}
+.lead b{color:#fff;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 26px}
+.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.22);border-radius:3px;padding:6px 13px;font-size:13px;color:#eef2f8;background:rgba(255,255,255,.05)}
+.chip i{width:7px;height:7px;border-radius:50%;display:inline-block}
+.chip.gold i{background:var(--gold)} .chip.green i{background:#59b37f} .chip.water i{background:#4aa8c8} .chip.ai i{background:var(--ai)} .chip.ember i{background:#e07a4f}
+/* 枕木脉冲分隔线 */
+.pulse-track{position:relative;height:26px;margin:8px 0 2px;max-width:860px}
+.pulse-track::before{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:repeating-linear-gradient(90deg,rgba(176,138,62,.75) 0 4px,transparent 4px 18px)}
+.pulse-track::after{content:"";position:absolute;top:50%;left:0;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(176,138,62,.25);animation:pulse-run 3.4s linear infinite alternate}
+@keyframes pulse-run{from{left:0}to{left:calc(100% - 12px)}}
+/* 首屏统计微条 */
+.hero-stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:1px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);margin-top:26px}
+.hero-stat{background:rgba(10,17,30,.55);padding:14px 16px}
+.hero-stat b{display:block;font-family:var(--serif);font-size:24px;line-height:1.1;color:#fff}
+.hero-stat small{font-size:12px;color:#9fb0c6;line-height:1.4;display:block}
+/* 章节 */
+main{padding:56px 0 26px}
+section{margin-bottom:64px}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin:0 0 10px}
+.sec-no{font-family:var(--serif);font-style:italic;font-weight:700;font-size:15px;color:var(--gold);letter-spacing:.08em}
+.sec-title{font-family:var(--serif);font-weight:700;font-size:27px;line-height:1.2;color:var(--ink);margin:0}
+.sec-title small{font-size:15px;color:var(--muted);font-weight:400;letter-spacing:.05em;margin-left:10px}
+.sec-sub{max-width:820px;color:var(--ink-2);font-size:14.5px;margin:0 0 24px}
+.sec-sub b{color:var(--ink)}
+.sec-rule{height:3px;width:64px;background:var(--gold);margin:0 0 26px}
+/* 卡片网格 */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.g3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);padding:18px 18px 16px;border-radius:2px}
+.card.flat{border-top-color:var(--line)}
+.card h3{font-family:var(--serif);font-size:16.5px;margin:0 0 6px;color:var(--ink);line-height:1.35}
+.card p{font-size:13.5px;color:var(--ink-2);margin:0 0 8px}
+.card ul{margin:0;padding-left:16px;font-size:13px;color:var(--ink-2)}
+.card li{margin-bottom:3px}
+.card .tagline{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.badge{display:inline-block;font-size:11px;letter-spacing:.12em;padding:2px 8px;border-radius:2px;margin-right:6px;vertical-align:1px}
+.badge.gold{background:var(--gold-soft);color:#7a5a1d}
+.badge.green{background:#d9ecdf;color:#1d5c38}
+.badge.water{background:#d6eaf0;color:#115a72}
+.badge.ai{background:#e3e6fb;color:#3d4db8}
+.badge.ember{background:#f7ddd2;color:#9c3f1c}
+.badge.muted{background:var(--paper-2);color:#6d5a44}
+/* 统计条 */
+.stat-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.stat{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);padding:16px 14px 13px;border-radius:2px;position:relative}
+.stat b{display:block;font-family:var(--serif);font-size:29px;line-height:1.05;color:var(--ink);letter-spacing:.01em}
+.stat b small{font-size:14px;color:var(--muted);font-weight:400}
+.stat span{display:block;font-size:12.5px;color:var(--ink-2);margin-top:5px;line-height:1.45}
+/* 图框 */
+.fig{background:var(--card);border:1px solid var(--line);border-radius:2px;margin:0 0 18px;overflow:hidden}
+.fig img{display:block;width:100%;height:auto;background:#f7f6f1}
+.fig figcaption{display:flex;gap:12px;align-items:baseline;padding:11px 16px;border-top:1px solid var(--line);background:#fbf9f2;font-size:13px;color:var(--ink-2)}
+.fig figcaption em{font-style:normal;font-family:var(--serif);color:var(--gold);font-weight:700;letter-spacing:.06em}
+/* 表格 */
+table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);font-size:13px}
+caption{caption-side:top;text-align:left;font-size:12.5px;color:var(--muted);padding:0 2px 8px}
+th{background:#f3efe2;color:var(--ink);text-align:left;font-weight:600;padding:9px 12px;border-bottom:2px solid var(--gold);white-space:nowrap}
+td{padding:8px 12px;border-bottom:1px solid var(--line);color:var(--ink-2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+td b{color:var(--ink)}
+td code{font-family:ui-monospace,Consolas,monospace;font-size:12px;background:var(--paper-2);padding:1px 5px;border-radius:2px;color:#4a4a58}
+.mono{font-family:ui-monospace,Consolas,monospace;font-size:12px}
+.status{display:inline-block;padding:1px 8px;border-radius:2px;font-size:11.5px;white-space:nowrap}
+.status.ok{background:#d9ecdf;color:#1d5c38}
+.status.pen{background:#f7e6c8;color:#7a5a1d}
+.status.unk{background:#eadfd3;color:#6d5a44}
+/* 场景卡 */
+.scen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.scen{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--ai);padding:12px 14px;border-radius:2px}
+.scen b{display:block;font-size:13.5px;color:var(--ink);margin-bottom:3px}
+.scen b i{font-style:normal;font-family:var(--serif);color:var(--ai);margin-right:6px}
+.scen p{font-size:12.5px;color:var(--ink-2);margin:0;line-height:1.55}
+.scen small{display:block;margin-top:6px;font-size:11.5px;color:var(--muted)}
+.group-label{grid-column:1/-1;display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:6px 0 -2px}
+.group-label::after{content:"";flex:1;height:1px;background:var(--line-2)}
+/* 人物卡 */
+.persona{background:var(--card);border:1px solid var(--line);padding:16px;border-radius:2px;position:relative}
+.persona .who{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:6px}
+.persona h3{font-family:var(--serif);font-size:16px;margin:0;color:var(--ink)}
+.persona .age{font-size:12px;color:var(--ember);font-weight:600;white-space:nowrap;letter-spacing:.05em}
+.persona p{font-size:13px;color:var(--ink-2);margin:0 0 8px}
+.persona .place{font-size:12.5px;color:var(--water);border-top:1px dashed var(--line-2);padding-top:8px;margin:0}
+/* 分期 */
+.phase{border-top:3px solid var(--gold);position:relative}
+.phase.two{border-top-color:var(--water)} .phase.three{border-top-color:var(--green)}
+.phase .p-tag{display:inline-block;font-size:11px;letter-spacing:.14em;color:#fff;padding:3px 10px;border-radius:2px;margin-bottom:10px;font-weight:600}
+.phase.one .p-tag{background:var(--gold)} .phase.two .p-tag{background:var(--water)} .phase.three .p-tag{background:var(--green)}
+/* 页脚 */
+footer{background:var(--navy);color:#b8c4d6;margin-top:40px;border-top:5px solid var(--gold)}
+footer .wrap{padding:44px 28px 34px}
+.foot-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:36px}
+footer h3{font-family:var(--serif);color:#fff;font-size:16px;margin:0 0 10px;letter-spacing:.06em}
+footer p{font-size:13px;line-height:1.75;margin:0 0 10px}
+footer .rule{height:1px;background:rgba(255,255,255,.16);margin:22px 0;border:none}
+.foot-meta{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;font-size:12px;color:#8fa0b8}
+.foot-meta a{color:var(--gold-soft);text-decoration:none;border-bottom:1px dashed rgba(231,217,180,.5);padding-bottom:1px}
+.license{display:inline-block;border:1px solid rgba(231,217,180,.45);color:var(--gold-soft);padding:3px 10px;border-radius:2px;font-size:11.5px;letter-spacing:.1em}
+.alert{background:rgba(201,90,48,.12);border:1px solid rgba(201,90,48,.5);border-left:4px solid var(--ember);padding:14px 16px;border-radius:2px;margin:0 0 12px}
+.alert b{color:#f0a077}
+/* 打印 */
+@media print{
+  body{background:#fff;background-image:none;font-size:11px}
+  .hero{background:#fff;color:#000;border-bottom:2px solid #000}
+  .hero::before,.hero::after,.hero-mark,.pulse-track::after{display:none}
+  h1,.hero-en,.eyebrow,.lead,.chips{color:#000}
+  .hero-stat{background:#eee;border:1px solid #ccc}
+  .hero-stat b{color:#000}
+  section{margin-bottom:26px;page-break-inside:avoid}
+  .card,.stat,.scen,.persona,.phase,.fig,table{page-break-inside:avoid}
+  .badge{border:1px solid #999}
+  footer{background:#fff;color:#000;border-top:2px solid #000}
+  footer h3{color:#000}
+  .foot-meta{color:#333}
+  a{color:#000;text-decoration:none}
+}
+@media (max-width:980px){
+  .g4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  h1{font-size:34px}
+  .scen-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  .g2,.g3,.g4{grid-template-columns:minmax(0,1fr)}
+  .scen-grid{grid-template-columns:minmax(0,1fr)}
+  .stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .foot-grid{grid-template-columns:minmax(0,1fr)}
+  .wrap{padding:0 16px}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">百年京张 AI 创新带 · 青年友好公共空间赛道 · 城市设计国际方案征集</div>
+    <h1>京张遗址公园AI青年共创活力带</h1>
+    <p class="hero-en">Jing-Zhang Heritage Park · AI Youth Co-creation Vitality Belt — Youth-Friendly Public Space</p>
+    <p class="lead">
+      面向「青年友好公共空间」赛道，以<b>京张青年脉动带</b>为总体概念，把百年京张遗址公园及其沿线城区塑造为青年人才
+      「愿意来、留得住、可共创」的公共空间主轴。方案以<b>第三空间体系、AI 隐形基础设施、社区共创机制</b>三位一体为主线，
+      形成<b>一带三核多点 + 蓝绿青年环</b>的空间结构，并以 12 张 AI 场景卡、6 类用户画像、青年友好七件套组件库、
+      3+1 朝圣地标、三层文化叙事与年度活动体系，把概念落实为可讨论、可复核、可实施的设计成果。
+    </p>
+    <div class="pulse-track" aria-hidden="true"></div>
+    <div class="chips">
+      <span class="chip gold"><i></i>第三空间体系</span>
+      <span class="chip ai"><i></i>AI 隐形基础设施</span>
+      <span class="chip green"><i></i>社区共创机制</span>
+      <span class="chip water"><i></i>一带三核多点</span>
+      <span class="chip ember"><i></i>蓝绿青年环</span>
+      <span class="chip gold"><i></i>青年友好七件套</span>
+      <span class="chip green"><i></i>3+1 朝圣地标</span>
+      <span class="chip ai"><i></i>三层文化叙事</span>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><b>11.4 km²</b><small>总体设计范围</small></div>
+      <div class="hero-stat"><b>9.9%</b><small>绿地率 green_ratio</small></div>
+      <div class="hero-stat"><b>4.4%</b><small>公共空间占比 public_space_ratio</small></div>
+      <div class="hero-stat"><b>9.1 km</b><small>蓝绿青年环主轴 slow_loop</small></div>
+      <div class="hero-stat"><b>11.6 km</b><small>道路网络 road_length</small></div>
+      <div class="hero-stat"><b>3</b><small>重点片区 key_areas</small></div>
+      <div class="hero-stat"><b>12</b><small>AI 场景卡 scenarios</small></div>
+      <div class="hero-stat"><b>6</b><small>青年用户画像 personas</small></div>
+      <div class="hero-stat"><b>10</b><small>青年驿站 youth hubs</small></div>
+      <div class="hero-stat"><b>3+1</b><small>朝圣地标 landmarks</small></div>
+    </div>
+    <div class="hero-mark" aria-hidden="true">京张青年脉动带<br><span>Youth Pulse Belt</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 关键数据 -->
+  <section id="s-metrics" aria-labelledby="t01">
+    <div class="sec-head"><span class="sec-no">01</span><h2 class="sec-title" id="t01">关键数据<small>KEY NUMBERS</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">全部数值来自 <b>metrics.json</b> 与提交几何图层复算；几何基于 provisional boundary，官方边界发布后须整体重算。</p>
+    <div class="stat-grid">
+      <div class="stat" data-metric="site_area_sqm" data-value="11412825.386"><b>11.4<small>km²</small></b><span>总体设计范围面积<br>site_area 11,412,825 m²</span></div>
+      <div class="stat" data-metric="green_ratio" data-value="0.098854"><b>9.9<small>%</small></b><span>绿地率<br>green_space 1,128,201 m²</span></div>
+      <div class="stat"><div class="stat" data-metric="public_space_ratio" data-value="0.043916"><b>4.4<small>%</small></b><span>公共空间比例<br>public_space 501,206 m²</span></div></div>
+      <div class="stat"><b>9.1<small>km</small></b><span>蓝绿青年环慢行主轴<br>slow_loop 9,100 m</span></div>
+      <div class="stat"><b>11.6<small>km</small></b><span>道路网络线长<br>road_length 11,586 m</span></div>
+      <div class="stat"><b>108,700<small>m²</small></b><span>建筑基底（设计建议示例）<br>building_footprint</span></div>
+      <div class="stat"><b>3</b><span>重点详细设计片区<br>key_area_count</span></div>
+      <div class="stat"><b>12</b><span>AI 场景卡（≥10 达标）<br>scenario_card_count</span></div>
+      <div class="stat"><b>6</b><span>青年用户画像（≥5 达标）<br>persona_count</span></div>
+      <div class="stat"><b>10</b><span>青年驿站 / 公共节点<br>youth_hub_count</span></div>
+      <div class="stat"><b>3+1</b><span>朝圣地标（含 1 备选）<br>landmark_count</span></div>
+      <div class="stat"><b>3</b><span>夜间照明分级<br>night_lighting_tier_count</span></div>
+      <div class="stat"><b>3</b><span>产业测试验证场景<br>ai_test_scenario_count</span></div>
+      <div class="stat"><b>43.6<small>km²</small></b><span>统筹研究范围（登记值）<br>待正式数据复算</span></div>
+      <div class="stat"><b>368.4<small>ha</small></b><span>三处重点片区合计（登记值）<br>待正式 polygon 复算</span></div>
+    </div>
+  </section>
+
+  <!-- 02 设计概念 -->
+  <section id="s-concept" aria-labelledby="t02">
+    <div class="sec-head"><span class="sec-no">02</span><h2 class="sec-title" id="t02">设计概念<small>DESIGN CONCEPT</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">
+      总体概念为<b>京张青年脉动带</b>（Jing-Zhang Youth Pulse Belt）——让 AI 创新的脉搏，沿着中国第一条自主铁路的轨道，
+      在青年的日常公共生活中跳动。概念以「第三空间体系 + AI 隐形基础设施 + 社区共创机制」三位一体为主线；
+      空间组织为「一带三核多点 + 蓝绿青年环」，「一带」不是额外画出的新红线，而是把公告三层范围转译为工作方法。
+    </p>
+    <div class="grid g3">
+      <article class="card">
+        <span class="badge gold">第三空间体系</span>
+        <h3>第三空间体系</h3>
+        <p>工作、居住之外的「第三空间」作为青年友好公共空间的组织核心：共创书房、路演广场、青年水岸、夜间活力跑道，
+        让交往、学习、运动与消费在日常停留中自然发生。</p>
+      </article>
+      <article class="card">
+        <span class="badge ai">AI 隐形基础设施</span>
+        <h3>AI 隐形基础设施</h3>
+        <p>AI 不是炫技装置，而是降低参与门槛、提升空间自适应性、放大青年共创的隐形基础设施；
+        所有场景可解释、可复核、可人工接管，只做聚合统计，不追踪个体。</p>
+      </article>
+      <article class="card">
+        <span class="badge green">社区共创机制</span>
+        <h3>社区共创机制</h3>
+        <p>青年主理人制度、提案反馈闭环与公共空间预约平台，把青年从空间使用者转变为空间内容的生产者，
+        形成「提案—去标识—公示—复核—回执」的可追溯参与闭环。</p>
+      </article>
+    </div>
+    <p class="sec-sub" style="margin-top:26px">空间结构「一带三核多点 + 蓝绿青年环」：</p>
+    <div class="grid g4">
+      <article class="card flat"><h3>一带 · 京张青年脉动带</h3><p>沿京张遗址公园的公共生活主轴，按北段「创新试验」、中段「日常交往」、南段「历史记忆」分段（概念分段，非行政划定）。</p></article>
+      <article class="card flat"><h3>三核 · 重点片区</h3><p>众智·试验场、原点·共创社、大钟寺·数字钟声三处核心，承载创新产业、成果转化与国际交往。</p></article>
+      <article class="card flat"><h3>多点 · 青年驿站</h3><p>轨道站点与社区级公共空间节点，提供信息、休憩、充电、租赁与无人值守服务，保障步行可达。</p></article>
+      <article class="card flat"><h3>环 · 蓝绿青年环</h3><p>京张公园、小月河水岸、清河界面与高校绿带串联的复合环，联动慢行、绿地与夜间活力。</p></article>
+    </div>
+    <table style="margin-top:26px">
+      <caption>命名体系（agent.1 概念与命名 · 与 docs/terminology-glossary.md 一致）</caption>
+      <thead><tr><th>层级</th><th>中文</th><th>英文</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>一带主名称</td><td><b>京张青年脉动带</b></td><td>Jing-Zhang Youth Pulse Belt</td><td>呼应「百年京张文化带、都市AI生活体验带、AI融合创新带」三大定位</td></tr>
+        <tr><td>空间主轴</td><td>轨道·青年脉</td><td>Youth Pulse Track</td><td>沿京张遗址公园线性的公共生活主轴</td></tr>
+        <tr><td>三核场景名</td><td>众智·试验场 / 原点·共创社 / 大钟寺·数字钟声</td><td>Lab Commons / Origin Co-Lab / Digital Bell Plaza</td><td>分别对应三处重点片区</td></tr>
+        <tr><td>复合环</td><td>蓝绿青年环</td><td>Youth Blue-Green Loop</td><td>慢行 + 绿地 + 夜间活力的复合环</td></tr>
+        <tr><td>小月河翼</td><td>青年水岸</td><td>Youth Waterfront</td><td>小月河场景翼</td></tr>
+        <tr><td>社区节点</td><td>青年驿站</td><td>Youth Hub</td><td>轨道站点与社区级公共空间节点</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 03 空间结构与三层范围 -->
+  <section id="s-structure" aria-labelledby="t03">
+    <div class="sec-head"><span class="sec-no">03</span><h2 class="sec-title" id="t03">空间结构与三层范围<small>SPATIAL STRUCTURE</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">按公告三个层次组织工作，任务到图层、图层到指标，任一结论均可沿证据链回溯；所有几何为 provisional 临时边界。</p>
+    <figure class="fig">
+      <img src="../assets/figures/site-overview.png" alt="总览图：用地分区、交通慢行、蓝绿公共空间与 AI 节点同图（临时边界示意）">
+      <figcaption><em>图 01</em>总览地图 · 资料证据链与总体范围总览：用地分区、交通慢行、蓝绿公共空间、建筑更新与 AI 场景节点同图（provisional boundary 示意）</figcaption>
+    </figure>
+    <div class="grid g3">
+      <article class="card"><h3>统筹研究范围</h3><p class="tagline">43.6 km²（登记值 · 待正式数据复算）</p><p>AI 产业生态、战略定位、创新链与未来城市形态；高校策源—开源协作—企业转化—公共体验—国际传播创新链。</p></article>
+      <article class="card"><h3>总体设计范围</h3><p class="tagline">11.4 km²（site_area 11,412,825 m²）</p><p>京张遗址公园周边 1–2 公里城市地区，城市更新总体框架、产业空间布局、交通市政支撑与城市风貌控制。</p></article>
+      <article class="card"><h3>重点区域范围</h3><p class="tagline">368.4 公顷（三处重点片区登记值合计）</p><p>三处详细设计地区，明确功能业态、建筑规模、拆改留分类、公共空间连通与交通组织。</p></article>
+    </div>
+    <p class="sec-sub" style="margin-top:24px">公园带三段主题（概念分段，非行政划定）：</p>
+    <div class="grid g3">
+      <article class="card flat"><h3>北段 · 创新试验</h3><p>科技界面与创新试验为主，靠近众智园开放测试、安全治理与低碳算力体验。</p></article>
+      <article class="card flat"><h3>中段 · 日常交往</h3><p>日常生活与商业界面为主，青年座椅组、共创桌与夜间活力跑道支撑高频使用。</p></article>
+      <article class="card flat"><h3>南段 · 历史记忆</h3><p>历史记忆与文保界面为主，清华园车站旧址与南段铁轨记忆承载三层文化叙事原点。</p></article>
+    </div>
+  </section>
+
+  <!-- 04 用地与城市更新 -->
+  <section id="s-land" aria-labelledby="t04">
+    <div class="sec-head"><span class="sec-no">04</span><h2 class="sec-title" id="t04">用地结构与城市更新<small>LAND &amp; RENEWAL</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">用地方案形成完整、闭合、无缝的分区：京张遗址公园带为公园绿地主轴（约 106.8 公顷，待复算），众智园带为 AI 研发创新用地（约 208.2 公顷，待复算）；建筑规模与强度指标以「待正式控规条件确认」登记，不制造伪精确控制线。</p>
+    <figure class="fig">
+      <img src="../assets/figures/land-use-structure.png" alt="用地结构与三层范围空间工作框架图">
+      <figcaption><em>图 02</em>三层范围与空间工作框架 · 用地分区、开发强度与更新项目分层表达（provisional boundary 示意）</figcaption>
+    </figure>
+    <p class="sec-sub" style="margin-top:24px">拆改留按低扰动原则分四类处理：</p>
+    <div class="grid g4">
+      <article class="card flat"><h3>保留类</h3><p>有价值的历史建筑与结构完好的既有建筑，如清华园车站旧址周边。</p></article>
+      <article class="card flat"><h3>改造类</h3><p>功能置换与立面更新，如近校首层业态调整与共创街界面活化。</p></article>
+      <article class="card flat"><h3>更新类</h3><p>确需拆除重建的低效建筑，以权属与控规条件为前提，低扰动更新。</p></article>
+      <article class="card flat"><h3>待确认类</h3><p>底数不足，仅登记为待核；缺少现状建筑、权属、控规和工程条件时不编造结论。</p></article>
+    </div>
+    <table style="margin-top:26px">
+      <caption>更新项目清单（JZ-01 … JZ-08 · 项目反查条件：条件未确认的降为概念建议）</caption>
+      <thead><tr><th>编号</th><th>项目名称</th><th>类型</th><th>主要依赖</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">JZ-01</td><td><b>京张青年脉动带慢行断点缝合</b></td><td>公共空间 / 交通</td><td>道路红线、桥下空间、交通组织复核</td></tr>
+        <tr><td class="mono">JZ-02</td><td><b>众智园清河创新界面与青年交往花园</b></td><td>蓝绿空间 / 产业展示</td><td>河道蓝线、生态和防洪条件</td></tr>
+        <tr><td class="mono">JZ-03</td><td><b>原点社区近校共创街与 24h 书房</b></td><td>城市更新 / 产业服务</td><td>校区边界、权属、首层业态</td></tr>
+        <tr><td class="mono">JZ-04</td><td><b>大钟寺站四象限步行连通与数字钟声广场</b></td><td>轨道一体化 / 慢行</td><td>轨道站点、道路交叉口、市政管线</td></tr>
+        <tr><td class="mono">JZ-05</td><td><b>青年驿站网络与无人值守服务站</b></td><td>新基建 / 公共服务</td><td>能源、算力、安全和运营主体</td></tr>
+        <tr><td class="mono">JZ-06</td><td><b>小月河青年水岸与青年市集场地</b></td><td>蓝绿空间 / 运营</td><td>河道蓝线、活动许可、版权清权</td></tr>
+        <tr><td class="mono">JZ-07</td><td><b>社区实验单元与提案墙试点</b></td><td>社区共创 / 科普</td><td>社区组织、隐私保护、人工复核</td></tr>
+        <tr><td class="mono">JZ-08</td><td><b>全球 AI 活动路线与朝圣地标系统</b></td><td>运营 / 品牌 / 文化</td><td>文保、活动安全、品牌清权</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 05 重点区域 -->
+  <section id="s-areas" aria-labelledby="t05">
+    <div class="sec-head"><span class="sec-no">05</span><h2 class="sec-title" id="t05">三处重点区域<small>KEY AREAS</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">三处片区均回答「青年在这里做什么、什么时候来、和谁一起」三类问题，并共享一组青年友好动作基线：可预约公共空间、24 小时服务点、与轨道站点或慢行主轴直连、AI 场景可解释可复核可人工接管。</p>
+    <figure class="fig">
+      <img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图">
+      <figcaption><em>图 03</em>三处重点区域索引与设计任务 · 众智·试验场 / 原点·共创社 / 大钟寺·数字钟声（provisional boundary 示意）</figcaption>
+    </figure>
+    <div class="grid g3">
+      <article class="card">
+        <span class="badge ai">众智·试验场 Lab Commons</span>
+        <h3>众智园 AI 自主创新加速区</h3>
+        <p class="tagline">登记约 192.1 公顷 · 复算约 192.9 公顷（均 provisional）</p>
+        <p>花园型全栈自主创新街区。开源共创穹顶、露天路演广场、安全治理沙盒；强化清河界面与低碳创新交往，组织对外交通。</p>
+        <p><span class="badge green">AI 场景</span>自主模型测试 · 标准制定工作坊 · 安全治理展示 · 低碳算力体验</p>
+      </article>
+      <article class="card">
+        <span class="badge green">原点·共创社 Origin Co-Lab</span>
+        <h3>北京 AI 原点社区</h3>
+        <p class="tagline">近校型成果转化与人才社区</p>
+        <p>围绕校区、园区、街区慢行缝合：近校共创街、24h 共创书房、成果发布厅；补足成果展示、人才服务与开源协作界面。</p>
+        <p><span class="badge green">AI 场景</span>开源社区 · 成果发布 · 人才特区服务 · 近校孵化</p>
+      </article>
+      <article class="card">
+        <span class="badge water">大钟寺·数字钟声 Digital Bell Plaza</span>
+        <h3>大钟寺 AI 产业聚集区</h3>
+        <p class="tagline">城市型智能经济与国际交往街区</p>
+        <p>数字钟声广场、四象限步行连通与国际路演客厅；智能终端与内容消费体验、夜间活力段，落实站点一体化与静态交通。</p>
+        <p><span class="badge green">AI 场景</span>智能体与智能终端展示 · 内容消费 · 数据要素 · 国际路演</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- 06 蓝绿青年环 -->
+  <section id="s-bluegreen" aria-labelledby="t06">
+    <div class="sec-head"><span class="sec-no">06</span><h2 class="sec-title" id="t06">蓝绿青年环与慢行系统<small>BLUE-GREEN MOBILITY</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">以京张遗址公园活力带为骨架，统筹清河、小月河、周边高校与企业出行，南北贯通、东西连通；交通设计的重点不是机动车扩容，而是「青年如何低成本、高频次到达和停留」。</p>
+    <figure class="fig">
+      <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图">
+      <figcaption><em>图 04</em>交通、慢行与蓝绿公共空间复合系统 · 轨道站点一体化、慢行断点缝合、三级照明与蓝绿青年环四段（provisional boundary 示意）</figcaption>
+    </figure>
+    <p class="sec-sub" style="margin-top:24px">蓝绿青年环按四段组织：</p>
+    <div class="grid g4">
+      <article class="card flat"><h3>公园段</h3><p>日常步道与夜间活力跑道，承载高频日常交往与运动。</p></article>
+      <article class="card flat"><h3>水岸段</h3><p>小月河青年水岸，社交与市集场地，月度/节庆青年市集载体。</p></article>
+      <article class="card flat"><h3>清河界面段</h3><p>结合产业展示与低碳算力体验，链接众智园创新界面。</p></article>
+      <article class="card flat"><h3>高校绿带段</h3><p>学习与慢行衔接，连接高校绿带与原点社区近校界面。</p></article>
+    </div>
+    <p class="sec-sub" style="margin-top:24px">夜间活力按三级照明体系组织（<span class="badge water">基础照明</span><span class="badge ember">活跃照明</span><span class="badge gold">事件照明</span>），照明不采用监控画像，仅以分级与活动排期支撑夜间使用。</p>
+    <div class="grid g3">
+      <article class="card flat"><h3>轨道站点一体化</h3><p>五道口（近校活力门户）、大钟寺（四象限枢纽）、清华东路西口（公园带与高校绿带接口）与青年驿站结合，轨道到站、慢行到家。</p></article>
+      <article class="card flat"><h3>慢行断点缝合</h3><p>跨环路与跨河断点需工程论证，路口断点以四象限步行优化，桥下空间激活，公园南北端以出入口与驿站衔接。</p></article>
+      <article class="card flat"><h3>最后一公里接驳</h3><p>非机动车停放、共享骑行停放区与慢行导视，站点优先、共享优先、小规模分散，降低青年出行的时间与费用门槛。</p></article>
+    </div>
+  </section>
+
+  <!-- 07 指标证据 -->
+  <section id="s-evidence" aria-labelledby="t07">
+    <div class="sec-head"><span class="sec-no">07</span><h2 class="sec-title" id="t07">指标复算与证据链<small>METRICS &amp; EVIDENCE</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">known 指标均可从 GeoJSON 或可信来源复算；unknown 指标注明原因与正式提交前置条件。官方边界替换后所有指标必须整体重算。</p>
+    <figure class="fig">
+      <img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图">
+      <figcaption><em>图 05</em>核心指标复算与证据链 · 面积、比例、长度与数量指标从图层公式复算（provisional boundary 示意）</figcaption>
+    </figure>
+    <table>
+      <caption>核心指标（metrics.json · 完整公式、来源文件与置信度见结构化数据）</caption>
+      <thead><tr><th>指标</th><th>登记值</th><th>状态</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td><code>site_area_sqm</code></td><td><b>11,412,825 m²</b>（约 11.4 km²）</td><td><span class="status ok">已知 · 高置信</span></td><td>总体设计范围，提交边界多边形面积</td></tr>
+        <tr><td><code>green_space_area_sqm</code></td><td><b>1,128,201 m²</b></td><td><span class="status ok">已知 · 中置信</span></td><td>绿地图层要素面积合计</td></tr>
+        <tr><td><code>green_ratio</code></td><td><b>9.9%</b>（0.098854）</td><td><span class="status ok">已知 · 中置信</span></td><td>绿地图层面积 ÷ 总体范围面积</td></tr>
+        <tr><td><code>public_space_area_sqm</code></td><td><b>501,206 m²</b></td><td><span class="status ok">已知 · 中置信</span></td><td>公共空间图层要素面积合计</td></tr>
+        <tr><td><code>public_space_ratio</code></td><td><b>4.4%</b>（0.043916）</td><td><span class="status ok">已知 · 中置信</span></td><td>公共空间图层面积 ÷ 总体范围面积</td></tr>
+        <tr><td><code>road_length_m</code></td><td><b>11,586 m</b>（约 11.6 km）</td><td><span class="status ok">已知 · 中置信</span></td><td>道路网络线要素长度合计</td></tr>
+        <tr><td><code>slow_loop_length_m</code></td><td><b>9,100 m</b>（约 9.1 km）</td><td><span class="status ok">已知 · 中置信</span></td><td>蓝绿青年环慢行主轴长度</td></tr>
+        <tr><td><code>building_footprint_area_sqm</code></td><td><b>108,700 m²</b></td><td><span class="status ok">已知 · 中置信</span></td><td>建筑基底合计（设计建议示例，非审定规模）</td></tr>
+        <tr><td><code>key_area_count</code></td><td><b>3</b></td><td><span class="status ok">已知 · 高置信</span></td><td>三处重点详细设计片区</td></tr>
+        <tr><td><code>scenario_card_count</code></td><td><b>12</b></td><td><span class="status ok">已知</span></td><td>AI 场景卡（任务书要求 ≥10）</td></tr>
+        <tr><td><code>persona_count</code></td><td><b>6</b></td><td><span class="status ok">已知</span></td><td>青年用户画像（任务书要求 ≥5）</td></tr>
+        <tr><td><code>ai_test_scenario_count</code></td><td><b>3</b></td><td><span class="status ok">已知</span></td><td>产业测试验证场景（任务书要求 ≥3）</td></tr>
+        <tr><td><code>landmark_count</code></td><td><b>3（+1 备选）</b></td><td><span class="status ok">已知</span></td><td>朝圣地标 S1–S3，S4 为备选</td></tr>
+        <tr><td><code>night_lighting_tier_count</code></td><td><b>3</b></td><td><span class="status ok">已知</span></td><td>基础 / 活跃 / 事件三级照明</td></tr>
+        <tr><td><code>youth_hub_count</code></td><td><b>10</b></td><td><span class="status ok">已知</span></td><td>青年驿站 / 公共空间节点（PUBLIC-001…010）</td></tr>
+        <tr><td><code>floor_area_ratio</code></td><td>待正式控规条件确认</td><td><span class="status unk">unknown</span></td><td>官方控规与正式边界缺失，禁止推测填充</td></tr>
+        <tr><td><code>transit_station_800m_coverage</code></td><td>缺底数，pending</td><td><span class="status pen">待核</span></td><td>站点位置与 800m 服务底图缺失</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 08 AI 场景卡 -->
+  <section id="s-scenarios" aria-labelledby="t08">
+    <div class="sec-head"><span class="sec-no">08</span><h2 class="sec-title" id="t08">12 张 AI 场景卡<small>AI SCENARIOS</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">每个场景均说明服务对象、空间位置、隐私边界与人工复核机制。三条硬边界：可解释优先、人工接管优先、去标识优先；只使用聚合统计，不追踪个体行为轨迹。</p>
+    <div class="scen-grid">
+      <div class="group-label">第一组 · 服务创新产业</div>
+      <article class="scen"><b><i>01</i>开源发布厅</b><p>原点·共创社 · 面向开发者与初创团队的成果发布与协作节点。</p><small>不采集行为轨迹；仅聚合统计</small></article>
+      <article class="scen"><b><i>02</i>24h 青年共创书房</b><p>原点社区 / 青年驿站 · 预约制、不识别身份的学习与协作空间。</p><small>预约制；不识别身份</small></article>
+      <article class="scen"><b><i>03</i>露天路演广场</b><p>众智·试验场 · 初创路演、开发者大会与黑客松载体。</p><small>活动公开；影像需授权</small></article>
+      <article class="scen"><b><i>04</i>安全治理沙盒</b><p>众智·试验场 · 标准制定、安全评测与红队测试的可参观展示节点。</p><small>展示数据脱敏；人工复核</small></article>
+      <article class="scen"><b><i>05</i>端侧算力驿站</b><p>总体范围节点 · 算力作为公共服务供给的新型基础设施原型。</p><small>算力服务需单独授权</small></article>
+      <article class="scen"><b><i>06</i>AI+ 教育体验点</b><p>近校节点 · 支撑学习、实习与终身学习的 AI+ 教育界面。</p><small>教学内容人工策展</small></article>
+      <div class="group-label">第二组 · 服务公共生活</div>
+      <article class="scen"><b><i>07</i>夜间活力跑道</b><p>京张公园中段 · 三级照明支撑的青年夜跑与夜间活力。</p><small>照明分级；无监控画像</small></article>
+      <article class="scen"><b><i>08</i>AI 慢行导航</b><p>一带全段 · 可解释的导视与慢行信息服务。</p><small>可解释导视；不追踪个体</small></article>
+      <article class="scen"><b><i>09</i>数字钟声广场</b><p>大钟寺·数字钟声 · 智能终端体验、内容消费与国际路演。</p><small>内容消费数据需授权</small></article>
+      <article class="scen"><b><i>10</i>小月河青年水岸</b><p>青年水岸 · 社交、市集与节庆活动的青年水岸界面。</p><small>活动数据仅聚合</small></article>
+      <div class="group-label">第三组 · 服务社区共创</div>
+      <article class="scen"><b><i>11</i>社区提案墙</b><p>社区级驿站 · AI 辅助的公共议题收集与反馈界面。</p><small>议题去标识；人工复核</small></article>
+      <article class="scen"><b><i>12</i>机器人低速配送试点</b><p>公园 / 园区内部路 · 限定区域、可监管的配送原型。</p><small>限定区域、可监管、可随时停止</small></article>
+    </div>
+  </section>
+
+  <!-- 09 青年画像 -->
+  <section id="s-personas" aria-labelledby="t09">
+    <div class="sec-head"><span class="sec-no">09</span><h2 class="sec-title" id="t09">六类青年用户画像<small>YOUTH PERSONAS</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">六类画像不是抽象标签，而对应真实的空间时刻；每类画像有一组「空间时刻」决定设施布局，一组「数据边界」决定 AI 场景的隐私设计。</p>
+    <div class="grid g3">
+      <article class="persona"><div class="who"><h3>开源开发者</h3><span class="age">22–35</span></div><p>发布、协作、测试、社区声誉；在下班后的夜间协作里维护社区声誉。</p><p class="place">空间响应：开源发布厅 · 公共代码墙 · 夜间协作空间</p></article>
+      <article class="persona"><div class="who"><h3>初创团队</h3><span class="age">25–40</span></div><p>低成本办公、算力入口、产品试验场；在共创书房与路演广场之间完成产品试验。</p><p class="place">空间响应：共创书房 · 端侧算力服务点 · 露天路演广场</p></article>
+      <article class="persona"><div class="who"><h3>高校学生</h3><span class="age">18–28</span></div><p>学习、社交、实习、低成本生活；在共创书房与青年水岸之间切换学习与社交。</p><p class="place">空间响应：共创书房 · 青年水岸 · AI+ 教育体验点</p></article>
+      <article class="persona"><div class="who"><h3>青年居民 / 新市民</h3><span class="age">25–40</span></div><p>通勤、休闲、育儿、社区参与；推婴儿车走蓝绿青年环，也把提案贴到社区提案墙。</p><p class="place">空间响应：蓝绿青年环 · 社区提案墙 · 社区实验单元</p></article>
+      <article class="persona"><div class="who"><h3>园区青年员工</h3><span class="age">22–35</span></div><p>工作间隙恢复、社交、运动；利用午休与下班时间在公园带恢复精力。</p><p class="place">空间响应：青年座椅组 · 夜间活力跑道 · 青年驿站</p></article>
+      <article class="persona"><div class="who"><h3>访客 / 活动参与者</h3><span class="age">18–45</span></div><p>文化体验、活动、消费；为一场活动或一次朝圣之旅而来。</p><p class="place">空间响应：数字钟声广场 · 青年市集 · 导览系统</p></article>
+    </div>
+  </section>
+
+  <!-- 10 青年友好七件套 -->
+  <section id="s-kit" aria-labelledby="t10">
+    <div class="sec-head"><span class="sec-no">10</span><h2 class="sec-title" id="t10">青年友好七件套组件库<small>YOUTH-FRIENDLY KIT</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">模块化、可复制、低成本的公共空间组件库，以 public_space 图层节点类型表达；单件造价与占地小，先近期试点验证，再中期规模化复制。</p>
+    <div class="grid g4">
+      <article class="card flat"><span class="badge ember">高优先</span><h3>1 · 青年座椅组</h3><p>可移动、可拼接、带电源与遮阳的社交座椅，随时坐下、插电、相遇。</p></article>
+      <article class="card flat"><span class="badge ember">高优先</span><h3>2 · 共创桌</h3><p>户外协作桌 + 白板墙 + 低门槛展陈，把公园变成可工作的客厅。</p></article>
+      <article class="card flat"><span class="badge gold">中优先</span><h3>3 · 可移动展陈</h3><p>模块化展架，社区展览、项目展示与活动快闪快速切换。</p></article>
+      <article class="card flat"><span class="badge ember">高优先</span><h3>4 · 夜间照明分级</h3><p>基础（安全）/ 活跃（社交·运动）/ 事件（节庆）三级照明。</p></article>
+      <article class="card flat"><span class="badge gold">中优先</span><h3>5 · 运动与活力设施</h3><p>夜跑路线标识、户外健身、球类场地，以低扰动选址为前提。</p></article>
+      <article class="card flat"><span class="badge ember">高优先</span><h3>6 · 无人值守服务站</h3><p>信息屏、充电、饮水、急救、失物，以端侧算力为原型。</p></article>
+      <article class="card flat"><span class="badge gold">中优先</span><h3>7 · 社区实验单元</h3><p>青年菜园/实验田、昆虫旅馆、雨水花园，兼顾科普与共建。</p></article>
+      <article class="card flat"><span class="badge gold">扩展</span><h3>8 · 低门槛舞台 / 提案墙</h3><p>可预约的露天演出路演舞台；AI 辅助社区提案墙（隐私保护、人工复核）。</p></article>
+    </div>
+  </section>
+
+  <!-- 11 朝圣地标与文化叙事 -->
+  <section id="s-landmarks" aria-labelledby="t11">
+    <div class="sec-head"><span class="sec-no">11</span><h2 class="sec-title" id="t11">朝圣地标与三层文化叙事<small>LANDMARKS &amp; NARRATIVE</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">朝圣地标均以公共历史事实与概念设计为基础，不违反文保、绿地、蓝线或交通安全约束；导视以「枕木 + 脉冲」为视觉母题。</p>
+    <div class="grid g4">
+      <article class="card"><span class="badge gold">S1</span><h3>清华园车站 · AI 起点碑</h3><p class="tagline">清华园车站旧址</p><p>历史与未来交汇，文化叙事原点。</p></article>
+      <article class="card"><span class="badge ai">S2</span><h3>开源共创穹顶</h3><p class="tagline">众智园</p><p>代码贡献墙与荣誉展示体系载体。</p></article>
+      <article class="card"><span class="badge water">S3</span><h3>数字钟声广场</h3><p class="tagline">大钟寺</p><p>智能终端与内容消费体验、国际路演客厅。</p></article>
+      <article class="card"><span class="badge ember">S4 · 备选</span><h3>五道口 · 青年能量站</h3><p class="tagline">五道口</p><p>近校青年驿站原型，夜间活力节点。</p></article>
+    </div>
+    <p class="sec-sub" style="margin-top:26px">城市风貌融合三层文化叙事（agent.5），青年是这条创新之路的接棒人：</p>
+    <div class="grid g3">
+      <article class="card flat"><h3>历史文化层 · 京张铁路</h3><p>中国自主修建的第一条干线铁路的敢为人先；依托清华园车站旧址与南段铁轨记忆。</p></article>
+      <article class="card flat"><h3>创新文化层 · 中关村</h3><p>从电子一条街到世界创新前沿的冒险精神；依托原点社区近校界面与电子一条街的延续。</p></article>
+      <article class="card flat"><h3>AI 新文化层 · 开源共创</h3><p>AI 时代的开源、共创、可解释文化；依托开源共创穹顶与数字钟声广场。</p></article>
+    </div>
+  </section>
+
+  <!-- 12 实施分期与年度活动 -->
+  <section id="s-phasing" aria-labelledby="t12">
+    <div class="sec-head"><span class="sec-no">12</span><h2 class="sec-title" id="t12">实施分期与年度活动体系<small>PHASING &amp; ACTIVITIES</small></h2></div>
+    <div class="sec-rule"></div>
+    <p class="sec-sub">实施分期区别于 100 天征集设计周期：征集周期是提交成果的时间要求，实施分期是城市更新与项目建设的推进路径。运营分期与空间分期解耦，活动按季度滚动、不依赖工程完工。</p>
+    <div class="grid g3">
+      <article class="card phase one"><span class="p-tag">近期 · 概念试点</span><h3>PHASE-001</h3><p>轻量设施、运营活动与青年驿站原型先行：优先启动座椅组、照明分级、市集与共创书房等低依赖项目（JZ-05、JZ-07）。</p></article>
+      <article class="card phase two"><span class="p-tag">中期 · 公园带贯通</span><h3>PHASE-002</h3><p>慢行断点缝合、青年水岸与驿站网络扩展，组件库规模化复制（JZ-01、JZ-03、JZ-06）。</p></article>
+      <article class="card phase three"><span class="p-tag">长期 · 条件确认后深化</span><h3>PHASE-003</h3><p>数字钟声广场、开源共创穹顶等重大项目，与控规、市政、交通和权属条件确认后推进（JZ-02、JZ-04、JZ-08）。</p></article>
+    </div>
+    <table style="margin-top:26px">
+      <caption>年度活动体系（agent.6 · 概念建议，非政府承诺；组织方负责安全与版权清权）</caption>
+      <thead><tr><th>活动</th><th>空间载体</th><th>频率</th><th>运营边界</th></tr></thead>
+      <tbody>
+        <tr><td><b>开发者大会 / 黑客松</b></td><td>众智园露天路演广场</td><td>年度</td><td>开发者社区；组织方负责安全与清权</td></tr>
+        <tr><td><b>开源开放日</b></td><td>原点社区发布厅</td><td>季度</td><td>开源社区；贡献数据仅聚合展示</td></tr>
+        <tr><td><b>青年夜跑季</b></td><td>京张公园带</td><td>春夏两季</td><td>青年居民；三级照明支撑，无监控画像</td></tr>
+        <tr><td><b>青年市集</b></td><td>小月河青年水岸</td><td>月度 / 节庆</td><td>青年主理人与小微团队；活动许可与版权清权</td></tr>
+        <tr><td><b>数字钟声跨年 / 节庆活动</b></td><td>大钟寺广场</td><td>年度</td><td>访客 / 居民；内容消费数据需授权</td></tr>
+      </tbody>
+    </table>
+    <p class="sec-sub" style="margin-top:26px">社区共创机制：</p>
+    <div class="grid g3">
+      <article class="card flat"><h3>青年主理人制度</h3><p>按片区设立主理人，负责活动预约、设施巡查与提案收集。</p></article>
+      <article class="card flat"><h3>提案反馈闭环</h3><p>「提交、去标识、公示、复核、回执」五步，议题可追溯、不泄露个人信息。</p></article>
+      <article class="card flat"><h3>空间预约平台</h3><p>公共空间开放预约（人工审核），活动排期公开，安全与版权责任由组织方承担。</p></article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>边界与数据说明</h3>
+        <div class="alert"><b>provisional boundary 警示：</b>本页全部几何基于临时边界，非官方红线；官方边界与重点区 polygon 发布后，site boundary、key areas、land use、roads、green space、public space、buildings、phasing 与 metrics 均须整体重算。本页仅供 intake 展示、讨论与返修，不构成正式评分图纸、审批依据、精确面积依据或法定控制结论。</div>
+        <p>正文、英文译稿、九个 GeoJSON 几何图层、指标与合规矩阵（metrics.json、compliance_matrix.json）、来源与标准矩阵（sources.json、standard_matrix.json、design_depth_matrix.json）及五张关键图为权威依据。本页不编造容积率、建筑高度、企业名单、投资额、产值或政府承诺；缺失底数一律标注「待正式控规条件确认」。</p>
+        <p class="sec-sub" style="margin-top:14px">任务覆盖：六项任务在正文与矩阵中逐条展开；自检状态：几何已全部裁剪至临时边界内、指标与 metrics.json 一致、无远程资源与活动内容；假设：provisional boundary 非官方红线，官方边界与重点区 polygon 发布后须整体重算。</p>
+      </div>
+      <div>
+        <h3>成果与许可</h3>
+        <p>本页为「京张遗址公园AI青年共创活力带」可视化总览（离线电子展示），与 A3 文册、A0 展板配套。所有图片、图纸、图标、数据与代码资产均以清权状态使用，引用来源登记于 sources.json 与 report/copyright_statement.md。</p>
+        <p><span class="license">LICENSE · COMMUNITY-DISPLAY-ONLY</span></p>
+        <p style="margin-top:12px">社区展示许可：本提交包的原创图纸、指标与文本按社区展示许可开放，任何商业使用需另行授权。</p>
+      </div>
+    </div>
+    <hr class="rule">
+    <div class="foot-meta">
+      <span>© 2025 MomentOfUs · 京张青年脉动带 / Jing-Zhang Youth Pulse Belt</span>
+      <span><a href="index.en.html">English Version →</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
