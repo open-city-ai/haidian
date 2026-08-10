@@ -56,6 +56,57 @@
       "severity": "major",
       "target": "proposal.md",
       "message": "All required chapters contain claim-adjacent evidence anchors and retain the structured audit layer."
+    },
+    {
+      "check_id": "EXACT_HEAD_SELF_CHECK",
+      "result": "pass",
+      "severity": "blocking",
+      "target": ".",
+      "message": "Contributor self-check rerun covers deterministic validation plus spatial, visual, and professional reviews; all gates pass, review_status is formal-review-ready, and next_actions is empty.",
+      "evidence": {
+        "deterministic_validation": "pass",
+        "spatial_review": "pass",
+        "visual_review": "pass",
+        "professional_review": "pass",
+        "review_status": "formal-review-ready",
+        "next_actions": []
+      }
+    },
+    {
+      "check_id": "PARTICIPANT_PREFLIGHT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "Participant preflight confirms branch, submission scope, package inventory, validator result, and origin push dry-run; blockers and warnings are empty.",
+      "evidence": {
+        "blockers": [],
+        "warnings": [],
+        "push_dry_run": "pass"
+      }
+    },
+    {
+      "check_id": "FILE_INTEGRITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "manifest.json::files[*].sha256",
+      "message": "SHA-256 digests are recomputed for every non-manifest package file and recorded beside the affected path in manifest.json.",
+      "evidence": {
+        "algorithm": "sha256",
+        "covered_non_manifest_files": 34,
+        "digest_registry": "manifest.json::files"
+      }
+    },
+    {
+      "check_id": "DATA_CONFIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "manifest.json::validation_claim.data_confidence",
+      "message": "Overall confidence is medium because the site and three key-area geometries are provisional; the limitation is disclosed and is not a formal-review blocker.",
+      "evidence": {
+        "data_confidence": "medium",
+        "known_blockers": [],
+        "provisional_geometry_disclosed": true
+      }
     }
   ]
 }
