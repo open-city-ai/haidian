@@ -1,5 +1,13 @@
 # 方案迭代记录
 
+## v0.11 - 2026-08-10
+
+响应 @147228 在 PR #1247 上的两条建议：
+
+1. known_blockers 拆分：组织方数据依赖（provisional boundary / planning controls）移到 organizer_data_dependencies；字体 blocker 通过切换到 Noto Sans SC（SIL OFL v1.1）闭合。A-FONT-001 假设状态更新为 resolved。
+2. evidence markers 疏散：proposal.md 中超过3个连续标记的位置按 claim 分组拆段，控制每个 claim 不超过3个 marker。共疏散 8 处。
+3. 版权声明更新：copyright_statement.md 更新为 Noto Sans SC SIL OFL，明确标注可商用。
+
 ## v0.8 - 2026-08-08
 
 目标：从72分冲击90+。补齐原创性/可实施性/AI+创新性三个短板维度：

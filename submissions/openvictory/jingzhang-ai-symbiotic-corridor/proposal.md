@@ -52,7 +52,7 @@ iteration: "v0.8"
 | 行政尺度公开统计 | 海淀及北京市年度公开材料 | 校准产业、转化、公共服务与绿色出行问题 | 走廊客流、站点OD、设施容量、空间落位 |
 | 背景案例 | 7个机构公开官网 | 机制对照与设计启发 | 海淀绩效类比、空间控制或实施保证 |
 
-`data/source_registry.json` 是资料分级的主控表，`data/processed/agent_fact_pack.md` 只作阅读导航。[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK] [source:SITE-PACKAGE] 本方案没有使用商业地图瓦片、新闻截图、未获公开授权的规划图或个人数据。
+`data/source_registry.json` 是资料分级的主控表，`data/processed/agent_fact_pack.md` 只作阅读导航。[source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。 依据：[source:SITE-PACKAGE]。 本方案没有使用商业地图瓦片、新闻截图、未获公开授权的规划图或个人数据。
 
 ### 2. 数据基线与决策翻译
 
@@ -79,7 +79,7 @@ iteration: "v0.8"
 | B 未来地标走廊 | 传播强但容易形成一次性展示 | 19/35 | 仅保留为传播工具 |
 | C 五向共生走廊 | 把测试验证、公共使用、文化继承、蓝绿生态和昼夜时段通过标准化接口闭合 | **31/35** | **主方案** |
 
-C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确地块表达；共生接口让边界从隔离变成可管理；五向协议覆盖了任务书的"三大定位"和"五大功能"。该比选是基于整体主义推断框架的概念建议。[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016] [depth:existing_conditions_diagnosis]
+C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确地块表达；共生接口让边界从隔离变成可管理；五向协议覆盖了任务书的"三大定位"和"五大功能"。该比选是基于整体主义推断框架的概念建议。[source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [depth:existing_conditions_diagnosis]。 规划标准依据：[standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。 用地与建筑深度：[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
 
 ## 三层范围工作框架
 
@@ -89,7 +89,7 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 |---|---|---|---|
 | 统筹研究范围 | 约43.6 km² | 判断"共生走廊作为整体如何运行" | 产业—公共生活—运营关系图；无official polygon，不作精确面积统计 |
 | 总体设计范围 | 约11.4 km² (PROV-SITE-001) | 把共生机制转译为用地、建筑接口、慢行、蓝绿、公共服务和分期 | 采用临时总体边界 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm]；法定强度、道路红线和工程容量均为unknown |
-| 重点区域 | 约368.4 ha (3处) | 用三个关键局部验证三类共生 | [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003] [metric:key_area_count]；临时重点区只作概念落位 |
+| 重点区域 | 约368.4 ha (3处) | 用三个关键局部验证三类共生 | [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]。 数量：[metric:key_area_count]。；临时重点区只作概念落位 |
 
 ![三层结构、概念分区与共生关系](assets/figures/land-use-structure.png)
 
@@ -181,7 +181,7 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 
 ### 2. 更新方法：先调查、后分类、再行动
 
-建筑策略区分四类行动而非"新旧好坏"：**A级**已有公开清权调查可维护；**B级**待结构和功能诊断；**C级**先做运营再讨论改造；**D级**仅在专业论证后讨论可逆加建。没有任何建筑在本方案中被判定拆除。24栋锚点建筑基底面积合计 [metric:building_footprint_area_sqm]，表达11种功能类型，在三处重点区均衡分布。[depth:land_use_layout] [depth:height_massing_character] [depth:retain_renovate_demolish] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-ARCH-DESIGN-DEPTH-2016]
+建筑策略区分四类行动而非"新旧好坏"：**A级**已有公开清权调查可维护；**B级**待结构和功能诊断；**C级**先做运营再讨论改造；**D级**仅在专业论证后讨论可逆加建。没有任何建筑在本方案中被判定拆除。24栋锚点建筑基底面积合计 [metric:building_footprint_area_sqm]，表达11种功能类型，在三处重点区均衡分布。[depth:land_use_layout] [depth:retain_renovate_demolish]。 建筑高度与体量：[depth:height_massing_character]。 用地分类与控规深度：[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MOHURD-CONTROL-DETAILED-PLANNING]。 建筑设计深度：[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
 
 ### 3. 控规深度的表达方式
 
@@ -278,7 +278,7 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 
 ## 蓝绿空间、公共空间与城市风貌
 
-[metric:green_space_count] 片绿地与 [metric:public_space_count] 处公共空间共同组成蓝绿共生系统的物理基底。[data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio] [data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_ratio]
+[metric:green_space_count] 片绿地与 [metric:public_space_count] 处公共空间共同组成蓝绿共生系统的物理基底。[data:geometry/green_space.geojson#GREEN-001] [metric:green_ratio]。 公共空间：[data:geometry/public_space.geojson#PUBLIC-001] [metric:public_space_ratio]。
 
 ### agent.4 三大AI朝圣地标与荣誉体系
 
@@ -353,7 +353,7 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
   → 任何级别均不判定拆除，除非完成全部前置条件
 ```
 
-[metric:renewal_project_count] [metric:action_package_count] [depth:renewal_project_list] [depth:phasing_implementation] 八个行动包全部均需有权主体、正式审批路径和专业工程条件确认后实施。
+[metric:renewal_project_count] [metric:action_package_count]。 深度：[depth:renewal_project_list] [depth:phasing_implementation]。 八个行动包全部均需有权主体、正式审批路径和专业工程条件确认后实施。
 
 ### 三段分期
 
@@ -368,7 +368,7 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 | 指标 | 值 | 来源 | 置信度 | 备注 |
 |---|---|---|---|---|
 | [metric:site_area_sqm] | 11,412,825 sqm | PROV-SITE-001 | medium | provisional |
-| [metric:building_footprint_area_sqm] | 2,743,531 sqm (24栋) | buildings.geojson | medium | 概念基底 |
+| [metric:building_footprint_area_sqm] | 3,175,017 sqm (24栋) | buildings.geojson | medium | 概念基底 |
 | [metric:green_ratio] | 0.2146 | green_space/site | medium | provisional |
 | [metric:public_space_ratio] | 0.1050 | public_space/site | medium | provisional |
 | [metric:floor_area_ratio] | unknown | — | unknown | 缺控规FAR |
@@ -390,7 +390,7 @@ C为主方案的原因：在官方polygon缺失时仍可按关系而非伪精确
 
 ### 1. 数据与专业风险
 
-[depth:risk_missing_data] 官方三层精确polygon、控规条件（FAR/高度/密度/绿地率/退线）、文保范围、现状逐栋建筑、道路红线、市政管线、消防条件均为正式深化前置条件。本方案不声称已取得或编造这些条件。[data:geometry/constraints.geojson] [source:SITE-PACKAGE] [source:PROCESSED-FACT-PACK]
+[depth:risk_missing_data] 官方三层精确polygon、控规条件（FAR/高度/密度/绿地率/退线）、文保范围、现状逐栋建筑、道路红线、市政管线、消防条件均为正式深化前置条件。本方案不声称已取得或编造这些条件。[data:geometry/constraints.geojson]。 来源：[source:SITE-PACKAGE] [source:PROCESSED-FACT-PACK]。
 
 ### 2. AI治理与公共利益
 
