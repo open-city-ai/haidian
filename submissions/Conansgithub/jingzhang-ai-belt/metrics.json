@@ -1,0 +1,255 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional boundary; official polygon pending, recalculate after release."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2489747.404,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "polygon_area(green_space.geojson union, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 2518217.246,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "polygon_area(public_space.geojson union, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 64825.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "polygon_area(buildings.geojson union, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Concept-illustrative footprints for design discussion only; not statutory."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.218,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.221,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 32135.214,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "length(roads.geojson centerlines, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_areas.geojson features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_count": {
+   "status": "known",
+   "value": 18,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(buildings.geojson features)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_area_total_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "polygon_area(land_use.geojson union, EPSG:4548); equals site area by design",
+   "confidence": "high",
+   "assumptions": [
+    "Land-use partition fully covers the submitted boundary."
+   ]
+  },
+  "key_area_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas.geojson), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygons; official values: zhongzhiyuan 1921000, origin 1043000, dazhongsi 720000."
+   ]
+  },
+  "phasing_area_total_sqm": {
+   "status": "known",
+   "value": 10286247.482,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(phasing.geojson), EPSG:4548)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario cards defined in proposal.md)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(industry test-verification scenarios defined in proposal.md)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(user personas defined in proposal.md)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI pilgrimage landmarks defined in proposal.md)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls are not present in the public site package; pending official regulatory planning conditions."
+  },
+  "building_density": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved building density controls are not present in the public site package."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_height_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved height controls are not present in the public site package."
+  },
+  "green_ratio_official": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_green_ratio_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official green-ratio control is not present in the public site package; design green ratio is computed from geometry."
+  },
+  "setback_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_setback_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Road redlines, building control lines, fire and municipal constraints are pending official confirmation."
+  }
+ }
+}

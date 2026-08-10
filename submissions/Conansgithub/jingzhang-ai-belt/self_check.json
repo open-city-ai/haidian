@@ -1,0 +1,45 @@
+{
+ "schema_version": "0.1.0",
+ "checks": [
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/site_boundary.geojson",
+   "message": "Provisional boundary is present and clearly labelled provisional_constraint; replace with official redline before professional scoring.",
+   "evidence": "metrics.json site_area_sqm matches spatial review; assumptions A-BOUNDARY-001."
+  },
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/key_areas.geojson",
+   "message": "Three required key areas are present, non-overlapping and inside the site; provisional labels disclosed.",
+   "evidence": "spatial review KEY_AREA checks; assumptions A-KEY-AREA-002."
+  },
+  {
+   "check_id": "LAND_USE_TOPOLOGY",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/land_use.geojson",
+   "message": "Land-use partition covers the site fully with no overlap and no coverage gap.",
+   "evidence": "spatial review LAND_USE_* checks all clean; land_use_area_by_code recomputed."
+  },
+  {
+   "check_id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "info",
+   "target": "visual/index.html",
+   "message": "Static offline HTML visualization without remote resources or active content.",
+   "evidence": "visual review VISUAL_* checks."
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "major",
+   "target": "proposal.md",
+   "message": "Proposal references standards, design depth items, geometry, metrics, sources and assumptions; bilingual contract satisfied.",
+   "evidence": "professional review; proposal.md + proposal.en.md present with v2 markers."
+  }
+ ]
+}
