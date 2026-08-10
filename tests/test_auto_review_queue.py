@@ -41,6 +41,7 @@ class AutoReviewQueueTests(unittest.TestCase):
                 "generate_submissions_data.py",
                 "review_submission.py",
                 "source_registry_utils.py",
+                "validate_local_submission.py",
                 "validate_submission.py",
                 "self_check_submission.py",
                 "spatial_review.py",
@@ -61,6 +62,32 @@ class AutoReviewQueueTests(unittest.TestCase):
                 ai_review_submission.__file__ = str(scripts / "ai_review_submission.py")
                 before = review_policy_sha256(repo)
                 (scripts / "source_registry_utils.py").write_text("dependency changed", encoding="utf-8")
+                after = review_policy_sha256(repo)
+            finally:
+                ai_review_submission.__file__ = original_file
+
+            self.assertNotEqual(before, after)
+
+    def test_policy_hash_changes_for_transitive_policy_inputs(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repo = Path(temp_dir) / "checkout"
+            scripts = repo / "scripts"
+            scripts.mkdir(parents=True)
+            for name in ai_review_submission.TRUSTED_REVIEW_SCRIPT_NAMES:
+                (scripts / name).write_text(name, encoding="utf-8")
+            schema = repo / "brief" / "site-package" / "schemas" / "advisory_review.schema.json"
+            schema.parent.mkdir(parents=True)
+            schema.write_text("{}", encoding="utf-8")
+            enums = repo / "brief" / "site-package" / "enums"
+            enums.mkdir(parents=True)
+            layers = enums / "layers.json"
+            layers.write_text('{"layers": []}', encoding="utf-8")
+
+            original_file = ai_review_submission.__file__
+            try:
+                ai_review_submission.__file__ = str(scripts / "ai_review_submission.py")
+                before = review_policy_sha256(repo)
+                layers.write_text('{"layers": [{"code": "new-layer"}]}', encoding="utf-8")
                 after = review_policy_sha256(repo)
             finally:
                 ai_review_submission.__file__ = original_file

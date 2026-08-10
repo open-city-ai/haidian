@@ -358,42 +358,60 @@ def stable_json_sha256(value: Any) -> str:
     return hashlib.sha256(payload.encode("utf-8")).hexdigest()
 
 
+TRUSTED_REVIEW_SCRIPT_NAMES = (
+    "ai_review_submission.py",
+    "auto_review_queue.py",
+    "generate_submissions_data.py",
+    "review_submission.py",
+    "source_registry_utils.py",
+    "validate_local_submission.py",
+    "validate_submission.py",
+    "self_check_submission.py",
+    "spatial_review.py",
+    "visual_review.py",
+    "professional_review.py",
+)
+
+# These are the repository-controlled inputs read by the trusted review
+# scripts.  Glob entries are intentional: adding/removing an enum or scenario
+# must invalidate an advisory cache even when the current package does not use
+# that new value yet.
+TRUSTED_REVIEW_POLICY_PATHS = (
+    ADVISORY_REVIEW_SCHEMA_PATH,
+    "brief/site-package/agent_taskbook.json",
+    "brief/site-package/enums/*.json",
+    "brief/site-package/schemas/geojson_feature.schema.json",
+    "brief/site-package/standards/standards.json",
+    "data/source_registry.json",
+    "tracks.json",
+    "scenarios/*.json",
+)
+
+
 def review_policy_sha256(repo_root: Path) -> str:
-    """Fingerprint the trusted review code and current package policy inputs."""
-    script_names = [
-        "ai_review_submission.py",
-        "auto_review_queue.py",
-        "generate_submissions_data.py",
-        "review_submission.py",
-        "source_registry_utils.py",
-        "validate_submission.py",
-        "self_check_submission.py",
-        "spatial_review.py",
-        "visual_review.py",
-        "professional_review.py",
-    ]
-    policy_paths = [
-        ADVISORY_REVIEW_SCHEMA_PATH,
-        "brief/site-package/agent_taskbook.json",
-        "data/source_registry.json",
-    ]
+    """Fingerprint every trusted code and input that can affect review output."""
     digest = hashlib.sha256()
     script_root = Path(__file__).resolve().parent
-    for script_name in script_names:
+    for script_name in TRUSTED_REVIEW_SCRIPT_NAMES:
         path = script_root / script_name
         digest.update(f"trusted-scripts/{script_name}".encode("utf-8"))
         digest.update(b"\0")
         digest.update(path.read_bytes() if path.is_file() else b"<missing>")
         digest.update(b"\0")
-    for relative_path in policy_paths:
-        path = repo_root / relative_path
-        digest.update(f"package-policy/{relative_path}".encode("utf-8"))
-        digest.update(b"\0")
-        if path.is_file():
+    for pattern in TRUSTED_REVIEW_POLICY_PATHS:
+        matches = sorted(
+            path for path in repo_root.glob(pattern) if path.is_file()
+        )
+        if not matches:
+            digest.update(f"package-policy/{pattern}".encode("utf-8"))
+            digest.update(b"\0<missing>\0")
+            continue
+        for path in matches:
+            relative_path = path.relative_to(repo_root).as_posix()
+            digest.update(f"package-policy/{relative_path}".encode("utf-8"))
+            digest.update(b"\0")
             digest.update(path.read_bytes())
-        else:
-            digest.update(b"<missing>")
-        digest.update(b"\0")
+            digest.update(b"\0")
     return digest.hexdigest()
 
 
