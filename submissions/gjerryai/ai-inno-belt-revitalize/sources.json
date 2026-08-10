@@ -1,0 +1,112 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
+      "publisher": "open-city-ai/haidian repository maintainers",
+      "authority_level": "A0_brief_package",
+      "usable_for_formal": "yes",
+      "not_usable_for": ["official redline", "statutory planning control"],
+      "local_paths": [
+        "brief/site-package/design_brief.json",
+        "brief/site-package/allowed_design_space.json",
+        "brief/site-package/enums/",
+        "brief/site-package/ranges/planning_limits.json",
+        "brief/site-package/schemas/"
+      ],
+      "notes_zh": "机器可读任务书与规则包；正文所有设计判断由此组织。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
+      "publisher": "open-city-ai/haidian repository maintainers",
+      "authority_level": "registry",
+      "usable_for_formal": "yes",
+      "not_usable_for": ["official redline", "statutory planning control"],
+      "local_paths": ["data/source_registry.json"],
+      "notes_zh": "登记 5 条 formal 可用资料与 1 条 provisional-only 资料；provisional 边界不得升级为官方依据。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
+      "publisher": "open-city-ai/haidian repository maintainers",
+      "authority_level": "navigation",
+      "usable_for_formal": "yes",
+      "not_usable_for": ["new authority source", "official boundary"],
+      "local_paths": [
+        "data/processed/agent_fact_pack.md",
+        "data/processed/project_scope_summary.csv",
+        "data/processed/agent_task_requirements.csv",
+        "data/processed/source_use_matrix.csv",
+        "data/processed/missing_data_checklist.csv"
+      ],
+      "notes_zh": "阅读导航层，事实判断仍回引 source_registry.json 中的原始 source_id。"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Submitted site boundary geometry source (provisional).",
+      "publisher": "open-city-ai/haidian repository maintainers",
+      "authority_level": "PROVISIONAL_REPOSITORY",
+      "usable_for_formal": "provisional_only",
+      "not_usable_for": [
+        "official redline",
+        "statutory planning control",
+        "precise area calculation",
+        "formal professional scoring"
+      ],
+      "local_paths": ["brief/site-package/geometry/provisional_boundaries.geojson"],
+      "notes_zh": "基于公告文字四至与约面积推定的临时粗略边界；本方案 site_boundary.geojson 由其派生并保留 provisional 标注。"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "Three required detailed-design key area boundaries (provisional).",
+      "publisher": "open-city-ai/haidian repository maintainers",
+      "authority_level": "PROVISIONAL_REPOSITORY",
+      "usable_for_formal": "provisional_only",
+      "not_usable_for": [
+        "official redline",
+        "precise area calculation",
+        "formal professional scoring"
+      ],
+      "local_paths": ["brief/site-package/geometry/provisional_boundaries.geojson"],
+      "notes_zh": "三处重点区域临时粗略 polygon；本方案 key_areas.geojson 由其派生并保留 provisional 标注。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "source_type": "official_public",
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "published_date": "2026-05-09",
+      "authority_level": "A0",
+      "usable_for_formal": "yes",
+      "not_usable_for": ["official polygon boundary", "road redline", "statutory planning control"],
+      "local_paths": ["brief/site-package/standards/references/project-official-announcement.md"],
+      "notes_zh": "第一权威公告；文字四至与面积值不替代官方 GIS/CAD polygon。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "path": "brief/site-package/agent_taskbook.json",
+      "source_type": "user_provided_cleared",
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.",
+      "publisher": "User-provided cleared document",
+      "published_date": "2026-05-18",
+      "authority_level": "CLEARED_USER_DOCUMENT",
+      "usable_for_formal": "yes",
+      "not_usable_for": ["official redline", "statutory planning control", "engineering feasibility conclusion"],
+      "local_paths": ["brief/site-package/standards/references/agent-open-call-taskbook-0518.md"],
+      "notes_zh": "补充三大定位、五大功能、三区两翼、agent.1-agent.6 与统一边界条款。"
+    }
+  ]
+}
