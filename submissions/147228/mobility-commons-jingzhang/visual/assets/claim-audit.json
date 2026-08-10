@@ -1,8 +1,8 @@
 {
   "schema_version": "1",
   "title": "Headline claim disclosure audit",
-  "scope": "headline_numeric_claims_only",
-  "purpose": "Check that the selected headline numbers carry a human-readable status label and a source or runner link in both proposal languages.",
+  "scope": "headline_and_secondary_numeric_claims",
+  "purpose": "Check that selected headline and secondary numeric claims carry a human-readable status label and a source or runner link in both proposal languages and both offline visual pages.",
   "boundary": "This is a self-audit of disclosure and cross-file wording. It does not validate model validity, local performance, survey equivalence, professional approval, or implementation authorization.",
   "status_vocabulary": {
     "synthetic": "runner output under declared counterfactual inputs; not a local observation",
@@ -100,6 +100,48 @@
       "required_en": ["synthetic screen outputs", "network gate"],
       "source_files": ["visual/assets/network-flow-screen.json", "visual/assets/capacity-closure-screen.json"],
       "prohibited_interpretations": ["service-level guarantee", "existing capacity", "approval"]
+    }
+  ],
+  "secondary_numeric_claims": [
+    {
+      "id": "group_proxy_scores",
+      "match_zh": "67.38",
+      "match_en": "67.38",
+      "required_zh": ["67.24", "66.35", "57.21", "合成范围"],
+      "required_en": ["67.24", "66.35", "57.21", "synthetic", "range"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js"]
+    },
+    {
+      "id": "b1_queue_sensitivity",
+      "match_zh": "174 降至 164",
+      "match_en": "174 → 164",
+      "required_zh": ["不能当作企业真实响应"],
+      "required_en": ["not an enterprise response"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js"]
+    },
+    {
+      "id": "b2_departure_choice",
+      "match_zh": "6.99%、首选 88.01%、夜班 5%",
+      "match_en": "6.99% early, 88.01% preferred and 5% late",
+      "required_zh": ["合成企业代理", "不代表员工行为"],
+      "required_en": ["synthetic enterprise agents", "not employee behaviour"],
+      "source_files": ["visual/assets/movement-simulation.json", "visual/assets/run-mobility-simulation.js"]
+    },
+    {
+      "id": "capacity_closure_multipliers",
+      "match_zh": "地铁 1.17×、公交 1.12×",
+      "match_en": "metro 1.17×, bus 1.12×",
+      "required_zh": ["合成输入"],
+      "required_en": ["synthetic inputs"],
+      "source_files": ["visual/assets/capacity-closure-screen.json", "visual/assets/run-capacity-closure-screen.js"]
+    },
+    {
+      "id": "network_edge_reference",
+      "match_zh": "1.6539×",
+      "match_en": "1.6539×",
+      "required_zh": ["合成屏查读数", "不是海淀道路"],
+      "required_en": ["synthetic screen outputs", "not Haidian road"],
+      "source_files": ["visual/assets/network-flow-readout.json", "visual/assets/run-network-flow-screen.js"]
     }
   ],
   "headline_wording_guard": {
