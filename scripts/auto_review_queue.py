@@ -30,7 +30,7 @@ SCORE_REVIEW_PATTERN = re.compile(
     r"<!-- haidian-auto-review:(?P<head>[0-9a-f]{40}) -->\s*"
     r"Maintainer intake decision: Review Agent score (?P<score>[0-9]+(?:\.[0-9]+)?)/100\."
 )
-DEFAULT_TRUSTED_REVIEWERS = frozenset({"cocosgt"})
+DEFAULT_TRUSTED_REVIEWERS = frozenset({"cocosgt", "wakenmeng"})
 TRUSTED_REVIEWERS_ENV = "HAIDIAN_TRUSTED_REVIEWERS"
 PASS = "SUCCESS"
 WORKTREE_LOCK = threading.Lock()
