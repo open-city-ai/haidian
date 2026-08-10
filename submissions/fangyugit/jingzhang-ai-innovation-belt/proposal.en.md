@@ -38,6 +38,36 @@ At the coordinated research level, this proposal takes "from the zigzag railway 
 
 **Future-city form fit for AI**: a "source-creation → piloting → transfer → listing" spatial relay spans the belt, building a chain from algorithms, compute and data to terminals and applications; the five core functions (innovation source-creation, industrial transfer, living experience, cultural narrative, governance demonstration) interlock along the belt into a self-reinforcing loop [source:AGENT-TASKBOOK].
 
+### English Brand Name and Visual Identity Direction (agent.1)
+
+- **Official English brand**: **Jingzhang Smart-Vein Living Belt** (Chinese: 京张智脉共生带), establishing an independent, extensible brand identity.
+- **Logo and symbol rule**: derived from the "zigzag railway switchback" motif into an extensible **Smart-Vein symbol** (Z-switchback + arc data-flow), forming a unified visual language for the logo, wayfinding, honor wall and all figure series.
+- **Visual identity (VI) direction**: dual-color system of "calm Jingzhang industrial-heritage base + AI tech blue"; geometric sans-serif typography aligned with a modern AI vocabulary; applied to charts, drawings, HTML and public-space wayfinding components.
+- **Positioning coordination**: the three positionings (100-Year Jingzhang Cultural Belt / Urban AI Living Experience Belt / AI Integration Innovation Belt) — five functions — "three cores, two wings" coordination, visualized in `assets/figures/mobility-bluegreen.png` and HTML.
+
+### Global AI Innovation-Ecosystem Cases (benchmark of 8, supporting differentiation)
+
+The scheme benchmarks 8 global AI/innovation-ecosystem cases as differential references for ecosystem organization, public space and operations (all public background material, registered in `sources.json`) [source:PROCESSED-FACT-PACK] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]:
+
+| Case | Location | Borrowed dimension | Difference from this scheme |
+|---|---|---|---|
+| Silicon Valley (Stanford Research Park) | USA | university–industry–capital synergy | full-chain "open-source + pilot-transfer" closure |
+| Kendall Square | Boston, USA | lab agglomeration, TOD station-city | 100-year rail heritage + blue-green systems |
+| Station F | Paris | single large incubator + community ops | "one belt, three cores" distributed ecosystem |
+| Tsukuba Science City | Japan | national R&D agglomeration, work-life | urban renewal + historic district preservation |
+| one-north | Singapore | park-city, green slow mobility, industry-city | AI scenario services + public-safety experiments |
+| Hangzhou Future Sci-Tech City / Zhijiang Lab | China | platform–lab–industry linkage | Jingzhang cultural narrative + AI governance |
+| Zhongguancun Software Park / Science City | Beijing | open source, compute, unicorn incubation | links Haidian AI clusters and regional synergy |
+| Seoul Digital Media City (DMC) | Korea | media content + tech cluster, cultural reach | AI culture-tourism + global developer community |
+
+### Region–Industry–Space Mapping and Ecosystem Map
+
+A six-factor guarantee mechanism "land–capital–talent–compute–data–scenario" supports the ecosystem [source:AGENT-TASKBOOK]: land (resilient "plug-in" module plots), capital (incubation fund + public platform), talent (university–enterprise–community), compute (pilot compute hub), data (open data interface), scenarios (operable SC-01~SC-10). The ecosystem map runs in a loop: "open-source source-creation (Zhongzhi Park) → pilot-transfer (AI Origin Community) → listing-transfer (Dazhongsi) → scenario operations (whole belt)".
+
+### Regional Innovation Collaboration
+
+The scheme forms coordination interfaces with Beiwitun Community, Future Science City, Huairou Science City, Economic-Technological Development Area and the Beijing–Tianjin–Hebei region [source:SOURCE-REGISTRY]: organizing the "Zhongguancun Sci-Tech Service Wing" (enterprise growth & transfer) and "Xiaohe Rue Scenario-Enabling Wing" (AI scenario landing & public benefit) along the Jingzhang corridor, linking external innovation nodes via rail and municipal corridors into a regional AI full-stack innovation network.
+
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 The overall design scope is ±11.4 km², developed at regulatory-plan depth with an urban-renewal and urban-design view [depth:overall_spatial_structure] [depth:existing_conditions_diagnosis].
@@ -97,8 +127,22 @@ The three key areas total ±369.3 ha, about 32% of the overall scope, forming th
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 ### User Personas
-
 Personas span university makers, AI engineers, industrial entrepreneurs, citizen families, and global visitors & developers, capturing their needs for open-source access, piloting, financing, everyday convenience and culture experience (P1~P5). [source:PROCESSED-FACT-PACK]
+
+### Refined Personas and Inclusion Analysis (agent.3)
+
+Beyond the five core personas, refined personas and a need–conflict analysis address public benefit and digital inclusion to avoid a digital divide [source:AGENT-TASKBOOK]:
+
+| Refined persona | Core need | Potential conflict / risk | Response |
+|---|---|---|---|
+| Seniors (60+) | offline alternative, large-text/voice, accessible booking | AI self-service unclear, high barrier | SC-09 accessible guidance + offline counter fallback |
+| Low-income residents | affordable public service access, jobs | paid scenario experience, exclusion | public scenarios free open, community jobs |
+| Caregivers / families | family accessibility, care efficiency | fragmented scenarios, waiting cost | one-stop "family AI butler" booking |
+| Non-smartphone users | reach without download | App dependence, digital-ID barrier | QR-code / phone / offline three channels |
+| Existing community stakeholders | non-forced relocation, transparent resettlement | renewal impact on jobs & community | near-term retention, co-creation, feedback |
+
+- **Equity / accessibility indicators**: each scenario sets three indicators—offline-alternative reach, digital-exclusion remedy, accessibility acceptance—into `design_depth_matrix.json` and operations review [depth:blue_green_public_space].
+- **Human-centered governance boundary**: SC-07 public-safety reasoning serves only as **assistive prediction with human review**, not automated enforcement, with human final judgment and an appeal channel for credible human-centered governance [source:AGENT-TASKBOOK].
 
 ### AI Scenario Cards (10, including 3 industrial test-validation scenarios)
 
@@ -116,6 +160,19 @@ Each card covers scenario ID, location, served persona, AI capability, data reli
 | SC-08 | Enterprise-Service Sandbox | Document/approval office Agent | enterprise-service-copilot |
 | SC-09 | Accessibility-Friendly AI Guide | Barrier-free planning, voice nav | ai-traffic-walkability |
 | SC-10 | Youth AI Science Camp | Learning-path generation, venue linkage | - |
+
+**Full scenario-card parameters (agent.3, refined)**—each card further specifies **data, privacy, human review, operations responsibility and evaluation baseline**; fully expanded for SC-07 (high-risk governance) and SC-03 (mobility):
+
+| Parameter | SC-07 Public-Safety Reasoning | SC-03 AI Commute Ask-and-Go |
+|---|---|---|
+| Data reliance | de-identified event posture, authorized cameras | real-time traffic, rail, slow-network |
+| Privacy impact | high (imagery); face-anonymized, minimized | medium (location); session-level masking |
+| Human review | **required**: human final, no auto enforcement | optional: route suggestion, human editable |
+| Operations owner | public-safety authority + independent evaluation | mobility platform + multi-modal operators |
+| Failure mode / fallback | cascade to conventional monitoring + staffing | fallback to conventional navigation/guidance |
+| Evaluation baseline | false-alarm, appeal response, human-fallback | travel satisfaction, on-time, reachability |
+
+The remaining SC scenarios register data, precision, review and operations fields by the same template in `design_depth_matrix.json` and `compliance_matrix.json`. The **Xiaohe Rue Scenario-Enabling Wing** (public-benefit AI scenarios) and the **public experience route** (linking L1~L4) are mapped in the Blue-Green and Transport sections.
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -147,8 +204,15 @@ With the Jingzhang heritage park as the green axis, two north-south blue-green c
 - **L4 Dazhongsi AI Star Hall**: a south gateway cultural salon injecting immersive AI culture-tourism experiences.
 
 ### AI-Native New Business and Urban Character
-
 Four categories—"open-source source creation, pilot transformation, culture experience, life service"—cultivate AI-native business to form a self-sustaining ecology; character follows the "smart-vein symbiosis" three-segment theme described above [depth:blue_green_public_space].
+
+### Public-Space Component Library and Wayfinding (agent.4/agent.5)
+
+- **Public-space component library**: centered on the Jingzhang heritage park, a reusable component library—paving (industrial-heritage brick + modern panels), tree pits/seating, accessible ramps/railings, light poles and info screens, canopy grey-space—registered in `design_depth_matrix.json` to support standardized delivery of street re-alignments, pocket parks and station-city nodes [depth:blue_green_public_space].
+- **Wayfinding symbol system**: unify navigation signs, landmark plaques, honor walls and scenario-entrance wayfinding with the "Smart-Vein symbol" (zigzag switchback + arc data-flow), including accessible Braille and voice guidance.
+- **Honor & display system**: an AI innovation contribution wall, open-source contributor honor system and open evaluation center recording every code submission, patch and scenario co-creation (L2 Open-Source Plaza hosts annual flagship releases and carnival).
+- **Cultural resources & landmark anchors**: anchor on the Jingzhang heritage park, locomotive-depot axis, Dazhongsi heritage and rail memory to build a cultural-resource list and spatial hierarchy, avoiding simple abstract rectangles in place of real site information (anchors in `sources.json`) [source:PROCESSED-FACT-PACK].
+- **International-communication copy direction**: differentiated outreach for global developers, enterprises and visitors around the "Jingzhang Smart-Vein Living Belt" brand ("from the zigzag railway to the smart-vein city" narrative + developer community + international AI week), delivered via `proposal.en.md` and the English figures/HTML.
 
 ![Transport, Slow Mobility and Blue-Green Public-Space Composite System](assets/figures/mobility-bluegreen.png)
 
@@ -172,6 +236,18 @@ Four categories—"open-source source creation, pilot transformation, culture ex
 - **Near term (2026—2027)**: deepen overall regulatory design and key-area concept design; launch JZ-01/JZ-05; start the slow-mobility and unmanned-delivery pilot.
 - **Mid term (2028—2030)**: complete the Zhongzhi Park and AI Origin Community cores; open the L1~L4 landmarks; launch the annual GAIW flagship event.
 - **Long term (2031— )**: full-scenario operation across the belt; mature the "One Belt, Three Cores"; sustainable AI innovation ecosystem and brand effect. [depth:phasing_implementation]
+
+### Long-Term Operations Framework (agent.6)
+
+The scheme specifies the operations owners, mechanisms and appraisal that go beyond an "AI Innovation Week + slogans" [source:AGENT-TASKBOOK]:
+
+- **Operations owners**: multi-party co-governance of a "Jingzhang Smart-Vein Belt Operating Company (proposed) + public platform (platform company/committee) + scenario operators (third-party/enterprise) + developer community"; responsibilities registered in `compliance_matrix.json` and `materials_ledger.md`.
+- **Budget & resource types**: public fiscal guidance + scenario-operating revenue + incubation/fund returns + enterprise onboarding and developer-service fees, forming a sustainable funding loop.
+- **Annual activity calendar**: GAIW (Grand AI Innovation Week) as the spine, layered with "four-season brand actions" (Spring open-source launch, Summer pilot acceleration, Autumn innovation showcase, Winter science education) plus ongoing hackathons, Open Days and Meetups.
+- **Developer-community regime**: open code repositories, contribution wall, contributor honor system and open-source carnival, sustaining open-source operations.
+- **Scenario opening & access/exit process**: scenarios follow "access appraisal (data/privacy/security) → sandbox pilot → production launch → periodic exit"; high-risk scenarios (e.g., SC-07) keep human review and an appeal channel.
+- **Attract-and-convert funnel**: quantifiable project-attraction, incubation and conversion indicators along "open-source → incubation → piloting → transfer".
+- **Maintenance responsibility & performance review**: specify maintenance owners for blue-green space, public space and facilities, with annual performance review and a data-feedback loop [depth:phasing_implementation] [metric:public_space_ratio].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
