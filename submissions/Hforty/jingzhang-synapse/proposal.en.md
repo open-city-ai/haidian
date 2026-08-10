@@ -8,7 +8,7 @@ translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Rooted in the centennial self-innovation legacy of the Jing-Zhang Railway and structured around the 9km heritage park green corridor, Jingzhang Synapse proposes a living AI urban spine that stitches north to south, east to west — carrying AI full-stack innovation, native scenarios, cultural narratives, and global exchange."
 tracks: ["ai-traffic-walkability"]
-scenarios: ["SC-01"]
+scenarios: ["sc-01"]
 iteration: "v1.0"
 ---
 

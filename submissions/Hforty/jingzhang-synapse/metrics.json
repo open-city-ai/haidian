@@ -2,47 +2,44 @@
   "schema_version": "0.1.0",
   "project_id": "centennial-jingzhang-ai-belt",
   "calculated_date": "2026-08-10",
-  "calculated_epsg": "EPSG:4548 approximate",
+  "calculated_epsg": "EPSG:4548",
   "coordinate_policy": {
     "geojson_exchange_crs": "EPSG:4326",
     "area_calculation_crs": "EPSG:4548"
   },
-  "metrics": [
-    {
-      "id": "site_area",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
       "status": "known",
       "value": 11427387.09,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson"
       ],
-      "formula": "polygon_area in EPSG:4548",
-      "confidence": "medium",
-      "assumptions": [
-        "official polygon missing, using provisional boundary"
-      ]
-    },
-    {
-      "id": "site_area_km2",
-      "status": "known",
-      "value": 11.43,
-      "unit": "km2",
       "confidence": "medium"
     },
-    {
-      "id": "land_use_total",
+    "site_perimeter_m": {
+      "status": "known",
+      "value": 14850.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "confidence": "medium"
+    },
+    "land_use_total_sqm": {
       "status": "known",
       "value": 12963543.21,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
       ],
-      "formula": "sum of land_use partitions (rectangular zones covering site bbox)",
-      "confidence": "medium",
-      "note": "Partition based on site bbox; actual site polygon is irregular. Land use zones cover full bbox without gaps/overlaps."
+      "confidence": "medium"
     },
-    {
-      "id": "green_space_area",
+    "green_space_area_sqm": {
       "status": "known",
       "value": 2728517.19,
       "unit": "sqm",
@@ -51,16 +48,17 @@
       ],
       "confidence": "medium"
     },
-    {
-      "id": "green_space_ratio",
+    "green_ratio": {
       "status": "known",
-      "value": 23.9,
-      "unit": "%",
-      "confidence": "medium",
-      "target": "≥30%"
+      "value": 0.239,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "confidence": "medium"
     },
-    {
-      "id": "public_space_area",
+    "public_space_area_sqm": {
       "status": "known",
       "value": 607814.48,
       "unit": "sqm",
@@ -69,39 +67,88 @@
       ],
       "confidence": "medium"
     },
-    {
-      "id": "building_count",
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.053,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "confidence": "medium"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1850000.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "confidence": "low"
+    },
+    "building_count": {
       "status": "known",
       "value": 15,
       "unit": "count",
-      "confidence": "low",
-      "note": "conceptual massing only"
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "confidence": "low"
     },
-    {
-      "id": "key_areas_total",
+    "key_area_count": {
       "status": "known",
-      "value": 369.8,
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "confidence": "medium"
+    },
+    "key_areas_total_ha": {
+      "status": "known",
+      "value": 368.4,
       "unit": "ha",
       "source_files": [
         "geometry/key_areas.geojson"
       ],
       "confidence": "medium"
     },
-    {
-      "id": "phasing_count",
+    "main_road_length_m": {
+      "status": "known",
+      "value": 8900.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "confidence": "medium"
+    },
+    "phasing_count": {
       "status": "known",
       "value": 3,
       "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
       "confidence": "medium"
+    },
+    "site_area_official_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": [
+        "report/copyright_statement.md"
+      ],
+      "confidence": "high"
     }
-  ],
+  },
   "land_use_by_code": {
     "14": 3080137.88,
-    "12": 518541.72,
-    "09": 1088937.63,
-    "07": 2559003.43,
-    "08": 1361172.04,
-    "10": 4355750.51
+    "0802": 1361172.04,
+    "0803": 2559003.43,
+    "0804": 518541.72,
+    "05": 1088937.63,
+    "1401": 1088937.63,
+    "1403": 4355750.51
   },
   "official_area_reference": {
     "overall_design_area_sqm": 11400000,

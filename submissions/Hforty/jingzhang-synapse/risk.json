@@ -1,32 +1,53 @@
 {
-  "schema_version": "0.1.0",
-  "risks": [
+  "version": 1,
+  "dimensions": [
     {
-      "risk_id": "R-001",
-      "category": "data_gap",
-      "description_zh": "所有空间几何为临时粗略边界（provisional_constraint），非官方红线。待正式polygon补齐后需重算所有面积指标。",
-      "description_en": "All spatial geometry is provisional. All area metrics must be recalculated when official polygons arrive.",
-      "severity": "medium",
-      "mitigation_zh": "已标注 provisional_constraint, official_boundary=false，待官方数据发布后更新。",
-      "status": "open"
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 3,
+      "note": "方案涉及大规模城市更新、多产权主体协调和分期实施，复杂度较高。",
+      "mitigation": "采用三阶段分期实施策略，每阶段设定明确退出条件和里程碑。",
+      "human_review": ""
     },
     {
-      "risk_id": "R-002",
-      "category": "control_gap",
-      "description_zh": "控规深度指标（容积率、建筑密度、限高等）缺少官方控制条件。",
-      "description_en": "Detailed planning controls (FAR, building density, height limits) are pending official confirmation.",
-      "severity": "medium",
-      "mitigation_zh": "已标记为 unknown，待官方控规发布后补充。",
-      "status": "open"
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 3,
+      "note": "AI城市创新相关政策仍在发展中，数据跨境和算法治理政策存在不确定性。",
+      "mitigation": "方案设计保持模块化和可调整性，预留政策变化应对缓冲。",
+      "human_review": ""
     },
     {
-      "risk_id": "R-003",
-      "category": "heritage",
-      "description_zh": "京张铁路遗产保护范围和建设控制地带的具体边界未明确。",
-      "description_en": "Heritage protection zones and construction control areas for the Jing-Zhang Railway are not yet defined.",
-      "severity": "low",
-      "mitigation_zh": "方案设计中已预留缓冲带，待官方文保范围确认后调整。",
-      "status": "open"
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 3,
+      "note": "AI城市运营场景中部分技术（如端侧算力调度、多模态城市感知）尚未大规模验证。",
+      "mitigation": "优先部署成熟技术，前沿技术设试点区域验证后再推广。",
+      "human_review": ""
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 4,
+      "note": "AI基础设施长期运维成本较高，包括算力、数据、传感器维护等持续性支出。",
+      "mitigation": "建立多元化资金机制，引入市场运营反哺公共设施运维。",
+      "human_review": "高运维成本风险需在实施前进行详细财务可行性评估和运营方案设计。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 2,
+      "note": "AI场景涉及数据采集和智能决策，公众对隐私和数据安全存在顾虑。",
+      "mitigation": "建立透明的数据治理框架和公众参与机制，设置隐私保护边界。",
+      "human_review": ""
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 3,
+      "note": "京张铁路遗产保护与城市更新开发之间存在潜在空间冲突。",
+      "mitigation": "方案已预留遗产保护缓冲带，待官方文保范围确认后调整。",
+      "human_review": ""
     }
   ]
 }

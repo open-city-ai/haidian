@@ -1,75 +1,110 @@
 {
-  "check_date": "2026-08-10",
+  "check_date": "2026-08-11",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "review_status": "formal-review-ready",
   "checks": [
     {
       "check_id": "package_structure",
-      "status": "pass",
-      "detail": "All 33+ required files present"
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "All required files present (45+ files)"
     },
     {
       "check_id": "bilingual_complete",
-      "status": "pass",
+      "result": "pass",
+      "severity": "blocking",
       "detail": "proposal.md (zh) + proposal.en.md with translation contract v1"
     },
     {
       "check_id": "geometry_layers",
-      "status": "pass",
-      "detail": "9 GeoJSON layers, all parsable"
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "9 GeoJSON layers, all parsable and valid"
     },
     {
       "check_id": "land_use_partition",
-      "status": "pass",
+      "result": "pass",
+      "severity": "blocking",
       "detail": "No gaps or overlaps in land use partition"
     },
     {
       "check_id": "figures_present",
-      "status": "pass",
-      "detail": "5 required figures embedded"
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "5 required figures embedded as PNG with bilingual counterparts"
     },
     {
       "check_id": "evidence_links",
-      "status": "pass",
+      "result": "pass",
+      "severity": "major",
       "detail": "Claims traceable to JSON/GeoJSON evidence"
     },
     {
       "check_id": "compliance_coverage",
-      "status": "pass",
+      "result": "pass",
+      "severity": "blocking",
       "detail": "Announcement 1.3/1.4/1.5 + agent.1-6 all covered"
     },
     {
       "check_id": "mandatory_standards",
-      "status": "pass",
-      "detail": "5 mandatory standards addressed"
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "5+1 mandatory standards addressed including MNR-LAND-USE-CLASSIFICATION-GUIDE"
     },
     {
       "check_id": "provisional_labeled",
-      "status": "pass",
+      "result": "pass",
+      "severity": "major",
       "detail": "All provisional boundaries clearly marked"
     },
     {
       "check_id": "scenario_cards_count",
-      "status": "pass",
-      "detail": "12 scenario cards (≥10 required), 3 test-validation (≥3 required)"
+      "result": "pass",
+      "severity": "major",
+      "detail": "12 scenario cards (>=10 required), 3 test-validation (>=3 required)"
     },
     {
       "check_id": "personas_count",
-      "status": "pass",
-      "detail": "6 personas (≥5 required)"
+      "result": "pass",
+      "severity": "minor",
+      "detail": "6 personas (>=5 required)"
     },
     {
       "check_id": "landmarks_count",
-      "status": "pass",
-      "detail": "3 AI landmarks (≥3 required)"
+      "result": "pass",
+      "severity": "minor",
+      "detail": "3 AI landmarks (>=3 required)"
     },
     {
       "check_id": "ecosystem_cases",
-      "status": "pass",
+      "result": "pass",
+      "severity": "minor",
       "detail": "6 global AI ecosystem cases (5-8 required)"
     },
     {
       "check_id": "copyright_statement",
-      "status": "pass",
+      "result": "pass",
+      "severity": "major",
       "detail": "Copyright statement present and complete"
     }
-  ]
+  ],
+  "blocking_gates": {
+    "DETERMINISTIC_VALIDATION": {
+      "result": "pass",
+      "severity": "blocking"
+    },
+    "PROFESSIONAL_EVIDENCE": {
+      "result": "pass",
+      "severity": "blocking"
+    },
+    "SPATIAL_REVIEW": {
+      "result": "pass",
+      "severity": "blocking"
+    },
+    "VISUAL_PACKAGING": {
+      "result": "pass",
+      "severity": "blocking"
+    }
+  }
 }
