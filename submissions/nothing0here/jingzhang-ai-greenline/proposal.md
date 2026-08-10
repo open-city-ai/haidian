@@ -148,7 +148,7 @@ AI公共空间与朝圣地标提出三个概念节点：一是“清华园车站
 
 ## 指标体系、面积复算与合规矩阵
 
-核心指标分为三类：空间类指标可由提交几何直接复算，包括总体设计范围面积约1141.3万平方米、绿地比例约12.5%、公共空间比例约3.8%、道路比例约11.2%、建筑基底面积约72.8万平方米、概念总建筑面积约576.5万平方米、三处重点区面积与三期面积 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:green_ratio]；任务类指标包括12张场景卡、3个测试验证场景、5类用户画像、6个全球案例与3个朝圣地标 [metric:scenario_card_count] [metric:persona_count] [metric:case_study_count]；管控类指标如容积率、建筑高度、建筑密度、绿地率与退线全部为 unknown，原因统一记录为官方控规条件缺失 [metric:floor_area_ratio]。
+核心指标分为三类：空间类指标可由提交几何直接复算，包括总体设计范围面积约1141.3万平方米、绿地比例约12.5%、公共空间比例约3.8%、道路比例约11.2%、建筑基底面积约72.8万平方米、概念总建筑面积约576.5万平方米、三处重点区面积与三期面积 [data:geometry/site_boundary.geojson#SITE-001] [metric:site_area_sqm] [metric:green_ratio]；任务类指标包括12张场景卡、3个测试验证场景、5类用户画像、6个全球案例与3个朝圣地标 [metric:scenario_card_count] [metric:persona_count] [metric:case_study_count]；管控类指标如容积率、建筑高度、建筑密度、绿地率与退线全部为待正式数据补齐，须由官方控规条件与专业团队确认后复算 [metric:floor_area_ratio]。
 
 面积复算统一在 EPSG:4548 下进行，GeoJSON 交换坐标采用 EPSG:4326；临时边界面积与公告约面积偏差在0.02%—0.43%之间，属于推定误差范围，不升级为精确面积结论 [data:geometry/key_areas.geojson#PROV-KEY-001] [metric:key_area_count]。图件、HTML 与PDF中展示的数值均来自 `metrics.json`，正文解释设计含义，机器复核以结构化文件为准 [depth:metrics_recalculation]。
 
