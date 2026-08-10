@@ -1,0 +1,451 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://open-city-ai.example/schemas/t1-public-service-tabletop/trial-package.schema.json",
+  "title": "T1 Public Service Agent tabletop evidence package",
+  "description": "Validates the contract, fixture sets, expected receipt, and rights/bilingual QA ledger. It does not validate real-world performance.",
+  "oneOf": [
+    { "$ref": "#/$defs/contract" },
+    { "$ref": "#/$defs/fixtureSet" },
+    { "$ref": "#/$defs/receipt" },
+    { "$ref": "#/$defs/qaLedger" }
+  ],
+  "$defs": {
+    "localized": {
+      "type": "object",
+      "required": ["zh", "en"],
+      "properties": {
+        "zh": { "type": "string", "minLength": 1 },
+        "en": { "type": "string", "minLength": 1 }
+      },
+      "additionalProperties": false
+    },
+    "scenarioId": {
+      "enum": ["S06", "S08", "S09", "S10"]
+    },
+    "failCode": {
+      "enum": [
+        "CONSENT_MISSING",
+        "MINOR_GUARDIAN_REQUIRED",
+        "HUMAN_HANDOFF_UNAVAILABLE",
+        "ACCESSIBLE_CHANNEL_MISSING",
+        "HIGH_IMPACT_AUTO_ACTION",
+        "DATA_MINIMIZATION_EXCEEDED",
+        "RETENTION_UNBOUNDED",
+        "APPEAL_ROUTE_MISSING",
+        "EMERGENCY_ESCALATION_MISSING",
+        "BILINGUAL_PARITY_MISSING"
+      ]
+    },
+    "status": {
+      "type": "object",
+      "required": ["field_state", "tabletop_state", "performance_results", "receipt_semantics"],
+      "properties": {
+        "field_state": { "const": "not_authorized_not_run" },
+        "tabletop_state": { "const": "contract_check_only" },
+        "performance_results": { "type": "null" },
+        "receipt_semantics": { "const": "expected_output_only" }
+      },
+      "additionalProperties": false
+    },
+    "scenario": {
+      "type": "object",
+      "required": ["id", "name", "public_task", "human_fallback", "minimum_data", "prohibited_decisions"],
+      "properties": {
+        "id": { "$ref": "#/$defs/scenarioId" },
+        "name": { "$ref": "#/$defs/localized" },
+        "public_task": { "$ref": "#/$defs/localized" },
+        "human_fallback": { "$ref": "#/$defs/localized" },
+        "minimum_data": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "prohibited_decisions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/localized" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "raciEntry": {
+      "type": "object",
+      "required": ["workstream", "responsible", "accountable", "consulted", "informed", "assignment_state"],
+      "properties": {
+        "workstream": { "type": "string", "minLength": 1 },
+        "responsible": { "type": "string", "minLength": 1 },
+        "accountable": { "type": "string", "minLength": 1 },
+        "consulted": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "informed": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "assignment_state": { "const": "role_placeholder_pending_authorization" }
+      },
+      "additionalProperties": false
+    },
+    "budgetCategory": {
+      "type": "object",
+      "required": ["category", "basis"],
+      "properties": {
+        "category": {
+          "enum": [
+            "human_staffing", "accessibility_qa", "privacy_security", "bilingual_qa",
+            "temporary_setup", "operations_maintenance", "rollback_reserve"
+          ]
+        },
+        "basis": { "$ref": "#/$defs/localized" }
+      },
+      "additionalProperties": false
+    },
+    "authorization": {
+      "type": "object",
+      "required": ["id", "owner_role", "required_before", "state", "evidence_needed"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^AUTH-[0-9]{2}$" },
+        "owner_role": { "type": "string", "minLength": 1 },
+        "required_before": { "enum": ["configuration", "recruitment", "data_access", "field_operation"] },
+        "state": { "const": "not_obtained" },
+        "evidence_needed": { "$ref": "#/$defs/localized" }
+      },
+      "additionalProperties": false
+    },
+    "failDefinition": {
+      "type": "object",
+      "required": ["code", "meaning", "required_response"],
+      "properties": {
+        "code": { "$ref": "#/$defs/failCode" },
+        "meaning": { "$ref": "#/$defs/localized" },
+        "required_response": { "$ref": "#/$defs/localized" }
+      },
+      "additionalProperties": false
+    },
+    "gate": {
+      "type": "object",
+      "required": ["id", "measure", "tabletop_threshold", "field_evidence_state", "interpretation"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^G-[0-9]{2}$" },
+        "measure": { "type": "string", "minLength": 1 },
+        "tabletop_threshold": { "type": ["number", "string", "boolean"] },
+        "field_evidence_state": { "const": "not_measured" },
+        "interpretation": { "$ref": "#/$defs/localized" }
+      },
+      "additionalProperties": false
+    },
+    "contract": {
+      "type": "object",
+      "required": [
+        "document_type", "schema_version", "package_id", "iteration", "title", "status", "scope",
+        "scenario_registry", "raci", "budget", "authorizations", "operations_and_maintenance",
+        "service_contract", "fail_code_registry", "acceptance_gates", "stop_rollback_retirement", "evidence_limits"
+      ],
+      "properties": {
+        "document_type": { "const": "trial_contract" },
+        "schema_version": { "const": "1.0.0" },
+        "package_id": { "const": "T1-PUBLIC-SERVICE-TABLETOP" },
+        "iteration": { "type": "string", "pattern": "^v[0-9]+\\.[0-9]+$" },
+        "title": { "$ref": "#/$defs/localized" },
+        "status": { "$ref": "#/$defs/status" },
+        "scope": {
+          "type": "object",
+          "required": ["duration_weeks", "scenarios", "candidate_locations", "field_location", "purpose", "out_of_scope"],
+          "properties": {
+            "duration_weeks": { "const": 6 },
+            "scenarios": {
+              "type": "array",
+              "prefixItems": [
+                { "const": "S06" }, { "const": "S08" }, { "const": "S09" }, { "const": "S10" }
+              ],
+              "items": false
+            },
+            "candidate_locations": { "type": "array", "minItems": 2, "items": { "$ref": "#/$defs/localized" } },
+            "field_location": { "type": "null" },
+            "purpose": { "$ref": "#/$defs/localized" },
+            "out_of_scope": { "type": "array", "minItems": 4, "items": { "$ref": "#/$defs/localized" } }
+          },
+          "additionalProperties": false
+        },
+        "scenario_registry": {
+          "type": "array", "minItems": 4, "maxItems": 4, "items": { "$ref": "#/$defs/scenario" }
+        },
+        "raci": {
+          "type": "array", "minItems": 5, "items": { "$ref": "#/$defs/raciEntry" }
+        },
+        "budget": {
+          "type": "object",
+          "required": ["estimate_state", "currency", "total", "categories", "excluded", "funding_state"],
+          "properties": {
+            "estimate_state": { "const": "not_estimated" },
+            "currency": { "type": "null" },
+            "total": { "type": "null" },
+            "categories": { "type": "array", "minItems": 7, "maxItems": 7, "items": { "$ref": "#/$defs/budgetCategory" } },
+            "excluded": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/localized" } },
+            "funding_state": { "const": "unfunded_unapproved" }
+          },
+          "additionalProperties": false
+        },
+        "authorizations": {
+          "type": "array", "minItems": 6, "items": { "$ref": "#/$defs/authorization" }
+        },
+        "operations_and_maintenance": {
+          "type": "object",
+          "required": ["service_hours", "staffing_assumption", "daily", "weekly", "incident", "change_control", "record_retention", "continuity", "owner_state"],
+          "properties": {
+            "service_hours": { "type": "string", "minLength": 1 },
+            "staffing_assumption": { "type": "string", "minLength": 1 },
+            "daily": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 1 } },
+            "weekly": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 1 } },
+            "incident": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "change_control": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 1 } },
+            "record_retention": { "type": "string", "minLength": 1 },
+            "continuity": { "type": "array", "minItems": 3, "items": { "type": "string", "minLength": 1 } },
+            "owner_state": { "const": "operator_not_assigned" }
+          },
+          "additionalProperties": false
+        },
+        "service_contract": {
+          "type": "object",
+          "required": ["allowed_action_classes", "prohibited_auto_actions", "required_channels", "human_handoff", "allowed_data_fields", "default_retention_days", "maximum_retention_days", "appeal_required", "bilingual_required", "emergency_escalation_required"],
+          "properties": {
+            "allowed_action_classes": { "type": "array", "const": ["information_only", "recommendation"] },
+            "prohibited_auto_actions": { "type": "array", "minItems": 5, "items": { "type": "string", "minLength": 1 } },
+            "required_channels": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "human_handoff": { "const": "required_on_request_ambiguity_high_risk_or_failure" },
+            "allowed_data_fields": { "type": "array", "minItems": 8, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+            "default_retention_days": { "type": "integer", "minimum": 0 },
+            "maximum_retention_days": { "type": "integer", "minimum": 1 },
+            "appeal_required": { "const": true },
+            "bilingual_required": { "type": "array", "const": ["zh-CN", "en"] },
+            "emergency_escalation_required": { "const": true }
+          },
+          "additionalProperties": false
+        },
+        "fail_code_registry": {
+          "type": "array", "minItems": 10, "maxItems": 10, "items": { "$ref": "#/$defs/failDefinition" }
+        },
+        "acceptance_gates": {
+          "type": "array", "minItems": 6, "items": { "$ref": "#/$defs/gate" }
+        },
+        "stop_rollback_retirement": {
+          "type": "object",
+          "required": ["immediate_stop", "safe_state", "rollback_steps", "recovery_gate", "retirement_triggers", "retirement_outputs"],
+          "properties": {
+            "immediate_stop": { "type": "array", "minItems": 6, "items": { "type": "string", "minLength": 1 } },
+            "safe_state": { "const": "human_and_non_digital_channels_only" },
+            "rollback_steps": { "type": "array", "minItems": 5, "items": { "type": "string", "minLength": 1 } },
+            "recovery_gate": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "retirement_triggers": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } },
+            "retirement_outputs": { "type": "array", "minItems": 4, "items": { "type": "string", "minLength": 1 } }
+          },
+          "additionalProperties": false
+        },
+        "evidence_limits": {
+          "type": "object",
+          "required": ["does_not_prove", "claims_allowed", "next_evidence"],
+          "properties": {
+            "does_not_prove": { "type": "array", "minItems": 6, "items": { "$ref": "#/$defs/localized" } },
+            "claims_allowed": { "type": "array", "minItems": 3, "items": { "$ref": "#/$defs/localized" } },
+            "next_evidence": { "type": "array", "minItems": 5, "items": { "$ref": "#/$defs/localized" } }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "fixtureInput": {
+      "type": "object",
+      "required": [
+        "consent", "user_age", "guardian_consent", "human_handoff_requested", "human_handoff_available",
+        "requested_channel", "available_channels", "action_class", "auto_execute", "data_fields_requested",
+        "allowed_data_fields", "retention_days", "appeal_route", "emergency_signal", "emergency_escalation",
+        "languages_required", "languages_available"
+      ],
+      "properties": {
+        "consent": { "type": "boolean" },
+        "user_age": { "type": "integer", "minimum": 0, "maximum": 120 },
+        "guardian_consent": { "type": ["boolean", "null"] },
+        "human_handoff_requested": { "type": "boolean" },
+        "human_handoff_available": { "type": "boolean" },
+        "requested_channel": { "enum": ["text", "voice", "large_text", "staff_counter", "paper"] },
+        "available_channels": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["text", "voice", "large_text", "staff_counter", "paper"] } },
+        "action_class": { "enum": ["information_only", "recommendation", "high_impact"] },
+        "auto_execute": { "type": "boolean" },
+        "data_fields_requested": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "allowed_data_fields": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "retention_days": { "type": ["integer", "null"], "minimum": 0 },
+        "appeal_route": { "type": "boolean" },
+        "emergency_signal": { "type": "boolean" },
+        "emergency_escalation": { "type": "boolean" },
+        "languages_required": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "languages_available": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      },
+      "additionalProperties": false
+    },
+    "fixtureCase": {
+      "type": "object",
+      "required": ["id", "scenario_id", "purpose", "input", "expected"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^(POS|NEG)-[0-9]{2}$" },
+        "scenario_id": { "$ref": "#/$defs/scenarioId" },
+        "purpose": { "$ref": "#/$defs/localized" },
+        "input": { "$ref": "#/$defs/fixtureInput" },
+        "expected": {
+          "type": "object",
+          "required": ["pass", "decision", "fail_codes"],
+          "properties": {
+            "pass": { "type": "boolean" },
+            "decision": { "enum": ["allow_tabletop_path", "block_and_handoff"] },
+            "fail_codes": { "type": "array", "uniqueItems": true, "items": { "$ref": "#/$defs/failCode" } }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "fixtureSet": {
+      "type": "object",
+      "required": ["document_type", "schema_version", "package_id", "polarity", "status", "cases"],
+      "properties": {
+        "document_type": { "const": "fixture_set" },
+        "schema_version": { "const": "1.0.0" },
+        "package_id": { "const": "T1-PUBLIC-SERVICE-TABLETOP" },
+        "polarity": { "enum": ["positive", "negative"] },
+        "status": { "$ref": "#/$defs/status" },
+        "cases": { "type": "array", "minItems": 4, "items": { "$ref": "#/$defs/fixtureCase" } }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "polarity": { "const": "positive" } } },
+          "then": {
+            "properties": {
+              "cases": {
+                "minItems": 4,
+                "maxItems": 4,
+                "contains": { "properties": { "scenario_id": { "const": "S06" } }, "required": ["scenario_id"] },
+                "items": {
+                  "allOf": [
+                    { "$ref": "#/$defs/fixtureCase" },
+                    { "properties": { "expected": { "properties": { "pass": { "const": true }, "decision": { "const": "allow_tabletop_path" }, "fail_codes": { "maxItems": 0 } } } } }
+                  ]
+                }
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "cases": {
+                "minItems": 8,
+                "items": {
+                  "allOf": [
+                    { "$ref": "#/$defs/fixtureCase" },
+                    { "properties": { "expected": { "properties": { "pass": { "const": false }, "decision": { "const": "block_and_handoff" }, "fail_codes": { "minItems": 1 } } } } }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "receipt": {
+      "type": "object",
+      "required": ["document_type", "schema_version", "package_id", "expected_output", "run_status", "performance_results", "test_mode", "fixture_id", "scenario_id", "decision", "fail_codes", "human_route", "bilingual", "data_handling", "disclaimers"],
+      "properties": {
+        "document_type": { "const": "expected_receipt" },
+        "schema_version": { "const": "1.0.0" },
+        "package_id": { "const": "T1-PUBLIC-SERVICE-TABLETOP" },
+        "expected_output": { "const": true },
+        "run_status": { "const": "not_authorized_not_run" },
+        "performance_results": { "type": "null" },
+        "test_mode": { "const": "tabletop_contract_check" },
+        "fixture_id": { "type": "string", "pattern": "^POS-[0-9]{2}$" },
+        "scenario_id": { "$ref": "#/$defs/scenarioId" },
+        "decision": { "const": "allow_tabletop_path" },
+        "fail_codes": { "type": "array", "maxItems": 0 },
+        "human_route": {
+          "type": "object",
+          "required": ["available", "owner_role", "deadline_state", "appeal_available"],
+          "properties": {
+            "available": { "const": true },
+            "owner_role": { "type": "string", "minLength": 1 },
+            "deadline_state": { "const": "must_be_set_by_authorized_operator" },
+            "appeal_available": { "const": true }
+          },
+          "additionalProperties": false
+        },
+        "bilingual": {
+          "type": "object",
+          "required": ["languages", "parity_state"],
+          "properties": {
+            "languages": { "type": "array", "const": ["zh-CN", "en"] },
+            "parity_state": { "const": "fixture_verified_only" }
+          },
+          "additionalProperties": false
+        },
+        "data_handling": {
+          "type": "object",
+          "required": ["fields", "retention_days", "cross_scenario_profile"],
+          "properties": {
+            "fields": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+            "retention_days": { "type": "integer", "minimum": 0 },
+            "cross_scenario_profile": { "const": false }
+          },
+          "additionalProperties": false
+        },
+        "disclaimers": { "type": "array", "minItems": 4, "items": { "$ref": "#/$defs/localized" } }
+      },
+      "additionalProperties": false
+    },
+    "rightsItem": {
+      "type": "object",
+      "required": ["asset", "kind", "origin", "license_or_rights_basis", "third_party_content", "review_state"],
+      "properties": {
+        "asset": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["code", "structured_data", "text"] },
+        "origin": { "enum": ["submission-authored", "repository-facts-paraphrased"] },
+        "license_or_rights_basis": { "type": "string", "minLength": 1 },
+        "third_party_content": { "type": "boolean" },
+        "review_state": { "const": "cleared_for_submission" }
+      },
+      "additionalProperties": false
+    },
+    "bilingualCheck": {
+      "type": "object",
+      "required": ["pair", "required_terms", "result", "method", "field_evidence_state"],
+      "properties": {
+        "pair": { "type": "string", "minLength": 1 },
+        "required_terms": { "type": "array", "minItems": 2, "items": { "type": "string", "minLength": 1 } },
+        "result": { "enum": ["pass", "manual_review_required"] },
+        "method": { "type": "string", "minLength": 1 },
+        "field_evidence_state": { "const": "not_applicable_tabletop_asset" }
+      },
+      "additionalProperties": false
+    },
+    "accessibilityCheck": {
+      "type": "object",
+      "required": ["id", "criterion", "result", "evidence", "field_evidence_state"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^A11Y-[0-9]{2}$" },
+        "criterion": { "$ref": "#/$defs/localized" },
+        "result": { "enum": ["pass", "manual_review_required"] },
+        "evidence": { "type": "string", "minLength": 1 },
+        "field_evidence_state": { "const": "not_measured" }
+      },
+      "additionalProperties": false
+    },
+    "qaLedger": {
+      "type": "object",
+      "required": ["document_type", "schema_version", "package_id", "status", "rights_ledger", "bilingual_qa", "accessibility_qa", "limitations"],
+      "properties": {
+        "document_type": { "const": "rights_bilingual_qa" },
+        "schema_version": { "const": "1.0.0" },
+        "package_id": { "const": "T1-PUBLIC-SERVICE-TABLETOP" },
+        "status": { "$ref": "#/$defs/status" },
+        "rights_ledger": { "type": "array", "minItems": 6, "items": { "$ref": "#/$defs/rightsItem" } },
+        "bilingual_qa": { "type": "array", "minItems": 4, "items": { "$ref": "#/$defs/bilingualCheck" } },
+        "accessibility_qa": { "type": "array", "minItems": 5, "items": { "$ref": "#/$defs/accessibilityCheck" } },
+        "limitations": { "type": "array", "minItems": 4, "items": { "$ref": "#/$defs/localized" } }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,441 @@
+{
+  "document_type": "trial_contract",
+  "schema_version": "1.0.0",
+  "package_id": "T1-PUBLIC-SERVICE-TABLETOP",
+  "iteration": "v0.2",
+  "title": {
+    "zh": "T1 公共服务智能体六周桌面试验合同",
+    "en": "T1 Public Service Agent six-week tabletop trial contract"
+  },
+  "status": {
+    "field_state": "not_authorized_not_run",
+    "tabletop_state": "contract_check_only",
+    "performance_results": null,
+    "receipt_semantics": "expected_output_only"
+  },
+  "scope": {
+    "duration_weeks": 6,
+    "scenarios": ["S06", "S08", "S09", "S10"],
+    "candidate_locations": [
+      {
+        "zh": "开源原点站（仅为候选，待场地产权方和运营方授权）",
+        "en": "Open-Source Origin Station (candidate only; subject to site and operator authorization)"
+      },
+      {
+        "zh": "公共回声站（仅为候选，待场地产权方和运营方授权）",
+        "en": "Public Echo Station (candidate only; subject to site and operator authorization)"
+      }
+    ],
+    "field_location": null,
+    "purpose": {
+      "zh": "在不接触真实用户和真实业务数据的前提下，检验公共服务流程是否具备人工入口、责任人、时限占位、预期回执、申诉、最小数据、双语和停止条件。",
+      "en": "Check, without real users or operational data, whether the service contract contains a human route, accountable role, deadline placeholder, expected receipt, appeal, data minimization, bilingual parity, and stop conditions."
+    },
+    "out_of_scope": [
+      { "zh": "医疗诊断、分诊或治疗建议", "en": "Medical diagnosis, triage, or treatment advice" },
+      { "zh": "法律、投资、资质或政策确定性判断", "en": "Determinative legal, investment, eligibility, or policy decisions" },
+      { "zh": "自动派单、执法、收费、支付或福利决定", "en": "Automatic dispatch, enforcement, charging, payment, or benefit decisions" },
+      { "zh": "人脸识别、持续追踪或跨场景个人画像", "en": "Facial recognition, persistent tracking, or cross-scenario profiling" },
+      { "zh": "任何未经批准的现场部署、招募或数据接入", "en": "Any field deployment, recruitment, or data access without approval" }
+    ]
+  },
+  "scenario_registry": [
+    {
+      "id": "S06",
+      "name": { "zh": "社区健康转介", "en": "Community health referral" },
+      "public_task": { "zh": "解释公开服务目录并把请求转给持证机构或人工服务员。", "en": "Explain a public service directory and refer the request to a licensed institution or human service worker." },
+      "human_fallback": { "zh": "电话、纸面目录、现场人工转介；紧急、歧义或拒绝授权时立即使用。", "en": "Telephone, paper directory, and staffed referral, used immediately for emergency, ambiguity, or declined consent." },
+      "minimum_data": ["task_category", "preferred_channel", "referral_destination", "case_state"],
+      "prohibited_decisions": [
+        { "zh": "不得诊断、评分或评价医疗效果。", "en": "No diagnosis, scoring, or evaluation of clinical outcome." },
+        { "zh": "不得推断病史或建立健康画像。", "en": "No inference of medical history or health profiling." }
+      ]
+    },
+    {
+      "id": "S08",
+      "name": { "zh": "创业服务台", "en": "Startup service desk" },
+      "public_task": { "zh": "解释公开流程并把问题转给适格的专业人员。", "en": "Explain public processes and refer questions to an appropriately qualified professional." },
+      "human_fallback": { "zh": "预约真人、纸面清单和公开热线。", "en": "Human appointment, paper checklist, and published hotline." },
+      "minimum_data": ["task_category", "preferred_channel", "referral_destination", "case_state"],
+      "prohibited_decisions": [
+        { "zh": "不得读取或要求商业秘密。", "en": "No reading or request of trade secrets." },
+        { "zh": "不得给出法律、投资或政策确定性结论。", "en": "No determinative legal, investment, or policy conclusion." }
+      ]
+    },
+    {
+      "id": "S09",
+      "name": { "zh": "多语访客与小商户服务", "en": "Multilingual visitor and small-business assistance" },
+      "public_task": { "zh": "提供经校对的双语任务说明、图标引导和人工联络。", "en": "Provide reviewed bilingual task instructions, icon guidance, and a human contact." },
+      "human_fallback": { "zh": "双语人工、图标和纸面表单。", "en": "Bilingual staff, icons, and paper forms." },
+      "minimum_data": ["language", "task_category", "preferred_channel", "anonymous_feedback"],
+      "prohibited_decisions": [
+        { "zh": "不得依据国籍、口音或语言建立画像。", "en": "No profiling by nationality, accent, or language." },
+        { "zh": "关键条款未经双语校对不得发布。", "en": "No publication of critical terms without bilingual review." }
+      ]
+    },
+    {
+      "id": "S10",
+      "name": { "zh": "设施报修与投诉分流", "en": "Maintenance and complaint triage" },
+      "public_task": { "zh": "记录最小工单字段并指向经确认的责任角色。", "en": "Record minimum ticket fields and route them to a confirmed accountable role." },
+      "human_fallback": { "zh": "电话、现场服务台和纸质回执。", "en": "Telephone, staffed desk, and paper receipt." },
+      "minimum_data": ["facility_id", "problem_category", "event_time", "case_state", "preferred_channel"],
+      "prohibited_decisions": [
+        { "zh": "不得把投诉者画像化或降低其服务优先级。", "en": "No complainant profiling or reduction of service priority." },
+        { "zh": "未确认责任人和时限时不得自动派单。", "en": "No automatic dispatch without confirmed ownership and deadline." }
+      ]
+    }
+  ],
+  "raci": [
+    {
+      "workstream": "trial authorization and public accountability",
+      "responsible": "future authorized trial manager",
+      "accountable": "future commissioning public-service authority",
+      "consulted": ["site rights holder", "legal and privacy reviewer", "community representative"],
+      "informed": ["frontline staff", "participants", "public complaint channel"],
+      "assignment_state": "role_placeholder_pending_authorization"
+    },
+    {
+      "workstream": "service-directory and responsibility-table freeze",
+      "responsible": "future service-content steward",
+      "accountable": "future authorized operator",
+      "consulted": ["licensed service providers", "facility maintenance owners", "bilingual reviewer"],
+      "informed": ["human service desk", "trial manager"],
+      "assignment_state": "role_placeholder_pending_authorization"
+    },
+    {
+      "workstream": "privacy, security, and incident response",
+      "responsible": "future privacy and security lead",
+      "accountable": "future authorized operator",
+      "consulted": ["legal reviewer", "data controller", "incident response contact"],
+      "informed": ["trial manager", "participants", "commissioning authority"],
+      "assignment_state": "role_placeholder_pending_authorization"
+    },
+    {
+      "workstream": "accessibility and bilingual parity",
+      "responsible": "future accessibility and language QA lead",
+      "accountable": "future trial manager",
+      "consulted": ["disabled-person representative", "older-adult representative", "professional bilingual reviewer"],
+      "informed": ["content steward", "frontline staff"],
+      "assignment_state": "role_placeholder_pending_authorization"
+    },
+    {
+      "workstream": "independent evaluation and closeout",
+      "responsible": "future evaluator independent of implementation",
+      "accountable": "future commissioning public-service authority",
+      "consulted": ["trial manager", "community representative", "privacy reviewer"],
+      "informed": ["operator", "participants", "public complaint channel"],
+      "assignment_state": "role_placeholder_pending_authorization"
+    }
+  ],
+  "budget": {
+    "estimate_state": "not_estimated",
+    "currency": null,
+    "total": null,
+    "categories": [
+      {
+        "category": "human_staffing",
+        "basis": { "zh": "未来试验需核定服务时段、人工接管、培训与监督所需人员。", "en": "A future trial must determine staffing for service hours, human takeover, training, and supervision." }
+      },
+      {
+        "category": "accessibility_qa",
+        "basis": { "zh": "未来试验需核定无障碍材料、渠道和代表性用户评审资源。", "en": "A future trial must determine resources for accessible materials, channels, and representative-user review." }
+      },
+      {
+        "category": "privacy_security",
+        "basis": { "zh": "未来试验需核定数据清单、威胁检查、事件演练和删除核验资源。", "en": "A future trial must determine resources for data inventory, threat checks, incident drills, and deletion verification." }
+      },
+      {
+        "category": "bilingual_qa",
+        "basis": { "zh": "未来试验需核定中英双语专业校对、关键字段对照和人工复核资源。", "en": "A future trial must determine resources for professional bilingual editing, critical-field parity, and human review." }
+      },
+      {
+        "category": "temporary_setup",
+        "basis": { "zh": "未来试验需在场地、许可和设备需求确认后核定临时布置资源。", "en": "A future trial must determine temporary-setup resources after site, permit, and equipment needs are confirmed." }
+      },
+      {
+        "category": "operations_maintenance",
+        "basis": { "zh": "未来试验需在运营主体和服务时段确认后核定运行、维护和公开反馈资源。", "en": "A future trial must determine operations, maintenance, and public-feedback resources after an operator and service hours are confirmed." }
+      },
+      {
+        "category": "rollback_reserve",
+        "basis": { "zh": "未来试验需在停止条件和恢复责任确认后核定撤场、恢复与审计资源。", "en": "A future trial must determine removal, recovery, and audit resources after stop conditions and recovery ownership are confirmed." }
+      }
+    ],
+    "excluded": [
+      { "zh": "正式场地租赁、改造或长期运营费用", "en": "Formal site lease, alteration, or long-term operation" },
+      { "zh": "既有信息系统接口采购与持牌专业服务费用", "en": "Legacy-system integration and licensed professional services" },
+      { "zh": "硬件采购、网络建设和现场安保费用", "en": "Hardware, network works, and on-site security" }
+    ],
+    "funding_state": "unfunded_unapproved"
+  },
+  "authorizations": [
+    {
+      "id": "AUTH-01",
+      "owner_role": "commissioning public-service authority",
+      "required_before": "configuration",
+      "state": "not_obtained",
+      "evidence_needed": { "zh": "书面试验委托、范围和问责主体。", "en": "Written commission, trial scope, and accountable body." }
+    },
+    {
+      "id": "AUTH-02",
+      "owner_role": "site rights holder",
+      "required_before": "field_operation",
+      "state": "not_obtained",
+      "evidence_needed": { "zh": "候选场地使用许可、消防和疏散核验。", "en": "Candidate-site use permission plus fire and evacuation checks." }
+    },
+    {
+      "id": "AUTH-03",
+      "owner_role": "personal-information controller",
+      "required_before": "data_access",
+      "state": "not_obtained",
+      "evidence_needed": { "zh": "个人信息处理清单、目的、最小字段、保存期和删除责任。", "en": "Personal-information inventory, purpose, minimum fields, retention, and deletion owner." }
+    },
+    {
+      "id": "AUTH-04",
+      "owner_role": "service-directory owners",
+      "required_before": "configuration",
+      "state": "not_obtained",
+      "evidence_needed": { "zh": "公开服务目录、责任表、升级路径和版本批准。", "en": "Approved public service directory, responsibility table, escalation path, and version." }
+    },
+    {
+      "id": "AUTH-05",
+      "owner_role": "participant protection lead",
+      "required_before": "recruitment",
+      "state": "not_obtained",
+      "evidence_needed": { "zh": "招募、知情同意、未成年人监护和退出流程。", "en": "Recruitment, informed consent, minor safeguarding, and withdrawal process." }
+    },
+    {
+      "id": "AUTH-06",
+      "owner_role": "accessibility and bilingual review lead",
+      "required_before": "field_operation",
+      "state": "not_obtained",
+      "evidence_needed": { "zh": "无障碍通道、人工服务和关键双语内容的签署记录。", "en": "Signed review of accessible channels, human service, and critical bilingual content." }
+    }
+  ],
+  "operations_and_maintenance": {
+    "service_hours": "proposed 09:00-18:00 daily during the six-week trial; not committed",
+    "staffing_assumption": "two trained human service workers during service hours plus one on-call incident lead; roles unassigned",
+    "daily": [
+      "verify human, telephone, paper, and accessible channels before opening",
+      "verify service-directory version and responsibility-table availability",
+      "sample expected receipts for owner, deadline placeholder, appeal, and minimum data",
+      "close with deletion queue and unresolved-case handover"
+    ],
+    "weekly": [
+      "review all fail codes and human handoffs",
+      "review bilingual corrections and accessibility issues with representatives",
+      "freeze approved content version before the next week",
+      "publish a tabletop audit summary without personal data"
+    ],
+    "incident": [
+      "stop the affected automated path",
+      "move every open case to a named human queue",
+      "preserve a minimal tamper-evident incident record",
+      "notify the accountable and affected-person contact routes",
+      "delete unnecessary copied data after evidence preservation is authorized"
+    ],
+    "change_control": [
+      "two-person review for service, policy, privacy, and translation changes",
+      "versioned rollback point before every approved release",
+      "rerun all positive and negative fixtures before release",
+      "no field change without the future authorized operator sign-off"
+    ],
+    "record_retention": "default seven days for tabletop-like task records; any field retention must be re-approved by the future data controller and must not exceed thirty days without a documented legal and operational basis",
+    "continuity": [
+      "human service remains primary when automation is unavailable",
+      "telephone, paper, icons, and staffed counter remain usable without a smartphone",
+      "service directory and emergency contacts remain available offline",
+      "no essential public service depends on the trial"
+    ],
+    "owner_state": "operator_not_assigned"
+  },
+  "service_contract": {
+    "allowed_action_classes": ["information_only", "recommendation"],
+    "prohibited_auto_actions": [
+      "medical diagnosis or clinical triage",
+      "legal investment policy or eligibility determination",
+      "enforcement payment benefit or priority decision",
+      "dispatch without confirmed accountable owner and deadline",
+      "facial recognition persistent tracking or cross-scenario profiling"
+    ],
+    "required_channels": ["text", "voice", "large_text", "staff_counter", "paper"],
+    "human_handoff": "required_on_request_ambiguity_high_risk_or_failure",
+    "allowed_data_fields": [
+      "task_category", "preferred_channel", "referral_destination", "case_state", "language",
+      "anonymous_feedback", "facility_id", "problem_category", "event_time"
+    ],
+    "default_retention_days": 7,
+    "maximum_retention_days": 30,
+    "appeal_required": true,
+    "bilingual_required": ["zh-CN", "en"],
+    "emergency_escalation_required": true
+  },
+  "fail_code_registry": [
+    {
+      "code": "CONSENT_MISSING",
+      "meaning": { "zh": "缺少适用的知情同意。", "en": "Applicable informed consent is absent." },
+      "required_response": { "zh": "不处理数据，提供无记录的人工或纸面路径。", "en": "Do not process data; offer a no-record human or paper path." }
+    },
+    {
+      "code": "MINOR_GUARDIAN_REQUIRED",
+      "meaning": { "zh": "未成年人事项缺少监护同意。", "en": "A minor-related task lacks guardian consent." },
+      "required_response": { "zh": "停止自动路径，转保护流程和人工服务。", "en": "Stop the automated path and use safeguarding and human service." }
+    },
+    {
+      "code": "HUMAN_HANDOFF_UNAVAILABLE",
+      "meaning": { "zh": "用户请求人工但人工入口不可用。", "en": "A requested human route is unavailable." },
+      "required_response": { "zh": "暂停该路径并展示电话、纸面和稍后办理方式。", "en": "Suspend the path and show telephone, paper, and later-service options." }
+    },
+    {
+      "code": "ACCESSIBLE_CHANNEL_MISSING",
+      "meaning": { "zh": "请求的可访问通道不可用。", "en": "The requested accessible channel is unavailable." },
+      "required_response": { "zh": "不降级权益，转可用人工或等效通道并登记修复。", "en": "Do not reduce service rights; transfer to an equivalent human channel and log remediation." }
+    },
+    {
+      "code": "HIGH_IMPACT_AUTO_ACTION",
+      "meaning": { "zh": "请求自动执行高影响决定。", "en": "The request would auto-execute a high-impact decision." },
+      "required_response": { "zh": "阻断执行并转适格人工决定。", "en": "Block execution and refer to a qualified human decision-maker." }
+    },
+    {
+      "code": "DATA_MINIMIZATION_EXCEEDED",
+      "meaning": { "zh": "请求字段超过场景允许的最小集合。", "en": "Requested fields exceed the scenario's minimum allowed set." },
+      "required_response": { "zh": "删除超出字段并重新取得同意，无法删除则停止。", "en": "Remove excess fields and renew consent; stop if removal is not possible." }
+    },
+    {
+      "code": "RETENTION_UNBOUNDED",
+      "meaning": { "zh": "保存期缺失或超过三十日上限。", "en": "Retention is absent or exceeds the thirty-day ceiling." },
+      "required_response": { "zh": "不存储并转人工，直至确认保存与删除责任。", "en": "Do not store; use human service until retention and deletion ownership are confirmed." }
+    },
+    {
+      "code": "APPEAL_ROUTE_MISSING",
+      "meaning": { "zh": "没有可见的申诉或纠错入口。", "en": "No visible appeal or correction route exists." },
+      "required_response": { "zh": "停止出具结果，补充人工申诉入口。", "en": "Stop issuing outputs and add a human appeal route." }
+    },
+    {
+      "code": "EMERGENCY_ESCALATION_MISSING",
+      "meaning": { "zh": "识别到紧急信号但没有人工应急升级。", "en": "An emergency signal lacks human emergency escalation." },
+      "required_response": { "zh": "停止普通流程，展示并联系经批准的应急渠道。", "en": "Stop the ordinary flow and expose and contact an approved emergency route." }
+    },
+    {
+      "code": "BILINGUAL_PARITY_MISSING",
+      "meaning": { "zh": "关键内容缺少中英等义版本。", "en": "Critical content lacks equivalent Chinese and English versions." },
+      "required_response": { "zh": "撤下不完整语言版本，转双语人工，校对后恢复。", "en": "Withdraw the incomplete language version, use bilingual staff, and restore after review." }
+    }
+  ],
+  "acceptance_gates": [
+    {
+      "id": "G-01",
+      "measure": "fixture contract consistency",
+      "tabletop_threshold": "all declared positive and negative cases match expected decisions and codes",
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "只证明规则和样例一致，不证明服务有效。", "en": "Proves rule-fixture consistency only, not service effectiveness." }
+    },
+    {
+      "id": "G-02",
+      "measure": "sample receipt completeness",
+      "tabletop_threshold": 1,
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "预期样例必须含人工入口、责任角色、时限状态和申诉。", "en": "The expected sample must carry human route, owner role, deadline state, and appeal." }
+    },
+    {
+      "id": "G-03",
+      "measure": "high-impact automatic actions",
+      "tabletop_threshold": 0,
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "桌面规则必须阻断所有高影响自动动作。", "en": "Tabletop rules must block every high-impact automatic action." }
+    },
+    {
+      "id": "G-04",
+      "measure": "critical bilingual fixture parity",
+      "tabletop_threshold": 1,
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "关键提示的中英字段必须同时存在。", "en": "Chinese and English fields must coexist for critical notices." }
+    },
+    {
+      "id": "G-05",
+      "measure": "excess-data fixtures blocked",
+      "tabletop_threshold": 1,
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "只检验超集字段被识别，不证明现场系统已删除数据。", "en": "Checks recognition of excess fields only; it does not prove field deletion." }
+    },
+    {
+      "id": "G-06",
+      "measure": "accessible and non-digital fallback represented",
+      "tabletop_threshold": true,
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "合同必须保留大字、语音、人工和纸面通道。", "en": "The contract must retain large-text, voice, staff, and paper routes." }
+    },
+    {
+      "id": "G-07",
+      "measure": "unresolved authorization count before field run",
+      "tabletop_threshold": 0,
+      "field_evidence_state": "not_measured",
+      "interpretation": { "zh": "这是未来开场门；当前六项许可均未取得，因此不能现场运行。", "en": "This is a future opening gate; all six authorizations are currently absent, so no field run may start." }
+    }
+  ],
+  "stop_rollback_retirement": {
+    "immediate_stop": [
+      "high-risk medical legal investment policy or emergency misinformation",
+      "missing human owner or requested human route",
+      "personal-information leak or unapproved field collection",
+      "critical Chinese-English mismatch",
+      "accessible channel failure without equivalent human route",
+      "automatic high-impact action or dispatch",
+      "unexplained missed deadline or appeal failure"
+    ],
+    "safe_state": "human_and_non_digital_channels_only",
+    "rollback_steps": [
+      "disable the affected automated path",
+      "route open tasks to the named human queue",
+      "restore the previous approved content and responsibility-table version",
+      "remove unnecessary copied data under the future data controller's instruction",
+      "notify affected people through the visible complaint route",
+      "record cause owner remedy and verification without personal profiling"
+    ],
+    "recovery_gate": [
+      "accountable owner approves root-cause closure",
+      "privacy accessibility and bilingual reviewers sign the affected scope",
+      "all positive and negative fixtures pass",
+      "human and non-digital routes are rechecked",
+      "recovery version and residual limits are published"
+    ],
+    "retirement_triggers": [
+      "commission or funding ends",
+      "operator or accountable authority withdraws",
+      "required human or accessible channel cannot be sustained",
+      "repeated material harm or unresolved privacy incident",
+      "service directory can no longer be kept authoritative"
+    ],
+    "retirement_outputs": [
+      "public retirement notice and human alternatives",
+      "open-case transfer register",
+      "verified deletion or lawful archive register",
+      "hardware and account revocation checklist",
+      "final incident lessons and unresolved limitations"
+    ]
+  },
+  "evidence_limits": {
+    "does_not_prove": [
+      { "zh": "不证明任何政府、园区、场地方或服务机构已授权。", "en": "Does not prove authorization by any government, park, site, or service institution." },
+      { "zh": "不证明候选场地、责任人、预算或运营者已确认。", "en": "Does not prove a confirmed site, owner, budget, or operator." },
+      { "zh": "不证明真实用户满意度、准确率、时效或可达性。", "en": "Does not prove real-user satisfaction, accuracy, timeliness, or accessibility." },
+      { "zh": "不证明任何现场系统已部署或通过网络安全审查。", "en": "Does not prove any field system has been deployed or passed cybersecurity review." },
+      { "zh": "不证明真实个人信息已合法取得、处理或删除。", "en": "Does not prove lawful collection, processing, or deletion of real personal information." },
+      { "zh": "不证明健康、创业、翻译或工单结果的专业正确性。", "en": "Does not prove professional correctness of health, startup, translation, or ticket outcomes." },
+      { "zh": "资源类别清单不构成报价、资金承诺或政府投资估算。", "en": "The resource-category register is not a quote, funding commitment, or public investment estimate." }
+    ],
+    "claims_allowed": [
+      { "zh": "可声称合同字段、正负样例和运行规则可被本地确定性检查。", "en": "May claim the contract fields, fixtures, and rules are locally and deterministically checkable." },
+      { "zh": "可声称当前状态被明确标记为未授权、未运行。", "en": "May claim the current state is explicitly marked not authorized and not run." },
+      { "zh": "可声称预期回执、人工替代、停止与退出已形成可审查原型。", "en": "May claim an auditable prototype of expected receipt, human fallback, stop, and retirement controls." }
+    ],
+    "next_evidence": [
+      { "zh": "取得六项书面授权并锁定实际 RACI。", "en": "Obtain six written authorizations and lock the actual RACI." },
+      { "zh": "确认场地、设施容量、消防疏散和无障碍现状。", "en": "Confirm site, facility capacity, fire evacuation, and accessibility conditions." },
+      { "zh": "由服务责任方批准目录、词表、时限和升级路径。", "en": "Have service owners approve directories, vocabulary, deadlines, and escalation routes." },
+      { "zh": "完成隐私、网络安全、未成年人和参与者保护审查。", "en": "Complete privacy, cybersecurity, minor, and participant-protection reviews." },
+      { "zh": "由代表性用户和独立评价者共同确定基线和现场验收协议。", "en": "Co-define baseline and field acceptance protocol with representative users and an independent evaluator." },
+      { "zh": "获批后才运行小样本试验并发布区分设计门与现场结果的报告。", "en": "Only after approval, run a small field trial and publish a report separating design gates from field results." }
+    ]
+  }
+}

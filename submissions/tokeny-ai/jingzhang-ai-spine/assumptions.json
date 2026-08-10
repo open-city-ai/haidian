@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "site_boundary.geojson 与 key_areas.geojson 中的边界坐标源自征集公告公开附图与清权资料的数字化转绘，属 provisional 边界，未经官方 CAD/GIS 源文件核验。",
+      "impact": "若官方发布正式边界文件，须以官方坐标整体替换并重新计算全部面积类指标（site_area_sqm、key_area_*、land_use_*、phase_*），同时更新 BOUNDARY_TRUST 自检结论。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "控规刚性指标（容积率、建筑高度控制、绿地率、退线等）与市政管线、土地权属等约束在本包中为概念建议或 unknown 状态，未获得官方控规文件确认。",
+      "impact": "官方控规/市政资料补齐后须以法定控制值为准修订开发强度、退线与市政布局章节，触发 METRICS_RECOMPUTED 与 LAND_USE_TOPOLOGY 复算。"
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "pending_professional_confirmation",
+      "statement": "buildings.geojson 建筑基底来自公开影像/底图目视转绘，建筑层数、结构与保留改造建议为概念推定，未逐栋核对产权与实施状态。",
+      "impact": "实施级拆改留决策须以官方建筑普查与产权数据复核，任何单栋处置结论在复核前不具约束力。"
+    },
+    {
+      "id": "A-ROAD-001",
+      "status": "pending_professional_confirmation",
+      "statement": "roads.geojson 路网与轨道站点接驳基于公开路网与轨道规划推演，线路走向、站点位置与道路红线以官方专项规划为准。",
+      "impact": "官方交通专项规划发布后须替换路网与接驳假设，重新校核交通慢行章节与 road_* 指标。"
+    },
+    {
+      "id": "A-PHASE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "phasing.geojson 三阶段实施分区与更新项目清单为概念性建议，项目名称、实施主体与时序未获官方确认。",
+      "impact": "官方实施计划明确后须重排分期分区与项目清单，phase_* 面积指标随 phasing.geojson 更新而复算。"
+    },
+    {
+      "id": "A-CASE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "案例研究与 AI 场景对标采用公开案例资料，案例数据（规模、运营指标）未经实地核验，仅作方向性参照。",
+      "impact": "引用案例若被证伪或官方数据发布，须替换对应案例论据并更新 AI 场景章节结论。"
+    },
+    {
+      "id": "A-METRIC-001",
+      "status": "pending_professional_confirmation",
+      "statement": "全部指标由 geometry 几何层经 shapely 复算得到，指标口径（用地分类、范围、面积基准）依赖上文假设与 §5 指标定义。",
+      "impact": "任何几何层或假设变更时须整体重跑复算脚本并同步 metrics.json 与核心指标展示，保证 METRICS_RECOMPUTED 自检通过。"
+    }
+  ]
+}

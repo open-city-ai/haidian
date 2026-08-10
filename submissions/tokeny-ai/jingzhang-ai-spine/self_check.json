@@ -1,0 +1,56 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "site_boundary.geojson; A-BOUNDARY-001",
+      "message": "边界为基于公告附图与公开资料的数字化 provisional 边界，几何自洽、拓扑无自交，但未经官方源文件核验。",
+      "suggested_fix": "以官方发布边界文件替换后重跑全部面积类指标复算并更新本项结论（由 official 数据子任务最终替换）。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "key_areas.geojson; A-BOUNDARY-001; A-CONTROLS-001",
+      "message": "三重点区域（众智园/AI原点社区/大钟寺）边界按公告图示 provisional 划定，面积与官方口径可能存在偏差。",
+      "suggested_fix": "待官方重点区域范围确认后替换几何并重算 key_area_* 指标（由 official 数据子任务最终替换）。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "minor",
+      "target": "land_use.geojson",
+      "message": "用地分区按用地用海分类指南口径编码，图斑无重叠缝隙，总面积与 site_area_sqm 一致。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html; assets/figures/*.png",
+      "message": "展示物由本地脚本以静态矢量/位图方式生成，不含动态第三方脚本依赖，图面数据与 geometry/metrics 一致。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "proposal.md; report/proposal.html; compliance_matrix.json; standard_matrix.json",
+      "message": "方案结论均可在 sources.json 与 assumptions.json 中找到来源或假设支撑，provisional 数据已显式标注。"
+    },
+    {
+      "check_id": "METRICS_RECOMPUTED",
+      "result": "pass",
+      "severity": "minor",
+      "target": "metrics.json; metrics_recalculation",
+      "message": "全部指标由 geometry 几何层经 shapely 复算，脚本输出与 metrics.json 一致，复算随几何变更可重放。"
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "minor",
+      "target": "proposal.md/.en; report/proposal.html/.en; visual/index.html/.en; drawings/*.pdf/.en; assets/figures/*.png/.en",
+      "message": "双语条目按 manifest 中 language/translation_of 标注齐备，.en 文件由翻译子任务生成，finalize 时统一校验 sha256。"
+    }
+  ]
+}

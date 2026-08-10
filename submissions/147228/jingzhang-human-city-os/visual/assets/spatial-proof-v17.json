@@ -1,0 +1,76 @@
+{
+  "schema_version": "0.1.0",
+  "package_iteration": "v1.7",
+  "status": "conceptual_spatial_display_evidence",
+  "purpose_zh": "在不改变任何正式几何和指标的前提下，把同源空间证据重新排成总体关系图、三处重点区放大图、廊道交叉图和指标回读图；放大框、节点族和人工接管文字都回指包内 GeoJSON 与场景台账。",
+  "purpose_en": "Without changing formal geometry or metrics, reorganize the same spatial evidence into an overview, three focus-area zooms, a corridor-crossing map, and a metric readback board; zooms, node families, and staffed-takeover text all return to bundled GeoJSON and scenario records.",
+  "inputs": {
+    "geometry_files": [
+      "geometry/site_boundary.geojson",
+      "geometry/land_use.geojson",
+      "geometry/key_areas.geojson",
+      "geometry/roads.geojson",
+      "geometry/green_space.geojson",
+      "geometry/public_space.geojson",
+      "geometry/constraints.geojson"
+    ],
+    "metric_file": "metrics.json",
+    "structured_refs": [
+      "visual/assets/spatial-proof-v16.json",
+      "visual/assets/scenario-cards.json",
+      "visual/assets/personas-and-fairness.json",
+      "visual/assets/release-gate-ledger.json"
+    ]
+  },
+  "display_method": {
+    "metric_crs": "EPSG:4548",
+    "coordinate_rule": "projected easting/northing are transformed only for display so north reads to the right on the elongated corridor",
+    "display_aspect_rule": "the map panels may expand the short axis for legibility; no pixel distance, pixel area, or visual proportion is used as a metric",
+    "zoom_rule": "each focus-area inset uses the exact submitted feature outline plus intersecting local layers; it is not a surveyed detail plan",
+    "metric_rule": "all displayed areas, ratios and lengths remain the values in metrics.json or recomputation from package GeoJSON in EPSG:4548"
+  },
+  "figure_outputs": [
+    {
+      "id": "core-01",
+      "files": ["assets/figures/site-overview.png", "assets/figures/site-overview.en.png"],
+      "spatial_evidence": ["SITE-001", "LU-H01", "LU-D01", "LU-C01", "LU-B01", "LU-B02", "LU-C02", "PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "readability_addition": "three focus-area insets and a right-hand evidence checklist"
+    },
+    {
+      "id": "core-02",
+      "files": ["assets/figures/land-use-structure.png", "assets/figures/land-use-structure.en.png"],
+      "spatial_evidence": ["LU-H01", "LU-D01", "LU-C01", "LU-B01", "LU-B02", "LU-C02"],
+      "readability_addition": "six color-keyed units with shared-edge and coverage rule"
+    },
+    {
+      "id": "core-03",
+      "files": ["assets/figures/key-areas.png", "assets/figures/key-areas.en.png"],
+      "spatial_evidence": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "readability_addition": "three exact-outline zooms paired with differentiated action chains"
+    },
+    {
+      "id": "core-04",
+      "files": ["assets/figures/mobility-bluegreen.png", "assets/figures/mobility-bluegreen.en.png"],
+      "spatial_evidence": ["ROAD-A-SKILL", "ROAD-B-SILICON", "ROAD-B-LOWAIR", "ROAD-C-SPONGE"],
+      "readability_addition": "four corridor cards and a repeated crossing-node safety rule"
+    },
+    {
+      "id": "core-05",
+      "files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
+      "spatial_evidence": ["site_area_sqm", "green_ratio", "public_space_ratio", "scenario_node_count"],
+      "readability_addition": "geometry-to-metric-to-unknown chain"
+    }
+  ],
+  "limits_zh": [
+    "official_boundary=false，geometry_role=provisional_constraint；放大框不是官方红线、测绘图或工程详图。",
+    "所有空间动作仍为概念建议/参考方案，供专业团队深化研究。",
+    "显示变形只为阅读，不改变 metrics.json、GeoJSON、面积、占比或线长。",
+    "居民、就业、人工服务、PUE、绿电和余热等结果仍为 unknown。"
+  ],
+  "limits_en": [
+    "official_boundary=false and geometry_role=provisional_constraint; zooms are not official redlines, surveys, or engineering details.",
+    "All spatial actions remain conceptual suggestions or reference schemes for professional teams to deepen.",
+    "Display expansion is for reading only and changes no metrics.json, GeoJSON, area, ratio, or length.",
+    "Resident, employment, manual-service, PUE, green-power, and recovered-heat outcomes remain unknown."
+  ]
+}

@@ -235,20 +235,65 @@
       "recalculation_trigger": "Receipt of official road redlines or creation of a cleared, width-supported road polygon layer."
     },
     "phasing_area_sqm": {
-      "status": "unknown",
-      "value": null,
+      "status": "known",
+      "value": 17642.407,
       "unit": "sqm",
       "source_files": [
         "geometry/phasing.geojson"
       ],
       "formula": "sum(projected_area(phasing_polygons, EPSG:4548))",
-      "confidence": "unknown",
+      "confidence": "low",
       "assumptions": [
         "Phasing areas are conditional concept gates, not a government programme, funding promise, or fixed construction schedule."
       ],
-      "reason": "Recompute after the condition-gated phasing geometry is finalized.",
-      "evidence_class": "provisional_design_geometry_recalculation_pending",
+      "evidence_class": "concept_design_geometry_recalculation",
+      "precision_note": "This is the summed envelope of four conceptual condition gates, not a construction area, programme, budget, or approved schedule.",
       "recalculation_trigger": "Any edit to geometry/phasing.geojson or its prerequisite conditions."
+    },
+    "t1_tabletop_positive_fixture_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/t1-public-service-tabletop/fixtures.positive.json"
+      ],
+      "formula": "count(cases)",
+      "confidence": "high",
+      "assumptions": [
+        "This count describes synthetic offline fixtures only and is not a field sample or service performance result."
+      ],
+      "evidence_class": "submission_controlled_offline_fixture_inventory"
+    },
+    "t1_tabletop_negative_fixture_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/t1-public-service-tabletop/fixtures.negative.json"
+      ],
+      "formula": "count(cases)",
+      "confidence": "high",
+      "assumptions": [
+        "Each synthetic negative fixture is expected to stop or hand off; the count is not a field incident rate."
+      ],
+      "evidence_class": "submission_controlled_offline_fixture_inventory"
+    },
+    "t1_field_performance": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/t1-public-service-tabletop/contract.json",
+        "visual/assets/t1-public-service-tabletop/receipt.example.json"
+      ],
+      "formula": "authorized_field_successes / authorized_field_trials",
+      "confidence": "unknown",
+      "assumptions": [
+        "The field trial is not authorized and has not run; performance_results must remain null."
+      ],
+      "reason": "No authorized field trial, population, baseline, or observation exists.",
+      "evidence_class": "field_performance_not_measured",
+      "recalculation_trigger": "Only after authorization, pre-registration, field execution, and independent human review."
     }
   }
 }

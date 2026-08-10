@@ -1,0 +1,110 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "SITE-001 保持 provisional_constraint、official_boundary=false，并披露整包重算要求。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区保持 provisional 状态，PROV-KEY-003 不声称已锚定大钟寺站。"
+    },
+    {
+      "check_id": "ISSUE_846_DISCLOSURE",
+      "result": "pass",
+      "severity": "major",
+      "target": "assumptions.json#A-OSM-DELTA-001",
+      "message": "约 412.5 米背景差异已登记，OSM 未被升级为官方红线。"
+    },
+    {
+      "check_id": "ISSUE_1029_DISCLOSURE",
+      "result": "pass",
+      "severity": "major",
+      "target": "assumptions.json#A-DZ-ANCHOR-001",
+      "message": "约 2.26 公里名称锚点偏差已登记，站城结论保持待确认。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "六类用地无 pair overlap，并在仓库 spatial reviewer 容差内完整覆盖 SITE-001。"
+    },
+    {
+      "check_id": "GEOMETRY_VALIDITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "12 建筑原型、16 条慢行中心线、4 组绿地、12 邻站和 3 分期几何有效且位于范围内。"
+    },
+    {
+      "check_id": "METRICS_RECALCULATION",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "空间指标由 EPSG:4548 几何复算，法定强度、高度与绿地率保持 unknown。"
+    },
+    {
+      "check_id": "REFERENCE_INTEGRITY",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "主控来源、Issues、案例访问状态、许可与限制已登记；背景案例不支撑本地控制结论。"
+    },
+    {
+      "check_id": "SCENARIO_GOVERNANCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "正文已完成 12 张场景卡和 4 项产业测试；每张卡均说明人工责任、非 AI 等价服务、数据边界、公共回报与退出条件。"
+    },
+    {
+      "check_id": "BILINGUAL_PARITY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.en.md",
+      "message": "中英文均为 13 章、4 张表、12 张场景卡和 5 个图位；92 个证据标记的多重集合一致，全部展示 companion 已成对生成。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "visual_review 通过；Playwright 对中英文桌面与手机视口确认 5 图、12 场景、零断图、零横向溢出、零远程请求和零控制台错误。"
+    },
+    {
+      "check_id": "PDF_VALIDITY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "drawings/",
+      "message": "中英文 A3 文册各 8 页且为 420×297 mm；中英文 A0 展板各 4 页且为 1189×841 mm；页面树、图片对象、字体子集和文件尾完整。"
+    },
+    {
+      "check_id": "COPYRIGHT_CLEARANCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "report/copyright_statement.md",
+      "message": "图件为投稿几何与指标派生，不含外部图片；Noto Sans SC、PDF 可嵌入字体子集、Python 依赖、Playwright 与 Chrome 版本及许可边界均已登记。"
+    },
+    {
+      "check_id": "MANIFEST_GIT_BLOB_PARITY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "finalization 后使用隔离 Git index 与隔离对象目录复核 39 个 manifest 条目；将要提交的 blob SHA-256 零缺失、零失配。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "professional_review 通过：6 项专业标准、15 项设计深度与正文 source/standard/depth/data/metric 引用形成闭环。"
+    }
+  ]
+}
