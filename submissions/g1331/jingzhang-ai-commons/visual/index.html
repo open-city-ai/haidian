@@ -52,6 +52,12 @@
     .figure figcaption { padding: 12px 16px 14px; color: #dce8e6; font-size: 12px; display: flex; justify-content: space-between; gap: 14px; }
     .figure figcaption span:last-child { color: var(--cyan); text-align: right; }
     .overview { display: grid; grid-template-columns: 1.45fr .55fr; gap: 22px; align-items: stretch; }
+    .anchor-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 24px; }
+    .anchor-card { padding: 18px; border: 1px solid var(--line); background: rgba(255,255,255,.34); min-height: 166px; }
+    .anchor-card b { display: block; color: var(--coral); font: 800 11px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: .12em; }
+    .anchor-card h3 { margin: 7px 0; font-size: 19px; }
+    .anchor-card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .anchor-route { margin-top: 14px; padding-top: 10px; border-top: 1px dashed var(--line); color: var(--ink-2); font-size: 12px; }
     .rail-card { padding: 24px; background: var(--ink); color: var(--paper); display: flex; flex-direction: column; justify-content: space-between; min-height: 100%; }
     .rail-card h3 { margin: 0 0 14px; font-size: 26px; letter-spacing: -.04em; }
     .rail-line { position: relative; margin: 28px 0 24px; padding-left: 26px; border-left: 3px solid var(--cyan); }
@@ -112,7 +118,7 @@
     @media (max-width: 900px) {
       .hero, .overview, .band, .scenario-layout, .audit { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
-      .grid-3, .projects { grid-template-columns: 1fr; }
+      .grid-3, .projects, .anchor-strip { grid-template-columns: 1fr; }
       nav { display: none; }
     }
     @media (max-width: 560px) {
@@ -131,7 +137,7 @@
     <header class="topbar">
       <a class="brand" href="#top"><span class="mark" aria-hidden="true"></span><span>JINGZHANG LOOP</span></a>
       <nav aria-label="页面导航">
-        <a href="#map">总览地图</a><a href="#areas">重点区域</a><a href="#scenarios">AI 场景</a><a href="#audit">自检状态</a>
+        <a href="#map">总览地图</a><a href="#anchors">地点锚点</a><a href="#areas">重点区域</a><a href="#scenarios">AI 场景</a><a href="#audit">自检状态</a>
       </nav>
     </header>
 
@@ -151,7 +157,7 @@
       </section>
 
       <section id="map">
-        <div class="section-head"><h2>总览地图</h2><p class="kicker">以设计意图为主、以 provisional boundary 为低对比约束，展示空间关系而非假装精确的法定边界。</p></div>
+        <div class="section-head"><h2>总览地图</h2><p class="kicker">先定位三个公开地点锚点，再读设计层；灰色 provisional boundary 只是约束，不是假装精确的法定边界。</p></div>
         <div class="overview">
           <figure class="figure"><img src="../assets/figures/site-overview.png" alt="京张共振场总体空间结构图"><figcaption><span>Site overview / one spine, two seams</span><span>SITE-001 · provisional</span></figcaption></figure>
           <aside class="rail-card">
@@ -161,8 +167,17 @@
               <p><b>TRANSLATE</b>AI 原点社区：近校转译、开源学习、人才生活</p>
               <p><b>EXCHANGE</b>大钟寺：站城交换、终端体验、国际交往</p>
             </div>
-            <small>Map QA: AI 原点社区—京张铁路遗址公园约 728 m；后者—大钟寺站约 3,378 m。仅作背景核对。</small>
+            <small>Map QA: 以五道口段公园为代表锚点，原点社区—公园约 636 m，公园—大钟寺站约 3,451 m。仅作背景路径观察。</small>
           </aside>
+        </div>
+      </section>
+
+      <section id="anchors">
+        <div class="section-head"><h2>地点锚点</h2><p class="kicker">地图工具只做背景 QA；地点点位与临时设计 polygon 分开显示，不互相替代。</p></div>
+        <div class="anchor-strip">
+          <article class="anchor-card"><b>PUBLIC POI / 01</b><h3>AI 原点社区</h3><p>成府路 45-1；邻近五道口。公开地点锚点，不是 key-area 红线。</p><div class="anchor-route">→ 五道口段京张铁路遗址公园：约 636 m 步行观察</div></article>
+          <article class="anchor-card"><b>PUBLIC POI / 02</b><h3>京张铁路遗址公园</h3><p>地图返回多个公开段点；本包以五道口段作为路径观察的代表锚点。</p><div class="anchor-route">原点社区 → 636 m → 公园 → 3,451 m → 大钟寺站</div></article>
+          <article class="anchor-card"><b>PUBLIC POI / 03</b><h3>大钟寺站</h3><p>12 / 13 号线；作为城市型交换接口的公开终点锚点。</p><div class="anchor-route">公园代表段 → 大钟寺站：约 3,451 m</div></article>
         </div>
       </section>
 
@@ -268,7 +283,7 @@
             <div class="check"><span>边界、权属、控规、工程</span><span>待专业确认</span></div>
           </article>
         </div>
-        <details open><summary>来源</summary><p>官方公告、agent taskbook、场地包和标准快照构成正式依据；高德 POI/步行结果只作背景 QA。完整来源、获取日期、用途和限制见 sources.json。</p></details>
+        <details open><summary>来源</summary><p>官方公告、agent taskbook、场地包和标准快照构成正式依据；高德 POI/步行结果（2026-08-10）只作背景 QA。完整来源、获取日期、用途和限制见 sources.json。</p></details>
         <details><summary>假设</summary><p>A-BOUNDARY-001 / A-CONTROLS-001 / A-GEOMETRY-001 / A-INTERFACE-001 / A-DATA-001 / A-HERITAGE-001 / A-OPERATIONS-001 / A-MAP-001。官方空间数据替换后必须联动重算。</p></details>
         <details><summary>自检状态</summary><p>本页呈现的是 formal package 的目标交付状态；spatial review、visual review、professional review 和 participant preflight 的实际结果以 self_check.json 与 CI 为准。</p></details>
       </section>

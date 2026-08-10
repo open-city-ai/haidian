@@ -24,9 +24,9 @@ iteration: "v0.1"
 
 研究方法分四步：先读公告、任务书、允许设计空间和标准；再把产业、空间、交通、蓝绿和 AI 场景拆成结构化对象；随后由统一坐标和共享边界生成设计图层；最后用面积、比例、数量、图面和人工边界声明共同校核。任务书的人类复核边界在每一层都有效 [source:SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK] [source:SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT]。
 
-本轮新增地图工具只作为背景 QA：高德结果把北京 AI 原点社区定位在成府路 45 号，并显示其邻近五道口站；京张铁路遗址公园结果覆盖清华东路至大钟寺的多个公开 POI；大钟寺结果显示 12 号线、13 号线及公交站接驳 [source:MAP-AMAP-POI-QA-2026-08-09]。
+本轮地图 QA 将公开 POI 作为地点锚点：AI 原点社区返回成府路 45-1、邻近五道口；京张铁路遗址公园返回五道口段及“清华东路至大钟寺”的多段 POI；大钟寺站返回 12 号线、13 号线。图面把这些锚点与 provisional key-area polygon 分开显示，因为它们不用于修正边界 [source:MAP-AMAP-POI-QA-2026-08-10]。
 
-步行路径观察中，AI 原点社区到京张铁路遗址公园约 728 米，后者到大钟寺站约 3,378 米，这支持“先校核近邻、再缝合长廊”的交通叙事，但不改变提交几何或正式指标 [source:MAP-AMAP-WALKING-QA-2026-08-09]。对“众智园”的搜索出现天津同名 POI，因此本包不使用该结果定义众智园边界，继续以任务书和 provisional key area 为准 [source:MAP-AMAP-POI-QA-2026-08-09] [source:KEY-AREA-SOURCE]。
+以五道口段公园 POI 作为代表锚点，高德步行观察为原点社区至公园约 636 米、公园至大钟寺站约 3,451 米；由于公园是线性、多段 POI，这些是当前路径观察，不是设计指标或无障碍审计。它们只支持“先校核近邻、再缝合长廊”的叙事，不改变提交几何 [source:MAP-AMAP-WALKING-QA-2026-08-10]。对“众智园”的搜索出现天津同名 POI，因此本包不使用该结果定义众智园边界，继续以任务书和 provisional key area 为准 [source:MAP-AMAP-POI-QA-2026-08-10] [source:KEY-AREA-SOURCE]。
 
 ![总体空间结构与证据链图](assets/figures/site-overview.png)
 
@@ -226,7 +226,7 @@ AI 治理风险采用四道保险：每个接口显示用途、数据新鲜度�
 - 城市设计、控规和用地分类参考：[source:SRC-2017-MOHURD-URBAN-DESIGN-MEASURES]、[source:SRC-MOHURD-CONTROL-DETAILED-PLANNING]、[source:SRC-2023-MNR-LAND-USE-CLASSIFICATION]。
 - 专业标准与资料缺口：[standard:MOHURD-URBAN-DESIGN-MEASURES]、[standard:MOHURD-CONTROL-DETAILED-PLANNING]、[standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
 - 建筑设计深度资料缺口：[standard:MOHURD-ARCH-DESIGN-DEPTH-2016]。
-- 地图工具交叉核对：[source:MAP-AMAP-POI-QA-2026-08-09]、[source:MAP-AMAP-WALKING-QA-2026-08-09]；仅作背景 QA，不进入正式边界、面积或工程结论。
+- 地图工具交叉核对：[source:MAP-AMAP-POI-QA-2026-08-10]、[source:MAP-AMAP-WALKING-QA-2026-08-10]；仅作背景 QA，不进入正式边界、面积或工程结论。
 - 国际机制案例（一）：[source:CASE-HELSINKI-AI-REGISTER]、[source:CASE-AMSTERDAM-ALGORITHM-REGISTER]、[source:CASE-BARCELONA-DECIDIM]。
 - 国际机制案例（二）：[source:CASE-SINGAPORE-OGP]、[source:CASE-SEOUL-S-MAP]、[source:CASE-VIRTUAL-SINGAPORE]。
 - 国际机制案例（三）：[source:CASE-BARCELONA-SUPERBLOCK]。
