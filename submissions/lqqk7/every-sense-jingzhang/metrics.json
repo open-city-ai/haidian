@@ -1,0 +1,120 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Repository provisional boundary is used for intake visualization and topology checks only; it is not an official redline or precise-area basis."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "independent_task_completion_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["assumptions.json"],
+      "formula": "independently_completed_tasks / observed_tasks",
+      "confidence": "unknown",
+      "assumptions": ["Requires voluntary task testing with accessible participation and professional review."],
+      "reason": "No cleared field baseline or real participant study is available."
+    },
+    "multichannel_information_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["assumptions.json"],
+      "formula": "service_points_with_two_or_more_equivalent_information_channels / audited_service_points",
+      "confidence": "unknown",
+      "assumptions": ["Channel equivalence requires user testing, not a file-count proxy."],
+      "reason": "Service-point inventory and multimodal accessibility audit are missing."
+    },
+    "ai_off_service_equivalence_gap": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["assumptions.json"],
+      "formula": "abs(completion_rate_ai_on - completion_rate_ai_off)",
+      "confidence": "unknown",
+      "assumptions": ["The same public task must be tested with AI enabled and disabled."],
+      "reason": "No operational services or paired task-test results exist."
+    },
+    "human_handover_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["assumptions.json"],
+      "formula": "successful_human_handovers / attempted_human_handovers",
+      "confidence": "unknown",
+      "assumptions": ["Handover must be timed and evaluated with informed participants in a controlled trial."],
+      "reason": "No approved trial or operator baseline is available."
+    }
+  }
+}

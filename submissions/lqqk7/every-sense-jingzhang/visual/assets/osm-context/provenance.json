@@ -1,0 +1,82 @@
+{
+  "schema_version": "0.1.0",
+  "dataset": "OSM public background context for design review v2",
+  "purpose": "background_only",
+  "source": "OpenStreetMap contributors",
+  "retrieved_at_utc": "2026-08-10T04:28:04Z",
+  "endpoint": "https://overpass-api.de/api/interpreter",
+  "request_count": 1,
+  "fallback_endpoint_used": false,
+  "query": {
+    "sha256": "592a059359fda283ed6e94dc07ab583878fb17eeca5b172316fb0a73797ae871",
+    "summary": "Bounded Overpass query for ways tagged highway, railway, building, park, selected green land uses, water or waterway, plus nodes tagged as rail/public-transport stations or subway entrances; output body geometry; users and changeset metadata not requested."
+  },
+  "bbox_epsg4326": {
+    "south": 39.937,
+    "west": 116.337,
+    "north": 40.029,
+    "east": 116.358
+  },
+  "coordinate_reference_system": "EPSG:4326 (WGS 84)",
+  "osm_base_timestamp": "2026-08-10T04:25:42Z",
+  "raw_snapshot": {
+    "format": "Overpass JSON, gzip compressed",
+    "element_count": 6618,
+    "sha256": "a1301fb92e980b81833f897cf903bfa17097599fe173a58346f7e8addfe27ef6",
+    "distributed": false
+  },
+  "processing": {
+    "script_sha256": "a0a3b969c06ca7cc1419bbc92d35bb8b227b63c766ffba9384733a1b9b0c4024",
+    "script_distributed": false,
+    "steps": [
+      "Request bounded public OSM data without users or changeset metadata.",
+      "Use Overpass way geometry directly; convert station and entrance nodes to Point features.",
+      "Clip to the recorded bbox and classify features as roads, buildings, rail, green_water, or stations from OSM tags.",
+      "Preserve OSM type and identifier; mark every derived feature background_only and not_official.",
+      "Do not use the dataset to derive, revise, validate, or replace project or key-area boundaries."
+    ]
+  },
+  "derived_layers": {
+    "roads.geojson": {
+      "feature_count": 3505,
+      "sha256": "b61164b59e141bf294b6704bc4c9bace6d5894f838786d7534cda401c921e978",
+      "distributed": false
+    },
+    "buildings.geojson": {
+      "feature_count": 2738,
+      "sha256": "491e3b151e257bc9f26de76092eceab7bef78a96f47d9a14c928c9272bbf05e2",
+      "distributed": false
+    },
+    "rail.geojson": {
+      "feature_count": 138,
+      "sha256": "2ee226e9f319210186b29420e895291953ff680d1631686e6f48bfc37537c2a7",
+      "distributed": false
+    },
+    "green_water.geojson": {
+      "feature_count": 189,
+      "sha256": "f033fb043fae860c812186d20b59a540b55da4e32eaa560f9001d39a815f00c7",
+      "distributed": false
+    },
+    "stations.geojson": {
+      "feature_count": 48,
+      "sha256": "fd494385de1af149e851059dbe24809fc3c4e086bad619b18d9dc2535e39ab51",
+      "distributed": false
+    }
+  },
+  "package_distribution": {
+    "provenance_metadata_distributed": true,
+    "raw_database_distributed": false,
+    "derived_database_distributed": false,
+    "remote_tiles_included": false,
+    "runtime_network_required": false
+  },
+  "attribution": "© OpenStreetMap contributors",
+  "license": "Open Database License (ODbL) 1.0",
+  "license_url": "https://opendatacommons.org/licenses/odbl/1-0/",
+  "use_limitations": [
+    "Background context only; OSM is volunteer-maintained and has variable completeness and positional accuracy.",
+    "Not an official boundary, statutory planning control, road redline, engineering alignment, heritage-control line, ownership record, precise-area source, accessibility-compliance audit, or approved implementation commitment.",
+    "Not a basis for deriving, revising, validating, or replacing the repository provisional project boundary or key-area geometry.",
+    "Any later distribution of a derivative database requires separate ODbL attribution and share-alike review."
+  ]
+}
