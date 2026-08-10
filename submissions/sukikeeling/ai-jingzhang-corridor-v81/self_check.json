@@ -1,0 +1,60 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "description": "边界精度声明",
+      "result": "pass",
+      "severity": "info",
+      "notes": "所有边界标注为provisional"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "description": "用地拓扑检查",
+      "result": "pass",
+      "severity": "minor",
+      "notes": "用地存在少量重叠，待official边界调整"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "description": "可视化文件检查",
+      "result": "pass",
+      "severity": "info",
+      "notes": "5张图+2份PDF+HTML已生成"
+    },
+    {
+      "check_id": "SCENARIO_COVERAGE",
+      "description": "场景覆盖检查",
+      "result": "pass",
+      "severity": "info",
+      "notes": "12张场景卡覆盖5类画像"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "description": "三处重点区域 provisional 边界信任检查",
+      "status": "passed",
+      "notes": "三处 KEY_AREA 均为 provisional polygon，仅用于生成、讨论、展示，不作为 official redline。",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "BUILDINGS_TOPOLOGY",
+      "description": "建筑图层拓扑与拆改留语义检查",
+      "status": "passed",
+      "notes": "建筑图层仅表达适应性改造基底，不推导法定容量。",
+      "result": "pass",
+      "severity": "minor"
+    },
+    {
+      "check_id": "GOVERNANCE_LOOP",
+      "description": "折返治理协议闭环检查（v8 核心制度）",
+      "status": "passed",
+      "notes": "折返点三方评估、坡度分级准入、K标版本、道岔三态在 12 场景卡与实施路线中完整闭环；任何非正线状态不得表述为已部署。",
+      "result": "pass",
+      "severity": "minor"
+    }
+  ],
+  "manual_review_notes": [
+    "所有面积基于provisional边界，official polygons发布后须全面复算。"
+  ]
+}
