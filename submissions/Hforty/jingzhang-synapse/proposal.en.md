@@ -8,7 +8,7 @@ translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "Rooted in the centennial self-innovation legacy of the Jing-Zhang Railway and structured around the 9km heritage park green corridor, Jingzhang Synapse proposes a living AI urban spine that stitches north to south, east to west — carrying AI full-stack innovation, native scenarios, cultural narratives, and global exchange."
 tracks: ["ai-traffic-walkability"]
-scenarios: ["ai-innovation-corridor"]
+scenarios: ["SC-01"]
 iteration: "v1.0"
 ---
 
@@ -399,3 +399,8 @@ Official areas are taken directly from the Pre-Announcement text (known, high co
 10. International Association of Science Parks and Areas of Innovation. Zhongguancun Selected as a Global Top 10 Innovation District (2025) [source:SRC-2025-GLOBAL-TOP10-INNOVATION-DISTRICT].
 11. Public encyclopedic sources / Ministry of Railways historical materials. Jing-Zhang Railway and Zhan Tianyou's Y-shaped Railway (1909) [source:SRC-1909-JINGZHANG-RAILWAY-HISTORY].
 12. Station F official website (Paris); MaRS Discovery District official website (Toronto) [source:SRC-REF-STATION-F-PARIS][source:SRC-REF-MARS-TORONTO].
+
+
+## AI Innovation Ecosystem, Talent Personas & AI+ Scenarios
+
+See Chinese version for full content. This section covers AI innovation ecosystem design, 6 talent personas, 12 AI+ scenario cards, and 3 AI landmark destinations.

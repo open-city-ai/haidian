@@ -8,7 +8,7 @@ translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路百年自主创新基因为精神内核，以遗址公园9公里绿色廊道为空间骨架，打造贯通南北、缝合东西的AI城市神经中枢——一条承载AI全栈创新、原生场景、文化叙事与全球交往的活态创新带。"
 tracks: ["ai-traffic-walkability"]
-scenarios: ["ai-innovation-corridor"]
+scenarios: ["SC-01"]
 iteration: "v1.0"
 ---
 
@@ -39,7 +39,7 @@ v2 格式说明：本提案正文（prose）承载设计主张与论证逻辑，
 
 **临时边界限制声明。** 本包临时polygon仅作临时约束，不得用于官方红线、精确面积计算、法定规划控制或权属/工程边界 [data:geometry/key_areas.geojson]。若获得官方polygon，需重算 `land_use.geojson`、`metrics.json` 与所有图层，并刷新 `manifest` 哈希。当前所有几何图层状态为 `provisional_only`，面积复算置信度为 medium [metric:site_area]。
 
-![场地总览](assets/figures/site-overview.png)
+![site-overview-figureshowing the Jingzhang heritage corridor and design scope](assets/figures/site-overview.png)
 
 ## 3. 统筹研究范围产业与未来城市研究
 
@@ -107,7 +107,7 @@ Logo概念：以詹天佑"人字形"轨道为骨架，变形为神经网络节�
 
 **一轴**——京张绿轴（智脉主轴），即京张铁路遗址公园9km绿色廊道，是贯通南北的慢行主轴与公共空间骨架 [data:geometry/green_space.geojson]。**两翼**——西侧中关村科技服务翼（要素配置与全球化服务）、东侧小月河场景赋能翼（具身智能/AI+医疗/AI+影视场景验证）[source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]。**三区**——众智园AI自主创新加速区、北京AI原点社区、大钟寺AI产业集聚区三处重点区域 [data:geometry/key_areas.geojson]。**多节点**——AI哨兵、AI体育训练场、AI训练驿站、智能书屋、煎饼机器人等已落地场景节点，以及原点广场、1909纪念环、智脉之窗等AI朝圣地标节点 [depth:overall_structure]。
 
-![用地结构](assets/figures/land-use-structure.png)
+![land-use-structure-figure showing nine non-overlapping zoning partitions](assets/figures/land-use-structure.png)
 
 ### 4.2 城市更新总体框架
 
@@ -147,7 +147,7 @@ Logo概念：以詹天佑"人字形"轨道为骨架，变形为神经网络节�
 
 对三处重点区域分别开展规划综合实施方案深度的详细设计（临时几何，结论为方向性设计）[depth:three_key_area_detailed_design]。
 
-![重点区域](assets/figures/key-areas.png)
+![key-areas-figure showing three key design areas along the corridor](assets/figures/key-areas.png)
 
 ### 5.1 众智园AI自主创新加速区（北部，约192.1ha）
 
@@ -265,7 +265,7 @@ Logo概念：以詹天佑"人字形"轨道为骨架，变形为神经网络节�
 
 9km"三道一绿"慢行主轴（跑步道、漫步道、自行车道）南北贯通京张遗址公园，服务沿线70个社区、45万居民 [source:SRC-2026-JINGZHANG-PARK-PHASE2]。骑行道向北连通回龙观自行车专用路，形成"京张-回龙观"骑行走廊。东西向以9条城市支路（二期工程）与蓝绿廊道连接，打通被铁路与快速路分割的片区 [data:geometry/roads.geojson]。
 
-![交通蓝绿](assets/figures/mobility-bluegreen.png)
+![mobility-bluegreen-figure showing transport network and ecological corridors](assets/figures/mobility-bluegreen.png)
 
 ### 8.3 道路微循环与停车
 
@@ -362,7 +362,7 @@ AI互动座椅（内置传感器与语音交互）、智能导视（多语种AI�
 - 重点区域总面积：369.8ha（官方面积368.4ha） [metric:key_areas_total]
 - 建筑数量：15栋（概念性体量） [metric:building_count]
 
-![指标证据](assets/figures/metrics-evidence.png)
+![metrics-evidence-figure showing area calculations and compliance indicators](assets/figures/metrics-evidence.png)
 
 ### 11.2 合规矩阵覆盖
 
@@ -398,3 +398,49 @@ AI互动座椅（内置传感器与语音交互）、智能导视（多语种AI�
 10. 国际创新区协会．中关村入选全球十大创新区（2025）[source:SRC-2025-GLOBAL-TOP10-INNOVATION-DISTRICT]。
 11. 公开百科 / 铁道部史料．京张铁路与詹天佑人字形铁路（1909）[source:SRC-1909-JINGZHANG-RAILWAY-HISTORY]。
 12. Station F 官方网站（巴黎）；MaRS Discovery District 官方网站（多伦多）[source:SRC-REF-STATION-F-PARIS][source:SRC-REF-MARS-TORONTO]。
+
+
+## AI 创新生态、人才画像与 AI+ 场景
+
+### AI 创新生态构建
+
+本方案构建"基础研究—技术转化—场景验证—产业加速"四层AI创新生态，以众智园为引擎、原点社区为孵化器、大钟寺为加速器，形成完整的AI创新链条 [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:ai_ecosystem_scenarios]。
+
+参考全球六大AI创新生态案例：Station F、MaRS、河套、Kendall Square、Brainport、Mila，提炼"空间集聚+场景开放+人才密度+资本接力"四大成功要素 [source:SOURCE-REGISTRY]。
+
+### 人才画像
+
+面向六类核心用户 [data:USER-PERSONAS] [metric:user_persona_count]：
+1. AI研究员 — 需要算力密集型实验室和学术交流空间
+2. 创业工程师 — 需要低成本孵化空间和快速原型验证环境
+3. 城市设计师 — 需要AI辅助设计工具和数字孪生平台
+4. 文化策展人 — 需要铁路遗产叙事空间和公共艺术载体
+5. 社区居民 — 需要日常便利服务和公共活动空间
+6. 国际访客 — 需要多语言导览和文化体验路径
+
+### AI+ 场景卡
+
+设计12个AI+场景卡 [data:SCENARIO-CARDS] [metric:scenario_count]，其中3张为测试验证场景：
+
+| 编号 | 场景名称 | 空间载体 | AI能力 |
+|------|---------|---------|--------|
+| SC-01 | 智能交通调度 | 道路网络 | 实时优化信号配时 |
+| SC-02 | 遗产数字孪生 | 铁路遗址公园 | 历史场景AR重建 |
+| SC-03 | 碳中和监测 | 全域 | IoT碳排放追踪 |
+| SC-04 | 智慧能源管理 | 建筑群 | AI能耗优化 |
+| SC-05 | 无人配送走廊 | 慢行系统 | 自动配送导航 |
+| SC-06 | AI辅助设计 | 设计中心 | 生成式城市设计 |
+| SC-07 | 智能安防 | 公共空间 | 计算机视觉监控 |
+| SC-08 | 噪声监测 | 道路两侧 | 声纹识别预警 |
+| SC-09 | 智慧停车 | 地下空间 | 车位预测调度 |
+| SC-10 | 空气质量监测 | 绿地网络 | 污染源追踪 |
+| SC-11 | 人群热力分析 | 重点区域 | 密度预警疏散 |
+| SC-12 | AI政务服务 | 社区中心 | 智能问答办事 |
+
+### AI 朝圣地标
+
+打造三个AI朝圣地标 [data:AI-LANDMARKS] [metric:landmark_count]：
+1. **京张AI灯塔** — 位于众智园，标志性AI算力中心与观测塔
+2. **原点广场** — 位于原点社区，AI与城市生活交汇的公共客厅
+3. **大钟寺智慧门户** — 位于大钟寺，AI产业加速与文化展示的入口地标
+
