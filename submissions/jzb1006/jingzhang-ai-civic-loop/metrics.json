@@ -15,7 +15,7 @@
       "formula": "polygon_area(submitted_site_boundary)",
       "confidence": "high",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
+        "Repository provisional boundary is used only as an intake and discussion constraint; replace with official redline before statutory use."
       ]
     },
     "building_footprint_area_sqm": {
@@ -75,6 +75,71 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "count(scenario_cards.cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenario cards are proposal-local concept records, not approved operating programs."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "count(cards where category == industry_test_validation)",
+      "confidence": "high",
+      "assumptions": [
+        "Industry test and validation scenarios must remain in sandbox or controlled-trial status until professional review."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "count(scenario_cards.personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Personas describe public-interest checks and must not become personal profiles."
+      ]
+    },
+    "scenario_review_cycle_days": {
+      "status": "known",
+      "value": 90,
+      "unit": "days",
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "governance_protocol.default_review_cycle_days",
+      "confidence": "medium",
+      "assumptions": [
+        "The 90-day review cycle is a conceptual governance target adapted from the open Switchback Protocol discussion."
+      ]
+    },
+    "human_takeover_target_minutes": {
+      "status": "known",
+      "value": 5,
+      "unit": "minutes",
+      "source_files": [
+        "visual/assets/scenario_cards.json"
+      ],
+      "formula": "governance_protocol.default_human_takeover_target_minutes",
+      "confidence": "medium",
+      "assumptions": [
+        "The target is a scenario-governance design requirement, not a confirmed service-level agreement."
+      ]
     }
   }
 }

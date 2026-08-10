@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张·首班车 FIRST TRAIN — AI创新带城市设计</title>
+<style>
+:root{--ink:#1a252f;--mut:#5d6d7e;--line:#e5e8e8;--bg:#f4f6f7;--card:#ffffff;--acc:#2e86c1;--acc2:#e74c3c;--green:#1e8449;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Microsoft YaHei','PingFang SC',sans-serif;color:var(--ink);background:var(--bg);line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:20px}
+header{background:linear-gradient(135deg,#1a252f,#2e4053);color:#fff;padding:34px 20px;border-radius:14px;margin-bottom:22px}
+header h1{font-size:26px;letter-spacing:1px}
+header .sub{color:#aab7c4;margin-top:6px;font-size:14px}
+.badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:2px 12px;font-size:12px;margin-right:6px}
+section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:18px}
+h2{font-size:18px;margin-bottom:14px;padding-left:10px;border-left:4px solid var(--acc);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.tile-val{font-size:24px;font-weight:800;color:var(--acc)}
+.tile-unit{font-size:12px;color:var(--mut)}
+.tile-label{font-size:13px;margin-top:4px;color:var(--ink)}
+.chip{display:inline-block;background:#eaf2fb;color:#2c6faa;border-radius:16px;padding:3px 12px;font-size:12px;margin:3px 3px 0 0}
+.chip-ok{background:#eafaf1;color:#1e8449}
+.scn{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fdfefe}
+.scn-id{font-weight:800;color:var(--acc2);font-size:12px}
+.scn-name{font-weight:700;font-size:14px}
+.scn-desc{font-size:12px;color:var(--mut)}
+.scn-where{font-size:11px;color:#1e8449;margin-top:4px}
+.scn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.landmark{border-left:4px solid var(--acc2);padding:8px 12px;margin-bottom:10px;background:#fdfefe}
+.lm-name{font-weight:700}
+.lm-where{font-size:12px;color:var(--acc);margin:2px 0}
+.lm-desc{font-size:13px;color:var(--mut)}
+.sc-row{display:flex;justify-content:space-between;padding:7px 4px;border-bottom:1px solid var(--line);font-size:13px}
+.sc-target{color:var(--mut);font-size:12px}
+ul{padding-left:20px;font-size:13px}
+li{margin-bottom:6px}
+footer{text-align:center;color:var(--mut);font-size:12px;padding:20px 0}
+.legend{display:flex;flex-wrap:wrap;gap:8px;font-size:12px;color:var(--mut)}
+.legend .dot{display:inline-block;width:14px;height:14px;border-radius:3px;margin-right:4px;vertical-align:-2px}
+@media(max-width:700px){header h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>京张·首班车 · JZ FIRST TRAIN</h1>
+  <div class="sub">百年京张铁路的 AI 首发站城市设计 · 百年京张AI创新带开源征集</div>
+  <div style="margin-top:12px">
+    <span class="badge">一线三站两翼</span><span class="badge">三定位·五功能</span><span class="badge">概念建议</span><span class="badge">AI生成·可复核</span>
+  </div>
+</header>
+
+<section>
+  <h2>总体概念与空间结构</h2>
+  <p style="font-size:14px;color:#34495e;margin-bottom:12px">1909 年 10 月 2 日，詹天佑主持的京张铁路全线通车，首列列车自西直门一带发车，开启中国人自主干线铁路纪元。一百多年后，这片土地再次迎来「首发」——全球首次由 AI 智能体参与真实城市规划。本方案以「首班车」为总体概念：<b>遗址公园活力带＝轨道，三处重点区＝车站，中关村/小月河＝信号所/风景线，全球AI活动体系＝时刻表</b>。</p>
+  <p style="font-size:13px;color:#2e86c1;font-weight:700;margin-bottom:6px">三层范围：统筹研究 43.6 km² · 总体设计 11.4 km² · 重点区 368.4 ha</p>
+  <p style="font-size:13px;color:#566573;margin-bottom:10px"><b>总览地图</b>（总览地图：下方为总体设计范围总览地图，叠加用地分区与重点区域）</p>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr));margin-bottom:10px">
+    <div><b>一线</b>：京张遗址公园活力带（公园轨道，约 2.3 km²）</div>
+    <div><b>三站</b>：众智园·始发站 / AI原点·发车台 / 大钟寺·换乘站</div>
+    <div><b>两翼</b>：中关村科技服务翼 / 小月河场景赋能翼</div>
+  </div>
+  
+<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;background:#fbfcfe;">
+  <path d="M 588.9,4.6 L 577.7,221.6 L 403.7,221.4 L 415.0,4.4 L 460.7,4.5 L 531.9,4.5 L 588.9,4.6 Z" fill="#7dcea0" opacity="0.85"/><path d="M 392.4,438.4 L 395.4,381.3 L 402.8,238.5 L 403.7,221.4 L 577.7,221.6 L 576.8,238.7 L 569.4,381.4 L 566.4,438.5 L 563.5,495.6 L 389.4,495.4 L 392.4,438.4 Z" fill="#7dcea0" opacity="0.85"/><path d="M 376.9,736.4 L 384.4,592.5 L 389.4,495.4 L 563.5,495.6 L 558.5,592.7 L 551.0,736.6 L 543.6,880.0 L 369.5,879.8 L 376.9,736.4 Z" fill="#7dcea0" opacity="0.85"/><path d="M 363.0,1003.6 L 366.0,946.5 L 369.5,879.8 L 543.6,880.0 L 540.2,946.7 L 537.2,1003.8 L 489.8,1003.7 L 420.0,1003.7 L 363.0,1003.6 Z" fill="#7dcea0" opacity="0.85"/><path d="M 335.2,103.7 L 471.9,103.8 L 471.0,122.1 L 334.3,122.0 L 335.2,103.7 Z" fill="#7dcea0" opacity="0.85"/><path d="M 318.3,429.1 L 455.0,429.3 L 454.1,447.6 L 317.3,447.4 L 318.3,429.1 Z" fill="#7dcea0" opacity="0.85"/><path d="M 293.6,904.2 L 430.4,904.3 L 429.4,922.6 L 292.6,922.5 L 293.6,904.2 Z" fill="#7dcea0" opacity="0.85"/>
+  <path d="M 181.1,212.3 L 185.2,199.3 L 189.4,186.3 L 193.5,173.3 L 197.6,160.3 L 201.8,147.3 L 205.9,134.3 L 210.0,121.3 L 214.2,108.3 L 218.3,95.3 L 222.4,82.3 L 226.6,69.2 L 230.7,56.2 L 234.8,43.2 L 238.9,30.2 L 243.1,17.2 L 247.2,4.2 L 284.5,4.3 L 318.4,4.3 L 359.0,4.4 L 389.5,4.4 L 415.0,4.4 L 403.7,221.4 L 347.7,221.3 L 273.2,221.2 L 198.6,221.2 L 178.3,221.1 L 181.1,212.3 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 588.9,4.6 L 603.0,4.6 L 657.2,4.7 L 674.2,4.7 L 731.8,4.7 L 745.3,4.8 L 806.3,4.8 L 816.5,4.8 L 880.9,4.9 L 887.7,4.9 L 955.4,5.0 L 958.8,5.0 L 1030.0,5.0 L 1025.3,18.5 L 1020.6,31.9 L 1015.9,45.4 L 1011.2,58.8 L 1006.5,72.3 L 1001.8,85.7 L 997.1,99.1 L 992.4,112.6 L 987.7,126.0 L 983.0,139.5 L 978.3,152.9 L 973.6,166.3 L 968.9,179.8 L 964.2,193.2 L 959.5,206.7 L 954.8,220.1 L 954.2,222.0 L 944.3,221.9 L 869.7,221.9 L 795.2,221.8 L 720.6,221.7 L 646.0,221.6 L 577.7,221.6 L 588.9,4.6 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 177.0,225.3 L 178.3,221.1 L 198.6,221.2 L 273.2,221.2 L 347.7,221.3 L 403.7,221.4 L 402.8,238.5 L 346.8,238.5 L 272.3,238.4 L 197.7,238.3 L 172.8,238.3 L 177.0,225.3 Z" fill="#a9dfbf" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 577.7,221.6 L 646.0,221.6 L 720.6,221.7 L 795.2,221.8 L 869.7,221.9 L 944.3,221.9 L 954.2,222.0 L 950.1,233.6 L 948.2,239.1 L 943.4,239.1 L 868.9,239.0 L 794.3,238.9 L 719.7,238.8 L 645.1,238.8 L 576.8,238.7 L 577.7,221.6 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 117.9,374.4 L 123.4,360.8 L 128.9,347.2 L 134.4,333.5 L 139.9,319.9 L 145.4,306.3 L 150.9,292.7 L 156.4,279.1 L 161.9,265.5 L 167.4,251.9 L 172.8,238.3 L 197.7,238.3 L 272.3,238.4 L 346.8,238.5 L 402.8,238.5 L 395.4,381.3 L 339.4,381.2 L 264.8,381.1 L 190.2,381.0 L 115.7,381.0 L 115.3,381.0 L 117.9,374.4 Z" fill="#f9e79f" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 576.8,238.7 L 645.1,238.8 L 719.7,238.8 L 794.3,238.9 L 868.9,239.0 L 943.4,239.1 L 948.2,239.1 L 945.4,247.0 L 940.7,260.4 L 936.0,273.9 L 931.3,287.3 L 926.6,300.8 L 921.9,314.2 L 917.2,327.6 L 912.5,341.1 L 907.8,354.5 L 903.1,368.0 L 898.4,381.4 L 898.3,381.8 L 861.5,381.7 L 786.9,381.7 L 712.4,381.6 L 637.8,381.5 L 569.4,381.4 L 576.8,238.7 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 95.9,428.8 L 101.4,415.2 L 106.9,401.6 L 112.4,388.0 L 115.3,381.0 L 115.7,381.0 L 190.2,381.0 L 264.8,381.1 L 339.4,381.2 L 395.4,381.3 L 392.4,438.4 L 336.4,438.3 L 261.9,438.2 L 187.3,438.1 L 112.7,438.1 L 92.2,438.0 L 95.9,428.8 Z" fill="#f4c98c" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 569.4,381.4 L 637.8,381.5 L 712.4,381.6 L 786.9,381.7 L 861.5,381.7 L 898.3,381.8 L 893.7,394.8 L 889.0,408.3 L 884.3,421.7 L 889.6,435.3 L 890.9,438.9 L 858.6,438.8 L 784.0,438.8 L 709.4,438.7 L 634.8,438.6 L 566.4,438.5 L 569.4,381.4 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 74.0,483.3 L 79.5,469.6 L 85.0,456.0 L 90.4,442.4 L 92.2,438.0 L 112.7,438.1 L 187.3,438.1 L 261.9,438.2 L 336.4,438.3 L 392.4,438.4 L 389.4,495.4 L 333.5,495.4 L 258.9,495.3 L 184.3,495.2 L 109.7,495.2 L 69.2,495.1 L 74.0,483.3 Z" fill="#f0b27a" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 566.4,438.5 L 634.8,438.6 L 709.4,438.7 L 784.0,438.8 L 858.6,438.8 L 890.9,438.9 L 894.8,448.9 L 900.0,462.5 L 905.2,476.1 L 910.5,489.7 L 912.9,496.0 L 855.7,495.9 L 781.1,495.9 L 706.5,495.8 L 631.9,495.7 L 563.5,495.6 L 566.4,438.5 Z" fill="#d7bde2" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 35.5,578.5 L 41.0,564.9 L 46.5,551.3 L 52.0,537.7 L 57.5,524.1 L 63.0,510.5 L 68.5,496.9 L 69.2,495.1 L 109.7,495.2 L 184.3,495.2 L 258.9,495.3 L 333.5,495.4 L 389.4,495.4 L 384.4,592.5 L 328.4,592.5 L 253.8,592.4 L 179.2,592.3 L 104.6,592.2 L 30.0,592.1 L 35.5,578.5 Z" fill="#f9e79f" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 563.5,495.6 L 631.9,495.7 L 706.5,495.8 L 781.1,495.9 L 855.7,495.9 L 912.9,496.0 L 915.7,503.3 L 920.9,516.9 L 926.1,530.5 L 931.4,544.1 L 936.6,557.7 L 941.8,571.3 L 947.0,584.9 L 950.2,593.1 L 925.3,593.1 L 850.7,593.0 L 776.1,592.9 L 701.5,592.8 L 626.9,592.8 L 558.5,592.7 L 563.5,495.6 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 43.1,724.8 L 41.8,711.5 L 40.5,698.2 L 39.2,685.0 L 37.9,671.7 L 36.6,658.5 L 35.2,645.2 L 33.9,631.9 L 32.6,618.7 L 31.3,605.4 L 30.0,592.1 L 104.6,592.2 L 179.2,592.3 L 253.8,592.4 L 328.4,592.5 L 384.4,592.5 L 376.9,736.4 L 320.9,736.3 L 246.3,736.3 L 171.7,736.2 L 97.1,736.1 L 44.2,736.0 L 43.1,724.8 Z" fill="#f4c98c" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 558.5,592.7 L 626.9,592.8 L 701.5,592.8 L 776.1,592.9 L 850.7,593.0 L 925.3,593.1 L 950.2,593.1 L 952.2,598.5 L 957.5,612.1 L 962.7,625.7 L 967.9,639.3 L 973.2,652.9 L 978.4,666.5 L 983.6,680.1 L 988.8,693.7 L 994.1,707.3 L 993.4,720.8 L 992.7,734.3 L 992.5,737.0 L 917.9,737.0 L 843.3,736.9 L 768.7,736.8 L 694.1,736.7 L 619.4,736.6 L 551.0,736.6 L 558.5,592.7 Z" fill="#f0b27a" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 57.5,870.7 L 56.2,857.4 L 54.9,844.1 L 53.6,830.9 L 52.3,817.6 L 51.0,804.4 L 49.7,791.1 L 48.4,777.8 L 47.0,764.6 L 45.7,751.3 L 44.4,738.0 L 44.2,736.0 L 97.1,736.1 L 171.7,736.2 L 246.3,736.3 L 320.9,736.3 L 376.9,736.4 L 369.5,879.8 L 313.5,879.8 L 238.9,879.7 L 164.2,879.6 L 89.6,879.5 L 58.4,879.5 L 57.5,870.7 Z" fill="#f4c98c" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 551.0,736.6 L 619.4,736.6 L 694.1,736.7 L 768.7,736.8 L 843.3,736.9 L 917.9,737.0 L 992.5,737.0 L 992.0,747.8 L 991.3,761.3 L 990.6,774.8 L 989.9,788.3 L 989.2,801.8 L 988.5,815.3 L 987.8,828.8 L 987.2,842.3 L 986.5,855.8 L 985.8,869.3 L 985.2,880.5 L 910.6,880.4 L 835.9,880.3 L 761.3,880.2 L 686.7,880.1 L 612.0,880.1 L 543.6,880.0 L 551.0,736.6 Z" fill="#aed6f1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 64.1,937.0 L 62.8,923.7 L 61.5,910.5 L 60.2,897.2 L 58.9,883.9 L 58.4,879.5 L 89.6,879.5 L 164.2,879.6 L 238.9,879.7 L 313.5,879.8 L 369.5,879.8 L 366.0,946.5 L 310.0,946.5 L 235.4,946.4 L 160.7,946.3 L 86.1,946.2 L 65.0,946.2 L 64.1,937.0 Z" fill="#f5b7b1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 543.6,880.0 L 612.0,880.1 L 686.7,880.1 L 761.3,880.2 L 835.9,880.3 L 910.6,880.4 L 985.2,880.5 L 985.1,882.8 L 984.4,896.3 L 983.7,909.8 L 983.0,923.3 L 982.3,936.8 L 981.8,947.1 L 907.2,947.1 L 832.5,947.0 L 757.9,946.9 L 683.2,946.8 L 608.6,946.8 L 540.2,946.7 L 543.6,880.0 Z" fill="#f5b7b1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 69.4,990.0 L 68.0,976.8 L 66.7,963.5 L 65.4,950.2 L 65.0,946.2 L 86.1,946.2 L 160.7,946.3 L 235.4,946.4 L 310.0,946.5 L 366.0,946.5 L 363.0,1003.6 L 350.1,1003.6 L 307.1,1003.5 L 280.3,1003.5 L 232.4,1003.5 L 210.4,1003.4 L 157.8,1003.4 L 140.5,1003.4 L 83.1,1003.3 L 70.7,1003.3 L 69.4,990.0 Z" fill="#f5b7b1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 540.2,946.7 L 608.6,946.8 L 683.2,946.8 L 757.9,946.9 L 832.5,947.0 L 907.2,947.1 L 981.8,947.1 L 981.6,950.3 L 980.9,963.8 L 980.3,977.2 L 979.6,990.7 L 978.9,1004.2 L 909.0,1004.2 L 904.2,1004.2 L 839.2,1004.1 L 829.6,1004.1 L 769.3,1004.0 L 754.9,1004.0 L 699.4,1004.0 L 680.3,1003.9 L 629.6,1003.9 L 605.6,1003.9 L 559.7,1003.8 L 537.2,1003.8 L 540.2,946.7 Z" fill="#f5b7b1" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/><path d="M 363.0,1003.6 L 366.0,946.5 L 369.5,879.8 L 376.9,736.4 L 384.4,592.5 L 389.4,495.4 L 392.4,438.4 L 395.4,381.3 L 402.8,238.5 L 403.7,221.4 L 415.0,4.4 L 460.7,4.5 L 531.9,4.5 L 588.9,4.6 L 577.7,221.6 L 576.8,238.7 L 569.4,381.4 L 566.4,438.5 L 563.5,495.6 L 558.5,592.7 L 551.0,736.6 L 543.6,880.0 L 540.2,946.7 L 537.2,1003.8 L 489.8,1003.7 L 420.0,1003.7 L 363.0,1003.6 Z" fill="#a9dfbf" opacity="0.95" stroke="#ffffff" stroke-width="0.6"/>
+  <polyline points="85.4,9.8 1004.9,10.7" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="80.0,112.6 999.6,113.5" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="74.3,221.0 994.0,222.0" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="73.4,238.2 993.2,239.1" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="69.7,309.0 989.5,309.9" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="65.9,380.9 985.8,381.9" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="62.9,438.0 982.9,439.0" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="60.0,495.1 980.0,496.1" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="57.3,546.5 977.4,547.4" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="54.9,592.2 975.0,593.1" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="47.3,736.1 967.7,737.0" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="39.8,879.5 960.3,880.4" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="36.3,946.2 956.9,947.1" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="33.6,997.6 954.3,998.5" fill="none" stroke="#7f8c8d" stroke-width="2.4" opacity="0.9"/><polyline points="276.2,998.9 327.7,8.9" fill="none" stroke="#7f8c8d" stroke-width="5" opacity="0.9"/><polyline points="649.4,999.3 700.5,9.3" fill="none" stroke="#7f8c8d" stroke-width="5" opacity="0.9"/>
+  <path d="M 788.0,120.1 L 788.7,106.4 L 664.4,106.3 L 663.7,120.0 L 788.0,120.1 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 771.2,445.6 L 771.9,431.9 L 647.6,431.8 L 646.9,445.5 L 771.2,445.6 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 746.8,920.6 L 747.5,906.9 L 623.1,906.8 L 622.4,920.5 L 746.8,920.6 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 532.0,503.6 L 532.8,487.6 L 420.9,487.5 L 420.1,503.5 L 532.0,503.6 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 512.1,888.0 L 512.9,872.0 L 401.0,871.9 L 400.1,887.8 L 512.1,888.0 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 551.8,121.0 L 552.6,105.1 L 440.8,104.9 L 440.0,120.9 L 551.8,121.0 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 524.1,416.2 L 524.7,403.7 L 437.7,403.6 L 437.1,416.1 L 524.1,416.2 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 515.2,587.5 L 515.9,574.9 L 428.8,574.9 L 428.2,587.4 L 515.2,587.5 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/><path d="M 503.4,815.9 L 504.0,803.3 L 417.0,803.2 L 416.3,815.8 L 503.4,815.9 Z" fill="#f5b041" opacity="0.9" stroke="#e67e22" stroke-width="1.4"/>
+  <path d="M 254.5,221.2 L 938.1,221.9 L 948.9,10.7 L 265.5,10.0 L 254.5,221.2 Z" fill="none" stroke="#e74c3c" stroke-width="4"/><text x="601.8" y="116.0" text-anchor="middle" font-size="26" font-weight="700" fill="#c0392b" stroke="#ffffff" stroke-width="0.5" paint-order="stroke">① 众智园·始发站</text><path d="M 178.1,495.2 L 861.9,495.9 L 867.7,381.7 L 184.0,381.0 L 178.1,495.2 Z" fill="none" stroke="#e74c3c" stroke-width="4"/><text x="522.9" y="438.5" text-anchor="middle" font-size="26" font-weight="700" fill="#c0392b" stroke="#ffffff" stroke-width="0.5" paint-order="stroke">② AI原点·发车台</text><path d="M 154.5,946.3 L 963.1,947.1 L 966.5,880.4 L 158.0,879.6 L 154.5,946.3 Z" fill="none" stroke="#e74c3c" stroke-width="4"/><text x="560.5" y="913.4" text-anchor="middle" font-size="26" font-weight="700" fill="#c0392b" stroke="#ffffff" stroke-width="0.5" paint-order="stroke">③ 大钟寺·换乘站</text>
+  <path d="M 70.7,1003.3 L 978.9,1004.2 L 994.1,707.3 L 884.3,421.7 L 1030.0,5.0 L 247.2,4.2 L 172.8,238.3 L 30.0,592.1 L 70.7,1003.3 Z" fill="none" stroke="#95a5a6" stroke-width="2.5" stroke-dasharray="10 7"/>
+  <g font-size="20" font-weight="700" fill="#1a252f">
+    <text x="30" y="60" font-size="34">京张·首班车 FIRST TRAIN</text>
+    <text x="30" y="95" font-size="20" fill="#566573">总体概念 · 一线三站两翼 · 总体设计范围（临时边界）</text>
+  </g>
+</svg>
+  <div class="legend">
+    <span><span class="dot" style="background:#a9dfbf"></span>公园绿地(轨道)</span>
+    <span><span class="dot" style="background:#aed6f1"></span>科研用地</span>
+    <span><span class="dot" style="background:#f9e79f"></span>教育用地</span>
+    <span><span class="dot" style="background:#f5b7b1"></span>商业商务</span>
+    <span><span class="dot" style="background:#f4c98c"></span>居住用地</span>
+    <span><span class="dot" style="background:#f5b041"></span>公共空间</span>
+    <span><span class="dot" style="background:none;border:2px solid #e74c3c;border-radius:50%"></span>重点区(车站)</span>
+    <span><span class="dot" style="background:none;border:2px dashed #95a5a6"></span>临时边界</span>
+  </div>
+  <p style="font-size:12px;color:#566573;margin-top:8px">用地分区：中央公园轨道（1401）贯穿全线，两侧科研（0802）、教育（0804）、商业（05）、居住（0701）、社区服务（0702）与文化（0803）用地沿带布局。</p>
+</section>
+
+<section>
+  <h2>命名体系与 Logo 方向（agent.1）</h2>
+  <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px">
+    <div style="text-align:center">
+      <svg viewBox="0 0 460 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px;height:auto">
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <!-- circular track -->
+    <circle cx="230" cy="90" r="72" fill="none" stroke="#2e6f4e" stroke-width="10" opacity="0.35"/>
+    <circle cx="230" cy="90" r="52" fill="none" stroke="#b23b2e" stroke-width="6"/>
+    <!-- train head silhouette (front-facing) -->
+    <path d="M205 60 L255 60 L268 78 L268 118 L192 118 L192 78 Z" fill="#1a252f"/>
+    <path d="M198 118 L192 138 L268 138 L262 118 Z" fill="#b23b2e"/>
+    <circle cx="212" cy="100" r="10" fill="#f5f5f5"/>
+    <circle cx="248" cy="100" r="10" fill="#f5f5f5"/>
+    <!-- data-stream tail -->
+    <path d="M192 78 C170 62 150 70 138 84" fill="none" stroke="#7d3c98" stroke-width="6"/>
+    <circle cx="132" cy="92" r="5" fill="#7d3c98"/>
+    <circle cx="118" cy="100" r="4" fill="#7d3c98"/>
+    <circle cx="106" cy="108" r="3" fill="#7d3c98"/>
+  </g>
+  <text x="230" y="158" text-anchor="middle" font-size="22" font-weight="800" fill="#1a252f">京张·首班车</text>
+  <text x="230" y="176" text-anchor="middle" font-size="13" fill="#5d6d7e" letter-spacing="2">JZ FIRST TRAIN</text>
+</svg>
+      <p style="font-size:12px;color:#566573">Logo方向：车头剪影＋环形轨道＋数据流光带（概念草图，非最终定稿，需专业设计深化与清权）</p>
+    </div>
+    <div>
+      <p style="font-size:13px;color:#34495e"><b>命名体系</b>：主名「京张·首班车 / JZ First Train」；站点采用铁路语汇——始发站、发车台、换乘站、机务段、调度信号所；节点——发车台广场、时刻表广场、信号所广场、开源成果展示廊、智能体贡献荣誉墙；路径——开发者荣誉漫步道、开源之路。</p>
+      <p style="font-size:13px;color:#34495e;margin-top:8px"><b>色彩体系</b>：京张铁锈红（历史）+ 遗址公园墨绿（遗产）+ AI 流光紫（智能）三色；中英双语字标，可延展为导视、网页与活动视觉。</p>
+      <p style="font-size:12px;color:#c0392b;margin-top:8px">Logo 与命名均为概念方向，未授权使用任何商标、字体、图像；定稿需专业团队深化并完成版权清权。</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>三区两翼协同回路与全球 AI 生态案例（agent.2）</h2>
+  <p style="font-size:13px;color:#34495e;margin-bottom:10px">三区两翼通过「要素交换接口」形成协同回路：中关村科技服务翼提供资本、IP、算力与人才要素，小月河场景赋能翼提供场景与宜居活力，三站承接要素转化为创新生态、品牌与体验。</p>
+  <svg viewBox="0 0 700 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto">
+  <rect x="20" y="20" width="660" height="300" rx="12" fill="#fbfcfe" stroke="#bdc3c7"/>
+  <!-- line (track) -->
+  <line x1="350" y1="30" x2="350" y2="310" stroke="#2e6f4e" stroke-width="12" opacity="0.3"/>
+  <text x="360" y="45" font-size="13" fill="#2e6f4e" font-weight="700">一线·公园轨道（遗址公园活力带）</text>
+  <!-- three stations -->
+  <g font-size="12">
+    <rect x="80" y="40" width="220" height="66" rx="8" fill="#aed6f1" opacity="0.85"/>
+    <text x="190" y="62" text-anchor="middle" font-weight="700" fill="#1a252f">① 众智园·始发站</text>
+    <text x="190" y="80" text-anchor="middle" fill="#2c3e50">AI全栈自主创新 · 机务段 · 中试验证</text>
+    <text x="190" y="96" text-anchor="middle" fill="#566573">研发→中试→产业化「出车」</text>
+    <rect x="80" y="150" width="220" height="66" rx="8" fill="#f9e79f" opacity="0.9"/>
+    <text x="190" y="172" text-anchor="middle" font-weight="700" fill="#1a252f">② AI原点·发车台</text>
+    <text x="190" y="190" text-anchor="middle" fill="#2c3e50">世界级AI创新生态 · 清华园站纪念</text>
+    <text x="190" y="206" text-anchor="middle" fill="#566573">发车纪念碑 · 开发者社区</text>
+    <rect x="80" y="260" width="220" height="66" rx="8" fill="#f5b7b1" opacity="0.9"/>
+    <text x="190" y="282" text-anchor="middle" font-weight="700" fill="#1a252f">③ 大钟寺·换乘站</text>
+    <text x="190" y="300" text-anchor="middle" fill="#2c3e50">智能原生新业态 · 时刻表广场</text>
+    <text x="190" y="316" text-anchor="middle" fill="#566573">站城一体南部门户</text>
+    <!-- two wings -->
+    <rect x="420" y="80" width="240" height="66" rx="8" fill="#d7bde2" opacity="0.85"/>
+    <text x="540" y="102" text-anchor="middle" font-weight="700" fill="#1a252f">中关村科技服务翼 · 调度信号所</text>
+    <text x="540" y="122" text-anchor="middle" fill="#2c3e50">要素全球化 · 资本 · IP · 算力</text>
+    <text x="540" y="138" text-anchor="middle" fill="#566573">要素交换接口</text>
+    <rect x="420" y="210" width="240" height="66" rx="8" fill="#a9dfbf" opacity="0.9"/>
+    <text x="540" y="232" text-anchor="middle" font-weight="700" fill="#1a252f">小月河场景赋能翼 · 沿线风景线</text>
+    <text x="540" y="252" text-anchor="middle" fill="#2c3e50">场景赋能 · 宜居活力 · 蓝绿生态</text>
+    <text x="540" y="268" text-anchor="middle" fill="#566573">场景-空间-运营映射</text>
+  </g>
+  <!-- arrows -->
+  <g stroke="#7f8c8d" stroke-width="2" marker-end="url(#a)">
+    <line x1="300" y1="73" x2="415" y2="100"/>
+    <line x1="300" y1="183" x2="415" y2="183"/>
+    <line x1="300" y1="293" x2="415" y2="243"/>
+  </g>
+  <defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7f8c8d"/></marker></defs>
+  <text x="350" y="330" text-anchor="middle" font-size="11" fill="#7f8c8d">三区两翼协同回路 · 概念示意（非官方红线）</text>
+</svg>
+  <table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:12px">
+    <tr style="background:#eaf2fb"><th style="padding:6px;text-align:left">案例</th><th style="padding:6px;text-align:left">地区</th><th style="padding:6px;text-align:left">创新模式</th><th style="padding:6px;text-align:left">海淀可转化机制</th></tr>
+    <tr><td>伦敦国王十字</td><td>英国伦敦</td><td>铁路遗产更新为科创社区</td><td>站城一体+公共空间活化（最可类比）</td></tr><tr><td>硅谷</td><td>美国加州</td><td>研究—孵化—资本完整链路</td><td>斯坦福研究园+风投网络</td></tr><tr><td>深圳南山</td><td>中国深圳</td><td>AI产业化与场景开放</td><td>硬件生态+场景落地</td></tr><tr><td>杭州未来科技城</td><td>中国杭州</td><td>平台型创新生态与人才引力</td><td>平台企业+人才政策</td></tr><tr><td>新加坡榜鹅</td><td>新加坡</td><td>AI+城市生活场景</td><td>数字园区+公共服务</td></tr><tr><td>合肥</td><td>中国合肥</td><td>科教资源向原创策源转化</td><td>科学装置+成果转化</td></tr><tr><td>波士顿肯德尔广场</td><td>美国波士顿</td><td>科研密集区向AI集聚区转型</td><td>MIT+生命科学/AI集群</td></tr><tr><td>大田大德研发特区</td><td>韩国大田</td><td>研发特区与人才聚集</td><td>国家级研发特区</td></tr>
+  </table>
+  <p style="font-size:11px;color:#7f8c8d;margin-top:8px">案例均为公开资料背景参考（background only），非正式证据；逐案例一手来源待补充。</p>
+  <h2 style="margin-top:18px">区域协同机制（概念建议）</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:11.5px">
+    <tr style="background:#eaf2fb"><th style="padding:6px;text-align:left">协同对象</th><th style="padding:6px;text-align:left">要素流</th><th style="padding:6px;text-align:left">通道</th><th style="padding:6px;text-align:left">示范项目（概念）</th><th style="padding:6px;text-align:left">责任边界</th></tr>
+    <tr><td>北纬社区</td><td>人才、场景、治理经验双向</td><td>中关村-北纬创新走廊</td><td>联合场景开放日、人才驿站</td><td>属地政府主导，一带提供接口</td></tr><tr><td>未来科学城</td><td>基础研究→中试转化</td><td>轨道接驳+飞地中试节点</td><td>大科学装置成果转化带</td><td>未来科学城平台，一带承接转化</td></tr><tr><td>怀柔科学城</td><td>原创科研→产业化</td><td>科研-产业接力通道</td><td>AI+科研仪器共享实验室</td><td>怀柔主导源头，一带提供试验场</td></tr><tr><td>北京经开区</td><td>制造、算力、供应链</td><td>高速/轨道供应链走廊</td><td>智能硬件量产协作带</td><td>经开区主导制造，一带提供场景</td></tr><tr><td>京津冀（津冀）</td><td>场景、算力、绿电、数据</td><td>京张高铁+绿电算力通道</td><td>算力协同试验、数据沙箱共建</td><td>区域协同办公室统筹</td></tr>
+  </table>
+  <p style="font-size:11px;color:#7f8c8d;margin-top:6px">协同机制为概念建议，不构成已确定政府安排。</p>
+</section>
+
+<section>
+  <h2>核心指标（EPSG:4548 复算 · 概念估算）</h2>
+  <div class="grid"><div class="tile"><div class="tile-val" data-metric="site_area_sqm" data-value="11412825.386">11.41</div><div class="tile-unit">km²</div><div class="tile-label">总体设计范围</div></div><div class="tile"><div class="tile-val" data-metric="green_ratio" data-value="0.208">20.8</div><div class="tile-unit">%</div><div class="tile-label">绿地率</div></div><div class="tile"><div class="tile-val" data-metric="public_space_ratio" data-value="0.016">1.6</div><div class="tile-unit">%</div><div class="tile-label">公共空间率</div></div><div class="tile"><div class="tile-val" data-metric="floor_area_ratio_estimated" data-value="1.65">1.65</div><div class="tile-unit">—</div><div class="tile-label">估算容积率</div></div><div class="tile"><div class="tile-val" data-metric="building_density" data-value="0.151">15.1</div><div class="tile-unit">%</div><div class="tile-label">建筑密度</div></div><div class="tile"><div class="tile-val" data-metric="road_length_m" data-value="36952.578">37.0</div><div class="tile-unit">km</div><div class="tile-label">道路里程</div></div><div class="tile"><div class="tile-val" data-metric="key_area_count" data-value="3.0">3.0</div><div class="tile-unit">处</div><div class="tile-label">重点区域</div></div><div class="tile"><div class="tile-val" data-metric="total_floor_area_sqm_estimated" data-value="18827157.898">18.8</div><div class="tile-unit">万m²</div><div class="tile-label">估算总建面</div></div></div>
+  <p style="font-size:12px;color:#c0392b;margin-top:10px">⚠ 以上数字均为<strong>临时边界下的概念估算</strong>，非官方红线、非法定指标；官方几何与控规条件到位后须整体重算。容积率/建筑密度为设计估算。</p>
+</section>
+
+<section>
+  <h2>三处重点区域详细设计</h2>
+  <div class="landmark"><div class="lm-name">① 众智园·始发站（创新机务段）</div><div class="lm-desc">AI全栈自主创新加速 · 机务段院落＋试车线 · 信号所广场 · 中试与验证展示带</div></div>
+  <div class="landmark"><div class="lm-name">② AI原点·发车台（世界首发站）</div><div class="lm-desc">世界级AI创新生态原点 · 发车台广场 · 清华园站纪念 · 智能体贡献荣誉墙</div></div>
+  <div class="landmark"><div class="lm-name">③ 大钟寺·换乘站（智能枢纽）</div><div class="lm-desc">智能原生新业态 · 时刻表广场 · 站城一体南部门户 · 人机换乘体验</div></div>
+</section>
+
+<section>
+  <h2>交通慢行、蓝绿公共空间与建筑更新</h2>
+  <p style="font-size:13px;color:#34495e;margin-bottom:10px"><b>交通慢行</b>：两纵（西/东纵向干道）+ 14 条横向连接路在站点与社区处跨轨道连通，缝合东西城区；慢行系统以公园轨道为脊柱贯通步行与骑行 [道路里程约 36.9 km]。</p>
+  <p style="font-size:13px;color:#34495e;margin-bottom:10px"><b>蓝绿公共空间</b>：公园轨道（约 2.3 km² 绿地）为主线，三站设信号所广场、发车台广场、时刻表广场，站区配机务段生态核、发车台口袋公园、换乘站绿庭等节点绿地，形成「一轨多珠」蓝绿网络。</p>
+  <p style="font-size:13px;color:#34495e;margin-bottom:10px"><b>建筑与开发强度</b>：约 553 栋概念建筑（AI研发、教育、文化、居住、社区服务、商业），估算容积率约 1.65、建筑密度约 0.15，遵循「车站高密、沿线中密、轨道开敞」。</p>
+  <p style="font-size:13px;color:#34495e;margin-bottom:10px"><b>更新项目</b>：遗产活化类（遗址公园轨道、发车台纪念）、站城一体类（三站广场与枢纽）、创新载体类（机务段开放厂、原点院落、开发者实验室）、社区提升类（创新人才社区、邻里中心）。</p>
+</section>
+
+<section>
+  <h2>AI 场景卡（10 张）与用户画像（5 类）</h2>
+  <div class="scn-grid"><div class="scn"><div class="scn-id">S1</div><div class="scn-name">轨道智行</div><div class="scn-desc">AI交通接驳·无障碍·慢行信号</div><div class="scn-where">📍 公园轨道/站区</div></div><div class="scn"><div class="scn-id">S2</div><div class="scn-name">首班车文化导览</div><div class="scn-desc">百年铁路+中关村+AI导览</div><div class="scn-where">📍 遗址公园轨道</div></div><div class="scn"><div class="scn-id">S3</div><div class="scn-name">健康随行</div><div class="scn-desc">AI健康服务导航与预约</div><div class="scn-where">📍 站区/社区</div></div><div class="scn"><div class="scn-id">S4</div><div class="scn-name">企业服务Copilot</div><div class="scn-desc">政务与专业服务智能助手</div><div class="scn-where">📍 中关村服务翼</div></div><div class="scn"><div class="scn-id">S5</div><div class="scn-name">公共安全运营复核</div><div class="scn-desc">AI辅助+人工复核(测试)</div><div class="scn-where">📍 受控空间</div></div><div class="scn"><div class="scn-id">S6</div><div class="scn-name">低速无人配送</div><div class="scn-desc">机器人物流测试(测试)</div><div class="scn-where">📍 站区/园区</div></div><div class="scn"><div class="scn-id">S7</div><div class="scn-name">AI+教育</div><div class="scn-desc">高校实训·开源教学(测试)</div><div class="scn-where">📍 教育带</div></div><div class="scn"><div class="scn-id">S8</div><div class="scn-name">AI+法律</div><div class="scn-desc">中关村法治服务·规则测试</div><div class="scn-where">📍 中关村服务翼</div></div><div class="scn"><div class="scn-id">S9</div><div class="scn-name">智能建筑能源</div><div class="scn-desc">分布式能源·端侧算力</div><div class="scn-where">📍 站区/社区</div></div><div class="scn"><div class="scn-id">S10</div><div class="scn-name">开发者共创实验室</div><div class="scn-desc">场景开放·数据沙箱·共创</div><div class="scn-where">📍 AI原点社区</div></div></div>
+  <h2 style="margin-top:18px">用户画像（5 类）</h2>
+  <div><span class="chip">青年开发者与创业者</span><span class="chip">AI企业高管与投资人</span><span class="chip">高校师生（北航/北邮）</span><span class="chip">原住民与通勤者</span><span class="chip">全球AI访客与朝圣者</span></div>
+  <table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:12px">
+    <tr style="background:#eaf2fb"><th style="padding:6px;text-align:left">画像</th><th style="padding:6px;text-align:left">核心需求</th><th style="padding:6px;text-align:left">关联场景</th><th style="padding:6px;text-align:left">主要空间落点</th></tr>
+    <tr><td>青年开发者与创业者</td><td>共创实验室、开源社区、低成本空间</td><td>S1 S2 S10</td><td>AI原点社区/众智园</td></tr><tr><td>AI企业高管与投资人</td><td>展示、路演、洽谈、资本服务</td><td>S4 S8</td><td>中关村服务翼</td></tr><tr><td>高校师生（北航/北邮）</td><td>科研协作、实训、成果转化</td><td>S2 S7</td><td>教育带</td></tr><tr><td>原住民与通勤者</td><td>慢行、配套、日常AI服务</td><td>S1 S3 S9</td><td>沿线社区</td></tr><tr><td>全球AI访客与朝圣者</td><td>导览、体验、荣誉展示</td><td>S2 S5</td><td>三站/轨道</td></tr>
+  </table>
+  <h2 style="margin-top:18px">高风险场景治理机制（概念建议）</h2>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:11px">
+    <tr style="background:#eaf2fb"><th style="padding:5px;text-align:left">场景</th><th style="padding:5px;text-align:left">数据最小化</th><th style="padding:5px;text-align:left">保存期限</th><th style="padding:5px;text-align:left">人工复核</th><th style="padding:5px;text-align:left">申诉/无障碍替代</th><th style="padding:5px;text-align:left">停机</th><th style="padding:5px;text-align:left">责任主体</th><th style="padding:5px;text-align:left">KPI示例</th></tr>
+    <tr><td>S3 健康随行</td><td>仅导航所需位置+服务目录</td><td>会话≤30天，不沉淀健康档案</td><td>建议不替代医嘱，人工客服兜底</td><td>电话/现场人工，多语种</td><td>数据源失效即停</td><td>社区+卫生部门</td><td>转人工率、误导航率</td></tr><tr><td>S5 公共安全复核</td><td>视频合规采集，客流去标识</td><td>原始视频≤7天，摘要90天</td><td>预警辅助，人作处置决定</td><td>公众告知+异议申诉</td><td>安全评估未过即停</td><td>运营方+公安</td><td>复核及时率、误报率</td></tr><tr><td>S6 无人配送</td><td>订单脱敏，定位受控</td><td>订单数据≤180天</td><td>远程接管+人工处置</td><td>人工取货点，非智能友好</td><td>路权/安全未过即停</td><td>运营企业+交通部门</td><td>成功率、事故率、接管率</td></tr><tr><td>S7 AI+教育</td><td>教学数据去标识化</td><td>按学籍与数据法规</td><td>教学内容人工审校</td><td>线下课堂全覆盖</td><td>数据违规即停</td><td>高校+教育部门</td><td>课程完成率、复用率</td></tr><tr><td>S10 共创实验室</td><td>数据分级开放，沙箱最小权限</td><td>沙箱数据按租期删除</td><td>沙箱审计+人工审核</td><td>开源透明，可离线获取</td><td>逃逸/滥用即停</td><td>运营方+开发者委员会</td><td>沙箱利用率、逃逸次数</td></tr>
+  </table>
+  </div>
+  <p style="font-size:11px;color:#7f8c8d;margin-top:6px">治理机制为概念建议，阈值与监管要求以主管部门意见为准。</p>
+</section>
+
+<section>
+  <h2>AI 公共空间组件库与年度活动体系（agent.4 / agent.6）</h2>
+  <p style="font-size:13px;color:#34495e;margin-bottom:8px">六类公共空间组件库可复制组合，支撑三站与轨道沿线的公共空间与荣誉展示体系：</p>
+  <table style="width:100%;border-collapse:collapse;font-size:12px">
+    <tr style="background:#eaf2fb"><th style="padding:6px;text-align:left">组件</th><th style="padding:6px;text-align:left">类型</th><th style="padding:6px;text-align:left">用途</th><th style="padding:6px;text-align:left">布局</th></tr>
+    <tr><td>站前广场</td><td><span class="chip">station-plaza</span></td><td>三站入口集会与展示空间</td><td>每站1处</td></tr><tr><td>展示廊</td><td><span class="chip">gallery</span></td><td>开源成果/创新成果展示</td><td>轨道沿线</td></tr><tr><td>荣誉墙</td><td><span class="chip">honor-wall</span></td><td>智能体贡献/开发者荣誉展示</td><td>发车台/轨道</td></tr><tr><td>漫步道</td><td><span class="chip">walkway</span></td><td>慢行脊柱与体验路径</td><td>轨道全线</td></tr><tr><td>生态核</td><td><span class="chip">eco-core</span></td><td>站区生态绿心</td><td>每站1处</td></tr><tr><td>口袋公园</td><td><span class="chip">pocket-park</span></td><td>社区级绿地与停留</td><td>沿线社区</td></tr>
+  </table>
+  <p style="font-size:13px;color:#34495e;margin:12px 0 8px">全球 AI 活动体系（概念建议，不构成已确定安排）：</p>
+  <table style="width:100%;border-collapse:collapse;font-size:12px">
+    <tr style="background:#eaf2fb"><th style="padding:6px;text-align:left">活动</th><th style="padding:6px;text-align:left">频次</th><th style="padding:6px;text-align:left">内容</th></tr>
+    <tr><td>年度·首班车日</td><td>10月2日</td><td>京张全线通车纪念日，全球AI开发者嘉年华、朝圣仪式、开源成果展</td></tr><tr><td>季度·时刻表发布</td><td>每季度</td><td>场景开放日、测试验证周、开发者共创主题发布</td></tr><tr><td>月度·开发者社区</td><td>每月</td><td>共创实验室开放、贡献荣誉更新、开源协作</td></tr><tr><td>持续·荣誉展示</td><td>全年</td><td>智能体贡献荣誉墙、开源成果展示廊、碑刻延续机制</td></tr>
+  </table>
+  <p style="font-size:11px;color:#7f8c8d;margin-top:8px">活动与运营均为概念方向；责任主体、成本等级、KPI 与退出机制待专业运营团队深化。</p>
+</section>
+
+<section>
+  <h2>AI 朝圣地标（3 处）</h2>
+  <div class="landmark"><div class="lm-name">清华园·发车台</div><div class="lm-where">AI原点社区</div><div class="lm-desc">世界第一列AI规划列车发车纪念碑 + 智能体贡献荣誉墙</div></div><div class="landmark"><div class="lm-name">京张·时刻表广场</div><div class="lm-where">大钟寺换乘站</div><div class="lm-desc">百年时刻表公共艺术 + AI城市运行状态实时显示</div></div><div class="landmark"><div class="lm-name">众智园·机务段开放厂</div><div class="lm-where">始发站</div><div class="lm-desc">AI全栈创新成果展示 + 开源成果展廊</div></div>
+</section>
+
+<section>
+  <h2>任务覆盖与自检状态</h2>
+  <p style="font-size:13px;color:var(--mut);margin-bottom:8px">公告任务 1.3–1.5 与智能体任务 agent.1–agent.6 全覆盖：</p>
+  <div><span class="chip chip-ok">1.3.1</span><span class="chip chip-ok">1.3.2</span><span class="chip chip-ok">1.3.3</span><span class="chip chip-ok">1.4.1</span><span class="chip chip-ok">1.4.2</span><span class="chip chip-ok">1.4.3</span><span class="chip chip-ok">1.5.1.1</span><span class="chip chip-ok">1.5.1.2</span><span class="chip chip-ok">1.5.2.1</span><span class="chip chip-ok">1.5.2.2</span><span class="chip chip-ok">1.5.2.3</span><span class="chip chip-ok">1.5.2.4</span><span class="chip chip-ok">1.5.2.5</span><span class="chip chip-ok">1.5.3.required</span><span class="chip chip-ok">1.5.3.1</span><span class="chip chip-ok">1.5.3.2</span><span class="chip chip-ok">1.5.3.3</span><span class="chip chip-ok">agent.1</span><span class="chip chip-ok">agent.2</span><span class="chip chip-ok">agent.3</span><span class="chip chip-ok">agent.4</span><span class="chip chip-ok">agent.5</span><span class="chip chip-ok">agent.6</span></div>
+  <h2 style="margin-top:18px">自检状态</h2>
+  <div class="sc-row"><span class="sc-name">BOUNDARY_TRUST</span><span class="sc-target">geometry/site_boundary.geojson</span><span class="sc-res" style="color:#1e8449">PASS</span></div><div class="sc-row"><span class="sc-name">KEY_AREAS_TRUST</span><span class="sc-target">geometry/key_areas.geojson</span><span class="sc-res" style="color:#1e8449">PASS</span></div><div class="sc-row"><span class="sc-name">LAND_USE_TOPOLOGY</span><span class="sc-target">geometry/land_use.geojson</span><span class="sc-res" style="color:#1e8449">PASS</span></div><div class="sc-row"><span class="sc-name">VISUAL_STATIC</span><span class="sc-target">visual/index.html</span><span class="sc-res" style="color:#1e8449">PASS</span></div><div class="sc-row"><span class="sc-name">PROFESSIONAL_EVIDENCE</span><span class="sc-target">proposal.md</span><span class="sc-res" style="color:#1e8449">PASS</span></div>
+</section>
+
+<section>
+  <h2>来源与假设</h2>
+  <p style="font-weight:700;font-size:14px;margin-bottom:6px">来源</p>
+  <ul><li><b>SITE-PACKAGE</b> — Project brief, enums, allowed design space, ranges, and schemas.</li><li><b>SOURCE-REGISTRY</b> — Public/cleared/provisional source usability registry; distinguishes formal-ready, backgrou</li><li><b>PROCESSED-FACT-PACK</b> — Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and mis</li><li><b>BOUNDARY-SOURCE</b> — Submitted site boundary geometry source (provisional).</li><li><b>KEY-AREA-SOURCE</b> — Three required detailed-design key area boundaries (provisional).</li><li><b>OFFICIAL-ANNOUNCEMENT</b> — Official announcement tasks, scope levels, key areas, language, and deliverable context.</li><li><b>AGENT-TASKBOOK</b> — Agent-facing open-call principles, six required agent tasks, scenario/branding/operation r</li><li><b>CASE-KINGS-CROSS</b> — 伦敦国王十字车站更新项目官方介绍（kingcross.co.uk），作为铁路遗产更新案例的公开一手参考；仅用于概念比较。</li><li><b>CASE-PUBLIC-REPORTING</b> — 硅谷、深圳南山、杭州未来科技城、新加坡榜鹅、波士顿、大田等 AI 生态案例的公开报道与百科参考（background reference only）。本方案不以这些来源作正式证据，</li><li><b>ARTICLE-CYBER-CHANXIN</b> — 「赛博禅心」公众号《全球首次，只有Agent参与的城市规划》公开介绍文章（background only）：交代征集背景、参与方式与时间安排，不用于正式证据。</li></ul>
+  <p style="font-weight:700;font-size:14px;margin:14px 0 6px">假设与待补</p>
+  <ul><li><b>A-CONTROLS-001</b> — 法定控规条件（容积率、建筑高度、建筑密度、绿地率、退线）、道路红线、土地权属、市政容量与工程约束需由官方附件确认后方可用于法定用途。</li><li><b>A-PROVISIONAL-BOUNDARY-001</b> — 总体设计范围与三处重点区采用公告文字边界推导的临时边界（provisional_constraint），非官方红线。</li><li><b>A-FAR-ESTIMATE-001</b> — 容积率约 1.65、建筑密度约 0.15 为设计估算，由代表性建筑基底与假定层数在 EPSG:4548 下复算。</li><li><b>A-CASE-STUDY-001</b> — 全球 AI 创新生态案例（国王十字、硅谷等）均基于公开资料，属参考示意。</li><li><b>A-SCENARIO-TEST-001</b> — AI 场景卡与产业测试验证场景为概念建议，在受控空间内开展，明确数据边界与人工复核机制。</li><li><b>A-MEMORIAL-001</b> — AI 朝圣地标与荣誉展示体系为概念建议与公共空间设计，不构成已批准建设。</li></ul>
+</section>
+
+<footer>本方案为 AI 智能体生成的开源共创建议，不替代正式规划，不构成政府审定结论；空间建议均为概念建议，供专业团队深化研究。<br>© 2026 Qiyuanqiii · 京张·首班车 JZ First Train · 离线静态页面</footer>
+</div>
+</body>
+</html>
