@@ -84,6 +84,8 @@
 4. 将转换误差、坐标系不确定、图纸版本差异写入 `assumptions.json`。
 5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行 `scripts/self_check_submission.py`。provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
 
+等纬度条带分区的投影注意事项：GeoJSON 中的纬线边是折线，投影到 EPSG:4548 后不会自动变成同一条曲线。若相邻用地要素用不同跨度或不同顶点密度生成，即使在 EPSG:4326 中共享一条纬线，投影后也可能出现数平方米的细长伪重叠。不要通过放宽 `LAND_USE_OVERLAP` 阈值来处理这种情况；应在生成前让同一条横向缝合线使用统一的经度网格和一致的顶点序列，并在投影后的 `spatial_review` 中复核相交面积。
+
 ### 专业标准本地参考库
 
 `standard_matrix.json` 不应只引用外部 URL。repo 已把 mandatory formal 标准登记在 `brief/site-package/standards/standards.json`，并把可访问的官方公开资料保存到 `brief/site-package/standards/references/`：
