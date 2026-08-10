@@ -1,0 +1,528 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area of submitted provisional polygon",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry",
+      "display_rounding_sqm": 100000
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 4452.507,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum conceptual envelope areas; not existing footprints",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 48800.146,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum conceptual winter green/search polygons",
+      "confidence": "low",
+      "assumptions": [
+        "A-BLUEGREEN-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.004276,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BLUEGREEN-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 167171.885,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum eight conceptual winter-work search areas",
+      "confidence": "low",
+      "assumptions": [
+        "A-PROJECT-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.014648,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PROJECT-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 11850.776,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum conceptual candidate route centerline lengths",
+      "confidence": "low",
+      "assumptions": [
+        "A-ROADS-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "requires surveyed road polygons",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Only conceptual centerlines are provided; road redlines and widths are not public.",
+      "required_for_formal_submission": true
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Road area and the official machine-readable site boundary are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum approved floor areas",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual envelopes are not surveyed buildings and no approved building schedule is public.",
+      "required_for_formal_submission": true
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, official boundary, and building schedule are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "verified_existing_and_proposed_footprints / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing building footprints and official controls are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 167171.886,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum non-overlapping conceptual project search areas by phase",
+      "confidence": "low",
+      "assumptions": [
+        "A-PROJECT-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count provisional KEY_AREA features",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of provisional key-area polygon",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry",
+      "display_rounding_sqm": 10000
+    },
+    "key_area_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of provisional key-area polygon",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry",
+      "display_rounding_sqm": 10000
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of provisional key-area polygon",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry",
+      "display_rounding_sqm": 10000
+    },
+    "key_area_provisional_sum_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum of the three provisional key-area polygons in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry",
+      "display_rounding_sqm": 10000
+    },
+    "key_area_announcement_approx_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "368.4 announced hectares × 10,000; published as an approximate reference, not a polygon measurement",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "official_announcement_approximate_reference",
+      "display_rounding_sqm": 10000
+    },
+    "key_area_provisional_minus_announcement_approx_sqm": {
+      "status": "known",
+      "value": 8893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "sources.json"
+      ],
+      "formula": "provisional polygon sum minus the announced approximate 368.4 ha; this is a disclosure value, not a boundary-error estimate",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "metric_type": "provisional_reference_difference",
+      "display_rounding_sqm": 10000
+    },
+    "winter_solstice_solar_altitude_deg": {
+      "status": "known",
+      "value": 26.58,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "90 - 39.98 - 23.44; astronomical screening only",
+      "confidence": "medium",
+      "assumptions": [
+        "A-SOLAR-001"
+      ],
+      "metric_type": "proposal_design_input"
+    },
+    "winter_sun_hours_target": {
+      "status": "known",
+      "value": 2,
+      "unit": "none",
+      "source_files": [
+        "proposal.md",
+        "assumptions.json"
+      ],
+      "formula": "proposal target for three landmarks during 10:00–14:00; not statutory",
+      "confidence": "low",
+      "assumptions": [
+        "A-SOLAR-001"
+      ],
+      "metric_type": "proposal_target_hours"
+    },
+    "winter_priority_route_coverage_target": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "priority segments with owner + equipment + detour + snow destination + verifier / all priority segments",
+      "confidence": "low",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "metric_type": "proposal_target"
+    },
+    "snow_storage_assignment_target": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "priority segments with approved storage or haul route / all priority segments",
+      "confidence": "low",
+      "assumptions": [
+        "A-SNOW-001"
+      ],
+      "metric_type": "proposal_target"
+    },
+    "polluted_snow_green_contact_target": {
+      "status": "known",
+      "value": 0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "observed polluted-snow contact events with tree pits or green space per snow event",
+      "confidence": "low",
+      "assumptions": [
+        "A-SNOW-001"
+      ],
+      "metric_type": "proposal_target"
+    },
+    "refreeze_review_coverage_target": {
+      "status": "known",
+      "value": 1,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "identified cross-route meltwater points reviewed after sunset / all identified points",
+      "confidence": "low",
+      "assumptions": [
+        "A-REFREEZE-001"
+      ],
+      "metric_type": "proposal_target"
+    },
+    "manual_fallback_handover_window_target": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "one pre-registered next staffed handover window for the named responsible operator; start/end and trigger must be logged, and values are not comparable across operators",
+      "confidence": "low",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "metric_type": "proposal_governance_target"
+    },
+    "winter_work_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count WW-01 through WW-08",
+      "confidence": "high",
+      "assumptions": [],
+      "metric_type": "proposal_program"
+    },
+    "winter_scenario_card_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count narrative winter scenario cards",
+      "confidence": "high",
+      "assumptions": [],
+      "metric_type": "proposal_program"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count winter user/persona groups",
+      "confidence": "high",
+      "assumptions": [],
+      "metric_type": "proposal_program"
+    },
+    "industry_validation_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count TEST-WINTER features",
+      "confidence": "high",
+      "assumptions": [],
+      "metric_type": "proposal_program"
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "Freeze–Thaw Gauge + Winter Sun Commons + Snow-Clear Hall",
+      "confidence": "high",
+      "assumptions": [],
+      "metric_type": "proposal_program"
+    },
+    "candidate_observation_point_target": {
+      "status": "known",
+      "value": 30,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "proposal sampling target before site survey",
+      "confidence": "low",
+      "assumptions": [
+        "A-MONITORING-001"
+      ],
+      "metric_type": "proposal_target"
+    },
+    "land_use_0702_mixed_sqm": {
+      "status": "known",
+      "value": 2591922.292,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "EPSG:4548 area of conceptual topology carrier LU-WINTER-MIXED",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "land_use_1401_green_sqm": {
+      "status": "known",
+      "value": 2803504.62,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "EPSG:4548 area of conceptual topology carrier LU-WINTER-GREEN",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "land_use_0802_rd_sqm": {
+      "status": "known",
+      "value": 3337505.273,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "EPSG:4548 area of conceptual topology carrier LU-WINTER-RD",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    },
+    "land_use_05_service_sqm": {
+      "status": "known",
+      "value": 2679893.201,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "EPSG:4548 area of conceptual topology carrier LU-WINTER-SERVICE",
+      "confidence": "low",
+      "assumptions": [
+        "A-LANDUSE-001"
+      ],
+      "metric_type": "calculated_from_submission_geometry"
+    }
+  }
+}

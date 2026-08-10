@@ -1,0 +1,648 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "blocked_on_official_data",
+      "statement": "The submitted overall-design and key-area polygons are repository-maintained provisional geometry, not official redlines.",
+      "statement_zh": "提交的总体设计范围与三处重点区 polygon 是仓库维护的临时粗略几何，不是官方红线。",
+      "statement_en": "The submitted overall-design and key-area polygons are repository-maintained provisional geometry, not official redlines.",
+      "impact": "All locations, topology checks and computed areas are suitable only for intake and concept discussion; official polygons trigger full-package recomputation.",
+      "impact_zh": "所有落位、拓扑检查和面积只用于 intake 与概念讨论；官方 polygon 到位后必须重裁九图层并重算指标、图纸和 PDF。",
+      "impact_en": "All locations, topology checks and computed areas are suitable only for intake and concept discussion; official polygons trigger full-package recomputation.",
+      "affected_evidence": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "metrics.json",
+        "drawings/a3-booklet.pdf",
+        "drawings/a0-boards.pdf"
+      ],
+      "source_ids": [
+        "BOUNDARY-SOURCE",
+        "KEY-AREA-SOURCE",
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "resolution_trigger_zh": "取得可核验坐标系、版本和发布主体的官方 GIS/CAD polygon。",
+      "resolution_trigger_en": "Receive official GIS/CAD polygons with verifiable CRS, version and issuing authority."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Approved FAR, height, density, setback, road redline, ownership, municipal utility, fire and implementation controls are not present in the public package.",
+      "statement_zh": "公开包中缺少经批准的容积率、限高、密度、退界、道路红线、权属、市政管线、消防和实施控制。",
+      "statement_en": "Approved FAR, height, density, setback, road redline, ownership, municipal utility, fire and implementation controls are not present in the public package.",
+      "impact": "Land use, buildings, sections and project locations remain conceptual; quantitative statutory controls stay unknown.",
+      "impact_zh": "用地、建筑、断面和项目位置均保持概念建议；所有法定定量控制保持 unknown。",
+      "impact_en": "Land use, buildings, sections and project locations remain conceptual; quantitative statutory controls stay unknown.",
+      "affected_evidence": [
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "MOHURD-CONTROL-DETAILED-PLANNING",
+        "STREET-CONTROL-DRAFT-STATUS"
+      ],
+      "resolution_trigger_zh": "由组织方或主管部门提供现行有效控规图则、权属、道路、市政、消防和项目接口资料，并经专业团队确认适用性。",
+      "resolution_trigger_en": "Receive current statutory controls, ownership, road, utilities, fire and project-interface data and obtain professional applicability review."
+    },
+    {
+      "id": "A-EXISTING-SURVEY-001",
+      "status": "fieldwork_not_completed",
+      "statement": "No project-specific survey of existing buildings, pavements, trees, kerbs, drains, slopes, entrances or winter defects has been completed.",
+      "statement_zh": "尚未完成本项目建筑、铺装、树木、路缘、雨水口、坡度、出入口和冬季病害的现场测绘。",
+      "statement_en": "No project-specific survey of existing buildings, pavements, trees, kerbs, drains, slopes, entrances or winter defects has been completed.",
+      "impact": "The submitted geometry is a design carrier rather than an existing-condition inventory; retain/renovate/demolish remains unresolved, and the package contains only unscaled relational prototypes rather than true site-fitted 1:500 or 1:100–1:200 drawings.",
+      "impact_zh": "当前 GeoJSON 是设计载体而非现状普查；具体拆改留尚不能判断，本包只有未标比例的关系原型，没有真实套合的 1:500 或 1:100—1:200 场地图纸。",
+      "impact_en": "The submitted geometry is a design carrier rather than an existing-condition inventory; retain/renovate/demolish remains unresolved, and the package contains only unscaled relational prototypes rather than true site-fitted 1:500 or 1:100–1:200 drawings.",
+      "affected_evidence": [
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE"
+      ],
+      "resolution_trigger_zh": "完成测绘、建筑普查、树木与排水调查，并以统一编号替换概念载体。",
+      "resolution_trigger_en": "Complete survey, building inventory, tree and drainage inspection and replace concept carriers with consistently identified evidence."
+    },
+    {
+      "id": "A-FIVE-STATE-001",
+      "status": "status_register_incomplete",
+      "statement": "The existing/approved/under-construction/planned/proposed five-state base map is a required method, but a complete authoritative project-status register is unavailable.",
+      "statement_zh": "现状/已批/在建/规划/本案五态底图是本方案方法，但尚无完整权威项目状态台账。",
+      "statement_en": "The existing/approved/under-construction/planned/proposed five-state base map is a required method, but a complete authoritative project-status register is unavailable.",
+      "impact": "Public notices can establish selected statuses only; unverified items remain unknown and may not be promoted to existing or approved.",
+      "impact_zh": "公开公示只能确认少数状态；未核实项目保持 unknown，不得提升为现状或已批。",
+      "impact_en": "Public notices can establish selected statuses only; unverified items remain unknown and may not be promoted to existing or approved.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/constraints.geojson"
+      ],
+      "source_ids": [
+        "STREET-CONTROL-DRAFT-STATUS",
+        "HAIDIAN-URBAN-RENEWAL-GUIDE"
+      ],
+      "resolution_trigger_zh": "取得带日期、审批阶段、实施状态、主体和空间范围的官方项目台账。",
+      "resolution_trigger_en": "Receive an official project register with dates, approval stage, implementation state, responsible entity and spatial extent."
+    },
+    {
+      "id": "A-WINTER-CLIMATE-001",
+      "status": "baseline_not_measured",
+      "statement": "Citywide climate policies and emergency plans establish relevant hazards but do not provide site-specific snowfall, wind, surface temperature, humidity, friction or icing frequency.",
+      "statement_zh": "全市气候政策与应急预案确认相关风险，但不提供场地雪量、风、路表温湿度、摩擦或结冰频率。",
+      "statement_en": "Citywide climate policies and emergency plans establish relevant hazards but do not provide site-specific snowfall, wind, surface temperature, humidity, friction or icing frequency.",
+      "impact": "No claim is made about local icing probability, snow depth, wind speed or winter service performance.",
+      "impact_zh": "本包不声称本地结冰概率、雪深、风速或冬季服务实绩。",
+      "impact_en": "No claim is made about local icing probability, snow depth, wind speed or winter service performance.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/constraints.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "BEIJING-CLIMATE-ADAPTATION",
+        "BEIJING-SNOW-LOW-TEMP-EMERGENCY"
+      ],
+      "resolution_trigger_zh": "取得多年逐时气象、路表监测和重点节点冬季现场记录，并说明缺测与代表性。",
+      "resolution_trigger_en": "Obtain multi-year hourly weather, pavement monitoring and winter field records with missingness and representativeness documented."
+    },
+    {
+      "id": "A-SINGLE-SEASON-001",
+      "status": "multi_season_validation_required",
+      "statement": "One snow-free winter or one extreme snowfall cannot demonstrate long-term winter performance.",
+      "statement_zh": "一冬无雪或一次极端降雪都不能证明长期冬季性能。",
+      "statement_en": "One snow-free winter or one extreme snowfall cannot demonstrate long-term winter performance.",
+      "impact": "A dry-season simulation may test people, tools and routes but is never reported as observed snow performance; replication follows at least two cold-season reviews.",
+      "impact_zh": "无雪演练只检查人员、工具和路线，不能写成实雪性能；原型至少跨两个冷季复核后才可复制。",
+      "impact_en": "A dry-season simulation may test people, tools and routes but is never reported as observed snow performance; replication follows at least two cold-season reviews.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "source_ids": [
+        "BEIJING-SNOW-LOW-TEMP-EMERGENCY"
+      ],
+      "resolution_trigger_zh": "完成至少两个冷季的可追溯监测、演练/事件记录和春季修复闭环。",
+      "resolution_trigger_en": "Complete traceable monitoring, exercises/events and spring-repair closure across at least two cold seasons."
+    },
+    {
+      "id": "A-SOLAR-001",
+      "status": "early_screening_only",
+      "statement": "A latitude near 39.98°N and an approximate winter-solstice noon solar altitude near 26.6° are early astronomical screening assumptions, not site daylight compliance.",
+      "statement_zh": "约 39.98°N 纬度及冬至正午约 26.6°太阳高度角只是早期天文筛查，不是场地日照合规结论。",
+      "statement_en": "A latitude near 39.98°N and an approximate winter-solstice noon solar altitude near 26.6° are early astronomical screening assumptions, not site daylight compliance.",
+      "impact": "The two-hour winter-sun objective cannot be verified until buildings, terrain and trees are surveyed and hourly shadows are modelled and field-checked.",
+      "impact_zh": "2 小时冬阳目标须在建筑、地形、树木测绘后做逐时模型和现场校核，当前不能验证。",
+      "impact_en": "The two-hour winter-sun objective cannot be verified until buildings, terrain and trees are surveyed and hourly shadows are modelled and field-checked.",
+      "affected_evidence": [
+        "proposal.md",
+        "metrics.json",
+        "assets/figures/key-areas.png"
+      ],
+      "source_ids": [
+        "DB11-T-2240-2024"
+      ],
+      "resolution_trigger_zh": "完成真实建筑、地形和常绿/落叶树模型，核验冬至 10:00—14:00 逐时阴影，并同步校核夏季遮阳。",
+      "resolution_trigger_en": "Model surveyed buildings, terrain and evergreen/deciduous trees, verify hourly 10:00–14:00 winter-solstice shadows and check summer shade concurrently."
+    },
+    {
+      "id": "A-WIND-SNOW-001",
+      "status": "simulation_and_fieldwork_required",
+      "statement": "No site-specific wind tunnel, CFD or observed wind-driven-snow study is available.",
+      "statement_zh": "尚无场地风洞、CFD 或风驱雪实测研究。",
+      "statement_en": "No site-specific wind tunnel, CFD or observed wind-driven-snow study is available.",
+      "impact": "Wind screens, station waiting areas and snow-drift locations are alternative relationships only and must not narrow sightlines, fire access or summer ventilation.",
+      "impact_zh": "挡风屏、候车点和积雪涡区仅为备选关系，且不得缩窄视线、消防或夏季通风。",
+      "impact_en": "Wind screens, station waiting areas and snow-drift locations are alternative relationships only and must not narrow sightlines, fire access or summer ventilation.",
+      "affected_evidence": [
+        "assets/figures/key-areas.png",
+        "assets/figures/mobility-bluegreen.png",
+        "geometry/public_space.geojson"
+      ],
+      "source_ids": [
+        "CASE-EDMONTON-WINTERCITY"
+      ],
+      "resolution_trigger_zh": "以现状体量、树木和地形完成冬夏季风环境模拟，并在降雪/大风时现场验证。",
+      "resolution_trigger_en": "Run winter/summer wind modelling with surveyed massing, trees and terrain, then field-validate during snow/wind events."
+    },
+    {
+      "id": "A-SNOW-RESPONSIBILITY-001",
+      "status": "applicability_pending",
+      "statement": "Beijing's 07:30 and 10:00 snow-clearing deadlines apply to specified roads and responsibility areas; the responsible party for each proposal segment is not yet confirmed.",
+      "statement_zh": "北京 7:30 与 10:00 清雪时限适用于条文指定道路和责任地段；本案各段责任主体尚未确认。",
+      "statement_en": "Beijing's 07:30 and 10:00 snow-clearing deadlines apply to specified roads and responsibility areas; the responsible party for each proposal segment is not yet confirmed.",
+      "impact": "The proposal uses these times only where applicability is confirmed and otherwise defines a design target subject to owner/operator agreement.",
+      "impact_zh": "时限仅在确认适用时引用；其他节点的服务等级是需业主/运营方签认的设计目标。",
+      "impact_en": "The proposal uses these times only where applicability is confirmed and otherwise defines a design target subject to owner/operator agreement.",
+      "affected_evidence": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "source_ids": [
+        "BEIJING-SNOW-MANAGEMENT"
+      ],
+      "resolution_trigger_zh": "逐段确认道路/公园/站区/校园/物业责任范围、合同、班组、设备和适用时限。",
+      "resolution_trigger_en": "Confirm segment-by-segment responsibility areas, contracts, crews, equipment and applicable deadlines across roads, parks, stations, campuses and properties."
+    },
+    {
+      "id": "A-SNOW-STORAGE-001",
+      "status": "search_area_only",
+      "statement": "Proposed snow-storage locations are search areas, not approved stockpile sites or calculated capacities.",
+      "statement_zh": "本案储雪位只是搜索区，不是已批准堆雪点，也没有容量计算。",
+      "statement_en": "Proposed snow-storage locations are search areas, not approved stockpile sites or calculated capacities.",
+      "impact": "Every location requires sightline, accessible-route, fire, drainage, tree/root, salt-content, duration and removal checks; salt-laden snow is isolated or removed.",
+      "impact_zh": "每处须核验视距、无障碍、消防、排水、树木根域、含盐、时长和外运；含盐雪隔离或外运。",
+      "impact_en": "Every location requires sightline, accessible-route, fire, drainage, tree/root, salt-content, duration and removal checks; salt-laden snow is isolated or removed.",
+      "affected_evidence": [
+        "assets/figures/mobility-bluegreen.png",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "source_ids": [
+        "BEIJING-SNOW-MANAGEMENT",
+        "BEIJING-SPONGE-CITY"
+      ],
+      "resolution_trigger_zh": "以实测断面和事件雪量计算容量，并由环卫、园林、排水、消防、无障碍和产权/运营主体联合确认。",
+      "resolution_trigger_en": "Calculate capacity from surveyed sections and event snow volumes and obtain joint confirmation by sanitation, landscape, drainage, fire, accessibility and property/operators."
+    },
+    {
+      "id": "A-DRAINAGE-001",
+      "status": "engineering_data_gap",
+      "statement": "Catchments, elevations, inlets, pipes, outfalls, groundwater, soil infiltration and freeze protection are not available.",
+      "statement_zh": "尚无汇水区、标高、雨水口、管线、出流口、地下水、土壤入渗和防冻资料。",
+      "statement_en": "Catchments, elevations, inlets, pipes, outfalls, groundwater, soil infiltration and freeze protection are not available.",
+      "impact": "Meltwater paths, interception and refreeze points are conceptual; no claim of drainage capacity or sponge performance is made.",
+      "impact_zh": "融水路径、截水和回冻点均为概念；不声称排水容量或海绵绩效。",
+      "impact_en": "Meltwater paths, interception and refreeze points are conceptual; no claim of drainage capacity or sponge performance is made.",
+      "affected_evidence": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/constraints.geojson"
+      ],
+      "source_ids": [
+        "BEIJING-SPONGE-CITY",
+        "BEIJING-SNOW-MANAGEMENT"
+      ],
+      "resolution_trigger_zh": "完成高程、汇水、管网、出流、土壤和低温工况联合模型；单独处理含盐融水。",
+      "resolution_trigger_en": "Complete integrated elevation, catchment, network, outlet, soil and low-temperature modelling and separately manage salt-laden meltwater."
+    },
+    {
+      "id": "A-ACCESSIBILITY-001",
+      "status": "co_design_not_completed",
+      "statement": "The user journeys and fourteen scenario cards are design hypotheses; no wheelchair, cane, child, older-adult or worker co-walk has been completed.",
+      "statement_zh": "八类使用者与十四张场景卡是设计假设；尚未完成轮椅、盲杖、儿童、老人或工作人员共走。",
+      "statement_en": "The user journeys and fourteen scenario cards are design hypotheses; no wheelchair, cane, child, older-adult or worker co-walk has been completed.",
+      "impact": "Accessibility continuity and 100% target values are not observed performance and require representative participation and dimensional inspection.",
+      "impact_zh": "无障碍连续与 100% 目标不是实绩，须由代表性使用者参与并进行尺寸复核。",
+      "impact_en": "Accessibility continuity and 100% target values are not observed performance and require representative participation and dimensional inspection.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/roads.geojson",
+        "assets/figures/mobility-bluegreen.png"
+      ],
+      "source_ids": [
+        "ACCESSIBILITY-LAW",
+        "DB11-1761-2020"
+      ],
+      "resolution_trigger_zh": "在 D0/D1/D2 工况下完成代表性共走、坡度/净空/触觉/雪脊/绕行测量与问题关闭。",
+      "resolution_trigger_en": "Complete representative co-walks and slope/clearance/tactile/snow-ridge/detour measurement under D0/D1/D2 conditions and close findings."
+    },
+    {
+      "id": "A-ROBOT-001",
+      "status": "concept_test_only",
+      "statement": "No robot vendor, model, route, procurement, permit or validated low-temperature performance is committed.",
+      "statement_zh": "尚无机器人厂商、型号、路线、采购、许可或已验证低温性能。",
+      "statement_en": "No robot vendor, model, route, procurement, permit or validated low-temperature performance is committed.",
+      "impact": "Robots remain one optional enclosed test within a broader material–drainage–maintenance system and never receive public-space priority.",
+      "impact_zh": "机器人只是材料—排水—维护体系中的可选封闭测试，不获得公共空间优先权。",
+      "impact_en": "Robots remain one optional enclosed test within a broader material–drainage–maintenance system and never receive public-space priority.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/constraints.geojson"
+      ],
+      "source_ids": [
+        "PEER-JINGZHANG-LEVELING-LINE",
+        "PEER-JINGZHANG-OPEN-PULSE"
+      ],
+      "resolution_trigger_zh": "确认封闭场、设备、风险评估、制动/续航/感知测试、人工接管、急停、保险、事故记录和退出条件。",
+      "resolution_trigger_en": "Confirm enclosed site, equipment, risk assessment, braking/range/perception tests, human takeover, emergency stop, insurance, incident records and exit conditions."
+    },
+    {
+      "id": "A-AI-001",
+      "status": "human_decision_required",
+      "statement": "Icing prediction and work-order ranking are advisory research tools and cannot declare a route safe, close a road, reduce accessibility priority or replace authorized staff.",
+      "statement_zh": "结冰预测与工单排序只是辅助研究工具，不能宣布道路安全、关闭道路、降低无障碍优先级或替代有权人员。",
+      "statement_en": "Icing prediction and work-order ranking are advisory research tools and cannot declare a route safe, close a road, reduce accessibility priority or replace authorized staff.",
+      "impact": "No trained model, site dataset or performance result exists. Manual measurement, field confirmation, physical slip resistance, scheduled inspection, paper maps and human work orders remain the fail-safe baseline.",
+      "impact_zh": "当前没有已训练模型、场地数据集或性能结果；人工测量、现场确认、物理防滑、固定巡检、纸图和人工工单是故障时仍成立的底线。",
+      "impact_en": "No trained model, site dataset or performance result exists. Manual measurement, field confirmation, physical slip resistance, scheduled inspection, paper maps and human work orders remain the fail-safe baseline.",
+      "affected_evidence": [
+        "proposal.md",
+        "agent.json"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK",
+        "GENERATIVE-AI-INTERIM-MEASURES"
+      ],
+      "resolution_trigger_zh": "按 V1—V3 评价卡明确授权和最小数据，先建立人工/规则基线并预注册事件划分、误报漏报、提前量、漂移、无效工单、人工复核、日志、申诉、断网和停止程序；阈值须基于基线由专业人员确认后方可小规模验证。",
+      "resolution_trigger_en": "Under the V1–V3 evaluation cards, define authority and minimum data; establish the human/rule baseline; preregister event splits, false positives/negatives, lead time, drift, unnecessary work orders, human review, logs, appeal, offline and stop procedures; and have professionals set thresholds from the baseline before any limited test."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "heritage_geometry_and_approval_pending",
+      "statement": "The official textual Qinghuayuan protection information is known, but verified protection/control-zone polygons and fabric-condition surveys are not embedded in the submission.",
+      "statement_zh": "已知清华园车站旧址官方文字保护信息，但本包未嵌入经核验的保护/建控 polygon 或本体病害调查。",
+      "statement_en": "The official textual Qinghuayuan protection information is known, but verified protection/control-zone polygons and fabric-condition surveys are not embedded in the submission.",
+      "impact": "No winter device attaches to protected fabric; only reversible drainage, inspection and slip-resistance relationships are discussed pending heritage review.",
+      "impact_zh": "任何冬季构件均不附着文保本体；只在文保审查前讨论可逆排水、巡查和防滑关系。",
+      "impact_en": "No winter device attaches to protected fabric; only reversible drainage, inspection and slip-resistance relationships are discussed pending heritage review.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/constraints.geojson"
+      ],
+      "source_ids": [
+        "QINGHUAYUAN-PROTECTION",
+        "HERITAGE-PROTECTION-LAW"
+      ],
+      "resolution_trigger_zh": "导入核验后的文保范围/建控地带图，完成本体、材料、排水和冻融病害评估并取得主管部门意见。",
+      "resolution_trigger_en": "Import verified heritage/control polygons, complete fabric/material/drainage/freeze-thaw assessment and obtain competent-authority review."
+    },
+    {
+      "id": "A-BUILDING-ENERGY-001",
+      "status": "energy_model_not_completed",
+      "statement": "No existing-building energy, infiltration, vestibule, occupancy or summer-overheating model is available.",
+      "statement_zh": "尚无既有建筑能耗、渗风、门厅、占用或夏季过热模型。",
+      "statement_en": "No existing-building energy, infiltration, vestibule, occupancy or summer-overheating model is available.",
+      "impact": "Vestibules, wind lobbies, short-stay warm rooms and winter-sun spaces are reversible concepts; energy savings and comfort are not claimed.",
+      "impact_zh": "门斗、风幕、短时暖身室和冬阳空间均为可逆概念，不声称节能量或舒适实绩。",
+      "impact_en": "Vestibules, wind lobbies, short-stay warm rooms and winter-sun spaces are reversible concepts; energy savings and comfort are not claimed.",
+      "affected_evidence": [
+        "geometry/buildings.geojson",
+        "assets/figures/key-areas.png"
+      ],
+      "source_ids": [
+        "DB11-T-2240-2024"
+      ],
+      "resolution_trigger_zh": "完成现状能耗与渗风基线、冬季门厅热损失和夏季过热/通风联合模拟，再比较可逆改造。",
+      "resolution_trigger_en": "Establish energy/infiltration baseline and combined winter vestibule-loss and summer-overheating/ventilation models before comparing reversible retrofits."
+    },
+    {
+      "id": "A-IMPLEMENTATION-001",
+      "status": "conceptual_governance_only",
+      "statement": "Named agencies, owners, operators, universities, enterprises and workers are stakeholder categories, not committed partners or assigned legal responsibilities.",
+      "statement_zh": "文中部门、业主、运营者、高校、企业和班组均是利益相关者类别，不是已承诺合作方或已分配法定责任。",
+      "statement_en": "Named agencies, owners, operators, universities, enterprises and workers are stakeholder categories, not committed partners or assigned legal responsibilities.",
+      "impact": "Project list, RACI-like interfaces, budgets and phases remain proposals until responsible entities, funding, contracts, approvals and operations are confirmed.",
+      "impact_zh": "项目清单、责任接口、预算和分期均为建议，须待主体、资金、合同、审批和运营确认。",
+      "impact_en": "Project list, RACI-like interfaces, budgets and phases remain proposals until responsible entities, funding, contracts, approvals and operations are confirmed.",
+      "affected_evidence": [
+        "proposal.md",
+        "geometry/phasing.geojson",
+        "compliance_matrix.json"
+      ],
+      "source_ids": [
+        "HAIDIAN-URBAN-RENEWAL-GUIDE",
+        "BEIJING-URBAN-RENEWAL-REGULATION"
+      ],
+      "resolution_trigger_zh": "逐项目确认实施/产权/运营/监管主体、预算来源、合同责任、许可路径和公众参与记录。",
+      "resolution_trigger_en": "Confirm implementing/property/operating/regulatory entities, budget source, contractual duties, approval path and participation record for each project."
+    },
+    {
+      "id": "A-PERFORMANCE-TARGET-001",
+      "status": "design_target_not_observed",
+      "statement": "Two hours of winter sun, 100% closure rates, zero salt-snow contact and one-shift manual fallback are proposal targets, not current performance or government commitments. One shift means the responsible entity's next staffed handover window registered before testing, not a fixed number of hours.",
+      "statement_zh": "2 小时冬阳、100% 闭合、盐雪接触为 0 和一个班次内人工回退是本案目标，不是现状成绩或政府承诺；一个班次指责任主体试验前登记的下一次有人值守交接窗口，不是固定小时数。",
+      "statement_en": "Two hours of winter sun, 100% closure rates, zero salt-snow contact and one-shift manual fallback are proposal targets, not current performance or government commitments. One shift means the responsible entity's next staffed handover window registered before testing, not a fixed number of hours.",
+      "impact": "Targets require measurement protocols, baselines, accountable owners and failure actions before being reported as performance. The shift trigger and window start/end must be recorded, and results cannot be compared directly across entities.",
+      "impact_zh": "所有目标必须先有测量协议、基线、责任主体和未达标动作，才能报告为绩效；班次须记录触发点和窗口起止，禁止跨主体直接比较。",
+      "impact_en": "Targets require measurement protocols, baselines, accountable owners and failure actions before being reported as performance. The shift trigger and window start/end must be recorded, and results cannot be compared directly across entities.",
+      "affected_evidence": [
+        "proposal.md",
+        "metrics.json",
+        "assets/figures/metrics-evidence.png"
+      ],
+      "source_ids": [
+        "BEIJING-SNOW-MANAGEMENT",
+        "DB11-T-2240-2024"
+      ],
+      "resolution_trigger_zh": "将每项目标登记入 metrics.json，明确 unit、type、status、formula、baseline、owner、sampling、failure action，并完成现场验证。",
+      "resolution_trigger_en": "Register each target in metrics.json with unit, type, status, formula, baseline, owner, sampling and failure action, then field-validate it."
+    },
+    {
+      "id": "A-CASE-TRANSFER-001",
+      "status": "background_only",
+      "statement": "Cold-season, heritage-corridor and AI-ecosystem cases contribute mechanisms only; their climate thresholds, laws, land tools, finance and performance figures are not transferable controls.",
+      "statement_zh": "冷季作业、遗产绿廊与 AI 生态案例只贡献机制；其气候阈值、法律、土地工具、资金和绩效数字都不是可移植控制。",
+      "statement_en": "Cold-season, heritage-corridor and AI-ecosystem cases contribute mechanisms only; their climate thresholds, laws, land tools, finance and performance figures are not transferable controls.",
+      "impact": "Every mechanism is re-tested against Beijing rules, climate, ownership, accessibility, ecology, heritage and operations before adoption.",
+      "impact_zh": "任何机制采用前都须在北京规则、气候、权属、无障碍、生态、文保和运营条件下重测。",
+      "impact_en": "Every mechanism is re-tested against Beijing rules, climate, ownership, accessibility, ecology, heritage and operations before adoption.",
+      "affected_evidence": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "source_ids": [
+        "CASE-EDMONTON-WINTERCITY",
+        "CASE-OULU-WINTER-MAINTENANCE",
+        "CASE-SINGAPORE-RAIL-CORRIDOR",
+        "CASE-PARIS-PETITE-CEINTURE",
+        "CASE-ONE-NORTH",
+        "CASE-PUNGGOL",
+        "CASE-SEOUL-AI-HUB",
+        "CASE-MILA",
+        "CASE-PITTSBURGH-ROBOTICS",
+        "CASE-KENDALL-VOLPE",
+        "CASE-ZHANGJIANG",
+        "CASE-ZHANGJIANG-AI"
+      ],
+      "resolution_trigger_zh": "对每项拟采用机制完成本地适用性、不可移植项、证据门和专业复核记录。",
+      "resolution_trigger_en": "Complete local applicability, non-transferable conditions, evidence gates and professional review for every proposed mechanism."
+    },
+    {
+      "id": "A-PEER-SCAN-001",
+      "status": "snapshot_limited",
+      "statement": "The peer scan covers 400 proposal directories under submissions/*/*/proposal.md at origin/main commit a88a818ff044c5c945ad9d2924d782457b5010a7, scanned at 2026-08-10T14:09:40+08:00; keyword file-hit counts are difference clues, not proof of semantic novelty.",
+      "statement_zh": "同业扫描覆盖 origin/main commit a88a818ff044c5c945ad9d2924d782457b5010a7 下 submissions/*/*/proposal.md 的 400 个方案目录，扫描时点为 2026-08-10T14:09:40+08:00；关键词文件命中只作差异线索，不是语义原创证明。",
+      "statement_en": "The peer scan covers 400 proposal directories under submissions/*/*/proposal.md at origin/main commit a88a818ff044c5c945ad9d2924d782457b5010a7, scanned at 2026-08-10T14:09:40+08:00; keyword file-hit counts are difference clues, not proof of semantic novelty.",
+      "impact": "Originality claims are limited to the independent combination and expression documented here. One newly added directory, 2830500285/jingzhang-open-loop, includes only an annual winter review within four-season activities. Rechecked revisions wms2537/jingzhang-city-model-commons and xr843/jingzhang-two-way-line respectively contain generic non-winter simulation stress testing and waste-heat warm-corridor/greenhouse subitems. None develops the complete clearance-storage-meltwater-refreeze operations chain; later additions or revisions still require rerunning the audit.",
+      "impact_zh": "原创主张仅限本包记录的独立组合与表达。新增目录 2830500285/jingzhang-open-loop 只在四季活动中设置冬季年度复盘；复核的修订稿 wms2537/jingzhang-city-model-commons 和 xr843/jingzhang-two-way-line 分别只有与冬季无关的通用仿真压力测试、余热暖廊/温室子项。三者均无完整清雪—储雪—融水—回冻作业链；此后仓库再新增或更新仍须重跑。",
+      "impact_en": "Originality claims are limited to the independent combination and expression documented here. One newly added directory, 2830500285/jingzhang-open-loop, includes only an annual winter review within four-season activities. Rechecked revisions wms2537/jingzhang-city-model-commons and xr843/jingzhang-two-way-line respectively contain generic non-winter simulation stress testing and waste-heat warm-corridor/greenhouse subitems. None develops the complete clearance-storage-meltwater-refreeze operations chain; later additions or revisions still require rerunning the audit.",
+      "affected_evidence": [
+        "proposal.md",
+        "sources.json",
+        "report/copyright_statement.md"
+      ],
+      "source_ids": [
+        "PEER-SCAN-20260810"
+      ],
+      "resolution_trigger_zh": "投稿前在目标 commit 重跑数量、标题、正文关键词与近邻语义审查，并更新版权表。",
+      "resolution_trigger_en": "Before submission, rerun count, title/body keywords and close-peer semantic review at the target commit and update the copyright table."
+    },
+    {
+      "id": "A-OSM-001",
+      "status": "screening_only",
+      "statement": "OpenStreetMap was used only for coarse route/place-name screening; the package does not redistribute OSM database extracts or tiles.",
+      "statement_zh": "OpenStreetMap 仅用于粗略路网/地名筛查；本包不再分发 OSM 数据库摘录或瓦片。",
+      "statement_en": "OpenStreetMap was used only for coarse route/place-name screening; the package does not redistribute OSM database extracts or tiles.",
+      "impact": "No geometry, accessibility, ownership, redline or engineering claim relies on OSM.",
+      "impact_zh": "任何几何、无障碍、权属、红线或工程结论都不依赖 OSM。",
+      "impact_en": "No geometry, accessibility, ownership, redline or engineering claim relies on OSM.",
+      "affected_evidence": [
+        "proposal.md",
+        "report/copyright_statement.md"
+      ],
+      "source_ids": [
+        "OSM-CORRIDOR-SCREEN"
+      ],
+      "resolution_trigger_zh": "若后续导入或分发 OSM 派生数据库，另行记录提取时间、查询、attribution、ODbL 和衍生数据库义务。",
+      "resolution_trigger_en": "If OSM-derived data are later imported or distributed, record extraction time/query/attribution and comply separately with ODbL derivative-database duties."
+    },
+    {
+      "id": "A-VISUAL-001",
+      "status": "concept_image_only",
+      "statement": "The winter-works concept render was generated from scratch on 2026-08-10 with the OpenAI image-generation tool built into Codex and no reference image; the exact underlying image model was not exposed. It is explanatory imagery, not a photograph, existing-condition record, engineering drawing or approved scheme.",
+      "statement_zh": "冬作概念场景于 2026-08-10 使用 Codex 内置 OpenAI 图像生成工具全新生成，未传参考图，精确底层图像模型未暴露；它是解释图，不是照片、现状证据、工程图或批准方案。",
+      "statement_en": "The winter-works concept render was generated from scratch on 2026-08-10 with the OpenAI image-generation tool built into Codex and no reference image; the exact underlying image model was not exposed. It is explanatory imagery, not a photograph, existing-condition record, engineering drawing or approved scheme.",
+      "impact": "Reviewers must rely on structured evidence and labeled diagrams, not apparent realism in the render.",
+      "impact_zh": "评审应以结构化证据和标注图为准，不以透视图的拟真度判断现状或可建性。",
+      "impact_en": "Reviewers must rely on structured evidence and labeled diagrams, not apparent realism in the render.",
+      "affected_evidence": [
+        "assets/render/winter-works-concept.png",
+        "proposal.md",
+        "agent.json",
+        "report/copyright_statement.md"
+      ],
+      "source_ids": [
+        "AGENT-TASKBOOK"
+      ],
+      "resolution_trigger_zh": "随包保留已确认的工具、日期、提示词概述和未传参考图记录，并持续在图注标注 AI 生成、非实景。",
+      "resolution_trigger_en": "Retain the confirmed tool/date/prompt-summary/no-reference-image record with the package and keep the caption 'AI-generated, not existing conditions'."
+    },
+    {
+      "id": "A-BUILDING-001",
+      "status": "concept_geometry_only",
+      "statement": "Building polygons are concept envelopes for prototype placement, not surveyed existing footprints or approved building schemes.",
+      "statement_zh": "建筑 polygon 是用于放置原型的概念包络，不是实测现状建筑基底或已批准建筑方案。",
+      "statement_en": "Building polygons are concept envelopes for prototype placement, not surveyed existing footprints or approved building schemes.",
+      "impact": "Building-footprint area is a low-confidence quantity derived from submitted concept geometry and cannot support density, FAR, structural or energy-compliance claims.",
+      "impact_zh": "建筑基底面积是由提交概念几何得出的低置信数量，不能支撑密度、容积率、结构或建筑节能合规结论。",
+      "impact_en": "Building-footprint area is a low-confidence quantity derived from submitted concept geometry and cannot support density, FAR, structural or energy-compliance claims.",
+      "affected_evidence": [
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "DB11-T-2240-2024"
+      ],
+      "resolution_trigger_zh": "取得实测建筑基底、层数、面积、结构和能耗资料以及现行控制条件后重建建筑图层与指标。",
+      "resolution_trigger_en": "Rebuild the building layer and metrics after receiving surveyed footprints, storeys, areas, structure/energy data and current controls."
+    },
+    {
+      "id": "A-BLUEGREEN-001",
+      "status": "concept_geometry_only",
+      "statement": "Green-space polygons are winter blue-green and snow-management search areas, not a complete existing-green inventory or approved landscape plan.",
+      "statement_zh": "绿地 polygon 是冬季蓝绿与储雪管理搜索区，不是完整现状绿地普查或已批准景观方案。",
+      "statement_en": "Green-space polygons are winter blue-green and snow-management search areas, not a complete existing-green inventory or approved landscape plan.",
+      "impact": "Green-space area and ratio describe only submitted concept polygons and must not be read as statutory green-space indicators or verified drainage capacity.",
+      "impact_zh": "绿地面积与比例只描述提交的概念 polygon，不得解释为法定绿地指标或已核验排水容量。",
+      "impact_en": "Green-space area and ratio describe only submitted concept polygons and must not be read as statutory green-space indicators or verified drainage capacity.",
+      "affected_evidence": [
+        "geometry/green_space.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "BEIJING-SPONGE-CITY",
+        "BEIJING-SNOW-MANAGEMENT"
+      ],
+      "resolution_trigger_zh": "完成树木、土壤、汇水、污染雪和生态敏感性调查，并取得正式绿地与排水边界。",
+      "resolution_trigger_en": "Complete tree, soil, catchment, contaminated-snow and ecological-sensitivity surveys and receive official green/drainage boundaries."
+    },
+    {
+      "id": "A-PROJECT-001",
+      "status": "concept_geometry_only",
+      "statement": "Winter-work public-space and phasing polygons are concept project/search areas, not surveyed parcels, funded projects or approved implementation limits.",
+      "statement_zh": "冬作公共空间与分期 polygon 是概念项目/搜索区，不是实测地块、已落实资金项目或批准实施边界。",
+      "statement_en": "Winter-work public-space and phasing polygons are concept project/search areas, not surveyed parcels, funded projects or approved implementation limits.",
+      "impact": "Public-space and phasing areas are low-confidence design quantities and do not prove ownership, feasibility, budget or commitment.",
+      "impact_zh": "公共空间与分期面积是低置信设计数量，不证明权属、可实施性、预算或主体承诺。",
+      "impact_en": "Public-space and phasing areas are low-confidence design quantities and do not prove ownership, feasibility, budget or commitment.",
+      "affected_evidence": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE",
+        "OFFICIAL-ANNOUNCEMENT"
+      ],
+      "resolution_trigger_zh": "结合官方边界、权属、项目库、预算和运营主体核定每个项目与分期范围。",
+      "resolution_trigger_en": "Confirm each project and phase against official boundaries, ownership, project registers, budgets and operating entities."
+    },
+    {
+      "id": "A-ROADS-001",
+      "status": "concept_geometry_only",
+      "statement": "Route lines encode intended winter-priority connections, not surveyed road centrelines, widths, grades, kerbs or rights-of-way.",
+      "statement_zh": "路线线要素只编码冬季优先连接意图，不是实测道路中心线、宽度、坡度、路缘或道路权属范围。",
+      "statement_en": "Route lines encode intended winter-priority connections, not surveyed road centrelines, widths, grades, kerbs or rights-of-way.",
+      "impact": "Road length is a concept-network length; road area and road ratio remain unknown until width and boundary data are verified.",
+      "impact_zh": "道路长度是概念网络长度；宽度与边界核验前，道路面积和道路比例保持 unknown。",
+      "impact_en": "Road length is a concept-network length; road area and road ratio remain unknown until width and boundary data are verified.",
+      "affected_evidence": [
+        "geometry/roads.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "SITE-PACKAGE"
+      ],
+      "resolution_trigger_zh": "完成道路、坡度、路缘、过街、站口和权属测绘，并以核验几何重算路线长度与面积。",
+      "resolution_trigger_en": "Survey roads, grades, kerbs, crossings, station entrances and rights-of-way, then recompute lengths and areas from verified geometry."
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "design_target_not_observed",
+      "statement": "Full coverage of the declared winter-priority route is a design target, not observed service performance or an operator commitment.",
+      "statement_zh": "申报冬季优先路线 100% 覆盖是设计目标，不是已观测服务绩效或运营方承诺。",
+      "statement_en": "Full coverage of the declared winter-priority route is a design target, not observed service performance or an operator commitment.",
+      "impact": "The coverage metric can structure later auditing but cannot demonstrate clearance time, passability or accessibility under actual snow events.",
+      "impact_zh": "该覆盖指标可组织后续审计，但不能证明真实降雪中的清运时长、可通行性或无障碍表现。",
+      "impact_en": "The coverage metric can structure later auditing but cannot demonstrate clearance time, passability or accessibility under actual snow events.",
+      "affected_evidence": [
+        "geometry/roads.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "source_ids": [
+        "BEIJING-SNOW-MANAGEMENT"
+      ],
+      "resolution_trigger_zh": "由有权运营主体确认路线、等级、班次、设备和责任，并在代表性雪情中记录实际覆盖与时长。",
+      "resolution_trigger_en": "Have the authorized operator confirm routes, levels, shifts, equipment and responsibilities and record actual coverage/times in representative snow events."
+    },
+    {
+      "id": "A-SNOW-001",
+      "status": "design_target_not_observed",
+      "statement": "Assignment of snow-storage space and zero contact between polluted snow and sensitive green areas are design targets, not verified capacities or observed outcomes.",
+      "statement_zh": "储雪空间全分配与污染雪不接触敏感绿地是设计目标，不是已核验容量或已观测结果。",
+      "statement_en": "Assignment of snow-storage space and zero contact between polluted snow and sensitive green areas are design targets, not verified capacities or observed outcomes.",
+      "impact": "The targets require snow-volume, contamination, drainage, traffic and maintenance verification before site allocation or construction.",
+      "impact_zh": "场地分配或建设前须核验雪量、污染、排水、交通和维护条件。",
+      "impact_en": "The targets require snow-volume, contamination, drainage, traffic and maintenance verification before site allocation or construction.",
+      "affected_evidence": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "BEIJING-SNOW-MANAGEMENT",
+        "BEIJING-SPONGE-CITY"
+      ],
+      "resolution_trigger_zh": "按设计雪量、污染分级、汇排水和机械作业半径完成容量与环境核算，并经运营、排水和生态专业复核。",
+      "resolution_trigger_en": "Complete capacity and environmental checks for design snow volume, contamination class, drainage and machinery radius, with operator/drainage/ecology review."
+    },
+    {
+      "id": "A-REFREEZE-001",
+      "status": "monitoring_not_completed",
+      "statement": "Refreeze points are candidate review locations inferred from concept relationships, not field-confirmed icing hotspots.",
+      "statement_zh": "回冻点是根据概念空间关系提出的候选复核位置，不是现场确认的结冰热点。",
+      "statement_en": "Refreeze points are candidate review locations inferred from concept relationships, not field-confirmed icing hotspots.",
+      "impact": "Complete review coverage is a workflow target only; no probability, temperature threshold, friction or safety claim is supported yet.",
+      "impact_zh": "全部复核只是工作流目标；目前不支持任何结冰概率、温度阈值、摩擦或安全结论。",
+      "impact_en": "Complete review coverage is a workflow target only; no probability, temperature threshold, friction or safety claim is supported yet.",
+      "affected_evidence": [
+        "geometry/constraints.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "source_ids": [
+        "BEIJING-CLIMATE-ADAPTATION",
+        "BEIJING-SNOW-LOW-TEMP-EMERGENCY"
+      ],
+      "resolution_trigger_zh": "在降雪、清雪、融化与夜间回冻过程开展路表温湿度、积水、摩擦与巡检记录，校准候选点。",
+      "resolution_trigger_en": "Calibrate candidate points with surface temperature/humidity, ponding, friction and inspection records through snowfall, clearing, melt and night refreeze."
+    },
+    {
+      "id": "A-MONITORING-001",
+      "status": "monitoring_not_installed",
+      "statement": "The proposed observation-point count is a candidate monitoring-network target; no sensors are installed or commissioned.",
+      "statement_zh": "拟议观察点数量是候选监测网络目标；尚无传感器安装或投运。",
+      "statement_en": "The proposed observation-point count is a candidate monitoring-network target; no sensors are installed or commissioned.",
+      "impact": "The metric describes intended evidence coverage, not collected data, predictive accuracy, uptime or an approved data-processing system.",
+      "impact_zh": "该指标描述拟议证据覆盖，不代表已采集数据、预测准确率、在线率或已批准数据处理系统。",
+      "impact_en": "The metric describes intended evidence coverage, not collected data, predictive accuracy, uptime or an approved data-processing system.",
+      "affected_evidence": [
+        "geometry/constraints.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "source_ids": [
+        "BEIJING-CLIMATE-ADAPTATION",
+        "GENERATIVE-AI-INTERIM-MEASURES"
+      ],
+      "resolution_trigger_zh": "由运营与数据责任主体批准监测目的、位置、设备、校准、数据最小化、保存和人工处置规则后实施。",
+      "resolution_trigger_en": "Implement only after operators/data controllers approve purpose, locations, equipment, calibration, minimization, retention and human-response rules."
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "status": "concept_crosswalk_only",
+      "statement": "Land-use polygons and codes are a concept crosswalk for submission geometry, not an approved statutory land-use plan.",
+      "statement_zh": "用地 polygon 与代码是提交几何的概念映射，不是已批准法定用地规划。",
+      "statement_en": "Land-use polygons and codes are a concept crosswalk for submission geometry, not an approved statutory land-use plan.",
+      "impact": "Land-use areas describe the submitted concept structure only and cannot establish parcel rights, conversion approval, development capacity or statutory balance.",
+      "impact_zh": "用地面积只描述提交概念结构，不能确定地块权利、用途转换批准、开发容量或法定平衡。",
+      "impact_en": "Land-use areas describe the submitted concept structure only and cannot establish parcel rights, conversion approval, development capacity or statutory balance.",
+      "affected_evidence": [
+        "geometry/land_use.geojson",
+        "metrics.json"
+      ],
+      "source_ids": [
+        "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+        "MOHURD-CONTROL-DETAILED-PLANNING"
+      ],
+      "resolution_trigger_zh": "取得现行有效用地与控规图则、权属及坐标范围，经规划专业复核后重建用地图层。",
+      "resolution_trigger_en": "Rebuild the land-use layer after receiving current statutory land-use/control plans, ownership and coordinates and completing planning review."
+    }
+  ]
+}
