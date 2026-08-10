@@ -1,0 +1,227 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) projected to EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Site boundary is a provisional rough polygon; official boundary not yet available."
+      ]
+    },
+    "land_use_area_by_code": {
+      "status": "known",
+      "value": 11412832.736,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_polygon)) by land_use_code, projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Land-use polygons form a topology-safe partition of the site boundary."
+      ],
+      "breakdown": {
+        "05": 3366138.181,
+        "0702": 2782792.823,
+        "0802": 2674562.492,
+        "1401": 2589339.239
+      }
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 37801.246,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprint)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Building footprints are concept-level design proposals, not surveyed footprints."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "known",
+      "value": 311850.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area_sqm * floors) for all buildings",
+      "confidence": "medium",
+      "assumptions": [
+        "Floor area is estimated as footprint area multiplied by floor count.",
+        "Does not account for floor area efficiency or underground space."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "known",
+      "value": 0.027325,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "FAR is a concept-level estimate; official FAR controls are missing from the public site package.",
+        "Provisional site boundary area is used as denominator."
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.003312,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Building density is a concept-level estimate; official density controls are missing."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3069899.537,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_polygon)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space polygons are concept-level design proposals."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.268987,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Green ratio is a concept-level estimate; official green ratio controls are missing."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 584722.488,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_polygon)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space polygons are concept-level design proposals."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.051234,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space ratio is a concept-level estimate."
+      ]
+    },
+    "road_area_sqm": {
+      "status": "known",
+      "value": 695860.115,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length_m(road_centerline) * width_m) for all roads, projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Road area is estimated as centerline length multiplied by assumed pavement width per road class.",
+        "Width values are design assumptions, not surveyed road redlines."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "value": 0.060972,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Road ratio is a concept-level estimate based on assumed widths."
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 11412840.721,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_polygon)) by phase, projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Phasing polygons partition the site boundary into three temporal stages."
+      ],
+      "breakdown": {
+        "phase_1_near_term": 3856259.324,
+        "phase_2_mid_term": 2436746.759,
+        "phase_3_long_term": 5119834.637
+      }
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_areas_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_polygon)) by area_id, projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Key area polygons are provisional rough boundaries; official polygons not yet available."
+      ],
+      "breakdown": {
+        "zhongzhiyuan_ai_acceleration_area": 1929201.877,
+        "beijing_ai_origin_community": 1043236.909,
+        "dazhongsi_ai_industry_cluster": 720454.219
+      }
+    }
+  }
+}
