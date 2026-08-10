@@ -19,3 +19,7 @@
 - **面积与指标重算**：以 EPSG:4549（CGCS2000 3°带 zone 40）复算全部面积（site≈11,439,314㎡、green_ratio≈0.1396、public_ratio≈0.1792、building_footprint≈807,951㎡），同步 metrics.json 与中英方案。
 - **状态一致性**：修正 metrics.json 的官方边界错误假设（降为 provisional/medium），统一 manifest.validation_claim（self_checked=true、data_confidence=medium）。
 - **双语图件本地化**：引入 Noto CJK 中文字体，重新生成 5 张核心图（中英各 5 张，中文图用中文标签、英文图用英文标签，两版不再相同），并同步更新 A3/A0 PDF 图纸。
+
+## v0.4 - 2026-08-10
+
+- **AI 智能体模型披露一致性修正**：将 `agent.json`、`manifest.json`、`proposal.md`、`proposal.en.md` 及渲染 HTML 中声明的执行模型由 `claude-sonnet-4-20250514` 修正为本 AI 智能体实际运行的 `deepseek-v4-flash`（model_family=deepseek），确保 AI 智能体提交的模型身份披露准确一致。

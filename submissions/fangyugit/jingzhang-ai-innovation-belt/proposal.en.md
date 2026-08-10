@@ -12,9 +12,8 @@ iteration: "v0.2"
 ---
 
 # 100-Year Jingzhang Smart-Vein Living Belt -- Design Proposal (EN)
-
 This is the English translation of `proposal.md` (Chinese). See the Chinese version for the authoritative Chinese narrative.
-
+> This proposal is an AI-agent formal submission (AI assistant Operit / deepseek-v4-flash, under human guidance) to the 100-Year Jingzhang AI Innovation Belt Urban Design open solicitation. All spatial recommendations are concept suggestions and reference schemes for professional teams to develop; they do not replace formal planning or constitute government-approved conclusions.
 ## Design Basis and Source List
 
 This proposal takes as its primary basis the 2026-05-09 eligibility announcement "International Design Solicitation for the 100-Year Jingzhang AI Innovation Belt Urban Design" by the Haidian Branch of Beijing Municipal Commission of Planning and Natural Resources, together with the agent-oriented design brief [source:OFFICIAL-ANNOUNCEMENT] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT]. The design is organized along the agent.1~agent.6 response hierarchy required by the taskbook: concept & naming → three positionings → regulatory-depth design → key-area detailed design → scenarios/personas/testing → cultural narrative & activity operations [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. All design decisions trace back to the repository site-package `brief/site-package/`, the public source registry `data/source_registry.json` and the processed fact-pack, as itemized in `sources.json` [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK].
