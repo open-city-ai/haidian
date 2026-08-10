@@ -1,0 +1,182 @@
+{
+  "contract_id": "IMPLEMENTATION-OPERATION-01",
+  "contract_version": "1.0",
+  "status": "conceptual_interface_not_approved",
+  "scope": "mobility-commons-jingzhang",
+  "principles": [
+    "phase_and_owner_roles_are_proposals_not_confirmed_institutions",
+    "unknown_local_baselines_do_not_pass_an_acceptance_gate",
+    "human_and_public_transport_fallback_remains_available",
+    "expansion_is_reversible_and_requires_recorded_review"
+  ],
+  "phases": [
+    {
+      "phase_id": "P0",
+      "name": "baseline_and_authorization",
+      "participating_roles": [
+        "site_and_data_stewardship_role",
+        "transport_and_accessibility_review_role",
+        "community_liaison_role",
+        "proposed_transport_authority_or_designated_organizer_role",
+        "proposed_subdistrict_public_participation_role",
+        "proposed_disabled_persons_federation_or_qualified_accessibility_role",
+        "proposed_older_person_representative_role"
+      ],
+      "evidence_sequence": [
+        {
+          "step_id": "P0-a",
+          "action": "public_notice_and_comment_response_ledger",
+          "role_status": "proposed_roles_not_confirmed_or_assigned",
+          "unblocks": ["resident_daily_trip_access_index", "mobility_service_complaint_closure_hours"]
+        },
+        {
+          "step_id": "P0-b",
+          "action": "dated_grouped_od_and_mode_counts",
+          "role_status": "proposed_roles_not_confirmed_or_assigned",
+          "unblocks": ["enterprise_commute_demand_baseline", "external_commute_od_baseline", "employer_multimodal_trip_rate"]
+        },
+        {
+          "step_id": "P0-c",
+          "action": "accessibility_and_people_flow_walkthrough_with_age_friendly_participation",
+          "role_status": "proposed_roles_not_confirmed_or_assigned",
+          "unblocks": ["accessible_route_completion_ratio", "first_last_mile_transfer_reliability", "person_flow_conflict_rate"]
+        }
+      ],
+      "entry_evidence": [
+        "provisional geometry revision is recorded",
+        "consent and privacy rule is published",
+        "asset, route, curb and complaint baseline version is dated"
+      ],
+      "acceptance_checks": [
+        "dated_baseline_record",
+        "accessible_route_audit_record",
+        "human_and_non_app_entry_record"
+      ],
+      "fallback": "remain in survey and human/public-transport service; do not reserve curb capacity",
+      "stop_or_withdraw": [
+        "right_of_way_or_responsibility_is_unresolved",
+        "consent_or_data_minimization_is_unresolved",
+        "equivalent_human_service_is_not_available"
+      ]
+    },
+    {
+      "phase_id": "P1",
+      "name": "reversible_pilot",
+      "participating_roles": [
+        "enterprise_mobility_coordinator_role",
+        "resident_and_carer_observation_role",
+        "rail_and_bus_operations_role",
+        "field_maintenance_role",
+        "independent_safety_and_privacy_review_role"
+      ],
+      "acceptance_metrics": [
+        {
+          "metric_id": "accessible_route_completion_ratio",
+          "status": "unknown",
+          "design_target": 0.95
+        },
+        {
+          "metric_id": "first_last_mile_transfer_reliability",
+          "status": "unknown",
+          "design_target": 0.85
+        },
+        {
+          "metric_id": "curb_time_window_compliance_ratio",
+          "status": "unknown",
+          "design_target": 0.9
+        },
+        {
+          "metric_id": "mobility_service_complaint_closure_hours",
+          "status": "unknown",
+          "design_target": "first response <= 4h; status update <= 24h"
+        }
+      ],
+      "fallback": "human dispatch, public transport, telephone/paper access and removable equipment",
+      "stop_or_withdraw": [
+        "any_group_access_or_completion_drops",
+        "fire_or_accessibility_route_is_blocked",
+        "complaints_have_no_owner_or_closure_record",
+        "privacy_or_safety_review_fails"
+      ]
+    },
+    {
+      "phase_id": "P2",
+      "name": "conditional_expansion",
+      "participating_roles": [
+        "professional_transport_responsibility_role",
+        "operator_and_maintenance_responsibility_role",
+        "procurement_and_insurance_review_role",
+        "safety_accessibility_privacy_and_equity_review_roles"
+      ],
+      "entry_evidence": [
+        "traffic-impact and fire review are recorded",
+        "accessibility, privacy, ecology and safety review are recorded",
+        "operator, maintenance, procurement and insurance responsibilities are explicit"
+      ],
+      "acceptance_metrics": [
+        "all P1 metrics have dated local evidence",
+        "worst-group gap and fallback performance are reported",
+        "withdrawal and incident records are public in aggregate"
+      ],
+      "fallback": "freeze expansion and return to P1 or P0; keep public routes and human service open",
+      "stop_or_withdraw": [
+        "any required approval_or_responsibility_evidence_is_missing",
+        "local evidence contradicts safety_or_equity_gate",
+        "maintenance_or_complaint_sla_is_not_resourced"
+      ]
+    }
+  ],
+  "optional_community_crosswalk": {
+    "source_id": "SWITCHBACK-PROTOCOL-1119",
+    "source_url": "https://github.com/open-city-ai/haidian/issues/1119",
+    "adoption_status": "reference_only_not_repository_standard",
+    "license_boundary": "The issue states CC-BY-4.0 for the protocol specification, but this package does not copy the current machine file or relicense any package asset. Preserve attribution if the protocol itself is redistributed.",
+    "numeric_defaults_imported": false,
+    "status_mapping": [
+      {
+        "package_state": "not_authorized_not_run",
+        "reference_readiness": "candidate_or_virtual_evaluation",
+        "allowed_action": "replay fields and fallback logic only; do not start a pilot"
+      },
+      {
+        "package_state": "controlled_by_gate",
+        "reference_readiness": "yellow_controlled_pilot",
+        "allowed_action": "advance only after dated P0 evidence, accountable roles and an independent stop reviewer"
+      },
+      {
+        "package_state": "blocked_until_evidence",
+        "reference_readiness": "red_switchback",
+        "allowed_action": "return to P0, ordinary public transport and human service, with a public aggregate reason"
+      },
+      {
+        "package_state": "unknown",
+        "reference_readiness": "no_ready_state",
+        "allowed_action": "keep the field unknown; never infer normal operation from a synthetic or policy source"
+      }
+    ],
+    "field_crosswalk": [
+      {
+        "reference_component": "status_and_gate",
+        "package_fields": ["visual/assets/mobility-pilot-readiness.json", "visual/assets/pilot-startup-checklist.json"],
+        "boundary": "The package's readiness and phase fields remain authoritative for mobility."
+      },
+      {
+        "reference_component": "human_takeover_and_fallback",
+        "package_fields": ["visual/assets/mobility-tabletop-contract.json", "visual/assets/implementation-operation-contract.json"],
+        "boundary": "Tabletop PASS is not a staffing, response-time or safety result."
+      },
+      {
+        "reference_component": "review_appeal_and_write_back",
+        "package_fields": ["visual/assets/mobility-pilot-readiness.json", "visual/assets/site-and-stakeholder-evidence.json", "proposal.md#风险、版权与合规说明"],
+        "boundary": "Dates, owners, deletion proof and appeal records remain unknown until authorized."
+      }
+    ],
+    "applied_card_scope": {
+      "package_cards": "M-01 through M-10",
+      "reference_role": "cross-scheme vocabulary for review and switchback only",
+      "all_current_cards": "not_authorized_not_run",
+      "write_back_rule": "Any future authorized change must update the scenario card, evidence record, review decision and changelog together."
+    }
+  },
+  "boundary": "No phase asserts a confirmed institution, contract, budget, permit, local baseline, operating result or construction approval."
+}

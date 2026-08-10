@@ -1,0 +1,43 @@
+{
+  "screen_id": "MOB-CAPACITY-CLOSURE-888",
+  "model_version": "2.14-regional-distributional-equity",
+  "status": "synthetic_counterfactual_not_operational",
+  "profile_id": "O4",
+  "policy_id": "O4_capacity_balanced",
+  "method": {
+    "description": "Independently sweep each declared mode-service supply from 1.00x in 0.01x steps and retain the smallest multiplier that removes the FIFO residual queue and stays at or below the declared 1.35x peak-load gate.",
+    "multiplier_step": 0.01,
+    "maximum_multiplier": 4,
+    "queue_rule": "three declared 15-minute slices; arrivals include the previous slice residual queue",
+    "selection_boundary": "This is a synthetic capacity-gap and calibration screen, not a timetable, procurement quantity, fleet claim or implementation recommendation.",
+    "sources": ["SCHEDULED-CAPACITY-TRANSIT-2012", "DYNAMIC-PT-CAPACITY-2024"]
+  },
+  "gate": {
+    "maximum_peak_mode_load_ratio": 1.35,
+    "require_zero_residual_queue": true,
+    "require_all_agents_processed": true,
+    "air_candidate_must_remain_blocked": true
+  },
+  "mode_results": [
+    {"mode":"metro","label_zh":"地铁","label_en":"metro","multiplier":1.17,"declared_units_before":4723,"declared_units_after":5526,"added_service_units":803,"peak_load_ratio":1.1232,"residual_queue_person_trips":0},
+    {"mode":"bus","label_zh":"公交","label_en":"bus","multiplier":1.12,"declared_units_before":9334,"declared_units_after":10456,"added_service_units":1122,"peak_load_ratio":1.0053,"residual_queue_person_trips":0},
+    {"mode":"bicycle","label_zh":"自行车","label_en":"bicycle","multiplier":1.32,"declared_units_before":360000,"declared_units_after":475200,"added_service_units":115200,"peak_load_ratio":1.2011,"residual_queue_person_trips":0},
+    {"mode":"walking_wheelchair","label_zh":"步行/无障碍","label_en":"walking/accessibility","multiplier":1.34,"declared_units_before":540000,"declared_units_after":723600,"added_service_units":183600,"peak_load_ratio":1.1059,"residual_queue_person_trips":0},
+    {"mode":"car","label_zh":"汽车","label_en":"car","multiplier":1,"declared_units_before":241177,"declared_units_after":241177,"added_service_units":0,"peak_load_ratio":0.9047,"residual_queue_person_trips":0},
+    {"mode":"enterprise_shuttle","label_zh":"企业接驳","label_en":"enterprise shuttle","multiplier":1.16,"declared_units_before":7500,"declared_units_after":8700,"added_service_units":1200,"peak_load_ratio":1.1541,"residual_queue_person_trips":0}
+  ],
+  "combined_closure": {
+    "maximum_required_multiplier": 1.34,
+    "total_declared_units_before": 1162734,
+    "total_declared_units_after": 1464659,
+    "total_added_service_units": 301925,
+    "maximum_peak_load_ratio": 1.2011,
+    "residual_queue_person_trips": 0,
+    "gate_pass": true
+  },
+  "air_candidate": {
+    "status": "blocked",
+    "reason": "No dated safety, airspace, vertiport, weather, emergency, accessibility or accountable-operator evidence; ground modes remain primary."
+  },
+  "interpretation": "Under the declared synthetic O4 demand and service units, the screen identifies the smallest per-mode supply multipliers needed to close the operations gate. It does not prove that these units exist, should be purchased, can be scheduled, or would produce local performance. Replace every declared input with dated local evidence before any operational decision."
+}

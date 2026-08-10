@@ -1,0 +1,160 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "MOB-ORDINARY-JOURNEY-001",
+  "contract_version": "1.0",
+  "status": "synthetic_fixture",
+  "claim_level": "local_synthetic_tabletop",
+  "persona": {
+    "id": "SYN-MOB-P01",
+    "label_zh": "周岚（合成照护者）",
+    "label_en": "Zhou Lan (synthetic carer)",
+    "situation_zh": "陪同家人去医院，需要一条可理解的去程和返程，不把 App 作为通行前提。",
+    "situation_en": "Accompanies a family member to a hospital and needs an understandable outbound and return route without an app requirement.",
+    "data_status": "synthetic_not_interviewed",
+    "personal_data": "none"
+  },
+  "route_binding": {
+    "route_id": "MOB-OJ-ROUTE-001",
+    "node_ids": ["MOB-NODE-002", "MOB-NODE-003"],
+    "anchor_feature_ids": ["PROV-KEY-002", "PROV-KEY-003"],
+    "scenario_ids": ["M-05", "M-06", "M-07", "M-09", "M-10"],
+    "route_reading_zh": "AI 原点社区服务台 → 连续无障碍段 → 大钟寺轨道换乘 → 人工/公共交通回退 → 返程与投诉复核",
+    "route_reading_en": "AI Origin community desk → continuous accessible segment → Dazhongsi rail transfer → human/public-transport fallback → return and complaint replay"
+  },
+  "journey_steps": [
+    {
+      "id": "OJ-S01",
+      "stage_zh": "出发前",
+      "stage_en": "before departure",
+      "node_id": "MOB-NODE-002",
+      "anchor_feature_id": "PROV-KEY-002",
+      "scenario_id": "M-05",
+      "action_zh": "在社区服务台取得人工、电话或纸面路线；基本通行不要求注册。",
+      "action_en": "Obtain a staffed, telephone or paper route at the community desk; basic access does not require registration.",
+      "ordinary_equivalent_zh": "人工服务台、电话和纸面路线",
+      "ordinary_equivalent_en": "staffed desk, telephone and paper route",
+      "acceptance_ids": ["OJ-AC-01", "OJ-AC-03"],
+      "required_evidence": ["grouped_service_type", "non_digital_entry", "route_version"]
+    },
+    {
+      "id": "OJ-S02",
+      "stage_zh": "社区到站口",
+      "stage_en": "community to station",
+      "node_id": "MOB-NODE-002",
+      "anchor_feature_id": "PROV-KEY-002",
+      "scenario_id": "M-06",
+      "action_zh": "人工确认社区到站口的连续无障碍段；无日期走查保持 unknown。",
+      "action_en": "A human reviewer checks the continuous accessible segment to the station; an undated walk-through remains unknown.",
+      "ordinary_equivalent_zh": "纸面分段路线和现场人工指引",
+      "ordinary_equivalent_en": "paper segment map and staffed wayfinding",
+      "acceptance_ids": ["OJ-AC-02", "OJ-AC-04"],
+      "required_evidence": ["dated_accessibility_walkthrough", "segment_handoff", "weather_fallback"]
+    },
+    {
+      "id": "OJ-S03",
+      "stage_zh": "站口换乘",
+      "stage_en": "station transfer",
+      "node_id": "MOB-NODE-003",
+      "anchor_feature_id": "PROV-KEY-003",
+      "scenario_id": "M-07",
+      "action_zh": "在大钟寺保留人工交接和轨道/公交选择；电梯、过街或停放信息缺失时不把数字推荐当作可用路线。",
+      "action_en": "Keep staffed handoff and rail/bus choices at Dazhongsi; do not treat a digital recommendation as usable when lift, crossing or parking evidence is missing.",
+      "ordinary_equivalent_zh": "站内人工引导和普通公共交通",
+      "ordinary_equivalent_en": "staffed station wayfinding and ordinary public transport",
+      "acceptance_ids": ["OJ-AC-01", "OJ-AC-04"],
+      "required_evidence": ["station_interface_check", "accessible_handoff", "public_transport_option"]
+    },
+    {
+      "id": "OJ-S04",
+      "stage_zh": "受阻时",
+      "stage_en": "when disrupted",
+      "node_id": "MOB-NODE-003",
+      "anchor_feature_id": "PROV-KEY-003",
+      "scenario_id": "M-09",
+      "action_zh": "雨雪、断网或路缘冲突发生时冻结预约，转人工和地面公共交通。",
+      "action_en": "Freeze reservations and transfer to human service and ground public transport during snow, outage or curb conflict.",
+      "ordinary_equivalent_zh": "电话调度、人工服务台和轨道/公交回退",
+      "ordinary_equivalent_en": "telephone dispatch, staffed desk and rail/bus fallback",
+      "acceptance_ids": ["OJ-AC-05", "OJ-AC-06"],
+      "required_evidence": ["trigger_event", "takeover_role", "fallback_route", "freeze_record"]
+    },
+    {
+      "id": "OJ-S05",
+      "stage_zh": "返程",
+      "stage_en": "return trip",
+      "node_id": "MOB-NODE-002",
+      "anchor_feature_id": "PROV-KEY-002",
+      "scenario_id": "M-05",
+      "action_zh": "出发前登记返程安排；没有返程、照护或人工接管人时只登记需求，不预约。",
+      "action_en": "Register the return plan before departure; without a return, care or human-takeover plan, record the need but do not book.",
+      "ordinary_equivalent_zh": "社区服务台、电话和普通公共交通回家",
+      "ordinary_equivalent_en": "community desk, telephone and ordinary public transport home",
+      "acceptance_ids": ["OJ-AC-03", "OJ-AC-05"],
+      "required_evidence": ["return_plan", "care_handoff", "cancel_or_exit_entry"]
+    },
+    {
+      "id": "OJ-S06",
+      "stage_zh": "投诉与复核",
+      "stage_en": "complaint and replay",
+      "node_id": "MOB-NODE-003",
+      "anchor_feature_id": "PROV-KEY-003",
+      "scenario_id": "M-10",
+      "action_zh": "记录受阻、返程或交接问题；没有责任人、时间戳或独立复核不得关闭。",
+      "action_en": "Record the obstruction, return or handoff problem; do not close it without an owner, timestamp and independent replay.",
+      "ordinary_equivalent_zh": "公开投诉入口、电话或纸面台账",
+      "ordinary_equivalent_en": "public complaint entry, telephone or paper ledger",
+      "acceptance_ids": ["OJ-AC-07", "OJ-AC-08"],
+      "required_evidence": ["complaint_entry", "owner", "timestamp", "independent_replay"]
+    }
+  ],
+  "fixtures": [
+    {"id":"OJ-F01","input":"human_desk_paper_route_return_plan_available","fires_stop_if":false,"expected_decision":"continue_with_human_option"},
+    {"id":"OJ-F02","input":"no_app_but_phone_and_staffed_route_available","fires_stop_if":false,"expected_decision":"continue_with_human_option"},
+    {"id":"OJ-F03","input":"outage_with_named_takeover_and_ground_route","fires_stop_if":false,"expected_decision":"continue_with_human_option"},
+    {"id":"OJ-F04","input":"accessible_route_audit_date_missing","fires_stop_if":true,"expected_decision":"stop_at_P0_unknown"},
+    {"id":"OJ-F05","input":"human_takeover_unavailable","fires_stop_if":true,"expected_decision":"freeze_and_return_to_public_transport"},
+    {"id":"OJ-F06","input":"return_plan_missing","fires_stop_if":true,"expected_decision":"do_not_book"},
+    {"id":"OJ-F07","input":"outage_and_ground_route_blocked","fires_stop_if":true,"expected_decision":"freeze_and_do_not_advance"},
+    {"id":"OJ-F08","input":"complaint_owner_unassigned","fires_stop_if":true,"expected_decision":"do_not_close_case"},
+    {"id":"OJ-F09","input":"independent_replay_missing","fires_stop_if":true,"expected_decision":"return_to_P0_review"}
+  ],
+  "acceptance_checks": [
+    {"id":"OJ-AC-01","check":"every journey step resolves to a declared node, provisional anchor and existing scenario","fixture_ids":["OJ-F01","OJ-F02"]},
+    {"id":"OJ-AC-02","check":"an undated accessibility walk-through cannot become a positive result","fixture_ids":["OJ-F04"]},
+    {"id":"OJ-AC-03","check":"ordinary access and return do not require an app or account","fixture_ids":["OJ-F01","OJ-F02","OJ-F06"]},
+    {"id":"OJ-AC-04","check":"station and accessible handoffs keep a human equivalent","fixture_ids":["OJ-F02","OJ-F04"]},
+    {"id":"OJ-AC-05","check":"return and care handoff are required before a trip is booked","fixture_ids":["OJ-F03","OJ-F06"]},
+    {"id":"OJ-AC-06","check":"outage or blocked ground route freezes the automated path","fixture_ids":["OJ-F03","OJ-F05","OJ-F07"]},
+    {"id":"OJ-AC-07","check":"an ownerless complaint cannot be silently closed","fixture_ids":["OJ-F08"]},
+    {"id":"OJ-AC-08","check":"independent replay is required before any restart or expansion","fixture_ids":["OJ-F09"]}
+  ],
+  "rollback_steps": [
+    "freeze_new_or_shared_booking",
+    "keep_staffed_desk_telephone_paper_and_ground_public_transport_open",
+    "record_the_missing_route_or_handoff_evidence_without_filling_unknowns",
+    "retain_the_return_and_complaint_path_for_the_ordinary_person",
+    "delete_only_temporary_fixture_state_and_reopen_P0_review_before_restart"
+  ],
+  "self_audit": {
+    "finding_count": 4,
+    "findings": [
+      {"id":"OJ-GAP-01","status":"unknown","finding_zh":"路线契约能写出社区到站口的关系，但当前没有日期化无障碍走查。","finding_en":"The route contract can describe the community-to-station relation, but no dated accessibility walk-through is available.","required_action":"collect_dated_segment_walkthrough"},
+      {"id":"OJ-GAP-02","status":"unknown","finding_zh":"现有 M-09 回退覆盖断网和天气，普通人的返程仍需单独登记。","finding_en":"The existing M-09 fallback covers outage and weather, while the ordinary person's return still needs its own register.","required_action":"register_return_handoff_and_exit"},
+      {"id":"OJ-GAP-03","status":"unknown","finding_zh":"站口人工交接的责任角色尚未由有权组织确认。","finding_en":"The staffed station-handoff role has not been confirmed by an authorised organisation.","required_action":"confirm_accountable_handoff_role"},
+      {"id":"OJ-GAP-04","status":"unknown","finding_zh":"投诉复核只能回放字段要求，不能证明真实回应时长。","finding_en":"Complaint replay can check required fields, but it cannot prove a real response time.","required_action":"collect_dated_complaint_and_response_log"}
+    ],
+    "conclusion_zh": "这条合成经历主动暴露四个现场缺口；缺口保持 unknown，不能用模拟读数填平。",
+    "conclusion_en": "The synthetic journey exposes four field gaps; they remain unknown and are not filled with simulation outputs."
+  },
+  "boundary": {
+    "result_status": "not_run",
+    "performance_results": null,
+    "operational_status": "not_authorized_not_run",
+    "network_calls": 0,
+    "external_systems": "none",
+    "personal_data": "none",
+    "decision": "do_not_advance",
+    "reason_zh": "这是包内合成回放，不证明居民经历、现场可达性、值守、公众接受、运营绩效或专业批准。",
+    "reason_en": "This is an in-package synthetic replay; it does not prove resident experience, field accessibility, staffing, public acceptance, operating performance or professional approval."
+  }
+}

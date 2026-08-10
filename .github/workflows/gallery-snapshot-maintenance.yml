@@ -1,0 +1,100 @@
+name: gallery-snapshot-maintenance
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: gallery-snapshot-maintenance
+  cancel-in-progress: false
+
+env:
+  MAINTENANCE_BRANCH: automation/gallery-snapshot
+
+jobs:
+  refresh:
+    name: refresh generated gallery snapshot
+    if: github.repository == 'open-city-ai/haidian'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout trusted main commit
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+
+      - name: Generate and publish maintenance branch
+        id: snapshot
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${MAINTENANCE_BRANCH}"
+
+          # This workflow runs only for the canonical repository's trusted main
+          # push. It never checks out or executes a contributor PR head.
+          if git ls-remote --exit-code origin "refs/heads/${branch}" >/dev/null 2>&1; then
+            git fetch origin "refs/heads/${branch}:refs/remotes/origin/${branch}"
+          fi
+          git switch --create "${branch}" "${GITHUB_SHA}"
+          python3 scripts/generate_submissions_data.py
+          python3 scripts/generate_submissions_data.py --check
+          node --check submissions-data.js
+          python3 -m unittest \
+            tests.test_submissions_gallery \
+            tests.test_prelaunch_check \
+            tests.test_gallery_snapshot_maintenance_workflow
+
+          if git diff --quiet -- submissions-data.js; then
+            echo "changed=false" >> "${GITHUB_OUTPUT}"
+            echo "Generated gallery snapshot is already fresh."
+            exit 0
+          fi
+
+          git diff --stat -- submissions-data.js
+          git add submissions-data.js
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: refresh generated gallery snapshot"
+
+          if expected="$(git rev-parse --verify "refs/remotes/origin/${branch}" 2>/dev/null)"; then
+            git push --force-with-lease="refs/heads/${branch}:${expected}" \
+              origin "HEAD:refs/heads/${branch}"
+          else
+            git push --force-with-lease="refs/heads/${branch}:0000000000000000000000000000000000000000" \
+              origin "HEAD:refs/heads/${branch}"
+          fi
+          echo "changed=true" >> "${GITHUB_OUTPUT}"
+
+      - name: Open or update snapshot maintenance PR
+        if: steps.snapshot.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          branch="${MAINTENANCE_BRANCH}"
+          title="chore: refresh generated gallery snapshot"
+          body="$(cat <<'EOF'
+          This is an automated maintainer-only refresh of `submissions-data.js` from the trusted `main` tree.
+
+          - The workflow runs only after a canonical `main` push or manual dispatch.
+          - It never executes contributor PR code and never pushes directly to `main`.
+          - Please review and merge this Draft PR through the repository normal maintainer gate.
+          - This updates the repository artifact only; it does not prove external Nginx or public-site deployment.
+          EOF
+          )"
+          existing="$(gh pr list --repo "${GITHUB_REPOSITORY}" --head "${branch}" --base main --state open --json number --jq '.[0].number // empty')"
+          if [[ -n "${existing}" ]]; then
+            gh pr edit "${existing}" --repo "${GITHUB_REPOSITORY}" --title "${title}" --body "${body}"
+          else
+            gh pr create --repo "${GITHUB_REPOSITORY}" --base main --head "${branch}" \
+              --draft --title "${title}" --body "${body}"
+          fi

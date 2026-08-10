@@ -1,0 +1,138 @@
+{
+  "schema_version": "0.1.0",
+  "evidence_id": "SITE-STAKEHOLDER-EVIDENCE-001",
+  "status": "not_conducted",
+  "claim_level": "conceptual_disclosure_only",
+  "site_visit": {
+    "status": "not_conducted",
+    "date": null,
+    "by": null,
+    "scope": null,
+    "field_notes": null
+  },
+  "source_boundary": {
+    "public_sources_used": [
+      "OFFICIAL-ANNOUNCEMENT",
+      "AGENT-TASKBOOK",
+      "BEIJING-14TH-TRANSPORT-PLAN",
+      "HAIDIAN-ROAD-PARKING-TENDER-2026",
+      "BEIJING-HAIDIAN-TRANSIT-HUB-PDF",
+      "BEIJING-ACCESSIBILITY-REGULATION",
+      "BARRIER-FREE-ENVIRONMENT-LAW",
+      "ELDERLY-SMART-TECH-PLAN-2020-45",
+      "GENERATIVE-AI-INTERIM-MEASURES",
+      "ISSUE-1029-KEY3-ANCHOR",
+      "ISSUE-951-SOURCE-BOUNDARY",
+      "OSM-TRANSPORT-CONTEXT"
+    ],
+    "authorized_aggregate_sources": [],
+    "resident_interviews": "not_conducted",
+    "enterprise_interviews": "not_conducted",
+    "operator_interviews": "not_conducted",
+    "accessibility_walkthrough": "not_conducted",
+    "personal_data_collected": false,
+    "consent_records": [],
+    "source_use_rule": "Policy, tender, method and open-map sources define context or a calibration request; package-local community references are judged by their own metadata and stated use; none is treated as a resident, enterprise, operator or field-performance baseline."
+  },
+  "inferred_needs": [
+    {
+      "group": "residents",
+      "needs": ["school", "care", "health", "shopping", "night_return"],
+      "status": "scenario_assumption",
+      "validation_required": "authorized_grouped_survey_or_public_participation"
+    },
+    {
+      "group": "enterprise_employees",
+      "needs": ["arrival_windows", "shuttle", "freight", "charging"],
+      "status": "scenario_assumption",
+      "validation_required": "consented_grouped_employer_register"
+    },
+    {
+      "group": "accessibility_and_care",
+      "needs": ["continuous_route", "assisted_transfer", "human_fallback"],
+      "status": "scenario_assumption",
+      "validation_required": "professional_accessibility_audit_and_participation"
+    },
+    {
+      "group": "external_commuters_and_service_workers",
+      "needs": ["cross_boundary_od", "transfer_reliability", "loading_access"],
+      "status": "scenario_assumption",
+      "validation_required": "dated_grouped_od_and_operator_counts"
+    }
+  ],
+  "affected_groups": [
+    "residents",
+    "enterprise_employees",
+    "carers_and_children",
+    "wheelchair_users",
+    "night_workers",
+    "visitors",
+    "logistics_and_maintenance",
+    "metro_and_bus_operators",
+    "accessibility_and_safety_reviewers",
+    "emergency_responders"
+  ],
+  "unresolved_objections": [
+    {
+      "id": "OBJ-CURB-001",
+      "status": "open",
+      "question": "Could time-windowed enterprise loading or shuttle priority displace resident parking, walking, accessibility or emergency access?",
+      "response_status": "requires_public_participation_and_field_curb_audit"
+    },
+    {
+      "id": "OBJ-DATA-001",
+      "status": "open",
+      "question": "Can grouped enterprise and resident demand be collected with consent, minimisation, retention and deletion controls?",
+      "response_status": "requires_authorized_data_governance_and_public_notice"
+    },
+    {
+      "id": "OBJ-ACCESS-001",
+      "status": "open",
+      "question": "Does a proposed fallback preserve a continuous route for wheelchair users, carers, children and night workers during disruption?",
+      "response_status": "requires_professional_accessibility_walkthrough_and_grouped_replay"
+    }
+  ],
+  "next_evidence": [
+    {
+      "id": "EVIDENCE-P0-001",
+      "owner": "proposed_transport_authority_and_subdistrict_office_with_enterprise_mobility_contacts",
+      "role_status": "proposed_role_not_confirmed_or_assigned",
+      "window": "P0-b_after_public_notice_and_response_ledger_before_P1",
+      "method": "transport_authority_and_subdistrict_office_authorize_dated_15_minute_grouped_od_and_mode_counts; enterprise_contacts_submit_consent_minimized_aggregate_windows",
+      "output": "versioned_aggregate_baseline",
+      "unblocks": ["enterprise_commute_demand_baseline", "external_commute_od_baseline", "employer_multimodal_trip_rate"]
+    },
+    {
+      "id": "EVIDENCE-P0-002",
+      "owner": "proposed_disabled_persons_federation_or_qualified_accessibility_reviewer_with_older_person_representatives_and_transport_authority",
+      "role_status": "proposed_role_not_confirmed_or_assigned",
+      "window": "P0-c_after_public_notice_and_grouped_baseline_before_P1",
+      "method": "professional_continuous_route_and_people_flow_walkthrough_with_disabled_persons_federation_or_accessibility_reviewer_and_older_person_representatives; record assisted_transfer_and_human_fallback",
+      "output": "route_obstacle_and_fallback_register",
+      "unblocks": ["accessible_route_completion_ratio", "first_last_mile_transfer_reliability", "person_flow_conflict_rate"]
+    },
+    {
+      "id": "EVIDENCE-P0-003",
+      "owner": "proposed_subdistrict_public_participation_window_with_disabled_persons_federation_and_older_person_representatives",
+      "role_status": "proposed_role_not_confirmed_or_assigned",
+      "window": "P0-a_public_notice_and_response_ledger_frozen_before_P1",
+      "method": "public_comment_and_response_ledger_with_offline_telephone_paper_and_accessible_entry; record adopted_partially_adopted_deferred_or_declined_items",
+      "output": "adopted_partially_adopted_deferred_or_declined_record",
+      "unblocks": ["resident_daily_trip_access_index", "mobility_service_complaint_closure_hours"]
+    }
+  ],
+  "guardrails": {
+    "not_visited_does_not_block_concept_submission": true,
+    "resident_needs_not_claimed_as_validated": true,
+    "no_private_interview_upload": true,
+    "no_personal_trajectory_collection": true,
+    "operational_status": "not_authorized_not_run",
+    "p1_p2_advance_without_dated_baseline": false
+  },
+  "role_basis": [
+    "BARRIER-FREE-ENVIRONMENT-LAW",
+    "ELDERLY-SMART-TECH-PLAN-2020-45"
+  ],
+  "role_boundary": "These are proposed organisational roles derived from public policy, not confirmed assignments, named partners or evidence that participation has occurred.",
+  "boundary": "This record discloses evidence status and next collection work. It is not a site visit log, resident survey, stakeholder endorsement, accessibility audit, permit, operating result or implementation authorization."
+}

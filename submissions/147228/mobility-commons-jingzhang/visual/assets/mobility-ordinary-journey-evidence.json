@@ -1,0 +1,47 @@
+{
+  "runner": "run-mobility-ordinary-journey.js",
+  "contract_id": "MOB-ORDINARY-JOURNEY-001",
+  "status": "PASS",
+  "claim_level": "local_synthetic_tabletop",
+  "trace_coverage": {
+    "journey_steps": "6/6",
+    "acceptance_checks": "8/8",
+    "negative_replays": "6/6",
+    "control_replays": "3/3",
+    "self_audit_findings": "4/4",
+    "rollback_steps": "5/5"
+  },
+  "negative_replay": {
+    "replayed": "6/6",
+    "rejection_path_observed": true,
+    "inputs": [
+      "accessible_route_audit_date_missing",
+      "human_takeover_unavailable",
+      "return_plan_missing",
+      "outage_and_ground_route_blocked",
+      "complaint_owner_unassigned",
+      "independent_replay_missing"
+    ]
+  },
+  "control_replay": {
+    "replayed": "3/3",
+    "decision": "continue_with_human_option",
+    "ordinary_option_preserved": true
+  },
+  "self_audit": {
+    "finding_count": 4,
+    "all_findings_remain_unknown": true,
+    "field_actions_declared": true
+  },
+  "result_status": "not_run",
+  "performance_results": null,
+  "operational_status": "not_authorized_not_run",
+  "environment": {
+    "network_calls": 0,
+    "external_systems": "none",
+    "personal_data": "none",
+    "state_changes": "in-memory only"
+  },
+  "decision": "do_not_advance",
+  "boundary": "The package exposes a synthetic resident journey and its own evidence gaps. It does not claim a resident interview, field accessibility, staffing, public acceptance, operating performance or professional approval."
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1.0",
+  "package_iteration": "v2.33",
+  "prototype_id": "M09-CURB-NODE-DAZHONGSI",
+  "status": "concept_only",
+  "scale_boundary": "functional_bands_only",
+  "dimensions": null,
+  "anchor_refs": [
+    "geometry/key_areas.geojson#PROV-KEY-003",
+    "geometry/roads.geojson#ROAD-002",
+    "geometry/constraints.geojson#CONSTRAINT-001"
+  ],
+  "claim_boundary": "This is a reviewable curb/waiting sequence, not a measured station entrance, road section, right-of-way, capacity, permit or field service.",
+  "states": ["open", "booked", "service", "human-only", "emergency"],
+  "bands": [
+    {"band_id": "M09-N1", "label_zh": "人行与无障碍连续带", "label_en": "Walking and accessibility continuity band", "visible_state": "open / human-only", "spatial_role_zh": "先保证步行、轮椅、照护和应急通行；不允许预约服务切断主链。", "evidence_before_entry_zh": "逐段无障碍走读、过街/坡度/照明/障碍记录和人工绕行方案", "fallback_zh": "受阻时改道或由人工指引，暂停 booked/service 状态。"},
+    {"band_id": "M09-N2", "label_zh": "候车与人工交接带", "label_en": "Waiting and human-handover band", "visible_state": "booked / human-only", "spatial_role_zh": "将候车、服务台、电话/纸面入口和投诉入口放在可见交接界面。", "evidence_before_entry_zh": "候车与站口观察、人工班次/责任角色、普通公共交通替代路径", "fallback_zh": "断网、错过衔接或低数字能力受阻时转人工和轨道/公交。"},
+    {"band_id": "M09-N3", "label_zh": "可关闭的路缘服务窗口", "label_en": "Closable curb-service window", "visible_state": "booked / service", "spatial_role_zh": "仅在责任人、起止时间、清场动作、消防和无障碍条件齐备后登记班车/装卸。", "evidence_before_entry_zh": "路缘资产、车型/服务对象分组、清场与消防净空、责任和独立停机复核", "fallback_zh": "条件缺失时不预约、不占用公共路缘，只保留普通公共交通和人工服务。"},
+    {"band_id": "M09-N4", "label_zh": "维护与应急退避带", "label_en": "Maintenance and emergency retreat band", "visible_state": "service / emergency", "spatial_role_zh": "给维护、异常清场、雨雪和应急响应留下可回退的公共状态。", "evidence_before_entry_zh": "维护责任、清场记录、天气/中断触发器和复盘入口", "fallback_zh": "硬门失败时冻结预约，恢复开放/人工优先，并记录下一次复核日期。"}
+  ],
+  "acceptance_sequence_zh": "先验收人行连续和人工交接，再登记可关闭的服务窗口，最后才讨论扩展；任何无法接管或回放的状态回到 P0。",
+  "recalculation_rule_zh": "官方站口、道路、权属、消防、市政、无障碍和现场计数到位后，必须同步重算 geometry、图件、HTML、PDF、metrics 和 self-check。"
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "MOB-REVIEW-STATUS-001",
+  "boundary": "This package reports package integrity, content review eligibility and official-geometry-dependent professional scoring as separate axes.",
+  "package_state": "ready_for_review",
+  "content_review_eligible": true,
+  "professional_scoring_eligible": false,
+  "professional_scoring_scope": "official_geometry_dependent",
+  "professional_scoring_blocked_by": [
+    "official_site_boundary",
+    "official_key_areas"
+  ],
+  "implementation_eligible": false,
+  "implementation_blocked_by": [
+    "dated_grouped_od",
+    "field_accessibility_walkthrough",
+    "accountable_operator",
+    "traffic_fire_privacy_and_insurance_review"
+  ],
+  "axes": [
+    {
+      "id": "package_integrity",
+      "status": "pass",
+      "machine_state": "package_state=ready_for_review",
+      "label_zh": "包完整性",
+      "label_en": "Package integrity",
+      "supports_zh": "结构、双语、图件、GeoJSON、指标、矩阵和 manifest 已通过包内门禁。",
+      "supports_en": "Structure, bilingual files, figures, GeoJSON, metrics, matrices and manifest pass package gates.",
+      "still_requires_zh": "官方边界、现场资料和专业判断仍需单独取得。",
+      "still_requires_en": "Official geometry, field records and professional judgement remain separate inputs."
+    },
+    {
+      "id": "content_review",
+      "status": "eligible",
+      "machine_state": "content_review_eligible=true",
+      "label_zh": "内容评审资格",
+      "label_en": "Content review eligibility",
+      "supports_zh": "组织方 polygon 缺口不阻断维护者和 Review Agent 对包内内容的评审。",
+      "supports_en": "An organiser polygon gap does not block maintainer and Review Agent content review of this package.",
+      "still_requires_zh": "内容评审分数不等于现场绩效、专业签字或实施许可。",
+      "still_requires_en": "A content-review score does not establish field performance, professional sign-off or implementation permission."
+    },
+    {
+      "id": "professional_scoring",
+      "status": "blocked",
+      "machine_state": "professional_scoring_eligible=false",
+      "label_zh": "正式专业评分资格",
+      "label_en": "Formal professional scoring eligibility",
+      "supports_zh": "正式专业评分轴仍保留在等待官方 SITE_BOUNDARY 和 KEY_AREA polygon 的状态。",
+      "supports_en": "The official-geometry-dependent professional scoring axis remains waiting for SITE_BOUNDARY and KEY_AREA polygons.",
+      "still_requires_zh": "补齐官方空间数据后，必须联动重算几何、指标、图纸和报告。",
+      "still_requires_en": "Official spatial data must trigger coordinated recalculation of geometry, metrics, drawings and reports."
+    }
+  ],
+  "human_label_zh": "机器门禁与内容评审就绪，正式专业评分资格等待官方空间数据",
+  "human_label_en": "Package gates and content review are ready; formal professional scoring waits for official spatial data",
+  "evidence": [
+    "manifest.json",
+    "self_check.json",
+    "geometry/site_boundary.geojson",
+    "geometry/key_areas.geojson",
+    "visual/assets/review-status-contract.json"
+  ]
+}

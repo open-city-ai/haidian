@@ -1,0 +1,75 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present; replace with official redline before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Initial land-use polygons are derived from site boundary partitioning."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization is generated without external dependencies."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "Chinese-primary narrative, English counterpart, ten localized figures, two localized HTML pairs, and four localized PDFs are present."
+    },
+    {
+      "check_id": "GEOMETRY_METRIC_RECOMPUTE",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "Site area, building footprint, green-space area and ratio, and public-space area and ratio recompute from the provisional GeoJSON within validator tolerance."
+    },
+    {
+      "check_id": "SCENARIO_CATALOG",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/public_space.geojson",
+      "message": "Twelve Memory Point scenario cards, four industry validation scenarios, and four distinct pilgrimage or honor nodes are cataloged with human review and exit boundaries."
+    },
+    {
+      "check_id": "PDF_RENDER_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "drawings/",
+      "message": "All four final PDFs contain at least five pages, permit text extraction, and render through Poppler without blank pages or blocking visual defects."
+    },
+    {
+      "check_id": "SOURCE_RIGHTS_BOUNDARY",
+      "result": "pass",
+      "severity": "major",
+      "target": "sources.json",
+      "message": "Official sources and background-only benchmarks are registered with citation, reuse, temporal, and local-control limitations; no third-party visual assets are redistributed."
+    }
+  ]
+}

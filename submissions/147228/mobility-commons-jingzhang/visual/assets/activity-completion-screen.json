@@ -1,0 +1,119 @@
+{
+  "version": "0.1.0",
+  "screen_id": "MOBILITY-ACTIVITY-COMPLETION-001",
+  "status": "synthetic_population_scale_screen_not_local_activity_diary",
+  "purpose_zh": "把一次通勤扩展为可复核的活动链：到达主要活动、应对延误、完成返程，并把延期、不可达和返程未闭合分开。",
+  "purpose_en": "Extend one commute into a replayable activity chain: reach the primary activity, adapt to delay, close the return leg, and keep deferral, inaccessibility and return failure separate.",
+  "scope": {
+    "population_reference": 3122000,
+    "agent_storage": "aggregate_only",
+    "personal_trajectories_published": false,
+    "regional_population_is_workforce": false,
+    "observed_activity_diaries": 0,
+    "observed_count_status": "not_authorized_not_run"
+  },
+  "method": {
+    "model_class": "grouped_activity_chain_completion_with_return_closure",
+    "method_sources": [
+      "MATRAM-ACTIVITY-ADAPTATION-2026",
+      "MATSIM-LARGE-SCALE-ABM",
+      "MATSIM-BOOK-ACTIVITY-BASED",
+      "TRANSPORT-EQUITY-DISTRIBUTION-2023",
+      "DYNAMIC-PT-CAPACITY-2024"
+    ],
+    "chain": [
+      "origin_departure",
+      "first_mile_and_transfer",
+      "primary_activity_arrival",
+      "activity_window_or_bounded_deferral",
+      "return_transfer",
+      "origin_return_closure"
+    ],
+    "event_classes": [
+      "on_time",
+      "delayed",
+      "deferred",
+      "inaccessible",
+      "return_failed"
+    ],
+    "adaptation_rule": "When a declared travel condition exceeds a group schedule budget, a bounded activity deferral may keep the activity chain open; no unbounded rescheduling is allowed.",
+    "capacity_rule": "Mode load above one adds a transparent queue-delay proxy and can trigger return failure; it never creates extra observed capacity.",
+    "ground_fallback_rule": "A missed or over-budget leg may attempt one declared ground fallback if the source mode is not protected from recourse, the target remains within its load screen and a bounded fallback draw accepts it. Walking/accessible source demand is never silently rerouted.",
+    "air_rule": "Air candidate stays blocked and cannot repair a ground activity-chain failure until airspace, airworthiness, operator, insurance, weather, noise, emergency and public-review gates pass.",
+    "coefficient_boundary": "All budgets, delay allowances and adaptation shares are design targets; no local coefficient or external effect size is imported."
+  },
+  "group_profiles": {
+    "enterprise_employee": {
+      "activity_zh": "企业到岗",
+      "activity_en": "enterprise work",
+      "outbound_budget_minutes": 68,
+      "return_budget_minutes": 82,
+      "adaptation_slack_minutes": 28,
+      "bounded_deferral_share": 0.14,
+      "accessibility_floor": 0.78
+    },
+    "resident_worker": {
+      "activity_zh": "居民工作",
+      "activity_en": "resident work",
+      "outbound_budget_minutes": 72,
+      "return_budget_minutes": 86,
+      "adaptation_slack_minutes": 32,
+      "bounded_deferral_share": 0.18,
+      "accessibility_floor": 0.78
+    },
+    "carer_or_child": {
+      "activity_zh": "照护 / 上学",
+      "activity_en": "care / school",
+      "outbound_budget_minutes": 58,
+      "return_budget_minutes": 70,
+      "adaptation_slack_minutes": 18,
+      "bounded_deferral_share": 0.04,
+      "accessibility_floor": 0.84
+    },
+    "visitor_service": {
+      "activity_zh": "访问 / 服务",
+      "activity_en": "visit / service",
+      "outbound_budget_minutes": 82,
+      "return_budget_minutes": 96,
+      "adaptation_slack_minutes": 42,
+      "bounded_deferral_share": 0.30,
+      "accessibility_floor": 0.76
+    },
+    "logistics_and_maintenance": {
+      "activity_zh": "物流 / 维护",
+      "activity_en": "logistics / maintenance",
+      "outbound_budget_minutes": 94,
+      "return_budget_minutes": 112,
+      "adaptation_slack_minutes": 38,
+      "bounded_deferral_share": 0.22,
+      "accessibility_floor": 0.76
+    },
+    "night_worker": {
+      "activity_zh": "夜班工作",
+      "activity_en": "night work",
+      "outbound_budget_minutes": 78,
+      "return_budget_minutes": 96,
+      "adaptation_slack_minutes": 22,
+      "bounded_deferral_share": 0.06,
+      "accessibility_floor": 0.82
+    }
+  },
+  "scenario_definitions": [
+    {"id": "N0_nominal_O4", "runner_scenario_id": "O1", "profile_id": "O4", "ground_fallback_share": 0.60, "label_zh": "名义：O4 容量平衡", "label_en": "nominal: O4 capacity-balanced"},
+    {"id": "R1_metro_disruption", "runner_scenario_id": "R1", "profile_id": "O4", "ground_fallback_share": 0.72, "label_zh": "地铁中断", "label_en": "metro disruption"},
+    {"id": "W1_weather_bicycle", "runner_scenario_id": "W1", "profile_id": "O4", "ground_fallback_share": 0.68, "label_zh": "强天气 / 骑行受限", "label_en": "severe weather / bicycle constrained"},
+    {"id": "D1_capacity_shock", "runner_scenario_id": "D1", "profile_id": "O4", "ground_fallback_share": 0.65, "label_zh": "多方式容量冲击", "label_en": "multimodal capacity shock"}
+  ],
+  "hard_gates": {
+    "require_all_agents_processed": true,
+    "require_chain_mass_conservation": true,
+    "minimum_chain_completion_proxy_nominal": 0.85,
+    "minimum_chain_completion_proxy_stress": 0.70,
+    "maximum_group_chain_completion_gap_points_nominal": 20,
+    "maximum_group_chain_completion_gap_points_stress": 35,
+    "air_candidate_must_remain_blocked": true,
+    "privacy_must_remain_aggregate_only": true,
+    "stress_gate_policy": "A stress-gate failure is a visible stop-and-calibrate signal, not a reason to hide the scenario or to claim local resilience; only the nominal screen is a package-selection gate."
+  },
+  "interpretation": "This screen makes the cost of a broken daily chain visible beside mode, capacity and accessibility screens. It is not a resident outcome, employee behaviour estimate, service guarantee, local diary sample or professional accessibility audit. Replace design targets with dated grouped OD, activity diaries, timetable/capacity, accessibility and disruption evidence before a local decision."
+}

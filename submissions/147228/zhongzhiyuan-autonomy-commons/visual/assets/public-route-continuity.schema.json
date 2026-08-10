@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "AUTONOMY-PUBLIC-ROUTE-CONTINUITY-001",
+  "title_zh": "公共路缘连续性核验契约",
+  "status": "protocol_only",
+  "purpose": "把普通路线、受限服务、人工等价路径和退出动作放在同一条可复核链上；本契约不提供现场读数。",
+  "required_node_count": 3,
+  "required_reviewer_classes": [
+    "professional",
+    "operator",
+    "resident",
+    "accessibility_user"
+  ],
+  "design_limit": {
+    "id": "C0",
+    "name": "all_required_readings_and_no_blocking_gap",
+    "max_gap_ratio": 0.25,
+    "meaning": "这是用于演示判定逻辑的设计阈值，不是现场安全标准；任一无障碍或人工等价路径阻断仍直接重开。"
+  },
+  "recovery_rule": {
+    "on_reopen": [
+      "freeze_new_trials",
+      "keep_the_non_ai_route_open",
+      "publish_the_trigger_and_owner",
+      "repeat_the_affected_node_with_all_required_reviewer_classes",
+      "require_two_consecutive_clear_rounds_before_reconsidering"
+    ]
+  },
+  "boundary": {
+    "baseline": "unknown",
+    "field_result": null,
+    "authorization": "not_authorized",
+    "interpretation": "A passing synthetic record proves only that the required fields, roles and rejection path are wired."
+  }
+}

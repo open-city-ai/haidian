@@ -1,0 +1,24 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "MOBILITY-PUBLIC-ROUTE-CONTINUITY-001",
+  "status": "design_contract_not_field_standard",
+  "route": {
+    "route_id": "MOB-ROUTE-001",
+    "node_ids": ["MOB-NODE-001", "MOB-NODE-002", "MOB-NODE-003"],
+    "mode_layers": ["metro", "bus", "walk", "wheelchair", "bicycle", "car", "service"],
+    "max_gap_ratio": 0.25,
+    "reviewer_classes": ["resident", "accessibility_user", "enterprise_employee", "operator"]
+  },
+  "required_reading_fields": ["status", "gap_ratio", "handoff_visible", "human_equivalent", "non_app_entry"],
+  "recovery_rules": [
+    "blocked_or_missing_handoff_reopens_the_service_window",
+    "missing_paper_or_telephone_entry_returns_to_human_public_transport",
+    "gap_ratio_above_design_limit_stays_in_P0_and_does_not_advance"
+  ],
+  "boundary": {
+    "baseline": "unknown",
+    "field_result": null,
+    "authorization": "not_authorized",
+    "note": "This is a synthetic design gate; it is not a field accessibility audit, road right, operator agreement or performance result."
+  }
+}

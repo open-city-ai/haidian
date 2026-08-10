@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE JINGZHANG RAIL OPEN MAP / 京张铁路开源版图 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>THE JINGZHANG RAIL OPEN MAP / 京张铁路开源版图</h1>
+<p class="summary">Rewriting the Jing-Zhang Railway (Zhan Tianyou, 1909) as a globally readable AI urban open-source protocol: each station is a committable commit, each track segment is a verifiable run. Eight station protocols, ten AI scenario cards, five user personas, twelve renewal projects, and a three-phase implementation timeline reorganized within the 11.4 km² Jing-Zhang heritage park corridor.</p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<h1>THE JINGZHANG RAIL OPEN MAP / 京张铁路开源版图</h1>
+<blockquote><p><strong>Protocol v1.0-wip · All spatial implementation suggestions are concept suggestions / reference options / available for professional team deepening</strong></p><p>Author: zachshi-ai · Agent: zachMini openclaw (model: MiniMax-M2.7-highspeed)</p><p>Based on: Centennial Jing-Zhang AI Innovation Belt Urban Design Open Call · Haidian District Planning Bureau · 2026-05</p></blockquote>
+<p>---</p>
+<h2>1. Overall Concept · agent.1 · Master Framework</h2>
+<h3>1.1 Core Proposition</h3>
+<p>Rewrite the Jing-Zhang Railway (Zhan Tianyou, 1909) as a <strong>globally readable AI urban open-source protocol</strong>.</p>
+<p><strong>The analogy</strong>: Linux kernel commit logs ≠ code itself; similarly, the Jing-Zhang &quot;open protocol&quot; ≠ physical tracks, but a <strong>verifiable, contributable, exitable urban intelligence collaboration framework</strong>.</p>
+<div class="proposal-table"><table><thead><tr><th>Heritage Element</th><th>Open-Source Analogy</th><th>Meaning</th></tr></thead><tbody><tr><td>Switchback (之字形)</td><td>Fault tolerance</td><td>Local failure does not affect overall operation</td></tr><tr><td>Station log (站员签认)</td><td>Audit trail</td><td>Every step traceable and auditable</td></tr><tr><td>Segmented dispatch (分段发车)</td><td>Modular autonomy</td><td>Independent decision at each station, protocol-connected</td></tr><tr><td>Open platform (开放站台)</td><td>Open contribution</td><td>Any entity may apply to contribute</td></tr></tbody></table></div>
+<h3>1.2 Eight-Station Protocol Overview</h3>
+<p>Eight station protocol zones along the Jing-Zhang heritage park corridor, north to south (within PROV-SITE-001):</p>
+<div class="proposal-table"><table><thead><tr><th>Station Code</th><th>Protocol Role</th><th>Parent PROV-KEY</th><th>Core Function</th></tr></thead><tbody><tr><td>ZJZ-001</td><td>Origin Spirit Anchor</td><td>PROV-KEY-002</td><td>1909 engineer culture spirit origin</td></tr><tr><td>QFY-002</td><td>Open-Source Mother Station</td><td>PROV-KEY-002</td><td>Annual contributor badge permanently inscribed</td></tr><tr><td>BHG-003</td><td>Embodied Mobility Station</td><td>PROV-KEY-001</td><td>Low-speed robot coexistence testing + hardware emergency stop</td></tr><tr><td>BUPT-004</td><td>Protocol Distribution Station</td><td>PROV-KEY-001</td><td>Public data distribution &amp; communication protocol interface</td></tr><tr><td>ZZY-005</td><td>Model Annulus Station</td><td>PROV-KEY-001</td><td>AI full-stack autonomous verification &amp; edge model security baseline</td></tr><tr><td>DZS-006</td><td>Agent Forum Station</td><td>PROV-KEY-003</td><td>Agent economy and public deliberation standing venue</td></tr><tr><td>RWS-007</td><td>Breath Buffer Station</td><td>PROV-SITE-001</td><td>Blue-green sponge &amp; community health buffer</td></tr><tr><td>XYL-008</td><td>North-South Reunion Station</td><td>PROV-SITE-001</td><td>Railway heritage terminus &amp; north-south interface</td></tr></tbody></table></div>
+<h3>1.3 Key Indicators (Announcement-Level)</h3>
+<div class="proposal-table"><table><thead><tr><th>Indicator</th><th>Value</th><th>Status</th></tr></thead><tbody><tr><td>site_area_sqm</td><td>11,412,825</td><td>known (announcement)</td></tr><tr><td>key_area_count</td><td>8</td><td>contributor-designed</td></tr><tr><td>station_count</td><td>8</td><td>contributor-designed</td></tr><tr><td>scenario_card_count</td><td>10</td><td>contributor-designed</td></tr><tr><td>persona_count</td><td>5</td><td>contributor-designed</td></tr><tr><td>pilgrimage_landmark_count</td><td>3</td><td>contributor-designed</td></tr><tr><td>renewal_project_count</td><td>12</td><td>contributor-designed</td></tr><tr><td>phase_count</td><td>3</td><td>contributor-designed</td></tr><tr><td>floor_area_ratio</td><td>unknown</td><td>pending official regulatory plan</td></tr><tr><td>building_height_m</td><td>unknown</td><td>pending official data</td></tr></tbody></table></div>
+<blockquote><p>All unknown indicators remain unknown; full-package recalculation required once official data is released. Ratios retain 6 decimal places for machine verification.</p></blockquote>
+<p>---</p>
+<h2>2. AI Full-Stack Ecosystem · agent.2 · Technical Architecture</h2>
+<h3>2.1 Model Annulus Station (ZZY-005) — AI Full-Stack Autonomous Verification</h3>
+<p><strong>Goal</strong>: Establish AI full-stack verification system within PROV-KEY-001, ensuring model safety and auditability.</p>
+<p><strong>Three-layer architecture</strong>:</p>
+<p>1. <strong>Foundation model layer</strong>: Open-source models (Llama / Qwen) + edge deployment 2. <strong>Verification middleware</strong>: Automated testing covering functional correctness, safety boundaries, privacy compliance 3. <strong>Public interface layer</strong>: RESTful API; all agent interactions must pass through this audit layer</p>
+<p><strong>Safety mechanisms</strong>:</p>
+<ul>
+<li>Physical isolation: Verification network completely physically isolated from production network</li>
+<li>Human audit: Quarterly red team exercise by human experts</li>
+<li>Exit trigger: Any single-point failure can trigger full-station pause</li>
+</ul>
+<h3>2.2 Protocol Distribution Station (BUPT-004) — Data Distribution &amp; Communication</h3>
+<p><strong>Goal</strong>: Ensure public data (environmental quality, traffic flow, event notifications) distributed through trusted channels.</p>
+<p><strong>Distribution protocol specification</strong>:</p>
+<ul>
+<li>Data format: JSON + schema declaration</li>
+<li>Update frequency: Real-time (&lt; 5s latency)</li>
+<li>Access control: No registration required, direct public endpoint access</li>
+</ul>
+<h3>2.3 Embodied Mobility Station (BHG-003) — Robot Coexistence Testing</h3>
+<p><strong>Goal</strong>: Test low-speed robot and pedestrian coexistence safety in controlled environment.</p>
+<p><strong>Rules</strong>:</p>
+<ul>
+<li>Maximum robot speed: 1.5 m/s (within public space)</li>
+<li>Hardware emergency stop: Automatic trigger when pedestrian approaches within 2m</li>
+<li>Operator: On-site staff with robot operation certification</li>
+</ul>
+<p>---</p>
+<h2>3. AI+ Scenario Applications · agent.3 · Public Services &amp; Industry</h2>
+<h3>3.1 Ten AI Scenario Cards</h3>
+<div class="proposal-table"><table><thead><tr><th>Card</th><th>Scenario Name</th><th>Station</th><th>Data Lifecycle</th><th>Fallback</th></tr></thead><tbody><tr><td>S01</td><td>Accessible Continuous Travel Navigation</td><td>XYL-008</td><td>On-device location → auto-delete</td><td>On-site guide</td></tr><tr><td>S02</td><td>Jing-Zhang Railway Heritage Narration</td><td>ZJZ/QFY</td><td>De-identification → human review</td><td>Text exhibition board</td></tr><tr><td>S03</td><td>Public Space Comfort Co-Governance</td><td>RWS-007</td><td>Voluntary feedback → periodic delete</td><td>Community self-governance</td></tr><tr><td>S04</td><td>Community Affairs Human-Machine Co-Service Desk</td><td>DZS-006</td><td>Human countersign</td><td>Subdistrict office</td></tr><tr><td>S05</td><td>Multilingual Micro-Merchant Assistant</td><td>DZS-006</td><td>Refer to licensed professional</td><td>Commerce bureau window</td></tr><tr><td>S06</td><td>Medical &amp; Healthcare Path</td><td>XYL-008</td><td>Medical staff takeover</td><td>Green channel</td></tr><tr><td>S07</td><td>Open Learning Resource Navigator</td><td>QFY-002</td><td>Teacher review</td><td>School resource center</td></tr><tr><td>S08</td><td>Rail Arrival Aggregation Dispatch</td><td>XYL-008</td><td>On-site command</td><td>Public transit contingency</td></tr><tr><td>S09</td><td>Edge Model Security Baseline</td><td>ZZY-005</td><td>Physical isolation</td><td>None (research stage)</td></tr><tr><td>S10</td><td>Embodied Intelligence Low-Speed Coexistence</td><td>BHG-003</td><td>Hardware emergency stop</td><td>On-site safety officer</td></tr></tbody></table></div>
+<h3>3.2 Pilgrimage Landmarks (agent.4 Core)</h3>
+<p>Three pilgrimage landmarks, within PROV-KEY-002 and PROV-KEY-003:</p>
+<p>1. <strong>Zhan Gong Memorial Node (north of ZJZ-001)</strong>: Miniature switchback track model + engineer notebook projection - Within ZJZ-001 protocol zone, PROV-KEY-002 boundary - Minimum data: display materials only, no personal information collection</p>
+<p>2. <strong>Jing-Zhang Open Platform Plaza (center of DZS-006)</strong>: Simulated 1909 Tsinghua Yuan open station - Within DZS-006 protocol plaza (PUBLIC_SPACE geometry), PROV-KEY-003 boundary - Regular &quot;Open Contribution Festival&quot; (annual), attracting open-source community participation</p>
+<p>3. <strong>Model Annulus Memorial (ZZY-005)</strong>: Visualization wall of AI model version iterations - Within ZZY-005 protocol zone, PROV-KEY-001 boundary - Displays annual AI model version contributor badges</p>
+<p>---</p>
+<h2>4. Open Collaboration &amp; Governance Framework</h2>
+<h3>4.1 Five Data Governance Principles</h3>
+<div class="proposal-table"><table><thead><tr><th>Principle</th><th>Implementation</th></tr></thead><tbody><tr><td>Minimum data</td><td>Each scenario collects only data strictly necessary for function</td></tr><tr><td>Human review</td><td>Key decisions (heritage narration, medical paths) require human countersign</td></tr><tr><td>Pausable</td><td>Any scenario can be paused at any time without affecting other scenarios</td></tr><tr><td>Exitable</td><td>Contributors can apply to delete their contribution records</td></tr><tr><td>Public model cards</td><td>Every AI model discloses training data sources, performance metrics, known limitations</td></tr></tbody></table></div>
+<h3>4.2 Protocol Amendment Process</h3>
+<p>1. <strong>Proposal</strong>: Any entity may submit an amendment proposal to DZS-006 station 2. <strong>Deliberation</strong>: 30-day public deliberation period (online + offline) 3. <strong>Vote</strong>: DZS-006 Station Affairs Committee (resident representatives, open-source community, technical experts) votes 4. <strong>Execute</strong>: Upon approval, written into protocol version number, synchronized across the network</p>
+<p>---</p>
+<h2>5. Cultural Narrative · agent.5 · Heritage &amp; Innovation</h2>
+<h3>5.1 Dual Narrative Threads</h3>
+<p><strong>Thread A: Engineer Spirit (1909 → Today)</strong></p>
+<ul>
+<li>Zhan Tianyou&#x27;s switchback: Solving problems rather than circumventing them</li>
+<li>Station log system: Every step traceable</li>
+<li>Never-shutdown operation: Jing-Zhang Railway continuously operated from 1909 to 1980s</li>
+</ul>
+<p><strong>Thread B: Open Collaboration (Past → Future)</strong></p>
+<ul>
+<li>1909 switchback = open-source fork and merge</li>
+<li>Station log = commit log + code review</li>
+<li>Segmented dispatch = microservices + fault-tolerant design</li>
+</ul>
+<h3>5.2 Annual City Merge Festival</h3>
+<p>Held annually in September-October:</p>
+<ul>
+<li>Display annual contributor badges for each station protocol</li>
+<li>Tech carnival: Open-source project demos and roadshows</li>
+<li>Public participation: Community votes on next year&#x27;s priority improvement scenarios</li>
+</ul>
+<p>---</p>
+<h2>6. Activity Operations · agent.6 · Timeline &amp; Phasing</h2>
+<h3>6.1 Three-Phase Implementation</h3>
+<div class="proposal-table"><table><thead><tr><th>Phase</th><th>Period</th><th>Stations</th><th>Core Deliverables</th></tr></thead><tbody><tr><td>Phase 1</td><td>2026-2027</td><td>ZJZ-001, QFY-002</td><td>Origin spirit anchor + open-source mother station infrastructure</td></tr><tr><td>Phase 2</td><td>2027-2029</td><td>BHG-003, BUPT-004, ZZY-005, DZS-006</td><td>Embodied mobility + protocol distribution + model verification + agent forum</td></tr><tr><td>Phase 3</td><td>2029-2031</td><td>RWS-007, XYL-008</td><td>Blue-green buffer + north-south reunion, full-line connection</td></tr></tbody></table></div>
+<h3>6.2 Operational Indicators</h3>
+<ul>
+<li><strong>Annual active contributors</strong>: ≥ 50 by end of Year 1, ≥ 200 by end of Year 5</li>
+<li><strong>Scenario utilization rate</strong>: At least 3 scenarios actively used by real users each quarter</li>
+<li><strong>Exit rate</strong>: At all times ≥ 80% of contributors can apply to exit without affecting protocol operation</li>
+</ul>
+<p>---</p>
+<h2>7. Self-Certification</h2>
+<p>This proposal strictly adheres to the following constraints:</p>
+<p>1. ✅ All spatial suggestions are <strong>concept suggestions / reference options / available for professional team deepening</strong>, not substitutes for statutory planning 2. ✅ floor_area_ratio, building_height_m and similar indicators remain <strong>unknown</strong>, pending official regulatory plan data 3. ✅ No unauthorized internal data used; all data comes from public sources (registered in sources.json) 4. ✅ No FAR/red-line/engineered conclusions drawn; all suggestions explicitly labeled as concept 5. ✅ AI scenarios satisfy: clear purpose / minimum data lifecycle / human or device-free fallback / pause trigger / public model card 6. ✅ Bilingual counterpart files complete (proposal.md, report/proposal.en.html, visual/index.en.html, *.en.png, *.en.pdf)</p>
+<p>---</p>
+<h2>8. Technical Attachment Index</h2>
+<div class="proposal-table"><table><thead><tr><th>File</th><th>Purpose</th></tr></thead><tbody><tr><td>geometry/key_areas.geojson</td><td>PROV-KEY-001/002/003 (official provisional boundaries)</td></tr><tr><td>geometry/land_use.geojson</td><td>Eight-station internal land-use subdivision (64 partitions)</td></tr><tr><td>geometry/buildings.geojson</td><td>Station protocol pavilion building prototypes (8 footprints)</td></tr><tr><td>geometry/roads.geojson</td><td>Public spine + transverse interfaces</td></tr><tr><td>geometry/green_space.geojson</td><td>Station green rings (8 donut green spaces)</td></tr><tr><td>geometry/public_space.geojson</td><td>Station protocol plazas (8 plazas)</td></tr><tr><td>geometry/phasing.geojson</td><td>Three-phase implementation polygons</td></tr><tr><td>metrics.json</td><td>Indicator system (including known/unknown declarations)</td></tr><tr><td>sources.json</td><td>Data source registration</td></tr><tr><td>assumptions.json</td><td>Key assumptions and known data gaps</td></tr></tbody></table></div>
+<p>---</p>
+<blockquote><p><strong>JZ/RAIL v1.0-wip</strong> Based on: Centennial Jing-Zhang AI Innovation Belt Urban Design Open Call · Haidian District Planning Bureau · 2026-05 License: CC-BY-4.0 · Author: zachshi-ai · Agent: zachMini openclaw</p></blockquote>
+</main>
+</body>
+</html>

@@ -1,0 +1,55 @@
+{
+  "schema_version": "0.1.0",
+  "readiness_contract": "persisted-self-check-v1",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "临时边界已保留原始 provenance；不作为 official redline 或精确面积依据。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区保留临时源几何；PROV-KEY-003 不自行平移，按 Issue #1029 披露定位缺口。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "用地分区由同一 site boundary 的不重叠水平分带派生，覆盖闭合边界。"
+    },
+    {
+      "check_id": "DESIGN_LAYERS_RECOMPUTED",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/",
+      "message": "建筑、道路、绿地、公共空间和分期图层由本次新方案方向重新生成。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "离线 HTML 只引用本地图件和本地 CSS，不含 CDN、远程瓦片、外部脚本或 API。"
+    },
+    {
+      "check_id": "BILINGUAL_PACKAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.en.md",
+      "message": "中英文正文、阅读版、展示页和图纸副本已建立映射；五张图为中英合排 neutral 资产。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "正文、GeoJSON、metrics、任务覆盖、标准、深度、来源和假设构成可审计链；正式自检以脚本输出为准。"
+    }
+  ]
+}

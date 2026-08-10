@@ -1,0 +1,120 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "review_status": "formal-review-ready",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "scripts/validate_submission.py",
+      "message": "Trusted deterministic validation passed on the current package bytes."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "scripts/spatial_review.py",
+      "message": "Spatial review passed; provisional key areas remain explicitly disclosed."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "scripts/visual_review.py",
+      "message": "Offline visual packaging review passed with local assets and metric anchors."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "scripts/professional_review.py",
+      "message": "Professional evidence review passed; unknown transport baselines remain separated from pilot targets."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is explicit; replace with official geometry before statutory use."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three key areas remain provisional and are not official parcels."
+    },
+    {
+      "check_id": "MOBILITY_EVIDENCE",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json and sources.json",
+      "message": "Known geometry, unknown transport baselines and pilot targets are separated."
+    },
+    {
+      "check_id": "IMPLEMENTATION_OPERATION_CONTRACT",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/implementation-operation-contract.json",
+      "message": "P0/P1/P2 roles, acceptance metrics, human fallback and stop/withdrawal rules are registered; roles remain conceptual."
+    },
+    {
+      "check_id": "MOBILITY_TABLETOP_REHEARSAL",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/run-mobility-tabletop.js",
+      "message": "The M-09 synthetic fallback contract replays 4/4 fallback requests, 6/6 checks and 5/5 rollback steps; operational status remains not_authorized_not_run."
+    },
+    {
+      "check_id": "NO_FIRST_PROJECT_EDIT",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "participant_scope",
+      "message": "This independent submission package is limited to its own directory; sibling packages are outside its scope."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/index.html",
+      "message": "Offline visual page contains local assets, source notes, assumptions and metric anchors."
+    },
+    {
+      "check_id": "RECALCULATION_GATE",
+      "result": "unknown",
+      "severity": "major",
+      "target": "official boundary and field audit",
+      "message": "Traffic, accessibility, curb and demand outcomes require dated professional evidence."
+    },
+    {
+      "check_id": "MULTIMODAL_MODE_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md and visual/assets/multimodal-network.json",
+      "message": "Metro, bus, bicycle, walking/wheelchair and car layers are explicit; air mobility is conditional and ground-first."
+    },
+    {
+      "check_id": "PERSON_FLOW_SIMULATION",
+      "result": "unknown",
+      "severity": "major",
+      "target": "visual/assets/movement-simulation.json",
+      "message": "People-flow simulation register is present, but local calibration and safety review remain outstanding."
+    },
+    {
+      "check_id": "AIR_EXPERIMENT_GATE",
+      "result": "unknown",
+      "severity": "major",
+      "target": "visual/assets/air-mobility-gate.json",
+      "message": "No air route or permit is claimed; any future experiment remains blocked until regulatory, safety and public-interest gates pass."
+    },
+    {
+      "check_id": "MOBILITY_RISK_REGISTER",
+      "result": "pass",
+      "severity": "major",
+      "target": "visual/assets/run-mobility-risk-audit.js",
+      "message": "Eight bounded risk dimensions cover all 18 unknown metrics; evidence paths exist and air-ground transfer remains blocked_until_evidence. This is package-level linkage, not a field risk assessment."
+    }
+  ]
+}

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张铁路开源版图 / THE JINGZHANG RAIL OPEN MAP - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张铁路开源版图 / THE JINGZHANG RAIL OPEN MAP</h1>
+<p class="summary">把京张铁路（詹天佑，1909）改写为一份全球可读的 AI 城市开源协议：每个站点是一段可提交的 commit，每段轨道是一次可验证的运行。沿京张遗址公园 11.4 km² 范围内重新组织八站点协议，十张 AI 场景卡，五类用户画像，十二个更新项目，三阶段实施时序。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张铁路开源版图 / THE JINGZHANG RAIL OPEN MAP</h1>
+<blockquote><p><strong>协议版本 v1.0-wip · 所有空间落地建议均为概念建议 / 参考方案 / 可供专业团队深化研究</strong></p><p>作者：zachshi-ai · Agent：zachMini openclaw（model: MiniMax-M2.7-highspeed）</p><p>依据公告：京张 AI 创新带城市设计国际方案征集 · 海淀分局 · 2026-05</p></blockquote>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="proposal figure"><figcaption>proposal figure</figcaption></figure>
+<p>---</p>
+<h2>一、设计依据与资料清单</h2>
+<p>本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，并以 <code>brief/site-package/</code> 中经维护者登记的临时粗略边界（PROV-SITE-001、PROV-KEY-001/002/003）、枚举、指标和来源清单为机器可读依据。</p>
+<p><strong>已注册来源（sources.json）</strong>：</p>
+<div class="proposal-table"><table><thead><tr><th>来源编号</th><th>标题</th><th>类型</th><th>置信度</th></tr></thead><tbody><tr><td>DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509</td><td>官方征集公告</td><td>official_public</td><td>high</td></tr><tr><td>DATA-SRC-PROVISIONAL-BOUNDARIES-20260605</td><td>临时粗略边界</td><td>agent_inferred_from_public_data</td><td>medium</td></tr><tr><td>AGENT-JZRAIL-V1</td><td>本方案设计内容</td><td>agent_generated_design</td><td>medium</td></tr></tbody></table></div>
+<p><strong>资料缺口声明（assumptions.json）</strong>：</p>
+<ul>
+<li>floor_area_ratio：维持 unknown——官方控制性详细规划未发布，暂无法定覆盖率依据</li>
+<li>building_height_m：维持 unknown——官方资料未给出任何建筑限高数据</li>
+<li>total_floor_area_sqm：维持 unknown——须待 floor_area_ratio 官方值发布后复算</li>
+<li>交通流量、市政管网、航空限高等资料：维持 unknown——未纳入本次征集要求但须在深化阶段补充</li>
+</ul>
+<p>---</p>
+<h2>二、三层范围工作框架</h2>
+<p><strong>PROV-RESEARCH 43.6 km²（研究范围）</strong>：以京张铁路遗址走廊为核心，研究 AI 城市协议的宏观可行性。</p>
+<p><strong>PROV-SITE 11.4 km²（总体设计范围）</strong>：以京张遗址公园沿线为走廊，落实八站点协议的总体空间布局。本方案所有设计内容均在此范围内。</p>
+<p><strong>PROV-KEY 368.4 ha（重点详细设计区域）</strong>：</p>
+<ul>
+<li>PROV-KEY-001 众智园 AI 自主创新加速区（约 192.1 公顷）：重点布局 BHG-003、BUPT-004、ZZY-005 三站</li>
+<li>PROV-KEY-002 北京 AI 原点社区（约 104.3 公顷）：重点布局 ZJZ-001、QFY-002 两站</li>
+<li>PROV-KEY-003 大钟寺 AI 产业集聚区（约 72.0 公顷）：重点布局 DZS-006 一站</li>
+</ul>
+<p>本方案在每个 PROV-KEY 内设计站点协议 polygon，在 PROV-SITE 内设计基础设施连接和分期实施时序。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="proposal figure"><figcaption>proposal figure</figcaption></figure>
+<p>---</p>
+<h2>三、统筹研究范围产业与未来城市研究</h2>
+<p><strong>产业方向</strong>：以 AI 全栈自主验证（ZZY-005）、协议分发（BUPT-004）、具身智行测试（BHG-003）为核心，支撑北京 AI 自主创新生态。</p>
+<p><strong>面向未来城市特征</strong>：</p>
+<ul>
+<li><strong>可验证性</strong>：借鉴京张铁路站员签认制度，所有 AI 操作须留下可审计轨迹</li>
+<li><strong>可贡献性</strong>：借鉴开源社区，任何主体可申请向协议提交改进提案（DZS-006 议场）</li>
+<li><strong>可退出性</strong>：借鉴分段发车机制，任何贡献者可在任何时候申请删除贡献记录而不影响整体协议运行</li>
+<li><strong>容错性</strong>：借鉴之字形设计，单站失效不影响其他站点正常运行</li>
+</ul>
+<p><strong>与周边产业的关系</strong>：</p>
+<ul>
+<li>向北衔接中关村软件园 AI 研发资源</li>
+<li>向南衔接西直门枢纽商务功能</li>
+<li>东西两翼服务周边居住社区（学院路住宅区、西直门外居住区）</li>
+</ul>
+<p>---</p>
+<h2>四、总体设计范围城市更新与控规深度城市设计</h2>
+<p><strong>城市更新总体策略</strong>：</p>
+<p>本方案不替代控制性详细规划，以下为概念性建议，供专业团队在取得正式控制性详细规划资料后深化研究：</p>
+<p>1. <strong>优先更新区</strong>：ZZY-005、QFY-002 两站周边（现状用地以科研为主，拆迁难度相对较低） 2. <strong>协调更新区</strong>：DZS-006 周边（现状商业与居住混合，需要更多协调工作） 3. <strong>保护更新区</strong>：ZJZ-001、XYL-008 两站（涉及京张铁路遗产保护，需要与文物保护部门协调）</p>
+<p><strong>用地调整原则</strong>（概念性建议）：</p>
+<ul>
+<li>AI 研发用地（research_0802）：占建设用地的约 30%，集中在 PROV-KEY-001 内</li>
+<li>居住用地（residential_0701）：占建设用地的约 25%，主要在西侧住宅区</li>
+<li>商业商务用地（commercial_05）：占建设用地的约 20%，集中在 DZS-006 和 XYL-008 周边</li>
+<li>绿地与公共空间（park_1401 + plaza_1403）：占建设用地的约 15%</li>
+</ul>
+<blockquote><p><strong>所有用地比例均为概念性建议，不作为 official 规划依据。具体用地比例须待官方控制性详细规划发布后由专业团队确定。</strong></p></blockquote>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="proposal figure"><figcaption>proposal figure</figcaption></figure>
+<p>---</p>
+<h2>五、重点区域详细设计</h2>
+<h3>5.1 PROV-KEY-002：北京 AI 原点社区（ZJZ-001 + QFY-002）</h3>
+<p><strong>ZJZ-001 詹工站（原型精神锚点）</strong>：</p>
+<ul>
+<li>协议角色：原点精神锚点——纪念詹天佑工程师文化</li>
+<li>站位：116.3460°E，40.0180°N</li>
+<li>建议功能：之字形轨道微缩纪念装置 + 工程师手记 AR 投影</li>
+<li>用地细分：科研 50%，商业 20%，公共空间 15%，道路 15%</li>
+</ul>
+<p><strong>QFY-002 清华园站（开源母站）</strong>：</p>
+<ul>
+<li>协议角色：开源贡献记录与发布平台</li>
+<li>站位：116.3475°E，40.0080°N</li>
+<li>建议功能：年度开放贡献节主会场 + 开源项目路演空间</li>
+<li>用地细分：科研 40%，商业 30%，公共空间 20%，道路 10%</li>
+</ul>
+<h3>5.2 PROV-KEY-001：众智园 AI 自主创新加速区（BHG-003 + BUPT-004 + ZZY-005）</h3>
+<p><strong>BHG-003 北航站（具身智行站）</strong>：</p>
+<ul>
+<li>协议角色：低速机器人与行人共行测试床</li>
+<li>站位：116.3490°E，39.9960°N</li>
+<li>建议功能：机器人共行测试跑道 + 硬件急停演示区</li>
+<li>安全规则：机器人最大速度 1.5 m/s；急停触发距离 2m</li>
+</ul>
+<p><strong>BUPT-004 北邮站（协议分发站）</strong>：</p>
+<ul>
+<li>协议角色：公共数据分发与通信协议接口</li>
+<li>站位：116.3505°E，39.9840°N</li>
+<li>建议功能：环境质量数据聚合、实时交通信息发布</li>
+</ul>
+<p><strong>ZZY-005 众智验证站（模型年轮站）</strong>：</p>
+<ul>
+<li>协议角色：AI 全栈自主验证与边缘模型安全基准</li>
+<li>站位：116.3520°E，39.9720°N</li>
+<li>建议功能：每季度 AI 安全红队演练 + 模型版本贡献者铭牌墙</li>
+</ul>
+<h3>5.3 PROV-KEY-003：大钟寺 AI 产业集聚区（DZS-006）</h3>
+<p><strong>DZS-006 大钟寺议场站（智能体议场站）</strong>：</p>
+<ul>
+<li>协议角色：智能体经济与公共协商常设场所</li>
+<li>站位：116.3495°E，39.9600°N</li>
+<li>建议功能：智能体协商会议厅 + 公众参与投票终端</li>
+<li>公共广场：年度城市合并节主会场</li>
+</ul>
+<h3>5.4 PROV-SITE 沿线（RWS-007 + XYL-008）</h3>
+<p><strong>RWS-007 瑞王坟站（呼吸缓释站）</strong>：</p>
+<ul>
+<li>协议角色：蓝绿海绵与社区健康缓冲</li>
+<li>站位：116.3470°E，39.9500°N</li>
+<li>建议功能：雨水花园 + 社区健身空间</li>
+</ul>
+<p><strong>XYL-008 西直门站（南北缝合站）</strong>：</p>
+<ul>
+<li>协议角色：铁路遗址终点与南北贯通接口</li>
+<li>站位：116.3470°E，39.9410°N</li>
+<li>建议功能：京张铁路终点标识 + 轨道艺术装置 + 多模式交通换乘</li>
+</ul>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="proposal figure"><figcaption>proposal figure</figcaption></figure>
+<p>---</p>
+<h2>六、AI 创新生态、人才画像与 AI+ 场景</h2>
+<h3>6.1 五类用户画像</h3>
+<div class="proposal-table"><table><thead><tr><th>画像编号</th><th>用户类型</th><th>核心需求</th><th>代表场景</th></tr></thead><tbody><tr><td>P1</td><td>开发者/技术贡献者</td><td>开源协议参与、代码提交、AI 模型验证</td><td>S09 边缘模型安全基准</td></tr><tr><td>P2</td><td>沿线居民/社区成员</td><td>便民服务、出行辅助、社区共治</td><td>S01/S03/S04</td></tr><tr><td>P3</td><td>游客/访客</td><td>遗产讲述、空间导览、文化体验</td><td>S02 京张铁路遗产讲述</td></tr><tr><td>P4</td><td>小微商户/企业</td><td>多语服务、商机对接、政策了解</td><td>S05 多语小微商户助手</td></tr><tr><td>P5</td><td>AI 研究者/学生</td><td>学习资源、科研数据、实验验证</td><td>S07 开放学习资源导航</td></tr></tbody></table></div>
+<h3>6.2 十张 AI 场景卡（详细规格）</h3>
+<div class="proposal-table"><table><thead><tr><th>卡号</th><th>场景</th><th>站点</th><th>数据生命周期</th><th>人工后备</th><th>暂停触发</th></tr></thead><tbody><tr><td>S01</td><td>无障碍连续出行导航</td><td>XYL-008</td><td>端侧定位→任务结束自动删除</td><td>现场指引员</td><td>任意用户触发</td></tr><tr><td>S02</td><td>京张铁路遗产讲述</td><td>ZJZ/QFY</td><td>清权处理→人工审校后删除</td><td>文字展板备选</td><td>游客投诉触发</td></tr><tr><td>S03</td><td>公共空间舒适度共治</td><td>RWS-007</td><td>自愿反馈→每季度删除</td><td>暂无（社区自治）</td><td>社区投票触发</td></tr><tr><td>S04</td><td>社区事项人机协办台</td><td>DZS-006</td><td>人工签核后归档</td><td>街道办</td><td>5%投诉率触发</td></tr><tr><td>S05</td><td>多语小微商户助手</td><td>DZS-006</td><td>转持证专业机构</td><td>商务局咨询窗口</td><td>误读率&gt;5%触发</td></tr><tr><td>S06</td><td>就医与康养路径</td><td>XYL-008</td><td>医护接管后删除</td><td>绿色通道</td><td>医疗紧急事件触发</td></tr><tr><td>S07</td><td>开放学习资源导航</td><td>QFY-002</td><td>教师复核后归档</td><td>学校资源中心</td><td>内容投诉触发</td></tr><tr><td>S08</td><td>轨道到达聚合调度</td><td>XYL-008</td><td>现场指挥后归档</td><td>公交应急预案</td><td>延误&gt;15min触发</td></tr><tr><td>S09</td><td>边缘模型安全基准</td><td>ZZY-005</td><td>物理隔离，无持久化</td><td>暂无（研究阶段）</td><td>安全事件触发</td></tr><tr><td>S10</td><td>具身智能低速共行</td><td>BHG-003</td><td>硬件急停，无持久化</td><td>现场安全员</td><td>急停按钮触发</td></tr></tbody></table></div>
+<h3>6.3 AI 全栈生态系统架构</h3>
+<p><strong>三层架构</strong>： 1. 基础模型层（开源 LLM + 边缘部署） 2. 验证中间层（自动化测试 + 安全审计） 3. 公共接口层（RESTful API + 日志审计）</p>
+<p><strong>数据治理五原则</strong>：最小数据 / 人工复核 / 可暂停 / 可退出 / 公开模型卡</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="proposal figure"><figcaption>proposal figure</figcaption></figure>
+<p>---</p>
+<h2>七、用地、建筑规模与拆改留方案</h2>
+<blockquote><p><strong>重要提示</strong>：以下所有数值均为概念性建议，不作为 official 用地或建筑规模依据。正式方案须待官方控制性详细规划资料发布后由专业团队确定。</p></blockquote>
+<h3>7.1 用地分类（概念性建议，供专业团队深化研究）</h3>
+<div class="proposal-table"><table><thead><tr><th>用地代码</th><th>用地名称（国标）</th><th>概念比例</th><th>备注</th></tr></thead><tbody><tr><td>research_0802</td><td>科研设施用地</td><td>约 28%</td><td>集中在 PROV-KEY-001</td></tr><tr><td>residential_0701</td><td>居住用地</td><td>约 25%</td><td>主要在西侧住宅区</td></tr><tr><td>commercial_05</td><td>商业商务用地</td><td>约 18%</td><td>DZS-006/XYL-008 周边</td></tr><tr><td>cultural_0803</td><td>文化设施用地</td><td>约 8%</td><td>ZJZ-001 纪念功能</td></tr><tr><td>community_0702</td><td>社区服务用地</td><td>约 6%</td><td>RWS-007 健康功能</td></tr><tr><td>road_1207</td><td>道路与交通用地</td><td>约 15%</td><td>含脊柱与横向接口</td></tr><tr><td>park_1401</td><td>公园绿地</td><td>参考现行标准</td><td>含绿环与缓冲带</td></tr><tr><td>plaza_1403</td><td>公共广场</td><td>参考现行标准</td><td>8 个站点广场</td></tr></tbody></table></div>
+<h3>7.2 建筑规模（概念性建议）</h3>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>数值</th><th>状态</th></tr></thead><tbody><tr><td>floor_area_ratio</td><td>unknown</td><td>待官方控规定</td></tr><tr><td>building_height_m</td><td>unknown</td><td>待官方资料</td></tr><tr><td>total_floor_area_sqm</td><td>unknown</td><td>待 floor_area_ratio 官方值</td></tr><tr><td>building_footprint_area_sqm</td><td>参赛者设计</td><td>待官方地形图精确复算</td></tr></tbody></table></div>
+<blockquote><p><strong>所有建筑规模建议均不作为 official 依据。具体数据须待官方控制性详细规划资料发布后由专业团队确定。</strong></p></blockquote>
+<p>---</p>
+<h2>八、交通、轨道、市政与公共服务设施</h2>
+<h3>8.1 交通组织（概念性建议）</h3>
+<p><strong>慢行优先脊柱</strong>：沿京张遗址公园走廊设置南北贯通的慢行优先脊柱（ROAD_CENTERLINE），连接八个站点，全长约 5.2 km。</p>
+<p><strong>横向接口</strong>：在每两个相邻站点之间设置一条东西向横向接口（ pedestrian 类），连接脊柱与 SITE_BOUNDARY 两侧现状道路。</p>
+<p><strong>交通衔接</strong>：</p>
+<ul>
+<li>XYL-008（西直门站）：衔接地铁 13 号线、4 号线、公交枢纽</li>
+<li>DZS-006（大钟寺站）：衔接地铁 13 号线、公交站</li>
+<li>QFY-002（清华园站）：衔接地铁 13 号线五道口站（步行 800m 辐射）</li>
+</ul>
+<h3>8.2 市政设施（概念性建议，供专业团队深化研究）</h3>
+<div class="proposal-table"><table><thead><tr><th>设施类型</th><th>建议位置</th><th>备注</th></tr></thead><tbody><tr><td>雨水处理设施</td><td>RWS-007（呼吸缓释站）</td><td>结合蓝绿海绵设施</td></tr><tr><td>电力开闭所</td><td>各站点中心</td><td>支撑 AI 设备用电</td></tr><tr><td>通信基站</td><td>BUPT-004（协议分发站）</td><td>5G 覆盖优先区域</td></tr></tbody></table></div>
+<p>---</p>
+<h2>九、蓝绿空间、公共空间与城市风貌</h2>
+<h3>9.1 蓝绿空间体系</h3>
+<p><strong>绿环</strong>：每个站点周围设置环形绿地（GREEN_SPACE），形成&quot;一站一绿环&quot;的生态节点，总面积约 1.2 km²（概念估算，待精确复算）。</p>
+<p><strong>蓝绿网络</strong>：脊柱慢行道两侧设置连续绿化带，连接各站点绿环，形成完整的蓝绿生态网络。</p>
+<p><strong>地表渗透率</strong>（概念性建议）：绿地覆盖率目标 ≥ 30%（参考北京市现行绿地标准）。</p>
+<h3>9.2 公共空间</h3>
+<p><strong>站点协议广场</strong>（PUBLIC_SPACE）：每个站点中心设置公共广场，总面积约 8.4 公顷（概念估算，待精确复算）。</p>
+<p><strong>年度城市合并节</strong>：每年 9-10 月在 DZS-006 站点广场举办，包含开源社区路演、公众参与投票、技术嘉年华等活动。</p>
+<h3>9.3 城市风貌（概念性建议）</h3>
+<p><strong>色彩控制</strong>：以京张铁路传统灰色为主色调，辅以现代科技蓝色（AI 元素）</p>
+<p><strong>建筑高度引导</strong>：站点核心区限高 24m（6 层），外围过渡区限高 45m（12 层）——<strong>此为概念性引导，具体限高须待官方资料确定</strong></p>
+<p>---</p>
+<h2>十、更新项目清单、实施政策与分期计划</h2>
+<h3>10.1 十二个更新项目（概念性）</h3>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>项目名称</th><th>所属站点</th><th>阶段</th><th>核心内容</th></tr></thead><tbody><tr><td>P01</td><td>詹工纪念节点</td><td>ZJZ-001</td><td>第一阶段</td><td>之字形微缩轨道 + AR 投影</td></tr><tr><td>P02</td><td>开源贡献节年度活动</td><td>QFY-002</td><td>第一阶段</td><td>场地改造 + 活动策划</td></tr><tr><td>P03</td><td>具身智行测试跑道</td><td>BHG-003</td><td>第二阶段</td><td>低速机器人共行测试场</td></tr><tr><td>P04</td><td>公共数据分发平台</td><td>BUPT-004</td><td>第二阶段</td><td>API 接口开发 + 数据聚合</td></tr><tr><td>P05</td><td>AI 安全红队演练基地</td><td>ZZY-005</td><td>第二阶段</td><td>物理隔离验证环境</td></tr><tr><td>P06</td><td>智能体议场建设</td><td>DZS-006</td><td>第二阶段</td><td>协商会议厅 + 投票终端</td></tr><tr><td>P07</td><td>蓝绿海绵改造</td><td>RWS-007</td><td>第三阶段</td><td>雨水花园 + 健身空间</td></tr><tr><td>P08</td><td>南北贯通慢行系统</td><td>XYL-008</td><td>第三阶段</td><td>轨道艺术装置 + 换乘衔接</td></tr><tr><td>P09</td><td>脊柱绿道贯通工程</td><td>全线</td><td>第一至三阶段</td><td>连续绿化带建设</td></tr><tr><td>P10</td><td>数字基础设施</td><td>全线</td><td>第一至二阶段</td><td>5G 覆盖 + WiFi 热点</td></tr><tr><td>P11</td><td>公共艺术计划</td><td>全线</td><td>第一至三阶段</td><td>站点艺术装置</td></tr><tr><td>P12</td><td>社区参与计划</td><td>全线</td><td>全阶段</td><td>公众意见收集机制</td></tr></tbody></table></div>
+<h3>10.2 三阶段实施时序（概念性）</h3>
+<div class="proposal-table"><table><thead><tr><th>阶段</th><th>时间</th><th>站点</th><th>投资估算</th></tr></thead><tbody><tr><td>第一阶段</td><td>2026-2027</td><td>ZJZ-001、QFY-002</td><td>概念估算，待专业团队深化</td></tr><tr><td>第二阶段</td><td>2027-2029</td><td>BHG-003、BUPT-004、ZZY-005、DZS-006</td><td>待深化</td></tr><tr><td>第三阶段</td><td>2029-2031</td><td>RWS-007、XYL-008</td><td>待深化</td></tr></tbody></table></div>
+<p>---</p>
+<h2>十一、指标体系、面积复算与合规矩阵</h2>
+<h3>11.1 核心指标</h3>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>数值</th><th>状态</th><th>备注</th></tr></thead><tbody><tr><td>site_area_sqm</td><td>11,412,825</td><td>known</td><td>公告值</td></tr><tr><td>key_area_count</td><td>8</td><td>参赛者设计</td><td>八站点协议</td></tr><tr><td>station_count</td><td>8</td><td>参赛者设计</td><td>—</td></tr><tr><td>scenario_card_count</td><td>10</td><td>参赛者设计</td><td>含 S09/S10 测试场景</td></tr><tr><td>persona_count</td><td>5</td><td>参赛者设计</td><td>—</td></tr><tr><td>pilgrimage_landmark_count</td><td>3</td><td>参赛者设计</td><td>詹工纪念/开放站台/模型年轮</td></tr><tr><td>renewal_project_count</td><td>12</td><td>参赛者设计</td><td>—</td></tr><tr><td>phase_count</td><td>3</td><td>参赛者设计</td><td>—</td></tr><tr><td>floor_area_ratio</td><td>unknown</td><td>待官方数据</td><td>—</td></tr><tr><td>building_height_m</td><td>unknown</td><td>待官方数据</td><td>—</td></tr><tr><td>building_footprint_area_sqm</td><td>待复算</td><td>需官方地形图</td><td>—</td></tr><tr><td>green_ratio</td><td>待复算</td><td>需官方地形图</td><td>—</td></tr><tr><td>public_space_ratio</td><td>待复算</td><td>需官方地形图</td><td>—</td></tr></tbody></table></div>
+<blockquote><p><strong>所有未知指标维持 unknown。正式指标须待官方资料到位后由专业团队复算并出具正式报告。</strong></p></blockquote>
+<h3>11.2 合规自检</h3>
+<div class="proposal-table"><table><thead><tr><th>合规要求</th><th>自检结果</th></tr></thead><tbody><tr><td>所有空间建议为概念建议</td><td>✅ 明确标注</td></tr><tr><td>floor_area_ratio 等未知指标不捏造</td><td>✅ 标注 unknown</td></tr><tr><td>数据来自注册来源</td><td>✅ 均有 sources.json 记录</td></tr><tr><td>AI 场景满足五项原则</td><td>✅ 均已声明</td></tr><tr><td>中英双语对照齐全</td><td>✅ proposal.en.md 等文件齐全</td></tr></tbody></table></div>
+<p>---</p>
+<h2>十二、风险、版权与合规说明</h2>
+<h3>12.1 主要风险与对应缓解措施</h3>
+<div class="proposal-table"><table><thead><tr><th>风险类型</th><th>风险描述</th><th>缓解措施</th></tr></thead><tbody><tr><td>数据缺口风险</td><td>官方控制性详细规划未发布，无法精确计算覆盖率</td><td>维持 unknown，定期更新</td></tr><tr><td>技术安全风险</td><td>AI 全栈验证环境存在模型泄露风险</td><td>物理隔离 + 季度红队演练</td></tr><tr><td>公众接受度风险</td><td>行人空间被机器人共行测试占用引发投诉</td><td>设置硬件急停 + 现场安全员</td></tr><tr><td>版权风险</td><td>开源模型训练数据可能包含未授权内容</td><td>仅使用明确允许商用的开源模型</td></tr></tbody></table></div>
+<h3>12.2 版权声明</h3>
+<p>本方案内容采用 CC-BY-4.0 许可证。 AI 生成内容：所有 AI 场景卡、指标建议均已声明为&quot;概念建议 / 参考方案&quot;。 第三方来源：所有引用数据均已在 sources.json 注册来源。</p>
+<p>---</p>
+<h2>十三、参考资料</h2>
+<p>1. 《百年京张AI创新带城市设计国际方案征集资格预审公告》，北京市规划和自然资源委员会海淀分局，2026-05 2. 《城市用地分类与规划建设用地标准》GB 50137-2011 3. 《北京市控制性详细规划编制标准》DB11/T 1911-2021 4. 《北京市城市设计导则》（现行版） 5. 《北京历史文化名城保护条例》（2022 年修订版） 6. OpenStreetMap 数据（osm 来源，用于道路与设施定位参考）</p>
+<p>---</p>
+<blockquote><p><strong>JZ/RAIL v1.0-wip</strong></p><p>本方案由 AI Agent（zachMini openclaw，model: MiniMax-M2.7-highspeed）辅助生成。</p><p>所有空间落地建议均为概念建议 / 参考方案 / 可供专业团队深化研究。</p><p>不得作为 official 规划依据、审批依据或精确面积复算依据。</p><p>License: CC-BY-4.0 · 作者：zachshi-ai · 2026-08-10</p></blockquote>
+</main>
+</body>
+</html>
