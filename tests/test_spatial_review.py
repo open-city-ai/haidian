@@ -15,7 +15,13 @@ HAS_SPATIAL_DEPS = all(
 )
 
 if HAS_SPATIAL_DEPS:
-    from spatial_review import AREA_TOLERANCE_SQM, review_submission  # noqa: E402
+    from spatial_review import (  # noqa: E402
+        AREA_TOLERANCE_SQM,
+        RATIO_REPORTING_TOLERANCE,
+        SpatialReport,
+        check_metric_close,
+        review_submission,
+    )
     from pyproj import Transformer  # noqa: E402
     from shapely.geometry import shape  # noqa: E402
     from shapely.ops import transform  # noqa: E402
@@ -198,6 +204,36 @@ class SpatialReviewTests(unittest.TestCase):
             self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
             self.assertIn("METRIC_RECALC_DRIFT", {issue.check_id for issue in report.issues})
 
+    def test_ratio_drift_is_reported_without_blocking_legacy_package(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/spatial-ratio-drift"
+            write_valid_spatial_package(root, base)
+            public = projected_area(polygon(116.307, 39.907, 116.309, 39.909))
+            site = projected_area(polygon(116.300, 39.900, 116.310, 39.910))
+            metrics = {
+                "schema_version": "0.1.0",
+                "units": {"length": "m", "area": "sqm"},
+                "metrics": {
+                    "public_space_ratio": {
+                        "status": "known",
+                        "value": round(public / site + 0.0001, 6),
+                        "unit": "ratio",
+                        "source_files": [
+                            "geometry/public_space.geojson",
+                            "geometry/site_boundary.geojson",
+                        ],
+                        "formula": "public_space_area_sqm / site_area_sqm",
+                    }
+                },
+            }
+            write_json(root, f"{base}/metrics.json", metrics)
+
+            report = review_submission(root / base, REPO_ROOT, "formal")
+
+            self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+            self.assertIn("METRIC_RECALC_DRIFT", {issue.check_id for issue in report.issues})
+
     def test_absolute_metric_mismatch_remains_blocking(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
@@ -224,6 +260,37 @@ class SpatialReviewTests(unittest.TestCase):
             self.assertFalse(report.ok)
             self.assertIn("METRIC_RECALC_MISMATCH", {issue.check_id for issue in report.issues})
 
+    def test_ratio_reporting_boundary_ignores_binary_float_noise(self) -> None:
+        report = SpatialReport(stage="formal")
+        expected = 0.25
+        actual = expected + RATIO_REPORTING_TOLERANCE
+
+        check_metric_close(
+            report,
+            {"ratio": {"value": actual}},
+            "ratio",
+            expected,
+            "ratio",
+        )
+
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+        self.assertNotIn("METRIC_RECALC_DRIFT", {issue.check_id for issue in report.issues})
+
+    def test_ratio_reporting_drift_above_boundary_is_visible(self) -> None:
+        report = SpatialReport(stage="formal")
+        expected = 0.25
+        actual = expected + RATIO_REPORTING_TOLERANCE * 2
+
+        check_metric_close(
+            report,
+            {"ratio": {"value": actual}},
+            "ratio",
+            expected,
+            "ratio",
+        )
+
+        self.assertTrue(report.ok, [issue.__dict__ for issue in report.issues])
+        self.assertIn("METRIC_RECALC_DRIFT", {issue.check_id for issue in report.issues})
 
 if __name__ == "__main__":
     unittest.main()

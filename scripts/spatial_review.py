@@ -42,6 +42,14 @@ RELATIVE_AREA_TOLERANCE = 0.01
 # non-blocking finding when a declared absolute area drifts beyond ordinary
 # three-decimal reporting precision.
 AREA_REPORTING_COMPARISON_EPSILON = 1e-9
+# Ratio values in metrics.json are published to six decimal places.  Keep the
+# existing 1% compatibility envelope for legacy packages, but surface a
+# non-blocking audit finding when a declared ratio drifts beyond ordinary
+# six-decimal reporting/rounding precision.
+RATIO_REPORTING_TOLERANCE = 0.00001
+# Only absorbs binary floating-point noise at the decimal boundary; it is not
+# an additional reporting tolerance.
+RATIO_REPORTING_COMPARISON_EPSILON = 1e-12
 TOPOLOGY_RELATIVE_AREA_TOLERANCE = 0.0001
 KEY_AREA_RELATIVE_TOLERANCE = 0.03
 OFFICIAL_KEY_AREA_AREAS = {
@@ -401,6 +409,26 @@ def check_metric_close(
                 "major",
                 "metrics.json",
                 f"{name} does not match spatial recomputation.",
+                expected=round(expected, 6),
+                actual=round(actual, 6),
+            )
+        )
+    elif (
+        unit == "ratio"
+        and delta > RATIO_REPORTING_TOLERANCE
+        and not math.isclose(
+            delta,
+            RATIO_REPORTING_TOLERANCE,
+            rel_tol=0.0,
+            abs_tol=RATIO_REPORTING_COMPARISON_EPSILON,
+        )
+    ):
+        report.add(
+            SpatialIssue(
+                "METRIC_RECALC_DRIFT",
+                "minor",
+                "metrics.json",
+                f"{name} is within the legacy tolerance but drifts beyond six-decimal reporting precision; reconcile before publication.",
                 expected=round(expected, 6),
                 actual=round(actual, 6),
             )
