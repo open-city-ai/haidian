@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>开源京张｜OPEN JINGZHANG — The Living Mainline</title>
+<style>
+:root{--navy:#15253d;--red:#f04e3e;--teal:#00a6a6;--green:#78a66a;--paper:#f3f0e8;--ink:#262b33;--mist:#ded9ce;--white:#fffdf8}
+*{box-sizing:border-box}html{scroll-behavior:auto}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.55}img{display:block;width:100%;height:auto}h1,h2,h3,p{margin-top:0}.wrap{max-width:1440px;margin:auto;padding:0 34px}.signal{color:var(--red)}
+header{background:var(--navy);color:var(--white);border-bottom:8px solid var(--red)}.hero{min-height:660px;display:grid;grid-template-columns:1.12fr .88fr;gap:38px;align-items:center;padding-top:54px;padding-bottom:54px}.eyebrow{font-size:13px;letter-spacing:.24em;color:#a8c9c9;margin-bottom:22px}.brand{font-size:64px;line-height:1.02;letter-spacing:-.035em;margin-bottom:16px}.en{font-size:25px;font-weight:500;letter-spacing:.06em;color:#d8e2e6;margin-bottom:40px}.claim{font-size:32px;line-height:1.36;max-width:800px}.memory{font-size:18px;color:#d9e0e7;border-left:5px solid var(--red);padding-left:18px;margin-top:26px}.system{background:#0f1d31;border:1px solid #425268;padding:24px}.system-title{font-size:15px;letter-spacing:.18em;color:#a8c9c9}.rail{height:84px;position:relative;margin:20px 0 30px}.rail:before,.rail:after{content:"";position:absolute;left:0;right:0;height:7px;background:var(--white)}.rail:before{top:24px}.rail:after{top:52px}.switch{position:absolute;left:43%;top:24px;width:46%;height:7px;background:var(--red);transform:rotate(-19deg);transform-origin:left}.yard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.yard{border-top:4px solid var(--teal);background:#162944;padding:14px 12px;min-height:114px}.yard:nth-child(2){border-color:var(--red)}.yard:nth-child(3){border-color:#dfaa3e}.yard b{display:block;font-size:18px}.yard small{display:block;color:#c6d3dc;margin-top:8px}.protocol{display:flex;flex-wrap:wrap;gap:7px;margin-top:20px}.protocol span{font-size:12px;border:1px solid #64738a;padding:5px 8px}.protocol span:last-child{border-color:var(--red);color:#ffb7ae}
+.factbar{background:var(--white);border-bottom:1px solid #cfc9bd}.facts{display:grid;grid-template-columns:1.35fr repeat(3,1fr)}.fact{padding:25px 24px;border-right:1px solid #d8d2c7}.fact:last-child{border:0}.fact .label{font-size:12px;letter-spacing:.12em;color:#6c6a65}.fact strong{font-size:26px;display:block;margin-top:5px;font-variant-numeric:tabular-nums}.fact.statement strong{font-size:20px;line-height:1.35;color:var(--red)}
+main{padding:42px 0 72px}.section{margin-bottom:36px;background:var(--white);border:1px solid #d5cfc4}.section-head{display:flex;justify-content:space-between;gap:24px;padding:25px 28px;border-bottom:1px solid #ddd7cd}.section-head h2{margin:0;font-size:30px}.section-head p{max-width:760px;margin:0;color:#64645f}.figure{padding:24px}.figure img{border:1px solid #c9c4ba}.caption{display:flex;justify-content:space-between;gap:20px;font-size:13px;color:#696862;margin-top:12px}.badge{white-space:nowrap;color:var(--teal);font-weight:650}
+.logic{display:grid;grid-template-columns:1.2fr .8fr}.logic .figure{border-right:1px solid #ddd7cd}.three{padding:24px;display:grid;gap:12px}.card{border:1px solid #d7d1c5;padding:18px;background:#fbf9f3}.card b{font-size:18px}.card .mode{font-size:12px;color:var(--red);letter-spacing:.13em}.card p{font-size:14px;color:#5c5c57;margin:8px 0 0}.grid2{display:grid;grid-template-columns:1fr 1fr}.grid2>div:first-child{border-right:1px solid #ddd7cd}.micro{padding:24px}.micro h3{font-size:18px}.branch{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}.branch span{background:var(--navy);color:#fff;padding:12px 8px;text-align:center;font-size:12px}.branch span:nth-child(4){background:var(--red)}
+.scene-grid{padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.scene{border-top:4px solid var(--teal);background:#eeece5;padding:15px;min-height:142px}.scene.test{border-top-color:var(--red)}.scene b{display:block}.scene small{display:block;color:#73716b;margin:8px 0}.scene em{font-size:11px;font-style:normal;color:var(--red)}
+.evidence-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:24px}.evidence-card{border:1px solid #d6d0c5;padding:17px}.evidence-card h3{font-size:17px}.evidence-card .number{font-size:38px;color:var(--navy);font-weight:750}.evidence-card p{font-size:13px;color:#65645f}.ok{display:inline-block;background:#dce9da;color:#315739;padding:4px 7px;font-size:11px}.warn{display:inline-block;background:#ffe2dc;color:#93291d;padding:4px 7px;font-size:11px}
+.ledger{padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:18px}.ledger article{background:#eeece5;padding:19px}.ledger h3{font-size:18px}.ledger ul{padding-left:18px;margin:0}.ledger li{margin:6px 0}.provisional{background:var(--navy)!important;color:#fff}.provisional p{color:#d8e1e8}.footer{padding:25px 0 45px;color:#686761;font-size:12px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+@media(max-width:960px){.hero,.logic,.grid2{grid-template-columns:1fr}.logic .figure,.grid2>div:first-child{border-right:0;border-bottom:1px solid #ddd7cd}.brand{font-size:47px}.claim{font-size:25px}.facts{grid-template-columns:1fr 1fr}.fact:nth-child(2){border-right:0}.scene-grid,.evidence-grid{grid-template-columns:1fr 1fr}.branch{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:580px){.wrap{padding:0 16px}.hero{min-height:auto}.brand{font-size:39px}.yard-grid,.facts,.scene-grid,.evidence-grid,.ledger{grid-template-columns:1fr}.fact{border-right:0;border-bottom:1px solid #d8d2c7}.section-head,.caption{display:block}.caption .badge{display:block;margin-top:7px}.branch{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">MERGEKEEPER / AI AGENT URBAN DESIGN PROPOSAL</div>
+      <h1 class="brand">开源京张</h1>
+      <div class="en">OPEN JINGZHANG — THE LIVING MAINLINE</div>
+      <p class="claim">把被纪念的百年铁路，转化为持续接收城市议题、公开验证 AI 方案并留下版本记录的开放主干线。</p>
+      <p class="memory"><strong>城市问题先到京张公开验证，<span class="signal">AI 先证明，人再决定。</span></strong></p>
+    </div>
+    <aside class="system" aria-label="空间协议">
+      <div class="system-title">1 LIVING MAINLINE · 3 STATION YARDS · 2 SWITCHES · ∞ BRANCHES</div>
+      <div class="rail"><i class="switch"></i></div>
+      <div class="yard-grid">
+        <div class="yard"><b>BUILD</b><small>众智园<br>Stack Yard</small></div>
+        <div class="yard"><b>REVIEW</b><small>AI 原点<br>Open Origin Station</small></div>
+        <div class="yard"><b>MERGE</b><small>大钟寺<br>Agent Exchange</small></div>
+      </div>
+      <div class="protocol"><span>ISSUE</span><span>BRANCH</span><span>SANDBOX</span><span>HUMAN REVIEW</span><span>MERGE</span><span>CHANGELOG</span></div>
+    </aside>
+  </div>
+</header>
+
+<div class="factbar">
+  <div class="wrap facts">
+    <div class="fact statement"><span class="label">PUBLIC MEMORY</span><strong>不是让 AI 接管城市，而是让城市拥有公开验证 AI 的主干线。</strong></div>
+    <div class="fact"><span class="label">SITE / PROVISIONAL</span><strong data-metric="site_area_sqm" data-value="11412825.386">11412825.386 m²</strong></div>
+    <div class="fact"><span class="label">GREEN / GEOMETRY</span><strong data-metric="green_ratio" data-value="0.149399">0.149399</strong></div>
+    <div class="fact"><span class="label">PUBLIC / GEOMETRY</span><strong data-metric="public_space_ratio" data-value="0.040773">0.040773</strong></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="section">
+    <div class="section-head"><h2>总览地图</h2><p>一张图读取 Living Mainline、三座差异化站场、两类公共道岔与可扩展支线。临时边界退居虚线证据层，主叙事由真实 GeoJSON 派生。</p></div>
+    <div class="figure"><img src="../assets/figures/site-overview.png" alt="开源京张总览地图与总体空间协议"><div class="caption"><span>横向展开以增强狭长走廊可读性；全部顶点来自投稿 GeoJSON。</span><span class="badge">AI 先证明，人再决定</span></div></div>
+  </section>
+
+  <section class="section logic">
+    <div class="figure"><img src="../assets/figures/key-areas.png" alt="三个重点区域Build Review Merge差异化设计"><div class="caption"><span>三站不是三张定位卡，而是一条有前后闸门的验证流水线。</span><span class="badge">3 STATION YARDS</span></div></div>
+    <div class="three">
+      <article class="card"><span class="mode">BUILD / 众智园</span><b>众智编组场 · Stack Yard</b><p>共享 Physical AI 原型、室内模拟与组装；室内验证与公共空间试验分两道门。</p></article>
+      <article class="card"><span class="mode">REVIEW / AI 原点</span><b>开源零号站 · Open Origin Station</b><p>居民、专业人员、运营方共同复核；AI 只辅助解释，不作城市终决。</p></article>
+      <article class="card"><span class="mode">MERGE / 大钟寺</span><b>万智交换站 · Agent Exchange</b><p>多智能体互操作和城市应用交换；Merge 只进入专业深化，不等于上线。</p></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>三层范围</h2><p>统筹研究负责生态与协同，总体设计负责空间主干，重点区域负责 Build—Review—Merge；1+3+2+∞ 是工作结构，不是第四套边界。</p></div>
+    <div class="grid2">
+      <div class="micro"><h3>用地分区</h3><img src="../assets/figures/land-use-structure.png" alt="用地分区无缝覆盖结构图"></div>
+      <div class="micro"><h3>交通慢行 · 蓝绿公共空间</h3><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间协同图"></div>
+    </div>
+    <div class="micro"><h3>2 Switches / ∞ Branches</h3><div class="branch"><span>高校与科研</span><span>社区议题</span><span>企业伙伴</span><span>人工复核</span><span>轨道站点</span><span>全球贡献者</span></div></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>建筑 · 更新项目</h2><p>36 个建筑基底只是概念更新类型学，不是现状测绘或拆除判决；九项更新行动按证据成熟度进入、暂停或退出。</p></div>
+    <div class="grid2">
+      <div class="micro"><h3>Reuse-first 四级方法</h3><p>保留 → 修缮 → 适应性再利用 → 待专业判定。未取得权属、结构安全、文保与控规资料前，不对任何真实建筑作拆除结论。</p></div>
+      <div class="micro"><h3>三阶段 · 九项目</h3><p>Phase 1：OJZ-01/02/03/04/09 主干、三站与人审响应台；Phase 2：OJZ-05/06/07 道岔、失败档案与成绩牌；Phase 3：OJZ-08 适应性再利用研究。阶段是证据依赖，不是开工承诺。</p></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>AI 场景</h2><p>十四个 branch 共用 Model Passport：目的、数据最小化、负责人、人审点、版本、成功/退出指标。红色为产业测试验证场景。</p></div>
+    <div class="scene-grid">
+      <article class="scene test"><b>01 多智能体协同编组</b><small>众智编组场 / 冲突检测与任务回放</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test"><b>02 具身机器人混行沙盒</b><small>众智园 / 封闭庭院与限定路径</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test"><b>03 模型安全红队场</b><small>众智园 / 隔离数据与独立红队</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test"><b>04 AI 原生商业试营业</b><small>大钟寺 / 商户确认与消费者切人工</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test"><b>05 算力—能耗协同</b><small>众智园 / 工程师审批与恢复原策略</small><em>INDUSTRY TEST</em></article>
+      <article class="scene test"><b>06 全球开发者互操作周</b><small>万智交换站 / 联合评审与现场接管</small><em>INDUSTRY TEST</em></article>
+      <article class="scene"><b>07 社区事务可解释助手</b><small>AI 公民客厅 / 窗口人员确认高影响答复</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>08 适老生活协作员</b><small>原点服务站 / 单独授权与随时删除</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>09 无障碍连续导航</b><small>三区慢行网 / 体验官实地复核</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>10 开放 AI 素养课堂</b><small>原点教室 / 教师审核课程输出</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>11 京张文化证据导览</b><small>遗址主线 / 史料编辑逐条审校</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>12 公园生态养护助手</b><small>蓝绿廊道 / 专业人员决定处置</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>13 夜间安全共治灯带</b><small>主干与道岔 / 值守人员复核</small><em>CIVIC BRANCH</em></article>
+      <article class="scene"><b>14 城市议题路由台</b><small>开源零号站 / 议题委员会确认优先级</small><em>CIVIC BRANCH</em></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>核心指标</h2><p>空间数字来自 EPSG:4548 复算；它们证明投稿包内部一致，不证明法定面积或实际绩效。未知法定容积率保持 null。</p></div>
+    <div class="figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标与GeoJSON复算证据图"></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>任务覆盖 · 自检状态</h2><p>23 项公告与 Agent 任务、15 项设计深度、5 项强制标准均有专属章节、图层、指标、来源、图纸和自检证据。</p></div>
+    <div class="evidence-grid">
+      <article class="evidence-card"><div class="number">23/23</div><h3>任务覆盖</h3><p>17 项公告任务 + Agent.1—Agent.6，拒绝全选式矩阵。</p><span class="ok">LOCATABLE</span></article>
+      <article class="evidence-card"><div class="number">15/15</div><h3>设计深度</h3><p>complete 表示已完整回答证据与缺口，不表示未知条件已取得。</p><span class="ok">EVIDENCED</span></article>
+      <article class="evidence-card"><div class="number">5/5</div><h3>强制标准</h3><p>项目任务、城市设计、控详边界与用地分类分别追溯。</p><span class="ok">ADDRESSED</span></article>
+      <article class="evidence-card"><div class="number">9</div><h3>空间图层</h3><p>EPSG:4326 交付；面积与比例统一在 EPSG:4548 复算。</p><span class="ok">GEOMETRY PASS</span></article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>来源 · 假设</h2><p>14 个最小充分来源只支撑各自可证事实；8 个国际案例只转译机制，不外推法律、资源、权限或绩效。</p></div>
+    <div class="ledger">
+      <article><h3>来源</h3><ul><li>项目公告与 Agent 任务书</li><li>住建部城市设计与控详依据</li><li>自然资源部用地分类指南</li><li>仓库 provisional 几何登记</li><li>8 个政府、机构或大学一手案例</li></ul></article>
+      <article><h3>假设</h3><ul><li>无官方 polygon、控规和权属</li><li>无现状建筑、文保线和市政容量</li><li>建筑与公共空间均为概念建议</li><li>AI 场景须自愿、最小化、可退出</li><li>Human Override 是不可取消的总开关</li></ul></article>
+      <article class="provisional"><h3>PROVISIONAL 精度声明</h3><p>本方案采用仓库提供的 provisional 几何开展开放共创、方向性设计、正式内容评审、可视化表达、几何复算与自检；其不得被解释为官方红线、法定控制边界、审批依据或精确面积结论。官方精确几何缺失不构成本次评审的 blocker，资料补齐后须重新复算与校核。</p><span class="warn">PRECISION WARNING · NOT A BLOCKER</span></article>
+      <article><h3>人工终决</h3><p>Issue 不是立项；Sandbox 不是批准运营；Merge 仅表示进入下一轮专业深化与审查，不代表政府采纳、采购、建设或上线。Changelog 记录采用、修改和撤回，不披露个人数据。</p><span class="ok">HUMAN OVERRIDE</span></article>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap footer"><span class="code">Empress7211 / Mergekeeper / COMMUNITY-DISPLAY-ONLY / generated 2026-08-07</span><br>本页完全离线，无脚本、无 iframe、无远程字体、地图瓦片或网络请求。</footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
+        "面积由临时边界复算，不得作为精确面积依据。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 82276.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(building_footprints), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "示意性基底，用于说明规模量级，不构成建筑方案或实际建设规模。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.196628,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(green_space) minus union(building_footprints)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
+        "分子分母均基于临时边界，比值随官方边界发布而变化。",
+        "绿廊已扣除本方案六处建筑基底落在廊内的 66,925 m²；此前未扣除，该值为 0.202492，把本方案自己的建筑算作了绿地。绿地率是公开指标，其误差方向对提交方有利时尤其须自行修正。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.064227,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(union(public_space)) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
+        "公共测点面积占比，反映测点覆盖密度而非全部公共空间供给。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features(key_areas))",
+      "confidence": "high",
+      "assumptions": [
+        "三处重点区数量来自公告，几何为临时替代边界。"
+      ]
+    },
+    "leveling_spine_length_m": {
+      "status": "known",
+      "value": 9443.264658,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "主脊长度按设计中心线复算；线位为概念建议，非工程定线。"
+      ]
+    },
+    "benchmark_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(features(public_space) where properties.benchmark_id)",
+      "confidence": "high",
+      "assumptions": [
+        "含1处水准原点、2处一等点、2处二等点、3处三等点。"
+      ]
+    },
+    "green_ratio_in_partition": {
+      "status": "known",
+      "value": 0.121994,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(land_use where code=1401) / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
+        "与 green_ratio 的差别是口径而非矛盾，且两者的分子现已同源：green_ratio 取 120 m 绿廊扣除建筑基底后的全部（2,244,081.8 m²）；本项只取其中在用地剖分里仍归为 1401 的部分（1,392,297.1 m²）。差额 851,784.7 m² 全部是绿廊与三处重点区及 L1 文化地块的重叠（LU-002 内 459,609.3 m²、LU-003 内 209,080.4 m²、LU-004 内 134,913.8 m²、LU-001 内 48,181.2 m²），剖分把地块归给主导用途所致；建筑基底不在差额内，因为两个图层都已将其扣除。两值同时公布，避免评审从不同图层重算出两个数却无从判断。"
+      ]
+    },
+    "phasing_union_area_sqm": {
+      "status": "known",
+      "value": 2920311.442425,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "area(union(phase_increments), EPSG:4548) == sum(areas), phases being disjoint",
+      "confidence": "medium",
+      "assumptions": [
+        "边界为 provisional_constraint，非官方 redline；官方 polygon 发布后须整体重算。",
+        "分期图层为增量口径：三期互不重叠，累计实施范围为其并集，并集面积等于三期面积之和；分期按触发条件推进，不设固定年份。"
+      ]
+    }
+  }
+}

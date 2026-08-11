@@ -1,0 +1,860 @@
+{
+ "schema_version": "rights-ledger-v1",
+ "generated_from": "manifest.json — every declared file, not a hand-kept list of asset groups",
+ "note_zh": "逐文件的权利台账。由 analysis/build_rights_ledger.py 从 manifest.json 生成：枚举的是「实际随包的每一个文件」，不是「作者记得的资产组」，任一文件没有权利归类即构建失败。每条另给出**评审如何自行核验**的方式，而不只是一句 author-originated。",
+ "note_en": "A rights entry per shipped file, generated from manifest.json rather than hand-kept as asset groups. A file with no rights class fails the build. Each entry states how a reviewer verifies the claim, not merely that the author makes it.",
+ "author": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+ "files_declared": 81,
+ "embedded_fonts": [
+  {
+   "family": "Noto Sans CJK SC",
+   "used_for_zh": "全部中文与多数西文",
+   "author": "Google / Adobe",
+   "license": "SIL Open Font License 1.1",
+   "embedding_permitted": true,
+   "how_embedded_zh": "以 CIDFontType0 子集嵌入 A3/A0 PDF；四份 PDF 均通过嵌入检查",
+   "verification_zh": "pypdf 读每页 /Resources /Font 下 DescendantFonts 的 /FontFile3 是否存在"
+  },
+  {
+   "family": "DejaVu Sans",
+   "used_for_zh": "Noto CJK 缺失字形的兜底（箭头与部分符号）",
+   "author": "DejaVu 项目（Bitstream Vera 衍生）",
+   "license": "DejaVu Fonts License（Bitstream Vera 系）",
+   "embedding_permitted": true,
+   "how_embedded_zh": "同上，作为兜底字体子集嵌入",
+   "verification_zh": "同上"
+  }
+ ],
+ "explicitly_absent_zh": [
+  "未授权字体",
+  "外部图片与照片",
+  "商标与企业标识",
+  "人物肖像",
+  "非公开地图、瓦片或测绘成果",
+  "个人隐私信息",
+  "任何来自其他参赛方案的文本或图形",
+  "任何远程加载的资源"
+ ],
+ "third_party_data_summary_zh": "本包再分发的唯一第三方数据为 visual/assets/osm_reference.json 中的 OSM 提取子集（275 顶点），构成 ODbL 1.0 意义上的派生数据库，署名 © OpenStreetMap contributors，并以相同许可提供。其余全部资产为本方案生成或由仓库公开内容派生。",
+ "entries": [
+  {
+   "path": "manifest.json",
+   "role": "manifest",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "proposal.md",
+   "role": "narrative",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创文字与结构；引述法规与案例仅述要义并注明出处",
+   "third_party_content_zh": "不复制第三方全文、图像、商标或人物肖像；不含任何其他参赛方案的文本或图形",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "全部引述在 sources.json 中登记，逐条可查"
+  },
+  {
+   "path": "agent.json",
+   "role": "agent_card",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "spatial.json",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "metrics.json",
+   "role": "metrics",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "assumptions.json",
+   "role": "assumptions",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "sources.json",
+   "role": "sources",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "self_check.json",
+   "role": "self_check",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "compliance_matrix.json",
+   "role": "compliance_matrix",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "standard_matrix.json",
+   "role": "standard_matrix",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "design_depth_matrix.json",
+   "role": "design_depth_matrix",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "report/proposal.html",
+   "role": "rendered_proposal_html",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由本方案脚本从 proposal.md 与提交数据渲染；样式内联",
+   "third_party_content_zh": "不请求任何外部资源：无远程字体、脚本、样式或图片",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "文件内检索 http:// 与 https:// 应仅出现在正文可见的地址文本中，不出现在 src/href 属性内"
+  },
+  {
+   "path": "report/narrative.md",
+   "role": "narrative",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创文字与结构；引述法规与案例仅述要义并注明出处",
+   "third_party_content_zh": "不复制第三方全文、图像、商标或人物肖像；不含任何其他参赛方案的文本或图形",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "全部引述在 sources.json 中登记，逐条可查"
+  },
+  {
+   "path": "report/copyright_statement.md",
+   "role": "copyright_statement",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创文字与结构；引述法规与案例仅述要义并注明出处",
+   "third_party_content_zh": "不复制第三方全文、图像、商标或人物肖像；不含任何其他参赛方案的文本或图形",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "全部引述在 sources.json 中登记，逐条可查"
+  },
+  {
+   "path": "drawings/a3-booklet.pdf",
+   "role": "drawing",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 build_drawings.py 拼版并经 cairosvg 输出为矢量 PDF",
+   "third_party_content_zh": "仅嵌入下方 embedded_fonts 所列字体程序子集",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated-with-embedded-fonts",
+   "verification_zh": "pypdf 读 DescendantFonts 下 FontFile3 可验证子集嵌入；无外部资源引用"
+  },
+  {
+   "path": "drawings/a0-boards.pdf",
+   "role": "drawing",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 build_drawings.py 拼版并经 cairosvg 输出为矢量 PDF",
+   "third_party_content_zh": "仅嵌入下方 embedded_fonts 所列字体程序子集",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated-with-embedded-fonts",
+   "verification_zh": "pypdf 读 DescendantFonts 下 FontFile3 可验证子集嵌入；无外部资源引用"
+  },
+  {
+   "path": "visual/index.html",
+   "role": "visualization",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由本方案脚本从 proposal.md 与提交数据渲染；样式内联",
+   "third_party_content_zh": "不请求任何外部资源：无远程字体、脚本、样式或图片",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "文件内检索 http:// 与 https:// 应仅出现在正文可见的地址文本中，不出现在 src/href 属性内"
+  },
+  {
+   "path": "assets/figures/key-areas.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/land-use-structure.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/metrics-evidence.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/mobility-bluegreen.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/site-overview.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "geometry/buildings.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/constraints.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/green_space.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/key_areas.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/land_use.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/phasing.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/public_space.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/roads.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "geometry/site_boundary.geojson",
+   "role": "geometry",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；底图边界派生自本仓库 provisional_boundaries.geojson",
+   "method_zh": "由 build_geometry.py 从声明输入确定性生成；坐标 CRS84，声明面积在 EPSG:4548 下计算",
+   "third_party_content_zh": "不含外部底图、瓦片、测绘成果或权属数据",
+   "license": "仓库公开内容派生；本方案部分可自由使用、修改、重跑，无需署名",
+   "clearance": "provisional-only-with-stated-limit",
+   "verification_zh": "node visual/assets/verify.js —— 从图层独立重算全部一类指标与结构性结论"
+  },
+  {
+   "path": "assets/figures/identity.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/ecosystem.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/kit-of-parts.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "risk.json",
+   "role": "risk_matrix",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的结构化提交文件",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "由 self_check_submission.py 的确定性校验读取"
+  },
+  {
+   "path": "changelog.md",
+   "role": "changelog",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创文字与结构；引述法规与案例仅述要义并注明出处",
+   "third_party_content_zh": "不复制第三方全文、图像、商标或人物肖像；不含任何其他参赛方案的文本或图形",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "全部引述在 sources.json 中登记，逐条可查"
+  },
+  {
+   "path": "visual/assets/verify.js",
+   "role": "verification_script",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创；无依赖、不联网，自行实现 EPSG:4548 投影",
+   "third_party_content_zh": "无第三方代码、无 npm 依赖",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "直接运行；check_cards.js --selftest 另用八份人为改坏的输入证明检查会拒绝"
+  },
+  {
+   "path": "visual/assets/census.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/field_map.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/agent_declarations.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "assets/figures/evidence-circuit.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "visual/assets/osm_reference.json",
+   "role": "evidence_data",
+   "origin_zh": "OpenStreetMap 贡献者",
+   "method_zh": "经 Overpass API 提取的 2 条公园环与 16 条铁路 way 的原始坐标与标签，共 275 顶点，未简化",
+   "third_party_content_zh": "含第三方原始数据的提取子集",
+   "license": "ODbL 1.0",
+   "attribution": "© OpenStreetMap contributors",
+   "clearance": "third-party-open-data-redistributed",
+   "verification_zh": "node visual/assets/check_osm.js —— 从这些坐标重算全部十个已发布标量"
+  },
+  {
+   "path": "visual/assets/accessibility_qa.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "assets/figures/ecosystem.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/evidence-circuit.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/identity.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/key-areas.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/kit-of-parts.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/land-use-structure.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/metrics-evidence.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/mobility-bluegreen.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/site-overview.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "drawings/a0-boards.en.pdf",
+   "role": "drawing",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 build_drawings.py 拼版并经 cairosvg 输出为矢量 PDF",
+   "third_party_content_zh": "仅嵌入下方 embedded_fonts 所列字体程序子集",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated-with-embedded-fonts",
+   "verification_zh": "pypdf 读 DescendantFonts 下 FontFile3 可验证子集嵌入；无外部资源引用"
+  },
+  {
+   "path": "drawings/a3-booklet.en.pdf",
+   "role": "drawing",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 build_drawings.py 拼版并经 cairosvg 输出为矢量 PDF",
+   "third_party_content_zh": "仅嵌入下方 embedded_fonts 所列字体程序子集",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated-with-embedded-fonts",
+   "verification_zh": "pypdf 读 DescendantFonts 下 FontFile3 可验证子集嵌入；无外部资源引用"
+  },
+  {
+   "path": "proposal.en.md",
+   "role": "narrative",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创文字与结构；引述法规与案例仅述要义并注明出处",
+   "third_party_content_zh": "不复制第三方全文、图像、商标或人物肖像；不含任何其他参赛方案的文本或图形",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "全部引述在 sources.json 中登记，逐条可查"
+  },
+  {
+   "path": "report/proposal.en.html",
+   "role": "rendered_proposal_html",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由本方案脚本从 proposal.md 与提交数据渲染；样式内联",
+   "third_party_content_zh": "不请求任何外部资源：无远程字体、脚本、样式或图片",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "文件内检索 http:// 与 https:// 应仅出现在正文可见的地址文本中，不出现在 src/href 属性内"
+  },
+  {
+   "path": "visual/index.en.html",
+   "role": "visualization",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由本方案脚本从 proposal.md 与提交数据渲染；样式内联",
+   "third_party_content_zh": "不请求任何外部资源：无远程字体、脚本、样式或图片",
+   "license": "可自由使用、修改",
+   "clearance": "author-originated",
+   "verification_zh": "文件内检索 http:// 与 https:// 应仅出现在正文可见的地址文本中，不出现在 src/href 属性内"
+  },
+  {
+   "path": "visual/assets/parity_qa.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/score_correlates.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/closure-record.schema.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/example-s08-closure-record.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/check_closure.js",
+   "role": "verification_script",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创；无依赖、不联网，自行实现 EPSG:4548 投影",
+   "third_party_content_zh": "无第三方代码、无 npm 依赖",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "直接运行；check_cards.js --selftest 另用八份人为改坏的输入证明检查会拒绝"
+  },
+  {
+   "path": "visual/assets/run_s08_tabletop.js",
+   "role": "verification_script",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创；无依赖、不联网，自行实现 EPSG:4548 投影",
+   "third_party_content_zh": "无第三方代码、无 npm 依赖",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "直接运行；check_cards.js --selftest 另用八份人为改坏的输入证明检查会拒绝"
+  },
+  {
+   "path": "visual/assets/s08-tabletop-evidence.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "assets/figures/hero-leveling-line.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/hero-leveling-line.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/street-eye-level.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/street-eye-level.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "visual/assets/osm_stitching.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/track_scan.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/scenario_cards.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/check_cards.js",
+   "role": "verification_script",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创；无依赖、不联网，自行实现 EPSG:4548 投影",
+   "third_party_content_zh": "无第三方代码、无 npm 依赖",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "直接运行；check_cards.js --selftest 另用八份人为改坏的输入证明检查会拒绝"
+  },
+  {
+   "path": "visual/assets/manifest_schema_survey.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/check_osm.js",
+   "role": "verification_script",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "原创；无依赖、不联网，自行实现 EPSG:4548 投影",
+   "third_party_content_zh": "无第三方代码、无 npm 依赖",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "直接运行；check_cards.js --selftest 另用八份人为改坏的输入证明检查会拒绝"
+  },
+  {
+   "path": "assets/figures/region-interface.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "assets/figures/region-interface.en.png",
+   "role": "proposal_figure",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "由 fig_*.py 从参数与提交的 GeoJSON 绘制为 SVG 后光栅化",
+   "third_party_content_zh": "无任何外部图片、照片、图标、素材或位图；图中无第三方商标与人物肖像",
+   "license": "随本方案以 COMMUNITY-DISPLAY-ONLY 提交",
+   "clearance": "author-originated",
+   "verification_zh": "图形由几何参数生成，可按参数重绘；文件内无位图资源"
+  },
+  {
+   "path": "visual/assets/census_history.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)；原始数据为 open-city-ai/haidian 仓库公开内容",
+   "method_zh": "由随本方案配套 Issue 公开的普查脚本从 git tree 确定性生成",
+   "third_party_content_zh": "统计对象为其他参赛方案的公开元数据；不复制其正文、图形或结论",
+   "license": "仓库公开内容；统计结果可自由使用",
+   "clearance": "author-originated-measurement",
+   "evidence_class": "background_only",
+   "verification_zh": "方法写在各文件的 method 字段内，脚本可重跑；census_history.json 另附从 git 历史的重建值"
+  },
+  {
+   "path": "visual/assets/rights_ledger.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/errata.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/taskbook_coverage.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  },
+  {
+   "path": "visual/assets/review_gate_survey.json",
+   "role": "evidence_data",
+   "origin_zh": "jiangmuran / Claude Opus 5 (见 agent.json 的 model 与 model_family)",
+   "method_zh": "本方案生成的证据数据或数据契约",
+   "third_party_content_zh": "无",
+   "license": "可自由使用、修改、重跑，无需署名",
+   "clearance": "author-originated",
+   "verification_zh": "各文件自带 method 或 schema_version；卡片由 check_cards.js 校验"
+  }
+ ]
+}

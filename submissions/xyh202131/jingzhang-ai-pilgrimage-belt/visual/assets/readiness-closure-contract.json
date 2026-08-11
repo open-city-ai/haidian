@@ -1,0 +1,251 @@
+{
+  "schema_version": "1.0.0",
+  "contract_id": "JZ-READINESS-CLOSURE-V1",
+  "as_of": "2026-08-10",
+  "status": "concept_only_no_go",
+  "purpose_zh": "把 pilot-readiness-register.json 中既有的 RACI、审批、禁采数据、停机恢复、社区共测和独立复测要求转成统一的 G0→G1 交付关闭合同；不新增项目、测试、机构、场地、批准或结果。",
+  "purpose_en": "Convert the existing RACI, approval, prohibited-data, stop/recovery, community co-test, and independent-retest requirements in pilot-readiness-register.json into one G0-to-G1 handoff-closure contract, without adding a project, test, organisation, site, approval, or result.",
+  "parent_register_ref": "visual/assets/pilot-readiness-register.json",
+  "authority_boundary": {
+    "confirmed_accountable_organisation_count": 0,
+    "approved_site_or_window_count": 0,
+    "completed_field_baseline_count": 0,
+    "completed_stop_recovery_rehearsal_count": 0,
+    "completed_community_co_test_count": 0,
+    "completed_independent_retest_count": 0,
+    "g1_authorized_record_count": 0,
+    "rule": "An empty evidence slot is an open requirement, never evidence of completion. Category definitions and parent-register prose are specifications only."
+  },
+  "closure_categories": [
+    {
+      "category_id": "C01_ROLE_ACCEPTANCE",
+      "parent_field": "raci",
+      "required_artifacts": [
+        "written acceptance by the accountable role",
+        "written acceptance by every operationally responsible role",
+        "named shift coverage, contact and immediate-stop authority"
+      ],
+      "completion_rule": "All required roles are assigned to real parties, accept the stated duties, and expose a reachable stop chain for the approved window."
+    },
+    {
+      "category_id": "C02_APPROVAL_SCOPE",
+      "parent_field": "approval_triggers",
+      "required_artifacts": [
+        "one decision record for every parent approval trigger",
+        "decision scope, issuer, validity window and conditions",
+        "explicit record of any rejected, expired or withdrawn trigger"
+      ],
+      "completion_rule": "Every trigger is resolved by a competent decision owner and applies to the exact proposed site, time and activity."
+    },
+    {
+      "category_id": "C03_SITE_TIME_BASELINE",
+      "parent_field": "evidence_deliverables",
+      "required_artifacts": [
+        "owner- or authority-confirmed site and time window",
+        "dated before-state record",
+        "same-task non-AI and staffed baseline where applicable"
+      ],
+      "completion_rule": "The exact operating envelope and protected daily baseline are fixed before any shadow activity."
+    },
+    {
+      "category_id": "C04_PROHIBITED_DATA_CONTROL",
+      "parent_field": "prohibited_data",
+      "required_artifacts": [
+        "signed prohibited-data acknowledgement",
+        "collection and retention configuration",
+        "negative test log showing prohibited inputs fail closed"
+      ],
+      "completion_rule": "Every prohibited-data rule is implemented and independently reproducible, not merely listed."
+    },
+    {
+      "category_id": "C05_STOP_AUTHORITY",
+      "parent_field": "incident_and_stop_responsibility",
+      "required_artifacts": [
+        "named immediate-stop holder",
+        "named incident recorder and notifier",
+        "tested physical or service-level stop path"
+      ],
+      "completion_rule": "The stop holder can act without waiting for the restart owner, and the action leaves an auditable minimal record."
+    },
+    {
+      "category_id": "C06_RECOVERY_REHEARSAL",
+      "parent_field": "stop_conditions,recovery_plan",
+      "required_artifacts": [
+        "one rehearsal record for every critical stop-condition class",
+        "ordinary-use restoration evidence",
+        "unresolved harm and incident register"
+      ],
+      "completion_rule": "Every critical stop class returns the site or service to the protected daily non-AI baseline before restart is considered."
+    },
+    {
+      "category_id": "C07_COMMUNITY_CO_TEST",
+      "parent_field": "community_co_test",
+      "required_artifacts": [
+        "affected-group sampling and invitation record",
+        "accessible consent, withdrawal and grievance routes",
+        "group-difference findings including negative feedback"
+      ],
+      "completion_rule": "Affected users can participate without an account or AI route, withdraw, appeal, and see how material group gaps change the decision."
+    },
+    {
+      "category_id": "C08_INDEPENDENT_RETEST",
+      "parent_field": "independent_retest",
+      "required_artifacts": [
+        "reviewer independence declaration",
+        "frozen input, method, threshold and version pack",
+        "signed result including failures and unresolved differences"
+      ],
+      "completion_rule": "A reviewer outside the delivery team can repeat the critical baseline, stop and recovery checks from the frozen pack."
+    },
+    {
+      "category_id": "C09_GO_NO_GO_MINUTE",
+      "parent_field": "go_no_go",
+      "required_artifacts": [
+        "dated decision minute",
+        "zero open mandatory closure categories",
+        "bounded authorization or explicit rejection with expiry"
+      ],
+      "completion_rule": "G1 is authorized only after C01-C08 are complete and no stop condition, expiry, withdrawal or material evidence conflict remains open."
+    }
+  ],
+  "gate_rule": {
+    "requested_transition": "G0_to_G1_shadow",
+    "all_categories_required": true,
+    "decision_when_any_category_open": "NO-GO",
+    "stop_override": "An active stop condition immediately overrides any prior authorization and returns the activity to the protected daily non-AI baseline.",
+    "restart_rule": "Restart requires closed incident and recovery evidence, an independent retest, and a new accountable-owner decision within a valid approval window."
+  },
+  "inherited_requirement_fields": [
+    "raci",
+    "approval_triggers",
+    "prohibited_data",
+    "incident_and_stop_responsibility",
+    "stop_conditions",
+    "recovery_plan",
+    "community_co_test",
+    "independent_retest",
+    "evidence_deliverables",
+    "go_no_go"
+  ],
+  "records": [
+    {
+      "closure_record_id": "CLOSE-JZ-01",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-01",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-02",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-02",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-03",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-03",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-04",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-04",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-05",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-05",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO",
+      "boundary_note": "The existing synthetic T-02 replay does not close any real-world category."
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-06",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-06",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-07",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-07",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-JZ-08",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#JZ-08",
+      "item_type": "concept_project",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-T-01",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#T-01",
+      "item_type": "first_test_protocol",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    },
+    {
+      "closure_record_id": "CLOSE-T-02",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#T-02",
+      "item_type": "first_test_protocol",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO",
+      "boundary_note": "One synthetic governance replay is complete, but it confirms no organisation, approval, site, field baseline, real stop/recovery rehearsal, community co-test, or independent real retest."
+    },
+    {
+      "closure_record_id": "CLOSE-T-03",
+      "parent_item_ref": "visual/assets/pilot-readiness-register.json#T-03",
+      "item_type": "first_test_protocol",
+      "completed_category_ids": [],
+      "open_category_ids": ["C01_ROLE_ACCEPTANCE", "C02_APPROVAL_SCOPE", "C03_SITE_TIME_BASELINE", "C04_PROHIBITED_DATA_CONTROL", "C05_STOP_AUTHORITY", "C06_RECOVERY_REHEARSAL", "C07_COMMUNITY_CO_TEST", "C08_INDEPENDENT_RETEST", "C09_GO_NO_GO_MINUTE"],
+      "evidence_by_category": {},
+      "decision": "NO-GO"
+    }
+  ],
+  "summary": {
+    "record_count": 11,
+    "closure_category_count": 9,
+    "required_record_category_slot_count": 99,
+    "completed_record_category_slot_count": 0,
+    "open_record_category_slot_count": 99,
+    "closure_ratio": 0.0,
+    "no_go_record_count": 11,
+    "g1_authorized_record_count": 0,
+    "counts_are_documentation_state_not_field_performance": true
+  },
+  "review_protocol": [
+    "Resolve the parent item and read every inherited requirement field.",
+    "Attach evidence under the matching closure category; a URL, role label, or unchecked box alone is insufficient.",
+    "Mark a category complete only after its category completion rule is independently verified.",
+    "Keep the record NO-GO while any category remains open or any stop, expiry, withdrawal, or evidence conflict is active.",
+    "After any evidence change, refresh the decision minute, package manifest, rights ledger, self-check, and trusted validation."
+  ]
+}

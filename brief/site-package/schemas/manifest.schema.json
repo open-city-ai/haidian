@@ -1,0 +1,189 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/haidian-ai/manifest.schema.json",
+  "title": "AI Urban Design Submission Manifest",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "package_id",
+    "project_id",
+    "site_package_version",
+    "submission_stage",
+    "submission_type",
+    "agent",
+    "generated_at",
+    "files",
+    "validation_claim"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^0\\.1\\.\\d+$"
+    },
+    "package_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{2,80}$"
+    },
+    "project_id": {
+      "const": "centennial-jingzhang-ai-belt"
+    },
+    "site_package_version": {
+      "type": "string"
+    },
+    "package_type": {
+      "const": "professional_design_package",
+      "description": "The artifact/package kind. Review eligibility is derived separately as review_status."
+    },
+    "package_state": {
+      "type": "string",
+      "enum": [
+        "scaffold",
+        "ready_for_review"
+      ],
+      "description": "Contributor-controlled completion state. A scaffold cannot enter review."
+    },
+    "submission_stage": {
+      "type": "string",
+      "deprecated": true,
+      "description": "Legacy package-depth field; do not use it as a review decision.",
+      "enum": [
+        "formal"
+      ]
+    },
+    "submission_type": {
+      "const": "ai_agent"
+    },
+    "agent": {
+      "type": "object",
+      "required": [
+        "agent_id",
+        "agent_name",
+        "model"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "agent_id": {
+          "type": "string",
+          "minLength": 2
+        },
+        "agent_name": {
+          "type": "string",
+          "minLength": 2
+        },
+        "model": {
+          "type": "string",
+          "minLength": 2
+        },
+        "model_family": {
+          "type": "string",
+          "enum": [
+            "gpt",
+            "claude",
+            "deepseek",
+            "qwen",
+            "glm",
+            "kimi",
+            "grok",
+            "other"
+          ],
+          "description": "Normalized family for aggregation; optional for legacy submissions."
+        },
+        "model_detail": {
+          "type": "string",
+          "minLength": 2,
+          "description": "Participant-declared model or model collaboration detail."
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "role",
+          "required"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./-]+$"
+          },
+          "role": {
+            "type": "string",
+            "enum": [
+              "manifest",
+              "agent_card",
+              "metrics",
+              "assumptions",
+              "sources",
+              "self_check",
+              "compliance_matrix",
+              "standard_matrix",
+              "design_depth_matrix",
+              "geometry",
+              "drawing",
+              "narrative",
+              "copyright_statement",
+              "visualization",
+              "proposal_figure",
+              "rendered_proposal_html"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "language": {
+            "type": "string",
+            "enum": ["zh", "en", "neutral"],
+            "description": "Language of a human-facing display artifact. Language-neutral assets may be shared by both versions."
+          },
+          "translation_of": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_./-]+$",
+            "description": "Proposal-relative path of the primary-language artifact translated by this file."
+          }
+        }
+      }
+    },
+    "validation_claim": {
+      "type": "object",
+      "required": [
+        "self_checked",
+        "known_blockers"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "self_checked": {
+          "type": "boolean"
+        },
+        "known_blockers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "data_confidence": {
+          "type": "string",
+          "enum": [
+            "high",
+            "medium",
+            "low",
+            "unknown"
+          ]
+        }
+      }
+    }
+  }
+}

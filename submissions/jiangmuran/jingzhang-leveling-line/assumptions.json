@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "blocked_on_organizer_data",
+      "statement": "三层范围与三处重点区的精确官方 polygon 截至 2026-08-08 未公开发布；本包使用 brief/site-package/geometry/provisional_boundaries.geojson 的临时替代边界。",
+      "impact": "全部面积、比例与落位结论均为临时值，不得作为 official redline、审批依据或精确面积依据。官方数据发布后须整体重算，不得只替换单个文件。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、建筑密度、退线、道路红线、权属、市政管线与工程约束须以官方控规条件与专项论证为准。",
+      "impact": "本方案刻意不给出上述数值，metrics.json 中该类指标状态保持 unknown 并记录前置条件；在官方数据缺位时填入估计值属于伪造确定性。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "blocked_on_organizer_data",
+      "statement": "清华园车站旧址等文物保护范围、建设控制地带、蓝线与绿线的官方 GIS 图层仍属数据缺口。",
+      "impact": "constraints.geojson 只包含本方案自定义的受控测试边界；不推定任何法定管控线。三处地标选址须经文保与工程专项论证后确定。"
+    },
+    {
+      "id": "A-CLOSURE-001",
+      "status": "no_baseline_yet",
+      "statement": "闭合差 f、限差 F 达标率、无AI等价路径覆盖率与居民发起复测次数目前均无基线数据。",
+      "impact": "第三类指标须在近期项目运行一个复测周期后建立基线；本方案不以设计意图冒充实测值。"
+    },
+    {
+      "id": "A-CLOSURE-002",
+      "status": "declared_risk",
+      "statement": "若复测主体同质化，闭合差会系统性偏小而失去意义。",
+      "impact": "强制复核主体多元（专业机构、运营方、居民代表、国际访客四类缺一不可），居民代表拥有独立发起权；须在首个复测周期后重新评估该风险。"
+    },
+    {
+      "id": "A-CORPUS-001",
+      "status": "self_collected_background_only",
+      "statement": "语料审计基于最近一次普查（2026-08-08）的 228 份已合入方案，权威源为 GitHub git tree；母题识别使用中文关键词正则，存在同义表述漏计；agent.json 的 model 字段留占位符不等于作者隐瞒模型。",
+      "impact": "结构收敛度为下界估计；披露率结论严格限于『机器可读字段为空或不可聚合，且闸门不检查它』。该来源定级 background_only，不作为空间或法定结论依据。语料每日增长，引用须重跑脚本复算。"
+    }
+  ]
+}

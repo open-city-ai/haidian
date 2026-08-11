@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>百年京张AI创新带 · 智轨走廊城市设计提案 - 离线可视化总览</title>
+<style>
+:root{--ink:#162033;--muted:#667085;--paper:#ffffff;--soft:#f6f8fb;--line:#d7dee8;--navy:#172235;--gold:#c79838;--ai:#4f46e5;--park:#15803d;--work:#b7791f;--civic:#b42318;--blue:#0f7490}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:#eef2f6;color:var(--ink);line-height:1.6}
+.wrap{max-width:1180px;margin:auto}header{background:#101827;color:#fff;padding:30px 24px;border-bottom:5px solid var(--gold)}
+.eyebrow{color:#9fd7c0;letter-spacing:.18em;text-transform:uppercase;font-size:12px;margin-bottom:10px}
+h1{font-size:30px;line-height:1.2;margin:0 0 8px}
+.lead{color:#d8e3ef;font-size:15px;max-width:920px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid rgba(255,255,255,.26);padding:6px 10px;font-size:12px;color:#fff}
+main{padding:20px 22px 34px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin:0 auto 16px;box-shadow:0 12px 30px rgba(22,32,51,.08);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px 22px;border-bottom:1px solid #e6ebf2;background:#fbfcfe}
+.sheet-head h2{font-size:21px;margin:0 0 6px}
+.sheet-head p{color:var(--muted);max-width:760px;margin:0}
+.body{padding:18px 22px}
+img.fig{display:block;width:100%;height:auto;border:1px solid #b9c4d3;border-radius:8px;background:#f8fafc;margin:10px 0}
+.metric-list{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0}
+.metric{border:1px solid #dfe6ef;border-radius:8px;padding:12px;background:#fbfdff}
+.metric span{display:block;color:#667085;font-size:12px}
+.metric strong{display:block;font-size:22px;font-variant-numeric:tabular-nums;margin-top:4px}
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 0 0}
+.legend span{display:flex;align-items:center;gap:7px;color:#334155;font-size:13px}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{border:1px solid #dde5ef;border-radius:8px;padding:14px;background:#fff;border-top:4px solid var(--ai)}
+.card:nth-child(2){border-top-color:var(--park)}.card:nth-child(3){border-top-color:var(--work)}
+.card ul{margin:8px 0 0 18px;padding:0;color:#475467}
+.table{width:100%;border-collapse:collapse;font-size:13px}
+.table th,.table td{border:1px solid #dfe6ef;padding:8px 10px;text-align:left}
+.table th{background:#162033;color:#fff}
+.warn{border-left:5px solid var(--gold);background:#fff9eb;padding:12px 14px;margin:10px 0;border-radius:4px}
+.ok{border-left:5px solid var(--park);background:#f0fdf4;padding:12px 14px;margin:10px 0;border-radius:4px}
+.tag{display:inline-block;border:1px solid #cbd5e1;color:#344054;background:#f8fafc;border-radius:4px;padding:3px 8px;margin:3px 4px 0 0;font-size:12px}
+footer{padding:18px 22px;color:#667085;font-size:13px}
+@media(max-width:860px){.metric-list,.legend,.cards{grid-template-columns:1fr}.sheet-head{display:block}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">方案可视化总览 / Centennial Jing-Zhang AI Innovation Belt</div>
+<h1>百年京张AI创新带 · 智轨走廊城市设计提案</h1>
+<p class="lead">离线电子展示成果。权威数据以 GeoJSON、metrics.json、矩阵与自检结果为准；本页把总览地图、三层范围、重点区域、用地分区、交通慢行、蓝绿公共空间、建筑、更新项目、AI 场景、核心指标、任务覆盖、自检状态、来源与假设转成人类可读的视觉说明。边界与重点区域为 provisional_constraint，不作为法定红线。</p>
+<div class="pill-row"><span class="pill">总览地图</span><span class="pill">三层范围</span><span class="pill">重点区域</span><span class="pill">用地分区</span><span class="pill">交通慢行</span><span class="pill">蓝绿公共空间</span><span class="pill">建筑</span><span class="pill">更新项目</span><span class="pill">AI 场景</span><span class="pill">核心指标</span><span class="pill">任务覆盖</span><span class="pill">自检状态</span><span class="pill">来源</span><span class="pill">假设</span></div>
+</div></header>
+
+<main class="wrap">
+
+<!-- 总览地图 -->
+<section class="sheet"><div class="sheet-head"><div><h2>总览地图</h2><p>总览地图将用地分区、交通慢行、蓝绿公共空间、建筑与更新项目、AI 场景节点放在同一张证据图中，便于评审快速理解空间主线。</p></div><span class="tag">geometry + metrics</span></div>
+<div class="body">
+<img class="fig" alt="总览地图" src="../assets/figures/site-overview.png">
+<p>空间主线为“一带三核、多点场景、蓝绿慢行复合环”：以京张遗址公园为历史与公共空间主轴（一带），以众智园、北京AI原点社区、大钟寺三处重点片区为创新锚点（三核），以 AI+ 公共服务、产业服务和城市生活节点为日常网络（多点场景），以慢行、绿地、公共空间和活动路线联动（复合环）。</p>
+</div></section>
+
+<!-- 三层范围 -->
+<section class="sheet"><div class="sheet-head"><div><h2>三层范围</h2><p>按公告确定的三个层次组织工作：统筹研究范围、总体设计范围、重点区域范围。</p></div><span class="tag">compliance_matrix</span></div>
+<div class="body">
+<table class="table"><thead><tr><th>层级</th><th>设计问题</th><th>方案回答</th><th>数据落点</th></tr></thead>
+<tbody>
+<tr><td>统筹研究范围</td><td>AI 产业生态与未来城市形态</td><td>“高校策源-开源协作-企业转化-公共体验-国际传播”创新链</td><td>compliance_matrix.json、standard_matrix.json</td></tr>
+<tr><td>总体设计范围</td><td>产业空间、城市更新、交通市政、风貌</td><td>用地、建筑、道路、绿地、公共空间、分期图层共同表达</td><td>geometry/land_use.geojson、geometry/roads.geojson</td></tr>
+<tr><td>重点区域范围</td><td>三处片区详细设计深度</td><td>定位、空间动作、AI 场景、实施依赖</td><td>geometry/key_areas.geojson</td></tr>
+</tbody></table>
+</div></section>
+
+<!-- 重点区域 -->
+<section class="sheet"><div class="sheet-head"><div><h2>重点区域</h2><p>三处重点详细设计地区（provisional_constraint，非法定红线）。</p></div><span class="tag">key_areas</span></div>
+<div class="body">
+<img class="fig" alt="重点区域" src="../assets/figures/key-areas.png">
+<table class="table"><thead><tr><th>重点片区</th><th>设计定位</th><th>空间动作</th><th>AI 场景</th></tr></thead>
+<tbody>
+<tr><td>众智园AI自主创新加速区</td><td>花园型全栈自主创新街区</td><td>强化清河界面、产业展示、低碳创新交往</td><td>自主模型测试、标准治理沙盒</td></tr>
+<tr><td>北京AI原点社区</td><td>近校型成果转化与人才社区</td><td>校区-园区-街区慢行缝合、成果发布</td><td>开源发布厅、人才特区服务</td></tr>
+<tr><td>大钟寺AI产业聚集区</td><td>城市型智能经济与国际交往街区</td><td>大钟寺站一体化、四象限步行连通</td><td>国际路演客厅、数据要素会客厅</td></tr>
+</tbody></table>
+</div></section>
+
+<!-- 用地分区 -->
+<section class="sheet"><div class="sheet-head"><div><h2>用地分区</h2><p>用地分区基于 MNR 国土空间用地分类编码，完整、闭合、无缝覆盖设计边界。</p></div><span class="tag">land_use</span></div>
+<div class="body">
+<img class="fig" alt="用地分区" src="../assets/figures/land-use-structure.png">
+<div class="legend">
+<span><i class="sw" style="background:#4f46e5"></i>科研用地 (AI R&D)</span>
+<span><i class="sw" style="background:#0d9488"></i>教育用地</span>
+<span><i class="sw" style="background:#9333ea"></i>文化用地</span>
+<span><i class="sw" style="background:#e8a33d"></i>商业服务业用地</span>
+<span><i class="sw" style="background:#f2d600"></i>城镇住宅用地</span>
+<span><i class="sw" style="background:#94a3b8"></i>战略留白/混合</span>
+<span><i class="sw" style="background:#15803d"></i>公园绿地</span>
+<span><i class="sw" style="background:#65a30d"></i>防护/滨水绿地</span>
+<span><i class="sw" style="background:#0f7490"></i>广场/公共空间</span>
+</div>
+</div></section>
+
+<!-- 交通慢行 -->
+<section class="sheet"><div class="sheet-head"><div><h2>交通慢行</h2><p>轨道站点一体化、道路微循环、慢行断点缝合与对外交通组织。</p></div><span class="tag">roads</span></div>
+<div class="body">
+<img class="fig" alt="交通慢行与蓝绿公共空间" src="../assets/figures/mobility-bluegreen.png">
+<p>交通方案回应公告对北五环、京张遗址公园跨环路节点、五道口、清华东路西口、大钟寺站及重点企业周边交通联系的要求；道路与慢行图层保持在提交边界内，并与公共空间、绿地、产业节点和重点片区相互校核。当边界为 provisional 时，交通结论仅作临时设计讨论。</p>
+</div></section>
+
+<!-- 蓝绿公共空间 -->
+<section class="sheet"><div class="sheet-head"><div><h2>蓝绿公共空间</h2><p>以京张遗址公园活力带为骨架，统筹清河、小月河与高校、企业、社区出行需求。</p></div><span class="tag">green_space / public_space</span></div>
+<div class="body">
+<p>蓝绿公共空间由 [depth:blue_green_public_space] 校核，核心证据为 geometry/green_space.geojson、geometry/public_space.geojson。绿地率 [metric:green_ratio]、公共空间占比 [metric:public_space_ratio] 均由提交几何复算。</p>
+<div class="metric-list">
+<div class="metric"><span>绿地率 green_ratio</span><strong data-metric="green_ratio" data-value="0.185671">18.57%</strong></div>
+<div class="metric"><span>公共空间占比 public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.066781">6.68%</strong></div>
+<div class="metric"><span>用地面积 site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825 ㎡</strong></div>
+</div>
+</div></section>
+
+<!-- 建筑 -->
+<section class="sheet"><div class="sheet-head"><div><h2>建筑</h2><p>建筑基底区分保留、改造、更新、新建对象，表达更新建筑基底与 AI 建筑类型。</p></div><span class="tag">buildings</span></div>
+<div class="body">
+<p>建筑基底面积 [metric:building_footprint_area_sqm] = 310.6 万㎡，建筑密度 [metric:building_density] = 27.2%。建筑高度、容积率、总建筑规模在 metrics.json 中列为 unknown，待官方控规条件确认，不得以 agent 推测值冒充审定指标。</p>
+</div></section>
+
+<!-- 更新项目 -->
+<section class="sheet"><div class="sheet-head"><div><h2>更新项目</h2><p>可审查的更新项目清单，含位置、类型、依赖与分期。</p></div><span class="tag">phasing</span></div>
+<div class="body">
+<img class="fig" alt="核心指标复算" src="../assets/figures/metrics-evidence.png">
+<table class="table"><thead><tr><th>项目编号</th><th>项目名称</th><th>类型</th><th>主要依赖</th></tr></thead>
+<tbody>
+<tr><td>JZ-01</td><td>京张遗址公园慢行断点缝合</td><td>公共空间/交通</td><td>道路红线、桥下空间</td></tr>
+<tr><td>JZ-02</td><td>众智园清河创新界面</td><td>蓝绿/产业展示</td><td>河道蓝线、防洪</td></tr>
+<tr><td>JZ-03</td><td>原点社区近校成果转化街</td><td>城市更新/产业服务</td><td>校区边界、权属</td></tr>
+<tr><td>JZ-04</td><td>大钟寺站四象限步行连通</td><td>轨道一体化/慢行</td><td>站点、交叉口、管线</td></tr>
+<tr><td>JZ-05</td><td>AI公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>能源、算力、运营主体</td></tr>
+<tr><td>JZ-06</td><td>全球AI活动周公共路线</td><td>运营/品牌</td><td>许可、安全、清权</td></tr>
+</tbody></table>
+<p>分期总面积 [metric:phasing_area_sqm] = 1141.3 万㎡，分近期试点、中期更新、长期治理三阶段推进。</p>
+</div></section>
+
+<!-- AI 场景 -->
+<section class="sheet"><div class="sheet-head"><div><h2>AI 场景</h2><p>AI+ 场景落到具体空间与治理边界，每个场景说明服务对象、位置、数据来源、隐私边界与人工复核。</p></div><span class="tag">scenarios</span></div>
+<div class="body">
+<div class="cards">
+<div class="card"><b>01 开源发布厅</b><p>北京AI原点社区：成果发布、代码贡献展示、小型路演。</p></div>
+<div class="card"><b>02 安全治理沙盒</b><p>众智园：标准制定、安全评测、模型红队可参观节点。</p></div>
+<div class="card"><b>03 端侧算力驿站</b><p>总体范围节点：与公共服务、低碳能源结合的新基建原型。</p></div>
+<div class="card"><b>04 AI慢行导航</b><p>京张遗址公园活力带：可解释导视与低侵入传感。</p></div>
+<div class="card"><b>05 大钟寺国际路演客厅</b><p>大钟寺：智能体/智能终端展示与国际交流。</p></div>
+<div class="card"><b>06 全球AI活动周路线</b><p>一带公共空间：可步行、可传播的体验路线。</p></div>
+</div>
+</div></section>
+
+<!-- 核心指标 -->
+<section class="sheet"><div class="sheet-head"><div><h2>核心指标</h2><p>指标体系含可由几何复算的空间指标与待官方控规的管控指标两类。</p></div><span class="tag">metrics.json</span></div>
+<div class="body">
+<div class="metric-list">
+<div class="metric"><span>site_area_sqm 用地面积</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825 ㎡</strong></div>
+<div class="metric"><span>green_space_area_sqm 蓝绿空间</span><strong>211.9 万㎡</strong></div>
+<div class="metric"><span>public_space_area_sqm 公共空间</span><strong>76.2 万㎡</strong></div>
+<div class="metric"><span>building_footprint_area_sqm 建筑基底</span><strong>310.6 万㎡</strong></div>
+<div class="metric"><span>green_ratio 绿地率</span><strong data-metric="green_ratio" data-value="0.185671">18.57%</strong></div>
+<div class="metric"><span>public_space_ratio 公共空间占比</span><strong data-metric="public_space_ratio" data-value="0.066781">6.68%</strong></div>
+<div class="metric"><span>building_density 建筑密度</span><strong>27.2%</strong></div>
+<div class="metric"><span>key_area_count 重点区域数量</span><strong>3 处</strong></div>
+<div class="metric"><span>key_area_total_area_sqm 重点区域总面积</span><strong>369.3 万㎡</strong></div>
+</div>
+<p>容积率、建筑高度、总建筑面积在 metrics.json 中标记为 <code>unknown</code>，需官方控规与任务书附件支撑后方可核定。</p>
+</div></section>
+
+<!-- 任务覆盖 -->
+<section class="sheet"><div class="sheet-head"><div><h2>任务覆盖</h2><p>每条公告任务与 agent_taskbook 任务映射到章节、图层、指标、图纸、HTML、来源、假设与自检项。</p></div><span class="tag">compliance_matrix</span></div>
+<div class="body">
+<p>合规矩阵逐条映射公告 1.3、1.4、1.5 与 agent.1-agent.6 的必选任务；设计深度由 design_depth_matrix.json 的 15 个深度项约束；标准响应由 standard_matrix.json 覆盖全部 mandatory_for_formal 标准。未能覆盖任一必选任务者不得进入 formal professional scoring。</p>
+</div></section>
+
+<!-- 自检状态 -->
+<section class="sheet"><div class="sheet-head"><div><h2>自检状态</h2><p>deterministic validation、spatial review、visual packaging check 与 professional evidence review 四道闸门。</p></div><span class="tag">self_check</span></div>
+<div class="body">
+<div class="ok"><b>当前状态</b><p>package_state=ready_for_review；四道自检闸门需全部通过方可进入 formal professional review。边界为 provisional，保留精度警示并待正式数据发布后整体重算，组织方数据缺口不阻断内容评分。</p></div>
+<p>自检项：validate_local_submission（schema/必填/占位符）、spatial_review（用地闭合、指标复算一致）、visual_review（离线展示标记）、professional_review（标准/深度/数据/指标引用）。</p>
+</div></section>
+
+<!-- 来源 -->
+<section class="sheet"><div class="sheet-head"><div><h2>来源</h2><p>机器可读资料登记于 sources.json 与 data/source_registry.json。</p></div><span class="tag">sources</span></div>
+<div class="body">
+<p>本方案事实判断回到以下来源：</p>
+<span class="tag">[source:OFFICIAL-ANNOUNCEMENT]</span>
+<span class="tag">[source:AGENT-TASKBOOK]</span>
+<span class="tag">[source:SITE-PACKAGE]</span>
+<span class="tag">[source:SOURCE-REGISTRY]</span>
+<span class="tag">[source:PROCESSED-FACT-PACK]</span>
+<span class="tag">[source:BOUNDARY-SOURCE]</span>
+<span class="tag">[source:KEY-AREA-SOURCE]</span>
+<p>geometry/site_boundary.geojson 与 geometry/key_areas.geojson 为 provisional_constraint，official_boundary=false，仅用于方案生成、自检与可视化。</p>
+</div></section>
+
+<!-- 假设 -->
+<section class="sheet"><div class="sheet-head"><div><h2>假设</h2><p>缺资料事项进入 assumptions.json、自检与正文风险章节，任何缺官方条件的结论降级为待确认事项。</p></div><span class="tag">assumptions</span></div>
+<div class="body">
+<div class="warn"><b>关键假设</b>
+<ul>
+<li>当前 site boundary 与三处 key area 为组织者登记的 provisional 粗略边界，非官方红线；精确面积与红线以官方发布为准。</li>
+<li>用地、建筑、道路、绿地、公共空间、分期与指标均基于 provisional boundary 生成，待官方几何替换后整体重算。</li>
+<li>容积率、建筑高度、总建筑规模、道路红线、退线、设施标准缺少官方控规条件，列为 unknown / 待确认。</li>
+<li>清河蓝线、京张铁路遗存与文保控制带、北五环快速路作为 existing_condition 约束锁定，不参与设计改动。</li>
+</ul>
+</div>
+</div></section>
+
+</main>
+<footer class="wrap">
+<p>本页面为离线展示成果，不含任何远程脚本、远程地图瓦片、远程字体、iframe、表单或外部 API，不跟踪评审者行为。所有空间与指标结论以提交 GeoJSON 与 metrics.json 为权威。临时边界以 intake 讨论为限，不作为正式专业评分图纸。</p>
+</footer>
+</body>
+</html>

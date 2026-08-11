@@ -1,0 +1,55 @@
+{
+ "schema_version": "0.1.0",
+ "package_id": "ren-axis-jingzhang-ai-belt",
+ "note_zh": "结果与 scripts/self_check_submission.py 输出对齐；provisional 边界保留精度警示但不阻断内容评审。",
+ "checks": [
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "message_zh": "站点边界为 provisional_constraint（official_boundary=false，boundary_precision=provisional_rough），已在正文、HTML 与假设中披露，不作官方红线使用。"
+  },
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "message_zh": "三处重点区使用仓库临时多边形，非重叠且位于站点边界内；面积与公告约值差异已披露。"
+  },
+  {
+   "check_id": "LAND_USE_TOPOLOGY",
+   "result": "pass",
+   "severity": "major",
+   "message_zh": "39个用地单元共享切线生成：投影复核重叠0平方米；覆盖缺口约81平方米、分量合计与总量差约+16平方米，均源于投影后共享边微小进出，远低于校验容差（约1141平方米），已在 metrics.json 勾稽说明。"
+  },
+  {
+   "check_id": "METRICS_RECALC",
+   "result": "pass",
+   "severity": "major",
+   "message_zh": "metrics.json 面积与长度类指标由 geometry/ 以 EPSG:4548 复算；计数类指标（项目、场景、地标）按正文结构化清单计数；全部公式逐项登记，unknown 指标写明原因与补齐来源。"
+  },
+  {
+   "check_id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "major",
+   "message_zh": "visual/index.html 为离线静态页面，无远程资源与活动内容，核心指标带 data-metric 标记并与 metrics.json 一致。"
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "major",
+   "message_zh": "标准矩阵、深度矩阵、合规矩阵覆盖全部必答项，正文以 [source:][standard:][depth:][data:][metric:] 逐项回引。"
+  },
+  {
+   "check_id": "PROVISIONAL_DISCLOSURE",
+   "result": "pass",
+   "severity": "info",
+   "message_zh": "临时边界的适用范围与禁止用途在 proposal.md、sources.json、assumptions.json 与 visual/index.html 中一致披露。"
+  },
+  {
+   "check_id": "FIGURE_DERIVATION",
+   "result": "pass",
+   "severity": "info",
+   "message_zh": "五张必交图与 A3/A0 图纸由同一套 GeoJSON、metrics 与矩阵派生，图面弱化临时边界、突出设计结构。"
+  }
+ ]
+}
