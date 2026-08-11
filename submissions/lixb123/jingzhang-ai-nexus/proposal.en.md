@@ -1,5 +1,5 @@
 ---
-title: "Jing-Zhang AI Nexus: Tiangong Star Atlas for a Future AI City"
+title: "Jing-Zhang Tiangong: Star-Atlas Scroll for a Future AI City"
 author_github: "lixb123"
 language: "en"
 proposal_format_version: "2"
@@ -10,7 +10,7 @@ summary: "Tianwen knowledge, Nuwa weaving, and Yinglong water-vein corridors con
 iteration: "v1.0"
 ---
 
-# Jing-Zhang AI Nexus: Tiangong Star Atlas for a Future AI City
+# Jing-Zhang Tiangong: Star-Atlas Scroll for a Future AI City
 
 ## Design Basis and Evidence
 
@@ -26,7 +26,7 @@ The 43.6 km2 research scope frames regional innovation; the approximately 11.4 k
 
 ## Innovation and Future City Strategy
 
-“Jing-Zhang AI Nexus” becomes the “Tiangong Star Atlas”: a Tianwen Knowledge Corridor for legible research and heritage, a Nuwa Weaving Corridor for civic collaboration and trustworthy data, and an Yinglong Water-Vein Corridor for blue-green climate resilience and slow mobility. These names are contemporary cultural metaphors for inquiry, repair, and water systems, not religious claims, historical reconstruction, or approved projects. Together they connect the Zhongzhiyuan acceleration, AI Origin collaboration, and Dazhongsi industry-experience cores. [source:AGENT-TASKBOOK]
+“Jing-Zhang Tiangong: Star-Atlas Scroll” uses the Tiangong Star Atlas as its narrative axis: a Tianwen Knowledge Corridor for legible research and heritage, a Nuwa Weaving Corridor for civic collaboration and trustworthy data, and an Yinglong Water-Vein Corridor for blue-green climate resilience and slow mobility. These names are contemporary cultural metaphors for inquiry, repair, and water systems, not religious claims, historical reconstruction, or approved projects. Together they connect the Zhongzhiyuan acceleration, AI Origin collaboration, and Dazhongsi industry-experience cores. [source:AGENT-TASKBOOK]
 
 ## Overall Urban Design
 
