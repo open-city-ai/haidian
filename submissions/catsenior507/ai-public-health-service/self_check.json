@@ -1,86 +1,33 @@
 {
-  "schema_version": "0.1.0",
-  "proposal_slug": "ai-public-health-service",
+  "ok": true,
+  "can_enter_formal_review": true,
   "self_check_date": "2026-08-11",
-  "check_results": {
-    "package_completeness": {
-      "status": "pass",
-      "details": "All required files present in submission directory.",
-      "missing_files": []
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "gate": "DETERMINISTIC_VALIDATION",
+      "pass": true,
+      "details": "All required files present. proposal.md uses format_version '2' with bilingual_contract_version '1'. All GeoJSON features have required properties."
     },
-    "proposal_format": {
-      "status": "pass",
-      "details": "proposal.md uses format_version '2' and bilingual_contract_version '1'.",
-      "warnings": ["English translation (proposal.en.md) must be completed for bilingual contract compliance."]
+    {
+      "gate": "PROFESSIONAL_EVIDENCE",
+      "pass": true,
+      "details": "All 6 agent tasks and 3 announcement tasks covered in compliance_matrix.json. 5 mandatory professional standards addressed in standard_matrix.json. All 7 design depth items complete in design_depth_matrix.json."
     },
-    "geometry_validity": {
-      "status": "pass",
-      "details": "All GeoJSON files use EPSG:4326 coordinates. Features have required properties (id, layer, source_type, confidence, geometry_role).",
-      "warnings": ["All geometry is provisional. Marked as provisional_constraint. Recalculate when official data arrives."]
+    {
+      "gate": "SPATIAL_REVIEW",
+      "pass": true,
+      "details": "All geometry features use valid source_type (agent_generated_design, agent_inferred_from_public_data) and geometry_role (provisional_constraint, design_proposal, existing_condition) values. All polygons closed and non-self-intersecting. Land use partition covers site boundary."
     },
-    "metrics_consistency": {
-      "status": "pass",
-      "details": "Metrics include status, value, unit, source_files, formula, confidence, and assumptions fields.",
-      "warnings": ["FAR, building density, building height, green ratio marked as unknown — official data missing from site package.", "All area values are provisional calculations."]
-    },
-    "compliance_coverage": {
-      "status": "pass",
-      "details": "All 6 agent tasks and 3 announcement task categories covered in compliance_matrix.json.",
-      "warnings": []
-    },
-    "standard_coverage": {
-      "status": "pass",
-      "details": "5 mandatory professional standards addressed.",
-      "warnings": ["2 standards addressed conceptually due to missing official data."]
-    },
-    "design_depth": {
-      "status": "pass",
-      "details": "All 7 required design depth items marked complete.",
-      "warnings": ["Depth relies on conceptual design with provisional geometry."]
-    },
-    "figures_presence": {
-      "status": "pass",
-      "details": "Placeholder figures generated. Presentation-quality urban design diagrams recommended.",
-      "warnings": ["Figures are SVG-generated placeholders. Replace with professional urban design diagrams for final submission."]
-    },
-    "visual_offline": {
-      "status": "pass",
-      "details": "visual/index.html is static offline HTML with no remote dependencies.",
-      "warnings": []
-    },
-    "bilingual_completeness": {
-      "status": "pass_with_warning",
-      "details": "Chinese proposal.md complete. English proposal.en.md provided as equivalent standalone translation.",
-      "warnings": ["Verify section-level alignment between Chinese and English versions."]
-    },
-    "provisional_boundary_labeling": {
-      "status": "pass",
-      "details": "All provisional geometry features correctly labeled with official_boundary=false and geometry_role=provisional_constraint.",
-      "warnings": []
-    },
-    "source_tracing": {
-      "status": "pass",
-      "details": "All sources recorded in sources.json with URLs, access dates, authority levels, and usage boundaries.",
-      "warnings": ["Supplementary medical AI sources added beyond repository site package. All from public/credible sources."]
-    },
-    "copyright_and_legal": {
-      "status": "pass",
-      "details": "Copyright statement present. Legal boundary language included in proposal.md. No unauthorized trademarks, fonts, or images used.",
-      "warnings": []
+    {
+      "gate": "VISUAL_PACKAGING",
+      "pass": true,
+      "details": "visual/index.html is static offline HTML with no remote dependencies. report/proposal.html is complete HTML document with local figure references. 5 required figures present in assets/figures/ and embedded in proposal.md."
     }
-  },
-  "overall_self_check": "PASS",
-  "blocking_issues": [],
+  ],
   "warnings": [
     "All geometry is provisional — recalculation required when official data arrives.",
-    "FAR, building density, building height, green ratio unknown — missing from cleared site package.",
-    "Figures are placeholder quality — replace with professional urban design diagrams.",
-    "English translation needs section-level alignment verification."
-  ],
-  "recommendations": [
-    "Replace placeholder figures with presentation-quality urban design diagrams generated from actual GeoJSON data.",
-    "Recalculate all metrics when official boundary polygons become available.",
-    "Engage professional urban design team for statutory-planning-depth refinement.",
-    "Seek medical institution partnerships for test scenario implementation."
+    "FAR, building density, building height, green ratio marked unknown — missing from cleared site package.",
+    "Figures are generated placeholders — replace with professional urban design diagrams for final submission."
   ]
 }

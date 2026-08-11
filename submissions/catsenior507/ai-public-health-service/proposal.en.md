@@ -6,10 +6,10 @@ translation_of: "proposal.md"
 title: "Jing-Zhang AI Medical Innovation Valley — AI + Public Services: Urban Design Centered on Healthcare System Intelligence"
 subtitle: "From Individual Experience to Collective Intelligence: AI's Paradigm Revolution in Public Healthcare"
 author: "catsenior507"
+author_github: "catsenior507"
+license: "CC BY 4.0"
+summary: "AI + Public Services urban design proposal focused on AI-driven healthcare transformation. Three technological pillars: medical data deep training, doctor experience distillation, and AI triage with cross-department collaboration. One Valley Three Cores spatial structure along the Jing-Zhang Heritage Park corridor."
 date: "2026-08-11"
-package_type: "professional_design_package"
-package_state: "ready_for_review"
-submission_stage: "formal"
 ---
 
 # Jing-Zhang AI Medical Innovation Valley
