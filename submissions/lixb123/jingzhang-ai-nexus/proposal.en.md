@@ -30,7 +30,9 @@ The 43.6 km2 research scope frames regional innovation; the approximately 11.4 k
 
 ## Overall Urban Design
 
-The concept is a Tiangong Star Atlas of “three corridors, three cores, two wings, and one slow-mobility loop.” It proposes low-glare, switchable knowledge interfaces; civic data-consent tables; and climate-responsive blue-green nodes rather than spectacle screens. Land-use and building layers remain conceptual design representations, not regulatory amendments or ownership decisions. [data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure]
+The Tiangong Star Atlas is organized through “three corridors, three cores, two wings, and one loop,” with three future-street prototypes that make its public realm tangible. Tianwen Star-Rail Street combines low-speed autonomous shuttles, walking, cycling, bookable curb service, and low-glare wayfinding. Nuwa Weave Street combines permeable tree wells, demountable civic tables, accessible micro-mobility, and quiet-priority crossings. Yinglong Water-Mirror Loop combines shallow rain gardens, shade structures, and switchable water-level notices. These are conceptual centerlines and operational prototypes, not approved street sections or engineering commitments. [data:geometry/roads.geojson#ROAD-001] [data:geometry/roads.geojson#ROAD-002] [data:geometry/roads.geojson#ROAD-003]
+
+Four replaceable building prototypes give the district a future-facing but auditable architectural language: Tianwen Cloud Terrace for research and test galleries; Nuwa Weave Nest for live-work, maker, and shared-court spaces; Yinglong Water Court for climate-adaptive living; and Star-Atlas Interface for mobility, civic services, and exhibitions. Terraces, bridges, translucent shading, vertical planting, and maintainable wayfinding remain conceptual components, not claims about approved height, floor area, dwellings, ownership, or demolition. [data:geometry/buildings.geojson#BLDG-001] [data:geometry/buildings.geojson#BLDG-002] [data:geometry/buildings.geojson#BLDG-003] [data:geometry/buildings.geojson#BLDG-004]
 
 ## Key Areas
 
@@ -44,11 +46,11 @@ The proposal serves researchers, startup teams, residents and older adults, visi
 
 ## Land Use and Building Logic
 
-The submitted land-use partition supports auditable review only. Its green-space and public-space values derive from provisional geometry and must not be treated as approved development intensity, height, floor area, retention, demolition, or construction controls. [metric:green_ratio] [depth:land_use_layout]
+The submitted land-use partition supports auditable review only. The four building prototypes total 310,807.186 sqm of recalculated footprint and express relative research, adaptive-living, climate-resilience, and mobility-service interfaces only. They must not be treated as approved development intensity, height, floor area, retention, demolition, construction, or ownership controls. [metric:building_footprint_area_sqm] [depth:land_use_layout]
 
 ## Mobility and Infrastructure
 
-The concept links stations, scenarios, parks, and communities through low-conflict walking and cycling connections, shade, accessibility, and organized micro-mobility. Utility, energy, and computing capacity are interface and monitoring suggestions only, subject to specialist verification. [depth:traffic_rail_slow_parking]
+The three-street system links stations, scenarios, parks, and communities with explicit priority for walking, cycling, wheelchair travel, low-speed booked shuttles, and maintenance access. Its curb zones can switch among pickup, logistics, rain-garden pause, and event modes. Utility, energy, and computing capacity are maintainable-interface and aggregate-monitoring suggestions only, subject to transport, drainage, accessibility, fire-safety, and utility review. [depth:traffic_rail_slow_parking]
 
 ![Mobility, blue-green and public-space network](assets/figures/mobility-bluegreen.en.png)
 
