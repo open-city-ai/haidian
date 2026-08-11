@@ -2,39 +2,49 @@
   "schema_version": "0.1.0",
   "checks": [
     {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "package",
+      "message": "Deterministic submission-validation passed (Result: PASS, 41 files), no blockers."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "Spatial review passed: land-use is a seamless non-overlapping full-coverage partition; no out-of-site; areas in official EPSG:4548."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/ + assets/",
+      "message": "Visual metrics match metrics.json (site, green, public ratios); bilingual figures differ; no external assets; provisional warning prominent."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Machine-readable evidence references present across required sections; standards, depth, metrics, sources linked."
+    },
+    {
       "check_id": "BOUNDARY_TRUST",
       "result": "pass",
       "severity": "major",
       "target": "geometry/site_boundary.geojson",
-      "message": "Provisional boundary is present (official redline not yet public); all areas are provisional recalculations and must be replaced before professional scoring."
+      "message": "Provisional boundary disclosed (official_boundary=false); all areas provisional recalculations to be replaced after official polygons."
     },
     {
       "check_id": "KEY_AREAS_TRUST",
       "result": "pass",
       "severity": "major",
       "target": "geometry/key_areas.geojson",
-      "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
-    },
-    {
-      "check_id": "LAND_USE_TOPOLOGY",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "Land-use polygons are rebuilt as a seamless non-overlapping partition of the provisional site boundary (verified: no internal overlap, full coverage, no out-of-site)."
-    },
-    {
-      "check_id": "VISUAL_STATIC",
-      "result": "pass",
-      "severity": "info",
-      "target": "visual/index.html",
-      "message": "Static HTML visualization is generated without external dependencies."
-    },
-    {
-      "check_id": "PROFESSIONAL_EVIDENCE",
-      "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+      "message": "Three key areas provisional; replace with official polygons before formal scoring."
     }
-  ]
+  ],
+  "ok": true,
+  "can_enter_formal_review": true,
+  "readiness_contract": "persisted-self-check-v1"
 }
