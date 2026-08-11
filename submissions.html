@@ -175,7 +175,7 @@ nav{
 
 .status-guide{
   max-width:1280px;margin:28px auto 0;padding:0 44px;
-  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  display:grid;grid-template-columns:repeat(4,1fr);gap:0;
   border:0;
 }
 .status-guide-card{
@@ -186,6 +186,7 @@ nav{
 .status-dot{flex-shrink:0;width:8px;height:8px;border-radius:50%;margin-top:5px}
 .status-dot.formal{background:var(--accent);box-shadow:0 0 10px rgba(var(--accent-rgb),.7)}
 .status-dot.public{background:var(--tech);box-shadow:0 0 10px rgba(var(--tech-rgb),.7)}
+.status-dot.intake{background:#6fc4ff;box-shadow:0 0 10px #6fc4ff66}
 .status-dot.repair{background:#8d949f;box-shadow:0 0 8px #8d949f66}
 .status-guide-title{font-size:12px;font-weight:500}
 .status-guide-desc{color:#858c97;font-size:11px;line-height:1.7;margin-top:3px}
@@ -379,6 +380,7 @@ nav{
   <div class="filter-tabs">
     <button class="filter-tab active" data-filter="all"><span data-i18n="tab.all">全部</span><span class="filter-count" data-count-for="all">0</span></button>
     <button class="filter-tab" data-filter="formal"><span data-i18n="tab.formal">正式评分就绪</span><span class="filter-count" data-count-for="formal">0</span></button>
+    <button class="filter-tab" data-filter="intake"><span data-i18n="tab.intake">临时 intake</span><span class="filter-count" data-count-for="intake">0</span></button>
     <button class="filter-tab" data-filter="revision"><span data-i18n="tab.revision">需修复</span><span class="filter-count" data-count-for="revision">0</span></button>
     <button class="filter-tab" data-filter="fixture"><span data-i18n="tab.fixture">样例</span><span class="filter-count" data-count-for="fixture">0</span></button>
   </div>
@@ -393,6 +395,10 @@ nav{
   <div class="status-guide-card">
     <span class="status-dot formal"></span>
     <div><div class="status-guide-title" data-i18n="guide.formal.t">正式评分就绪</div><div class="status-guide-desc" data-i18n="guide.formal.d">提交包完整，且自检中没有阻断项；历史展示状态不等于新的可信正式证据。</div></div>
+  </div>
+  <div class="status-guide-card">
+    <span class="status-dot intake"></span>
+    <div><div class="status-guide-title" data-i18n="guide.intake.t">临时 intake</div><div class="status-guide-desc" data-i18n="guide.intake.d">包可进入内容评审，但正式专业评分仍等待组织方资料；不等于参赛者需要修复。</div></div>
   </div>
   <div class="status-guide-card">
     <span class="status-dot repair"></span>
@@ -472,9 +478,10 @@ const T = {
     'page.sub':'ALL PROPOSALS — CENTENNIAL JING-ZHANG AI INNOVATION BELT',
     'page.desc':'已经合并并公开在 GitHub 主分支的方案会自动进入这里。打开任意卡片，可直接浏览完整报告与方案可视化。',
     'stat1':'主分支已公开','stat1.note':'已合并并生成公开展页','stat2':'开放 PR','stat2.note':'含提案与仓库维护 PR',
-    'tab.all':'全部','tab.formal':'正式评分就绪','tab.revision':'需修复','tab.fixture':'样例','sort.label':'主分支自动同步 · 点击卡片查看完整方案',
+    'tab.all':'全部','tab.formal':'正式评分就绪','tab.intake':'临时 intake','tab.revision':'需修复','tab.fixture':'样例','sort.label':'主分支自动同步 · 点击卡片查看完整方案',
     'guide.public.t':'主分支已公开','guide.public.d':'已合并到 main，并已由本站生成公开展页。',
     'guide.formal.t':'正式评分就绪','guide.formal.d':'提交包完整，且自检中没有阻断项；历史展示状态不等于新的可信正式证据。',
+    'guide.intake.t':'临时 intake','guide.intake.d':'包可进入内容评审，但正式专业评分仍等待组织方资料；不等于参赛者需要修复。',
     'guide.repair.t':'需修复','guide.repair.d':'已经公开，但提交包不完整，或自检存在阻断项；0 表示已核对后没有此类方案。',
     'guide.reviewNote':'卡片与分类只统计 GitHub main 中已经公开的方案；右上角“开放 PR”是 GitHub 实时返回的全部未关闭 PR，既包含待合并提案，也包含网站与仓库维护工作，因此不能直接理解为待评审方案数。本站不展示维护者审核正文；具体反馈仍以对应 PR comment 为准；历史展示状态只表示公开分类，不等于新的可信正式证据。',
     'empty.title':'征集进行中','empty.desc':'暂无已合并的方案。成为第一个提交方案的参与者，方案将在此展示。',
@@ -498,9 +505,10 @@ const T = {
     'page.sub':'ALL PROPOSALS — CENTENNIAL JING-ZHANG AI INNOVATION BELT',
     'page.desc':'Every proposal merged into the GitHub main branch appears here automatically. Open any card to browse its full report and interactive visualization.',
     'stat1':'Published on main','stat1.note':'Merged and published in the gallery','stat2':'Open PRs','stat2.note':'Proposals and repository maintenance',
-    'tab.all':'All','tab.formal':'Formal ready','tab.revision':'Needs repair','tab.fixture':'Fixtures','sort.label':'Synced from main · Open a card for the full proposal',
+    'tab.all':'All','tab.formal':'Formal ready','tab.intake':'Provisional intake','tab.revision':'Needs repair','tab.fixture':'Fixtures','sort.label':'Synced from main · Open a card for the full proposal',
     'guide.public.t':'Published on main','guide.public.d':'Merged into main and published as a gallery page.',
     'guide.formal.t':'Formal scoring ready','guide.formal.d':'The package is complete with no blocking self-check item; historical display status is not new trusted evidence for formal scoring.',
+    'guide.intake.t':'Provisional intake','guide.intake.d':'The package may enter content review, but formal scoring still awaits organizer-owned evidence; this does not mean participant repair is required.',
     'guide.repair.t':'Needs repair','guide.repair.d':'Published, but incomplete or carrying a blocking self-check; zero means the data was checked and none matched.',
     'guide.reviewNote':'Cards and filters count only proposals already published on GitHub main. “Open PRs” is GitHub’s live total for every open Pull Request, including both proposal submissions and repository maintenance, so it is not a count of proposals under review. Maintainer review text is not reproduced here; specific feedback remains in the corresponding PR comment. Historical display status reflects public classification only; it is not new trusted evidence for formal scoring.',
     'empty.title':'Open Call in Progress','empty.desc':'No merged proposals yet. Be the first to submit — your proposal will be displayed here.',
@@ -529,11 +537,11 @@ const STATUS_META = {
     enDesc: 'Package structure and self-check indicate formal-scoring readiness; historical display status is not new trusted evidence for formal scoring'
   },
   intake_provisional: {
-    group: 'revision',
-    zh: '需修复',
-    en: 'Needs repair',
-    zhDesc: '历史临时状态，已归入需修复',
-    enDesc: 'Legacy provisional status, grouped under repair'
+    group: 'intake',
+    zh: '临时 intake',
+    en: 'Provisional intake',
+    zhDesc: '可进入内容评审，但正式专业评分仍等待组织方资料；不等于参赛者需要修复',
+    enDesc: 'Eligible for content review, while formal scoring awaits organizer-owned evidence; this does not mean participant repair is required'
   },
   needs_revision: {
     group: 'revision',
@@ -596,7 +604,7 @@ function statusCounts() {
     const group = statusMeta(item).group;
     if (Object.prototype.hasOwnProperty.call(counts, group)) counts[group] += 1;
     return counts;
-  }, {all:0, formal:0, revision:0, fixture:0});
+  }, {all:0, formal:0, intake:0, revision:0, fixture:0});
 }
 
 function updateStatusCounts() {
@@ -608,7 +616,7 @@ function updateStatusCounts() {
 }
 
 const PAGE_SIZE = 50;
-const VALID_FILTERS = new Set(['all', 'formal', 'revision', 'fixture']);
+const VALID_FILTERS = new Set(['all', 'formal', 'intake', 'revision', 'fixture']);
 
 function getFilteredSubmissions(filter) {
   return filter === 'all' ? SUBMISSIONS : SUBMISSIONS.filter(s => statusMeta(s).group === filter);
