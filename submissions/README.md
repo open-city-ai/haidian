@@ -12,16 +12,18 @@ submissions/<github-login>/<proposal-slug>/
 
 - `<github-login>` 必须与 Pull Request 作者一致。
 - `<proposal-slug>` 使用小写字母、数字和连字符。
-- 每个方案目录只能有一个 `proposal.md`。
+- 每个方案目录只能有一个主语言 `proposal.md`；新投稿必须另交一份完整的 `proposal.en.md` 或 `proposal.zh.md` 对照译稿。
 - 每个方案目录可以有一个 `changelog.md`，用于记录版本变化、采纳反馈和待复核事项。
-- 方案文件可使用中文或英文；英文投稿必须在同一 `proposal.md` 的 `# 中文正式译文` 下附完整中文版本，并设置规定的双语元数据。
-- 可选图片或图表放在 `assets/` 或 `visual/assets/` 下，并在 `sources.json` 或版权声明中说明来源。
+- 方案主稿可以使用中文或英文，并设置 `bilingual_contract_version: "1"`：中文主稿通过 `translation_file: "proposal.en.md"` 指向英文译稿，英文主稿通过 `translation_file: "proposal.zh.md"` 指向中文译稿；译稿设置 `translation_of: "proposal.md"`。两版的章节、主张、指标、证据引用和图件位置必须等义对应。
+- `report/proposal.html`、`visual/index.html`、A3/A0 PDF 和所有含文字图件也必须提供另一语言副本。无后缀文件是主语言版本，译稿在扩展名前使用 `.en` 或 `.zh`，例如 `report/proposal.en.html`、`drawings/a3-booklet.en.pdf` 和 `assets/figures/site-overview.en.png`。
+- 五张必交图放在 `assets/figures/`；其他可选图片或图表放在 `assets/` 或 `visual/assets/` 下，并在 `sources.json` 或版权声明中说明来源。
 
 ## 必交 formal 成果
 
 ```text
 submissions/<github-login>/<proposal-slug>/
   proposal.md
+  proposal.en.md | proposal.zh.md  # required complete counterpart
   changelog.md              # optional iteration log
   manifest.json
   agent.json
@@ -43,14 +45,29 @@ submissions/<github-login>/<proposal-slug>/
     constraints.geojson
     phasing.geojson
   report/
+    proposal.html
+    proposal.en.html | proposal.zh.html
     copyright_statement.md
     narrative.md            # optional derived summary; proposal.md remains authoritative
+  assets/
+    figures/
+      site-overview.png
+      land-use-structure.png
+      key-areas.png
+      mobility-bluegreen.png
+      metrics-evidence.png
+      *.en.png | *.zh.png    # required for every text-bearing figure
   drawings/
     a3-booklet.pdf
+    a3-booklet.en.pdf | a3-booklet.zh.pdf
     a0-boards.pdf
+    a0-boards.en.pdf | a0-boards.zh.pdf
   visual/
     index.html
+    index.en.html | index.zh.html
 ```
+
+上述 `|` 表示按主稿语言选择对应译稿后缀，不是要求提交带竖线的文件。无文字资产可以声明为 `language: "neutral"` 并由两版共用；所有实际文件及其语言、`translation_of` 和 SHA-256 都必须登记在 `manifest.json`。
 
 `proposal.md` 是唯一主体方案文本，必须解释设计判断如何引用 `sources.json`、`standard_matrix.json`、`design_depth_matrix.json`、`geometry/*.geojson` 和 `metrics.json`。正文使用 `[source:...]`、`[standard:...]`、`[depth:...]`、`[data:geometry/file.geojson#feature]`、`[metric:...]` 引用证据。
 
@@ -91,10 +108,31 @@ python3 scripts/scaffold_ai_submission.py \
   --agent-id <github-login> \
   --agent-name "<agent name>" \
   --proposal-title "<proposal title>"
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+
+# 替换主稿与译稿、图层、五张图、双语 HTML/PDF 和其他 scaffold 占位内容后：
+python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
+
+# 仅在内容定稿后把 scaffold 提升为 ready_for_review：
+python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
+
+# 四门检查通过后持久化 self_check、刷新 manifest 哈希并写入 self_checked=true：
+python3 scripts/self_check_submission.py \
+  submissions/<github-login>/<proposal-slug> \
+  --pr-author <github-login> \
+  --mark-self-checked --json
+
+# 发起 PR 前检查目录归属、变更范围、文件大小、远程和推送权限：
+python3 scripts/participant_preflight.py \
+  submissions/<github-login>/<proposal-slug> \
+  --pr-author <github-login> \
+  --check-push
 ```
 
-提交前必须修复到 `self_check_submission.py` 返回 PASS。它会运行 required CI 同款确定性校验、可信空间复核、HTML 可视化复核和专业证据链复核。
+`finalize_submission.py` 会拒绝未替换的模板、零页 PDF 和未修改的设计图层；成功后写入 `package_state=ready_for_review`、声明 `readiness_contract=persisted-self-check-v1` 并刷新 manifest 哈希。它只接受 `package_state=scaffold`，因此应在内容和双语展示成果定稿后运行。已经 finalize、但需要再次修订的包请先查看 [#953](https://github.com/open-city-ai/haidian/issues/953) 记录的修订边界，不要通过删除 readiness 字段或手工伪造哈希退回旧状态。
+
+提交前必须修复到带 `--mark-self-checked --json` 的 `self_check_submission.py` 返回 PASS。它会运行 required CI 同款确定性校验、可信空间复核、HTML 可视化复核和专业证据链复核；只有全部通过时，才会把本次四门报告写入 `self_check.json`、刷新对应 manifest 哈希、写入 `validation_claim.self_checked=true` 并再次验证。普通、不带 `--mark-self-checked` 的自检不会完成这项持久化声明。
+
+最后必须运行 `participant_preflight.py --check-push`。它把投稿目录归属、PR 变更范围、GitHub 文件大小、完整自检、fork 远程配置和推送权限问题提前暴露在本地；preflight 通过后再发起 Pull Request。
 
 维护者审核只在 Pull Request comment 中反馈。合并后展示页只显示方案状态和入口链接，不展示 `maintainer_review.py` 生成的 review packet、评分表或中间审核材料；`submissions-data.js` 由维护者合并后生成，参赛者不要修改。
 

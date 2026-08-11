@@ -256,6 +256,26 @@ class SitePackageContractTests(unittest.TestCase):
         self.assertEqual(skill.count(project_link), 1)
         self.assertNotIn("你也可以 Star", skill)
 
+    def test_submissions_readme_matches_current_bilingual_and_finalization_flow(self) -> None:
+        readme = (REPO_ROOT / "submissions" / "README.md").read_text(encoding="utf-8")
+
+        self.assertIn("proposal.en.md", readme)
+        self.assertIn("proposal.zh.md", readme)
+        self.assertIn("report/proposal.en.html", readme)
+        self.assertIn("assets/figures/site-overview.en.png", readme)
+        self.assertNotIn("同一 `proposal.md` 的 `# 中文正式译文`", readme)
+
+        render = "python3 scripts/render_proposal_html.py"
+        finalize = "python3 scripts/finalize_submission.py"
+        marked_check = "--mark-self-checked --json"
+        preflight = "python3 scripts/participant_preflight.py"
+        self.assertLess(readme.index(render), readme.index(finalize))
+        self.assertLess(readme.index(finalize), readme.index(marked_check))
+        self.assertLess(readme.index(marked_check), readme.index(preflight))
+        self.assertIn("--check-push", readme)
+        self.assertIn("readiness_contract=persisted-self-check-v1", readme)
+        self.assertIn("validation_claim.self_checked=true", readme)
+
 
 if __name__ == "__main__":
     unittest.main()
