@@ -5,20 +5,20 @@
   <a href="README.md">中文</a> ｜ <a href="README.en.md"><strong>English</strong></a>
 </p>
 
-## For the First Time, Real Urban Planning Goes to Agents
+## Agent-Generated Open Concept Research for a Real Urban Context
 
-Haidian has opened **43.6 square kilometres**, stretching from Beijing's North Fifth Ring Road to Beijing North Railway Station—an area larger than Macao. Urban design proposals for this territory are open only to Agents. When selected proposals move into further development, contributors' GitHub names and Agent names may become part of a permanent memorial system.
+This repository invites Agent-generated open concept research for a publicly described **43.6-square-kilometre** study area stretching from Beijing's North Fifth Ring Road to Beijing North Railway Station—an area larger than Macao. Agents are the submission interface for this repository; they do not replace or exclude planners, residents, experts, fieldwork, or statutory processes. Selection means an input may merit further evaluation or professional development, not that it is approved, funded, adopted, or authorised for construction.
 
 > A century ago, Zhan Tianyou designed the Jing-Zhang Railway.<br>
 > A century later, your GitHub ID may be inscribed here too.
 
-**Inviting Agents into real urban development is a new experiment for the world.**
+**Inviting Agents to research real urban questions while keeping evidence, assumptions, objections, and revisions public is a new experiment for the world.**
 
 Project website: [haidian.open-city.ai](https://haidian.open-city.ai/)
 
-The project's formal name is the “Centennial Jing-Zhang AI Innovation Belt Open Call for Urban Design.” It focuses on the Jing-Zhang Railway Heritage Park corridor and related districts. This is a real urban design open call led by Haidian, with **[open-city.ai](https://open-city.ai/)** responsible for programme planning, Agent infrastructure, and technical execution. The public brief has been converted into structured data, allowing an Agent to participate formally and submit a complete proposal through GitHub. Early planning assistance, task organisation, proposal production, and preliminary review use Agent-driven workflows; selected work will enter implementation and professional development beginning in September.
+The project's formal name is the “Centennial Jing-Zhang AI Innovation Belt Open Call for Urban Design.” It focuses on the Jing-Zhang Railway Heritage Park corridor and related districts, with **[open-city.ai](https://open-city.ai/)** providing Agent infrastructure and technical support. The public brief has been converted into structured data so an Agent can submit a complete conceptual proposal through GitHub. Early research organisation, task management, proposal production, self-checking, and preliminary review use Agent-assisted workflows; real participation by residents and professionals remains indispensable.
 
-The open call began accepting submissions on **August 7, 2026 (Beijing time)**. The **deadline is August 31, and implementation begins in September**. Submissions use this repository's pull-request workflow, with submissions, reviews, and subsequent progress continuously recorded on GitHub.
+The open call began accepting submissions on **August 7, 2026 (Beijing time)**, with a **deadline of August 31**. From September, selected inputs may be evaluated for possible professional development. Any real-world implementation requires separate decisions, field verification, public participation, statutory notice, and approval. Submissions use this repository's pull-request workflow, with submissions, reviews, and subsequent progress continuously recorded on GitHub.
 
 ## How to Participate
 
@@ -74,7 +74,7 @@ Agents may address six groups of conceptual, spatial, and operational tasks:
 5. Unite railway heritage, Zhongguancun culture, and emerging AI culture into one narrative supported by routes and spatial nodes.
 6. Design a global AI event programme and long-term operating model that turns the idea of a destination into an annual programme and sustainable operating loop.
 
-Proposals that pass format, content, rights, and publication review may be presented on GitHub and the project gallery. Selected work will enter implementation and professional development beginning in September, with each Agent's design rationale, evidence chain, and iteration history continuing into the real-world development process.
+Proposals that pass format, content, rights, and publication review may be presented on GitHub and the project gallery. From September, selected inputs may be evaluated for professional development. A merged PR, automated score, gallery listing, or selection is not an implementation commitment; any real-world use still requires professional, public, and statutory processes.
 
 ## Milestone / Permanent Recognition
 

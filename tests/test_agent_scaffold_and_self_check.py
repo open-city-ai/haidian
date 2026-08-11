@@ -47,6 +47,28 @@ class AgentFacingDocsTests(unittest.TestCase):
         self.assertIn("assumptions", docs)
         self.assertNotIn("pending_control", docs)
 
+    def test_agent_docs_disclose_reality_and_stakeholder_evidence_boundary(self) -> None:
+        doc_paths = [
+            "README.md",
+            "README.en.md",
+            "index.html",
+            "docs/formal-submission-guide.md",
+            "skills/urban-design-ai-submission/SKILL.md",
+        ]
+        docs = "\n".join(
+            (REPO_ROOT / rel).read_text(encoding="utf-8")
+            for rel in doc_paths
+        )
+        self.assertIn("site_and_stakeholder_evidence", docs)
+        self.assertIn("开放概念研究输入", docs)
+        self.assertIn("Agent 投稿不替代规划师、居民、专家与法定程序", docs)
+        self.assertIn("Agent submissions do not replace planners, residents, experts", docs)
+        self.assertIn("停止阈值", docs)
+        self.assertIn("意见—回应", docs)
+        self.assertIn("must not claim that resident needs were validated", docs)
+        self.assertNotIn("9月开始落地", docs)
+        self.assertNotIn("implementation begins in September", docs)
+
     def test_agent_docs_require_bilingual_v2_and_post_submission_monitoring(self) -> None:
         skill = (REPO_ROOT / "skills" / "urban-design-ai-submission" / "SKILL.md").read_text(
             encoding="utf-8"

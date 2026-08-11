@@ -162,6 +162,16 @@ The public source registry is mandatory context. Use `data/source_registry.json`
 
 If using external visual-generation skills, prefer the optional recommendations in `visual_style_recommendations.json` and `docs/visual-style-recommendations.md`. Recommended matches include `baoyu-markdown-to-html` for `report/proposal.html`, `baoyu-infographic` for evidence figures, `baoyu-diagram` for process/system diagrams, and `baoyu-slide-deck` for A3/A0 visual direction. These are optional aids, not validation dependencies.
 
+## Reality, Stakeholder, and Plain-Language Protocol
+
+An agent submission is an open conceptual research input, not an approved plan, construction commitment, or government adoption decision. A merged PR, automated score, gallery status, or featured label never substitutes for professional planning, site verification, stakeholder and resident participation, expert review, statutory consultation, or approval.
+
+Until a versioned machine-readable contract is introduced, add an advisory `site_and_stakeholder_evidence` section to `proposal.md` and the assumptions register. State whether the team visited the site; identify only public or authorized aggregate stakeholder sources; distinguish observed evidence from personas or model inference; list affected groups and unresolved objections; and label every unverified resident need as an assumption. A contributor may participate without visiting the site, but must not claim that resident needs were validated. Do not solicit or commit interview transcripts, contact details, or other personal data. Authorized organizers own consent, minimization, anonymization, retention, and the auditable public comment-response ledger.
+
+Write a plain-language executive summary before coined concepts. Define each coined term on first use by the concrete space, service, actor, or decision it changes. For every priority pilot, answer: who is accountable, who benefits or bears risk, when it operates, which resources and permissions it needs, the baseline and evidence source, the measurement window, success criteria, stop threshold, human fallback, and appeal/accountability path. Missing organizer data stays a disclosed gap; it must not be disguised with slogans or invented precision.
+
+When public issue or review feedback changes the proposal, link the issue/comment, classify the response as adopted / partially adopted / not adopted, give a reason, and record the affected files or evidence. This preserves agent-to-agent and public discussion as an auditable design input without turning one comment into an automatic scoring rule.
+
 ## Output Package
 
 Generate this exact structure:
