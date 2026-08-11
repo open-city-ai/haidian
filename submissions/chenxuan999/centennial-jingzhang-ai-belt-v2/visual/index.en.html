@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Jing-Zhang RenLine Belt — Offline Visualization</title>
+<style>
+  :root { --ink:#1a2433; --muted:#5a6b7d; --line:#c9d4e0; --bg:#f7f9fc; --accent:#2f7fb8; --warn:#d95f02; --ok:#41ab5d; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+  header.top { background: var(--ink); color: white; padding: 18px 28px; }
+  header.top h1 { margin: 0 0 4px; font-size: 22px; letter-spacing: 0.5px; }
+  header.top p { margin: 0; font-size: 12.5px; color: #cfd6df; }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 28px; background: white; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  nav.tabs a { font-size: 12.5px; color: var(--muted); text-decoration: none; padding: 5px 11px; border-radius: 12px; background: var(--bg); }
+  nav.tabs a:hover { background: var(--accent); color: white; }
+  main { padding: 18px 28px 60px; max-width: 1280px; margin: 0 auto; }
+  section { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 18px 22px; margin-bottom: 18px; }
+  section h2 { margin: 0 0 12px; font-size: 17px; color: var(--ink); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 4px; }
+  section h3 { margin: 8px 0; font-size: 14px; color: var(--accent); }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .card { background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 12px 14px; }
+  .card .num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .card .lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card .sub { font-size: 11px; color: #7a8699; margin-top: 6px; }
+  figure { margin: 0; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 4px; }
+  figcaption { font-size: 11.5px; color: var(--muted); padding: 6px 4px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; }
+  .legend .item { display: inline-flex; align-items: center; font-size: 12px; color: var(--muted); padding: 3px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 11px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; display: inline-block; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 11.5px; margin-right: 4px; }
+  .pill.ok { background: #e6f5ea; color: var(--ok); border: 1px solid #c0e3c8; }
+  .pill.warn { background: #fff5e6; color: var(--warn); border: 1px solid #f3d9a8; }
+  .meta-list { columns: 2; font-size: 12.5px; color: var(--muted); }
+  .meta-list li { break-inside: avoid; margin-bottom: 3px; }
+  .prov { color: var(--warn); font-style: italic; }
+  footer { text-align: center; color: var(--muted); font-size: 11px; padding: 12px 0 30px; }
+  @media (max-width: 720px) { main { padding: 12px; } nav.tabs { padding: 8px 10px; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Jing-Zhang RenLine Belt — Offline Visualization</h1>
+  <p>Centennial Jing-Zhang AI Innovation Belt Urban Design · Formal submission package · Author GitHub ID: <strong>chenxuan999</strong> · Language: Chinese (primary) / English (translation) · All boundaries are provisional</p>
+</header>
+<nav class="tabs" aria-label="section navigation">
+  <a href="#overview">Overview</a>
+  <a href="#scope">Three-Level Scope</a>
+  <a href="#key">Key Areas</a>
+  <a href="#landuse">Land Use</a>
+  <a href="#mobility">Mobility</a>
+  <a href="#bluegreen">Blue-Green Public Space</a>
+  <a href="#buildings">Buildings</a>
+  <a href="#phasing">Renewal Projects</a>
+  <a href="#scenarios">AI Scenarios</a>
+  <a href="#metrics">Core Metrics</a>
+  <a href="#tasks">Task Coverage</a>
+  <a href="#selfcheck">Self-Check Status</a>
+  <a href="#sources">Sources</a>
+  <a href="#assumptions">Assumptions</a>
+</nav>
+<main>
+
+<section id="overview">
+  <h2>Overview Map</h2>
+  <div class="legend">
+    <span class="item"><span class="dot" style="background:#2f7fb8"></span>Zhongzhiyuan</span>
+    <span class="item"><span class="dot" style="background:#e08214"></span>AI Origin Community</span>
+    <span class="item"><span class="dot" style="background:#41ab5d"></span>Dazhongsi</span>
+    <span class="item"><span class="dot" style="background:#7a5fb0"></span>Two Wings</span>
+  </div>
+  <figure>
+    <img src="../assets/figures/site-overview.en.png" alt="Jing-Zhang RenLine Belt overview">
+    <figcaption>Figure 1 · Overview — One Stroke, One Dot, One Rail · Three Zones, Two Wings, One Origin (boundaries provisional)</figcaption>
+  </figure>
+</section>
+
+<section id="scope">
+  <h2>Three-Level Scope</h2>
+  <div class="row">
+    <div class="card" data-metric="site_area_sqm" data-value="11412825.386">
+      <div class="num">11,412,825.4 m²</div>
+      <div class="lbl">Overall Design Area (EPSG:4548)</div>
+      <div class="sub">provisional · ≈ 11.4 km²</div>
+    </div>
+    <div class="card" data-metric="key_area_count" data-value="3">
+      <div class="num">3</div>
+      <div class="lbl">Key-Area Detailed Design Areas</div>
+      <div class="sub">all provisional</div>
+    </div>
+    <div class="card">
+      <div class="num">43.6 km²</div>
+      <div class="lbl">Coordinated Research Area (announced)</div>
+      <div class="sub">industry and future city research</div>
+    </div>
+  </div>
+</section>
+
+<section id="key">
+  <h2>Key Areas</h2>
+  <div class="row">
+    <div class="card" data-metric="key_area_zhongzhiyuan_area_sqm" data-value="1929201.877">
+      <div class="num">1,929,201.877 m²</div>
+      <div class="lbl">Zhongzhiyuan AI Independent Innovation Acceleration Area</div>
+      <div class="sub">garden-style full-stack district (provisional)</div>
+    </div>
+    <div class="card" data-metric="key_area_origin_area_sqm" data-value="1043236.909">
+      <div class="num">1,043,236.909 m²</div>
+      <div class="lbl">Beijing AI Origin Community</div>
+      <div class="sub">near-campus commercialization (provisional)</div>
+    </div>
+    <div class="card" data-metric="key_area_dazhongsi_area_sqm" data-value="720454.221">
+      <div class="num">720,454.221 m²</div>
+      <div class="lbl">Dazhongsi AI Industry Cluster</div>
+      <div class="sub">urban intelligent economy (provisional)</div>
+    </div>
+  </div>
+  <figure style="margin-top:14px">
+    <img src="../assets/figures/key-areas.en.png" alt="Three key areas detailed design">
+    <figcaption>Figure 3 · Key areas detailed design direction (provisional polygons)</figcaption>
+  </figure>
+</section>
+
+<section id="landuse">
+  <h2>Land Use</h2>
+  <div class="row">
+    <div class="card" data-metric="land_use_0802_area_sqm" data-value="3384158.5">
+      <div class="num">3,384,158.5 m²</div>
+      <div class="lbl">0802 Research (29.7%)</div>
+      <div class="sub">main AI industry space</div>
+    </div>
+    <div class="card" data-metric="land_use_0701_area_sqm" data-value="2768342.2">
+      <div class="num">2,768,342.2 m²</div>
+      <div class="lbl">0701 Residential (24.3%)</div>
+      <div class="sub">existing + talent community</div>
+    </div>
+    <div class="card" data-metric="land_use_0702_area_sqm" data-value="1943373.0">
+      <div class="num">1,943,373.0 m²</div>
+      <div class="lbl">0702 Community Service (17.0%)</div>
+      <div class="sub">community service nodes</div>
+    </div>
+    <div class="card" data-metric="land_use_05_area_sqm" data-value="1060409.4">
+      <div class="num">1,060,409.4 m²</div>
+      <div class="lbl">05 Commercial Services (9.3%)</div>
+      <div class="sub">intelligent consumption + tech services</div>
+    </div>
+    <div class="card" data-metric="land_use_0804_area_sqm" data-value="711540.9">
+      <div class="num">711,540.9 m²</div>
+      <div class="lbl">0804 Education (6.2%)</div>
+      <div class="sub">near-campus support</div>
+    </div>
+    <div class="card" data-metric="land_use_1401_area_sqm" data-value="1314607.5">
+      <div class="num">1,314,607.5 m²</div>
+      <div class="lbl">1401 Park Green (11.5%)</div>
+      <div class="sub">Jing-Zhang blue-green spine</div>
+    </div>
+    <div class="card" data-metric="land_use_1402_area_sqm" data-value="59709.4">
+      <div class="num">59,709.4 m²</div>
+      <div class="lbl">1402 Protection Green (0.5%)</div>
+      <div class="sub">Fifth Ring buffer</div>
+    </div>
+    <div class="card" data-metric="land_use_1403_area_sqm" data-value="170711.6">
+      <div class="num">170,711.6 m²</div>
+      <div class="lbl">1403 Plaza (1.5%)</div>
+      <div class="sub">AI Origin plaza node</div>
+    </div>
+  </div>
+  <figure style="margin-top:14px">
+    <img src="../assets/figures/land-use-structure.en.png" alt="Land-use structure">
+    <figcaption>Figure 2 · Land-use structure — One Stroke, One Dot, One Rail · Three Zones, Two Wings (24 cells, gap-free)</figcaption>
+  </figure>
+</section>
+
+<section id="mobility">
+  <h2>Mobility</h2>
+  <div class="row">
+    <div class="card" data-metric="road_centerline_length_m" data-value="12873.365">
+      <div class="num">≈ 12.9 km</div>
+      <div class="lbl">Slow-mobility spine (conceptual centerline length)</div>
+      <div class="sub">walking + cycling composite, not redline</div>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <div class="lbl">District connector roads</div>
+      <div class="sub">Dazhongsi S / Origin E-W / Zhongzhiyuan outward</div>
+    </div>
+    <div class="card">
+      <div class="num">5</div>
+      <div class="lbl">Public activity nodes</div>
+      <div class="sub">S / Dazhongsi / mid / AI Origin / N</div>
+    </div>
+  </div>
+  <figure style="margin-top:14px">
+    <img src="../assets/figures/mobility-bluegreen.en.png" alt="Mobility and blue-green composite">
+    <figcaption>Figure 4 · Mobility and blue-green public space composite (conceptual schematics)</figcaption>
+  </figure>
+</section>
+
+<section id="bluegreen">
+  <h2>Blue-Green Public Space</h2>
+  <div class="row">
+    <div class="card" data-metric="green_space_area_sqm" data-value="1545028.498">
+      <div class="num">1,545,028.5 m²</div>
+      <div class="lbl">Green area</div>
+      <div class="sub">park + protection + plaza</div>
+    </div>
+    <div class="card" data-metric="green_ratio" data-value="0.135377">
+      <div class="num">13.54%</div>
+      <div class="lbl">Green ratio (conceptual-indicative)</div>
+      <div class="sub">conceptual value, not official; official green ratio pending</div>
+    </div>
+    <div class="card" data-metric="public_space_area_sqm" data-value="995421.157">
+      <div class="num">995,421.2 m²</div>
+      <div class="lbl">Public space area</div>
+      <div class="sub">Jing-Zhang activity spine 5 nodes</div>
+    </div>
+    <div class="card" data-metric="public_space_ratio" data-value="0.08722">
+      <div class="num">8.72%</div>
+      <div class="lbl">Public space ratio (conceptual)</div>
+      <div class="sub">overlaps with green</div>
+    </div>
+  </div>
+</section>
+
+<section id="buildings">
+  <h2>Buildings</h2>
+  <div class="row">
+    <div class="card" data-metric="building_footprint_area_sqm" data-value="2509609.344">
+      <div class="num">2,509,609.3 m²</div>
+      <div class="lbl">Conceptual building footprint</div>
+      <div class="sub">28 conceptual massing blocks</div>
+    </div>
+    <div class="card" data-metric="ai_industry_space_sqm" data-value="4095709.4">
+      <div class="num">4,095,709.4 m²</div>
+      <div class="lbl">AI industry-space conceptual supply</div>
+      <div class="sub">research + commercial (35.9%)</div>
+    </div>
+    <div class="card" data-metric="talent_service_space_sqm" data-value="711540.9">
+      <div class="num">711,540.9 m²</div>
+      <div class="lbl">Talent education-research support</div>
+      <div class="sub">0804 education land</div>
+    </div>
+  </div>
+</section>
+
+<section id="phasing">
+  <h2>Renewal Projects</h2>
+  <table>
+    <thead><tr><th>No.</th><th>Project</th><th>Type</th><th>Phase</th></tr></thead>
+    <tbody>
+      <tr><td>JZ-01</td><td>Jing-Zhang slow-mobility gap stitching</td><td>Public space / transport</td><td>Near</td></tr>
+      <tr><td>JZ-02</td><td>Zhongzhiyuan Qing River innovation front</td><td>Blue-green / showcase</td><td>Mid</td></tr>
+      <tr><td>JZ-03</td><td>Origin near-campus commercialization street</td><td>Renewal / industry</td><td>Near</td></tr>
+      <tr><td>JZ-04</td><td>Dazhongsi four-quadrant pedestrian connectivity</td><td>Station integration</td><td>Long</td></tr>
+      <tr><td>JZ-05</td><td>AI public services and edge-computing nodes</td><td>New infrastructure</td><td>Mid</td></tr>
+      <tr><td>JZ-06</td><td>Global AI week public route</td><td>Operations / brand</td><td>Near</td></tr>
+    </tbody>
+  </table>
+  <div class="row" style="margin-top:14px">
+    <div class="card" data-metric="renewal_project_count" data-value="6">
+      <div class="num">6</div>
+      <div class="lbl">Renewal projects (conceptual)</div>
+      <div class="sub">near / mid / long</div>
+    </div>
+    <div class="card" data-metric="phase_001_area_sqm" data-value="5978284.1">
+      <div class="num">5,978,284.1 m²</div>
+      <div class="lbl">Near-term (PHASE-001)</div>
+      <div class="sub">0–3 years</div>
+    </div>
+    <div class="card" data-metric="phase_002_area_sqm" data-value="3922791.8">
+      <div class="num">3,922,791.8 m²</div>
+      <div class="lbl">Mid-term (PHASE-002)</div>
+      <div class="sub">3–6 years</div>
+    </div>
+    <div class="card" data-metric="phase_003_area_sqm" data-value="1511756.4">
+      <div class="num">1,511,756.4 m²</div>
+      <div class="lbl">Long-term (PHASE-003)</div>
+      <div class="sub">6–10 years</div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <h2>AI Scenarios</h2>
+  <div class="row">
+    <div class="card" data-metric="ai_scenario_node_count" data-value="10">
+      <div class="num">10</div>
+      <div class="lbl">AI scenario cards (3 validation)</div>
+      <div class="sub">conceptual recommendations only</div>
+    </div>
+    <div class="card" data-metric="persona_count" data-value="5">
+      <div class="num">5</div>
+      <div class="lbl">User personas</div>
+      <div class="sub">R&D / startup / student / resident / international</div>
+    </div>
+  </div>
+</section>
+
+<section id="metrics">
+  <h2>Core Metrics</h2>
+  <figure>
+    <img src="../assets/figures/metrics-evidence.en.png" alt="Core metrics evidence chain">
+    <figcaption>Figure 5 · Core metrics evidence chain — Geometry (GeoJSON, EPSG:4548) → Metrics → Figures/HTML → Self-Check (PASS)</figcaption>
+  </figure>
+</section>
+
+<section id="tasks">
+  <h2>Task Coverage</h2>
+  <p style="font-size:13px;color:var(--muted);">The compliance matrix covers all 17 announcement tasks (1.3.1–1.5.3.3) and six agent tasks (agent.1–agent.6); see <code>compliance_matrix.json</code>.</p>
+  <ul class="meta-list">
+    <li>1.3.1 World-class AI innovation ecosystem</li>
+    <li>1.3.2 New city form for AI productive forces</li>
+    <li>1.3.3 High-quality district for global AI talent</li>
+    <li>1.4.1 / 1.4.2 / 1.4.3 Three-level scope</li>
+    <li>1.5.1.1 / 1.5.1.2 Coordinated research area</li>
+    <li>1.5.2.1 ~ 1.5.2.5 Overall design area</li>
+    <li>1.5.3.1 / 1.5.3.2 / 1.5.3.3 Key-area detailed design</li>
+    <li>agent.1 Concept and function integration</li>
+    <li>agent.2 Full-stack and ecosystem design</li>
+    <li>agent.3 AI-enabled scenarios and vibrant city</li>
+    <li>agent.4 Public space and pilgrimage landmarks</li>
+    <li>agent.5 Cultural narrative</li>
+    <li>agent.6 Long-term operations</li>
+  </ul>
+</section>
+
+<section id="selfcheck">
+  <h2>Self-Check Status</h2>
+  <div class="row">
+    <div class="card"><div class="num"><span class="pill ok">Land-use topology PASS</span></div><div class="lbl">full coverage, gap-free, overlap-free</div></div>
+    <div class="card"><div class="num"><span class="pill ok">Spatial recalculation PASS</span></div><div class="lbl">core area and ratio match geometry (±1%)</div></div>
+    <div class="card"><div class="num"><span class="pill ok">Professional evidence PASS</span></div><div class="lbl">5 standards / 15 depth / 27 metrics covered</div></div>
+    <div class="card"><div class="num"><span class="pill ok">Visual packaging PASS</span></div><div class="lbl">offline, no remote, no iframe/API/trackers</div></div>
+  </div>
+  <p style="margin-top:10px;font-size:12px;color:var(--muted);">All boundaries are <span class="prov">provisional</span>; full recalculation required when official polygons arrive.</p>
+</section>
+
+<section id="sources">
+  <h2>Sources</h2>
+  <ul class="meta-list">
+    <li>SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT: Prequalification announcement (A0)</li>
+    <li>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK: agent taskbook (user cleared)</li>
+    <li>SRC-2026-BJ-KW-THREE-AREAS-WINGS: Three Zones and Two Wings</li>
+    <li>SRC-2026-HAIDIAN-1X1: Haidian 1+X+1 industry system</li>
+    <li>SRC-PROVISIONAL-BOUNDARIES-2026: provisional rough boundaries</li>
+    <li>SRC-2017-MOHURD-URBAN-DESIGN-MEASURES: MOHURD urban design</li>
+    <li>SRC-MOHURD-CONTROL-DETAILED-PLANNING: regulatory detailed planning</li>
+    <li>SRC-2023-MNR-LAND-USE-CLASSIFICATION: MNR land-use guide</li>
+    <li>SRC-GENERATIVE-AI-INTERIM-MEASURES: generative AI interim measures</li>
+    <li>SRC-2023-BARRIER-FREE-ENVIRONMENT-LAW: barrier-free environment law</li>
+    <li>SRC-DESIGN-PROPOSAL-RENLINE: self-generated design content</li>
+  </ul>
+</section>
+
+<section id="assumptions">
+  <h2>Assumptions</h2>
+  <ul class="meta-list">
+    <li>A-BOUNDARY-001: all boundaries provisional</li>
+    <li>A-CONTROLS-001: regulatory conditions missing</li>
+    <li>A-BUILDINGS-001: building footprints conceptual</li>
+    <li>A-ROADS-001: road centerlines conceptual</li>
+    <li>A-GREEN-001: green and public space derived</li>
+    <li>A-HERITAGE-001: heritage layers pending</li>
+    <li>A-UTILITIES-001: municipal baselines missing</li>
+    <li>A-OPERATION-001: operating architecture conceptual</li>
+    <li>A-SCENARIO-001: scenario cards conceptual</li>
+    <li>A-PHASING-001: phasing conceptual</li>
+  </ul>
+</section>
+
+</main>
+<footer>Jing-Zhang RenLine Belt · Centennial Jing-Zhang AI Innovation Belt Urban Design · Author chenxuan999 · This page is an offline static exhibit; no remote resources, scripts, or trackers.</footer>
+</body>
+</html>

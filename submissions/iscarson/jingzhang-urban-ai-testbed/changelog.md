@@ -1,5 +1,14 @@
 # 方案迭代记录
 
+## v0.4 - 2026-08-11
+
+- Kept all ten bilingual PNG figures and four PDF deliverables byte-for-byte unchanged.
+- Reconciled the eight-interface claim with the spatial data: six interfaces reference conceptual transverse lines, while the Beijing North throat and Qinghuayuan Tunnel portal transition remain register-only until lawful-crossing evidence exists.
+- Added nine bilingual key-area work packages and twelve scenario-space-operation links, each with an ordinary baseline, accountable operating unit, evidence output, and stop/restoration rule.
+- Added two explicitly fictional City Release tabletop receipts—one pass and one stop—to demonstrate hard-gate decisions without presenting synthetic values as field results.
+- Defined the Centennial Public Proof Register, developer-community entry and exit, brand/IP governance, and four candidate annual operating units with expiry and revocation rules.
+- Updated both proposals, offline visual pages, compliance mappings, metric records, rendered HTML, package hashes, and self-check metadata.
+
 ## v0.3 - 2026-08-11
 
 - Kept all ten bilingual PNG figures and four PDF deliverables byte-for-byte unchanged.

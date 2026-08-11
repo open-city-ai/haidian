@@ -25,6 +25,7 @@ DEFAULT_SPARSE_PATHS = (
     "/scenarios",
     "/sources",
     "/templates",
+    "/tracks.json",
     "/requirements-review.txt",
     "/requirements-translation.txt",
 )
@@ -36,6 +37,7 @@ REQUIRED_FILES = (
     "scripts/scaffold_ai_submission.py",
     "scripts/self_check_submission.py",
     "requirements-review.txt",
+    "tracks.json",
 )
 REQUIRED_DIRECTORIES = ("scenarios",)
 GITHUB_LOGIN_RE = re.compile(r"^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$")

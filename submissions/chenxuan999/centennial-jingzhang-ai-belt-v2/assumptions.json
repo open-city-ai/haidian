@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_data",
+      "statement": "三层范围与三处重点区域均使用仓库 provisional 粗略多边形（PROV-SITE-001、PROV-RESEARCH-001、PROV-KEY-SCOPE-001、PROV-KEY-001/002/003），由公告文字四至、位置线索与约面积在 EPSG:4548 下推定。",
+      "impact": "所有面积与空间结论仅可用于设计讨论与 intake 自检；官方 polygon 发布后必须重新生成全部图层、图纸、HTML 与指标，不能只替换单个边界文件。",
+      "recalc_trigger": "official boundary / key-area polygon 发布或清权 CAD/GIS/PDF 入库"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、建筑密度、绿地率、退线、建筑控制线、道路红线等控规条件未包含在清权站点包中，本方案不虚构上述法定指标。",
+      "impact": "正文与指标中的开发强度相关内容均为概念性引导方向，标注为待正式数据补齐；不构成规划许可或审批依据。",
+      "recalc_trigger": "官方控规条件附件或资格预审文件入库"
+    },
+    {
+      "id": "A-METRIC-FAR-001",
+      "status": "unknown_metric",
+      "statement": "指标 floor_area_ratio（容积率）未知：官方控规容积率控制条件与精确用地边界未包含在清权站点包中，本方案不虚构容积率数值。",
+      "impact": "metrics.json 中 floor_area_ratio 保持 status=unknown、value=null；正文不给出任何地块容积率结论。",
+      "prerequisites": "需要官方控规条件附件（容积率分区图/表）或资格预审文件中的开发强度控制要求入库后，以 total_floor_area_sqm / official_site_area_sqm 复算",
+      "recalc_trigger": "官方控规容积率条件或清权 CAD/GIS 附件入库"
+    },
+    {
+      "id": "A-METRIC-HEIGHT-001",
+      "status": "unknown_metric",
+      "statement": "指标 building_height_m（建筑高度）未知：官方高度控制条件（含航空、景观、文保等约束）未包含在清权站点包中。",
+      "impact": "metrics.json 中 building_height_m 保持 status=unknown、value=null；正文仅给概念性体量引导方向，不给出审定高度数值。",
+      "prerequisites": "需要官方批准的建筑高度控制（或航空限高、景观视廊、文保建控地带等约束图层）入库后复算",
+      "recalc_trigger": "官方高度控制条件或相关约束图层入库"
+    },
+    {
+      "id": "A-METRIC-DENSITY-001",
+      "status": "unknown_metric",
+      "statement": "指标 building_density（建筑密度）未知：官方建筑密度控制条件未包含在清权站点包中。",
+      "impact": "metrics.json 中 building_density 保持 status=unknown、value=null；正文不主张建筑密度审定值。",
+      "prerequisites": "需要官方控规建筑密度控制条件（或分地块密度分区）与精确地块边界入库后，以 building_footprint_area / parcel_area 复算",
+      "recalc_trigger": "官方建筑密度控制条件或清权地块图层入库"
+    },
+    {
+      "id": "A-METRIC-GREEN-001",
+      "status": "unknown_metric",
+      "statement": "指标 green_ratio_official（官方绿地率）未知：官方绿地率控制条件与绿地系统规划范围未包含在清权站点包中。",
+      "impact": "metrics.json 中 green_ratio_official 保持 status=unknown、value=null；本方案概念绿地率 13.54%（green_ratio）仅供设计讨论，不主张为审批指标。",
+      "prerequisites": "需要官方绿地率控制条件或绿地系统专项规划入库后，以 official_green_area / official_site_area 复算",
+      "recalc_trigger": "官方绿地率条件或绿地系统专项规划入库"
+    },
+    {
+      "id": "A-METRIC-SLOW-001",
+      "status": "unknown_metric",
+      "statement": "指标 slow_corridor_continuity_index（慢行连通指数）未知：现状慢行断点底数与官方道路红线未包含在清权站点包中。",
+      "impact": "metrics.json 中 slow_corridor_continuity_index 保持 status=unknown、value=null；交通慢行结论为方向性设计。",
+      "prerequisites": "需要现状慢行断点调查底数、官方道路红线与轨道站点边界入库后，以 continuous_slow_corridor_length / planned_corridor_length 复算",
+      "recalc_trigger": "现状慢行底数、道路红线、轨道站点边界入库"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "conceptual_design",
+      "statement": "建筑基底为概念性体量示意（每建设格网 2 个示意体块），用于表达产业与生活空间供给逻辑，不代表现状建筑轮廓、权属或已批准建设规模。",
+      "impact": "建筑相关面积与拆改留结论仅用于设计讨论；现状建筑、权属与更新状态需官方底图补齐后重做。",
+      "recalc_trigger": "现状建筑轮廓/高度/层数/用途/建成年代或权属图层入库"
+    },
+    {
+      "id": "A-ROADS-001",
+      "status": "conceptual_design",
+      "statement": "道路中心线为概念性示意，表达京张带慢行主脊与三处片区联络逻辑，不代表道路红线、断面或线形工程方案。",
+      "impact": "交通相关结论（微循环、慢行断点、轨道接驳）为方向性设计；道路红线与轨道站点边界补齐后重算。",
+      "recalc_trigger": "道路红线、断面、轨道站点边界、客流数据入库"
+    },
+    {
+      "id": "A-GREEN-001",
+      "status": "conceptual_design",
+      "statement": "绿地与公共空间由设计用地 1401/1402/1403 派生，反映京张轨道蓝绿主脊与节点绿地概念；公园绿地与公共空间存在复合关系，不重复计入总体比例主张。",
+      "impact": "绿地率与公共空间比例为概念性复算，用于支撑人才与居民日常蓝绿接触的论证；官方绿线、蓝线与公园范围补齐后重算。",
+      "recalc_trigger": "官方绿地、蓝线、京张遗址公园一期/二期精确范围入库"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "清华园车站旧址等文保范围与建设控制地带暂无官方 GIS 图层，constraints.geojson 中仅以示意点位缓冲表达，不构成文保范围或建设控制地带结论。",
+      "impact": "工业遗产保护策略以分级保护原则与风貌协调方向表达，具体管控边界待文物部门官方图层补齐。",
+      "recalc_trigger": "文保范围、建设控制地带 GIS 图层或正式文件入库"
+    },
+    {
+      "id": "A-UTILITIES-001",
+      "status": "pending_professional_confirmation",
+      "statement": "市政管线、排水、电力、燃气、消防通道、防洪排涝、海绵城市指标等市政底数缺失，本方案仅提出新型基础设施（分布式能源、端侧算力）与三大设施融合的方向性策略。",
+      "impact": "不进行市政容量、能源负荷、地下空间工程可行性测算；相关结论标注为方向建议。",
+      "recalc_trigger": "市政专项资料、管廊管线与安全约束入库"
+    },
+    {
+      "id": "A-OPERATION-001",
+      "status": "concept_proposal",
+      "statement": "运营主体架构（一带运营联盟）、多元化收益模式、年度活动体系、开发者社区运营与招商转化机制均为概念建议与深化方向，不代表已确定的政府安排、投资承诺或招商结果。",
+      "impact": "产业运营部分按概念建议表述，不夸大政府承诺或活动效果；具体运营模式需专业运营团队深化。",
+      "recalc_trigger": "无（概念建议属性，不因数据补齐而改变表述层级）"
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "status": "concept_proposal",
+      "statement": "10 张 AI 场景卡、3 个测试验证场景与 5 类用户画像均为概念性设计，场景边界、运营主体、数据来源与人工复核机制需在落地前经专业与公众参与程序确认。",
+      "impact": "不把未成熟技术写成已可全面部署，不把测试场景写成已批准运营，不采集个人隐私数据。",
+      "recalc_trigger": "无（场景为概念建议）"
+    },
+    {
+      "id": "A-PHASING-001",
+      "status": "concept_proposal",
+      "statement": "近期/中期/远期分期为概念性实施路径，分期范围由 provisional 边界派生；具体时序、实施主体、资金与审批路径以权属与法定程序为准。",
+      "impact": "分期计划用于说明实施逻辑与依赖条件，不构成开发时序或投资测算结论。",
+      "recalc_trigger": "权属、实施主体、资金与审批信息入库后调整"
+    }
+  ]
+}

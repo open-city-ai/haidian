@@ -259,7 +259,7 @@ Each scenario card is registered in `JZ-Specs` with: spatial carrier (mapped to 
 
 ### Land-use composition
 
-Land-use areas are recalculated from `land_use.geojson` in EPSG:4548; the share of each class is given in `land_use_area_by_code_sqm` `[metric:site_area_sqm]`. Partition integrity is verified: gap 1.51 m² and overlap 0.15 m², i.e. 0.000013% and 0.000001% of the total area respectively.
+Land-use areas are recalculated from `land_use.geojson` in EPSG:4548; the share of each class is given in `land_use_area_by_code_sqm` `[metric:site_area_sqm]`. Partition integrity is verified: gap 14.897 m² and overlap 0.099 m², i.e. about 0.00013% and 0.00000087% of the total area respectively.
 
 ### Building scale (conceptual estimate)
 

@@ -4,7 +4,7 @@ author_github: "w-Steve"
 language: "en"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-repack_version: "P7.1-final"
+repack_version: "P7.2-evidence-delivery"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "A working-timetable design analogy for the Jing-Zhang AI Innovation Belt, organised around rights, space, evidence, disclosure, and rollback, with provisional geometry and field gaps explicit."
@@ -18,7 +18,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 The differentiated mechanism is not a high-frequency control platform but an auditable urban operating system: protect non-negotiable rights, test physical capacity, retain static operation when sufficient, publish only a few stable states when temporal evidence warrants them, and move to physical redesign, human approval or rollback when capacity or exception limits are exceeded.
 
-**An Evidence-Governed and Reversible Framework for AI-Era Urban Operations**  
+**An Evidence-Governed and Reversible Framework for AI-Era Urban Operations**
 Method: Evidence-Governed Open City / 有据开放城市
 
 > Rights first, space first; evidence determines change, and disclosure keeps change reversible.
@@ -31,7 +31,7 @@ The Jing-Zhang Working Timetable is not a system for AI to take over the city in
 
 The competition announcement and agent taskbook define the assignment. Public urban-design, regulatory-planning, and land-use standards establish professional boundaries. Five external cases are used only to compare incubation, testing, disclosure, adoption, and rejection mechanisms; their scale and performance are not transferred. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES]
 
-Evidence boundary: **field visit = NONE; formal resident interview = NONE; formal stakeholder consultation = NONE; real OD data = NONE; verified legal flexible curb capacity = NONE.** Public/desk evidence is limited; synthetic mechanism evidence is available. Provisional geometry supports concept discussion and checking, not statutory boundaries. [source:SITE-EVIDENCE-DISCLOSURE] [data:geometry/site_boundary.geojson#PROV-SITE-001]
+Evidence boundary: **field visit = NONE; formal resident interview = NONE; formal stakeholder consultation = NONE; real OD data = NONE; verified legal flexible curb capacity = NONE.** Public/desk evidence is limited; synthetic mechanism evidence is available; **P4-FIELD = BLOCKED_PENDING_FIELD_DATA**. Provisional geometry supports concept discussion and checking, not statutory boundaries. [source:SITE-EVIDENCE-DISCLOSURE] [data:geometry/site_boundary.geojson#PROV-SITE-001]
 
 ![Jing-Zhang Working Timetable: from network context to station prototypes](assets/figures/site-overview.en.png)
 
@@ -67,11 +67,27 @@ To prevent the six tasks from becoming six unrelated concepts, every response fo
 
 **Agent.6 | Long-term operation.** One annual open-city review/demonstration period, quarterly scenario-evidence reviews, monthly developer–resident–operator sessions and continuous state, feedback, incident and rollback logs form the minimum cadence. International communication and attraction publish only auditable cases, failures and open questions. Every activity requires an accountable body, permission, output and stop condition. `RESPONSIBLE_BODY = TO_BE_ASSIGNED`; no organiser, partner or approved event is invented. [data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
 
+<!-- P7.2:REGIONAL:START -->
+### Regional coordination: five exit-capable exchange interfaces
+
+Regional coordination does not mean that partnerships already exist. The relationships below are **conceptual interfaces** at the 43.6 km² strategic-research level. Each is bounded by a public output, two-way feedback, and an exit condition; no campus boundary, agreement, or investment commitment is invented.
+
+| External interface | What may be exchanged | Boundary that cannot be crossed | Entry / exit condition |
+|---|---|---|---|
+| Beiwei Community | Accessibility, care-referral and community-feedback methods | Does not represent resident views or an existing partnership | Enter only with an authorised contact and accessible participation route; exit if appeals cannot be answered |
+| Future Science City | Research—Prototype—Validation method and public test records | Does not transfer institutional roles, performance or resources | Exchange only with a comparable baseline and accountable role; archive when results cannot be reproduced |
+| Huairou Science City | Safety evaluation, failure records and human takeover requirements for research prototypes | Does not claim equipment, teams or projects are connected | Discuss only after rights and safety gates close; reject without rollback |
+| Beijing E-Town | Industrial validation, logistics interfaces and stop conditions before scaling | Does not constitute industry siting or investment attraction | Discuss transfer only after controlled validation; stop when spillover cannot be controlled |
+| Beijing–Tianjin–Hebei | Auditable scenario contracts, interoperability fields and regional-logistics questions | Does not replace regional planning or administrative coordination | Exchange only public reusable fields; pause when authority or definitions conflict |
+
+These interfaces answer “how coordination could work,” not “who has already agreed.” What moves is an auditable method, failure learning, and minimum data fields; institutions, agreements, sites, and resources remain subject to formal coordination. [source:AGENT-TASKBOOK] [depth:three_level_scope_framework]
+<!-- P7.2:REGIONAL:END -->
+
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
 Six conceptual interfaces organise the 11.4 km² layer: Transit, Campus–Community, Innovation/Test, Commercial, Residential, and Park/Public-Space Edges. Each protects a fixed layer first, then chooses static management, two or three stable time states, or physical redesign when capacity is insufficient. [data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure] [depth:land_use_layout]
 
-The spatial continuum is **Building Edge → Sidewalk → Flexible Interface → Curb → Traffic**. Ground floors should absorb servicing, collection, logistics storage, bicycle parking, and robot interfaces that need not remain on the road. Accessible entrances, trees, drainage, transit platforms, and safety separation remain fixed. No parcel-level demolition, FAR, or height claim is made without redlines, ownership, building surveys, and official controls. [source:SITE-PACKAGE] [data:geometry/constraints.geojson#CONSTRAINTS]
+The spatial continuum is **Building Edge → Sidewalk → Flexible Interface → Curb → Traffic**. Ground floors should absorb servicing, collection, logistics storage, bicycle parking, and robot interfaces that need not remain on the road. Accessible entrances, trees, drainage, transit platforms, and safety separation remain fixed. No parcel-level demolition, FAR, or height claim is made without redlines, ownership, building surveys, and official controls. [source:SITE-PACKAGE] [source:SITE-EVIDENCE-DISCLOSURE]
 
 ![Overall-design conceptual typologies](assets/figures/land-use-structure.en.png)
 
@@ -142,6 +158,25 @@ Near term: close evidence gaps and prepare reversible tests through official geo
 
 Minimum operations: annual open review/demonstration, quarterly scenario evidence review, monthly developer–resident–operator session, and continuous rules/incident/feedback/rollback logs. `RESPONSIBLE_BODY = TO_BE_ASSIGNED`; budget is `UNKNOWN`; implementation `REQUIRES_FORMAL_AUTHORIZATION`.
 
+<!-- P7.2:DELIVERY:START -->
+### From concept to test: six delivery packages and responsibility contracts
+
+Implementation credibility is not created by inventing agencies or budgets. The proposal defines role contracts only: **A** = competent authority making the lawful final decision (to be assigned); **R** = delivery/operator role selected through a lawful process (to be assigned); **C** = accessibility, transit/traffic, fire, municipal, community, data and legal specialists; **I** = affected publics. Budget remains `UNKNOWN`; only essential resource classes are listed.
+
+| Package | Minimum output and spatial move | A / R / C / I | Permission and resource classes | Baseline and acceptance gate | Stop, recovery and rollback |
+|---|---|---|---|---|---|
+| WP0 Evidence closure | Replace official geometry; segment-level rights ledger; field/stakeholder gap register | A TBA / R survey team / C rights specialists / I public | Survey permission; surveying, accessibility, traffic, municipal and legal expertise | Every Hard Right confirmed or explicitly unresolved; any unresolved critical right blocks operational testing | Freeze on conflicting evidence; retain current rule and reopen after revision |
+| WP1 Public timetable base | Three governance interfaces; paper/offline alternative; state, reason, next state, appeal and rollback log | A TBA / R public-interface operator / C accessibility and data governance / I all users | Public-space and information permission; fabrication, staffed help and logging | Record current rule and staffed-service baseline first; pass accessibility, offline availability and accountability review | Remove variable publishing and restore fixed notice when information conflicts, human takeover fails or appeal breaks |
+| WP2 Zhongzhiyuan controlled test | Ground-floor service pocket; fixed walking protection; limited test/loading window | A TBA / R campus operator / C fire, logistics and accessibility / I staff and delivery workers | Campus and road-operation permission; safety staff, clearing, signs and takeover | Matched window against fixed bay/current rule; continue only with zero Hard Rights harm and reviewable failures | Restore static rule after clearing failure, fire conflict, walking encroachment or uncontrolled spillover |
+| WP3 AI Origin co-evaluation | Campus–community walking stitch; bicycle separation; feedback/appeal interface | A TBA / R community-service operator / C residents, campus and accessibility specialists / I residents and students | Participation and site permission; facilitation, accessible communication and observation | No demand conclusion before formal resident participation; accept only when access, appeal and non-AI service remain available | Return to fixed community-service mode after residential instability, discrimination or unanswered appeal |
+| WP4 Dazhongsi transfer interface | Transit-priority layer; walking/cycling organisation; residual pickup/loading interface | A TBA / R interchange operator / C transit, rail, traffic and commercial servicing / I passengers and traders | Traffic-operation and occupation permission; staffed control, barriers and emergency support | Obtain flow, conflict and spillover baseline first; retain time states only when transfer rights do not decline and spillover is controlled | Restore transit-priority static mode after transfer obstruction, queue spillover, information conflict or emergency obstruction |
+| WP5 Annual review and archive | Annual open review; quarterly evidence review; monthly open session; continuous incident/rollback log | A TBA / R independent secretariat / C professional and public representatives / I public | Archive, privacy, meeting and publication rules; records and independent review | Every scenario must expose baseline, result, failure, responsibility and exit; non-recomputable results do not advance | Automatic expiry review; archive/reject without an accountable role, resources, public value or exit condition |
+
+The packages follow **G0 Evidence → G1 Rights → G2 Physical Capacity → G3 Controlled Operation → G4 Public Review → G5 Adoption or Rejection**. Any package may stop at the previous gate. Non-deployment and rejection are valid results; number of deployments is not a success metric. [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list] [depth:phasing_implementation]
+
+The empty `constraints.geojson` collection is intentional evidence disclosure: no verified redline, utility, fire, ownership or curb-rule constraint can yet be legally spatialised. It is a closure gap, not an existing constraints map; related design judgments now cite populated conceptual road, public-space and building layers plus the evidence-gap register.
+<!-- P7.2:DELIVERY:END -->
+
 ## Metrics, Area Recalculation, and Compliance Matrix
 
 Metrics separate provisional geometry, synthetic mechanism results, and unknown controls. Approximate announced areas explain scope; submitted polygon calculations check topology only. [metric:site_area_sqm] [metric:key_area_count]
@@ -154,7 +189,7 @@ PASS means artifact integrity, syntax consistency, and deterministic checks only
 
 ## Risk, Copyright, and Compliance
 
-The central risk is certainty without field, accountable actors, or official conditions. Exact boundaries, redlines, ownership, building surveys, utilities/fire, real OD, accessibility co-design, resident and institutional views, budgets, operators, and permits remain open. Key-area roles, scenarios, and spatial moves are conceptual proposals or field-pending hypotheses. [source:SITE-EVIDENCE-DISCLOSURE] [data:geometry/constraints.geojson#CONSTRAINTS] [depth:risk_missing_data]
+The central risk is certainty without field, accountable actors, or official conditions. Exact boundaries, redlines, ownership, building surveys, utilities/fire, real OD, accessibility co-design, resident and institutional views, budgets, operators, and permits remain open. Key-area roles, scenarios, and spatial moves are conceptual proposals or field-pending hypotheses. [source:SITE-EVIDENCE-DISCLOSURE] [source:SITE-EVIDENCE-DISCLOSURE] [depth:risk_missing_data]
 
 AI generated text, structure, original programmatic figures, and offline pages. The human selected the problem direction, judged gates, accepted/rejected pivots, and authorises submission. AI does not replace planners, authorities, engineers, or participation. No remote font, tile, script, tracker, or unauthorised web image is packaged.
 

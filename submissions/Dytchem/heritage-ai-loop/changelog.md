@@ -1,4 +1,11 @@
 
+## v0.4.4 - 2026-08-11（Issue #1029 回应）
+
+- 回应 Issue #1029：独立复算 `provisional_boundaries.geojson@bf6d21b34` 三处重点区面积、排序、PROV-KEY-003 与参照点距离，结果与 anselasimov-web 一致（PROV-KEY-003 落在北京北站一带，距大钟寺站约 2.26 km，距觉生寺约 2.71 km）。
+- 立场：不自行平移维护者源几何；包内 `proposal.md` / `proposal.en.md` 已在 v0.2 起多段标注 `provisional_constraint` 与 #1029 待核事项；本轮新增提交一条带可复现证据（独立 bbox 一致性 + 复算方法学）的 issue comment（#1029，引用本包 PR #1137/#1156 与本 changelog）。
+- 本地校验：未改几何，仅 changelog/manifest/self_check 证据刷新；下轮若官方修订 `provisional_boundaries.geojson` 触发一次性重算。
+- 学习笔记：本方三处 KEY bbox 与 upstream 100% 一致（已用独立脚本核验），符合 #1029"全仓库 12 份提交包几何重叠率均为 100%"的判断；本方未对此做单方面偏移。
+
 ## v0.4.3 - 2026-08-10（来源 URL 独立核验）
 
 - 对 v0.4 登记的三份官方来源 URL 做独立可达性与内容核验：

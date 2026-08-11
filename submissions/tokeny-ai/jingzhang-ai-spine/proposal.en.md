@@ -154,22 +154,117 @@ Around the three positioning statements—"full-stack independent AI innovation 
 
 ### AI Scenario Cards (12 Cards; ★ Denotes Industry Testing-Validation Scenarios)
 
-The 12 scenario cards correspond one-to-one to the Chinese primary draft; each card carries a spatial anchor referencing the submission geometry layer [source:AGENT-TASKBOOK].
+Each scenario card is written in a deployable structure of "can start, can stop, can review": the location is anchored to a submission geometry feature, with operator, entry conditions (readiness card), minimal viable baseline, stop conditions, human fallback, and review evidence. All baselines are conceptual design values for professional teams to deepen; they do not represent pilot authorization or completed field validation [source:AGENT-TASKBOOK].
 
-| No. | Scenario | Spatial anchor (geometry) | Users | Data & privacy boundary | Human review & operation |
-| --- | --- | --- | --- | --- | --- |
-| ★TVS-1 | Spine low-speed robot delivery test corridor | Full spine greenway [data:geometry/roads.geojson#RD-001] | Robot firms, park users | Public road data + authorized test data; no face capture | Case-by-case manual approval; scenario-registry operator |
-| ★TVS-2 | AI+traffic walking-cycling evaluation sandbox | Five stitch corridors & station links [data:geometry/roads.geojson#RD-002] | Commuters, transport researchers | Public flow data, anonymized counts | Pilot only after transport/planning review |
-| ★TVS-3 | Dazhongsi AI-native commerce A/B test field | Dazhongsi AI-native consumption zone [data:geometry/land_use.geojson#LU-037] | Merchants, consumers | Desensitized transactions, explicit consent | Voluntary merchant opt-in; consumer-rights fallback |
-| SC-04 | AI guide & cultural narrative | Spine gallery, Qinghuayuan Station site [data:geometry/green_space.geojson#GR-006] | Visitors, students | Public history + human-curated content | Triple review: culture, copyright, facts |
-| SC-05 | AI+healthcare service navigation | Community service clusters [data:geometry/land_use.geojson#LU-032] | Residents, park youth | Public service directory only; no personal health data | Medical & legal review; navigation only |
-| SC-06 | Enterprise service Copilot | Two-wing tech-service nodes [data:geometry/land_use.geojson#LU-060] | Enterprises, developers | Public policy & service directory | Human consulting channel retained |
-| SC-07 | Public safety & event operation review | Large-event & night scenario nodes [data:geometry/public_space.geojson#PS-001] | Operators, public | Anonymized crowd heat | Safety conclusions human-confirmed |
-| SC-08 | AI+education: campus-park open classroom | Origin Core campus-integration cluster [data:geometry/land_use.geojson#LU-035] | Students, public | Public course resources | Institutions review course content |
-| SC-09 | AI+legal: IP quick-service waystation | West-wing tech-service cluster [data:geometry/land_use.geojson#LU-063] | Startups | Public statutes & case base | Lawyers issue formal opinions |
-| SC-10 | AI+living: talent-community one-stop assistant | Origin Core talent community [data:geometry/land_use.geojson#LU-032] | Young talent | Minimal collection, local processing | Community operator fallback |
-| SC-11 | AI+public space: Spine night light & safety companion | Three Spine waystations [data:geometry/public_space.geojson#PS-007] | Night users | Presence sensing only; no face recognition | Night operation team on duty |
-| SC-12 | AI governance sandbox: algorithm disclosure & citizen review pavilion | Zhongzhiyuan standards & governance zone [data:geometry/land_use.geojson#LU-026] | Public, governance researchers | All disclosure materials public | Conclusions formed by governance committee |
+**★TVS-1 Spine low-speed robot delivery test corridor** | Anchor: full spine greenway [data:geometry/roads.geojson#RD-001]
+- Users: robot firms, park users. Data boundary: public road data and authorized test data; no face capture.
+- Operator: scenario-registry platform operator (conceptual recommendation).
+- Entry conditions: test-section ownership and safety assessment complete, public notice period elapsed, insurance and emergency plan filed.
+- Minimal viable baseline: a single ~500 m segment, no more than 2 low-speed units, speed capped at 15 km/h, 30 consecutive days without injury events.
+- Stop conditions: any personal injury, complaints above threshold, or anomalous sensing data triggers an immediate line halt and re-inspection.
+- Human fallback: remote safety officer one-click emergency stop; on-site patrol arrives within a set time.
+- Review evidence: operation logs, incident records, and monthly public summaries.
+
+**★TVS-2 AI+traffic walking-cycling evaluation and signal sandbox** | Anchor: five stitch corridors and station links [data:geometry/roads.geojson#RD-002]
+- Users: commuters, transport researchers. Data boundary: public flow data and anonymized counts.
+- Operator: transport research team in coordination with the district transport authority (conceptual recommendation).
+- Entry conditions: evaluation metrics and collection plan approved by transport and planning professionals; evaluation only, no direct signal control.
+- Minimal viable baseline: one stitch corridor, one full signal-cycle working day, anonymized sample size meeting statistical significance.
+- Stop conditions: no recommendation is implemented without human review; any safety challenge halts the evaluation.
+- Human fallback: signal timing is finally confirmed by a traffic engineer.
+- Review evidence: evaluation report, before/after data, and signed review records.
+
+**★TVS-3 Dazhongsi AI-native commerce A/B test field** | Anchor: Dazhongsi AI-native consumption zone [data:geometry/land_use.geojson#LU-037]
+- Users: merchants, consumers. Data boundary: desensitized transactions, explicit consent, opt-out anytime.
+- Operator: merchant alliance with the scenario-registry platform (conceptual recommendation).
+- Entry conditions: merchants voluntarily sign up, consumer-rights fallback in place, test rules published.
+- Minimal viable baseline: no more than 10 merchants, a single test group runs no more than 4 weeks, with a control group.
+- Stop conditions: price discrimination, misleading recommendations, or concentrated complaints stop the test group.
+- Human fallback: human customer service and no-questions opt-out channel.
+- Review evidence: test design document, desensitized result dataset, and merchant review minutes.
+
+**SC-04 AI guide & cultural narrative** | Anchor: Spine gallery, Qinghuayuan Station site [data:geometry/green_space.geojson#GR-006]
+- Users: visitors, students. Data boundary: public historical materials and human-curated texts.
+- Operator: cultural operation team (conceptual recommendation).
+- Entry conditions: guide content passes triple human review — culture, copyright, and facts.
+- Minimal viable baseline: a single gallery segment, bilingual versions, fact-check records archived.
+- Stop conditions: any factual error or copyright challenge takes the content offline for revision.
+- Human fallback: curator final sign-off; public correction channel.
+- Review evidence: content version records and check sign-offs.
+
+**SC-05 AI+healthcare service navigation** | Anchor: community service clusters [data:geometry/land_use.geojson#LU-032]
+- Users: residents, park youth. Data boundary: public service directory only; no personal health data.
+- Operator: community service operator (conceptual recommendation).
+- Entry conditions: content reviewed by medical and legal professionals, explicitly "navigation only, no diagnosis."
+- Minimal viable baseline: a single community node, directory coverage and accuracy spot-checked by humans.
+- Stop conditions: any out-of-scope advice or stale information suspends the service.
+- Human fallback: staffed service window retained in parallel.
+- Review evidence: spot-check records and update logs.
+
+**SC-06 Enterprise service Copilot** | Anchor: two-wing tech-service nodes [data:geometry/land_use.geojson#LU-060]
+- Users: enterprises, developers. Data boundary: public policy and service directory.
+- Operator: tech-service operation team (conceptual recommendation).
+- Entry conditions: policy-interpretation disclaimer and human consulting channel in place.
+- Minimal viable baseline: a single service node, Q&A accuracy spot-checked to standard.
+- Stop conditions: any policy interpretation proven misleading is corrected and disclosed.
+- Human fallback: professional human consulting channel.
+- Review evidence: Q&A spot-check records and correction logs.
+
+**SC-07 Public safety & event operation review** | Anchor: large-event and night scenario nodes [data:geometry/public_space.geojson#PS-001]
+- Users: operators, public. Data boundary: anonymized crowd heat only.
+- Operator: event operation and safety team (conceptual recommendation).
+- Entry conditions: safety plan approved by humans; AI only flags, never decides on response.
+- Minimal viable baseline: a single event, flagging accuracy and false-positive rate evaluated by humans.
+- Stop conditions: excessive false positives or a missed critical risk reverts to fully manual mode.
+- Human fallback: safety conclusions must be human-confirmed.
+- Review evidence: event review reports and response records.
+
+**SC-08 AI+education: campus-park open classroom** | Anchor: Origin Core campus-integration cluster [data:geometry/land_use.geojson#LU-035]
+- Users: students, public. Data boundary: public course resources.
+- Operator: university-park co-building team (conceptual recommendation).
+- Entry conditions: course content reviewed by educational institutions.
+- Minimal viable baseline: a single pilot course, learning-feedback questionnaires.
+- Stop conditions: substantiated content-quality complaints take the course offline for revision.
+- Human fallback: the instructor is responsible throughout.
+- Review evidence: course evaluation and feedback summaries.
+
+**SC-09 AI+legal: IP quick-service waystation** | Anchor: west-wing tech-service cluster [data:geometry/land_use.geojson#LU-063]
+- Users: startups. Data boundary: public statutes and case base.
+- Operator: IP service institution (conceptual recommendation).
+- Entry conditions: clear "preliminary navigation, not formal legal advice" labeling.
+- Minimal viable baseline: a single waystation, navigation accuracy spot-checked.
+- Stop conditions: any navigation result proven misleading suspends the service for revision.
+- Human fallback: lawyers issue formal opinions.
+- Review evidence: service records and spot-check reports.
+
+**SC-10 AI+living: talent-community one-stop assistant** | Anchor: Origin Core talent community [data:geometry/land_use.geojson#LU-032]
+- Users: young talent. Data boundary: minimal collection, local processing.
+- Operator: community operator (conceptual recommendation).
+- Entry conditions: privacy impact assessment completed and published.
+- Minimal viable baseline: a single community, service-item coverage list.
+- Stop conditions: substantiated privacy complaints disable the related function.
+- Human fallback: community operator fallback.
+- Review evidence: privacy assessment report and complaint-handling records.
+
+**SC-11 AI+public space: Spine night light & safety companion** | Anchor: three Spine waystations [data:geometry/public_space.geojson#PS-007]
+- Users: night users. Data boundary: presence sensing only; no face recognition.
+- Operator: night operation team (conceptual recommendation).
+- Entry conditions: lighting environment and safety plan approved by humans.
+- Minimal viable baseline: a single waystation, one night time window.
+- Stop conditions: nuisance complaints or safety events trigger adjustment or shutdown.
+- Human fallback: night operation team on duty.
+- Review evidence: duty logs and incident records.
+
+**SC-12 AI governance sandbox: algorithm disclosure & citizen review pavilion** | Anchor: Zhongzhiyuan standards & governance zone [data:geometry/land_use.geojson#LU-026]
+- Users: public, governance researchers. Data boundary: all disclosure materials public.
+- Operator: governance committee (conceptual recommendation).
+- Entry conditions: review rules and agenda formed by the committee.
+- Minimal viable baseline: a single review topic, public participation records.
+- Stop conditions: any topic involving non-public data or privacy is withdrawn.
+- Human fallback: review conclusions formed by the governance committee.
+- Review evidence: review minutes publicly archived.
+
+Scenario-space-operation mapping: the 12 cards correspond one-to-one with spatial anchors, operators, entry conditions, and stop conditions, forming the minimal closed loop of the "scenario registration system" — register first, then start, stoppable, with evidence retained. This moves scenarios from "displayable" toward "field-verifiable," while keeping human review as the default precondition [depth:overall_spatial_structure].
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 

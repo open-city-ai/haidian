@@ -4,7 +4,7 @@ author_github: "w-Steve"
 language: "zh"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-repack_version: "P7.1-final"
+repack_version: "P7.2-evidence-delivery"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以运行图为设计类比，用权利、空间、证据、公开与回滚组织京张AI创新带；临时几何和现场缺口均显式披露。"
@@ -18,7 +18,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 差异化机制不是高频控制平台，而是一套可审计的城市运行体系：先固定不可让渡权利，再判断物理容量；静态模式足够时不切换，只有时间差异有证据时才发布少数稳定状态；容量不足或例外场景越界时，停止调度并转入物理改造、人工审批或回滚。
 
-**一种有据、可逆的 AI 城市运行框架**  
+**一种有据、可逆的 AI 城市运行框架**
 方法论：有据开放城市 / Evidence-Governed Open City
 
 > 权利先行，空间优先；以证据决定变化，以公开保证可逆。
@@ -31,7 +31,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 方案以赛事公告和智能体任务书为任务依据，以城市设计、控规编制、国土空间用地分类等公开规范为专业边界；5 个外部案例仅用于比较“孵化、测试、公开、采用或拒绝”的机制，不移植其规模或绩效。[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [standard:MOHURD-URBAN-DESIGN-MEASURES]
 
-本包的现场证据边界为：**Field visit = NONE；formal resident interview = NONE；formal stakeholder consultation = NONE；real OD data = NONE；verified legal flexible curb capacity = NONE。** 公开/桌面资料有限，合成机制证据可用。临时范围只用于概念表达和机器检查，不是法定红线。[source:SITE-EVIDENCE-DISCLOSURE] [data:geometry/site_boundary.geojson#PROV-SITE-001]
+本包的现场证据边界为：**Field visit = NONE；formal resident interview = NONE；formal stakeholder consultation = NONE；real OD data = NONE；verified legal flexible curb capacity = NONE。** 公开/桌面资料有限，合成机制证据可用；**P4-FIELD = BLOCKED_PENDING_FIELD_DATA**。临时范围只用于概念表达和机器检查，不是法定红线。[source:SITE-EVIDENCE-DISCLOSURE] [data:geometry/site_boundary.geojson#PROV-SITE-001]
 
 ![京张运行图：从线路网络到站点原型](assets/figures/site-overview.png)
 
@@ -67,11 +67,27 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **Agent.6｜长期运营。** 年度设置一次开放城市评审/示范期，季度审查场景证据，月度举行开发者—居民—运营者开放会，持续发布状态、反馈、事件和回滚日志。国际传播和招引只发布可复核案例、失败记录和开放问题；任何活动都必须有责任主体、许可、输出和停止条件。当前 `RESPONSIBLE_BODY = TO_BE_ASSIGNED`，不虚构主办机构、合作企业或已批准活动。[data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
 
+<!-- P7.2:REGIONAL:START -->
+### 区域协同：五个可退出的交换接口
+
+区域协同不等于宣称合作已经发生。下列关系仅是 43.6 km² 战略研究层的**概念接口**；每项都以公开输出、双向反馈和退出条件约束，不制造园区边界、合作协议或投资承诺。
+
+| 对外接口 | 本方案可交换的内容 | 不可越过的边界 | 进入 / 退出条件 |
+|---|---|---|---|
+| 北纬社区 | 无障碍、照护转介与社区反馈方法 | 不代表居民意见或既有合作 | 有授权联络与可访问参与渠道才进入；无法回应申诉即退出 |
+| 未来科学城 | Research—Prototype—Validation 的方法与公开试验记录 | 不转移机构职能、绩效或资源承诺 | 有可比基线和责任主体才交换；不可复核即归档 |
+| 怀柔科学城 | 科研原型的安全评估、失败记录与人工接管要求 | 不声称设备、团队或项目已接入 | 权利与安全门槛闭合才讨论；无回滚路径即拒绝 |
+| 经开区 | 工业验证、物流接口与规模化前的停止条件 | 不构成产业落位或招商承诺 | 受控验证通过后才讨论转化；外溢不可控即停止 |
+| 京津冀 | 可审计场景合同、互操作字段与区域物流议题 | 不替代跨区域规划与行政协调 | 仅交换公开、可复用字段；权限或口径不一致即暂停 |
+
+这五个接口共同回答“如何协同”，而不是伪造“已经协同”：交换的是可审计的方法、失败经验和最小数据字段，具体机构、协议、场地与资源均待正式协商。[source:AGENT-TASKBOOK] [depth:three_level_scope_framework]
+<!-- P7.2:REGIONAL:END -->
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 11.4 平方公里层以六类街道界面组织概念设计：Transit Edge、Campus–Community Edge、Innovation/Test Edge、Commercial Edge、Residential Edge、Park/Public-Space Edge。每类先划定固定保护层，再决定静态、2–3 个分时稳定状态，或因容量不足转入物理改造。[data:geometry/land_use.geojson#LU-001] [depth:overall_spatial_structure] [depth:land_use_layout]
 
-空间连续体为 **Building Edge → Sidewalk → Flexible Interface → Curb → Traffic**。建筑首层应吸收不必长期占用道路的收发、候取、物流暂存、自行车与机器人接口；无障碍入口、树木、排水、公交站台和安全隔离属于固定层。缺少正式红线、产权、建筑普查、容积率和高度控制，因此不作逐地块拆改留或开发强度结论。[source:SITE-PACKAGE] [data:geometry/constraints.geojson#CONSTRAINTS]
+空间连续体为 **Building Edge → Sidewalk → Flexible Interface → Curb → Traffic**。建筑首层应吸收不必长期占用道路的收发、候取、物流暂存、自行车与机器人接口；无障碍入口、树木、排水、公交站台和安全隔离属于固定层。缺少正式红线、产权、建筑普查、容积率和高度控制，因此不作逐地块拆改留或开发强度结论。[source:SITE-PACKAGE] [source:SITE-EVIDENCE-DISCLOSURE]
 
 ![总体设计层概念类型](assets/figures/land-use-structure.png)
 
@@ -142,6 +158,25 @@ Street-Edge Proof Case（研究过程内部历史名为 Curb OS）压缩了 P0�
 
 最小运营节奏为：年度开放评审/示范期；季度场景证据审查；月度开发者—居民—运营者开放会；持续发布规则、事件、反馈与回滚日志。`RESPONSIBLE_BODY = TO_BE_ASSIGNED`，预算为 `UNKNOWN`，实施须 `REQUIRES_FORMAL_AUTHORIZATION`。
 
+<!-- P7.2:DELIVERY:START -->
+### 从概念到试验：六个交付包与责任合同
+
+实施不以虚构部门或预算换取“落地感”。本方案只定义角色合同：**A** = 依法作最终决定的主管权力（待指定）；**R** = 经合法程序确定的执行运营方（待指定）；**C** = 无障碍、公交/交通、消防、市政、社区、数据与法律专业方；**I** = 受影响公众。预算保持 `UNKNOWN`，资源只列必需类别。
+
+| 包 | 最小交付与空间动作 | A / R / C / I | 许可与资源类别 | 基线与验收门 | 停止、恢复与回滚 |
+|---|---|---|---|---|---|
+| WP0 证据闭合 | 正式边界替换；逐段 rights ledger；现场/利益相关者缺口台账 | A待指定 / R调查团队 / C权利专业方 / I公众 | 调查许可；测绘、无障碍、交通、市政、法务 | 每个 Hard Right 已确认或显式未决；任一关键权利未决则不得进入运营试验 | 证据冲突即冻结；保留原规则，修订后重新审查 |
+| WP1 公共运行图底座 | 三处治理界面；纸质/离线替代；状态、理由、下一状态、申诉与回滚记录 | A待指定 / R公共界面运营方 / C无障碍与数据治理 / I所有使用者 | 公共空间与信息发布许可；界面制作、人工服务、日志 | 先记录现行规则与人工服务基线；通过可访问性、离线可用和责任可追溯审查 | 信息不一致、无法人工接管或申诉失效即撤下动态发布，恢复固定公告 |
+| WP2 众智园受控试验 | 首层服务口袋；固定步行保护层；限定测试/装卸窗口 | A待指定 / R园区运营方 / C消防、物流、无障碍 / I员工与配送人员 | 园区与道路运营许可；安全员、清场、标识、人工接管 | 与固定装卸湾和现行规则做同窗基线；Hard Rights 零侵害且失败可复盘才继续 | 清场失败、消防冲突、步行侵占或外溢不可控即恢复静态规则 |
+| WP3 原点社区共同评估 | 校园—社区慢行缝合；自行车分离；社区反馈/申诉界面 | A待指定 / R社区公共服务运营方 / C居民、校园、无障碍专业方 / I居民与学生 | 参与及场地许可；主持、翻译/无障碍、观察记录 | 无正式居民参与前不发布需求结论；验收以可达、可申诉、非AI替代持续可用为门 | 居民稳定受损、差别待遇或申诉无回应即回到固定社区服务模式 |
+| WP4 大钟寺换乘界面 | 公交轨道优先层；步行/骑行组织；剩余界面候取装卸 | A待指定 / R换乘运营方 / C公交、轨道、交管、商业后勤 / I乘客与商户 | 交通运营与占道许可；人工调度、围护、应急 | 先取得客流、冲突与外溢基线；只有换乘权利不下降且外溢可控才保留分时状态 | 换乘受阻、队列外溢、信息冲突或应急受阻即恢复交通优先静态模式 |
+| WP5 年度复审与归档 | 年度开放审查；季度证据复核；月度开放会；持续事件/回滚日志 | A待指定 / R独立秘书处 / C专业与公众代表 / I公众 | 档案、隐私、会议与发布规则；记录与独立复核 | 每一场景须能回答基线、结果、失败、责任与退出；不能复算则不进入下一周期 | 到期自动复审；无责任主体、无资源、无公共价值或无退出条件则归档/拒绝 |
+
+六个包采用 **G0 证据 → G1 权利 → G2 空间容量 → G3 受控运行 → G4 公共复核 → G5 采用或拒绝** 的门控顺序。任何包都可停在前一门；“未实施”或“被拒绝”是合格结果，不以部署数量作为成功指标。[data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list] [depth:phasing_implementation]
+
+`constraints.geojson` 保持空集合是有意的证据披露：当前没有可被合法空间化的已核实红线、管线、消防、权属或路缘规则。它是待闭合项，不再被引用为已有约束图；相关设计判断只回引实际存在的概念道路、公共空间、建筑层与资料缺口登记。
+<!-- P7.2:DELIVERY:END -->
+
 ## 指标体系、面积复算与合规矩阵
 
 指标分三类：临时几何可复算值、合成机制结果、未知/待控制值。11.4 平方公里和三处面积使用公告约值作范围说明；提交 polygon 计算值仅检查拓扑。[metric:site_area_sqm] [metric:key_area_count]
@@ -154,7 +189,7 @@ P4 的 0 和 69/135 明确标注为 synthetic structured regimes，不是人流�
 
 ## 风险、版权与合规说明
 
-最大风险不是“AI 不够聪明”，而是缺少现场、主体和正式条件却产生确定语气。本方案明确保留：官方精确边界、道路红线、权属、建筑普查、市政消防、真实 OD、无障碍共创、居民与机构意见、预算、责任主体和许可均未闭合。三重点区角色、场景和空间动作属于概念设计建议或现场待验证假设。[source:SITE-EVIDENCE-DISCLOSURE] [data:geometry/constraints.geojson#CONSTRAINTS] [depth:risk_missing_data]
+最大风险不是“AI 不够聪明”，而是缺少现场、主体和正式条件却产生确定语气。本方案明确保留：官方精确边界、道路红线、权属、建筑普查、市政消防、真实 OD、无障碍共创、居民与机构意见、预算、责任主体和许可均未闭合。三重点区角色、场景和空间动作属于概念设计建议或现场待验证假设。[source:SITE-EVIDENCE-DISCLOSURE] [source:SITE-EVIDENCE-DISCLOSURE] [depth:risk_missing_data]
 
 AI 生成文本、结构、原创程序化图件和离线页面；人选择问题方向、判断研究 gate、接受/拒绝战略转向并授权最终投稿。AI 不替代规划师、主管部门、工程师或公众参与。本包无远程字体、地图瓦片、脚本、跟踪器或未授权网络图片；版权与工具说明见 `report/copyright_statement.md`。
 

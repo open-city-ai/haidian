@@ -1,0 +1,2472 @@
+{
+  "schema_version": "0.1.0",
+  "model_version": "v1.4",
+  "status": "completed_with_declared_tool_and_data_blocks",
+  "authority_note": "All calculations use provisional or design-derived geometry. PlanX results are design-network diagnostics and are excluded from formal existing-condition or official accessibility metrics.",
+  "toolchain": {
+    "geo_mcp": {
+      "status": "used",
+      "operations": [
+        "vector_info",
+        "vector_read",
+        "validate_geojson",
+        "transform_crs",
+        "centroid",
+        "area",
+        "buffer",
+        "spatial_predicate",
+        "save_map"
+      ],
+      "repository": "https://github.com/tabibhasann/geo-mcp",
+      "limitations": "Routing plausibility failed; ORS isochrone and elevation remained blocked; OSM is background only."
+    },
+    "qgis_mcp": {
+      "status": "connected_project_open",
+      "project_crs": "EPSG:4548",
+      "submission_display_layers": 10,
+      "planx_diagnostic_layers": 10,
+      "source_mode": "read_only",
+      "repository": "https://github.com/piatkowski/qgis-mcp",
+      "limitations": "Provisional and design-derived layers only."
+    },
+    "planx": {
+      "status": "used_with_declared_design_network_limitations",
+      "repository": "https://github.com/YusufEminoglu/PlanX",
+      "provider_version": "4.10.5",
+      "algorithms_enumerated": 69,
+      "completed": [
+        "prepare network",
+        "space syntax 400/800/global",
+        "network centrality",
+        "service areas 300/500/1000 m",
+        "walkability",
+        "green access"
+      ],
+      "blocked": [
+        "building metrics on QGIS 3.34",
+        "FSI/OSR without verified floor counts",
+        "slope without DEM"
+      ],
+      "formal_use": "design QA only"
+    },
+    "diagram_factory": {
+      "status": "used_as_template_and_qa_framework",
+      "templates": [
+        "map-to-renewal-plan",
+        "architecture-exploded-axonometric-diagram",
+        "photo-to-section-analysis"
+      ],
+      "repository": "https://github.com/wzhoudargon/ai-analysis-diagram-factory"
+    },
+    "blender_mcp": {
+      "status": "used_for_color_functional_analysis_model",
+      "source": "BBBike/OpenStreetMap background extract plus agent-generated design overlays",
+      "model_status": "retained_outside_the_GitHub_submission_package",
+      "render": "assets/figures/relative-massing-3d.png",
+      "limitations": "Functions and facade details are inferred design representations, not official uses, surveyed facades, statutory heights, or engineering evidence."
+    }
+  },
+  "key_area_centroids": [
+    {
+      "key_area_id": "PROV-KEY-001",
+      "longitude": 116.3485,
+      "latitude": 40.01675
+    },
+    {
+      "key_area_id": "PROV-KEY-002",
+      "longitude": 116.3475,
+      "latitude": 39.9885
+    },
+    {
+      "key_area_id": "PROV-KEY-003",
+      "longitude": 116.3485,
+      "latitude": 39.94692
+    }
+  ],
+  "centroid_distances_m": [
+    {
+      "pair": "PROV-KEY-001__PROV-KEY-002",
+      "geo_mcp_geodesic_m": 3137.891866,
+      "local_projected_m": 3138.011554,
+      "difference_m": 0.119688
+    },
+    {
+      "pair": "PROV-KEY-002__PROV-KEY-003",
+      "geo_mcp_geodesic_m": 4617.584638,
+      "local_projected_m": 4617.760947,
+      "difference_m": 0.176309
+    },
+    {
+      "pair": "PROV-KEY-001__PROV-KEY-003",
+      "geo_mcp_geodesic_m": 7753.52402,
+      "local_projected_m": 7753.819489,
+      "difference_m": 0.295469
+    }
+  ],
+  "spatial_predicates": [
+    {
+      "subject": "BLDG-001",
+      "predicate": "within",
+      "object": "PROV-KEY-001",
+      "result": true
+    },
+    {
+      "subject": "BLDG-002",
+      "predicate": "within",
+      "object": "PROV-KEY-002",
+      "result": true
+    },
+    {
+      "subject": "BLDG-003",
+      "predicate": "within",
+      "object": "PROV-KEY-003",
+      "result": true
+    },
+    {
+      "subject": "ROAD-001",
+      "predicate": "intersects",
+      "object": "PROV-KEY-001",
+      "result": true
+    },
+    {
+      "subject": "ROAD-001",
+      "predicate": "intersects",
+      "object": "PROV-KEY-002",
+      "result": true
+    },
+    {
+      "subject": "ROAD-001",
+      "predicate": "intersects",
+      "object": "PROV-KEY-003",
+      "result": true
+    }
+  ],
+  "building_prototypes": [
+    {
+      "building_id": "BLDG-001",
+      "key_area_id": "PROV-KEY-001",
+      "relative_layers": [
+        "shared service plinth",
+        "prototype workshop",
+        "quality trace interface",
+        "lightweight reversible roof layer"
+      ],
+      "ground_interface": "public explanation, appointment, and human review",
+      "height_status": "unknown_pending_official_controls_and_survey"
+    },
+    {
+      "building_id": "BLDG-002",
+      "key_area_id": "PROV-KEY-002",
+      "relative_layers": [
+        "open community plinth",
+        "daily service commons",
+        "collaboration rooms",
+        "reversible climate canopy"
+      ],
+      "ground_interface": "non-AI equivalent service, voluntary trial, and public feedback",
+      "height_status": "unknown_pending_official_controls_and_survey"
+    },
+    {
+      "building_id": "BLDG-003",
+      "key_area_id": "PROV-KEY-003",
+      "relative_layers": [
+        "station-facing public plinth",
+        "enterprise service hall",
+        "urban experience layer",
+        "reversible event roof"
+      ],
+      "ground_interface": "enterprise service directory, public route, and scaling review",
+      "height_status": "unknown_pending_official_controls_and_survey"
+    }
+  ],
+  "planx_inspired_screening": {
+    "euclidean_catchments": {
+      "status": "known",
+      "radii_m": [
+        300,
+        500,
+        1000
+      ],
+      "source": "simulation.json#service_catchments"
+    },
+    "network_isochrones": {
+      "status": "unknown",
+      "reason": "No cleared routable pedestrian network and no configured routing API key."
+    },
+    "pedshed_ratio": {
+      "status": "unknown",
+      "reason": "Requires a verified pedestrian network and accessible entrances."
+    },
+    "gsi": {
+      "status": "conceptual",
+      "metric_ref": "building_density",
+      "limitation": "Uses design footprints and provisional site geometry only."
+    },
+    "fsi": {
+      "status": "unknown",
+      "reason": "Approved floor counts and total floor area are unavailable."
+    },
+    "osr": {
+      "status": "unknown",
+      "reason": "FSI and verified residential population are unavailable."
+    },
+    "network_centrality": {
+      "status": "unknown",
+      "reason": "Concept centerlines are not a complete pedestrian network."
+    }
+  },
+  "diagram_qa": {
+    "geometry_fidelity": 30,
+    "style_stability": 18,
+    "layout_hierarchy": 14,
+    "text_hygiene": 15,
+    "role_separation": 10,
+    "professional_finish": 9,
+    "total": 96,
+    "veto_flags": []
+  },
+  "service_catchments": {
+    "type": "FeatureCollection",
+    "name": "conceptual_service_catchments",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "CATCH-001-300",
+        "properties": {
+          "id": "CATCH-001-300",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-001",
+          "radius_m": 300,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "300米概念步行服务圈",
+          "name_en": "300 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 281936.575
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35201376605978,
+                40.016769701087334
+              ],
+              [
+                116.35198704084182,
+                40.01641689315441
+              ],
+              [
+                116.3519006522182,
+                40.01606978562035
+              ],
+              [
+                116.35175607918366,
+                40.015734317468684
+              ],
+              [
+                116.3515557961691,
+                40.01541622844896
+              ],
+              [
+                116.3513032306524,
+                40.01512096088195
+              ],
+              [
+                116.35100270447401,
+                40.014853566558514
+              ],
+              [
+                116.35065935986337,
+                40.01461862032372
+              ],
+              [
+                116.35027907144436,
+                40.014420141823635
+              ],
+              [
+                116.34986834572533,
+                40.0142615267518
+              ],
+              [
+                116.34943420979376,
+                40.01414548877038
+              ],
+              [
+                116.3489840911177,
+                40.0140740130981
+              ],
+              [
+                116.34852569050878,
+                40.01404832255785
+              ],
+              [
+                116.34806685041669,
+                40.01406885666374
+              ],
+              [
+                116.34761542080463,
+                40.01413526410484
+              ],
+              [
+                116.34717912489711,
+                40.01424640875402
+              ],
+              [
+                116.3467654270918,
+                40.0144003890989
+              ],
+              [
+                116.34638140529275,
+                40.014594570763606
+              ],
+              [
+                116.34603362984481,
+                40.01482563156502
+              ],
+              [
+                116.34572805113883,
+                40.01508961833465
+              ],
+              [
+                116.34546989780864,
+                40.01538201453491
+              ],
+              [
+                116.34526358726099,
+                40.015697817514365
+              ],
+              [
+                116.34511265006988,
+                40.016031624082274
+              ],
+              [
+                116.34501966953052,
+                40.01637772293911
+              ],
+              [
+                116.34498623740943,
+                40.016730192383235
+              ],
+              [
+                116.34501292665156,
+                40.01708300162299
+              ],
+              [
+                116.3450992815146,
+                40.0174301139612
+              ],
+              [
+                116.34524382530459,
+                40.01776559008694
+              ],
+              [
+                116.34544408558355,
+                40.01808368970727
+              ],
+              [
+                116.345696636423,
+                40.01837896977896
+              ],
+              [
+                116.34599715698278,
+                40.01864637765902
+              ],
+              [
+                116.34634050541624,
+                40.01888133757849
+              ],
+              [
+                116.34672080683909,
+                40.01907982895872
+              ],
+              [
+                116.34713155385673,
+                40.019238455228425
+              ],
+              [
+                116.34756571793022,
+                40.01935450196232
+              ],
+              [
+                116.3480158696737,
+                40.01942598334519
+              ],
+              [
+                116.34847430602201,
+                40.019451676165005
+              ],
+              [
+                116.34893318208998,
+                40.0194311407523
+              ],
+              [
+                116.34938464546258,
+                40.01936472850703
+              ],
+              [
+                116.3498209706147,
+                40.019253575883795
+              ],
+              [
+                116.35023469115558,
+                40.019099584938296
+              ],
+              [
+                116.35061872763187,
+                40.01890539076891
+              ],
+              [
+                116.35096650869846,
+                40.01867431641088
+              ],
+              [
+                116.35127208358158,
+                40.018410315956544
+              ],
+              [
+                116.35153022390796,
+                40.018117906876164
+              ],
+              [
+                116.35173651315701,
+                40.01780209269884
+              ],
+              [
+                116.35188742220619,
+                40.01746827737846
+              ],
+              [
+                116.35198036967815,
+                40.017122172811035
+              ],
+              [
+                116.35201376605978,
+                40.016769701087334
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-001-500",
+        "properties": {
+          "id": "CATCH-001-500",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-001",
+          "radius_m": 500,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "500米概念步行服务圈",
+          "name_en": "500 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 783157.153
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35435627868439,
+                40.01678277596239
+              ],
+              [
+                116.35431171666849,
+                40.01619476346878
+              ],
+              [
+                116.35416771687517,
+                40.01561625358272
+              ],
+              [
+                116.35392674557359,
+                40.01505714442797
+              ],
+              [
+                116.35359292792191,
+                40.014527001951734
+              ],
+              [
+                116.35317197724363,
+                40.01403489628727
+              ],
+              [
+                116.35267109716123,
+                40.01358924661257
+              ],
+              [
+                116.35209885826941,
+                40.01319767715632
+              ],
+              [
+                116.35146505146285,
+                40.01286688681067
+              ],
+              [
+                116.35078052042975,
+                40.01260253457744
+              ],
+              [
+                116.35005697617628,
+                40.01240914280314
+              ],
+              [
+                116.3493067967507,
+                40.01229001985449
+              ],
+              [
+                116.34854281558758,
+                40.01224720355356
+              ],
+              [
+                116.34777810208375,
+                40.01228142633757
+              ],
+              [
+                116.34702573814982,
+                40.01239210273782
+              ],
+              [
+                116.34629859454883,
+                40.012577339390766
+              ],
+              [
+                116.34560911083676,
+                40.01283396741094
+              ],
+              [
+                116.3449690826596,
+                40.01315759657289
+              ],
+              [
+                116.34438946003644,
+                40.01354269037803
+              ],
+              [
+                116.34388016007229,
+                40.01398266072531
+              ],
+              [
+                116.34344989730113,
+                40.01446998057
+              ],
+              [
+                116.34310603455936,
+                40.01499631264737
+              ],
+              [
+                116.34285445694282,
+                40.015552652063505
+              ],
+              [
+                116.3426994710085,
+                40.01612948031732
+              ],
+              [
+                116.34264373095232,
+                40.01671692812253
+              ],
+              [
+                116.34268819303533,
+                40.0173049442462
+              ],
+              [
+                116.34283209904929,
+                40.01788346747712
+              ],
+              [
+                116.34307298911597,
+                40.018442598782094
+              ],
+              [
+                116.3434067436132,
+                40.01897277070442
+              ],
+              [
+                116.34382765352137,
+                40.01946491110414
+              ],
+              [
+                116.34432851799646,
+                40.0199105984361
+              ],
+              [
+                116.34490076750731,
+                40.02030220590534
+              ],
+              [
+                116.34553461043558,
+                40.02063303202919
+              ],
+              [
+                116.34621920063148,
+                40.02089741536762
+              ],
+              [
+                116.34694282305698,
+                40.02109083145433
+              ],
+              [
+                116.3476930943365,
+                40.02120997026574
+              ],
+              [
+                116.34845717477577,
+                40.02125279289879
+              ],
+              [
+                116.3492219882125,
+                40.02121856648472
+              ],
+              [
+                116.34997444592577,
+                40.02110787673961
+              ],
+              [
+                116.35070167076167,
+                40.02092261793645
+              ],
+              [
+                116.35139121762818,
+                40.02066596047019
+              ],
+              [
+                116.35203128657541,
+                40.02034229657297
+              ],
+              [
+                116.35261092480594,
+                40.01995716511056
+              ],
+              [
+                116.35312021415106,
+                40.01951715675028
+              ],
+              [
+                116.35355044080049,
+                40.0190298011274
+              ],
+              [
+                116.35389424437946,
+                40.01850343794485
+              ],
+              [
+                116.354145743824,
+                40.01794707421631
+              ],
+              [
+                116.35430063790439,
+                40.017370230099715
+              ],
+              [
+                116.35435627868439,
+                40.01678277596239
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-001-1000",
+        "properties": {
+          "id": "CATCH-001-1000",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-001",
+          "radius_m": 1000,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "1000米概念步行服务圈",
+          "name_en": "1000 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 3132628.613
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.36021256691885,
+                40.01681525600826
+              ],
+              [
+                116.36012334295981,
+                40.015639234669216
+              ],
+              [
+                116.35983524961183,
+                40.01448222825811
+              ],
+              [
+                116.35935322580131,
+                40.01336403211111
+              ],
+              [
+                116.35868552737648,
+                40.0123037766119
+              ],
+              [
+                116.35784358528316,
+                40.01131960001975
+              ],
+              [
+                116.3568418095396,
+                40.0104283383238
+              ],
+              [
+                116.35569734239455,
+                40.009645237416166
+              ],
+              [
+                116.35442976491068,
+                40.008983692492315
+              ],
+              [
+                116.35306076200165,
+                40.00845501911963
+              ],
+              [
+                116.35161375164869,
+                40.0080682598734
+              ],
+              [
+                116.35011348462389,
+                40.00783002983196
+              ],
+              [
+                116.34858562154088,
+                40.00774440355954
+              ],
+              [
+                116.3470562944328,
+                40.007812845499636
+              ],
+              [
+                116.34555166031572,
+                40.00803418496176
+              ],
+              [
+                116.34409745432906,
+                40.00840463612726
+              ],
+              [
+                116.34271855005184,
+                40.008917862732915
+              ],
+              [
+                116.34143853447331,
+                40.00956508633258
+              ],
+              [
+                116.34027930485225,
+                40.010335236294225
+              ],
+              [
+                116.33926069433248,
+                40.01121513898028
+              ],
+              [
+                116.33840013270142,
+                40.012189742890655
+              ],
+              [
+                116.33771234808837,
+                40.013242375933764
+              ],
+              [
+                116.3372091147119,
+                40.01435503044194
+              ],
+              [
+                116.33689905100888,
+                40.01550867107107
+              ],
+              [
+                116.33678747162787,
+                40.016683560331394
+              ],
+              [
+                116.33687629585535,
+                40.01785959619069
+              ],
+              [
+                116.33716401408596,
+                40.01901665598124
+              ],
+              [
+                116.33764571295684,
+                40.02013494072913
+              ],
+              [
+                116.33831315876391,
+                40.02119531401268
+              ],
+              [
+                116.33915493777685,
+                40.022179629545846
+              ],
+              [
+                116.34015665109101,
+                40.02307104187085
+              ],
+              [
+                116.34130116071218,
+                40.02385429483046
+              ],
+              [
+                116.34256888268297,
+                40.02451598286712
+              ],
+              [
+                116.34393812224319,
+                40.02504478066057
+              ],
+              [
+                116.34538544528418,
+                40.02543163715642
+              ],
+              [
+                116.34688607972474,
+                40.02566993064896
+              ],
+              [
+                116.34841433991245,
+                40.02575558224982
+              ],
+              [
+                116.3499440667521,
+                40.02568712578948
+              ],
+              [
+                116.3514490759866,
+                40.02546573294793
+              ],
+              [
+                116.3529036069129,
+                40.025095193181535
+              ],
+              [
+                116.35428276380786,
+                40.024581848791506
+              ],
+              [
+                116.35556294246678,
+                40.02393448625083
+              ],
+              [
+                116.35672223451718,
+                40.02316418566014
+              ],
+              [
+                116.3577408025608,
+                40.02228413092209
+              ],
+              [
+                116.35860121970494,
+                40.02130938389891
+              ],
+              [
+                116.3592887676668,
+                40.02025662643504
+              ],
+              [
+                116.35979168835522,
+                40.019143874677255
+              ],
+              [
+                116.3601013846425,
+                40.017990170597045
+              ],
+              [
+                116.36021256691885,
+                40.01681525600826
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-002-300",
+        "properties": {
+          "id": "CATCH-002-300",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-002",
+          "radius_m": 300,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "300米概念步行服务圈",
+          "name_en": "300 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 281936.575
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35101231752607,
+                39.98851971993606
+              ],
+              [
+                116.35098560651706,
+                39.98816691018723
+              ],
+              [
+                116.35089925664278,
+                39.98781980054501
+              ],
+              [
+                116.35075474623372,
+                39.987484330029126
+              ],
+              [
+                116.35055454864822,
+                39.98716623842979
+              ],
+              [
+                116.35030208990167,
+                39.986870968112235
+              ],
+              [
+                116.35000169000719,
+                39.986603570914696
+              ],
+              [
+                116.34965848903327,
+                39.98636862173176
+              ],
+              [
+                116.34927835914628,
+                39.98617014026032
+              ],
+              [
+                116.3488678041426,
+                39.98601152224505
+              ],
+              [
+                116.34843384818952,
+                39.98589548139874
+              ],
+              [
+                116.34798391567661,
+                39.98582400298937
+              ],
+              [
+                116.34752570423147,
+                39.985798309886746
+              ],
+              [
+                116.34706705306834,
+                39.98581884164887
+              ],
+              [
+                116.34661580891917,
+                39.98588524700489
+              ],
+              [
+                116.34617969183628,
+                39.98599638986313
+              ],
+              [
+                116.3457661631587,
+                39.98615036874171
+              ],
+              [
+                116.34538229789739,
+                39.986344549289484
+              ],
+              [
+                116.34503466371932,
+                39.98657560934215
+              ],
+              [
+                116.34472920859832,
+                39.986839595743696
+              ],
+              [
+                116.34447115905347,
+                39.98713199196242
+              ],
+              [
+                116.34426493071518,
+                39.98744779534632
+              ],
+              [
+                116.3441140527501,
+                39.987781602697446
+              ],
+              [
+                116.34402110743898,
+                39.988127702702634
+              ],
+              [
+                116.34398768594441,
+                39.9884801736405
+              ],
+              [
+                116.34401436102816,
+                39.98883298469381
+              ],
+              [
+                116.34410067718892,
+                39.98918009913439
+              ],
+              [
+                116.34424515839372,
+                39.9895155776155
+              ],
+              [
+                116.34444533327444,
+                39.98983367980413
+              ],
+              [
+                116.34469777736294,
+                39.990128962613404
+              ],
+              [
+                116.34499817164516,
+                39.990396373353796
+              ],
+              [
+                116.34534137643492,
+                39.99063133620778
+              ],
+              [
+                116.34572151930587,
+                39.99082983054683
+              ],
+              [
+                116.3461320955768,
+                39.99098845974935
+              ],
+              [
+                116.34656607963115,
+                39.99110450934015
+              ],
+              [
+                116.34701604516415,
+                39.99117599345535
+              ],
+              [
+                116.34747429229806,
+                39.991201688836284
+              ],
+              [
+                116.34793297938646,
+                39.99118115576969
+              ],
+              [
+                116.34838425724915,
+                39.99111474561533
+              ],
+              [
+                116.3488204035363,
+                39.99100359479184
+              ],
+              [
+                116.34923395491866,
+                39.990849605323966
+              ],
+              [
+                116.34961783483797,
+                39.990655412284475
+              ],
+              [
+                116.34996547462835,
+                39.99042433868896
+              ],
+              [
+                116.3502709259335,
+                39.990160338616356
+              ],
+              [
+                116.35052896249438,
+                39.989867929530035
+              ],
+              [
+                116.3507351695654,
+                39.98955211495889
+              ],
+              [
+                116.35088601942928,
+                39.98921829886328
+              ],
+              [
+                116.35097893172028,
+                39.98887219315226
+              ],
+              [
+                116.35101231752607,
+                39.98851971993606
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-002-500",
+        "properties": {
+          "id": "CATCH-002-500",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-002",
+          "radius_m": 500,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "500米概念步行服务圈",
+          "name_en": "500 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 783157.153
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35335386446228,
+                39.988532807435824
+              ],
+              [
+                116.35330932615605,
+                39.987944791914394
+              ],
+              [
+                116.35316539097107,
+                39.98736627851151
+              ],
+              [
+                116.35292452406767,
+                39.98680716541145
+              ],
+              [
+                116.35259084881488,
+                39.986277018629615
+              ],
+              [
+                116.35217007609756,
+                39.98578490837369
+              ],
+              [
+                116.35166940649181,
+                39.98533925390119
+              ],
+              [
+                116.35109740699062,
+                39.98494767952381
+              ],
+              [
+                116.3504638643931,
+                39.98461688421892
+              ],
+              [
+                116.3497796178682,
+                39.98435252707406
+              ],
+              [
+                116.34905637355625,
+                39.98415913052054
+              ],
+              [
+                116.34830650437631,
+                39.9840400030074
+              ],
+              [
+                116.34754283845797,
+                39.983997182435154
+              ],
+              [
+                116.34677843980768,
+                39.984031401314226
+              ],
+              [
+                116.34602638495245,
+                39.984142074242506
+              ],
+              [
+                116.34529953937015,
+                39.984327307915514
+              ],
+              [
+                116.34461033752049,
+                39.98458393349809
+              ],
+              [
+                116.34397057022892,
+                39.98490756080571
+              ],
+              [
+                116.34339118305198,
+                39.985292653370585
+              ],
+              [
+                116.34288208906666,
+                39.985732623111936
+              ],
+              [
+                116.3424519992821,
+                39.986219942994396
+              ],
+              [
+                116.34210827357337,
+                39.98674627575174
+              ],
+              [
+                116.34185679468948,
+                39.987302616477635
+              ],
+              [
+                116.34170186749517,
+                39.98787944664803
+              ],
+              [
+                116.34164614517796,
+                39.98846689694352
+              ],
+              [
+                116.34169058369176,
+                39.98905491608847
+              ],
+              [
+                116.34183442522806,
+                39.98963344282012
+              ],
+              [
+                116.3420752110085,
+                39.990192578045814
+              ],
+              [
+                116.34240882319246,
+                39.99072275424236
+              ],
+              [
+                116.3428295551931,
+                39.99121489919749
+              ],
+              [
+                116.34333020920907,
+                39.99166059128905
+              ],
+              [
+                116.34390221930988,
+                39.99205220364157
+              ],
+              [
+                116.344535797974,
+                39.9923830346898
+              ],
+              [
+                116.34522010357463,
+                39.99264742291036
+              ],
+              [
+                116.34594342594553,
+                39.99284084375415
+              ],
+              [
+                116.346693386848,
+                39.99295998711682
+              ],
+              [
+                116.3474571519018,
+                39.9930028140177
+              ],
+              [
+                116.34822165034448,
+                39.99296859151511
+              ],
+              [
+                116.34897379884842,
+                39.99285790525806
+              ],
+              [
+                116.34970072555367,
+                39.99267264945942
+              ],
+              [
+                116.35038999047218,
+                39.99241599446213
+              ],
+              [
+                116.35102979848045,
+                39.99209233245529
+              ],
+              [
+                116.35160920124711,
+                39.99170720227139
+              ],
+              [
+                116.35211828463284,
+                39.99126719455487
+              ],
+              [
+                116.3525483383508,
+                39.99077983892906
+              ],
+              [
+                116.3528920049838,
+                39.99025347509604
+              ],
+              [
+                116.35314340580875,
+                39.98969711007987
+              ],
+              [
+                116.3532982412805,
+                39.98912026405995
+              ],
+              [
+                116.35335386446228,
+                39.988532807435824
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-002-1000",
+        "properties": {
+          "id": "CATCH-002-1000",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-002",
+          "radius_m": 1000,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "1000米概念步行服务圈",
+          "name_en": "1000 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 3132628.613
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35920773847835,
+                39.98856531924955
+              ],
+              [
+                116.35911856207913,
+                39.98738929184834
+              ],
+              [
+                116.35883059807844,
+                39.98623227838742
+              ],
+              [
+                116.3583487831762,
+                39.98511407432526
+              ],
+              [
+                116.3576813696347,
+                39.984053810183454
+              ],
+              [
+                116.35683978351663,
+                39.98306962437237
+              ],
+              [
+                116.35583842874395,
+                39.982178353042535
+              ],
+              [
+                116.3546944403607,
+                39.981395242254855
+              ],
+              [
+                116.35342739123975,
+                39.98073368737767
+              ],
+              [
+                116.35205895726003,
+                39.980205004152225
+              ],
+              [
+                116.35061254667707,
+                39.97981823532542
+              ],
+              [
+                116.34911290001229,
+                39.97957999614175
+              ],
+              [
+                116.34758566727814,
+                39.97949436132326
+              ],
+              [
+                116.34605696973671,
+                39.97956279545999
+              ],
+              [
+                116.34455295364634,
+                39.97978412799433
+              ],
+              [
+                116.3430993435852,
+                39.98015457322446
+              ],
+              [
+                116.34172100294721,
+                39.98066779498631
+              ],
+              [
+                116.34044150908638,
+                39.98131501491333
+              ],
+              [
+                116.3392827503402,
+                39.98208516243268
+              ],
+              [
+                116.33826455179751,
+                39.982965063944704
+              ],
+              [
+                116.33740433619468,
+                39.98393966796549
+              ],
+              [
+                116.33671682573477,
+                39.98499230239804
+              ],
+              [
+                116.33621378993661,
+                39.986104959547866
+              ],
+              [
+                116.33590384384497,
+                39.98725860402345
+              ],
+              [
+                116.33579230008257,
+                39.98843349826782
+              ],
+              [
+                116.33588107731215,
+                39.98960954016313
+              ],
+              [
+                116.33616866671812,
+                39.990766606939054
+              ],
+              [
+                116.33665015712853,
+                39.99188489950379
+              ],
+              [
+                116.33731731839465,
+                39.99294528130444
+              ],
+              [
+                116.338158741646,
+                39.993929605912406
+              ],
+              [
+                116.33916003405965,
+                39.99482102771833
+              ],
+              [
+                116.34030406484128,
+                39.99560429040666
+              ],
+              [
+                116.34157125822861,
+                39.99626598825724
+              ],
+              [
+                116.34293992851124,
+                39.99679479578547
+              ],
+              [
+                116.34438665132997,
+                39.99718166177337
+              ],
+              [
+                116.34588666488501,
+                39.997419964355096
+              ],
+              [
+                116.34741429416094,
+                39.99750562448814
+              ],
+              [
+                116.34894339087201,
+                39.99743717585731
+              ],
+              [
+                116.35044778155714,
+                39.997215790007964
+              ],
+              [
+                116.35190171611015,
+                39.996845256275236
+              ],
+              [
+                116.35328030902349,
+                39.996331916854544
+              ],
+              [
+                116.35455996575105,
+                39.99568455813065
+              ],
+              [
+                116.3557187868562,
+                39.99491426013519
+              ],
+              [
+                116.3567369430005,
+                39.99403420672253
+              ],
+              [
+                116.3575970143369,
+                39.993059459728336
+              ],
+              [
+                116.35828428849392,
+                39.99200670099304
+              ],
+              [
+                116.35878701205631,
+                39.99089394668211
+              ],
+              [
+                116.35909659125771,
+                39.98974023880848
+              ],
+              [
+                116.35920773847835,
+                39.98856531924955
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-003-300",
+        "properties": {
+          "id": "CATCH-003-300",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-003",
+          "radius_m": 300,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "300米概念步行服务圈",
+          "name_en": "300 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 281936.575
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35201019093883,
+                39.94693967276641
+              ],
+              [
+                116.35198348809153,
+                39.94658686081365
+              ],
+              [
+                116.35189718262417,
+                39.94623974981103
+              ],
+              [
+                116.35175275210568,
+                39.9459042788017
+              ],
+              [
+                116.35155266852587,
+                39.945586187584645
+              ],
+              [
+                116.35130035594823,
+                39.945290918518936
+              ],
+              [
+                116.35100013188404,
+                39.945023523421824
+              ],
+              [
+                116.35065713339301,
+                39.94478857715254
+              ],
+              [
+                116.3502772291772,
+                39.94459009935857
+              ],
+              [
+                116.34986691917226,
+                39.9444314857222
+              ],
+              [
+                116.34943322335462,
+                39.94431544988169
+              ],
+              [
+                116.34898356166434,
+                39.94424397701971
+              ],
+              [
+                116.34852562709689,
+                39.94421828991139
+              ],
+              [
+                116.34806725413101,
+                39.94423882801226
+              ],
+              [
+                116.34761628474044,
+                39.94430523994294
+              ],
+              [
+                116.34718043427813,
+                39.94441638949913
+              ],
+              [
+                116.34676715952274,
+                39.94457037508401
+              ],
+              [
+                116.34638353114173,
+                39.94476456223131
+              ],
+              [
+                116.34603611274979,
+                39.94499562866336
+              ],
+              [
+                116.34573084862896,
+                39.94525962111447
+              ],
+              [
+                116.34547296203003,
+                39.94555202294888
+              ],
+              [
+                116.34526686579474,
+                39.94586783141806
+              ],
+              [
+                116.34511608682827,
+                39.946201643236606
+              ],
+              [
+                116.34502320571605,
+                39.94654774701459
+              ],
+              [
+                116.34498981252045,
+                39.94690022096585
+              ],
+              [
+                116.34501647951714,
+                39.94725303422147
+              ],
+              [
+                116.3451027513413,
+                39.947600150015646
+              ],
+              [
+                116.34524715271675,
+                39.947935628978705
+              ],
+              [
+                116.34544721363974,
+                39.94825373076959
+              ],
+              [
+                116.34569951159075,
+                39.948549012308696
+              ],
+              [
+                116.34599973005533,
+                39.94881642092867
+              ],
+              [
+                116.34634273235531,
+                39.9490513808488
+              ],
+              [
+                116.34672264952917,
+                39.94924987149124
+              ],
+              [
+                116.34713298075808,
+                39.94940849629815
+              ],
+              [
+                116.3475667046193,
+                39.94952454086999
+              ],
+              [
+                116.34801639926158,
+                39.94959601942907
+              ],
+              [
+                116.34847436944388,
+                39.94962170881202
+              ],
+              [
+                116.3489327782604,
+                39.94960116940829
+              ],
+              [
+                116.34938378129414,
+                39.949534752686056
+              ],
+              [
+                116.34981966089948,
+                39.94942359517616
+              ],
+              [
+                116.35023295831172,
+                39.94926959901743
+              ],
+              [
+                116.35061660131935,
+                39.94907539939673
+              ],
+              [
+                116.35096402531089,
+                39.948844319441804
+              ],
+              [
+                116.35126928562273,
+                39.94858031333989
+              ],
+              [
+                116.35152715926365,
+                39.948287898656986
+              ],
+              [
+                116.35173323427495,
+                39.94797207901727
+              ],
+              [
+                116.35188398519786,
+                39.947638258467386
+              ],
+              [
+                116.35197683335807,
+                39.947292148992304
+              ],
+              [
+                116.35201019093883,
+                39.94693967276641
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-003-500",
+        "properties": {
+          "id": "CATCH-003-500",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-003",
+          "radius_m": 500,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "500米概念步行服务圈",
+          "name_en": "500 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 783157.153
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.35435032014394,
+                39.94695272890623
+              ],
+              [
+                116.35430579548206,
+                39.94636470971069
+              ],
+              [
+                116.35416193434774,
+                39.94578619403668
+              ],
+              [
+                116.35392120062929,
+                39.94522708010785
+              ],
+              [
+                116.3535877154126,
+                39.94469693395454
+              ],
+              [
+                116.35316718632752,
+                39.94420482577485
+              ],
+              [
+                116.35266680977935,
+                39.943759174791985
+              ],
+              [
+                116.35209514774586,
+                39.94336760525944
+              ],
+              [
+                116.35146198125248,
+                39.943036816073054
+              ],
+              [
+                116.35077814303477,
+                39.94277246621704
+              ],
+              [
+                116.35005533224985,
+                39.9425790779992
+              ],
+              [
+                116.34930591440317,
+                39.9424599597269
+              ],
+              [
+                116.34854270990662,
+                39.94241714914311
+              ],
+              [
+                116.34777877487691,
+                39.94245137858764
+              ],
+              [
+                116.3470271779136,
+                39.94256206247749
+              ],
+              [
+                116.34630077666493,
+                39.94274730732011
+              ],
+              [
+                116.34561199799225,
+                39.943003944088446
+              ],
+              [
+                116.34497262548375,
+                39.94332758240545
+              ],
+              [
+                116.34439359794332,
+                39.94371268561373
+              ],
+              [
+                116.34388482229542,
+                39.94415266544891
+              ],
+              [
+                116.34345500410183,
+                39.94463999470149
+              ],
+              [
+                116.3431114985888,
+                39.945166335943604
+              ],
+              [
+                116.34286018473463,
+                39.94572268412252
+              ],
+              [
+                116.34270536457629,
+                39.94629952058575
+              ],
+              [
+                116.34264968946508,
+                39.946886975905585
+              ],
+              [
+                116.34269411454196,
+                39.94747499872018
+              ],
+              [
+                116.34283788222301,
+                39.94805352770407
+              ],
+              [
+                116.34307853498858,
+                39.94861266372656
+              ],
+              [
+                116.3434119572696,
+                39.94914283925165
+              ],
+              [
+                116.34383244572517,
+                39.94963498207966
+              ],
+              [
+                116.34433280671887,
+                39.950080670626086
+              ],
+              [
+                116.34490447933287,
+                39.95047227807759
+              ],
+              [
+                116.34553768182073,
+                39.95080310295418
+              ],
+              [
+                116.34622157899393,
+                39.951067483839445
+              ],
+              [
+                116.34694446767763,
+                39.951260896310984
+              ],
+              [
+                116.3476939770577,
+                39.95138003040858
+              ],
+              [
+                116.34845728048441,
+                39.951422847310795
+              ],
+              [
+                116.34922131509911,
+                39.95138861424722
+              ],
+              [
+                116.34997300551572,
+                39.95127791704749
+              ],
+              [
+                116.35069948771728,
+                39.951092650111214
+              ],
+              [
+                116.35138832932563,
+                39.95083598397108
+              ],
+              [
+                116.35202774246363,
+                39.95051231100576
+              ],
+              [
+                116.35260678555855,
+                39.95012717023393
+              ],
+              [
+                116.35311555062592,
+                39.94968715247978
+              ],
+              [
+                116.35354533282501,
+                39.94919978753698
+              ],
+              [
+                116.35388877938256,
+                39.94867341526562
+              ],
+              [
+                116.35414001533796,
+                39.948117042833005
+              ],
+              [
+                116.35429474396288,
+                39.94754019054449
+              ],
+              [
+                116.35435032014394,
+                39.94695272890623
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "type": "Feature",
+        "id": "CATCH-003-1000",
+        "properties": {
+          "id": "CATCH-003-1000",
+          "layer": "AI_SERVICE_ZONE",
+          "source_type": "agent_generated_design",
+          "confidence": "medium",
+          "geometry_role": "analysis_overlay",
+          "key_area_id": "PROV-KEY-003",
+          "radius_m": 1000,
+          "service_area_method": "euclidean_centroid_buffer",
+          "status": "conceptual_screening_only",
+          "name_zh": "1000米概念步行服务圈",
+          "name_en": "1000 m conceptual walk catchment",
+          "limitation_zh": "不是基于路网、过街、坡度或门禁计算的等时圈，不作为十五分钟可达性结论。",
+          "limitation_en": "Not a network isochrone and does not account for crossings, slopes, access control, or actual travel time.",
+          "area_sqm_declared": 3132628.613
+        },
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                116.3602006498106,
+                39.94698516262283
+              ],
+              [
+                116.36011150090751,
+                39.945809127868884
+              ],
+              [
+                116.35982368520348,
+                39.94465210984683
+              ],
+              [
+                116.35934213684116,
+                39.9435339040951
+              ],
+              [
+                116.35867510350496,
+                39.94247364116745
+              ],
+              [
+                116.35783400473846,
+                39.94148945945788
+              ],
+              [
+                116.35683323611612,
+                39.940598195051926
+              ],
+              [
+                116.3556899226491,
+                39.939815093897664
+              ],
+              [
+                116.35442362566437,
+                39.939153551204384
+              ],
+              [
+                116.3530560081788,
+                39.93862488251022
+              ],
+              [
+                116.35161046448982,
+                39.93823813031823
+              ],
+              [
+                116.35011172030241,
+                39.937999909591994
+              ],
+              [
+                116.34858541020667,
+                39.93791429474022
+              ],
+              [
+                116.34705763969905,
+                39.93798275001233
+              ],
+              [
+                116.34555453919718,
+                39.938204104488655
+              ],
+              [
+                116.34410181763323,
+                39.93857457209001
+              ],
+              [
+                116.34272432321606,
+                39.939087816266266
+              ],
+              [
+                116.34144561883419,
+                39.93973505826301
+              ],
+              [
+                116.34028757932577,
+                39.94050522712456
+              ],
+              [
+                116.33927001747692,
+                39.94138514888044
+              ],
+              [
+                116.33841034512805,
+                39.94235977169462
+              ],
+              [
+                116.33772327517967,
+                39.943412423143144
+              ],
+              [
+                116.33722056960104,
+                39.94452509523562
+              ],
+              [
+                116.3369108377705,
+                39.94567875232109
+              ],
+              [
+                116.33679938862537,
+                39.946853656624405
+              ],
+              [
+                116.3368881391885,
+                39.948029705854516
+              ],
+              [
+                116.33717558107939,
+                39.94918677711608
+              ],
+              [
+                116.3376568056302,
+                39.95030507124246
+              ],
+              [
+                116.33832358722375,
+                39.9513654516573
+              ],
+              [
+                116.33916452347222,
+                39.952349771960066
+              ],
+              [
+                116.34016522987656,
+                39.95324118662032
+              ],
+              [
+                116.34130858566563,
+                39.95402443945038
+              ],
+              [
+                116.34257502662834,
+                39.95468612490455
+              ],
+              [
+                116.3439428799359,
+                39.95521491771572
+              ],
+              [
+                116.34538873522,
+                39.9556017669225
+              ],
+              [
+                116.34688784554099,
+                39.95584005094991
+              ],
+              [
+                116.34841455135741,
+                39.955925691075365
+              ],
+              [
+                116.34994272020505,
+                39.955857221327065
+              ],
+              [
+                116.35144619452001,
+                39.95563581361124
+              ],
+              [
+                116.35289923989548,
+                39.955265257635226
+              ],
+              [
+                116.35427698605534,
+                39.95475189597177
+              ],
+              [
+                116.35555585295522,
+                39.95410451538183
+              ],
+              [
+                116.3567139546816,
+                39.95333419626597
+              ],
+              [
+                116.35773147420836,
+                39.95245412283429
+              ],
+              [
+                116.35859100257926,
+                39.95147935725924
+              ],
+              [
+                116.35927783670564,
+                39.9504265816937
+              ],
+              [
+                116.35978023068913,
+                39.949313812586446
+              ],
+              [
+                116.3600895963861,
+                39.94816009219981
+              ],
+              [
+                116.3602006498106,
+                39.94698516262283
+              ]
+            ]
+          ]
+        }
+      }
+    ]
+  },
+  "accessibility_quality_gate": {
+    "euclidean_buffers": "concept_screening_only",
+    "walking_route_matrix": "rejected_implausible_speed",
+    "fifteen_minute_isochrone": "blocked_missing_api_key",
+    "planx_pedshed": "computed_on_agent_generated_design_network_only",
+    "formal_accessibility_metrics": "unknown"
+  },
+  "osm_background_probe": {
+    "bbox": [
+      39.93,
+      116.33,
+      40.03,
+      116.37
+    ],
+    "railway_station_feature_count": 29,
+    "subway_entrance_feature_count": 88,
+    "park_query": "blocked_504",
+    "primary_road_query": "blocked_504",
+    "formal_use": false
+  },
+  "elevation_probe": {
+    "status": "blocked_http_500",
+    "locations": [
+      "PROV-KEY-001",
+      "PROV-KEY-002",
+      "PROV-KEY-003"
+    ],
+    "formal_metric": "unknown"
+  },
+  "strategy_comparison": {
+    "strategy_a": {
+      "name": "node_intensification",
+      "score": 16,
+      "status": "alternative"
+    },
+    "strategy_b": {
+      "name": "transit_access_driven",
+      "score": 11,
+      "status": "hold_pending_data"
+    },
+    "strategy_c": {
+      "name": "acceptance_rail_blue_green_resilience",
+      "score": 19,
+      "status": "recommended"
+    },
+    "score_note": "Internal evidence-audit support, not an official score."
+  },
+  "tasks": [
+    {
+      "id": "qgis-layer-probe",
+      "tool": "haidian-qgis.get_layer_summary",
+      "outcome": "success_20_layers",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-file-interface",
+      "tool": "haidian-geo.vector_info",
+      "outcome": "success_9_submission_files",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-validity",
+      "tool": "haidian-geo.validate_geojson",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-transform",
+      "tool": "haidian-geo.transform_crs",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-centroid-area",
+      "tool": "haidian-geo.centroid+area",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-buffers",
+      "tool": "haidian-geo.buffer",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-predicates",
+      "tool": "haidian-geo.spatial_predicate",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-route-matrix",
+      "tool": "haidian-geo.route_matrix",
+      "outcome": "failed_quality_gate",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-nearest-road",
+      "tool": "haidian-geo.nearest_road",
+      "outcome": "success_with_limitations",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-isochrone",
+      "tool": "haidian-geo.isochrone",
+      "outcome": "blocked_missing_api_key",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-elevation",
+      "tool": "haidian-geo.elevation",
+      "outcome": "blocked_upstream_500",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-osm-transit",
+      "tool": "haidian-geo.osm_features",
+      "outcome": "success_background_only",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "geo-osm-park-road",
+      "tool": "haidian-geo.osm_features",
+      "outcome": "blocked_upstream_504",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-network-preparation",
+      "tool": "QGIS Processing / planx:preparenetwork",
+      "outcome": "success_with_design_network_limitations",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-space-syntax",
+      "tool": "QGIS Processing / planx:spacesyntax",
+      "outcome": "success_with_design_network_limitations",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-centrality",
+      "tool": "QGIS Processing / planx:networkcentrality",
+      "outcome": "success_with_design_network_limitations",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-service-areas",
+      "tool": "QGIS Processing / planx:serviceareas",
+      "outcome": "success_with_design_network_limitations",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-walkability",
+      "tool": "QGIS Processing / planx:walkability",
+      "outcome": "success_without_slope",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-green-access",
+      "tool": "QGIS Processing / planx:greenaccess",
+      "outcome": "success_without_population_weighting",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "planx-building-metrics",
+      "tool": "QGIS Processing / planx:buildingmetrics",
+      "outcome": "blocked_plugin_compatibility",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "diagram-factory",
+      "tool": "ai-analysis-diagram-factory",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    },
+    {
+      "id": "blender-model",
+      "tool": "blender MCP",
+      "outcome": "success",
+      "dispatch_schema_valid": true,
+      "audit_complete": true
+    }
+  ],
+  "task_count": 22,
+  "planx_design_network_diagnostics": {
+    "network_nodes": 11,
+    "network_segments": 10,
+    "service_nodes": 12,
+    "service_area_breaks_m": [
+      300,
+      500,
+      1000
+    ],
+    "aggregate_pedshed": [
+      0.113913,
+      0.076779,
+      0.035591
+    ],
+    "aggregate_reached_street_length_m": [
+      4734.28,
+      7429.4,
+      10550.55
+    ],
+    "walkability_segment_count": 10,
+    "walkability_mean": 23.439,
+    "walkability_segments_below_50": 10,
+    "green_access_demand_points": 3,
+    "green_access_points_met_per_class": 1,
+    "population_weighting": "unavailable",
+    "status": "concept_design_network_diagnostic_not_formal_metric"
+  }
+}

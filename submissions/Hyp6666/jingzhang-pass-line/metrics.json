@@ -1,0 +1,236 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "area": "sqm",
+    "length": "m",
+    "ratio": "ratio"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) projected to EPSG:4548",
+      "confidence": "high",
+      "assumptions": [
+        "Site boundary is provisional rough; precise area待正式边界发布后复算。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_total_area_sqm": {
+      "status": "known",
+      "value": 3692893.01,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(KEY_AREA)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "三处重点区为 provisional rough polygon，待官方边界发布后复算。"
+      ]
+    },
+    "land_use_total_area_sqm": {
+      "status": "known",
+      "value": 11412832.74,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "用地剖分基于 provisional site boundary，待官方边界后重算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 71310.889,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints)) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "建筑 footprint 为概念性建议，规模与高度待正式控规确认。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2919802.218,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space polygons) projected to EPSG:4548 (validator-recomputed, overlap-deduplicated)",
+      "confidence": "medium",
+      "assumptions": [
+        "绿脊与口袋公园重叠部分按 union 去重计算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.255835,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm(union, no overlap) / site_area_sqm projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 19313.642,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space polygons) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.001692,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "walk_test_route_total_length_m": {
+      "status": "known",
+      "value": 14720.04,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(road_centerline)) projected to EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "含三条标准走测线（众智园/AI原点社区/大钟寺）及概念性现有道路。"
+      ]
+    },
+    "pass_gate_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space where public_space_type=pass_gate_plaza)",
+      "confidence": "high",
+      "assumptions": [
+        "三个放行门广场分别对应三处重点区。"
+      ]
+    },
+    "phasing_phase1_area_sqm": {
+      "status": "known",
+      "value": 120710.26,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-1) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "概念性分期，待官方时序确认。"
+      ]
+    },
+    "phasing_phase2_area_sqm": {
+      "status": "known",
+      "value": 3692893.01,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-2) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "概念性分期，待官方时序确认。"
+      ]
+    },
+    "phasing_phase3_area_sqm": {
+      "status": "known",
+      "value": 11412825.39,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(PHASE-3) projected to EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "概念性分期，待官方时序确认。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total_floor_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "已批复控规条件未在清权场地资料中提供；待正式控规确认。"
+      ],
+      "reason": "FAR 控制指标在 brief/site-package/ranges/planning_limits.json 中 status=missing。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "max(height(buildings))",
+      "confidence": "unknown",
+      "assumptions": [
+        "高度控制未在清权场地资料中提供；待正式控规确认。"
+      ],
+      "reason": "height_m 控制指标在 planning_limits.json 中 status=missing。"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "建筑密度上限未在清权场地资料中提供；待正式控规确认。"
+      ],
+      "reason": "density 控制指标在 planning_limits.json 中 status=missing。"
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "road_area / site_area (road represented as centerline; no ROAD_AREA polygon layer)",
+      "confidence": "low",
+      "assumptions": [
+        "道路以中心线表示，未单独提供 ROAD_AREA 面图层；按中心线长度计量。"
+      ],
+      "reason": "road_area_ratio cannot be computed without ROAD_AREA polygon layer; road centerline length recorded separately as walk_test_route_total_length_m."
+    }
+  }
+}

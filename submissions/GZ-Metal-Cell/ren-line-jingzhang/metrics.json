@@ -1,0 +1,222 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary; recompute after official redline release."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2066072.522,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept green network derived from provisional site."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2032468.891,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space + ai_service_zone features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Plazas and AI service zones only; excludes parks."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 498605.414,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building footprints)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual massing only; not approved construction scale."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.181031,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.178086,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 42973.737,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(ROAD_CENTERLINE features)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept network; excludes schematic constraints."
+      ]
+    },
+    "heritage_spine_length_m": {
+      "status": "known",
+      "value": 9327.824,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "line_length(ROAD-SPINE) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Along provisional heritage corridor."
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(LAND_USE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_footprint_count": {
+      "status": "known",
+      "value": 306,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(BUILDING_FOOTPRINT features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual massing."
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(KEY_AREA features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; official value 1,921,000 sqm from announcement."
+      ]
+    },
+    "ai_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; official value 1,043,000 sqm from announcement."
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; official value 720,000 sqm from announcement."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "reason": "待正式控规条件补齐：官方容积率控制未在公开资料中发布。",
+      "assumptions": [
+        "Recalculate after official regulatory-plan conditions are available."
+      ]
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "reason": "待正式控规与文保/景观高度控制补齐。",
+      "assumptions": []
+    }
+  }
+}

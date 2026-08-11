@@ -6,7 +6,7 @@ translation_of: "proposal.md"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v0.3"
+iteration: "v0.4"
 summary: "The Jing-Zhang Urban AI Testbed is not a technology showcase. It is a spatial and operational framework for moving laboratory capabilities into real urban conditions, where affected users can require revision, bounded expansion, or exit. One ordinary-city spine, the organiser's Three Zones and Two Wings, three testbed types, eight cross-corridor interfaces, and twelve scenario cards support three flagships: an AI Learning Corridor, an Embodied AI Urban Lab, and an AI Health and Aging Lab. City Release V0.1—V2.0 governs evidence, permission, safety, human takeover, and public return."
 tracks: ["enterprise-services-ecosystem", "civic-agent-governance", "ai-traffic-walkability"]
 scenarios: ["enterprise-service-copilot", "public-safety-operations-review", "ai-traffic-walkability"]
@@ -24,9 +24,9 @@ This proposal does not line the Jing-Zhang corridor with more AI products. It as
 | Question | Proposal response | Verifiable delivery |
 | --- | --- | --- |
 | Urban positioning | The Centennial Jing-Zhang Cultural Belt, Urban AI Life Experience Belt, and AI Convergence Innovation Belt translate the vision of a global AI industry highland and a technology-and-culture destination | One spine, Three Zones, Two Wings, and a three-level scope framework |
-| Spatial strategy | An ordinary public-life spine comes first; eight transverse interfaces verify lawful crossings one by one; three testbeds operate only in bounded units | Five bilingual analytical figures, three key-area study windows, and rail verticality |
+| Spatial strategy | An ordinary public-life spine comes first; eight transverse interfaces verify lawful crossings one by one; three testbeds operate only in bounded units | Five bilingual analytical figures, eight interface records, nine key-area work packages, and rail verticality |
 | Innovation mechanism | `City-in-the-Loop` puts urban problem owners, ordinary users, and operators before the model; `City Release` governs observation, prototyping, temporary deployment, and replication | Twelve scenario cards, three pilot contracts, and V0.1—V2.0 gates |
-| Delivery organisation | Every trial carries A/R/C/I roles, an ordinary baseline, candidate acceptance gates, an operating receipt, appeal, stop, restoration, and public return | Eight renewal projects, five resource ledgers, and an annual operating loop |
+| Delivery organisation | Every trial carries A/R/C/I roles, an ordinary baseline, candidate acceptance gates, an operating receipt, appeal, stop, restoration, and public return | Twelve scenario-space-operation links, two tabletop receipts, five resource ledgers, and an annual operating loop |
 | Public interest | Six provisional personas identify exclusion; clear routes and human service remain available without a phone, an account, or active AI | Two-line journeys, Human Handoff Desks, and ordinary-service repairs |
 | Evidence boundary | Operating rail is checked by system and vertical position; provisional geometry supports calculation only; no partnership, effect, or statutory metric is invented | Source and assumption registers, compliance/standard/depth matrices, and stop rules |
 
@@ -55,6 +55,19 @@ The three positionings are assigned to space and operation rather than left as s
 ![One spine, Three Zones, Two Wings, and three testbed types](assets/figures/land-use-structure.en.png)
 
 The eight transverse interfaces, JZ-01 to JZ-08, organise the next field walk and section studies. They are not eight confirmed projects. Each interface must first record legal crossings, the ordinary service baseline, opening status, and accountable operator. A conceptual relationship stops when it reaches an operating railway boundary; only an existing or formally approved bridge, underpass, street crossing, or station passage can establish an east-west connection.[data:geometry/roads.geojson#ROAD-001]
+
+The interface register turns “eight” from a headline count into eight distinct evidence tasks. The current `roads.geojson` contains only six conceptual transverse relationships, corresponding to JZ-01 through JZ-06. No lawful-crossing evidence is yet available at the Beijing North throat or the Qinghuayuan Tunnel portal transition, so JZ-07 and JZ-08 remain register-only and no speculative crossing is drawn. This difference is a risk control, not a missing line.[metric:interface_register_count]
+
+| Interface | Audit window | Rail / spatial condition | Ordinary-service baseline | Evidence gate before any trial |
+| --- | --- | --- | --- | --- |
+| JZ-01 | Zhongzhiyuan station area—compound entrance | Northern operating surface/bridge rail condition to verify | Continuous walking, accessibility, static wayfinding, and rest | Fence line, opening status, accompanied accessibility walk, and operator confirmation |
+| JZ-02 | Zhongzhiyuan—Xiaoyue River | Parallel railway and waterfront conditions to verify | Waterfront access, night help, and a non-collection bypass | River/flood condition, fence line, and night walk |
+| JZ-03 | Heritage park—campus/compound | Former surface heritage + underground HSR + visible Line 13 | Public learning route independent of campus opening | Campus access, heritage, tunnel constraint, and public-route walk |
+| JZ-04 | AI Origin—street | HSR tunnel section; no assumption of buildable subsurface | No-account problem intake and a named human reply | Site permission, duty roster, privacy notice, and submitter confirmation |
+| JZ-05 | Dazhongsi station exit—sports park | Underground Line 12; surface public route to verify | No-phone arrival, rest, and toilet information | Station/accessibility walk, rest points, and service hours |
+| JZ-06 | Museum—community service | Existing street network; no new crossing conclusion | Verified paper directory, static map, and one human handoff | Directory audit, operator, opening hours, and accompanied caregiver walk |
+| JZ-07 | Beijing North station throat | Operating surface station throat; register-only | Existing lawful passage, safety boundary, and static diversion | As-built information, ownership, safety boundary, and station-operator confirmation |
+| JZ-08 | Tunnel portal—northern return-to-grade transition | Operating HSR changes from underground to surface; register-only | Public route outside the fence, warning, and continuous diversion | Portal coordinates, protection boundary, structure, and maintenance records |
 
 | Working scale | Design question | Current deliverable | Gate to the next stage |
 | --- | --- | --- | --- |
@@ -98,6 +111,20 @@ All three key areas use the same drawing protocol: a 1:5,000 study window, six p
 | Beijing AI Origin / Innovation Testbed | Build an Origin–heritage–street learning chain that does not depend on campus access; begin with static explanation and a human problem desk | Reverse Lab, no-screen explanation walk, and failure-and-revision archive | The problem owner may reject a technical rewrite; leave a problem brief, human responsibility chain, and public archive |
 | Dazhongsi / Urban Life Testbed | Connect station, sports park, museum, and neighbourhood services as a journey that works without a smartphone | Non-diagnostic service finding, rest-to-service routes, and caregiver handoff | No medical records, health scores, or substitution for professionals; leave a verified directory, rest points, and human window |
 
+Nine key-area work packages translate district-scale intent into spatial tasks that a professional team can take over. They are not project approvals, construction packages, or real-building retain/renovate/demolish decisions.[metric:key_area_work_package_count]
+
+| Key area | Work package | Spatial object and action | Candidate acceptance / stop and restoration |
+| --- | --- | --- | --- |
+| Zhongzhiyuan | KA-N-01 Ordinary Route Repair | Station exit—compound threshold; verify opening, wayfinding, accessibility, and rest | Continuous with AI off; retain the ordinary route after removing trial markers |
+| Zhongzhiyuan | KA-N-02 Enclosed Drill Court | Internal hard surface; low-speed yielding, emergency stop, and takeover | Every stop succeeds and the ordinary path remains clear; isolate equipment and restore the site on failure |
+| Zhongzhiyuan | KA-N-03 Takeover and Recovery Store | Service edge outside movement lines; maintenance, withdrawal, and recovery tools | Failed equipment never occupies the route; close with a restoration receipt |
+| AI Origin | KA-C-01 Problem Desk and No-Screen Learning Chain | Public threshold and ordinary walking line; human intake and bilingual static explanation | Understandable without scanning and receives a named reply; revert to a human-only desk on failure |
+| AI Origin | KA-C-02 Reverse Lab | Bookable indoor or sheltered space; turn real constraints into a test brief | Submitter confirms no distortion; otherwise withdraw the technical brief and retain the original problem |
+| AI Origin | KA-C-03 Public Proof Register | Small public display plus offline archive; version, failure, expiry, and revocation | Every item has a source, owner, review date, and term; remove expired display while retaining the archive |
+| Dazhongsi | KA-S-01 No-Phone Service Entrance | Station-to-service route; paper directory, static map, and human window | Complete without phone/account; retain verified directory and wayfinding after exit |
+| Dazhongsi | KA-S-02 Rest-to-Service Chain | Streets, parks, and service thresholds; verify crossings, seats, shade, and access control | No extra detour for the most vulnerable user; remove unverified dynamic guidance |
+| Dazhongsi | KA-S-03 Human Handoff and Directory Audit Desk | Staffed service threshold; one handoff and periodic directory audit | Named handoff and no diagnostic scoring; downgrade to paper directory plus human window on failure |
+
 The northern Embodied AI Urban Lab begins in an internal or closable hard-surface space. It does not treat an open park, viaduct, or sole accessible path as a sandbox. The central AI Learning Corridor combines static bilingual explanation, tactile models, staffed interpretation, a problem desk, and a failure archive; its essential content does not depend on scanning a code. The southern AI Health and Aging Lab improves only the journey of finding, understanding, reaching, handing off to a person, and returning. It does not perform diagnosis, prescription, risk scoring, or emergency medical triage.
 
 Each area also carries two journeys. The ordinary journey proves that the task can be completed when AI is off. The operating journey shows permission, staffing, takeover, maintenance, complaint handling, deletion, and restoration. Project points on the drawings are labelled `search / audit / field verify`; they do not name a start date, investment, or participating organisation.[source:PEER-ISSUE-1061]
@@ -116,9 +143,33 @@ The three flagships connect AI to different planning domains. The Learning Corri
 | Embodied AI Urban Lab | Shared Right-of-Way Sandbox; Curb Handoff Bay; Failure and Takeover Drill; Non-Identifying Public-Realm Check | Can equipment yield to the most vulnerable user, accept human takeover, and restore the site? |
 | AI Health and Aging Lab | No-Phone Service Finder; Rest-to-Service Route; Caregiver Handoff; Service Directory Audit | Can a service journey become more reliable without sensitive health data and while retaining a human alternative? |
 
+The scenario-space-operation matrix binds every card to one spatial package, one staffed operating unit, and one evidence output, so the twelve cards do not remain a programming list.[metric:scenario_operation_link_count]
+
+| Scenario | Spatial work package | Staffed / operating unit | Evidence output |
+| --- | --- | --- | --- |
+| SC01 City Problem Desk | KA-C-01 | Human problem desk | Problem brief and named reply |
+| SC02 No-Screen Explanation Walk | KA-C-01 | Content audit + human interpretation | No-screen comprehension and correction record |
+| SC03 Reverse Lab | KA-C-02 | Facilitator + independent reviewer | Submitter-confirmed reverse brief |
+| SC04 Failure and Revision Library | KA-C-03 | Archive editor | Failure, revision, expiry, and revocation record |
+| SC05 Shared Right-of-Way Sandbox | KA-N-02 | Equipment operator + safety owner + accessibility observer | Yielding, near-miss, and emergency-stop receipt |
+| SC06 Curb Handoff Bay | KA-N-02 | Site operator + human handoff | Space occupation and conflict record |
+| SC07 Failure and Takeover Drill | KA-N-03 | Operation, maintenance, and takeover shift | Failure, takeover time, and restoration receipt |
+| SC08 Non-Identifying Public-Realm Check | KA-N-03 | Facility maintenance + privacy review | Human-verified defect-candidate log |
+| SC09 No-Phone Service Finder | KA-S-01 | Directory owner + human window | Completion, misdirection, and help record |
+| SC10 Rest-to-Service Route | KA-S-02 | Route auditor + accompanied accessibility walk | Rest, detour, and obstacle audit |
+| SC11 Caregiver Human Handoff | KA-S-03 | Community / aging-service professional | Named handoff and complaint record |
+| SC12 Service Directory Audit | KA-S-03 | Directory editor + service-provider check | Dated addition, correction, removal, and expiry log |
+
 Three pilot contracts cover the learning, embodied, and health-and-aging flagships. Each contract names a problem owner, data owner, on-site operator, independent reviewer, and ultimately accountable person. Success concerns end-to-end task completion, burden on the most vulnerable user, takeover, and public return; average model accuracy cannot compensate for harm. Injury, identity disclosure, failed emergency stop, high-risk wrong direction, or a broken human responsibility chain returns the pilot to V0.1.[metric:test_scenario_count] [metric:pilot_contract_count]
 
 Candidate acceptance gates are registered before a test and are not presented as results. PC01 requires a named human owner for every sample, confirmation by the problem submitter that technical translation did not distort the issue, and zero urgent misclassification. PC02 requires every emergency-stop drill to succeed, no equipment intrusion into the ordinary path, and no additional detour for vulnerable users. PC03 requires a no-phone route and named human handoff for every sample, with no diagnosis or risk score. All three currently carry `field_status: not_authorized_not_run`, and measured results remain null. A receipt records version, site, period, accountable shift, baseline, exception, complaint, stop, deletion, and restoration. The public may appeal, the independent reviewer may require downgrade, and the accountable person cannot outsource judgement to the model.
+
+Two City Release tabletop receipts demonstrate how the institution reaches a decision. Both use fictional inputs, contain no real person or site and no measured result, and are not evidence of effectiveness.[metric:synthetic_tabletop_case_count]
+
+| Tabletop receipt | Synthetic condition | Hard-gate result | Decision and public return |
+| --- | --- | --- | --- |
+| TT-PASS-01 / PC01 | Fictional anonymous request for clearer night-time toilet information; paper form + human reply | Named owner, no-distortion confirmation, and zero urgent misclassification: all pass | Remain at V0.5 only; a small explanation test may follow after permission; retain the problem brief and responsibility chain |
+| TT-STOP-01 / PC02 | Fictional enclosed-court drill injects localisation drift; no real device or image | One of two synthetic emergency stops fails and a synthetic boundary intrusion occurs | Isolate immediately and downgrade to V0.1; restore the full route and retain the failure record and revised test envelope |
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -154,6 +205,8 @@ The cultural narrative follows three steps: evidence from railway engineering, i
 
 The three public landmarks are usable institutions rather than sculptures: the Origin Problem Desk, the City Takeover Gate, and the Centennial Failure Archive. They let the city formulate a problem, let a person take over, and preserve failure for future reuse. Their final provision and location remain subject to operator and site permission.[metric:public_landmark_count] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]
 
+The **Centennial Public Proof Register** fulfils the taskbook's honor-display requirement without becoming a permanent ranking of companies, models, or individuals. Only ordinary-service repairs, reproducible failures, human takeover, public returns, and reusable open protocols may be nominated. Every entry states its source, public-problem owner, consenting contributors, receipt, limits, review date, display term, and reason for revocation. Recheck after one City Release cycle; false claims, rights violations, unresolved harm, or expired evidence remove the physical display while preserving an auditable archive.
+
 ## Renewal Projects, Implementation Policy, and Phasing
 
 Eight renewal projects follow dependencies: P01 Rail and Public-Space Field Base; P02 Eight-Interface Continuity and Accessibility Audit; P03 Ordinary-Service Baseline Repairs; P04 AI Learning Corridor Paper and No-Screen Prototype; P05 Enclosed Embodied-System Drill; P06 Health and Aging No-Phone Journey; P07 Failure and Revision Archive; and P08 Annual City Release Review. The count describes a proposal worklist, not approved projects.[metric:renewal_project_count] [depth:renewal_project_list]
@@ -165,6 +218,15 @@ The policy toolkit is not a subsidy list. It consists of four standard documents
 The three pilot contracts use a candidate RACI. The urban problem owner or delegated public operator is accountable (A). On-site operation, facility maintenance, and human-takeover shifts are responsible (R). Railway, planning, accessibility, safety, privacy, and other relevant professionals are consulted (C). Nearby users, site managers, and recipients of the public archive receive comprehensible notice (I). Until real organisations confirm participation, only roles are registered; no institutional commitment is invented. Before V1.0, each trial requires site and data permission, an ordinary baseline, a duty roster, candidate acceptance gates, and a secured restoration item. It closes with a traceable City Release receipt.
 
 Five resource ledgers support delivery: the people ledger records responsibility and shifts; the space ledger records open boundaries, lawful movement, and restoration status; the equipment ledger records power, fire safety, maintenance, emergency stop, and removal; the data ledger records controller, minimum fields, retention, deletion, and appeal; and the public-value ledger records ordinary repairs, human hours, complaints, failures, and what remains. Translation follows **public problem intake → public-interest and professional review → paper/offline/enclosed prototype → bounded temporary trial → public receipt → adopt, revise, or stop → limited replication**. A showcase cannot jump directly to scaled deployment.
+
+The developer community does not begin by “recruiting teams.” It begins with a public problem brief that states the ordinary baseline and unacceptable consequences. Entry proceeds through an evidence clinic, paper/offline prototype, enclosed-test sprint, City Release review, and an adopt/revise/stop decision. The problem owner, developer or research team, site operator, human-service owner, independent reviewer, and public-archive editor must all be represented. Public participation requires no account and testing is not tied to one vendor. At version expiry, credentials are revoked, data deleted, equipment removed, and unverified promotional claims withdrawn.
+
+| Candidate annual unit | Core work | Required public output | Unconfirmed boundary |
+| --- | --- | --- | --- |
+| Spring / Urban Problem and Evidence Clinic | Verify the problem, ordinary baseline, and evidence gaps | Verified problem brief and missing-evidence register | No confirmed host or date |
+| Summer / Enclosed Test and Takeover Week | Run only stoppable enclosed drills | Emergency-stop receipt and restoration record | No confirmed site, insurance, or equipment provider |
+| Autumn / Public AI Proof Forum | Publish bilingual adopt/revise/stop decisions and exchange regional protocols | City Release decisions and regionally reusable protocols | No confirmed partner or international guest |
+| Winter / Failure, Maintenance, and Retirement Yearbook | Compile maintenance, failure, deletion, expiry, and revocation | Bilingual annual archive | No confirmed publisher or budget |
 
 Long-term operations form an annual loop. Spring repeats route and facility baselines. Summer examines thermal conditions and night service. Autumn holds an open City Release Review. Winter publishes maintenance, failure, stop, and deletion records. Recurring operating units include a staffed problem desk, accompanied accessibility walks, emergency-stop drills, service-directory audits, and failure-archive maintenance. The programme is a design recommendation; dates, hosts, funding, and partners are not settled.[source:AGENT-TASKBOOK]
 

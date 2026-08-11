@@ -12,6 +12,14 @@ Design implication: use static management when sufficient; use a few stable time
 
 Limit: synthetic / desk-proxy mechanism evidence only. P4-FIELD remains `BLOCKED_PENDING_FIELD_DATA`. This is not evidence that Wudaokou or any Jing-Zhang street should deploy a specific strategy.
 
+<!-- P7.2:DELIVERY-NOTE:START -->
+## P7.2 evidence-to-delivery revision
+
+The reviewer-facing package now exposes five conceptual regional exchange interfaces, ten scenario delivery contracts and six stoppable work packages. Each work package declares role classes, required permission/resource classes, a baseline gate, acceptance logic, stop conditions and rollback. Named responsible institutions, partnerships, budget and authorization remain unassigned.
+
+This revision improves taskbook traceability and implementation legibility without changing the research result: Fully Dynamic remains rejected as the core strategy, P4-SIM remains `SEMISTATIC_SIM_PREFERRED`, and P4-FIELD remains blocked pending real evidence. The intentionally empty `constraints.geojson` is treated as a missing verified spatial-constraint layer, not cited as if it contained known site constraints.
+<!-- P7.2:DELIVERY-NOTE:END -->
+
 ## Evidence and stakeholder status
 
 - Field visit: NONE

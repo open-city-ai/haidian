@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>京张·人字带 RenLine — 离线可视化</title>
+<style>
+  :root { --ink:#1a2433; --muted:#5a6b7d; --line:#c9d4e0; --bg:#f7f9fc; --accent:#2f7fb8; --warn:#d95f02; --ok:#41ab5d; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Microsoft YaHei", "PingFang SC", system-ui, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.55; }
+  header.top { background: var(--ink); color: white; padding: 18px 28px; }
+  header.top h1 { margin: 0 0 4px; font-size: 22px; letter-spacing: 0.5px; }
+  header.top p { margin: 0; font-size: 12.5px; color: #cfd6df; }
+  nav.tabs { display: flex; flex-wrap: wrap; gap: 6px; padding: 12px 28px; background: white; border-bottom: 1px solid var(--line); position: sticky; top: 0; z-index: 10; }
+  nav.tabs a { font-size: 12.5px; color: var(--muted); text-decoration: none; padding: 5px 11px; border-radius: 12px; background: var(--bg); }
+  nav.tabs a:hover { background: var(--accent); color: white; }
+  main { padding: 18px 28px 60px; max-width: 1280px; margin: 0 auto; }
+  section { background: white; border: 1px solid var(--line); border-radius: 6px; padding: 18px 22px; margin-bottom: 18px; }
+  section h2 { margin: 0 0 12px; font-size: 17px; color: var(--ink); border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 4px; }
+  section h3 { margin: 8px 0; font-size: 14px; color: var(--accent); }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+  .card { background: var(--bg); border: 1px solid var(--line); border-radius: 5px; padding: 12px 14px; }
+  .card .num { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .card .lbl { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card .sub { font-size: 11px; color: #7a8699; margin-top: 6px; }
+  figure { margin: 0; }
+  figure img { width: 100%; height: auto; display: block; border: 1px solid var(--line); border-radius: 4px; }
+  figcaption { font-size: 11.5px; color: var(--muted); padding: 6px 4px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  th, td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+  th { background: var(--bg); color: var(--muted); font-weight: 600; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 14px; }
+  .legend .item { display: inline-flex; align-items: center; font-size: 12px; color: var(--muted); padding: 3px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 11px; }
+  .legend .dot { width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; display: inline-block; }
+  .pill { display: inline-block; padding: 2px 9px; border-radius: 10px; font-size: 11.5px; margin-right: 4px; }
+  .pill.ok { background: #e6f5ea; color: var(--ok); border: 1px solid #c0e3c8; }
+  .pill.warn { background: #fff5e6; color: var(--warn); border: 1px solid #f3d9a8; }
+  .pill.pending { background: #fdecec; color: #b0413e; border: 1px solid #f3b8b6; }
+  .meta-list { columns: 2; font-size: 12.5px; color: var(--muted); }
+  .meta-list li { break-inside: avoid; margin-bottom: 3px; }
+  .prov { color: var(--warn); font-style: italic; }
+  footer { text-align: center; color: var(--muted); font-size: 11px; padding: 12px 0 30px; }
+  @media (max-width: 720px) { main { padding: 12px; } nav.tabs { padding: 8px 10px; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>京张·人字带 RenLine — 离线可视化</h1>
+  <p>百年京张AI创新带城市设计 · 正式投稿方案包 · 作者 GitHub ID: <strong>chenxuan999</strong> · 语言：中文（主稿）/ English（译稿） · 全部边界均为 provisional（临时粗略约束，非官方红线）</p>
+</header>
+<nav class="tabs" aria-label="section navigation">
+  <a href="#overview">总览地图</a>
+  <a href="#scope">三层范围</a>
+  <a href="#key">重点区域</a>
+  <a href="#landuse">用地分区</a>
+  <a href="#mobility">交通慢行</a>
+  <a href="#bluegreen">蓝绿公共空间</a>
+  <a href="#buildings">建筑</a>
+  <a href="#phasing">更新项目</a>
+  <a href="#scenarios">AI 场景</a>
+  <a href="#metrics">核心指标</a>
+  <a href="#tasks">任务覆盖</a>
+  <a href="#selfcheck">自检状态</a>
+  <a href="#sources">来源</a>
+  <a href="#assumptions">假设</a>
+</nav>
+<main>
+
+<section id="overview">
+  <h2>总览地图</h2>
+  <div class="legend">
+    <span class="item"><span class="dot" style="background:#2f7fb8"></span>众智园 AI 自主创新加速区</span>
+    <span class="item"><span class="dot" style="background:#e08214"></span>北京 AI 原点社区</span>
+    <span class="item"><span class="dot" style="background:#41ab5d"></span>大钟寺 AI 产业集聚区</span>
+    <span class="item"><span class="dot" style="background:#7a5fb0"></span>两翼</span>
+  </div>
+  <figure>
+    <img src="../assets/figures/site-overview.png" alt="京张·人字带 RenLine 总览与空间结构">
+    <figcaption>图1 · 京张·人字带 RenLine 总览与空间结构 — 一撇一捺一轨、三点两翼一原点（边界为 provisional）</figcaption>
+  </figure>
+</section>
+
+<section id="scope">
+  <h2>三层范围</h2>
+  <div class="row">
+    <div class="card" data-metric="site_area_sqm" data-value="11412825.386">
+      <div class="num">11,412,825.4 ㎡</div>
+      <div class="lbl">总体设计范围（EPSG:4548 复算）</div>
+      <div class="sub">provisional · 公告约 11.4 km²</div>
+    </div>
+    <div class="card" data-metric="key_area_count" data-value="3">
+      <div class="num">3</div>
+      <div class="lbl">重点详细设计区域（处）</div>
+      <div class="sub">均为 provisional</div>
+    </div>
+    <div class="card">
+      <div class="num">43.6 km²</div>
+      <div class="lbl">统筹研究范围（公告约值）</div>
+      <div class="sub">用于产业与未来城市研究</div>
+    </div>
+  </div>
+</section>
+
+<section id="key">
+  <h2>重点区域</h2>
+  <div class="row">
+    <div class="card" data-metric="key_area_zhongzhiyuan_area_sqm" data-value="1929201.877">
+      <div class="num">1,929,201.877 ㎡</div>
+      <div class="lbl">众智园 AI 自主创新加速区</div>
+      <div class="sub">花园型全栈自主创新街区（provisional）</div>
+    </div>
+    <div class="card" data-metric="key_area_origin_area_sqm" data-value="1043236.909">
+      <div class="num">1,043,236.909 ㎡</div>
+      <div class="lbl">北京 AI 原点社区</div>
+      <div class="sub">近校成果转化与人才社区（provisional）</div>
+    </div>
+    <div class="card" data-metric="key_area_dazhongsi_area_sqm" data-value="720454.221">
+      <div class="num">720,454.221 ㎡</div>
+      <div class="lbl">大钟寺 AI 产业集聚区</div>
+      <div class="sub">城市型智能经济街区（provisional）</div>
+    </div>
+  </div>
+  <figure style="margin-top:14px">
+    <img src="../assets/figures/key-areas.png" alt="三处重点区域详细设计方向">
+    <figcaption>图3 · 三处重点区域详细设计方向（规划综合实施方案深度方向 · 全部多边形为 provisional）</figcaption>
+  </figure>
+</section>
+
+<section id="landuse">
+  <h2>用地分区</h2>
+  <div class="row">
+    <div class="card" data-metric="land_use_0802_area_sqm" data-value="3384158.5">
+      <div class="num">3,384,158.5 ㎡</div>
+      <div class="lbl">0802 科研用地（29.7%）</div>
+      <div class="sub">AI 研发/转化/服务主空间</div>
+    </div>
+    <div class="card" data-metric="land_use_0701_area_sqm" data-value="2768342.2">
+      <div class="num">2,768,342.2 ㎡</div>
+      <div class="lbl">0701 居住用地（24.3%）</div>
+      <div class="sub">存量社区 + 人才社区</div>
+    </div>
+    <div class="card" data-metric="land_use_0702_area_sqm" data-value="1943373.0">
+      <div class="num">1,943,373.0 ㎡</div>
+      <div class="lbl">0702 社区服务（17.0%）</div>
+      <div class="sub">社区服务带 + 公共服务节点</div>
+    </div>
+    <div class="card" data-metric="land_use_05_area_sqm" data-value="1060409.4">
+      <div class="num">1,060,409.4 ㎡</div>
+      <div class="lbl">05 商业服务业（9.3%）</div>
+      <div class="sub">智能消费 + 科技服务</div>
+    </div>
+    <div class="card" data-metric="land_use_0804_area_sqm" data-value="711540.9">
+      <div class="num">711,540.9 ㎡</div>
+      <div class="lbl">0804 教育用地（6.2%）</div>
+      <div class="sub">近校教育科研配套</div>
+    </div>
+    <div class="card" data-metric="land_use_1401_area_sqm" data-value="1314607.5">
+      <div class="num">1,314,607.5 ㎡</div>
+      <div class="lbl">1401 公园绿地（11.5%）</div>
+      <div class="sub">京张轨道蓝绿主脊</div>
+    </div>
+    <div class="card" data-metric="land_use_1402_area_sqm" data-value="59709.4">
+      <div class="num">59,709.4 ㎡</div>
+      <div class="lbl">1402 防护绿地（0.5%）</div>
+      <div class="sub">北五环防护带</div>
+    </div>
+    <div class="card" data-metric="land_use_1403_area_sqm" data-value="170711.6">
+      <div class="num">170,711.6 ㎡</div>
+      <div class="lbl">1403 广场用地（1.5%）</div>
+      <div class="sub">AI 原点广场节点</div>
+    </div>
+  </div>
+  <figure style="margin-top:14px">
+    <img src="../assets/figures/land-use-structure.png" alt="人字带用地结构">
+    <figcaption>图2 · 人字带用地结构 — 一撇一捺一轨 · 三点两翼（24 格网单元全覆盖）</figcaption>
+  </figure>
+</section>
+
+<section id="mobility">
+  <h2>交通慢行</h2>
+  <div class="row">
+    <div class="card" data-metric="road_centerline_length_m" data-value="12873.365">
+      <div class="num">≈ 12.9 km</div>
+      <div class="lbl">慢行主脊（步道+骑行复合，概念中心线长度）</div>
+      <div class="sub">概念道路中心线，非道路红线</div>
+    </div>
+    <div class="card">
+      <div class="num">3</div>
+      <div class="lbl">片区联络道</div>
+      <div class="sub">大钟寺南 / 原点东西缝合 / 众智园对外</div>
+    </div>
+    <div class="card">
+      <div class="num">5</div>
+      <div class="lbl">公共活动节点</div>
+      <div class="sub">南端 / 大钟寺 / 中段 / AI 原点 / 北段</div>
+    </div>
+  </div>
+  <figure style="margin-top:14px">
+    <img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间">
+    <figcaption>图4 · 交通慢行与蓝绿公共空间复合系统（道路/水系为概念示意）</figcaption>
+  </figure>
+</section>
+
+<section id="bluegreen">
+  <h2>蓝绿公共空间</h2>
+  <div class="row">
+    <div class="card" data-metric="green_space_area_sqm" data-value="1545028.498">
+      <div class="num">1,545,028.5 ㎡</div>
+      <div class="lbl">绿地面积</div>
+      <div class="sub">公园 + 防护绿地 + 广场复合</div>
+    </div>
+    <div class="card" data-metric="green_ratio" data-value="0.135377">
+      <div class="num">13.54%</div>
+      <div class="lbl">绿地率（概念示意绿地率）</div>
+      <div class="sub">概念示意值，非官方审定；官方绿地率待补（unknown）</div>
+    </div>
+    <div class="card" data-metric="public_space_area_sqm" data-value="995421.157">
+      <div class="num">995,421.2 ㎡</div>
+      <div class="lbl">公共空间面积</div>
+      <div class="sub">京张带活动主脊 5 节点</div>
+    </div>
+    <div class="card" data-metric="public_space_ratio" data-value="0.08722">
+      <div class="num">8.72%</div>
+      <div class="lbl">公共空间比例（概念复算）</div>
+      <div class="sub">与绿地存在复合</div>
+    </div>
+  </div>
+</section>
+
+<section id="buildings">
+  <h2>建筑</h2>
+  <div class="row">
+    <div class="card" data-metric="building_footprint_area_sqm" data-value="2509609.344">
+      <div class="num">2,509,609.3 ㎡</div>
+      <div class="lbl">概念性建筑基底</div>
+      <div class="sub">28 处概念体块（表达空间供给）</div>
+    </div>
+    <div class="card" data-metric="ai_industry_space_sqm" data-value="4095709.4">
+      <div class="num">4,095,709.4 ㎡</div>
+      <div class="lbl">AI 产业空间概念供给</div>
+      <div class="sub">科研 + 商业（35.9%）</div>
+    </div>
+    <div class="card" data-metric="talent_service_space_sqm" data-value="711540.9">
+      <div class="num">711,540.9 ㎡</div>
+      <div class="lbl">人才教育科研配套</div>
+      <div class="sub">0804 教育用地</div>
+    </div>
+  </div>
+</section>
+
+<section id="phasing">
+  <h2>更新项目</h2>
+  <table>
+    <thead><tr><th>编号</th><th>项目</th><th>类型</th><th>分期</th></tr></thead>
+    <tbody>
+      <tr><td>JZ-01</td><td>京张遗址公园慢行断点缝合</td><td>公共空间/交通</td><td>近期</td></tr>
+      <tr><td>JZ-02</td><td>众智园清河创新界面</td><td>蓝绿/产业展示</td><td>中期</td></tr>
+      <tr><td>JZ-03</td><td>原点社区近校成果转化街</td><td>城市更新/产业</td><td>近期</td></tr>
+      <tr><td>JZ-04</td><td>大钟寺站四象限步行连通</td><td>轨道一体化/慢行</td><td>远期</td></tr>
+      <tr><td>JZ-05</td><td>AI 公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>中期</td></tr>
+      <tr><td>JZ-06</td><td>全球 AI 活动周公共路线</td><td>运营/品牌</td><td>近期</td></tr>
+    </tbody>
+  </table>
+  <div class="row" style="margin-top:14px">
+    <div class="card" data-metric="renewal_project_count" data-value="6">
+      <div class="num">6</div>
+      <div class="lbl">更新项目（概念）</div>
+      <div class="sub">近/中/远期各阶段</div>
+    </div>
+    <div class="card" data-metric="phase_001_area_sqm" data-value="5978284.1">
+      <div class="num">5,978,284.1 ㎡</div>
+      <div class="lbl">近期范围（PHASE-001）</div>
+      <div class="sub">0–3 年</div>
+    </div>
+    <div class="card" data-metric="phase_002_area_sqm" data-value="3922791.8">
+      <div class="num">3,922,791.8 ㎡</div>
+      <div class="lbl">中期范围（PHASE-002）</div>
+      <div class="sub">3–6 年</div>
+    </div>
+    <div class="card" data-metric="phase_003_area_sqm" data-value="1511756.4">
+      <div class="num">1,511,756.4 ㎡</div>
+      <div class="lbl">远期范围（PHASE-003）</div>
+      <div class="sub">6–10 年</div>
+    </div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <h2>AI 场景</h2>
+  <div class="row">
+    <div class="card" data-metric="ai_scenario_node_count" data-value="10">
+      <div class="num">10 张</div>
+      <div class="lbl">AI 场景卡（含 3 张测试验证）</div>
+      <div class="sub">概念建议 · 不写成已批准运营</div>
+    </div>
+    <div class="card" data-metric="persona_count" data-value="5">
+      <div class="num">5 类</div>
+      <div class="lbl">用户画像</div>
+      <div class="sub">研发/创业/学生/居民/国际访客</div>
+    </div>
+  </div>
+  <p style="margin-top:10px;font-size:13px;color:var(--muted);">每张场景卡映射空间位置、服务对象、运行数据、隐私边界、人工复核、运营主体、可视化图层与风险。完整场景卡与测试验证场景见 <code>proposal.md</code> 第六章。</p>
+</section>
+
+<section id="metrics">
+  <h2>核心指标</h2>
+  <figure>
+    <img src="../assets/figures/metrics-evidence.png" alt="核心指标证据链">
+    <figcaption>图5 · 核心指标证据链 — 几何（GeoJSON, EPSG:4548）→ 指标（metrics.json）→ 图件/HTML → 自检（PASS）</figcaption>
+  </figure>
+</section>
+
+<section id="tasks">
+  <h2>任务覆盖</h2>
+  <p style="font-size:13px;color:var(--muted);">合规矩阵覆盖公告 17 项任务（1.3.1–1.5.3.3）与智能体 6 项任务（agent.1–agent.6），每项对应报告章节、图层、指标、图纸、可视化、来源、假设与自检；详见 <code>compliance_matrix.json</code>。</p>
+  <ul class="meta-list">
+    <li>公告：世界级 AI 创新生态体系（1.3.1）</li>
+    <li>公告：适配 AI 新质生产力的城市形态（1.3.2）</li>
+    <li>公告：全球 AI 人才向往的高品质城区（1.3.3）</li>
+    <li>公告：三层范围（1.4.1 / 1.4.2 / 1.4.3）</li>
+    <li>公告：统筹层设计任务（1.5.1.1 / 1.5.1.2）</li>
+    <li>公告：总体层更新框架与市政（1.5.2.1 ~ 1.5.2.5）</li>
+    <li>公告：重点区详细设计（1.5.3.1 / 1.5.3.2 / 1.5.3.3）</li>
+    <li>智能体：概念与功能统筹（agent.1）</li>
+    <li>智能体：全栈与生态设计（agent.2）</li>
+    <li>智能体：AI+ 场景与活力城市（agent.3）</li>
+    <li>智能体：公共空间与朝圣地标（agent.4）</li>
+    <li>智能体：文化叙事（agent.5）</li>
+    <li>智能体：长期运营（agent.6）</li>
+  </ul>
+</section>
+
+<section id="selfcheck">
+  <h2>自检状态</h2>
+  <div class="row">
+    <div class="card">
+      <div class="num"><span class="pill ok">几何拓扑 PASS</span></div>
+      <div class="lbl">land_use 全覆盖、无缝隙、无重叠</div>
+    </div>
+    <div class="card">
+      <div class="num"><span class="pill ok">空间复算 PASS</span></div>
+      <div class="lbl">核心面积与比例与几何一致（±1%）</div>
+    </div>
+    <div class="card">
+      <div class="num"><span class="pill ok">专业证据 PASS</span></div>
+      <div class="lbl">5 标准 / 15 深度项 / 27 known metrics 全覆盖</div>
+    </div>
+    <div class="card">
+      <div class="num"><span class="pill ok">视觉静态 PASS</span></div>
+      <div class="lbl">本页离线、无远程资源、无 iframe/API/追踪</div>
+    </div>
+  </div>
+  <p style="margin-top:10px;font-size:12px;color:var(--muted);">唯一系统性提示：边界为 <span class="prov">provisional</span>，待官方 polygon 发布后整体重算。完整自检报告见 <code>self_check.json</code>。</p>
+</section>
+
+<section id="sources">
+  <h2>来源</h2>
+  <ul class="meta-list">
+    <li>SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT：海淀分局资格预审公告（A0）</li>
+    <li>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK：智能体任务书（用户清权）</li>
+    <li>SRC-2026-BJ-KW-THREE-AREAS-WINGS：市科委"三区两翼"</li>
+    <li>SRC-2026-HAIDIAN-1X1：海淀区"1+X+1"产业体系</li>
+    <li>SRC-PROVISIONAL-BOUNDARIES-2026：仓库维护者临时粗略边界</li>
+    <li>SRC-2017-MOHURD-URBAN-DESIGN-MEASURES：住建部《城市设计管理办法》</li>
+    <li>SRC-MOHURD-CONTROL-DETAILED-PLANNING：控规编制审批办法</li>
+    <li>SRC-2023-MNR-LAND-USE-CLASSIFICATION：用地用海分类指南</li>
+    <li>SRC-GENERATIVE-AI-INTERIM-MEASURES：生成式 AI 暂行办法</li>
+    <li>SRC-2023-BARRIER-FREE-ENVIRONMENT-LAW：无障碍环境建设法</li>
+    <li>SRC-DESIGN-PROPOSAL-RENLINE：本方案自生成设计内容</li>
+  </ul>
+</section>
+
+<section id="assumptions">
+  <h2>假设</h2>
+  <ul class="meta-list">
+    <li>A-BOUNDARY-001：三层范围与三处重点区均为 provisional</li>
+    <li>A-CONTROLS-001：控规条件（容积率/高度/密度/绿地率/退线）缺失</li>
+    <li>A-BUILDINGS-001：建筑基底为概念示意</li>
+    <li>A-ROADS-001：道路中心线为概念示意</li>
+    <li>A-GREEN-001：绿地与公共空间由设计派生</li>
+    <li>A-HERITAGE-001：文保范围待官方图层</li>
+    <li>A-UTILITIES-001：市政底数缺失</li>
+    <li>A-OPERATION-001：运营架构为概念建议</li>
+    <li>A-SCENARIO-001：场景卡为概念设计</li>
+    <li>A-PHASING-001：分期为概念路径</li>
+  </ul>
+</section>
+
+</main>
+<footer>京张·人字带 RenLine · 百年京张 AI 创新带城市设计 · 投稿作者 chenxuan999 · 全部几何、指标、矩阵与可视化均与 proposal.md 一致 · 本页为离线静态展示，无远程资源、无脚本依赖。</footer>
+</body>
+</html>

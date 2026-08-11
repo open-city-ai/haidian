@@ -1,5 +1,12 @@
 # 方案迭代记录
 
+## v2.1 - 2026-08-11
+
+- 新增七维专业审阅证据地图：把任务对齐、差异化主张、AI 原生创新、实施可深化性、公共利益、风险分层和表达完整度逐项连到 28 个包内证据引用，并为每项登记未证明内容、置信度和下一道专业门。
+- 新增确定性 `run-ai-era-professional-review-map-v21.js`，检查七维顺序、引用文件、正式依据 ID、`official_boundary=false`、`geometry_role=provisional_constraint`、`not_authorized_not_run`、`performance_results=null` 和 `not_an_official_score=true`；runner 不分配官方分数。
+- 新增双语表达级图件、proposal/HTML/visual 入口和权利/双语审校登记；本轮不新增 geometry、正式 metrics、许可、部署、工程、投资或现场绩效主张。
+- 在所有内容、图件和报告完成后持久化 `manifest.validation_claim.self_checked=true`；数据置信度按临时粗略边界与待补现场资料降为 low，避免把结构证据写成实地确定性。
+
 ## v1.7 - 2026-08-10
 
 - 新增从同源 provisional GeoJSON 与节点计划生成的空间证据图谱：总览与三处重点区缩放同时呈现人优先线、蓝绿缓冲、十个场景节点、四段公共接口和人工兜底。

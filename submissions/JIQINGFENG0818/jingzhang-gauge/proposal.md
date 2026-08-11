@@ -259,7 +259,7 @@ T-03 的重点是公开失效模式。没有方案敢写自己的东西会怎么
 
 ### 用地构成
 
-用地面积按 `land_use.geojson` 在 EPSG:4548 下复算，各类占比见 `metrics.json` 的 `land_use_area_by_code_sqm` `[metric:site_area_sqm]`。剖分完整性经校验：缝隙 1.51 ㎡、重叠 0.15 ㎡，相对总面积分别为 0.000013% 与 0.000001%。
+用地面积按 `land_use.geojson` 在 EPSG:4548 下复算，各类占比见 `metrics.json` 的 `land_use_area_by_code_sqm` `[metric:site_area_sqm]`。剖分完整性经校验：缝隙 14.897 ㎡、重叠 0.099 ㎡，相对总面积分别约为 0.00013% 与 0.00000087%。
 
 ### 建筑规模（概念推算）
 

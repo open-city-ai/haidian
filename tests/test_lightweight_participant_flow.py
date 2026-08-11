@@ -69,6 +69,7 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertEqual(report["depth"], 50)
         self.assertIn("/scenarios", report["sparse_paths"])
         self.assertIn("/sources", report["sparse_paths"])
+        self.assertIn("/tracks.json", report["sparse_paths"])
         flattened = [token for command in report["commands"] for token in command]
         self.assertIn("--filter=blob:none", flattened)
         self.assertIn("sparse-checkout", flattened)
@@ -80,6 +81,7 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertIn("--no-cone", flattened)
         self.assertIn("/requirements-review.txt", flattened)
         self.assertIn("/requirements-translation.txt", flattened)
+        self.assertIn("/tracks.json", flattened)
 
     def test_bootstrap_defaults_fork_to_case_preserving_login(self) -> None:
         completed = self.run_command(

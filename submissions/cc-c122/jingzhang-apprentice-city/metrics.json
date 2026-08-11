@@ -1,0 +1,616 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area of the submitted provisional site",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_partition_area_sqm": {
+      "status": "known",
+      "value": 11412828.75108,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "union area of topology-safe conceptual land-use partition in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "land-use union / provisional site area",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count of conceptual land-use features",
+      "confidence": "high",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 1335089.23978,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=05",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 1401182.280738,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=0701",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 1321899.494996,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=0702",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 3363166.865298,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=0802",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 1387593.558107,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=0803",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 1170834.425032,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=0804",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1433064.053989,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum EPSG:4548 area of LAND_USE features with land_use_code=1401",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 482120.08821,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum of conceptual spatial-prototype footprint areas in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-001"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.042244,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual building footprint area / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "building_prototype_count": {
+      "status": "known",
+      "value": 36,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count of named conceptual spatial prototypes",
+      "confidence": "high",
+      "assumptions": [
+        "A-BUILDING-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 4402448.315888,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union area of conceptual GREEN_SPACE features in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CLIMATE-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.385746,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green-space union / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CLIMATE-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 106200.395341,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union area of conceptual field-classroom PUBLIC_SPACE features in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.009305,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "field-classroom public-space union / provisional site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-001"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 30490.945504,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum length of conceptual learning-street centre lines in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson",
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires authorised road redlines or reviewed section widths; centre lines cannot yield area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Only conceptual ROAD_CENTERLINE geometry is available; no official road redline or reviewed width is supplied.",
+      "required_for_formal_submission": true
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "official or professionally reviewed road area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "Road redlines/widths and the official site polygon are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "learning_street_count": {
+      "status": "known",
+      "value": 11,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count of syllabus spine, seven crossings and three practice walks",
+      "confidence": "high",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count of required provisional key areas",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.877428,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of provisional key area zhongzhiyuan_ai_acceleration_area",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_ai_origin_area_sqm": {
+      "status": "known",
+      "value": 1043236.908744,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of provisional key area beijing_ai_origin_community",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.218918,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "EPSG:4548 area of provisional key area dazhongsi_ai_industry_cluster",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "field_classroom_count": {
+      "status": "known",
+      "value": 16,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count of frozen field-classroom scenario IDs SC-01 through SC-16",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-001"
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count of scenarios explicitly classified as industry tests",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-001"
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "count of frozen user/persona groups",
+      "confidence": "high",
+      "assumptions": [
+        "A-PUBLIC-001"
+      ]
+    },
+    "teachback_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/teachback-bundle.schema.json",
+        "proposal.md"
+      ],
+      "formula": "count of x-graduation_gates in the submitted Teach-back schema",
+      "confidence": "high",
+      "assumptions": [
+        "A-AI-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "renewal_action_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/operations-matrix.json"
+      ],
+      "formula": "count of action packages AP-01 through AP-12",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "regional_interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of taskbook-named regional concept interfaces",
+      "confidence": "high",
+      "assumptions": [
+        "A-REGION-001"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count of four dependency-based semesters",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phasing_area_sqm": {
+      "status": "known",
+      "value": 11412825.385558,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "union area of four non-overlapping concept phases in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "phase_p0_area_sqm": {
+      "status": "known",
+      "value": 3090067.338111,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "EPSG:4548 area of concept phase P0",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phase_p1_area_sqm": {
+      "status": "known",
+      "value": 3075176.018769,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "EPSG:4548 area of concept phase P1",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phase_p2_area_sqm": {
+      "status": "known",
+      "value": 2649459.66184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "EPSG:4548 area of concept phase P2",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "phase_p3_area_sqm": {
+      "status": "known",
+      "value": 2598122.366838,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "EPSG:4548 area of concept phase P3",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OPERATIONS-001"
+      ]
+    },
+    "risk_trigger_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/risk-register.json",
+        "risk.json"
+      ],
+      "formula": "count of detailed trigger-response-recovery entries; root risk.json separately maps eight schema dimensions",
+      "confidence": "high",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total floor area / official site area",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "Approved FAR, official parcels and official boundary are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires surveyed buildings, floors and approved controls",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BUILDING-001",
+        "A-CONTROLS-001"
+      ],
+      "reason": "Existing building survey, ownership and approved controls are unavailable.",
+      "required_for_formal_submission": true
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "requires approved height and heritage/aviation/landscape constraints",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "No approved height control or complete heritage/aviation/landscape inputs are available.",
+      "required_for_formal_submission": true
+    },
+    "implementation_budget_cny": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "CNY budget requires staff + space + equipment + data + safety + accessibility + exit costs",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-OPERATIONS-001"
+      ],
+      "reason": "No authorised operator, baseline demand, procurement route, quantities or market quotes are available.",
+      "required_for_formal_submission": true
+    }
+  }
+}
