@@ -110,7 +110,7 @@ class TestSubmissionsGallery(unittest.TestCase):
             )
             self.assertEqual([], build_data(root))
 
-    def test_current_blockers_override_stale_formal_readiness(self):
+    def test_current_formal_blocker_overrides_stale_readiness_as_provisional(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             submission = root / "submissions" / "alice" / "example"
@@ -126,7 +126,39 @@ class TestSubmissionsGallery(unittest.TestCase):
                 "submission_stage": "formal",
                 "validation_claim": {
                     "self_checked": True,
-                    "known_blockers": ["Unresolved participant-controlled licence issue"],
+                    "known_blockers": [
+                        "Official boundary is unavailable; professional scoring must wait."
+                    ],
+                },
+            }
+
+            self.assertEqual("intake_provisional", classify_submission(submission, manifest))
+
+    def test_blocking_self_check_still_overrides_manifest_readiness(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "example"
+            for rel in REQUIRED_PACKAGE_FILES:
+                path = submission / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(b"placeholder")
+            (submission / "self_check.json").write_text(
+                json.dumps(
+                    {
+                        "ok": False,
+                        "can_enter_formal_review": True,
+                        "checks": [
+                            {"result": "fail", "severity": "blocking"}
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            manifest = {
+                "submission_stage": "formal",
+                "validation_claim": {
+                    "self_checked": True,
+                    "known_blockers": ["Official boundary is unavailable."],
                 },
             }
 
