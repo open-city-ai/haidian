@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haidian Trinary AI City · Visual Overview</title>
+<style>
+:root { --ink:#0f172a; --muted:#475569; --paper:#ffffff; --soft:#f6f8fb; --line:#d7dee8; --navy:#101827; --gold:#fbbf24; --make:#d97706; --live:#15803d; --build:#4f46e5; --wing-w:#0f7490; --wing-e:#be185d; --shadow:0 14px 34px rgba(15,23,42,.10); }
+*{ box-sizing:border-box }
+body { margin:0; font-family:'Noto Sans SC','Microsoft YaHei','PingFang SC',Arial,sans-serif; color:var(--ink); background:#eef2f6; line-height:1.6 }
+.wrap { max-width:1280px; margin:auto }
+header { background:var(--navy); color:#fff; border-bottom:5px solid var(--gold) }
+.hero { display:grid; grid-template-columns: minmax(0,1fr) 360px; gap:28px; padding:30px 26px 26px }
+.eyebrow { color:#9fd7c0; letter-spacing:.18em; text-transform:uppercase; font-size:12px; margin-bottom:8px }
+h1 { font-size:32px; line-height:1.2; margin:0 0 8px; }
+.hero-copy { color:#d8e3ef; font-size:15px; max-width:760px }
+.status-box { border:1px solid rgba(255,255,255,.22); border-radius:8px; padding:14px; background:rgba(255,255,255,.06) }
+.status-box strong { display:block; font-size:18px; margin-bottom:6px; color:#fff }
+.pill-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:16px }
+.pill, .tag { display:inline-flex; align-items:center; gap:6px; border-radius:999px; border:1px solid rgba(255,255,255,.26); padding:5px 10px; font-size:12px; color:#fff }
+main { padding:22px 22px 40px }
+.sheet { background:var(--paper); border:1px solid var(--line); border-radius:10px; margin:0 auto 18px; box-shadow:var(--shadow); overflow:hidden }
+.sheet-head { display:flex; justify-content:space-between; gap:16px; align-items:flex-start; padding:18px 22px; border-bottom:1px solid #e6ebf2; background:#fbfcfe }
+.sheet-head h2 { font-size:22px; margin:0 0 8px }
+.sheet-head p { color:var(--muted); max-width:760px; margin:0; font-size:14px }
+.matrix { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:14px; padding:18px 22px }
+.area-card { background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px }
+.area-card h3 { font-size:15px; margin:0 0 6px }
+.area-card p { font-size:13px; margin:0 }
+.scenario-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:12px; padding:18px 22px }
+.scenario-card, .persona-card, .landmark-card { background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:12px 14px }
+.scenario-card b, .persona-card b, .landmark-card b { font-size:14px; display:block; margin-bottom:6px; color:var(--ink) }
+.scenario-card p, .persona-card p, .landmark-card p { font-size:13px; margin:0 0 6px }
+.guardrail { color:#7c2d12; font-size:12px; background:#fef3c7; border-left:3px solid #b45309; padding:6px 10px; border-radius:3px; margin-top:6px }
+.table-wrap { padding:14px 22px 18px; overflow-x:auto }
+table { width:100%; border-collapse:collapse; font-size:13px }
+th, td { border:1px solid var(--line); padding:7px 10px; vertical-align:top }
+th { background:#eef2ff }
+tr:nth-child(even) td { background:#f8fafc }
+code { background:#eef2ff; color:#312e81; padding:1px 5px; border-radius:3px; font-size:12px }
+.map-frame { border:1px solid var(--line); border-radius:8px; background:#f8fafc; padding:12px }
+.evidence { display:grid; grid-template-columns: 1fr 1fr; gap:14px; padding:18px 22px }
+.evidence > div { background:#f8fafc; border:1px solid var(--line); border-radius:8px; padding:14px }
+.evidence h3 { font-size:14px; margin:0 0 6px }
+.evidence p { font-size:13px; margin:0 }
+.evidence .source-line { margin-top:8px; color:var(--muted); font-size:12px; font-family:'Cascadia Code', 'Consolas', monospace }
+footer { text-align:center; padding:20px; color:var(--muted); font-size:12px }
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr }
+  .matrix, .scenario-grid, .evidence { grid-template-columns: 1fr }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">海淀三元·AI 一日城 / Haidian Trinary AI City</div>
+      <h1>Haidian Trinary AI City · Visual Overview</h1>
+      <p class="hero-copy">Treat the 11.4 km² overall design area as a 24-hour life lab for an AI practitioner: MAKE Origin (Dazhongsi) → LIVE Living Room (AI Origin) → BUILD Frontier (Zhongzhiyuan). West wing Xiaoyuehe = AI+ scenarios; East wing Zhongguancun = global element allocation.</p>
+      <div class="pill-row">
+        <span class="pill">Three Zones</span>
+        <span class="pill">Two Wings</span>
+        <span class="pill">10 Scenarios</span>
+        <span class="pill">5 Personas</span>
+        <span class="pill">3 Landmarks</span>
+      </div>
+    </div>
+    <aside class="status-box">
+      <strong>PROVISIONAL INTAKE</strong>
+      <p>Provisional geometry supports intake, discussion and revision only; it is not a formal professional scoring or approval basis.</p>
+    </aside>
+  </div>
+</header>
+<main class="wrap">
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Overview map</h2>
+      <p>Three zones, two wings, rail spine, and three pilgrimage landmarks in a single evidence map. The same geometry and metrics are shared by the A3 booklet, A0 boards and this page.</p>
+    </div>
+    <span class="tag">geometry + metrics</span>
+  </div>
+  <div style="padding:14px 22px 18px">
+    <div class="map-frame"><svg viewBox="0 0 1120 680" role="img" aria-label="Trinary overview">
+<rect x="0" y="0" width="1120" height="680" fill="#fbfcfe"/>
+<rect x="32" y="32" width="1056" height="616" rx="14" fill="#ffffff" stroke="#0f172a" stroke-width="3"/>
+<rect x="60" y="200" width="1000" height="120" rx="14" fill="#fde7c2" stroke="#b45309" stroke-width="2.5"/>
+<text x="560" y="265" text-anchor="middle" font-size="22" fill="#92400e" font-weight="bold">MAKE 起点 · 大钟寺 AI 产业聚集区 · 72.0 ha</text>
+<rect x="60" y="350" width="1000" height="160" rx="14" fill="#d9f1e1" stroke="#15803d" stroke-width="2.5"/>
+<text x="560" y="435" text-anchor="middle" font-size="22" fill="#166534" font-weight="bold">LIVE 客厅 · 北京 AI 原点社区 · 104.3 ha</text>
+<rect x="60" y="540" width="1000" height="80" rx="14" fill="#dcdcfb" stroke="#4f46e5" stroke-width="2.5"/>
+<text x="560" y="585" text-anchor="middle" font-size="22" fill="#312e81" font-weight="bold">BUILD 前沿 · 众智园 AI 自主创新加速区 · 192.1 ha</text>
+<rect x="510" y="200" width="100" height="420" rx="8" fill="#fde68a" opacity="0.55" stroke="#a16207" stroke-width="0"/>
+<text x="560" y="170" text-anchor="middle" font-size="14" fill="#92400e" font-weight="bold">京张遗址公园主轴（南北）</text>
+<line x1="160" y1="500" x2="960" y2="500" stroke="#0f7490" stroke-width="3" stroke-dasharray="8 6" opacity="0.85"/>
+<text x="120" y="510" font-size="12" fill="#0f7490" font-weight="bold">小月河翼（西）</text>
+<line x1="160" y1="465" x2="960" y2="465" stroke="#be185d" stroke-width="3" stroke-dasharray="8 6" opacity="0.85"/>
+<text x="120" y="475" font-size="12" fill="#be185d" font-weight="bold">中关村翼（东）</text>
+<circle cx="850" cy="260" r="22" fill="#d97706"/>
+<text x="850" y="266" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">★2</text>
+<text x="850" y="230" text-anchor="middle" font-size="12" fill="#7c2d12" font-weight="bold">大钟寺智造环</text>
+<circle cx="850" cy="430" r="22" fill="#15803d"/>
+<text x="850" y="436" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">★1</text>
+<text x="850" y="400" text-anchor="middle" font-size="12" fill="#14532d" font-weight="bold">智源立方</text>
+<circle cx="850" cy="580" r="22" fill="#4f46e5"/>
+<text x="850" y="586" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">★3</text>
+<text x="850" y="550" text-anchor="middle" font-size="12" fill="#312e81" font-weight="bold">众智之塔</text>
+<text x="60" y="80" font-size="22" fill="#0f172a" font-weight="bold">海淀三元·AI 一日城 · 总览</text>
+<text x="60" y="105" font-size="13" fill="#475569">3 zones · 2 wings · 1 spine · 3 pilgrimage landmarks · provisional intake</text>
+<text x="560" y="660" text-anchor="middle" font-size="11" fill="#475569">provisional geometry, 11.4 km² overall design area · not an official redline · pending formal data</text>
+</svg></div>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Three zones</h2>
+      <p>North-south: MAKE Origin → LIVE Living Room → BUILD Frontier. Three rhythms, one morning-noon-evening path.</p>
+    </div>
+    <span class="tag">key_areas.geojson</span>
+  </div>
+  <div class="matrix"><article class="area-card"><h3>大钟寺 (MAKE 起点)</h3><p>智能原生新业态</p><p style="color:#475569;font-size:12.5px">Dazhongsi (MAKE Origin) — Smart-Native New Business Forms</p></article>
+<article class="area-card"><h3>北京AI原点 (LIVE 客厅)</h3><p>世界级AI创新生态</p><p style="color:#475569;font-size:12.5px">Beijing AI Origin (LIVE Living Room) — World-Class AI Innovation Ecosystem</p></article>
+<article class="area-card"><h3>众智园 (BUILD 前沿)</h3><p>AI全栈自主创新体系与AI治理全球话语权</p><p style="color:#475569;font-size:12.5px">Zhongzhiyuan (BUILD Frontier) — Full-Stack AI Independent Innovation + Global AI Governance Discourse</p></article></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Two wings</h2>
+      <p>East-west: Xiaoyuehe Scenario Empowerment Wing (west) + Zhongguancun Technology Service Wing (east) carry AI+ scenarios and global element allocation.</p>
+    </div>
+    <span class="tag">wings</span>
+  </div>
+  <div class="matrix"><article class="area-card"><h3>小月河场景赋能翼</h3><p>AI场景赋能与智能化AI活力城市</p><p style="color:#475569;font-size:12.5px">Xiaoyuehe Scenario Empowerment Wing — AI+ Scenarios and Smart Vibrant City</p></article>
+<article class="area-card"><h3>中关村科技服务翼</h3><p>要素全球化配置、中关村IP与资本赋能</p><p style="color:#475569;font-size:12.5px">Zhongguancun Technology Service Wing — Global Element Allocation, Zhongguancun IP and Capital Empowerment</p></article></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>10 AI scenario cards</h2>
+      <p>Every card has a spatial carrier, design notes, self-check boundary and operator; not sloganeering.</p>
+    </div>
+    <span class="tag">scenarios</span>
+  </div>
+  <div class="scenario-grid"><article class="scenario-card"><b>01 · 大钟寺智造首发街</b><p>面向智能体、智能终端和内容消费企业的首发、首店、首展公共空间；与产业测试验证场景联动。</p><p style="color:#475569;font-size:12px">Dazhongsi Smart-Manufacturing Debut Street — Public space for first-launch / first-store / first-exhibit by smart agents, smart terminals and content-consumption firms; tied to industry test scenarios.</p></article>
+<article class="scenario-card"><b>02 · 大钟寺智能终端市集</b><p>围绕轨道站点的四象限步行连通，把首发环与日常消费、媒体路演、文化活动连成一片。</p><p style="color:#475569;font-size:12px">Dazhongsi Smart-Terminal Market — Walkable 4-quadrant continuity around the rail station linking the debut loop to daily retail, media launch and cultural events.</p></article>
+<article class="scenario-card"><b>03 · AI原点24h公共客厅</b><p>24小时开放的AI原住民社区公共客厅；近校办公、开源协作、人才生活、街区展览可共享切换。</p><p style="color:#475569;font-size:12px">AI Origin 24h Public Living Room — 24h public living room for AI-native residents; switchable between near-campus offices, open-source collaboration, talent life and street exhibitions.</p></article>
+<article class="scenario-card"><b>04 · AI原点开源发布厅</b><p>面向高校和开源社区的成果发布、模型评测、小型路演空间；与北京AI原点社区近校资源绑定。</p><p style="color:#475569;font-size:12px">AI Origin Open-Source Release Hall — Result release, model evaluation and small launch events for universities and open-source communities, anchored to near-campus assets.</p></article>
+<article class="scenario-card"><b>05 · 人才生活管家</b><p>把医疗、教育、法律、生活缴费等AI+公共服务落到可运营的街区尺度；保留人工办理与无障碍兜底。</p><p style="color:#475569;font-size:12px">Talent Life Concierge — Operational AI+ public services (health, education, legal, living-payment) at block scale; human-service and accessibility fallbacks preserved.</p></article>
+<article class="scenario-card"><b>06 · 众智园城市智能体沙盒</b><p>在可控公共空间里做交通、运维、服务三类城市智能体测试；数据可审计、过程可中断。</p><p style="color:#475569;font-size:12px">Zhongzhiyuan Urban-Agent Sandbox — Controllable public-space sandbox for traffic, operations and service urban agents; auditable data, interruptible process.</p></article>
+<article class="scenario-card"><b>07 · 众智园AI安全治理廊</b><p>把标准制定、安全评测、模型红队测试转译为可参观、可预约、可监管的展示与协作节点。</p><p style="color:#475569;font-size:12px">Zhongzhiyuan AI Safety Governance Gallery — Standards, safety evaluation and model red-team testing re-staged as visitable, bookable, supervised showcase and collaboration nodes.</p></article>
+<article class="scenario-card"><b>08 · 众智园低碳算力驿站</b><p>把分布式能源、端侧算力、低碳展示与公共服务结合；具体容量与并网需正式工程前置条件。</p><p style="color:#475569;font-size:12px">Zhongzhiyuan Low-Carbon Compute Stop — Distributed energy, edge compute, low-carbon display tied to public services; capacity and grid-tie require formal engineering pre-conditions.</p></article>
+<article class="scenario-card"><b>09 · 端侧算力走廊（跨三区）</b><p>沿南北主轴串联三区端侧算力驿站与公共服务设施；先以轻量、可审计服务启动。</p><p style="color:#475569;font-size:12px">Edge-Compute Corridor (Cross-Trinary) — North-south spine connecting edge-compute stops and public services across the three zones; starts as light, auditable services.</p></article>
+<article class="scenario-card"><b>10 · 全球AI活动周路线（跨三区）</b><p>从京张文化记忆到开源社区、产业首发到国际路演的可步行、可传播体验路线；具体活动以运营方年度计划为准。</p><p style="color:#475569;font-size:12px">Global AI Activity Week Route (Cross-Trinary) — Walkable, broadcastable experience route from heritage memory to open source, industry launch and international pitch; actual events follow operator's annual plan.</p></article></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>5 user personas</h2>
+      <p>Needs + spatial response + self-check boundary. Each persona maps to specific spaces and compliance clauses.</p>
+    </div>
+    <span class="tag">personas</span>
+  </div>
+  <div class="scenario-grid"><article class="persona-card"><b>开源开发者</b><p style="font-size:13px">发布、协作、测试、社区声誉</p><p style="font-size:12px;color:#475569">AI原点24h公共客厅 / 开源发布厅</p><p class="guardrail">⚑ 不采集个人行为轨迹；活动数据只做聚合统计</p></article>
+<article class="persona-card"><b>初创团队</b><p style="font-size:13px">低成本办公、算力入口、产品试验场</p><p style="font-size:12px;color:#475569">大钟寺智造首发街 / 众智园R&D街区</p><p class="guardrail">⚑ 算力和数据服务需另行授权</p></article>
+<article class="persona-card"><b>头部企业访客</b><p style="font-size:13px">展示、商务、国际接待、人才招聘</p><p style="font-size:12px;color:#475569">大钟寺智能终端市集 / 中关村科技服务翼</p><p class="guardrail">⚑ 企业标识和案例须清权</p></article>
+<article class="persona-card"><b>高校师生</b><p style="font-size:13px">成果转化、跨校协作、日常慢行</p><p style="font-size:12px;color:#475569">近校成果转化街 / 校区-园区慢行缝合</p><p class="guardrail">⚑ 校园数据和科研成果需授权</p></article>
+<article class="persona-card"><b>周边居民</b><p style="font-size:13px">通勤、休闲、社区服务、低扰动更新</p><p style="font-size:12px;color:#475569">京张遗址公园慢行环 / 社区服务嵌入</p><p class="guardrail">⚑ 不将居民画像用于商业推荐</p></article></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>3 AI pilgrimage landmarks</h2>
+      <p>Zhiyuan Cube (LIVE) / Dazhongsi Debut Loop (MAKE) / Zhongzhi Tower (BUILD).</p>
+    </div>
+    <span class="tag">landmarks</span>
+  </div>
+  <div class="scenario-grid"><article class="landmark-card"><b>★ 1 · 智源立方</b><p>LIVE 客厅的24h公共客厅与AI原点社区客厅</p><p style="color:#475569;font-size:12px">Zhiyuan Cube — LIVE 24h public living room and AI Origin community hall</p></article>
+<article class="landmark-card"><b>★ 2 · 大钟寺智造环</b><p>MAKE 智造首发环与四象限公共客厅</p><p style="color:#475569;font-size:12px">Dazhongsi Smart-Manufacturing Loop — MAKE smart-manufacturing debut loop and 4-quadrant living room</p></article>
+<article class="landmark-card"><b>★ 3 · 众智之塔</b><p>BUILD R&D 街区与AI安全治理廊</p><p style="color:#475569;font-size:12px">Zhongzhi Tower — BUILD R&D block and AI safety governance gallery</p></article></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>6 renewal projects</h2>
+      <p>JZ-01 to JZ-06 each have type, primary dependency, and evidence reference. Phasing strategy in phasing.geojson.</p>
+    </div>
+    <span class="tag">projects</span>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>ID</th><th>Project</th><th>Type</th><th>Dependencies</th><th>Evidence</th></tr></thead>
+      <tbody><tr><td><code>JZ-01</code></td><td>京张遗址公园慢行断点缝合</td><td>公共空间/交通</td><td>道路红线、桥下空间、交通组织复核</td><td style='font-size:12px;color:#475569'>[data:geometry/roads.geojson#ROAD-SPINE]</td></tr>
+<tr><td><code>JZ-02</code></td><td>众智园清河创新界面</td><td>蓝绿空间/产业展示</td><td>河道蓝线、生态和防洪条件</td><td style='font-size:12px;color:#475569'>[data:geometry/green_space.geojson#GREEN-001]</td></tr>
+<tr><td><code>JZ-03</code></td><td>AI原点近校成果转化街</td><td>城市更新/产业服务</td><td>校区边界、权属、首层业态</td><td style='font-size:12px;color:#475569'>[data:geometry/buildings.geojson#BLDG-LIVE-01]</td></tr>
+<tr><td><code>JZ-04</code></td><td>大钟寺站四象限步行连通</td><td>轨道一体化/慢行</td><td>轨道站点、道路交叉口、市政管线</td><td style='font-size:12px;color:#475569'>[data:geometry/public_space.geojson#PUBLIC-MAKE-01]</td></tr>
+<tr><td><code>JZ-05</code></td><td>AI公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>能源、算力、安全和运营主体</td><td style='font-size:12px;color:#475569'>[data:geometry/constraints.geojson#CONSTRAINTS]</td></tr>
+<tr><td><code>JZ-06</code></td><td>全球AI活动周公共路线</td><td>运营/品牌</td><td>公共空间许可、活动安全、版权清权</td><td style='font-size:12px;color:#475569'>[data:geometry/phasing.geojson#PHASE-001]</td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Evidence chain · assumptions · sources</h2>
+      <p>All layers and metrics are recomputed from the same GeoJSON. Planning-control metrics are status=unknown. No CDN, remote scripts, or iframe loading.</p>
+    </div>
+    <span class="tag">evidence</span>
+  </div>
+  <div class="evidence">
+    <div>
+      <h3>Sources</h3>
+      <p>sources.json · agent_taskbook.json · data/processed/agent_fact_pack.md · standards/references</p>
+      <div class="source-line">[source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]</div>
+    </div>
+    <div>
+      <h3>Assumptions</h3>
+      <p>Regulatory control, road redline, ownership, municipal, heritage, engineering conditions are registered as A-CONTROLS-001 to be supplied; not written into formal conclusions.</p>
+      <div class="source-line">missing_data_checklist.csv · assumptions.json · self_check.json</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Three-Level Scope Framework</h2>
+      <p>Three scope levels: 43.6 km² coordinated research / 11.4 km² overall design / 368.4 ha key areas. Primary layers of this submission live in the 11.4 km² overall design area.</p>
+    </div>
+    <span class="tag">scope framework</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Level</th><th>Name</th><th>Area</th><th>Action</th></tr></thead>
+    <tbody>
+      <tr><td>Coordinated research</td><td>N5 / Jingzang / Xizhimenwai / Wanquanhe</td><td>43.6 km²</td><td>Industry + future-city strategy</td></tr>
+      <tr><td>Overall design</td><td>Jingzhang park 1-2 km corridor</td><td>11.4 km²</td><td>Primary GeoJSON + metrics</td></tr>
+      <tr><td>Key areas</td><td>3 detailed-design districts</td><td>368.4 ha</td><td>Detailed design + phasing.geojson</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Key Areas Index</h2>
+      <p>Three key areas: Zhongzhiyuan / Beijing AI Origin / Dazhongsi. Provisional polygons, all conclusions marked "pending official data".</p>
+    </div>
+    <span class="tag">key areas</span>
+  </div>
+  <div class="matrix">
+    <article class="area-card">
+      <h3>Zhongzhiyuan · BUILD</h3>
+      <p>192.1 ha · full-stack + governance</p>
+    </article>
+    <article class="area-card">
+      <h3>Beijing AI Origin · LIVE</h3>
+      <p>104.3 ha · world-class ecosystem</p>
+    </article>
+    <article class="area-card">
+      <h3>Dazhongsi · MAKE</h3>
+      <p>72.0 ha · smart-native new business</p>
+    </article>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Land Use Distribution</h2>
+      <p>6 design use classes: 3 key areas + 1 central spine + 2 wings. Full coverage of 11.4 km² boundary, no overlap.</p>
+    </div>
+    <span class="tag">land_use.geojson</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>ID</th><th>Class</th><th>Name</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td><code>LU-MAKE-01</code></td><td>commercial</td><td>Dazhongsi debut commercial</td><td>MAKE</td></tr>
+      <tr><td><code>LU-LIVE-01</code></td><td>residential</td><td>Near-campus + talent life</td><td>LIVE</td></tr>
+      <tr><td><code>LU-BUILD-01</code></td><td>R&amp;D</td><td>Full-stack innovation</td><td>BUILD</td></tr>
+      <tr><td><code>LU-SPINE-01</code></td><td>park / heritage</td><td>Jingzhang rail spine (narrow strip)</td><td>N-S spine</td></tr>
+      <tr><td><code>LU-WING-W-01</code></td><td>mixed</td><td>Xiaoyuehe scenario wing (W)</td><td>AI+ scenarios</td></tr>
+      <tr><td><code>LU-WING-E-01</code></td><td>mixed</td><td>Zhongguancun service wing (E)</td><td>global elements</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Mobility and Walkability</h2>
+      <p>Jingzhang spine (N-S) + two wings (E-W) + cross-trinary walkability loop. Rail-station integration priority, parking per "rail-first + public-space-embedded".</p>
+    </div>
+    <span class="tag">roads.geojson</span>
+  </div>
+  <div class="matrix">
+    <article class="area-card"><h3>ROAD-SPINE</h3><p>Jingzhang park N-S continuity</p></article>
+    <article class="area-card"><h3>ROAD-WING-W</h3><p>Xiaoyuehe riverside walk</p></article>
+    <article class="area-card"><h3>ROAD-WING-E</h3><p>Zhongguancun service wing</p></article>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Blue-Green and Public Space</h2>
+      <p>Jingzhang heritage park spine + three-zone community parks + public living rooms (debut loop / 24h room / governance plaza).</p>
+    </div>
+    <span class="tag">green + public space</span>
+  </div>
+  <div class="matrix">
+    <article class="area-card"><h3>GREEN-001 to 004</h3><p>Central park + Qinghe edge</p></article>
+    <article class="area-card"><h3>PUBLIC-MAKE-01</h3><p>Dazhongsi 4-quadrant living room</p></article>
+    <article class="area-card"><h3>PUBLIC-LIVE-01/02</h3><p>Zhiyuan Cube + near-campus</p></article>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Buildings, Retain / Renovate / New</h2>
+      <p>Buildings tiered as keep / renovate / pilot-new. FAR / height / density marked status=unknown pending official control.</p>
+    </div>
+    <span class="tag">buildings.geojson</span>
+  </div>
+  <div class="matrix">
+    <article class="area-card"><h3>BLDG-MAKE-01</h3><p>Dazhongsi pilot new build</p></article>
+    <article class="area-card"><h3>BLDG-LIVE-01/02</h3><p>Zhiyuan Cube + Release Hall</p></article>
+    <article class="area-card"><h3>BLDG-BUILD-01/02</h3><p>Zhongzhi Tower + R&amp;D block</p></article>
+  </div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Core Metrics</h2>
+      <p>Three metric classes: (1) recomputable from geometry; (2) needs official control; (3) needs operational data.</p>
+    </div>
+    <span class="tag">metrics.json</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Metric</th><th>Value</th><th>Status</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td>site_area_sqm</td><td><span data-metric="site_area_sqm" data-value="11412825.386">11,412,825.39 m²</span></td><td>known</td><td>geometry/site_boundary.geojson</td></tr>
+      <tr><td>green_ratio</td><td><span data-metric="green_ratio" data-value="0.178585">0.178585</span></td><td>known</td><td>green_space.geojson / site_boundary.geojson</td></tr>
+      <tr><td>public_space_ratio</td><td><span data-metric="public_space_ratio" data-value="0.056743">0.056743</span></td><td>known</td><td>public_space.geojson / site_boundary.geojson</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Task Coverage</h2>
+      <p>All 6 agent tasks (agent.1-agent.6) + announcement 1.3 / 1.4 / 1.5 covered. See compliance_matrix.json for full mapping.</p>
+    </div>
+    <span class="tag">compliance_matrix</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Task</th><th>Section</th></tr></thead>
+    <tbody>
+      <tr><td>agent.1 Naming / Logo / 3 positionings / 3 zones 2 wings</td><td>Coordinated Research: Industry and Future City</td></tr>
+      <tr><td>agent.2 Full-stack + 5-8 ecosystem cases</td><td>AI Innovation Ecosystem, Personas, AI+ Scenarios</td></tr>
+      <tr><td>agent.3 10 scenarios / 3 test / 5 personas</td><td>AI Innovation Ecosystem, Personas, AI+ Scenarios</td></tr>
+      <tr><td>agent.4 &gt;=3 pilgrimage landmarks + public space</td><td>Blue-Green Network, Public Space, Urban Character</td></tr>
+      <tr><td>agent.5 Cultural narrative</td><td>Blue-Green Network, Public Space, Urban Character</td></tr>
+      <tr><td>agent.6 Long-term operations + global events</td><td>Renewal Projects, Implementation Policy, Phasing</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <h2>Self-Check State</h2>
+      <p>Four-gate status: deterministic validation / spatial review / visual packaging / professional evidence. See self_check.json.</p>
+    </div>
+    <span class="tag">self_check.json</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Gate</th><th>State</th></tr></thead>
+    <tbody>
+      <tr><td>DETERMINISTIC_VALIDATION</td><td>In progress; status after this round of fixes</td></tr>
+      <tr><td>SPATIAL_REVIEW</td><td>LU-HERITAGE-01 overlap fixed; land_use now full coverage</td></tr>
+      <tr><td>VISUAL_PACKAGING</td><td>11 required sections + 3 core metrics added</td></tr>
+      <tr><td>PROFESSIONAL_EVIDENCE</td><td>PASS (v0.1)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+</main>
+<footer>DFreeMind · 2026-08-11 · provisional intake · not a regulatory plan · not a redline · not an implementation commitment</footer>
+</body>
+</html>
