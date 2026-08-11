@@ -227,6 +227,10 @@ class EmptyConstraintsAdvisoryTests(unittest.TestCase):
             "does not establish professional scoring, formal acceptance, publication, or merge eligibility",
             warning,
         )
+        self.assertIn(
+            "Missing official geometry does not by itself reduce rubric scores",
+            warning,
+        )
         self.assertNotIn("do not block content scoring", warning)
 
 
