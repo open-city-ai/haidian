@@ -14,11 +14,11 @@ license: "COMMUNITY-DISPLAY-ONLY"
 
 > **Core proposition:** the more automated driving spreads, the less the city should be designed around vehicles alone. The Jing-Zhang belt must protect continuous walking, wheelchair, cycling, child, care and maintenance routes before it decides where vehicles may operate.
 
-This is an independent autonomous-mobility iteration, not a renamed copy of an earlier package. It uses the same provisional spatial base but has a different identity invariant: one ordinary-route continuity line, three test yards and two human-safety arcs. It adds machine-readable evidence for autonomous-driving curbs, low-speed shuttles, accessible service, remote intervention, data minimisation and failure rollback. Every spatial move remains a concept proposal; the package does not claim that any road inside the site is open to autonomous driving, nor that a vehicle, vendor or permit already exists [data:visual/assets/identity-system.json].
+This is an independent autonomous-mobility iteration. It uses the same provisional spatial base with a different identity invariant: one ordinary-route continuity line, three test yards and two human-safety arcs. It adds machine-readable evidence for autonomous-driving curbs, low-speed shuttles, accessible service, remote intervention, data minimisation and failure rollback. Every spatial move remains a concept proposal. The package makes no claim that any road inside the site is open to autonomous driving or that a vehicle, vendor or permit already exists [data:visual/assets/identity-system.json].
 
-## One-page executive brief: prove one public service chain before scaling automation
+## One-page executive brief, prove one public service chain before scaling automation
 
-The first reversible acceptance unit is not “make the vehicle run.” It lets an ordinary person choose, use, stop, challenge and leave an automated service while returning to human service. This is a concept-level review interface only: it presupposes no measured length, road, vehicle or operator; exact points and engineering scale remain subject to formal boundaries, field walk-through and professional review.
+The first reversible acceptance unit must show that an ordinary person can choose, use, stop, challenge and leave an automated service while returning to human service. It is a concept-level review interface. It presupposes no measured length, road, vehicle or operator; exact points and engineering scale remain subject to formal boundaries, field walk-through and professional review.
 
 **Status: target design · not deployed · not authorized · not run**
 
@@ -30,21 +30,21 @@ The first reversible acceptance unit is not “make the vehicle run.” It lets 
 | Meet obstruction, network loss or weather | Planned isolation zone, rollback route and paper/phone fallback | Trigger, broadcast, evacuation and recovery record | Remain human-only; do not expand |
 | Requester self-service replay and exit (not third-party verified) | Planned receipt, redress entrance and exit sign | Requester replay result, unproven items and closure record | Return to design stage if it cannot be replayed |
 
-The package currently has only an offline synthetic tabletop: four branches, seven contract checks, five rollback steps, and one synthetic negative replay for each `stop_if`. Each negative replay sends a trigger input through a pure decision path and records `decision=reject_or_stop`, `result_status=not_run`, and `performance_results=null`; it proves that the rejection/stop path is replayable at contract level, not field safety, authorization, deployment, or performance. `not_authorized_not_run`, `performance_results=null`, and the missing local baselines remain explicit [data:visual/assets/autonomy-curbside-tabletop-contract.json#AUTONOMY-CURBSIDE-TABLETOP-001].
+The package currently has only an offline synthetic tabletop. It contains four branches, seven contract checks, five rollback steps, and one synthetic negative replay for each `stop_if`. Each negative replay sends a trigger input through a pure decision path and records `decision=reject_or_stop`, `result_status=not_run`, and `performance_results=null`; it proves contract-level replayability of the rejection/stop path, not field safety, authorization, deployment or performance. `not_authorized_not_run`, `performance_results=null`, and the missing local baselines remain explicit [data:visual/assets/autonomy-curbside-tabletop-contract.json#AUTONOMY-CURBSIDE-TABLETOP-001].
 
-### Identity system: make the right to exit visible
+### Identity system, make the right to exit visible
 
 The “Jing-Zhang Autonomous Commons” mark is not a vehicle brand and does not reuse the previous parallel-rail identity. `assets/identity/jingzhang-commons-mark.svg` uses one ordinary-route line to connect three test yards and two human-safety arcs for takeover and reversible withdrawal; `visual/assets/identity-system.json` records high-contrast, tactile, paper, telephone and audible alternatives. The landmark catalogue grounds the identity in public interfaces: a Human-Takeover Marker records paused automation, a Curb Lighthouse shows aggregate status without personal identity, and a Human-Machine Transfer Salon explains rail, walking, wheelchair, freight and staffed service [data:visual/assets/public-landmarks.json].
 
 This is a public narrative and operating entrance, not a registered trademark, building, enterprise partnership or field result. If the mark cannot show an owner, a stop action and the ordinary route, the service window is withdrawn while the human path remains.
 
-## Resource and decision board — confirm the public floor before scaling automation
+## Resource and decision board, confirm the public floor before scaling automation
 
 The autonomy proposal needed one delivery surface that answers who holds the public floor, which resources may enter, and who can pause. `resource-decision-board.json` separates human service and accessibility, curb and reversible space, safety and independent evaluation, data and bounded compute, and exit and restoration. Each class records a proposed confirmation route, the public floor it holds, minimum evidence, and veto conditions [data:visual/assets/resource-decision-board.json] [depth:phasing_implementation].
 
 This board describes a confirmation procedure only. It supplies no budget amount, institution name, vendor, insurance result, permit, or operating performance. A proposer may submit a candidate but cannot release it alone. Public-interest, accessibility, safety, and independent-review roles may pause or return it to human service. Support from resources cannot buy permanent curb access, exemption from review, or a higher score. Four gates move from problem registration and minimum-resource review through a reversible window and independent replay to conditional expansion or exit. Any missing item stays in paper or synthetic replay [data:visual/assets/check-resource-decision-board.js] [depth:risk_missing_data].
 
-![Resource and decision board — five resource classes, four decision gates and pause boundaries](assets/figures/resource-decision-board.en.png)
+![Resource and decision board, five resource classes, four decision gates and pause boundaries](assets/figures/resource-decision-board.en.png)
 
 The resource routes on the board are not funding commitments. Only after official geometry, tenure, fire review, accessibility, insurance, data authorization, public baselines, and an executable exit responsibility are available may a professional team decide whether to advance. Until then, ordinary routes, staffed service, and public passage remain the priority [depth:phasing_implementation] [depth:risk_missing_data].
 
@@ -83,24 +83,24 @@ The autonomy proposal first asks what action a source can support, then discusse
 | Papers and methods | Wind/heat/CFD, ecology, asset and embodied-intelligence methods | Future measurement variables, model inputs, uncertainty and professional review questions | Jing-Zhang wind field, health causality, accident rate, transferable percentage or permit basis |
 | Blocked and accountability records | `blocked` conditions and insurance/safety/privacy/human-route gaps | When to stop, who must supply evidence and when scale-up is prohibited | Replacing accountability, approval, insurance or implementation results with “pending” |
 
-The review rule is: `known` means only that a value is readable from package files; `design_target` is not field performance; `unknown` must not be guessed; `blocked` stops scale-up. A local PASS proves only that a structure or state machine can be replayed; it is not a field, professional or implementation finding.
+The review rule is straightforward. `known` means only that a value is readable from package files; `design_target` is not field performance; `unknown` must not be guessed; `blocked` stops scale-up. A local PASS proves only that a structure or state machine can be replayed. It is not a field, professional or implementation finding.
 
-## Coordinated Research Area: Industry and Future City Research
+## Coordinated Research Area, Industry and Future City Research
 
 The coordinated research area connects AI industry, talent, rail, community, public governance and future-city research through public value rather than a single vendor. Enterprises may provide controlled test capacity, universities and students may participate in audit, communities provide real needs and redress, and rail and staffed service desks provide non-app entry points [source:AGENT-TASKBOOK]. The design intent is to make automation usable by residents, handover-ready for maintainers and reviewable by professionals. Spatially this assigns roles to the public axis and three yards; metrically it prioritises accessible continuity, equivalent human service, rollback and complaint closure, not vehicle count or model accuracy. Liability agreements, budgets, insurance, staffing and demand distribution remain unknown, so the industry chain is a coordination hypothesis rather than a partnership or implementation claim.
 
-## 2. Spatial structure: one public axis, three test yards, two safety nets
+## 2. Spatial structure, one public axis, three test yards, two safety nets
 
-The proposal is organised as **one public axis + three test yards + two safety nets + twelve scenario cards**. The public axis is the Jing-Zhang heritage park and its slow-mobility/blue-green connections. The test yards are Zhongzhiyuan, the AI Origin Community and Dazhongsi. The safety nets are:
+The proposal is organised as **one public axis + three test yards + two safety nets + twelve scenario cards**. The public axis is the Jing-Zhang heritage park and its slow-mobility/blue-green connections. The test yards are Zhongzhiyuan, the AI Origin Community and Dazhongsi. The two safety nets serve distinct roles.
 
-- a **human safety net**: continuous accessible routes, staffed service, legible curbs, low-speed operation, emergency stop and human takeover;
-- an **ecology-and-data safety net**: weather and network rollback, dark-sky and bird protection, data minimisation, public algorithm records and revocable consent.
+- a **human safety net**, continuous accessible routes, staffed service, legible curbs, low-speed operation, emergency stop and human takeover;
+- an **ecology-and-data safety net**, weather and network rollback, dark-sky and bird protection, data minimisation, public algorithm records and revocable consent.
 
 Autonomous driving is a constrained service layer over walking, cycling, rail, transit, emergency and maintenance systems. Every vehicle or robot yields to the continuous human route. Curbs register who may stop, when, for how long and who clears the space [standard:BEIJING-ACCESSIBILITY-REGULATION] [standard:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS].
 
 ![Overview of the autonomous public belt](assets/figures/site-overview.en.png)
 
-Caption: The overview places the three test yards on one public axis and reads the human, ecological/data safety nets and phase gates as one spatial relationship; it does not express statutory boundaries or an opened road.
+Caption, the overview places the three test yards on one public axis and reads the human, ecological/data safety nets and phase gates as one spatial relationship. It does not express statutory boundaries or an opened road.
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
@@ -146,13 +146,13 @@ Caption: The three-row plan makes “ordinary route first, closable service, hum
 
 ![Key-area public roles and stop conditions](assets/figures/key-areas.en.png)
 
-Caption: The key-area board is not a point list: it places enterprise service, equivalent community service and rail interchange at ground interfaces, and shows when the system returns to human, accessible and emergency routes.
+Caption, the key-area board places enterprise service, equivalent community service and rail interchange at ground interfaces. It also shows when the system returns to human, accessible and emergency routes; it is more than a point list.
 
 ## 4. Design rules for an automated future
 
 **Curb before vehicle.** Draw the continuous human route and the exit-capable service zone before drawing a vehicle route. Curb states are `open`, `booked`, `service`, `restricted` and `human-only`; every change needs an owner, time window, sign and restoration condition.
 
-The “status board plus removable functional bands” is a methodological transfer, not a local finding: curb research prompts fields for enforcement, public communication, data management and interagency coordination; citizen research on driverless streets treats greenery, seating, shelter and micromobility as questions for public preference in flexible zones; place-based eHMI research suggests that autonomous interfaces should be integrated with the context of a place. These studies only define what should be asked, measured and professionally reviewed next; their samples and outcomes are not transferred into Jing-Zhang preferences, dimensions or safety effects [source:DIEHL-CURBSPACE-MANAGEMENT-2021] [source:FAYYAZ-DRIVERLESS-STREETS-2025] [source:WANG-PLACE-BASED-EHMI-2025].
+The “status board plus removable functional bands” is a methodological transfer rather than a local finding. Curb research prompts fields for enforcement, public communication, data management and interagency coordination; citizen research on driverless streets treats greenery, seating, shelter and micromobility as questions for public preference in flexible zones; place-based eHMI research suggests that autonomous interfaces should be integrated with the context of a place. These studies only define what should be asked, measured and professionally reviewed next; their samples and outcomes are not transferred into Jing-Zhang preferences, dimensions or safety effects [source:DIEHL-CURBSPACE-MANAGEMENT-2021] [source:FAYYAZ-DRIVERLESS-STREETS-2025] [source:WANG-PLACE-BASED-EHMI-2025].
 
 ### A typical curb cross-section: continuity before the service window
 
@@ -173,9 +173,9 @@ This cross-section fixes spatial relationships and state changes only. It does n
 
 ### 4.5 Public-route continuity: keep people moving before opening a service window
 
-The first public question is not whether a vehicle completes a task, but whether an ordinary resident, wheelchair user, carer or maintainer still has a route that is visible, handover-ready and exit-capable. `public-route-continuity.schema.json` places three candidate nodes and four reviewer classes—professional, operator, resident and accessibility user—in one record. `gap_ratio` is a design demonstration; `max_gap_ratio=0.25` is not a road-safety standard, and any blocking gap or invisible handover reopens the node [data:visual/assets/public-route-continuity.schema.json] [data:visual/assets/example-public-route-continuity.json].
+The first public question is whether an ordinary resident, wheelchair user, carer or maintainer still has a route that is visible, handover-ready and exit-capable. `public-route-continuity.schema.json` places three candidate nodes and four reviewer classes—professional, operator, resident and accessibility user—in one record. `gap_ratio` is a design demonstration; `max_gap_ratio=0.25` is not a road-safety standard, and any blocking gap or invisible handover reopens the node [data:visual/assets/public-route-continuity.schema.json] [data:visual/assets/example-public-route-continuity.json].
 
-The order is fixed: check all four reviewer readings at every node; check route continuity and visible human handover; only then allow an explainable `caution` state within the design limit. When it fails, the action is not to raise a model score: freeze new trials, keep the non-AI equivalent route open, publish the trigger and owner, repeat the affected node with every reviewer class, and require two consecutive clear rounds before reconsidering a window. `accessible_route_continuity_ratio` and `autonomy_fallback_success_ratio` remain `unknown`; the synthetic record proves field wiring and rejection paths only, not accessibility performance, resident outcomes, vehicle performance or permission [metric:accessible_route_continuity_ratio] [metric:autonomy_fallback_success_ratio].
+The order is fixed. Check all four reviewer readings at every node; check route continuity and visible human handover; only then allow an explainable `caution` state within the design limit. If it fails, freeze new trials, keep the non-AI equivalent route open, publish the trigger and owner, repeat the affected node with every reviewer class, and require two consecutive clear rounds before reconsidering a window. `accessible_route_continuity_ratio` and `autonomy_fallback_success_ratio` remain `unknown`; the synthetic record proves field wiring and rejection paths only, not accessibility performance, resident outcomes, vehicle performance or permission [metric:accessible_route_continuity_ratio] [metric:autonomy_fallback_success_ratio].
 
 The dependency-free checker and ten deterministic positive/negative fixtures are `visual/assets/check_public_route_continuity.js` and `run_public_route_continuity.js`. They make “the ordinary route remains” a public mechanism that a reviewer can deliberately break and observe failing; a local PASS is not field evidence.
 
@@ -183,21 +183,21 @@ The dependency-free checker and ten deterministic positive/negative fixtures are
 
 Caption: The system board shows how curb states connect to human takeover, rain/heat/network-loss rollback and ecological constraints; its subject is the spatial path of stopping and recovery, not vehicle performance.
 
-## 5. Twelve scenario cards
+## 5. Twelve scenario cards, from reversible trials to exit-capable service
 
 The cards cover accessible rides, low-speed shuttle, rail transfer, night maintenance, rain/snow service, scheduled loading, event separation, network-loss rollback, child/older-adult assistance, public-asset inspection, open safety-audit day and resident complaint/opt-out. They are design objects, not existing services. To close the gap between scenario cards, the operation matrix and test gates, this iteration adds `visual/assets/autonomy-readiness-register.json`: each of the 12 cards has one participant-proposed primary operation row, readiness fields, a human-equivalent service and a stop condition; S06, S07, S08, S09 and S12 remain explicitly supporting operations. The mapping still requires future professional/operator confirmation and does not assign a field duty [metric:autonomy_scenario_card_count] [data:visual/assets/autonomy-readiness-register.json#autonomy-readiness-register-v1].
 
 The register makes baseline, observation population/sample/time window, success and stop thresholds, accountability, deletion evidence, review and appeal required before an authorised trial. Every card currently remains `unknown`, `not_authorized_not_run`, `field_data=false` and `performance_results=null`; the checker proves reference completeness and boundary stability only, not a field result.
 
-The two counts are intentionally different: 12 `AV-01—AV-12` cards describe perceptible autonomous-mobility situations—who meets what service in which space—while 14 `S01—S14` operation rows describe triggers, owners, evidence, non-AI equivalence and failure action. The package does not mechanically rename 12 cards as 14; `scenario-operation-contract.json` gives every operation row a design gate, and a missing owner, evidence or human fallback fails [data:visual/assets/scenario-operation-matrix.json] [data:visual/assets/scenario-operation-contract.json].
+The package keeps two counts for two different uses. Twelve `AV-01—AV-12` cards describe perceptible autonomous-mobility situations, who meets what service in which space. Fourteen `S01—S14` operation rows describe triggers, owners, evidence, non-AI equivalence and failure action. `scenario-operation-contract.json` gives every operation row a design gate, and a missing owner, evidence or human fallback fails [data:visual/assets/scenario-operation-matrix.json] [data:visual/assets/scenario-operation-contract.json].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
 Three tests make the concept falsifiable: **AV-T01 curb-conflict test** records obstruction, yielding, emergency-stop and loading conflicts; **AV-T02 equivalent accessible service** compares automated, human and paper/phone routes; **AV-T03 network/weather rollback** tests stop, broadcast, takeover, evacuation and recovery across the three yards [metric:curb_conflict_rate] [metric:accessible_route_continuity_ratio] [metric:autonomy_fallback_success_ratio].
 
-To make the three gates reviewable before any field activity, the package adds an offline synthetic tabletop: it replays four branches, seven acceptance checks and five rollback steps across AV-T01–T03 and S01–S03. The ordinary curb branch preserves manual patrol and paper signage; an accessible obstruction, a worse automated service, or a network/weather fault moves to hold, human takeover and recovery. This replay is not a field test, permit, safety assessment, deployment or performance result: the status remains `not_authorized_not_run`, measured results remain `null`, and baselines remain `unknown`. Its receipt and network-free runner are recorded at [data:visual/assets/autonomy-curbside-tabletop-evidence.json#AUTONOMY-CURBSIDE-TABLETOP-001].
+To make the three gates reviewable before any field activity, the package adds an offline synthetic tabletop. It replays four branches, seven acceptance checks and five rollback steps across AV-T01–T03 and S01–S03. The ordinary curb branch preserves manual patrol and paper signage; an accessible obstruction, a worse automated service, or a network/weather fault moves to hold, human takeover and recovery. This replay is a contract-level rehearsal. The status remains `not_authorized_not_run`, measured results remain `null`, and baselines remain `unknown`. Its receipt and network-free runner are recorded at [data:visual/assets/autonomy-curbside-tabletop-evidence.json#AUTONOMY-CURBSIDE-TABLETOP-001].
 
-Personas here are not a list of people to be “looked after”; they are accountability roles that every public mechanism must answer. The needs, review action and decision right for P1–P9 are in `visual/assets/persona-role-matrix.json`; these are design roles, not a resident census, consent record or demographic conclusion.
+Personas here identify accountability roles that every public mechanism must answer. The needs, review action and decision right for P1–P9 are in `visual/assets/persona-role-matrix.json`; these are design roles, not a resident census, consent record or demographic conclusion.
 
 | Role | Who is here | Must be able to do | Mechanism responsibility / decision right |
 | --- | --- | --- | --- |
@@ -231,7 +231,9 @@ Caption: The land-use board places the public axis, three test yards, slow/green
 
 ## Blue-Green Network, Public Space, and Urban Character
 
-Blue-green and public space are safety boundaries for continuous human movement, weather rollback, dark-night operation and bird protection, not decorative background. Shade, rain gardens, open space, lighting, maintenance access and curb states must be coordinated; the layers show candidate audits and rollback relations, not ecological redlines, drainage capacity or health benefit. Tree and bird inventories, stormwater sections, microclimate, lighting and night-use baselines are missing, so outcomes remain `unknown` or `design_target` until field and professional evidence exists [source:BEIJING-VENTILATION-NETWORK-2035].
+Blue-green and public space set the safety boundaries for continuous human movement, weather rollback, dark-night operation and bird protection. Shade, rain gardens, open space, lighting, maintenance access and curb states must be coordinated; the layers show candidate audits and rollback relations, not ecological redlines, drainage capacity or health benefit. Tree and bird inventories, stormwater sections, microclimate, lighting and night-use baselines are missing, so outcomes remain `unknown` or `design_target` until field and professional evidence exists [source:BEIJING-VENTILATION-NETWORK-2035].
+
+Spatial actions first place the continuous walking route, maintenance access, stormwater retention points and removable service windows on one audit drawing, then check whether any autonomous node cuts across those relationships. The metric layer reuses the formulas for `green_space_area_sqm`, `public_space_area_sqm`, `green_ratio` and `public_space_ratio`; ponding, heat exposure, lighting, bird disturbance and night accessibility remain future measurement fields. When official boundaries, tree inventories or ecological baselines arrive, the layers, areas, scenario gates and rollback conditions must be recomputed together. A single effect image cannot replace that update [metric:green_ratio] [metric:public_space_ratio] [data:geometry/green_space.geojson].
 
 ## Renewal Projects, Implementation Policy, and Phasing
 
@@ -273,4 +275,4 @@ Once official polygons, road/utility/ownership, traffic, weather, drainage and e
 
 The complete source index, publishers, use boundaries, access dates and limitations are recorded in `sources.json`; this section does not repeat the structured index, while the readable narrative keeps representative anchors next to the claims they support [source:SOURCE-REGISTRY]. The source layer exists to make each policy, standard, case and method traceable to its publisher, scope, licence boundary and known gap rather than treating citation count as quality. Geometry, areas, green/public ratios and autonomy metrics are read back from GeoJSON, JSON and matrices; papers define future measurement variables but do not provide local observations. Until official polygons, transport/ownership data, field baselines and professional review exist, trial, performance, permit and implementation outcomes remain targets, unknowns or pending formal evidence.
 
-**Boundary statement:** this is an auditable concept and trial framework. It is not a government-approved plan, road-opening notice, autonomous-driving permit, company partnership, health/air-quality proof or construction commitment.
+**Boundary statement**, this is an auditable concept and trial framework. It is not a government-approved plan, road-opening notice, autonomous-driving permit, company partnership, health/air-quality proof or construction commitment.

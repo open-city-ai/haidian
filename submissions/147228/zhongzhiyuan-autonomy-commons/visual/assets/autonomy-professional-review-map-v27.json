@@ -1,0 +1,184 @@
+{
+  "schema_version": "0.1.0",
+  "id": "autonomy-professional-review-map-v27",
+  "title_zh": "自动驾驶公共带七维专业审阅地图",
+  "title_en": "Seven-Dimension Professional Review Map for the Autonomous Public Belt",
+  "purpose": "把已有包内证据收束为可追问的审阅入口，不分配官方分数，不替代维护者或专业团队判断。",
+  "rubric_source": "scripts/ai_review_submission.py",
+  "rubric_weights_sum": 100,
+  "package_boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "operational_status": "not_authorized_not_run",
+    "performance_results": null,
+    "not_an_official_score": true
+  },
+  "dimensions": [
+    {
+      "id": "brief_alignment",
+      "label_zh": "任务书相关性",
+      "label_en": "Brief alignment",
+      "rubric_weight": 20,
+      "review_question": "是否把百年京张、AI 创新带与公共服务问题落到了空间动作和任务书成果？",
+      "evidence_refs": [
+        "proposal.md#L19",
+        "visual/assets/taskbook-crosswalk.json",
+        "visual/assets/taskbook_coverage.json",
+        "geometry/key_areas.geojson"
+      ],
+      "formal_basis_ids": ["SITE-PACKAGE", "AGENT-TASKBOOK", "OFFICIAL-ANNOUNCEMENT"],
+      "design_action": "以一条普通路线、三座试验庭和三道现场闸门组织自动驾驶服务，而不是只展示车辆或模型。",
+      "can_support": "评审者可从任务书覆盖表、重点区图层和执行摘要回到同一条公共服务链。",
+      "not_proven": ["官方边界", "当地道路开放", "项目已获授权", "任务书成果已被采纳"],
+      "next_professional_gate": {
+        "owner": "规划与公共服务专业复核团队",
+        "required_artifacts": ["官方边界与重点区文件", "任务书成果逐项审查记录", "三处节点现场接口清单"],
+        "stop_if": "任一任务成果无法绑定空间对象、公共服务动作或证据责任人。"
+      },
+      "confidence": "package-structure-only"
+    },
+    {
+      "id": "originality",
+      "label_zh": "原创性",
+      "label_en": "Originality",
+      "rubric_weight": 10,
+      "review_question": "方案是否提出了具有自身识别不变量、可复演机制和空间后果的原创组织方式？",
+      "evidence_refs": [
+        "proposal.md#L99",
+        "visual/assets/identity-system.json",
+        "visual/assets/autonomous-scenarios.json",
+        "visual/assets/autonomy-spatial-chain.json"
+      ],
+      "formal_basis_ids": ["OFFICIAL-ANNOUNCEMENT", "AUTONOMY-DESIGN-BASE", "AUTONOMY-SCENARIO-REGISTER"],
+      "design_action": "将普通路线连续、三座试验庭和两条人本安全弧作为方案识别不变量，并让节点、场景和退出规则反复回接。",
+      "can_support": "评审者可检查同一识别不变量是否同时出现在正文、节点、场景卡和空间证据链中。",
+      "not_proven": ["方案在现实实施中的独创性排名", "公众偏好", "技术性能优于其他方案"],
+      "next_professional_gate": {
+        "owner": "城市设计与公共空间评审团队",
+        "required_artifacts": ["与既有方案的人工差异审查", "节点空间关系图", "公众可理解性复核"],
+        "stop_if": "新增内容只改变命名或视觉包装，无法产生新的空间关系、服务规则或可回退机制。"
+      },
+      "confidence": "package-structure-only"
+    },
+    {
+      "id": "ai_planning_innovation",
+      "label_zh": "AI 与城市规划创新性",
+      "label_en": "AI and planning innovation",
+      "rubric_weight": 15,
+      "review_question": "AI 是否改变了规划的审阅、服务和回退关系，而不只是成为图像或设备标签？",
+      "evidence_refs": [
+        "proposal.md#L158",
+        "visual/assets/autonomy-curbside-tabletop-contract.json",
+        "visual/assets/scenario-operation-contract.json",
+        "visual/assets/check_public_route_continuity.js",
+        "visual/assets/verify.js"
+      ],
+      "formal_basis_ids": ["BEIJING-AV-TEST-2025", "ISO-TR-4448-PUBLIC-MOBILE-ROBOTS", "NIST-HUMAN-CENTERED-AI"],
+      "design_action": "把 AI 服务放进可读路缘、人工等价服务、远程停止、数据最小化和失败回放的空间治理链。",
+      "can_support": "包内 runner 可复演停止、回退、普通路线连续和字段一致性，且每条自动化路径都有非 AI 等价服务。",
+      "not_proven": ["车辆或模型安全性能", "现场接管时延", "算法效果", "真实部署授权"],
+      "next_professional_gate": {
+        "owner": "自动驾驶安全、数据治理与城市设计联合评审团队",
+        "required_artifacts": ["车辆/系统类别", "经批准的测试窗口", "现场事件日志", "独立安全与隐私复核"],
+        "stop_if": "缺少授权、现场基线、人工接管或独立复核时，不进入真实运行。"
+      },
+      "confidence": "package-structure-only"
+    },
+    {
+      "id": "implementation_feasibility",
+      "label_zh": "可实施性",
+      "label_en": "Implementation feasibility",
+      "rubric_weight": 20,
+      "review_question": "方案是否把阶段、资源、责任、验收、暂停和撤场写成可以被专业团队接手的合同？",
+      "evidence_refs": [
+        "proposal.md#L55",
+        "visual/assets/resource-decision-board.json",
+        "visual/assets/autonomy-readiness-register.json",
+        "visual/assets/scenario-operation-contract.json",
+        "visual/assets/run_public_route_continuity.js"
+      ],
+      "formal_basis_ids": ["BEIJING-AV-TEST-2025", "BEIJING-AV-ROADS-2025", "MIIT-AV-TEST-2021", "ISO-55001-2024"],
+      "design_action": "将资源确认、试验窗口、现场证据、人工回退、申诉和撤场顺序固定为 P0、P1、P2 阶段门。",
+      "can_support": "评审者可逐项找到资源决策、场景责任、最低证据、停止条件和非 AI 等价路径。",
+      "not_proven": ["预算", "机构或供应商承诺", "保险", "许可", "施工可行性", "运营绩效"],
+      "next_professional_gate": {
+        "owner": "实施统筹、运营责任和安全复核团队",
+        "required_artifacts": ["权属与道路核验", "责任与保险文件", "现场基线", "试验窗口批准", "公众参与记录"],
+        "stop_if": "任一关键资源、责任人、现场证据或人工替代路径缺失。"
+      },
+      "confidence": "package-structure-only"
+    },
+    {
+      "id": "public_interest_inclusion",
+      "label_zh": "公共利益与包容性",
+      "label_en": "Public interest and inclusion",
+      "rubric_weight": 10,
+      "review_question": "不能使用 App、行动受限、夜间工作或需要人工帮助的人，是否仍能完成同一项公共任务？",
+      "evidence_refs": [
+        "proposal.md#L234",
+        "visual/assets/persona-role-matrix.json",
+        "visual/assets/public-interest-audit.json",
+        "visual/assets/example-public-route-continuity.json",
+        "visual/assets/autonomous-scenarios.json"
+      ],
+      "formal_basis_ids": ["BEIJING-ACCESSIBILITY-REGULATION", "UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES", "NIST-HUMAN-CENTERED-AI"],
+      "design_action": "把轮椅使用者、照护者、老年人、儿童、夜班人员、访客和维护人员放进场景、人工路线和申诉入口。",
+      "can_support": "包内结构可回读人群、普通路线、纸面/电话/现场服务和退出机制的对应关系。",
+      "not_proven": ["居民满意度", "无障碍现场达标率", "不同群体实际受益或负担", "公众参与已完成"],
+      "next_professional_gate": {
+        "owner": "无障碍、社区参与和公共服务专业团队",
+        "required_artifacts": ["分层现场走访", "无障碍审计", "多渠道反馈与申诉记录", "群体差异复核"],
+        "stop_if": "自动化服务让任何人失去原有人工等价路径，或反馈渠道不可退出。"
+      },
+      "confidence": "package-structure-only"
+    },
+    {
+      "id": "risk_compliance",
+      "label_zh": "风险与合规",
+      "label_en": "Risk and compliance",
+      "rubric_weight": 10,
+      "review_question": "方案是否明确哪些资料可以支持判断，哪些风险会触发暂停，以及谁有权停止？",
+      "evidence_refs": [
+        "risk.json",
+        "visual/assets/curbside-test-gates.json",
+        "visual/assets/autonomy-curbside-tabletop-evidence.json",
+        "report/copyright_statement.md",
+        "visual/assets/errata.json"
+      ],
+      "formal_basis_ids": ["BEIJING-AV-SAFETY-ASSESSMENT-2025", "ISO-13482-SERVICE-ROBOT-SAFETY", "SERVICE-ROBOT-INFOSEC-GB45502", "BEIJING-ACCESSIBILITY-REGULATION"],
+      "design_action": "用证据等级、停止闸门、数据删除、版权登记、人工接管和 provisional 边界共同限制自动化扩展。",
+      "can_support": "评审者可回读风险、禁用范围、负回放和撤场动作；本地 PASS 不会被写成许可或现场安全结果。",
+      "not_proven": ["法律意见", "信息安全认证", "事故率", "保险有效性", "政府审批", "现场风险已消除"],
+      "next_professional_gate": {
+        "owner": "安全、隐私、版权、无障碍和法务专业复核团队",
+        "required_artifacts": ["最新法规适用性意见", "数据保护评估", "安全评估", "版权清权", "保险与事故处置责任"],
+        "stop_if": "来源用途越界、责任链断裂、敏感数据未获授权或任一停止条件无法执行。"
+      },
+      "confidence": "package-structure-only"
+    },
+    {
+      "id": "expression_completeness",
+      "label_zh": "表达完整度",
+      "label_en": "Expression completeness",
+      "rubric_weight": 15,
+      "review_question": "读者能否从首屏一路找到空间判断、数据状态、来源、限制和下一步，而不依赖猜测？",
+      "evidence_refs": [
+        "proposal.md#L19",
+        "visual/index.html",
+        "visual/assets/autonomy-readiness-register.json",
+        "visual/assets/autonomous-evidence-crosswalk.json",
+        "visual/assets/errata.json"
+      ],
+      "formal_basis_ids": ["SITE-PACKAGE", "SOURCE-REGISTRY", "AGENT-TASKBOOK"],
+      "design_action": "以七维地图把正文、图件、JSON、runner、缺口和下一道专业门放在一个可回读的阅读路径中。",
+      "can_support": "视觉页提供首屏索引，结构化文件提供复算入口，双语包保持同一主张和边界。",
+      "not_proven": ["读者理解度已通过用户测试", "视觉页替代正式图纸", "表达完整等于专业批准"],
+      "next_professional_gate": {
+        "owner": "专业评审与双语出版复核团队",
+        "required_artifacts": ["中英文逐项对读", "PDF/HTML 图文一致性检查", "专业评审阅读记录"],
+        "stop_if": "任一语言遗漏关键限制、图件与 JSON 不一致，或审阅者无法回到原始证据。"
+      },
+      "confidence": "package-structure-only"
+    }
+  ]
+}

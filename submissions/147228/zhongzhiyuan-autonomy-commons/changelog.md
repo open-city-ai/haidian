@@ -1,5 +1,11 @@
 # 方案迭代记录
 
+## v3.9 - 2026-08-11
+
+- 新增七维专业审阅地图，把任务书相关性、原创性、AI 规划创新、可实施性、公共利益、风险合规和表达完整度逐项回接到已有正文、图层、指标、来源与 runner。
+- 新增无依赖 fail-closed runner，检查七个维度、权重合计、证据文件、来源 ID、下一道专业门和 provisional / not-authorized 边界；它不计算官方分数，也不把包内 PASS 升级为现场结果。
+- 中英文离线视觉页增加同一审阅入口，保留现场基线 unknown、`performance_results=null` 和 `not_an_official_score=true`。
+
 ## v3.8 - 2026-08-10
 
 - 新增公共路线连续性契约、示例记录、无依赖 checker 和 10 个确定性 fixture；四类复核者、非 AI 等价路线、caution 限值和重开/两轮清除规则均保持为设计闸门，不升级为现场绩效或运营许可。
