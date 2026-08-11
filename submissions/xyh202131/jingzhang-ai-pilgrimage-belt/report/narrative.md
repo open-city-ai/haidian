@@ -56,7 +56,7 @@ V2.11 performs a package-wide consistency and transferability audit without addi
 - [x] 120/120 个 OSM 要素具有 `source_id`、`osm_way_id` 与署名；固定查询和快照摘要仍未知，`RIGHTS-OPEN-03` 保持 P0 open。
 - [x] 权利总体仍为 `not_fully_cleared`，独立逐文件清权审计完成数为 0；`RIGHTS-OPEN-01/02/03` 保持 P0 open，公共或专业复用继续 blocked。
 - [x] 公告 8.1 的七个子条款与七类使用场景已逐项登记并在双语正文可读展示；当前仅 1 类允许披露评审，2 类待确认，4 类阻断或待审计阻断；适用关系确认、投稿人对外展示书面同意和独立组件审计完成数仍均为 0。
-- [x] strict score、deterministic、spatial、visual、professional、self-check 与 participant preflight 已在最终 manifest 与 PDF 字节就位后全量通过；仅保留临时边界的预期非阻断警告。
+- [x] strict score、deterministic、spatial、visual、professional、self-check 与 participant preflight 已在最终 manifest 与 PDF 字节就位后全量通过；同时 `PUBLIC_OR_PROFESSIONAL_REUSE_RIGHTS` 仍为 `unknown/major`，`RIGHTS-OPEN-01/02/03` 是已写入 manifest 的发布阻断项，公共或专业复用仍 blocked，不能把结构 PASS 写成权利清除。
 - [ ] 最终 PR head 的可信 `submission-validation` 为 `SUCCESS`。
 
 - [x] The taskbook's three positioning statements, five functions, and six agent tasks are traceable through prose, matrices, layers, and display artifacts; no duplicate fourth master matrix was added.
@@ -71,7 +71,7 @@ V2.11 performs a package-wide consistency and transferability audit without addi
 - [x] All 120 OSM elements carry `source_id`, `osm_way_id`, and attribution; the fixed query and snapshot digest remain unknown, so P0 `RIGHTS-OPEN-03` stays open.
 - [x] Overall rights remain `not_fully_cleared`, with 0 completed independent file-level clearance audits; P0 `RIGHTS-OPEN-01/02/03` remain open, and public or professional reuse remains blocked.
 - [x] Seven subclauses of announcement clause 8.1 and seven use contexts are recorded and shown readably in both proposal languages: one disclosed-review context, two confirmation-dependent contexts, and four blocked or audit-dependent contexts. Applicability confirmation for this open Agent call, written consent for entrant external display, and completed independent component audits all remain 0.
-- [x] Strict score, deterministic, spatial, visual, professional, self-check, and participant preflight all pass after final manifest and PDF bytes were installed; only the expected non-blocking provisional-boundary warning remains.
+- [x] Strict score, deterministic, spatial, visual, professional, self-check, and participant preflight all pass after final manifest and PDF bytes were installed. At the same time, `PUBLIC_OR_PROFESSIONAL_REUSE_RIGHTS` remains `unknown/major`; `RIGHTS-OPEN-01/02/03` are recorded in the manifest as release blockers, public or professional reuse remains blocked, and structural PASS must not be read as rights clearance.
 - [ ] Trusted `submission-validation` on the final PR head reports `SUCCESS`.
 
 ## 权利证据审计 / Rights-evidence audit
@@ -183,6 +183,12 @@ assert ledger["clearance_claim"]["completed_independent_file_level_clearance_aud
 assert ledger["audit_records"] == []
 assert {"RIGHTS-OPEN-01", "RIGHTS-OPEN-02", "RIGHTS-OPEN-03"} <= set(manifest["rights_claim"]["open_p0_items"])
 assert manifest["release_claim"]["public_or_professional_reuse"] == "blocked_pending_terms_and_audit"
+assert {"RIGHTS-OPEN-01", "RIGHTS-OPEN-02", "RIGHTS-OPEN-03"} <= {
+    item.split(":", 1)[0]
+    for item in manifest["release_claim"]["known_blockers"]
+    if ":" in item
+}
+assert len(manifest["release_claim"]["next_actions"]) == 3
 print(json.dumps({"ok": True, "schema_errors": 0, "paths": len(actual), "sources": len(source_ids), "osm": len(osm), "hash_mismatches": 0, "independent_audits": 0, "reuse": "blocked_pending_terms_and_audit"}, ensure_ascii=False))
 '@ | python -
 Remove-Item Env:JZ_RIGHTS_PACKAGE

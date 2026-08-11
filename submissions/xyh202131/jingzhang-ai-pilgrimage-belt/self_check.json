@@ -93,7 +93,7 @@
       "ai_package_stages": {
         "submissions/xyh202131/jingzhang-ai-pilgrimage-belt": "formal"
       },
-      "total_bytes": 10540603,
+      "total_bytes": 10543538,
       "maintainer_bypass": false
     },
     "stderr": ""
@@ -204,198 +204,35 @@
   "package_type": "professional_design_package",
   "review_status": "formal-review-ready",
   "next_actions": [],
-  "external_dependencies": [
-    {
-      "item_id": "RIGHTS-OPEN-01",
-      "priority": "P0",
-      "status": "open",
-      "owner_needed": "repository maintainer or license owner",
-      "evidence_needed": "complete COMMUNITY-DISPLAY-ONLY terms"
-    },
-    {
-      "item_id": "RIGHTS-OPEN-02",
-      "priority": "P0",
-      "status": "open",
-      "owner_needed": "independent rights reviewer",
-      "evidence_needed": "file-level audit for every current manifest path"
-    },
-    {
-      "item_id": "RIGHTS-OPEN-03",
-      "priority": "P0",
-      "status": "open",
-      "owner_needed": "ODbL-competent reviewer and OSM data producer",
-      "evidence_needed": "fixed query/snapshot and ODbL derivative/share-alike determination"
-    }
-  ],
-  "rights_evidence_summary": {
-    "status": "not_fully_cleared",
-    "completed_independent_file_level_clearance_audits": 0,
-    "source_records": 29,
-    "osm_element_records": 120,
-    "manifest_paths": 70,
-    "file_level_asset_records": 70,
-    "audit_records": 0,
-    "repository_review": "disclosure_ready",
-    "public_or_professional_reuse": "blocked_pending_terms_and_audit",
-    "schema_validation_effect": "audit_ready_not_cleared"
-  },
   "schema_version": "0.2.0",
   "checks": [
     {
-      "check_id": "BOUNDARY_TRUST",
+      "check_id": "DETERMINISTIC_VALIDATION",
       "result": "pass",
-      "severity": "major",
-      "target": "geometry/site_boundary.geojson",
-      "message": "临时边界保持 official_boundary=false、低可信和非审批用途；OSM 0% 相交与约 412.5 米最近距离仅记录未裁决不确定性，不触发边界替换或精度升级。"
+      "severity": "blocking",
+      "target": "validate_local_submission.py",
+      "message": "deterministic_validation: PASS"
     },
     {
-      "check_id": "KEY_AREAS_TRUST",
+      "check_id": "SPATIAL_REVIEW",
       "result": "pass",
-      "severity": "major",
-      "target": "geometry/key_areas.geojson",
-      "message": "三处重点区继续分开记录公告约面积、临时 polygon 复算面积与空缺的官方 polygon 面积；两组双语重点区 SVG/PNG 只深化现有临时空间证据读法，geometry Git blob 未改，仍不作为官方红线或精确面积依据。"
+      "severity": "blocking",
+      "target": "spatial_review.py",
+      "message": "spatial_review: PASS"
     },
     {
-      "check_id": "LAND_USE_TOPOLOGY",
+      "check_id": "VISUAL_PACKAGING",
       "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "36 个用地单元完整、无重叠地覆盖提交临时范围；九类代码面积由 EPSG:4548 逐类复算，仍是功能包络而非法定地块。"
-    },
-    {
-      "check_id": "SPATIAL_EVIDENCE",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/",
-      "message": "空间证据仍包含 180 个体量原型、12 条设计线、10 处绿地、9 处公共空间、6 个接口、3 个 AI 服务区和 12 个场景节点；geometry 与 metrics Git blobs 未改，空间 formal review 仅保留三条预期的 provisional minor。"
-    },
-    {
-      "check_id": "METRIC_RECALCULATION",
-      "result": "pass",
-      "severity": "major",
-      "target": "metrics.json",
-      "message": "75 ? known ???? EPSG:4548 ?????????????? G0 ?????????11 ?????????????????? unknown?????????????????"
-    },
-    {
-      "check_id": "SOURCE_ID_CLOSURE",
-      "result": "pass",
-      "severity": "major",
-      "target": "sources.json",
-      "message": "29 条来源 ID 唯一且 29/29 具有 rights_evidence_id；schema 实例逐条记录 locator、日期/unknown、原格式/unknown、完整性、条款证据状态和下游资产台账指针。完成刷新审计与独立逐文件清权审计均仍为 0。"
-    },
-    {
-      "check_id": "SCENARIO_PROTOCOL",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/constraints.geojson",
-      "message": "12 个 G0 节点均具备版本、责任、风险、最小数据、边界、人工接管、申诉、非 AI 选项、停止、复测和到期字段。"
-    },
-    {
-      "check_id": "G1_PREREGISTRATION",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/assets/g1-preregistration-register.json",
-      "message": "12/12 场景具备同任务对照、主指标与分母、采样、时间窗、无伤害、停止恢复、独立复测和版本字段；完成预注册、获批窗口、现场执行与已知结果均为 0。"
-    },
-    {
-      "check_id": "G0_T02_SYNTHETIC_REPLAY",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/assets/t02-g0-g1-replay-result.json",
-      "reproduction_command": "node submissions/xyh202131/jingzhang-ai-pilgrimage-belt/visual/assets/run_t02_g0_g1_replay.js --check",
-      "message": "零依赖 Node 22.x 离线回放在十个无 PII 合成案例上取得 10/10 精确预期决策匹配与 0 mismatch；4/4 个不同的声明停止事件均精确映射到各自恢复动作；13/13 fail-closed 负向控制覆盖样例/冻结合同未知字段、枚举与回答模式漂移、来源闭包、禁采数据优先级、canonical RACI 闭包、现实服务授权和摘要计数篡改；允许来源闭包 6/6。该 PASS 只证明 G0 合同逻辑可确定性重放；实体回答、模型/API、真实服务、现场、审批、责任主体、真实独立复测、G1 结果与真实非 AI 同权结果仍为 0 或 unknown，当前 gate 保持 G0。"
-    },
-    {
-      "check_id": "READINESS_CLOSURE_NO_GO",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/assets/readiness-closure-contract.json",
-      "message": "JZ-01—JZ-08 与 T-01—T-03 共 11 项均引用既有 pilot-readiness 记录并适用同一九类关闭合同；99/99 个现实证据槽全部保持 open、已关闭 0、11/11 决定为 NO-GO。该 PASS 只证明缺口与否决规则可审计，不证明责任接受、审批、现场基线、恢复演练、社区共测或独立复测已完成。"
-    },
-    {
-      "check_id": "IMPLEMENTATION_HANDOFF_CROSSWALK",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/assets/implementation-handoff-matrix.json",
-      "message": "8 个既有项目、3 个既有试点与 12/12 个预注册场景均回指当前阶段、空间对象和 NO-GO 关闭记录；99 个稳定材料 ID 唯一，现实提交材料、批准、运行、现场测试、已知结果与 GO 决定仍均为 0。该 PASS 只证明移交路径闭合，不提升 G0 成熟度。"
-    },
-    {
-      "check_id": "PUBLIC_INTEREST_FALLBACK",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/public_space.geojson",
-      "message": "9 个公共节点全部保留非 AI 通道、人工兜底、静音时段和无屏默认；字段覆盖不冒充现场可用性或等价性结果。"
-    },
-    {
-      "check_id": "TASK_EVIDENCE_SPECIFICITY",
-      "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "三大定位、五大功能与六个智能体任务在可读正文及现有 compliance、standard、design-depth、pilot 与重点区证据中分别落位，未新增重复总矩阵。"
-    },
-    {
-      "check_id": "BILINGUAL_CONTRACT",
-      "result": "pass",
-      "severity": "major",
-      "target": "manifest.json",
-      "message": "??????HTML??????A3/A0????? PNG ???????? SVG ??????????????? required??????G0?provisional ????????"
-    },
-    {
-      "check_id": "VISUAL_STATIC",
-      "result": "pass",
-      "severity": "info",
-      "target": "visual/index.html",
-      "message": "????????????????????????????? site-overview ??? key-areas?key-area-sections ???????????????????HTML ??? metrics.json ???"
-    },
-    {
-      "check_id": "BILINGUAL_VISUAL_PARITY",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/index.html + visual/index.en.html",
-      "message": "???????????? 17 ??????16 ??????8 ??????????14 ?????????????????/???/??/??/????????????????????????????????????"
+      "severity": "blocking",
+      "target": "visual_review.py",
+      "message": "visual_review: PASS"
     },
     {
       "check_id": "PROFESSIONAL_EVIDENCE",
       "result": "pass",
-      "severity": "major",
-      "target": "proposal.md",
-      "message": "正文与矩阵的 6 项标准、15 项设计深度、75 个必需 known 指标引用通过专业证据检查；正文含 29 类来源、35 类 data 与 58 个 metric 标记。"
-    },
-    {
-      "check_id": "RISK_AND_SOURCE_BOUNDARIES",
-      "result": "pass",
-      "severity": "major",
-      "target": "sources.json",
-      "message": "项目、标准、政策、场地、OSM 与案例来源均记录权威等级、可用与禁用范围；临时边界、协同角色、文化内容、场景协议和公开报道保持概念或待核验，不生成官方红线、机构承诺、现场事实或审批结论。"
-    },
-    {
-      "check_id": "RIGHTS_DISCLOSURE_AND_LINK_CLOSURE",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/assets/rights-clearance-ledger.json",
-      "reproduction_command": "Run the complete PowerShell/Python audit block under report/narrative.md#权利证据审计--rights-evidence-audit; it executes JSON Schema validation plus path, hash, source, OSM, tool, declared-parent and release-gate assertions.",
-      "message": "manifest?5 ????? 70 ??????????????????29 ????120 ? OSM way????? ID?Noto/Helvetica/SVG/Node.js ???????????????? metrics source_files ???????????????parent_asset_refs ????????? PASS ????????????????????????? 0??? not_fully_cleared?"
-    },
-    {
-      "check_id": "SUBMISSION_USE_RIGHTS_BOUNDARY",
-      "result": "pass",
-      "severity": "major",
-      "target": "visual/assets/submission-use-rights-matrix.json",
-      "message": "公告 8.1 的 7 个子条款与 7 类使用场景已分开登记；当前仅 1 类允许披露条件下的仓库评审，2 类待确认、4 类阻断或待审计阻断；适用关系确认、投稿人对外展示书面同意和独立组件/逐文件审计完成数均为 0。该 PASS 只证明使用决策边界可审计，不证明任何待确认或阻断用途已获许可。"
-    },
-    {
-      "check_id": "PUBLIC_OR_PROFESSIONAL_REUSE_RIGHTS",
-      "result": "unknown",
-      "severity": "major",
-      "target": "visual/assets/source-rights-evidence.json",
-      "message": "RIGHTS-OPEN-01/02/03 均保持 P0 open；完整 COMMUNITY-DISPLAY-ONLY 条款、独立逐文件审计与 ODbL 义务尚未完成。仓库评审可进行披露复核，但公共展示、专业深化或其他再利用继续 blocked_pending_terms_and_audit。"
-    },
-    {
-      "check_id": "PAPER_DIMENSIONS",
-      "result": "pass",
-      "severity": "info",
-      "target": "drawings/",
-      "message": "??? A0 ?? 8 ??? A0 ??????? 1800?1100 ???????/?? A3 ? 11/12 ??? A3 ????? PDF ????????A3 ?? 8 ??????A0 ?? 8 ??????????????? A0 ?????????????? PyMuPDF ???"
+      "severity": "blocking",
+      "target": "professional_review.py",
+      "message": "professional_review: PASS"
     }
   ]
 }
