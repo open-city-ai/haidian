@@ -10,7 +10,7 @@ summary: "以人本缓冲、机器可调用的公共规则和可撤回的版本�
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
-iteration: "v2.1"
+iteration: "v1.7"
 tracks: "ai-traffic-walkability,civic-agent-governance,youth-friendly-public-space"
 scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-navigation,ai-cultural-guide,enterprise-service-copilot,public-safety-operations-review"
 ---
@@ -147,24 +147,6 @@ scenarios: "ai-traffic-walkability,robot-delivery-low-speed,ai-health-service-na
 这张表表达的是空间角色如何随 AI 约束变化，不是尺寸变化；当前不新增 geometry，也不把 `design_target` 升级为专业测量。正式边界、权属、无障碍和现场基线到位后，必须把这条差分与指标、图件、HTML、PDF 和自检一起重算。[data:visual/assets/ai-era-spatial-interface-plans.json#AI-NODE-ZHONGZHIYUAN] [data:visual/assets/scenario-space-operation-matrix.json#SCN-06] [metric:api_governance_gate_count]
 
 正式资料到位后的全链条重算属于指标复核深度项；在触发前，图件只用于概念建议与关系核问。[depth:metrics_recalculation]
-
-## v2.1 七维专业审阅证据地图｜把“可读”变成可追问
-
-v2.1 不新增边界、路线、容量、现场数据或政策结论，而是把本包已经分散在任务书、场景卡、空间锚点、metrics、来源和图面的证据收束成七个可追问的问题。`visual/assets/ai-era-professional-review-map-v21.json` 给出每一维的证据引用、概念动作、未证明项、下一道专业门和置信度；确定性 runner 会逐项检查引用文件存在、正式依据 ID 可回读、临时边界字段不被覆盖、未证明项与下一门不为空。[data:visual/assets/ai-era-professional-review-map-v21.json] [data:visual/assets/run-ai-era-professional-review-map-v21.js]
-
-| 审阅问题 | 现有证据与空间动作（概念建议） | 仍未证明 | 下一道门 |
-|---|---|---|---|
-| 任务对齐 | 公告、agent.1—agent.6、场景卡、空间锚点和 compliance matrix 回到同一入口 | 公告缺失附件、官方四至与专业解释 | 官方边界、重点区四至和公告附件到位后联动复核 |
-| 差异化主张 | 普通到达 → 人工接管 → 受限模拟 → 冻结退出，替代单一 AI 展示入口 | 不是现状调查或用户结果 | 专业团队与公众观察席核对入口条件 |
-| AI 原生创新 | 城市 API、硅基通行权和可逆设计都经过授权、日志、人工接管、G0 冻结门 | 不证明 API、路权、空域或部署许可 | 数据授权、责任界面、交通/安全演练 |
-| 实施可深化性 | 五个项目族按 G0→专业复核→冻结/退出排列，不承诺建设 | 工程、资金、运营机构、保险和时序 | 权属、既有设施、消防/无障碍/运营资料 |
-| 公共利益与包容 | 原住民/老人、转岗劳动者、夜班人员等保留纸本/语音、人工、申诉和退出 | 画像不是人口、就业或公平绩效 | 经同意的社区与无障碍走访、夜间安全基线 |
-| 风险与合规 | formal / background / provisional、权利台账和停用条件分层 | 不替代主管部门、数据授权或法律意见 | 官方附件、权属/文化、授权和安全责任确认 |
-| 表达与复核完整度 | 主图、HTML、PDF、GeoJSON、metrics、双语资产共用同一组证据引用 | 本地渲染、自检不等于合并、评分或发布 | 专业图面与文字复核；资料变化时全包重算 |
-
-这七维地图是投稿自有的审阅索引，不分配官方分数；它只让专业团队更快找到“设计意图—空间动作—证据—缺口—下一门”的闭环。所有空间动作仍是概念建议/参考方案，可供专业团队深化研究；`official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run`、`performance_results=null` 和 `not_an_official_score=true` 在 JSON、图件和 runner 中保持一致。[data:assets/figures/professional-review-map-v21.png] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:metrics_recalculation]
-
-![图 11｜v2.1 七维专业审阅证据地图](assets/figures/professional-review-map-v21.png)
 
 ## v1.2 任务书·空间·运营三联读｜让 agent.4、agent.5、agent.6 在同一张图上相遇
 

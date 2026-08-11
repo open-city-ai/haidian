@@ -9,7 +9,7 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v2.1"
+iteration: "v1.7"
 ---
 
 # From an AI Showcase to a City for People in the AI Era
@@ -125,24 +125,6 @@ This spatial delta addresses the AI-planning-innovation dimension without replac
 The table expresses how spatial roles change under AI constraints; it is not a dimensional change. No new geometry is added, and `design_target` is not upgraded into a professional measurement. Once official boundary, rights, accessibility, and field baselines exist, this delta must be recomputed with the metrics, plates, HTML, PDF, and self-check. [data:visual/assets/ai-era-spatial-interface-plans.json#AI-NODE-ZHONGZHIYUAN] [data:visual/assets/scenario-space-operation-matrix.json#SCN-06] [metric:api_governance_gate_count]
 
 The full-chain recalculation after formal evidence arrives is a metrics-recalculation depth item; before that trigger, the plates support conceptual suggestions and relational questions only.[depth:metrics_recalculation]
-
-## v2.1 Seven-dimension professional review evidence map: turn readability into questions
-
-v2.1 adds no boundary, route, capacity, field data, or policy conclusion. It gathers evidence already distributed across the taskbook, scenario cards, spatial anchors, metrics, sources, and plates into seven questions that a reviewer can actually challenge. `visual/assets/ai-era-professional-review-map-v21.json` records evidence references, conceptual actions, what is not proven, the next professional gate, and confidence for each dimension. A deterministic runner checks that referenced files exist, formal-basis IDs resolve, provisional boundaries are not overwritten, and every unresolved item has a next gate.[data:visual/assets/ai-era-professional-review-map-v21.json] [data:visual/assets/run-ai-era-professional-review-map-v21.js]
-
-| Review question | Existing evidence and spatial action (concept suggestion) | Not proven | Next gate |
-|---|---|---|---|
-| Brief alignment | The announcement, agent.1–agent.6, scenario cards, spatial anchors, and compliance matrix return to one entry point | Missing annexes, official extents, and professional interpretation | Recheck together when official boundary, key-area extents, and annexes arrive |
-| Differentiation | Ordinary arrival → staffed takeover → bounded simulation → freeze/exit replaces a single AI showcase entrance | Not a site survey or user outcome | Compare entry conditions with a professional team and public observer seat |
-| AI-native innovation | City API, silicon right-of-way, and reversibility pass authorization, logs, human takeover, and G0 freeze gates | No claim of API, right-of-way, airspace, or deployment permission | Data authorization, responsibility interface, transport and safety rehearsal |
-| Deepening path | Five project families move G0 → professional review → freeze/exit without construction promises | Engineering, funding, operator, insurance, and schedule feasibility | Rights, existing facilities, fire/accessibility, and operating evidence |
-| Public interest | Residents/older people, workers at transition risk, night workers and others retain paper/voice, staffed, appeal, and exit paths | Personas are not demographic, jobs, or fairness results | Consented community/access walk-through and night-safety baseline |
-| Risk and compliance | Formal/background/provisional layers, rights ledger, and stop conditions remain separate | Does not replace authority, data authorization, or legal review | Official annexes, rights/culture, authorization, and safety responsibility |
-| Expression and traceability | Maps, HTML, PDF, GeoJSON, metrics, and bilingual assets point to the same evidence set | Local rendering and self-check do not mean merge, score, or publication | Professional visual/text review; full recomputation when inputs change |
-
-This seven-dimension map is a submission-owned review index, not an official score. It shortens the path from design intent to spatial action, evidence, gap, and next gate for a professional team. All spatial actions remain conceptual suggestions/reference options for professional deepening. `official_boundary=false`, `geometry_role=provisional_constraint`, `operational_status=not_authorized_not_run`, `performance_results=null`, and `not_an_official_score=true` remain aligned across the JSON, plates, and runner.[data:assets/figures/professional-review-map-v21.en.png] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:metrics_recalculation]
-
-![Figure 11: v2.1 seven-dimension professional review evidence map](assets/figures/professional-review-map-v21.en.png)
 
 ## v1.2 Taskbook–space–operation triad: make agent.4–agent.6 meet on one board
 
