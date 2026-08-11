@@ -9,92 +9,363 @@
       "status": "known",
       "value": 11412825.386,
       "unit": "sqm",
-      "source_files": [
-        "geometry/site_boundary.geojson"
-      ],
+      "source_files": ["geometry/site_boundary.geojson"],
       "formula": "polygon_area(submitted_site_boundary)",
       "confidence": "medium",
-      "assumptions": [
-        "Repository provisional boundary is used for intake visualization and topology checks only; it is not an official redline or precise-area basis."
-      ]
+      "assumptions": ["Repository provisional boundary is used for intake visualization and topology checks only; it is not an official redline or precise-area basis."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-10",
+        "rounding": "0.001 sqm",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "replacement or revision of the submitted site-boundary feature"
+      }
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 310807.184,
+      "value": 373402.48,
       "unit": "sqm",
-      "source_files": [
-        "geometry/buildings.geojson"
-      ],
+      "source_files": ["geometry/buildings.geojson"],
       "formula": "sum(polygon_area(building_footprints))",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": ["Submitted building polygons are conceptual evidence objects, not a cleared existing-building survey.", "The four submitted footprints do not overlap, so the sum equals the dissolved footprint area used by the spatial recalculation.", "BLDG-002, BLDG-003 and BLDG-004 are concept massing envelopes for the three experimental courts (JZ-02, JZ-03, JZ-04); they carry no approved height, floor area, or development right."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-11",
+        "rounding": "0.001 sqm",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "replacement or revision of any submitted building polygon"
+      }
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.123423,
+      "value": 0.213097,
       "unit": "ratio",
-      "source_files": [
-        "geometry/green_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
       "formula": "green_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": ["Both numerator and denominator use submitted provisional geometry.", "The six green-space polygons do not overlap each other, so their sum equals the dissolved area (2432035.047 sqm).", "The green-space and public-space envelopes deliberately overlap by 452986.656 sqm where the spine greenway also carries public interfaces; green_ratio and public_space_ratio therefore must not be added together.", "The submitted green-space envelope stays below the park and open-space land-use area declared in geometry/land_use.geojson#LU-002 (2589339.239 sqm); it is not an approved park boundary."],
+      "numerator_definition": "area of submitted green-space polygons in EPSG:4548",
+      "denominator_definition": "area of submitted site-boundary polygon in EPSG:4548",
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-11",
+        "rounding": "0.000001 ratio",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "revision of green-space or site-boundary geometry"
+      }
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.073281,
+      "value": 0.181788,
       "unit": "ratio",
-      "source_files": [
-        "geometry/public_space.geojson",
-        "geometry/site_boundary.geojson"
-      ],
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
       "formula": "public_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": ["Both numerator and denominator use submitted provisional geometry.", "The ten public-space polygons do not overlap each other, so their sum equals the dissolved area (2074716.512 sqm).", "The public-space and green-space envelopes deliberately overlap by 452986.656 sqm; green_ratio and public_space_ratio must not be added together.", "Public-space polygons are conceptual interface envelopes, not approved plazas, operating areas, or cleared land-use decisions."],
+      "numerator_definition": "area of submitted public-space polygons in EPSG:4548",
+      "denominator_definition": "area of submitted site-boundary polygon in EPSG:4548",
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-11",
+        "rounding": "0.000001 ratio",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "revision of public-space or site-boundary geometry"
+      }
     },
     "floor_area_ratio": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
-      "source_files": [
-        "brief/site-package/ranges/planning_limits.json"
-      ],
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
       "formula": "total_floor_area_sqm / official_site_area_sqm",
       "confidence": "unknown",
-      "assumptions": [],
-      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+      "assumptions": ["No cleared total-floor-area inventory or official site boundary is available."],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package.",
+      "numerator_definition": "cleared total floor area within the official calculation boundary",
+      "denominator_definition": "official site area under the applicable planning rule",
+      "responsible_role": "planning-control and building-survey professionals",
+      "collection_gate": "G0",
+      "recalculation_trigger": "receipt of cleared official controls, boundary, and floor-area inventory",
+      "risk_ids": ["R-05", "R-06"]
+    },
+    "reference_plot_far": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["sources.json#HD-JINGZHANG-CONTROL-PLAN-ADOPTION-20250208", "sources.json#HD-LANJINGLIJIA-SCHEME-ADOPTION-20250606", "sources.json#HD-LANJINGLIJIA-RENEWAL-CASE-20260612", "sources.json#HD-URBAN-RENEWAL-GUIDELINE-2025"],
+      "formula": "official_published_plot_far_value_along_belt",
+      "confidence": "unknown",
+      "assumptions": ["Official reference scale only; this proposal presets no floor area ratio for any parcel and would not adopt a published value as its own design control.", "Verified on 2026-08-11 by visiting each registered official document directly; the guideline was additionally checked by full-text search."],
+      "reason": "No floor-area-ratio value appears in any of the four verified official public texts along the belt: the regulatory-plan consultation adoption notice publishes no intensity zoning, the adjacent scheme notice and renewal case page record only height, land use, and site area, and the district renewal guideline sets qualitative controls only.",
+      "numerator_definition": "not applicable while no official published value exists",
+      "denominator_definition": "not applicable while no official published value exists",
+      "responsible_role": "regulatory-plan implementation professional",
+      "collection_gate": "G0",
+      "recalculation_trigger": "publication or official issue of an applicable regulatory-plan control sheet or planning conditions containing a floor area ratio",
+      "risk_ids": ["R-05", "R-06"]
+    },
+    "reference_adjacent_scheme_building_height_max_m": {
+      "status": "known",
+      "value": 60,
+      "unit": "m",
+      "source_files": ["sources.json#HD-LANJINGLIJIA-SCHEME-ADOPTION-20250606"],
+      "formula": "max(building_height_values_recorded_in_adjacent_exhibited_scheme)",
+      "confidence": "medium",
+      "assumptions": ["Official reference scale, not a design value of this proposal; recorded for parcel HD00-1603-01 in an adjacent renewal scheme inside the Dazhongsi pilot area.", "The value is read from an authority consultation-adoption notice, not from a control sheet, so it evidences what an official height statement looks like along the belt and nothing more.", "This proposal recommends no building height and does not apply this value to any parcel in its own scope."],
+      "responsible_role": "regulatory-plan implementation professional",
+      "collection_gate": "G0",
+      "recalculation_trigger": "revision, approval, or withdrawal of the adjacent scheme, or receipt of controls applicable to this proposal's own scope",
+      "risk_ids": ["R-05", "R-06"]
+    },
+    "reference_adjacent_scheme_building_height_min_m": {
+      "status": "known",
+      "value": 36,
+      "unit": "m",
+      "source_files": ["sources.json#HD-LANJINGLIJIA-SCHEME-ADOPTION-20250606"],
+      "formula": "min(building_height_values_recorded_in_adjacent_exhibited_scheme)",
+      "confidence": "medium",
+      "assumptions": ["Official reference scale, not a design value of this proposal; the notice records the height without naming its parcel.", "Registered together with the maximum so that the published height span is reported in full rather than selectively.", "This proposal recommends no building height and does not apply this value to any parcel in its own scope."],
+      "responsible_role": "regulatory-plan implementation professional",
+      "collection_gate": "G0",
+      "recalculation_trigger": "revision, approval, or withdrawal of the adjacent scheme, or receipt of controls applicable to this proposal's own scope",
+      "risk_ids": ["R-05", "R-06"]
+    },
+    "reference_adjacent_scheme_site_area_sqm": {
+      "status": "known",
+      "value": 39500,
+      "unit": "sqm",
+      "source_files": ["sources.json#HD-LANJINGLIJIA-RENEWAL-CASE-20260612"],
+      "formula": "published_approximate_site_area_hectares * 10000",
+      "confidence": "medium",
+      "assumptions": ["Official reference scale, not a design value of this proposal; the source states approximately 3.95 hectares, converted at 1 ha = 10,000 sqm.", "An approximate published figure, not a precise, surveyed, or statutory area, and it is not comparable with the recalculated areas of this submission's provisional geometry.", "Registered to show the scale at which official land information is published along the belt; it is not extrapolated to any area of this proposal."],
+      "responsible_role": "regulatory-plan implementation professional",
+      "collection_gate": "G0",
+      "recalculation_trigger": "publication of a surveyed parcel area or revision of the renewal project scope",
+      "risk_ids": ["R-05", "R-06"]
     },
     "key_area_count": {
       "status": "known",
       "value": 3,
       "unit": "count",
-      "source_files": [
-        "geometry/key_areas.geojson"
-      ],
+      "source_files": ["geometry/key_areas.geojson"],
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": ["The count represents the three required conceptual key-area objects, not cleared official polygons."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-SPATIAL-RECALCULATION-METHOD",
+        "projection": "EPSG:4548",
+        "verified_on": "2026-08-10",
+        "rounding": "integer count",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "replacement of the submitted key-area feature collection"
+      }
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": ["proposal.md", "geometry/constraints.geojson"],
+      "formula": "count(distinct scenario cards S01-S10 in the proposal scenario table), cross-checked against count(distinct scenario_card_id on SCENARIO_NODE features)",
+      "confidence": "high",
+      "assumptions": ["The count describes declared design scenarios inside this package, not approved pilots, deployed services, or completed user research."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "design-evidence author and independent reviewer",
+        "recalculation_trigger": "addition, merger, or withdrawal of a scenario card"
+      }
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": ["proposal.md"],
+      "formula": "count(rows in the proposal persona table)",
+      "confidence": "high",
+      "assumptions": ["Personas organise design questions and test scripts; they are not diagnostic labels, commercial segments, identity claims, or completed user research.", "Real co-design must be voluntary, accommodated, understandable, and withdrawable; the count says nothing about participation having occurred."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "co-design lead and participant representatives",
+        "recalculation_trigger": "revision of the persona structure agreed with participant representatives"
+      }
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["proposal.md", "geometry/public_space.geojson"],
+      "formula": "count(PUBLIC_SPACE features carrying a landmark_id), cross-checked against the three named cultural and accountability landmarks in the proposal",
+      "confidence": "high",
+      "assumptions": ["Landmark polygons are conceptual public-space envelopes for Common Gauge Gate, Every Sense Origin, and Hundred-Sense Forum; they are not sited installations, approved structures, or cleared heritage interventions."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "urban-design author and cultural-content reviewer",
+        "recalculation_trigger": "addition or removal of a landmark public-space feature"
+      }
+    },
+    "op_node_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": ["geometry/constraints.geojson"],
+      "formula": "count(features with layer=SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": ["Each node is a concept test point placed inside provisional key-area geometry; it is not an official location, engineering setting-out point, or built facility."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "spatial-analysis professional",
+        "recalculation_trigger": "revision of the scenario-node feature collection"
+      }
+    },
+    "work_package_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["proposal.md", "geometry/phasing.geojson"],
+      "formula": "count(distinct JZ-xx identifiers in the renewal-project table), cross-checked against the union of work_package_ids on PHASE features",
+      "confidence": "high",
+      "assumptions": ["Work packages are conceptual proposals with named prerequisites; none is a funded project, procurement item, or government commitment."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "design-evidence author and independent reviewer",
+        "recalculation_trigger": "addition, merger, or withdrawal of a work package"
+      }
+    },
+    "gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["proposal.md", "risk.json", "geometry/constraints.geojson"],
+      "formula": "count(distinct evidence gates G0-G3 defined in the first-90-day sequence), cross-checked against gate_links in risk.json and gate_id on SCENARIO_NODE features",
+      "confidence": "high",
+      "assumptions": ["Gates define the evidence and authorisation conditions this package sets for itself; they do not replace statutory approval, permitting, or professional compliance review."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "independent reviewer and future authorised operator",
+        "recalculation_trigger": "revision of the gate structure or its stop and resume conditions"
+      }
+    },
+    "risk_item_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": ["risk.json", "proposal.md"],
+      "formula": "count(entries in risk.json dimensions, each carrying a distinct R-xx identifier)",
+      "confidence": "high",
+      "assumptions": ["The register is a self-assessment by the submitting agent; it is not a conclusion by an authority, operator, or professional institution.", "Every entry binds a gate, a representative scenario, work packages, a stop condition, and a resume condition; scores only set review priority."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "risk-register author and independent reviewer",
+        "recalculation_trigger": "addition, merger, or closure of a risk entry"
+      }
+    },
+    "international_case_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["sources.json"],
+      "formula": "count(registered sources whose identifier begins with CASE-)",
+      "confidence": "high",
+      "assumptions": ["Cases are used for mechanism comparison and interpretation only; no page image, layout, long passage, logo, or unlicensed typeface is reproduced.", "Reference does not imply that the cited organisations participate in, endorse, or have reviewed this proposal."],
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "integer count",
+        "responsible_role": "source-registry maintainer",
+        "recalculation_trigger": "registration or withdrawal of a case source"
+      }
+    },
+    "scenario_human_review_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["geometry/constraints.geojson", "proposal.md"],
+      "formula": "scenario_nodes_with_a_declared_human_handoff / op_node_count",
+      "confidence": "high",
+      "assumptions": ["This is a document-completeness measure: it confirms that every scenario node names a human role that takes over, and says nothing about staffing, rota, response time, or verified capability.", "Actual handover performance stays unknown until human_handover_success_rate and human_handover_response_time_seconds are measured under an approved G2 protocol."],
+      "numerator_definition": "SCENARIO_NODE features whose human_handoff property names a responsible human role and the action it performs",
+      "denominator_definition": "all SCENARIO_NODE features in geometry/constraints.geojson",
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "0.000001 ratio",
+        "responsible_role": "service-design author and independent reviewer",
+        "recalculation_trigger": "addition of a scenario node or removal of a declared human handover"
+      }
+    },
+    "scenario_exit_path_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": ["geometry/constraints.geojson", "proposal.md"],
+      "formula": "scenario_nodes_with_a_declared_ai_off_path / op_node_count",
+      "confidence": "high",
+      "assumptions": ["This is a document-completeness measure: it confirms that every scenario node declares a non-AI alternative path, not that the alternative has been built, staffed, or proven equivalent.", "Service equivalence stays unknown until ai_off_service_equivalence_gap is measured through paired AI-on and AI-off task testing under an approved G2 protocol."],
+      "numerator_definition": "SCENARIO_NODE features whose ai_off_path property declares a usable alternative when AI is unavailable, refused, or switched off",
+      "denominator_definition": "all SCENARIO_NODE features in geometry/constraints.geojson",
+      "calculation_metadata": {
+        "method_source": "PACKAGE-STRUCTURED-EVIDENCE-INDEX",
+        "verified_on": "2026-08-11",
+        "rounding": "0.000001 ratio",
+        "responsible_role": "accessibility lead and independent reviewer",
+        "recalculation_trigger": "addition of a scenario node or removal of a declared AI-off path"
+      }
     },
     "independent_task_completion_rate": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
       "source_files": ["assumptions.json"],
-      "formula": "independently_completed_tasks / observed_tasks",
+      "formula": "independently_completed_valid_tasks / valid_observed_tasks",
       "confidence": "unknown",
       "assumptions": ["Requires voluntary task testing with accessible participation and professional review."],
-      "reason": "No cleared field baseline or real participant study is available."
+      "reason": "No cleared field baseline or real participant study is available.",
+      "numerator_definition": "valid tasks completed from fixed start to fixed end without unplanned personal assistance, with protocol-defined reasonable accommodation allowed",
+      "denominator_definition": "all valid observed tasks; withdrawals and technical failures are reported separately and never silently removed",
+      "exclusions": "only protocol-defined invalid observations, with count and reason disclosed",
+      "responsible_role": "accessibility research lead and participant advisory group",
+      "collection_gate": "G2",
+      "recalculation_trigger": "each closed paired-test round or protocol revision",
+      "risk_ids": ["R-03", "R-08"],
+      "scenario_ids": ["S01", "S06", "S08"],
+      "work_package_ids": ["JZ-01", "JZ-03", "JZ-04"]
     },
     "multichannel_information_coverage": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
       "source_files": ["assumptions.json"],
-      "formula": "service_points_with_two_or_more_equivalent_information_channels / audited_service_points",
+      "formula": "audited_service_points_with_two_or_more_equivalent_information_channels / valid_audited_service_points",
       "confidence": "unknown",
       "assumptions": ["Channel equivalence requires user testing, not a file-count proxy."],
-      "reason": "Service-point inventory and multimodal accessibility audit are missing."
+      "reason": "Service-point inventory and multimodal accessibility audit are missing.",
+      "numerator_definition": "valid audited points where the same critical state or instruction is available through at least two participant-verified channels",
+      "denominator_definition": "all valid audited service and decision points in the agreed route or service inventory",
+      "exclusions": "points outside the agreed inventory, reported separately",
+      "responsible_role": "information-accessibility and wayfinding professionals",
+      "collection_gate": "G1",
+      "recalculation_trigger": "interface, route, content, or channel change",
+      "risk_ids": ["R-03", "R-07", "R-08"],
+      "scenario_ids": ["S01", "S03", "S10"],
+      "work_package_ids": ["JZ-01", "JZ-05"]
     },
     "ai_off_service_equivalence_gap": {
       "status": "unknown",
@@ -103,18 +374,113 @@
       "source_files": ["assumptions.json"],
       "formula": "abs(completion_rate_ai_on - completion_rate_ai_off)",
       "confidence": "unknown",
-      "assumptions": ["The same public task must be tested with AI enabled and disabled."],
-      "reason": "No operational services or paired task-test results exist."
+      "assumptions": ["The same public task must be tested with AI enabled and disabled under equivalent reasonable accommodation."],
+      "reason": "No operational services or paired task-test results exist.",
+      "numerator_definition": "absolute difference between valid AI-on and AI-off completion rates for the same task protocol",
+      "denominator_definition": "valid paired tasks in each mode, with order, withdrawal, and technical-failure counts reported",
+      "exclusions": "unpaired observations are retained in the log but excluded from the paired estimate",
+      "responsible_role": "service-design and accessibility test leads",
+      "collection_gate": "G2",
+      "recalculation_trigger": "AI model, fixed-information route, service procedure, or accommodation change",
+      "risk_ids": ["R-04", "R-07", "R-08"],
+      "scenario_ids": ["S08", "S10"],
+      "work_package_ids": ["JZ-01", "JZ-04"]
+    },
+    "forced_abandonment_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["assumptions.json"],
+      "formula": "valid_attempts_ended_because_of_recorded_barrier / valid_task_attempts",
+      "confidence": "unknown",
+      "assumptions": ["Exit reasons must be participant-described or protocol-observed without inferring diagnosis."],
+      "reason": "No cleared participant task log or exit-reason record exists.",
+      "numerator_definition": "valid attempts ended after a recorded environmental, information, interaction, or service barrier",
+      "denominator_definition": "all valid task attempts, including completed and barrier-ended attempts",
+      "exclusions": "voluntary withdrawal unrelated to the task and technical failures are reported as separate denominator classes",
+      "responsible_role": "accessibility research lead and participant representatives",
+      "collection_gate": "G2",
+      "recalculation_trigger": "task-script, route, interface, or reasonable-accommodation change",
+      "risk_ids": ["R-03", "R-08"],
+      "scenario_ids": ["S01", "S02", "S06", "S08"],
+      "work_package_ids": ["JZ-01", "JZ-03", "JZ-04"]
     },
     "human_handover_success_rate": {
       "status": "unknown",
       "value": null,
       "unit": "ratio",
       "source_files": ["assumptions.json"],
-      "formula": "successful_human_handovers / attempted_human_handovers",
+      "formula": "successful_human_handovers / valid_handover_triggers",
       "confidence": "unknown",
       "assumptions": ["Handover must be timed and evaluated with informed participants in a controlled trial."],
-      "reason": "No approved trial or operator baseline is available."
+      "reason": "No approved trial, operator rota, or response baseline is available.",
+      "numerator_definition": "valid triggers acknowledged by an identified responsible person who provides the protocol-defined next action",
+      "denominator_definition": "all valid handover triggers, including unanswered, misrouted, and late triggers",
+      "exclusions": "test cancellations before a trigger and protocol-invalid triggers, with counts disclosed",
+      "responsible_role": "service operator and accessibility test lead",
+      "collection_gate": "G2",
+      "recalculation_trigger": "operator, rota, interface, escalation, or service-hours change",
+      "risk_ids": ["R-02", "R-04", "R-07"],
+      "scenario_ids": ["S03", "S05", "S08", "S10"],
+      "work_package_ids": ["JZ-02", "JZ-04"]
+    },
+    "human_handover_response_time_seconds": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "measurement_unit": "seconds",
+      "source_files": ["assumptions.json"],
+      "formula": "median(human_acknowledgement_timestamp - valid_handover_trigger_timestamp)",
+      "confidence": "unknown",
+      "assumptions": ["The trigger and acknowledgement events must be defined before timing; no target threshold is asserted."],
+      "reason": "No approved exercise, timestamp log, or accountable operator baseline is available.",
+      "numerator_definition": "elapsed seconds from each valid trigger to first acknowledgement by the responsible human role",
+      "denominator_definition": "count of valid handover triggers; unanswered triggers are reported separately and never assigned an invented duration",
+      "exclusions": "protocol-invalid triggers only, with count and reason disclosed",
+      "responsible_role": "service operator and operations evaluator",
+      "collection_gate": "G2",
+      "recalculation_trigger": "operator, rota, interface, escalation, or service-hours change",
+      "risk_ids": ["R-02", "R-04", "R-07"],
+      "scenario_ids": ["S05", "S08", "S10"],
+      "work_package_ids": ["JZ-02", "JZ-04"]
+    },
+    "sensory_load_exceedance_point_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": ["assumptions.json"],
+      "formula": "count(distinct_participatory_audit_points_confirmed_as_exceedance_or_without_recovery_option)",
+      "confidence": "unknown",
+      "assumptions": ["Exceedance criteria and recovery needs must be co-designed; file geometry alone cannot establish sensory load."],
+      "reason": "No cleared sound, light, crowding, or participatory sensory baseline exists.",
+      "numerator_definition": "distinct audited points confirmed under the agreed protocol as exceeding a defined sensory condition or lacking a usable recovery option",
+      "denominator_definition": "not applicable to a count; the audited route length and total audited points are reported as context",
+      "exclusions": "unvisited or protocol-incomplete points, listed separately",
+      "responsible_role": "environmental assessment lead and participant advisory group",
+      "collection_gate": "G1",
+      "recalculation_trigger": "route, event programme, lighting, sound, crowd management, or recovery-space change",
+      "risk_ids": ["R-03", "R-06", "R-08"],
+      "scenario_ids": ["S02", "S09"],
+      "work_package_ids": ["JZ-01", "JZ-03", "JZ-05", "JZ-06"]
+    },
+    "co_design_role_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["assumptions.json"],
+      "formula": "required_role_groups_with_voluntary_participation / role_groups_required_by_approved_protocol",
+      "confidence": "unknown",
+      "assumptions": ["Role-group coverage does not measure personal ability, diagnosis, identity, or representativeness by headcount."],
+      "reason": "No approved ethics protocol, recruitment record, or participant-role structure exists.",
+      "numerator_definition": "protocol-required participant, caregiver where relevant, operator, maintainer, and professional role groups with at least one voluntary contribution recorded",
+      "denominator_definition": "all role groups required by the approved co-design protocol for that task",
+      "exclusions": "observers without a recorded contribution; withdrawals remain reported",
+      "responsible_role": "co-design lead, ethics reviewer, and participant representatives",
+      "collection_gate": "G0",
+      "recalculation_trigger": "task scope, participant group, operating model, or protocol change",
+      "risk_ids": ["R-01", "R-03", "R-08"],
+      "scenario_ids": ["S01", "S05", "S08"],
+      "work_package_ids": ["JZ-03", "JZ-06"]
     }
   }
 }

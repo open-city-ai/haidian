@@ -22,6 +22,7 @@ if HAS_REVIEW_DEPS:
     from jsonschema import validate  # noqa: E402
     from test_agent_scaffold_and_self_check import (  # noqa: E402
         complete_scaffold,
+        mark_self_checked,
         run_scaffold,
         write_official_site_package,
         write_provisional_site_package,
@@ -83,6 +84,7 @@ class FormalScorecardScriptTests(unittest.TestCase):
             submission_dir = root / "submissions" / "alice" / "provisional-pass"
             self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
             self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+            self.assertEqual(mark_self_checked(submission_dir).returncode, 0)
             out_dir = root / "scorecard"
             completed = run_scorecard(submission_dir, "alice", repo_root=root, out_dir=out_dir)
             self.assertNotEqual(completed.returncode, 0, completed.stdout + completed.stderr)
@@ -112,6 +114,7 @@ class FormalScorecardScriptTests(unittest.TestCase):
             scaffold = run_scaffold(submission_dir, cwd=root)
             self.assertEqual(scaffold.returncode, 0, scaffold.stdout + scaffold.stderr)
             self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+            self.assertEqual(mark_self_checked(submission_dir).returncode, 0)
             out_dir = root / "scorecard"
 
             completed = run_scorecard(submission_dir, "alice", repo_root=root, out_dir=out_dir)

@@ -1,0 +1,140 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted provisional site boundary in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Organizer provisional rough boundary is used for intake/content review only; recalculate when official polygon is supplied."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 16896.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area of six reversible prototype footprints)",
+      "confidence": "low",
+      "assumptions": [
+        "Illustrative design envelopes, not existing or approved building footprints."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.210553,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "Edgecase Spine area / provisional site area",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio only, not statutory green-space control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.012882,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "union(public co-test courts) / provisional site area",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio only, not statutory public-space control."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official parcel/building data are absent."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional key detailed-design areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Key-area polygons are provisional rough geometry."
+      ]
+    },
+    "edgecase_test_tier_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(T1 controlled, T2 community co-test, T3 everyday-open tiers)",
+      "confidence": "high",
+      "assumptions": [
+        "Programmatic design structure."
+      ]
+    },
+    "edgecase_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered EDGE scenario cards in proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenario cards are design proposals, not deployed services."
+      ]
+    },
+    "slow_mobility_link_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(design slow-mobility LineString/MultiLineString features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual links; official road redlines unavailable."
+      ]
+    },
+    "human_override_court_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public co-test courts requiring human override)",
+      "confidence": "high",
+      "assumptions": [
+        "Operational requirement encoded by proposal, not an existing facility count."
+      ]
+    }
+  }
+}

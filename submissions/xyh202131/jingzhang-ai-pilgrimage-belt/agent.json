@@ -7,7 +7,7 @@
   "model_family": "gpt",
   "model_detail": "OpenAI Codex agent based on GPT-5; exact serving snapshot not asserted by the package",
   "provider": "OpenAI",
-  "generated_with": "scripts/scaffold_ai_submission.py; OpenAI Codex skill-alignment, key-area evidence, source-rights lineage, and T-02 synthetic governance replay passes; Node.js zero-dependency replay; deterministic SVG-to-PNG export; ReportLab invariant PDF generation with three-panel A3 evidence tiling; PyMuPDF and Pillow QA",
+  "generated_with": "scripts/scaffold_ai_submission.py; OpenAI Codex skill-alignment, key-area evidence, source-rights lineage, and T-02 synthetic governance replay passes; Node.js zero-dependency replay; deterministic SVG-to-PNG export; ReportLab invariant PDF generation with full-figure A3/A0 placement; PyMuPDF and Pillow QA",
   "authoring_mode": "agent-maintained package extraction",
   "tools_used": [
     "OpenAI Codex (GPT-5 family; exact serving snapshot not asserted)",
@@ -20,6 +20,7 @@
     "fontTools 4.63.0",
     "PyMuPDF 1.27.2.3",
     "Pillow 12.2.0",
+    "Google Chrome 151.0.7922.108 (headless SVG rasterization)",
     "scripts/score_submission.py",
     "scripts/validate_local_submission.py",
     "scripts/spatial_review.py",
@@ -65,11 +66,11 @@
     {
       "tool_id": "TOOL-HAIDIAN-VALIDATION",
       "name": "Haidian repository validation scripts",
-      "version": "main@c54b8b9ba93a167b377cd7ef58ed036e39e7f48e",
+      "version": "main@7600fc3c98a5ed3ba6d80ff3cca12f7a50d7d4a9",
       "usage": "对最终投稿包执行 formal stage gates。",
       "license_or_terms_status": "No repository-root license file was present in the validation checkout; reuse terms remain not independently established by this package.",
       "redistribution_status": "Scripts are referenced in place and are not copied into this submission package.",
-      "reproduction_path": "Run the named scripts from repository commit c54b8b9ba93a167b377cd7ef58ed036e39e7f48e."
+      "reproduction_path": "Run the named scripts from repository commit 7600fc3c98a5ed3ba6d80ff3cca12f7a50d7d4a9."
     },
     {
       "tool_id": "TOOL-GIT",
@@ -102,10 +103,10 @@
       "tool_id": "TOOL-REPORTLAB",
       "name": "ReportLab",
       "version": "5.0.0",
-      "usage": "以 invariant=1、固定元数据、固定输入顺序和页压缩，从包内中英文正文及八组 PNG 图件生成确定性 A3/A0 PDF；A3 将每组 1800×1100 图件的有效内容区拆为三个带 30px 重叠的 620×892 竖向细节页，A0 保留整板总览；嵌入由 NotoSansSC-VF.ttf 内存实例化的 NotoSansSC-Regular / NotoSansSC-Bold 子集。生成记录不证明内容权利或现实执行。",
+      "usage": "以 invariant=1、固定元数据、固定输入顺序和页压缩，从包内中英文正文及八组 PNG 图件生成确定性 A3/A0 PDF；A3 以固定宽度嵌入八组完整图件，A0 按双轨总体图、用地、重点区、剖面、公共连接、指标、治理内核、阶段恢复顺序保留整板总览；嵌入由 NotoSansSC-VF.ttf 内存实例化的 NotoSansSC-Regular / NotoSansSC-Bold 子集。生成记录不证明内容权利或现实执行。",
       "license_or_terms_status": "BSD license reported by installed package metadata. The NotoSansSC-VF.ttf source name table declares SIL OFL 1.1, version 2.04;241114210130;non-release, source SHA-256 763146584cf0710223441356b4395e279021b0806c196614377a7a0174ae074a; embedding compliance remains pending independent review.",
       "redistribution_status": "Library not redistributed; generated PDFs remain within the package-wide rights gate.",
-      "reproduction_path": "Use the final bilingual Markdown and eight paired 1800 x 1100 PNG figures with canvas invariant=1; for every A3 figure use crops [0,168,620,1060], [590,168,1210,1060], and [1180,168,1800,1060] at 245 mm display width, while retaining whole-board A0 placement. No source font binary is shipped."
+      "reproduction_path": "Use the final bilingual Markdown and eight paired 1800 x 1100 PNG figures with canvas invariant=1; place each full figure at the fixed A3 width and place the same eight figures on A0 pages in the recorded order. No source font binary is shipped."
     },
     {
       "tool_id": "TOOL-FONTTOOLS",
@@ -120,19 +121,28 @@
       "tool_id": "TOOL-PYMUPDF",
       "name": "PyMuPDF",
       "version": "1.27.2.3",
-      "usage": "将两组双语 SVG 可编辑源栅格化为四张 1800×1100 PNG，并对四份 A0/A3 PDF 执行 1.6 倍渲染、文本/字体提取、页面尺寸、图像与裁片顺序、对象边界和可读性 QA；核对两种语言各 8 组/24 个 A3 裁片、443/443 个可搜索逻辑块及 85 页全包联系表，不作为设计事实来源。",
+      "usage": "将三组双语 SVG 可编辑源栅格化为六张 1800×1100 PNG，并对四份 A0/A3 PDF 执行本地渲染、文本/字体提取、页面尺寸、图像与对象边界 QA；四份 PDF 的页面数、尺寸和图像计数以本轮 PDF 固定点为准，不作为设计事实来源。",
       "license_or_terms_status": "Installed package metadata reports dual AGPL-3.0 or Artifex commercial licensing; applicability to the QA workflow has not been independently audited.",
       "redistribution_status": "Library and temporary QA renders are not redistributed by this submission.",
-      "reproduction_path": "Rasterize the checked-in SVG pairs with the fixed viewBox/output size, then render all checked-in PDF pages locally and inspect page geometry, searchable text, fonts, exact crop boxes, overlaps, image order, content bounds, and 100% page legibility."
+      "reproduction_path": "Rasterize the checked-in SVG pairs with the fixed viewBox/output size, then render all checked-in PDF pages locally and inspect page geometry, searchable text, fonts, image count/order, content bounds, and page legibility."
     },
     {
       "tool_id": "TOOL-PILLOW",
       "name": "Pillow",
       "version": "12.2.0",
-      "usage": "读取、比较并拼接 PNG QA 资产，校验 1800×1100 图件及 A3 620×892 裁片的像素内容、裁片覆盖、30px 重叠与 PDF 内嵌图像。",
+      "usage": "读取、比较并拼接 PNG QA 资产，校验 1800×1100 图件及四份 PDF 内嵌图像的像素内容、顺序和页面计数。",
       "license_or_terms_status": "HPND license reported by installed package metadata; not independently audited here.",
       "redistribution_status": "Library and QA intermediates are not redistributed by this submission.",
-      "reproduction_path": "Compare checked-in PNG pixels and exact expected crops with PDF image objects, then build local-only contact sheets for visual inspection."
+      "reproduction_path": "Compare checked-in PNG pixels with PDF image objects, then build local-only contact sheets or targeted page renders for visual inspection."
+    },
+    {
+      "tool_id": "TOOL-CHROME",
+      "name": "Google Chrome",
+      "version": "151.0.7922.108",
+      "usage": "以离线 headless SVG 渲染双轨总体图的中英文 PNG 展示导出；不加载远程资源，不改变 geometry 或空间精度。",
+      "license_or_terms_status": "Browser distribution and font-resolution terms are not independently audited here.",
+      "redistribution_status": "Browser executable and system fonts are not redistributed by this submission.",
+      "reproduction_path": "Render assets/figures/site-overview.svg and site-overview.en.svg with a local headless browser at the checked-in 1800×1100 viewBox and compare the resulting PNGs."
     }
   ],
   "output_provenance": [
@@ -174,7 +184,8 @@
       "tool_ids": [
         "TOOL-PYTHON",
         "TOOL-PYMUPDF",
-        "TOOL-PILLOW"
+        "TOOL-PILLOW",
+        "TOOL-CHROME"
       ],
       "asset_mapping": "visual/assets/rights-clearance-ledger.json#asset_records",
       "recipe_state": "partial_renderer_environment_record",

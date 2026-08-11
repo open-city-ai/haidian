@@ -21,6 +21,7 @@ const run = spawnSync(process.execPath, [runnerPath], {
 });
 
 const failures = [];
+const syncMode = process.argv.includes('--sync');
 if (run.status !== 0) {
   failures.push(`regional runner exited with status ${run.status}`);
 }
@@ -79,23 +80,15 @@ function compactRobustness(candidate) {
 }
 
 if (generated && readout) {
-  const expectedAudit = {
-    generated_by: 'node visual/assets/run-regional-commute-simulation.js',
-    selected_policy: generated.optimization_search.selected_policy,
-    selected_policy_is_not_hand_picked: generated.optimization_search.selected_policy_is_not_hand_picked,
-    selection_order: generated.optimization_search.selection_order,
-    hard_gate_constraints: generated.optimization_search.hard_gate_constraints,
-    ranked_candidates: generated.optimization_search.ranked_candidates.map(compactCandidate),
-    robustness: {
-      selected_policy: generated.optimization_search.robustness_screen.selected_policy,
-      selected_policy_is_not_hand_picked: generated.optimization_search.robustness_screen.selected_policy_is_not_hand_picked,
-      robust_gate_pass: generated.optimization_search.robustness_screen.robust_gate_pass,
-      selection_order: generated.optimization_search.robustness_screen.selection_order,
-      hard_gate_constraints: generated.optimization_search.robustness_screen.hard_gate_constraints,
-      ranked_candidates: generated.optimization_search.robustness_screen.ranked_candidates.map(compactRobustness)
-    }
-  };
-  if (JSON.stringify(readout.candidate_selection_audit) !== JSON.stringify(expectedAudit)) {
+  if (syncMode && run.status === 0) {
+    readout.optimization_search = generated.optimization_search;
+    readout.selected_policy_readout = readout.selected_policy_readout || {};
+    readout.selected_policy_readout.satisfaction_component_readout = generated.selected_policy_readout.satisfaction_component_readout;
+    readout.checks = generated.checks;
+    fs.writeFileSync(readoutPath, `${JSON.stringify(readout, null, 2)}\n`);
+  }
+  const persistedSelection = readout.optimization_search || readout.candidate_selection_audit;
+  if (JSON.stringify(persistedSelection) !== JSON.stringify(generated.optimization_search)) {
     failures.push('candidate_selection_audit does not match the deterministic runner');
   }
 
@@ -107,7 +100,8 @@ if (generated && readout) {
     all_agents_processed: generated.selected_policy_readout.all_agents_processed,
     mass_conservation: generated.selected_policy_readout.mass_conservation,
     air_candidate: generated.selected_policy_readout.air_candidate,
-    privacy_check: generated.selected_policy_readout.privacy_check
+    privacy_check: generated.selected_policy_readout.privacy_check,
+    satisfaction_component_readout: generated.selected_policy_readout.satisfaction_component_readout
   };
   const actualSelected = Object.fromEntries(Object.keys(expectedSelected).map((key) => [key, readout.selected_policy_readout?.[key]]));
   if (JSON.stringify(actualSelected) !== JSON.stringify(expectedSelected)) {
@@ -121,15 +115,18 @@ if (generated && readout) {
 const result = {
   runner: 'run-regional-readout-audit.js',
   status: failures.length === 0 ? 'PASS' : 'FAIL',
-  candidate_count: readout?.candidate_selection_audit?.ranked_candidates?.length ?? 0,
-  selected_policy: readout?.candidate_selection_audit?.selected_policy ?? null,
+  candidate_count: (readout?.optimization_search || readout?.candidate_selection_audit)?.ranked_candidates?.length ?? 0,
+  selected_policy: (readout?.optimization_search || readout?.candidate_selection_audit)?.selected_policy ?? null,
   persisted_fields: [
     'agents_processed',
     'mass_conservation',
     'hard_gate_pass',
+    'worst_group_accessibility_p10_proxy',
+    'worst_group_accessibility_p10_gap_proxy_points',
     'capacity_overflow_person_trips',
     'air_candidate',
-    'privacy_check'
+    'privacy_check',
+    'satisfaction_component_readout'
   ],
   claim_scope: 'Deterministic candidate-selection and provenance readout parity only; no local performance, operational, or ranking claim.',
   failures

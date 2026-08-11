@@ -351,6 +351,20 @@ class TestSubmissionsGallery(unittest.TestCase):
         self.assertNotIn("proposal-thumb iframe", index)
         self.assertNotIn("<iframe data-src=", submissions)
 
+    def test_gallery_runtime_i18n_preserves_historical_evidence_boundary(self):
+        index = INDEX_FILE.read_text(encoding="utf-8")
+        submissions = SUBMISSIONS_FILE.read_text(encoding="utf-8")
+        for page in (index, submissions):
+            self.assertIn("历史展示状态不等于新的可信正式证据", page)
+            self.assertIn(
+                "historical display status is not new trusted evidence for formal scoring",
+                page,
+            )
+        self.assertIn("'gallery.sub': '已合并到 GitHub 主分支的方案自动进入展厅。", index)
+        self.assertIn("'gallery.sub': 'Proposals merged into the GitHub main branch", index)
+        self.assertIn("'guide.reviewNote':'卡片与分类只统计 GitHub main", submissions)
+        self.assertIn("'guide.reviewNote':'Cards and filters count only proposals", submissions)
+
     def test_homepage_exposes_copyable_agent_prompt_in_hero(self):
         index = INDEX_FILE.read_text(encoding="utf-8")
         hero = index[index.index('<section id="hero">'):index.index("<!-- Stats -->")]

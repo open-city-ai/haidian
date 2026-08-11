@@ -210,6 +210,147 @@
       ]
     }
   ],
+  "twin_track_frontend_contract": {
+    "contract_id": "JZ-TWIN-FRONT-01",
+    "status": "concept_only_g0",
+    "purpose": "把双轨京张作为前台空间总纲，把 JZ-AIOS、G0—G3、证据门和权利边界保留为后台治理内核；该合同只表达空间语法和公众可读旅程，不增加场景、边界或建设承诺。",
+    "purpose_en": "Make Twin-track Jing-Zhang the front-stage spatial master plan while retaining JZ-AIOS, G0–G3, evidence gates, and rights boundaries as the back-stage governance kernel. This contract expresses spatial syntax and a readable public journey only; it adds no scene, boundary, or construction commitment.",
+    "drawing_refs": [
+      "assets/figures/site-overview.png",
+      "assets/figures/site-overview.en.png",
+      "assets/figures/site-overview.svg",
+      "assets/figures/site-overview.en.svg"
+    ],
+    "spatial_grammar": {
+      "daily_track": {
+        "track_id": "DAILY-TRACK-01",
+        "name_zh": "连续日常轨",
+        "name_en": "Continuous Civic Track",
+        "continuity": "continuous ordinary public life; no proof equipment or account gate",
+        "protected_path": ["walking", "commuting", "rest", "staffed service", "non-AI complete task"],
+        "entry_rule": "anyone may enter, pause, ask, leave, or continue without registration, QR code, or AI",
+        "evidence_refs": [
+          "geometry/public_space.geojson#PUBLIC-001",
+          "geometry/public_space.geojson#PUBLIC-004",
+          "visual/assets/non-ai-parity-contract.json",
+          "visual/assets/site-grounding-register.json"
+        ]
+      },
+      "proof_track": {
+        "track_id": "PROOF-TRACK-01",
+        "name_zh": "间歇验证轨",
+        "name_en": "Intermittent Proof Track",
+        "continuity": "intermittent, time-bounded, localized, and removable; never a continuous occupied strip",
+        "activation": "voluntary public learning or future-approved bounded test only after the relevant G1 evidence contract is complete",
+        "protected_path": "daily track remains open and the non-AI comparator remains available",
+        "stop_rule": "any public harm, boundary breach, failed human handoff, stale source, or material rights/safeguarding gap stops the proof overlay",
+        "evidence_refs": [
+          "visual/assets/g0-offline-enterprise-service-baseline.json",
+          "visual/assets/g1-preregistration-register.json",
+          "visual/assets/pilot-readiness-register.json",
+          "visual/assets/t02-g0-g1-replay-result.json"
+        ]
+      }
+    },
+    "switchyards": [
+      {
+        "switchyard_id": "SWITCHYARD-01",
+        "key_area_feature_id": "PROV-KEY-002",
+        "state_station": "CO-CREATE",
+        "name_zh": "原点社区换轨场",
+        "name_en": "Origin Community Switchyard",
+        "role_zh": "把公共问题接入共创、共学和公共评议；连续日常街先于任何验证叠层。",
+        "role_en": "Receives public problems into co-creation, learning, and public review; the continuous daily street comes before any proof overlay.",
+        "interface_refs": ["I04", "GATE-04"],
+        "scene_refs": ["SCENE-005", "SCENE-006", "SCENE-007", "SCENE-008"],
+        "activation_state": "booked_issue_clinic_or_future_approved_co_design_only",
+        "evidence_refs": ["geometry/key_areas.geojson#PROV-KEY-002", "visual/assets/key-area-evidence-matrix.json#KAE-002"]
+      },
+      {
+        "switchyard_id": "SWITCHYARD-02",
+        "key_area_feature_id": "PROV-KEY-001",
+        "state_station": "VERIFY",
+        "name_zh": "众智园换轨场",
+        "name_en": "Zhongzhiyuan Switchyard",
+        "role_zh": "把已提出的问题转为离线、低风险、可停止的验证；公众观察边、人工接管和急停边不可被占用。",
+        "role_en": "Turns a submitted problem into offline, low-risk, stoppable verification; the public observation edge, staffed takeover, and physical-stop edge remain protected.",
+        "interface_refs": ["I05", "GATE-05"],
+        "scene_refs": ["SCENE-001", "SCENE-002", "SCENE-003", "SCENE-004"],
+        "activation_state": "booked_offline_verification_or_future_approved_bounded_co_test_only",
+        "evidence_refs": ["geometry/key_areas.geojson#PROV-KEY-001", "visual/assets/key-area-evidence-matrix.json#KAE-001"]
+      },
+      {
+        "switchyard_id": "SWITCHYARD-03",
+        "key_area_feature_id": "PROV-KEY-003",
+        "state_station": "PUBLISH",
+        "name_zh": "大钟寺换轨场",
+        "name_en": "Dazhongsi Switchyard",
+        "role_zh": "把通过、失败和修正变成可读的公共发布与人工服务；通勤、静音休憩和来源纠错优先。",
+        "role_en": "Makes passed, failed, and corrected evidence readable through public release and staffed service; commuting, quiet rest, and source correction take priority.",
+        "interface_refs": ["I01", "I02", "GATE-01", "GATE-02"],
+        "scene_refs": ["SCENE-009", "SCENE-010", "SCENE-011", "SCENE-012"],
+        "activation_state": "booked_evidence_release_or_future_approved_service_trial_only",
+        "evidence_refs": ["geometry/key_areas.geojson#PROV-KEY-003", "visual/assets/key-area-evidence-matrix.json#KAE-003"]
+      }
+    ],
+    "failure_siding": {
+      "siding_id": "FAILURE-SIDING-01",
+      "name_zh": "失败侧线与恢复花园",
+      "name_en": "Failure Siding and Recovery Garden",
+      "spatial_role": "temporary isolation, staffed explanation, detour, correction, and return to the daily track",
+      "not_a_footprint": true,
+      "public_actions": ["stop", "ask a person", "use non-AI route", "leave", "appeal", "return later"],
+      "restart_rule": "no proof overlay restarts until the declared stop condition, accountable handoff, corrected source, and independent retest are closed",
+      "evidence_refs": [
+        "visual/assets/non-ai-parity-contract.json",
+        "visual/assets/g0-offline-enterprise-service-baseline.json",
+        "visual/assets/t02-g0-g1-replay-result.json"
+      ]
+    },
+    "six_city_signals": [
+      {"signal_id": "SIGNAL-ENTRY", "name_zh": "入口信号", "name_en": "Entry signal", "public_question": "我从哪里进入？", "public_question_en": "Where can I enter?", "interface_refs": ["I01", "I04", "I05"]},
+      {"signal_id": "SIGNAL-TIME", "name_zh": "时段信号", "name_en": "Time signal", "public_question": "现在是什么时段？", "public_question_en": "What is active now?", "interface_refs": ["I01", "I02", "I06"]},
+      {"signal_id": "SIGNAL-STATE", "name_zh": "状态信号", "name_en": "State signal", "public_question": "这里是日常、验证还是停止？", "public_question_en": "Is this daily, proof, or stopped?", "interface_refs": ["I03", "I05"]},
+      {"signal_id": "SIGNAL-HUMAN", "name_zh": "人工信号", "name_en": "Human signal", "public_question": "我可以找谁？", "public_question_en": "Who can I ask?", "interface_refs": ["I02", "I04", "I05"]},
+      {"signal_id": "SIGNAL-SOURCE", "name_zh": "来源信号", "name_en": "Source signal", "public_question": "这条信息从哪里来、何时更新？", "public_question_en": "Where did this come from and when was it updated?", "interface_refs": ["I01", "I02"]},
+      {"signal_id": "SIGNAL-EXIT", "name_zh": "退出信号", "name_en": "Exit signal", "public_question": "如何停止、绕行和恢复？", "public_question_en": "How do I stop, detour, and recover?", "interface_refs": ["I03", "I05", "I06"]}
+    ],
+    "civic_timetable": [
+      {"slot_id": "TIMETABLE-ORDINARY", "state": "ordinary", "window": "07:00–22:00 default", "rule_zh": "连续日常轨开放；人工、无屏和非 AI 路径可用。", "rule_en": "The daily track is open; staffed, screen-free, and non-AI paths remain available."},
+      {"slot_id": "TIMETABLE-QUIET", "state": "ordinary_quiet", "window": "22:00–07:00", "rule_zh": "静音、低照度、无屏优先；不以活动或验证占用普通生活。", "rule_en": "Quiet, low-light, screen-free use takes priority; ordinary life is not displaced by events or proof."},
+      {"slot_id": "TIMETABLE-PROOF", "state": "verification", "window": "announced and bounded windows only", "rule_zh": "验证轨只在公告、批准和有责任人的时段出现，不形成连续占地。", "rule_en": "The proof track appears only in announced, approved, accountable windows and never becomes a continuous occupied strip."},
+      {"slot_id": "TIMETABLE-RECOVERY", "state": "failure_recovery", "window": "any time a stop condition is declared", "rule_zh": "停止→人工解释→失败侧线→恢复日常；公众无需等待系统或注册。", "rule_en": "Stop → staffed explanation → failure siding → return to daily use; the public need not wait for a system or register."}
+    ],
+    "typical_section": {
+      "section_rule": "daily track is continuous; proof overlay is intermittent; staffed station, screen-free node, and recovery garden are distinct spatial roles",
+      "section_rule_zh": "日常轨连续；验证叠层间歇；人工站房、无屏节点和恢复花园是不同空间角色。",
+      "four_states": ["ordinary", "verification", "failure_stop", "recovery"],
+      "drawing_refs": ["assets/figures/site-overview.svg", "assets/figures/site-overview.en.svg"]
+    },
+    "readable_journey": [
+      {"journey_step": "01", "state": "ordinary", "action_zh": "从既有入口进入，沿连续日常轨步行、通勤、休憩或办事。", "action_en": "Enter from an existing access and walk, commute, rest, or use a service along the continuous daily track."},
+      {"journey_step": "02", "state": "ordinary", "action_zh": "通过入口、时段、状态、人工、来源、退出六类信号判断是否继续；不注册、不扫码也能完成基本任务。", "action_en": "Read the six signals—entry, time, state, human, source, and exit; the basic task works without registration, a QR code, or AI."},
+      {"journey_step": "03", "state": "verification", "action_zh": "只有自愿进入公告的验证窗口，才经换轨场接入间歇验证轨；日常轨和非 AI 对照仍在旁侧。", "action_en": "Only a voluntary, announced proof window uses a switchyard to enter the intermittent proof track; the daily track and non-AI comparator remain beside it."},
+      {"journey_step": "04", "state": "failure_stop", "action_zh": "任何人都可以说停、找人工、绕行、离开或申诉；失败侧线隔离验证叠层，不把故障变成日常阻断。", "action_en": "Anyone may stop, ask a person, detour, leave, or appeal; the failure siding isolates the proof overlay instead of blocking daily life."},
+      {"journey_step": "05", "state": "recovery", "action_zh": "修正来源、完成责任交接和独立复测后，才撤除侧线并恢复普通状态；否则保持 G0/退出。", "action_en": "Only after source correction, accountable handoff, and independent retest does the siding close and ordinary use return; otherwise remain G0 or exit."}
+    ],
+    "backend_governance_kernel": {
+      "system": "JZ-AIOS",
+      "gates": ["G0", "G1", "G2", "G3"],
+      "evidence_gates": ["passport", "non_ai_comparator", "human_takeover", "stop_recovery", "independent_retest", "expiry"],
+      "rights_boundary": "not_fully_cleared; repository review only; public or professional reuse remains blocked or confirmation-dependent",
+      "current_state": "all scenes remain G0; approvals, field audits, test executions, and known operating results remain 0 or unknown"
+    },
+    "maturity_guard": {
+      "geometry": "provisional_only",
+      "no_new_scenario_ids": true,
+      "no_new_geometry": true,
+      "no_continuous_proof_footprint": true,
+      "no_account_qr_or_ai_gate": true,
+      "field_performance_metrics": "unknown_until_field_evidence",
+      "documentation_coverage_is_not_field_performance": true
+    }
+  },
   "review_protocol": {
     "required_sequence": [
       "read the referenced provisional GeoJSON and source register",

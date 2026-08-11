@@ -1,0 +1,88 @@
+{
+    "schema_version": "0.1.0",
+    "units": {
+        "length": "m",
+        "area": "sqm"
+    },
+    "metrics": {
+        "site_area_sqm": {
+            "status": "known",
+            "value": 11412825.386,
+            "unit": "sqm",
+            "source_files": [
+                "geometry/site_boundary.geojson"
+            ],
+            "formula": "polygon_area(submitted_site_boundary)",
+            "confidence": "low",
+            "assumptions": [
+                "Site boundary is PROVISIONAL ONLY - derived from public announcement area figure, not an official redline polygon",
+                "Replace with official boundary from organizer when available",
+                "Area precision (sqm level) does NOT reflect actual boundary accuracy"
+            ]
+        },
+        "building_footprint_area_sqm": {
+            "status": "known",
+            "value": 310807.184,
+            "unit": "sqm",
+            "source_files": [
+                "geometry/buildings.geojson"
+            ],
+            "formula": "sum(polygon_area(building_footprints))",
+            "confidence": "medium",
+            "assumptions": []
+        },
+        "green_ratio": {
+            "status": "known",
+            "value": 0.123426,
+            "unit": "ratio",
+            "source_files": [
+                "proposal.md"
+            ],
+            "formula": "design_suggestion_from_proposal",
+            "confidence": "medium",
+            "assumptions": [
+                "Computed from green_space.geojson / site_boundary.geojson",
+                "Both geometries are PROVISIONAL",
+                "Replace with official boundary data when available"
+            ]
+        },
+        "public_space_ratio": {
+            "status": "known",
+            "value": 0.073284,
+            "unit": "ratio",
+            "source_files": [
+                "proposal.md"
+            ],
+            "formula": "design_suggestion_from_proposal",
+            "confidence": "medium",
+            "assumptions": [
+                "Computed from public_space.geojson / site_boundary.geojson",
+                "Both geometries are PROVISIONAL",
+                "Replace with official boundary data when available"
+            ]
+        },
+        "floor_area_ratio": {
+            "status": "unknown",
+            "value": null,
+            "unit": "ratio",
+            "source_files": [
+                "brief/site-package/ranges/planning_limits.json"
+            ],
+            "formula": "total_floor_area_sqm / official_site_area_sqm",
+            "confidence": "unknown",
+            "assumptions": [],
+            "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+        },
+        "key_area_count": {
+            "status": "known",
+            "value": 3,
+            "unit": "count",
+            "source_files": [
+                "geometry/key_areas.geojson"
+            ],
+            "formula": "count(key_detailed_design_areas)",
+            "confidence": "high",
+            "assumptions": []
+        }
+    }
+}

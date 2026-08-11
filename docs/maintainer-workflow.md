@@ -141,6 +141,18 @@ python3 scripts/generate_submissions_data.py --check
 
 提交展示索引时，只提交 `submissions-data.js` 等展示页必要变更，不提交 `.maintainer-review/`、`docs/reviews/` 或任何 review packet。
 
+### Gallery snapshot maintenance 分支首次引导
+
+`.github/workflows/gallery-snapshot-maintenance.yml` 只在可信 `main` 或手动触发时生成 `submissions-data.js`，然后把变更推到 `automation/gallery-snapshot`，由维护者 PR 审查后合并。仓库的 `admin-only branch creation` ruleset 不允许 `GITHUB_TOKEN` 创建这个分支，因此首次启用前需要管理员一次性从可信 `main` 建立维护分支：
+
+```bash
+git fetch origin main
+git push origin origin/main:refs/heads/automation/gallery-snapshot
+git ls-remote --heads origin automation/gallery-snapshot
+```
+
+如果分支不存在，workflow 会在生成前 fail-closed，并把上述引导写入 Actions step summary；它不会尝试创建分支、借用参赛者分支，也不会直接写入 `main`。分支建立后用 `workflow_dispatch` 重新运行，后续更新继续使用带预期 SHA 的 `--force-with-lease`，并只打开或更新维护者草稿 PR。
+
 ### 策展 portal 展示卡片
 
 进入 portal 的方案由维护者策展。投稿包本身不包含 `exhibit.json`，deterministic 校验也会拒绝参赛者提交的 `exhibit.json`。为入选方案生成 exhibit 卡片并渲染 portal：

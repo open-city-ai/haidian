@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "使用临时约束边界，已在正文/图面/假设中标注；官方边界发布后需重算。"
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "三处重点区域为临时约束 polygon，已标注 provisional；不作为正式红线或精确面积依据。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "info",
+      "target": "geometry/land_use.geojson",
+      "message": "69 个用地单元由共享切割线平面切分生成，并集与提交边界重合、无重叠。"
+    },
+    {
+      "check_id": "METRICS_REPRODUCIBLE",
+      "result": "pass",
+      "severity": "info",
+      "target": "metrics.json",
+      "message": "全部 known 指标由提交几何在 EPSG:4548 下复算；法定管控指标如实标注 unknown。"
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "可视化页为离线静态 HTML，无远程资源、脚本、字体或追踪。"
+    },
+    {
+      "check_id": "BILINGUAL_CONTRACT",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "中文主稿 + 英文全文对照，展示件与含文字图件均提供双语。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md",
+      "message": "正文含标准、深度、图层、指标与来源锚点；机器索引保存在结构化文件。"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 ## v1.4 - 2026-08-10
 
-- Added an authoritative local Dazhongsi evidence unit for HD00-1603-01/03A: official transaction index, survey report, multi-plan supply review, municipal/traffic plan, and water-impact review, with URLs, access dates, hashes, scope limits, and a reproducible audit.
+- Added an authoritative local-source Dazhongsi evidence unit for HD00-1603-01/03A: official transaction index, survey report, multi-plan supply review, municipal/traffic plan, and water-impact review, with URLs, access dates, hashes, scope limits, and a reproducible audit.
 - Added bounded local metrics (39,522.111 m², 60 m height, FAR 2.45, 25% minimum green ratio, 30 m setback, 300 m station-integration context, and 0.34 runoff coefficient) without upgrading the wider 72 ha key area or provisional geometry.
 - Updated bilingual proposals, narrative, visual evidence register, assumptions, and visual indexes to distinguish local evidence-backed guardrails from unresolved whole-belt redlines, CRS, ownership, heritage, and infrastructure data.
 

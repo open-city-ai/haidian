@@ -1,8 +1,8 @@
 {
   "schema_version": "1",
   "title": "Headline claim disclosure audit",
-  "scope": "headline_numeric_claims_only",
-  "purpose": "Check that the selected headline numbers carry a human-readable status label and a source or runner link in both proposal languages.",
+  "scope": "headline_and_secondary_numeric_claims",
+  "purpose": "Check that selected headline and secondary numeric claims carry a human-readable status label and a source or runner link in both proposal languages and both offline visual pages.",
   "boundary": "This is a self-audit of disclosure and cross-file wording. It does not validate model validity, local performance, survey equivalence, professional approval, or implementation authorization.",
   "status_vocabulary": {
     "synthetic": "runner output under declared counterfactual inputs; not a local observation",
@@ -100,6 +100,100 @@
       "required_en": ["synthetic screen outputs", "network gate"],
       "source_files": ["visual/assets/network-flow-screen.json", "visual/assets/capacity-closure-screen.json"],
       "prohibited_interpretations": ["service-level guarantee", "existing capacity", "approval"]
+    },
+    {
+      "id": "activity_chain_closure",
+      "match_zh": "名义 O4 链闭合为 91.06%",
+      "match_en": "Nominal O4 closes 91.06%",
+      "category": "synthetic",
+      "required_zh": ["合成代理", "压力门失败", "现场韧性"],
+      "required_en": ["synthetic agents", "stress", "local resilience"],
+      "source_files": ["visual/assets/activity-completion-screen.json", "visual/assets/activity-completion-readout.json", "visual/assets/run-activity-completion-screen.js", "assets/figures/activity-completion-board.svg"],
+      "prohibited_interpretations": ["resident activity diary", "employee behaviour", "local resilience", "operating result"]
+    },
+    {
+      "id": "utility_welfare_decomposition",
+      "match_zh": "合成满意度代理为 66.44",
+      "match_en": "O4 synthetic satisfaction proxy is 66.44",
+      "category": "synthetic",
+      "required_zh": ["七个组成项", "居民满意度调查响应数为 0", "合成聚合屏查"],
+      "required_en": ["seven declared costs", "Observed resident satisfaction responses remain at 0", "synthetic aggregate screen"],
+      "source_files": ["visual/assets/utility-welfare-screen.json", "visual/assets/utility-welfare-readout.json", "visual/assets/run-utility-welfare-screen.js", "assets/figures/utility-welfare-board.svg", "assets/figures/utility-welfare-board.en.svg"],
+      "prohibited_interpretations": ["resident satisfaction result", "employee preference", "public acceptance", "field operating performance"]
+    }
+  ],
+  "secondary_numeric_claims": [
+    {
+      "id": "group_proxy_scores",
+      "match_zh": "67.38",
+      "match_en": "67.38",
+      "required_zh": ["67.24", "66.35", "57.21", "合成范围"],
+      "required_en": ["67.24", "66.35", "57.21", "synthetic", "range"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js"]
+    },
+    {
+      "id": "b1_queue_sensitivity",
+      "match_zh": "174 降至 164",
+      "match_en": "174 → 164",
+      "required_zh": ["不能当作企业真实响应"],
+      "required_en": ["not an enterprise response"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js"]
+    },
+    {
+      "id": "b2_departure_choice",
+      "match_zh": "6.99%、首选 88.01%、夜班 5%",
+      "match_en": "6.99% early, 88.01% preferred and 5% late",
+      "required_zh": ["合成企业代理", "不代表员工行为"],
+      "required_en": ["synthetic enterprise agents", "not employee behaviour"],
+      "source_files": ["visual/assets/movement-simulation.json", "visual/assets/run-mobility-simulation.js"]
+    },
+    {
+      "id": "capacity_closure_multipliers",
+      "match_zh": "地铁 1.17×、公交 1.12×",
+      "match_en": "metro 1.17×, bus 1.12×",
+      "required_zh": ["合成输入"],
+      "required_en": ["synthetic inputs"],
+      "source_files": ["visual/assets/capacity-closure-screen.json", "visual/assets/run-capacity-closure-screen.js"]
+    },
+    {
+      "id": "network_edge_reference",
+      "match_zh": "1.6539×",
+      "match_en": "1.6539×",
+      "required_zh": ["合成屏查读数", "不是海淀道路"],
+      "required_en": ["synthetic screen outputs", "not Haidian road"],
+      "source_files": ["visual/assets/network-flow-readout.json", "visual/assets/run-network-flow-screen.js"]
+    },
+    {
+      "id": "distributional_tail_screen",
+      "match_zh": "50/100",
+      "match_en": "50/100",
+      "required_zh": ["满意度代理 P10", "合成"],
+      "required_en": ["satisfaction-proxy P10", "synthetic"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js", "assets/figures/distributional-equity-board.svg"]
+    },
+    {
+      "id": "distributional_time_tail",
+      "match_zh": "90 分钟",
+      "match_en": "90 minutes",
+      "required_zh": ["P90", "合成"],
+      "required_en": ["P90", "synthetic"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js", "assets/figures/distributional-equity-board.svg"]
+    },
+    {
+      "id": "distributional_p10_gap",
+      "match_zh": "20 个代理分",
+      "match_en": "20 proxy points",
+      "required_zh": ["P10 差距", "合成"],
+      "required_en": ["P10 spread", "synthetic"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js", "assets/figures/distributional-equity-board.svg"]
+    },
+    {
+      "id": "distributional_accessibility_tail",
+      "match_zh": "可达性代理 P10 差距为 5 个代理点",
+      "match_en": "accessibility-proxy P10 spread is 5 proxy points",
+      "required_zh": ["合成代理", "不是居民无障碍走查", "20 个代理点门槛"],
+      "required_en": ["synthetic sufficiency screen", "not a resident accessibility walk-through", "20-point gate"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js", "assets/figures/distributional-accessibility-board.svg"]
     }
   ],
   "headline_wording_guard": {

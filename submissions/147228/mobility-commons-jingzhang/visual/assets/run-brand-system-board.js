@@ -48,10 +48,19 @@ function updateVisualIndex(file, lang) {
     ? '<section id="18" class="evidence brand-system-board"><div class="section-head"><span class="section-no">19</span><h2>“共行环”品牌与公共体验</h2><span class="tag">未排期</span></div><p>三处节点分别让人观察企业问题、使用居民入口、复核轨道与路缘。它是公开学习和复核路线，不是官方 Logo、活动、景点或运营结果。</p><img src="../assets/figures/brand-system-board.svg" alt="共行环品牌与公共体验节点"><div class="micro">brand-system.json · design_brand_not_operational · not_scheduled_not_authorized</div></section>'
     : '<section id="18" class="evidence brand-system-board"><div class="section-head"><span class="section-no">19</span><h2>Mobility Commons identity and public experience</h2><span class="tag">UNSCHEDULED</span></div><p>Three nodes let people observe enterprise needs, use the resident entry, and review rail and curb. This is a public learning and review route, not an official logo, event, attraction or operating result.</p><img src="../assets/figures/brand-system-board.en.svg" alt="Mobility Commons identity and public experience nodes"><div class="micro">brand-system.json · design_brand_not_operational · not_scheduled_not_authorized</div></section>';
   const style = '<style>.brand-system-board{background:#eef7f5}.brand-system-board img{background:#071A2B;border-color:#2A9D8F}.brand-system-board .micro{color:#5E7D88}</style>';
+  const brandCss = style.slice('<style>'.length, -'</style>'.length);
   html = html.replace(/<section id="18" class="evidence brand-system-board">.*?<\/section>/g, '');
-  html = html.replaceAll(style, '');
   html = html.replace('<section id="17" class="evidence scenario-card-board">', `${section}<section id="17" class="evidence scenario-card-board">`);
-  html = html.replace('</head>', `${style}</head>`);
+  // Keep the runner idempotent when another runner has folded these rules into a shared style block.
+  const withoutStandaloneBrandStyle = html.replaceAll(style, '');
+  if (withoutStandaloneBrandStyle.includes(brandCss)) {
+    html = withoutStandaloneBrandStyle;
+  } else {
+    const styleParts = html.split(style);
+    html = styleParts.length > 1
+      ? `${styleParts[0]}${style}${styleParts.slice(1).join('')}`
+      : html.replace('</head>', `${style}</head>`);
+  }
   fs.writeFileSync(target, html);
 }
 

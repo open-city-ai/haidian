@@ -144,6 +144,25 @@ const computed = {
   key_area_count: read('geometry/key_areas.geojson').features.length,
   leveling_spine_length_m: spine,
   benchmark_count: publicFeatures.filter((f) => f.properties.benchmark_id).length,
+
+  // These eight are as recomputable from the shipped layers as the nine above,
+  // and were outside this table because "class 1" was a category the prose
+  // described and no file carried. An independent verifier that checks the
+  // metrics someone remembered to list is checking the list, not the metrics.
+  // `metric_class` is a field in metrics.json now, and structural claim 17
+  // below asserts this table covers every metric that carries class 1.
+  land_use_feature_count: read('geometry/land_use.geojson').features.length,
+  road_feature_count: read('geometry/roads.geojson').features.length,
+  phase_count: read('geometry/phasing.geojson').features.length,
+  land_use_class_count: new Set(
+    read('geometry/land_use.geojson').features.map((f) => String(f.properties.land_use_code)),
+  ).size,
+  industry_test_scenario_count: read('geometry/constraints.geojson').features.length,
+  benchmark_first_order_count: publicFeatures.filter(
+    (f) => f.properties.benchmark_order === 'first').length,
+  benchmark_third_order_count: publicFeatures.filter(
+    (f) => f.properties.benchmark_order === 'third').length,
+  phased_share_of_design_scope: layerArea('phasing.geojson') / site,
 };
 
 // Areas are compared with a relative tolerance: this file re-implements the
@@ -328,6 +347,25 @@ check('the card table carries every card in scenario_cards.json, in both edition
 check('floor_area_ratio stays unknown until official FAR controls exist',
       metrics.floor_area_ratio.status === 'unknown' && metrics.floor_area_ratio.value === null,
       `${metrics.floor_area_ratio.status} / ${metrics.floor_area_ratio.value}`);
+
+// The claim on the reviewer's checklist is that this file recomputes *every*
+// class-1 metric. Until metrics.json carried `metric_class`, that could not be
+// checked: the category lived in three prose paragraphs, this table held nine
+// entries, and eight equally recomputable metrics sat outside both. Now the
+// coverage is asserted in both directions, so the claim fails loudly if either
+// side gains a metric the other does not.
+(() => {
+  const declaredClass1 = Object.entries(metrics)
+    .filter(([, v]) => v.metric_class === 1).map(([k]) => k).sort();
+  const recomputedHere = Object.keys(computed).sort();
+  const missing = declaredClass1.filter((k) => !recomputedHere.includes(k));
+  const extra = recomputedHere.filter((k) => !declaredClass1.includes(k));
+  check('this file recomputes every metric metrics.json marks class 1, and only those',
+        missing.length === 0 && extra.length === 0,
+        missing.length || extra.length
+          ? `missing: [${missing}] not class 1: [${extra}]`
+          : `${declaredClass1.length} class-1 metrics, all recomputed here`);
+})();
 
 console.log('\nStructural claims the proposal makes, asserted against the data');
 console.table(structural);

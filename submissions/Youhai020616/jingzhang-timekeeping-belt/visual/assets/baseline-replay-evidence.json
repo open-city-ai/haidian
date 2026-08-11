@@ -1,0 +1,118 @@
+{
+ "drill": "jingzhang-timekeeping-belt baseline replay v0.1",
+ "scope_zh": "本地合成演练: 零依赖、离线、确定性; 不调用模型或外部系统; 基准与读数均为合成样例",
+ "input_fixture_sha256": "888f071317f2b7fa7e6358305a27e0a4a1230fe9d265ee5e0380947b30dacf32",
+ "baseline": {
+  "id": "BL-HEALTH-01",
+  "version": "0.1-synthetic",
+  "entries": 5
+ },
+ "replays": [
+  {
+   "run": "in_tolerance_run",
+   "deviations": 0,
+   "decision": "on_time_renewal",
+   "rows": [
+    {
+     "q": "甲类社区服务中心-预约入口",
+     "expected": "counter-A",
+     "got": "counter-A",
+     "match": true
+    },
+    {
+     "q": "乙类口腔门诊-转介去向",
+     "expected": "clinic-B",
+     "got": "clinic-B",
+     "match": true
+    },
+    {
+     "q": "丙类康复服务-服务时间",
+     "expected": "wed-fri",
+     "got": "wed-fri",
+     "match": true
+    },
+    {
+     "q": "丁类心理咨询-人工窗口",
+     "expected": "window-2",
+     "got": "window-2",
+     "match": true
+    },
+    {
+     "q": "戊类疫苗接种-登记方式",
+     "expected": "paper-form",
+     "got": "paper-form",
+     "match": true
+    }
+   ]
+  },
+  {
+   "run": "out_of_tolerance_run",
+   "deviations": 1,
+   "decision": "deviation_degrade",
+   "rows": [
+    {
+     "q": "甲类社区服务中心-预约入口",
+     "expected": "counter-A",
+     "got": "counter-A",
+     "match": true
+    },
+    {
+     "q": "乙类口腔门诊-转介去向",
+     "expected": "clinic-B",
+     "got": "clinic-B",
+     "match": true
+    },
+    {
+     "q": "丙类康复服务-服务时间",
+     "expected": "wed-fri",
+     "got": "wed-fri",
+     "match": true
+    },
+    {
+     "q": "丁类心理咨询-人工窗口",
+     "expected": "window-2",
+     "got": "window-2",
+     "match": true
+    },
+    {
+     "q": "戊类疫苗接种-登记方式",
+     "expected": "paper-form",
+     "got": "online-only",
+     "match": false
+    }
+   ]
+  }
+ ],
+ "retest_condition_zh": "同步公开目录版本后重新回放全部条目; 降级期间由人工窗口与纸质目录服务",
+ "checks": [
+  {
+   "id": "E1",
+   "name": "合格回放→准点续期",
+   "status": "pass",
+   "detail": "5/5 一致, 偏差 0 ≤ 限差 0, 决定=on_time_renewal"
+  },
+  {
+   "id": "E2",
+   "name": "超差回放→降级+复测条件",
+   "status": "pass",
+   "detail": "4/5 一致, 偏差 1 > 限差 0, 决定=deviation_degrade; 复测条件已登记"
+  },
+  {
+   "id": "E3",
+   "name": "决定可追溯(由偏差推出)",
+   "status": "pass",
+   "detail": "每个决定均由逐条比对与限差机械推出, 证据保留全部比对行, 无人为指定分支"
+  }
+ ],
+ "summary": {
+  "pass": 3,
+  "fail": 0,
+  "total": 3
+ },
+ "runtime_mapping_zh": "生产化映射见 visual/assets/timecheck-runtime.json: 基准答案集↔benchmark suite, 对时回放↔evaluation run, 续期/降级↔评测门禁, 误点档案↔trace/评测历史; 可由任何具备该四类能力的开源 agent 评测框架实现, 不构成供应商绑定",
+ "operations_status": {
+  "real_baseline_established": false,
+  "real_deployment": "not_authorized_not_run",
+  "note_zh": "真实基准须由专业角色建立并版本化后, 评测回放才能进入真实对时流程"
+ }
+}

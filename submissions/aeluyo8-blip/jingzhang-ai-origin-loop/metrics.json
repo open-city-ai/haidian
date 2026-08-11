@@ -1,0 +1,249 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Provisional boundary; official polygon pending, area to be recalculated when official data arrives."
+   ]
+  },
+  "land_use_covered_sqm": {
+   "status": "known",
+   "value": 11412841.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use_features), EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "Land-use partition fully covers the submitted site boundary without gaps or overlaps."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2219647.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space_features), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Includes heritage park spine, riverside green, and key-area green; provisional geometry."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.194487,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 510721.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space_features), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.04475,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 1141477.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints), EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "Representative footprints only; exact parcel/holdings pending official survey data."
+   ]
+  },
+  "road_network_length_m": {
+   "status": "known",
+   "value": 40225.7,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(linestring_length(road_centerlines), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual network including slow spine and connectors; road redlines pending official data."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_total_area_sqm": {
+   "status": "known",
+   "value": 3692893.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(key_area_areas, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional key-area polygons; official polygons pending, areas to be recalculated."
+   ]
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1929201.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygon; official value 1,921,000 sqm from preannouncement for calibration."
+   ]
+  },
+  "origin_community_area_sqm": {
+   "status": "known",
+   "value": 1043236.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygon; official value 1,043,000 sqm from preannouncement for calibration."
+   ]
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720454.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygon; official value 720,000 sqm from preannouncement for calibration."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_height_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved height controls are not present in the public site package."
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(scenario_cards_in_proposal)",
+   "confidence": "high",
+   "assumptions": [
+    "12 AI scenario cards documented in proposal.md and compliance_matrix.json."
+   ]
+  },
+  "user_persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(user_personas_in_proposal)",
+   "confidence": "high",
+   "assumptions": [
+    "6 user personas documented in proposal.md."
+   ]
+  },
+  "ai_pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(ai_pilgrimage_landmarks)",
+   "confidence": "high",
+   "assumptions": [
+    "3 AI pilgrimage landmarks documented in proposal.md and compliance_matrix.json."
+   ]
+  },
+  "industry_test_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(industry_test_validation_scenarios)",
+   "confidence": "high",
+   "assumptions": [
+    "3 industry test/validation scenarios documented in proposal.md."
+   ]
+  }
+ }
+}

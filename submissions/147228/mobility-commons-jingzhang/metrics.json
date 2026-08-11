@@ -13,9 +13,10 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_provisional_site_boundary)",
-      "confidence": "high",
+      "confidence": "medium",
       "assumptions": [
-        "Working area only; not an official scoring area."
+        "Working area only; not an official scoring area.",
+        "Cross-check against the public announcement is approximately 0.11 percent relative difference; the announcement is an approximate context value, not an official polygon."
       ]
     },
     "building_footprint_area_sqm": {
@@ -27,7 +28,9 @@
       ],
       "formula": "sum(polygon_area(building_footprints))",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Working footprint subset from provisional buildings.geojson; not a complete building inventory or planning floor-area measure."
+      ]
     },
     "building_footprint_ratio": {
       "status": "known",
@@ -39,7 +42,9 @@
       ],
       "formula": "building_footprint_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Derived from the provisional working-footprint subset and working area; not a regulatory floor-area or coverage ratio."
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -51,7 +56,9 @@
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Derived from provisional green-space screening; not a statutory green ratio or completed landscape survey."
+      ]
     },
     "public_space_ratio": {
       "status": "known",
@@ -63,7 +70,9 @@
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Derived from provisional public-space screening; not a statutory public-space ratio or completed public-realm inventory."
+      ]
     },
     "key_area_count": {
       "status": "known",
@@ -74,7 +83,9 @@
       ],
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": [
+        "Count of three provisional key-area features in the package; not a complete official key-area register."
+      ]
     },
     "design_north_south_spine_length_m": {
       "status": "known",
@@ -98,7 +109,9 @@
       ],
       "formula": "count(features where network_role is an east_west or area connector)",
       "confidence": "medium",
-      "assumptions": []
+      "assumptions": [
+        "Conceptual relationship line count from provisional roads.geojson; not a built connector count or engineering network inventory."
+      ]
     },
     "design_slow_mobility_network_length_m": {
       "status": "known",
@@ -141,6 +154,7 @@
       "assumptions": [],
       "reason": "No stratified resident baseline, route audit or service survey is available.",
       "pilot_target_min": 80,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-100"
     },
     "employer_multimodal_trip_rate": {
@@ -157,6 +171,7 @@
       "assumptions": [],
       "reason": "No employer travel survey or count has been completed.",
       "pilot_target_min": 0.6,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-1"
     },
     "parking_occupancy_by_window_ratio": {
@@ -186,6 +201,7 @@
       "assumptions": [],
       "reason": "No curb booking, clearing or exception log exists for this submission area.",
       "pilot_target_min": 0.9,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-1"
     },
     "first_last_mile_transfer_reliability": {
@@ -202,6 +218,7 @@
       "assumptions": [],
       "reason": "No station-level arrival, departure, walking and waiting observations are available.",
       "pilot_target_min": 0.85,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-1"
     },
     "accessible_route_completion_ratio": {
@@ -218,6 +235,7 @@
       "assumptions": [],
       "reason": "No field audit of slopes, crossings, tactile paving, signals or obstruction continuity is available.",
       "pilot_target_min": 0.95,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-1"
     },
     "peak_curb_conflict_rate": {
@@ -233,7 +251,6 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "No human-counted curb conflict sample or incident taxonomy is available.",
-      "pilot_target_min": 5,
       "pilot_target_scale": "events per 100 events"
     },
     "mobility_service_complaint_closure_hours": {
@@ -249,7 +266,8 @@
       "confidence": "unknown",
       "assumptions": [],
       "reason": "No mobility-specific complaint log, owner or service-level agreement is available.",
-      "pilot_target_min": 24,
+      "pilot_target_max": 24,
+      "pilot_target_operator": "<=",
       "pilot_target_scale": "hours"
     },
     "workplace_ev_charge_supply_gap_ratio": {
@@ -276,7 +294,9 @@
       ],
       "formula": "count(allowed curb state taxonomy)",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": [
+        "Count of the package's design taxonomy; not a count of observed curb states or an operating inventory."
+      ]
     },
     "mobility_scenario_card_count": {
       "status": "known",
@@ -288,7 +308,9 @@
       ],
       "formula": "count(reversible enterprise-resident scenario cards)",
       "confidence": "high",
-      "assumptions": []
+      "assumptions": [
+        "Count of package scenario cards; not a count of authorised pilots, partners or field events."
+      ]
     },
     "external_commute_od_baseline": {
       "status": "unknown",
@@ -332,6 +354,7 @@
       "assumptions": [],
       "reason": "No locally calibrated multimodal simulation or field baseline exists.",
       "pilot_target_min": 75,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-100 after hard gates"
     },
     "person_flow_conflict_rate": {
@@ -362,6 +385,7 @@
       "assumptions": [],
       "reason": "No synchronized metro, bus, bicycle, walking or car transfer observation is available.",
       "pilot_target_min": 0.85,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-1"
     },
     "car_inflow_peak_ratio": {
@@ -392,6 +416,7 @@
       "assumptions": [],
       "reason": "No air operation, vertiport, route, operator or approved experiment exists for this package.",
       "pilot_target_min": 0.85,
+      "pilot_target_operator": ">=",
       "pilot_target_scale": "0-1 only if approved"
     },
     "multimodal_simulation_calibration_status": {

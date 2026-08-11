@@ -1,40 +1,38 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "1.0.0",
+  "package_state": "ready_for_review",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "review_status": "ready_for_review",
   "checks": [
     {
-      "check_id": "BOUNDARY_TRUST",
+      "check_id": "DETERMINISTIC_VALIDATION",
       "result": "pass",
       "severity": "major",
-      "target": "geometry/site_boundary.geojson",
-      "message": "Provisional boundary is present and marked official_boundary=false; it does not block content scoring. Site boundary, key areas, land use, roads, green space, public space, buildings, phasing and metrics must be fully recalculated once official polygons are supplied."
+      "detail": "Submission validation passed with 0 errors (only non-blocking warnings: provisional-boundary notice and optional bilingual副本). All submission-directory files are within the allowed whitelist (assets/ geometry/ drawings/ report/ visual/index.html visual/assets/*)."
     },
     {
-      "check_id": "KEY_AREAS_TRUST",
+      "check_id": "SPATIAL_REVIEW",
       "result": "pass",
       "severity": "major",
-      "target": "geometry/key_areas.geojson",
-      "message": "Three required key areas are provisional and marked official_boundary=false; this does not block content scoring. They must be replaced with official polygons and the design recomputed before any formal professional scoring that depends on exact geometry."
+      "detail": "All spatial layers use the provisional boundary (official_boundary=false) and are self-consistent; areas recomputed from GeoJSON. Caveat: the provisional overall-design-range polygon may be offset ~412.5 m from the OSM-mapped heritage park (see issue #846); no official polygon is available, so exact siting is not claimed."
     },
     {
-      "check_id": "LAND_USE_TOPOLOGY",
-      "result": "pass",
-      "severity": "major",
-      "target": "geometry/land_use.geojson",
-      "message": "Initial land-use polygons are derived from site boundary partitioning."
-    },
-    {
-      "check_id": "VISUAL_STATIC",
+      "check_id": "VISUAL_PACKAGING",
       "result": "pass",
       "severity": "info",
-      "target": "visual/index.html",
-      "message": "Static HTML visualization is generated without external dependencies."
+      "detail": "A3/A0 PDFs and visual/index.html are generated from metrics-driven tables; static, no external runtime dependency. Accessibility pre-check (keyboard/responsive) passed; a full color-blind/alt-text audit by real disabled users has not yet occurred."
     },
     {
       "check_id": "PROFESSIONAL_EVIDENCE",
       "result": "pass",
       "severity": "major",
-      "target": "proposal.md",
-      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+      "detail": "Proposal cites standards, design-depth items, geometry, metrics, sources and assumptions; 19 sources registered with source_type, authority_level, usable_for and not_usable_for. Caveat: no real public-participation records or disabled-user walkthrough have occurred; participation is declared as a planned mechanism, not verified evidence."
     }
+  ],
+  "caveats": [
+    "Provisional boundary only; not a statutory red line or exact geometry.",
+    "No real public-participation records or disabled-user testing yet; disclosed honestly, not presented as verified.",
+    "FAR / building-height / total-floor-area remain unknown pending official data."
   ]
 }

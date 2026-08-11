@@ -1,0 +1,3792 @@
+{
+  "schema_version": "0.1.0",
+  "contract_id": "MOB-MODE-PARAMETER-PROVENANCE-001",
+  "model_ref": "visual/assets/regional-scale-commute.json",
+  "runner_ref": "visual/assets/run-regional-commute-simulation.js",
+  "status": "provenance_complete_for_declared_inputs",
+  "field_status": "not_authorized_not_run",
+  "observed_count": 0,
+  "calibration_debt_count": 234,
+  "status_counts": {
+    "agent_proposed": 228,
+    "design_target": 6
+  },
+  "source_boundary_zh": "source_ids 指向方法或政策背景，不表示外部参数已转移到海淀。current_value 是本包声明输入，必须由有日期的 OD、班次、容量、无障碍和行为资料替换后才能复算。",
+  "source_boundary_en": "source_ids point to method or policy context and do not transfer external parameters to Haidian. current_value is a package-declared input that must be replaced by dated OD, service, capacity, accessibility and behaviour evidence before recalculation.",
+  "records": [
+    {
+      "param_id": "metro.capacity_person_trips",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.metro.capacity_person_trips",
+      "current_value": 850000,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated service supply and capacity audit by time slice",
+      "boundary_zh": "声明的人次容量，只用于合成压力屏查，不能读作列次、运力或现状容量。",
+      "boundary_en": "A declared person-trip capacity for the synthetic screen, not observed departures, supply or local capacity.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.base_minutes",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.metro.base_minutes",
+      "current_value": 44,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated OD, route survey and time-of-day travel-time observation",
+      "boundary_zh": "声明的基准分钟数，只用于比较候选方式，不是现场通行时间。",
+      "boundary_en": "A declared base-minute value for comparison, not field travel time.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.reliability.B0",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.metro.reliability.B0",
+      "current_value": 0.78,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.reliability.O1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.metro.reliability.O1",
+      "current_value": 0.92,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.reliability.R1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.metro.reliability.R1",
+      "current_value": 0.47,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.conflict_rate",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.metro.conflict_rate",
+      "current_value": 0.002,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated people-flow, curb and accessibility conflict observation",
+      "boundary_zh": "声明的冲突代理，只用于暴露待查位置，不是事故率或现场冲突率。",
+      "boundary_en": "A declared conflict proxy to expose locations for checking, not an incident or field conflict rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.service_unit.capacity_persons_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.metro.service_unit.capacity_persons_per_unit",
+      "current_value": 180,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated timetable, vehicle and accessible-service capacity audit",
+      "boundary_zh": "声明的服务单元容量，只用于服务单元账本，不是现有车辆或班次。",
+      "boundary_en": "A declared service-unit capacity for the ledger, not an existing fleet or timetable.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "metro.service_unit.distance_km_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.metro.service_unit.distance_km_per_unit",
+      "current_value": 18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated route geometry and operator service pattern",
+      "boundary_zh": "声明的服务单元距离，只用于相对车辆或服务公里计算，不是运营里程。",
+      "boundary_en": "A declared service-unit distance for relative vehicle or service kilometres, not operating mileage.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.capacity_person_trips",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bus.capacity_person_trips",
+      "current_value": 560000,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated service supply and capacity audit by time slice",
+      "boundary_zh": "声明的人次容量，只用于合成压力屏查，不能读作列次、运力或现状容量。",
+      "boundary_en": "A declared person-trip capacity for the synthetic screen, not observed departures, supply or local capacity.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.base_minutes",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bus.base_minutes",
+      "current_value": 54,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated OD, route survey and time-of-day travel-time observation",
+      "boundary_zh": "声明的基准分钟数，只用于比较候选方式，不是现场通行时间。",
+      "boundary_en": "A declared base-minute value for comparison, not field travel time.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.reliability.B0",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bus.reliability.B0",
+      "current_value": 0.75,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.reliability.O1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bus.reliability.O1",
+      "current_value": 0.88,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.reliability.R1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bus.reliability.R1",
+      "current_value": 0.8,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.conflict_rate",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bus.conflict_rate",
+      "current_value": 0.003,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated people-flow, curb and accessibility conflict observation",
+      "boundary_zh": "声明的冲突代理，只用于暴露待查位置，不是事故率或现场冲突率。",
+      "boundary_en": "A declared conflict proxy to expose locations for checking, not an incident or field conflict rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.service_unit.capacity_persons_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.bus.service_unit.capacity_persons_per_unit",
+      "current_value": 60,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated timetable, vehicle and accessible-service capacity audit",
+      "boundary_zh": "声明的服务单元容量，只用于服务单元账本，不是现有车辆或班次。",
+      "boundary_en": "A declared service-unit capacity for the ledger, not an existing fleet or timetable.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bus.service_unit.distance_km_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.bus.service_unit.distance_km_per_unit",
+      "current_value": 12,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated route geometry and operator service pattern",
+      "boundary_zh": "声明的服务单元距离，只用于相对车辆或服务公里计算，不是运营里程。",
+      "boundary_en": "A declared service-unit distance for relative vehicle or service kilometres, not operating mileage.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.capacity_person_trips",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bicycle.capacity_person_trips",
+      "current_value": 360000,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated service supply and capacity audit by time slice",
+      "boundary_zh": "声明的人次容量，只用于合成压力屏查，不能读作列次、运力或现状容量。",
+      "boundary_en": "A declared person-trip capacity for the synthetic screen, not observed departures, supply or local capacity.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.base_minutes",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bicycle.base_minutes",
+      "current_value": 35,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated OD, route survey and time-of-day travel-time observation",
+      "boundary_zh": "声明的基准分钟数，只用于比较候选方式，不是现场通行时间。",
+      "boundary_en": "A declared base-minute value for comparison, not field travel time.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.reliability.B0",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bicycle.reliability.B0",
+      "current_value": 0.88,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.reliability.O1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bicycle.reliability.O1",
+      "current_value": 0.94,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.reliability.R1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bicycle.reliability.R1",
+      "current_value": 0.62,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.conflict_rate",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.bicycle.conflict_rate",
+      "current_value": 0.006,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated people-flow, curb and accessibility conflict observation",
+      "boundary_zh": "声明的冲突代理，只用于暴露待查位置，不是事故率或现场冲突率。",
+      "boundary_en": "A declared conflict proxy to expose locations for checking, not an incident or field conflict rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.service_unit.capacity_persons_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.bicycle.service_unit.capacity_persons_per_unit",
+      "current_value": 1,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated timetable, vehicle and accessible-service capacity audit",
+      "boundary_zh": "声明的服务单元容量，只用于服务单元账本，不是现有车辆或班次。",
+      "boundary_en": "A declared service-unit capacity for the ledger, not an existing fleet or timetable.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "bicycle.service_unit.distance_km_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.bicycle.service_unit.distance_km_per_unit",
+      "current_value": 0,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated route geometry and operator service pattern",
+      "boundary_zh": "声明的服务单元距离，只用于相对车辆或服务公里计算，不是运营里程。",
+      "boundary_en": "A declared service-unit distance for relative vehicle or service kilometres, not operating mileage.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.capacity_person_trips",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.capacity_person_trips",
+      "current_value": 540000,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated service supply and capacity audit by time slice",
+      "boundary_zh": "声明的人次容量，只用于合成压力屏查，不能读作列次、运力或现状容量。",
+      "boundary_en": "A declared person-trip capacity for the synthetic screen, not observed departures, supply or local capacity.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.base_minutes",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.base_minutes",
+      "current_value": 43,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated OD, route survey and time-of-day travel-time observation",
+      "boundary_zh": "声明的基准分钟数，只用于比较候选方式，不是现场通行时间。",
+      "boundary_en": "A declared base-minute value for comparison, not field travel time.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.reliability.B0",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.reliability.B0",
+      "current_value": 0.91,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.reliability.O1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.reliability.O1",
+      "current_value": 0.97,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.reliability.R1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.reliability.R1",
+      "current_value": 0.84,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.conflict_rate",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.conflict_rate",
+      "current_value": 0.004,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated people-flow, curb and accessibility conflict observation",
+      "boundary_zh": "声明的冲突代理，只用于暴露待查位置，不是事故率或现场冲突率。",
+      "boundary_en": "A declared conflict proxy to expose locations for checking, not an incident or field conflict rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.service_unit.capacity_persons_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.service_unit.capacity_persons_per_unit",
+      "current_value": 1,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated timetable, vehicle and accessible-service capacity audit",
+      "boundary_zh": "声明的服务单元容量，只用于服务单元账本，不是现有车辆或班次。",
+      "boundary_en": "A declared service-unit capacity for the ledger, not an existing fleet or timetable.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "walking_wheelchair.service_unit.distance_km_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.walking_wheelchair.service_unit.distance_km_per_unit",
+      "current_value": 0,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated route geometry and operator service pattern",
+      "boundary_zh": "声明的服务单元距离，只用于相对车辆或服务公里计算，不是运营里程。",
+      "boundary_en": "A declared service-unit distance for relative vehicle or service kilometres, not operating mileage.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.capacity_person_trips",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.car.capacity_person_trips",
+      "current_value": 410000,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated service supply and capacity audit by time slice",
+      "boundary_zh": "声明的人次容量，只用于合成压力屏查，不能读作列次、运力或现状容量。",
+      "boundary_en": "A declared person-trip capacity for the synthetic screen, not observed departures, supply or local capacity.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.base_minutes",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.car.base_minutes",
+      "current_value": 41,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated OD, route survey and time-of-day travel-time observation",
+      "boundary_zh": "声明的基准分钟数，只用于比较候选方式，不是现场通行时间。",
+      "boundary_en": "A declared base-minute value for comparison, not field travel time.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.reliability.B0",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.car.reliability.B0",
+      "current_value": 0.62,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.reliability.O1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.car.reliability.O1",
+      "current_value": 0.79,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.reliability.R1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.car.reliability.R1",
+      "current_value": 0.58,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.conflict_rate",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.car.conflict_rate",
+      "current_value": 0.012,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated people-flow, curb and accessibility conflict observation",
+      "boundary_zh": "声明的冲突代理，只用于暴露待查位置，不是事故率或现场冲突率。",
+      "boundary_en": "A declared conflict proxy to expose locations for checking, not an incident or field conflict rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.service_unit.capacity_persons_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.car.service_unit.capacity_persons_per_unit",
+      "current_value": 1.7,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated timetable, vehicle and accessible-service capacity audit",
+      "boundary_zh": "声明的服务单元容量，只用于服务单元账本，不是现有车辆或班次。",
+      "boundary_en": "A declared service-unit capacity for the ledger, not an existing fleet or timetable.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "car.service_unit.distance_km_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.car.service_unit.distance_km_per_unit",
+      "current_value": 18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated route geometry and operator service pattern",
+      "boundary_zh": "声明的服务单元距离，只用于相对车辆或服务公里计算，不是运营里程。",
+      "boundary_en": "A declared service-unit distance for relative vehicle or service kilometres, not operating mileage.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.capacity_person_trips",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.capacity_person_trips",
+      "current_value": 180000,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated service supply and capacity audit by time slice",
+      "boundary_zh": "声明的人次容量，只用于合成压力屏查，不能读作列次、运力或现状容量。",
+      "boundary_en": "A declared person-trip capacity for the synthetic screen, not observed departures, supply or local capacity.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.base_minutes",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.base_minutes",
+      "current_value": 39,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated OD, route survey and time-of-day travel-time observation",
+      "boundary_zh": "声明的基准分钟数，只用于比较候选方式，不是现场通行时间。",
+      "boundary_en": "A declared base-minute value for comparison, not field travel time.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.reliability.B0",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.reliability.B0",
+      "current_value": 0.82,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.reliability.O1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.reliability.O1",
+      "current_value": 0.91,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.reliability.R1",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.reliability.R1",
+      "current_value": 0.76,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated reliability logs, headway and disruption records",
+      "boundary_zh": "声明的可靠性代理，只用于情景扰动和候选比较，不是运营准点率。",
+      "boundary_en": "A declared reliability proxy for scenario perturbation, not an operating on-time rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.conflict_rate",
+      "family": "mode_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.conflict_rate",
+      "current_value": 0.004,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated people-flow, curb and accessibility conflict observation",
+      "boundary_zh": "声明的冲突代理，只用于暴露待查位置，不是事故率或现场冲突率。",
+      "boundary_en": "A declared conflict proxy to expose locations for checking, not an incident or field conflict rate.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.service_unit.capacity_persons_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.service_unit.capacity_persons_per_unit",
+      "current_value": 24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "SCHEDULED-CAPACITY-TRANSIT-2012",
+        "MOBILITY-DATA-METHOD"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated timetable, vehicle and accessible-service capacity audit",
+      "boundary_zh": "声明的服务单元容量，只用于服务单元账本，不是现有车辆或班次。",
+      "boundary_en": "A declared service-unit capacity for the ledger, not an existing fleet or timetable.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "enterprise_shuttle.service_unit.distance_km_per_unit",
+      "family": "service_unit_parameter",
+      "owner_path": "mode_parameters.enterprise_shuttle.service_unit.distance_km_per_unit",
+      "current_value": 16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "MATSIM-LARGE-SCALE-ABM",
+        "MOBILITY-DATA-METHOD",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated route geometry and operator service pattern",
+      "boundary_zh": "声明的服务单元距离，只用于相对车辆或服务公里计算，不是运营里程。",
+      "boundary_en": "A declared service-unit distance for relative vehicle or service kilometres, not operating mileage.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.enterprise_employee.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.enterprise_employee.metro",
+      "current_value": 0.34,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.enterprise_employee.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.enterprise_employee.bus",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.enterprise_employee.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.enterprise_employee.bicycle",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.enterprise_employee.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.enterprise_employee.walking_wheelchair",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.enterprise_employee.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.enterprise_employee.car",
+      "current_value": 0.28,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.enterprise_employee.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.enterprise_employee.enterprise_shuttle",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.resident_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.resident_worker.metro",
+      "current_value": 0.24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.resident_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.resident_worker.bus",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.resident_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.resident_worker.bicycle",
+      "current_value": 0.12,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.resident_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.resident_worker.walking_wheelchair",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.resident_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.resident_worker.car",
+      "current_value": 0.25,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.resident_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.resident_worker.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.carer_or_child.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.carer_or_child.metro",
+      "current_value": 0.14,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.carer_or_child.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.carer_or_child.bus",
+      "current_value": 0.2,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.carer_or_child.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.carer_or_child.bicycle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.carer_or_child.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.carer_or_child.walking_wheelchair",
+      "current_value": 0.38,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.carer_or_child.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.carer_or_child.car",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.carer_or_child.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.carer_or_child.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.visitor_service.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.visitor_service.metro",
+      "current_value": 0.28,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.visitor_service.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.visitor_service.bus",
+      "current_value": 0.23,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.visitor_service.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.visitor_service.bicycle",
+      "current_value": 0.13,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.visitor_service.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.visitor_service.walking_wheelchair",
+      "current_value": 0.24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.visitor_service.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.visitor_service.car",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.visitor_service.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.visitor_service.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.logistics_and_maintenance.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.logistics_and_maintenance.metro",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.logistics_and_maintenance.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.logistics_and_maintenance.bus",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.logistics_and_maintenance.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.logistics_and_maintenance.bicycle",
+      "current_value": 0.01,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.logistics_and_maintenance.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.logistics_and_maintenance.walking_wheelchair",
+      "current_value": 0.02,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.logistics_and_maintenance.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.logistics_and_maintenance.car",
+      "current_value": 0.84,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.logistics_and_maintenance.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.logistics_and_maintenance.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.night_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.night_worker.metro",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.night_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.night_worker.bus",
+      "current_value": 0.32,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.night_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.night_worker.bicycle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.night_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.night_worker.walking_wheelchair",
+      "current_value": 0.1,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.night_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.night_worker.car",
+      "current_value": 0.28,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.B0.night_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.B0.night_worker.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.enterprise_employee.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.enterprise_employee.metro",
+      "current_value": 0.48,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.enterprise_employee.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.enterprise_employee.bus",
+      "current_value": 0.2,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.enterprise_employee.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.enterprise_employee.bicycle",
+      "current_value": 0.12,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.enterprise_employee.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.enterprise_employee.walking_wheelchair",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.enterprise_employee.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.enterprise_employee.car",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.enterprise_employee.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.enterprise_employee.enterprise_shuttle",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.resident_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.resident_worker.metro",
+      "current_value": 0.36,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.resident_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.resident_worker.bus",
+      "current_value": 0.22,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.resident_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.resident_worker.bicycle",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.resident_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.resident_worker.walking_wheelchair",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.resident_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.resident_worker.car",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.resident_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.resident_worker.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.carer_or_child.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.carer_or_child.metro",
+      "current_value": 0.2,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.carer_or_child.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.carer_or_child.bus",
+      "current_value": 0.28,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.carer_or_child.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.carer_or_child.bicycle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.carer_or_child.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.carer_or_child.walking_wheelchair",
+      "current_value": 0.39,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.carer_or_child.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.carer_or_child.car",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.carer_or_child.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.carer_or_child.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.visitor_service.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.visitor_service.metro",
+      "current_value": 0.36,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.visitor_service.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.visitor_service.bus",
+      "current_value": 0.26,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.visitor_service.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.visitor_service.bicycle",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.visitor_service.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.visitor_service.walking_wheelchair",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.visitor_service.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.visitor_service.car",
+      "current_value": 0.02,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.visitor_service.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.visitor_service.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.logistics_and_maintenance.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.logistics_and_maintenance.metro",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.logistics_and_maintenance.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.logistics_and_maintenance.bus",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.logistics_and_maintenance.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.logistics_and_maintenance.bicycle",
+      "current_value": 0.02,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.logistics_and_maintenance.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.logistics_and_maintenance.walking_wheelchair",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.logistics_and_maintenance.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.logistics_and_maintenance.car",
+      "current_value": 0.77,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.logistics_and_maintenance.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.logistics_and_maintenance.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.night_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.night_worker.metro",
+      "current_value": 0.25,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.night_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.night_worker.bus",
+      "current_value": 0.38,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.night_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.night_worker.bicycle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.night_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.night_worker.walking_wheelchair",
+      "current_value": 0.13,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.night_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.night_worker.car",
+      "current_value": 0.12,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O1.night_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O1.night_worker.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.enterprise_employee.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.enterprise_employee.metro",
+      "current_value": 0.44,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.enterprise_employee.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.enterprise_employee.bus",
+      "current_value": 0.23,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.enterprise_employee.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.enterprise_employee.bicycle",
+      "current_value": 0.11,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.enterprise_employee.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.enterprise_employee.walking_wheelchair",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.enterprise_employee.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.enterprise_employee.car",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.enterprise_employee.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.enterprise_employee.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.resident_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.resident_worker.metro",
+      "current_value": 0.32,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.resident_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.resident_worker.bus",
+      "current_value": 0.25,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.resident_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.resident_worker.bicycle",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.resident_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.resident_worker.walking_wheelchair",
+      "current_value": 0.17,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.resident_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.resident_worker.car",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.resident_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.resident_worker.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.carer_or_child.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.carer_or_child.metro",
+      "current_value": 0.2,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.carer_or_child.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.carer_or_child.bus",
+      "current_value": 0.32,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.carer_or_child.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.carer_or_child.bicycle",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.carer_or_child.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.carer_or_child.walking_wheelchair",
+      "current_value": 0.4,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.carer_or_child.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.carer_or_child.car",
+      "current_value": 0.02,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.carer_or_child.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.carer_or_child.enterprise_shuttle",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.visitor_service.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.visitor_service.metro",
+      "current_value": 0.32,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.visitor_service.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.visitor_service.bus",
+      "current_value": 0.29,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.visitor_service.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.visitor_service.bicycle",
+      "current_value": 0.17,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.visitor_service.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.visitor_service.walking_wheelchair",
+      "current_value": 0.17,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.visitor_service.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.visitor_service.car",
+      "current_value": 0.01,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.visitor_service.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.visitor_service.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.logistics_and_maintenance.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.logistics_and_maintenance.metro",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.logistics_and_maintenance.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.logistics_and_maintenance.bus",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.logistics_and_maintenance.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.logistics_and_maintenance.bicycle",
+      "current_value": 0.02,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.logistics_and_maintenance.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.logistics_and_maintenance.walking_wheelchair",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.logistics_and_maintenance.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.logistics_and_maintenance.car",
+      "current_value": 0.76,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.logistics_and_maintenance.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.logistics_and_maintenance.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.night_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.night_worker.metro",
+      "current_value": 0.24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.night_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.night_worker.bus",
+      "current_value": 0.4,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.night_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.night_worker.bicycle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.night_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.night_worker.walking_wheelchair",
+      "current_value": 0.15,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.night_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.night_worker.car",
+      "current_value": 0.09,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O2.night_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O2.night_worker.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.enterprise_employee.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.enterprise_employee.metro",
+      "current_value": 0.42,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.enterprise_employee.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.enterprise_employee.bus",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.enterprise_employee.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.enterprise_employee.bicycle",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.enterprise_employee.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.enterprise_employee.walking_wheelchair",
+      "current_value": 0.1,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.enterprise_employee.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.enterprise_employee.car",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.enterprise_employee.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.enterprise_employee.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.resident_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.resident_worker.metro",
+      "current_value": 0.3,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.resident_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.resident_worker.bus",
+      "current_value": 0.17,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.resident_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.resident_worker.bicycle",
+      "current_value": 0.25,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.resident_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.resident_worker.walking_wheelchair",
+      "current_value": 0.19,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.resident_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.resident_worker.car",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.resident_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.resident_worker.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.carer_or_child.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.carer_or_child.metro",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.carer_or_child.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.carer_or_child.bus",
+      "current_value": 0.22,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.carer_or_child.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.carer_or_child.bicycle",
+      "current_value": 0.09,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.carer_or_child.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.carer_or_child.walking_wheelchair",
+      "current_value": 0.45,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.carer_or_child.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.carer_or_child.car",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.carer_or_child.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.carer_or_child.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.visitor_service.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.visitor_service.metro",
+      "current_value": 0.3,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.visitor_service.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.visitor_service.bus",
+      "current_value": 0.2,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.visitor_service.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.visitor_service.bicycle",
+      "current_value": 0.23,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.visitor_service.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.visitor_service.walking_wheelchair",
+      "current_value": 0.22,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.visitor_service.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.visitor_service.car",
+      "current_value": 0.01,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.visitor_service.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.visitor_service.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.logistics_and_maintenance.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.logistics_and_maintenance.metro",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.logistics_and_maintenance.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.logistics_and_maintenance.bus",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.logistics_and_maintenance.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.logistics_and_maintenance.bicycle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.logistics_and_maintenance.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.logistics_and_maintenance.walking_wheelchair",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.logistics_and_maintenance.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.logistics_and_maintenance.car",
+      "current_value": 0.77,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.logistics_and_maintenance.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.logistics_and_maintenance.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.night_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.night_worker.metro",
+      "current_value": 0.22,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.night_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.night_worker.bus",
+      "current_value": 0.29,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.night_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.night_worker.bicycle",
+      "current_value": 0.1,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.night_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.night_worker.walking_wheelchair",
+      "current_value": 0.24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.night_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.night_worker.car",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O3.night_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O3.night_worker.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.enterprise_employee.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.enterprise_employee.metro",
+      "current_value": 0.4,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.enterprise_employee.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.enterprise_employee.bus",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.enterprise_employee.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.enterprise_employee.bicycle",
+      "current_value": 0.14,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.enterprise_employee.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.enterprise_employee.walking_wheelchair",
+      "current_value": 0.12,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.enterprise_employee.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.enterprise_employee.car",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.enterprise_employee.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.enterprise_employee.enterprise_shuttle",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.resident_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.resident_worker.metro",
+      "current_value": 0.32,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.resident_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.resident_worker.bus",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.resident_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.resident_worker.bicycle",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.resident_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.resident_worker.walking_wheelchair",
+      "current_value": 0.21,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.resident_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.resident_worker.car",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.resident_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.resident_worker.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.carer_or_child.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.carer_or_child.metro",
+      "current_value": 0.16,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.carer_or_child.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.carer_or_child.bus",
+      "current_value": 0.24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.carer_or_child.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.carer_or_child.bicycle",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.carer_or_child.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.carer_or_child.walking_wheelchair",
+      "current_value": 0.45,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.carer_or_child.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.carer_or_child.car",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.carer_or_child.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.carer_or_child.enterprise_shuttle",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.visitor_service.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.visitor_service.metro",
+      "current_value": 0.31,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.visitor_service.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.visitor_service.bus",
+      "current_value": 0.21,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.visitor_service.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.visitor_service.bicycle",
+      "current_value": 0.18,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.visitor_service.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.visitor_service.walking_wheelchair",
+      "current_value": 0.24,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.visitor_service.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.visitor_service.car",
+      "current_value": 0.02,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.visitor_service.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.visitor_service.enterprise_shuttle",
+      "current_value": 0.04,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.logistics_and_maintenance.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.logistics_and_maintenance.metro",
+      "current_value": 0.05,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.logistics_and_maintenance.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.logistics_and_maintenance.bus",
+      "current_value": 0.06,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.logistics_and_maintenance.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.logistics_and_maintenance.bicycle",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.logistics_and_maintenance.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.logistics_and_maintenance.walking_wheelchair",
+      "current_value": 0.03,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.logistics_and_maintenance.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.logistics_and_maintenance.car",
+      "current_value": 0.76,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.logistics_and_maintenance.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.logistics_and_maintenance.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.night_worker.metro",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.night_worker.metro",
+      "current_value": 0.23,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.night_worker.bus",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.night_worker.bus",
+      "current_value": 0.32,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.night_worker.bicycle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.night_worker.bicycle",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.night_worker.walking_wheelchair",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.night_worker.walking_wheelchair",
+      "current_value": 0.22,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.night_worker.car",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.night_worker.car",
+      "current_value": 0.08,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "mode_weight.O4.night_worker.enterprise_shuttle",
+      "family": "mode_weight",
+      "owner_path": "mode_weights_by_group.O4.night_worker.enterprise_shuttle",
+      "current_value": 0.07,
+      "status": "agent_proposed",
+      "source_ids": [
+        "ATOM-MULTIMODAL-ABM",
+        "ACTIVITY-BASED-DISAGGREGATE-2001"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated grouped OD, observed mode share and enterprise/resident input",
+      "boundary_zh": "声明的方式权重，只用于代理人分配和候选比较，不代表居民或员工方式选择。",
+      "boundary_en": "A declared mode weight for assignment and comparison, not resident or employee mode choice.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "synthetic_population.enterprise_employee.count",
+      "family": "synthetic_population",
+      "owner_path": "synthetic_population.groups.enterprise_employee.count",
+      "current_value": 1092700,
+      "status": "design_target",
+      "source_ids": [
+        "HAIDIAN-POPULATION-2024"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated population, workforce, care, visitor and service-user evidence",
+      "boundary_zh": "合成分组配额按区域人口参考值分配，不是人口普查微观数据或 workforce count。",
+      "boundary_en": "A synthetic group quota derived from the regional reference, not census microdata or a workforce count.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "synthetic_population.resident_worker.count",
+      "family": "synthetic_population",
+      "owner_path": "synthetic_population.groups.resident_worker.count",
+      "current_value": 936600,
+      "status": "design_target",
+      "source_ids": [
+        "HAIDIAN-POPULATION-2024"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated population, workforce, care, visitor and service-user evidence",
+      "boundary_zh": "合成分组配额按区域人口参考值分配，不是人口普查微观数据或 workforce count。",
+      "boundary_en": "A synthetic group quota derived from the regional reference, not census microdata or a workforce count.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "synthetic_population.carer_or_child.count",
+      "family": "synthetic_population",
+      "owner_path": "synthetic_population.groups.carer_or_child.count",
+      "current_value": 468300,
+      "status": "design_target",
+      "source_ids": [
+        "HAIDIAN-POPULATION-2024"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated population, workforce, care, visitor and service-user evidence",
+      "boundary_zh": "合成分组配额按区域人口参考值分配，不是人口普查微观数据或 workforce count。",
+      "boundary_en": "A synthetic group quota derived from the regional reference, not census microdata or a workforce count.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "synthetic_population.visitor_service.count",
+      "family": "synthetic_population",
+      "owner_path": "synthetic_population.groups.visitor_service.count",
+      "current_value": 312200,
+      "status": "design_target",
+      "source_ids": [
+        "HAIDIAN-POPULATION-2024"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated population, workforce, care, visitor and service-user evidence",
+      "boundary_zh": "合成分组配额按区域人口参考值分配，不是人口普查微观数据或 workforce count。",
+      "boundary_en": "A synthetic group quota derived from the regional reference, not census microdata or a workforce count.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "synthetic_population.logistics_and_maintenance.count",
+      "family": "synthetic_population",
+      "owner_path": "synthetic_population.groups.logistics_and_maintenance.count",
+      "current_value": 156100,
+      "status": "design_target",
+      "source_ids": [
+        "HAIDIAN-POPULATION-2024"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated population, workforce, care, visitor and service-user evidence",
+      "boundary_zh": "合成分组配额按区域人口参考值分配，不是人口普查微观数据或 workforce count。",
+      "boundary_en": "A synthetic group quota derived from the regional reference, not census microdata or a workforce count.",
+      "observed_count": 0
+    },
+    {
+      "param_id": "synthetic_population.night_worker.count",
+      "family": "synthetic_population",
+      "owner_path": "synthetic_population.groups.night_worker.count",
+      "current_value": 156100,
+      "status": "design_target",
+      "source_ids": [
+        "HAIDIAN-POPULATION-2024"
+      ],
+      "source_role": "method_reference_or_declared_input",
+      "calibration_dependency": "dated population, workforce, care, visitor and service-user evidence",
+      "boundary_zh": "合成分组配额按区域人口参考值分配，不是人口普查微观数据或 workforce count。",
+      "boundary_en": "A synthetic group quota derived from the regional reference, not census microdata or a workforce count.",
+      "observed_count": 0
+    }
+  ]
+}

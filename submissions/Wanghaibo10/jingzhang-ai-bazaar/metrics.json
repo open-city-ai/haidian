@@ -1,0 +1,468 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "key_area_total_sqm": {
+   "status": "known",
+   "value": 3692893.005,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "sum(polygon_area(key_areas, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_zhongzhiyuan_sqm": {
+   "status": "known",
+   "value": 1929201.877,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(KEY-001, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_origin_community_sqm": {
+   "status": "known",
+   "value": 1043236.909,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(KEY-002, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "key_area_dazhongsi_sqm": {
+   "status": "known",
+   "value": 720454.219,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(KEY-003, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 1822079.679,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "area(union(project(green_space)), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.159652,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 1491567.601,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "area(union(project(public_space)), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.130692,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 116690.266,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "area(union(project(buildings)), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-DESIGN-002"
+   ]
+  },
+  "new_floor_area_sqm_concept": {
+   "status": "known",
+   "value": 1328156.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(footprint_area × floors_concept)",
+   "confidence": "low",
+   "assumptions": [
+    "A-DESIGN-002"
+   ]
+  },
+  "road_centerline_length_m": {
+   "status": "known",
+   "value": 25720.2,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(road_centerlines, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-DESIGN-001"
+   ]
+  },
+  "new_street_area_sqm_concept": {
+   "status": "known",
+   "value": 115406.954,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=1207, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-DESIGN-001"
+   ]
+  },
+  "phase1_area_sqm": {
+   "status": "known",
+   "value": 4575374.03,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PH-1, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "phase2_area_sqm": {
+   "status": "known",
+   "value": 5774396.187,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PH-2, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "phase3_area_sqm": {
+   "status": "known",
+   "value": 1063115.194,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PH-3, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001"
+   ]
+  },
+  "ai_scenario_card_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(scenario stall cards in proposal §AI 创新生态)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "ai_test_validation_scenario_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(scenario cards marked test_validation)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [],
+   "formula": "count(persona table rows in proposal)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "pilgrimage_landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(AI pilgrimage landmarks in proposal §蓝绿空间)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "renewal_project_count": {
+   "status": "known",
+   "value": 18,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/public_space.geojson"
+   ],
+   "formula": "count(renewal project list rows in proposal §更新项目清单)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "requires approved regulatory FAR and existing building stock data",
+   "confidence": "unknown",
+   "assumptions": [
+    "A-CONTROLS-001"
+   ],
+   "reason": "官方控规容积率与现状建筑底数均未随公开资料发布，待正式数据补齐后复算。",
+   "required_for_formal_submission": true
+  },
+  "building_height_control_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": "requires approved height control conditions",
+   "confidence": "unknown",
+   "assumptions": [
+    "A-CONTROLS-001"
+   ],
+   "reason": "法定建筑高度控制条件未公开，概念体量仅供讨论，待正式数据补齐。",
+   "required_for_formal_submission": true
+  },
+  "land_use_area_05_sqm": {
+   "status": "known",
+   "value": 1554714.103,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=05, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_0701_sqm": {
+   "status": "known",
+   "value": 1589570.152,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=0701, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_0702_sqm": {
+   "status": "known",
+   "value": 931823.633,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=0702, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_0802_sqm": {
+   "status": "known",
+   "value": 2946838.361,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=0802, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_0803_sqm": {
+   "status": "known",
+   "value": 1115794.736,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=0803, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_0804_sqm": {
+   "status": "known",
+   "value": 915100.381,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=0804, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_1207_sqm": {
+   "status": "known",
+   "value": 115406.954,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=1207, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_1401_sqm": {
+   "status": "known",
+   "value": 1762370.311,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=1401, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_1402_sqm": {
+   "status": "known",
+   "value": 59709.37,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=1402, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_1403_sqm": {
+   "status": "known",
+   "value": 67224.574,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=1403, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  },
+  "land_use_area_16_sqm": {
+   "status": "known",
+   "value": 354288.333,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(area(land_use where code=16, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001",
+    "A-DESIGN-001"
+   ]
+  }
+ }
+}

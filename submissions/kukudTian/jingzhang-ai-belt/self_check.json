@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present; replace with official redline before professional scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Initial land-use polygons are derived from site boundary partitioning."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization is generated without external dependencies."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "专业证据链通过：标准/深度/几何/指标/来源/假设引用齐全。"
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "确定性校验通过：几何有效、字段合法、指标与几何一致、双语契约满足。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "空间复核通过：land_use 全覆盖无重叠，全部要素有效。"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "视觉包装通过：必需章节与 data-metric 齐全，离线无外部依赖。"
+    }
+  ],
+  "ok": true,
+  "can_enter_formal_review": true,
+  "package_state": "ready_for_review"
+}

@@ -119,7 +119,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <!-- 建筑 -->
 <section class="sheet"><div class="sheet-head"><div><h2>建筑</h2><p>建筑基底区分保留、改造、更新、新建对象，表达更新建筑基底与 AI 建筑类型。</p></div><span class="tag">buildings</span></div>
 <div class="body">
-<p>建筑基底面积 [metric:building_footprint_area_sqm] = 310.6 万㎡，建筑密度 [metric:building_density] = 27.2%。建筑高度、容积率、总建筑规模在 metrics.json 中列为 unknown，待官方控规条件确认，不得以 agent 推测值冒充审定指标。</p>
+<p>建筑基底面积 [metric:building_footprint_area_sqm] = 310.6 万㎡，建筑密度 [metric:building_density] = 27.2%。建筑高度、容积率、总建筑规模在 metrics.json 中列为待核定，待官方控规条件确认，不得以 agent 推测值冒充审定指标。</p>
 </div></section>
 
 <!-- 更新项目 -->
@@ -135,7 +135,8 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <tr><td>JZ-05</td><td>AI公共服务与端侧算力节点</td><td>新基建/公共服务</td><td>能源、算力、运营主体</td></tr>
 <tr><td>JZ-06</td><td>全球AI活动周公共路线</td><td>运营/品牌</td><td>许可、安全、清权</td></tr>
 </tbody></table>
-<p>分期总面积 [metric:phasing_area_sqm] = 1141.3 万㎡，分近期试点、中期更新、长期治理三阶段推进。</p>
+<p>分期总面积 [metric:phasing_area_sqm] = 1141.3 万㎡，分近期试点、中期更新、长期治理三阶段推进。完整 Feasibility 字段（主体类型、近/中/长期阶段里程碑与交付物、成本类别与概念估算、成效阈值与目标值）见结构化数据 <code>visual/assets/renewal_projects.json</code>（JZ-01–JZ-06）。</p>
+<p class="warn" style="border-left-color:#0f7490;background:#eef7fa">面积拓扑差异说明（≈16.9 ㎡）：site_area_sqm（11,412,825.386 ㎡）与 phasing_area_sqm（11,412,842.304 ㎡）相差 16.918 ㎡，源于 provisional 边界分区的浮点与拓扑容差，不代表真实面积误差；官方 redline 发布后须整体重算。</p>
 </div></section>
 
 <!-- AI 场景 -->
@@ -149,6 +150,15 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <div class="card"><b>05 大钟寺国际路演客厅</b><p>大钟寺：智能体/智能终端展示与国际交流。</p></div>
 <div class="card"><b>06 全球AI活动周路线</b><p>一带公共空间：可步行、可传播的体验路线。</p></div>
 </div>
+</div></section>
+
+<!-- 品牌·文化·地标 -->
+<section class="sheet"><div class="sheet-head"><div><h2>品牌 · 文化符号 · 地标</h2><p>原创性维度交付（概念稿）：品牌识别系统、8 个核心文化符号、三处 AI 朝圣地标可识别视觉。</p></div><span class="tag">brand_system / cultural_symbols / landmarks_board</span></div>
+<div class="body">
+<img class="fig" alt="品牌识别系统" src="../visual/assets/brand_system.svg">
+<img class="fig" alt="文化符号体系" src="../visual/assets/cultural_symbols.svg">
+<img class="fig" alt="三处 AI 朝圣地标可识别视觉" src="../visual/assets/landmarks_board.svg">
+<p>定稿命名：<b>京张智脉共生带 / Jing-Zhang AI Symbiosis Belt</b>；副题：从百年京张到 AI 共生 · From a Century-Old Railway to an AI Symbiosis Belt。所有标志、字体与图形为几何概念稿，对外使用前须完成商标与名称查重、官方与权利方确认（详见 sources.json 的 [source:BRAND-SYSTEM]、[source:CULTURAL-SYMBOLS]、[source:LANDMARKS-BOARD]）。</p>
 </div></section>
 
 <!-- 核心指标 -->
@@ -165,7 +175,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <div class="metric"><span>key_area_count 重点区域数量</span><strong>3 处</strong></div>
 <div class="metric"><span>key_area_total_area_sqm 重点区域总面积</span><strong>369.3 万㎡</strong></div>
 </div>
-<p>容积率、建筑高度、总建筑面积在 metrics.json 中标记为 <code>unknown</code>，需官方控规与任务书附件支撑后方可核定。</p>
+<p>容积率、建筑高度、总建筑面积在 metrics.json 中状态为待核定（对应 JSON 字段 `status` 值为 `unknown`），需官方控规与任务书附件支撑后方可核定。</p>
 </div></section>
 
 <!-- 任务覆盖 -->
@@ -202,7 +212,7 @@ footer{padding:18px 22px;color:#667085;font-size:13px}
 <ul>
 <li>当前 site boundary 与三处 key area 为组织者登记的 provisional 粗略边界，非官方红线；精确面积与红线以官方发布为准。</li>
 <li>用地、建筑、道路、绿地、公共空间、分期与指标均基于 provisional boundary 生成，待官方几何替换后整体重算。</li>
-<li>容积率、建筑高度、总建筑规模、道路红线、退线、设施标准缺少官方控规条件，列为 unknown / 待确认。</li>
+<li>容积率、建筑高度、总建筑规模、道路红线、退线、设施标准缺少官方控规条件，列为待核定 / 待确认。</li>
 <li>清河蓝线、京张铁路遗存与文保控制带、北五环快速路作为 existing_condition 约束锁定，不参与设计改动。</li>
 </ul>
 </div>

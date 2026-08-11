@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GREEN:LIGHT — Jing-Zhang Goes First</title>
+<style>
+:root{--ink:#1A1A1A;--sub:#5A5A5A;--faint:#9A9A9A;--line:#E3E0DA;
+--panel:#F7F5F1;--trunk:#2E7D5B;--key:#1F4E79;--c:#C0392B;--b:#D9A03C}
+*{box-sizing:border-box}
+body{margin:0;background:#FBFAF8;color:var(--ink);
+font-family:"Hiragino Sans GB","PingFang SC","Microsoft YaHei",-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+line-height:1.65;font-size:15px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px 64px}
+header{border-bottom:3px solid var(--trunk);padding:34px 0 18px;margin-bottom:8px}
+h1{margin:0;font-size:30px;letter-spacing:.5px}
+.sub{color:var(--sub);margin-top:8px;font-size:15px}
+.notice{background:#FFF6E8;border:1px solid #E9D5AE;border-left:4px solid var(--b);
+padding:12px 14px;margin:18px 0;font-size:13px;color:#6B5427;border-radius:3px}
+h2{font-size:19px;margin:38px 0 6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+h2 .n{color:var(--trunk);font-weight:700;margin-right:8px}
+.lead{color:var(--sub);font-size:13.5px;margin:6px 0 14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.card{background:#fff;border:1px solid var(--line);border-radius:4px;padding:12px 14px}
+.card .k{font-size:12px;color:var(--sub)}
+.card .v{font-size:21px;font-weight:700;margin-top:4px}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.mapbox{background:#fff;border:1px solid var(--line);border-radius:4px;padding:14px 16px;margin-bottom:18px}
+svg.map{width:100%;height:auto;display:block}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--sub);font-weight:600;font-size:12px;background:var(--panel)}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+td.sm,.sm{font-size:12px;color:var(--sub)}
+.sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.tag{display:inline-block;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+padding:1px 8px;font-size:11.5px;color:var(--sub);margin-right:6px}
+.ok{color:var(--trunk);font-weight:700;font-size:12.5px}
+.pend{color:var(--faint);font-style:italic;font-size:12.5px}
+.hl{color:var(--trunk);font-weight:600}
+details{background:#fff;border:1px solid var(--line);border-radius:4px;margin:6px 0;padding:9px 12px}
+summary{cursor:pointer;font-size:13.5px}
+details p{margin:8px 0 2px;font-size:12.5px;color:var(--sub)}
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.mini{background:#fff;border:1px solid var(--line);border-radius:4px;padding:10px 12px}
+.mt{font-weight:700;font-size:13.5px;color:var(--key)}
+.md{font-size:12px;color:var(--sub);margin-top:3px}
+.def{border-left:3px solid var(--trunk);padding:2px 0 2px 12px;margin:12px 0}
+.dh{font-weight:700;color:var(--trunk);font-size:14px}
+.dd{font-size:12.5px;color:var(--sub)}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--sub);margin-top:10px}
+.legend i{display:inline-block;width:16px;height:4px;border-radius:2px;margin-right:5px;vertical-align:2px}
+footer{margin-top:44px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--faint)}
+td,th{overflow-wrap:anywhere}
+@media(max-width:820px){
+.cols{grid-template-columns:1fr}
+h1{font-size:22px}
+.wrap{padding:0 14px 48px}
+/* 宽内容在自己的容器里横向滚动，页面主体不横滚 */
+table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+.mapbox{overflow-x:auto}
+.card .v{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>GREEN:LIGHT — Jing-Zhang Goes First</h1>
+<div class="sub">An urban corridor that gives AI scenarios a green light · graded right-of-way · a way out</div>
+</header>
+
+<div class="notice">
+Every spatial suggestion here is a conceptual proposal, a reference scheme, or material for professional teams to develop further. None of it replaces formal planning or constitutes an approved conclusion, statutory approval, investment commitment or feasibility conclusion. All geometry derives from the <b>provisional rough boundary</b> registered in the site package and cannot serve as a statutory redline or a precise-area basis; official control indicators are missing and are not assumed. There are no measured cross-sections, so the right-of-way grading is a method demonstration to be recomputed once survey data arrives.
+</div>
+
+<h2><span class="n">01</span>Key metrics</h2>
+<div class="lead">Each value is recomputed from the submission geometry in EPSG:4548 and matches metrics.json exactly.</div>
+<div class="grid"><div class="card"><div class="k">Design area</div><div class="v" data-metric="site_area_sqm" data-value="11412825.386">11.41 sq km</div></div>
+<div class="card"><div class="k">Trunk length</div><div class="v" data-metric="trunk_length_m" data-value="9715.875">9.72 km</div></div>
+<div class="card"><div class="k">Green ratio</div><div class="v" data-metric="green_ratio" data-value="0.247241">24.7%</div></div>
+<div class="card"><div class="k">Public space ratio</div><div class="v" data-metric="public_space_ratio" data-value="0.021846">2.2%</div></div>
+<div class="card"><div class="k">Road land ratio</div><div class="v" data-metric="road_ratio" data-value="0.125338">12.5%</div></div>
+<div class="card"><div class="k">Bottleneck share</div><div class="v" data-metric="conflict_segment_ratio" data-value="0.114286">11.4%</div></div>
+<div class="card"><div class="k">Housing covered within 300 m</div><div class="v" data-metric="todoor_point_coverage_300m_ratio" data-value="0.559916">56.0%</div></div>
+<div class="card"><div class="k">FAR (scheme estimate)</div><div class="v" data-metric="floor_area_ratio" data-value="1.263898">1.26</div></div>
+<div class="card"><div class="k">Building coverage ratio (estimate)</div><div class="v" data-metric="building_density" data-value="0.194973">19.5%</div></div>
+<div class="card"><div class="k">To-door points</div><div class="v" data-metric="todoor_point_count" data-value="32.0">32</div></div></div>
+
+<h2><span class="n">02</span>Overview map · Three-level scope</h2>
+<div class="mapbox">
+<svg class="map" viewBox="0 0 410.5 100.0" role="img" aria-label="Corridor structure and graded right-of-way strip, north to the right">
+<path d="M4.00,29.33 L27.00,29.33 L27.00,35.68 L4.00,35.68 L4.00,29.33 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M4.00,53.30 L27.00,53.30 L53.68,53.30 L100.60,53.30 L100.60,59.64 L53.68,59.64 L53.68,71.97 L27.00,71.97 L27.00,59.64 L4.00,59.64 L4.00,53.30 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M53.68,29.33 L100.60,29.33 L100.60,35.68 L53.68,35.68 L53.68,29.33 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M102.44,29.33 L123.60,29.33 L123.60,35.68 L102.44,35.68 L102.44,29.33 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M406.50,35.68 L404.20,35.68 L404.20,29.33 L406.50,29.33 L406.50,35.68 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M102.44,59.64 L102.44,53.30 L123.60,53.30 L123.60,59.64 L102.44,59.64 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M185.24,53.30 L208.70,53.30 L208.70,59.64 L185.24,59.64 L185.24,53.30 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M404.20,59.64 L404.20,53.30 L406.50,53.30 L406.50,59.64 L404.20,59.64 Z" fill="#D4A76A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M53.68,19.47 L100.60,18.47 L100.60,29.33 L53.68,29.33 L27.00,29.33 L4.00,29.33 L4.00,20.52 L27.00,20.03 L53.68,19.47 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M183.40,17.68 L183.40,29.33 L169.60,29.33 L123.60,29.33 L102.44,29.33 L102.44,18.43 L123.60,17.98 L169.60,17.00 L183.40,17.68 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M254.70,21.21 L293.80,23.14 L293.80,29.33 L254.70,29.33 L208.70,29.33 L185.24,29.33 L185.24,17.77 L208.70,18.93 L254.70,21.21 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M295.64,29.33 L295.64,23.23 L312.20,24.05 L319.10,24.31 L404.20,27.49 L406.50,27.57 L406.50,29.33 L404.20,29.33 L319.10,29.33 L312.20,29.33 L295.64,29.33 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M27.00,59.64 L27.00,71.97 L4.00,71.97 L4.00,59.64 L27.00,59.64 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M53.68,59.64 L100.60,59.64 L100.60,71.97 L53.68,71.97 L53.68,59.64 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M102.44,71.97 L102.44,59.64 L123.60,59.64 L169.60,59.64 L183.40,59.64 L183.40,68.31 L169.60,69.15 L123.60,71.97 L102.44,71.97 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M208.70,66.76 L185.24,68.19 L185.24,59.64 L208.70,59.64 L254.70,59.64 L254.70,65.60 L238.60,64.92 L208.70,66.76 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M404.20,71.87 L404.20,59.64 L406.50,59.64 L406.50,71.97 L404.20,71.87 Z" fill="#E8E2D5" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M123.60,35.68 L123.60,29.33 L169.60,29.33 L183.40,29.33 L183.40,35.68 L169.60,35.68 L123.60,35.68 Z" fill="#C9B8D4" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M123.60,59.64 L123.60,53.30 L169.60,53.30 L183.40,53.30 L183.40,59.64 L169.60,59.64 L123.60,59.64 Z" fill="#C9B8D4" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M208.70,35.68 L208.70,29.33 L254.70,29.33 L254.70,35.68 L208.70,35.68 Z" fill="#C9B8D4" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M254.70,59.64 L208.70,59.64 L208.70,53.30 L254.70,53.30 L254.70,59.64 Z" fill="#7FA8C9" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M254.70,35.68 L254.70,29.33 L293.80,29.33 L293.80,35.68 L254.70,35.68 Z" fill="#7FA8C9" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M295.64,35.68 L295.64,29.33 L312.20,29.33 L319.10,29.33 L404.20,29.33 L404.20,35.68 L319.10,35.68 L312.20,35.68 L295.64,35.68 Z" fill="#7FA8C9" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M404.20,71.87 L319.10,68.30 L319.10,59.64 L319.10,53.30 L404.20,53.30 L404.20,59.64 L404.20,71.87 Z" fill="#7FA8C9" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M27.00,29.33 L53.68,29.33 L53.68,35.68 L27.00,35.68 L27.00,29.33 Z" fill="#B98A6B" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M293.80,59.64 L293.80,67.24 L254.70,65.60 L254.70,59.64 L254.70,53.30 L293.80,53.30 L293.80,59.64 Z" fill="#93C4B4" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M295.64,53.30 L312.20,53.30 L319.10,53.30 L319.10,59.64 L319.10,68.30 L312.20,68.01 L295.64,67.32 L295.64,59.64 L295.64,53.30 Z" fill="#93C4B4" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M254.70,38.50 L293.80,38.50 L293.80,50.48 L254.70,50.48 L254.70,38.50 Z" fill="#6FA88A" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M185.24,29.33 L208.70,29.33 L208.70,35.68 L185.24,35.68 L185.24,29.33 Z" fill="#D98C8C" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M100.60,35.68 L100.60,29.33 L100.60,18.47 L102.44,18.43 L102.44,29.33 L102.44,35.68 L123.60,35.68 L169.60,35.68 L183.40,35.68 L183.40,29.33 L183.40,17.68 L185.24,17.77 L185.24,29.33 L185.24,35.68 L208.70,35.68 L254.70,35.68 L293.80,35.68 L293.80,29.33 L293.80,23.14 L295.64,23.23 L295.64,29.33 L295.64,35.68 L312.20,35.68 L319.10,35.68 L404.20,35.68 L406.50,35.68 L406.50,38.50 L404.20,38.50 L319.10,38.50 L312.20,38.50 L295.64,38.50 L293.80,38.50 L254.70,38.50 L208.70,38.50 L185.24,38.50 L183.40,38.50 L169.60,38.50 L123.60,38.50 L102.44,38.50 L100.60,38.50 L53.68,38.50 L27.00,38.50 L4.00,38.50 L4.00,35.68 L27.00,35.68 L53.68,35.68 L100.60,35.68 Z" fill="#CFCFCF" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M100.60,50.48 L102.44,50.48 L123.60,50.48 L169.60,50.48 L183.40,50.48 L185.24,50.48 L208.70,50.48 L254.70,50.48 L293.80,50.48 L295.64,50.48 L312.20,50.48 L319.10,50.48 L404.20,50.48 L406.50,50.48 L406.50,53.30 L404.20,53.30 L319.10,53.30 L312.20,53.30 L295.64,53.30 L295.64,59.64 L295.64,67.32 L293.80,67.24 L293.80,59.64 L293.80,53.30 L254.70,53.30 L208.70,53.30 L185.24,53.30 L185.24,59.64 L185.24,68.19 L183.40,68.31 L183.40,59.64 L183.40,53.30 L169.60,53.30 L123.60,53.30 L102.44,53.30 L102.44,59.64 L102.44,71.97 L100.60,71.97 L100.60,59.64 L100.60,53.30 L53.68,53.30 L27.00,53.30 L4.00,53.30 L4.00,50.48 L27.00,50.48 L53.68,50.48 L100.60,50.48 Z" fill="#CFCFCF" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M27.00,38.50 L53.68,38.50 L100.60,38.50 L102.44,38.50 L123.60,38.50 L169.60,38.50 L183.40,38.50 L185.24,38.50 L208.70,38.50 L254.70,38.50 L254.70,50.48 L208.70,50.48 L185.24,50.48 L183.40,50.48 L169.60,50.48 L123.60,50.48 L102.44,50.48 L100.60,50.48 L53.68,50.48 L27.00,50.48 L4.00,50.48 L4.00,38.50 L27.00,38.50 Z" fill="#2E7D5B" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M293.80,38.50 L295.64,38.50 L312.20,38.50 L319.10,38.50 L404.20,38.50 L406.50,38.50 L406.50,50.48 L404.20,50.48 L319.10,50.48 L312.20,50.48 L295.64,50.48 L293.80,50.48 L293.80,38.50 Z" fill="#2E7D5B" stroke="#FFFFFF" stroke-width="0.3"/>
+<path d="M254.88,35.24 L255.06,35.26 L255.24,35.31 L255.41,35.37 L255.58,35.45 L255.74,35.54 L255.88,35.65 L256.02,35.77 L256.14,35.91 L256.25,36.05 L256.34,36.21 L256.42,36.38 L256.48,36.55 L256.53,36.72 L256.56,36.90 L256.56,37.09 L256.56,37.27 L256.53,37.45 L256.48,37.62 L256.42,37.80 L256.34,37.96 L256.25,38.12 L256.14,38.26 L256.02,38.40 L255.88,38.52 L255.74,38.63 L255.58,38.72 L255.41,38.80 L255.24,38.86 L255.06,38.91 L254.88,38.93 L254.70,38.94 L208.70,38.94 L208.52,38.93 L208.34,38.91 L208.16,38.86 L207.99,38.80 L207.82,38.72 L207.66,38.63 L207.52,38.52 L207.38,38.40 L207.26,38.26 L207.15,38.12 L207.06,37.96 L206.98,37.80 L206.92,37.62 L206.87,37.45 L206.84,37.27 L206.84,37.09 L206.84,36.90 L206.87,36.72 L206.92,36.55 L206.98,36.38 L207.06,36.21 L207.15,36.05 L207.26,35.91 L207.38,35.77 L207.52,35.65 L207.66,35.54 L207.82,35.45 L207.99,35.37 L208.16,35.31 L208.34,35.26 L208.52,35.24 L208.70,35.23 L254.70,35.23 L254.88,35.24 Z" fill="#C0392B" opacity="0.25"/>
+<path d="M4.00,37.09 L53.68,37.09" fill="none" stroke="#D9A03C" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M53.68,37.09 L208.70,37.09" fill="none" stroke="#2E7D5B" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M208.70,37.09 L254.70,37.09" fill="none" stroke="#C0392B" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M254.70,37.09 L319.10,37.09" fill="none" stroke="#2E7D5B" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M319.10,37.09 L406.50,37.09" fill="none" stroke="#D9A03C" stroke-width="2.2" stroke-linecap="butt"/>
+<path d="M101.52,18.45 L101.52,71.97" fill="none" stroke="#D9A03C" stroke-width="0.6" stroke-dasharray="2.4 1.6"/>
+<path d="M184.32,17.73 L184.32,68.25" fill="none" stroke="#D9A03C" stroke-width="0.6" stroke-dasharray="2.4 1.6"/>
+<path d="M294.72,23.18 L294.72,67.28" fill="none" stroke="#D9A03C" stroke-width="0.6" stroke-dasharray="2.4 1.6"/>
+<path d="M319.10,28.63 L319.10,67.39 L404.20,67.39 L404.20,28.63 L319.10,28.63 Z" fill="none" stroke="#1F4E79" stroke-width="0.9" stroke-dasharray="2.2 1.5"/>
+<path d="M208.70,25.10 L208.70,63.87 L254.70,63.87 L254.70,25.10 L208.70,25.10 Z" fill="none" stroke="#1F4E79" stroke-width="0.9" stroke-dasharray="2.2 1.5"/>
+<path d="M27.00,25.10 L27.00,70.91 L53.86,70.91 L53.86,25.10 L27.00,25.10 Z" fill="none" stroke="#1F4E79" stroke-width="0.9" stroke-dasharray="2.2 1.5"/>
+<circle cx="16.42" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="16.42" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="41.26" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="41.26" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="66.10" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="66.10" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="90.94" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="90.94" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="115.78" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="115.78" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="140.62" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="140.62" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="165.46" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="165.46" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="190.30" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="190.30" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="215.14" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="215.14" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="239.98" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="239.98" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="264.82" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="264.82" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="289.66" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="289.66" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="314.50" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="314.50" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="339.34" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="339.34" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="364.18" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="364.18" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<circle cx="389.02" cy="29.35" r="0.7" fill="#3A3A3A"/>
+<circle cx="389.02" cy="44.85" r="0.7" fill="#3A3A3A"/>
+<path d="M4.00,20.52 L4.00,71.97 L123.60,71.97 L238.60,64.92 L406.50,71.97 L406.50,27.57 L312.20,24.05 L169.60,17.00 L4.00,20.52 Z" fill="none" stroke="#B0ADA7" stroke-width="0.7" stroke-dasharray="4 2.5"/>
+<path d="M231.49,39.35 L231.27,39.31 L231.05,39.26 L230.84,39.19 L230.64,39.09 L230.45,38.98 L230.27,38.85 L230.10,38.70 L229.95,38.54 L229.81,38.36 L229.70,38.17 L229.60,37.97 L229.52,37.76 L229.47,37.54 L229.43,37.32 L229.42,37.10 L229.43,36.88 L229.46,36.66 L229.51,36.44 L229.59,36.23 L229.68,36.03 L229.80,35.84 L229.93,35.66 L230.08,35.49 L230.24,35.34 L230.42,35.21 L230.61,35.09 L230.81,35.00 L231.02,34.92 L231.24,34.86 L231.46,34.83 L231.68,34.82 L231.91,34.83 L232.13,34.86 L232.35,34.91 L232.56,34.98 L232.76,35.08 L232.95,35.19 L233.13,35.32 L233.30,35.47 L233.45,35.63 L233.59,35.81 L233.70,36.00 L233.80,36.20 L233.88,36.41 L233.93,36.63 L233.97,36.85 L233.98,37.07 L233.97,37.29 L233.94,37.51 L233.89,37.73 L233.81,37.94 L233.72,38.14 L233.60,38.33 L233.47,38.51 L233.32,38.68 L233.16,38.83 L232.98,38.96 L232.79,39.08 L232.59,39.18 L232.38,39.25 L232.16,39.31 L231.94,39.34 L231.72,39.35 L231.49,39.35 Z" fill="#B03A2E" stroke="#FFFFFF" stroke-width="0.5"/>
+<line x1="231.70" y1="17.00" x2="231.70" y2="12.00" stroke="#B03A2E" stroke-width="0.5"/>
+<text x="231.70" y="10.50" font-size="5" fill="#B03A2E" font-weight="600" text-anchor="middle">Point Zero</text>
+<path d="M40.59,39.34 L40.37,39.31 L40.15,39.26 L39.94,39.19 L39.74,39.09 L39.55,38.98 L39.37,38.85 L39.20,38.70 L39.05,38.54 L38.91,38.36 L38.80,38.17 L38.70,37.97 L38.62,37.76 L38.57,37.54 L38.53,37.32 L38.52,37.10 L38.53,36.88 L38.56,36.66 L38.61,36.44 L38.69,36.23 L38.78,36.03 L38.90,35.84 L39.03,35.66 L39.18,35.49 L39.34,35.34 L39.52,35.21 L39.71,35.09 L39.91,35.00 L40.12,34.92 L40.34,34.86 L40.56,34.83 L40.78,34.82 L41.01,34.83 L41.23,34.86 L41.45,34.91 L41.66,34.98 L41.86,35.08 L42.05,35.19 L42.23,35.32 L42.40,35.47 L42.55,35.63 L42.69,35.81 L42.80,36.00 L42.90,36.20 L42.98,36.41 L43.03,36.63 L43.07,36.85 L43.08,37.07 L43.07,37.29 L43.04,37.51 L42.99,37.73 L42.91,37.94 L42.82,38.14 L42.70,38.33 L42.57,38.51 L42.42,38.68 L42.26,38.83 L42.08,38.96 L41.89,39.08 L41.69,39.17 L41.48,39.25 L41.26,39.31 L41.04,39.34 L40.82,39.35 L40.59,39.34 Z" fill="#B03A2E" stroke="#FFFFFF" stroke-width="0.5"/>
+<line x1="40.80" y1="17.00" x2="40.80" y2="12.00" stroke="#B03A2E" stroke-width="0.5"/>
+<text x="40.80" y="10.50" font-size="5" fill="#B03A2E" font-weight="600" text-anchor="middle">RoW Clock</text>
+<path d="M362.59,39.35 L362.37,39.32 L362.15,39.26 L361.94,39.19 L361.74,39.10 L361.55,38.98 L361.37,38.85 L361.20,38.70 L361.05,38.54 L360.91,38.36 L360.80,38.17 L360.70,37.97 L360.62,37.76 L360.57,37.54 L360.53,37.32 L360.52,37.10 L360.53,36.88 L360.56,36.66 L360.61,36.44 L360.69,36.23 L360.78,36.03 L360.90,35.84 L361.03,35.66 L361.18,35.49 L361.34,35.34 L361.52,35.21 L361.71,35.09 L361.91,34.99 L362.12,34.92 L362.34,34.86 L362.56,34.83 L362.78,34.82 L363.01,34.82 L363.23,34.86 L363.45,34.91 L363.66,34.98 L363.86,35.08 L364.05,35.19 L364.23,35.32 L364.40,35.47 L364.55,35.63 L364.69,35.81 L364.80,36.00 L364.90,36.20 L364.98,36.41 L365.03,36.63 L365.07,36.85 L365.08,37.07 L365.07,37.29 L365.04,37.51 L364.99,37.73 L364.91,37.94 L364.82,38.14 L364.70,38.33 L364.57,38.51 L364.42,38.68 L364.26,38.83 L364.08,38.96 L363.89,39.08 L363.69,39.18 L363.48,39.25 L363.26,39.31 L363.04,39.34 L362.82,39.36 L362.59,39.35 Z" fill="#B03A2E" stroke="#FFFFFF" stroke-width="0.5"/>
+<line x1="362.80" y1="17.00" x2="362.80" y2="12.00" stroke="#B03A2E" stroke-width="0.5"/>
+<text x="362.80" y="10.50" font-size="5" fill="#B03A2E" font-weight="600" text-anchor="middle">Service Ring</text>
+<circle cx="362.80" cy="44.49" r="2.4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.1"/>
+<circle cx="362.80" cy="44.49" r="1.0" fill="#1F4E79"/>
+<line x1="362.80" y1="71.97" x2="362.80" y2="76.97" stroke="#1F4E79" stroke-width="0.5"/>
+<text x="362.80" y="82.47" font-size="5.4" fill="#1F4E79" font-weight="600" text-anchor="middle">North Stn</text>
+<circle cx="231.70" cy="44.49" r="2.4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.1"/>
+<circle cx="231.70" cy="44.49" r="1.0" fill="#1F4E79"/>
+<line x1="231.70" y1="71.97" x2="231.70" y2="76.97" stroke="#1F4E79" stroke-width="0.5"/>
+<text x="231.70" y="82.47" font-size="5.4" fill="#1F4E79" font-weight="600" text-anchor="middle">Origin Stn</text>
+<circle cx="40.80" cy="44.49" r="2.4" fill="#FFFFFF" stroke="#1F4E79" stroke-width="1.1"/>
+<circle cx="40.80" cy="44.49" r="1.0" fill="#1F4E79"/>
+<line x1="40.80" y1="71.97" x2="40.80" y2="76.97" stroke="#1F4E79" stroke-width="0.5"/>
+<text x="40.80" y="82.47" font-size="5.4" fill="#1F4E79" font-weight="600" text-anchor="middle">South Stn</text>
+<text x="405.50" y="10.50" font-size="5.4" fill="#1A1A1A" text-anchor="end" font-weight="600">N →</text>
+<line x1="6.00" y1="94.47" x2="88.64" y2="94.47" stroke="#1A1A1A" stroke-width="1.2"/>
+<text x="47.32" y="92.67" font-size="4.4" fill="#1A1A1A" text-anchor="middle">2 km</text>
+</svg>
+<div class="legend">
+<span><i style="background:#2E7D5B"></i>Grade A</span>
+<span><i style="background:#D9A03C"></i>Grade B</span>
+<span><i style="background:#C0392B"></i>Grade C bottleneck</span>
+<span><i style="background:#B03A2E"></i>Landmarks</span>
+<span><i style="background:#B0ADA7"></i>Provisional boundary (not a redline)</span>
+</div>
+<div class="cols">
+<div>
+<table>
+<tr><th>Level</th><th>Area</th>
+<th>Working depth</th></tr>
+<tr><td>Coordinated research area</td><td class="num">43.6 sq km</td>
+<td>Strategy only, no geometry issued</td></tr>
+<tr><td>Overall design area</td><td class="num">11.4 sq km</td>
+<td>Regulatory-plan urban design depth, all layers and metrics</td></tr>
+<tr><td>Key-Area Detailed Design Areas</td><td class="num">368.4 ha</td>
+<td>Detailed design depth, role and opening phase for each</td></tr>
+</table>
+</div>
+<div>
+<h3 style="font-size:15px;margin:0 0 6px">Key areas</h3>
+<table>
+<tr><th>Station</th><th>Key area</th>
+<th>RoW</th><th>Phase</th></tr>
+<tr><td><b>North Station</b></td>
+<td>Zhongzhiyuan AI Independent Innovation Acceleration Area, 192.1 ha</td>
+<td>B</td><td>Phase 3 Open</td></tr>
+<tr><td><b>Origin Station</b></td>
+<td>Beijing AI Origin Community, 104.3 ha</td>
+<td><span style="color:#C0392B;font-weight:700">C</span></td><td>Phase 2 Guided</td></tr>
+<tr><td><b>South Station</b></td>
+<td>Dazhongsi AI Industry Cluster, 72.0 ha</td>
+<td>B</td><td>Phase 3 Open</td></tr>
+</table>
+</div>
+</div>
+
+<h2><span class="n">03</span>Land-use zoning and Buildings scale</h2>
+<div class="lead">A topology-safe partition: disjoint grid cells clipped to one boundary must union back to it, so category areas total exactly the site area.</div>
+<div class="cols">
+<div>
+<table>
+<tr><th>Code</th><th>Category</th>
+<th class="num">ha</th><th class="num">Share</th></tr>
+<tr><td><span class="sw" style="background:#E8E2D5"></span>0701</td><td>Urban housing</td><td class="num">323.4</td><td class="num">28.3%</td></tr>
+<tr><td><span class="sw" style="background:#2E7D5B"></span>1401</td><td>Park green space</td><td class="num">254.8</td><td class="num">22.3%</td></tr>
+<tr><td><span class="sw" style="background:#7FA8C9"></span>0802</td><td>Research</td><td class="num">155.4</td><td class="num">13.6%</td></tr>
+<tr><td><span class="sw" style="background:#CFCFCF"></span>1207</td><td>Urban road</td><td class="num">143.0</td><td class="num">12.5%</td></tr>
+<tr><td><span class="sw" style="background:#D4A76A"></span>05</td><td>Commercial services</td><td class="num">107.2</td><td class="num">9.4%</td></tr>
+<tr><td><span class="sw" style="background:#C9B8D4"></span>0702</td><td>Community services</td><td class="num">61.5</td><td class="num">5.4%</td></tr>
+<tr><td><span class="sw" style="background:#93C4B4"></span>0804</td><td>Education</td><td class="num">49.9</td><td class="num">4.4%</td></tr>
+<tr><td><span class="sw" style="background:#6FA88A"></span>0805</td><td>Sports</td><td class="num">27.4</td><td class="num">2.4%</td></tr>
+<tr><td><span class="sw" style="background:#B98A6B"></span>0803</td><td>Culture</td><td class="num">9.9</td><td class="num">0.9%</td></tr>
+<tr><td><span class="sw" style="background:#D98C8C"></span>0806</td><td>Medical and health</td><td class="num">8.7</td><td class="num">0.8%</td></tr>
+<tr><td colspan="2"><b>Total</b></td>
+<td class="num"><b>1,141.3</b></td>
+<td class="num"><b>100.0%</b></td></tr>
+</table>
+</div>
+<div>
+<table>
+<tr><th>Building scale (scheme estimate)</th><th class="num"></th></tr>
+<tr><td>Building footprint</td>
+<td class="num">222.5 ha</td></tr>
+<tr><td>Total floor area (estimate)</td>
+<td class="num">1,442 × 10k sq m</td></tr>
+<tr><td>Building coverage ratio (estimate)</td>
+<td class="num">19.5%</td></tr>
+<tr><td>FAR (estimate)</td>
+<td class="num">1.26</td></tr>
+</table>
+<div class="notice" style="margin-top:14px">
+The figures above are the conceptual scheme's own estimates, <b>not planning control indicators</b>. The official controls below are all pending and are not assumed:
+</div>
+<table>
+<tr><th>Official control indicator</th><th>Status</th></tr>
+<tr><td>FAR limit</td><td class="pend">Pending formal planning conditions</td></tr>
+<tr><td>Building height limit</td><td class="pend">Pending formal planning conditions</td></tr>
+<tr><td>Building coverage ratio limit</td><td class="pend">Pending formal planning conditions</td></tr>
+<tr><td>Green ratio requirement</td><td class="pend">Pending formal planning conditions</td></tr>
+<tr><td>Setback requirement</td><td class="pend">Pending formal planning conditions</td></tr>
+</table>
+</div>
+</div>
+
+<h2><span class="n">04</span>Mobility and walkability</h2>
+<div class="lead">Time slicing is the fourth line of defence, not the primary means. Wherever width allows, lanes are separated physically.</div>
+<table>
+<tr><th>Grade</th><th>Treatment</th><th class="num">Length</th></tr>
+<tr><td><span class="sw" style="background:#2E7D5B"></span><b>A</b></td>
+<td>Full-time physical separation of footway, cycleway and light-vehicle lane; no time slicing</td>
+<td class="num">5.30 km</td></tr>
+<tr><td><span class="sw" style="background:#D9A03C"></span><b>B</b></td>
+<td>Normally separated; peak-hour vehicles demoted to the edge</td>
+<td class="num">3.31 km</td></tr>
+<tr><td><span class="sw" style="background:#C0392B"></span><b>C</b></td>
+<td>Bottleneck: barred at peak and rerouted; on the minor-works list</td>
+<td class="num">1.11 km</td></tr>
+</table>
+<table style="margin-top:16px">
+<tr><th>Time slice</th><th>Priority</th>
+<th>Constraint on light vehicles</th></tr>
+<tr><td><b>07:00–09:30</b></td><td class="hl">People first</td><td>Speed-capped, edge lane only, always yield</td></tr>
+<tr><td><b>09:30–17:00</b></td><td class="hl">Vehicles and delivery first</td><td>Main channel available, low pedestrian flow</td></tr>
+<tr><td><b>17:00–21:00</b></td><td class="hl">People first</td><td>Leave the main channel</td></tr>
+<tr><td><b>21:00–07:00</b></td><td class="hl">Freight first</td><td>Main channel available, noise and lighting limits</td></tr>
+</table>
+<h3 style="font-size:15px;margin:24px 0 4px">Five layers of human-machine coexistence</h3>
+<div class="def"><div class="dh">1 Physical separation</div><div class="dd">Grade A/B/C by section; separate physically wherever width allows</div></div>
+<div class="def"><div class="dh">2 Speed and size</div><div class="dd">Harm scales with speed squared; a speed cap beats any avoidance algorithm</div></div>
+<div class="def"><div class="dh">3 The yielding covenant</div><div class="dd">Vehicles always yield and must visibly signal awareness; predictability over avoidance rate</div></div>
+<div class="def"><div class="dh">4 Time slicing</div><div class="dd">Only for B/C segments at peak; rules must be legible at a glance</div></div>
+<div class="def"><div class="dh">5 Fail-safe and exit</div><div class="dd">Auto-clear above thresholds, universal stop button, attributable events, rollback on failure</div></div>
+
+<h2><span class="n">05</span>Blue-green public space</h2>
+<div class="lead">254.8 ha of park green space; the trunk runs continuously north to south, the physical precondition for the whole proposal.</div>
+<div class="minis">
+<div class="mini"><div class="mt">Point Zero</div>
+<div class="md">Results made visible: a working pick-up point publishing the day's real results, including failure counts</div></div>
+<div class="mini"><div class="mt">Right-of-Way Clock</div>
+<div class="md">Rules made visible: three colours for people, machines and freight, echoing the historic bell at Dazhongsi</div></div>
+<div class="mini"><div class="mt">Service Ring</div>
+<div class="md">Facilities and labour made visible: charging and maintenance back-of-house opened to view</div></div>
+</div>
+<div class="notice" style="margin-top:14px">
+<b>One shortcoming stated openly:</b> to-door points within a 300 m walk cover only 56.0% of residential land (81.7% at 500 m, but the corridor is only about 1.3 km wide so that measure approaches saturation and discriminates poorly). The conclusion is that to-door points cannot sit only along the trunk and must be densified outward per the 300 m gap.
+</div>
+
+<h2><span class="n">06</span>AI scenarios</h2>
+<div class="lead">Twelve scenario cards across mobility, health, education, robotics, autonomous delivery and governance. A scenario without a human review point and an exit condition does not enter the list.</div>
+<details><summary><b>1</b> <span class="tag">AI+mobility</span> Low-speed autonomous shuttle between stations</summary><p><b>Human review point：</b>Every takeover logged and reviewed<br><b>Exit condition：</b>Suspend the segment if takeover rate exceeds threshold</p></details>
+<details><summary><b>2</b> <span class="tag">AI+mobility</span> Rail connection and first/last train coverage</summary><p><b>Human review point：</b>Staff present for first and last services<br><b>Exit condition：</b>Return to manual dispatch if failures exceed threshold</p></details>
+<details><summary><b>3</b> <span class="tag">AI+mobility</span> Real-time accessible routing</summary><p><b>Human review point：</b>Acceptance with wheelchair and visually impaired users<br><b>Exit condition：</b>Withdraw on any false passable report</p></details>
+<details><summary><b>4</b> <span class="tag">AI+mobility</span> Event-day traffic and freight organisation</summary><p><b>Human review point：</b>Plan approved by staff before the event<br><b>Exit condition：</b>Not activated unless approved</p></details>
+<details><summary><b>5</b> <span class="tag">AI+health</span> Medicine and test-sample transport</summary><p><b>Human review point：</b>Two-person handover verification<br><b>Exit condition：</b>Halt line-wide if temperature or handover errors exceed thresholds</p></details>
+<details><summary><b>6</b> <span class="tag">AI+health</span> Home medication reminders and care handover</summary><p><b>Human review point：</b>Anomalies confirmed by outbound call<br><b>Exit condition：</b>Switch fully to staff if false alarms exceed threshold</p></details>
+<details><summary><b>7</b> <span class="tag">AI+education</span> Mobile classrooms and open-air lessons</summary><p><b>Human review point：</b>Course content approved by staff<br><b>Exit condition：</b>Reschedule on conflict with pedestrian peaks</p></details>
+<details><summary><b>8</b> <span class="tag">AI+education</span> Inter-school circulation of books and aids</summary><p><b>Human review point：</b>Staff intervene on borrowing anomalies<br><b>Exit condition：</b>Suspend circulation if loss rate exceeds threshold</p></details>
+<details><summary><b>9</b> <span class="tag">Robotics</span> Corridor cleaning and facility inspection</summary><p><b>Human review point：</b>Inspection anomalies confirmed by staff<br><b>Exit condition：</b>Shorten working window if night noise complaints exceed threshold</p></details>
+<details><summary><b>10</b> <span class="tag">Robotics</span> Guide companions and local loan of aids</summary><p><b>Human review point：</b>Eligibility verified by staff<br><b>Exit condition：</b>Full suspension on any safety incident</p></details>
+<details><summary><b>11</b> <span class="tag">Autonomous delivery</span> Instant retail, meals, parcels to the door, night restocking</summary><p><b>Human review point：</b>Staff review of anomalous deliveries<br><b>Exit condition：</b>Revert to locker collection if complaints exceed threshold</p></details>
+<details><summary><b>12</b> <span class="tag">Governance</span> Proof-of-delivery check and address validity</summary><p><b>Human review point：</b>Disputed cases decided by staff; no facial or identity recognition<br><b>Exit condition：</b>Disable automatic decisions if error rate exceeds threshold</p></details>
+<h3 style="font-size:15px;margin:24px 0 6px">User personas (seven)</h3>
+<div class="minis"><div class="mini"><div class="mt">Frontline maintenance staff</div><div class="md">Separated service access, night lighting, workable area</div></div>
+<div class="mini"><div class="mt">Older people at home</div><div class="md">Predictability over speed: when, who, whom to contact</div></div>
+<div class="mini"><div class="mt">AI start-up team members</div><div class="md">Off-peak and night demand, compute access</div></div>
+<div class="mini"><div class="mt">Commuters and parents on the school run</div><div class="md">Whom the people-first time slices serve</div></div>
+<div class="mini"><div class="mt">Wheelchair users and people with visual impairments</div><div class="md">Step-free passage, curb ramps, tactile paving and audio cues (mandatory module)</div></div>
+<div class="mini"><div class="mt">Shopkeepers at the last stop</div><div class="md">Actual operators and daily custodians of to-door points</div></div>
+<div class="mini"><div class="mt">International AI researchers</div><div class="md">Multilingual signage, payment and everyday services</div></div></div>
+
+<h2><span class="n">07</span>Renewal projects and phasing</h2>
+<div class="lead">Phasing is not a construction sequence but a risk-graded opening sequence, each phase carrying quantified gates and rollback conditions.</div>
+<table><tr><td><b>Minor section works</b></td><td>Lane and ramp works on 1.11 km of Grade C bottleneck</td></tr>
+<tr><td><b>Frontage renovation</b></td><td>Inner frontage ground floors and to-door access, subject to owner agreement</td></tr>
+<tr><td><b>Back-of-house facilities</b></td><td>Charging, maintenance and loading areas</td></tr>
+<tr><td><b>Last-metre interfaces</b></td><td>32 to-door points, densified outward per the 300 m coverage gap</td></tr>
+<tr><td><b>Three landmarks</b></td><td>Point Zero, Right-of-Way Clock, Service Ring</td></tr>
+<tr><td><b>Monitoring and review</b></td><td>Density-counting points and event review facilities with privacy boundaries</td></tr></table>
+<table style="margin-top:16px">
+<tr><th>Phase</th><th>Extent</th><th class="num">Area</th>
+<th>Gate indicators</th><th>Rollback</th></tr>
+<tr><td><b>1 Closed</b></td>
+<td>Xiaoyue River pilot segment</td>
+<td class="num">257.3 ha</td>
+<td class="sm">Encounters per km-hour, yield success, emergency stops</td>
+<td class="sm">Roll back to closed testing and suspend opening</td></tr>
+<tr><td><b>2 Guided</b></td>
+<td>Origin Station segment, with marshals</td>
+<td class="num">271.3 ha</td>
+<td class="sm">Complaints, remote takeovers, comfort survey</td>
+<td class="sm">Return to Phase 1</td></tr>
+<tr><td><b>3 Open</b></td>
+<td>North and south segments, full line</td>
+<td class="num">612.8 ha</td>
+<td class="sm">Bottleneck share, to-door coverage</td>
+<td class="sm">Any failing segment returns to Phase 2</td></tr>
+</table>
+
+<h2><span class="n">08</span>Task coverage</h2>
+<div class="lead">The six mandatory agent tasks map item by item onto chapters and evidence files; all 17 announcement tasks under 1.3, 1.4 and 1.5 are likewise recorded in the compliance matrix.</div>
+<table>
+<tr><th>ID</th><th>Task</th><th>Status</th>
+<th>Chapters</th></tr>
+<tr><td><code>agent.1</code></td><td>一带总体概念与功能统筹方案设计</td><td><span class="ok">Covered</span></td><td class="sm">一、设计依据与资料清单、四、总体设计范围的城市更新：七套上街基础设施</td></tr>
+<tr><td><code>agent.2</code></td><td>AI全栈自主创新体系与世界级AI创新生态设计</td><td><span class="ok">Covered</span></td><td class="sm">三、统筹研究范围：产业与未来城市策略、六、AI创新生态、人才画像与AI+场景</td></tr>
+<tr><td><code>agent.3</code></td><td>AI+场景赋能新范式与智能化AI活力城市设计</td><td><span class="ok">Covered</span></td><td class="sm">六、AI创新生态、人才画像与AI+场景、八、交通、轨道、市政与公共服务：分级路权与五层防线</td></tr>
+<tr><td><code>agent.4</code></td><td>AI公共空间、智能原生新业态与朝圣地标设计</td><td><span class="ok">Covered</span></td><td class="sm">五、三处重点区域详细设计、九、蓝绿公共空间与城市风貌</td></tr>
+<tr><td><code>agent.5</code></td><td>百年京张文化、中关村文化与AI新文化融合叙事设计</td><td><span class="ok">Covered</span></td><td class="sm">十二、专业标准响应、设计深度与文化叙事</td></tr>
+<tr><td><code>agent.6</code></td><td>一带全球AI创新活动体系与长期运营设计</td><td><span class="ok">Covered</span></td><td class="sm">十、更新项目清单、政策与分期</td></tr>
+</table>
+
+<h2><span class="n">09</span>Self-check status</h2>
+<table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td>Land-use topology (no gaps, no overlaps)</td>
+<td><span class="ok">Pass</span></td></tr>
+<tr><td>Area self-proof (categories total = site area)</td>
+<td><span class="ok">Pass</span></td></tr>
+<tr><td>Metrics schema and value ranges</td>
+<td><span class="ok">Pass</span></td></tr>
+<tr><td>Spatial review</td>
+<td><span class="ok">Pass</span></td></tr>
+<tr><td>Bilingual packaging (text, report, boards, drawings, figures)</td>
+<td><span class="ok">Pass</span></td></tr>
+<tr><td>Official boundary and control indicators</td>
+<td><span class="pend">Organiser data gap; precision warning retained, content scoring unaffected</span></td></tr>
+<tr><td>Measured cross-sections</td>
+<td><span class="pend">No survey data; grading is a method demonstration pending recomputation</span></td></tr>
+</table>
+
+<h2><span class="n">10</span>Sources and Assumptions</h2>
+<table>
+<tr><th>ID</th><th>Material</th><th>Formal usability</th></tr>
+<tr><td><code>SITE-PACKAGE</code></td><td>Project brief, enums, allowed design space, ranges, and schemas.</td><td>—</td></tr>
+<tr><td><code>SOURCE-REGISTRY</code></td><td>Public/cleared/provisional source usability registry; distinguishes fo</td><td>—</td></tr>
+<tr><td><code>PROCESSED-FACT-PACK</code></td><td>Agent-readable navigation layer for scopes, required tasks, source-use</td><td>—</td></tr>
+<tr><td><code>BOUNDARY-SOURCE</code></td><td>Submitted site boundary geometry source (provisional).</td><td>provisional_only</td></tr>
+<tr><td><code>KEY-AREA-SOURCE</code></td><td>Three required detailed-design key area boundaries (provisional).</td><td>provisional_only</td></tr>
+<tr><td><code>OFFICIAL-ANNOUNCEMENT</code></td><td>百年京张AI创新带城市设计国际方案征集资格预审公告</td><td>yes</td></tr>
+<tr><td><code>AGENT-TASKBOOK</code></td><td>面向全球智能体开展“百年京张AI创新带城市设计开源征集”的任务书摘录</td><td>yes</td></tr>
+<tr><td><code>MOHURD-URBAN-DESIGN-MEASURES</code></td><td>城市设计管理办法</td><td>yes</td></tr>
+<tr><td><code>MOHURD-CONTROL-DETAILED-PLANNING</code></td><td>城市、镇控制性详细规划编制审批办法</td><td>yes</td></tr>
+<tr><td><code>MNR-LAND-USE-CLASSIFICATION-GUIDE</code></td><td>自然资源部关于印发《国土空间调查、规划、用途管制用地用海分类指南》的通知</td><td>yes</td></tr>
+<tr><td><code>GENERATIVE-AI-INTERIM-MEASURES</code></td><td>生成式人工智能服务管理暂行办法</td><td>yes</td></tr>
+<tr><td><code>BARRIER-FREE-ENVIRONMENT-LAW</code></td><td>中华人民共和国无障碍环境建设法</td><td>yes</td></tr>
+</table>
+<div style="margin-top:14px"><details><summary><code>A-BOUNDARY-001</code> 总体设计范围使用临时粗略边界</summary><p>官方精确红线尚未提供，本方案全部几何由 brief/site-package/geometry/provisional_boundaries.geojson 推导。该边界在 EPSG:4548 下面积为 11,412,825 平方米，与公告约 11.4 平方公里相差约 0.11%，面积口径可用但形状粗糙。</p><p class="sm"><b>Impact：</b>不可作为法定红线、审批依据、精确面积复算依据、权属或工程边界。官方边界发布后，用地、道路、绿地、公共空间、建筑、分期与全部指标均需重算。</p><p class="sm"><b>Resolution：</b>取得官方 SITE_BOUNDARY 与三处 KEY_AREA 后重跑几何与指标生成流程。</p></details>
+<details><summary><code>A-CONTROLS-001</code> 官方规划控制指标全部缺失</summary><p>容积率上限、建筑高度上限、建筑密度上限、绿地率要求与退线要求在 brief/site-package/ranges/planning_limits.json 中均记录为 missing，本方案不作推定，对应指标在 metrics.json 中如实标注为待正式数据补齐。</p><p class="sm"><b>Impact：</b>方案不提出任何开发强度、建筑高度、退线或地块级拆改留结论。正文出现的容积率与建筑密度是概念方案自身的估算比值，不是规划控制指标。</p><p class="sm"><b>Resolution：</b>以正式规划条件下发的控制指标替换，并重算相关指标与图纸。</p></details>
+<details><summary><code>A-STOREY-001</code> 建筑层数为方案假设值</summary><p>总建筑面积与容积率由建筑基底面积乘以假设层数得到。按用地性质取值：科研6层、商业服务业5层、居住8层、社区服务3层、文化3层、教育5层、医疗卫生4层。</p><p class="sm"><b>Impact：</b>total_floor_area_sqm、floor_area_ratio、building_density 三项均为概念方案自身的估算，不是规划控制指标，也不构成建筑高度或容积率结论。</p><p class="sm"><b>Resolution：</b>以正式规划条件下发的容积率、高度与密度控制指标替换。</p></details>
+<details><summary><code>A-WIDTH-001</code> 断面宽度无实测数据，路权分级为方法演示</summary><p>仓库未提供全线实测断面宽度，公开渠道亦未取得。A/B/C 三级路权分级依据为推断宽度与沿线人流密度判断。</p><p class="sm"><b>Impact：</b>row_grade_*_length_m 与 conflict_segment_ratio 反映的是分级方法而非实测结论。本方案主张的是「怎么分级、分完怎么用」这套可复用方法，不宣称某一段实际宽度为具体数值。</p><p class="sm"><b>Resolution：</b>取得实测断面数据后重算分级，分级方法本身不受影响。</p></details>
+<details><summary><code>A-THRESHOLD-001</code> 安全阈值均为建议值</summary><p>轻型载具限速、机体宽度上限、噪声上限、人流密度阈值均为参考公开实践提出的建议值。</p><p class="sm"><b>Impact：</b>不构成工程可行性结论、安全认证结论或运营许可依据。</p><p class="sm"><b>Resolution：</b>由交通、市政与安全专业团队结合实测与法规核定。</p></details>
+<details><summary><code>A-MODEL-001</code> 生成方式披露</summary><p>本方案由 Claude Opus 5 模型在 Claude Code 环境中生成。几何图层与指标由 Python 脚本（shapely 2.1.2 + pyproj 3.7.2）从临时边界确定性推导，图纸与展板由 matplotlib 与手写内联 SVG 生成；方案正文、设计判断、场景与叙事由智能体撰写，并经人工审阅命名、概念方向与风险边界。</p><p class="sm"><b>Impact：</b>满足共创公约 charter.6 的生成方法披露要求。所有空间落地建议均为概念建议，最终判断由人类与专业团队完成（charter.7）。</p><p class="sm"><b>Resolution：</b>不适用；此项为披露而非待解决事项。</p></details>
+<details><summary><code>A-HISTORY-001</code> 历史站点与重点区域的位置对应关系待核实</summary><p>方案在文化叙事中提到京张铁路历史站点与三个重点区域的空间呼应关系。该对应关系为概念层面的呼应，未取得权威测绘依据。</p><p class="sm"><b>Impact：</b>仅用于文化叙事，不作为空间正式证据，不用于任何面积或边界判断。</p><p class="sm"><b>Resolution：</b>以文物与测绘主管部门公布的遗址位置资料核实后再明确表述。</p></details></div>
+
+<footer>
+GREEN:LIGHT ｜ Submitted by qxj ｜ Generated by Claude Opus 5 (claude-opus-5) in Claude Code: geometry and metrics derived deterministically from the provisional boundary by scripts, narrative and design judgements written by the agent, naming, conceptual direction and risk boundaries reviewed by a human. This page is fully offline static HTML and loads no remote resources, external scripts, external fonts, map tiles or tracking code. Areas computed in EPSG:4548. The final judgement rests with people and professional teams.
+</footer>
+</div>
+</body>
+</html>

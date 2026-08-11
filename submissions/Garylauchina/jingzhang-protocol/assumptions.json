@@ -1,0 +1,1160 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-RESEARCH-SCOPE-001",
+      "status": "provisional_constraint",
+      "statement": "The coordinated research scope is available only as an official approximate 43.6 km² figure; no submission polygon is provided.",
+      "impact": "The 11.4 km² submitted polygon represents only the overall-design sub-scope and must not be displayed as the full coordinated research range.",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "geometry/site_boundary.geojson"
+      ],
+      "affected_metric_ids": [
+        "announced_coordinated_research_area_sqm",
+        "announced_overall_design_area_sqm",
+        "site_area_sqm"
+      ],
+      "resolution_trigger": "A rights-cleared coordinated-research polygon is formally released.",
+      "replacement_action": "Add the polygon as a distinct verified scope layer and reframe all three-level scope graphics without expanding SITE-001."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "provisional_constraint",
+      "statement": "The submitted overall-design boundary is a repository provisional rough polygon, not an official redline.",
+      "impact": "All generated design layers and geometry-derived ratios are internally reproducible but must be recalculated after official geometry is supplied.",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "site_area_sqm",
+        "land_use_coverage_ratio",
+        "green_ratio",
+        "public_space_ratio",
+        "concept_building_coverage_ratio",
+        "phase_coverage_ratio"
+      ],
+      "resolution_trigger": "A trusted official overall-design boundary polygon is supplied.",
+      "replacement_action": "Replace SITE-001, regenerate every editable geometry layer and recalculate all area, length and ratio metrics in EPSG:4548."
+    },
+    {
+      "id": "A-KEYAREA-001",
+      "status": "provisional_constraint",
+      "statement": "The three key-area polygons are provisional rough constraints derived from announced names, north-to-south sequence and approximate areas.",
+      "impact": "Landmark, scenario, building-envelope and public-space locations are area-level concepts rather than parcel or engineering positions.",
+      "affected_files": [
+        "geometry/key_areas.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "key_area_count",
+        "key_area_zhongzhiyuan_geometry_sqm",
+        "key_area_ai_origin_geometry_sqm",
+        "key_area_dazhongsi_geometry_sqm",
+        "landmark_count",
+        "protocol_street_room_count"
+      ],
+      "resolution_trigger": "Official rights-cleared polygons for all three key areas are supplied.",
+      "replacement_action": "Replace the three provisional KEY_AREA features and relocate or verify every dependent scenario, public-space, landmark and building feature."
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "status": "design_metric_only",
+      "statement": "The twelve land-use faces are a conceptual functional partition generated for the Jing-Zhang Protocol, not existing or statutory land use.",
+      "impact": "Codes test program compatibility and topology only; they create no planning entitlement or parcel-level control conclusion.",
+      "affected_files": [
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "land_use_coverage_ratio",
+        "land_use_overlap_area_sqm",
+        "land_use_gap_area_sqm",
+        "land_use_outside_area_sqm",
+        "land_use_0802_area_sqm",
+        "land_use_0803_area_sqm",
+        "land_use_0804_area_sqm",
+        "land_use_05_area_sqm",
+        "land_use_0702_area_sqm",
+        "land_use_1401_area_sqm",
+        "land_use_1403_area_sqm"
+      ],
+      "resolution_trigger": "Verified current land use and approved detailed-control data are supplied.",
+      "replacement_action": "Crosswalk the concept programs to verified parcels, preserve the protocol logic where compatible, and replace all concept-code areas and ratios."
+    },
+    {
+      "id": "A-SCENARIO-LOCATION-001",
+      "status": "design_metric_only",
+      "statement": "The twelve scenario points are area-level spatial indices for linking service logic to carrier spaces, not surveyed installation coordinates.",
+      "impact": "A point proves conceptual assignment and operating metadata, not parcel availability, construction feasibility or approved siting.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "scenario_node_count",
+        "scenario_node_zhongzhiyuan_count",
+        "scenario_node_ai_origin_count",
+        "scenario_node_dazhongsi_count",
+        "scenario_spatial_assignment_coverage_ratio",
+        "human_journey_count",
+        "protocol_interface_entity_coverage_ratio",
+        "protocol_street_room_count",
+        "network_role_anchor_count",
+        "network_role_count"
+      ],
+      "resolution_trigger": "Verified carrier spaces, ownership, utilities, access and operator agreements are available for a scenario.",
+      "replacement_action": "Replace that scenario point with a surveyed carrier-space geometry or approved installation record and revalidate every host reference."
+    },
+    {
+      "id": "A-PHASING-001",
+      "status": "conceptual_governance",
+      "statement": "The three phase polygons encode first-intervention packages and evidence dependencies rather than time, investment or construction promises.",
+      "impact": "Sequence numbers cannot be read as government schedules; each package advances only after its stated evidence gate is met.",
+      "affected_files": [
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "phase_count",
+        "phase_1_area_sqm",
+        "phase_2_area_sqm",
+        "phase_3_area_sqm",
+        "phase_coverage_ratio",
+        "phase_gap_area_sqm",
+        "phase_outside_area_sqm",
+        "phase_overlap_area_sqm",
+        "scenario_phase_assignment_coverage_ratio",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_pilot_count",
+        "flagship_scenario_bundle_coverage_ratio"
+      ],
+      "resolution_trigger": "An authorized implementation body confirms projects, budgets, approvals and dates.",
+      "replacement_action": "Translate dependency packages into an approved delivery plan, retain gate conditions and replace sequence-only language with confirmed milestones."
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, fire, flood and engineering constraints are not available.",
+      "impact": "FAR, height, building density, setbacks, road area and confirmed capacity remain unknown and no statutory conclusion is made.",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/buildings.geojson",
+        "geometry/roads.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "total_floor_area_sqm",
+        "floor_area_ratio",
+        "building_density",
+        "building_height_m",
+        "setback_m",
+        "road_area_sqm",
+        "road_ratio"
+      ],
+      "resolution_trigger": "Approved control, utility, fire, flood, transport and ownership packages are available.",
+      "replacement_action": "Populate the empty constraint layer with verified features, replace unknown metrics and rerun professional design and engineering review."
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_source_data",
+      "statement": "A rights-cleared existing-building and ownership survey is not available.",
+      "impact": "Building polygons are program envelopes only; no retain, renovate, demolish, new-build or ownership decision is asserted.",
+      "affected_files": [
+        "geometry/buildings.geojson",
+        "metrics.json",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "building_footprint_area_sqm",
+        "concept_building_envelope_count",
+        "concept_building_coverage_ratio",
+        "building_action_pending_count",
+        "renewal_project_count"
+      ],
+      "resolution_trigger": "A surveyed existing-building, condition, ownership and occupancy dataset is available.",
+      "replacement_action": "Replace concept envelopes with surveyed buildings and assign retain, renovate, remove or infill actions through professional and stakeholder review."
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Road-centerline features represent conceptual walking, cycling, transit-connection or service relationships.",
+      "impact": "They are not road redlines, construction alignments, traffic-capacity claims or approvals and require transport and engineering verification.",
+      "affected_files": [
+        "geometry/roads.geojson",
+        "geometry/constraints.geojson",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "road_centerline_length_m",
+        "slow_mobility_length_m",
+        "road_area_sqm",
+        "road_ratio"
+      ],
+      "resolution_trigger": "Verified road redlines, rail exits, counts, accessibility audits and engineering conditions are available.",
+      "replacement_action": "Replace design lines with verified network data, recalculate lengths and areas, and test capacity, safety and universal access."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_source_data",
+      "statement": "Official heritage protection ranges and construction-control zones have not been supplied.",
+      "impact": "Heritage-linked landmarks and public-space moves remain conceptual and must be checked against official conservation requirements.",
+      "affected_files": [
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "affected_metric_ids": [
+        "landmark_count"
+      ],
+      "resolution_trigger": "Rights-cleared heritage boundaries, object lists and conservation controls are supplied.",
+      "replacement_action": "Add verified heritage constraints and revise landmark programs, sightlines, excavation limits and public-space interventions with conservation professionals."
+    },
+    {
+      "id": "A-INDUSTRY-DATA-001",
+      "status": "pending_source_data",
+      "statement": "No verified project baseline for enterprises, talent, output, vacancies, compute capacity or investment is supplied.",
+      "impact": "Industry claims are limited to proposed validation mechanisms and cannot state present cluster performance or forecast economic output.",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "sources.json"
+      ],
+      "affected_metric_ids": [
+        "industry_validation_scenario_count",
+        "global_case_group_count",
+        "flagship_first_use_procurement_count",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_published_standard_output_count",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "A dated official industry baseline with definitions and rights-cleared data is supplied.",
+      "replacement_action": "Add baseline and target series with provenance, uncertainty and owner; revise industry-validation priorities against measured gaps."
+    },
+    {
+      "id": "A-ARCH-STANDARD-001",
+      "status": "pending_source_data",
+      "statement": "The officially designated architectural design-depth standard file is not included in the supplied reference package.",
+      "impact": "Architecture-depth compliance remains a data gap; concept envelopes cannot be represented as construction-document depth.",
+      "affected_files": [
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "geometry/buildings.geojson"
+      ],
+      "affected_metric_ids": [
+        "concept_building_envelope_count",
+        "building_action_pending_count",
+        "building_height_m",
+        "setback_m"
+      ],
+      "resolution_trigger": "The required edition and rights-cleared standard text are formally confirmed.",
+      "replacement_action": "Review the package clause by clause, update the standard matrix and add only the architectural drawings and calculations actually required."
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "conceptual_governance",
+      "statement": "Operators, budgets, authorizations, event schedules and institutional mandates have not been confirmed.",
+      "impact": "Operating roles, recurring programs and renewal projects express governance options rather than government or investor commitments.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "proposal.md",
+        "metrics.json"
+      ],
+      "affected_metric_ids": [
+        "scenario_human_review_coverage_ratio",
+        "renewal_project_count",
+        "protocol_interface_count",
+        "capacity_return_node_count",
+        "return_ticket_reference_coverage_ratio",
+        "flagship_first_use_procurement_count",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_pilot_count",
+        "flagship_published_standard_output_count",
+        "flagship_scenario_bundle_coverage_ratio",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "Accountable entities accept defined mandates, budgets, service levels and redress obligations.",
+      "replacement_action": "Replace proposed roles with signed responsibility records and publish operating, audit, escalation and retirement service levels."
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "design_metric_only",
+      "statement": "Generated land-use, green, public-space, building-envelope and phasing metrics use the provisional boundary denominator.",
+      "impact": "Values test internal consistency and design choices only; they are not approved planning-control indicators or exact site facts.",
+      "affected_files": [
+        "metrics.json",
+        "geometry/site_boundary.geojson",
+        "geometry/land_use.geojson",
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/buildings.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "affected_metric_ids": [
+        "site_area_sqm",
+        "green_space_area_sqm",
+        "green_ratio",
+        "public_space_area_sqm",
+        "public_space_ratio",
+        "building_footprint_area_sqm",
+        "concept_building_coverage_ratio",
+        "phase_coverage_ratio",
+        "network_role_anchor_count",
+        "network_role_count"
+      ],
+      "resolution_trigger": "Any source boundary, geometry, code, calculation convention or survey baseline changes.",
+      "replacement_action": "Regenerate affected layers, recalculate in EPSG:4548, record the changed formula and rerun topology, semantic and matrix-reference checks."
+    },
+    {
+      "id": "A-PROTOCOL-PROTOTYPE-001",
+      "status": "conceptual_governance",
+      "statement": "The seven interface entities, three protocol street rooms, three human journeys and three capacity-return nodes are agent-generated design prototypes anchored to provisional carrier geometry; they are not official facilities, observed journeys or operating public services.",
+      "impact": "Counts and coverage ratios prove only registry completeness and resolvable references. They do not prove siting approval, staffing, service levels, accessibility performance, dispute resolution, capacity return or successful retirement.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "metrics.json",
+        "proposal.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "affected_metric_ids": [
+        "capacity_return_node_count",
+        "human_journey_count",
+        "protocol_interface_entity_count",
+        "protocol_interface_entity_coverage_ratio",
+        "protocol_street_room_count",
+        "return_ticket_reference_coverage_ratio"
+      ],
+      "resolution_trigger": "Surveyed and approved carrier spaces, accountable operators, tested service specifications, participant research and auditable Return Ticket case records are available.",
+      "replacement_action": "Replace conceptual anchors with verified facilities and operating records, preserve the public-rights contract where approved, and add separately named outcome metrics only after a dated baseline and accountable measurement method exist."
+    },
+    {
+      "id": "A-FLAGSHIP-FP01",
+      "status": "conceptual_governance",
+      "statement": "FP01 AI Origin First-Use Station is a concept implementation brief that bundles S03, S04, S07 under the official spatial role SOURCE+ENABLE; it is not an approved project, site, operator or procurement.",
+      "impact": "The registry proves a complete proposed operator consortium, 90-day protocol, one-year indicator set, funding/space/data boundaries and five-gate conversion path. It does not prove authorization, budget, delivery, public benefit, market adoption or a published standard.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "affected_metric_ids": [
+        "flagship_first_use_procurement_count",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_pilot_count",
+        "flagship_published_standard_output_count",
+        "flagship_scenario_bundle_coverage_ratio",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "An accountable scene owner confirms the surveyed carrier, operator roles, legal and procurement route, budget, data access, baseline and go/no-go thresholds for this pilot.",
+      "replacement_action": "Replace concept roles and targets with signed records; preserve failed and stopped tests; populate the four outcome metrics only from dated, auditable operating evidence.",
+      "pilot_id": "FP01",
+      "title_zh": "AI原点首用站",
+      "title_en": "AI Origin First-Use Station",
+      "planning_role": "SOURCE+ENABLE",
+      "portfolio_role_zh": "在AI原点社区把城市多模态评测、场景接入和学习就业协作组织成从原创成果到首张真实订单的可审计通道。",
+      "scenario_ids": [
+        "S03",
+        "S04",
+        "S07"
+      ],
+      "scenario_feature_ids": [
+        "SCENARIO-S03",
+        "SCENARIO-S04",
+        "SCENARIO-S07"
+      ],
+      "geometry_feature_ids": [
+        "BLDG-TEST-001",
+        "PUBLIC-TEST-001",
+        "LU-TEST-01",
+        "ROAD-TEST-001",
+        "ROAD-SPINE-001"
+      ],
+      "renewal_project_ids": [
+        "JZ-03"
+      ],
+      "phase_ids": [
+        "PHASE-001",
+        "PHASE-002"
+      ],
+      "operator_consortium": {
+        "status": "unconfirmed_concept_proposal",
+        "accountable_commissioning_role": "ai_origin_first_use_station_steward",
+        "roles": [
+          "university_civic_evaluation_partnership",
+          "multi_operator_protocol_secretariat",
+          "education_and_workforce_service_partnership",
+          "first_use_buyer_or_scene_owner",
+          "independent_public_interest_reviewer"
+        ],
+        "decision_rule": "A named human commissioning role owns every go, revise or stop decision; no supplier may self-certify a high-impact public result."
+      },
+      "ninety_day_test": {
+        "status": "concept_proposal",
+        "days_0_30": {
+          "purpose": "Select one bounded service problem, name the scene owner and first-use buyer role, lock benchmark, data, IP, accessibility and procurement-review boundaries.",
+          "gate": "baseline, roles, permissions, data boundary and stop route documented"
+        },
+        "days_31_60": {
+          "purpose": "Run S03 evaluation, S04 interface integration and S07 assisted user testing in sandbox or shadow mode; no live eligibility or employment decision is delegated.",
+          "gate": "sandbox, shadow or supervised evidence is replayable and human-reviewed"
+        },
+        "days_61_90": {
+          "purpose": "Publish an independent evidence summary and a legally reviewed limited first-use specification, or stop and return the unresolved evidence to the source team.",
+          "gate": "independent review and accountable go, revise or stop record completed"
+        },
+        "go_no_go_gate": [
+          "zero unresolved severity-one safety or rights defect",
+          "all high-impact outputs retain accountable human review and non-AI fallback",
+          "first-use scope, buyer role, IP, data and exit duties are reviewable before any order"
+        ]
+      },
+      "one_year_indicators": [
+        {
+          "indicator_id": "FP01-K01",
+          "measure": "evaluated prototypes, benchmark reproducibility and critical-defect closure",
+          "target_rule": "baseline and threshold approved before first use; no unresolved severity-one defect"
+        },
+        {
+          "indicator_id": "FP01-K02",
+          "measure": "legally reviewed first-use contracts or equivalent trial orders and completion rate",
+          "target_rule": "observed count only after an accountable buyer confirms the route"
+        },
+        {
+          "indicator_id": "FP01-K03",
+          "measure": "additional teams reusing the evaluation, interface and first-use package",
+          "target_rule": "diffusion counted only when evidence and exit duties transfer with the package"
+        }
+      ],
+      "funding_boundary": {
+        "status": "unconfirmed_concept_proposal",
+        "possible_instruments": [
+          "eligible results-transfer or scene-opening pilot support",
+          "university, evaluator and supplier matching contribution",
+          "separately reviewed limited first-use service contract after the 90-day gate"
+        ],
+        "excluded_assumptions": [
+          "no confirmed public budget",
+          "no land contribution",
+          "no guaranteed government procurement",
+          "no investment, revenue or operating-subsidy commitment"
+        ]
+      },
+      "space_boundary": {
+        "status": "provisional_concept_carriers",
+        "rule": "Begin in surveyed indoor or temporary assisted carriers listed above; no campus, building or public-space right is inferred from the provisional GeoJSON."
+      },
+      "data_boundary": {
+        "allowed": [
+          "public or rights-cleared reference material",
+          "synthetic benchmark tasks",
+          "consented and de-identified evaluation records"
+        ],
+        "prohibited_without_separate_authorization": [
+          "live protected government data without separate authorization",
+          "identifiable student, worker or resident case files",
+          "automated employment or service-eligibility decisions",
+          "supplier self-certification as independent evidence"
+        ],
+        "retention_rule": "Purpose-bound, minimized, versioned and time-limited; publish only an appropriately redacted evidence record and delete or archive under an approved schedule."
+      },
+      "lifecycle_gates": [
+        {
+          "stage": "technology_breakthrough",
+          "output": "source prototype, test harness and documented capability boundary"
+        },
+        {
+          "stage": "real_world_test",
+          "output": "independently replayable S03/S04/S07 sandbox and shadow evidence"
+        },
+        {
+          "stage": "first_use_procurement",
+          "output": "bounded first-use specification with buyer, human-authority and exit clauses"
+        },
+        {
+          "stage": "market_diffusion",
+          "output": "supplier-neutral evaluation and interface package for additional scene owners"
+        },
+        {
+          "stage": "standard_output",
+          "output": "draft first-use evaluation, interoperability and evidence-reporting specification"
+        }
+      ]
+    },
+    {
+      "id": "A-FLAGSHIP-FP02",
+      "status": "conceptual_governance",
+      "statement": "FP02 Zhongzhiyuan Full-Stack Open Test Yard is a concept implementation brief that bundles S01, S10 under the official spatial role STACK; it is not an approved project, site, operator or procurement.",
+      "impact": "The registry proves a complete proposed operator consortium, 90-day protocol, one-year indicator set, funding/space/data boundaries and five-gate conversion path. It does not prove authorization, budget, delivery, public benefit, market adoption or a published standard.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "affected_metric_ids": [
+        "flagship_first_use_procurement_count",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_pilot_count",
+        "flagship_published_standard_output_count",
+        "flagship_scenario_bundle_coverage_ratio",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "An accountable scene owner confirms the surveyed carrier, operator roles, legal and procurement route, budget, data access, baseline and go/no-go thresholds for this pilot.",
+      "replacement_action": "Replace concept roles and targets with signed records; preserve failed and stopped tests; populate the four outcome metrics only from dated, auditable operating evidence.",
+      "pilot_id": "FP02",
+      "title_zh": "众智全栈开放试验庭",
+      "title_en": "Zhongzhiyuan Full-Stack Open Test Yard",
+      "planning_role": "STACK",
+      "portfolio_role_zh": "在众智园把模型与Agent安全沙盒、低碳算力测量和全栈自主技术组织成可比较、可复验、可开放的底座试验。",
+      "scenario_ids": [
+        "S01",
+        "S10"
+      ],
+      "scenario_feature_ids": [
+        "SCENARIO-S01",
+        "SCENARIO-S10"
+      ],
+      "geometry_feature_ids": [
+        "BLDG-BUILD-001",
+        "LU-BUILD-01",
+        "ROAD-SPINE-001",
+        "ROAD-INTERFACE-001"
+      ],
+      "renewal_project_ids": [
+        "JZ-02",
+        "JZ-05"
+      ],
+      "phase_ids": [
+        "PHASE-001",
+        "PHASE-002"
+      ],
+      "operator_consortium": {
+        "status": "unconfirmed_concept_proposal",
+        "accountable_commissioning_role": "zhongzhiyuan_full_stack_test_steward",
+        "roles": [
+          "independent_safety_evaluation_consortium",
+          "infrastructure_measurement_operator",
+          "participating_model_chip_or_agent_supplier",
+          "open_test_toolchain_steward",
+          "energy_and_security_reviewer"
+        ],
+        "decision_rule": "A named human commissioning role owns every go, revise or stop decision; no supplier may self-certify a high-impact public result."
+      },
+      "ninety_day_test": {
+        "status": "concept_proposal",
+        "days_0_30": {
+          "purpose": "Freeze a cross-stack bill of materials, threat model, benchmark, meter boundary, supplier disclosure and independent-evaluation protocol.",
+          "gate": "baseline, roles, permissions, data boundary and stop route documented"
+        },
+        "days_31_60": {
+          "purpose": "Run S01 safety tasks and S10 compute-energy measurement in a controlled environment; record quality, correction, cost and energy against the same task denominator.",
+          "gate": "sandbox, shadow or supervised evidence is replayable and human-reviewed"
+        },
+        "days_61_90": {
+          "purpose": "Complete independent red-team and measurement review; publish a redacted test pack before any component is recommended to a real scene owner.",
+          "gate": "independent review and accountable go, revise or stop record completed"
+        },
+        "go_no_go_gate": [
+          "zero unresolved severity-one security or safety defect",
+          "100% of reported compute and energy results retain task-quality denominators",
+          "supplier, model, hardware, dataset and version provenance is complete"
+        ]
+      },
+      "one_year_indicators": [
+        {
+          "indicator_id": "FP02-K01",
+          "measure": "cross-stack benchmark coverage, reproducibility and critical-defect closure",
+          "target_rule": "threshold approved before external reuse; no unresolved severity-one defect"
+        },
+        {
+          "indicator_id": "FP02-K02",
+          "measure": "energy and cost per independently verified task outcome with correction rate",
+          "target_rule": "baseline established in the first 30 days; no unsupported efficiency claim"
+        },
+        {
+          "indicator_id": "FP02-K03",
+          "measure": "additional suppliers or scene owners passing the same open test pack",
+          "target_rule": "count only independently replayed implementations"
+        }
+      ],
+      "funding_boundary": {
+        "status": "unconfirmed_concept_proposal",
+        "possible_instruments": [
+          "eligible full-stack R&D or validation support",
+          "supplier-funded test and independent-evaluation contribution",
+          "shared test-infrastructure support if formally authorized"
+        ],
+        "excluded_assumptions": [
+          "no confirmed public budget",
+          "no land contribution",
+          "no guaranteed government procurement",
+          "no investment, revenue or operating-subsidy commitment"
+        ]
+      },
+      "space_boundary": {
+        "status": "provisional_concept_carriers",
+        "rule": "Initial work remains indoor, sandboxed and metered within surveyed concept carriers; no new data-centre, laboratory or utility capacity is asserted."
+      },
+      "data_boundary": {
+        "allowed": [
+          "synthetic and rights-cleared benchmark data",
+          "versioned security and performance traces",
+          "metered aggregate compute, energy, cost and task-quality records"
+        ],
+        "prohibited_without_separate_authorization": [
+          "protected production data without separate authorization",
+          "energy or performance claims without task-quality denominators",
+          "undisclosed model, chip, dataset or toolchain substitutions",
+          "reuse of security traces for unrelated purposes"
+        ],
+        "retention_rule": "Purpose-bound, minimized, versioned and time-limited; publish only an appropriately redacted evidence record and delete or archive under an approved schedule."
+      },
+      "lifecycle_gates": [
+        {
+          "stage": "technology_breakthrough",
+          "output": "versioned full-stack configuration, safety hypothesis and meter-to-task method"
+        },
+        {
+          "stage": "real_world_test",
+          "output": "independently replayable S01/S10 controlled-test evidence"
+        },
+        {
+          "stage": "first_use_procurement",
+          "output": "qualified component or service dossier for a separately reviewed first use"
+        },
+        {
+          "stage": "market_diffusion",
+          "output": "open test pack reusable across suppliers and scene owners"
+        },
+        {
+          "stage": "standard_output",
+          "output": "draft cross-stack provenance, safety, energy and outcome-reporting specification"
+        }
+      ]
+    },
+    {
+      "id": "A-FLAGSHIP-FP03",
+      "status": "conceptual_governance",
+      "statement": "FP03 Xiaoyuehe Scenario Co-Test Network is a concept implementation brief that bundles S02, S05, S06, S08 under the official spatial role PROVE; it is not an approved project, site, operator or procurement.",
+      "impact": "The registry proves a complete proposed operator consortium, 90-day protocol, one-year indicator set, funding/space/data boundaries and five-gate conversion path. It does not prove authorization, budget, delivery, public benefit, market adoption or a published standard.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "affected_metric_ids": [
+        "flagship_first_use_procurement_count",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_pilot_count",
+        "flagship_published_standard_output_count",
+        "flagship_scenario_bundle_coverage_ratio",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "An accountable scene owner confirms the surveyed carrier, operator roles, legal and procurement route, budget, data access, baseline and go/no-go thresholds for this pilot.",
+      "replacement_action": "Replace concept roles and targets with signed records; preserve failed and stopped tests; populate the four outcome metrics only from dated, auditable operating evidence.",
+      "pilot_id": "FP03",
+      "title_zh": "小月河场景共测网",
+      "title_en": "Xiaoyuehe Scenario Co-Test Network",
+      "planning_role": "PROVE",
+      "portfolio_role_zh": "以小月河场景赋能翼和绿脊界面的跨片区节点组成分布式共测网，把具身智能、公共服务、包容慢行与健康导引放在同一组人本安全条件下验证。",
+      "scenario_ids": [
+        "S02",
+        "S05",
+        "S06",
+        "S08"
+      ],
+      "scenario_feature_ids": [
+        "SCENARIO-S02",
+        "SCENARIO-S05",
+        "SCENARIO-S06",
+        "SCENARIO-S08"
+      ],
+      "geometry_feature_ids": [
+        "PUBLIC-BUILD-001",
+        "PUBLIC-TEST-002",
+        "LU-TEST-02",
+        "LU-TEST-04",
+        "GREEN-BUILD-001",
+        "GREEN-TEST-001",
+        "ROAD-BUILD-001",
+        "ROAD-SPINE-001",
+        "ROAD-INTERFACE-001"
+      ],
+      "renewal_project_ids": [
+        "JZ-01",
+        "JZ-02"
+      ],
+      "phase_ids": [
+        "PHASE-001",
+        "PHASE-003"
+      ],
+      "operator_consortium": {
+        "status": "unconfirmed_concept_proposal",
+        "accountable_commissioning_role": "xiaoyuehe_scenario_co_test_network_steward",
+        "roles": [
+          "bounded_test_yard_operator",
+          "public_service_counter_operator",
+          "public_space_mobility_operator",
+          "licensed_health_service_navigation_partner",
+          "human_caseworker_accessibility_and_nearby_resident_panel"
+        ],
+        "decision_rule": "A named human commissioning role owns every go, revise or stop decision; no supplier may self-certify a high-impact public result."
+      },
+      "ninety_day_test": {
+        "status": "concept_proposal",
+        "days_0_30": {
+          "purpose": "Survey each reversible node or link, map pedestrian and accessibility conflicts, select small public-service journeys, and approve per-node geofence, stop, fallback and complaint routes.",
+          "gate": "baseline, roles, permissions, data boundary and stop route documented"
+        },
+        "days_31_60": {
+          "purpose": "Run supervised S02 movement and staff-assisted S05/S06/S08 shadow sessions; AI does not determine diagnosis, benefits, route priority or access to service.",
+          "gate": "sandbox, shadow or supervised evidence is replayable and human-reviewed"
+        },
+        "days_61_90": {
+          "purpose": "Review exposure-normalized safety, journey quality and access-mode gaps with independent professionals and user panels before any limited public operation.",
+          "gate": "independent review and accountable go, revise or stop record completed"
+        },
+        "go_no_go_gate": [
+          "zero serious injury or unresolved high-severity accessibility or rights event",
+          "100% availability of a staffed, signed or non-AI route during testing",
+          "every incident, human intervention and complaint has an accountable audit record"
+        ]
+      },
+      "one_year_indicators": [
+        {
+          "indicator_id": "FP03-K01",
+          "measure": "operating exposure, interventions, near misses and complaints normalized by node, link or service use",
+          "target_rule": "baseline and threshold approved before any public operation"
+        },
+        {
+          "indicator_id": "FP03-K02",
+          "measure": "journey completion time, correction and abandonment by digital, assisted and non-AI mode",
+          "target_rule": "no access group may fall below the pre-pilot service baseline"
+        },
+        {
+          "indicator_id": "FP03-K03",
+          "measure": "additional operators reusing the tested node/link, fallback and incident package",
+          "target_rule": "diffusion follows independent safety and accessibility evaluation"
+        }
+      ],
+      "funding_boundary": {
+        "status": "unconfirmed_concept_proposal",
+        "possible_instruments": [
+          "supplier-funded supervised test",
+          "eligible public-service or accessibility-improvement pilot support",
+          "separately reviewed node, link or service contract after the 90-day gate"
+        ],
+        "excluded_assumptions": [
+          "no confirmed public budget",
+          "no land contribution",
+          "no guaranteed government procurement",
+          "no investment, revenue or operating-subsidy commitment"
+        ]
+      },
+      "space_boundary": {
+        "status": "provisional_concept_carriers",
+        "rule": "Only individually surveyed, geofenced and reversible nodes or links may be tested; provisional geometry does not authorize park, river, road, clinic, station or public-space occupation."
+      },
+      "data_boundary": {
+        "allowed": [
+          "on-device safety telemetry and minimized obstacle data",
+          "public service catalogues and accessibility information",
+          "consented task, correction and aggregate service-quality records"
+        ],
+        "prohibited_without_separate_authorization": [
+          "persistent face or licence-plate recognition",
+          "diagnosis, benefit or service-eligibility decisions",
+          "resident movement or cross-service profiling",
+          "reuse of safety or complaint records for unrelated model training"
+        ],
+        "retention_rule": "Purpose-bound, minimized, versioned and time-limited; publish only an appropriately redacted evidence record and delete or archive under an approved schedule."
+      },
+      "lifecycle_gates": [
+        {
+          "stage": "technology_breakthrough",
+          "output": "bounded co-test node/link kit, human-stop interface and accessible service assistant"
+        },
+        {
+          "stage": "real_world_test",
+          "output": "supervised S02/S05/S06/S08 evidence across physical and service journeys"
+        },
+        {
+          "stage": "first_use_procurement",
+          "output": "limited network/service specification preserving human and non-AI access"
+        },
+        {
+          "stage": "market_diffusion",
+          "output": "portable safety, accessibility, correction and complaint package"
+        },
+        {
+          "stage": "standard_output",
+          "output": "draft scenario co-test network, human-fallback and incident-data specification"
+        }
+      ]
+    },
+    {
+      "id": "A-FLAGSHIP-FP04",
+      "status": "conceptual_governance",
+      "statement": "FP04 Dazhongsi Everyday AI Market is a concept implementation brief that bundles S11, S12 under the official spatial role LIVE_MARKET; it is not an approved project, site, operator or procurement.",
+      "impact": "The registry proves a complete proposed operator consortium, 90-day protocol, one-year indicator set, funding/space/data boundaries and five-gate conversion path. It does not prove authorization, budget, delivery, public benefit, market adoption or a published standard.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "affected_metric_ids": [
+        "flagship_first_use_procurement_count",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_pilot_count",
+        "flagship_published_standard_output_count",
+        "flagship_scenario_bundle_coverage_ratio",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "An accountable scene owner confirms the surveyed carrier, operator roles, legal and procurement route, budget, data access, baseline and go/no-go thresholds for this pilot.",
+      "replacement_action": "Replace concept roles and targets with signed records; preserve failed and stopped tests; populate the four outcome metrics only from dated, auditable operating evidence.",
+      "pilot_id": "FP04",
+      "title_zh": "大钟寺AI日常市场",
+      "title_en": "Dazhongsi Everyday AI Market",
+      "planning_role": "LIVE_MARKET",
+      "portfolio_role_zh": "在大钟寺把AI原生商业与城市议事放在同一个日常市场中，用真实消费者、小店和公共反馈验证首用后的持续责任。",
+      "scenario_ids": [
+        "S11",
+        "S12"
+      ],
+      "scenario_feature_ids": [
+        "SCENARIO-S11",
+        "SCENARIO-S12"
+      ],
+      "geometry_feature_ids": [
+        "PUBLIC-LIVE-001",
+        "PUBLIC-LIVE-002",
+        "LU-LIVE-02",
+        "LU-LIVE-04",
+        "GREEN-LIVE-001",
+        "ROAD-LIVE-001"
+      ],
+      "renewal_project_ids": [
+        "JZ-04",
+        "JZ-06"
+      ],
+      "phase_ids": [
+        "PHASE-001",
+        "PHASE-003"
+      ],
+      "operator_consortium": {
+        "status": "unconfirmed_concept_proposal",
+        "accountable_commissioning_role": "dazhongsi_everyday_ai_market_steward",
+        "roles": [
+          "market_and_consumer_service_operator",
+          "civic_protocol_assembly_secretariat",
+          "participating_small_business_or_creator_cohort",
+          "consumer_rights_and_data_reviewer",
+          "human_merchant_service_and_ombuds_team"
+        ],
+        "decision_rule": "A named human commissioning role owns every go, revise or stop decision; no supplier may self-certify a high-impact public result."
+      },
+      "ninety_day_test": {
+        "status": "concept_proposal",
+        "days_0_30": {
+          "purpose": "Select opt-in merchant tasks, establish ordinary payment and service baselines, and approve pricing, disclosure, data separation, complaint and withdrawal rules.",
+          "gate": "baseline, roles, permissions, data boundary and stop route documented"
+        },
+        "days_31_60": {
+          "purpose": "Run bounded S11 transactions or creative services with visible AI disclosure while S12 records public questions, disputes, corrections and merchant burden.",
+          "gate": "sandbox, shadow or supervised evidence is replayable and human-reviewed"
+        },
+        "days_61_90": {
+          "purpose": "Independently review service quality, consumer outcomes and small-business costs; publish a redacted market evidence record and go, revise or stop decision.",
+          "gate": "independent review and accountable go, revise or stop record completed"
+        },
+        "go_no_go_gate": [
+          "zero dark pattern, hidden AI use or unresolved high-severity consumer-rights event",
+          "100% availability of ordinary payment, human merchant service and complaint routes",
+          "merchant and consumer data remain purpose-bound, segregated and portable where applicable"
+        ]
+      },
+      "one_year_indicators": [
+        {
+          "indicator_id": "FP04-K01",
+          "measure": "opt-in merchants, completed services, correction/refund rate and complaint-to-remedy time",
+          "target_rule": "baseline set before first use; unresolved high-severity dispute blocks expansion"
+        },
+        {
+          "indicator_id": "FP04-K02",
+          "measure": "small-business time, cost and revenue effects alongside consumer service quality",
+          "target_rule": "report benefits and burdens together; no unsupported growth claim"
+        },
+        {
+          "indicator_id": "FP04-K03",
+          "measure": "additional markets or operators adopting the disclosure, portability and remedy compact",
+          "target_rule": "count only transfers retaining the same public duties"
+        }
+      ],
+      "funding_boundary": {
+        "status": "unconfirmed_concept_proposal",
+        "possible_instruments": [
+          "participating merchant and service-provider contribution",
+          "eligible commercial-scene or small-business digitalization pilot",
+          "bounded outcome-based service contract after independent review"
+        ],
+        "excluded_assumptions": [
+          "no confirmed public budget",
+          "no land contribution",
+          "no guaranteed government procurement",
+          "no investment, revenue or operating-subsidy commitment"
+        ]
+      },
+      "space_boundary": {
+        "status": "provisional_concept_carriers",
+        "rule": "Begin with temporary, opt-in and reversible market/service activity in surveyed carriers; no tenancy, station, public-space or permanent retail right is inferred."
+      },
+      "data_boundary": {
+        "allowed": [
+          "opt-in merchant task and service-quality records",
+          "aggregate consumer outcome and complaint measures",
+          "public deliberation and correction records with appropriate consent"
+        ],
+        "prohibited_without_separate_authorization": [
+          "unconsented consumer profiling or cross-merchant targeting",
+          "disclosure of identifiable transactions or trade secrets",
+          "AI-only payment, complaint or merchant-service routes",
+          "synthetic public feedback presented as real participation"
+        ],
+        "retention_rule": "Purpose-bound, minimized, versioned and time-limited; publish only an appropriately redacted evidence record and delete or archive under an approved schedule."
+      },
+      "lifecycle_gates": [
+        {
+          "stage": "technology_breakthrough",
+          "output": "AI-native merchant service with disclosure, portability and ordinary-service fallback"
+        },
+        {
+          "stage": "real_world_test",
+          "output": "bounded S11 use plus S12 public evidence and dispute review"
+        },
+        {
+          "stage": "first_use_procurement",
+          "output": "first-use market compact linking continuation to consumer and merchant evidence"
+        },
+        {
+          "stage": "market_diffusion",
+          "output": "portable compact for additional markets and small-business operators"
+        },
+        {
+          "stage": "standard_output",
+          "output": "draft everyday-AI disclosure, merchant portability, complaint and public-evidence specification"
+        }
+      ]
+    },
+    {
+      "id": "A-FLAGSHIP-FP05",
+      "status": "conceptual_governance",
+      "statement": "FP05 Jing-Zhang Public Evidence Park is a concept implementation brief that bundles S09 under the official spatial role COMMONS; it is not an approved project, site, operator or procurement.",
+      "impact": "The registry proves a complete proposed operator consortium, 90-day protocol, one-year indicator set, funding/space/data boundaries and five-gate conversion path. It does not prove authorization, budget, delivery, public benefit, market adoption or a published standard.",
+      "affected_files": [
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson",
+        "metrics.json",
+        "proposal.md",
+        "compliance_matrix.json",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "affected_metric_ids": [
+        "flagship_first_use_procurement_count",
+        "flagship_implementation_plan_coverage_ratio",
+        "flagship_lifecycle_gate_coverage_ratio",
+        "flagship_market_diffusion_adoption_count",
+        "flagship_pilot_count",
+        "flagship_published_standard_output_count",
+        "flagship_scenario_bundle_coverage_ratio",
+        "flagship_verified_public_benefit_count"
+      ],
+      "resolution_trigger": "An accountable scene owner confirms the surveyed carrier, operator roles, legal and procurement route, budget, data access, baseline and go/no-go thresholds for this pilot.",
+      "replacement_action": "Replace concept roles and targets with signed records; preserve failed and stopped tests; populate the four outcome metrics only from dated, auditable operating evidence.",
+      "pilot_id": "FP05",
+      "title_zh": "京张公共证据公园",
+      "title_en": "Jing-Zhang Public Evidence Park",
+      "planning_role": "COMMONS",
+      "portfolio_role_zh": "以京张遗址公园的活态遗产路线作为其他四项旗舰试点的公开观察、解释、反馈与长期记忆层，而不是第五套封闭技术系统。",
+      "scenario_ids": [
+        "S09"
+      ],
+      "scenario_feature_ids": [
+        "SCENARIO-S09"
+      ],
+      "geometry_feature_ids": [
+        "LU-LIVE-02",
+        "GREEN-LIVE-001",
+        "ROAD-SPINE-001",
+        "PUBLIC-BUILD-002",
+        "PUBLIC-TEST-002",
+        "PUBLIC-LIVE-001"
+      ],
+      "renewal_project_ids": [
+        "JZ-01",
+        "JZ-06"
+      ],
+      "phase_ids": [
+        "PHASE-001",
+        "PHASE-003"
+      ],
+      "operator_consortium": {
+        "status": "unconfirmed_concept_proposal",
+        "accountable_commissioning_role": "jingzhang_public_evidence_commons_steward",
+        "roles": [
+          "heritage_interpretation_partnership",
+          "public_archive_and_provenance_steward",
+          "cross_pilot_evidence_editor",
+          "heritage_accessibility_and_public_reviewer",
+          "staffed_feedback_and_correction_team"
+        ],
+        "decision_rule": "A named human commissioning role owns every go, revise or stop decision; no supplier may self-certify a high-impact public result."
+      },
+      "ninety_day_test": {
+        "status": "concept_proposal",
+        "days_0_30": {
+          "purpose": "Audit heritage sources, copyright, accessibility and the evidence fields each of FP01 through FP04 must expose without revealing personal, security or trade-secret data.",
+          "gate": "baseline, roles, permissions, data boundary and stop route documented"
+        },
+        "days_31_60": {
+          "purpose": "Run a temporary S09 assisted and printed route that explains selected pilot evidence, limitations and unresolved questions; collect opt-in corrections and feedback.",
+          "gate": "sandbox, shadow or supervised evidence is replayable and human-reviewed"
+        },
+        "days_61_90": {
+          "purpose": "Publish a cited accessible evidence edition and cross-pilot response log, then decide whether the commons can support recurring observation and annual review.",
+          "gate": "independent review and accountable go, revise or stop record completed"
+        },
+        "go_no_go_gate": [
+          "100% of published historical and pilot claims have a source or visible interpretation label",
+          "a staffed or printed non-AI route remains continuously available",
+          "zero unresolved high-severity conservation, copyright, privacy or public-remedy issue"
+        ]
+      },
+      "one_year_indicators": [
+        {
+          "indicator_id": "FP05-K01",
+          "measure": "cross-pilot evidence coverage, correction rate and unresolved-question age",
+          "target_rule": "every public claim is cited or visibly qualified; response cadence approved before recurring operation"
+        },
+        {
+          "indicator_id": "FP05-K02",
+          "measure": "accessible and non-digital route availability plus service-quality gaps by access mode",
+          "target_rule": "parallel non-AI access remains available throughout public operation"
+        },
+        {
+          "indicator_id": "FP05-K03",
+          "measure": "reuse of rights-cleared route, evidence method or correction protocol",
+          "target_rule": "reuse counts only when provenance and correction duties transfer with the asset"
+        }
+      ],
+      "funding_boundary": {
+        "status": "unconfirmed_concept_proposal",
+        "possible_instruments": [
+          "eligible public culture or heritage-interpretation pilot",
+          "rights-cleared public-program partnership or sponsorship",
+          "recurring commons operation only after conservation, copyright and public-space review"
+        ],
+        "excluded_assumptions": [
+          "no confirmed public budget",
+          "no land contribution",
+          "no guaranteed government procurement",
+          "no investment, revenue or operating-subsidy commitment"
+        ]
+      },
+      "space_boundary": {
+        "status": "provisional_concept_carriers",
+        "rule": "Use temporary, reversible wayfinding and staffed interpretation in surveyed public-space segments; no excavation, permanent installation or heritage-control conclusion is claimed."
+      },
+      "data_boundary": {
+        "allowed": [
+          "rights-cleared historical and planning sources",
+          "redacted evidence supplied by FP01 through FP04",
+          "opt-in public comments, corrections and aggregate access measures"
+        ],
+        "prohibited_without_separate_authorization": [
+          "face tracking or identity inference",
+          "uncleared copyrighted media",
+          "personal, security-sensitive or trade-secret pilot records",
+          "synthetic content presented as historical fact or public feedback"
+        ],
+        "retention_rule": "Purpose-bound, minimized, versioned and time-limited; publish only an appropriately redacted evidence record and delete or archive under an approved schedule."
+      },
+      "lifecycle_gates": [
+        {
+          "stage": "technology_breakthrough",
+          "output": "provenance-aware public evidence and heritage interpretation method"
+        },
+        {
+          "stage": "real_world_test",
+          "output": "temporary S09 route observing and explaining FP01 through FP04 evidence"
+        },
+        {
+          "stage": "first_use_procurement",
+          "output": "bounded public-program specification with provenance, accessibility and correction duties"
+        },
+        {
+          "stage": "market_diffusion",
+          "output": "rights-cleared commons kit reusable by additional cultural and civic operators"
+        },
+        {
+          "stage": "standard_output",
+          "output": "draft public-evidence, provenance, correction and long-term-memory specification"
+        }
+      ],
+      "observes_pilot_ids": [
+        "FP01",
+        "FP02",
+        "FP03",
+        "FP04"
+      ]
+    }
+  ]
+}

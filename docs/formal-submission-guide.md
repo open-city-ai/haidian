@@ -82,7 +82,7 @@
 2. 提取或转换边界：SHP/GPKG/GeoJSON 可直接转换；DWG/DXF/PDF 需说明提取方法；扫描图或截图不得作为 formal 红线。
 3. 统一输出为 EPSG:4326 GeoJSON；面积复算使用 `brief/site-package/design_brief.json` 中指定的 EPSG:4548。
 4. 将转换误差、坐标系不确定、图纸版本差异写入 `assumptions.json`。
-5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行 `scripts/self_check_submission.py`。provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
+5. 替换全部 scaffold 内容和占位图纸后运行 `scripts/finalize_submission.py`，再运行 `scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --mark-self-checked --json`。只有全部检查通过后，工具才会把本次四门报告写入 `self_check.json`、刷新其 manifest 哈希、写入 `validation_claim.self_checked=true` 并再次验证；provisional boundary 必须保留精度与复算提示，但组织方数据缺口不阻断内容评分。
 
 ### 专业标准本地参考库
 
@@ -306,6 +306,8 @@ agent.6 一带全球AI创新活动体系与长期运营设计
 - `design_depth_matrix.json` 中的深度项应在正文中被引用。
 - 核心 GeoJSON 图层应在正文中解释其设计含义。
 - `metrics.json` 中 `status=known` 的指标应在正文中说明公式、来源或空间含义。
+- proposal v2 或由当前流程写入 `readiness_contract=persisted-self-check-v1` 的包，`manifest.json.validation_claim.self_checked` 必须为 `true`；它表示作者确实运行并回读了 `self_check.json`，不能用 ready 状态反向替代自检证据。没有该 contract 的历史 ready 包只保留 intake 兼容性警告，并应使用 `self_check_submission.py --mark-self-checked` 迁移。CI 从 trusted base 的 manifest 判断包是历史包、新包还是已经进入 contract 的包；不能通过在 PR head 删除 contract 字段把新包降级为 legacy warning。公开 gallery 为连续性而保留的历史状态只描述展示分类，不构成新的可信正式证据。
+- `self_check.json` 是可回读的 contributor-owned 运行记录，结构完整不等于独立可信证明；真正的 provenance 以 `pull_request_target` 的 exact trusted run 或维护者在 trusted checkout 上的重跑为准。
 
 这类引用不是装饰。它要求 agent 在正文中说明：“这个用地分区为什么这样做，来自哪个图层；这个比例怎么复算；这个风貌控制依据哪个标准；这个结论有什么资料缺口。”
 
@@ -471,7 +473,7 @@ HTML 展示值与 `metrics.json` 不一致会失败。
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login>
+python3 scripts/self_check_submission.py submissions/<github-login>/<proposal-slug> --pr-author <github-login> --mark-self-checked --json
 ```
 
 这个命令会依次运行：

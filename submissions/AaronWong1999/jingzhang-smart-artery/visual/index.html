@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张智脉 · 一条会思考的铁路——百年京张 AI 创新带城市设计 · visual summary</title>
+<style>
+:root{--bg:#f7f9fb;--panel:#ffffff;--text:#1f2d3d;--muted:#6b7785;--accent:#B23A48;--accent2:#3B7DD8;--border:#e1e7ec;}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);line-height:1.7;max-width:980px;margin:0 auto;padding:20px;}
+header{text-align:center;padding:30px 0;border-bottom:2px solid var(--accent);margin-bottom:30px;}
+header h1{font-size:1.7em;margin:0;}
+header p{color:var(--muted);margin:8px 0 0;}
+.disclaimer{background:#fff8e6;border-left:4px solid #f0a732;padding:12px 16px;margin:20px 0;font-size:0.9em;color:#5c4b1d;}
+section{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:20px;margin-bottom:24px;}
+h2{font-size:1.25em;margin-top:0;color:var(--accent);}
+h3{font-size:1.05em;color:var(--accent2);margin-bottom:10px;}
+figure{margin:15px 0;text-align:center;}
+figure img{max-width:100%;border:1px solid var(--border);border-radius:6px;}
+figcaption{font-size:0.85em;color:var(--muted);margin-top:6px;}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.metric-card{background:#f3f6f9;border-radius:8px;padding:12px;text-align:center;}
+.metric-name{font-size:0.8em;color:var(--muted);margin-bottom:6px;}
+.metric-value{font-size:1.35em;font-weight:bold;color:var(--accent);}
+.status-known{color:#1f7a34;} .status-unknown{color:#8a96a3;} .status-estimated{color:#c07d1b;}
+.metric-unit{font-size:0.75em;color:var(--muted);margin-top:4px;}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.scenario-card{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:14px;}
+.sc-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.sc-id{font-weight:bold;color:var(--accent);}
+.badge{font-size:0.75em;padding:2px 8px;border-radius:12px;}
+.badge.test{background:#e8f5e9;color:#1b5e20;} .badge.scene{background:#e3f2fd;color:#0d47a1;}
+.scenario-card h4{margin:0 0 6px;font-size:1em;}
+.sc-meta{font-size:0.85em;color:var(--muted);margin:0 0 8px;}
+.sc-privacy,.sc-review,.sc-op{font-size:0.82em;margin:4px 0;}
+ul.case-list li{margin-bottom:8px;}
+.persona-grid,.landmark-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+.persona,.landmark{background:#f8fafc;border:1px solid var(--border);border-radius:8px;padding:14px;}
+.persona h4,.landmark h4{margin:0 0 6px;}
+.scenarios,.relation{font-size:0.85em;color:var(--muted);}
+table{width:100%;border-collapse:collapse;font-size:0.9em;}
+th,td{border:1px solid var(--border);padding:8px;text-align:left;}
+th{background:#f3f6f9;}
+footer{text-align:center;color:var(--muted);font-size:0.85em;margin:40px 0;}
+</style>
+</head>
+<body>
+<header>
+  <h1>京张智脉 · 一条会思考的铁路——百年京张 AI 创新带城市设计</h1>
+  <p>Jingzhang Smart Artery · A Railway That Thinks</p>
+  <p>总体品牌：京张智脉（JSA） · 一条会思考的铁路</p>
+</header>
+
+<div class="disclaimer">
+  <strong>声明：</strong>本页面为面向真实城市片区的开放共创建议，不替代正式规划，不构成政府审定结论或工程可行性判断。场地边界采用仓库维护者提供的临时粗略边界（provisional），仅用于生成、展示与自检，不得作为官方红线或精确面积依据。
+</div>
+
+<section id="metrics">
+  <h2>核心指标 · Metrics</h2>
+  <div class="metrics-grid">
+    <div class="metric-card">
+  <div class="metric-name">公告公布总体设计范围面积</div>
+  <div class="metric-value status-known" data-metric="site_area_sqm" data-value="11412825">11,412,825</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">公告公布统筹研究范围面积</div>
+  <div class="metric-value status-known" data-metric="research_area_sqm" data-value="43600000">43,600,000</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">三处重点区面积之和</div>
+  <div class="metric-value status-known" data-metric="key_area_total_sqm" data-value="3684000">3,684,000</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">对 green_space.geojson 在 EPSG:4548 投影后求面积</div>
+  <div class="metric-value status-known" data-metric="green_space_area_sqm" data-value="1116124">1,116,124</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">green_space_area_sqm / site_area_sqm</div>
+  <div class="metric-value status-known" data-metric="green_ratio" data-value="0.097796">9.8%</div>
+  <div class="metric-unit">ratio · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">对 public_space.geojson 在 EPSG:4548 投影后求面积</div>
+  <div class="metric-value status-known" data-metric="public_space_area_sqm" data-value="1187828">1,187,828</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">public_space_area_sqm / site_area_sqm</div>
+  <div class="metric-value status-known" data-metric="public_space_ratio" data-value="0.104078">10.4%</div>
+  <div class="metric-unit">ratio · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">用地分区并集面积 / 总体设计范围面积</div>
+  <div class="metric-value status-known" data-metric="land_use_coverage" data-value="1.0">1.0</div>
+  <div class="metric-unit">ratio · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">各用地类型面积之和（EPSG:4548 投影后）</div>
+  <div class="metric-value status-known" data-metric="land_use_areas_sqm" data-value="11412843">11,412,843</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">Σ(用地类型面积 × 概念容积率)</div>
+  <div class="metric-value status-known" data-metric="building_total_floor_area_sqm" data-value="24841605">24,841,605</div>
+  <div class="metric-unit">sqm · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">概念建筑基底样例数量</div>
+  <div class="metric-value status-known" data-metric="building_sample_count" data-value="110">110</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">全球 AI 创新生态案例数量</div>
+  <div class="metric-value status-known" data-metric="ai_ecosystem_case_count" data-value="7">7</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">AI 场景卡数量</div>
+  <div class="metric-value status-known" data-metric="scenario_card_count" data-value="12">12</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">产业测试验证场景数量</div>
+  <div class="metric-value status-known" data-metric="scenario_test_count" data-value="3">3</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">用户画像数量</div>
+  <div class="metric-value status-known" data-metric="persona_count" data-value="5">5</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">AI 朝圣地标/荣誉节点数量</div>
+  <div class="metric-value status-known" data-metric="landmark_count" data-value="4">4</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">AI 场景节点数量</div>
+  <div class="metric-value status-known" data-metric="ai_scenario_node_count" data-value="12">12</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">更新项目清单数量</div>
+  <div class="metric-value status-known" data-metric="renewal_project_count" data-value="9">9</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">重点区域数量</div>
+  <div class="metric-value status-known" data-metric="key_area_count" data-value="3">3</div>
+  <div class="metric-unit">count · known</div>
+</div><div class="metric-card">
+  <div class="metric-name">—</div>
+  <div class="metric-value status-unknown" data-metric="talent_density_actual" data-value="">—</div>
+  <div class="metric-unit">index · unknown</div>
+</div><div class="metric-card">
+  <div class="metric-name">—</div>
+  <div class="metric-value status-unknown" data-metric="ai_innovation_index_actual" data-value="">—</div>
+  <div class="metric-unit">index · unknown</div>
+</div>
+  </div>
+</section>
+
+<section id="overview">
+  <h2>总览地图 · 三层范围总览 · Site Overview</h2>
+  <p>统筹研究范围 <span data-metric="research_area_sqm" data-value="43600000">43 600 000 m²</span> · 总体设计范围 <span data-metric="site_area_sqm" data-value="11412825">11 412 825 m²</span> · 重点区域 <span data-metric="key_area_total_sqm" data-value="3684000">3 684 000 m²</span>。</p>
+  <figure>
+    <img src="../assets/figures/site-overview.png" alt="site overview">
+    <figcaption>图1 京张智脉 · 总体概念与三层范围总览（provisional boundary，非官方红线）</figcaption>
+  </figure>
+</section>
+
+<section id="structure">
+  <h2>用地分区与空间结构 · Land-Use & Structure</h2>
+  <p><strong>京张智脉</strong> 以「一轴·三区·两翼·五脉」组织空间。</p>
+  <figure>
+    <img src="../assets/figures/land-use-structure.png" alt="land use structure">
+    <figcaption>图2 用地布局与三层范围空间框架（用地覆盖率 <span data-metric="land_use_coverage" data-value="1.0">1.0</span>）</figcaption>
+  </figure>
+</section>
+
+<section id="key-areas">
+  <h2>三处重点区域 · Key Areas</h2>
+  <p>重点区域总面积 <span data-metric="key_area_total_sqm" data-value="3684000">3 684 000 m²</span>，共 <span data-metric="key_area_count" data-value="3">3</span> 处，达到规划综合实施方案深度。</p>
+  <figure>
+    <img src="../assets/figures/key-areas.png" alt="key areas">
+    <figcaption>图3 三处重点区域索引与设计任务</figcaption>
+  </figure>
+</section>
+
+<section id="mobility">
+  <h2>交通慢行与蓝绿公共空间 · Mobility & Blue-Green</h2>
+  <p>公共空间面积 <span data-metric="public_space_area_sqm" data-value="1187828">1 187 828 m²</span>（占比 <span data-metric="public_space_ratio" data-value="0.104078">10.4%</span>），绿地面积 <span data-metric="green_space_area_sqm" data-value="1116124">1 116 124 m²</span>（占比 <span data-metric="green_ratio" data-value="0.097796">9.8%</span>）。</p>
+  <figure>
+    <img src="../assets/figures/mobility-bluegreen.png" alt="mobility and blue-green">
+    <figcaption>图4 交通慢行与蓝绿公共空间复合系统</figcaption>
+  </figure>
+</section>
+
+<section id="buildings">
+  <h2>建筑规模与风貌 · Buildings</h2>
+  <p>总建筑规模（概念口径） <span data-metric="building_total_floor_area_sqm" data-value="24841605">24 841 605 m²</span> ㎡；用地以五类全覆盖、无重叠无空白。建筑高度与风貌为方向性引导，避免把具体地块写入审定结论。</p>
+</section>
+
+<section id="metrics-evidence">
+  <h2>指标复算证据链 · Evidence</h2>
+  <figure>
+    <img src="../assets/figures/metrics-evidence.png" alt="metrics evidence">
+    <figcaption>图5 核心指标复算与证据链</figcaption>
+  </figure>
+</section>
+
+<section id="cases">
+  <h2>全球案例 · <span data-metric="ai_ecosystem_case_count" data-value="7">7</span> 个 AI 创新生态参考</h2>
+  <ul class="case-list">
+    <li><strong>Station F</strong> <em>(Paris, FR)</em> — 废弃车站改造为最大创业社区，启示铁路遗产建筑可转为 AI 孵化与开放协作空间。</li>
+<li><strong>MaRS Discovery District</strong> <em>(Toronto, CA)</em> — 医院—大学—产业毗邻的创新区，启示医工交叉 AI 场景就近落地。</li>
+<li><strong>Kendall Square</strong> <em>(Boston, US)</em> — MIT 周边高密度创新街区，启示近校型『AI 原点』人才特区与转化区。</li>
+<li><strong>Hetao S&T Zone</strong> <em>(Shenzhen, CN)</em> — 跨境制度型开放，启示数据要素与跨境科研的合规流通机制。</li>
+<li><strong>EU AI Regulatory Sandbox</strong> <em>(Helsinki / EU)</em> — 监管与创新并行，启示 AI 治理全球话语权与测试验证场景。</li>
+<li><strong>Punggol Digital District</strong> <em>(Singapore, SG)</em> — 数字城区与大学共生，启示分布式算力与新城职住平衡。</li>
+<li><strong>Mission Bay</strong> <em>(San Francisco, US)</em> — 生物+AI 产学研一体，启示复合功能与轨道站点一体化。</li>
+  </ul>
+</section>
+
+<section id="personas">
+  <h2>用户画像 · <span data-metric="persona_count" data-value="5">5</span> 类核心人群</h2>
+  <div class="persona-grid">
+    <div class="persona"><h4>AI 研究者 / 科学家</h4><p>算力、数据、协作网络、国际交流</p><p class="scenarios">场景：S1, S9, S12</p></div>
+<div class="persona"><h4>AI 创业者</h4><p>孵化空间、资本、场景验证、人才</p><p class="scenarios">场景：S2, S3, S11</p></div>
+<div class="persona"><h4>高校青年学生</h4><p>学习伙伴、实习、低成本的创新氛围</p><p class="scenarios">场景：S4, S8, S7</p></div>
+<div class="persona"><h4>在地社区居民与家庭</h4><p>无障碍、养老、生活服务、蓝绿空间</p><p class="scenarios">场景：S6, S10, S8</p></div>
+<div class="persona"><h4>城市治理与运营者</h4><p>运行可见、合规、可持续运营</p><p class="scenarios">场景：S12, S7, S9</p></div>
+  </div>
+</section>
+
+<section id="scenarios">
+  <h2>AI 场景卡 · <span data-metric="scenario_card_count" data-value="12">12</span> 张（含 <span data-metric="scenario_test_count" data-value="3">3</span> 张产业测试验证）</h2>
+  <div class="scenario-grid">
+    <div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S1</span><span class="badge test">产业测试</span></div>
+  <h4>AI+医疗影像与诊断验证沙盒</h4>
+  <p class="sc-meta">AI+医疗 · 众智园/清河</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>脱敏数据、院内闭环</p>
+  <p class="sc-review"><strong>复核：</strong>医师复核</p>
+  <p class="sc-op"><strong>运营：</strong>医疗机构+平台</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S2</span><span class="badge test">产业测试</span></div>
+  <h4>自动驾驶/无人配送封闭测试段</h4>
+  <p class="sc-meta">AI+交通 · 主轴低速廊道</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>车端匿名</p>
+  <p class="sc-review"><strong>复核：</strong>远程监控+安全员</p>
+  <p class="sc-op"><strong>运营：</strong>测试主体+管委会</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S3</span><span class="badge test">产业测试</span></div>
+  <h4>机器人巡检与服务测试场</h4>
+  <p class="sc-meta">机器人 · 园区/公园</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>视频本地化</p>
+  <p class="sc-review"><strong>复核：</strong>人工接管</p>
+  <p class="sc-op"><strong>运营：</strong>服务机器人企业</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S4</span><span class="badge scene">场景</span></div>
+  <h4>AI+教育个性化学习伙伴</h4>
+  <p class="sc-meta">AI+教育 · 高校周边</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>未成年人保护</p>
+  <p class="sc-review"><strong>复核：</strong>教师与家长</p>
+  <p class="sc-op"><strong>运营：</strong>教育科技</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S5</span><span class="badge scene">场景</span></div>
+  <h4>AI+法律服务助手</h4>
+  <p class="sc-meta">AI+法律 · 中关村法务集群</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>案件脱敏</p>
+  <p class="sc-review"><strong>复核：</strong>律师复核</p>
+  <p class="sc-op"><strong>运营：</strong>法律科技</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S6</span><span class="badge scene">场景</span></div>
+  <h4>AI+生活服务（无障碍/养老/家政）</h4>
+  <p class="sc-meta">AI+生活服务 · 社区</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>家庭隐私边界</p>
+  <p class="sc-review"><strong>复核：</strong>人工客服</p>
+  <p class="sc-op"><strong>运营：</strong>生活服务平台</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S7</span><span class="badge scene">场景</span></div>
+  <h4>AI+信号自适应与慢行导航</h4>
+  <p class="sc-meta">AI+交通 · 微循环</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>轨迹匿名聚合</p>
+  <p class="sc-review"><strong>复核：</strong>交通部门</p>
+  <p class="sc-op"><strong>运营：</strong>交通运行中心</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S8</span><span class="badge scene">场景</span></div>
+  <h4>公共空间 AI 导览与遗产叙事</h4>
+  <p class="sc-meta">文化 · 铁路遗址公园</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>无采集</p>
+  <p class="sc-review"><strong>复核：</strong>内容审核</p>
+  <p class="sc-op"><strong>运营：</strong>文化运营</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S9</span><span class="badge scene">场景</span></div>
+  <h4>分布式能源与端侧算力调度</h4>
+  <p class="sc-meta">新型基础设施 · 全域</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>能耗数据</p>
+  <p class="sc-review"><strong>复核：</strong>市政复核</p>
+  <p class="sc-op"><strong>运营：</strong>能源/算力运营商</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S10</span><span class="badge scene">场景</span></div>
+  <h4>无人清洁与蓝绿养护</h4>
+  <p class="sc-meta">公共空间 · 公园</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>无采集</p>
+  <p class="sc-review"><strong>复核：</strong>园林部门</p>
+  <p class="sc-op"><strong>运营：</strong>环卫/园林</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S11</span><span class="badge scene">场景</span></div>
+  <h4>AI 艺术共创（北影资源）</h4>
+  <p class="sc-meta">文化 · 北影周边</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong>版权确权</p>
+  <p class="sc-review"><strong>复核：</strong>艺术审核</p>
+  <p class="sc-op"><strong>运营：</strong>文化机构</p>
+</div><div class="scenario-card">
+  <div class="sc-head"><span class="sc-id">S12</span><span class="badge scene">场景</span></div>
+  <h4>城市智能体运行驾驶舱</h4>
+  <p class="sc-meta">治理 · 智脉之眼</p>
+  <p class="sc-privacy"><strong>隐私边界：</strong> aggregated only</p>
+  <p class="sc-review"><strong>复核：</strong>治理委员会</p>
+  <p class="sc-op"><strong>运营：</strong>运行平台</p>
+</div>
+  </div>
+</section>
+
+<section id="landmarks">
+  <h2>AI 朝圣地标 · <span data-metric="landmark_count" data-value="4">4</span> 个荣誉节点</h2>
+  <div class="landmark-grid">
+    <div class="landmark"><h4>L1 清华园站·AI 原点灯塔</h4><p>铁路原点+AI 原点双重象征，改造遗址站房为开放灯塔与展示厅</p><p class="relation"><strong>关联：</strong>京张遗址公园、中关村创新文化、开发者社区</p></div>
+<div class="landmark"><h4>L2 开发者朝圣步道与荣誉墙</h4><p>沿主轴镌刻贡献者与 Agent 名称，呼应永久纪念体系</p><p class="relation"><strong>关联：</strong>公共空间系统、征集纪念体系</p></div>
+<div class="landmark"><h4>L3 智脉之眼·城市智能体指挥中心</h4><p>可观演一带运行数据，呼应 AI 治理全球话语权</p><p class="relation"><strong>关联：</strong>治理、数据要素、国际传播</p></div>
+<div class="landmark"><h4>L4 北影·AI 艺术光塔（延展）</h4><p>以艺术资源强化文化脉</p><p class="relation"><strong>关联：</strong>京张文化、AI 新文化</p></div>
+  </div>
+</section>
+
+<section id="renewal">
+  <h2>更新项目与分期实施 · Renewal & Phasing</h2>
+  <p>共 <span data-metric="renewal_project_count" data-value="9">9</span> 项更新项目，按近/中/长三期推进。</p>
+  <table>
+    <thead><tr><th>分期</th><th>年限</th><th>项目</th><th>类型</th><th>位置</th><th>主体</th><th>政策</th></tr></thead>
+    <tbody>
+      <tr><td>近期 Near-term</td><td>1–2 年</td><td>遗产步道与荣誉墙</td><td>遗产活化</td><td>主轴</td><td>管委会+社区</td><td>低扰动有机更新</td></tr><tr><td>近期 Near-term</td><td>1–2 年</td><td>3–5 个试点场景开放</td><td>场景开放</td><td>三区</td><td>平台企业</td><td>沙盒监管</td></tr><tr><td>近期 Near-term</td><td>1–2 年</td><td>微循环断点修补</td><td>交通修补</td><td>五道口/大钟寺</td><td>交通运行中心</td><td>慢行优先</td></tr><tr><td>中期 Mid-term</td><td>3–5 年</td><td>三处重点区更新</td><td>更新实施</td><td>三区</td><td>实施主体</td><td>控规深化</td></tr><tr><td>中期 Mid-term</td><td>3–5 年</td><td>场景开放运营平台</td><td>平台运营</td><td>全域</td><td>运营公司</td><td>数据合规</td></tr><tr><td>中期 Mid-term</td><td>3–5 年</td><td>轨道站点一体化</td><td>交通一体化</td><td>WDK/DZS</td><td>轨道集团</td><td>站城一体</td></tr><tr><td>长期 Long-term</td><td>5–10 年</td><td>全域智脉运营</td><td>长期运营</td><td>全域</td><td>运营联盟</td><td>品牌资产沉淀</td></tr><tr><td>长期 Long-term</td><td>5–10 年</td><td>全球品牌建设</td><td>国际传播</td><td>全球</td><td>传播机构</td><td>国际传播</td></tr><tr><td>长期 Long-term</td><td>5–10 年</td><td>持续招引转化</td><td>招引转化</td><td>全域</td><td>招商专班</td><td>人才—企业—开发者漏斗</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="task-coverage">
+  <h2>任务覆盖 · Task Coverage</h2>
+  <p>本方案覆盖征集任务的六大方向：定位（三定位）、功能（五功能）、空间（一轴·三区·两翼·五脉）、场景（12 张 AI 场景卡，含 3 张产业测试验证）、实施（近/中/长三期更新项目）、运营（长期品牌与开发者社区）。</p>
+</section>
+
+<section id="selfcheck">
+  <h2>自检状态 · Self-Check</h2>
+  <p>0/17 checks passed — 详见 <code>self_check.json</code>。</p>
+</section>
+
+<section id="sources">
+  <h2>来源与版权 · Sources</h2>
+  <p>本包引用公开/清权资料共 10 项，完整索引见 <code>sources.json</code>：</p>
+  <ul class="case-list">
+    <li><code>SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK</code> — 面向全球智能体开展“百年京张AI创新带城市设计开源征集”的任务书摘录</li>
+<li><code>SRC-PROVISIONAL-BOUNDARIES-2026</code> — 百年京张AI创新带临时粗略边界与三处重点区 polygon</li>
+<li><code>SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT</code> — 百年京张AI创新带城市设计国际方案征集资格预审公告</li>
+<li><code>SRC-2026-BJ-KW-THREE-AREAS-WINGS</code> — “三区两翼”打造世界级AI集聚地</li>
+<li><code>SRC-2017-MOHURD-URBAN-DESIGN-MEASURES</code> — 城市设计管理办法</li>
+<li><code>SRC-MOHURD-CONTROL-DETAILED-PLANNING</code> — 城市、镇控制性详细规划编制审批办法</li>
+<li><code>SRC-2026-HAIDIAN-1X1</code> — 海淀区发布“1+X+1”现代化产业体系建设布局</li>
+<li><code>SRC-2023-MNR-LAND-USE-CLASSIFICATION</code> — 自然资源部关于印发《国土空间调查、规划、用途管制用地用海分类指南》的通知</li>
+<li><code>SRC-OSM-COPYRIGHT</code> — OpenStreetMap Copyright and License</li>
+<li><code>SRC-PKG-GENERATED-GEOMETRY-2026</code> — 本方案基于临时边界生成的概念性几何与指标</li>
+  </ul>
+</section>
+
+<section id="assumptions">
+  <h2>关键假设 · Assumptions</h2>
+  <ul class="case-list">
+    <li>{&quot;assumption_id&quot;: &quot;A-001&quot;, &quot;statement_zh&quot;: &quot;场地边界采用仓库维护者提供的临时粗略边界（provisional），面积与几何为概念口径，待官方红线替换后重算。&quot;, &quot;related_files&quot;: [&quot;geometry/site_boundary.geojson&quot;, &quot;metrics.json&quot;]}</li>
+<li>{&quot;assumption_id&quot;: &quot;A-002&quot;, &quot;statement_zh&quot;: &quot;建筑总规模按概念容积率区间估算，缺少现状普查与控规指标，标注待确认。&quot;, &quot;related_files&quot;: [&quot;metrics.json&quot;, &quot;geometry/buildings.geojson&quot;]}</li>
+<li>{&quot;assumption_id&quot;: &quot;A-003&quot;, &quot;statement_zh&quot;: &quot;拆改留分类为概念建议，缺少现状建筑与权属资料，不作审定结论。&quot;, &quot;related_files&quot;: [&quot;geometry/buildings.geojson&quot;, &quot;proposal.md&quot;]}</li>
+<li>{&quot;assumption_id&quot;: &quot;A-004&quot;, &quot;statement_zh&quot;: &quot;分布式能源、端侧算力与传统市政的融合容量为方向性，具体负荷待专业测算。&quot;, &quot;related_files&quot;: [&quot;geometry/constraints.geojson&quot;, &quot;proposal.md&quot;]}</li>
+<li>{&quot;assumption_id&quot;: &quot;A-005&quot;, &quot;statement_zh&quot;: &quot;官方精确红线、现状建筑、权属、控规指标尚未公开，相关结论为待确认事项。&quot;, &quot;related_files&quot;: [&quot;compliance_matrix.json&quot;, &quot;design_depth_matrix.json&quot;]}</li>
+<li>{&quot;assumption_id&quot;: &quot;A-006&quot;, &quot;statement_zh&quot;: &quot;AI 场景技术成熟度不一，部署按沙盒—试点—推广分阶段，未成熟技术不写为已全面部署。&quot;, &quot;related_files&quot;: [&quot;proposal.md&quot;, &quot;visual/index.html&quot;]}</li>
+<li>{&quot;assumption_id&quot;: &quot;A-007&quot;, &quot;statement_zh&quot;: &quot;年度活动、招商、资金与政策均写为概念建议或深化方向，不表述为已确定政府安排。&quot;, &quot;related_files&quot;: [&quot;proposal.md&quot;, &quot;compliance_matrix.json&quot;]}</li>
+  </ul>
+</section>
+
+<section id="culture">
+  <h2>文化叙事 · Culture Narrative</h2>
+  <p><strong>历史文脉：</strong>京张铁路（詹天佑，1909，中国人自主设计第一条干线铁路）</p>
+  <p><strong>创新文脉：</strong>中关村改革开放创新文化</p>
+  <p><strong>AI 新文化：</strong>AI 新文化（人机协同、开放、可进化）</p>
+  <p><strong>叙事主线：</strong>空间叙事从清华园站的『原点』出发，沿铁路遗产走向未来：文脉（历史）—智脉（创新）—生活脉（人本）三段递进；导视与符号系统独立于整体 Logo，文化标识不与一带 Logo 混淆。</p>
+</section>
+
+<section id="operation">
+  <h2>长期运营 · Long-term Operation</h2>
+  <p><strong>品牌 IP：</strong>Smart Artery Global 品牌 IP：统一视觉、年度发布、荣誉体系。</p>
+  <p><strong>开发者社区：</strong>开源贡献榜、Agent 荣誉墙、线下朝圣徒步。</p>
+  <p><strong>场景开放：</strong>open scenario sandbox：场景申请—沙盒测试—合规上线—持续优化。</p>
+  <p><strong>转化漏斗：</strong>人才—企业—开发者转化漏斗：实习/孵化→落地→招引。</p>
+  <ul>
+    <li>京张 AI 节 · Jingzhang AI Festival</li><li>开发者大会 · Developer Conference</li><li>全球 AI 治理论坛 · Global AI Governance Forum</li><li>开放场景挑战赛 · Open Scenario Challenge</li>
+  </ul>
+</section>
+
+<footer>
+  <p>Generated by WorkBuddy Urban Design Agent · AaronWong1999 · 迭代 v1.0</p>
+  <p>Package: jingzhang-smart-artery · Source package ref: open-city-ai/haidian/tree/main/skills/urban-design-ai-submission</p>
+</footer>
+</body>
+</html>

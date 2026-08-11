@@ -16,7 +16,31 @@
       "participating_roles": [
         "site_and_data_stewardship_role",
         "transport_and_accessibility_review_role",
-        "community_liaison_role"
+        "community_liaison_role",
+        "proposed_transport_authority_or_designated_organizer_role",
+        "proposed_subdistrict_public_participation_role",
+        "proposed_disabled_persons_federation_or_qualified_accessibility_role",
+        "proposed_older_person_representative_role"
+      ],
+      "evidence_sequence": [
+        {
+          "step_id": "P0-a",
+          "action": "public_notice_and_comment_response_ledger",
+          "role_status": "proposed_roles_not_confirmed_or_assigned",
+          "unblocks": ["resident_daily_trip_access_index", "mobility_service_complaint_closure_hours"]
+        },
+        {
+          "step_id": "P0-b",
+          "action": "dated_grouped_od_and_mode_counts",
+          "role_status": "proposed_roles_not_confirmed_or_assigned",
+          "unblocks": ["enterprise_commute_demand_baseline", "external_commute_od_baseline", "employer_multimodal_trip_rate"]
+        },
+        {
+          "step_id": "P0-c",
+          "action": "accessibility_and_people_flow_walkthrough_with_age_friendly_participation",
+          "role_status": "proposed_roles_not_confirmed_or_assigned",
+          "unblocks": ["accessible_route_completion_ratio", "first_last_mile_transfer_reliability", "person_flow_conflict_rate"]
+        }
       ],
       "entry_evidence": [
         "provisional geometry revision is recorded",
@@ -102,5 +126,57 @@
       ]
     }
   ],
+  "optional_community_crosswalk": {
+    "source_id": "SWITCHBACK-PROTOCOL-1119",
+    "source_url": "https://github.com/open-city-ai/haidian/issues/1119",
+    "adoption_status": "reference_only_not_repository_standard",
+    "license_boundary": "The issue states CC-BY-4.0 for the protocol specification, but this package does not copy the current machine file or relicense any package asset. Preserve attribution if the protocol itself is redistributed.",
+    "numeric_defaults_imported": false,
+    "status_mapping": [
+      {
+        "package_state": "not_authorized_not_run",
+        "reference_readiness": "candidate_or_virtual_evaluation",
+        "allowed_action": "replay fields and fallback logic only; do not start a pilot"
+      },
+      {
+        "package_state": "controlled_by_gate",
+        "reference_readiness": "yellow_controlled_pilot",
+        "allowed_action": "advance only after dated P0 evidence, accountable roles and an independent stop reviewer"
+      },
+      {
+        "package_state": "blocked_until_evidence",
+        "reference_readiness": "red_switchback",
+        "allowed_action": "return to P0, ordinary public transport and human service, with a public aggregate reason"
+      },
+      {
+        "package_state": "unknown",
+        "reference_readiness": "no_ready_state",
+        "allowed_action": "keep the field unknown; never infer normal operation from a synthetic or policy source"
+      }
+    ],
+    "field_crosswalk": [
+      {
+        "reference_component": "status_and_gate",
+        "package_fields": ["visual/assets/mobility-pilot-readiness.json", "visual/assets/pilot-startup-checklist.json"],
+        "boundary": "The package's readiness and phase fields remain authoritative for mobility."
+      },
+      {
+        "reference_component": "human_takeover_and_fallback",
+        "package_fields": ["visual/assets/mobility-tabletop-contract.json", "visual/assets/implementation-operation-contract.json"],
+        "boundary": "Tabletop PASS is not a staffing, response-time or safety result."
+      },
+      {
+        "reference_component": "review_appeal_and_write_back",
+        "package_fields": ["visual/assets/mobility-pilot-readiness.json", "visual/assets/site-and-stakeholder-evidence.json", "proposal.md#风险、版权与合规说明"],
+        "boundary": "Dates, owners, deletion proof and appeal records remain unknown until authorized."
+      }
+    ],
+    "applied_card_scope": {
+      "package_cards": "M-01 through M-10",
+      "reference_role": "cross-scheme vocabulary for review and switchback only",
+      "all_current_cards": "not_authorized_not_run",
+      "write_back_rule": "Any future authorized change must update the scenario card, evidence record, review decision and changelog together."
+    }
+  },
   "boundary": "No phase asserts a confirmed institution, contract, budget, permit, local baseline, operating result or construction approval."
 }

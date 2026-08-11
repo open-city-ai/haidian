@@ -395,11 +395,11 @@
   },
   "timetable_field_count": {
    "status": "known",
-   "value": 10,
+   "value": 12,
    "source_files": [
     "visual/assets/timetable.schema.json"
    ],
-   "formula": "count(required fields in service timetable schema)",
+   "formula": "count(required fields in service timetable schema, incl. version_binding & probe_policy)",
    "confidence": "high"
   },
   "service_gate_count": {
@@ -449,6 +449,56 @@
    "confidence": "medium",
    "assumptions": [
     "临时粗略边界, 不作官方红线或精确面积依据; official polygon 到位后全量重算"
+   ]
+  },
+  "drill_check_total": {
+   "status": "known",
+   "value": 12,
+   "unit": null,
+   "source_files": [
+    "visual/assets/timecheck-tabletop-evidence.json",
+    "visual/assets/baseline-replay-evidence.json",
+    "visual/assets/evolution-probes-evidence.json"
+   ],
+   "formula": "sum(checks across three deterministic drill suites: 6+3+3)",
+   "confidence": "high",
+   "assumptions": [
+    "演练为本地合成确定性复演, 不代表真实运营"
+   ]
+  },
+  "baseline_replay_check_count": {
+   "status": "known",
+   "value": 3,
+   "unit": null,
+   "source_files": [
+    "visual/assets/baseline-replay-evidence.json"
+   ],
+   "formula": "count(E1-E3 checks)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "evolution_probe_check_count": {
+   "status": "known",
+   "value": 3,
+   "unit": null,
+   "source_files": [
+    "visual/assets/evolution-probes-evidence.json"
+   ],
+   "formula": "count(E4-E6 checks)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "probe_template_count": {
+   "status": "known",
+   "value": 4,
+   "unit": null,
+   "source_files": [
+    "visual/assets/probe-classes-fixture.json"
+   ],
+   "formula": "count(probe templates in drill fixture)",
+   "confidence": "high",
+   "assumptions": [
+    "演练模板; 生产探针由受约束校时agent在人工核准类别内生成"
    ]
   }
  }

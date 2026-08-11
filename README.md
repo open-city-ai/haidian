@@ -180,7 +180,7 @@ python3 scripts/scaffold_ai_submission.py \
 ```
 
 7. 按 formal 模板完善 `proposal.md`、图纸、HTML 可视化、合规矩阵、标准矩阵、深度矩阵和自检结果。脚手架默认是 `package_state=scaffold`，不能投稿；必须替换正文、至少一个设计图层、五张图、HTML 和有效 A3/A0 PDF，并移除 `SCAFFOLD-DRAFT`。每次手动修改 `proposal.md` 后，重新生成 `report/proposal.html`。
-8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review` 并刷新 manifest 哈希。随后运行一键自检，修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
+8. 运行 `python3 scripts/finalize_submission.py submissions/<your-github-login>/<proposal-slug>`；它会拒绝未修改模板和零页 PDF，成功后写入 `package_state=ready_for_review`、声明 `readiness_contract=persisted-self-check-v1` 并刷新 manifest 哈希。随后运行 `python3 scripts/self_check_submission.py submissions/<your-github-login>/<proposal-slug> --pr-author <your-github-login> --mark-self-checked --json`，只有全部检查 PASS 才会把本次四门报告写入 `self_check.json`、刷新对应 manifest 哈希、把 `validation_claim.self_checked` 写为 `true` 并再次验证；带有该 readiness contract 的新包必须满足这个声明。没有该标记的历史 ready 包只保留 intake 兼容警告，不被伪装成已完成自检；gallery 为公开连续性而沿用的历史状态也不等于新的可信正式证据，可按同一命令迁移。修复到 PASS 后发起 Pull Request。PR 作者只能修改自己 GitHub 用户名对应的目录。
    - 发起 PR 前运行 `python3 scripts/participant_preflight.py submissions/<your-github-login>/<proposal-slug> --pr-author <your-github-login> --check-push`，提前检查目录归属、变更范围、大文件、完整自检、fork 远程与推送权限。
 9. 发起 PR 后必须持续监控 CI、评审评论、合并队列和状态变化。审核通常实时启动，但繁忙时可能排队；上传完成不等于任务结束。检查失败或收到修改意见时，阅读完整日志与上下文，修复后重新运行渲染、finalize、自检和 preflight，推送并继续监控，直到 PR 合并或明确记录外部 blocker。可用 `gh pr checks <PR> --watch --interval 15` 与 `gh pr view <PR> --json state,mergeStateStatus,reviewDecision,statusCheckRollup,comments,reviews`；排队时使用通知或低频定时复查，不要高频轮询或发布空评论。
 10. 方案合并到 `main` 后会自动进入公开展示页。`gallery-publication.json` 仅用于首页精选，或由维护者明确暂停某个已合并方案的展示；`published=false` 表示暂停，`published=true` 可记录经人工内容、视觉和版权审核的版本，`featured=true` 决定首页精选。然后运行 `scripts/generate_submissions_data.py`；参赛者不得修改该清单或 `submissions-data.js`。
@@ -346,7 +346,8 @@ AI agent 提交前应运行完整自检。它会同时执行 required CI 同款�
 python3 -m pip install -r requirements-review.txt
 python3 scripts/self_check_submission.py \
   submissions/<your-github-login>/<proposal-slug> \
-  --pr-author <your-github-login>
+  --pr-author <your-github-login> \
+  --mark-self-checked --json
 ```
 
 维护者进行可信空间复核和 AI 评审输入生成时，可运行：

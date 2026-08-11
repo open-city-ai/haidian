@@ -9,12 +9,12 @@ translation_of: "proposal.md"
 license: "CC-BY-4.0"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
-iteration: "v0.7"
+iteration: "v1.7"
 ---
 
 # From an AI Showcase to a City for People in the AI Era
 
-**Candidate name in this submission: JINGZHANG HUMAN-CENTRIC AI COMMONS / 京张人本智城带.** This conceptual reference scheme places AI within public rules. Every AI scenario first addresses entry, understanding, refusal, appeal, and the right to co-shape the city, then considers how technology may participate. It joins a human buffer, a machine-callable but publicly governed civic API, institutional safeguards, and versioned governance. It does not claim a statutory plan, official brand, approval, construction feasibility, investment, confirmed policy, or delivered service. [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:overall_spatial_structure]
+**Candidate name in this submission: JINGZHANG HUMAN-CENTRIC AI COMMONS / `京张人本智城带`.** This conceptual reference scheme places AI within public rules. Every AI scenario first addresses entry, understanding, refusal, appeal, and the right to co-shape the city, then considers how technology may participate. It joins a human buffer, a machine-callable but publicly governed civic API, institutional safeguards, and versioned governance. It does not claim a statutory plan, official brand, approval, construction feasibility, investment, confirmed policy, or delivered service. [source:AGENT-TASKBOOK] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:overall_spatial_structure]
 
 ## One-page executive brief: prove one public task chain before scaling the belt
 
@@ -32,7 +32,7 @@ The package claims only a G0 conceptual evidence chain; G1/G2 still require fiel
 
 ## Design Basis and Source List
 
-Formal evidence is limited to the locally registered announcement, cleared taskbook, local standard snapshots, and land-use guide. Sources marked unregistered_background_only are retained only to frame questions; none may become local boundary, control, score, or implementation evidence. [source:SOURCE-REGISTRY] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [data:geometry/site_boundary.geojson#PROV-SITE-001]
+Formal evidence is limited to the locally registered announcement, cleared taskbook, local standard snapshots, and land-use guide. Sources marked unregistered_background_only are retained only to frame questions; none may become local boundary, control, score, or implementation evidence. [source:OFFICIAL-ANNOUNCEMENT] [source:SOURCE-REGISTRY] [standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [data:geometry/site_boundary.geojson#PROV-SITE-001]
 
 ### 1. Evidence hierarchy and public-task boundary
 
@@ -49,7 +49,7 @@ The package keeps formal basis, conceptual exploration and “ready to start” 
 
 The review rule is: `provisional`, `unknown`, `design_target` and `not_authorized_not_run` remain in those states. A local runner PASS proves only that a package structure or state machine can be replayed; it does not become field evidence, professional approval, a government implementation finding or an official score.
 
-No publicly verifiable precise official geometry is supplied. The package therefore declares official_boundary=false, geometry_role=provisional_constraint, and boundary_precision=provisional_rough. The EPSG:4548 calculation of 11,412,825.386 sqm is a temporary layer denominator only, never an official redline or legal area. [metric:site_area_sqm] [depth:risk_missing_data]
+No publicly verifiable precise official geometry is supplied. The package therefore declares official_boundary=false, geometry_role=provisional_constraint, and boundary_precision=provisional_rough. The EPSG:4548 calculation of 11,412,825.386 sqm is a temporary layer denominator only, never an official redline or legal area. [metric:site_area_sqm] [depth:risk_missing_data] [data:geometry/key_areas.geojson#PROV-KEY-001]
 
 ## Three-Level Scope Framework
 
@@ -59,25 +59,25 @@ The candidate identity uses the belt name, Commons Nodes, the JINGZHANG COMMONS 
 
 ## Coordinated Research Area: Industry and Future City Research
 
-The strategy adds a human life-and-rights layer to supply-side and showcase narratives: community retention and small-business negotiation; a voluntary reskilling corridor; accessible analog and digital service; night service and screen-free green space; a governed civic API; reversible use; and versioned review. IMF and WEF figures are international context only, not local employment facts. [source:IMF-AI-JOBS-2024] [source:WEF-FUTURE-JOBS-2025] [metric:manual_fallback_coverage_ratio]
+The strategy adds a human life-and-rights layer to supply-side and showcase narratives: community retention and small-business negotiation; a voluntary reskilling corridor; accessible analog and digital service; night service and screen-free green space; a governed civic API; reversible use; and versioned review. IMF and WEF figures are international context only, not local employment facts. [data:geometry/public_space.geojson#PUBLIC-01] [data:geometry/public_space.geojson#PUBLIC-03] [source:IMF-AI-JOBS-2024] [source:WEF-FUTURE-JOBS-2025] [source:WORKFORCE-95000-MEDIA] [metric:manual_fallback_coverage_ratio]
 
-Six comparative cases—Helsinki 3D, Amsterdam TADA, Barcelona DECODE, Singapore Seniors Go Digital, one-north, and the Toronto civic-data discussion—are explicitly unregistered background. They generate transfer questions rather than imported answers: model versioning, data rights, human support, walkable research-life relations, public legitimacy, and exit. [source:CASE-HELSINKI-3D] [source:CASE-AMSTERDAM-TADA] [depth:coordinated_research_strategy]
+Six comparative cases—Helsinki 3D, Amsterdam TADA, Barcelona DECODE, Singapore Seniors Go Digital, one-north, and the Toronto civic-data discussion—are explicitly unregistered background. They generate transfer questions rather than imported answers: model versioning, data rights, human support, walkable research-life relations, public legitimacy, and exit. [source:CASE-HELSINKI-3D] [source:CASE-AMSTERDAM-TADA] [source:AGENT-TASKBOOK] [depth:coordinated_research_strategy] [depth:regional_collaboration]
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-The conceptual structure is one belt, three cores, two wings, and four spillovers. Zhongzhiyuan frames full-stack problem work and shared labs; the AI-origin community frames retention, reskilling, and intergenerational learning; Dazhongsi frames explainable service and cultural exchange. The Zhongguancun service wing handles knowledge and soft international support; the Xiaoyuehe wing frames blue-green resilience and observable human-machine rules. [source:AGENT-TASKBOOK] [data:geometry/key_areas.geojson#PROV-KEY-002] [depth:overall_spatial_structure]
+The conceptual structure is one belt, three cores, two wings, and four spillovers. Zhongzhiyuan frames full-stack problem work and shared labs; the AI-origin community frames retention, reskilling, and intergenerational learning; Dazhongsi frames explainable service and cultural exchange. The Zhongguancun service wing handles knowledge and soft international support; the Xiaoyuehe wing frames blue-green resilience and observable human-machine rules. [source:AGENT-TASKBOOK] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/land_use.geojson#LAND-05] [data:geometry/constraints.geojson#SCN-06] [data:geometry/constraints.geojson#SCN-07] [depth:overall_spatial_structure]
 
-Seven land-use polygons are generated by shared cuts, covering the submitted provisional scope without gaps or overlaps. They are recomputable conceptual structure, not approved land use. A reversible-blank-use band allows rules and public services to be tested before irreversible commitments. [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [data:geometry/land_use.geojson#LAND-05] [metric:land_use_coverage_ratio]
+Seven land-use polygons are generated by shared cuts, covering the submitted provisional scope without gaps or overlaps. They are recomputable conceptual structure, not approved land use. A reversible-blank-use band allows rules and public services to be tested before irreversible commitments. [source:MNR-LAND-USE-CLASSIFICATION-GUIDE] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] [data:geometry/land_use.geojson#LAND-05] [metric:land_use_coverage_ratio]
 
 The energy chapter is a research gate, not an engineering claim. A Beijing public document describes differential pricing from 2026 for existing data centres above PUE 1.35; other background material discusses intelligent-compute efficiency. The user-supplied PUE≤1.3 and green-power≥30% lead is not used as a local control because it is not formally verified in the registry. [source:BEIJING-DATACENTER-2024] [source:BEIJING-COMPUTE-2024] [depth:energy_coordination]
 
 ## Detailed Design of Key Areas
 
-Zhongzhiyuan is a problem–protocol–shared-lab concept: an open problem register, reviewable civic-API protocol, human override, and release note before any real data connection. The AI-origin community is a retention–learning–care sequence with a negotiation hall, reskilling living room, intergenerational court, and night-service node. Dazhongsi uses a cultural–business–explainable-service prototype with staffed service, explainable digital service, and retractable display. [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/public_space.geojson#PUBLIC-02] [metric:reskilling_path_count]
+Zhongzhiyuan is a problem–protocol–shared-lab concept: an open problem register, reviewable civic-API protocol, human override, and release note before any real data connection. The AI-origin community is a retention–learning–care sequence with a negotiation hall, reskilling living room, intergenerational court, and night-service node. Dazhongsi uses a cultural–business–explainable-service prototype with staffed service, explainable digital service, and retractable display. [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003] [data:geometry/constraints.geojson#SCN-06] [data:geometry/public_space.geojson#PUBLIC-02] [metric:api_governance_gate_count] [metric:reskilling_path_count] [depth:key_area_detailed_design]
 
-Three low-scale pilgrimage landmarks are the Open Problem Mile Marker, Algorithm Calibration Court, and Human Override Beacon. They display question versions, human revisions, and withdrawal rights, with no role for celebrity, ranking, or monumentality. The Jingzhang heritage-park public-space sequence, east–west stitching, and north–south link are conceptual wayfinding, walking, and blue-green research strategies. They do not establish bridge, tunnel, underground, or construction conclusions. [data:geometry/public_space.geojson#PUBLIC-05] [standard:MOHURD-URBAN-DESIGN-MEASURES] [metric:landmark_count]
+Three low-scale pilgrimage landmarks are the Open Problem Mile Marker, Algorithm Calibration Court, and Human Override Beacon. They display question versions, human revisions, and withdrawal rights, with no role for celebrity, ranking, or monumentality. The Jingzhang heritage-park public-space sequence, east–west stitching, and north–south link are conceptual wayfinding, walking, and blue-green research strategies. They do not establish bridge, tunnel, underground, or construction conclusions. [data:geometry/public_space.geojson#PUBLIC-05] [data:geometry/roads.geojson#MOBILITY-03] [standard:MOHURD-URBAN-DESIGN-MEASURES] [metric:landmark_count]
 
-## v0.8 scoring repair: bring public interfaces down to node scale
+## v1.3 spatial relation readout: make node interfaces reviewable without pretending they are routes
 
 The previous section answers which public and reversible relationships to compare in the three key areas. This section lowers the reading scale again to one node sequence: **ordinary arrival → human explanation/service → bounded state → freeze/replay or exit**. `visual/assets/ai-era-spatial-interface-plans.json` registers existing provisional-geometry anchors, functional bands, entry evidence, and stop conditions for each area. It adds no dimensions, changes no geometry, and does not upgrade a concept interface into an existing facility or engineering proposal. [data:visual/assets/ai-era-spatial-interface-plans.json] [depth:overall_spatial_structure]
 
@@ -87,21 +87,72 @@ The previous section answers which public and reversible relationships to compar
 | AI Origin Community | `MOBILITY-04` → `PUBLIC-02` → `SCN-02` → `GREEN-03` | Daily arrival/dwell → paper, phone, staffed service → reskilling/intergenerational learning → screen-free recovery/exit | Return to human service when the human entry is unavailable or the ordinary route is cut; keep outcomes `unknown` |
 | Dazhongsi | `PUBLIC-05` → `SCN-05` → `SERVICE-ZONE-02` → `PUBLIC-04` | Cultural arrival/movement → multilingual explanation/consent desk → withdrawable display/bounded service → redress/freeze/night fallback | Close the display on overreach, unexplained behavior, or uncleared rights; retain ordinary movement and human fallback |
 
+To keep “having anchors” from becoming a slogan, this revision adds a provisional relation readout recomputed from the same GeoJSON. For each adjacent pair it reports the minimum geodesic separation between feature vertices, rounded to 10 m, so a reviewer can question order, near-neighbors, and obvious gaps. It is not a route length, service radius, accessibility conclusion, or engineering dimension; the three values must not be added into an access distance. Once formal boundaries, roads, and field walk-through evidence arrive, the readout, figures, metrics, HTML, PDFs, and self-check must be recomputed together. [data:visual/assets/ai-era-provisional-spatial-readout.json] [metric:provisional_spatial_readout_segment_count]
+
+| Key area | Minimum vertex separation between adjacent anchors (km, same order) | Design use of the readout |
+|---|---:|---|
+| Zhongzhiyuan | 1.97 / 2.54 / 2.33 | Question whether ordinary arrival, human takeover, bounded simulation, and safe retreat have an inspectable spatial relationship |
+| AI Origin Community | 3.24 / 0.09 / 3.42 | Separate the daily entry, human service, reskilling node, and screen-free recovery for field review; do not call them connected facilities |
+| Dazhongsi | 0.12 / 1.62 / 0.33 | Check whether cultural movement, consent desk, bounded display, and night fallback need field verification |
+
 This node plan adds a reviewer-visible middle layer for how public interfaces carry an ordinary-person path and stop action; it is not a section, plan, or massing drawing. Until road, tenure, heritage, accessibility, existing-facility, and operating evidence is available, all dimensions, capacity, movement performance, and outcome metrics remain missing or `unknown`. [data:geometry/key_areas.geojson#PROV-KEY-001] [depth:risk_missing_data]
 
-![Figure 06: node-level public interface states and rollback sequence for three key areas](assets/figures/spatial-interface-nodes.en.svg)
+![Figure 06: node-level public interface states and rollback sequence for three key areas](assets/figures/spatial-interface-nodes.en.png)
+
+To reduce the jump from narrative to structured attachments, this revision brings four bilingual review boards generated directly from package JSON contracts into one visible set: the ordinary-person journey and stop loop, taskbook–space–replay coverage for all ten scenario cards, G0/G1 gates with exit actions for the five conceptual project families, and the taskbook–public-space–annual-operation triad. They are visual indexes of existing fields, not new field performance, authorization, permit, deployment, or official-score claims; read the `result_status=not_run` and `not_an_official` boundaries with the source JSON.[data:visual/assets/run-ai-era-evidence-boards.js] [data:visual/assets/ai-era-traceability-index.json]
+
+## v1.7 spatial evidence atlas: return “having an interface” to one provisional base
+
+This revision returns the node states to two presentation-grade plates. The overview reads the provisional extent, three key areas, green-blue buffers, human-priority lines, and ten scenario nodes together. The key-area plate then zooms the same polygons and places each area's question, four functional bands, and human fallback on one reading surface. The plates are generated from `site_boundary`, `key_areas`, `roads`, `green_space`, `public_space`, `constraints`, and `ai-era-spatial-interface-plans.json`; they add no boundary, route, section, capacity, facility, permit, or field-result claim.[data:visual/assets/ai-era-spatial-atlas-v17.json] [data:visual/assets/build-ai-era-spatial-atlas-v17.js] [data:geometry/key_areas.geojson#PROV-KEY-001]
+
+Scenario nodes still return to the provisional anchors in `constraints.geojson`; the plates do not upgrade them into permits, operations, or formal spatial controls.[data:geometry/constraints.geojson#SCN-06]
+
+The four bands are not four engineering phases. They are a public-interface order that can be discussed: ordinary arrival, staffed explanation/service, bounded simulation or voluntary learning, and freeze/replay/exit. Paper, phone, staffed, and screen-free alternatives remain visible in every band; `not_authorized_not_run`, `performance_results=null`, and stop conditions remain inside the plate's evidence boundary. The three key areas, ten scenario nodes, and nine personas can therefore be read from image to JSON, then to metrics and missing evidence. If formal boundaries, roads, tenure, accessibility, climate, energy, or service baselines arrive, geometry, metrics, figures, HTML, PDFs, and self-check must be recalculated together.[metric:key_area_count] [metric:scenario_card_count] [metric:manual_fallback_coverage_ratio]
+
+### One comparable spatial decision delta: Zhongzhiyuan
+
+The four functional bands show how people enter, who takes over, and when the interface freezes. The AI-planning innovation also needs one direct comparison with a spatial choice. This section selects one focus area and does not present the single machine-showcase entrance as an existing condition; it is a counterfactual design option for comparison. The package instead places a staffed explanation desk, public observer seat, visible retreat, and withdrawable test edge within one public interface, protecting ordinary arrival before bounded simulation. This is a `design_target`, not a built space or AI-performance result. [data:visual/assets/ai-era-spatial-delta-readout.json#AI-ERA-SPATIAL-DELTA-001] [data:geometry/roads.geojson#MOBILITY-05] [data:geometry/public_space.geojson#PUBLIC-01]
+
+This spatial delta addresses the AI-planning-innovation dimension without replacing professional measurement. [depth:ai_planning_innovation]
+
+| Stage | Spatial role that changes | Concrete AI-planning constraint | Status and anchor |
+|---|---|---|---|
+| Ordinary arrival | Ordinary walking, observation, and accessible questions come first | Machine testing cannot own the only public entrance | `design_target`; `MOBILITY-05` |
+| Staffed takeover | The explanation and takeover desk faces the ordinary path | The first move is to ask, refuse, or switch to a person, not invoke an automated call | `design_target`; `PUBLIC-01` |
+| Bounded simulation | API simulation sits inside a visible, stoppable test edge | Without authorization, responsibility, logs, and replay, it remains at G0 | `design_target`; `SCN-06` |
+| Freeze/replay or exit | Maintenance retreat, ordinary movement, and staffed service stay visible | Withdraw the machine interface, not ordinary public movement or staffed service | `design_target`; `GREEN-02` |
+
+The table expresses how spatial roles change under AI constraints; it is not a dimensional change. No new geometry is added, and `design_target` is not upgraded into a professional measurement. Once official boundary, rights, accessibility, and field baselines exist, this delta must be recomputed with the metrics, plates, HTML, PDF, and self-check. [data:visual/assets/ai-era-spatial-interface-plans.json#AI-NODE-ZHONGZHIYUAN] [data:visual/assets/scenario-space-operation-matrix.json#SCN-06] [metric:api_governance_gate_count]
+
+The full-chain recalculation after formal evidence arrives is a metrics-recalculation depth item; before that trigger, the plates support conceptual suggestions and relational questions only.[depth:metrics_recalculation]
+
+## v1.2 Taskbook–space–operation triad: make agent.4–agent.6 meet on one board
+
+Figure 10 compresses three requirements that are easy to read separately into one conceptual design board. Agent.4 asks how public space and three landmarks carry a problem, a human override, and an exit. Agent.5 asks how Centennial Jing-Zhang, Zhongguancun, and AI culture become an understandable, contestable, retractable wayfinding system. Agent.6 asks how global events and long-term operation leave version evidence through a four-season rhythm, public observation, and release notes. The board uses only existing package JSON and provisional anchors; it does not describe confirmed events. [data:visual/assets/taskbook-culture-operations-atlas-v12.json] [data:visual/assets/public-space-landmarks.json] [depth:compliance_and_standard_response]
+
+| Taskbook entry | Spatial carrier (concept reference) | Annual/operation readback | Missing evidence |
+|---|---|---|---|
+| agent.4 public space and landmarks | Open Problem Mile Marker, Algorithm Calibration Court, and Human Override Beacon sit on three public-space anchors; they support ordinary movement, human explanation, and exit prompts | Publish the problem and data boundary before an event; retain public objections and withdrawal records afterwards | Formal boundary, public-access conditions, accessibility walk-through, heritage and site review |
+| agent.5 cultural narrative | “Railway time — problem version — human override” is the cultural grammar; wayfinding has timeline, problem, and human-service lines | Show only consented, verifiable, retractable roles and versions; no individual or company ranking | Authoritative history, language/form review, and cleared-works register |
+| agent.6 global events and long-term operation | Spring publish, summer walk, autumn protocol camp, winter v0.x check; keep meanwhile use and a human entry | Each season releases what is kept, paused, revised, and still missing | Event responsibility, insurance/safety/copyright, participation, and operation evidence |
+
+The five project families in Figure 10 are only a spatial-carrier and G0/G1 research order: human buffer, reskilling and night wellbeing, city API, blue-green and human-machine test, and culture/global co-creation. If authorization, responsibility, professional material, or a safety gate is missing, the proposal stays at G0, freezes, or exits. The board proves only that package fields can be read together; it is not an official score, confirmed event, operator, heritage permit, company partnership, or field result. [data:visual/assets/implementation-operation-matrix.json] [metric:project_family_count] [depth:implementation_and_phasing] [depth:scenario_space_operation_mapping]
+
+![Figure 10: Taskbook, public space and annual operation](assets/figures/taskbook-culture-operations-board.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
-Six personas make the ecosystem accountable: original residents and older people; workers at task-substitution risk; night-shift AI workers; small merchants and one-person teams; developers and researchers; people with access needs and carers. Every group retains human service, explanation, refusal, appeal, exit, and non-device alternatives. [source:AGENT-TASKBOOK] [metric:persona_count] [depth:persona_and_public_interest]
+Nine personas make the ecosystem accountable: original residents and older people; workers at task-substitution risk; night-shift AI workers; small merchants and one-person teams; developers and researchers; people with access needs and carers; youth, students and people entering the workforce; first-time and international visitors; and public-service and frontline maintenance workers. Each group has a non-negotiable boundary, linked scenarios and provisional spatial anchors, plus human service, explanation, refusal, appeal, exit, and non-device alternatives. [source:AGENT-TASKBOOK] [metric:persona_count] [metric:manual_fallback_coverage_ratio] [depth:persona_and_public_interest]
 
-Ten scenario cards are all G0 concept protocols. Each records users, spatial reference, operational responsibility, data minimization, human fallback, metric, and exit. Three validation contexts—low-speed robots, low-altitude logistics rules, and flood-simulation explanation—do not claim permission, deployment, or real-data access. The civic API similarly begins with catalogue, authorization, logging, appeal, and revocation. [data:geometry/constraints.geojson#SCN-07] [data:geometry/constraints.geojson#SCN-08] [metric:scenario_card_count]
+P-07, P-08 and P-09 are not name-only additions: they replay youth learning/work transition, unfamiliar entry and multilingual explanation, and public maintenance/event handling, with an ordinary fallback and stop condition for each. This remains a conceptual design lens, not a demographic survey, accessibility certification, or field fairness result. [metric:persona_scenario_coverage_count] [metric:persona_spatial_feature_coverage_count] [data:visual/assets/ai-era-people-fairness-audit.json]
+
+Ten scenario cards are all G0 concept protocols. Each records users, spatial reference, operational responsibility, data minimization, human fallback, metric, and exit. Three validation contexts—low-speed robots, low-altitude logistics rules, and flood-simulation explanation—do not claim permission, deployment, or real-data access. The civic API similarly begins with catalogue, authorization, logging, appeal, and revocation. [data:geometry/constraints.geojson#SCN-07] [data:geometry/constraints.geojson#SCN-08] [data:geometry/constraints.geojson#SCN-10] [metric:scenario_g0_count] [metric:scenario_card_count]
 
 For reviewer-visible reverse tracing, `visual/assets/ai-era-traceability-index.json` connects each of the ten G0 cards to the applicable agent.4/5/6 tasks, five conceptual project families, seven rubric dimensions, and spatial/metric evidence. SCN-02, SCN-03, SCN-04, and SCN-06 additionally link to four ordinary-person offline replay routes covering reskilling choice, intergenerational learning, night service, and the civic API. It is a submission-owned review crosswalk: it assigns no official score and does not upgrade provisional geometry, design targets, or synthetic replay into field facts. [data:visual/assets/ai-era-traceability-index.json] [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK] [depth:compliance_and_standard_response]
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
-This section translates the temporary geometry into spatial actions that can be compared. The table compares public interfaces, ordinary routes, staffed services, and withdrawable equipment; it does not define development controls or upper massing. The three key areas start with public interfaces and human service, then move to formal-boundary, tenure, fire, municipal, heritage, and existing-building review. [standard:MOHURD-CONTROL-DETAILED-PLANNING] [data:geometry/buildings.geojson#FOOTPRINT-01] [metric:building_footprint_area_sqm]
+This section translates the temporary geometry into spatial actions that can be compared. The table compares public interfaces, ordinary routes, staffed services, and withdrawable equipment; it does not define development controls or upper massing. The three key areas start with public interfaces and human service, then move to formal-boundary, tenure, fire, municipal, heritage, and existing-building review. [source:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [data:geometry/buildings.geojson#FOOTPRINT-01] [metric:building_footprint_area_sqm]
 
 | Key area | Concept spatial move | Public interface and reversible relationship | Retain, renew, and review first |
 |---|---|---|---|
@@ -111,17 +162,17 @@ This section translates the temporary geometry into spatial actions that can be 
 
 These relationships answer which public and reversible conditions to compare first. They do not answer where construction is permitted or how much can be built. All three areas retain human service, an ordinary route, an accessible alternative, and a withdrawal notice. [data:geometry/key_areas.geojson#PROV-KEY-001] [data:geometry/key_areas.geojson#PROV-KEY-002] [data:geometry/key_areas.geojson#PROV-KEY-003]
 
-Development controls, the retain/renew/demolish schedule, fire review, and engineering feasibility remain `unknown` before G1. [metric:far] [metric:building_height]
+Development controls, the retain/renew/demolish schedule, fire review, and engineering feasibility remain `unknown` before G1. [metric:far] [metric:building_height] [metric:far] [metric:building_height]
 
 ## Transport, Rail, Municipal Infrastructure, and Public Services
 
-Silicon right-of-way is translated into people-first rules: walking and access first; low-speed robots only behind visible boundaries, human supervision, and stop rules; low-altitude logistics only as a paper rule sandbox. No route, rail interface, airspace, utility, or service operation is asserted without missing datasets and review. [data:geometry/roads.geojson#MOBILITY-05] [data:geometry/constraints.geojson#SCN-08] [depth:mobility_and_public_service]
+Silicon right-of-way is translated into people-first rules: walking and access first; low-speed robots only behind visible boundaries, human supervision, and stop rules; low-altitude logistics only as a paper rule sandbox. No route, rail interface, airspace, utility, or service operation is asserted without missing datasets and review. [data:geometry/roads.geojson#MOBILITY-05] [data:geometry/constraints.geojson#SCN-08] [data:geometry/public_space.geojson#PUBLIC-04] [metric:night_service_node_count] [source:WORKFORCE-95000-MEDIA] [depth:mobility_and_public_service]
 
 ## Blue-Green Network, Public Space, and Urban Character
 
 Xiaoyuehe sets the resilience threshold for the AI public-space concept. Green layers represent buffers, night screen-free space, and a skills walking chain; flood simulation is an explainable learning interface, not a drainage or flood-control design. The temporary calculated green and public-space layers are 879,519.159 sqm and 123,473.537 sqm. [data:geometry/green_space.geojson#GREEN-01] [metric:green_space_area_sqm] [metric:public_space_area_sqm]
 
-The component library includes a human desk, dual-channel wayfinding, reversible test boundary, screen-free seating, modular data/power box, and question version plaque. The cultural narrative joins Jingzhang rail memory, Zhongguancun innovation, and AI culture through the phrase Build with people, verify in public. Heritage content and placement remain subject to cultural review. [standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/public_space.geojson#PUBLIC-03] [depth:blue_green_public_space_character]
+The component library includes a human desk, dual-channel wayfinding, reversible test boundary, screen-free seating, modular data/power box, and question version plaque. The cultural narrative joins Jingzhang rail memory, Zhongguancun innovation, and AI culture through the phrase Build with people, verify in public. Heritage content and placement remain subject to cultural review. [source:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-URBAN-DESIGN-MEASURES] [data:geometry/public_space.geojson#PUBLIC-03] [depth:blue_green_public_space_character]
 
 ## Renewal Projects, Implementation Policy, and Phasing
 
@@ -173,3 +224,6 @@ The asset-level clearance ledger records author, method, third-party content, an
 ![Figure 03: key-area public-space, landmark, and scenario relations](assets/figures/key-areas.en.png)
 ![Figure 04: people-first mobility, Xiaoyuehe resilience, and G0 rules](assets/figures/mobility-bluegreen.en.png)
 ![Figure 05: metrics, evidence lineage, scenario gates, and versioned governance](assets/figures/metrics-evidence.en.png)
+![Figure 07: ordinary-person journey and stop loop](assets/figures/ordinary-service-evidence-board.en.png)
+![Figure 08: taskbook–space–replay coverage for ten scenario cards](assets/figures/scenario-coverage-board.en.png)
+![Figure 09: G0/G1 gates and exit actions for five conceptual project families](assets/figures/implementation-gates-board.en.png)

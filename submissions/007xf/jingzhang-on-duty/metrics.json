@@ -1,0 +1,245 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "The geometry is a provisional rough constraint, not an official redline."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 69910.813,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual_program_envelope_area, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "Programme envelopes are not confirmed building footprints."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.179931,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_green_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.003857,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_public_space_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 13237.185,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual_service_alignment_length, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(layer == SCENARIO_NODE)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(scenario_type == industry_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(distinct_primary_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual_ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_on_duty_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "scenarios_with_human_on_duty / all_scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "non_ai_alternative_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "scenarios_with_non_ai_alternative / all_scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "stop_threshold_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "scenarios_with_stop_threshold / all_scenarios",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "deploy_now_scenario_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "risk.json"
+      ],
+      "formula": "count(implementation_readiness.technology_lanes.deploy_now.scenario_ids)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "controlled_pilot_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "risk.json"
+      ],
+      "formula": "count(implementation_readiness.technology_lanes.controlled_pilot.scenario_ids)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "excluded_high_risk_capability_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "risk.json"
+      ],
+      "formula": "count(implementation_readiness.technology_lanes.excluded_from_base_scheme.capabilities)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "acceptance_gate_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "risk.json"
+      ],
+      "formula": "count(implementation_readiness.acceptance_gates)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_or_surveyed_height",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls and verified existing-building survey are not present."
+    },
+    "demolition_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "surveyed_demolition_footprint",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Ownership, condition survey and retain-renovate-demolish evidence are not present."
+    }
+  }
+}

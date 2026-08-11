@@ -2,6 +2,16 @@
 
 人字线 RENLINE(submissions/chucky1102/jingzhang-renline)
 
+## v1.1.1 - 2026-08-11
+
+- **折返协议社区兼容补丁(schema 0.1.0 → 0.2.0)**,响应 Issue #1119 中 147228 与维护者的兼容性复核及 loml13/switchback-line 采用包的实测反馈,四条修法:
+  - 顶层新增机器可读 **license 块**(SPDX CC-BY-4.0 + URL + `scope: protocol_spec_only` + 署名文本):下游仅复制 JSON 时不再丢失授权边界;许可仅覆盖协议规范本身,不含本包图文、几何与数据。
+  - **green_candidate 正式写入 status_enum**,定义为预备态(非运行状态),消除枚举声明与12张卡实际取值的不一致。
+  - **接管时限空值消歧**:6张 `takeover_max_minutes: null` 的卡逐卡补 `takeover_status: not_applicable`,并在 `field_semantics` 中区分 not_applicable(接管概念不适用)与 unknown(适用但未有实测基线)。
+  - **锚点分型**:全部12张卡增加 `anchor_type`(geojson_ref | text_only),其中9张落到包内几何要素引用 `anchor_ref`(file#feature_id,已逐一验证可解析),3张如实标记 text_only;原 anchor 文字原样保留,向后兼容。
+  - 附 **0.1→0.2 迁移约定**(新字段全部为增量;旧文件缺省语义按保守默认解释),acknowledgment 补记本轮社区复核谱系。
+- 中英正文折返协议章节同步补一句 v1.1.1 说明;front matter iteration 升 v1.1.1。不动几何、指标与图面。
+
 ## v1.1 - 2026-08-09
 
 - **人字形工程本义**:补齐1909年双重约束(牵引力×33‰坡度)的工程史论述——"用空间组织换坡度",转译为2026年"算力受约束下以系统设计换性能"的方法论镜像;双机牵引=人机协同(本方案即人类+AI双机之作);附1909×2026结构对照表(33‰↔学习率上限、折返↔warm restart、换向↔checkpoint、弃案↔架构搜索被弃分支),并声明"结构性类比,不声称数学同构"。

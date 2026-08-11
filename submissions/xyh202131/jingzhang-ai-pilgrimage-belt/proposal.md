@@ -6,7 +6,7 @@ translation_file: "proposal.en.md"
 proposal_format_version: "2"
 bilingual_contract_version: "1"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "把百年京张从承载AI应用的线性走廊升级为一条可共创、可验证、可暂停、可复现、可向社会交付的AI公共创新生产线。"
+summary: "以连续日常轨和间歇验证轨组织百年京张的前台空间总纲，并以换轨场、失败侧线和公共时刻表把可共创、可验证、可暂停、可复现的 AI 公共创新生产线读给公众。"
 tracks:
   - ai-traffic-walkability
   - jingzhang-heritage-narrative
@@ -104,6 +104,24 @@ V2 进一步补上一个仍然存在的缺口：方案已经提出验证线、�
 
 三层范围采用不同问题、不同精度、同一证据链。约 43.6 平方公里统筹研究范围回答产业、科研、城市问题和外部创新节点怎样协同；约 11.4 平方公里总体设计范围回答百年京张怎样组织公共空间、慢行、功能与场景；三处临时重点区回答“共创—验证—发布”三种状态站怎样形成街坊、建筑、公共界面和运行门。面积只表达任务层级，不能反推法定边界 [metric:site_area_sqm] [metric:key_area_total_sqm] [depth:three_level_scope_framework]。
 
+### 双轨京张：前台空间总纲 / Twin-track Jing-Zhang
+
+**核心概念。** 双轨京张把方案的前台空间语法明确为：**连续日常轨 / Continuous Civic Track**、**间歇验证轨 / Intermittent Proof Track**、**三座换轨场 / Three Switchyards**、**失败侧线 / Failure Siding** 和 **公共时刻表 / Civic Timetable**。日常轨是连续、开放、可独立完成普通任务的公共生活底盘；验证轨是自愿、公告、有责任人、有时段和可拆除的间歇叠层，绝不画成连续占地或已建设施。JZ-AIOS、G0—G3、证据门和权利边界不被替换，而是作为看不见但可追溯的后台治理内核 [data:visual/assets/key-area-evidence-matrix.json#twin_track_frontend_contract] [data:visual/assets/non-ai-parity-contract.json]。
+
+**总体空间解释。** 三座换轨场采用不同角色而不是复制同一类 AI 园区：原点社区把公共问题接入共创、共学和评议；众智园把问题转为离线、低风险、可停止的验证；大钟寺把通过、失败和修正变成公共发布与人工服务。三者的顺序是可读的任务接力，不是对临时几何的重新排序或新的选址承诺。连续日常轨贯穿入口、步行、通勤、休憩、办事和离开；验证轨只在换轨场之间以短段出现。每个换轨场旁都保留人工站房、无屏节点和非 AI 完整路径；失败侧线负责停止、人工解释、绕行、申诉和恢复，不让一次故障阻断普通生活。
+
+**六类城市信号与公共时刻表。** 入口、时段、状态、人工、来源、退出六类信号使用实体导视、纸面信息、口头说明、触觉/无障碍标识和可读版本共同表达。07:00—22:00 以日常为默认，22:00—07:00 静音、低照度、无屏优先；验证轨只能在公告和批准的限域时段出现；任意时段触发停止条件都进入“停止—人工接管—失败侧线—恢复日常”。公众无需注册、扫码或使用 AI，即可进入、询问、完成基本任务、离开或申诉 [data:visual/assets/key-area-evidence-matrix.json#twin_track_frontend_contract] [data:geometry/public_space.geojson#PUBLIC-004] [data:geometry/public_space.geojson#PUBLIC-009]。
+
+| 可读使用旅程 | 普通状态 | 进入验证 | 故障与恢复 |
+|---|---|---|---|
+| 1. 进入 | 从既有入口进入连续日常轨，步行、通勤、休憩或办事 | 不需要技术账户或设备 | 任何人可停下找人工、绕行或离开 |
+| 2. 判断 | 看入口、时段、状态、人工、来源、退出六类信号 | 只有自愿且公告的窗口可通过换轨场进入验证轨 | 停止信号把验证叠层隔离，不把故障变成日常阻断 |
+| 3. 完成任务 | 纸面、口头、实体导视和人工路径可独立完成同一基本任务 | 验证轨仍保留日常轨和非 AI 对照 | 修正来源、责任交接和独立复测未完成前保持 G0/退出 |
+
+**双轨典型剖面与四态。** 典型剖面按“人工站房—无屏节点—连续日常空间—间歇验证叠层—恢复花园”读图。四态是：①普通：日常轨开放、验证设备关闭；②验证：自愿进入公告时段，验证叠层限域且不占用日常通行；③故障：自动化停机，进入失败侧线并由人工接管；④恢复：完成纠错与独立复测后还原普通状态，否则保持 G0 或退出。图面只表达关系，不表达连续建设、准确位置、批准、运行结果或专业工程剖面 [data:visual/assets/key-area-evidence-matrix.json#twin_track_frontend_contract] [assumption:A-KEY-AREA-DETAIL-010]。
+
+![双轨京张总体图、典型剖面与四态 / Twin-track system, typical section, and four public states](assets/figures/site-overview.png)
+
 ### 唯一核心机制
 
 百年京张不是一条摆放 AI 产品的科技走廊，而是一条把城市问题转化为**可共创、可验证、可暂停、可复现、可向社会交付**的 AI 公共创新生产线。“AI 朝圣”不是对技术的崇拜，而是公众沿线完成“认知历史—提出问题—参与共测—看见失败—贡献留名”的知识旅程。英文名称中的 **Proof** 同时指空间实证、技术验证和公共价值证明。
@@ -128,8 +146,6 @@ V2 进一步补上一个仍然存在的缺口：方案已经提出验证线、�
 空间接口按南北概念顺序定义为：I01 大钟寺传播接口、I02 城市服务接口、I03 小月河体验接口、I04 高校共创接口、I05 众智验证接口、I06 清河生态校准接口；对应 `geometry/public_space.geojson` 的 `PUBLIC-004`—`PUBLIC-009`。面向人类的空间叙事只使用 I01—I06；G0—G3 只表示场景成熟度。既有 GeoJSON 的 `GATE-01`—`GATE-06` 是保留的机器兼容标识，不是空间阶段或人类编号。六个接口均是待现场复核的审计/服务类型，不是已选址的新建地标；每类接口要求同时核对公共空间、横向慢行、海绵缝合、非 AI 通道、静音时段和场景接力，并优先复用已建入口与服务设施 [data:geometry/public_space.geojson#PUBLIC-004] [data:visual/assets/site-grounding-register.json#SG-003] [metric:gateway_count]。
 
 Logo 方向采用两条不闭合轨线构成字母 **JZ**，中间的开放缺口形成“人工可介入的校验口”，六个短刻度对应六个空间接口。Logo 只使用几何线段和项目自有字标，不调用企业商标、人物肖像或受限字体。整体视觉为铁轨银、海淀蓝、开源绿、校验橙、钟声金；文化导视另用“里程—年份—来源”三行语法，避免把文化标识与整体 Logo 混为一套。
-
-![总体概念与证据边界](assets/figures/site-overview.png)
 
 ## 统筹研究范围产业与未来城市研究
 
@@ -398,7 +414,7 @@ AI 与公共价值指标同样按核验问题拆开：
 - AI 与数据风险：偏差、幻觉、隐私泄露、越权自动化和供应商锁定通过最小数据、源端保留、日志、人工责任、复测、到期和退役控制；不得自动执法、诊断或替代正式审批。
 - 安全与韧性风险：机器人、车辆和设备测试只在授权范围；实体急停、现场安全员、离线人工和 L0/L1/L2 降级必须可用。能源和恢复指标未实测时保持未知。
 - 文化与历史风险：史实、人物、文物和工程资料需由官方/馆藏/清权来源复核；AI 生成内容显式与元数据标识，争议内容可纠错、下架和追溯 [assumption:A-CULTURE-CONTENT-006]。
-- 版权与品牌风险：本次提交的最终文件集合为 manifest 中 68 个路径（其中 67 个为非 manifest 内容文件）；68 条逐文件资产记录与 29 条来源证据记录只证明披露和链接闭合，覆盖完整性只在 manifest 与权利状态台账从最终 Git blobs 刷新并通过校验后成立。当前独立逐文件清权审计完成数为 0，总体状态为 `not_fully_cleared`。`submission-use-rights-matrix.json` 已逐条记录公告 8.1、仓库评审、主办方项目内使用、投稿人对外展示、跨项目复用和第三方组件的当前决策，但本包未证明正式公告条款与本次 GitHub 开源 Agent 征集具有完全相同的适用关系；`COMMUNITY-DISPLAY-ONLY` 完整条款、书面同意、OSM ODbL 义务、PDF 字体、Node.js 运行时与生成工具条款以及 Logo/地标商标仍待复核，不能声称已经全部清权 [data:visual/assets/rights-clearance-ledger.json#RIGHTS-01] [data:visual/assets/submission-use-rights-matrix.json#JZ-SUBMISSION-USE-RIGHTS-V1]。
+- 版权与品牌风险：本次提交的最终文件集合为 manifest 中 70 个路径（其中 69 个为非 manifest 内容文件）；70 条逐文件资产记录与 29 条来源证据记录只证明披露和链接闭合，覆盖完整性只在 manifest 与权利状态台账从最终 Git blobs 刷新并通过校验后成立。当前独立逐文件清权审计完成数为 0，总体状态为 `not_fully_cleared`。`submission-use-rights-matrix.json` 已逐条记录公告 8.1、仓库评审、主办方项目内使用、投稿人对外展示、跨项目复用和第三方组件的当前决策，但本包未证明正式公告条款与本次 GitHub 开源 Agent 征集具有完全相同的适用关系；`COMMUNITY-DISPLAY-ONLY` 完整条款、书面同意、OSM ODbL 义务、PDF 字体、Node.js 运行时与生成工具条款以及 Logo/地标商标仍待复核，不能声称已经全部清权 [data:visual/assets/rights-clearance-ledger.json#RIGHTS-01] [data:visual/assets/submission-use-rights-matrix.json#JZ-SUBMISSION-USE-RIGHTS-V1]。
 - 外部协同风险：未来科学城、怀柔科学城、经开区、其他创新街区和京津冀只作为可选复测角色，未经书面确认不得写成合作方、投资方或落地承诺 [assumption:A-EXTERNAL-COLLAB-005]。
 - 运营与公平风险：活动热度不能替代居民满意、可达、公平与投诉闭环；贡献荣誉不得用于流量排名、就业筛选或行政评价。
 - 工具与证据风险：机器检查只验证结构、拓扑、引用和一致性，不替代规划、建筑、交通、市政、景观、生态、消防、铁路、数据安全、无障碍、社区与法律专业判断 [depth:risk_missing_data]。

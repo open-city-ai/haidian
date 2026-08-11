@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1.0",
+  "evidence_status": "composite_design_scenario_not_field_performance",
+  "persona": {
+    "id": "P-INTERNATIONAL-WALKIN-001",
+    "description_zh": "首次来访的国际新人；中文有限；没有本地账号；手机没电；不愿提供私人关系或精确轨迹。",
+    "description_en": "First-time international newcomer; limited Chinese; no local account; phone battery empty; unwilling to provide relationship or precise-trajectory data.",
+    "not_a_real_person": true,
+    "not_a_persistent_profile": true
+  },
+  "journey_duration_minutes": 90,
+  "journey_stages": [
+    {
+      "id": "J01_ARRIVE",
+      "minute": 0,
+      "stage_zh": "到达",
+      "stage_en": "Arrive",
+      "person_action_zh": "从双语实体导视找到开放共桌，不扫码。",
+      "person_action_en": "Find the Common Table from a bilingual physical sign without scanning a code.",
+      "human_accountability_zh": "场地运营者当日确认入口、开放时段与无障碍替代路径。",
+      "human_accountability_en": "The venue operator confirms the entrance, hours, and accessible alternative for that day.",
+      "ai_role": "none",
+      "data_created": []
+    },
+    {
+      "id": "J02_ENTER",
+      "minute": 10,
+      "stage_zh": "线下进入",
+      "stage_en": "Walk-in entry",
+      "person_action_zh": "向双语人工主持人说明语言和安静席需求，可匿名旁听。",
+      "person_action_en": "Tell a bilingual human host about language and quiet-seat needs; anonymous observation remains available.",
+      "human_accountability_zh": "主持人解释任务、数据最少化、投诉与随时退出。",
+      "human_accountability_en": "The host explains the task, minimum data, complaint route, and exit at any time.",
+      "ai_role": "translate_public_task_after_human_release",
+      "data_created": [
+        "language_preference",
+        "access_feature_requested"
+      ]
+    },
+    {
+      "id": "J03_CHOOSE",
+      "minute": 20,
+      "stage_zh": "选择公开任务",
+      "stage_en": "Choose a public task",
+      "person_action_zh": "从已授权任务板选择一个45分钟公共问题桌；也可拒绝AI推荐。",
+      "person_action_en": "Choose a 45-minute public problem table from the authorised task board; AI recommendations may be refused.",
+      "human_accountability_zh": "主持人核对任务有效期、容量和非AI等价。",
+      "human_accountability_en": "The host checks task expiry, capacity, and the non-AI equivalent.",
+      "ai_role": "filter_authorised_task_space_time_options_only",
+      "data_created": [
+        "task_role",
+        "time_slot"
+      ]
+    },
+    {
+      "id": "J04_CONTRIBUTE",
+      "minute": 30,
+      "stage_zh": "共同完成",
+      "stage_en": "Contribute together",
+      "person_action_zh": "参加45分钟人工主持桌，使用纸卡或口述提交意见。",
+      "person_action_en": "Join a 45-minute human-hosted table and contribute by paper card or speech.",
+      "human_accountability_zh": "主持人保留少数意见，阻止人身画像与越权采集。",
+      "human_accountability_en": "The host preserves minority views and blocks profiling or unauthorised collection.",
+      "ai_role": "organise_authorised_public_notes_with_human_review",
+      "data_created": [
+        "optional_public_contribution"
+      ]
+    },
+    {
+      "id": "J05_REVIEW_AND_DELETE",
+      "minute": 75,
+      "stage_zh": "看见结果与删除",
+      "stage_en": "See output and delete",
+      "person_action_zh": "查看双语公共产出；要求删除临时偏好与原始意见，或提交投诉。",
+      "person_action_en": "Review the bilingual public output; request deletion of temporary preferences/raw input or lodge a complaint.",
+      "human_accountability_zh": "主持人出示权利状态、删除日期、投诉编号和人工复核路径。",
+      "human_accountability_en": "The host shows rights status, deletion date, complaint reference, and human-review route.",
+      "ai_role": "none_for_rights_or_complaint_decision",
+      "data_created": [
+        "complaint_reference_if_requested"
+      ]
+    },
+    {
+      "id": "J06_EXIT",
+      "minute": 90,
+      "stage_zh": "退出",
+      "stage_en": "Exit",
+      "person_action_zh": "沿明示路径离场，不建永久账号；可日后用公开编号查看结果。",
+      "person_action_en": "Leave by the visible route without creating a persistent account; a public reference can be used later to view the output.",
+      "human_accountability_zh": "运营者记录匿名总量、恢复场地并按到期日删除临时令牌。",
+      "human_accountability_en": "The operator records aggregate counts, restores the site, and deletes temporary tokens by expiry.",
+      "ai_role": "none",
+      "data_created": []
+    }
+  ],
+  "hard_stops": [
+    "No named bilingual human host.",
+    "No account-free or paper equivalent.",
+    "No verified accessible entrance and safe exit.",
+    "Minimum-data or deletion terms cannot be explained before entry.",
+    "Complaint or immediate-exit route is unavailable."
+  ],
+  "performance_results": null,
+  "limitations": [
+    "This is a composite design walkthrough, not observed user research or field validation.",
+    "Minutes are a legibility script for a future pilot, not promised service times.",
+    "The journey does not establish site availability, operator acceptance, safety, accessibility, or public satisfaction."
+  ]
+}
