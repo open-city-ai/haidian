@@ -49,7 +49,7 @@ The three gates are Qinghe Gate (north end), Huanqiao Gate (crossing over the ri
 
 The three levels of work cascade from strategy to space to verification: the coordinated level judges industry and urban form, the overall design level lands on land-use, building, road, green-space, public-space, and phasing layers, and the key-area level verifies the feasibility of specific scenarios. All boundaries in this chapter and throughout the text are provisional; once official data is released, all layers, metrics, drawings, and HTML must be regenerated as one dataset, not by replacing single files. [depth:three_level_scope_framework] [depth:overall_spatial_structure]
 
-![Overall concept and three-level scope](assets/figures/site-overview.png)
+![Overall concept and three-level scope](assets/figures/site-overview.en.png)
 
 ## Coordinated Research Area: Industry and Future City Research
 
@@ -79,7 +79,7 @@ The structure can be summarized as one corridor, two belts, three cores, and mul
 
 Urban renewal adopts the conceptual framework of interfaces first, carriers later; reversible first, permanent later. The first step builds public interfaces with the open spaces of the heritage park and the ground floors of existing buildings; the second step verifies scenarios with lightweight signage, events, and movable facilities; only in the third step do professional teams decide on adaptive reuse based on ownership, building safety, Regulatory Detailed Planning, and heritage conservation conditions. The identification of underused space and the renewal project list are expressed as conceptual zones; see the phasing chapter for details. [depth:land_use_layout]
 
-![Land-use structure](assets/figures/land-use-structure.png)
+![Land-use structure](assets/figures/land-use-structure.en.png)
 
 Regulatory-plan-level depth is embodied in this package as a clear distinction among three kinds of conclusions. The first kind is recalculable geometric facts inside the package, such as land-use areas and ratios; the second kind is design principles, such as open ground floors, continuous walking and cycling, and reversible components; the third kind must wait for official conditions, including Floor Area Ratio, building height, Building Coverage Ratio, green-space ratio, setbacks, road red lines, and facility standards. [standard:MOHURD-CONTROL-DETAILED-PLANNING] [depth:development_intensity_controls]
 
@@ -103,7 +103,7 @@ The integration of Dazhongsi Station and the four-quadrant pedestrian connection
 
 The three-zone synergy is a conceptual closed loop: ORIGIN STATION produces knowledge and marshals it, THE WORKS verifies and manufactures, SIGNAL HOUSE circulates and dispatches, the Xiaoyue River TEST TRACK feeds back real usage problems, and TICKET HALL reinvests capital and services. Knowledge, test reports, and exit reasons enter the same scenario registry, forming a reusable urban learning asset rather than a showcase of successes only. [metric:key_area_count]
 
-![Detailed design of key areas](assets/figures/key-areas.png)
+![Detailed design of key areas](assets/figures/key-areas.en.png)
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
@@ -175,7 +175,7 @@ Transit-Station Integration is listed as a conceptual goal per the announcement 
 
 The three-gate connection concept lines organize the arrival-and-departure experience at Qinghe Gate in the north, Huanqiao Gate crossing over the ring road, and Xizhimen Arrival-Departure Yard in the south; all are conceptual alignments, not engineering schemes. [data:geometry/roads.geojson#ROAD-002] [data:geometry/roads.geojson#ROAD-003]
 
-![Mobility, walking and cycling, and the blue-green network](assets/figures/mobility-bluegreen.png)
+![Mobility, walking and cycling, and the blue-green network](assets/figures/mobility-bluegreen.en.png)
 
 Municipal and New Infrastructure proposes a six-item verification checklist: power and edge-computing load, communications and data security, water supply and drainage and flood control, fire protection and emergency response, solid waste and equipment maintenance, and thermal environment and carbon emissions. Distributed energy and edge computing are only conceptual layouts; the constraints layer is empty, which means the repository holds no pipeline, flood-control, fire-protection, or control-line data, so no capacity or siting conclusions are drawn. [data:geometry/constraints.geojson#CONSTRAINTS-DATA-GAP] [depth:municipal_new_infrastructure]
 
@@ -247,7 +247,7 @@ The middle five are [depth:height_massing_character], [depth:retain_renovate_dem
 
 The last five are [depth:three_key_area_detailed_design], [depth:renewal_project_list], [depth:phasing_implementation], [depth:metrics_recalculation], and [depth:risk_missing_data].
 
-![Metrics and evidence chain](assets/figures/metrics-evidence.png)
+![Metrics and evidence chain](assets/figures/metrics-evidence.en.png)
 
 ## Risk, Copyright, and Compliance
 
