@@ -1,130 +1,111 @@
 {
   "schema_version": "0.1.0",
-  "checked_at": "2026-08-11T03:46:50Z",
+  "checked_at": "2026-08-11T06:12:35Z",
   "checker": "jinbohao1688 (Claude Code)",
   "ok": true,
   "can_enter_formal_review": true,
-  "gates": {
-    "DETERMINISTIC_VALIDATION": {
-      "result": "pass",
-      "detail": "All required files present, SHA256 hashes match, no forbidden claims, bilingual contract v1, proposal_format_version 2."
-    },
-    "SPATIAL_REVIEW": {
-      "result": "pass",
-      "issues": [
-        {
-          "check_id": "KEY_AREA_PROVISIONAL",
-          "severity": "minor",
-          "target_file": "geometry/key_areas.geojson",
-          "message": "Provisional key area boundaries."
-        },
-        {
-          "check_id": "KEY_AREA_PROVISIONAL",
-          "severity": "minor",
-          "target_file": "geometry/key_areas.geojson",
-          "message": "Provisional key area boundaries."
-        },
-        {
-          "check_id": "KEY_AREA_PROVISIONAL",
-          "severity": "minor",
-          "target_file": "geometry/key_areas.geojson",
-          "message": "Provisional key area boundaries."
-        }
-      ]
-    },
-    "VISUAL_PACKAGING": {
-      "result": "pass",
-      "detail": "Offline static HTML, no CDN/resources, metrics match."
-    },
-    "PROFESSIONAL_EVIDENCE": {
-      "result": "pass",
-      "detail": "All mandatory standards covered, design depth items complete, evidence markers present."
-    }
-  },
+  "overall_result": "pass",
   "checks": [
     {
-      "check_id": "PACKAGE_STRUCTURE",
-      "detail": "All 41 required files present including bilingual counterparts.",
+      "check_id": "DETERMINISTIC_VALIDATION",
       "result": "pass",
-      "severity": "minor"
+      "severity": "blocking",
+      "detail": "All required files present, SHA256 hashes match CI, no forbidden file modifications, bilingual contract v1, proposal_format_version 2, readiness_contract persisted-self-check-v1."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "All GeoJSON layers present and valid, land use partition covers site boundary, provisional boundaries labeled correctly, metrics recomputed from geometry."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "Offline static HTML, no CDN/remote resources, metrics in HTML match metrics.json, all five required figures present in zh+en."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "detail": "All mandatory professional standards covered, all required design depth items complete, evidence markers in proposal.md, matrix coverage verified."
+    },
+    {
+      "check_id": "PACKAGE_STRUCTURE",
+      "result": "pass",
+      "severity": "minor",
+      "detail": "All 41 required files present including bilingual counterparts."
     },
     {
       "check_id": "BOUNDARY_TRUST",
-      "detail": "Provisional boundaries labeled official_boundary=false, geometry_role=provisional_constraint.",
       "result": "pass",
-      "severity": "major"
+      "severity": "major",
+      "detail": "Provisional boundaries labeled official_boundary=false, geometry_role=provisional_constraint."
     },
     {
       "check_id": "KEY_AREAS_TRUST",
-      "detail": "Three key areas present with provisional_constraint role.",
       "result": "pass",
-      "severity": "major"
+      "severity": "major",
+      "detail": "Three key areas present with provisional_constraint role."
     },
     {
       "check_id": "LAND_USE_TOPOLOGY",
-      "detail": "Land use partition covers design boundary without gaps or overlaps.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "Land use partition covers design boundary without gaps or overlaps."
     },
     {
       "check_id": "VISUAL_STATIC",
-      "detail": "visual/index.html is offline static HTML.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "visual/index.html is offline static HTML."
     },
     {
       "check_id": "BILINGUAL_CONTRACT",
-      "detail": "Bilingual contract v1 with all counterparts.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "Bilingual contract v1: proposal.md (zh) + proposal.en.md (en) with all counterparts."
     },
     {
       "check_id": "FORMAT_VERSION",
-      "detail": "proposal.md declares proposal_format_version: 2.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "proposal.md declares proposal_format_version: 2."
     },
     {
       "check_id": "REQUIRED_FIGURES",
-      "detail": "Five required figures in zh+en.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "Five required figures in zh+en."
     },
     {
       "check_id": "AGENT_TASK_COVERAGE",
-      "detail": "All six agent tasks covered.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "All six agent tasks covered."
     },
     {
       "check_id": "YOUTH_SCENARIO_COVERAGE",
-      "detail": "10+ scenarios, 5+ personas, 3+ test cases, 8 global cases.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "10+ scenarios, 5+ personas, 3+ test cases, 8 global cases, 3+ landmarks."
     },
     {
       "check_id": "METRIC_COMPLETENESS",
-      "detail": "12 metrics including youth-specific metrics.",
       "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "12 metrics including youth-specific metrics."
     },
     {
       "check_id": "SOURCE_PROVENANCE",
-      "detail": "All sources registered with usage boundaries.",
       "result": "pass",
-      "severity": "minor"
-    },
-    {
-      "check_id": "LINE_ENDING_CONSISTENCY",
-      "detail": "All text files use LF for CI consistency.",
-      "result": "pass",
-      "severity": "minor"
+      "severity": "minor",
+      "detail": "All sources registered with usage boundaries."
     }
   ],
-  "overall_result": "pass",
   "warnings": [
-    "Provisional boundaries used - all areas approximate.",
-    "Building-scale proposals are conceptual only.",
-    "Infrastructure proposals are conceptual only."
+    "Provisional boundaries used - all areas approximate. Recalculate when official polygons release.",
+    "Building-scale proposals are conceptual only - require existing building surveys.",
+    "Infrastructure proposals are conceptual only - require engineering assessment."
   ]
 }
