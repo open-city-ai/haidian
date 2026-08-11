@@ -6,14 +6,18 @@ title: "京张智谷：人字形折返治理走廊"
 author_github: "sukikeeling"
 language: "zh"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "以京张铁路人字形展线与折返换向为制度原型，建立城市AI'折返评估—坡度准入—K标版本'的治理走廊，让每一次城市智能都沿轨道可查、可停、可回头。"
+summary: "以京张铁路青龙桥人字形展线为制度原型——列车遇陡坡必停、换向、以退为进——建立城市AI'折返评估—回授门—坡度准入—K标版本'的治理走廊。人字形既是工程方案，也是'人'字：技术再快，到站必须由人确认。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
 
 # 京张智谷：人字形折返治理走廊
 
-**英文名：Jingzhang AI Valley — Switchback Governance Corridor；口号：让每一次城市智能，都沿轨道可查、可停、可回头。**
+**英文名：Jingzhang AI Valley — Switchback Governance Corridor**
+
+> **人字形三义。** 1909 年，詹天佑在青龙桥遇到 33‰ 极限坡度：直行必翻，他选择停车、换向、以退为进。人字形展线由此诞生——它既是**工程方案**（之字形爬升陡坡），也是「**人**」字（城市 AI 的每一次折返，都是回到"人"这个原点），更是**反求诸己**（出了问题先停、先查、先问自己，而不是沿原方向冲）。这三重含义不是贴上去的哲学标签——没有詹天佑的人字形，就没有折返治理协议；没有「人」字的双重含义，就没有"到站由人确认"的制度。
+
+> **口号：让每一次城市智能，都沿轨道可查、可停、可回头。**
 
 ## Executive Summary (English)
 
@@ -21,22 +25,39 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 This proposal designs an AI innovation corridor along the Centennial Jingzhang Railway Heritage Park in Haidian, Beijing (43.6 km² strategic study area / 11.4 km² overall design area / 368.4 ha three key areas). Its core institution is the **Switchback Governance Protocol**, modeled on the "Ren-shaped" switchback line at Qinglongqiao — where a train climbing a steep grade must stop at a switchback point, change direction, and continue. Urban AI applications follow the same discipline: no scenario continues automatically; each must stop at its switchback node and face a three-party review (responsible entity, professional review, public representative) deciding **pass / turn back / pull into depot**.
 
-Four mechanisms: (1) **Switchback Nodes** — fixed review points where any party's veto forces a turn-back; (2) **Grade-based Access** — scenarios graded by difficulty as gentle / medium / steep, higher grades face stricter admission review; (3) **K-marker Versioning** — each official data update or recalculation records a new kilometer-marker version; (4) **Switch States** — scenarios run in one of three states (mainline / siding turn-back / depot maintenance), with no automatic recovery.
+Five mechanisms: (1) **Switchback Nodes** — fixed review points where any party's veto forces a turn-back; (2) **Teach-Back Gate** — before any vote, the scenario owner must explain in plain language what the AI does, where it might fail, and how to stop it; if the public representatives cannot understand, the scenario turns back — "if the city cannot understand it, it has not arrived yet"; (3) **Grade-based Access** — scenarios graded by difficulty as gentle / medium / steep, higher grades face stricter admission review; (4) **K-marker Versioning** — each official data update or recalculation records a new kilometer-marker version; (5) **Switch States** — scenarios run in one of three states (mainline / siding turn-back / depot maintenance), with no automatic recovery.
+
+The "Ren-shaped" switchback line carries three meanings: **form** (engineering solution — zigzag climb), **person** (the character 人 — every switchback returns to the human as the origin), and **self-examination** (stopping to ask what went wrong, not pushing forward).
 
 The corridor follows a "one belt, three cores, two wings" spatial structure: the heritage park as public spine, Zhongzhi Park (full-stack AI validation), AI Origin Community (research–startup–community loop), Dazhongsi (AI-native consumption), the Zhongguancun service wing and the Xiaoyue River scenario wing. Twelve scenario cards each bind a grade and a switchback condition; metrics are evaluation criteria rather than target values — baselines are marked pending until the first survey, no fabricated output or investment figures. All spatial boundaries are provisional; full recalculation is required when official polygons are released.
 
 ## 设计依据与资料清单
-本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告 [source:OFFICIAL-ANNOUNCEMENT]、智能体任务书 [source:AGENT-TASKBOOK]、公开场地包 [source:SITE-PACKAGE] 及仓库登记资料 [source:SOURCE-REGISTRY]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:BOUNDARY-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。
+本成果是开放共创的概念城市设计，不替代法定规划、政府审定或工程设计。依据官方公告 [source:OFFICIAL-ANNOUNCEMENT]、智能体任务书 [source:AGENT-TASKBOOK]、公开场地包 [source:SITE-PACKAGE]、仓库登记资料 [source:SOURCE-REGISTRY] 及智能体处理资料包 [source:PROCESSED-FACT-PACK]。当前 SITE_BOUNDARY 与三处 KEY_AREA 均来自仓库 provisional geometry [source:BOUNDARY-SOURCE] [source:BOUNDARY-SOURCE]：仅用于生成、讨论、展示和入口自检，不是 official redline，不支撑容积率、高度、拆改留、权属、道路红线或精确面积结论；官方图件发布后需整体复算 [depth:metrics_recalculation]。
 
 方法为"证据—折返—指标—版本"四联单：每项策略绑定来源、空间图层、折返条件、可复核指标与版本记录。所有城市AI遵循最小数据、可选择、可申诉、人工终审、日志留痕与独立评测。[standard:PROJECT-OFFICIAL-ANNOUNCEMENT] [depth:existing_conditions_diagnosis]
 
 ![资料证据链与场地概念总览](assets/figures/site-overview.png)
 
 ## 折返治理协议（本方案核心制度）
-本方案以京张铁路青龙桥"人字形"展线为制度原型——列车在陡坡上无法直行，必须在折返点停车换向后继续；创新同样如此，任何城市AI场景在到达能力极限前，都应在折返点接受重新评估，而不是沿原方向自动续行。四类机制：
 
-- **折返点（Switchback Node）**：每个AI场景的运行轨道上设固定折返点，到达即停车，由三方——场景责任人（决策）、专业复核（技术）、公众代表（权益）——共同决定"放行 / 折返 / 入段"。任何一方持否决意见即强制折返，不自动续行 [depth:switchback_governance]。
-- **坡度分级准入（Grade-based Access）**：参照铁路33‰极限坡度，将场景按"爬坡难度"分三级——缓坡（普惠体验类，社区级准入）、中坡（行业验证类，需专业预审）、陡坡（科研攻坚类，需联合攻关协议）。坡度越高，准入复审越严 [depth:grade_based_access]。
+### 人字三义
+
+詹天佑 1909 年在青龙桥遇到 33‰ 极限坡度：直行必翻。他没有选择硬冲，而是停车、换向，以之字形爬升。人字形展线由此诞生。这个「人」字在本方案中有三重含义：
+
+1. **形——工程方案**：列车在折返点停车换向，以退为进。城市 AI 场景同样如此：到站必须停，不是沿原方向自动续行。
+2. **人——回到原点**：「人」字即"人"。技术再快，到站必须由人确认。折返点的"三方评估"，本质是把"人"放回 AI 决策回路的最前端。
+3. **省——反求诸己**：折返即反求。出了问题先停、先查、先问"这个场景哪里出了问题"，而不是归咎于用户或环境。曾子曰"吾日三省吾身"——折返点就是城市 AI 的"省"：每次到站，先自省，再前行。
+
+三义不是装饰，是制度的根：没有第一义就没有折返点，没有第二义就没有三方评估，没有第三义就没有"不自动恢复"。
+
+### 五类机制
+
+本方案以人字形展线为制度原型——列车在陡坡上无法直行，必须在折返点停车换向后继续；创新同样如此，任何城市AI场景在到达能力极限前，都应在折返点接受重新评估，而不是沿原方向自动续行。
+
+- **折返点（Switchback Node）**：每个AI场景的运行轨道上设固定折返点，到达即停车。停车后不直接表决，而是先进入**回授门**（见下），再由三方——场景责任人（决策）、专业复核（技术）、公众代表（权益）——共同决定"放行 / 折返 / 入段"。任何一方持否决意见即强制折返，不自动续行 [depth:switchback_governance]。
+
+- **回授门（Teach-Back Gate）**：折返点停车后，场景责任人必须先用**非技术语言**向公众代表解释三件事：①这个 AI 做了什么；②它可能在哪里出错；③怎么停掉它。公众代表确认"听懂了"之后，才进入三方表决。**听不懂不是公众的问题，是责任人的问题——听不懂就折返。** 城市AI的能力，只有被城市理解之后，才算真正到达 [depth:teach_back_gate]。
+- **坡度分级准入（Grade-based Access）**：参照铁路33‰极限坡度，将场景按"爬坡难度"分三级——缓坡（普惠体验类，社区级准入）、中坡（行业验证类，需专业预审）、陡坡（科研攻坚类，需联合攻关协议）。坡度越高，准入复审越严。坡度分级不是给场景排高低贵贱，而是像铁路限坡一样承认"有些路确实更难走"——走陡坡的，准备要更充分，回授要更透彻 [depth:grade_based_access]。
 - **K标版本制（Kilometer-marker Versioning）**：方案以铁路K标为版本锚点，每次官方数据更新、重大事件或复算，记入一个新K标，形成可追溯的版本链 [depth:kmarker_versioning]。
 - **道岔三态（Switch States）**：场景运行状态用"正线运行 / 侧线折返 / 入段检修"三态表达，不设自动恢复；从检修态回到正线，须经折返点重新评估 [depth:switch_states]。
 
@@ -142,15 +163,21 @@ A"模型上街前"评测场：偏见、幻觉、鲁棒、隐私和无障碍测�
 ## 5. 三种文化的一条时空叙事（agent.5）
 叙事不是"铁路+代码"装饰拼贴，而是三种共同价值：京张铁路的自主工程与公共连接、中关村的开放试验与知识转化、AI时代的可验证协作。游线分三幕：**从自主建造出发—在折返换向中迭代—向人本智能共同负责**。
 
+**第一幕·自主建造（1909）**：詹天佑面对外国人"中国人自己修不成铁路"的判断，没有争辩，而是用青龙桥人字形展线回答：遇到陡坡就停、换向、以退为进。这份"不争而善胜"的工程智慧，是京张留给城市AI的第一份遗产——**技术不是蛮力，是知止而后行**。
+
+**第二幕·开放试验（1980s—）**：中关村从电子一条街到自主创新示范区，走的不是封闭攻坚，而是开放共享——实验室的门向街道打开，研究成果向社区流动。这是京张留给城市AI的第二份遗产——**创新不是围墙，是接口**。
+
+**第三幕·可验证协作（2026—）**：AI进入城市公共空间，不再是实验室里的演示，而是街道上的真实运行。京张留给城市AI的第三份遗产是——**能力不是许可，是回授**。城市AI只有被城市理解、监督和接管之后，才算真正到达。机器不能给自己发许可证。
+
 导视采用轨枕节奏、坐标刻度与折返印章；文化标识讲"时间与地点"，整体Logo讲"折返与验证"，两者严格分层。国际传播文案：*From the first railway engineered by China to civic AI tested with the public — Jing-Zhang turns innovation into a shared, accountable urban capability.* 所有历史图片、字体、肖像和标识仅使用自制、公共领域或明确授权材料。
 
 ## 更新项目清单、实施政策与分期计划
 项目清单以可逆原型、公共证据设施、慢行缝合和存量首层更新为四类；概念分期图层记录近期试点、折返点和退出条件 [data:geometry/phasing.geojson#PHASE-001] [depth:renewal_project_list] [depth:phasing_implementation]，不代表政府投资、招商或审批安排。
-年度节律以真实城市问题而非会展流量为主线：
-- 春季"城市问题开源季"：居民与基层运营者发布任务，形成公开问题单；
-- 夏季"模型上街前挑战"：围绕安全、公平、无障碍开展红队与复现；
-- 秋季"京张城市AI周"：开放演示、国际对话、失败案例展和专业评审；
-- 冬季"公共价值复盘会"：公布指标、折返、入段、事故、停用和下一年预算建议。
+年度节律以四时为序——不是贴《荀子》的标签，是因为城市AI的治理周期本来就跟农时一样：播种问题、除草去伪、收获公开、冬藏存证。
+- **春耕·城市问题开源季**：居民与基层运营者发布任务，形成公开问题单。春生万物，问题也从地面长出来。
+- **夏耘·模型上街前挑战**：围绕安全、公平、无障碍开展红队与复现。夏长时节，除草去伪最勤。
+- **秋收·京张城市AI周**：开放演示、国际对话、失败案例展和专业评审。秋收时节，成果与失败一起收割——失败的展览比成功的演示更重要。
+- **冬藏·公共价值复盘会**：公布指标、折返、入段、事故、停用和下一年预算建议。冬藏时节，所有记录归档存证，为来年春耕留种。
 
 开发者社区实行任务认领、导师复核、版本留痕、维护承诺和贡献者永久署名；测试场景经"提出—伦理/安全预审—小规模试验—公众反馈—独立评估—放行/折返/入段"六关。国际合作只输出开放协议、评测集与可复用组件，不输出未经授权数据。
 
@@ -219,9 +246,13 @@ A"模型上街前"评测场：偏见、幻觉、鲁棒、隐私和无障碍测�
 - 各项参与效果按代表分类分组评估，确保各群体反馈被独立统计而非混同
 - 评估结果在每年底公开，含分组满意度、问题关闭率、响应时长
 
-### 公众代表否决权
-- 涉及数据采集、监控部署、限制性措施等场景，公众代表有权在折返点否决（触发强制折返）
-- 否决权行使范围、程序与效力在折返点制度和公众参与章程中明确 [depth:switchback_governance]
+### 公众代表否决权——"否决不是按钮，是一套程序"
+否决权不是笼统的"有权否决"，而是有明确触发、效力、复议和记录的完整程序：
+
+- **否决触发**：公众代表中任意一人在折返点提出"否决动议"，须附理由。理由可口述（由运营秘书处代为记录），不设最低学历或技术门槛——"我觉得这个不对"是合法的否决理由。
+- **否决效力**：否决动议提出后 48 小时内，场景自动降级为"侧线运行"——限速、限域、限数据，不停止但收缩。等待下次折返点审议。
+- **否决复议**：场景责任人可申请一次复议，但复议必须公开举行，且公众代表席位不少于 5 人（原提出者必须在场）。复议不是"再投一次"，而是"重新回授"——责任人必须重新解释。
+- **否决记录**：每次否决记入 K 标版本链，永久可查。否决不是失败，是城市在行使自己的折返权 [depth:switchback_governance] [depth:teach_back_gate]。
 
 ## 参考资料
 - [source:OFFICIAL-ANNOUNCEMENT] 官方资格预审公告。
