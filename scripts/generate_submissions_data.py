@@ -229,14 +229,20 @@ def classify_submission(submission_dir: Path, manifest: Any) -> str:
         return "legacy_fixture"
     if not package_complete(submission_dir):
         return "needs_revision"
+    # Current manifest blockers and blocking self-check results take
+    # precedence over any stale persisted readiness value.  A package may
+    # retain an old ``can_enter_formal_review=true`` result after a later
+    # blocker was recorded; exposing it as formally ready would overstate the
+    # evidence in the generated gallery.
+    if known_blockers(manifest) or has_blocking_self_check(submission_dir):
+        return "needs_revision"
     if stored_formal_readiness(submission_dir) is True:
         return "formal_review_ready"
     if stored_formal_readiness(submission_dir) is False:
         # Stored results created under the former organizer-data gate are not
-        # authoritative. Only participant-controlled validation failures block.
-        return "formal_review_ready" if not has_blocking_self_check(submission_dir) else "needs_revision"
-    if known_blockers(manifest) or has_blocking_self_check(submission_dir):
-        return "needs_revision"
+        # authoritative. Current blockers were handled above, so a legacy
+        # false value alone does not block gallery continuity.
+        return "formal_review_ready"
     return "formal_review_ready"
 
 

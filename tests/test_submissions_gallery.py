@@ -11,8 +11,10 @@ from urllib.parse import urlsplit
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from generate_submissions_data import (  # noqa: E402
+    REQUIRED_PACKAGE_FILES,
     build_data,
     build_item,
+    classify_submission,
     discover_submissions,
     load_publication_registry,
     package_sha256,
@@ -81,6 +83,28 @@ class TestSubmissionsGallery(unittest.TestCase):
                 "proposal-view.html?proposal=submissions/alice/example",
                 items[0]["proposalUrl"],
             )
+
+    def test_current_blockers_override_stale_formal_readiness(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission = root / "submissions" / "alice" / "stale-ready"
+            for rel in REQUIRED_PACKAGE_FILES:
+                path = submission / rel
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text("{}", encoding="utf-8")
+            manifest = {
+                "submission_stage": "formal",
+                "validation_claim": {"known_blockers": ["official boundary pending"]},
+            }
+            (submission / "manifest.json").write_text(
+                json.dumps(manifest), encoding="utf-8"
+            )
+            (submission / "self_check.json").write_text(
+                json.dumps({"ok": True, "can_enter_formal_review": True}),
+                encoding="utf-8",
+            )
+
+            self.assertEqual("needs_revision", classify_submission(submission, manifest))
 
     def test_registry_can_explicitly_hold_a_merged_submission(self):
         with tempfile.TemporaryDirectory() as tmp:
