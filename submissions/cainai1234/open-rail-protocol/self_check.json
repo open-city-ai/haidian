@@ -1,0 +1,46 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
+  "checked_at": "2026-08-11T10:19:48Z",
+  "validation_method": "Local integrity review based on the public submission contract. Repository CI and professional review remain required after PR creation.",
+  "boundary_disclosure": {
+    "status": "provisional",
+    "message_zh": "本投稿采用仓库提供的临时粗略边界，不能作为官方红线、审批依据或精确面积依据；正式数据到位后需整体重算。",
+    "message_en": "This submission uses repository-provided provisional rough geometry; it is not an official redline, approval basis, or precise-area basis and requires full recalculation when official data arrives."
+  },
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submission package",
+      "message": "Local integrity review checked required paths, bilingual narrative length, closed rings, static HTML, local figures and disclosure.",
+      "details": []
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry",
+      "message": "Required geometry layers and common metadata are present; land use is a shared-edge five-band partition of the provisional boundary.",
+      "details": []
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "assets, drawings, visual",
+      "message": "Five bilingual figures, bilingual offline HTML, an optional conceptual cover and non-zero PDFs are present without remote runtime dependencies.",
+      "details": []
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal and matrices",
+      "message": "Narrative, sources, assumptions, metrics and matrices expose the provisional data boundary and conceptual status.",
+      "details": []
+    }
+  ]
+}
