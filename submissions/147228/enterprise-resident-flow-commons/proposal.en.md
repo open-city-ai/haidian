@@ -149,6 +149,8 @@ Every cell keeps one human question visible. Zhongzhiyuan AM arrival asks whethe
 
 ![Spatial mobility decision atlas: three key areas, four windows and 12 model-to-human decision cells](assets/figures/spatial-mobility-atlas-board.en.svg)
 
+Figure boundary note: the overview raster expresses provisional design relationships only. It is not an official redline, right-of-way, station buffer, or current traffic-capacity readout. Official geometry and station anchors must trigger one coordinated recalculation of spaces, curbs, metrics, drawings, and bilingual pages; until then, performance and accessibility outputs remain synthetic or `unknown`.
+
 Reviewers can run `node visual/assets/run-spatial-mobility-atlas.js --check` to reproduce 13/13 structural checks, 12 decision cells, five conditional-review cells and seven hold cells. This PASS shows that the atlas is readable and its guards are replayable. It does not establish professional review, field measurement, permission or a public score [data:visual/assets/spatial-mobility-atlas-readout.json] [data:visual/assets/run-spatial-mobility-atlas.js].
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios

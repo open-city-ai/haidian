@@ -169,6 +169,8 @@ iteration: "v2.0-population-scale-screen"
 
 ![空间交通决策图谱：三处重点区、四个时段与 12 个模型到人工决定单元](assets/figures/spatial-mobility-atlas-board.svg)
 
+图件边界说明：总览栅格图只表达三处临时重点区之间的设计关系，不是官方红线、路权、站点缓冲区或现状交通容量。正式边界和站点锚定关系到位后，必须按同一版本重算空间、路缘、指标和图件；在此之前，所有性能与可达性结果保持合成或 unknown。
+
 评审者可运行 `node visual/assets/run-spatial-mobility-atlas.js --check`，复核 13/13 个结构检查、12 个决定单元、5 个条件复核单元和 7 个保持单元。这个 PASS 只说明图谱可读和护栏可重放，不代表专业审查、现场调查、许可或公开评分已经完成 [data:visual/assets/run-spatial-mobility-atlas-readout.json] [data:visual/assets/run-spatial-mobility-atlas.js]。
 
 ## AI 创新生态、人才画像与 AI+ 场景

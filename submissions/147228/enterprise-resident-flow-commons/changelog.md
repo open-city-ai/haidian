@@ -1,5 +1,10 @@
 # 方案迭代记录
 
+## v1.24 - 2026-08-12
+
+- Synchronized the offline visual-page package label with `enterprise-resident-flow-commons` and the current package revision.
+- Added an explicit caption-level warning that the overview raster is a provisional design relationship, not an official polygon, right-of-way or station buffer.
+
 ## v1.23 - 2026-08-12
 
 - Added an explicit first/last-mile completion guard to the dynamic preference screen, separating station-to-block continuity from the transit leg and keeping the air candidate at zero agents.
