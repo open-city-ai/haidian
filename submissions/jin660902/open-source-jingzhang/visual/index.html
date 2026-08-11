@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>开源城市·京张代码 — 电子展示页</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Microsoft YaHei',system-ui,sans-serif;background:#f5f5f0;color:#333;line-height:1.6}
+.header{background:linear-gradient(135deg,#2B5F8C,#1a3a5c);color:#fff;padding:30px 20px;text-align:center}
+.header h1{font-size:28px;margin-bottom:8px}
+.header .subtitle{font-size:14px;opacity:0.9}
+.header .concept{font-size:12px;color:#3CB371;margin-top:8px}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.section{background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.1);margin-bottom:20px;padding:20px}
+.section h2{color:#2B5F8C;border-bottom:2px solid #2B5F8C;padding-bottom:8px;margin-bottom:15px;font-size:18px}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.metric-card{background:#f8f9fa;border-radius:6px;padding:15px;text-align:center;border-left:4px solid #2B5F8C}
+.metric-card.green{border-left-color:#3CB371}
+.metric-card.unknown{border-left-color:#E8552B}
+.metric-value{font-size:24px;font-weight:bold;color:#2B5F8C}
+.metric-card.green .metric-value{color:#3CB371}
+.metric-card.unknown .metric-value{color:#E8552B;font-size:14px}
+.metric-label{font-size:12px;color:#666;margin-top:4px}
+.metric-source{font-size:10px;color:#999;margin-top:2px}
+.key-areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.key-area{padding:12px;border-radius:6px;color:#fff;text-align:center}
+.key-area.k1{background:#E8552B}
+.key-area.k2{background:#3CB371}
+.key-area.k3{background:#D4A017}
+.key-area h3{font-size:14px;margin-bottom:4px}
+.key-area .role{font-size:11px;opacity:0.9}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.scenario-card{background:#f8f9fa;border:1px solid #ddd;border-radius:4px;padding:10px;font-size:12px}
+.scenario-card .icon{font-size:20px;display:block;margin-bottom:4px}
+.check-list{list-style:none}
+.check-list li{padding:6px 0;border-bottom:1px solid #eee;font-size:13px}
+.check-list li:before{content:"✓";color:#3CB371;font-weight:bold;margin-right:8px}
+.check-list li.pending:before{content:"○";color:#E8552B}
+.provisional-notice{background:#fff3cd;border:1px solid #ffeaa7;color:#856404;padding:10px;border-radius:4px;font-size:12px;margin-bottom:15px}
+.footer{text-align:center;padding:20px;color:#999;font-size:11px}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>开源城市·京张代码</h1>
+<div class="subtitle">百年京张AI创新带城市设计概念方案</div>
+<div class="concept">京张铁路=开源主干分支 | 三重点区=三大模块 | AI地标=里程碑</div>
+</div>
+<div class="container">
+
+<div class="provisional-notice">
+⚠️ 本方案使用临时粗略边界（provisional boundary）。所有空间数据仅用于AI生成、展示和临时自检，不得作为官方红线或精确面积依据。正式数据发布后须重新复算。
+</div>
+
+<div class="section">
+<h2>核心指标</h2>
+<div class="metrics-grid">
+<div class="metric-card"><div class="metric-value" data-metric="site_area_sqm" data-value="11412825.386">1141.3 ha</div><div class="metric-label">场地面积</div><div class="metric-source">site_boundary.geojson</div></div>
+<div class="metric-card green"><div class="metric-value" data-metric="green_ratio" data-value="0.287411">28.74%</div><div class="metric-label">绿地比例</div><div class="metric-source">green_space.geojson</div></div>
+<div class="metric-card green"><div class="metric-value" data-metric="public_space_ratio" data-value="0.014791">1.48%</div><div class="metric-label">公共空间比例</div><div class="metric-source">public_space.geojson</div></div>
+<div class="metric-card"><div class="metric-value">37.9 ha</div><div class="metric-label">建筑基底</div><div class="metric-source">buildings.geojson</div></div>
+<div class="metric-card"><div class="metric-value">16.7 km</div><div class="metric-label">道路总长</div><div class="metric-source">roads.geojson</div></div>
+<div class="metric-card unknown"><div class="metric-value">待补齐</div><div class="metric-label">容积率</div><div class="metric-source">planning_limits.json</div></div>
+<div class="metric-card unknown"><div class="metric-value">待补齐</div><div class="metric-label">建筑高度</div><div class="metric-source">planning_limits.json</div></div>
+<div class="metric-card"><div class="metric-value">3</div><div class="metric-label">重点区域数</div><div class="metric-source">key_areas.geojson</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>三重点区域</h2>
+<div class="key-areas-grid">
+<div class="key-area k1"><h3>众智园</h3><div class="role">core-engine 仓库<br>AI全栈自主创新<br>192.1 ha</div></div>
+<div class="key-area k2"><h3>AI原点社区</h3><div class="role">origin-community 仓库<br>开源协作与成果转化<br>104.3 ha</div></div>
+<div class="key-area k3"><h3>大钟寺</h3><div class="role">app-marketplace 仓库<br>智能产业与国际交往<br>72.0 ha</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>AI 场景节点（10+）</h2>
+<div class="scenario-grid">
+<div class="scenario-card"><span class="icon">📢</span>01 开源发布厅<div>原点社区</div></div>
+<div class="scenario-card"><span class="icon">🛡️</span>02 安全治理沙盒<div>众智园</div></div>
+<div class="scenario-card"><span class="icon">⚡</span>03 端侧算力驿站<div>总体范围</div></div>
+<div class="scenario-card"><span class="icon">🚶</span>04 AI慢行导航<div>遗址公园</div></div>
+<div class="scenario-card"><span class="icon">🎤</span>05 国际路演客厅<div>大钟寺</div></div>
+<div class="scenario-card"><span class="icon">🌿</span>06 清河低碳创新廊<div>众智园</div></div>
+<div class="scenario-card"><span class="icon">🔄</span>07 近校成果转化街<div>原点社区</div></div>
+<div class="scenario-card"><span class="icon">📊</span>08 数据要素会客厅<div>大钟寺</div></div>
+<div class="scenario-card"><span class="icon">🏠</span>09 AI生活服务样板街<div>社区</div></div>
+<div class="scenario-card"><span class="icon">🌍</span>10 全球AI活动周路线<div>公共空间</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>AI朝圣地标（3+）</h2>
+<div class="scenario-grid">
+<div class="scenario-card"><span class="icon">🏛️</span>M0 里程碑广场<div>京张遗址公园主轴</div><div>版本发布纪念</div></div>
+<div class="scenario-card"><span class="icon">🏆</span>M1 贡献者荣誉墙<div>原点社区</div><div>GitHub ID 碑刻</div></div>
+<div class="scenario-card"><span class="icon">📚</span>M2 开源成果展示廊<div>大钟寺</div><div>可复现成果展示</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>自检状态</h2>
+<ul class="check-list">
+<li>用地覆盖率: 100%</li>
+<li>边界信任: provisional（临时约束）</li>
+<li>重点区覆盖: 3/3</li>
+<li>指标一致性: known×8, unknown×2（待官方数据）</li>
+<li class="pending">双语契约: 待 finalize 验证</li>
+<li class="pending">视觉包装: 待 finalize 验证</li>
+<li class="pending">专业证据链: 待 finalize 验证</li>
+</ul>
+</div>
+
+<div class="section">
+<h2>来源与假设</h2>
+<p style="font-size:13px;color:#666"><strong>来源:</strong> 官方公告、agent_taskbook.json、provisional_boundaries.geojson、source_registry.json、agent_fact_pack.md</p>
+<p style="font-size:13px;color:#666"><strong>假设:</strong> 临时边界精度为 provisional_rough；容积率/建筑高度/拆改留待官方控规补齐；正式数据发布后所有指标须重新复算</p>
+<p style="font-size:13px;color:#666"><strong>边界:</strong> 所有空间落地建议均为"概念建议""参考方案""可供专业团队深化研究"，不替代正式规划</p>
+</div>
+
+</div>
+<div class="section"><h2>总览地图</h2><p>总体概念图见 assets/figures/site-overview.png。京张铁路=开源主干分支，三重点区=三大模块，AI地标=里程碑。</p></div>
+<div class="section"><h2>三层范围</h2><p>统筹研究范围43.6km² | 总体设计范围11.4km² | 重点区域368.4ha（provisional boundary）</p></div>
+<div class="section"><h2>用地分区</h2><p>6个用地分区：AI全栈研发(0802)、创新交往(05)、公共服务(08)、开源协作(0802)、居住配套(0702)、智能产业(05)。覆盖率100%。</p></div>
+<div class="section"><h2>交通慢行</h2><p>5条道路共16.7km：京张遗址公园慢行主轴、北部东西联系线、中部东西联系线、大钟寺站接驳线、原点社区-众智园联系线。</p></div>
+<div class="section"><h2>蓝绿公共空间</h2><p>3块绿地(28.74%)+4个公共空间(1.48%)。京张遗址公园绿地廊道为主轴，清河沿岸绿地和口袋公园为节点。</p></div>
+<div class="section"><h2>更新项目</h2><p>6个更新项目：JZ-01慢行断点缝合、JZ-02清河创新界面、JZ-03近校成果转化街、JZ-04大钟寺站连通、JZ-05AI公共服务节点、JZ-06全球AI活动周路线。</p></div>
+<div class="section"><h2>任务覆盖</h2><p>覆盖公告1.3/1.4/1.5与agent.1-6共22条任务。六项智能体任务：开源城市概念命名、AI生态案例、场景卡与画像、朝圣地标、文化叙事、年度活动运营。</p></div>
+<div class="footer">
+开源城市·京张代码 | Agent: 千问办公助理 (glm-4.6) | GitHub: jin660902 | 提交至 open-city-ai/haidian 开源征集<br>
+来源：provisional_boundaries.geojson | 坐标系 EPSG:4326 | 面积复算 EPSG:4548 | 离线静态HTML
+</div>
+</body>
+</html>
