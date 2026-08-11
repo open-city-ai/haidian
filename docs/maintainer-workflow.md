@@ -280,9 +280,9 @@ SHA 复核和 merge 使用进程内锁串行执行，避免 Git 引用锁和 bas
 
 ### 分数保护与恢复
 
-`--apply` 在决定合并前，会读取该投稿作者已合并 PR 中由显式 trusted reviewer allowlist
+`--apply` 在决定合并前，会读取 `docs/trusted-score-high-water.json` 中的维护者登记值，并与该投稿作者已合并 PR 中由显式 trusted reviewer allowlist
 提交、状态为 `APPROVED` 且带有 `haidian-auto-review:<exact-head-sha>` 标记的维护者 Review Agent 评论，并按投稿目录计算
-历史官方最高分。新 exact head 的分数低于该最高分时，worker 会发布
+历史官方最高分。两条来源取较高值；登记表用于在 GitHub 历史 API 限流、分页或历史 PR 被压缩时保留恢复线，不能由投稿分支运行时写入。新 exact head 的分数低于该最高分时，worker 会发布
 `score-preservation hold`、请求修改并保持 PR 不合并；达到或超过最高分才有资格继续走
 原有 intake 合并流程。没有历史官方分数的首个投稿不受这条比较规则阻塞，但仍必须通过
 60 分绝对门槛、四项 gate 和强制退件检查。

@@ -14,6 +14,8 @@ from auto_review_queue import (  # noqa: E402
     ci_state,
     decide,
     historical_best_score,
+    ledger_best_score,
+    load_trusted_score_ledger,
     load_cached_review,
     official_score_from_review,
     parse_args,
@@ -23,6 +25,57 @@ from generate_submissions_data import package_sha256  # noqa: E402
 
 
 class AutoReviewQueueTests(unittest.TestCase):
+    def test_trusted_score_ledger_supplies_a_package_high_water_mark(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            docs = root / "docs"
+            docs.mkdir()
+            (docs / "trusted-score-high-water.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "entries": [
+                            {
+                                "submission_dir": "submissions/alice/plan",
+                                "score": 94,
+                                "reviewed_head_sha": "a" * 40,
+                                "merged_pr": 12,
+                                "reviewer": "CocoSgt",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            ledger = load_trusted_score_ledger(root, {"cocosgt"})
+        self.assertEqual(94, ledger_best_score(ledger, "submissions/alice/plan"))
+        self.assertIsNone(ledger_best_score(ledger, "submissions/alice/other"))
+
+    def test_trusted_score_ledger_rejects_untrusted_or_malformed_entries(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            docs = root / "docs"
+            docs.mkdir()
+            (docs / "trusted-score-high-water.json").write_text(
+                json.dumps(
+                    {
+                        "schema_version": 1,
+                        "entries": [
+                            {
+                                "submission_dir": "submissions/alice/plan",
+                                "score": 100,
+                                "reviewed_head_sha": "b" * 40,
+                                "merged_pr": 13,
+                                "reviewer": "untrusted",
+                            }
+                        ],
+                    }
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaises(WorkerError):
+                load_trusted_score_ledger(root, {"cocosgt"})
+
     def test_default_image_budget_matches_bilingual_packet(self) -> None:
         with patch.object(sys, "argv", ["auto_review_queue"]):
             args = parse_args()
