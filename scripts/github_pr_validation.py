@@ -817,6 +817,12 @@ def main() -> int:
             return 0
 
     files = client.fetch_pull_files(pr_number)
+    if side_effects_allowed and not is_current_pull_request_head(client, pr_number, head_sha):
+        print(
+            f"Skipping stale validation event for PR #{pr_number}: "
+            f"the PR head changed while its file list was being read."
+        )
+        return 0
     if not side_effects_allowed and not public_event_head_is_current(head_repo, head_ref, head_sha):
         print(
             f"Skipping validation for PR #{pr_number}: public branch ref changed while "
@@ -849,14 +855,15 @@ def main() -> int:
             f"{validation_markdown}\n\n"
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
-        if not is_current_pull_request_head(client, pr_number, head_sha):
+        if side_effects_allowed and not is_current_pull_request_head(client, pr_number, head_sha):
             print(
                 f"Skipping stale validation side effects for PR #{pr_number}: "
                 f"event head {head_sha} no longer matches the current PR head."
             )
             return 0
         write_step_summary(comment)
-        client.upsert_comment(pr_number, comment)
+        if side_effects_allowed:
+            client.upsert_comment(pr_number, comment)
         return 0
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
@@ -930,7 +937,7 @@ def main() -> int:
                 )
         validation_markdown = format_report(validation)
 
-        if not is_current_pull_request_head(client, pr_number, head_sha):
+        if side_effects_allowed and not is_current_pull_request_head(client, pr_number, head_sha):
             print(
                 f"Skipping stale validation side effects for PR #{pr_number}: "
                 f"event head {head_sha} no longer matches the current PR head."

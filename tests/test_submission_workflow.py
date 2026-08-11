@@ -450,7 +450,7 @@ class PullRequestHeadGuardTests(unittest.TestCase):
                     {},
                 ),
             ]
-            client.paginate.return_value = [{"filename": "docs/example.md"}]
+            client.fetch_pull_files.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
                 os.environ,
                 {
@@ -496,7 +496,7 @@ class PullRequestHeadGuardTests(unittest.TestCase):
                     {},
                 ),
             ]
-            client.paginate.return_value = [{"filename": "docs/example.md"}]
+            client.fetch_pull_files.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
                 os.environ,
                 {
@@ -852,7 +852,7 @@ class ManifestHydrationTests(unittest.TestCase):
                 {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
                 {},
             )
-            client.paginate.return_value = files
+            client.fetch_pull_files.return_value = files
             with patch.dict(
                 os.environ,
                 {
