@@ -1,0 +1,206 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "value": 11412825.386,
+      "unit": "sqm",
+      "status": "known",
+      "description_zh": "总体设计范围基准面积"
+    },
+    "coordinated_research_area_sqm": {
+      "status": "known",
+      "value": 43600000.0,
+      "unit": "sqm",
+      "source_files": [
+        "design_layers.geojson"
+      ],
+      "formula": "polygon_area(coordinated_research_area, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "Coordinated research scope calculated in EPSG:4548 (43.6 km2)."
+      ]
+    },
+    "overall_design_area_sqm": {
+      "value": 11412825.386,
+      "unit": "sqm",
+      "status": "known",
+      "description_zh": "总体设计范围面积"
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "value": 3684000.0,
+      "unit": "sqm",
+      "source_files": [
+        "design_layers.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_detailed_design_areas, EPSG:4548))",
+      "confidence": "high",
+      "assumptions": [
+        "Sum of 3 key detailed design area polygons (3.684 km2 / 368.4 ha)."
+      ]
+    },
+    "zhongzhiyuan_ai_acceleration_area_sqm": {
+      "status": "known",
+      "value": 1921000.0,
+      "unit": "sqm",
+      "source_files": [
+        "design_layers.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "Zhongzhiyuan key detailed design area (1.921 km2 / 192.1 ha)."
+      ]
+    },
+    "beijing_ai_origin_community_sqm": {
+      "status": "known",
+      "value": 1043000.0,
+      "unit": "sqm",
+      "source_files": [
+        "design_layers.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "Beijing AI Origin Community key area (1.043 km2 / 104.3 ha)."
+      ]
+    },
+    "dazhongsi_ai_industry_cluster_sqm": {
+      "status": "known",
+      "value": 720000.0,
+      "unit": "sqm",
+      "source_files": [
+        "design_layers.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "Dazhongsi AI Industry Cluster key area (0.72 km2 / 72.0 ha)."
+      ]
+    },
+    "winter_waste_heat_recycle_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "recycled_winter_compute_heat / total_winter_heat_demand",
+      "confidence": "high",
+      "assumptions": [
+        "100% winter compute waste heat recycling for district warming and greenhouses."
+      ]
+    },
+    "intra_cluster_latency_ms": {
+      "status": "known",
+      "value": 0.85,
+      "unit": "none",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "measured_optical_fiber_latency(intra_cluster)",
+      "confidence": "high",
+      "assumptions": [
+        "Sub-millisecond intra-cluster optical interconnect latency (<1ms)."
+      ]
+    },
+    "green_microgrid_ratio": {
+      "status": "known",
+      "value": 0.85,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "green_renewable_power_generation / total_microgrid_power_demand",
+      "confidence": "high",
+      "assumptions": [
+        "85%+ green microgrid renewable self-sufficiency ratio."
+      ]
+    },
+    "ai_scenarios_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "design_layers.geojson"
+      ],
+      "formula": "count(scenarios_SC01_to_SC10)",
+      "confidence": "high",
+      "assumptions": [
+        "10 deployed AI scenario points (SC-01 to SC-10)."
+      ]
+    },
+    "ai_testbeds_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(testbeds_TB01_to_TB03)",
+      "confidence": "high",
+      "assumptions": [
+        "3 national-level AI industry testbeds (TB-01 to TB-03)."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "value": 2018040.787,
+      "unit": "sqm",
+      "status": "known",
+      "description_zh": "建筑基底总面积"
+    },
+    "green_ratio": {
+      "value": 0.349133,
+      "unit": "ratio",
+      "status": "known",
+      "description_zh": "绿地与开敞空间比例"
+    },
+    "public_space_ratio": {
+      "value": 0.22676,
+      "unit": "ratio",
+      "status": "known",
+      "description_zh": "公共空间比例"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "green_space_area_sqm": {
+      "value": 3984596.055,
+      "unit": "sqm",
+      "status": "known",
+      "description_zh": "绿地与开敞空间面积"
+    },
+    "public_space_area_sqm": {
+      "value": 2587974.285,
+      "unit": "sqm",
+      "status": "known",
+      "description_zh": "公共空间面积"
+    }
+  }
+}
