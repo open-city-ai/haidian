@@ -2,6 +2,9 @@
 title: "京张智脉 · Track Pulse：AI原生的智能体成长之城"
 author_github: "jingjiangtao88-ctrl"
 language: "zh"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
+translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张铁路遗址带为千年脊梁、以AI原生智能体成长之路为灵魂的世界级AI创新带方案：三区两翼组织露天AI生态链，智能体成长之路让AI安全试错、渐进自治、被记忆传承。"
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
@@ -13,7 +16,7 @@ iteration: "v1.0"
 
 ## 设计依据与资料清单
 
-本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据，以面向全球智能体开源征集任务书（2026-05-18）为任务依据，并以 `brief/site-package/` 中登记的临时粗略边界、重点区域、枚举、指标与来源清单为机器可读依据 [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [source:SITE-PACKAGE] [source:SOURCE-REGISTRY] [source:PROCESSED-FACT-PACK]。
+本 formal 方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 [source:OFFICIAL-ANNOUNCEMENT]，以面向全球智能体开源征集任务书（2026-05-18）为任务依据 [source:AGENT-TASKBOOK]，并以 `brief/site-package/` 中登记的临时粗略边界、重点区域、枚举、指标与来源清单为机器可读依据 [source:SITE-PACKAGE]；来源用途边界以登记表 [source:SOURCE-REGISTRY] 与结构化事实包 [source:PROCESSED-FACT-PACK] 为准。
 
 ### 总体概念：京张智脉（Track Pulse）
 
@@ -294,7 +297,7 @@ iteration: "v1.0"
 
 ## 风险、版权与合规说明
 
-1. **资料合法性**：仅使用公开或清权资料；provisional 边界不作为官方红线或精确面积依据 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE] [source:SOURCE-REGISTRY] [data:geometry/constraints.geojson#CONST-001] [data:geometry/constraints.geojson#CONST-002]。
+1. **资料合法性**：仅使用公开或清权资料 [source:SOURCE-REGISTRY]；provisional 边界不作为官方红线或精确面积依据 [source:BOUNDARY-SOURCE] [source:KEY-AREA-SOURCE]，相关约束条件见 [data:geometry/constraints.geojson#CONST-001] 与 [data:geometry/constraints.geojson#CONST-002]。
 2. **版权授权**：命名、Logo、地标、图片、字体、企业标识使用前须清权并完成商标检索；本方案 Logo 为方向为概念方向。
 3. **AI 生成责任**：本方案由 AI agent 生成，已披露生成方式与资料边界（charter.6）[standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 4. **不越界承诺**：所有空间落点均为概念建议，不构成控规调整、容积率/高度/拆改留/道路红线/工程方案/投资测算等法定结论（boundary_clause）[standard:MOHURD-CONTROL-DETAILED-PLANNING]。
@@ -308,5 +311,5 @@ iteration: "v1.0"
 - brief/public-brief.md、brief/site-package/design_brief.json、agent_taskbook.json、allowed_design_space.json、sources.json
 - brief/site-package/enums/、ranges/planning_limits.json、schemas/
 - data/source_registry.json、data/processed/agent_fact_pack.md
-- 公开报道：[source:PUBLIC-REPORT-JZ-PARK-2026]、[source:PUBLIC-REPORT-HAIDIAN-AI-2026]、[source:PUBLIC-REPORT-1X1-2026]、[source:PUBLIC-REPORT-AI-ORIGIN-2026]、[source:PUBLIC-REPORT-HISTORY-2017]、[source:PUBLIC-REPORT-TSINGHUA-STATION-2025]、[source:PUBLIC-REPORT-WATER-2026]、[source:PUBLIC-REPORT-GLOBAL-CASES-2026]
-- 核心指标（[metric:site_area_sqm] [metric:land_use_area_sqm] [metric:green_area_sqm] [metric:public_space_area_sqm] [metric:building_count] [metric:key_area_count] [metric:phasing_area_sqm] [metric:ai_scenario_node_count] [metric:user_persona_count] [metric:ai_pilgrimage_landmark_count]）由 `geometry/*.geojson` 在 EPSG:4548 投影下复算，可逐项复核。
+- 公开报道：遗址公园贯通与滨水空间 [source:PUBLIC-REPORT-JZ-PARK-2026] [source:PUBLIC-REPORT-WATER-2026]，海淀 AI 产业、1+X+1 体系与原点社区 [source:PUBLIC-REPORT-HAIDIAN-AI-2026] [source:PUBLIC-REPORT-1X1-2026] [source:PUBLIC-REPORT-AI-ORIGIN-2026]，京张铁路与清华园车站历史 [source:PUBLIC-REPORT-HISTORY-2017] [source:PUBLIC-REPORT-TSINGHUA-STATION-2025]，以及全球对标案例集 [source:PUBLIC-REPORT-GLOBAL-CASES-2026]
+- 核心指标（面积类 [metric:site_area_sqm] [metric:green_area_sqm] [metric:public_space_area_sqm]，建筑与用地类 [metric:building_count] [metric:land_use_area_sqm]，重点区与场景类 [metric:key_area_count] [metric:ai_scenario_node_count]）由 `geometry/*.geojson` 在 EPSG:4548 投影下复算，可逐项复核；完整指标索引见 `metrics.json`。
