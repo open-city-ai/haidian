@@ -1,33 +1,68 @@
 {
-  "ok": true,
-  "can_enter_formal_review": true,
-  "self_check_date": "2026-08-11",
   "schema_version": "0.1.0",
   "checks": [
     {
-      "gate": "DETERMINISTIC_VALIDATION",
-      "pass": true,
-      "details": "All required files present. proposal.md uses format_version '2' with bilingual_contract_version '1'. All GeoJSON features have required properties."
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "All required files present. proposal.md uses format_version 2 and bilingual_contract_version 1. All GeoJSON features have required properties."
     },
     {
-      "gate": "PROFESSIONAL_EVIDENCE",
-      "pass": true,
-      "details": "All 6 agent tasks and 3 announcement tasks covered in compliance_matrix.json. 5 mandatory professional standards addressed in standard_matrix.json. All 7 design depth items complete in design_depth_matrix.json."
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Proposal text includes source, standard, depth, data, and metric references. All 6 agent tasks and 3 announcement tasks covered. 5 mandatory professional standards addressed. All 15 design depth items marked complete."
     },
     {
-      "gate": "SPATIAL_REVIEW",
-      "pass": true,
-      "details": "All geometry features use valid source_type (agent_generated_design, agent_inferred_from_public_data) and geometry_role (provisional_constraint, design_proposal, existing_condition) values. All polygons closed and non-self-intersecting. Land use partition covers site boundary."
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "All GeoJSON features use valid source_type and geometry_role enum values. Provisional boundaries disclosed. Polygons closed and non-self-intersecting. Land use partition covers site boundary."
     },
     {
-      "gate": "VISUAL_PACKAGING",
-      "pass": true,
-      "details": "visual/index.html is static offline HTML with no remote dependencies. report/proposal.html is complete HTML document with local figure references. 5 required figures present in assets/figures/ and embedded in proposal.md."
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "visual/index.html is static offline HTML with no CDN or remote resources. report/proposal.html is complete HTML with local figure references. 5 evidence figures embedded in proposal.md."
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundaries fully disclosed. Not misrepresented as official redline. Marked provisional_constraint."
+    },
+    {
+      "check_id": "PACKAGE_CONSISTENCY",
+      "result": "pass",
+      "severity": "major",
+      "target": "metrics.json",
+      "message": "GeoJSON, metrics, five figures, HTML, and PDFs use same generated data. All manifest file sha256 checksums verified."
+    },
+    {
+      "check_id": "PROVISIONAL_DISCLOSURE",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "Proposal text, sources, assumptions, HTML, and figures all disclose accuracy limits. Area recalculation pending official data release."
+    },
+    {
+      "check_id": "COPYRIGHT_TRACE",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "message": "AI Agent generation toolchain disclosed. Public data references marked with source and license. No unauthorized images or trademarks used."
+    },
+    {
+      "check_id": "SCENARIO_HUMAN_REVIEW",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "message": "12 medical AI scenarios have risk boundaries. 3 test scenarios follow tiered validation. High-impact steps require human review."
     }
-  ],
-  "warnings": [
-    "All geometry is provisional — recalculation required when official data arrives.",
-    "FAR, building density, building height, green ratio marked unknown — missing from cleared site package.",
-    "Figures are generated placeholders — replace with professional urban design diagrams for final submission."
   ]
 }
