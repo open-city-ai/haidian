@@ -1,0 +1,434 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(site_boundary) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Area and ratios use the organiser-provided provisional geometry and must be recalculated against an official polygon."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1128233.938,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(green_space polygons)) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Area and ratios use the organiser-provided provisional geometry and must be recalculated against an official polygon.",
+        "Participant-generated conceptual geometry; not a statutory or engineering quantity."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.098857,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Area and ratios use the organiser-provided provisional geometry and must be recalculated against an official polygon.",
+        "Green and public-space layers may overlap."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 552432.042,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(public_space polygons)) in EPSG:4548; points excluded",
+      "confidence": "medium",
+      "assumptions": [
+        "Area and ratios use the organiser-provided provisional geometry and must be recalculated against an official polygon.",
+        "Participant-generated conceptual geometry; not a statutory or engineering quantity."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.048404,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Area and ratios use the organiser-provided provisional geometry and must be recalculated against an official polygon.",
+        "Green and public-space layers may overlap."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 38352.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual reversible module footprints) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "Participant-generated conceptual geometry; not a statutory or engineering quantity.",
+        "Footprints do not identify existing or approved buildings."
+      ]
+    },
+    "movement_network_length_m": {
+      "status": "known",
+      "value": 29750.578,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(conceptual event, recovery, and protected-home centrelines) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "Participant-generated conceptual geometry; not a statutory or engineering quantity.",
+        "Centrelines are not road redlines or certified egress routes."
+      ]
+    },
+    "land_use_cell_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use topology cells)",
+      "confidence": "high",
+      "assumptions": [
+        "Count is deterministic for this package version."
+      ]
+    },
+    "conceptual_module_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(reversible event and recovery module footprints)",
+      "confidence": "high",
+      "assumptions": [
+        "Count is a design inventory, not construction approval."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required provisional key-area index features)",
+      "confidence": "medium",
+      "assumptions": [
+        "Area and ratios use the organiser-provided provisional geometry and must be recalculated against an official polygon."
+      ]
+    },
+    "time_frame_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/time-section-atlas.png"
+      ],
+      "formula": "count(T-120, T-30, T0, T+15, T+45, T+90, and next-morning 06:00 frames)",
+      "confidence": "high",
+      "assumptions": [
+        "A narrative and drawing sequence, not an approved operating schedule."
+      ]
+    },
+    "state_plan_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "assets/figures/land-use-structure.png"
+      ],
+      "formula": "count(ordinary day, setup, peak event, and recovery state diagrams)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual state diagrams only; not four surveyed base plans."
+      ]
+    },
+    "protected_home_line_count": {
+      "status": "known",
+      "value": 1,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(continuous conceptual ROAD_CENTERLINE features with section_role=home_line)",
+      "confidence": "high",
+      "assumptions": [
+        "Continuity is internal to the provisional geometry and requires field verification."
+      ]
+    },
+    "independent_route_target_per_key_area": {
+      "status": "known",
+      "value": 2,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "minimum independent dispersal-route design target per key area",
+      "confidence": "medium",
+      "assumptions": [
+        "Target only; legal access, capacity, and station acceptance remain pending."
+      ]
+    },
+    "recovery_area_target_ratio": {
+      "status": "known",
+      "value": 0.95,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "target temporary-occupation area reopened by the earlier of T+12 or the next morning peak / total temporary-occupation area",
+      "confidence": "medium",
+      "assumptions": [
+        "Design service target, not a measured outcome or statutory deadline."
+      ]
+    },
+    "resident_detour_ratio_target": {
+      "status": "known",
+      "value": 1.3,
+      "unit": "multiplier",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "target event-day protected-route length / ordinary-day route length for selected resident origin-destination pairs",
+      "confidence": "low",
+      "assumptions": [
+        "Normative target only; representative origin-destination pairs and legal access remain unverified."
+      ]
+    },
+    "step_free_route_continuity_target": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "target verified step-free length / designated protected-route length",
+      "confidence": "low",
+      "assumptions": [
+        "Normative target only; dimensions, lifts, ramps, gates, and surfaces require field and standards review."
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(scenario cards T01-T04 and S05-S12)",
+      "confidence": "high",
+      "assumptions": [
+        "Count does not imply implementation or performance."
+      ]
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(industry validation cards T01-T04)",
+      "confidence": "high",
+      "assumptions": [
+        "Tests remain conceptual until controlled trials are authorised."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(core user personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Personas are design constructs, not survey respondents."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(event-to-home public landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Concept proposal only; not approved construction."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(conceptual dependency phases)",
+      "confidence": "high",
+      "assumptions": [
+        "Phases are not an adopted administrative schedule."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Approved FAR controls and an official site boundary are absent."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_or_surveyed_building_height",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Approved height controls and a verified building survey are absent."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(verified floor area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Building identity, storeys, and approved development quantities are absent."
+    },
+    "demolition_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved demolition area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Ownership, condition survey, and retain-renovate-demolish decisions are absent."
+    },
+    "approved_event_capacity": {
+      "status": "unknown",
+      "value": null,
+      "unit": "persons",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "minimum(entrance, holding, exit, emergency-egress, transit, and staffed-management capacity)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "No approved event, venue plan, access survey, crowd-density limit, station throughput, or event-safety sign-off is available."
+    },
+    "t95_clearance_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "minutes",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "time from T0 until 95 percent of visitors reach a verified onward-transport or dispersal boundary",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Requires an authorised event scenario, measured flow rates, and a specialist crowd model."
+    },
+    "resident_detour_minutes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "minutes",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "event-day resident journey time minus ordinary-day journey time",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Requires representative resident origin-destination data and field observation."
+    },
+    "accessible_waiting_demand": {
+      "status": "unknown",
+      "value": null,
+      "unit": "person_slots",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "verified accessible waiting demand by event and journey stage",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "Requires voluntary accessibility planning data and operator coordination; disability status must not be inferred."
+    },
+    "station_throughput": {
+      "status": "unknown",
+      "value": null,
+      "unit": "persons_per_hour",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "verified station and entrance throughput by time interval",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official controls, surveys, ownership, and specialist review."
+      ],
+      "reason": "No station operator data, timetable, entrance capacity, or emergency plan is included in the public package."
+    }
+  }
+}
