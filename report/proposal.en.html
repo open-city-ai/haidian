@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jing-Zhang CityOS: An Open-Source, Version-Controlled Urban Intelligence Platform for the Centennial AI Innovation Belt - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>Jing-Zhang CityOS: An Open-Source, Version-Controlled Urban Intelligence Platform for the Centennial AI Innovation Belt</h1>
+<p class="summary">Using &#x27;City Operating System (CityOS)&#x27; as the core metaphor, this proposal constructs the Centennial Jing-Zhang AI Innovation Belt as a version-controlled, open-source, contribution-traceable urban intelligence platform. The three key areas and two wings function as six core service modules of CityOS; agent.1 through agent.6 tasks map to six OS subsystems; 12 AI scenario cards serve as pluggable service plugins, forming a complete tech stack from spatial planning to urban governance.</p>
+<p class="translation-link"><a href="proposal.html">阅读中文版本</a></p>
+</section>
+<p>&lt;!-- CityOS v1.0: Jing-Zhang CityOS — An Open-Source Urban Intelligence Platform --&gt;</p>
+<h1>Jing-Zhang CityOS: An Open-Source, Version-Controlled Urban Intelligence Platform for the Centennial AI Innovation Belt</h1>
+<h2>Design Basis and Source Inventory</h2>
+<p>This proposal is based primarily on the public announcement for the Centennial Jing-Zhang AI Innovation Belt urban design international proposal solicitation <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>, and on the structured taskbook <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>, site package <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>, public source registry <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>, and provisional boundary <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> in <code>brief/site-package/</code>. Core standards include <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>, <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>, <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>, <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup>, <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>, and <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup>.</p>
+<p>Source usage boundaries follow <code>data/source_registry.json</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>: formal authoritative conclusions rely only on sources with <code>usable_for_formal=&quot;yes&quot;</code>; background sources support mechanisms and narratives only; provisional sources support generation and discussion only. No non-public data, personal privacy data, or unauthorized materials were used.</p>
+<p><strong>Key boundary statement:</strong> As of the public data review date, official precise SITE_BOUNDARY and KEY_AREA polygons have not been published. This proposal uses provisional boundaries from <code>brief/site-package/geometry/provisional_boundaries.geojson</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup>, marked as <code>geometry_role=provisional_constraint</code>, <code>official_boundary=false</code>, <code>boundary_precision=provisional_rough</code> in <code>geometry/site_boundary.geojson#SITE-001</code> and <code>geometry/key_areas.geojson#PROV-KEY-001</code>. Provisional boundaries are for generation, self-check, visualization, and design discussion only — not as official redline, approval basis, or precise area basis. Organizer data gaps do not block content scoring <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>. Upon official data release, all layers and metrics must be recalculated.</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="Evidence Chain and CityOS Submission Package Diagram"><figcaption>Evidence Chain and CityOS Submission Package Diagram</figcaption></figure>
+<h2>Three-Level Scope Framework</h2>
+<p>The proposal organizes work across three levels per the announcement <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>: the coordinated research scope (~43.6 km²) addresses AI industry ecosystem, strategic positioning, and future city forms; the overall design scope (~11.4 km²) addresses urban renewal, industrial space, transportation/municipal infrastructure, and character control; the key area scope (~368.4 ha) addresses detailed design of three key districts. All three levels map to announcement sections 1.3, 1.4, 1.5 and agent.1 through agent.6 in <code>compliance_matrix.json</code> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="Three-Level Scope and CityOS Service Architecture"><figcaption>Three-Level Scope and CityOS Service Architecture</figcaption></figure>
+<div class="proposal-table"><table><thead><tr><th>Level</th><th>Area</th><th>CityOS Layer</th><th>Proposal Response</th><th>Data Anchor</th></tr></thead><tbody><tr><td>Coordinated research</td><td>43.6 km²</td><td>Strategy / OS Kernel</td><td>Five-segment innovation chain: university sourcing → open-source collaboration → enterprise transfer → public experience → international communication</td><td><sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup></td></tr><tr><td>Overall design</td><td>11.4 km²</td><td>System / Service Orchestration</td><td>Six districts, twelve services: three areas, two wings, plus elastic buffer zones as microservice urban space</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup></td></tr><tr><td>Key area</td><td>368.4 ha</td><td>Application / Scenario Plugins</td><td>Detailed design and scenario card deployment for three core services</td><td><sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup></td></tr></tbody></table></div>
+<p>Area recalculation evidence: <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="zhongzhiyuan_ai_acceleration_area_area_sqm" title="指标：zhongzhiyuan_ai_acceleration_area_area_sqm">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="beijing_ai_origin_community_area_sqm" title="指标：beijing_ai_origin_community_area_sqm">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="dazhongsi_ai_industry_cluster_area_sqm" title="指标：dazhongsi_ai_industry_cluster_area_sqm">指标</sup>.</p>
+<h2>CityOS Core Concept: City as Operating System</h2>
+<h3>2.1 Naming System and Logo</h3>
+<p>Main name: <strong>&quot;Jing-Zhang CityOS&quot; (京张城市操作系统)</strong>, abbreviation <strong>JZ-OS</strong>, tagline: &quot;<strong>One Century, One Rail, One Open-Source City</strong>&quot; (百年一轨，开源一座城).</p>
+<p>Naming logic: The Jing-Zhang Railway is the centennial origin of China&#x27;s autonomous engineering spirit, while &quot;operating system&quot; is the most fundamental, open, and iterative platform metaphor of the digital age. Combining them means building the belt as a <strong>city infrastructure platform that is installable, upgradable, contribution-traceable, and auditable</strong> — like Linux for servers or Android for phones, JZ-OS for the city.</p>
+<p>Logo direction: <strong>&quot;Rail Hexagonal Node&quot;</strong> — outer ring of Jing-Zhang railway dual rails (brown), inner ring of six orthogonal sectors (three areas, two wings, governance kernel), center as open-source symbol (∞). Color system: railway brown-gray (#7A5C3E), electric blue (#2563EB), greenway green (#16A34A). Extended to wayfinding, version badges, contributor walls, and digital interfaces <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>.</p>
+<h3>2.2 CityOS Architecture: Six-Layer Tech Stack</h3>
+<div class="proposal-table"><table><thead><tr><th>Layer</th><th>Analogy</th><th>Jing-Zhang Mapping</th><th>Spatial Carrier</th></tr></thead><tbody><tr><td><strong>L6 Application</strong></td><td>App Store / Plugins</td><td>12 AI scenario cards, Global AI Week</td><td>Public space, commercial streets, community nodes</td></tr><tr><td><strong>L5 Service</strong></td><td>Microservices</td><td>Three areas, two wings — six service modules</td><td>Key districts, tech service wing, scenario wing</td></tr><tr><td><strong>L4 Platform</strong></td><td>API Gateway / Data Hub</td><td>Open-source contribution platform, data exchange</td><td>AI Origin Community, Zhongzhiyuan</td></tr><tr><td><strong>L3 Network</strong></td><td>Infrastructure Network</td><td>Jing-Zhang smart axis + blue-green smart ring + rail</td><td>Heritage Park, Qinghe River, Xiaoyue River</td></tr><tr><td><strong>L2 Compute</strong></td><td>New Infrastructure</td><td>Edge compute stations, low-carbon compute network</td><td>Zhongzhiyuan municipal nodes</td></tr><tr><td><strong>L1 Hardware</strong></td><td>Physical Space</td><td>Land use, buildings, roads, green space</td><td>Full boundary GeoJSON</td></tr></tbody></table></div>
+<p>Each layer follows open-source principles: open interfaces, public protocols, traceable contributions, rollback-able versions. Urban renewal is not demolition-and-rebuild but <strong>version iteration</strong> — from v1.0 (concept design) to v2.0 (regulatory plan deepening) to v3.0 (implementation operation), each with changelog, PR records, and contributor wall.</p>
+<h3>2.3 Five Functions and Three Areas, Two Wings Mapped to CityOS</h3>
+<p>Three positioning statements <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>:</p>
+<ul>
+<li><strong>Centennial Jing-Zhang Cultural Belt</strong> → CityOS &quot;open-source protocol layer&quot;: the century of autonomous engineering IS the original open-source protocol —詹天佑&#x27;s human-character line, China&#x27;s first autonomous standard gauge.</li>
+<li><strong>Urban AI Life Experience Belt</strong> → CityOS &quot;user experience layer&quot;: AI scenarios are not tech exhibitions but daily city service patches.</li>
+<li><strong>AI Integration Innovation Belt</strong> → CityOS &quot;development toolchain&quot;: universities, enterprises, communities as developers participate via open APIs.</li>
+</ul>
+<p>Five functions:</p>
+<ul>
+<li>AI full-stack independent innovation → L4 Platform (Zhongzhiyuan)</li>
+<li>World-class AI innovation ecosystem → L5 Service (AI Origin Community)</li>
+<li>AI+ scenario empowerment paradigm → L6 Application (Xiaoyue River wing)</li>
+<li>Smart AI vitality city → L3 Network (Jing-Zhang smart axis)</li>
+<li>AI governance global voice → L4 Platform (AI Governance Hall)</li>
+</ul>
+<p>Three areas, two wings:</p>
+<ul>
+<li>Zhongzhiyuan = <code>os-core</code> kernel module (full-stack innovation + AI governance)</li>
+<li>AI Origin Community = <code>dev-hub</code> developer module (open-source ecosystem + transfer)</li>
+<li>Dazhongsi = <code>app-market</code> application module (smart-native economy + international exchange)</li>
+<li>Zhongguancun Tech Service Wing = <code>sdk</code> development toolkit (factor allocation + capital)</li>
+<li>Xiaoyue River Scenario Wing = <code>sandbox</code> testing environment (scenario testing + youth vitality)</li>
+</ul>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="CityOS Six-Layer Architecture and Three Areas, Two Wings"><figcaption>CityOS Six-Layer Architecture and Three Areas, Two Wings</figcaption></figure>
+<h2>Global AI Innovation Ecosystem Cases (6 Background Cases)</h2>
+<div class="proposal-table"><table><thead><tr><th>Case</th><th>Key Mechanism</th><th>CityOS Transferable Content</th></tr></thead><tbody><tr><td>London King&#x27;s Cross</td><td>Former railway yard → knowledge-intensive mixed-use community</td><td>Public space first, railway narrative, open-source community</td></tr><tr><td>Singapore Jurong Innovation District</td><td>Testbeds and living labs for autonomous driving</td><td>Scenario open application, human review, test-display-operation loop</td></tr><tr><td>Paris Station F</td><td>Large startup campus + developer community + open days</td><td>Public display interface, annual events, contributor honor system</td></tr><tr><td>Korea Bangho Tech Valley</td><td>Park-residence-commerce mix with rail commute</td><td>Transit-oriented development, talent living support, service network</td></tr><tr><td>Toronto Quayside</td><td>Smart city data governance and public controversy</td><td>Data minimization, public participation, exit mechanism, human review</td></tr><tr><td>MIT Media Lab Boston</td><td>University-industry-community triple-helix innovation</td><td>Near-campus transfer, open-source hardware, cross-disciplinary collaboration</td></tr></tbody></table></div>
+<p>Six design principles: <strong>public space first, scenario openness, testbed-driven, developer community, transparent data governance, transit-oriented integration</strong> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>.</p>
+<h2>Overall Design: Urban Renewal at Regulatory Plan Depth</h2>
+<h3>3.1 Urban Renewal: Version Control, Not Demolition</h3>
+<p>Four-level version control method: <strong>Retain → Refactor → Rebuild → TBD</strong> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>. Analogous to CRUD operations:</p>
+<div class="proposal-table"><table><thead><tr><th>Operation</th><th>Urban Renewal</th><th>Design Principle</th></tr></thead><tbody><tr><td>Read (Retain)</td><td>Historic, educational, public facility values</td><td>Protective reading, no modification</td></tr><tr><td>Update (Refactor)</td><td>Industrial buildings, park environments, community interfaces</td><td>Incremental update, preserve data</td></tr><tr><td>Create (Rebuild)</td><td>Axis nodes, greenway stations, new infrastructure prototypes</td><td>New features, API design required</td></tr><tr><td>Delete (TBD)</td><td>Items involving ownership, regulatory plans, engineering</td><td>No deletion, pending review</td></tr></tbody></table></div>
+<p>Land use organized per <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>, covering full boundary without gaps or overlaps <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>.</p>
+<h3>3.2 Regulatory Depth and Pending Conditions</h3>
+<p>All content organized at regulatory detailed planning urban design depth <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup>. Official FAR, building height, density, green ratio, setbacks, and road redlines are not yet published — all listed as pending data <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>.</p>
+<h2>Key Area Detailed Design</h2>
+<h3>4.1 Zhongzhiyuan = <code>os-core</code> Kernel Module</h3>
+<p><strong>Positioning</strong>: Garden-type full-stack independent innovation district <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>.</p>
+<p><strong>CityOS Role</strong>: OS kernel — full-stack independent innovation + AI governance global voice.</p>
+<p><strong>Spatial actions</strong>: Research, compute, testing, and standards governance around national platforms; Qinghe River interface as low-carbon public living room; agent sandbox, low-carbon compute station, and AI governance hall as reservable, displayable, exitable public test nodes <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>.</p>
+<h3>4.2 AI Origin Community = <code>dev-hub</code> Developer Module</h3>
+<p><strong>Positioning</strong>: Near-campus technology transfer and talent community <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>.</p>
+<p><strong>CityOS Role</strong>: Developer hub — world-class AI innovation ecosystem, open-source collaboration, talent aggregation.</p>
+<p><strong>Spatial actions</strong>: Campus-park-street slow-traffic stitching; open-source release hall, university-enterprise transfer living room, talent services; transit-oriented public plaza <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>.</p>
+<h3>4.3 Dazhongsi = <code>app-market</code> Application Module</h3>
+<p><strong>Positioning</strong>: Urban-type intelligent economy and international exchange district <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>.</p>
+<p><strong>CityOS Role</strong>: App market — smart-native business display, transfer, international exchange.</p>
+<p><strong>Spatial actions</strong>: Four-quadrant pedestrian connectivity around Dazhongsi Station; smart terminal commercial street, data exchange theater, international roadshow living room; green space for public experience <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="Three Key Areas and CityOS Roles"><figcaption>Three Key Areas and CityOS Roles</figcaption></figure>
+<h2>AI Innovation Ecosystem, User Personas, and AI+ Scenarios</h2>
+<h3>5.1 Six User Personas (with CityOS Developer Roles)</h3>
+<div class="proposal-table"><table><thead><tr><th>Persona</th><th>CityOS Role</th><th>Needs</th><th>Spatial Response</th><th>Data Boundary</th></tr></thead><tbody><tr><td>University researchers</td><td>Researcher</td><td>Transfer, cross-campus collaboration</td><td>Near-campus transfer street</td><td>Campus data requires authorization</td></tr><tr><td>Open-source developers</td><td>Contributor</td><td>Release, collaboration, testing, reputation</td><td>Release hall, public code wall</td><td>No individual behavior tracking</td></tr><tr><td>Startups</td><td>Startup</td><td>Low-cost office, compute access</td><td>Shared test field, edge compute</td><td>Compute/data services require authorization</td></tr><tr><td>Enterprise visitors</td><td>Enterprise</td><td>Display, business, international接待</td><td>Roadshow living room, transit</td><td>Corporate branding requires clearance</td></tr><tr><td>Residents &amp; youth</td><td>Citizen</td><td>Commute, leisure, community service</td><td>Heritage park slow-traffic ring</td><td>Not for commercial recommendation</td></tr><tr><td>AI Agents</td><td>Agent</td><td>Sensing, decision support, scenario service</td><td>Agent sandbox, data interface</td><td>Data minimization + human review</td></tr></tbody></table></div>
+<h3>5.2 Twelve AI Scenario Cards (CityOS Pluggable Service Plugins)</h3>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>Scenario</th><th>Plugin</th><th>Carrier</th><th>Test</th><th>Human Review</th></tr></thead><tbody><tr><td>01</td><td>Open-Source Release Hall</td><td><code>release-plugin</code></td><td>AI Origin Community</td><td>No</td><td>Community ops committee</td></tr><tr><td>02</td><td>Urban Agent Sandbox</td><td><code>agent-sandbox</code></td><td>Zhongzhiyuan test street</td><td><strong>Yes</strong></td><td>Test admission + human review</td></tr><tr><td>03</td><td>Low-Carbon Compute Station</td><td><code>compute-node</code></td><td>Zhongzhiyuan municipal node</td><td><strong>Yes</strong></td><td>Platform service provider</td></tr><tr><td>04</td><td>AI Slow-Traffic Navigation</td><td><code>mobility-ai</code></td><td>Jing-Zhang smart axis</td><td>No</td><td>Ops + public feedback</td></tr><tr><td>05</td><td>Data Exchange Theater</td><td><code>data-exchange</code></td><td>Dazhongsi data plaza</td><td><strong>Yes</strong></td><td>Compliance audit node</td></tr><tr><td>06</td><td>AI Governance Hall</td><td><code>governance-hub</code></td><td>Zhongzhiyuan governance square</td><td>No</td><td>Governance roundtable</td></tr><tr><td>07</td><td>University-Enterprise Transfer Hub</td><td><code>transfer-hub</code></td><td>Origin Community innovation street</td><td>No</td><td>Transfer service center</td></tr><tr><td>08</td><td>Smart Terminal Commercial Street</td><td><code>device-market</code></td><td>Dazhongsi commercial street</td><td>No</td><td>Merchants + platform</td></tr><tr><td>09</td><td>Youth Life Lab</td><td><code>youth-lab</code></td><td>Xiaoyue River scenario wing</td><td>No</td><td>Public service ops</td></tr><tr><td>10</td><td>Global AI Open Week Route</td><td><code>event-route</code></td><td>Blue-green smart ring</td><td>No</td><td>Event committee</td></tr><tr><td>11</td><td>AI Education Experience Point</td><td><code>edu-ai</code></td><td>University-adjacent community</td><td>No</td><td>Education institution + PTA</td></tr><tr><td>12</td><td>Urban Digital Twin Cockpit</td><td><code>digital-twin</code></td><td>Control center</td><td>No</td><td>Data compliance + human review</td></tr></tbody></table></div>
+<p>Scenarios 02, 03, 05 are AI industry test/validation scenarios <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>, each with four constraints: public source, data minimization, human review, exit mechanism.</p>
+<h3>5.3 Privacy and Human Review Boundaries</h3>
+<p>No scenario may infringe privacy, over-monitor, or claim immature technology as fully deployed. Urban agents assist in identifying slow-traffic breakpoints, facility maintenance, event safety, and enterprise service needs, but final judgment rests with humans and professional teams. AI-generated content must disclose generation method and source <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>.</p>
+<h2>Land Use, Building Scale, and Retain/Refactor/Rebuild</h2>
+<p>Land use per <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup>, full boundary coverage, no gaps or overlaps <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>. Building footprint is conceptual design layer <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup>. Specific FAR, building height, and setbacks pending official regulatory conditions <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>.</p>
+<h2>Transportation, Rail, Municipal, and Public Services</h2>
+<p>Transportation: &quot;axis + ring + connection&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>. Jing-Zhang smart axis greenway for north-south slow traffic, blue-green smart ring for district cycling <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>.</p>
+<p>Municipal: &quot;traditional pipeline renewal + new infrastructure embedding&quot; <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup>. Distributed energy, edge compute, smart poles, environmental sensing, data interfaces <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-001" title="空间数据：geometry/public_space.geojson#PUBLIC-001">空间数据</sup>.</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="Mobility, Slow-Traffic, and Blue-Green Public Space System"><figcaption>Mobility, Slow-Traffic, and Blue-Green Public Space System</figcaption></figure>
+<h2>Blue-Green Space, Public Space, and Urban Character</h2>
+<p>Blue-green system: Jing-Zhang Heritage Park vitality belt as main axis, Qinghe and Xiaoyue rivers as branches, community parks as nodes — continuous blue-green smart ring <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup>.</p>
+<h3>Three AI Pilgrimage Landmarks (CityOS Milestone Monuments)</h3>
+<p>1. <strong>&quot;Human-Character Node&quot; Open-Source Monument</strong>: At the intersection of Jing-Zhang Heritage Park and AI Origin Community. Inspired by詹天佑&#x27;s human-character line, dual rails converging into open-source symbol (∞), with contributor honor wall. 2. <strong>&quot;Open-Source Origin Tower&quot; Developer Milestone</strong>: At AI Origin Community release plaza. Tower-shaped installation displaying open-source contributor roster, model cards, and annual best contributions. 3. <strong>&quot;Dazhongsi Smart Echo Ring&quot; Application Milestone</strong>: At Dazhongsi Station plaza. Bell and data soundscape as imagery, commemorating China&#x27;s new intelligent economy culture.</p>
+<h3>Urban Character</h3>
+<p>Per <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>: railway memory materials (gray brick, rail, sleeper elements), AI blue nodes, greenway green base — three-tone character.</p>
+<h2>Renewal Project List, Policies, and Phasing</h2>
+<div class="proposal-table"><table><thead><tr><th>Project</th><th>CityOS Version</th><th>Type</th><th>Key Dependencies</th></tr></thead><tbody><tr><td>JZ-01 Jing-Zhang Smart Axis Greenway</td><td>v1.0-alpha</td><td>Public space/slow-traffic</td><td>Official boundary, ownership, heritage</td></tr><tr><td>JZ-02 Open-Source Release Plaza + Origin Tower</td><td>v1.0-beta</td><td>Public space/culture</td><td>Transit integration, land conditions</td></tr><tr><td>JZ-03 Urban Agent Sandbox Street</td><td>v1.0-rc</td><td>Test/new infrastructure</td><td>Test permit, data compliance</td></tr><tr><td>JZ-04 Low-Carbon Compute Station</td><td>v1.0-rc</td><td>New infrastructure</td><td>Energy, compute, municipal access</td></tr><tr><td>JZ-05 AI Governance Hall</td><td>v1.0</td><td>Public service/governance</td><td>Standards organization cooperation</td></tr><tr><td>JZ-06 University-Enterprise Transfer Hub</td><td>v1.1</td><td>Industry service</td><td>University transfer mechanism</td></tr><tr><td>JZ-07 Data Exchange Theater</td><td>v1.1</td><td>Display/compliance</td><td>Data compliance and audit</td></tr><tr><td>JZ-08 Dazhongsi Four-Quadrant Connectivity</td><td>v1.1</td><td>Transit integration</td><td>Station, intersection</td></tr><tr><td>JZ-09 Youth Life Lab</td><td>v1.2</td><td>Community/youth</td><td>Public service operations</td></tr><tr><td>JZ-10 Global AI Open Week</td><td>v2.0</td><td>Operations/brand</td><td>Public space permit, safety</td></tr></tbody></table></div>
+<p>Phasing: Near-term (v1.0, lightweight facilities + operations first), Mid-term (v2.0, regulatory deepening + key projects), Long-term (v3.0, governance framework + international communication).</p>
+<h2>AI Public Space, Cultural Narrative, and Long-Term Operations</h2>
+<h3>Cultural Fusion Narrative</h3>
+<p>Jing-Zhang Railway history (century of autonomous engineering) → Zhongguancun innovation culture (open collaboration) → AI new culture (open-source governance). CityOS encodes three cultures as three versions of an open-source protocol: v0.0 (Jing-Zhang: China&#x27;s first &quot;open-source&quot; autonomous engineering) → v1.0 (Zhongguancun: knowledge sharing and industry collaboration) → v2.0 (AI era: multi-agent urban governance).</p>
+<h3>Wayfinding and Signage</h3>
+<p>CityOS visual language: version badges (v1.0/v2.0/v3.0), open-source contributor walls, Git-style changelog columns, open-source protocol plaques.</p>
+<h3>Long-Term Operations: Global AI Event System</h3>
+<ul>
+<li><strong>Annual</strong>: Global AI Open Week (JZ-OS Week), Open-Source Contributor Conference</li>
+<li><strong>Quarterly</strong>: AI scenario test-day release, Developer Hackathon</li>
+<li><strong>Monthly</strong>: Open-source community meetup, AI governance roundtable</li>
+<li><strong>Continuous</strong>: CityOS GitHub repository contributions, Digital Twin Cockpit access</li>
+</ul>
+<p>Operations: developer community points system, contributor honor display, scenario open application platform, international communication matrix.</p>
+<h2>Metrics, Area Recalculation, and Compliance Matrix</h2>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="Core Metrics Recalculation and Evidence Chain"><figcaption>Core Metrics Recalculation and Evidence Chain</figcaption></figure>
+<p>Metrics cover spatial indicators (boundary area, green ratio, public space ratio, building footprint), regulatory indicators (pending official conditions), and performance indicators (AI innovation index, talent density, event participation). All known metrics verifiable from GeoJSON <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>, <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_node_count" title="指标：scenario_node_count">指标</sup>.</p>
+<p>Compliance matrix is the master task-response file. Every announcement task and agent_taskbook task maps to report chapters, layers, metrics, drawings, HTML pages, sources, assumptions, and self-check items <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>.</p>
+<h2>Risk, Copyright, and Compliance</h2>
+<p><strong>Bilingual requirement</strong>: Primary file in Chinese (<code>language: &quot;zh&quot;</code>), complete English translation in <code>proposal.en.md</code> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>.</p>
+<p>Risk and data gap inventory per <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>, <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup>, <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>. Official boundary, key area, regulatory plan, road, parcel, building, municipal, heritage, and public service gaps must enter <code>assumptions.json</code>, self-check, and risk chapters.</p>
+<p>This proposal does not claim official approval, approved regulatory plan, final land ownership, final construction scale, or guaranteed implementation. The AI agent is responsible for facts, sources, copyright, spatial data, metrics, and expression.</p>
+<h2>References</h2>
+<ul>
+<li>brief/public-brief.md</li>
+<li>brief/site-package/design_brief.json</li>
+<li>brief/site-package/agent_taskbook.json</li>
+<li>brief/site-package/allowed_design_space.json</li>
+<li>brief/site-package/standards/standards.json</li>
+<li>data/source_registry.json</li>
+<li>Full machine index: <code>sources.json</code>, <code>metrics.json</code>, <code>compliance_matrix.json</code>, <code>standard_matrix.json</code>, <code>design_depth_matrix.json</code></li>
+</ul>
+</main>
+</body>
+</html>

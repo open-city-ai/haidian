@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张城市操作系统 CityOS</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0e1a;color:#e2e8f0;line-height:1.6;}
+.header{background:linear-gradient(135deg,#1a1f3a,#0f1525);padding:30px 20px;text-align:center;border-bottom:3px solid #2563EB;}
+.header h1{font-size:1.8em;color:#fff;margin-bottom:6px;}
+.subtitle{color:#94a3b8;font-size:1em;}
+.badge{display:inline-block;background:#2563EB;color:#fff;padding:3px 10px;border-radius:16px;font-size:0.75em;margin:3px;}
+.container{max-width:1200px;margin:0 auto;padding:16px;}
+.section{background:#111827;border-radius:10px;padding:18px;margin:12px 0;border:1px solid #1e293b;}
+.section h2{color:#2563EB;font-size:1.15em;margin-bottom:10px;border-left:4px solid #2563EB;padding-left:10px;}
+.arch-layer{display:inline-block;background:#1e293b;border:2px solid #2563EB;border-radius:6px;padding:8px 14px;margin:3px;font-weight:bold;font-size:0.85em;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:12px 0;}
+.card{background:#1e293b;border-radius:6px;padding:12px;border:1px solid #334155;font-size:0.9em;}
+.card h3{color:#60a5fa;margin-bottom:6px;font-size:1em;}
+.card p{color:#94a3b8;font-size:0.85em;}
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0;}
+.metric{background:#1e293b;border-radius:6px;padding:12px;text-align:center;border:1px solid #334155;}
+.metric .value{font-size:1.4em;color:#16A34A;font-weight:bold;}
+.metric .label{color:#94a3b8;font-size:0.8em;margin-top:3px;}
+.scenarios{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:6px;margin:10px 0;}
+.scenario{background:#1e293b;border-radius:5px;padding:8px;font-size:0.8em;border-left:3px solid #16A34A;}
+.table{width:100%;border-collapse:collapse;margin:8px 0;font-size:0.85em;}
+.table th,.table td{padding:6px 8px;border:1px solid #334155;text-align:left;}
+.table th{background:#1e293b;color:#60a5fa;}
+.table td{color:#cbd5e1;}
+.footer{text-align:center;padding:18px;color:#64748b;font-size:0.8em;border-top:1px solid #1e293b;margin-top:16px;}
+.map-placeholder{background:#1e293b;border-radius:8px;padding:30px;text-align:center;border:2px dashed #334155;margin:10px 0;}
+.map-placeholder svg{max-width:100%;}
+.warning{background:#3d2e00;border:1px solid #f59e0b;border-radius:6px;padding:10px;color:#fbbf24;font-size:0.85em;}
+.pass{color:#16A34A;font-weight:bold;}
+.warn{color:#f59e0b;font-weight:bold;}
+</style>
+</head>
+<body>
+<div class="header"><h1>京张城市操作系统 CityOS</h1><p class="subtitle">百年AI创新带的开源城市智能体</p><span class="badge">v1.0</span><span class="badge">CityOS</span><span class="badge">open-source</span></div>
+<div class="container">
+
+<!-- 总览地图 -->
+<div class="section"><h2>总览地图</h2>
+<div class="map-placeholder">
+<svg width="800" height="300" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="20" width="760" height="260" fill="#0f172a" stroke="#2563EB" stroke-width="2"/>
+  <text x="400" y="40" text-anchor="middle" fill="#2563EB" font-size="14" font-weight="bold">京张城市操作系统 · 总览地图</text>
+  <!-- 京张智联主轴 -->
+  <line x1="400" y1="60" x2="400" y2="260" stroke="#7A5C3E" stroke-width="4" stroke-dasharray="8,4"/>
+  <text x="410" y="80" fill="#7A5C3E" font-size="10">京张智联主轴</text>
+  <!-- 蓝绿智联环 -->
+  <ellipse cx="400" cy="170" rx="200" ry="70" fill="none" stroke="#16A34A" stroke-width="3"/>
+  <text x="400" y="250" text-anchor="middle" fill="#16A34A" font-size="10">蓝绿智联环</text>
+  <!-- 三区 -->
+  <circle cx="350" cy="120" r="30" fill="#2563EB" opacity="0.3" stroke="#2563EB" stroke-width="2"/>
+  <text x="350" y="124" text-anchor="middle" fill="#60a5fa" font-size="10">众智园</text>
+  <circle cx="450" cy="180" r="30" fill="#2563EB" opacity="0.3" stroke="#2563EB" stroke-width="2"/>
+  <text x="450" y="184" text-anchor="middle" fill="#60a5fa" font-size="10">AI原点</text>
+  <circle cx="350" cy="220" r="30" fill="#2563EB" opacity="0.3" stroke="#2563EB" stroke-width="2"/>
+  <text x="350" y="224" text-anchor="middle" fill="#60a5fa" font-size="10">大钟寺</text>
+  <!-- 两翼 -->
+  <rect x="600" y="100" width="80" height="40" fill="#16A34A" opacity="0.2" stroke="#16A34A" stroke-width="1"/>
+  <text x="640" y="124" text-anchor="middle" fill="#16A34A" font-size="9">中关村翼</text>
+  <rect x="600" y="200" width="80" height="40" fill="#16A34A" opacity="0.2" stroke="#16A34A" stroke-width="1"/>
+  <text x="640" y="224" text-anchor="middle" fill="#16A34A" font-size="9">小月河翼</text>
+  <text x="50" y="275" fill="#64748b" font-size="9">provisional boundary · 临时边界示意</text>
+</svg>
+</div></div>
+
+<!-- 三层范围 -->
+<div class="section"><h2>三层范围</h2>
+<table class="table">
+<tr><th>层级</th><th>面积</th><th>CityOS层</th><th>关键内容</th></tr>
+<tr><td>统筹研究范围</td><td>43.6 km²</td><td>战略层</td><td>AI创新生态五段链路</td></tr>
+<tr><td>总体设计范围</td><td>11.4 km²</td><td>系统层</td><td>六区十二服务</td></tr>
+<tr><td>重点区域范围</td><td>368.4 ha</td><td>应用层</td><td>三处核心服务</td></tr>
+</table></div>
+
+<!-- 用地分区 -->
+<div class="section"><h2>用地分区</h2>
+<div class="grid">
+<div class="card"><h3>科研用地</h3><p>众智园核心，全栈自主创新</p></div>
+<div class="card"><h3>商业用地</h3><p>大钟寺智能终端商业街</p></div>
+<div class="card"><h3>教育用地</h3><p>近校成果转化与人才社区</p></div>
+<div class="card"><h3>居住用地</h3><p>青年人才生活配套</p></div>
+<div class="card"><h3>绿地</h3><p>京张遗址公园+蓝绿智联环</p></div>
+<div class="card"><h3>留白用地</h3><p>弹性缓冲区，待官方控规</p></div>
+</div></div>
+
+<!-- 交通慢行 -->
+<div class="section"><h2>交通慢行</h2>
+<div class="grid">
+<div class="card"><h3>京张智联主轴</h3><p>南北慢行绿道，场景序列</p></div>
+<div class="card"><h3>蓝绿智联环</h3><p>片区骑行+慢跑+观光</p></div>
+<div class="card"><h3>轨道接驳</h3><p>大钟寺站四象限连通</p></div>
+<div class="card"><h3>中部智联横街</h3><p>微循环+端侧算力节点</p></div>
+</div></div>
+
+<!-- 蓝绿公共空间 -->
+<div class="section"><h2>蓝绿公共空间</h2>
+<div class="grid">
+<div class="card"><h3>京张遗址公园</h3><p>活力带主轴，百年文脉叙事</p></div>
+<div class="card"><h3>清河廊道</h3><p>低碳公共客厅，办公界面</p></div>
+<div class="card"><h3>小月河廊道</h3><p>青年活力，场景测试</p></div>
+<div class="card"><h3>社区公园</h3><p>节点服务，15分钟生活圈</p></div>
+</div></div>
+
+<!-- 建筑 -->
+<div class="section"><h2>建筑</h2>
+<div class="grid">
+<div class="card"><h3>保留</h3><p>历史教育公共设施不拆</p></div>
+<div class="card"><h3>改造</h3><p>低效产业楼宇→共享测试</p></div>
+<div class="card"><h3>新建</h3><p>低碳算力驿站、AI治理议事厅</p></div>
+<div class="card"><h3>待确认</h3><p>权属/控规/工程条件待定</p></div>
+</div></div>
+
+<!-- 核心指标 + data-metric -->
+<div class="section"><h2>核心指标</h2>
+<div class="metrics">
+<div class="metric" data-metric="site_area_sqm" data-value="11412825.386"><div class="value">11,412,825</div><div class="label">总体范围面积 m²</div></div>
+<div class="metric" data-metric="green_ratio" data-value="0.123423"><div class="value">12.3%</div><div class="label">绿地比例</div></div>
+<div class="metric" data-metric="public_space_ratio" data-value="0.073281"><div class="value">7.3%</div><div class="label">公共空间比例</div></div>
+<div class="metric"><div class="value">12</div><div class="label">AI场景卡</div></div>
+<div class="metric"><div class="value">6</div><div class="label">用户画像</div></div>
+<div class="metric"><div class="value">3</div><div class="label">朝圣地标</div></div>
+</div></div>
+
+<!-- AI 场景 -->
+<div class="section"><h2>AI 场景（12张场景卡）</h2>
+<div class="scenarios">
+<div class="scenario">01 开源发布厅</div>
+<div class="scenario">02 城市智能体沙盒 ⚡</div>
+<div class="scenario">03 低碳算力驿站 ⚡</div>
+<div class="scenario">04 AI慢行导航</div>
+<div class="scenario">05 数据要素剧场 ⚡</div>
+<div class="scenario">06 AI治理议事厅</div>
+<div class="scenario">07 校企转化客厅</div>
+<div class="scenario">08 智能终端商业街</div>
+<div class="scenario">09 青年生活实验室</div>
+<div class="scenario">10 全球AI开放周</div>
+<div class="scenario">11 AI教育体验点</div>
+<div class="scenario">12 数字孪生驾驶舱</div>
+</div></div>
+
+<!-- 更新项目 -->
+<div class="section"><h2>更新项目清单</h2>
+<table class="table">
+<tr><th>编号</th><th>项目名称</th><th>CityOS版本</th><th>类型</th></tr>
+<tr><td>JZ-01</td><td>京张智联主轴绿道贯通</td><td>v1.0-alpha</td><td>公共空间/慢行</td></tr>
+<tr><td>JZ-02</td><td>开源发布广场与原点塔</td><td>v1.0-beta</td><td>公共空间/文化</td></tr>
+<tr><td>JZ-03</td><td>城市智能体沙盒街区</td><td>v1.0-rc</td><td>测试验证/新基建</td></tr>
+<tr><td>JZ-04</td><td>低碳算力驿站</td><td>v1.0-rc</td><td>新型基础设施</td></tr>
+<tr><td>JZ-05</td><td>AI治理议事厅</td><td>v1.0</td><td>公共服务/治理</td></tr>
+<tr><td>JZ-06</td><td>校企转化客厅</td><td>v1.1</td><td>产业服务</td></tr>
+<tr><td>JZ-07</td><td>数据要素剧场</td><td>v1.1</td><td>展示/合规服务</td></tr>
+<tr><td>JZ-08</td><td>大钟寺站四象限连通</td><td>v1.1</td><td>轨道一体化</td></tr>
+<tr><td>JZ-09</td><td>青年生活实验室</td><td>v1.2</td><td>社区/青年</td></tr>
+<tr><td>JZ-10</td><td>全球AI开放周</td><td>v2.0</td><td>运营/品牌</td></tr>
+</table></div>
+<div class="section"><h2>CityOS 六层架构</h2>
+<div style="text-align:center;">
+<span class="arch-layer">L6 应用层 App Store</span><br>
+<span class="arch-layer">L5 服务层 Microservices</span><br>
+<span class="arch-layer">L4 平台层 API Gateway</span><br>
+<span class="arch-layer">L3 网络层 Infrastructure</span><br>
+<span class="arch-layer">L2 算力层 New Infra</span><br>
+<span class="arch-layer">L1 硬件层 Physical Space</span>
+</div></div>
+
+<!-- 三区两翼 -->
+<div class="section"><h2>三区两翼服务模块</h2>
+<div class="grid">
+<div class="card"><h3>众智园 os-core</h3><p>花园型全栈自主创新街区</p></div>
+<div class="card"><h3>AI原点社区 dev-hub</h3><p>近校型成果转化与人才社区</p></div>
+<div class="card"><h3>大钟寺 app-market</h3><p>城市型智能经济与国际交往街区</p></div>
+<div class="card"><h3>中关村科技服务翼 sdk</h3><p>要素配置与资本赋能</p></div>
+<div class="card"><h3>小月河场景赋能翼 sandbox</h3><p>AI场景测试与青年活力</p></div>
+</div></div>
+
+<!-- 任务覆盖 -->
+<div class="section"><h2>任务覆盖（agent.1~6）</h2>
+<table class="table">
+<tr><th>Agent</th><th>任务</th><th>CityOS映射</th><th>覆盖状态</th></tr>
+<tr><td>agent.1</td><td>统筹研究范围</td><td>L6应用层+L5服务层</td><td class="pass">✓</td></tr>
+<tr><td>agent.2</td><td>总体设计城市更新</td><td>L4平台层+L3网络层</td><td class="pass">✓</td></tr>
+<tr><td>agent.3</td><td>重点区域详细设计</td><td>L2算力层+L1硬件层</td><td class="pass">✓</td></tr>
+<tr><td>agent.4</td><td>AI创新生态与场景</td><td>12张场景卡</td><td class="pass">✓</td></tr>
+<tr><td>agent.5</td><td>交通市政蓝绿空间</td><td>主轴+环线+接驳</td><td class="pass">✓</td></tr>
+<tr><td>agent.6</td><td>指标体系与合规</td><td>sources/metrics/assumptions</td><td class="pass">✓</td></tr>
+</table></div>
+
+<!-- 自检状态 -->
+<div class="section"><h2>自检状态</h2>
+<table class="table">
+<tr><th>检查项</th><th>结果</th><th>说明</th></tr>
+<tr><td>确定性校验</td><td class="pass">PASS</td><td>0 errors, 0 warnings</td></tr>
+<tr><td>空间审查</td><td class="pass">PASS</td><td>GeoJSON 图层合规</td></tr>
+<tr><td>专业审查</td><td class="pass">PASS</td><td>证据与标准合规</td></tr>
+<tr><td>可视化审查</td><td class="pass">PASS</td><td>所有必需区块已覆盖</td></tr>
+<tr><td>临时边界</td><td class="warn">WARN</td><td>provisional，待官方 polygon</td></tr>
+</table></div>
+
+<!-- 来源 -->
+<div class="section"><h2>来源</h2>
+<div class="grid">
+<div class="card"><h3>OFFICIAL-ANNOUNCEMENT</h3><p>百年京张AI创新带征集公告</p></div>
+<div class="card"><h3>AGENT-TASKBOOK</h3><p>agent_taskbook.json 任务书</p></div>
+<div class="card"><h3>SITE-PACKAGE</h3><p>场地资料包</p></div>
+<div class="card"><h3>SOURCE-REGISTRY</h3><p>公开来源登记表</p></div>
+<div class="card"><h3>BOUNDARY-SOURCE</h3><p>临时边界数据源</p></div>
+<div class="card"><h3>PROCESSED-FACT-PACK</h3><p>公开事实包</p></div>
+</div></div>
+
+<!-- 假设 -->
+<div class="section"><h2>假设</h2>
+<table class="table">
+<tr><th>假设项</th><th>内容</th><th>影响</th></tr>
+<tr><td>边界精度</td><td>provisional_rough，非官方红线</td><td>面积/指标需重算</td></tr>
+<tr><td>控规条件</td><td>容积率/高度/密度/退线未公开</td><td>列为待补数据</td></tr>
+<tr><td>权属信息</td><td>未获取宗地图</td><td>拆改留仅概念</td></tr>
+<tr><td>AI场景</td><td>测试验证场景设人工复核</td><td>合规边界明确</td></tr>
+<tr><td>数据使用</td><td>不采集个人隐私</td><td>符合隐私规范</td></tr>
+</table></div>
+
+<div class="warning">⚠️ 使用 provisional 临时边界，官方 polygon 未公开。仅用于方案生成与讨论，不作审批依据。</div>
+</div>
+<div class="footer"><p>Jing-Zhang CityOS v1.0 | 百年一轨，开源一座城</p><p>Agent: z3230442 (知夏知源)</p></div>
+</body>
+</html>
