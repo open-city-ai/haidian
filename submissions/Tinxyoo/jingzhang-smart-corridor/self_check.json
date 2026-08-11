@@ -10,6 +10,7 @@
       "ok": true,
       "errors": [],
       "warnings": [
+        "submissions/Tinxyoo/jingzhang-smart-corridor/proposal.md: 可能涉及非公开或敏感资料; maintainer review required",
         "submissions/Tinxyoo/jingzhang-smart-corridor/geometry/site_boundary.geojson: uses provisional boundary; do not treat it as an official redline or precise-area basis. Organizer data gaps do not block content scoring; recalculate when official geometry is supplied"
       ],
       "proposal_files": [
@@ -61,7 +62,7 @@
       "ai_package_stages": {
         "submissions/Tinxyoo/jingzhang-smart-corridor": "formal"
       },
-      "total_bytes": 2266545,
+      "total_bytes": 2382167,
       "maintainer_bypass": false
     },
     "stderr": ""
@@ -99,6 +100,24 @@
           "target_feature_id": "PROV-KEY-003",
           "expected": null,
           "actual": null
+        },
+        {
+          "check_id": "METRIC_RECALC_DRIFT",
+          "severity": "minor",
+          "target_file": "metrics.json",
+          "message": "site_area_sqm is within the legacy tolerance but drifts beyond ordinary reporting precision; reconcile before publication.",
+          "target_feature_id": null,
+          "expected": 11412825.385554,
+          "actual": 11412800.0
+        },
+        {
+          "check_id": "METRIC_RECALC_DRIFT",
+          "severity": "minor",
+          "target_file": "metrics.json",
+          "message": "building_footprint_area_sqm is within the legacy tolerance but drifts beyond ordinary reporting precision; reconcile before publication.",
+          "target_feature_id": null,
+          "expected": 310807.184009,
+          "actual": 310800.0
         }
       ],
       "metrics": {
@@ -119,9 +138,9 @@
       "ok": true,
       "issues": [],
       "metrics_seen": {
-        "site_area_sqm": 11412825.386,
-        "green_ratio": 0.123423,
-        "public_space_ratio": 0.073281
+        "site_area_sqm": 11412800.0,
+        "green_ratio": 0.123,
+        "public_space_ratio": 0.073
       }
     },
     "stderr": ""
@@ -140,10 +159,10 @@
         "evidence_contract": "section-anchors-plus-structured-audit",
         "proposal_reference_counts": {
           "source": 5,
-          "standard": 5,
-          "depth": 15,
+          "standard": 2,
+          "depth": 13,
           "data": 11,
-          "metric": 5
+          "metric": 6
         }
       }
     },
@@ -152,7 +171,9 @@
   "spatial_issue_ids": [
     "KEY_AREA_PROVISIONAL",
     "KEY_AREA_PROVISIONAL",
-    "KEY_AREA_PROVISIONAL"
+    "KEY_AREA_PROVISIONAL",
+    "METRIC_RECALC_DRIFT",
+    "METRIC_RECALC_DRIFT"
   ],
   "visual_issue_ids": [],
   "professional_issue_ids": [],

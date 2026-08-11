@@ -7,51 +7,66 @@
   "metrics": {
     "site_area_sqm": {
       "status": "known",
-      "value": 11412825.386,
+      "value": 11412800,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "low",
       "assumptions": [
-        "Trusted official boundary is present in the site package."
-      ]
+        "Boundary is provisional_only (DATA-SRC-PROVISIONAL-BOUNDARIES-20260605); not an official redline and not a statutory area basis.",
+        "Source type is agent_inferred_from_public_data per sources.json BOUNDARY-SOURCE; precise area subject to recalibration upon official polygon release.",
+        "Value rounded to nearest integer; sub-hectare precision is not meaningful for a provisional boundary."
+      ],
+      "reason": "Official boundary polygon is not present in the public site package; value is derived from provisional geometry and must be recalculated when the official polygon is released."
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 310807.184,
+      "value": 310800,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
       ],
       "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Building footprints are conceptual placements within the provisional site boundary, not surveyed as-built drawings.",
+        "Value rounded to nearest 100 sqm; precision beyond 3 significant figures is not supported by the provisional data."
+      ],
+      "reason": "No official existing-building survey is available; footprints are design-stage concepts subject to recalculation."
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.123423,
+      "value": 0.123,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator derive from provisional geometry; ratio is indicative only.",
+        "Value rounded to 3 decimal places; official green-space polygon may change the ratio materially."
+      ],
+      "reason": "Provisional boundary drives both numerator and denominator; ratio is not a statutory green-rate figure."
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.073281,
+      "value": 0.073,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
         "geometry/site_boundary.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator derive from provisional geometry; ratio is indicative only.",
+        "Value rounded to 3 decimal places; official public-space polygon may change the ratio materially."
+      ],
+      "reason": "Provisional boundary drives both numerator and denominator; ratio is not a statutory public-space figure."
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -73,8 +88,12 @@
         "geometry/key_areas.geojson"
       ],
       "formula": "count(key_detailed_design_areas)",
-      "confidence": "high",
-      "assumptions": []
+      "confidence": "medium",
+      "assumptions": [
+        "Count of three key areas is structurally required by the announcement; their polygon boundaries are provisional.",
+        "Boundary precision does not affect the count, but area and shape are subject to official polygon release."
+      ],
+      "reason": "Count is stable per announcement requirement; boundary geometry is provisional_only."
     }
   }
 }

@@ -2,10 +2,46 @@
   "schema_version": "0.1.0",
   "assumptions": [
     {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_polygon",
+      "statement": "Site boundary and three key area polygons are provisional_only (DATA-SRC-PROVISIONAL-BOUNDARIES-20260605), sourced from agent_inferred_from_public_data. They are not official redlines, statutory boundaries, or precise area bases.",
+      "impact": "All area-based metrics (site_area_sqm, green_ratio, public_space_ratio, building_footprint_area_sqm) carry low confidence and must be recalculated when the official polygon is released. Spatial conclusions are limited to intake review, design discussion and iteration; they cannot support formal scoring as statutory figures."
+    },
+    {
       "id": "A-CONTROLS-001",
       "status": "pending_professional_confirmation",
-      "statement": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
-      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+      "statement": "Detailed regulatory controls — road redlines, plot ratios, building heights, setbacks, density, site coverage, plot ownership, municipal utilities, fire safety, flood control and engineering constraints — are not present in the public site package and must be confirmed from official attachments before statutory use.",
+      "impact": "Floor_area_ratio is marked status=unknown; all building height, massing and intensity statements are design recommendations or pending conditions, not statutory controls. The package can be reviewed as a formal AI submission only for provided provisional boundaries and submitted design layers."
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_heritage_review",
+      "statement": "Heritage protection zones (文保紫线、建设控制地带) for清华园车站旧址、大钟寺(觉生寺)及京张铁路沿线工业遗产未公开。本轮方案仅给出概念方向，未模拟视廊、高度梯度或文保影响。",
+      "impact": "大钟寺片区及清华园车站周边的建筑高度、体量、界面和反射材质建议必须在文保影响评估和视廊模拟后复算；当前建议不构成文保审批依据。已在 JZ-04 和大钟寺重点区设计中标注为前置条件。"
+    },
+    {
+      "id": "A-FAR-001",
+      "status": "pending_official_control",
+      "statement": "Approved FAR (floor_area_ratio) controls are not present in brief/site-package/ranges/planning_limits.json (status=missing). Total floor area, building height, density and setback cannot be computed as statutory values.",
+      "impact": "metrics.json floor_area_ratio carries status=unknown with confidence=unknown. Any intensity figures in the proposal are conceptual ranges for discussion, not statutory planning conditions."
+    },
+    {
+      "id": "A-SCENARIO-001",
+      "status": "pending_operational_data",
+      "statement": "AI scenario cards describe service concepts only. Operational subjects, input data pipelines, model capability boundaries, human fallback procedures and effectiveness KPIs are pending professional operational design and data-impact assessment.",
+      "impact": "Scenario cards in proposal.md and visual/index.html are concept-level; they do not constitute deployed AI systems. Privacy boundary declarations (no personal trajectory collection, no resident profiling for commercial use, campus data requires authorization) are design principles, not implemented governance."
+    },
+    {
+      "id": "A-PILOT-001",
+      "status": "pending_implementation_package",
+      "statement": "Update projects JZ-01 to JZ-06 are concept-level pilot packages. Implementation subject types, project boundaries, decision gates, resource levels, phased outputs, KPIs, O&M responsibility and stop conditions are pending professional project packaging.",
+      "impact": "Project list in proposal.md is a design roadmap, not an implementation commitment. No funding, approval pathway, or construction schedule is claimed."
+    },
+    {
+      "id": "A-INTERNATIONAL-001",
+      "status": "pending_internationalization_design",
+      "statement": "Bilingual artifacts (proposal.en.md, report/proposal.en.html, visual/index.en.html, drawings/*.en.pdf, assets/figures/*.en.png) are required to be substantively equivalent. AI-generated translations and figure labels require human review for terminology consistency per docs/terminology-glossary.md.",
+      "impact": "Bilingual contract v1 requires both language versions to maintain consistent chapters, claims, metrics, evidence citations and figure positions. Mismatched labels or untranslated content in figures may block formal scoring."
     }
   ]
 }
