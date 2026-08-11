@@ -40,6 +40,8 @@ from github_pr_validation import (  # noqa: E402
     is_non_submission_pr,
     is_review_queue_candidate,
     main,
+    parse_pull_diff,
+    public_event_head_is_current,
     readiness_contract_dirs_from_base,
     run_trusted_review_gates,
     safe_manifest_paths,
@@ -209,6 +211,217 @@ class GitHubApiResilienceTests(unittest.TestCase):
         self.assertEqual(1, urlopen.call_count)
         sleep.assert_not_called()
 
+    def test_public_diff_parser_preserves_added_removed_and_renamed_paths(self) -> None:
+        diff = """diff --git a/docs/README.md b/docs/README.md
+index 0000000..1111111 100644
+--- a/docs/README.md
++++ b/docs/README.md
+@@ -1 +1 @@
+-old
++new
+diff --git a/submissions/alice/new/proposal.md b/submissions/alice/new/proposal.md
+new file mode 100644
+index 0000000..1111111
+--- /dev/null
++++ b/submissions/alice/new/proposal.md
+@@ -0,0 +1 @@
++proposal
+diff --git a/submissions/alice/old/manifest.json b/submissions/alice/old/manifest.json
+deleted file mode 100644
+index 1111111..0000000
+--- a/submissions/alice/old/manifest.json
++++ /dev/null
+@@ -1 +0,0 @@
+-manifest
+diff --git a/scripts/old.py b/scripts/new.py
+similarity index 98%
+rename from scripts/old.py
+rename to scripts/new.py
+"""
+        self.assertEqual(
+            [
+                {"status": "modified", "filename": "docs/README.md"},
+                {"status": "added", "filename": "submissions/alice/new/proposal.md"},
+                {"status": "removed", "filename": "submissions/alice/old/manifest.json"},
+                {"status": "renamed", "filename": "scripts/new.py", "previous_filename": "scripts/old.py"},
+            ],
+            parse_pull_diff(diff),
+        )
+
+    def test_pull_file_listing_falls_back_to_public_diff_on_api_rate_limit(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        diff = "diff --git a/docs/note.md b/docs/note.md\nindex 1..2 100644\n"
+        client.paginate = MagicMock(
+            side_effect=RuntimeError("GitHub API GET failed: API rate limit exceeded for installation")
+        )
+        with patch(
+            "github_pr_validation.urllib.request.urlopen",
+            return_value=_Response(diff.encode("utf-8")),
+        ):
+            files = client.fetch_pull_files(123)
+        self.assertEqual(
+            [{"status": "modified", "filename": "docs/note.md"}],
+            files,
+        )
+        self.assertTrue(client.prefer_public_fallback)
+
+    def test_public_fallback_file_listing_does_not_retry_the_api(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        client.prefer_public_fallback = True
+        client.paginate = MagicMock()
+        client.fetch_pull_files_from_public_diff = MagicMock(return_value=[])
+        self.assertEqual([], client.fetch_pull_files(123))
+        client.paginate.assert_not_called()
+        client.fetch_pull_files_from_public_diff.assert_called_once_with(123)
+
+    def test_download_falls_back_to_raw_after_api_rate_limit(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        rate_limits = [
+            self._error(
+                403,
+                b'{"message":"API rate limit exceeded for installation"}',
+            )
+            for _ in range(4)
+        ]
+        with tempfile.TemporaryDirectory() as temp_dir, patch(
+            "github_pr_validation.urllib.request.urlopen",
+            side_effect=rate_limits + [_Response(b"raw")],
+        ), patch("github_pr_validation.time.sleep"):
+            destination = Path(temp_dir) / "asset.bin"
+            client.download_content("fork/repo", "asset.bin", "head-sha", destination)
+            self.assertEqual(b"raw", destination.read_bytes())
+        self.assertTrue(client.prefer_public_fallback)
+
+    def test_manifest_fetch_falls_back_to_raw_after_api_rate_limit(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        client.request = MagicMock(
+            side_effect=RuntimeError("API rate limit exceeded for installation")
+        )
+        with patch.object(client, "download_raw_content") as download_raw:
+            self.assertTrue(
+                client.fetch_content(
+                    "fork/repo", "submissions/alice/design/manifest.json", "head-sha", Path("manifest.json")
+                )
+            )
+        download_raw.assert_called_once()
+        self.assertTrue(client.prefer_public_fallback)
+
+    def test_stale_head_short_circuits_before_hydration_or_side_effects(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 736,
+                "user": {"login": "alice"},
+                "head": {"repo": {"full_name": "alice/haidian"}, "sha": "old-head"},
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.request.return_value = (
+                {"state": "open", "draft": False, "head": {"sha": "new-head"}},
+                {},
+            )
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client):
+                self.assertEqual(0, main())
+        client.fetch_pull_files.assert_not_called()
+        client.download_content.assert_not_called()
+        client.upsert_comment.assert_not_called()
+
+    def test_rate_limited_state_lookup_uses_confirmed_public_head_without_side_effects(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 736,
+                "user": {"login": "alice"},
+                "head": {
+                    "repo": {"full_name": "alice/haidian"},
+                    "ref": "submission/alice/design",
+                    "sha": "a" * 40,
+                },
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.request.side_effect = RuntimeError("API rate limit exceeded for installation")
+            client.fetch_pull_files.return_value = [{"filename": "docs/note.md", "status": "modified"}]
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client), patch(
+                "github_pr_validation.public_event_head_is_current", return_value=True
+            ) as head_is_current:
+                self.assertEqual(0, main())
+        self.assertEqual(2, head_is_current.call_count)
+        client.fetch_pull_files.assert_called_once_with(736)
+        client.upsert_comment.assert_not_called()
+        client.add_labels.assert_not_called()
+        client.remove_labels.assert_not_called()
+
+    def test_rate_limited_state_lookup_skips_when_public_head_is_not_current(self) -> None:
+        event = {
+            "pull_request": {
+                "number": 736,
+                "user": {"login": "alice"},
+                "head": {
+                    "repo": {"full_name": "alice/haidian"},
+                    "ref": "submission/alice/design",
+                    "sha": "a" * 40,
+                },
+            }
+        }
+        with tempfile.NamedTemporaryFile("w", encoding="utf-8") as event_file:
+            json.dump(event, event_file)
+            event_file.flush()
+            client = MagicMock()
+            client.request.side_effect = RuntimeError("API rate limit exceeded for installation")
+            with patch.dict(
+                os.environ,
+                {
+                    "GITHUB_TOKEN": "token",
+                    "GITHUB_REPOSITORY": "open-city-ai/haidian",
+                    "GITHUB_EVENT_PATH": event_file.name,
+                },
+                clear=False,
+            ), patch("github_pr_validation.GitHubClient", return_value=client), patch(
+                "github_pr_validation.public_event_head_is_current", return_value=False
+            ):
+                self.assertEqual(0, main())
+        client.fetch_pull_files.assert_not_called()
+        client.upsert_comment.assert_not_called()
+
+    def test_public_event_head_guard_requires_safe_exact_branch_ref(self) -> None:
+        completed = subprocess.CompletedProcess(
+            args=[],
+            returncode=0,
+            stdout=("a" * 40) + "\trefs/heads/agent/fallback\n",
+            stderr="",
+        )
+        with patch("github_pr_validation.subprocess.run", return_value=completed) as run:
+            self.assertTrue(
+                public_event_head_is_current("alice/haidian", "agent/fallback", "a" * 40)
+            )
+        run.assert_called_once()
+        with patch("github_pr_validation.subprocess.run") as run:
+            self.assertFalse(
+                public_event_head_is_current("alice/haidian", "../unsafe", "a" * 40)
+            )
+        run.assert_not_called()
+
     def test_download_404_retries_then_succeeds(self) -> None:
         client = GitHubClient("token", "open-city-ai/haidian")
         not_found = self._error(404, b'{"message":"Not Found"}')
@@ -320,7 +533,7 @@ class PullRequestHeadGuardTests(unittest.TestCase):
                     {},
                 ),
             ]
-            client.paginate.return_value = [{"filename": "docs/example.md"}]
+            client.fetch_pull_files.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
                 os.environ,
                 {
@@ -366,7 +579,7 @@ class PullRequestHeadGuardTests(unittest.TestCase):
                     {},
                 ),
             ]
-            client.paginate.return_value = [{"filename": "docs/example.md"}]
+            client.fetch_pull_files.return_value = [{"filename": "docs/example.md"}]
             with patch.dict(
                 os.environ,
                 {
@@ -702,7 +915,7 @@ class ManifestHydrationTests(unittest.TestCase):
                 {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
                 {},
             )
-            client.paginate.return_value = files
+            client.fetch_pull_files.return_value = files
             with patch.dict(
                 os.environ,
                 {
@@ -739,7 +952,7 @@ class ManifestHydrationTests(unittest.TestCase):
                 {"state": "open", "draft": False, "head": {"sha": "head-sha"}},
                 {},
             )
-            client.paginate.return_value = files
+            client.fetch_pull_files.return_value = files
             with patch.dict(
                 os.environ,
                 {

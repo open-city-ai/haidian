@@ -14,6 +14,7 @@ from __future__ import annotations
 import base64
 import json
 import os
+import shlex
 import shutil
 import subprocess
 import sys
@@ -36,7 +37,10 @@ from validate_submission import (
 
 COMMENT_MARKER = "<!-- haidian-submission-validation -->"
 API_ROOT = "https://api.github.com"
+PUBLIC_WEB_ROOT = "https://github.com"
+PUBLIC_RAW_ROOT = "https://raw.githubusercontent.com"
 MAX_API_ATTEMPTS = 4
+MAX_DIFF_BYTES = 25 * 1024 * 1024
 MAX_DOWNLOAD_BYTES = 10 * 1024 * 1024
 MAX_RETRY_DELAY_SECONDS = 30
 RETRYABLE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
@@ -100,15 +104,152 @@ def _is_download_not_found(error: Exception, path: str) -> bool:
     """Recognize an optional manifest asset that is still absent after retries."""
     if isinstance(error, urllib.error.HTTPError):
         return error.code == 404
-    return isinstance(error, RuntimeError) and str(error).startswith(
-        f"GitHub API download {path} failed with HTTP 404:"
+    return isinstance(error, RuntimeError) and (
+        str(error).startswith(f"GitHub API download {path} failed with HTTP 404:")
+        or str(error).startswith(f"GitHub raw download {path} failed with HTTP 404:")
     )
+
+
+def _is_rate_limit_error(error: Exception) -> bool:
+    """Recognize an exhausted GitHub API quota for safe public fallbacks."""
+    message = str(error).lower()
+    return "rate limit" in message or "abuse detection" in message
+
+
+def _safe_diff_path(value: str) -> str:
+    candidate = PurePosixPath(value)
+    if candidate.is_absolute() or not candidate.parts or ".." in candidate.parts:
+        raise RuntimeError(f"PR diff contained an unsafe path: {value!r}")
+    normalized = candidate.as_posix()
+    if normalized in {"", "."}:
+        raise RuntimeError(f"PR diff contained an empty path: {value!r}")
+    return normalized
+
+
+def _safe_public_ref(value: object) -> str | None:
+    """Return a conservative branch ref suitable for an argument-vector git call."""
+    if not isinstance(value, str) or not value:
+        return None
+    if (
+        value.startswith("/")
+        or value.endswith("/")
+        or ".." in value
+        or "//" in value
+        or "@{" in value
+    ):
+        return None
+    allowed = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-/")
+    if any(character not in allowed for character in value):
+        return None
+    return value
+
+
+def _safe_public_repository(value: object) -> str | None:
+    """Return an owner/repository name that is safe to interpolate into a URL."""
+    if not isinstance(value, str):
+        return None
+    parts = value.split("/")
+    if len(parts) != 2 or not all(parts):
+        return None
+    allowed = frozenset("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789._-")
+    if any(character not in allowed for part in parts for character in part):
+        return None
+    return value
+
+
+def public_event_head_is_current(head_repo: object, head_ref: object, head_sha: object) -> bool:
+    """Confirm an event head still resolves before a no-API validation fallback.
+
+    The public diff is always for the current PR.  When the authenticated API
+    is rate limited we cannot otherwise prove that it still represents this
+    workflow event, so use the public git ref as a read-only exact-head guard.
+    """
+    repository = _safe_public_repository(head_repo)
+    ref = _safe_public_ref(head_ref)
+    if not repository or not ref or not isinstance(head_sha, str) or len(head_sha) != 40:
+        return False
+    expected_ref = f"refs/heads/{ref}"
+    try:
+        result = subprocess.run(
+            ["git", "ls-remote", "--refs", f"https://github.com/{repository}.git", expected_ref],
+            capture_output=True,
+            check=False,
+            text=True,
+            timeout=30,
+        )
+    except (OSError, subprocess.TimeoutExpired):
+        return False
+    if result.returncode != 0:
+        return False
+    lines = [line.split() for line in result.stdout.splitlines() if line.strip()]
+    return len(lines) == 1 and lines[0] == [head_sha, expected_ref]
+
+
+def parse_pull_diff(diff: str) -> list[dict[str, str]]:
+    """Parse file metadata from a public PR diff without reading patch content."""
+    files: list[dict[str, str]] = []
+    current: dict[str, str] | None = None
+
+    def finish() -> None:
+        if current is None:
+            return
+        old_path = current.pop("_old_path", "")
+        new_path = current.pop("_new_path", "")
+        if current.get("status") == "removed":
+            current["filename"] = old_path
+        elif current.get("status") == "added":
+            current["filename"] = new_path
+        else:
+            current["filename"] = new_path
+        if current.get("status") == "renamed":
+            current["previous_filename"] = old_path
+        if not current.get("filename"):
+            raise RuntimeError("PR diff contained a file entry without a filename")
+        files.append(current)
+
+    for line in diff.splitlines():
+        if line.startswith("diff --git "):
+            finish()
+            try:
+                paths = shlex.split(line[len("diff --git ") :])
+            except ValueError as exc:
+                raise RuntimeError(f"could not parse PR diff header: {line!r}") from exc
+            if len(paths) != 2:
+                raise RuntimeError(f"could not parse PR diff header: {line!r}")
+            old_raw, new_raw = paths
+            old_path = "" if old_raw == "/dev/null" else _safe_diff_path(old_raw.removeprefix("a/"))
+            new_path = "" if new_raw == "/dev/null" else _safe_diff_path(new_raw.removeprefix("b/"))
+            current = {
+                "_old_path": old_path,
+                "_new_path": new_path,
+                "status": "added" if not old_path else "modified",
+            }
+            if not new_path:
+                current["status"] = "removed"
+            continue
+        if current is None:
+            continue
+        if line.startswith("new file mode "):
+            current["status"] = "added"
+        elif line.startswith("deleted file mode "):
+            current["status"] = "removed"
+        elif line.startswith("rename from "):
+            current["status"] = "renamed"
+            current["_old_path"] = _safe_diff_path(line[len("rename from ") :])
+        elif line.startswith("rename to "):
+            current["status"] = "renamed"
+            current["_new_path"] = _safe_diff_path(line[len("rename to ") :])
+    finish()
+    if not files:
+        raise RuntimeError("public PR diff contained no file entries")
+    return files
 
 
 class GitHubClient:
     def __init__(self, token: str, repository: str) -> None:
         self.token = token
         self.repository = repository
+        self.prefer_public_fallback = False
 
     def request(self, method: str, url: str, data: dict | None = None) -> tuple[Any, dict[str, str]]:
         if url.startswith("/"):
@@ -153,7 +294,45 @@ class GitHubClient:
             url = next_link(headers.get("Link", ""))
         return results
 
-    def download_content(
+    def fetch_pull_files(self, issue_number: int) -> list[dict[str, str]]:
+        """List PR files, falling back to the public diff if API quota is exhausted."""
+        if self.prefer_public_fallback:
+            return self.fetch_pull_files_from_public_diff(issue_number)
+        try:
+            return self.paginate(f"/repos/{self.repository}/pulls/{issue_number}/files?per_page=100")
+        except RuntimeError as exc:
+            if not _is_rate_limit_error(exc):
+                raise
+            self.prefer_public_fallback = True
+            print(
+                "GitHub API rate limit reached; using the public PR diff and raw artifact fallback",
+                file=sys.stderr,
+            )
+            return self.fetch_pull_files_from_public_diff(issue_number)
+
+    def fetch_pull_files_from_public_diff(self, issue_number: int) -> list[dict[str, str]]:
+        url = f"{PUBLIC_WEB_ROOT}/{self.repository}/pull/{issue_number}.diff"
+        request = urllib.request.Request(
+            url,
+            method="GET",
+            headers={
+                "Accept": "text/plain",
+                "User-Agent": "haidian-submission-validation",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                raw = response.read(MAX_DIFF_BYTES + 1)
+        except urllib.error.HTTPError as error:
+            message = _http_error_message(error)
+            raise RuntimeError(
+                f"GitHub public PR diff {url} failed with HTTP {error.code}: {message}"
+            ) from error
+        if len(raw) > MAX_DIFF_BYTES:
+            raise RuntimeError(f"GitHub public PR diff exceeds {MAX_DIFF_BYTES} byte cap")
+        return parse_pull_diff(raw.decode("utf-8", errors="replace"))
+
+    def download_raw_content(
         self,
         repo: str,
         path: str,
@@ -161,10 +340,40 @@ class GitHubClient:
         destination: Path,
         max_bytes: int = MAX_DOWNLOAD_BYTES,
     ) -> None:
-        # Fetch raw bytes through the Contents API on api.github.com. Unlike the
-        # github.com raw_url, this honors the Bearer token on private repos (the
-        # raw_url redirects to raw.githubusercontent.com, which drops the header
-        # and 404s).
+        """Download inert bytes from a public fork without consuming API quota."""
+        encoded_path = urllib.parse.quote(path, safe="/")
+        encoded_ref = urllib.parse.quote(ref, safe="")
+        url = f"{PUBLIC_RAW_ROOT}/{repo}/{encoded_ref}/{encoded_path}"
+        request = urllib.request.Request(
+            url,
+            method="GET",
+            headers={
+                "Accept": "application/octet-stream",
+                "User-Agent": "haidian-submission-validation",
+            },
+        )
+        try:
+            with urllib.request.urlopen(request, timeout=60) as response:
+                content = response.read(max_bytes + 1)
+        except urllib.error.HTTPError as error:
+            message = _http_error_message(error)
+            raise RuntimeError(
+                f"GitHub raw download {path} failed with HTTP {error.code}: {message}"
+            ) from error
+        if len(content) > max_bytes:
+            raise RuntimeError(f"{destination}: file exceeds download cap")
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        destination.write_bytes(content)
+
+    def _download_content_from_api(
+        self,
+        repo: str,
+        path: str,
+        ref: str,
+        destination: Path,
+        max_bytes: int,
+    ) -> None:
+        """Download one file through the authenticated Contents API."""
         encoded_path = urllib.parse.quote(path)
         encoded_ref = urllib.parse.quote(ref)
         url = f"{API_ROOT}/repos/{repo}/contents/{encoded_path}?ref={encoded_ref}"
@@ -198,7 +407,34 @@ class GitHubClient:
         destination.parent.mkdir(parents=True, exist_ok=True)
         destination.write_bytes(content)
 
+    def download_content(
+        self,
+        repo: str,
+        path: str,
+        ref: str,
+        destination: Path,
+        max_bytes: int = MAX_DOWNLOAD_BYTES,
+    ) -> None:
+        if self.prefer_public_fallback:
+            self.download_raw_content(repo, path, ref, destination, max_bytes)
+            return
+        try:
+            self._download_content_from_api(repo, path, ref, destination, max_bytes)
+        except RuntimeError as exc:
+            if not _is_rate_limit_error(exc):
+                raise
+            self.prefer_public_fallback = True
+            self.download_raw_content(repo, path, ref, destination, max_bytes)
+
     def fetch_content(self, repo: str, path: str, ref: str, destination: Path) -> bool:
+        if self.prefer_public_fallback:
+            try:
+                self.download_raw_content(repo, path, ref, destination)
+            except RuntimeError as exc:
+                if _is_download_not_found(exc, path):
+                    return False
+                raise
+            return True
         encoded_path = urllib.parse.quote(path)
         encoded_ref = urllib.parse.quote(ref)
         try:
@@ -207,6 +443,17 @@ class GitHubClient:
             if exc.code == 404:
                 return False
             raise
+        except RuntimeError as exc:
+            if not _is_rate_limit_error(exc):
+                raise
+            self.prefer_public_fallback = True
+            try:
+                self.download_raw_content(repo, path, ref, destination)
+            except RuntimeError as raw_exc:
+                if _is_download_not_found(raw_exc, path):
+                    return False
+                raise
+            return True
         if isinstance(data, list) or data.get("type") != "file":
             return False
         content = base64.b64decode(data.get("content", ""))
@@ -541,24 +788,62 @@ def main() -> int:
     pr_number = int(pull_request["number"])
     pr_author = pull_request["user"]["login"]
     head_repo = pull_request["head"]["repo"]["full_name"]
+    head_ref = pull_request["head"].get("ref")
     head_sha = pull_request["head"]["sha"]
     base = pull_request.get("base") or {}
     base_repo = (base.get("repo") or {}).get("full_name") or repository
     base_sha = base.get("sha")
     client = GitHubClient(token, repository)
 
-    if not is_current_pull_request_head(client, pr_number, head_sha):
+    # A queued event can refer to a superseded head.  Do not hydrate a mixed
+    # set of paths from the current PR against the old event SHA.
+    side_effects_allowed = True
+    try:
+        current_pr, _ = client.request("GET", f"/repos/{repository}/pulls/{pr_number}")
+    except RuntimeError as exc:
+        if not _is_rate_limit_error(exc):
+            raise
+        if not public_event_head_is_current(head_repo, head_ref, head_sha):
+            print(
+                f"Skipping validation for PR #{pr_number}: GitHub API is rate limited and "
+                "the public branch ref cannot confirm this event head is current"
+            )
+            return 0
+        client.prefer_public_fallback = True
+        side_effects_allowed = False
         print(
-            f"Skipping stale validation event for PR #{pr_number}: "
-            f"event head {head_sha} no longer matches the current PR head."
+            "GitHub API rate limit reached before PR state lookup; validating the confirmed "
+            "public event head without PR comments or labels",
+            file=sys.stderr,
         )
-        return 0
+    else:
+        if isinstance(current_pr, dict) and (
+            current_pr.get("state") != "open" or current_pr.get("draft") is True
+        ):
+            state = current_pr.get("state", "unknown")
+            draft = "draft" if current_pr.get("draft") is True else "not draft"
+            print(f"Skipping validation for PR #{pr_number}: state={state}, {draft}")
+            return 0
+        current_head = current_pr.get("head") if isinstance(current_pr, dict) else None
+        current_head_sha = current_head.get("sha") if isinstance(current_head, dict) else None
+        if current_head_sha and current_head_sha != head_sha:
+            print(
+                f"Skipping stale validation event for PR #{pr_number}: "
+                f"event_head={head_sha}, current_head={current_head_sha}"
+            )
+            return 0
 
-    files = client.paginate(f"/repos/{repository}/pulls/{pr_number}/files?per_page=100")
-    if not is_current_pull_request_head(client, pr_number, head_sha):
+    files = client.fetch_pull_files(pr_number)
+    if side_effects_allowed and not is_current_pull_request_head(client, pr_number, head_sha):
         print(
             f"Skipping stale validation event for PR #{pr_number}: "
             f"the PR head changed while its file list was being read."
+        )
+        return 0
+    if not side_effects_allowed and not public_event_head_is_current(head_repo, head_ref, head_sha):
+        print(
+            f"Skipping validation for PR #{pr_number}: public branch ref changed while "
+            "retrieving the fallback diff"
         )
         return 0
     changed_files = [item["filename"] for item in files]
@@ -587,14 +872,15 @@ def main() -> int:
             f"{validation_markdown}\n\n"
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
-        if not is_current_pull_request_head(client, pr_number, head_sha):
+        if side_effects_allowed and not is_current_pull_request_head(client, pr_number, head_sha):
             print(
                 f"Skipping stale validation side effects for PR #{pr_number}: "
                 f"event head {head_sha} no longer matches the current PR head."
             )
             return 0
         write_step_summary(comment)
-        client.upsert_comment(pr_number, comment)
+        if side_effects_allowed:
+            client.upsert_comment(pr_number, comment)
         return 0
 
     worktree = Path(tempfile.mkdtemp(prefix="haidian-pr-"))
@@ -669,7 +955,7 @@ def main() -> int:
                 )
         validation_markdown = format_report(validation)
 
-        if not is_current_pull_request_head(client, pr_number, head_sha):
+        if side_effects_allowed and not is_current_pull_request_head(client, pr_number, head_sha):
             print(
                 f"Skipping stale validation side effects for PR #{pr_number}: "
                 f"event head {head_sha} no longer matches the current PR head."
@@ -683,17 +969,23 @@ def main() -> int:
             "> This CI check is deterministic. It does not call AI models and does not make content-quality judgments."
         )
         write_step_summary(comment)
-        client.upsert_comment(pr_number, comment)
+        if side_effects_allowed:
+            client.upsert_comment(pr_number, comment)
 
-        if validation.ok and queue_candidate:
+        if side_effects_allowed and validation.ok and queue_candidate:
             client.remove_labels(
                 pr_number,
                 ["review/ci-failed", "review/changes-requested", "review/low-quality"],
             )
             client.add_labels(pr_number, ["review/queued"])
-        elif queue_candidate:
+        elif side_effects_allowed and queue_candidate:
             client.remove_labels(pr_number, ["review/queued"])
             client.add_labels(pr_number, ["review/ci-failed"])
+        elif not side_effects_allowed:
+            print(
+                f"Validated public fallback for PR #{pr_number} without comments or labels; "
+                "a normal API-backed event will publish review state when quota recovers"
+            )
 
         return 0 if validation.ok else 1
     finally:
