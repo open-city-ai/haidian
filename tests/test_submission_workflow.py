@@ -1815,6 +1815,33 @@ class SubmissionWorkflowTests(unittest.TestCase):
             report = validate_submission(root, "alice", changed)
             self.assertTrue(report.ok, report.errors)
 
+    def test_provisional_boundary_warning_separates_intake_from_professional_scoring(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            base = "submissions/alice/ai-urban-loop"
+            changed = self.write_minimal_ai_package(root, base)
+            self.update_json(
+                root,
+                f"{base}/geometry/site_boundary.geojson",
+                lambda data: data["features"][0]["properties"].update(
+                    {
+                        "source_type": "agent_inferred_from_public_data",
+                        "confidence": "low",
+                        "geometry_role": "provisional_constraint",
+                        "official_boundary": False,
+                    }
+                ),
+            )
+
+            report = validate_submission(root, "alice", changed)
+
+            warnings = "\n".join(report.warnings)
+            self.assertTrue(report.ok, report.errors)
+            self.assertIn("permits structural content review only", warnings)
+            self.assertIn("does not establish eligibility for professional scoring", warnings)
+            self.assertIn("formal acceptance, publication, or merge", warnings)
+            self.assertNotIn("do not block content scoring", warnings)
+
     def test_changelog_submission_passes_hard_validation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

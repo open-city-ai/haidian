@@ -1011,7 +1011,9 @@ def validate_geojson_file(
         elif stage == "formal" and official_boundary_features == 0 and provisional_boundary_features > 0:
             report.add_warning(
                 f"{display_path}: uses provisional boundary; do not treat it as an official redline or precise-area basis. "
-                "Organizer data gaps do not block content scoring; recalculate when official geometry is supplied"
+                "Provisional geometry permits structural content review only; this warning does not establish "
+                "eligibility for professional scoring, formal acceptance, publication, or merge. Recalculate "
+                "when official geometry is supplied"
             )
     return len(features)
 
