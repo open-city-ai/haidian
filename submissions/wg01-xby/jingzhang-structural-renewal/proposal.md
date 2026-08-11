@@ -1,7 +1,7 @@
 ---
 title: "百年京张AI创新带结构再生与智能基础设施设计方案"
 author_github: "wg01-xby"
-language: "zh-CN"
+language: "zh"
 license: "CC-BY-4.0"
 summary: "以结构工程独特视角切入百年京张AI创新带城市设计，提出京张铁路工业遗址结构改造为AI算力载体，策略①工业遗址重型算力建筑改造、②京张遗址钢结构加层、③三区两翼智能基础设施结构体系，三区（众智园192ha/AI原点社区104ha/大钟寺72ha）两翼（中关村科技服务翼/小月河场景赋能翼），三地标（京张结构之环/众智算力之脊/AI原点之芯）。覆盖AI创新生态、12张场景卡、5类用户画像、3个AI测试验证场景、7个全球案例。所有空间边界均为临时粗略边界（provisional），方案不替代正式规划。
 ---
@@ -105,7 +105,7 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
 
 ### 3.1 全球AI创新生态案例（5-8个）
 
-> **数据声明**：以下案例数据均来自公开新闻报道与官方发布，数值仅供趋势参考，不构成投资承诺或产值保证。[source:SRC-2026-BJ-KW-THREE-AREAS-WINGS, SRC-2026-HAIDIAN-1X1]
+> **数据声明**：以下案例数据均来自公开新闻报道与官方发布，数值仅供趋势参考，不构成投资承诺或产值保证。[source:SRC-2026-BJ-KW-THREE-AREAS-WINGS][source:SRC-2026-HAIDIAN-1X1]
 
 | 案例名称 | 城市 | 核心结构特征 | 规模体量 | 对本项目启示 |
 |---------|------|------------|---------|------------|
@@ -222,7 +222,7 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
 
 ---
 
-## AI创新生态、人才画像与AI+场景
+## AI 创新生态、人才画像与 AI+ 场景
 
 ### 6.1 AI场景卡（12张，≥10要求）
 
@@ -515,8 +515,14 @@ summary: "以结构工程独特视角切入百年京张AI创新带城市设计�
 
 ## 图件清单
 
+![场地总体概况](assets/figures/site-overview.png)
+![用地与产业布局概览](assets/figures/land-use-structure.png)
+![重点区域设计总图](assets/figures/key-areas.png)
+![蓝绿空间与交通系统](assets/figures/mobility-bluegreen.png)
+![指标体系与合规证据](assets/figures/metrics-evidence.png)
+
 [data:assets/figures/site-overview.png]
-[data:assets/figures/land-use.png]
+![用地与产业布局概览](assets/figures/land-use-structure.png)
 [data:assets/figures/key-areas.png]
 [data:assets/figures/mobility-bluegreen.png]
 [data:assets/figures/metrics-evidence.png]
