@@ -52,6 +52,54 @@ class RenderProposalHtmlTests(unittest.TestCase):
             self.assertIn("第二行。</p><p>独立第二段。</p></blockquote>", html)
             self.assertNotIn("&gt;", html)
 
+    def test_render_english_proposal_localizes_evidence_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                """---
+title: "English proposal"
+language: "en"
+---
+
+# English proposal
+
+Evidence [source:SITE-PACKAGE] and [metric:site_area].
+""",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn(">Source</sup>", html)
+            self.assertIn('title="Source: SITE-PACKAGE"', html)
+            self.assertNotIn(">来源</sup>", html)
+
+    def test_embedded_chinese_translation_keeps_chinese_evidence_labels(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            submission_dir = Path(tmp)
+            (submission_dir / "proposal.md").write_text(
+                """---
+title: "English proposal"
+language: "en"
+---
+
+# English proposal
+
+English [source:SITE-PACKAGE].
+
+# 中文正式译文
+
+中文 [source:SITE-PACKAGE]。
+""",
+                encoding="utf-8",
+            )
+
+            html = render_html(submission_dir)
+
+            self.assertIn('lang="en"', html)
+            self.assertIn('title="Source: SITE-PACKAGE"', html)
+            self.assertIn('title="来源：SITE-PACKAGE"', html)
+
     def test_render_html_rewrites_local_figure_paths(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             submission_dir = Path(tmp)
