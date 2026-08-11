@@ -18,11 +18,20 @@ STRONG_RE = re.compile(r"(?<![\\*])\*\*(?=\S)(.+?)(?<=\S)\*\*(?!\*)", re.S)
 EM_RE = re.compile(r"(?<![\\*])\*(?=\S)(.+?)(?<=\S)\*(?!\*)", re.S)
 TABLE_DELIMITER_CELL_RE = re.compile(r"^:?-{3,}:?$")
 REFERENCE_LABELS = {
-    "source": "来源",
-    "standard": "标准",
-    "depth": "深度",
-    "data": "空间数据",
-    "metric": "指标",
+    "zh": {
+        "source": "来源",
+        "standard": "标准",
+        "depth": "深度",
+        "data": "空间数据",
+        "metric": "指标",
+    },
+    "en": {
+        "source": "Source",
+        "standard": "Standard",
+        "depth": "Depth",
+        "data": "Spatial data",
+        "metric": "Metric",
+    },
 }
 
 
@@ -55,7 +64,7 @@ def normalize_image_src(submission_dir: Path, raw_src: str) -> str:
     return "../" + pure.as_posix()
 
 
-def render_inline(text: str) -> str:
+def render_inline(text: str, language: str = "zh") -> str:
     escaped = html.escape(text)
     code_spans: list[str] = []
 
@@ -72,11 +81,13 @@ def render_inline(text: str) -> str:
     def replace_ref(match: re.Match[str]) -> str:
         kind = match.group(1)
         value = match.group(2)
-        label = REFERENCE_LABELS[kind]
+        reference_language = "en" if language == "en" else "zh"
+        label = REFERENCE_LABELS[reference_language][kind]
+        separator = ": " if reference_language == "en" else "："
         escaped_value = html.escape(value)
         return (
             f'<sup class="evidence evidence-{kind}" data-evidence-kind="{kind}" '
-            f'data-evidence-value="{escaped_value}" title="{label}：{escaped_value}">'
+            f'data-evidence-value="{escaped_value}" title="{label}{separator}{escaped_value}">'
             f'{label}</sup>'
         )
 
@@ -146,12 +157,12 @@ def table_alignment(delimiter: str) -> str | None:
     return None
 
 
-def render_table_cell(tag: str, value: str, alignment: str | None) -> str:
+def render_table_cell(tag: str, value: str, alignment: str | None, language: str) -> str:
     alignment_class = f' class="align-{alignment}"' if alignment else ""
-    return f"<{tag}{alignment_class}>{render_inline(value)}</{tag}>"
+    return f"<{tag}{alignment_class}>{render_inline(value, language)}</{tag}>"
 
 
-def render_markdown_body(submission_dir: Path, markdown: str) -> str:
+def render_markdown_body(submission_dir: Path, markdown: str, language: str = "zh") -> str:
     blocks: list[str] = []
     paragraph: list[str] = []
     in_list = False
@@ -159,7 +170,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
     def flush_paragraph() -> None:
         nonlocal paragraph
         if paragraph:
-            blocks.append(f"<p>{render_inline(' '.join(paragraph))}</p>")
+            blocks.append(f"<p>{render_inline(' '.join(paragraph), language)}</p>")
             paragraph = []
 
     def close_list() -> None:
@@ -213,7 +224,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                 close_list()
                 alignments = [table_alignment(cell) for cell in delimiter_cells]
                 header = "".join(
-                    render_table_cell("th", cell, alignment)
+                    render_table_cell("th", cell, alignment, language)
                     for cell, alignment in zip(header_cells, alignments)
                 )
                 index += 2
@@ -240,7 +251,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                     body_rows.append(
                         "<tr>"
                         + "".join(
-                            render_table_cell("td", cell, alignment)
+                            render_table_cell("td", cell, alignment, language)
                             for cell, alignment in zip(cells, alignments)
                         )
                         + "</tr>"
@@ -291,7 +302,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
                     quote_paragraphs.append([])
                 index += 1
             rendered_quotes = "".join(
-                f"<p>{render_inline(' '.join(items))}</p>"
+                f"<p>{render_inline(' '.join(items), language)}</p>"
                 for items in quote_paragraphs
                 if items
             )
@@ -303,7 +314,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             close_list()
             level = min(len(line) - len(line.lstrip("#")), 4)
             title = line[level:].strip()
-            blocks.append(f"<h{level}>{render_inline(title)}</h{level}>")
+            blocks.append(f"<h{level}>{render_inline(title, language)}</h{level}>")
             index += 1
             continue
 
@@ -312,7 +323,7 @@ def render_markdown_body(submission_dir: Path, markdown: str) -> str:
             if not in_list:
                 blocks.append("<ul>")
                 in_list = True
-            blocks.append(f"<li>{render_inline(line[2:].strip())}</li>")
+            blocks.append(f"<li>{render_inline(line[2:].strip(), language)}</li>")
             index += 1
             continue
 
@@ -340,12 +351,12 @@ def render_html(
         english_body = body[: translation_match.start()]
         translation_body = body[translation_match.end() :]
         rendered_body = (
-            f'<section lang="en">{render_markdown_body(submission_dir, english_body)}</section>'
+            f'<section lang="en">{render_markdown_body(submission_dir, english_body, "en")}</section>'
             f'<section lang="zh-CN"><h1>中文正式译文</h1>'
-            f'{render_markdown_body(submission_dir, translation_body)}</section>'
+            f'{render_markdown_body(submission_dir, translation_body, "zh")}</section>'
         )
     else:
-        rendered_body = render_markdown_body(submission_dir, body)
+        rendered_body = render_markdown_body(submission_dir, body, language)
     translation_link = ""
     if translation_href:
         link_label = "Read in English" if language == "zh" else "阅读中文版本"
