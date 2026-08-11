@@ -1,0 +1,222 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(polygon_area(site_boundary)) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary from official text description; official polygon pending."
+   ],
+   "reason": "Provisional SITE boundary area, matches official 11.4 km2."
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(features in key_areas.geojson)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 695041.658,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints))",
+   "confidence": "medium",
+   "assumptions": [
+    "AI-agent generated design proposal, not statutory."
+   ]
+  },
+  "building_footprint_ratio": {
+   "status": "known",
+   "value": 0.0609,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 4367535.881,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.38269,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Includes park greenbelt spine and pocket parks."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 546710.683,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0479,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "ai_industry_land_sqm": {
+   "status": "known",
+   "value": 2930708.435,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(land_use where code in (0802,0804,05))",
+   "confidence": "medium",
+   "assumptions": [
+    "AI-agent proposed land-use allocation; regulatory land use pending official controls."
+   ]
+  },
+  "ai_industry_land_ratio": {
+   "status": "known",
+   "value": 0.25679,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "ai_industry_land_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "land_use_coverage_ratio": {
+   "status": "known",
+   "value": 0.99992,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(land_use areas) / site_area (expected ~1.0, no overlap)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "phasing_coverage_ratio": {
+   "status": "known",
+   "value": 0.67029,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/phasing.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "sum(phasing areas) / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing polygons are design proposals."
+   ]
+  },
+  "scenario_card_count": {
+   "status": "known",
+   "value": 10,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(design scenario cards in proposal.md section 5)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "persona_count": {
+   "status": "known",
+   "value": 5,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(personas in proposal.md section 5)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "landmark_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(AI pilgrimage landmarks in proposal.md section 6)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "case_study_count": {
+   "status": "known",
+   "value": 6,
+   "unit": "count",
+   "source_files": [
+    "proposal.md"
+   ],
+   "formula": "count(global AI ecosystem case studies in proposal.md section 4)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [],
+   "formula": "official regulatory FAR per approved controls",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official regulatory planning conditions (FAR, height, density, green ratio, setback) not yet published; see assumptions.json A-CONTROLS-001."
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [],
+   "formula": "official height controls per approved regulatory planning",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official height controls missing; pending regulatory planning attachments."
+  }
+ }
+}
