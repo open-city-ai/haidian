@@ -218,6 +218,8 @@ class GitHubClient:
         comments = self.paginate(f"/repos/{self.repository}/issues/{issue_number}/comments?per_page=100")
         for comment in comments:
             if COMMENT_MARKER in comment.get("body", ""):
+                if comment.get("body") == body:
+                    return
                 self.request(
                     "PATCH",
                     f"/repos/{self.repository}/issues/comments/{comment['id']}",

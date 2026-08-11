@@ -156,6 +156,29 @@ class GitHubApiResilienceTests(unittest.TestCase):
                     Path(temp_dir) / "asset.bin",
                 )
 
+    def test_upsert_comment_skips_identical_marked_comment(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        body = "<!-- haidian-submission-validation -->\nResult: PASS"
+        with patch.object(client, "paginate", return_value=[{"id": 42, "body": body}]), patch.object(
+            client, "request"
+        ) as request:
+            client.upsert_comment(1471, body)
+        request.assert_not_called()
+
+    def test_upsert_comment_updates_changed_marked_comment(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        old_body = "<!-- haidian-submission-validation -->\nResult: PENDING"
+        new_body = "<!-- haidian-submission-validation -->\nResult: PASS"
+        with patch.object(client, "paginate", return_value=[{"id": 42, "body": old_body}]), patch.object(
+            client, "request"
+        ) as request:
+            client.upsert_comment(1471, new_body)
+        request.assert_called_once_with(
+            "PATCH",
+            "/repos/open-city-ai/haidian/issues/comments/42",
+            {"body": new_body},
+        )
+
 
 class PullRequestHeadGuardTests(unittest.TestCase):
     def test_head_guard_compares_event_sha_with_current_pr(self) -> None:
