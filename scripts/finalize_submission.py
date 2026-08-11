@@ -81,8 +81,8 @@ def safe_fixed_package_path(root: Path, relative_path: str) -> Path:
     return path
 
 
-def invalidate_self_check(root: Path) -> None:
-    """Make a persisted self-check fail closed after any package refresh."""
+def invalidated_self_check_bytes(root: Path) -> bytes:
+    """Build the fail-closed self-check payload for a package refresh."""
     path = safe_fixed_package_path(root, "self_check.json")
     try:
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -111,7 +111,7 @@ def invalidate_self_check(root: Path) -> None:
         }
     )
     data["checks"] = checks
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return (json.dumps(data, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
 
 
 def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> int:
@@ -125,12 +125,21 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
     persisted validation claim stale until self-check is run again.
     """
     errors: list[str] = []
+
+    def fixed_path(relative_path: str) -> Path | None:
+        try:
+            return safe_fixed_package_path(root, relative_path)
+        except ValueError as exc:
+            errors.append(str(exc))
+            return None
+
     try:
-        safe_fixed_package_path(root, "self_check.json")
+        self_check_path = safe_fixed_package_path(root, "self_check.json")
     except ValueError as exc:
         errors.append(str(exc))
-    proposal_path = root / "proposal.md"
-    if not proposal_path.is_file():
+        self_check_path = root / "self_check.json"
+    proposal_path = fixed_path("proposal.md")
+    if proposal_path is None or not proposal_path.is_file():
         errors.append("proposal.md is required for refresh")
         proposal_text = ""
     else:
@@ -139,8 +148,8 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
         if marker in proposal_text:
             errors.append(f"proposal.md still contains the generated placeholder marker: {marker}")
     for rel in [*FIGURES, *DRAWINGS, *READABLE_OUTPUTS]:
-        path = root / rel
-        if not path.is_file():
+        path = fixed_path(rel)
+        if path is None or not path.is_file():
             errors.append(f"required review artifact is missing: {rel}")
         elif rel in DRAWINGS and is_empty_pdf(path.read_bytes()):
             errors.append(f"{rel} has no pages or is still a placeholder drawing")
@@ -155,8 +164,8 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
             errors.append(
                 f"proposal.md must declare translation_file: {expected_translation} for the required bilingual package"
             )
-        translated_path = root / expected_translation
-        if not translated_path.is_file():
+        translated_path = fixed_path(expected_translation)
+        if translated_path is None or not translated_path.is_file():
             errors.append(f"required bilingual counterpart is missing: {expected_translation}")
         else:
             try:
@@ -205,8 +214,8 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
             if rel.startswith("assets/figures/") and primary_item.get("language") == "neutral":
                 continue
             translated_rel = localized_path(rel, translation_language)
-            translated_path = root / translated_rel
-            if not translated_path.is_file():
+            translated_path = fixed_path(translated_rel)
+            if translated_path is None or not translated_path.is_file():
                 errors.append(f"required bilingual counterpart is missing: {translated_rel}")
                 continue
             translated_item = listed_items.get(translated_rel)
@@ -226,19 +235,47 @@ def refresh_ready_package(root: Path, manifest_path: Path, manifest: dict) -> in
             print(f"- {error}")
         return 1
 
-    invalidate_self_check(root)
+    try:
+        original_manifest = manifest_path.read_bytes()
+        original_self_check = self_check_path.read_bytes()
+        refreshed_self_check = invalidated_self_check_bytes(root)
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        print(f"Ready package was not refreshed: cannot prepare transactional update: {exc}")
+        return 1
+
     for item in manifest["files"]:
         if not isinstance(item, dict):
             continue
         rel = item.get("path")
-        if rel and rel != "manifest.json" and (root / rel).is_file():
-            item["sha256"] = digest(root / rel)
+        if not rel or rel == "manifest.json":
+            continue
+        if rel == "self_check.json":
+            item["sha256"] = hashlib.sha256(refreshed_self_check).hexdigest()
+            continue
+        _, path, path_error = safe_manifest_path(root, rel)
+        if path_error is None and path is not None and path.is_file():
+            item["sha256"] = digest(path)
     claim = manifest.get("validation_claim")
     if not isinstance(claim, dict):
         claim = {}
         manifest["validation_claim"] = claim
     claim["self_checked"] = False
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    refreshed_manifest = (json.dumps(manifest, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    try:
+        self_check_path.write_bytes(refreshed_self_check)
+        manifest_path.write_bytes(refreshed_manifest)
+    except OSError as exc:
+        try:
+            self_check_path.write_bytes(original_self_check)
+            manifest_path.write_bytes(original_manifest)
+        except OSError as rollback_exc:
+            print(
+                "Ready package refresh failed and rollback was incomplete: "
+                f"{exc}; rollback error: {rollback_exc}"
+            )
+            return 1
+        print(f"Ready package was not refreshed; transactional update rolled back: {exc}")
+        return 1
     print(f"Refreshed review-ready package: {root}")
     print(
         "Run self_check_submission.py --mark-self-checked now; the persisted validation "

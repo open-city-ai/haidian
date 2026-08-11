@@ -24,6 +24,7 @@ if HAS_REVIEW_DEPS:
     from shapely.ops import transform  # noqa: E402
 
 from self_check_submission import run_json_command  # noqa: E402
+from finalize_submission import refresh_ready_package  # noqa: E402
 
 
 class AgentFacingDocsTests(unittest.TestCase):
@@ -512,6 +513,45 @@ class AgentScaffoldAndSelfCheckTests(unittest.TestCase):
             self.assertNotEqual(0, refreshed.returncode)
             self.assertIn("fixed package path traverses symbolic link", refreshed.stdout)
             self.assertEqual(sentinel, outside.read_bytes())
+
+    def test_refresh_rolls_back_when_manifest_write_fails(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            submission_dir = root / "submissions" / "alice" / "transactional-refresh"
+            write_official_site_package(root)
+            self.assertEqual(run_scaffold(submission_dir, cwd=root).returncode, 0)
+            self.assertEqual(complete_scaffold(submission_dir).returncode, 0)
+            proposal_path = submission_dir / "proposal.md"
+            proposal_path.write_text(
+                proposal_path.read_text(encoding="utf-8").replace(
+                    "PARTICIPANT-DESIGN: replace", "PARTICIPANT-DESIGN: transactional refresh"
+                ),
+                encoding="utf-8",
+            )
+
+            manifest_path = submission_dir / "manifest.json"
+            self_check_path = submission_dir / "self_check.json"
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+            original_manifest = manifest_path.read_bytes()
+            original_self_check = self_check_path.read_bytes()
+            original_write_bytes = Path.write_bytes
+            write_count = 0
+
+            def fail_manifest_once(data: bytes) -> int:
+                nonlocal write_count
+                write_count += 1
+                if write_count == 2:
+                    raise OSError("simulated manifest write failure")
+                target = self_check_path if write_count in {1, 3} else manifest_path
+                return original_write_bytes(target, data)
+
+            with mock.patch.object(Path, "write_bytes", side_effect=fail_manifest_once):
+                result = refresh_ready_package(submission_dir, manifest_path, manifest)
+
+            self.assertEqual(1, result)
+            self.assertEqual(4, write_count)
+            self.assertEqual(original_manifest, manifest_path.read_bytes())
+            self.assertEqual(original_self_check, self_check_path.read_bytes())
 
     def test_refresh_rejects_missing_bilingual_companion_or_manifest_entry(self) -> None:
         for missing_manifest_entry in [True, False]:
