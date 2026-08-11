@@ -674,6 +674,8 @@ All areas in this proposal are calculated based on provisional boundaries. When 
 
 ## Risk, Copyright, and Compliance
 
+This proposal follows the compliance requirements of the Urban Design Measures[source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]; all data use only public or authorized sources, and the copyright statement is in the report directory. Eligibility and scoring are determined by maintainers/reviewers under the formal rules; this proposal makes no presumption regarding eligibility or scoring outcomes.
+
 ### Risk Identification and Response
 
 [risk.json]

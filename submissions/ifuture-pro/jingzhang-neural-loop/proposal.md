@@ -675,7 +675,7 @@ Jing-Zhang Neural Loop
 
 ## 风险、版权与合规说明
 
-本方案遵循《城市设计管理办法》的合规要求[source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]，所有数据仅采用公开或已授权来源，copyright_statement 详见 report 目录。
+本方案遵循《城市设计管理办法》的合规要求[source:DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES]，所有数据仅采用公开或已授权来源，copyright_statement 详见 report 目录。资格判定与评分由维护者/评审依正式规则判断，本方案对资格与评分结果不作任何预设。
 
 ### 风险识别与应对
 
