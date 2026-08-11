@@ -1252,7 +1252,8 @@ def validate_geojson_file(
                 f"{display_path}: uses provisional boundary; do not treat it as an official redline or precise-area basis. "
                 "Provisional geometry supports only structural/intake review and human reading; "
                 "it does not establish professional scoring, formal acceptance, publication, or merge eligibility. "
-                "Recalculate when official geometry is supplied"
+                "Missing official geometry does not by itself reduce rubric scores; "
+                "recalculate when official geometry is supplied"
             )
     return len(features)
 
