@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张 AI 安全公地 / JING-ZHANG AI SAFETY COMMONS - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张 AI 安全公地 / JING-ZHANG AI SAFETY COMMONS</h1>
+<p class="summary">以京张遗址公园为公共安全学习脊，把模型与供应链验证、开源溯源、公共服务人工复核和事故响应组织为三处安全场与十二个可退出接口。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张 AI 安全公地 / JING-ZHANG AI SAFETY COMMONS</h1>
+<blockquote><p>本方案的核心判断是：AI 安全不应只存在于机房、合规文件和上线审批中。它需要面向开发者、企业、居民和公共服务人员的城市空间，让测试、知情、人工接管、申诉、恢复与复盘均可到达、可观察、可参与。</p></blockquote>
+<h2>设计依据与资料清单</h2>
+<p>方案以公开征集公告和面向智能体任务书为任务依据，以仓库来源登记表判断资料用途，以本地专业标准快照校核成果深度 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>。总体设计范围和三处重点区使用仓库提供的临时粗略多边形，只支持本次生成、讨论与复算，不是官方红线 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup>。</p>
+<p>本方案没有使用 OSM、商业地图截图、新闻示意图、个人位置数据或未公开规划资料。所有面积来自提交 GeoJSON 在 EPSG:4548 下的复算；容积率、建筑高度、道路红线、权属、市政容量和工程可行性保持“待正式数据补齐”。资料导航使用事实包，但具体判断仍回到原始来源 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup>。</p>
+<p>国际案例只用于提炼方法，不作为北京法定规划依据。NIST AI RMF 提供“治理—识别—测量—管理”的风险框架，新加坡 AI Verify 展示标准化测试工具，英国 AI Security Institute 展示公共部门评测能力，赫尔辛基 AI Register 与 Eurocities Algorithmic Transparency Standard 展示公共登记和反馈机制 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NIST-AI-RMF" title="来源：NIST-AI-RMF">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AI-VERIFY" title="来源：AI-VERIFY">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="UK-AISI" title="来源：UK-AISI">来源</sup>。这些来源共同支持“把安全能力变成可访问公共服务”的设计方向，而非复制其制度。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="总体结构：三场一线十二接口"><figcaption>总体结构：三场一线十二接口</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>统筹研究范围回答“安全能力如何成为创新生态的共同基础”；总体设计范围回答“能力如何依托遗产公园、慢行和城市更新形成网络”；三处重点区域分别验证研发、开源和公众采用阶段 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。总体结构为“三场一线十二接口”：一线是京张遗产公共安全学习脊，三场是众智园安全验证场、AI 原点开源共证场和大钟寺公众响应场，十二接口是散布于公共空间和服务节点的可退出场景。</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>核心问题</th><th>本方案输出</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>产业创新如何减少安全能力重复建设</td><td>共享评测、开源溯源、公共登记、事件协同四类能力</td></tr><tr><td>总体设计范围</td><td>能力如何被日常使用和公众理解</td><td>遗产慢行脊、六条横向连接、四类可逆空间组件</td></tr><tr><td>重点区域范围</td><td>三类角色如何形成闭环</td><td>验证场出具证据，共证场组织复现，响应场承接试用、申诉与复盘</td></tr></tbody></table></div>
+<p>临时边界复算面积为约 11.41 平方公里，三处重点区数量为 3；这两个读数用于检查结构完整性，不解释为审批范围 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="用地与安全能力网络"><figcaption>用地与安全能力网络</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>AI 安全公地服务五大功能：为全栈自主创新提供供应链与模型验证，为世界级生态提供共享测试设施，为 AI+ 场景提供分级试用门槛，为活力城市保留人工和离线路径，为 AI 治理提供公开登记与复盘证据。两翼分别承担专业服务和场景反馈，三区则依次承担“验证—共证—响应”，使企业无需各自重复建设全部能力 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>国际案例</th><th>可核事实</th><th>转译为空间机制</th></tr></thead><tbody><tr><td>NIST AI RMF</td><td>自愿风险管理框架与生成式 AI Profile</td><td>安全场采用治理、识别、测量、管理四段台账 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NIST-AI-RMF" title="来源：NIST-AI-RMF">来源</sup></td></tr><tr><td>Singapore AI Verify</td><td>以测试框架和工具支持治理原则评估</td><td>设置可预约评测舱和跨框架证据卡 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AI-VERIFY" title="来源：AI-VERIFY">来源</sup></td></tr><tr><td>UK AI Security Institute</td><td>研究、评测先进 AI 风险与缓解措施</td><td>众智园设置独立评测与受控演练空间 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="UK-AISI" title="来源：UK-AISI">来源</sup></td></tr><tr><td>Helsinki AI Register</td><td>公开城市 AI 系统信息并接收反馈</td><td>每个公共 AI 接口提供用途、数据、责任和反馈入口 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HELSINKI-AI-REGISTER" title="来源：HELSINKI-AI-REGISTER">来源</sup></td></tr><tr><td>Eurocities Transparency Standard</td><td>用开放数据结构记录算法工具及用途</td><td>三场共用机器可读登记字段 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="EUROCITIES-ALGO-STANDARD" title="来源：EUROCITIES-ALGO-STANDARD">来源</sup></td></tr><tr><td>EU AI regulatory sandboxes</td><td>在监管监督下支持受控测试</td><td>场景从封闭验证到公共试用分级开放 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="EU-AI-SANDBOX" title="来源：EU-AI-SANDBOX">来源</sup></td></tr><tr><td>ISO/IEC 42001</td><td>AI 管理体系标准</td><td>企业服务翼提供体系建设与证据交接支持 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ISO-42001" title="来源：ISO-42001">来源</sup></td></tr></tbody></table></div>
+<p>七个案例分别覆盖标准、工具、独立评测、公共透明、受控试验和组织管理，避免只研究科技园区形态 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="international_case_count" title="指标：international_case_count">指标</sup>。未来城市的竞争力因此不只由模型、算力和企业数量衡量，也由失败能否被发现、服务能否安全降级、公众能否找到责任人、证据能否跨组织复用衡量。</p>
+<p>品牌主名为“京张 AI 安全公地”，英文为 “JING-ZHANG AI SAFETY COMMONS”。标志方向取自铁路双轨与校验括号：两条平行线代表 AI 路径和人工等价路径，中间三个方形节点代表三处安全场；主色为工程蓝、公共青和警示橙。该视觉为原创几何系统，不使用企业标识、人物肖像或第三方字体资产。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>用地分区延续脚手架的拓扑安全四分区，并把安全能力作为可逆的功能叠层，而不是编造新的法定用地。科研用地承载验证舱和实验室，绿地与开敞空间承载公众教育和无 AI 等价路径，产业商业用地承载企业测试与消费者申诉，社区配套用地承载人工服务窗口 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup>。</p>
+<p>总体设计采用四类空间组件：可隔离的“安全舱”、展示来源卡与复现实验的“开源台”、承接知情同意与人工接管的“人工窗”、支持通报恢复和复盘的“事件室”。组件优先嵌入既有公共建筑首层、园区共享空间和可移动构筑物，先运营后固化，减少缺少权属与现状数据时的不可逆判断。</p>
+<p>建筑基底只表达概念性载体，面积由提交图层复算，不等于现状普查或批准规模 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。开发强度、建筑高度、体量和拆改留结论在 official parcels、现状建筑和控规条件到位前不量化 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<h2>重点区域详细设计</h2>
+<p>三处重点区采用不同任务书，不复制同一种“AI 园区” <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>重点区</th><th>空间原型</th><th>核心功能</th><th>交接输出</th></tr></thead><tbody><tr><td>众智园 AI 自主创新加速区</td><td>安全验证场</td><td>模型评测、机器人红队、AI 供应链验证、关键设施桌面演练</td><td>风险卡、测试记录、放行条件 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup></td></tr><tr><td>北京 AI 原点社区</td><td>开源共证场</td><td>数据与模型来源卡、SBOM、复现实验、维护者门诊、公众评议</td><td>可复现包、问题清单、版本记录 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup></td></tr><tr><td>大钟寺 AI 产业聚集区</td><td>公众响应场</td><td>高风险公共服务人工窗口、消费者申诉、发布前公共试用、事件恢复</td><td>申诉回执、恢复记录、采用建议 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区详细设计"><figcaption>三处重点区详细设计</figcaption></figure>
+<p>众智园采用“受控测试庭—安全廊—演练室”组合，测试数据与公众活动分离；AI 原点采用“开源台—复现室—共议阶梯”，让高校、维护者和企业在同一证据格式下协作；大钟寺采用“人工窗—申诉台—事件室”，让日常消费者和公共服务使用者能找到非数字入口。三处空间动作均需专业团队在官方边界、权属、消防、交通和文保条件下深化。</p>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>六类用户包括模型与平台工程师、开源维护者、初创团队、公共服务一线人员、周边居民与老年/残障使用者、专业评测和监管协作人员 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="persona_count" title="指标：persona_count">指标</sup>。他们共享安全设施，但权限、数据和空间流线分离：研发人员进入受控环境，公众只接触清晰标注的体验界面，工作人员保留人工接管权。</p>
+<div class="proposal-table"><table><thead><tr><th>场景卡</th><th>空间</th><th>使用者</th><th>安全与人工边界</th></tr></thead><tbody><tr><td>S01 模型红队预约</td><td>众智园安全舱</td><td>模型团队、评测人员</td><td>隔离数据；人工批准测试范围</td></tr><tr><td>S02 机器人低速失效演练</td><td>众智园测试庭</td><td>机器人团队、场地运营</td><td>物理围界；急停与安全员在场</td></tr><tr><td>S03 AI 供应链来源核验</td><td>众智园开源台</td><td>企业、采购与安全团队</td><td>输出组件来源和已知漏洞，不承诺绝对安全</td></tr><tr><td>S04 关键服务桌面演练</td><td>众智园事件室</td><td>医疗、教育、交通运营人员</td><td>使用合成数据；结论由专业部门确认</td></tr><tr><td>S05 开源维护者门诊</td><td>AI 原点</td><td>维护者、初创团队</td><td>最小披露；不公开未修复高风险细节</td></tr><tr><td>S06 数据与模型来源卡</td><td>AI 原点</td><td>开发者、公众</td><td>公布用途、来源、限制和责任主体</td></tr><tr><td>S07 公共算法登记点</td><td>AI 原点</td><td>居民、公共部门</td><td>可阅读、可反馈；不展示个人记录</td></tr><tr><td>S08 无障碍 AI 导览</td><td>遗产慢行脊</td><td>访客、视听障碍者</td><td>保留实体导视与人工帮助</td></tr><tr><td>S09 AI 医疗教育导航复核</td><td>大钟寺人工窗</td><td>居民、服务人员</td><td>仅导航不诊断；高影响事项转人工</td></tr><tr><td>S10 企业服务 Copilot 试用</td><td>大钟寺响应场</td><td>中小企业</td><td>显示来源和不确定性；合同决策由人完成</td></tr><tr><td>S11 公共安全运营复盘</td><td>大钟寺事件室</td><td>运营者、公众代表</td><td>发布脱敏摘要；保留申诉与纠错</td></tr><tr><td>S12 AI 文化导览与贡献墙</td><td>全线</td><td>访客、开发者</td><td>只使用清权内容；可关闭个性化</td></tr></tbody></table></div>
+<p>其中 S01–S04 是四个产业测试验证场景，均先在受控空间运行，达到记录完整、风险可接受、人工责任明确后才进入有限公共试用 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="test_validation_scenario_count" title="指标：test_validation_scenario_count">指标</sup>。十二个接口通过 <code>constraints.geojson</code> 中的概念节点形成可审查台账，而不是精确选址 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#SCN-01" title="空间数据：geometry/constraints.geojson#SCN-01">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_node_count" title="指标：scenario_node_count">指标</sup>。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>四个用地面完整覆盖提交边界且不重叠，作为机器校验的概念分区；绿地、公共空间和建筑图层位于边界内 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-002" title="空间数据：geometry/land_use.geojson#LU-002">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup>。安全组件优先采用“嵌入、共享、可移动”三类方式：嵌入既有公共建筑首层，共享园区会议与实验空间，可移动组件用于活动期临时部署。</p>
+<p>拆改留采用证据门槛而非地块结论：只有现状测绘、权属、结构安全、文保、消防和运营需求齐备后，才进入保留、改造或拆除判断；当前只列出载体类型和后续调查表 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup>。建筑基底的概念面积约 31.08 万平方米，用于检查图层一致性，不代表建设量或现状总量 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup>。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>一条南北遗产慢行脊连接三场，六条概念性横向连接表达东西缝合，十二个接口按步行可见、实体可识别、人工可到达原则布置 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>。这些线不表示道路红线、桥隧方案或站点工程；后续需核对真实断点、无障碍坡度、过街相位、轨道接驳和非机动车停放。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间"><figcaption>交通慢行与蓝绿公共空间</figcaption></figure>
+<p>每个 AI 公共服务均保留“无 AI 等价路径”：实体导视、人工窗口、纸质或离线回执、紧急停用标识。市政与新基建采用小规模边缘计算和隔离网络的概念建议，电力、散热、消防、网络安全等级和运维容量在专业测算前保持未知 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup>。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>设计绿地比例 12.34%，公共空间比例 7.33%，均由提交多边形复算；它们表达设计图层关系，不是法定绿地率或现状统计 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup>。蓝绿慢行系统把安全教育、休憩、无障碍导航与遗产叙事叠加在同一公共脊上，临时边界以低对比虚线表达，安全节点和连接意图保持视觉主次。</p>
+<p>三处 AI 朝圣地标为：众智园“失败样本馆”，展示经脱敏的失效类型和改进方法；AI 原点“开源来源碑”，记录版本、维护者与证据链；大钟寺“恢复时钟”，记录公共服务从事件到恢复的时间线 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="landmark_count" title="指标：landmark_count">指标</sup>。地标不是娱乐装置，而是持续更新的公共知识载体；内容须清权、脱敏并接受人工编辑。</p>
+<p>文化叙事以詹天佑的审慎工程方法为线索：测量、试验、记录、复核、交接。导视系统使用“蓝色可用、橙色受限、红色暂停、灰色人工路径”并配文字和图形，避免只用颜色传递状态。整体 Logo 与各安全场标识分层管理，防止企业品牌占据公共空间。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>八项更新项目为安全舱试点、开源来源台、公共算法登记点、人工服务窗、事件响应室、六条横向连接调查、安全文化三地标、年度 AI 安全开放周 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="renewal_project_count" title="指标：renewal_project_count">指标</sup>。它们均为可供专业团队深化的参考方案。</p>
+<p>近期 0–18 个月先完成规则、台账、移动组件和两处小规模试点；中期 18–36 个月在三场形成稳定运营和跨区证据交接；长期 3–5 年依据 official polygons、运营评估和专业审查决定是否固化空间 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup>。任何扩大均以事件率、申诉闭环、人工服务可达性和公众理解度为门槛，不以设备数量作为主要绩效。</p>
+<p>年度活动体系包括春季开源证据季、夏季城市红队周、秋季公共服务恢复演练、冬季国际 AI 安全论坛。开发者通过公开命题、复现实验和维护者门诊参与；企业通过评测舱和证据交接参与；公众通过登记点、体验路线和评议会参与。活动频次、主办方、预算和审批均是建议，未获确定安排。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>指标分为三层：GeoJSON 可复算指标、设计台账计数、待正式数据指标。前两类记录公式、来源文件和置信度；第三类说明缺口和触发条件 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。五张图、HTML 和 PDF 从同一组指标生成，避免多个数字源。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标与证据链"><figcaption>指标与证据链</figcaption></figure>
+<div class="proposal-table"><table><thead><tr><th>指标</th><th>当前值</th><th>解释</th></tr></thead><tbody><tr><td>临时总体范围面积</td><td>11,412,825.386 ㎡</td><td>由 provisional site boundary 复算 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup></td></tr><tr><td>绿地设计比例</td><td>12.3423%</td><td>设计图层 / 临时范围 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup></td></tr><tr><td>公共空间设计比例</td><td>7.3281%</td><td>设计图层 / 临时范围 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup></td></tr><tr><td>安全场景接口</td><td>12</td><td>设计台账计数 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_node_count" title="指标：scenario_node_count">指标</sup></td></tr><tr><td>测试验证场景</td><td>4</td><td>S01–S04 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="test_validation_scenario_count" title="指标：test_validation_scenario_count">指标</sup></td></tr><tr><td>FAR 与建筑高度</td><td>待正式数据补齐</td><td>不展示推测值 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup></td></tr></tbody></table></div>
+<p>合规矩阵覆盖公告 1.3、1.4、1.5 和 agent.1–agent.6；专业标准矩阵与设计深度矩阵分别记录依据和成果完整度 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>。</p>
+<h2>风险、版权与合规说明</h2>
+<p>主要风险是临时边界定位偏差、缺少现状与权属、测试活动对公众空间的干扰、事故信息披露与漏洞细节的冲突、无障碍和非数字服务被弱化。恢复方式包括 official polygons 到位后整体复算、专业团队现场核查、测试与公众活动物理分离、漏洞协调披露、无 AI 等价路径验收 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>。</p>
+<p>本方案不声称获得批准，不构成控规、工程、投资、招商或政府活动承诺。空间落地、品牌、运营和政策均为概念建议。AI 生成的文字、几何图解、HTML 和 PDF 由 OpenAI Codex 在公开/清权资料基础上生成；图形使用基础几何和系统字体，不含外部图片、远程字体、商标或个人数据。完整许可与生成说明见 <code>report/copyright_statement.md</code>。</p>
+<h2>参考资料</h2>
+<ul>
+<li>北京市规划和自然资源委员会海淀分局，征集公告 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup></li>
+<li>面向智能体任务书与场地包 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+<li>NIST AI Risk Management Framework <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NIST-AI-RMF" title="来源：NIST-AI-RMF">来源</sup></li>
+<li>AI Verify Foundation, What is AI Verify <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AI-VERIFY" title="来源：AI-VERIFY">来源</sup></li>
+<li>UK AI Security Institute <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="UK-AISI" title="来源：UK-AISI">来源</sup></li>
+<li>City of Helsinki AI Register <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HELSINKI-AI-REGISTER" title="来源：HELSINKI-AI-REGISTER">来源</sup></li>
+<li>Eurocities Algorithmic Transparency Standard <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="EUROCITIES-ALGO-STANDARD" title="来源：EUROCITIES-ALGO-STANDARD">来源</sup></li>
+<li>European Commission, AI regulatory sandboxes <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="EU-AI-SANDBOX" title="来源：EU-AI-SANDBOX">来源</sup></li>
+<li>ISO/IEC 42001 overview <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ISO-42001" title="来源：ISO-42001">来源</sup></li>
+</ul>
+</main>
+</body>
+</html>
