@@ -6,7 +6,7 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-summary: "Using the century-old Jing-Zhang railway corridor as a spatial载体, with young developers, researchers, entrepreneurs, and creators as core users, this proposal builds a globally benchmark-setting youth-friendly AI public space system. The proposal introduces innovative public space typologies including Coding Gardens, Hackathon Plazas, Open Source Exhibition Corridors, AI Pilgrimage Landmarks, Night Code Cafes, and Sports+Code Trails, integrating Jing-Zhang railway heritage with Zhongguancun innovation DNA to create an operable, communicable, and replicable AI-era youth public space paradigm."
+summary: "Using the century-old Jing-Zhang railway corridor as a spatial foundation, with young developers, researchers, entrepreneurs, and creators as core users, this proposal builds a globally benchmark-setting youth-friendly AI public space system. The proposal introduces innovative public space typologies including Coding Gardens, Hackathon Plazas, Open Source Exhibition Corridors, AI Pilgrimage Landmarks, Night Code Cafes, and Sports+Code Trails, integrating Jing-Zhang railway heritage with Zhongguancun innovation DNA to create an operable, communicable, and replicable AI-era youth public space paradigm."
 tracks: ["youth-friendly-public-space"]
 scenarios: ["ai-traffic-walkability", "public-safety-operations-review"]
 ---
@@ -33,6 +33,24 @@ The proposal organizes work across three spatial levels as specified in the offi
 
 All three levels use provisional boundaries [data:geometry/site_boundary.geojson#SITE-001]. Official polygons are pending; this data gap does not block content scoring per organizer policy.
 
+### Three-Zones-Two-Wings Spatial Extension and Regional Collaboration
+
+The "Three Zones, Two Wings" spatial structure required by the official announcement is a framework-level requirement [source:OFFICIAL-ANNOUNCEMENT]. This proposal takes the Jing-Zhang Heritage Park as the north-south spine, the three key areas (Zhongzhiyuan, Origin Community, Dazhongsi) as core anchors, extending toward the east and west wings [depth:three_zones_two_wings]:
+
+**East Wing — Xueyuan Road University Innovation Corridor**: Leveraging the research and talent resources of universities along Xueyuan Road (Tsinghua, Peking, Beihang, BUPT, CAS, etc.), build a "campus-park-community" tripartite-linked youth innovation network. The east wing focuses on knowledge generation and talent supply, connecting to the Jing-Zhang spine via greenways and metro stations. Proposed "Campus Gate Coding Gardens" — converting scattered green spaces and street corners near universities into outdoor collaboration nodes for students and young researchers.
+
+**West Wing — Zhongguancun Street-Wanquanhe Tech Service Corridor**: Leveraging the tech business, startup incubation, and venture capital institutions along Zhongguancun Street, build an "innovation services + capital matchmaking + industry acceleration" youth entrepreneurship support belt. The west wing focuses on industry services and internationalization. Proposed inserting "Entrepreneurship Social Steps" and "Pitch Pocket Plazas" into the existing business streetscape, upgrading from "9-5 office district" to "24-hour innovation community."
+
+**Xiaoyuehe Wing — Riverside Ecological Innovation Leisure Belt**: The Xiaoyuehe River, as an important east-west tributary south of the Jing-Zhang Heritage Park, provides riverside green space that can become a youth ecological leisure belt connecting the Zhuanhe green corridor, linking to the Dazhongsi area, and radiating into surrounding communities. Proposed "Xiaoyuehe Code Greenway" — low-impact insertion of outdoor collaboration points, fitness trails, and nighttime safety lighting, forming an east-west youth public space secondary axis complementing the Jing-Zhang spine [data:geometry/green_space.geojson#GREEN-001].
+
+**Regional Collaboration and University-Industry Linkage**: The spatial effectiveness of the three-zones-two-wings depends on cross-jurisdictional, cross-institutional collaborative governance. This proposal suggests a "Jing-Zhang AI Innovation Belt Regional Coordination Mechanism" (conceptual) covering:
+- **University Collaboration**: Cross-university "AI Innovation Public Space Sharing Protocol" — university labs, libraries, and lecture halls open to the innovation community outside teaching hours; enterprise meeting rooms and demo halls open to students, forming a "campus-community" space resource sharing pool.
+- **Industry Collaboration**: "Jing-Zhang AI Enterprise Public Space Responsibility Alliance" — participating enterprises contribute through open days, technical mentoring, equipment sharing, or space opening in exchange for policy priority support.
+- **Cross-District Collaboration**: For public space projects crossing multiple sub-districts (e.g., the cross-ring-road pedestrian spine, watershed greenways), establish joint approval and coordination mechanisms to prevent administrative boundaries from fragmenting public space continuity.
+- **Jing-Ji Collaboration**: The Jing-Zhang railway corridor extends northward to Zhangjiakou, reserving conceptual interfaces for future cross-regional expansion — Zhangjiakou's advantages in computing centers, data centers, and clean energy can complement Haidian's AI innovation engine.
+
+Above collaboration mechanisms are conceptual suggestions for professional teams and government departments to deepen.
+
 ![Three-level scope and spatial framework](assets/figures/land-use-structure.png)
 
 ## Coordinated Research Area: Industry and Future City Research
@@ -58,7 +76,7 @@ The proposal name **"京张智脉共生带"** (Jing-Zhang Intelligence Co-Thrivi
 
 **Color palette**: Rail Rust #8B3A3A (primary, railway heritage), AI Violet #4F46E5 (primary, AI future), Nexus Gold #C79838 (accent, landmarks/honor), Ink Navy #162033 (body text), Frost #F6F8FB (background), Code Green #15803D (parks/mobility), Open Orange #FF6B35 (events/hackathons).
 
-**Typography**: System fonts (PingFang SC, SF Pro, SF Mono) — no embedded font licenses required.
+**Typography**: System fonts (PingFang SC, SF Pro, SF Mono) — license status must be confirmed by professional branding team before production use.
 
 **Wayfinding concept**: Signage combining rust-colored weathering steel posts (railway heritage) with e-ink digital panels (AI data display) showing location, walking time to next youth node, and live open source contribution streams. All visual identity elements are conceptual suggestions for professional branding teams to deepen. Complete asset clearance is documented in `report/copyright_statement.md`.
 
@@ -141,9 +159,50 @@ Positioning: Urban-style intelligent economy and international exchange district
 
 1. **Open Source Developer (Age 22-30)**: Needs 24h access to coding spaces, community recognition, contribution display platforms. Peak hours: evenings and weekends.
 2. **AI Startup Founder (Age 25-35)**: Needs affordable prototyping space, investor networking, talent recruitment venues. Peak hours: business hours + evening events.
-3. **University Researcher (Age 28-45)**: Needs industry collaboration channels,成果展示 venues, cross-disciplinary collision spaces. Peak hours: weekdays.
+3. **University Researcher (Age 28-45)**: Needs industry collaboration channels, achievement showcase venues, cross-disciplinary collision spaces. Peak hours: weekdays.
 4. **International Tech Visitor (Age 25-50)**: Needs navigation, interpretation, pilgrimage landmarks, knowledge of local innovation ecosystem. Peak hours: varied.
 5. **Local Creative Youth (Age 18-28)**: Needs affordable social spaces, skill-building workshops, cultural events, night economy. Peak hours: evenings and weekends.
+
+### Inclusive Public Space: Youth-Friendly Strategies for All Ages and Abilities
+
+Youth-friendly public spaces must not exclude other age and ability groups. This proposal incorporates inclusive design strategies to ensure the AI Innovation Belt's public spaces benefit all citizens and visitors [depth:inclusive_design]:
+
+**Elderly Population**: Establish "Intergenerational Digital Culture Corners" along the Jing-Zhang Heritage Park — opening portions of Coding Gardens during daytime hours (8:00-14:00) for senior digital literacy training, co-operated by youth volunteers and community organizations. Features: large-font wayfinding, high-contrast signage, and seating every 50m. AI landmarks will include audio guide and simplified operation modes.
+
+**Children and Youth**: Install "AI Discovery Play Stations" along the AI Timeline Walk — interactive educational installations for ages 6-16 (physical buttons + AR), covering basic machine learning concepts, computer vision experiences, and simple coding challenges. Safety-first design: rounded edges, non-slip surfaces, full parent sight-line coverage. Hackathon plazas serve as youth coding camps and tech education venues during non-event periods.
+
+**People with Disabilities**: All new and renovated youth public spaces follow barrier-free design standards — wheelchair accessible (slope ≤ 1:20, width ≥ 1.5m), continuous tactile paving, braille and audio-enabled signage, wheelchair lift platforms at social steps. Coding Gardens feature height-adjustable workstations and screen-reader-compatible terminals. AR guide content is compatible with mobile accessibility modes (VoiceOver/TalkBack).
+
+**Low-Digital-Skill Populations**: All AI scenario cards and digital services maintain "low-tech channels" — offline information kiosks, printed guide maps, and staffed service desks ensure citizens without smartphones can equally enjoy public spaces. Digital displays (Open Source Corridor, Honor Wall, etc.) include simplified explanatory panels and human-guided tour options.
+
+**Inclusive Metrics (Conceptual)**:
+
+| Indicator | Target | Notes |
+| --- | --- | --- |
+| Barrier-free coverage | 100% of new/renovated spaces | Wheelchair, tactile paving, wayfinding |
+| Intergenerational shared hours | Daily 8:00-14:00 | Coding Gardens compatible with senior digital training |
+| Safety monitoring coverage | 100% of 24h public areas | Non-facial-recognition environmental sensing |
+| Low-tech access channels | ≥1 offline alternative per AI scenario | Kiosks, printed guides, staffed help desks |
+
+Above inclusivity strategies are conceptual suggestions and reference schemes for professional teams to deepen and calibrate based on actual community needs assessment.
+
+### AI Governance and Public Space Ethics Framework
+
+The deployment of AI technologies in public spaces involves deep governance questions around privacy, safety, fairness, and transparency. This proposal puts forward six principles for AI public space governance (conceptual suggestions) [depth:ai_governance]:
+
+**Principle 1 — Privacy by Design**: All AI sensing systems in public spaces default to not collecting or storing any personally identifiable information. Environmental sensing is limited to anonymized spatial usage states (crowding levels, noise levels, facility status). Data is processed at the edge; raw data never leaves the device. Any function involving personal data requires explicit opt-in, clear disclosure of scope and purpose, and the right to withdraw consent at any time.
+
+**Principle 2 — Algorithmic Transparency**: All AI models operating in public spaces must publicly disclose model type, training data sources, decision logic, and evaluation metrics. Algorithms affecting public resource allocation (such as point distribution, venue scheduling) must be explainable and subject to human review. Each AI facility displays a QR code linking to a complete "Algorithm Factsheet."
+
+**Principle 3 — Non-Discrimination**: AI services in public spaces shall not differentiate treatment based on age, gender, ethnicity, household registration, digital skill level, or other protected characteristics. Where AI assists access control (e.g., maker space equipment booking), clear human appeal and review channels must be available.
+
+**Principle 4 — Human-in-the-Loop**: All AI-assisted safety alerts, facility scheduling, point determinations, and content displays must retain human review and intervention capability. AI systems shall not substitute for statutory administrative powers including planning approval, law enforcement, fire safety, and emergency management. Critical safety functions (such as nighttime anomaly alerts) require human operator confirmation before triggering emergency response.
+
+**Principle 5 — Digital Inclusion**: AI public space services must provide non-digital equivalent alternatives (offline service desks, printed information, human-guided tours) for people without smartphones, with multi-language needs, with low digital skills, and with disabilities. Digital access shall not be the sole entry point to public spaces.
+
+**Principle 6 — Regular Auditing**: An independent third party shall conduct annual privacy, safety, and fairness audits of AI public space systems, with audit reports publicly released. A community "AI Space Ethics Observer" system (conceptual) — composed of residents, university scholars, and NGO representatives — shall monitor the ethical compliance of AI in public spaces.
+
+Above ethics framework is a conceptual suggestion; formal governance mechanisms must be developed by professional legal and policy teams in accordance with national AI laws and personal information protection regulations.
 
 ### Twelve AI Scenario Cards
 
@@ -185,6 +244,42 @@ Twelve renewal projects are organized across three phases:
 
 [depth:renewal_project_list] [depth:phasing_implementation] [data:geometry/phasing.geojson#PHASE-001]
 
+### Minimum Viable Pilot Package (MVP Pilot)
+
+To ensure near-term implementation is actionable and verifiable, this proposal puts forward a "Jing-Zhang AI Youth Public Space MVP Pilot Package" focusing on four low-cost, high-visibility, rapidly iterable lightweight actions [depth:mvp_pilot]:
+
+**MVP-1: First Coding Garden Prototypes (deliverable within 60 days)**
+- Location: Completed sections of Jing-Zhang Heritage Park (recommended Wudaokou area), using existing paving and landscaping
+- Scale: 3 prototype nodes, 100-200 sqm each
+- Contents: Movable outdoor collaboration tables (4-6 person) × 3 sets, shade umbrellas × 6, solar USB-C charging posts × 4, WiFi hotspot × 1, outdoor whiteboard × 1
+- Investment: ~RMB 30,000-50,000 per node (equipment + installation), total ~RMB 150,000
+- Evaluation: 3-month post-launch usage and satisfaction assessment
+- Risk control: All facilities removable, no construction, no land use change
+
+**MVP-2: First Youth Hackathon (deliverable within 90 days)**
+- Location: Available public space or existing venue in Origin Community
+- Scale: Under 200 participants, 48 hours
+- Theme: AI + Urban Public Space (focusing on slow-traffic, public safety, facility operations)
+- Organization: Co-hosted with 1-2 universities, 1-2 enterprises, and 1 open source community
+- Investment: ~RMB 200,000-300,000 (venue, equipment rental, prizes, catering)
+- Risk control: Uses existing venue; single event, validates success before becoming annual
+
+**MVP-3: AI Guide & Sports Code Trail Mini-Program MVP (deliverable within 60 days)**
+- Content: WeChat mini-program prototype for AI-guided tours and coding challenges, covering 3-5 trail nodes
+- Features: AR-triggered programming puzzles, post-exercise point accumulation, simple leaderboard
+- Development: Rapid prototyping based on open-source frameworks
+- Investment: ~RMB 50,000-100,000 (outsourced or university-partnered development)
+- Risk control: Uses public data only, no PII collection; mini-program can be taken offline or iterated
+
+**MVP-4: First Night Code Cafe (deliverable within 90 days)**
+- Location: Functional overlay onto existing cafe in Wudaokou or Origin Community, no new construction
+- Contents: Extended hours to 2:00 AM, GPU compute terminals (1-2 units), high-speed WiFi, ≥2 power outlets per seat
+- Operations: Partnership with existing cafe, government subsidy for nighttime operations (~RMB 5,000-8,000/month)
+- Investment: ~RMB 50,000 (compute equipment + retrofit) + monthly subsidy
+- Risk control: Leverages existing business; validates model and demand before expanding to 5 locations
+
+The MVP Pilot Package's four actions total approximately RMB 450,000-600,000 investment, with all prototypes launchable within 3 months. Pilot outcomes support project approval and funding applications for mid-term projects. All are conceptual suggestions and reference schemes.
+
 ### Global AI Event System and Long-Term Operations
 
 Responding to agent.6 requirements [source:AGENT-TASKBOOK]:
@@ -198,6 +293,20 @@ Responding to agent.6 requirements [source:AGENT-TASKBOOK]:
 **Developer community operations**: Open source mentorship matching, startup-in-residence programs, university partnership pipeline, and an annual "JZ AI Fellowship" for young contributors.
 
 All event formats, sponsorship, and operational arrangements are **reference schemes**; actual implementation requires professional event operations teams and official approvals.
+
+### Long-Term Operations Model
+
+The vitality of public spaces depends on operations, not hardware. This section details the four pillars of the operational mechanism (conceptual suggestions) [depth:operations_model]:
+
+**Pillar 1 — Jing-Zhang AI Innovation Belt Operations Committee**: Composed of relevant Haidian District government departments, leading AI enterprises, universities, open source communities, and resident representatives. Responsibilities include: public space operations standards, annual event calendar coordination, Night Code Cafe franchising authorization, innovation point issuance and redemption, scenario opening supervision, and community dispute mediation. The committee includes a "Youth Participation Sub-Committee" — composed of developers, entrepreneurs, and students under 35 — with advisory rights (not decision-making power) on youth space design, event planning, and budget allocation.
+
+**Pillar 2 — Tiered Public Space Service Pricing**: All youth public spaces are free for basic use (Coding Gardens, Social Steps, Sports Trails, Exhibition Corridor daily access). Value-added services charge at cost or market rates (maker space equipment, Night Code Cafe purchases, roadshow hall rental). Pricing principle: university students and open source contributors receive discounts or point redemption; commercial use at market rates. Pricing plans must be approved by the Operations Committee with regular public financial disclosure.
+
+**Pillar 3 — Open Source Operations Manual and Community Autonomy**: Publish the "Jing-Zhang AI Youth Public Space Open Operations Manual" covering Coding Garden daily maintenance, hackathon organization processes, Night Code Cafe partnership models, and Sports+Code Trail challenge content maintenance as open source documentation. Encourage tech communities, university clubs, and social organizations to fork the manual and operate autonomous youth space nodes. Form a three-tier spatial operations network: "Official Nodes (brand flagship) + Community Nodes (community autonomous) + Mini Nodes (spontaneous operations)."
+
+**Pillar 4 — Digital Operations Platform**: Build the "Jing-Zhang AI Innovation Belt Digital Operations Platform" (conceptual) providing: real-time public space occupancy status (environmental data, non-facial-recognition), event publishing and registration, innovation point issuance and redemption, Night Code Cafe and maker space booking, open source contribution data visualization (GitHub public API), and community feedback and satisfaction evaluation. The digital platform must follow the six AI governance principles, with privacy policies and data flows publicly transparent.
+
+Above operations model is a conceptual suggestion and reference scheme for professional teams and government departments to deepen.
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
