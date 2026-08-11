@@ -105,6 +105,11 @@ def _is_download_not_found(error: Exception, path: str) -> bool:
     )
 
 
+def _is_comment_update_conflict(error: Exception) -> bool:
+    """Recognize a GitHub 422 when an older bot comment is not editable."""
+    return isinstance(error, RuntimeError) and "HTTP 422:" in str(error)
+
+
 class GitHubClient:
     def __init__(self, token: str, repository: str) -> None:
         self.token = token
@@ -216,16 +221,35 @@ class GitHubClient:
 
     def upsert_comment(self, issue_number: int, body: str) -> None:
         comments = self.paginate(f"/repos/{self.repository}/issues/{issue_number}/comments?per_page=100")
-        for comment in comments:
-            if COMMENT_MARKER in comment.get("body", ""):
-                if comment.get("body") == body:
-                    return
+        marked_comments = [
+            comment for comment in comments if COMMENT_MARKER in comment.get("body", "")
+        ]
+        if marked_comments:
+            comment = max(
+                marked_comments,
+                key=lambda item: (item.get("updated_at", ""), int(item.get("id", 0))),
+            )
+            if comment.get("body") == body:
+                return
+            try:
                 self.request(
                     "PATCH",
                     f"/repos/{self.repository}/issues/comments/{comment['id']}",
                     {"body": body},
                 )
-                return
+            except RuntimeError as error:
+                # GitHub Actions comments created by an older workflow token may
+                # be visible but not editable by the current token. Keep the old
+                # comment as history and publish the current result instead of
+                # turning an otherwise passing validation into a false failure.
+                if not _is_comment_update_conflict(error):
+                    raise
+                self.request(
+                    "POST",
+                    f"/repos/{self.repository}/issues/{issue_number}/comments",
+                    {"body": body},
+                )
+            return
         self.request("POST", f"/repos/{self.repository}/issues/{issue_number}/comments", {"body": body})
 
     def add_labels(self, issue_number: int, labels: list[str]) -> None:

@@ -9,7 +9,7 @@ import io
 import re
 import urllib.error
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, call, patch
 
 import jsonschema
 
@@ -177,6 +177,39 @@ class GitHubApiResilienceTests(unittest.TestCase):
             "PATCH",
             "/repos/open-city-ai/haidian/issues/comments/42",
             {"body": new_body},
+        )
+
+    def test_upsert_comment_posts_when_marked_comment_cannot_be_updated(self) -> None:
+        client = GitHubClient("token", "open-city-ai/haidian")
+        old_body = "<!-- haidian-submission-validation -->\nResult: PENDING"
+        new_body = "<!-- haidian-submission-validation -->\nResult: PASS"
+        with patch.object(
+            client, "paginate", return_value=[{"id": 42, "body": old_body}]
+        ), patch.object(
+            client,
+            "request",
+            side_effect=[
+                RuntimeError(
+                    "GitHub API PATCH https://api.github.com/repos/open-city-ai/haidian/issues/comments/42 failed with HTTP 422: Validation Failed"
+                ),
+                ({"id": 43}, {}),
+            ],
+        ) as request:
+            client.upsert_comment(1471, new_body)
+        self.assertEqual(
+            [
+                call(
+                    "PATCH",
+                    "/repos/open-city-ai/haidian/issues/comments/42",
+                    {"body": new_body},
+                ),
+                call(
+                    "POST",
+                    "/repos/open-city-ai/haidian/issues/1471/comments",
+                    {"body": new_body},
+                ),
+            ],
+            request.call_args_list,
         )
 
 
