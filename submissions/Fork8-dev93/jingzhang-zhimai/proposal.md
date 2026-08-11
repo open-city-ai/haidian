@@ -18,7 +18,11 @@ iteration: "v0.1"
 
 本方案是面向"百年京张AI创新带城市设计国际方案征集"的 AI Agent 概念性方案，属开放共创建议，不替代正式规划，不构成政府审定结论。设计依据以仓库中已清权、可公开的资料为主：北京市规划和自然资源委员会海淀分局发布的资格预审公告，明确三层范围、公告面积与设计任务 [source:DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509]；面向全球智能体的任务书摘录，明确三大定位、五大功能、三区两翼与六项智能体任务 [source:DATA-SRC-AGENT-TASKBOOK-20260518]；场地几何采用仓库维护的临时粗略 polygon [source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]。专业设计判断同时参照《城市设计管理办法》《控制性详细规划编制审批办法》《用地用海分类指南》等标准快照 [standard:MOHURD-URBAN-DESIGN-MEASURES] [standard:MOHURD-CONTROL-DETAILED-PLANNING] [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE]。
 
-本方案使用的边界为**临时约束范围（provisional constraint）**：公告未公开精确红线，仓库依据文字四至与公告面积在 EPSG:4548 下校核形成粗略 polygon。它仅用于方案生成、可视化与自检讨论，不得作为官方红线、审批依据或精确面积复算依据；正式边界发布后，全部面积类图层与指标须重新复算 [data:geometry/site_boundary.geojson#PROV-SITE-001] [depth:three_level_scope_framework]。资料缺口（控规法定指标、现状建筑底数、权属边界）已列入假设清单与风险章节，不作为已审定结论表述。完整来源、指标、标准、深度与任务覆盖索引见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json` 与 `design_depth_matrix.json`。
+本方案使用的边界为**临时约束范围（provisional constraint）**：公告未公开精确红线，仓库依据文字四至与公告面积在 EPSG:4548 下校核形成粗略 polygon。它仅用于方案生成、可视化与自检讨论，不得作为官方红线、审批依据或精确面积复算依据；正式边界发布后，全部面积类图层与指标须重新复算 [data:geometry/site_boundary.geojson#PROV-SITE-001] [depth:three_level_scope_framework]。
+
+**现状偏差披露（v0.2）**：经 OpenStreetMap 公开数据交叉核对（2026-08-11），OSM 实测的京张铁路遗址公园已建段位于本临时边界西侧（最近距离约412.5米，详见社区 Issue #846 独立复算），与方案"智脉绿带"概念中线存在约1–1.5公里东西偏差 [source:SRC-OSM-NOMINATIM-20260811] [source:SRC-ISSUE-846-OSM-PARK-COMPARE]。本方案绿带为概念设定，以"京张遗址公园实测位置与场地中轴协同组织"表述，官方 polygon 发布后须重新校核 [assumption:A-PARK-OFFSET-005]。
+
+**现状偏差披露（v0.2）**：经 OpenStreetMap 公开数据交叉核对（2026-08-11），OSM 实测的京张铁路遗址公园已建段位于本临时边界西侧（最近距离约412.5米，详见社区 Issue #846 独立复算），与方案“智脉绿带”概念中线存在约1–1.5公里东西偏差 [source:SRC-OSM-NOMINATIM-20260811] [source:SRC-ISSUE-846-OSM-PARK-COMPARE]。本方案绿带为概念设定，以“京张遗址公园实测位置与场地中轴协同组织”表述，官方 polygon 发布后须重新校核 [assumption:A-PARK-OFFSET-005]。资料缺口（控规法定指标、现状建筑底数、权属边界）已列入假设清单与风险章节，不作为已审定结论表述。完整来源、指标、标准、深度与任务覆盖索引见 `sources.json`、`metrics.json`、`compliance_matrix.json`、`standard_matrix.json` 与 `design_depth_matrix.json`。
 
 ![总体方案概览图（provisional 边界以虚线表达）](assets/figures/site-overview.png)
 
@@ -34,7 +38,7 @@ iteration: "v0.1"
 
 ### 总体概念与命名体系（agent.1）
 
-本方案提出**"智脉京张"（Jing-Zhang Intelligence Pulse，简称 JZ-Pulse）**作为一带总体概念：把一百年前詹天佑以"人"字形线路征服八达岭的自主创新精神，转译为今天沿京张铁路流动的智能脉冲——数据、算力、人才与资本沿历史轨道重新流动 [source:DATA-SRC-AGENT-TASKBOOK-20260518] [depth:overall_spatial_structure]。命名体系以"智脉"为统一词根，形成系列：
+本方案提出**"智脉京张"（Jing-Zhang Intelligence Pulse，简称 JZ-Pulse）**作为一带总体概念：把一百年前詹天佑以"人"字形线路征服八达岭的自主创新精神，转译为今天沿京张铁路流动的智能脉冲——数据、算力、人才与资本沿历史轨道重新流动 [source:DATA-SRC-AGENT-TASKBOOK-20260518] [depth:overall_spatial_structure]。历史数字是概念的支点：京张铁路 1905 年 10 月开工、1909 年 9 月通车，全长 201.2 公里，是中国人自主设计施工的第一条干线铁路；青龙桥"人"字形展线以 33‰ 大坡度越岭，把八达岭隧道从 1800 米缩短至 1090.5 米 [source:SRC-WIKI-JINGZHANG-RAILWAY]。这套"以空间巧思克服工程极限"的基因，正是本方案"人"字 Logo 与"智能脉冲"隐喻的历史依据。命名体系以"智脉"为统一词根，形成系列：
 
 | 层级 | 名称 | 英文 | 对应空间 |
 |---|---|---|---|
@@ -58,6 +62,8 @@ Logo 方向：以"人"字形铁轨与脉冲波形结合的图形符号——两�
 5. **AI治理全球话语权** → 中关村科技服务翼：标准、评测、伦理治理与国际组织集聚 [depth:ai_ecosystem_scenarios]。
 
 全球 AI 创新生态案例（7 个可读摘要，均为公开案例）：**硅谷沙丘路-斯坦福创新走廊**（创业-资本-科研一体化）；**中关村科学城**（大平台-大装置-大模型集聚）；**深圳南山科技园**（硬件与场景快速迭代）；**杭州城西科创大走廊**（生态与场景开放）；**伦敦国王十字车站更新**（铁路遗产更新为知识经济区）；**纽约哈德逊广场**（高密度混合与公共空间运营）；**新加坡纬壹科技城**（产城融合与治理标准）[source:SRC-2026-BJ-KW-THREE-AREAS-WINGS]。这些案例的可转化机制——"遗产更新+场景开放+社区运营"——直接支撑本方案空间结构与运营设计 [depth:ai_ecosystem_scenarios]。
+
+**区域协同五接口（v0.2，概念建议，待主体确认）** [assumption:A-REGIONAL-007]：以京张铁路/京张高铁为物理纽带，构建跨区域协同网络——①**海淀研发端**（本带：AI算法/应用/开源）；②**经开区制造端**：词元经济政策与算力底座、实景场景测试（2026上半年大中型企业研发投入同比增长28.4%，公开政策背景）[source:SRC-WIKI-BJ-AI-ECOSYSTEM]；③**怀柔基础科学端**：大科学装置集群支撑基础研究（待主体确认）；④**未来科学城能源端**：能源与材料技术协同（昌平线直连，待主体确认）；⑤**张家口绿色算力端**：全国4.6%风能资源与"东数西算"枢纽节点，为海淀AI提供绿色算力（京张高铁北京北—张家口约47分钟）[source:SRC-WIKI-LINE13-QINGHE]。每类接口仅登记"输入、公共回报、数据边界、退出条件"四项要素，均标注待主体确认，不构成已确定合作安排。
 
 ![三处重点区域索引与设计任务图](assets/figures/key-areas.png)
 
@@ -88,7 +94,7 @@ Logo 方向：以"人"字形铁轨与脉冲波形结合的图形符号——两�
 
 ### 北京AI原点社区（智脉·原点，约104.3公顷）
 
-定位：**世界级AI创新生态的"创业原点与人才社区"**。空间结构为"混合街区+人才环"：核心为创业孵化与交流混合街区（商业服务业混合），外围为人才公寓与创新社区 [data:geometry/land_use.geojson]。更新策略以存量建筑更新、共享办公与场景活化为主（概念建议）。AI 场景以创业路演、开源协作与人才服务为主；实施风险：高校周边更新需协调教育科研单位与交通疏解。
+定位：**世界级AI创新生态的"创业原点与人才社区"**。空间结构为"混合街区+人才环"：核心为创业孵化与交流混合街区（商业服务业混合），外围为人才公寓与创新社区 [data:geometry/land_use.geojson]。**近校型支撑（背景参照）**：公开地图实测显示北京航空航天大学、北京邮电大学、北京语言大学位于总体设计范围内，清华园车站旧址（京张铁路早期站点、现为博物馆）位于范围西侧邻近处 [source:SRC-OSM-NOMINATIM-20260811]；"原点社区"的"近校转化"定位与这些现状资源直接呼应。更新策略以存量建筑更新、共享办公与场景活化为主（概念建议）。AI 场景以创业路演、开源协作与人才服务为主；实施风险：高校周边更新需协调教育科研单位与交通疏解。
 
 ### 大钟寺AI产业集聚区（智脉·聚场，约72.0公顷）
 
@@ -136,11 +142,11 @@ Logo 方向：以"人"字形铁轨与脉冲波形结合的图形符号——两�
 
 ## 交通、轨道、市政与公共服务设施
 
-交通组织（概念建议）[depth:traffic_rail_slow_parking]：以**智脉绿道**为南北慢行主脉（约9.7公里概念线位）[data:geometry/roads.geojson] [metric:road_network_length_m]；以横向联络路组织"双环"车行联动；以轨道站点接驳为核心组织公交与慢行换乘。市政与新型基础设施（概念建议）[depth:municipal_new_infrastructure]：在众智园与北翼布局分布式能源与端侧算力节点，把市政管廊、智慧灯杆与场景感知设施复合化；市政容量与负荷测算待专业条件补齐。公共服务设施沿公共服务带布置教育、医疗、文化设施（约70.1公顷）[metric:land_use_0804_area_sqm]，并保留人工服务与无障碍通道 [standard:BARRIER-FREE-ENVIRONMENT-LAW]。
+交通组织（概念建议）[depth:traffic_rail_slow_parking]：以**智脉绿道**为南北慢行主脉（约9.7公里概念线位）[data:geometry/roads.geojson] [metric:road_network_length_m]；以横向联络路组织"双环"车行联动；以轨道站点接驳为核心组织公交与慢行换乘。**"轨道上的创新走廊"（背景参照）**：地铁13号线沿带串联大钟寺站（换乘12号线）、知春路站（换乘10号线）、五道口站、上地站与清河站，形成天然创新走廊骨架；**清河站**为京张高铁、13号线、昌平线、市郊铁路怀密线四线交汇枢纽，是"百年京张"新旧交汇的空间锚点 [source:SRC-WIKI-LINE13-QINGHE]。京张高铁北京北—张家口约47分钟，可作为"朝圣快线"概念（背景参考）。市政与新型基础设施（概念建议）[depth:municipal_new_infrastructure]：在众智园与北翼布局分布式能源与端侧算力节点，把市政管廊、智慧灯杆与场景感知设施复合化；市政容量与负荷测算待专业条件补齐。公共服务设施沿公共服务带布置教育、医疗、文化设施（约70.1公顷）[metric:land_use_0804_area_sqm]，并保留人工服务与无障碍通道 [standard:BARRIER-FREE-ENVIRONMENT-LAW]。
 
 ## 蓝绿空间、公共空间与城市风貌
 
-**智脉绿带**是蓝绿空间体系的核心：以京张铁路遗址公园为骨架，串联三核与双翼，形成"一线串珠"的绿地网络（绿地约139.6公顷，绿地率约12.2%）[metric:green_space_area_sqm] [metric:green_ratio]。公共空间以三处重点区广场为节点（合计约24.1公顷）[metric:public_space_area_sqm] [metric:public_space_ratio]，广场位置见公共空间图层 [data:geometry/public_space.geojson]。
+**智脉绿带**是蓝绿空间体系的核心：以京张铁路遗址公园为骨架，串联三核与双翼，形成"一线串珠"的绿地网络（绿地约139.6公顷，绿地率约12.2%）[metric:green_space_area_sqm] [metric:green_ratio]。**位置说明（v0.2）**：OSM 公开数据实测公园已建段位于临时边界西侧（约116.33经度带），本方案绿带以"遗址公园实测位置与场地中轴协同组织"为概念表达，官方红线发布后校核 [source:SRC-OSM-NOMINATIM-20260811] [assumption:A-PARK-OFFSET-005]；现状点位仅作背景参照，不构成空间控制依据。公共空间以三处重点区广场为节点（合计约24.1公顷）[metric:public_space_area_sqm] [metric:public_space_ratio]，广场位置见公共空间图层 [data:geometry/public_space.geojson]。
 
 **AI朝圣地标（4个，概念建议）** [depth:ai_ecosystem_scenarios]：1）**清华园站·原点刻度**——以1909年时间轴与零点坐标纪念铁路原点；2）**人字标·开发者步道节点**——以"人"字形装置纪念自主创新精神；3）**脉冲幕墙·开源成果展示廊**——以动态数据可视化展示开源贡献；4）**百年龄碑·智能体贡献荣誉墙**——面向全球开发者的荣誉展示体系，与长期运营机制联动 [source:DATA-SRC-AGENT-TASKBOOK-20260518]。城市风貌控制（概念建议）：沿绿带形成"低层高密度+通透界面"的历史段风貌，创新带形成"中等体量+绿色屋顶"的科技段风貌，大钟寺形成"商业活力+夜间经济"的都市段风貌 [standard:MOHURD-URBAN-DESIGN-MEASURES]。
 
@@ -151,6 +157,10 @@ Logo 方向：以"人"字形铁轨与脉冲波形结合的图形符号——两�
 分期计划对应 `phasing.geojson` 三期范围（概念建议）[data:geometry/phasing.geojson]：**近期（2026-2028）**三核与智脉绿带先行（约501.1公顷）[metric:phase1_area_sqm]；**中期（2028-2031）**创新带与居住更新推进（约627.7公顷）[metric:phase2_area_sqm]；**远期（2031-2035）**南部智能商务完善（约12.5公顷）[metric:phase3_area_sqm] [depth:phasing_implementation]。
 
 **全球AI创新活动体系与长期运营（agent.6）**（概念建议）[depth:ai_ecosystem_scenarios]：年度活动体系——**智脉峰会**（秋季，全球AI与城市论坛）、**开源贡献周**（4月）、**AI马拉松**（季度）、**开发者朝圣季**（全年文化导览）；品牌IP——"智脉·星轨"荣誉体系（年度贡献者进入荣誉墙）；开发者社区运营——开源贡献积分、场景开放申请与评审机制；国际传播——双语内容、全球开发者邀请与招引转化通道。所有活动与招商表述均为深化方向，不写成已确定安排 [assumption:A-SCENARIO-004]。
+
+**场景治理机制（v0.2，概念建议）** [assumption:A-GOVERNANCE-008]：按社区公开协议**折返协议 Switchback Protocol v1.0**（CC-BY-4.0，作者 chucky1102，本方案署名采用）的五组件组织场景卡治理 [source:SRC-ISSUE-1119-SWITCHBACK-PROTOCOL]：①三色状态——绿=常态运行 / 黄=受控试点（虚拟评测→受控场地→真实街区三级门）/ 红=折返（退回上一稳定状态并公示原因）；②数字化时限（设计目标值）——真人接管≤5分钟、申诉1个工作日受理/7个工作日出结果、15分钟步行圈保留非智能等价路径；③90天公开复审——续期/缩减/暂停/折返四选一；④量化触发与恢复条件——安全级接管事件即转红，连续两个复审期合格加一期观察方可回绿；⑤三级留痕档案——近失/折返/退役，稳定编号+失效日期+复核者。同时叠加"算法登记+场景开放+数据共享"框架（北京2025年设立首个算法登记中心为公开政策背景）[source:SRC-WIKI-BJ-AI-ECOSYSTEM]，使治理机制可横向比较、可复审、可回退。
+
+**场景治理机制（v0.2，概念建议）** [assumption:A-GOVERNANCE-008]：按社区公开协议**折返协议 Switchback Protocol v1.0**（CC-BY-4.0，作者 chucky1102，本方案署名采用）的五组件组织场景卡治理 [source:SRC-ISSUE-1119-SWITCHBACK-PROTOCOL]：①三色状态——绿=常态运行 / 黄=受控试点（虚拟评测→受控场地→真实街区三级门）/ 红=折返（退回上一稳定状态并公示原因）；②数字化时限（设计目标值）——真人接管≤5分钟、申诉1个工作日受理/7个工作日出结果、15分钟步行圈保留非智能等价路径；③90天公开复审——续期/缩减/暂停/折返四选一；④量化触发与恢复条件——安全级接管事件即转红，连续两个复审期合格加一期观察方可回绿；⑤三级留痕档案——近失/折返/退役，稳定编号+失效日期+复核者。同时叠加“算法登记+场景开放+数据共享”框架（北京2025年设立首个算法登记中心为公开政策背景）[source:SRC-WIKI-BJ-AI-ECOSYSTEM]，使治理机制可横向比较、可复审、可回退。
 
 ## 指标体系、面积复算与合规矩阵
 
@@ -171,7 +181,7 @@ Logo 方向：以"人"字形铁轨与脉冲波形结合的图形符号——两�
 
 ## 风险、版权与合规说明
 
-**资料与边界**：边界为临时约束范围（provisional），不得作为官方红线与精确面积依据；官方 polygon 发布后须重算（见 `assumptions.json` A-BOUNDARY-001）[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]。**控规缺口**：容积率、建筑高度、密度、绿地率等法定指标待正式条件补齐（A-CONTROLS-002），本方案相关表述均为概念建议 [metric:floor_area_ratio]。**版权与生成披露**：本方案由 AI Agent（deepseek-v4-flash）生成，几何由 Python/Shapely 网格分区法生成，引用资料全部来自仓库清权来源与官方公开渠道，生成方法、来源与权利边界详见 `report/copyright_statement.md` [depth:risk_missing_data]；未使用未授权字体、商标、肖像或版权材料。**隐私与合规**：AI 场景不采集个人敏感信息，保留人工复核与兜底，符合生成式AI服务管理暂行办法适用边界 [standard:GENERATIVE-AI-INTERIM-MEASURES]。**免责**：全部空间落地、活动运营、政策机制均为概念建议、参考方案或可供专业团队深化研究，不构成政府审定结论或已确定实施安排 [source:DATA-SRC-AGENT-TASKBOOK-20260518]。
+**资料与边界**：边界为临时约束范围（provisional），不得作为官方红线与精确面积依据；官方 polygon 发布后须重算（见 `assumptions.json` A-BOUNDARY-001）[source:DATA-SRC-PROVISIONAL-BOUNDARIES-20260605]。**控规缺口**：容积率、建筑高度、密度、绿地率等法定指标待正式条件补齐（A-CONTROLS-002），本方案相关表述均为概念建议 [metric:floor_area_ratio]。**控规进展（v0.2，公开转述）**：据海淀区2026年政府工作报告（经社区 Issue #1774 索引转述），京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00-1601 等街区控规2025年已通过技术审查、2026年目标"获批实施" [source:SRC-ISSUE-1774-DATA-SOURCE-INDEX]；控规批复文件公开后即可正式复算法定指标 [assumption:A-CONTROLS-006]。**控规进展（v0.2，公开转述）**：据海淀区2026年政府工作报告（经社区 Issue #1774 索引转述），京张铁路遗址公园沿线（人工智能创新街区重点地区）HD00-1601 等街区控规2025年已通过技术审查、2026年目标“获批实施” [source:SRC-ISSUE-1774-DATA-SOURCE-INDEX]；控规批复文件公开后即可正式复算法定指标 [assumption:A-CONTROLS-006]。**版权与生成披露**：本方案由 AI Agent（deepseek-v4-flash）生成，几何由 Python/Shapely 网格分区法生成，引用资料全部来自仓库清权来源与官方公开渠道，生成方法、来源与权利边界详见 `report/copyright_statement.md` [depth:risk_missing_data]；未使用未授权字体、商标、肖像或版权材料。**隐私与合规**：AI 场景不采集个人敏感信息，保留人工复核与兜底，符合生成式AI服务管理暂行办法适用边界 [standard:GENERATIVE-AI-INTERIM-MEASURES]。**免责**：全部空间落地、活动运营、政策机制均为概念建议、参考方案或可供专业团队深化研究，不构成政府审定结论或已确定实施安排 [source:DATA-SRC-AGENT-TASKBOOK-20260518]。
 
 ## 参考资料
 
@@ -189,3 +199,9 @@ Logo 方向：以"人"字形铁轨与脉冲波形结合的图形符号——两�
 10. 国务院办公厅：《关于切实解决老年人运用智能技术困难实施方案》（国办发〔2020〕45号）。
 11. open-city-ai/haidian 仓库资料包：`brief/site-package/`、`data/source_registry.json`（2026-08-11 访问）。
 12. 仓库维护者：《百年京张AI创新带三层范围与三处重点区临时粗略 polygon》（2026-06-05）。
+13. OpenStreetMap contributors：场地现状点检索（Nominatim，2026-08-11，ODbL 1.0）。
+14. 社区 Issue #846（jiangmuran）：临时边界与OSM测绘公园位置比对；#1774（anselasimov-web）：约束类图层公开数据源索引；#1119（chucky1102）：折返协议 Switchback Protocol v1.0（CC-BY-4.0）（2026-08-11 阅读）。
+15. Wikipedia：京张铁路、京张高铁、北京地铁13号线、北京AI产业生态等条目（2026-08-11 访问，背景参考）。
+13. OpenStreetMap contributors：场地现状点检索（Nominatim，2026-08-11，ODbL 1.0）。
+14. 社区 Issue #846（jiangmuran）：临时边界与OSM测绘公园位置比对；#1774（anselasimov-web）：约束类图层公开数据源索引；#1119（chucky1102）：折返协议 Switchback Protocol v1.0（CC-BY-4.0）（2026-08-11 阅读）。
+15. Wikipedia：京张铁路、京张高铁、北京地铁13号线、北京AI产业生态等条目（2026-08-11 访问，背景参考）。
