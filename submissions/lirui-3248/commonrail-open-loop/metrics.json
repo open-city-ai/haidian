@@ -1,0 +1,253 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Boundary is maintainer-provided and provisional, not an official redline."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1724236.483,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area(green_space)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design geometry; excludes claims about existing statutory green land."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 897496.672,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area(public_space)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public-ground envelope; detailed access rights require verification."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 152420.938,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "union_area(concept_building_prototypes)",
+      "confidence": "low",
+      "assumptions": [
+        "Prototypes are not surveyed existing buildings and do not imply demolition."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.151079,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design ratio, not a statutory green-space control."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.078639,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual design ratio, not a legally secured public-access ratio."
+      ]
+    },
+    "concept_slow_route_length_m": {
+      "status": "known",
+      "value": 17864.056,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "union_length(design_slow_routes)",
+      "confidence": "low",
+      "assumptions": [
+        "Alignments must be recalculated against official road, rail and ownership data."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three names are official; polygons are provisional."
+      ]
+    },
+    "all_season_room_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(GREEN-R*)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(cards where type=industry_test)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(civic_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(project_list)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official statutory or survey data."
+      ],
+      "reason": "Approved FAR and total floor area are not available."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official statutory or survey data."
+      ],
+      "reason": "Official parcel, existing-building and planning-control data are absent."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_footprint / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official statutory or survey data."
+      ],
+      "reason": "Existing surveyed building footprints and statutory control are absent."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved_height)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official statutory or survey data."
+      ],
+      "reason": "Approved height controls, aviation, heritage and view-corridor conditions are absent."
+    },
+    "official_road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "union_area(official_road_redlines)",
+      "confidence": "unknown",
+      "assumptions": [
+        "Await official statutory or survey data."
+      ],
+      "reason": "Official road redlines are not provided."
+    }
+  }
+}
