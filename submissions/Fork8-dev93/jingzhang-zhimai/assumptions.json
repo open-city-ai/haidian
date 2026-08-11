@@ -1,0 +1,59 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "title_zh": "总体设计范围与重点区域使用 provisional 边界",
+   "statement_zh": "场地几何来自仓库 provisional_boundaries.geojson（EPSG:4326 交换、EPSG:4548 面积校核），精度为 provisional_rough，不可作为 official redline、审批依据或精确面积复算依据；official 边界发布后须重算全部面积与指标。",
+   "impact_zh": "面积类指标均来自 provisional 几何；正式评分前须以官方 polygon 复算。",
+   "recalc_triggers": [
+    "official SITE_BOUNDARY polygon 发布",
+    "官方重点区 polygon 发布"
+   ],
+   "source_ids": [
+    "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+   ],
+   "status": "provisional"
+  },
+  {
+   "id": "A-CONTROLS-002",
+   "title_zh": "控规法定指标待正式条件补齐",
+   "statement_zh": "容积率、建筑高度、建筑密度、绿地率、退线等法定控制指标在公开资料中缺失，统一标记为 status=unknown（待正式数据补齐）；本方案中出现的体量、层数等均为概念建议或低置信度设计量，不等于法定控制值。",
+   "impact_zh": "所有强度类表述均写作'概念建议'，不得视为审定指标。",
+   "recalc_triggers": [
+    "官方控规条件或资格预审附件发布"
+   ],
+   "source_ids": [
+    "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+   ],
+   "status": "data_gap"
+  },
+  {
+   "id": "A-BUILDINGS-003",
+   "title_zh": "建筑基底为概念生成",
+   "statement_zh": "建筑基底由概念用地分区按约12层平均体量生成（低置信度），仅用于表达空间组织与体量关系，不代表现状建筑或法定建设规模。",
+   "impact_zh": "建筑规模指标（total_floor_area_concept_sqm、building_density）仅作概念参考。",
+   "recalc_triggers": [
+    "现状建筑普查数据",
+    "官方开发规模附件"
+   ],
+   "source_ids": [
+    "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "status": "concept_only"
+  },
+  {
+   "id": "A-SCENARIO-004",
+   "title_zh": "AI场景与运营机制为概念设计",
+   "statement_zh": "全部AI场景卡、朝圣地标、活动体系与运营机制均为开放共创概念建议，不替代正式规划，不构成政府审定结论或已确定实施安排。",
+   "impact_zh": "任何活动、招商、政策、资金表述均为深化方向。",
+   "recalc_triggers": [
+    "官方任务书或实施计划更新"
+   ],
+   "source_ids": [
+    "DATA-SRC-AGENT-TASKBOOK-20260518"
+   ],
+   "status": "concept_only"
+  }
+ ]
+}
