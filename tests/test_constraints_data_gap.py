@@ -62,6 +62,33 @@ def constraint_feature() -> dict:
     }
 
 
+def provisional_boundary_feature() -> dict:
+    return {
+        "type": "Feature",
+        "id": "PROV-SITE-001",
+        "properties": {
+            "id": "PROV-SITE-001",
+            "layer": "SITE_BOUNDARY",
+            "source_type": "agent_inferred_from_public_data",
+            "confidence": "low",
+            "geometry_role": "provisional_constraint",
+            "official_boundary": False,
+        },
+        "geometry": {
+            "type": "Polygon",
+            "coordinates": [
+                [
+                    [116.300, 39.901],
+                    [116.301, 39.901],
+                    [116.301, 39.902],
+                    [116.300, 39.902],
+                    [116.300, 39.901],
+                ]
+            ],
+        },
+    }
+
+
 class EmptyConstraintsAdvisoryTests(unittest.TestCase):
     def check(self, constraints: dict, assumptions: dict | None = None) -> ValidationReport:
         report = ValidationReport()
@@ -166,6 +193,41 @@ class EmptyConstraintsAdvisoryTests(unittest.TestCase):
         self.assertFalse(constraints_file_declares_data_gap({"data_gaps": []}))
         self.assertFalse(assumptions_declare_constraints_gap({"assumptions": []}))
         self.assertFalse(assumptions_declare_constraints_gap(None))
+
+    def test_provisional_boundary_warning_is_fail_closed_for_downstream_decisions(self) -> None:
+        report = ValidationReport()
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / "site_boundary.geojson"
+            path.write_text(
+                json.dumps(
+                    {
+                        "type": "FeatureCollection",
+                        "name": "provisional_site_boundary",
+                        "features": [provisional_boundary_feature()],
+                    },
+                    ensure_ascii=False,
+                ),
+                encoding="utf-8",
+            )
+            validate_geojson_file(
+                report,
+                REPO_ROOT,
+                path,
+                "submissions/tester/package/geometry/site_boundary.geojson",
+                require_features=True,
+                stage="formal",
+                geometry_name="site_boundary.geojson",
+            )
+
+        self.assertEqual([], report.errors)
+        self.assertEqual(1, len(report.warnings))
+        warning = report.warnings[0]
+        self.assertIn("supports only structural/intake review and human reading", warning)
+        self.assertIn(
+            "does not establish professional scoring, formal acceptance, publication, or merge eligibility",
+            warning,
+        )
+        self.assertNotIn("do not block content scoring", warning)
 
 
 @unittest.skipUnless(HAS_REVIEW_DEPS, "Install requirements-review.txt to run scaffold tests")
