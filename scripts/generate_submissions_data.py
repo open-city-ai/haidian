@@ -229,13 +229,19 @@ def classify_submission(submission_dir: Path, manifest: Any) -> str:
         return "legacy_fixture"
     if not package_complete(submission_dir):
         return "needs_revision"
+    # A stored self-check can be stale after the manifest changes. Current
+    # participant-controlled blockers must therefore outrank any historical
+    # `can_enter_formal_review=true` result. Organizer-owned limitations belong
+    # in `known_limitations` and do not enter this branch.
+    if known_blockers(manifest):
+        return "needs_revision"
     if stored_formal_readiness(submission_dir) is True:
         return "formal_review_ready"
     if stored_formal_readiness(submission_dir) is False:
         # Stored results created under the former organizer-data gate are not
         # authoritative. Only participant-controlled validation failures block.
         return "formal_review_ready" if not has_blocking_self_check(submission_dir) else "needs_revision"
-    if known_blockers(manifest) or has_blocking_self_check(submission_dir):
+    if has_blocking_self_check(submission_dir):
         return "needs_revision"
     return "formal_review_ready"
 
