@@ -89,7 +89,17 @@ class SpatialReport:
 
 
 def load_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    """Read and parse a JSON file, returning ``None`` on any read/parse error.
+
+    Submission geometry files are untrusted contributor data. A single malformed
+    file (bad JSON, stray BOM, wrong encoding) must not crash this trusted review
+    subprocess; callers surface the failure as a structured issue instead.
+    """
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError) as exc:
+        print(f"[spatial_review] failed to parse {path}: {exc}", file=sys.stderr)
+        return None
 
 
 def load_schema(repo_root: Path, name: str) -> dict | None:
@@ -113,8 +123,19 @@ def validate_schema(report: SpatialReport, repo_root: Path, path: Path, schema_n
     schema = load_schema(repo_root, schema_name)
     if schema is None:
         return
+    data = load_json(path)
+    if data is None:
+        report.add(
+            SpatialIssue(
+                "SCHEMA_INPUT_UNREADABLE",
+                "minor",
+                str(path),
+                "Schema target could not be parsed; schema validation skipped.",
+            )
+        )
+        return
     try:
-        jsonschema.validate(load_json(path), schema)
+        jsonschema.validate(data, schema)
     except jsonschema.ValidationError as exc:
         report.add(
             SpatialIssue(
@@ -143,6 +164,16 @@ def load_feature_geometries(
         return []
     validate_schema(report, repo_root, path, "geojson_feature.schema.json")
     data = load_json(path)
+    if data is None:
+        report.add(
+            SpatialIssue(
+                "GEOMETRY_JSON_INVALID",
+                "major",
+                str(path),
+                "Geometry file could not be parsed as JSON; check encoding, BOM or syntax.",
+            )
+        )
+        return []
     features = data.get("features", []) if isinstance(data, dict) else []
     items: list[tuple[str, Any, dict]] = []
     for index, feature in enumerate(features):
