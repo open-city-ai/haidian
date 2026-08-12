@@ -57,6 +57,39 @@ SPATIAL_IMAGE_CANDIDATES = (
 )
 
 
+def generation_inputs(repo_root: Path, submission_dir: Path) -> list[tuple[str, Path]]:
+    manifest_path = submission_dir / "manifest.json"
+    inputs = [
+        ("proposal", submission_dir / "proposal.md"),
+        ("self-check", submission_dir / "self_check.json"),
+        ("manifest", manifest_path),
+        ("publication registry", repo_root / "gallery-publication.json"),
+        ("exhibit schema", repo_root / "schema" / "exhibit.schema.json"),
+    ]
+    figures = submission_dir / "assets" / "figures"
+    inputs.extend(("proposal figure", path) for path in sorted(figures.glob("*.png")))
+    if manifest_path.is_file():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError):
+            manifest = None
+        files = manifest.get("files") if isinstance(manifest, dict) else None
+        if isinstance(files, list):
+            inputs.extend(
+                ("reviewed package artifact", submission_dir / item["path"])
+                for item in files
+                if isinstance(item, dict) and isinstance(item.get("path"), str)
+            )
+    found: list[tuple[str, Path]] = []
+    seen: set[Path] = set()
+    for label, path in inputs:
+        resolved = path.resolve()
+        if path.exists() and resolved not in seen:
+            found.append((label, path))
+            seen.add(resolved)
+    return found
+
+
 def pick_image(submission_dir: Path, candidates: tuple[str, ...]) -> str | None:
     for rel in candidates:
         if (submission_dir / rel).exists():
@@ -187,6 +220,10 @@ def main() -> int:
     if not submission_dir.is_absolute():
         submission_dir = repo_root / submission_dir
     output = Path(args.output) if args.output else submission_dir / "exhibit.json"
+    output_resolved = output.resolve()
+    for label, input_path in generation_inputs(repo_root, submission_dir):
+        if output_resolved == input_path.resolve():
+            parser.error(f"output must not overwrite the {label} input: {input_path}")
 
     exhibit = build_exhibit(repo_root, submission_dir)
     validate_against_schema(repo_root, exhibit)
