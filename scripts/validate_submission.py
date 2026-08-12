@@ -2481,6 +2481,17 @@ def validate_proposal_file(
     for key in required_metadata:
         if not metadata.get(key):
             report.add_error(f"{proposal_path}: missing front matter field `{key}`")
+    metadata_length_limits = {
+        "title": (2, 120),
+        "summary": (10, 500),
+    }
+    for key, (minimum, maximum) in metadata_length_limits.items():
+        value = metadata.get(key)
+        if value and not minimum <= len(value) <= maximum:
+            report.add_error(
+                f"{proposal_path}: front matter `{key}` must contain {minimum} to "
+                f"{maximum} characters; got {len(value)}"
+            )
 
     author = metadata.get("author_github", "")
     if author and author.lower() != pr_author.lower() and not report.maintainer_bypass:
