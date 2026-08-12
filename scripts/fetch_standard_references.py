@@ -213,6 +213,7 @@ def should_preserve_existing_reference(output_path: Path, result: FetchResult) -
         return False
     existing = read_reference_frontmatter(output_path)
     return existing.get("fetch_status") in {
+        "fetched",
         "fetched_via_official_pdf_text",
         "fetched_manual_official",
         "user_provided_summary",
