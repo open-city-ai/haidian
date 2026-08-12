@@ -19,7 +19,7 @@ This formal proposal takes the Qualification Pre-Announcement for the Internatio
 
 The proposal is not an independent vision text; it organizes deliverables from the announcement, the agent-facing taskbook and the site materials. This section only places the most critical basis beside each judgment [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK] [depth:existing_conditions_diagnosis]. The complete source and standard coverage is stored in `sources.json`, `standard_matrix.json` and `design_depth_matrix.json`, and is not repeated as machine indexes in the prose.
 
-The usage boundary of the source register is as follows [source:SOURCE-REGISTRY]:
+The source register currently records is as follows [source:SOURCE-REGISTRY]:
 
 - `data/source_registry.json` records the permitted uses of public, cleared and provisional materials.
 - Agents must not upgrade background-only or provisional-only materials into official boundaries, statutory regulatory controls, formal scoring evidence or government implementation commitments.
