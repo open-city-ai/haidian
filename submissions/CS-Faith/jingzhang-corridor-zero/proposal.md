@@ -59,6 +59,8 @@ iteration: "v1.0"
 
 案例引用仅作研究参考，不构成企业合作或投资承诺；所有转化均为概念建议 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
+**天基 AI 算力协同（概念建议）。** 面向"天地一体"的智能时代，本方案提出将天基 AI 算力纳入创新带的产业叙事与创新链 [source:AGENT-TASKBOOK]：中国商业航天已进入通遥一体、在轨智能处理加速的产业阶段，海淀的模型与算法优势与天基算力结合，可形成"地面模型开发—星上在轨推理—数据回传—场景应用"的星地协同创新链（概念流程，非工程方案，供专业团队深化）[source:AGENT-TASKBOOK]。空间上不新增建设用地，天基能力作为三核的功能叙事落点：众智园承担星地协同模型验证与"模型上注"概念测试承载，原点社区承担星地数据要素流通概念，大钟寺承担卫星 AI 应用体验展示；相关设施均为概念建议 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+
 ## 总体设计范围城市更新与控规深度城市设计
 
 总体设计范围采用"一带三核两翼、蓝绿复合环"的空间结构 [depth:overall_spatial_structure]：一带为沿京张遗址公园的南北创新主轴 [data:geometry/green_space.geojson#GREEN-002]，三核为三处重点片区，两翼为中关村科技服务翼与小月河场景赋能翼，蓝绿复合环沿范围边缘组织连续的绿地与公共空间 [data:geometry/green_space.geojson#GREEN-001]，将绿环、主轴与三核串成完整的创新公共网络。
@@ -73,9 +75,9 @@ iteration: "v1.0"
 
 三处重点区域分别形成"定位+空间结构+建筑更新+交通慢行+公共空间+AI场景+实施风险"的小方案，深度达到规划综合实施方案方向 [depth:three_key_area_detailed_design]。
 
-**众智园 AI 自主创新加速区（Zero Forge）。** 定位为花园型全栈自主创新街区 [data:geometry/key_areas.geojson#PROV-KEY-001]。空间结构上以研发地块为主 [metric:key_area_PROV-KEY-001_sqm]，内置开放测试绿地与测试发布广场 [data:geometry/public_space.geojson#PUBLIC-002]；承担自主模型测试、标准制定工作坊、安全治理展示与低碳算力体验场景；实施风险为存量更新与产业导入时序衔接，需专业团队深化 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+**众智园 AI 自主创新加速区（Zero Forge）。** 定位为花园型全栈自主创新街区 [data:geometry/key_areas.geojson#PROV-KEY-001]。空间结构上以研发地块为主 [metric:key_area_PROV-KEY-001_sqm]，内置开放测试绿地与测试发布广场 [data:geometry/public_space.geojson#PUBLIC-002]；承担自主模型测试、标准制定工作坊、安全治理展示与低碳算力体验场景，并预留天基 AI 地面验证场功能（星地协同"模型开发—验证—上注测试"的概念承载，见场景卡 13）；实施风险为存量更新与产业导入时序衔接，需专业团队深化 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
-**北京 AI 原点社区（Zero Origin）。** 定位为近校型成果转化与人才社区 [data:geometry/key_areas.geojson#PROV-KEY-002]。空间上组织"教育科研—研发—文化展示—创新商业"混合街区，遗址绿带穿过社区中央 [data:geometry/green_space.geojson#GREEN-003]，原点发布广场承担开源发布会与成果发布 [data:geometry/public_space.geojson#PUBLIC-003]；承担开源社区、人才特区服务、近校孵化场景；实施风险为校区园区权属协调，需专项研究。
+**北京 AI 原点社区（Zero Origin）。** 定位为近校型成果转化与人才社区 [data:geometry/key_areas.geojson#PROV-KEY-002]。空间上组织"教育科研—研发—文化展示—创新商业"混合街区，遗址绿带穿过社区中央 [data:geometry/green_space.geojson#GREEN-003]，原点发布广场承担开源发布会与成果发布 [data:geometry/public_space.geojson#PUBLIC-003]；承担开源社区、人才特区服务、近校孵化场景，并预留星地数据要素节点（遥感与在轨处理数据要素流通的概念承载，见场景卡 14）；实施风险为校区园区权属协调，需专项研究。
 
 **大钟寺 AI 产业集聚区（Zero Street）。** 定位为城市型智能经济与国际交往街区 [data:geometry/key_areas.geojson#PROV-KEY-003]。空间上围绕大钟寺站组织站前广场 [data:geometry/public_space.geojson#PUBLIC-004]、智能消费商业街与公共服务设施；承担智能体与智能终端展示、内容消费、数据要素与国际路演场景；实施风险为站点一体化开发与商业更新，需轨道与市政专项论证。
 
@@ -107,8 +109,10 @@ iteration: "v1.0"
 10. 城市智能体治理沙盒（Forge 治理展示区）：城市治理场景仿真；后台仿真模式；人类最终决策 [source:AGENT-TASKBOOK]。
 11. 机器人导览员（遗址公园绿带）：文化导览；语音交互数据本地处理。
 12. AI 老年友好服务站（居住区）：智能终端辅助；保留人工窗口 [standard:ELDERLY-SMART-TECH-PLAN-2020-45]。
+13. 在轨 AI 模型上注测试（Forge 天基 AI 地面验证场，概念）：面向 AI 企业的"模型上注—在轨推理—回传复核"星地协同测试（第 4 个产业测试验证场景，沿用三层沙盒机制）；运行数据为聚合统计；人工复核为安全审查；运营主体为验证场运营方。
+14. 卫星 AI 应急监测体验（天地互联观测站，概念）：实时展示在轨 AI 对洪涝、火灾等灾害的识别结果（公开演示数据）；隐私边界为不采集个人影像；人工复核为内容审核。
 
-**产业测试验证场景（3 个）。** 自主模型测试场、智能配送试点街、自动驾驶接驳示范——均采用"公众可逆体验区—授权试点区—后台仿真区"三层沙盒机制 [source:AGENT-TASKBOOK]，每个场景设人工复核与一键退出机制，测试数据不用于商业化外推。
+**产业测试验证场景（4 个）。** 自主模型测试场、智能配送试点街、自动驾驶接驳示范、在轨 AI 模型上注测试——均采用"公众可逆体验区—授权试点区—后台仿真区"三层沙盒机制 [source:AGENT-TASKBOOK]，每个场景设人工复核与一键退出机制，测试数据不用于商业化外推。
 
 ## 用地、建筑规模与拆改留方案
 
@@ -124,7 +128,7 @@ iteration: "v1.0"
 
 蓝绿系统由三部分组成 [depth:blue_green_public_space]：蓝绿复合环带（防护绿地）[data:geometry/green_space.geojson#GREEN-001]、京张遗址公园绿带 [data:geometry/green_space.geojson#GREEN-002]、重点区内公园与广场绿地；绿地总面积 426.0 公顷、绿地率 37.3% [metric:green_ratio]，公共空间 189.7 公顷、占比 16.6% [metric:public_space_ratio]，均基于 provisional 边界复算。
 
-**AI 朝圣地标与荣誉展示体系（5 个组件，均为概念建议）。** 本方案对应公告与任务书对纪念体系的要求 [source:AGENT-TASKBOOK]：① 原点碑（Zero Origin 广场）：纪念中国自主铁路原点与 AI 原点社区；② 智能体贡献荣誉墙（Origin 文化展示区）：记录 Agent 贡献者，与官方 Milestone 纪念体系衔接；③ AI 里程碑展示廊（主轴沿线）：按年度更新里程碑事件；④ 开源成果展示节点（Forge 测试绿地）：展示开源项目与可复现成果；⑤ 星空观象台（绿环高点）：AI 数据可视化与公共天文体验。所有地标为概念设计，不涉及文保、绿地、蓝线红线结论，落地形式待专业团队深化并完成清权 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+**AI 朝圣地标与荣誉展示体系（5 个组件，均为概念建议）。** 本方案对应公告与任务书对纪念体系的要求 [source:AGENT-TASKBOOK]：① 原点碑（Zero Origin 广场）：纪念中国自主铁路原点与 AI 原点社区；② 智能体贡献荣誉墙（Origin 文化展示区）：记录 Agent 贡献者，与官方 Milestone 纪念体系衔接；③ AI 里程碑展示廊（主轴沿线）：按年度更新里程碑事件；④ 开源成果展示节点（Forge 测试绿地）：展示开源项目与可复现成果；⑤ 天地互联观测站（原星空观象台概念升格，绿环高点）：卫星过境时实时展示在轨 AI 处理结果（如洪涝、火灾识别演示，基于公开演示数据的概念建议），叠加 AI 数据可视化与公共天文体验。所有地标为概念设计，不涉及文保、绿地、蓝线红线结论，落地形式待专业团队深化并完成清权 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
 ![交通慢行与蓝绿公共空间复合系统图](assets/figures/mobility-bluegreen.png)
 
@@ -132,7 +136,7 @@ iteration: "v1.0"
 
 **分期计划。** 依据 `geometry/phasing.geojson` [data:geometry/phasing.geojson#PHASE-P1]：P1 近期启动区（原点社区+大钟寺站周边，234.4 公顷 [metric:phase_PHASE-P1_area_sqm]），先行示范开源发布、站城联动与场景试验；P2 中期推进区（众智园+创新主轴，445.2 公顷 [metric:phase_PHASE-P2_area_sqm]），推动全栈研发集聚与主轴成型；P3 远期提升区（外围蓝绿环与存量更新，533.9 公顷 [metric:phase_PHASE-P3_area_sqm]）。
 
-**全球 AI 创新活动体系与长期运营（概念建议）。** 年度活动体系：Corridor Zero 年度开源大会（春季，Forge）、AI 原点节（秋季，Origin）、国际场景试验周（大钟寺）；活动品牌与传播视觉系统延续"人字形"图腾 [source:AGENT-TASKBOOK]。开发者社区运营：公共代码墙、年度贡献榜、Agent 荣誉体系与官方 Milestone 纪念衔接。场景开放运营：三层沙盒机制 + 场景卡开放申请。国际传播：双语叙事、国际路演客厅、全球开发者荣誉墙。招引转化：活动—测试—落地通道。以上均为概念建议，活动安排与政策支持待政府确认，不构成承诺 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
+**全球 AI 创新活动体系与长期运营（概念建议）。** 年度活动体系：Corridor Zero 年度开源大会（春季，Forge）、AI 原点节（秋季，Origin）、国际场景试验周（大钟寺）、Zero Orbit Challenge 星地 AI 挑战赛（开发者提交模型参与星地协同验证演示，概念建议）；活动品牌与传播视觉系统延续"人字形"图腾 [source:AGENT-TASKBOOK]。开发者社区运营：公共代码墙、年度贡献榜、Agent 荣誉体系与官方 Milestone 纪念衔接。场景开放运营：三层沙盒机制 + 场景卡开放申请。国际传播：双语叙事、国际路演客厅、全球开发者荣誉墙。招引转化：活动—测试—落地通道。以上均为概念建议，活动安排与政策支持待政府确认，不构成承诺 [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。
 
 ## 指标体系、面积复算与合规矩阵
 
