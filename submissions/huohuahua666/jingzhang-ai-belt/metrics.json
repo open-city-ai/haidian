@@ -1,0 +1,128 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.39,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) projected to EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "基于公告文字四至的临时粗略边界，official polygon 补齐后需重算。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 4447328.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space_features)) projected to EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "绿地范围来自概念性用地分区，需以正式绿线复核。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 300620.82,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space_features)) projected to EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "公共空间为概念性节点范围，非正式广场红线。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 876027.905,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints)) projected to EPSG:4548",
+   "confidence": "low",
+   "assumptions": [
+    "示意建筑体块，非现状建筑或审批建筑基底；高度为概念估算。"
+   ]
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 29706,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(linestring_length(road_centerlines))",
+   "confidence": "low",
+   "assumptions": [
+    "概念示意线位，不代表道路红线或工程线形。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.3897,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "绿地率为概念性绿地占临时边界面积之比，非审批指标。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0263,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "公共空间率为概念性节点占临时边界面积之比。"
+   ]
+  },
+  "coordinated_research_area_sqm": {
+   "status": "known",
+   "value": 43600000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "官方公告面积（统筹研究范围43.6km²）",
+   "confidence": "high",
+   "assumptions": [
+    "来自官方公告文字，正式红线需资格预审文件确认。"
+   ]
+  },
+  "key_detailed_design_area_sqm": {
+   "status": "known",
+   "value": 3684000,
+   "unit": "sqm",
+   "source_files": [
+    "brief/site-package/design_brief.json"
+   ],
+   "formula": "三处重点区公告面积之和（192.1+104.3+72.0公顷）",
+   "confidence": "high",
+   "assumptions": [
+    "来自官方公告文字。"
+   ]
+  }
+ }
+}
