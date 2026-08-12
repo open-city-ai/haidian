@@ -1,0 +1,247 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary; official survey data may differ."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_A1_ha": {
+      "status": "known",
+      "value": 192.1,
+      "unit": "ha",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary for zhongzhiyuan AI acceleration area."
+      ]
+    },
+    "key_area_A2_ha": {
+      "status": "known",
+      "value": 104.3,
+      "unit": "ha",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary for Beijing AI origin community."
+      ]
+    },
+    "key_area_A3_ha": {
+      "status": "known",
+      "value": 72.0,
+      "unit": "ha",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Based on provisional boundary for Dazhongsi AI industry cluster."
+      ]
+    },
+    "green_corridor_km": {
+      "status": "known",
+      "value": 9.0,
+      "unit": "km",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(green_space_main_axis)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.240065,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual target ratio; official boundary update may change value."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.19547,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual target ratio; includes plazas, parks, and pedestrian corridors."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 749376.965,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual building footprints only; official building survey required."
+      ]
+    },
+    "ai_enterprise_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Long-term aspirational target for AI enterprise cluster."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "ai_talent_density_pct": {
+      "status": "unknown",
+      "value": null,
+      "unit": "percent",
+      "source_files": [],
+      "formula": "design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Target percentage of AI-related talent in the innovation belt workforce."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "annual_incubation_target": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Annual startup incubation target after full operation."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "public_ai_scenarios": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Total number of deployable AI public scenarios across all epochs."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "scenario_cards": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(proposal_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "elastic_nodes_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "design_target",
+      "confidence": "medium",
+      "assumptions": [
+        "Flexible elastic pocket spaces distributed across the four epochs."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "edge_computing_nodes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [],
+      "formula": "design_target",
+      "confidence": "low",
+      "assumptions": [
+        "Edge computing nodes deployed at each epoch node."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "autonomous_bus_routes": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "design_target",
+      "confidence": "medium",
+      "assumptions": [
+        "Autonomous shuttle routes connecting the three key areas."
+      ],
+      "reason": "Design target metric; requires official planning data and operational baseline to establish a known value."
+    },
+    "implementation_phases": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phases)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    }
+  }
+}
