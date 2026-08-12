@@ -7,7 +7,7 @@
   "metrics": {
     "site_area_sqm": {
       "status": "known",
-      "value": 11412825.386,
+      "value": 11412825.385554,
       "unit": "sqm",
       "source_files": [
         "geometry/site_boundary.geojson"
@@ -20,7 +20,7 @@
     },
     "green_space_area_sqm": {
       "status": "known",
-      "value": 2937358.554688,
+      "value": 2953880.171666,
       "unit": "sqm",
       "source_files": [
         "geometry/green_space.geojson"
@@ -33,7 +33,7 @@
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.257373,
+      "value": 0.258821,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
@@ -43,11 +43,13 @@
       "confidence": "medium",
       "assumptions": [
         "A-PROV-BOUNDARY-001"
-      ]
+      ],
+      "non_additivity_note_zh": "绿地与公共空间为允许相交的概念图层；green_ratio与public_space_ratio以同一临时总体设计边界分别报告，不能相加为总公共生态面积、总开放空间比例或法定指标。",
+      "non_additivity_note_en": "Green space and public space are overlapping conceptual layers; green_ratio and public_space_ratio are reported separately against the same provisional overall-design boundary and must not be added as a total public-ecological area, total open-space ratio, or statutory indicator."
     },
     "public_space_area_sqm": {
       "status": "known",
-      "value": 1787170.117188,
+      "value": 1797225.499576,
       "unit": "sqm",
       "source_files": [
         "geometry/public_space.geojson"
@@ -60,7 +62,7 @@
     },
     "public_space_ratio": {
       "status": "known",
-      "value": 0.156593,
+      "value": 0.157474,
       "unit": "ratio",
       "source_files": [
         "geometry/public_space.geojson",
@@ -70,11 +72,13 @@
       "confidence": "medium",
       "assumptions": [
         "A-PROV-BOUNDARY-001"
-      ]
+      ],
+      "non_additivity_note_zh": "绿地与公共空间为允许相交的概念图层；green_ratio与public_space_ratio以同一临时总体设计边界分别报告，不能相加为总公共生态面积、总开放空间比例或法定指标。",
+      "non_additivity_note_en": "Green space and public space are overlapping conceptual layers; green_ratio and public_space_ratio are reported separately against the same provisional overall-design boundary and must not be added as a total public-ecological area, total open-space ratio, or statutory indicator."
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 190335.046875,
+      "value": 191405.714037,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
@@ -87,7 +91,7 @@
     },
     "concept_building_footprint_ratio": {
       "status": "known",
-      "value": 0.016677,
+      "value": 0.016771,
       "unit": "ratio",
       "source_files": [
         "geometry/buildings.geojson",
@@ -101,7 +105,7 @@
     },
     "slow_mobility_network_length_m": {
       "status": "known",
-      "value": 12333.392317,
+      "value": 12376.732657,
       "unit": "m",
       "source_files": [
         "geometry/roads.geojson"
@@ -114,7 +118,7 @@
     },
     "phase_area_sqm": {
       "status": "known",
-      "value": 4951283.484375,
+      "value": 4979142.806283,
       "unit": "sqm",
       "source_files": [
         "geometry/phasing.geojson"
@@ -199,7 +203,7 @@
     },
     "land_use_0802_lu-001_sqm": {
       "status": "known",
-      "value": 1403288.527344,
+      "value": 1398728.175568,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
@@ -212,7 +216,7 @@
     },
     "land_use_1401_lu-002_sqm": {
       "status": "known",
-      "value": 3672119.964844,
+      "value": 3721127.054131,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
@@ -225,7 +229,7 @@
     },
     "land_use_05_lu-003_sqm": {
       "status": "known",
-      "value": 1940343.078125,
+      "value": 1951428.155532,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
@@ -238,7 +242,7 @@
     },
     "land_use_0702_lu-004_sqm": {
       "status": "known",
-      "value": 1894216.449219,
+      "value": 1904802.211218,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
@@ -251,7 +255,7 @@
     },
     "land_use_0802_lu-005_sqm": {
       "status": "known",
-      "value": 2423417.265625,
+      "value": 2436747.957241,
       "unit": "sqm",
       "source_files": [
         "geometry/land_use.geojson"
@@ -261,6 +265,27 @@
       "assumptions": [
         "A-PROV-BOUNDARY-001"
       ]
+    }
+  },
+  "calculation_disclosures": {
+    "green_public_space_non_additivity": {
+      "applies_to": [
+        "green_ratio",
+        "public_space_ratio"
+      ],
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "relationship": "overlapping_concept_layers",
+      "message_zh": "绿地与公共空间为允许相交的概念图层；green_ratio与public_space_ratio以同一临时总体设计边界分别报告，不能相加为总公共生态面积、总开放空间比例或法定指标。",
+      "message_en": "Green space and public space are overlapping conceptual layers; green_ratio and public_space_ratio are reported separately against the same provisional overall-design boundary and must not be added as a total public-ecological area, total open-space ratio, or statutory indicator."
+    },
+    "projection": {
+      "crs": "EPSG:4548",
+      "method": "projected_geometry_area_or_length",
+      "boundary_status": "provisional_rough"
     }
   }
 }
