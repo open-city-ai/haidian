@@ -152,6 +152,49 @@ class SitePackageContractTests(unittest.TestCase):
             self.assertFalse(check_report["installed"])
             self.assertTrue(check_report["up_to_date"])
 
+    def test_submission_skill_installer_replaces_stale_installation(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            command = [
+                sys.executable,
+                str(REPO_ROOT / "scripts" / "install_submission_skill.py"),
+                "--codex-home",
+                tmp,
+                "--json",
+            ]
+            first_install = subprocess.run(
+                command,
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(first_install.returncode, 0, first_install.stdout + first_install.stderr)
+
+            installed_skill = Path(tmp) / "skills" / "urban-design-ai-submission"
+            stale_file = installed_skill / "removed-reference.md"
+            stale_file.write_text("obsolete", encoding="utf-8")
+
+            check = subprocess.run(
+                [*command, "--check"],
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(check.returncode, 1, check.stdout + check.stderr)
+            self.assertFalse(json.loads(check.stdout)["up_to_date"])
+
+            reinstall = subprocess.run(
+                command,
+                cwd=REPO_ROOT,
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+            self.assertEqual(reinstall.returncode, 0, reinstall.stdout + reinstall.stderr)
+            self.assertTrue(json.loads(reinstall.stdout)["up_to_date"])
+            self.assertFalse(stale_file.exists())
+
     def test_professional_standards_have_local_reference_snapshots(self) -> None:
         standards_path = REPO_ROOT / "brief" / "site-package" / "standards" / "standards.json"
         standards = json.loads(standards_path.read_text(encoding="utf-8"))["standards"]

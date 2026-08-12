@@ -46,19 +46,23 @@ def tree_digest(path: Path) -> str:
 
 def copy_skill(source: Path, target: Path) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
+    temporary_target = target.parent / f".{target.name}.installing"
+    if temporary_target.exists():
+        shutil.rmtree(temporary_target)
     shutil.copytree(
         source,
-        target,
-        dirs_exist_ok=True,
+        temporary_target,
         ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".DS_Store"),
     )
+    if target.exists():
+        shutil.rmtree(target)
+    temporary_target.replace(target)
 
 
 def build_report(source: Path, target: Path, installed: bool, action: str) -> dict[str, Any]:
     source_exists = (source / "SKILL.md").exists()
     target_exists = (target / "SKILL.md").exists()
     report: dict[str, Any] = {
-        "ok": source_exists and target_exists,
         "action": action,
         "skill_name": SKILL_NAME,
         "source": str(source),
@@ -76,6 +80,7 @@ def build_report(source: Path, target: Path, installed: bool, action: str) -> di
         report["up_to_date"] = report.get("source_sha256") == report.get("target_sha256")
     else:
         report["up_to_date"] = False
+    report["ok"] = source_exists and target_exists and report["up_to_date"]
     return report
 
 
