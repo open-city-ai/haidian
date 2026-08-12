@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>可玩京张 · PLAYABLE JING-ZHANG</title>
+<style>
+:root{--ink:#141719;--ink2:#4A5157;--ink3:#8A9299;--bg:#FBFAF7;--card:#FFFFFF;
+--rule:#E2DFD7;--signal:#EB6834;--calib:#2A78D6;--aqua:#1BAF7A;--quiet:#B9B4A6;--park:#BFDDB4;
+--ai:#BBD3EC;--work:#F4E3B6;--blue:#2A78D6;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+font-family:"Noto Sans CJK SC","Noto Sans SC","PingFang SC","Microsoft YaHei","Helvetica Neue",Arial,sans-serif;
+line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px 72px}
+header{border-bottom:1px solid var(--rule);padding:30px 0 20px;margin-bottom:26px}
+.brand{font-size:14px;font-weight:700;letter-spacing:.04em}
+.sub{font-size:12px;color:var(--ink3);margin-top:3px}
+h1{font-size:34px;line-height:1.24;margin:18px 0 8px;letter-spacing:-.01em}
+h1 small{display:block;font-size:15px;font-weight:400;color:var(--ink2);margin-top:8px;letter-spacing:0}
+.banner{background:#FFF3EC;border-left:4px solid var(--signal);padding:12px 16px;font-size:12.5px;
+color:var(--ink2);margin:16px 0 0;border-radius:2px}
+section{margin:38px 0 0;scroll-margin-top:20px}
+h2{font-size:19px;margin:0 0 4px;letter-spacing:.01em}
+h2 .en{font-weight:400;color:var(--ink3);font-size:13px;margin-left:8px}
+.lead{font-size:13.5px;color:var(--ink2);margin:0 0 16px;max-width:78ch}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:3px;padding:16px 18px}
+.card h3{margin:0 0 6px;font-size:15px}
+.card p{margin:0;font-size:12.8px;color:var(--ink2)}
+.tile{background:var(--card);border:1px solid var(--rule);border-top:3px solid var(--calib);
+border-radius:3px;padding:14px 16px}
+.tile.hero{border-top-color:var(--signal)}
+.tv{font-size:28px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.tl{font-size:12.6px;color:var(--ink2);margin-top:2px}
+.tn{font-size:11.4px;color:var(--ink3);margin-top:5px}
+.map{width:100%;height:auto;display:block;border:1px solid var(--rule);border-radius:3px;background:#F6F4EF}
+.mlabel{font-size:9px;fill:#4A5157;font-family:inherit}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:11.8px;color:var(--ink2)}
+.legend span{display:flex;align-items:center;gap:6px}
+.sw{width:14px;height:9px;border-radius:1px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
+.ln{width:16px;height:0;border-top:2.4px solid var(--ink);display:inline-block}
+table{width:100%;border-collapse:collapse;font-size:12.4px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:11.6px;color:var(--ink3);font-weight:600;letter-spacing:.03em;text-transform:uppercase}
+td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:9px;background:var(--rule);border-radius:2px;overflow:hidden;min-width:60px}
+.bar i{display:block;height:100%}
+.pill{display:inline-block;font-size:10.8px;padding:2px 7px;border-radius:10px;
+border:1px solid var(--rule);color:var(--ink2);margin-right:5px;white-space:nowrap}
+.pill.test{background:#FFF3EC;border-color:var(--signal);color:#B93F14;font-weight:600}
+.pill.ok{background:#EEF7F2;border-color:var(--aqua);color:#0E6B49}
+.pill.warn{background:#FFF7E8;border-color:#D9A72C;color:#8A6410}
+.status{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 0}
+.sc{flex:1;min-width:180px;background:var(--card);border:1px solid var(--rule);border-left:4px solid var(--aqua);
+border-radius:3px;padding:12px 14px}
+.sc.pending{border-left-color:#D9A72C}
+.sc b{display:block;font-size:13px}.sc span{font-size:11.6px;color:var(--ink2)}
+footer{margin-top:52px;border-top:1px solid var(--rule);padding-top:16px;font-size:11.6px;color:var(--ink3)}
+a{color:var(--calib);text-decoration:none;word-break:break-all}
+ul{margin:6px 0 0 18px;padding:0;font-size:12.6px;color:var(--ink2)}li{margin:3px 0}
+@media (max-width:900px){.g3,.g4{grid-template-columns:repeat(2,1fr)}h1{font-size:26px}}
+@media (max-width:620px){.g2,.g3,.g4{grid-template-columns:1fr}.wrap{padding:0 14px 48px}}
+@media print{body{background:#fff}.card,.tile{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">可玩京张 · PLAYABLE JING-ZHANG</div>
+  <div class="sub">百年京张AI创新带城市设计开源征集 · AI agent 概念方案 · 离线可视化看板</div>
+  <h1>把产业测试场与公共空间合为一体的9公里人机共练带
+    <small>AI 需要真实街道当测试场，市民需要一个能理解并否决 AI 的界面——这是同一件事的两面，而“玩”是目前唯一能同时满足两者的公共接口。</small>
+  </h1>
+  <div class="banner">
+    <b>范围说明：</b>
+    本页全部范围线为依据征集公告文字四至反推的临时粗略边界（provisional constraint），不是官方红线，不得用于精确面积复算、法定管控或审批。京张铁路遗址公园二期已于2026年8月6日建成开放，本方案在既有绿廊上叠加运营层，不重复土建。
+  </div>
+</header>
+
+<section id="overview">
+  <h2>总览地图<span class="en">Corridor overview</span></h2>
+  <p class="lead">9公里可玩主线、三处人机共练场、12处AI场景节点、4段静段与14处东西缝合横穿。地图为示意，北向右。</p>
+  <svg class="map" viewBox="0 0 1180 190" role="img" aria-label="走廊总览地图"><rect x="0" y="0" width="1180" height="190" fill="#F6F4EF"/><path d="M14.0,61.8 L79.8,62.5 L79.8,14.0 L14.0,14.0 L14.0,61.8 Z M356.3,121.6 L156.7,119.4 L156.7,168.7 L422.1,174.6 L422.1,124.4 L356.3,121.6 Z M156.7,63.4 L290.5,64.8 L290.5,14.0 L156.7,14.0 L156.7,63.4 Z M422.1,68.4 L488.0,71.2 L599.9,71.8 L599.9,29.4 L422.1,18.2 L422.1,68.4 Z M731.5,93.3 L915.9,84.8 L915.9,70.2 L731.5,78.7 L731.5,93.3 Z M915.9,61.6 L1159.4,51.7 L1159.4,14.3 L915.9,24.8 L915.9,61.6 Z" fill="#F4E3B6" stroke="#ffffff" stroke-width="0.5"/><path d="M488.0,176.0 L731.5,163.6 L731.5,126.2 L685.5,128.4 L488.0,127.2 L422.1,124.4 L422.1,174.6 L488.0,176.0 Z M685.5,95.5 L731.5,93.3 L731.5,78.7 L685.5,80.9 L599.9,80.4 L599.9,95.0 L685.5,95.5 Z M1159.4,107.7 L915.9,117.7 L915.9,154.5 L1159.4,145.1 L1159.4,107.7 Z M915.9,84.8 L1159.4,74.8 L1159.4,60.2 L915.9,70.2 L915.9,84.8 Z" fill="#BBD3EC" stroke="#ffffff" stroke-width="0.5"/><path d="M350.0,88.6 L422.1,91.5 L422.1,76.9 L356.3,74.1 L290.5,73.4 L290.5,88.0 L350.0,88.6 Z M290.5,14.0 L290.5,64.8 L356.3,65.6 L422.1,68.4 L422.1,18.2 L356.3,14.0 L290.5,14.0 Z M599.9,29.4 L599.9,71.8 L685.5,72.4 L731.5,70.2 L731.5,32.8 L685.5,34.8 L599.9,29.4 Z M915.9,154.5 L915.9,117.7 L731.5,126.2 L731.5,163.6 L915.9,154.5 Z" fill="#A9C7E8" stroke="#ffffff" stroke-width="0.5"/><path d="M14.0,117.8 L356.3,121.6 L488.0,127.2 L685.5,128.4 L896.1,118.5 L1166.0,107.4 L1166.0,98.9 L896.1,109.9 L685.5,119.8 L488.0,118.6 L356.3,113.0 L14.0,109.3 L14.0,117.8 Z M14.0,70.3 L356.3,74.1 L488.0,79.7 L685.5,80.9 L896.1,71.0 L1166.0,59.9 L1166.0,51.4 L896.1,62.4 L685.5,72.4 L488.0,71.2 L356.3,65.6 L14.0,61.8 L14.0,70.3 Z" fill="#E3E1DC" stroke="#ffffff" stroke-width="0.5"/><path d="M14.0,109.3 L79.8,110.0 L79.8,95.4 L14.0,94.7 L14.0,109.3 Z M14.0,84.9 L79.8,85.7 L79.8,71.1 L14.0,70.3 L14.0,84.9 Z M156.7,86.5 L290.5,88.0 L290.5,73.4 L156.7,71.9 L156.7,86.5 Z M494.0,118.7 L599.9,119.3 L599.9,104.7 L488.0,104.0 L422.1,101.2 L422.1,115.8 L494.0,118.7 Z M731.5,70.2 L915.9,61.6 L915.9,24.8 L731.5,32.8 L731.5,70.2 Z" fill="#E7D2A8" stroke="#ffffff" stroke-width="0.5"/><path d="M14.0,94.7 L356.3,98.4 L488.0,104.0 L685.5,105.2 L896.1,95.3 L1166.0,84.3 L1166.0,74.6 L896.1,85.6 L685.5,95.5 L488.0,94.3 L356.3,88.7 L14.0,84.9 L14.0,94.7 Z" fill="#BFDDB4" stroke="#ffffff" stroke-width="0.5"/><path d="M14.0,165.6 L79.8,167.1 L79.8,118.5 L14.0,117.8 L14.0,165.6 Z M156.7,86.5 L156.7,71.9 L79.8,71.1 L79.8,85.7 L156.7,86.5 Z M79.8,62.5 L156.7,63.4 L156.7,14.0 L79.8,14.0 L79.8,62.5 Z" fill="#F2C3B4" stroke="#ffffff" stroke-width="0.5"/><path d="M79.8,110.0 L156.7,110.8 L156.7,96.2 L79.8,95.4 L79.8,110.0 Z M685.5,119.8 L731.5,117.7 L731.5,103.1 L685.5,105.2 L599.9,104.7 L599.9,119.3 L685.5,119.8 Z M915.9,109.1 L1159.4,99.2 L1159.4,84.6 L915.9,94.5 L915.9,109.1 Z" fill="#F6D9A8" stroke="#ffffff" stroke-width="0.5"/><path d="M290.5,112.3 L356.3,113.0 L422.1,115.8 L422.1,101.2 L356.3,98.4 L290.5,97.7 L290.5,112.3 Z M731.5,117.7 L915.9,109.1 L915.9,94.5 L731.5,103.1 L731.5,117.7 Z" fill="#FFFFFF" stroke="#ffffff" stroke-width="0.5"/><path d="M79.8,167.1 L156.7,168.7 L156.7,119.4 L79.8,118.5 L79.8,167.1 Z" fill="#C9BEE0" stroke="#ffffff" stroke-width="0.5"/><path d="M156.7,110.8 L290.5,112.3 L290.5,97.7 L156.7,96.2 L156.7,110.8 Z M1166.0,107.4 L1159.4,107.7 L1159.4,145.1 L1166.0,144.8 L1166.0,107.4 Z M1159.4,84.6 L1159.4,99.2 L1166.0,98.9 L1166.0,84.3 L1159.4,84.6 Z M1159.4,74.8 L1166.0,74.6 L1166.0,59.9 L1159.4,60.2 L1159.4,74.8 Z M1159.4,51.7 L1166.0,51.4 L1166.0,14.0 L1159.4,14.3 L1159.4,51.7 Z" fill="#D3E4CC" stroke="#ffffff" stroke-width="0.5"/><path d="M422.1,91.5 L488.0,94.3 L599.9,95.0 L599.9,80.4 L488.0,79.7 L422.1,76.9 L422.1,91.5 Z" fill="#CFE3D2" stroke="#ffffff" stroke-width="0.5"/><path d="M14.0,94.7 L356.3,98.4 L488.0,104.0 L685.5,105.2 L896.1,95.3 L1166.0,84.3 L1166.0,74.6 L896.1,85.6 L685.5,95.5 L488.0,94.3 L356.3,88.7 L14.0,84.9 L14.0,94.7 Z" fill="#BFDDB4" stroke="none"/><path d="M156.7,110.8 L290.5,112.3 L290.5,97.7 L156.7,96.2 L156.7,110.8 Z M1166.0,107.4 L1159.4,107.7 L1159.4,145.1 L1166.0,144.8 L1166.0,107.4 Z M1159.4,84.6 L1159.4,99.2 L1166.0,98.9 L1166.0,84.3 L1159.4,84.6 Z M1159.4,74.8 L1166.0,74.6 L1166.0,59.9 L1159.4,60.2 L1159.4,74.8 Z M1159.4,51.7 L1166.0,51.4 L1166.0,14.0 L1159.4,14.3 L1159.4,51.7 Z" fill="#BFDDB4" stroke="none"/><path d="M185.2,96.6 L251.0,97.3 L251.0,87.5 L185.2,86.8 L185.2,96.6 Z" fill="#B9B4A6" stroke="none"/><path d="M327.3,98.1 L385.3,99.7 L385.3,89.9 L356.3,88.7 L327.3,88.4 L327.3,98.1 Z" fill="#B9B4A6" stroke="none"/><path d="M481.4,103.7 L553.8,104.4 L553.8,94.7 L481.4,94.0 L481.4,103.7 Z" fill="#B9B4A6" stroke="none"/><path d="M797.4,100.0 L863.2,96.9 L863.2,87.1 L797.4,90.2 L797.4,100.0 Z" fill="#B9B4A6" stroke="none"/><path d="M53.5,166.5 L53.5,14.0" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M119.3,167.9 L119.3,14.0" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M185.2,169.4 L185.2,14.0" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M257.6,171.0 L257.6,14.0" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M356.3,173.1 L356.3,14.0" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M461.6,175.4 L461.6,20.6" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M553.8,172.7 L553.8,26.5" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M646.0,168.0 L646.0,32.3" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M705.2,164.9 L705.2,33.9" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M784.2,160.9 L784.2,30.5" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M869.8,156.6 L869.8,26.8" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M961.9,152.7 L961.9,22.8" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M1054.1,149.2 L1054.1,18.8" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M1133.1,146.1 L1133.1,15.4" fill="none" stroke="#2A78D6" stroke-width="1.6"/><path d="M119.3,91.0 L140.4,54.5" fill="none" stroke="#EB6834" stroke-width="2.2"/><path d="M672.3,100.3 L693.4,63.8" fill="none" stroke="#EB6834" stroke-width="2.2"/><path d="M1014.6,85.6 L1035.7,49.1" fill="none" stroke="#EB6834" stroke-width="2.2"/><path d="M14.0,89.8 L356.3,93.6 L488.0,99.2 L685.5,100.4 L896.1,90.4 L1166.0,79.4" fill="none" stroke="#141719" stroke-width="2.6" stroke-linecap="round"/><path d="M915.9,141.7 L915.9,27.5 L1159.4,27.5 L1159.4,141.7 L915.9,141.7 Z" fill="none" stroke="#EB6834" stroke-width="1.8"/><text x="1038" y="16" class="mlabel" text-anchor="middle" style="font-weight:700">众智园共练场</text><line x1="916" y1="21" x2="1159" y2="21" stroke="#EB6834" stroke-width="2.4"/><path d="M599.9,152.1 L599.9,37.9 L731.5,37.9 L731.5,152.1 L599.9,152.1 Z" fill="none" stroke="#EB6834" stroke-width="1.8"/><text x="666" y="16" class="mlabel" text-anchor="middle" style="font-weight:700">原点共练场</text><line x1="600" y1="21" x2="732" y2="21" stroke="#EB6834" stroke-width="2.4"/><path d="M79.8,152.1 L79.8,17.1 L156.7,17.1 L156.7,152.1 L79.8,152.1 Z" fill="none" stroke="#EB6834" stroke-width="1.8"/><text x="118" y="16" class="mlabel" text-anchor="middle" style="font-weight:700">大钟寺共练场</text><line x1="80" y1="21" x2="157" y2="21" stroke="#EB6834" stroke-width="2.4"/><circle cx="43.0" cy="97.4" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="112.7" cy="84.2" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="129.9" cy="104.5" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="218.1" cy="92.0" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="349.7" cy="108.1" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="503.8" cy="99.3" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="659.1" cy="89.2" r="4.6" fill="#EB6834" stroke="#EB6834" stroke-width="1.4"/><circle cx="692.0" cy="111.6" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="830.3" cy="93.5" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><circle cx="994.8" cy="77.9" r="4.6" fill="#EB6834" stroke="#EB6834" stroke-width="1.4"/><circle cx="1077.8" cy="93.4" r="4.6" fill="#EB6834" stroke="#EB6834" stroke-width="1.4"/><circle cx="1143.6" cy="80.3" r="3.4" fill="#FFFFFF" stroke="#EB6834" stroke-width="1.4"/><path d="M14.0,165.6 L14.0,14.0 L356.3,14.0 L685.5,34.8 L1166.0,14.0 L1166.0,144.8 L896.1,155.2 L488.0,176.0 L14.0,165.6 Z" fill="none" stroke="#8A9299" stroke-width="1" stroke-dasharray="5 3"/><text x="1166" y="186" class="mlabel" text-anchor="end">北 ▸ 北五环</text><text x="14" y="186" class="mlabel">◂ 南 西直门</text></svg>
+  <div class="legend">
+    <span><i class="sw" style="background:#BFDDB4"></i>公园绿地（既有绿廊）</span>
+    <span><i class="sw" style="background:#B9B4A6"></i>静段：不玩的权利</span>
+    <span><i class="ln"></i>可玩主线</span>
+    <span><i class="ln" style="border-color:#2A78D6"></i>东西缝合横穿</span>
+    <span><i class="ln" style="border-color:#EB6834"></i>重点区域 / 轨道接驳</span>
+    <span><i class="sw" style="background:#EB6834;border-radius:50%;width:10px;height:10px"></i>产业测试验证场景</span>
+  </div>
+</section>
+
+<section id="scope">
+  <h2>三层范围<span class="en">Three-level scope</span></h2>
+  <p class="lead">三层范围不是三张图纸的比例差别，而是同一个问题在三个尺度上的不同回答：智能体进入城市时，人在什么位置？</p>
+  <div class="grid g3">
+    <div class="card"><h3>统筹研究范围 约43.6 km²</h3>
+      <p>回答“关系”：京张这条带在全球AI创新网络中承担的不可替代职能是验证与对话。</p></div>
+    <div class="card"><h3>总体设计范围 约11.4 km²</h3>
+      <p>回答“结构”：控规深度的城市设计，本包复算面积
+      <b data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</b>（与公告口径相差约0.11%）。</p></div>
+    <div class="card"><h3>重点区域范围 约368.4 ha</h3>
+      <p>回答“体验”：具体的人在具体的空间里，怎样与具体的智能体相处。</p></div>
+  </div>
+</section>
+
+<section id="keys">
+  <h2>重点区域<span class="en">Key areas · mutual training grounds</span></h2>
+  <p class="lead">三处重点区域各自是一个人机共练场，共享同一套进入规则；范围为临时粗略 polygon，结论仅作方向性设计。</p>
+  <div class="grid g3"><div class="card"><h3>众智园共练场</h3><p style="color:var(--signal);font-weight:600">机器人与低速自动驾驶</p><p style="margin-top:8px">公告口径 192.1 ha · 临时 polygon 复算 192.9 ha</p><p style="margin-top:8px;color:var(--ink3)">进入即知情 · 参与可选 · 随时退出 · 人工复核兜底</p></div><div class="card"><h3>原点共练场</h3><p style="color:var(--signal);font-weight:600">具身智能与青年共创</p><p style="margin-top:8px">公告口径 104.3 ha · 临时 polygon 复算 104.3 ha</p><p style="margin-top:8px;color:var(--ink3)">进入即知情 · 参与可选 · 随时退出 · 人工复核兜底</p></div><div class="card"><h3>大钟寺共练场</h3><p style="color:var(--signal);font-weight:600">智能原生消费与城市感知</p><p style="margin-top:8px">公告口径 72.0 ha · 临时 polygon 复算 72.0 ha</p><p style="margin-top:8px;color:var(--ink3)">进入即知情 · 参与可选 · 随时退出 · 人工复核兜底</p></div></div>
+</section>
+
+<section id="landuse">
+  <h2>用地分区<span class="en">Land use</span></h2>
+  <p class="lead">一次平面剖分产生的12类用地，全域无缝隙、无重叠。广场4.01%与留白2.81%偏高，是主动选择而非统计误差。</p>
+  <table><thead><tr><th>用地</th><th class="num">面积</th>
+  <th class="num">占比</th><th></th></tr></thead><tbody><tr><td><span class="sw" style="background:#F4E3B6"></span> 城镇住宅用地 <span class="pill">0701</span></td><td class="num">3,011,057 m²</td><td class="num">26.38%</td><td style="width:26%"><div class="bar"><i style="width:94.2%;background:#F4E3B6;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#BBD3EC"></span> 科研用地 <span class="pill">0802</span></td><td class="num">1,945,070 m²</td><td class="num">17.04%</td><td style="width:26%"><div class="bar"><i style="width:60.9%;background:#BBD3EC;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#A9C7E8"></span> 教育用地 <span class="pill">0804</span></td><td class="num">1,430,970 m²</td><td class="num">12.54%</td><td style="width:26%"><div class="bar"><i style="width:44.8%;background:#A9C7E8;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#E3E1DC"></span> 城镇村道路用地 <span class="pill">1207</span></td><td class="num">1,362,152 m²</td><td class="num">11.94%</td><td style="width:26%"><div class="bar"><i style="width:42.6%;background:#E3E1DC;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#E7D2A8"></span> 社区服务设施用地 <span class="pill">0702</span></td><td class="num">922,876 m²</td><td class="num">8.09%</td><td style="width:26%"><div class="bar"><i style="width:28.9%;background:#E7D2A8;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#BFDDB4"></span> 公园绿地 <span class="pill">1401</span></td><td class="num">778,372 m²</td><td class="num">6.82%</td><td style="width:26%"><div class="bar"><i style="width:24.4%;background:#BFDDB4;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#F2C3B4"></span> 商业服务业用地 <span class="pill">05</span></td><td class="num">559,400 m²</td><td class="num">4.90%</td><td style="width:26%"><div class="bar"><i style="width:17.5%;background:#F2C3B4;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#F6D9A8"></span> 广场用地 <span class="pill">1403</span></td><td class="num">458,218 m²</td><td class="num">4.01%</td><td style="width:26%"><div class="bar"><i style="width:14.3%;background:#F6D9A8;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#FFFFFF"></span> 留白用地 <span class="pill">16</span></td><td class="num">320,245 m²</td><td class="num">2.81%</td><td style="width:26%"><div class="bar"><i style="width:10.0%;background:#FFFFFF;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#C9BEE0"></span> 文化用地 <span class="pill">0803</span></td><td class="num">261,302 m²</td><td class="num">2.29%</td><td style="width:26%"><div class="bar"><i style="width:8.2%;background:#C9BEE0;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#D3E4CC"></span> 防护绿地 <span class="pill">1402</span></td><td class="num">183,047 m²</td><td class="num">1.60%</td><td style="width:26%"><div class="bar"><i style="width:5.7%;background:#D3E4CC;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr><tr><td><span class="sw" style="background:#CFE3D2"></span> 体育用地 <span class="pill">0805</span></td><td class="num">180,137 m²</td><td class="num">1.58%</td><td style="width:26%"><div class="bar"><i style="width:5.6%;background:#CFE3D2;border-right:1px solid rgba(0,0,0,.15)"></i></div></td></tr></tbody></table>
+</section>
+
+<section id="mobility">
+  <h2>交通慢行<span class="en">Walking and Cycling Network &amp; east-west stitching</span></h2>
+  <p class="lead">14处东西缝合横穿，平均间距约694米，目标是让绿廊任一侧的居民步行5分钟内可以穿越到另一侧。</p>
+  <svg class="map" viewBox="0 0 1180 118" role="img" aria-label="沿主线展开图"><rect x="0" y="0" width="1180" height="118" fill="#F6F4EF"/><rect x="16" y="52" width="1148" height="18" fill="#CDE3C2"/><rect x="186.6" y="52" width="65.6" height="18" fill="#B9B4A6"/><text x="219" y="84" class="mlabel" text-anchor="middle">静段</text><rect x="328.3" y="52" width="57.7" height="18" fill="#B9B4A6"/><text x="357" y="84" class="mlabel" text-anchor="middle">静段</text><rect x="481.8" y="52" width="72.2" height="18" fill="#B9B4A6"/><text x="518" y="84" class="mlabel" text-anchor="middle">静段</text><rect x="796.6" y="52" width="65.6" height="18" fill="#B9B4A6"/><text x="829" y="84" class="mlabel" text-anchor="middle">静段</text><line x1="55.4" y1="46" x2="55.4" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="121.0" y1="46" x2="121.0" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="186.6" y1="46" x2="186.6" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="258.7" y1="46" x2="258.7" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="357.1" y1="46" x2="357.1" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="462.1" y1="46" x2="462.1" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="553.9" y1="46" x2="553.9" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="645.8" y1="46" x2="645.8" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="704.8" y1="46" x2="704.8" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="783.5" y1="46" x2="783.5" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="868.8" y1="46" x2="868.8" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="960.6" y1="46" x2="960.6" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="1052.5" y1="46" x2="1052.5" y2="76" stroke="#2A78D6" stroke-width="1.8"/><line x1="1131.2" y1="46" x2="1131.2" y2="76" stroke="#2A78D6" stroke-width="1.8"/><rect x="914.7" y="30" width="242.7" height="9" fill="#EB6834" opacity="0.9"/><text x="1036" y="24" class="mlabel" text-anchor="middle">众智园共练场</text><rect x="599.8" y="30" width="131.2" height="9" fill="#EB6834" opacity="0.9"/><text x="665" y="24" class="mlabel" text-anchor="middle">原点共练场</text><rect x="81.6" y="30" width="76.6" height="9" fill="#EB6834" opacity="0.9"/><text x="120" y="24" class="mlabel" text-anchor="middle">大钟寺共练场</text><line x1="16" y1="102" x2="1164" y2="102" stroke="#8A9299" stroke-width="0.8"/><text x="590" y="114" class="mlabel" text-anchor="middle">南 西直门 ← 9,720.7 m 可玩主线 → 北 北五环</text></svg>
+  <div class="grid g4" style="margin-top:14px">
+    <div class="tile"><div class="tv" data-metric="playable_spine_length_m" data-value="9720.7">9,720.7 m</div><div class="tl">可玩主线长度</div><div class="tn">与官方9公里贯通口径一致</div></div>
+    <div class="tile"><div class="tv" data-metric="stitch_crossing_count" data-value="14">14</div><div class="tl">东西缝合横穿数量</div><div class="tn">把绿廊从边界变成门槛</div></div>
+    <div class="tile"><div class="tv" data-metric="stitch_crossing_mean_spacing_m" data-value="694.3">694.3 m</div><div class="tl">横穿平均间距</div><div class="tn">目标：步行5分钟可穿越</div></div>
+    <div class="tile"><div class="tv" data-metric="road_land_ratio" data-value="0.119353">11.94%</div><div class="tl">道路用地比例</div><div class="tn">概念性划分，不代表道路红线</div></div>
+  </div>
+</section>
+
+<section id="bluegreen">
+  <h2>蓝绿公共空间<span class="en">Blue-green &amp; public space</span></h2>
+  <p class="lead">绿地率与公共空间比例支撑的是两件不同的事：前者是日常生活质量，后者是创新交往的概率。清河、小月河缺少可用的公开精确水系数据，本包未建立水系图层。</p>
+  <div class="grid g4">
+    <div class="tile"><div class="tv" data-metric="green_ratio" data-value="0.08424">8.42%</div><div class="tl">绿地率（设计口径）</div><div class="tn">非法定绿地率控制值</div></div>
+    <div class="tile"><div class="tv" data-metric="public_space_ratio" data-value="0.06821">6.82%</div><div class="tl">公共空间比例</div><div class="tn">广场 + 可玩留白地</div></div>
+    <div class="tile"><div class="tv" data-metric="reserved_land_ratio" data-value="0.02806">2.81%</div><div class="tl">留白用地比例</div><div class="tn">松散部件理论的用地对应物</div></div>
+    <div class="tile hero"><div class="tv" data-metric="quiet_spine_length_share"
+      data-value="0.227895">22.79%</div>
+      <div class="tl">静段占主线长度比例</div>
+      <div class="tn">本方案给可玩性设的上限：静段内不布设互动、投影、传感与声音场景，且不因活动临时改变。</div></div>
+  </div>
+</section>
+
+<section id="buildings">
+  <h2>建筑与更新项目<span class="en">Buildings and renewal projects</span></h2>
+  <p class="lead">建筑基底为概念体量研究，低置信度，不含容积率、建筑高度、拆改留或权属结论。更新项目清单为概念建议，不构成投资、审批或实施承诺。</p>
+  <div class="grid g3" style="margin-bottom:14px">
+    <div class="tile"><div class="tv" data-metric="building_footprint_area_sqm" data-value="1207973.887">1,207,974 m²</div><div class="tl">建筑基底面积（概念）</div><div class="tn">低置信度概念设计量</div></div>
+    <div class="tile"><div class="tv" data-metric="building_coverage_design_ratio" data-value="0.105844">10.58%</div><div class="tl">建筑基底覆盖率（概念）</div><div class="tn">不等于法定建筑密度</div></div>
+    <div class="tile"><div class="tv" data-metric="civic_square_area_sqm" data-value="458218.253">458,218 m²</div><div class="tl">广场用地面积</div><div class="tn">集中在三处共练场前厅</div></div>
+  </div>
+  <table><thead><tr><th>编号</th><th>项目</th>
+  <th>类型</th><th>分期</th></tr></thead><tbody><tr><td>R-01</td><td>三处共练场前厅广场改造</td><td>公共空间</td><td><span class="pill">近期</span></td></tr><tr><td>R-02</td><td>14处东西缝合横穿补足</td><td>交通慢行</td><td><span class="pill">中期</span></td></tr><tr><td>R-03</td><td>主线两侧首层活化带试点</td><td>建筑界面</td><td><span class="pill">中期</span></td></tr><tr><td>R-04</td><td>4段静段划定与标识</td><td>公共空间</td><td><span class="pill">近期</span></td></tr><tr><td>R-05</td><td>留白地设立与社区共管</td><td>公共空间</td><td><span class="pill">中期</span></td></tr><tr><td>R-06</td><td>12张场景卡分批上线</td><td>场景运营</td><td><span class="pill">近期</span></td></tr><tr><td>R-07</td><td>4处朝圣地标概念深化</td><td>地标</td><td><span class="pill">远期</span></td></tr><tr><td>R-08</td><td>公开评测与校准机制建立</td><td>治理机制</td><td><span class="pill">中期</span></td></tr><tr><td>R-09</td><td>组件库编制与开源发布</td><td>标准工具</td><td><span class="pill">远期</span></td></tr></tbody></table>
+</section>
+
+<section id="scenarios">
+  <h2>AI 场景<span class="en">AI scenario cards</span></h2>
+  <p class="lead">12张场景卡，其中3个为产业测试验证场景。玩法类型采用 Caillois 四类划分，技术策略采用 Innocent 三分（重新利用 / 数据转化 / 对话共创）。四条共同禁止：不做人脸识别用于身份关联、不做无法人工复核的自动判定、不以参与为获得公共服务的条件、不把未成熟技术描述为已可全面部署。</p>
+  <div class="grid g3"><div class="card"><h3>SC-01 · 京张暗号·路灯回声</h3><p><span class="pill">公共场景</span><span class="pill">扮演</span><span class="pill">重新利用</span></p><p style="margin-top:8px">仅用既有市政编号，无人脸、无位置留存</p></div><div class="card"><h3>SC-02 · 让车游戏·大钟寺路口</h3><p><span class="pill test">产业测试验证</span><span class="pill">竞争</span><span class="pill">重新利用</span></p><p style="margin-top:8px">路口既有信号数据，不新增采集</p></div><div class="card"><h3>SC-03 · 看得见的算法·感知可视墙</h3><p><span class="pill">公共场景</span><span class="pill">扮演</span><span class="pill">数据转化</span></p><p style="margin-top:8px">实时展示但不留存，展示系统状态而非身份</p></div><div class="card"><h3>SC-04 · 缝合跳格·东西横穿</h3><p><span class="pill">公共场景</span><span class="pill">眩晕</span><span class="pill">重新利用</span></p><p style="margin-top:8px">无采集，纯物理涂装与构件</p></div><div class="card"><h3>SC-05 · 留白市集·松散部件库</h3><p><span class="pill">公共场景</span><span class="pill">自由玩</span><span class="pill">对话共创</span></p><p style="margin-top:8px">无采集，借还记录留在社区自管台账</p></div><div class="card"><h3>SC-06 · 夜跑影子·遗址步道</h3><p><span class="pill">公共场景</span><span class="pill">眩晕</span><span class="pill">数据转化</span></p><p style="margin-top:8px">红外轮廓不成像、不识别、不落盘</p></div><div class="card"><h3>SC-07 · 机器人陪练场·原点社区</h3><p><span class="pill test">产业测试验证</span><span class="pill">竞争</span><span class="pill">对话共创</span></p><p style="margin-top:8px">自愿登记；训练数据须明示同意并可撤回</p></div><div class="card"><h3>SC-08 · 提示词菜园·公共语料园</h3><p><span class="pill">公共场景</span><span class="pill">自由玩</span><span class="pill">对话共创</span></p><p style="margin-top:8px">公共语料公开可查，不收录个人信息</p></div><div class="card"><h3>SC-09 · 校城接力·清华东路门槛</h3><p><span class="pill">公共场景</span><span class="pill">竞争</span><span class="pill">重新利用</span></p><p style="margin-top:8px">无个人数据，仅统计通过量</p></div><div class="card"><h3>SC-10 · 低速路权演习·众智园</h3><p><span class="pill test">产业测试验证</span><span class="pill">竞争</span><span class="pill">对话共创</span></p><p style="margin-top:8px">产业测试验证场景：公共侧仅展示聚合指标</p></div><div class="card"><h3>SC-11 · 无人配送迷宫·测试验证</h3><p><span class="pill test">产业测试验证</span><span class="pill">机遇</span><span class="pill">数据转化</span></p><p style="margin-top:8px">产业测试验证场景：行人影像不留存</p></div><div class="card"><h3>SC-12 · 北门户扳道·选择投票站</h3><p><span class="pill">公共场景</span><span class="pill">机遇</span><span class="pill">对话共创</span></p><p style="margin-top:8px">投票匿名、结果公开、不绑定身份</p></div></div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="tile"><div class="tv" data-metric="scenario_node_count" data-value="12">12</div><div class="tl">AI场景节点数量</div><div class="tn">满足任务书不少于10张</div></div>
+    <div class="tile"><div class="tv" data-metric="industry_test_scenario_count" data-value="3">3</div><div class="tl">产业测试验证场景数量</div><div class="tn">须依法另行申请，不构成已批准运营</div></div>
+    <div class="tile"><div class="tv" data-metric="ai_service_zone_area_sqm" data-value="3692893.005">3,692,893 m²</div><div class="tl">人机共练场面积</div><div class="tn">与三处重点区域同形</div></div>
+  </div>
+</section>
+
+<section id="metrics">
+  <h2>核心指标<span class="en">Core metrics</span></h2>
+  <p class="lead">42项 known 指标全部由本包 geometry/*.geojson 在 EPSG:4548 下复算，可用 scripts/spatial_review.py 独立复核；7项法定管控条件缺失，记为待补，不作估算。</p>
+  <div class="grid g4">
+    <div class="tile"><div class="tv" data-metric="site_area_sqm" data-value="11412825.386">11,412,825 m²</div><div class="tl">总体设计范围面积</div><div class="tn">临时边界口径，非官方红线</div></div>
+    <div class="tile"><div class="tv" data-metric="green_space_area_sqm" data-value="961419.455">961,419 m²</div><div class="tl">绿地与开敞空间面积</div><div class="tn">含既有9公里绿廊</div></div>
+    <div class="tile"><div class="tv" data-metric="public_space_area_sqm" data-value="778463.201">778,463 m²</div><div class="tl">公共空间面积</div><div class="tn">广场 + 留白地</div></div>
+    <div class="tile"><div class="tv" data-metric="key_detailed_design_area_sqm" data-value="3692893.005">3,692,893 m²</div><div class="tl">重点区域合计面积</div><div class="tn">与公告368.4公顷相差约0.24%</div></div>
+  </div>
+  <table style="margin-top:16px"><thead><tr><th>待正式条件补齐的法定管控指标</th>
+  <th>状态</th></tr></thead><tbody>
+  <tr><td>法定容积率 / floor_area_ratio</td><td><span class="pill warn">unknown</span></td></tr><tr><td>总建筑规模 / total_floor_area_sqm</td><td><span class="pill warn">unknown</span></td></tr><tr><td>法定建筑高度 / building_height_m</td><td><span class="pill warn">unknown</span></td></tr><tr><td>法定建筑密度 / building_density_official</td><td><span class="pill warn">unknown</span></td></tr><tr><td>法定绿地率 / green_ratio_official_control</td><td><span class="pill warn">unknown</span></td></tr><tr><td>法定退线 / setback_m</td><td><span class="pill warn">unknown</span></td></tr><tr><td>拆改留比例 / existing_building_retain_demolish_split</td><td><span class="pill warn">unknown</span></td></tr>
+  </tbody></table>
+</section>
+
+<section id="compliance">
+  <h2>任务覆盖<span class="en">Task coverage</span></h2>
+  <p class="lead">公告 1.3、1.4、1.5 的全部任务与面向智能体任务书 agent.1—agent.6 共 23 项强制要求，均在任务覆盖矩阵中逐条对应到正文章节、几何图层、指标与图纸。</p>
+  <table><thead><tr><th>编号</th><th>智能体任务</th><th>状态</th></tr></thead>
+  <tbody><tr><td>agent.1</td><td>一带总体概念与功能统筹方案设计</td><td><span class="pill ok">已在正文展开</span></td></tr><tr><td>agent.2</td><td>AI全栈自主创新体系与世界级AI创新生态设计</td><td><span class="pill ok">已在正文展开</span></td></tr><tr><td>agent.3</td><td>AI+场景赋能新范式与智能化AI活力城市设计</td><td><span class="pill ok">已在正文展开</span></td></tr><tr><td>agent.4</td><td>AI公共空间、智能原生新业态与朝圣地标设计</td><td><span class="pill ok">已在正文展开</span></td></tr><tr><td>agent.5</td><td>百年京张文化、中关村文化与AI新文化融合叙事设计</td><td><span class="pill ok">已在正文展开</span></td></tr><tr><td>agent.6</td><td>一带全球AI创新活动体系与长期运营设计</td><td><span class="pill ok">已在正文展开</span></td></tr></tbody></table>
+</section>
+
+<section id="selfcheck">
+  <h2>自检状态<span class="en">Self-check status</span></h2>
+  <div class="status">
+    <div class="sc"><b>deterministic validation</b><span>结构、双语配套、引用密度与风险模式检查</span></div>
+    <div class="sc"><b>spatial review</b><span>用地全覆盖无重叠、要素在范围内、指标与几何一致</span></div>
+    <div class="sc"><b>visual packaging check</b><span>离线、无远程资源、指标与 metrics.json 一致</span></div>
+    <div class="sc"><b>professional evidence review</b><span>标准、设计深度与证据链完整性</span></div>
+    <div class="sc pending"><b>已知限制</b><span>使用 provisional 边界；官方 polygon 补齐后须整体重算。</span></div>
+  </div>
+</section>
+
+<section id="sources">
+  <h2>来源<span class="en">Sources</span></h2>
+  <p class="lead">本方案仅使用公开或已清权资料，共 54 条来源记录在 sources.json（含发布者、链接、时间、许可与已知限制）。以下为主要条目。</p>
+  <ul><li><b>SITE-PACKAGE</b> — 百年京张AI创新带资料包（design_brief / enums / ranges / standards / schemas）（open-city-ai/haidian）</li><li><b>SOURCE-REGISTRY</b> — 公开来源可用性登记表（open-city-ai/haidian）</li><li><b>PROCESSED-FACT-PACK</b> — Agent 事实导航层（open-city-ai/haidian） <span class="pill warn">background_only</span></li><li><b>BOUNDARY-SOURCE</b> — 总体设计范围临时替代边界 PROV-SITE-001（open-city-ai/haidian） <span class="pill warn">provisional_only</span></li><li><b>KEY-AREA-SOURCE</b> — 三处重点区域临时替代边界 PROV-KEY-001/002/003（open-city-ai/haidian） <span class="pill warn">provisional_only</span></li><li><b>AGENT-TASKBOOK</b> — 面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录（open-city-ai/haidian）</li><li><b>OFFICIAL-ANNOUNCEMENT</b> — 《百年京张AI创新带城市设计国际方案征集资格预审公告》（北京市规划和自然资源委员会，2026-05-09） <a href="https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html">https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html</a></li><li><b>HAIDIAN-REVIEW-20260724</b> — 《为顶尖人才配社交圈，为居民布设AI场景……百年京张AI创新带最新进展》（北京日报，2026-07-27） <a href="https://peking.bjd.com.cn/content/s6a66f20ce4b0e45f3fd54192.html">https://peking.bjd.com.cn/content/s6a66f20ce4b0e45f3fd54192.html</a></li><li><b>PARK-PHASE2-20260806</b> — 《京张铁路遗址公园二期建成 打造9公里复合型城市遗址绿廊》（千龙网 / 北京商报，2026-08-06） <a href="https://beijing.qianlong.com/2026/0806/8708531.shtml">https://beijing.qianlong.com/2026/0806/8708531.shtml</a></li><li><b>PARK-PHASE1-20230629</b> — 《京张铁路遗址公园一期正式开放》（首都之窗（北京市人民政府门户网站），2023-06-30） <a href="https://www.beijing.gov.cn/renwen/cshd/202306/t20230630_3150675.html">https://www.beijing.gov.cn/renwen/cshd/202306/t20230630_3150675.html</a></li><li><b>JINGZHANG-HISTORY</b> — 《百年京张 见证铁路发展国力飞跃》（新华网，2024-11-13） <a href="http://www.news.cn/house/20241113/ad8d061b609746e89c3ea32c2eeb906a/c.html">http://www.news.cn/house/20241113/ad8d061b609746e89c3ea32c2eeb906a/c.html</a></li><li><b>TSINGHUA-STATION</b> — 《清华园车站旧址开放》（新华网，2023-03-27） <a href="http://www.news.cn/culture/20230327/543bac887b044094af6bf66f3b9d7bc0/c.html">http://www.news.cn/culture/20230327/543bac887b044094af6bf66f3b9d7bc0/c.html</a></li><li><b>JINGZHANG-LINE-CLOSURE</b> — 《下月起京张铁路清华园站取消 北京北站客运停办3年》（中国新闻网，2016-10-26） <a href="https://www.chinanews.com.cn/m/sh/2016/10-26/8043563.shtml">https://www.chinanews.com.cn/m/sh/2016/10-26/8043563.shtml</a></li><li><b>DAZHONGSI-MUSEUM</b> — 《大钟寺古钟博物馆》（首都之窗（北京市人民政府门户网站），2021-07-28） <a href="https://www.beijing.gov.cn/renwen/rwzyd/gdwh/dzsgzbwg/202107/t20210728_2450505.html">https://www.beijing.gov.cn/renwen/rwzyd/gdwh/dzsgzbwg/202107/t20210728_2450505.html</a></li><li><b>DAZHONGSI-ZHONGKUN</b> — 《中坤广场老旧楼宇转型现代化办公区》（北京青年报（经新浪财经转载），2023-02-28） <a href="https://finance.sina.com.cn/china/gncj/2023-02-28/doc-imyieiem8153912.shtml">https://finance.sina.com.cn/china/gncj/2023-02-28/doc-imyieiem8153912.shtml</a> <span class="pill warn">background_only</span></li><li><b>METRO-LINE13</b> — 《纪实文学｜地铁13号线的23年，见证北京城北的快速崛起》（北京日报，2025-12-01） <a href="https://xinwen.bjd.com.cn/content/s6940aa98e4b06b6f7a7f8649.html">https://xinwen.bjd.com.cn/content/s6940aa98e4b06b6f7a7f8649.html</a> <span class="pill warn">background_only</span></li><li><b>HAIDIAN-AI-STATS-20260330</b> — 《以“头雁”姿态打造全球AI创新高地——北京海淀：“百年京张AI创新带”建设大幕拉开》（新华网，2026-03-30） <a href="https://www.news.cn/tech/20260330/2ed634026af84366b63169dafc1f27df/c.html">https://www.news.cn/tech/20260330/2ed634026af84366b63169dafc1f27df/c.html</a></li><li><b>AI-INNOVATION-BLOCK-20260105</b> — 《北京发布首批人工智能创新街区》（中国新闻网，2026-01-05） <a href="https://www.chinanews.com.cn/cj/2026/01-05/10546451.shtml">https://www.chinanews.com.cn/cj/2026/01-05/10546451.shtml</a></li><li><b>AI-ORIGIN-COMMUNITY-2026</b> — 《AI原点社区入选北京首批AI创新街区》及《北京AI原点社区：全球AI人才创新创业的“第一站”》（海淀区人民政府 / 北京日报，2026-01-05） <a href="https://zyk.bjhd.gov.cn/jbdt/auto4510_51816/auto4510_54705/auto4510/auto4510/202601/t20260105_4799909.shtml">https://zyk.bjhd.gov.cn/jbdt/auto4510_51816/auto4510_54705/auto4510/auto4510/202601/t20260105_4799909.shtml</a></li><li><b>XUEBEI-PARK-2026</b> — 《地铁直达！百年京张AI创新带上，这个科技园即将亮相》（北京市科委中关村管委会，2026-04-14） <a href="https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202604/t20260414_243810.html">https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202604/t20260414_243810.html</a></li><li><b>ZGC-AI-ACTION-2024</b> — 《中关村科学城人工智能全景赋能行动计划（2024—2026年）》（北京市科委中关村管委会，2024-08-21） <a href="https://www.ncsti.gov.cn/zcfg/zcwj/202408/t20240821_176082.html">https://www.ncsti.gov.cn/zcfg/zcwj/202408/t20240821_176082.html</a></li><li><b>HAIDIAN-MODEL-VOUCHER-2026</b> — 《海淀亿元模型券政策落地：最高200万，不用跑审批》（北京市科委中关村管委会，2026-07-06） <a href="https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202607/t20260706_250833.html">https://www.ncsti.gov.cn/kjdt/scyq/zgckxc/zgcdt/202607/t20260706_250833.html</a></li><li><b>BJ-AV-REGULATION-2025</b> — 《北京市自动驾驶汽车条例》（北京市人民代表大会常务委员会，2025-01-03） <a href="https://www.beijing.gov.cn/zhengce/dfxfg/202501/t20250103_3980149.html">https://www.beijing.gov.cn/zhengce/dfxfg/202501/t20250103_3980149.html</a></li><li><b>BJ-DELIVERY-ROBOT-2021</b> — 《高级别自动驾驶示范区无人配送车获准“持证上路”》（首都之窗（北京市人民政府门户网站），2021-05-26） <a href="https://www.beijing.gov.cn/fuwu/lqfw/gggs/202105/t20210526_2398609.html">https://www.beijing.gov.cn/fuwu/lqfw/gggs/202105/t20210526_2398609.html</a></li><li><b>BJ-EMBODIED-AI-2025</b> — 《北京具身智能科技创新与产业培育行动计划（2025—2027年）》（京科信发〔2025〕36号）（北京市科委中关村管委会 / 市发展改革委 / 市经信局，2025-02-27） <a href="https://kw.beijing.gov.cn/zwgk/zcwj/202502/t20250227_4020661.html">https://kw.beijing.gov.cn/zwgk/zcwj/202502/t20250227_4020661.html</a></li><li><b>ZGC-FORUM-2026</b> — 《2026中关村论坛年会3月25日至29日在京举办》（首都之窗（北京市人民政府门户网站），2026-03-19） <a href="https://www.beijing.gov.cn/ywdt/yaowen/202603/t20260319_4561005.html">https://www.beijing.gov.cn/ywdt/yaowen/202603/t20260319_4561005.html</a></li></ul>
+</section>
+
+<section id="assumptions">
+  <h2>假设<span class="en">Assumptions and data gaps</span></h2>
+  <p class="lead">以下事项在正文中一律表述为“待正式条件补齐”，不得当作已确定结论。</p>
+  <ul><li><b>A-BOUNDARY-001</b>（provisional_condition）— 本包提交的总体设计范围线为仓库提供的临时替代边界（PROV-SITE-001），依据公告文字四至、道路名称与约11.4平方公里面积约束反推，属 provisional_constraint，不是官方红线。<br><span style="color:var(--ink3)">重算触发：组织方提供官方 SITE_BOUNDARY polygon 后，按 metrics.json 中各指标的 formula 字段整体重算，并重新生成全部图纸与可视化。</span></li><li><b>A-BOUNDARY-002</b>（provisional_condition）— 三处重点区域为临时粗略矩形 polygon（PROV-KEY-001/002/003）。公告面积（192.1、104.3、72.0公顷）权威，几何形状不权威，矩形边不代表任何地块界线或道路红线。<br><span style="color:var(--ink3)">重算触发：获得官方 KEY_AREA polygon 后重算三处面积、共练场面积与相关图纸。</span></li><li><b>A-CONTROLS-001</b>（pending_professional_confirmation）— 经批准的控规条件缺失：容积率、建筑高度、法定建筑密度、法定绿地率、退线均无公开可用的官方值。<br><span style="color:var(--ink3)">重算触发：取得经批准的控规条件后按公式复算，并重新评估建筑规模相关表述。</span></li><li><b>A-EXISTING-001</b>（pending_professional_confirmation）— 缺少现状建筑普查、层数、结构状况与土地权属资料。<br><span style="color:var(--ink3)">重算触发：取得现状建筑与权属资料后，由具备资质的专业团队另行判断。</span></li><li><b>A-WATER-001</b>（missing_data）— 公告提到清河、小月河等蓝绿资源，但缺少可用的公开精确水系几何数据。<br><span style="color:var(--ink3)">重算触发：取得官方或权威公开水系数据后补充 WATER_SYSTEM 图层并重算蓝绿指标。</span></li><li><b>A-MUNICIPAL-001</b>（missing_data）— 缺少市政承载力、管线、能源负荷与端侧算力部署条件资料。<br><span style="color:var(--ink3)">重算触发：取得市政条件资料后由专业团队测算。</span></li><li><b>A-NAMING-001</b>（source_inconsistency）— 北部重点片区在2026年3—4月的官方与主流媒体报道中称“学北园AI自主创新加速区”，在2026年5月9日征集公告中称“众智园AI自主创新加速区”，未见解释更名原因的公开材料。<br><span style="color:var(--ink3)">重算触发：组织方明确名称口径后统一修订。</span></li><li><b>A-STATS-001</b>（source_inconsistency）— 海淀AI企业数量与备案大模型数量在不同官方来源与时点差异显著（企业超1300家/1900余家/超2000家；大模型76/95/130款）；AI原点社区企业数为300多家/400多家/439家。<br><span style="color:var(--ink3)">重算触发：组织方或官方发布统一口径后更新。</span></li><li><b>A-AV-001</b>（regulatory_condition）— 北京首批无人配送车路权在北京经开区高级别自动驾驶示范区取得，海淀不在其列；《北京市自动驾驶汽车条例》自2025年4月1日施行，要求安全员与人工接管。<br><span style="color:var(--ink3)">重算触发：取得相应路权与许可后，按实际许可条件调整场景表述与空间安排。</span></li><li><b>A-HERITAGE-001</b>（regulatory_condition）— 大钟寺（觉生寺）为1996年公布的全国重点文物保护单位。<br><span style="color:var(--ink3)">重算触发：取得文物主管部门意见后调整。</span></li><li><b>A-PARK-001</b>（recent_change）— 京张铁路遗址公园二期已于2026年8月6日建成开放，全线9公里贯通、约53公顷。不同报道对总面积口径（约53公顷 / 约70公顷）存在差异。<br><span style="color:var(--ink3)">重算触发：组织方提供公园实测范围与面积后核对。</span></li><li><b>A-QUIET-001</b>（design_assumption）— 主线4段静段的位置与长度为概念建议值，按纬度窗口换算，合计约2,215米、占主线长度约22.8%。<br><span style="color:var(--ink3)">重算触发：结合沿线住宅、医院、学校分布，实测噪声与居民意愿调查后重新划定。</span></li><li><b>A-BUILDING-001</b>（design_assumption）— 建筑基底为在可建设用地单元内按95米×95米网格、45米间距程序化生成的概念体量研究，不对应任何现状或规划建筑。<br><span style="color:var(--ink3)">重算触发：取得现状建筑与控规条件后由专业团队重做。</span></li></ul>
+</section>
+
+<footer>
+  本页为面向智能体开源征集的概念建议与参考方案，可供专业团队深化研究，不替代正式规划，不构成政府审定结论、工程可行性判断或实施承诺。所有数值与 metrics.json 一致，几何与 geometry/*.geojson 一致，可独立复核。
+  <br>© 2026 nerhode086 · COMMUNITY-DISPLAY-ONLY
+</footer>
+
+</div>
+</body>
+</html>

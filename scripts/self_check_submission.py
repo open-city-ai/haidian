@@ -4,12 +4,16 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
 from typing import Any
+
+from validate_submission import PERSISTED_READINESS_CONTRACT
 
 
 REVIEW_DEPENDENCIES = ("shapely", "pyproj", "jsonschema")
@@ -24,18 +28,36 @@ def script_path(repo_root: Path, name: str) -> Path:
 
 
 def run_json_command(command: list[str]) -> dict[str, Any]:
-    completed = subprocess.run(command, capture_output=True, text=True, check=False)
+    # Validator subprocesses emit UTF-8 JSON and often include Chinese
+    # diagnostics.  Do not let the contributor's Windows code page decide how
+    # those bytes are decoded (GBK/cp936 otherwise crashes before a report is
+    # produced). Keep the same contract for the complete Python child tree,
+    # including validators that invoke another validator.
+    environment = os.environ.copy()
+    environment["PYTHONUTF8"] = "1"
+    environment["PYTHONIOENCODING"] = "utf-8"
+    completed = subprocess.run(
+        command,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+        check=False,
+        env=environment,
+    )
     parsed: Any = {}
-    if completed.stdout.strip():
+    stdout = completed.stdout or ""
+    stderr = completed.stderr or ""
+    if stdout.strip():
         try:
-            parsed = json.loads(completed.stdout)
+            parsed = json.loads(stdout)
         except json.JSONDecodeError:
-            parsed = {"raw_stdout": completed.stdout}
+            parsed = {"raw_stdout": stdout}
     return {
         "returncode": completed.returncode,
         "ok": completed.returncode == 0,
         "stdout": parsed,
-        "stderr": completed.stderr.strip(),
+        "stderr": stderr.strip(),
     }
 
 
@@ -180,21 +202,28 @@ def can_enter_formal_review(stage: str, report: dict[str, Any]) -> bool:
     return stage == "formal" and bool(report.get("ok"))
 
 
-def build_self_check(repo_root: Path, submission_dir: Path, pr_author: str) -> dict[str, Any]:
+def build_self_check(
+    repo_root: Path,
+    submission_dir: Path,
+    pr_author: str,
+    *,
+    allow_pending_self_check: bool = False,
+) -> dict[str, Any]:
     repo_root = repo_root.resolve()
     submission_dir = submission_dir.resolve()
-    validation = run_json_command(
-        [
-            sys.executable,
-            str(script_path(repo_root, "validate_local_submission.py")),
-            str(submission_dir),
-            "--repo-root",
-            str(repo_root),
-            "--pr-author",
-            pr_author,
-            "--json",
-        ]
-    )
+    validation_command = [
+        sys.executable,
+        str(script_path(repo_root, "validate_local_submission.py")),
+        str(submission_dir),
+        "--repo-root",
+        str(repo_root),
+        "--pr-author",
+        pr_author,
+        "--json",
+    ]
+    if allow_pending_self_check:
+        validation_command.append("--allow-pending-self-check")
+    validation = run_json_command(validation_command)
     stage = infer_stage(validation, submission_dir)
     missing = missing_review_dependencies()
     if missing:
@@ -285,12 +314,108 @@ def format_markdown(report: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _self_check_gate_checks(report: dict[str, Any]) -> list[dict[str, str]]:
+    gates = [
+        ("DETERMINISTIC_VALIDATION", "deterministic_validation", "validate_local_submission.py"),
+        ("SPATIAL_REVIEW", "spatial_review", "spatial_review.py"),
+        ("VISUAL_PACKAGING", "visual_review", "visual_review.py"),
+        ("PROFESSIONAL_EVIDENCE", "professional_review", "professional_review.py"),
+    ]
+    checks = []
+    for check_id, report_key, target in gates:
+        gate = report.get(report_key)
+        passed = isinstance(gate, dict) and gate.get("ok") is True
+        checks.append(
+            {
+                "check_id": check_id,
+                "result": "pass" if passed else "fail",
+                "severity": "blocking",
+                "target": target,
+                "message": f"{report_key}: {'PASS' if passed else 'FAIL'}",
+            }
+        )
+    return checks
+
+
+def _report_without_pending_warning(report: dict[str, Any]) -> dict[str, Any]:
+    """Remove only the temporary pending-claim warning before persisting evidence."""
+    persisted = json.loads(json.dumps(report, ensure_ascii=False))
+    deterministic = persisted.get("deterministic_validation")
+    stdout = deterministic.get("stdout") if isinstance(deterministic, dict) else None
+    if isinstance(stdout, dict) and isinstance(stdout.get("warnings"), list):
+        stdout["warnings"] = [
+            warning
+            for warning in stdout["warnings"]
+            if not str(warning).endswith("; pending self-check completion")
+        ]
+    return persisted
+
+
+def mark_self_checked(submission_dir: Path, report: dict[str, Any]) -> tuple[bool, str]:
+    """Persist the passing four-gate report and its manifest claim atomically enough to retry safely."""
+    if report.get("can_enter_formal_review") is not True:
+        return False, "cannot mark self_checked unless can_enter_formal_review=true"
+    manifest_path = submission_dir / "manifest.json"
+    self_check_path = submission_dir / "self_check.json"
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        existing_self_check = json.loads(self_check_path.read_text(encoding="utf-8"))
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+        return False, f"cannot read manifest.json or self_check.json: {exc}"
+    claim = manifest.get("validation_claim")
+    if not isinstance(claim, dict):
+        return False, "manifest.json is missing validation_claim"
+    if manifest.get("package_state") != "ready_for_review":
+        return False, "package_state must be ready_for_review before marking self_checked"
+    manifest_files = manifest.get("files")
+    self_check_item = None
+    if isinstance(manifest_files, list):
+        self_check_item = next(
+            (
+                item
+                for item in manifest_files
+                if isinstance(item, dict) and item.get("path") == "self_check.json"
+            ),
+            None,
+        )
+    if not isinstance(self_check_item, dict):
+        return False, "manifest.json does not list self_check.json for hash refresh"
+
+    persisted = _report_without_pending_warning(report)
+    schema_version = (
+        existing_self_check.get("schema_version")
+        if isinstance(existing_self_check, dict)
+        else None
+    )
+    persisted["schema_version"] = schema_version or "0.1.0"
+    persisted["checks"] = _self_check_gate_checks(persisted)
+    self_check_bytes = (json.dumps(persisted, ensure_ascii=False, indent=2) + "\n").encode("utf-8")
+    original_manifest = manifest_path.read_bytes()
+    original_self_check = self_check_path.read_bytes()
+    try:
+        self_check_path.write_bytes(self_check_bytes)
+        self_check_item["sha256"] = hashlib.sha256(self_check_bytes).hexdigest()
+        claim["readiness_contract"] = PERSISTED_READINESS_CONTRACT
+        claim["self_checked"] = True
+        manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    except OSError as exc:
+        self_check_path.write_bytes(original_self_check)
+        manifest_path.write_bytes(original_manifest)
+        return False, f"cannot update manifest.json: {exc}"
+    return True, ""
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("submission_dir")
     parser.add_argument("--pr-author", required=True)
     parser.add_argument("--repo-root", default=".")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument(
+        "--mark-self-checked",
+        action="store_true",
+        help="after a passing check, set manifest.validation_claim.self_checked=true and verify it again",
+    )
     args = parser.parse_args()
 
     repo_root = Path(args.repo_root)
@@ -298,7 +423,46 @@ def main() -> int:
     if not submission_dir.is_absolute():
         submission_dir = repo_root / submission_dir
 
-    report = build_self_check(repo_root, submission_dir, args.pr_author)
+    report = build_self_check(
+        repo_root,
+        submission_dir,
+        args.pr_author,
+        allow_pending_self_check=args.mark_self_checked,
+    )
+    if args.mark_self_checked:
+        if report["ok"]:
+            original_manifest = (submission_dir / "manifest.json").read_bytes()
+            original_self_check = (submission_dir / "self_check.json").read_bytes()
+            marked, error = mark_self_checked(submission_dir, report)
+            if not marked:
+                report["ok"] = False
+                report["review_status"] = "revision-requested"
+                report["can_enter_formal_review"] = False
+                report.setdefault("next_actions", []).append(error)
+                report["self_checked_manifest_updated"] = False
+            else:
+                verified = build_self_check(repo_root, submission_dir, args.pr_author)
+                if verified["ok"]:
+                    report = verified
+                    report["self_checked_manifest_updated"] = True
+                else:
+                    try:
+                        (submission_dir / "self_check.json").write_bytes(original_self_check)
+                        (submission_dir / "manifest.json").write_bytes(original_manifest)
+                    except OSError as exc:
+                        error = f"; additionally failed to revert persisted evidence: {exc}"
+                    else:
+                        error = ""
+                    report["ok"] = False
+                    report["review_status"] = "revision-requested"
+                    report["can_enter_formal_review"] = False
+                    report.setdefault("next_actions", []).append(
+                        "Strict validation failed after persisting self-check evidence; changes were reverted"
+                        + error
+                    )
+                    report["self_checked_manifest_updated"] = False
+        else:
+            report["self_checked_manifest_updated"] = False
     if args.json:
         print(json.dumps(report, ensure_ascii=False, indent=2))
     else:

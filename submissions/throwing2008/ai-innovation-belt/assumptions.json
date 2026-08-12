@@ -1,0 +1,114 @@
+{
+  "schema_version": "0.1.0",
+  "note_zh": "本表记录方案的全部数据缺口、临时条件与复算触发条件。",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "详细控规控制指标、道路红线、土地权属、市政管线与工程约束须在取得官方附件后确认，方可用于法定用途。",
+      "statement_en": "Detailed regulatory controls, road redlines, land ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "impact": "容积率、建筑高度、建筑密度、绿地率与退线在 metrics.json 中保持 unknown；方案不给出建设强度结论。",
+      "affected_metrics": [
+        "floor_area_ratio",
+        "building_height_control_m",
+        "building_density_control",
+        "green_ratio_control",
+        "setback_control_m",
+        "total_floor_area_sqm"
+      ],
+      "recalculation_trigger_zh": "取得审定控规条件或官方设计任务书附件后，重新计算并更新全部相关指标与图件。"
+    },
+    {
+      "id": "A-BOUNDARY-002",
+      "status": "provisional_geometry",
+      "statement": "提交范围线采用仓库临时约束范围 PROV-SITE-001，依据公告文字四至与约 11.4 平方公里面积推定，非官方红线。",
+      "statement_en": "The submitted boundary uses provisional constraint PROV-SITE-001, inferred from announcement text and approximate 11.4 km2 area; not an official redline.",
+      "impact": "所有面积、比例与分区指标均带临时精度；EPSG:4548 复算值 11412825 平方米与公告口径偏差约 +0.11%。",
+      "affected_metrics": [
+        "site_area_sqm",
+        "provisional_boundary_area_deviation_ratio",
+        "land_use_coverage_ratio",
+        "green_ratio",
+        "public_space_ratio"
+      ],
+      "recalculation_trigger_zh": "官方精确 polygon 发布后须整体替换边界并重算全部图层、指标、图件与 HTML。"
+    },
+    {
+      "id": "A-KEY-AREA-003",
+      "status": "provisional_geometry",
+      "statement": "三处重点片区采用临时占位矩形，公告未提供四至，仅按名称、南北顺序与约面积在走廊内粗略定位。",
+      "statement_en": "The three key areas use provisional placeholder rectangles; positioned by name, north-south order, and approximate area only.",
+      "impact": "重点片区详细设计的空间落位为概念示意，片区内部地块关系不可作为设计条件。",
+      "affected_metrics": [
+        "key_area_total_area_sqm",
+        "key_area_zhongzhiyuan_ai_acceleration_area_area_sqm",
+        "key_area_beijing_ai_origin_community_area_sqm",
+        "key_area_dazhongsi_ai_industry_cluster_area_sqm"
+      ],
+      "recalculation_trigger_zh": "取得三处重点片区官方 polygon 后须替换并重新组织片区详细设计与面积复算。"
+    },
+    {
+      "id": "A-BUILDING-004",
+      "status": "concept_only",
+      "statement": "建筑基底与层数为示意性概念体量，用于说明界面与体量意图，不表达拆改留结论或建设规模。",
+      "statement_en": "Building footprints and floor counts are indicative concept massing showing frontage and volume intent only.",
+      "impact": "building_footprint_area_sqm 与 building_density_indicative 置信度为 low，不得用于规模测算或投资估算。",
+      "affected_metrics": [
+        "building_footprint_area_sqm",
+        "building_density_indicative",
+        "building_footprint_count"
+      ],
+      "recalculation_trigger_zh": "取得现状建筑普查、权属与结构安全评估后，由专业团队重新判定保留、改造与新建关系。"
+    },
+    {
+      "id": "A-NETWORK-005",
+      "status": "concept_only",
+      "statement": "道路与慢行中心线为概念连接关系示意，不表达道路红线、轨道线位或工程结论。",
+      "statement_en": "Road and slow-mobility centerlines indicate conceptual connectivity only, not redlines, rail alignments, or engineering conclusions.",
+      "impact": "road_centerline_length_m 与 slow_mobility_length_m 置信度为 low，仅用于说明贯通与缝合意图。",
+      "affected_metrics": [
+        "road_centerline_length_m",
+        "slow_mobility_length_m",
+        "transit_connector_count"
+      ],
+      "recalculation_trigger_zh": "须由交通与市政专业团队结合现状路网、轨道规划与工程条件重新核定。"
+    },
+    {
+      "id": "A-HERITAGE-006",
+      "status": "data_gap",
+      "statement": "京张铁路遗址的文物保护范围、建设控制地带与蓝线控制未包含在公开资料包中。",
+      "statement_en": "Heritage protection zones, construction control belts, and blue-line controls for the Jing-Zhang railway heritage are absent from the public site package.",
+      "impact": "遗址公园相关设计建议均按避让优先、不介入本体原则表述，不给出改造或加建结论。",
+      "affected_metrics": [
+        "green_space_area_sqm",
+        "public_space_area_sqm"
+      ],
+      "recalculation_trigger_zh": "取得文物与蓝线管控图件后须复核公共空间边界与慢行系统落位。"
+    },
+    {
+      "id": "A-SCENARIO-007",
+      "status": "concept_only",
+      "statement": "AI 场景卡、测试验证场景与用户画像为概念设计建议，不代表已获批准的运营安排或已部署系统。",
+      "statement_en": "AI scenario cards, validation scenarios, and personas are concept design suggestions, not approved operations or deployed systems.",
+      "impact": "所有场景均标注人工复核环节与隐私边界；不依赖非公开数据或指定供应商。",
+      "affected_metrics": [
+        "key_area_count"
+      ],
+      "recalculation_trigger_zh": "进入试点前须完成数据合规评估、算法备案与公众参与程序。"
+    },
+    {
+      "id": "A-PHASING-008",
+      "status": "concept_only",
+      "statement": "三期分期为概念建议时序，不构成投资计划、审批安排或实施承诺。",
+      "statement_en": "The three-phase sequence is a conceptual suggestion, not an investment plan, approval arrangement, or implementation commitment.",
+      "impact": "分期面积指标置信度为 medium，仅说明推进逻辑与优先级。",
+      "affected_metrics": [
+        "phase_phase_001_area_sqm",
+        "phase_phase_002_area_sqm",
+        "phase_phase_003_area_sqm",
+        "phasing_coverage_ratio"
+      ],
+      "recalculation_trigger_zh": "须结合实际资金、权属与政策条件由实施主体重新安排。"
+    }
+  ]
+}

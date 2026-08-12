@@ -1,0 +1,211 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 planar area of SITE-001 polygon",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional rough boundary; official redline pending"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2983028.923,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "Union (dissolved) EPSG:4548 area of GREEN_SPACE polygons",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.261375,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2559341.369,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Union (dissolved) EPSG:4548 area of PUBLIC_SPACE polygons (incl. civic service plazas & stations)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.224251,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 600664.408,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Union (dissolved) EPSG:4548 area of BUILDING_FOOTPRINT polygons",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.052631,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "N/A",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official regulatory detailed-planning controls (控规) not yet published; FAR cannot be confirmed. Conceptual only."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [],
+      "formula": "N/A",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height controls not yet published; conceptual heights pending professional confirmation."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "Count of KEY_AREA features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 18,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "Count of LAND_USE polygons",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "building_count": {
+      "status": "known",
+      "value": 21,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Count of BUILDING_FOOTPRINT features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "road_segment_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "Count of ROAD_CENTERLINE features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "Count of PHASE features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "service_hub_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Count of civic_service_plaza PUBLIC_SPACE features",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "service_station_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Count of service_station PUBLIC_SPACE features along civic-service spine",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "civic_service_building_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Count of buildings with service_category in civic_service_hub/community_health/legal_aid/government_service",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

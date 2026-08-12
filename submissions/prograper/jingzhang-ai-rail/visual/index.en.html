@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Centennial Jingzhang AI Innovation Belt · JZ AI-Rail — Evidence Dashboard</title>
+<meta name="description" content="Jingzhang AI Innovation Belt · JZ AI-Rail — offline evidence dashboard (AI-generated conceptual proposal, community-display-only).">
+<style>
+/* ============ identity palette (task1 identity.json) ============ */
+:root{
+  --graphite:#23262B;      /* rail graphite */
+  --vermilion:#B3261E;    /* signal red */
+  --cyan:#00A6A6;         /* AI-rail cyan */
+  --amber:#F2A900;        /* marshaling gold */
+  --brick:#9C6B3F;        /* heritage brick */
+  --paper:#F4F1EA;        /* paper warm white */
+  --bg:#ECE7DB; --bg2:#E3DDCE; --card:#FBF9F4; --ink:#23262B;
+  --muted:#6a6e76; --line:#C9C2B2; --shadow:0 1px 2px rgba(35,38,43,.06),0 8px 24px rgba(35,38,43,.08);
+  --mapline:#B9B29F; --mapfill:#F4F1EA;
+}
+[data-theme="dark"]{
+  --bg:#141619; --bg2:#1a1d21; --card:#202329; --ink:#E9E6DC;
+  --muted:#9aa0a8; --line:#33383f; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+  --mapline:#4a4f57; --mapfill:#171a1e;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#141619; --bg2:#1a1d21; --card:#202329; --ink:#E9E6DC;
+    --muted:#9aa0a8; --line:#33383f; --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 30px rgba(0,0,0,.45);
+    --mapline:#4a4f57; --mapfill:#171a1e; }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+  linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
+  color:var(--ink);font-family:"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+  line-height:1.6;font-size:15.5px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px 90px}
+.mono,code,.mile{font-family:"Cascadia Code","Consolas","SFMono-Regular",monospace}
+
+/* theme toggle */
+.theme-toggle{position:fixed;top:16px;right:18px;z-index:60;background:var(--card);border:1px solid var(--line);color:var(--ink);
+  border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;box-shadow:var(--shadow);display:flex;gap:8px;align-items:center}
+.theme-toggle:hover{border-color:var(--cyan)}
+
+/* ============ hero ============ */
+.hero{padding:64px 0 30px;position:relative}
+.beltname{font-size:clamp(30px,5vw,46px);font-weight:800;letter-spacing:.02em;line-height:1.15;margin:0}
+.beltname b{color:var(--vermilion)}
+.beltname-en{font-size:clamp(13px,2vw,15px);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:8px;font-weight:600}
+.slogan{margin-top:18px;font-size:clamp(17px,2.4vw,22px);font-weight:600;color:var(--graphite)}
+[data-theme="dark"] .slogan{color:var(--cyan)}
+.slogan-en{font-size:13px;color:var(--muted);letter-spacing:.04em;font-style:italic}
+.hero-summary{margin-top:16px;max-width:820px;color:var(--muted);font-size:15px}
+.hero-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;align-items:center}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.04em;
+  padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--muted)}
+.badge .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.badge.prov{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 45%,var(--line));background:color-mix(in srgb,var(--amber) 8%,var(--card))}
+.badge.community{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 45%,var(--line));background:color-mix(in srgb,var(--cyan) 8%,var(--card))}
+.badge.gen{color:var(--vermilion);border-color:color-mix(in srgb,var(--vermilion) 45%,var(--line));background:color-mix(in srgb,var(--vermilion) 8%,var(--card))}
+.idx-chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);white-space:nowrap}
+.idx-chip.ok{color:var(--cyan);border-color:color-mix(in srgb,var(--cyan) 45%,var(--line));background:color-mix(in srgb,var(--cyan) 8%,var(--card))}
+
+/* ============ section shells ============ */
+section{margin-top:52px}
+.sec-head{display:flex;align-items:baseline;gap:14px;border-bottom:2px solid var(--vermilion);padding-bottom:10px;margin-bottom:22px}
+.sec-no{font-family:"Cascadia Code",monospace;color:var(--vermilion);font-weight:800;font-size:15px}
+.sec-title{font-size:22px;font-weight:800;margin:0}
+.sec-sub{color:var(--muted);font-size:13px}
+
+/* ============ map panel ============ */
+.map-panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
+.map-caption{padding:14px 20px 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center}
+.map-caption h3{margin:0;font-size:16px}
+.map-caption .note{font-size:12px;color:var(--muted)}
+.map-wrap{width:100%;margin:0;padding:6px 10px 0}
+.map-wrap svg{width:100%;height:auto;display:block;border-radius:10px}
+.map-foot{display:flex;flex-wrap:wrap;gap:8px;padding:12px 20px 16px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+.map-foot .k{font-weight:700;color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:14px}
+.lg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+.lg i{width:15px;height:15px;border-radius:4px;display:inline-block;flex:none}
+.lg i.ln{height:0;border-top:3px solid;border-radius:0}
+.lg i.dash{border-top:3px dashed;height:0;border-radius:0;background:none}
+
+/* ============ metric tiles ============ */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+.tile{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--cyan);border-radius:12px;padding:16px 16px 14px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.tile::after{content:"";position:absolute;right:-24px;top:-24px;width:70px;height:70px;border-radius:50%;background:radial-gradient(circle,color-mix(in srgb,var(--cyan) 16%,transparent),transparent 70%)}
+.tile .t-label{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:6px}
+.tile .t-label .prov-flag{font-size:10px;color:var(--amber);font-weight:700}
+.tile .t-value{font-family:"Cascadia Code","Consolas",monospace;font-size:30px;font-weight:800;margin-top:6px;letter-spacing:-.01em}
+.tile .t-value small{font-size:14px;font-weight:600;color:var(--muted);margin-left:3px}
+.tile .t-sub{font-size:12px;color:var(--muted);margin-top:4px}
+.tile.vermilion{border-left-color:var(--vermilion)} .tile.vermilion::after{background:radial-gradient(circle,color-mix(in srgb,var(--vermilion) 16%,transparent),transparent 70%)}
+.tile.amber{border-left-color:var(--amber)} .tile.amber::after{background:radial-gradient(circle,color-mix(in srgb,var(--amber) 16%,transparent),transparent 70%)}
+.tile.brick{border-left-color:var(--brick)} .tile.brick::after{background:radial-gradient(circle,color-mix(in srgb,var(--brick) 16%,transparent),transparent 70%)}
+.tile.graphite{border-left-color:#5a616b} .tile.graphite::after{background:radial-gradient(circle,rgba(90,97,107,.14),transparent 70%)}
+
+/* ============ 6-task grid ============ */
+.taskgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.task{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 18px 15px;box-shadow:var(--shadow);position:relative}
+.task .tag{display:inline-block;font-family:"Cascadia Code",monospace;font-size:11px;font-weight:800;letter-spacing:.06em;
+  color:#fff;padding:3px 9px;border-radius:6px}
+.tag.a1{background:var(--vermilion)} .tag.a2{background:#0a7f7f} .tag.a3{background:var(--cyan)}
+.tag.a4{background:var(--brick)} .tag.a5{background:#6b5a3e} .tag.a6{background:var(--amber);color:#3a2c00}
+.task h4{margin:10px 0 4px;font-size:16px}
+.task .role{font-size:12px;color:var(--muted);font-family:"Cascadia Code",monospace;margin-bottom:8px}
+.task p{font-size:13.5px;color:var(--muted);margin:0 0 10px}
+.task .deliverable{font-size:12px;color:var(--ink);background:var(--bg2);border-radius:8px;padding:8px 10px;border-left:3px solid var(--cyan)}
+
+/* ============ scenario strip ============ */
+.scroll{overflow-x:auto;padding-bottom:8px;scrollbar-width:thin}
+.scroll::-webkit-scrollbar{height:8px}
+.scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:8px}
+.scenariostrip{display:flex;gap:14px;min-width:max-content;padding:2px}
+.scenariocard{flex:0 0 252px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+.scenariocard .s-top{display:flex;justify-content:space-between;align-items:center}
+.scenariocard .s-id{font-family:"Cascadia Code",monospace;font-size:11px;font-weight:800;color:var(--cyan)}
+.scenariocard .s-mat{font-size:10px;font-weight:700;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.scenariocard .s-mat.promote{color:var(--amber);border-color:color-mix(in srgb,var(--amber) 50%,var(--line))}
+.scenariocard .s-mat.test{color:var(--vermilion);border-color:color-mix(in srgb,var(--vermilion) 50%,var(--line))}
+.scenariocard .s-title{font-size:14.5px;font-weight:700;line-height:1.35}
+.scenariocard .s-dom{font-size:11px;color:var(--muted)}
+.scenariocard .s-anchor{font-size:11.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:7px;margin-top:auto}
+
+/* ============ event timeline ============ */
+.timeline{position:relative;margin-left:8px;padding-left:26px;border-left:2px solid var(--line)}
+.ev{position:relative;margin-bottom:20px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow)}
+.ev::before{content:"";position:absolute;left:-31px;top:18px;width:12px;height:12px;border-radius:50%;border:3px solid var(--card);background:var(--sig);box-shadow:0 0 0 2px var(--sig)}
+.ev .ev-top{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:6px}
+.ev .ev-id{font-family:"Cascadia Code",monospace;font-size:11px;font-weight:800;color:var(--muted)}
+.ev h4{margin:0;font-size:16px}
+.ev .ev-cad{font-size:12px;color:var(--muted)}
+.ev .ev-meta{font-size:12px;color:var(--muted);margin-top:8px;display:flex;flex-wrap:wrap;gap:12px}
+.ev .ev-meta .mk{font-family:"Cascadia Code",monospace;color:var(--cyan);font-weight:700}
+.sig{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.05em;color:#fff;padding:2px 8px;border-radius:6px}
+.sig.red{background:#C62828}.sig.amber{background:var(--amber);color:#3a2c00}.sig.green{background:#1f8a4c}
+.ev-group-title{font-size:13px;font-weight:800;color:var(--vermilion);margin:26px 0 12px;letter-spacing:.05em;text-transform:uppercase}
+
+/* ============ sources & assumptions ============ */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:18px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:var(--shadow)}
+.panel h3{margin:0 0 12px;font-size:16px;display:flex;align-items:center;gap:8px}
+.src{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line)}
+.src:first-of-type{border-top:none}
+.src .flag{flex:none;font-size:10px;font-weight:800;padding:3px 7px;border-radius:6px;align-self:flex-start;margin-top:2px}
+.flag.official{background:var(--vermilion);color:#fff}
+.flag.provisional{background:var(--amber);color:#3a2c00}
+.flag.background{background:var(--bg2);color:var(--muted);border:1px solid var(--line)}
+.flag.concept{background:var(--cyan);color:#fff}
+.src .src-title{font-size:13.5px;font-weight:600}
+.src .src-pub{font-size:11.5px;color:var(--muted)}
+.asm{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.asm:first-of-type{border-top:none}
+.asm b{color:var(--ink);font-weight:700;flex:none}
+
+/* ============ footer ============ */
+footer{margin-top:56px;border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;color:var(--muted);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+footer a{color:var(--cyan);text-decoration:none}
+.toplink{position:fixed;bottom:18px;right:18px;z-index:60;background:var(--card);border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:12px;text-decoration:none;box-shadow:var(--shadow)}
+
+@media (max-width:640px){
+  .hero{padding-top:44px}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .tile .t-value{font-size:24px}
+}
+@media print{
+  .theme-toggle,.toplink{display:none}
+  body{background:#fff}
+}
+</style>
+</head>
+<body>
+<button class="theme-toggle" id="themeBtn" aria-label="Toggle theme">◐ Theme / Theme</button>
+<a class="toplink" href="#top">↑ Top / Top</a>
+<div class="wrap" id="top">
+
+<!-- ================= HEADER LINK NOTE ================= -->
+<div style="font-size:12px;color:var(--muted);padding-top:16px;text-align:right">
+  <a href="index.html" style="color:var(--cyan);text-decoration:none">中文版: index.html / Chinese version: index.html</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="kicker" style="font-size:12px;letter-spacing:.2em;color:var(--amber);font-weight:800;text-transform:uppercase">Centennial Jingzhang AI Innovation Belt · JZ AI-Rail</div>
+  <h1 class="beltname">Centennial Jingzhang <b>AI Innovation Belt</b> · JZ AI-Rail</h1>
+  <div class="beltname-en">Jingzhang AI Innovation Belt — Evidence Dashboard · Evidence Dashboard</div>
+  <div class="slogan">One Herringbone · Two Openings · Infinite Loops
+    <div class="slogan-en">One Herringbone · Two Openings · Infinite Loops</div></div>
+  <p class="hero-summary">Rooted in the 1909 Jingzhang Railway's <strong>"Herringbone lay-out"</strong>, this proposal carries that first self-built mainline railway's "split-and-rejoin" spirit into an innovation loop for the AI era, forming a spatial structure of <strong>One Belt · Three Hubs · Two Wings — AI-Rail Weaving</strong>. The Jingzhang Heritage Park green corridor is the north-south AI-Rail mainline, threading three hubs — Zhizhi Marshaling Yard (acceleration), Origin Terminus (ecology) and Dazhongsi Switch (industry) — while the Zhizhi Signal Wing (capital &amp; IP) and the Xiaoyue River Scenario Branch (scenarios &amp; a vibrant city) feed in material as two wings, composing a closed loop of "research — agglomeration — production — scenario — capital".</p>
+  <div class="hero-row">
+    <span class="badge prov"><span class="dot" style="background:var(--amber)"></span>PROVISIONAL Boundaries</span>
+    <span class="badge community"><span class="dot" style="background:var(--cyan)"></span>COMMUNITY-DISPLAY-ONLY</span>
+    <span class="badge gen"><span class="dot" style="background:var(--vermilion)"></span>AI-GENERATED CONCEPT</span>
+    <span class="badge"><span class="dot" style="background:var(--graphite)"></span>v0.1 · 2026-08-10</span>
+    <span class="badge"><span class="dot" style="background:var(--brick)"></span>Statutory metrics await official data</span>
+  </div>
+</header>
+
+<!-- ================= MAP ================= -->
+<section id="map">
+  <div class="sec-head">
+    <span class="sec-no">01</span>
+    <h2 class="sec-title">Design Area &amp; Spatial Structure</h2>
+    <span class="sec-sub">Design area &amp; spatial structure</span>
+  </div>
+
+  <div class="map-panel">
+    <div class="map-caption">
+      <h3>One Belt · Three Hubs · Two Wings — AI-Rail Mainline</h3>
+      <div class="note">Projection: local equidistant approximation (lon&asymp;116.34&deg;E, lat&asymp;39.98&deg;N) · illustration only, not an official map</div>
+    </div>
+    <figure class="map-wrap">
+<svg viewBox="0 0 560 1040" role="img" aria-label="Jingzhang AI Innovation Belt design-area diagram">
+  <defs>
+    <pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <rect width="7" height="7" fill="none"/>
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#C9A14A" stroke-width="1.1" opacity="0.55"/>
+    </pattern>
+    <linearGradient id="spineG" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b8f8f"/><stop offset="1" stop-color="#00A6A6"/>
+    </linearGradient>
+    <radialGradient id="landmarkG">
+      <stop offset="0" stop-color="#B3261E"/><stop offset="1" stop-color="#7a1a14"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background -->
+  <rect x="0" y="0" width="560" height="1040" fill="transparent"/>
+
+  <!-- Coordinated Research Area (faint) -->
+  <polygon points="80.6,1009 479.3,1009 530,712 530,30 198.6,30 97.4,327 30,712"
+    fill="var(--mapfill)" stroke="var(--mapline)" stroke-width="1" stroke-dasharray="6 4" opacity="0.55"/>
+  <text x="88" y="52" font-size="11" fill="var(--muted)" letter-spacing="2">Coordinated Research Area ~43.6 km&sup2;</text>
+
+  <!-- arterial context (faint) -->
+  <g stroke="#000" stroke-opacity="0.05" stroke-width="1.4" fill="none">
+    <line x1="264.2" y1="32.2" x2="394.2" y2="32.2"/><!-- N 5th Ring -->
+    <line x1="264.2" y1="420.5" x2="394.2" y2="420.5"/><!-- N 4th Ring -->
+    <line x1="385.3" y1="32.2" x2="385.3" y2="968"/><!-- Jingzang Expwy -->
+    <line x1="360" y1="437" x2="360" y2="891"/><!-- Xueyuan Road -->
+    <line x1="343.2" y1="437" x2="343.2" y2="891"/><!-- Xitucheng Road -->
+    <line x1="90.3" y1="30" x2="90.3" y2="1009"/><!-- Wanquan River Road -->
+    <line x1="23.4" y1="1009" x2="394.2" y2="1009"/><!-- Xizhimenwai -->
+  </g>
+
+  <!-- Overall Design Area (dashed provisional) -->
+  <polygon points="264.8,998 387.9,998 387.9,712 371,437 387.9,35.5 281.6,35.5 273.2,261 256.3,602"
+    fill="none" stroke="var(--vermilion)" stroke-width="2.4" stroke-dasharray="9 5" stroke-linejoin="round"/>
+  <text x="270" y="1018" font-size="11" fill="var(--vermilion)" font-weight="700">Overall Design Area ~11.4 km&sup2;(see below)</text>
+
+  <!-- Xiaoyue River greenway -->
+  <path d="M373.5,80 L374,90 L374,700 L373.7,760 L373.5,954"
+    fill="none" stroke="var(--cyan)" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+  <text x="378" y="540" font-size="10" fill="var(--cyan)" transform="rotate(90 378 540)" opacity="0.8">Xiaoyue River Scenario Branch</text>
+
+  <!-- green spine -->
+  <rect x="309.5" y="57.5" width="13.4" height="918.5" rx="6" fill="url(#spineG)" opacity="0.85"/>
+  <!-- pocket parks -->
+  <g fill="#1f8a4c" opacity="0.7">
+    <rect x="281" y="107" width="14" height="14" rx="3"/>
+    <rect x="281" y="423.5" width="14" height="14" rx="3"/>
+    <rect x="281" y="860" width="14" height="14" rx="3"/>
+  </g>
+
+  <!-- AI-rail slow-traffic mainline -->
+  <line x1="317.9" y1="57.5" x2="317.9" y2="976" stroke="#0b5f5f" stroke-width="2" stroke-dasharray="2 5" stroke-linecap="round"/>
+
+  <!-- east-west stitching -->
+  <g stroke="var(--amber)" stroke-width="1.6" stroke-dasharray="5 4" opacity="0.8">
+    <line x1="274.9" y1="217" x2="379.4" y2="217"/><text x="382" y="220" font-size="9" fill="var(--amber)">Herringbone stitch bridge</text>
+    <line x1="264.8" y1="459" x2="372.3" y2="459"/><text x="365" y="472" font-size="9" fill="var(--amber)">Binary sleeper link</text>
+    <line x1="264.8" y1="767" x2="379.4" y2="767"/><text x="382" y="770" font-size="9" fill="var(--amber)">Signal-light crossing</text>
+  </g>
+
+  <!-- three hub key areas -->
+  <g>
+    <!-- Zhizhi Marshaling Yard -->
+    <rect x="284" y="41" width="93" height="203.5" rx="4" fill="url(#hatch)" stroke="#C9A14A" stroke-width="1.6"/>
+    <text x="330.5" y="150" font-size="12" font-weight="800" fill="#8a6710" text-anchor="middle">Zhizhi Marshaling Yard</text>
+    <text x="330.5" y="166" font-size="9" fill="#8a6710" text-anchor="middle">Zhizhi Garden AI self-innovation accelerator</text>
+    <text x="330.5" y="180" font-size="9" fill="#8a6710" text-anchor="middle">192.1 ha · full-stack acceleration / trials</text>
+    <!-- Origin Terminus -->
+    <rect x="276" y="399" width="93" height="110" rx="4" fill="url(#hatch)" stroke="#C9A14A" stroke-width="1.6"/>
+    <text x="322.5" y="452" font-size="12.5" font-weight="800" fill="#8a6710" text-anchor="middle">Origin Terminus</text>
+    <text x="322.5" y="468" font-size="9" fill="#8a6710" text-anchor="middle">Beijing AI Origin community · 0 km</text>
+    <text x="322.5" y="481" font-size="9" fill="#8a6710" text-anchor="middle">104.3 ha · ecology / origin</text>
+    <!-- Dazhongsi Switch -->
+    <rect x="276" y="879" width="109" height="64" rx="4" fill="url(#hatch)" stroke="#C9A14A" stroke-width="1.6"/>
+    <text x="330.5" y="908" font-size="12.5" font-weight="800" fill="#8a6710" text-anchor="middle">Dazhongsi Switch</text>
+    <text x="330.5" y="924" font-size="9" fill="#8a6710" text-anchor="middle">72.0 ha · industry / switch</text>
+  </g>
+
+  <!-- plazas -->
+  <g fill="var(--brick)" opacity="0.85">
+    <rect x="316.2" y="99" width="5.7" height="44" rx="2"/>
+    <rect x="316.2" y="412.5" width="5.7" height="40.7" rx="2"/>
+    <rect x="316.2" y="866.8" width="5.7" height="33" rx="2"/>
+  </g>
+
+  <!-- Wudaokou / Dazhongsi station forecourts -->
+  <g stroke="var(--brick)" stroke-width="1.2" opacity="0.7">
+    <line x1="264.8" y1="459" x2="351.6" y2="459"/>
+    <line x1="264.8" y1="877" x2="321" y2="877"/>
+  </g>
+
+  <!-- Origin pilgrimage landmark cluster (5 landmarks) -->
+  <g>
+    <circle cx="316.2" cy="459" r="6" fill="url(#landmarkG)"/>
+    <circle cx="316.2" cy="477.7" r="6" fill="url(#landmarkG)"/>
+    <circle cx="316.2" cy="495.3" r="6" fill="url(#landmarkG)"/>
+    <circle cx="314.5" cy="481" r="6" fill="url(#landmarkG)"/>
+    <circle cx="319.5" cy="470" r="6" fill="url(#landmarkG)"/>
+    <text x="316" y="520" font-size="9.5" fill="var(--vermilion)" font-weight="700" text-anchor="middle">Origin AI pilgrimage landmarks &times;5</text>
+    <text x="316" y="533" font-size="8.5" fill="var(--muted)" text-anchor="middle">dev's walk · zero-mile marker · honor wall, etc.</text>
+  </g>
+
+  <!-- north arrow -->
+  <g transform="translate(520,60)">
+    <line x1="0" y1="0" x2="0" y2="-26" stroke="var(--ink)" stroke-width="1.6"/>
+    <polygon points="0,-30 -5,-22 5,-22" fill="var(--vermilion)"/>
+    <text x="0" y="-34" font-size="11" font-weight="800" fill="var(--ink)" text-anchor="middle">N</text>
+  </g>
+  <!-- scale bar ~2km -->
+  <g transform="translate(430,990)">
+    <line x1="0" y1="0" x2="70" y2="0" stroke="var(--ink)" stroke-width="2"/>
+    <line x1="0" y1="-4" x2="0" y2="4" stroke="var(--ink)" stroke-width="2"/>
+    <line x1="70" y1="-4" x2="70" y2="4" stroke="var(--ink)" stroke-width="2"/>
+    <text x="35" y="14" font-size="9" fill="var(--muted)" text-anchor="middle">~ 2 km (illustrative)</text>
+  </g>
+</svg>
+    </figure>
+
+    <div class="legend">
+      <span class="lg"><i style="background:none;border:2.4px dashed var(--vermilion)"></i>Overall Design Area (provisional)</span>
+      <span class="lg"><i style="background:url(#x) #eee;background:repeat;background-image:repeating-linear-gradient(45deg,#C9A14A44 0 3px,transparent 3px 6px)"></i>Three key areas</span>
+      <span class="lg"><i style="background:#00A6A6"></i>AI-rail green-corridor mainline</span>
+      <span class="lg"><i style="background:#1f8a4c"></i>Pocket parks</span>
+      <span class="lg"><i style="background:var(--brick)"></i>Public plazas</span>
+      <span class="lg"><i style="background:none;border-top:3px dashed var(--amber)"></i>East-west stitching lines</span>
+      <span class="lg"><i style="background:var(--vermilion);border-radius:50%"></i>AI pilgrimage landmarks</span>
+    </div>
+    <div class="map-foot">
+      <span><span class="k">Projection / coords:</span>local equidistant approximation (stored in EPSG:4326, area recomputed in EPSG:4548)</span>
+      <span><span class="k">Boundaries:</span>only provisional rough placeholder polygons, not official red-line limits</span>
+      <span><span class="k">Green corridor / shoreline:</span>conceptual illustration; blue and green lines await official confirmation</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METRICS ================= -->
+<section id="metrics">
+  <div class="sec-head">
+    <span class="sec-no">02</span>
+    <h2 class="sec-title">Key Metrics</h2>
+    <span class="sec-sub">Key metrics · all areas / lengths are conceptual recomputations</span>
+  </div>
+  <div class="tiles">
+    <div class="tile vermilion"><div class="t-label">Overall Design Area<em class="prov-flag">PROV</em></div><div class="t-value">11.41<small>km&sup2;</small></div><div class="t-sub">announced ~11.4 km&sup2; · polygon recomputation</div></div>
+    <div class="tile"><div class="t-label">Coordinated Research Area<em class="prov-flag">PROV</em></div><div class="t-value">43.61<small>km&sup2;</small></div><div class="t-sub">announced ~43.6 km&sup2; · recomputation</div></div>
+    <div class="tile amber"><div class="t-label">Key Areas Total<em class="prov-flag">PROV</em></div><div class="t-value">369.3<small>ha</small></div><div class="t-sub">three announced areas total 368.4 ha</div></div>
+    <div class="tile graphite"><div class="t-label">Green Ratio<em class="prov-flag">CONCEPT</em></div><div class="t-value">13.1<small>%</small></div><div class="t-sub">target 12&ndash;15% · concept value pending confirmation</div></div>
+    <div class="tile vermilion"><div class="t-label">Green Space<em class="prov-flag">CONCEPT</em></div><div class="t-value">196.3<small>ha</small></div><div class="t-sub">green corridor + Xiaoyue River + pocket parks</div></div>
+    <div class="tile"><div class="t-label">Concept Slow-Traffic Network<em class="prov-flag">CONCEPT</em></div><div class="t-value">24.1<small>km</small></div><div class="t-sub">total road centerline length</div></div>
+    <div class="tile amber"><div class="t-label">AI-Rail Slow-Traffic Mainline</div><div class="t-value">9.3<small>km</small></div><div class="t-sub">Jingzhang Heritage Park green-corridor walkway</div></div>
+    <div class="tile brick"><div class="t-label">AI Scenario Cards</div><div class="t-value">14<small>cards</small></div><div class="t-sub">incl. 4 industry test-verification scenarios</div></div>
+    <div class="tile"><div class="t-label">AI Pilgrimage Landmarks</div><div class="t-value">5<small>sites</small></div><div class="t-sub">Origin cluster · conceptual siting</div></div>
+    <div class="tile brick"><div class="t-label">Public Plazas<em class="prov-flag">CONCEPT</em></div><div class="t-value">18.3<small>ha</small></div><div class="t-sub">three station forecourt plazas total</div></div>
+    <div class="tile graphite"><div class="t-label">Phasing<em class="prov-flag">CONCEPT</em></div><div class="t-value">25<small>% near</small> · 20<small>% mid</small> · 55<small>% long</small></div><div class="t-sub">near0-3y / mid3-6y / long6-10y</div></div>
+    <div class="tile amber"><div class="t-label">Event Programs</div><div class="t-value">11<small>items</small></div><div class="t-sub">flagship + seasonal + weekly/monthly cadence</div></div>
+  </div>
+  <div class="machinerow" style="margin-top:14px;display:flex;flex-wrap:wrap;gap:9px;align-items:center;font-size:12px;color:var(--muted)">
+    <span style="font-weight:800;letter-spacing:.06em">Machine metrics</span>
+    <span data-metric="site_area_sqm" data-value="11412825.4" class="idx-chip">site_area_sqm overall design area</span>
+    <span data-metric="green_ratio" data-value="0.171978" class="idx-chip">green_ratio</span>
+    <span data-metric="public_space_ratio" data-value="0.016005" class="idx-chip">public_space_ratio</span>
+  </div>
+</section>
+
+<!-- ================= SIX TASK COVERAGE ================= -->
+<section id="tasks">
+  <div class="sec-head">
+    <span class="sec-no">03</span>
+    <h2 class="sec-title">Six-Task Coverage</h2>
+    <span class="sec-sub">Six-task agent coverage</span>
+  </div>
+  <div class="taskgrid">
+    <div class="task"><span class="tag a1">agent.1</span><h4>Concept &amp; Brand</h4><div class="role">lead_concept_designer</div>
+      <p>Establishes the "One Belt · Three Hubs · Two Wings — AI-Rail Weaving" spatial structure and the Herringbone Intelligence-Rail leading concept; naming grammar "milestone + signal light + switch"; outputs the six-color identity system (rail graphite / signal red / AI-rail cyan / marshaling gold / heritage brick / paper warm white) and a logo direction.</p>
+      <div class="deliverable">proposal.md "Overall Concept, Naming &amp; Logo" · five figures</div></div>
+    <div class="task"><span class="tag a2">agent.2</span><h4>Full-Stack Ecosystem</h4><div class="role">ai_fullstack_ecosystem_designer</div>
+      <p>Places the five-stage full-stack chain (basic research &rarr; R&amp;D &rarr; incubation-accleration &rarr; industrial conversion &rarr; capital services) into the three hubs and two wings; regional coordination (Future Science City / Huairou / Yizhuang / Beijing-Tianjin-Hebei) and references to eight global AI-innovation-ecosystem cases.</p>
+      <div class="deliverable">proposal.md "Global-Class AI Innovation Ecosystem" · case-study table</div></div>
+    <div class="task"><span class="tag a3">agent.3</span><h4>AI+ Scenario Empowerment</h4><div class="role">scenario_empowerment_designer</div>
+      <p>14 AI scenario cards (healthcare / education / commerce / transport / eldercare / governance, etc.) and 7 user personas; applies privacy and humanistic boundaries of data minimization, anonymization, no over-surveillance, human-review checkpoints and a fallback manual channel.</p>
+      <div class="deliverable">proposal.md "AI Scenario Cards &amp; User Personas" · scenario-space mapping</div></div>
+    <div class="task"><span class="tag a4">agent.4</span><h4>Landmarks &amp; Stitching</h4><div class="role">subagent_task4</div>
+      <p>Three park public spaces (engine / origin / switch), 5 AI pilgrimage landmarks, 4 east-west stitching lines plus the north-south through mainline; pairs it with a contribution-honor display system (naming &mdash; verification &mdash; display &mdash; commemoration) and a public-space component library.</p>
+      <div class="deliverable">proposal.md "AI Pilgrimage Landmarks" · geometry/public_space.geojson</div></div>
+    <div class="task"><span class="tag a5">agent.5</span><h4>Heritage Narrative</h4><div class="role">culture_narrative_agent</div>
+      <p>"Centennial Trilogy" (self-built 1909 / innovative Zhongguancun / co-created AI) designs a dual-thread narrative; 3 memory and pilgrimage routes (Jingzhang memory line / AI pilgrimage line / Xiaoyue River Yuandadu waterfront memory line); bilingual international communication copy.</p>
+      <div class="deliverable">proposal.md "Centennial Trilogy &amp; Cultural Guide Routes"</div></div>
+    <div class="task"><span class="tag a6">agent.6</span><h4>Operations &amp; Brand</h4><div class="role">operations_designer</div>
+      <p>Annual event system (co-creation week + seasonal signal seasons + weekly switch lab + monthly global linkups, 11 programs in all); three-layer brand-IP architecture; four-tier community ladder (passenger &rarr; marshaler &rarr; starter &rarr; station master); multi-party governance and KPI-direction assessment.</p>
+      <div class="deliverable">proposal.md "Global AI Innovation Event System &amp; Long-Term Operations"</div></div>
+  </div>
+</section>
+
+<!-- ================= SCENARIOS ================= -->
+<section id="scenarios">
+  <div class="sec-head">
+    <span class="sec-no">04</span>
+    <h2 class="sec-title">AI Scenario Cards</h2>
+    <span class="sec-sub">Scenario cards · scroll horizontally</span>
+  </div>
+  <div class="scroll"><div class="scenariostrip" id="scStrip"></div></div>
+</section>
+
+<!-- ================= EVENTS ================= -->
+<section id="events">
+  <div class="sec-head">
+    <span class="sec-no">05</span>
+    <h2 class="sec-title">Operations Event System</h2>
+    <span class="sec-sub">Event system · three-color signal coding by phase</span>
+  </div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<!-- ================= SOURCES & ASSUMPTIONS ================= -->
+<section id="sources">
+  <div class="sec-head">
+    <span class="sec-no">06</span>
+    <h2 class="sec-title">Sources &amp; Assumptions</h2>
+    <span class="sec-sub">Sources &amp; assumptions · provisional / official badges</span>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <h3>&#128218; Primary Data Sources <span style="font-size:12px;color:var(--muted);font-weight:400">sources.json (excerpt)</span></h3>
+      <div id="srcList"></div>
+    </div>
+    <div>
+      <div class="panel" style="margin-bottom:18px">
+        <h3>&#9888;&#65039; Key Assumptions &amp; Limitations <span style="font-size:12px;color:var(--muted);font-weight:400">assumptions.json</span></h3>
+        <div id="asmList"></div>
+      </div>
+      <div class="panel">
+        <h3>&#128196; Related Files</h3>
+        <div class="src">
+          <span class="flag provisional">DOC</span>
+          <div><div class="src-title">proposal.md / proposal.html</div><div class="src-pub">full proposal (this report's directory is readable offline)</div></div>
+        </div>
+        <div class="src">
+          <span class="flag provisional">DOC</span>
+          <div><div class="src-title">copyright_statement.md</div><div class="src-pub">copyright &amp; compliance statement (AI-generated / community-display / provisional)</div></div>
+        </div>
+        <div class="src">
+          <span class="flag provisional">GIS</span>
+          <div><div class="src-title">geometry/*.geojson</div><div class="src-pub">site_boundary / key_areas / public_space / land_use / green_space, etc.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Centennial Jingzhang AI Innovation Belt · JZ AI-Rail — evidence dashboard (offline, inline, no external dependencies)</span>
+  <span>AI-generated concept · COMMUNITY-DISPLAY-ONLY · statutory metrics await official data · boundaries provisional</span>
+</footer>
+</div>
+
+<script>
+/* ================= data ================= */
+const SCENARIOS=[
+ {id:"SC-01",zh:"AI+Healthcare · Smart Health Companion",dom:"Healthcare",m:"test",anchor:"Origin community &amp; Xueyuan Road PKU Third Hospital precinct"},
+ {id:"SC-02",zh:"AI+Education · Self-adaptive Learning Pods in a Learning District",dom:"Education",m:"test",anchor:"Origin community, Wudaokou area"},
+ {id:"SC-03",zh:"AI+Commerce · AI-Native Consumption District",dom:"Commerce",m:"promote",anchor:"Dazhongsi Switch AI-native district"},
+ {id:"SC-04",zh:"AI+Transport · Autonomous Shuttle Test Segment",dom:"Transport",m:"test",anchor:"test segment on the AI-rail mainline from Zhizhi Garden to Origin"},
+ {id:"SC-05",zh:"AI+Eldercare · Smart Age-Friendly Care Nearby",dom:"Eldercare",m:"test",anchor:"Origin community &amp; existing Dazhongsi residential areas"},
+ {id:"SC-06",zh:"AI+Governance · One-Stop Smart Government Services",dom:"Governance",m:"promote",anchor:"Origin / Dazhongsi governance nodes"},
+ {id:"SC-07",zh:"AI+Public Space · Barrier-Free Smart Wayfinding",dom:"Public space",m:"test",anchor:"Jingzhang Heritage Park AI-rail mainline"},
+ {id:"SC-08",zh:"AI+Legal · Smart Legal Service Pod",dom:"Legal",m:"test",anchor:"beside the Origin community maker spaces"},
+ {id:"SC-09",zh:"AI+Life Services · Community Life Steward",dom:"Life services",m:"promote",anchor:"communities along the Xiaoyue River Scenario Branch"},
+ {id:"SC-10",zh:"AI+Industry · Robot Last-Mile Delivery Verification",dom:"Industry",m:"test",anchor:"selected street segments from Dazhongsi to Origin"},
+ {id:"SC-11",zh:"AI+Industry · Unmanned Retail &amp; Smart Patrol Pilot District",dom:"Commerce/Industry",m:"test",anchor:"Dazhongsi AI-native test district"},
+ {id:"SC-12",zh:"AI+Research · Zhizhi Garden Full-Stack Integration Test Ground",dom:"Research/Industry",m:"test",anchor:"Zhizhi Marshaling Yard full-stack innovation area"},
+ {id:"SC-13",zh:"AI+City Operations · Digital-Twin City Foundation",dom:"City operations",m:"test",anchor:"the whole Coordinated Research Area"},
+ {id:"SC-14",zh:"AI+Culture &amp; Tourism · Origin Pilgrimage Experience Guide",dom:"Culture &amp; tourism",m:"promote",anchor:"Origin 0-km milestone &amp; Jingzhang Heritage Park"}
+];
+const EVENTS=[
+ {g:"Flagship Annual",items:[
+  {id:"EV-001",zh:"Jingzhang AI Co-creation Week",sig:"green",sigT:"Ops",cad:"once a year (suggested September)",mk:"TR-0",anchor:"Origin Terminus + Jingzhang Heritage Park mainline",note:"Theme opening ceremony, co-creation outcome release, along-rail finals, Marshaling-Gold awards, international AI-governance dialogue, public open day."},
+  {id:"EV-002",zh:"JZ AI-Rail · International AI Forum",sig:"green",sigT:"Ops",cad:"once a year",mk:"TR-0",anchor:"Origin community conference venue + global chapters linked",note:"Focus on global AI-governance voice: governance workshops, open-source roundtables, multi-agent norms, global chapter linkups."}]},
+ {g:"Quarterly Signal Seasons",items:[
+  {id:"EV-003",zh:"Vernal Equinox · Code Switch (Spring Incubation Season)",sig:"red",sigT:"R&amp;D",cad:"once a year (~March)",mk:"TR-0/1",anchor:"Origin Terminus",note:"New projects take the stage, branch off / get chartered, mentor clinics, seed-direction openings."},
+  {id:"EV-004",zh:"Summer Solstice · Marshaling Trial Run (Summer Acceleration Season)",sig:"amber",sigT:"Accel",cad:"once a year (~June)",mk:"TR-19",anchor:"Zhizhi Marshaling Yard",note:"Spring projects marshaled, assembled, trial-run; full-stack demos and benchmark evaluations to stock results for the autumn switch."},
+  {id:"EV-005",zh:"Autumn Equinox · Switch Transfer (Autumn Industry Handoff Season)",sig:"green",sigT:"Convert",cad:"once a year (~Sep-Oct)",mk:"TR-26",anchor:"Dazhongsi Switch",note:"Accelerated results convert to industry / urban-consumption tracks; industry matchmaking day, scenario-open intent, native-format showcases."},
+  {id:"EV-006",zh:"Winter Solstice · Annual Return (Yearly Loop Convention)",sig:"green",sigT:"Ops",cad:"once a year (~December)",mk:"TR-0",anchor:"Origin Terminus + global chapters rally",note:"Annual contribution-ledger awards, honor-wall update, global chapters rally, next-year theme preview."}]},
+ {g:"Always-on Cadence",items:[
+  {id:"EV-007",zh:"Along-Rail Co-creation Marathon (Heritage Park track series)",sig:"amber",sigT:"Tri-color",cad:"3 a year (spring / summer / autumn)",mk:"TR-0/-19/-26",anchor:"stations along the Jingzhang Heritage Park mainline",note:"Use the park green corridor as a linear track; hackathons relay along heritage nodes."},
+  {id:"EV-008",zh:"Multi-Agent City Scenario Jam",sig:"amber",sigT:"Accel",cad:"2 a year (summer / winter)",mk:"TR-19/0",anchor:"online main + offline Origin sandbox",note:"AI-native competition: multi-agent collaboration solving real city issues, with human final judgment."},
+  {id:"EV-009",zh:"Switch Lab (Weekly Developer Gathering)",sig:"amber",sigT:"Accel",cad:"weekly",mk:"TR-0",anchor:"Origin community shared space",note:"Open-source code-review nights, mentor clinics, pair programming, repo-maintenance duty rotation &mdash; a day-by-day minimum-cadence guarantee."},
+  {id:"EV-010",zh:"AI-Rail · Global Chapter Monthly Linkup",sig:"green",sigT:"Ops",cad:"monthly",mk:"TR-0 &harr; global",anchor:"online + overseas chapter nodes",note:"Everyday carrier of the global return loop: bilingual campaigns, talent and capital clues returning to Zhongguancun IP."},
+  {id:"EV-011",zh:"Jingzhang AI Public Open Day (monthly)",sig:"green",sigT:"Ops",cad:"monthly",mk:"TR-0/-26",anchor:"pilgrimage landmarks &amp; scenario branch",note:"Themed tours, pop-up demos, interactive installations, kids' coding corner &mdash; the offline funnel entry from visitor to contributor."}]}
+];
+const SOURCES=[
+ {flag:"official",t:"Centennial Jingzhang AI Innovation Belt International Urban Design Solicitation Prequalification Notice",pub:"Haidian Sub-bureau, Beijing Municipal Commission of Planning and Natural Resources · 2026-05-09"},
+ {flag:"official",t:"MOHURD "Urban Design Management Measures" / "Detailed Regulatory Plan Formulation & Approval Measures"",pub:"MOHURD · official standards"},
+ {flag:"official",t:"MNR "Guide to Classification of Land Use, Sea Use & Space for Territorial Spatial Survey, Planning & Regulation"",pub:"Ministry of Natural Resources · 2023-11"},
+ {flag:"provisional",t:"Provisional rough polygon for the three-tier scopes and the three key areas",pub:"repo maintainer estimate · not official red-line limits"},
+ {flag:"official",t:""Interim Measures for the Administration of Generative AI Services" & "Law on Barrier-Free Environment Building", etc.",pub:"official policy / standards"},
+ {flag:"background",t:"Wikipedia & public reporting on Haidian district / Jingzhang Railway / Beijing-Zhangjiakou HSR / Xiaoyue River / metro",pub:"CC BY-SA 4.0 · background"},
+ {flag:"background",t:"8 global AI innovation ecosystem cases (Kendall Square / one-north / King's Cross / Future Science City, etc.)",pub:"Wikipedia · background"}
+];
+const ASSUMPTIONS=[
+ ["ASM-001","All boundaries are provisional rough polygons, not official red-line limits; area recomputations are directional findings only."],
+ ["ASM-002","Official control conditions such as FAR / height / density / green ratio / setback / road red-line / land class all await formal data (TBC)."],
+ ["ASM-004","land_use / green / public_space / roads / buildings / phasing are all AI concept layers and do not constitute regulatory-plan, engineering or demolish-rebuild-keep conclusions."],
+ ["ASM-005","Roads are only conceptual centerlines, not red lines; existing arterial roads serve as context only."],
+ ["ASM-007","Phasing is a conceptual sequencing recommendation (near0-3y / mid3-6y / long6-10y); implementation sequencing awaits confirmation."],
+ ["ASM-008","Green ratio and waterfront shoreline are conceptual illustrations; blue / green lines and heritage-protection control lines await official source confirmation."]
+];
+
+/* ================= render ================= */
+const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+function mat(m){
+  if(m==="test")return '<span class="s-mat test">Test</span>';
+  if(m==="promote")return '<span class="s-mat promote">Promote</span>';
+  return '<span class="s-mat">Pilot</span>';
+}
+document.getElementById("scStrip").innerHTML=SCENARIOS.map(s=>
+  `<div class="scenariocard">
+    <div class="s-top"><span class="s-id">${s.id}</span>${mat(s.m)}</div>
+    <div class="s-title">${esc(s.zh)}</div>
+    <div class="s-dom">${esc(s.dom)}</div>
+    <div class="s-anchor">&#128205; ${esc(s.anchor)} (concept)</div>
+  </div>`).join("");
+
+const sigCls={red:"sig red",amber:"sig amber",green:"sig green"};
+document.getElementById("timeline").innerHTML=EVENTS.map(g=>{
+  const items=g.items.map(e=>`
+    <div class="ev" style="--sig:${e.sig==='red'?'#C62828':e.sig==='amber'?'var(--amber)':'#1f8a4c'}">
+      <div class="ev-top"><span class="ev-id">${e.id}</span><h4>${esc(e.zh)}</h4>
+        <span class="${sigCls[e.sig]}">${esc(e.sigT)}</span></div>
+      <div class="ev-cad">${esc(e.cad)}</div>
+      <div class="ev-meta"><span class="mk">${esc(e.mk)}</span><span>&#128205; ${esc(e.anchor)}</span></div>
+      <div style="font-size:13px;color:var(--muted);margin-top:6px">${esc(e.note)}</div>
+    </div>`).join("");
+  return `<div class="ev-group-title">${esc(g.g)}</div>${items}`;
+}).join("");
+
+const FLAGCLS={official:"flag official",provisional:"flag provisional",background:"flag background",concept:"flag concept"};
+const FLAGTXT={official:"Official",provisional:"Prov.",background:"Bkg.",concept:"Concept"};
+document.getElementById("srcList").innerHTML=SOURCES.map(s=>
+  `<div class="src"><span class="${FLAGCLS[s.flag]}">${FLAGTXT[s.flag]}</span>
+   <div><div class="src-title">${esc(s.t)}</div><div class="src-pub">${esc(s.pub)}</div></div></div>`).join("");
+
+document.getElementById("asmList").innerHTML=ASSUMPTIONS.map(a=>
+  `<div class="asm"><b>${esc(a[0])}</b><span>${esc(a[1])}</span></div>`).join("");
+
+/* ================= theme toggle ================= */
+const btn=document.getElementById("themeBtn");
+function cur(){return document.documentElement.getAttribute("data-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");}
+btn.textContent="◐ Theme ("+(cur()==="dark"?"dark":"light")+")";
+btn.addEventListener("click",()=>{
+  const now=cur();
+  const next=now==="dark"?"light":"dark";
+  document.documentElement.setAttribute("data-theme",next);
+  btn.textContent="◐ Theme ("+(next==="dark"?"dark":"light")+")";
+});
+</script>
+</body>
+</html>

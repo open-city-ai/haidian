@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张归药线：AI 原生城市的安全退出基础设施 - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>京张归药线：AI 原生城市的安全退出基础设施</h1>
+<p class="summary">京张归药线不是一只更聪明的回收箱，而是一套让过期与闲置家庭药品安全退出城市生活的责任基础设施。方案以大钟寺人工受理前厅、AI 原点社区公共协作节点、众智园合成验证场构成三区回路，以最小数据事件账本连接受理、封存、交接、受托运输和合规处置；居民可以投递，但不承担运输。首期用 90 天、两个有人值守入口和三类合成测试验证责任主体、医疗边界、成本与停止条件。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>京张归药线</h1>
+<h2>设计依据与资料清单</h2>
+<p><strong>THE SAFE RETURN LINE / 让每一件进入城市生活的产品，也拥有安全退出的路径。</strong> 本方案回应一个小而硬的公共问题：家庭过期或闲置药品既不应重新进入使用或交易，也不应被居民随意丢弃；但如果只有宣传口号、无人值守箱或一次性活动，责任就会在“投进去以后”消失。归药线因此把设计对象从“回收设施”改为“责任链”，把 AI 从识别噱头改为可审计的辅助工具，把城市空间从背景改为分工明确的服务接口。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-MED-WASTE-2025" title="来源：BEIJING-MED-WASTE-2025">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-HOUSEHOLD-RETURN-2014" title="来源：HAIDIAN-HOUSEHOLD-RETURN-2014">来源</sup></p>
+<p>方案的第一依据是征集公告与面向智能体任务书，工作范围、正式章节、三区两翼、五大功能和开放共创边界均按仓库登记材料执行。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup> 所有成果均为开放共创建议，不替代正式规划，不构成政府审定、医疗意见、行政许可或实施承诺；空间落位均为“概念建议”“参考方案”“可供专业团队深化研究”。</p>
+<p>场地包尚无可引用的正式红线、控规、道路红线、权属、文保、蓝线和现状建筑全量数据。本包沿用维护者提供的临时粗略范围，明确标注 <code>provisional_constraint</code> 与 <code>official_boundary=false</code>，只用于生成、可视化和方法验证。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> 总体设计范围的几何复算值约 11.41 平方公里，仅说明提交图层内部自洽，不升级为法定面积或精确场地结论。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup></p>
+<p>区位核验补充：仓库 Issue #1029 的公开复算记录指出，上游 <code>PROV-KEY-003</code> 临时 polygon 的面积与南北顺序自洽，但质心约位于北京北站一带，距大钟寺站约 2.26 km。该记录不是官方边界，也不是自行平移的授权。本案保留上游几何只作占位；“大钟寺”任务叙事来自公告名称，所有真实站点、社区和归药服务候选必须另行现场与责任主体核验。官方或 canonical 几何更新后，整体重算图层、指标、图件、PDF 与 HTML。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="ISSUE-1029" title="来源：ISSUE-1029">来源</sup> [assumption:A-BOUNDARY-001]</p>
+<p>新增资料全部来自公开或清权来源：北京市药品废弃物实施方案、海淀既往家庭药品回收公开信息、北下关与大钟寺公开页面，以及 AI Verify、OpenEPCIS、OpenLMIS、OpenBoxes、OpenDP、Timefold、澳大利亚 NatRUM、法国未使用药品责任体系等第一方资料。用途、访问时间、许可和限制见 <code>sources.json</code>。我们借鉴的是“事件模型、模块化物流、隐私保护、约束优化、公众投递与专业处置分离”等方法，不复制品牌、界面、图像或未经验证的成效数字。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="归药线总览：问题、责任链与三区两翼"><figcaption>归药线总览：问题、责任链与三区两翼</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>归药线按三层范围回答三个不同尺度的问题。约 43.6 平方公里统筹研究范围讨论的是：海淀如何把 AI 治理、公共健康韧性、逆向物流和开源协作组织成可复制的责任创新生态；约 11.4 平方公里总体设计范围讨论的是：这条责任链如何嵌入京张遗址公园周边的公共空间、产业空间与日常服务界面；约 368.4 公顷三处重点区域讨论的是：众智园、AI 原点社区和大钟寺各自承担什么可验证的任务。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="PROCESSED-FACT-PACK" title="来源：PROCESSED-FACT-PACK">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup></p>
+<p>空间结构不是把药品沿公园“运一遍”，而是 <strong>一条责任协议、三类城市接口、两个服务入口、四次可核交接</strong>。一条责任协议定义可收品类、拒收流程、封存、交接、异常和处置证明；三类接口分别是大钟寺“零回流站”、AI 原点社区“责任运单厅”、众智园“开放验证台”；两个服务入口是通勤/企业入口与居民生活圈入口；四次可核交接是受理、封存、运输接收、处置确认。公众体验路线可以沿京张文化轴展开，但真实药品只沿依法约定的专业路线转运。</p>
+<div class="proposal-table"><table><thead><tr><th>范围层级</th><th>核心判断</th><th>归药线输出</th><th>不越过的边界</th></tr></thead><tbody><tr><td>统筹研究范围</td><td>能否形成责任 AI 与公共逆向物流生态</td><td>八个方法案例、开放协议、年度验证活动、区域协同</td><td>不编造企业名单、投资额和政策承诺</td></tr><tr><td>总体设计范围</td><td>能否把责任链嵌入日常城市界面</td><td>五类概念功能分区、责任廊道、人工服务点与公共教育节点</td><td>不作为控规调整或法定用地结论</td></tr><tr><td>重点区域</td><td>三处片区能否形成差异化闭环</td><td>南部受理、中部协作、北部验证及三座荣誉节点</td><td>不擅自改造权属建筑或推定工程可行性</td></tr></tbody></table></div>
+<p>五类 <code>land_use</code> 图层是“主导功能研究覆盖”，用于保证算法和图件的拓扑完整，不代表把整条创新带改成新的法定用地；三处 <code>key_areas</code> 仍是临时粗略范围，矩形边不得解释为道路、地块或建设边界。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup></p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围、五类功能覆盖与责任回路"><figcaption>三层范围、五类功能覆盖与责任回路</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>归药线把“世界级 AI 创新生态”定义为能公开验证公共价值、允许失败、留下证据并被其他城市复用的生态，而不是大屏、模型榜单或企业数量竞赛。其全栈结构包括：规则层（品类、角色、停止条件）、空间层（有人值守入口与合成验证场）、事件层（最小化交接账本）、算法层（OCR 提示、异常检测、路线建议）、审查层（人工复核、投诉与失败复盘）、开放层（匿名样例、协议版本和评估报告）。任何算法都不得替代现场工作人员的接收判断、运输主体资格确认或处置企业的法定义务。</p>
+<div class="proposal-table"><table><thead><tr><th>全球/开源案例</th><th>可吸收的方法</th><th>归药线转译</th><th>明确不照搬</th></tr></thead><tbody><tr><td>Singapore AI Verify</td><td>模块化测试、原则到测试项、结果不等于“绝对安全”</td><td>众智园形成三类可复现实验与风险卡</td><td>不把通过测试写成监管批准</td></tr><tr><td>OpenEPCIS / GS1 EPCIS 2.0</td><td>事件式“何物、何时、何地、为何”追踪</td><td>只记录容器与交接事件，不记录居民身份与病种</td><td>首期不部署重型 Kafka/OpenSearch 栈</td></tr><tr><td>OpenLMIS</td><td>公共健康物流的模块化服务与参考分发</td><td>把受理点、运输、处置、规则表拆成可替换模块</td><td>不复制其业务表单或默认账号配置</td></tr><tr><td>OpenBoxes</td><td>低资源环境下库存与货物流转可见性</td><td>优先纸电双轨、离线可用、批次级交接</td><td>不把正向医疗库存逻辑等同于废弃物处置</td></tr><tr><td>OpenDP</td><td>可验证的隐私计算与隐私预算思想</td><td>公开统计只做阈值后的聚合；首期可直接少收数据</td><td>不为“用了隐私算法”而额外收集个人数据</td></tr><tr><td>Timefold Solver</td><td>容量、时间窗和路线的显式约束优化</td><td>为受托运输方提供可解释路线建议与人工确认</td><td>不让算法决定是否接收或绕开合规要求</td></tr><tr><td>Australia NatRUM</td><td>居民投递、社区药房容器、批准物流、合规处置</td><td>验证“个人可参与，但运输专业化”的运营原型</td><td>不直接移植国外药房责任或资金机制</td></tr><tr><td>France Cyclamed / ADEME</td><td>生产者责任、药房收集、专业运输与焚烧链</td><td>研究长期责任分担与公共沟通框架</td><td>不推定本地 EPR 法律关系已经成立</td></tr></tbody></table></div>
+<p>这些案例构成“方法库”，而非供应商清单。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AIVERIFY-GITHUB" title="来源：AIVERIFY-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENEPCIS-GITHUB" title="来源：OPENEPCIS-GITHUB">来源</sup> 归药线的首期技术形态刻意轻：一个离线优先事件表、可打印容器码、人工签收、每日导出与审计视图即可。模块化公共健康物流的取舍另由 OpenLMIS 与 OpenBoxes 提供对照。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENLMIS-GITHUB" title="来源：OPENLMIS-GITHUB">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENBOXES-GITHUB" title="来源：OPENBOXES-GITHUB">来源</sup> 只有当 90 天试点证明事件量、错误率和协作成本确有需要，才讨论数据库、消息队列或优化引擎。这一选择降低运维和采购锁定，也让社区与小型机构能理解系统。</p>
+<p>在三区两翼中，众智园承担全栈自主测试与 AI 治理话语权；AI 原点社区承担开源协作、人才训练与公共生活界面；大钟寺承担智能原生服务、通勤触达和企业责任前厅；中关村科技服务翼提供合规、标准、科研、保险与运营方法；小月河场景赋能翼提供低干扰公共空间、无障碍和极端天气等测试议题。与未来科学城、怀柔科学城、经开区及京津冀的协同只建议为协议互认、合成数据挑战和专业处置链研究，不声称已有合作。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体设计采用“物理服务层—运营责任层—数据事件层—公共审查层”四层架构。物理层只有有人值守受理台、可封存容器、临时存放界面、导视和可逆模块；运营层明确居民、工作人员、点位运营方、运输企业、处置企业、监管/协调部门的职责；数据层记录容器编号、事件类型、时间、点位、数量区间、交接角色、状态与异常码；公共审查层发布不含个人信息的服务状态、失败原因和评估结论。四层中的任一层未准备好，真实药品试点都不启动。</p>
+<p>主导功能覆盖将临时总体范围划为五个自南向北的研究带：大钟寺责任服务与通勤触达、居民生活服务候选带、AI 原点社区协作与适老服务、京张公共责任文化带、众智园验证与治理带。该覆盖仅用于表达“哪类空间更适合承载什么功能”，不判断现状用地、不提出容积率或建筑高度。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup></p>
+<p>城市更新动作遵循“先运营、后设施；先可逆、后永久；先空包装和合成事件、后真实物品”。近期不拆建，通过既有公共服务、企业服务或经确认的药品经营/医疗接口嵌入有人值守柜台；中期在书面协议、公众接受度和成本评估通过后，形成可复制模块；长期才研究跨片区共同协议和常态化线路。所有模块占地、消防、环卫、药事、危废/药品废弃物管理、文保和交通条件均需专业部门逐项确认。</p>
+<p>数字系统采用事件账本而非居民档案。最小事件示例为：<code>container_id / event_type / point_id / time_bucket / actor_role / quantity_band / status / exception_code / previous_event_hash</code>。它可以回答“这个容器是否完整交接”，不能回答“谁得过什么病”。OCR 只识别包装上的品名、剂型、有效期等非个人字段并给工作人员提示；图像在现场确认后立即删除，首期默认不开启云端存储。公众无需扫码、注册或下载应用，纸质凭条为可选项。</p>
+<p>规划深化应优先补齐：正式范围与重点区 polygon、现状公共服务和药品经营点位、道路与临停条件、文保与蓝绿控制、既有建筑和权属、运输与处置合同边界、药品废弃物分类口径。缺一项不等于概念无效，但对应空间或运营结论必须保持 <code>unknown</code>，不得以 AI 猜测替代。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup></p>
+<h2>重点区域详细设计</h2>
+<p>三处重点区形成“南受理—中协作—北验证”的责任回路，但不是把所有真实药品集中到三处。<strong>大钟寺</strong>设置“零回流站 / Zero-Reentry Gate”概念前厅，服务通勤者、企业员工、周边居民与机构活动日；它不能建立在“这里住宅很少”的假设上，因为公开资料同时显示产业/商务导向和既有社区生活。首期应比较通勤入口与居民入口的到达量、拒收原因和人工成本，再决定常态点位。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="DAZHONGSI-COMMUNITY-2020" title="来源：DAZHONGSI-COMMUNITY-2020">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup></p>
+<p><strong>AI 原点社区</strong>设置“责任运单厅 / Responsibility Waybill Hall”，它不储存大量真实药品，主要承担公众教育、适老人工说明、开源协议讨论、开发者训练和匿名评估展示。这里把“AI 原生生活”解释为无需手机也能完成服务、每次自动建议都能由人复核、每个失败都能进入版本迭代。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="ELDERLY-SMART-TECH-PLAN-2020-45" title="标准：ELDERLY-SMART-TECH-PLAN-2020-45">标准</sup></p>
+<p><strong>众智园</strong>设置“开放验证台 / Open Validation Observatory”，首期只使用空包装、仿真标签、虚构容器编号和合成路线，不接收公众真实药品。三类测试分别是：包装信息 OCR 与规则解释、密封交接事件完整性与异常检测、带容量和时间窗的受托运输路线建议。测试报告必须同时列出误判、漏判、人工推翻率、离线降级结果和不适用范围。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AIVERIFY-GITHUB" title="来源：AIVERIFY-GITHUB">来源</sup></p>
+<p>生活圈居民入口设置在“大钟寺—北下关生活圈内经实地与主体协议确认的人工服务界面”，当前几何只作候选节点，不能写成某一社区、药店或医疗机构已经同意。北下关公开数据仅证明其范围内存在社区与医疗资源，不证明具体点位具有归药职责或承载能力。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIXIAGUAN-2025-BUDGET" title="来源：BEIXIAGUAN-2025-BUDGET">来源</sup> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#PUBLIC-004" title="空间数据：geometry/public_space.geojson#PUBLIC-004">空间数据</sup></p>
+<div class="proposal-table"><table><thead><tr><th>节点</th><th>真实药品</th><th>主责任</th><th>可逆空间组件</th><th>进入下一阶段的门槛</th></tr></thead><tbody><tr><td>大钟寺零回流站</td><td>90 天试点可在协议后受理</td><td>点位运营方 + 指定工作人员</td><td>低台面、双语大字规则、封存容器、异常隔离位</td><td>点位、运输、处置三方书面确认</td></tr><tr><td>AI 原点责任运单厅</td><td>原则上不作集中存放</td><td>公共教育/开源运营团队</td><td>事件墙、人工咨询台、失败案例库</td><td>教材与隐私评审通过</td></tr><tr><td>众智园开放验证台</td><td>禁止真实公众药品</td><td>测试运营与专业审查团队</td><td>合成货架、规则沙盒、审计看板</td><td>三类测试均可复现</td></tr><tr><td>居民生活圈候选入口</td><td>90 天试点第二入口</td><td>经确认的专业/公共服务主体</td><td>小型有人值守台与封存柜</td><td>实地客流、消防与暂存条件确认</td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域、四类节点与三座责任地标"><figcaption>三处重点区域、四类节点与三座责任地标</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>归药线服务的不是单一“用户”，而是一组承担不同风险的人。居民需要省心与匿名；老年人需要纸面、人工和代为解释；工作人员需要清楚的拒收规则；运输人员需要封条、时间窗和异常交接；处置企业需要来源与容器完整；监管/协调人员需要聚合证据；开发者需要合成数据而非居民隐私。任何场景若不能说明谁有最终决定权、错了怎么办、离线怎么办，就不进入试点。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENDP-GITHUB" title="来源：OPENDP-GITHUB">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="ELDERLY-SMART-TECH-PLAN-2020-45" title="标准：ELDERLY-SMART-TECH-PLAN-2020-45">标准</sup></p>
+<div class="proposal-table"><table><thead><tr><th>人物</th><th>关键任务</th><th>最小支持</th><th>禁止转嫁的责任</th></tr></thead><tbody><tr><td>普通居民</td><td>带来家庭过期/闲置药品并离开</td><td>无注册投递、清楚可收/拒收、可选纸凭条</td><td>不负责分拣合规与运输</td></tr><tr><td>老年人/无智能手机者</td><td>用口头或纸面完成服务</td><td>低位台面、大字版、人工解释、家属可陪同</td><td>不强制扫码或人脸识别</td></tr><tr><td>指定受理员</td><td>接收、拒收、封存、记录异常</td><td>规则卡、OCR 提示、双人复核选项</td><td>AI 不替代其现场判断</td></tr><tr><td>点位负责人</td><td>排班、容器、暂存与事故报告</td><td>每日开闭点清单、容量阈值、停收按钮</td><td>不自行安排非受托运输</td></tr><tr><td>受托运输人员</td><td>领取密封容器并完成交接</td><td>封条核验、事件签收、路线建议</td><td>不接收居民散装交付</td></tr><tr><td>合规处置人员</td><td>接收、核验、处置并回传证明</td><td>容器级来源链和异常码</td><td>不承担医疗鉴别服务</td></tr><tr><td>监督/研究人员</td><td>看趋势、审失败、决定是否扩围</td><td>去标识聚合指标、审计样本、投诉台账</td><td>不获取居民疾病与处方档案</td></tr></tbody></table></div>
+<p>十二张场景卡覆盖从投递到复盘的完整旅程：</p>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>场景卡</th><th>空间</th><th>AI 的可用角色</th><th>人工与失败降级</th></tr></thead><tbody><tr><td>01</td><td>无手机投递</td><td>两个有人值守入口</td><td>不需要 AI</td><td>纸面规则 + 受理员</td></tr><tr><td>02</td><td>包装模糊或破损</td><td>受理台</td><td>OCR 给出低置信提示</td><td>不确定即隔离/拒收，不猜测</td></tr><tr><td>03</td><td>明显不在可收清单</td><td>受理台</td><td>规则检索解释原因</td><td>工作人员给出合规替代指引</td></tr><tr><td>04</td><td>容器达到容量阈值</td><td>暂存界面</td><td>容量预警</td><td>人工停收并启动约定交接</td></tr><tr><td>05</td><td>封条编号不一致</td><td>交接点</td><td>事件链异常提示</td><td>双人复核、拒绝交接、记录事件</td></tr><tr><td>06</td><td>受托运输时间窗安排</td><td>后台</td><td>约束求解给出路线备选</td><td>调度员确认，禁止公众代运</td></tr><tr><td>07</td><td>到达处置端</td><td>合规处置企业</td><td>对账缺失事件</td><td>处置端人工验收与异常回退</td></tr><tr><td>08</td><td>居民咨询药是否还能吃</td><td>服务台</td><td>只提示“非医疗建议”</td><td>转介药师/医疗专业人员，不判断疗效</td></tr><tr><td>09</td><td>老年人需要陪同</td><td>AI 原点/居民入口</td><td>大字版与语音读屏辅助</td><td>人工服务始终可用</td></tr><tr><td>10</td><td>活动日短时拥堵</td><td>大钟寺前厅</td><td>聚合排队提示</td><td>限流、停收、预约专业加运</td></tr><tr><td>11</td><td>公众查看项目成效</td><td>责任运单厅</td><td>展示阈值后的聚合数据</td><td>小样本不公开，解释局限</td></tr><tr><td>12</td><td>月度失败复盘</td><td>众智园验证台</td><td>聚类异常码、生成待审摘要</td><td>人类委员会决定规则版本</td></tr></tbody></table></div>
+<p>三类产业测试采用合成数据：T1 包装 OCR 在光照、遮挡、中文小字、日期格式和相似名称下测误判；T2 事件链在漏扫、重复扫、错序、断网、封条不一致下测发现率；T3 路线建议在容量、时间窗、停收点、车辆资格和人工强制约束下测可行性。成功不以“模型准确率很高”概括，而以可复现样本、错误分布、人工推翻率、离线恢复时间和零越权建议为证据。</p>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>本方案没有足够公开数据判断现状建筑的保留、改造或拆除，也不提出总建筑规模、容积率、高度、密度和退线数值。<code>buildings.geojson</code> 中的三个小型建筑基底是 <strong>可逆模块原型</strong>，分别代表合成验证台、公共协作台和有人值守前厅，不是拟建工程位置，更不代表所在建筑可改造。专业深化须先取得现状测绘、产权、消防、结构、环卫、文保和控规条件。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="floor_area_ratio" title="指标：floor_area_ratio">指标</sup></p>
+<p>模块化组件库包括：A 型受理台（低位台面、无障碍前方空间、纸面规则）；B 型双锁封存柜（受理员与负责人分权）；C 型异常隔离盒（破损、渗漏或不明物单独处置）；D 型交接标尺（封条、容器、时间、双方角色）；E 型责任显示板（只展示聚合状态）；F 型合成测试架（空包装和虚构标签）。组件可以进入经确认的现有室内空间，优先不占公园绿地、不形成 24 小时无人箱、不制造大型永久构筑物。</p>
+<p>用地覆盖只表达主导功能适配：商业/产业服务空间更适合通勤前厅，社区服务空间更适合居民人工入口，教育科研空间更适合公众训练与合成测试，公园开敞空间只承载导视、科普和无真实药品的体验。药品暂存与交接必须在主体、制度和专业条件确认的受控室内完成，不能因为图上画在公共空间就获得资格。</p>
+<p>拆改留顺序建议为：先“留”既有空间、加轻量运营；再“改”可逆家具、导视和数字流程；只有在试点证明长期需求且专业审查通过后，才研究任何建设行为。90 天内不以新建面积作为绩效，反而以零永久建设、零公众代运、零身份字段和可停止性作为成熟度指标。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="building_footprint_area_sqm" title="指标：building_footprint_area_sqm">指标</sup></p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>归药的角色边界必须非常清楚：<strong>个人可以参与投递，但不参与专业转运。</strong> 居民将符合清单的家庭过期或闲置药品带到有人值守点；指定工作人员现场接收或拒收、放入标识容器并封存；点位运营方安排受托运输企业按约定时间领取密封容器；运输企业与处置企业完成双向交接并回传处置证明。政府、街道和社区更适合作为规则、协调、入口组织、宣传和监督主体，并不意味着每个部门都要亲自运送。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BEIJING-MED-WASTE-2025" title="来源：BEIJING-MED-WASTE-2025">来源</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AU-NATRUM" title="来源：AU-NATRUM">来源</sup></p>
+<div class="proposal-table"><table><thead><tr><th>任务</th><th>居民</th><th>受理员</th><th>点位运营方</th><th>运输企业</th><th>处置企业</th><th>政府/街道/社区</th></tr></thead><tbody><tr><td>带到点位</td><td>R</td><td>I</td><td>I</td><td>—</td><td>—</td><td>C（宣传）</td></tr><tr><td>接收/拒收</td><td>I</td><td>R</td><td>A</td><td>—</td><td>—</td><td>C（规则）</td></tr><tr><td>入容器与封存</td><td>—</td><td>R</td><td>A</td><td>I</td><td>—</td><td>C（监督）</td></tr><tr><td>安排提运</td><td>—</td><td>I</td><td>A/R</td><td>C</td><td>I</td><td>C</td></tr><tr><td>密封运输</td><td>—</td><td>—</td><td>C</td><td>A/R</td><td>I</td><td>I</td></tr><tr><td>验收与处置</td><td>—</td><td>—</td><td>I</td><td>C</td><td>A/R</td><td>I</td></tr><tr><td>聚合评估与投诉</td><td>C</td><td>C</td><td>R</td><td>C</td><td>C</td><td>A</td></tr></tbody></table></div>
+<p><code>R</code> 为执行，<code>A</code> 为最终负责，<code>C</code> 为协商，<code>I</code> 为知会。真实责任仍以试点书面协议和主管部门意见为准；本表是概念 RACI，不创造法定义务。</p>
+<p>运输路线不是公众步行路线。<code>roads.geojson</code> 只画两类概念联系：一条贯穿三处知识节点的公众“责任学习线”，以及候选居民入口与大钟寺前厅的服务联系；它们都不是道路红线、车辆路线或工程方案。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup> 受托运输的实际路线由企业按车辆、时间窗、容量、法规与现场条件决定，AI 只能给备选并显示违反了哪些约束。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="TIMEFOLD-GITHUB" title="来源：TIMEFOLD-GITHUB">来源</sup></p>
+<p>公共服务设施必须支持断网与低技术条件。停电或系统故障时，点位可使用预编号纸封条和两联交接单，恢复后由两人补录；若无法确认容器、人员或去向，立即停收而不是“先放进去再说”。市政深化需要核对临时存放的通风、防火、防渗、清洁、无障碍、垃圾分类和应急处置条件，本方案不做工程可行性结论。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="公众学习线、服务联系与蓝绿公共空间的分离关系"><figcaption>公众学习线、服务联系与蓝绿公共空间的分离关系</figcaption></figure>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>京张铁路的文化价值不被简化成怀旧装饰。铁路之所以能跨越空间，是因为时间表、路权、站点、信号和交接共同构成可信系统；归药线借用的正是这种“责任可抵达”的基础设施精神。视觉母题由两条平行线与一个断开的药片轮廓构成：一条代表物的路径，一条代表责任的路径；每经过一个节点，责任线留下可核印记。该图形为原创方向，不使用既有铁路标志、药企商标或未经授权字体。</p>
+<p>公共空间只承担三件事：让人看懂去哪儿、让没有智能手机的人能获得帮助、让项目的失败和改进被公开讨论。三座“AI 朝圣地标”因此不是巨型雕塑，而是可逆、可使用的责任装置：零回流站显示“今天是否可接收”；责任运单厅展示从问题到规则版本的演变；开放验证台公开合成测试和人工推翻案例。荣誉系统不按模型分数排榜，而记录“发现并修复了什么公共风险”，把贡献者、受理员、专业运输处置人员和公众反馈者都纳入署名。</p>
+<p>绿地与公园中的体验不放真实药品、不设无人箱。<code>green_space.geojson</code> 表达低干扰责任学习廊道，<code>public_space.geojson</code> 表达四个可逆节点研究范围；其面积比例只用于提交几何复算，不能宣称新增绿地或公共空间。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup> 夜间照明、无障碍、雨雪、极端高温和活动人流需在小月河场景赋能翼中以现场测试深化。</p>
+<p>导视分为“动作色”和“证据色”：暖橙表示需要人完成的动作，深蓝表示已记录的责任事件，灰色表示未知或待确认。所有重要信息采用中文主文、英文辅文、图形和数字编号；不用颜色作为唯一编码。规则牌首屏只回答四个问题：这里是否有人值守、什么可以带来、什么不能带来、投递之后由谁负责。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>首期是一个可停止的 90 天验证，不是城市全面部署。第 0–15 天只做协议与合成演练：确认点位、运输、处置、拒收品类、事故与投诉流程，众智园用空包装走完 30 次全链；第 16–30 天培训两类入口人员并开展不开箱桌面演练；第 31–75 天在一个通勤入口和一个居民入口限时开放；第 76–90 天停止扩量，完成对账、访谈、失败复盘与是否继续的书面判断。</p>
+<div class="proposal-table"><table><thead><tr><th>项目</th><th>最小交付</th><th>主体前置</th><th>成功证据</th><th>停止条件</th></tr></thead><tbody><tr><td>SR-01 双入口受理</td><td>每周固定时段、有人值守</td><td>点位书面同意、人员培训</td><td>可达、可拒收、可封存</td><td>无合格人员或暂存条件</td></tr><tr><td>SR-02 密封交接链</td><td>容器级事件与纸电双轨</td><td>运输与处置协议</td><td>每个容器去向可对账</td><td>任一容器无法追溯</td></tr><tr><td>SR-03 三类合成测试</td><td>样例、结果、人工推翻记录</td><td>测试规则与数据清权</td><td>第三方可复现</td><td>算法输出越权或无法解释</td></tr><tr><td>SR-04 公众说明与适老服务</td><td>大字规则、人工服务、投诉入口</td><td>服务人员与无障碍核查</td><td>无手机可完成全流程</td><td>强制注册或身份采集</td></tr><tr><td>SR-05 月度失败评审</td><td>异常清单与版本决议</td><td>多主体参与</td><td>规则更新有依据</td><td>只报喜不报错</td></tr></tbody></table></div>
+<p>成本只按类别公开：人员排班与培训、封存容器与耗材、合规运输与处置、保险/安全评估、轻量软件与设备、公众沟通、第三方评估、应急储备。没有主体报价与处置口径前不填写总投资，不把政府资金或企业赞助写成确定承诺。90 天上限由签约主体在实地勘察后共同核定。</p>
+<p>分期几何分别对应南部试点、中部协作、北部验证，不表示建设时序或土地开发时序。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup> 进入第二阶段必须同时满足：责任协议有效、无重大安全事件、交接完整率达到约定阈值、居民不被迫留资、人工工时与运输处置成本可承受、至少一次外部复核完成。任一项不满足，则缩小、暂停或转向“京张找得到”这类纯服务导航方向，而不是硬扩围。</p>
+<p>长期运营建议形成四个年度节律：春季规则体检、夏季合成压力测试、秋季公众归药与责任创新周、冬季失败报告和协议版本发布。开发者的转化路径不是“获奖—招商”，而是“发现公共问题—提交合成测试—专业评审—小范围试点—公开复盘—跨城复用”；所有活动均为概念建议，须另行获得场地与主管主体许可。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>本方案把指标分为三类。第一类是提交图层可复算的几何指标，如临时范围面积、主导功能覆盖、概念绿地/公共空间面积、模块原型基底、节点和分期数量；它们验证文件自洽，不是法定规划指标。第二类是运营试点指标，如受理时长、拒收率、容器交接完整率、异常关闭时长、人工推翻率、无手机完成率和单容器全成本；它们必须在试点后获得。第三类是仍需官方或专业资料的指标，如容积率、高度、道路红线、服务半径、消防与暂存容量，当前保持 unknown。<sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup></p>
+<div class="proposal-table"><table><thead><tr><th>90 天关键指标</th><th>定义</th><th>基线</th><th>建议门槛（需协议确认）</th><th>反向解释</th></tr></thead><tbody><tr><td>交接完整率</td><td>有完整受理—封存—运输—处置事件的容器/全部容器</td><td>试点前无</td><td>100% 为目标，任何缺失需事件报告</td><td>不能用“平均很高”掩盖失踪容器</td></tr><tr><td>无手机完成率</td><td>不注册、不扫码仍完成服务的人次比例</td><td>待测</td><td>100% 流程可用</td><td>数字化不能成为门槛</td></tr><tr><td>身份字段数</td><td>系统设计中可识别居民身份的字段</td><td>0</td><td>必须保持 0</td><td>发现即停收并删除</td></tr><tr><td>人工推翻率</td><td>受理员推翻 AI 提示次数/AI 提示次数</td><td>待测</td><td>不设越低越好，需解释原因</td><td>推翻证明人工权力真实存在</td></tr><tr><td>异常关闭时间</td><td>异常发现至书面关闭的时长</td><td>待测</td><td>按严重度约定</td><td>未关闭异常不得扩围</td></tr><tr><td>单容器全成本</td><td>人工、耗材、运输、处置、评估成本/容器</td><td>待测</td><td>由主体共同设上限</td><td>不隐去公共服务的人力成本</td></tr></tbody></table></div>
+<p>四条一票否决：出现公众或志愿者运输散装药品；出现身份/疾病/处方数据收集；出现容器去向无法追溯；在没有受托运输和合规处置确认时开放真实药品受理。其他停止信号包括严重破损泄漏、持续拒收争议、人工负荷超过排班能力、处置成本不可持续、算法频繁给出越权建议。停止不是失败，而是责任系统的功能。</p>
+<p>当前机器指标见 <code>metrics.json</code>。临时范围面积置信度为 low；三处重点区数量是任务结构事实但 polygon 仍为 provisional；概念绿地、公共空间和建筑基底比例均只描述 agent-generated design。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> 合规矩阵将公告 1.3–1.5 与 agent.1–agent.6 映射到正文、图件、GeoJSON、指标、A3/A0 和 HTML；自检通过只表示投稿包一致，不表示规划或运营获批。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="指标、责任链、90 天门槛与停止条件"><figcaption>指标、责任链、90 天门槛与停止条件</figcaption></figure>
+<h2>风险、版权与合规说明</h2>
+<p>医疗边界是第一风险边界。归药线不判断药品是否仍可使用，不提供诊断、处方、用药调整、药物相互作用或回收再利用建议；居民提出相关问题时，系统只显示“请咨询药师或医疗专业人员”。具体可收和拒收品类由主管部门、点位与处置链书面确认，历史公开清单只作为流程研究证据，不自动成为 2026 年有效清单。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-HOUSEHOLD-RETURN-2014" title="来源：HAIDIAN-HOUSEHOLD-RETURN-2014">来源</sup></p>
+<p>数据边界是第二风险边界。首期不收姓名、手机号、证件号、住址、疾病、处方、购药记录、人脸、精确个人轨迹；不以积分、礼品或个性化推荐诱导留资。公开看板只显示达到最小样本阈值后的点位级/时间段级聚合数据。生成式 AI 若用于解释规则或生成复盘摘要，必须显示来源、置信度和人工审核状态，不把生成内容当法律或医疗意见。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="GENERATIVE-AI-INTERIM-MEASURES" title="标准：GENERATIVE-AI-INTERIM-MEASURES">标准</sup> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OPENDP-GITHUB" title="来源：OPENDP-GITHUB">来源</sup></p>
+<p>运营风险包括错收、破损、儿童接触、暂存超容、封条不一致、运输延误、处置对账失败、工作人员疲劳和公众误解。每种风险都有“预防—发现—隔离—上报—关闭—公开复盘”六步；高风险事件未关闭时不能扩围。24 小时无人值守公共箱、居民/志愿者代运、项目团队自行处置、真实药品进入众智园测试场均明确排除。</p>
+<p>空间风险包括 provisional 边界被误解为官方红线、概念节点被误解为确定选址、公共文化路线被误解为真实运输线路。所有图件均应保留“概念建议 / 临时粗略范围 / 待专业深化”标注，A3/A0 与 HTML 不得删除该水印。<sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/constraints.geojson#CONSTRAINTS" title="空间数据：geometry/constraints.geojson#CONSTRAINTS">空间数据</sup></p>
+<p>版权方面，方案文字、结构、表格、原创图形、程序化图件和封面由 zymk8353 与 OpenAI Codex 为本征集共同生成；公开 GitHub 仓库只被引用为方法案例，没有复制其代码或视觉资产。AI Verify、OpenEPCIS、Timefold、OpenDP 等许可信息在 <code>sources.json</code> 与 <code>report/copyright_statement.md</code> 中登记。北京市公开页面用于事实引用，不推定网页装饰、图片或第三方内容可再授权。所有生成视觉都标注为概念表达，不冒充现场照片。</p>
+<h2>参考资料</h2>
+<p>正式机器索引见 <code>sources.json</code>；以下仅列出读者导航，不在正文嵌入远程资源：</p>
+<ul>
+<li>项目任务：<code>brief/site-package/design_brief.json</code>、<code>brief/site-package/agent_taskbook.json</code>、<code>data/processed/agent_fact_pack.md</code>。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup></li>
+<li>空间约束：<code>brief/site-package/geometry/provisional_boundaries.geojson</code> 与说明文件；只能 provisional 使用。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="BOUNDARY-SOURCE" title="来源：BOUNDARY-SOURCE">来源</sup></li>
+<li>规划与治理标准：城市设计管理办法、控规编制审批办法、国土空间用地分类指南、无障碍环境建设法、适老智能技术实施方案、生成式人工智能服务管理暂行办法；本地快照均在 <code>brief/site-package/standards/references/</code>。<sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup></li>
+<li>北京与海淀运营证据：<code>BEIJING-MED-WASTE-2025</code>、<code>HAIDIAN-HOUSEHOLD-RETURN-2014</code>、<code>HAIDIAN-MED-WASTE-QA-2021</code>、<code>BEIXIAGUAN-2025-BUDGET</code>、<code>DAZHONGSI-COMMUNITY-2020</code>。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="HAIDIAN-MED-WASTE-QA-2021" title="来源：HAIDIAN-MED-WASTE-QA-2021">来源</sup></li>
+<li>全球公共回收体系：<code>AU-NATRUM</code>、<code>FR-CYCLAMED</code>；只作机制比较，不移植法律责任。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="FR-CYCLAMED" title="来源：FR-CYCLAMED">来源</sup></li>
+<li>开源方法库：<code>AIVERIFY-GITHUB</code>、<code>OPENEPCIS-GITHUB</code>、<code>OPENLMIS-GITHUB</code>、<code>OPENBOXES-GITHUB</code>、<code>OPENDP-GITHUB</code>、<code>TIMEFOLD-GITHUB</code>；许可与借鉴边界见结构化来源条目。<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AIVERIFY-GITHUB" title="来源：AIVERIFY-GITHUB">来源</sup></li>
+</ul>
+<p><strong>状态声明：</strong> 本稿是 formal v2 双语投稿的设计正文，空间与运营仍属概念建议；90 天试点必须在责任主体、医疗/废弃物边界、点位条件、运输处置链和专业审查全部书面确认后方可启动。</p>
+</main>
+</body>
+</html>

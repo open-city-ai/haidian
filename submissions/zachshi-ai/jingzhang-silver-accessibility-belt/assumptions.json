@@ -1,0 +1,41 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "官方精确红线、控规条件（容积率、建筑高度、拆改留）、土地权属、市政管线、道路红线与工程约束尚未在公开 site-package 中提供；方案所有空间落地、规模与时序均为概念建议，须在官方资料发布后由专业团队深化。",
+      "impact": "方案可作为 formal AI 适老服务概念方案评审；法定管控指标（floor_area_ratio / building_height_m）记为 unknown，待官方控规确认后重算。"
+    },
+    {
+      "id": "A-BOUNDARY-PROVISIONAL-001",
+      "status": "provisional",
+      "statement": "场地边界与三处重点区边界为临时粗略边界（provisional_constraint, official_boundary=false），派生自公告文字四至与面积约束。",
+      "impact": "面积复算与图层指标为临时值；官方精确边界发布后须重新运行脚手架、自检与图纸/HTML生成，不能只替换单个文件。"
+    },
+    {
+      "id": "A-DEMO-DATA-GAP-001",
+      "status": "data_gap",
+      "statement": "京张沿线老龄人口底数、医院与社区卫生服务中心清单、无障碍设施现状普查等基线数据在公开 site-package 中尚不完整，依据 missing-data.md 列为已知数据缺口。",
+      "impact": "涉及这些数据的量化目标均写成'概念性运营指标'或'待补数据确认后量化'，不伪造底数；数据缺口本身不阻断内容评分。"
+    },
+    {
+      "id": "A-MEDICAL-NAV-ONLY-001",
+      "status": "policy_compliance",
+      "statement": "所有医疗相关 AI 内容（陪诊导航、用药提醒、健康监测、跌倒预警、急救调度等）仅作公共服务导航，不提供诊断、处方或治疗建议。",
+      "impact": "场景须由医疗、法律和数据安全专业人员复核后方可运营；测试验证场景须数据许可、伦理审查通过后进入测试，并保留退出机制。"
+    },
+    {
+      "id": "A-CONCEPT-CLAUSE-001",
+      "status": "policy_compliance",
+      "statement": "方案所有空间落地、适老场景、服务节点、活动运营、政策机制（含时间银行、PPP、数字包容专项等）均为'概念建议/参考方案/可供专业团队深化研究'。",
+      "impact": "不替代正式规划，不构成政府审定结论、政策资金或实施安排；具体政策与活动须由相关主管部门依法定程序确定。"
+    },
+    {
+      "id": "A-PRIVACY-ELDERLY-001",
+      "status": "policy_compliance",
+      "statement": "老年人健康数据、位置数据属敏感个人信息；方案所有涉及此类数据的场景均要求知情同意、授权、脱敏与最小必要原则。",
+      "impact": "数据采集须符合个人信息保护相关法规；传感器/监测类场景须伦理复核，未获知情同意不得采集。"
+    }
+  ]
+}

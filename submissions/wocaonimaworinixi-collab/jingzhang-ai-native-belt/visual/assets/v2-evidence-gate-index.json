@@ -1,0 +1,633 @@
+{
+ "schema_version": "2.0.0",
+ "title_zh": "证据闸门索引（v2）",
+ "title_en": "Evidence gate index (v2)",
+ "author": "wocaonimaworinixi-collab",
+ "proposal_id": "jingzhang-ai-native-belt",
+ "revision": "v4.0",
+ "status": "design_target",
+ "planned_gate_total": 40,
+ "registered_gate_count": 40,
+ "method_zh": "闸门是把设计判断转成可复核动作的关口。每个闸门声明输入文件、执行程序、通过规则、停止规则、建议责任角色与非 AI 等效流程；状态一律为 design_target，只有在官方边界、现场测绘与专业模拟到位后才可能改写。",
+ "method_en": "A gate turns a design judgement into a checkable action. Each gate declares input files, procedure, pass rule, stop rule, a suggested owner role and a non-AI equivalent. Every gate stays at design_target until the official boundary, field survey and professional simulation are available.",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "domain_summary": {
+  "spatial": 5,
+  "data": 5,
+  "governance": 5,
+  "safety": 5,
+  "mobility": 3,
+  "ecology": 3,
+  "energy": 2,
+  "equity": 3,
+  "delivery": 3,
+  "operations": 2,
+  "technology": 3,
+  "evaluation": 1
+ },
+ "gates": [
+  {
+   "gate_id": "GATE-01",
+   "path": "visual/assets/gates/01-boundary-handoff.json",
+   "domain": "spatial",
+   "title_zh": "官方边界交接与全量复算",
+   "title_en": "Official boundary handoff and full recomputation",
+   "status": "design_target",
+   "source_ids": [
+    "BOUNDARY-SOURCE",
+    "SITE-PACKAGE",
+    "PROCESSED-FACT-PACK"
+   ],
+   "owner": "spatial data steward",
+   "non_ai_equivalent": "人工 GIS 版本核对与面积复算",
+   "evidence_output": "boundary_handoff_receipt"
+  },
+  {
+   "gate_id": "GATE-02",
+   "path": "visual/assets/gates/02-coordinate-frame.json",
+   "domain": "spatial",
+   "title_zh": "坐标系与量算口径固化",
+   "title_en": "Coordinate frame and measurement convention lock",
+   "status": "design_target",
+   "source_ids": [
+    "SITE-PACKAGE",
+    "ASSET-GEOMETRY"
+   ],
+   "owner": "geospatial engineer",
+   "non_ai_equivalent": "测绘单位统一投影与量算规程",
+   "evidence_output": "measurement_convention_note"
+  },
+  {
+   "gate_id": "GATE-03",
+   "path": "visual/assets/gates/03-layer-nesting.json",
+   "domain": "spatial",
+   "title_zh": "图层嵌套与互斥规则",
+   "title_en": "Layer nesting and mutual-exclusion rule",
+   "status": "design_target",
+   "source_ids": [
+    "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+    "SITE-PACKAGE"
+   ],
+   "owner": "urban designer",
+   "non_ai_equivalent": "人工套图与图层压盖检查",
+   "evidence_output": "layer_topology_report"
+  },
+  {
+   "gate_id": "GATE-04",
+   "path": "visual/assets/gates/04-magnitude-sanity.json",
+   "domain": "spatial",
+   "title_zh": "量级合理性复核",
+   "title_en": "Magnitude sanity review",
+   "status": "design_target",
+   "source_ids": [
+    "MOHURD-CONTROL-DETAILED-PLANNING",
+    "BG-BEIJING-MASTER-PLAN"
+   ],
+   "owner": "planning reviewer",
+   "non_ai_equivalent": "规划院内部量级会审",
+   "evidence_output": "magnitude_review_note"
+  },
+  {
+   "gate_id": "GATE-05",
+   "path": "visual/assets/gates/05-key-area-depth.json",
+   "domain": "spatial",
+   "title_zh": "重点区域详细设计深度",
+   "title_en": "Key-area detailed design depth",
+   "status": "design_target",
+   "source_ids": [
+    "KEY-AREA-SOURCE",
+    "MOHURD-ARCH-DESIGN-DEPTH-2016"
+   ],
+   "owner": "lead architect",
+   "non_ai_equivalent": "方案设计阶段图纸评审",
+   "evidence_output": "key_area_depth_sheet"
+  },
+  {
+   "gate_id": "GATE-06",
+   "path": "visual/assets/gates/06-provisional-flagging.json",
+   "domain": "data",
+   "title_zh": "临时数据全域标记",
+   "title_en": "Provisional data flagging across the package",
+   "status": "design_target",
+   "source_ids": [
+    "SITE-PACKAGE",
+    "PROCESSED-FACT-PACK"
+   ],
+   "owner": "data steward",
+   "non_ai_equivalent": "资料台账与临时数据标注",
+   "evidence_output": "provisional_flag_index"
+  },
+  {
+   "gate_id": "GATE-07",
+   "path": "visual/assets/gates/07-source-classification.json",
+   "domain": "data",
+   "title_zh": "来源分级与可用边界",
+   "title_en": "Source tiering and usability boundary",
+   "status": "design_target",
+   "source_ids": [
+    "SOURCE-REGISTRY",
+    "SITE-PACKAGE"
+   ],
+   "owner": "evidence officer",
+   "non_ai_equivalent": "资料来源清册与引用规范审查",
+   "evidence_output": "source_tier_register"
+  },
+  {
+   "gate_id": "GATE-08",
+   "path": "visual/assets/gates/08-no-basemap.json",
+   "domain": "data",
+   "title_zh": "无底图与版权洁净",
+   "title_en": "No-basemap and copyright cleanliness",
+   "status": "design_target",
+   "source_ids": [
+    "ASSET-NO-BASEMAP",
+    "ASSET-FIGURES"
+   ],
+   "owner": "publication officer",
+   "non_ai_equivalent": "出版前版权与素材来源核查",
+   "evidence_output": "copyright_clearance"
+  },
+  {
+   "gate_id": "GATE-09",
+   "path": "visual/assets/gates/09-personal-data-zero.json",
+   "domain": "data",
+   "title_zh": "零个人数据基线",
+   "title_en": "Zero personal data baseline",
+   "status": "design_target",
+   "source_ids": [
+    "ASSET-NO-PERSONAL-DATA",
+    "BG-PIPL",
+    "BG-DATA-SECURITY-LAW"
+   ],
+   "owner": "privacy officer",
+   "non_ai_equivalent": "个人信息合规预检",
+   "evidence_output": "privacy_scan_report"
+  },
+  {
+   "gate_id": "GATE-10",
+   "path": "visual/assets/gates/10-metric-formula.json",
+   "domain": "data",
+   "title_zh": "指标公式可复算",
+   "title_en": "Metric formula recomputability",
+   "status": "design_target",
+   "source_ids": [
+    "PKG-METRICS",
+    "ASSET-GEOMETRY"
+   ],
+   "owner": "metrics engineer",
+   "non_ai_equivalent": "指标台账与人工复算",
+   "evidence_output": "recomputation_log"
+  },
+  {
+   "gate_id": "GATE-11",
+   "path": "visual/assets/gates/11-human-review-trigger.json",
+   "domain": "governance",
+   "title_zh": "高风险人工复核触发",
+   "title_en": "High-risk human review trigger",
+   "status": "design_target",
+   "source_ids": [
+    "PKG-RISK",
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "owner": "governance lead",
+   "non_ai_equivalent": "重大事项人工审批制度",
+   "evidence_output": "human_review_ledger"
+  },
+  {
+   "gate_id": "GATE-12",
+   "path": "visual/assets/gates/12-refusal-boundary.json",
+   "domain": "governance",
+   "title_zh": "越权拒答边界",
+   "title_en": "Out-of-scope refusal boundary",
+   "status": "design_target",
+   "source_ids": [
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "BG-GENAI-MEASURES"
+   ],
+   "owner": "governance lead",
+   "non_ai_equivalent": "首问负责与转办制度",
+   "evidence_output": "refusal_case_log"
+  },
+  {
+   "gate_id": "GATE-13",
+   "path": "visual/assets/gates/13-no-approval-claim.json",
+   "domain": "governance",
+   "title_zh": "禁止官方背书表述",
+   "title_en": "No claim of official endorsement",
+   "status": "design_target",
+   "source_ids": [
+    "OFFICIAL-ANNOUNCEMENT",
+    "SITE-PACKAGE"
+   ],
+   "owner": "compliance officer",
+   "non_ai_equivalent": "宣传口径审查",
+   "evidence_output": "wording_scan_report"
+  },
+  {
+   "gate_id": "GATE-14",
+   "path": "visual/assets/gates/14-responsibility-map.json",
+   "domain": "governance",
+   "title_zh": "责任主体映射",
+   "title_en": "Responsibility mapping",
+   "status": "design_target",
+   "source_ids": [
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "BG-HAIDIAN-SUBDISTRICT"
+   ],
+   "owner": "governance lead",
+   "non_ai_equivalent": "职责分工方案编制",
+   "evidence_output": "responsibility_matrix"
+  },
+  {
+   "gate_id": "GATE-15",
+   "path": "visual/assets/gates/15-appeal-channel.json",
+   "domain": "governance",
+   "title_zh": "申诉与纠错通道",
+   "title_en": "Appeal and correction channel",
+   "status": "design_target",
+   "source_ids": [
+    "BG-CHINA-ACCESSIBILITY",
+    "BG-PIPL"
+   ],
+   "owner": "service designer",
+   "non_ai_equivalent": "政务服务好差评与复核机制",
+   "evidence_output": "appeal_channel_spec"
+  },
+  {
+   "gate_id": "GATE-16",
+   "path": "visual/assets/gates/16-fallback-manual.json",
+   "domain": "safety",
+   "title_zh": "断网断电人工兜底",
+   "title_en": "Offline and power-loss manual fallback",
+   "status": "design_target",
+   "source_ids": [
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "BG-HAIDIAN-SUBDISTRICT"
+   ],
+   "owner": "operations lead",
+   "non_ai_equivalent": "应急预案与值守制度",
+   "evidence_output": "fallback_playbook"
+  },
+  {
+   "gate_id": "GATE-17",
+   "path": "visual/assets/gates/17-low-speed-robot-safety.json",
+   "domain": "safety",
+   "title_zh": "低速机器人通行安全",
+   "title_en": "Low-speed robot passage safety",
+   "status": "design_target",
+   "source_ids": [
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "BG-CHINA-ACCESSIBILITY"
+   ],
+   "owner": "mobility engineer",
+   "non_ai_equivalent": "低速无人车试点安全评估",
+   "evidence_output": "robot_route_safety_note"
+  },
+  {
+   "gate_id": "GATE-18",
+   "path": "visual/assets/gates/18-crowd-safety.json",
+   "domain": "safety",
+   "title_zh": "人流与活动安全",
+   "title_en": "Crowd and event safety",
+   "status": "design_target",
+   "source_ids": [
+    "MOHURD-URBAN-DESIGN-MEASURES",
+    "BG-BEIJING-MASTER-PLAN"
+   ],
+   "owner": "safety reviewer",
+   "non_ai_equivalent": "大型活动安全评估",
+   "evidence_output": "crowd_capacity_note"
+  },
+  {
+   "gate_id": "GATE-19",
+   "path": "visual/assets/gates/19-heritage-protection.json",
+   "domain": "safety",
+   "title_zh": "遗产要素避让",
+   "title_en": "Heritage element avoidance",
+   "status": "design_target",
+   "source_ids": [
+    "BG-JINGZHANG-HERITAGE",
+    "KEY-AREA-SOURCE"
+   ],
+   "owner": "heritage specialist",
+   "non_ai_equivalent": "文物影响评估",
+   "evidence_output": "heritage_avoidance_note"
+  },
+  {
+   "gate_id": "GATE-20",
+   "path": "visual/assets/gates/20-construction-staging.json",
+   "domain": "safety",
+   "title_zh": "施工期干扰控制",
+   "title_en": "Construction-phase disturbance control",
+   "status": "design_target",
+   "source_ids": [
+    "MOHURD-CONTROL-DETAILED-PLANNING",
+    "AGENT-TASKBOOK"
+   ],
+   "owner": "construction planner",
+   "non_ai_equivalent": "施工组织设计评审",
+   "evidence_output": "staging_impact_note"
+  },
+  {
+   "gate_id": "GATE-21",
+   "path": "visual/assets/gates/21-walkability.json",
+   "domain": "mobility",
+   "title_zh": "步行连续性与尺度",
+   "title_en": "Walkability continuity and scale",
+   "status": "design_target",
+   "source_ids": [
+    "MOHURD-URBAN-DESIGN-MEASURES",
+    "BG-CHINA-ACCESSIBILITY"
+   ],
+   "owner": "mobility engineer",
+   "non_ai_equivalent": "步行系统专项评估",
+   "evidence_output": "walkability_note"
+  },
+  {
+   "gate_id": "GATE-22",
+   "path": "visual/assets/gates/22-rail-interface.json",
+   "domain": "mobility",
+   "title_zh": "轨道与站点衔接",
+   "title_en": "Rail and station interface",
+   "status": "design_target",
+   "source_ids": [
+    "BG-JINGZHANG-HERITAGE",
+    "BG-ZGC-SCIENCE-CITY"
+   ],
+   "owner": "transport planner",
+   "non_ai_equivalent": "轨道交通接驳方案评审",
+   "evidence_output": "rail_interface_note"
+  },
+  {
+   "gate_id": "GATE-23",
+   "path": "visual/assets/gates/23-cycle-network.json",
+   "domain": "mobility",
+   "title_zh": "自行车与慢行网络",
+   "title_en": "Cycling and slow-mobility network",
+   "status": "design_target",
+   "source_ids": [
+    "MOHURD-URBAN-DESIGN-MEASURES",
+    "BG-OSM"
+   ],
+   "owner": "mobility engineer",
+   "non_ai_equivalent": "慢行系统规划",
+   "evidence_output": "cycle_network_note"
+  },
+  {
+   "gate_id": "GATE-24",
+   "path": "visual/assets/gates/24-green-continuity.json",
+   "domain": "ecology",
+   "title_zh": "绿地连通性",
+   "title_en": "Green space continuity",
+   "status": "design_target",
+   "source_ids": [
+    "BG-BEIJING-MASTER-PLAN",
+    "BG-IPCC-AR6-URBAN"
+   ],
+   "owner": "landscape architect",
+   "non_ai_equivalent": "绿地系统规划",
+   "evidence_output": "green_continuity_note"
+  },
+  {
+   "gate_id": "GATE-25",
+   "path": "visual/assets/gates/25-stormwater.json",
+   "domain": "ecology",
+   "title_zh": "雨洪与蓝绿耦合",
+   "title_en": "Stormwater and blue-green coupling",
+   "status": "design_target",
+   "source_ids": [
+    "BG-IPCC-AR6-URBAN",
+    "MOHURD-CONTROL-DETAILED-PLANNING"
+   ],
+   "owner": "water engineer",
+   "non_ai_equivalent": "海绵城市专项设计",
+   "evidence_output": "stormwater_intent_note"
+  },
+  {
+   "gate_id": "GATE-26",
+   "path": "visual/assets/gates/26-microclimate.json",
+   "domain": "ecology",
+   "title_zh": "微气候与遮荫",
+   "title_en": "Microclimate and shading",
+   "status": "design_target",
+   "source_ids": [
+    "BG-IPCC-AR6-URBAN",
+    "MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "owner": "environmental designer",
+   "non_ai_equivalent": "风环境与热环境模拟",
+   "evidence_output": "microclimate_intent_note"
+  },
+  {
+   "gate_id": "GATE-27",
+   "path": "visual/assets/gates/27-compute-siting.json",
+   "domain": "energy",
+   "title_zh": "算力设施选址与能耗",
+   "title_en": "Compute facility siting and energy",
+   "status": "design_target",
+   "source_ids": [
+    "BG-ZGC-SCIENCE-CITY",
+    "PKG-SIMULATION"
+   ],
+   "owner": "energy planner",
+   "non_ai_equivalent": "数据中心能评与选址论证",
+   "evidence_output": "compute_energy_note"
+  },
+  {
+   "gate_id": "GATE-28",
+   "path": "visual/assets/gates/28-waste-heat.json",
+   "domain": "energy",
+   "title_zh": "余热与设施复用",
+   "title_en": "Waste heat and facility reuse",
+   "status": "design_target",
+   "source_ids": [
+    "BG-ZGC-SCIENCE-CITY",
+    "BG-IPCC-AR6-URBAN"
+   ],
+   "owner": "energy planner",
+   "non_ai_equivalent": "能源系统专项规划",
+   "evidence_output": "waste_heat_intent_note"
+  },
+  {
+   "gate_id": "GATE-29",
+   "path": "visual/assets/gates/29-accessibility.json",
+   "domain": "equity",
+   "title_zh": "无障碍与全龄友好",
+   "title_en": "Accessibility and all-age friendliness",
+   "status": "design_target",
+   "source_ids": [
+    "BG-CHINA-ACCESSIBILITY",
+    "MOHURD-URBAN-DESIGN-MEASURES"
+   ],
+   "owner": "inclusive design lead",
+   "non_ai_equivalent": "无障碍设施专项设计",
+   "evidence_output": "accessibility_note"
+  },
+  {
+   "gate_id": "GATE-30",
+   "path": "visual/assets/gates/30-digital-divide.json",
+   "domain": "equity",
+   "title_zh": "数字鸿沟缓解",
+   "title_en": "Digital divide mitigation",
+   "status": "design_target",
+   "source_ids": [
+    "BG-CHINA-ACCESSIBILITY",
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "owner": "service designer",
+   "non_ai_equivalent": "适老化与信息无障碍改造",
+   "evidence_output": "digital_inclusion_note"
+  },
+  {
+   "gate_id": "GATE-31",
+   "path": "visual/assets/gates/31-affordability.json",
+   "domain": "equity",
+   "title_zh": "可负担与混合使用",
+   "title_en": "Affordability and mixed use",
+   "status": "design_target",
+   "source_ids": [
+    "BG-HAIDIAN-SUBDISTRICT",
+    "CASE-KENDALL-SQUARE"
+   ],
+   "owner": "planning reviewer",
+   "non_ai_equivalent": "住房与产业混合政策研究",
+   "evidence_output": "affordability_intent_note"
+  },
+  {
+   "gate_id": "GATE-32",
+   "path": "visual/assets/gates/32-phasing-feasibility.json",
+   "domain": "delivery",
+   "title_zh": "分期可实施性",
+   "title_en": "Phasing feasibility",
+   "status": "design_target",
+   "source_ids": [
+    "MOHURD-CONTROL-DETAILED-PLANNING",
+    "AGENT-TASKBOOK"
+   ],
+   "owner": "delivery manager",
+   "non_ai_equivalent": "实施计划与投资时序编制",
+   "evidence_output": "phasing_feasibility_note"
+  },
+  {
+   "gate_id": "GATE-33",
+   "path": "visual/assets/gates/33-project-list.json",
+   "domain": "delivery",
+   "title_zh": "更新项目清单可核查",
+   "title_en": "Renewal project list verifiability",
+   "status": "design_target",
+   "source_ids": [
+    "AGENT-TASKBOOK",
+    "MOHURD-CONTROL-DETAILED-PLANNING"
+   ],
+   "owner": "delivery manager",
+   "non_ai_equivalent": "项目库编制与入库审查",
+   "evidence_output": "project_list_check"
+  },
+  {
+   "gate_id": "GATE-34",
+   "path": "visual/assets/gates/34-cost-order.json",
+   "domain": "delivery",
+   "title_zh": "投资量级与不确定性",
+   "title_en": "Cost order of magnitude and uncertainty",
+   "status": "design_target",
+   "source_ids": [
+    "AGENT-TASKBOOK",
+    "PROCESSED-FACT-PACK"
+   ],
+   "owner": "cost planner",
+   "non_ai_equivalent": "投资估算与经济评价",
+   "evidence_output": "cost_uncertainty_note"
+  },
+  {
+   "gate_id": "GATE-35",
+   "path": "visual/assets/gates/35-operations-model.json",
+   "domain": "operations",
+   "title_zh": "运营模式与非 AI 等效",
+   "title_en": "Operations model and non-AI equivalent",
+   "status": "design_target",
+   "source_ids": [
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK",
+    "CASE-STATION-F"
+   ],
+   "owner": "operations lead",
+   "non_ai_equivalent": "运营方案与人员编制",
+   "evidence_output": "operations_model_note"
+  },
+  {
+   "gate_id": "GATE-36",
+   "path": "visual/assets/gates/36-monitoring-loop.json",
+   "domain": "operations",
+   "title_zh": "运行监测与回写",
+   "title_en": "Monitoring loop and write-back",
+   "status": "design_target",
+   "source_ids": [
+    "PKG-SIMULATION",
+    "PKG-METRICS"
+   ],
+   "owner": "operations lead",
+   "non_ai_equivalent": "运行监测与绩效评估",
+   "evidence_output": "monitoring_baseline"
+  },
+  {
+   "gate_id": "GATE-37",
+   "path": "visual/assets/gates/37-tool-schema.json",
+   "domain": "technology",
+   "title_zh": "工具调用结构合规",
+   "title_en": "Tool dispatch schema compliance",
+   "status": "design_target",
+   "source_ids": [
+    "PKG-SIMULATION",
+    "BG-GENAI-MEASURES"
+   ],
+   "owner": "ai engineer",
+   "non_ai_equivalent": "接口联调与契约测试",
+   "evidence_output": "schema_conformance_log"
+  },
+  {
+   "gate_id": "GATE-38",
+   "path": "visual/assets/gates/38-replan-latency.json",
+   "domain": "technology",
+   "title_zh": "重规划时延约束",
+   "title_en": "Replanning latency constraint",
+   "status": "design_target",
+   "source_ids": [
+    "PKG-SIMULATION",
+    "AGENT-TASKBOOK"
+   ],
+   "owner": "ai engineer",
+   "non_ai_equivalent": "系统性能测试",
+   "evidence_output": "latency_report"
+  },
+  {
+   "gate_id": "GATE-39",
+   "path": "visual/assets/gates/39-model-boundary.json",
+   "domain": "technology",
+   "title_zh": "模型能力边界声明",
+   "title_en": "Model capability boundary declaration",
+   "status": "design_target",
+   "source_ids": [
+    "BG-GENAI-MEASURES",
+    "PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+   ],
+   "owner": "ai engineer",
+   "non_ai_equivalent": "技术能力说明与免责声明",
+   "evidence_output": "capability_boundary_note"
+  },
+  {
+   "gate_id": "GATE-40",
+   "path": "visual/assets/gates/40-self-audit-run.json",
+   "domain": "evaluation",
+   "title_zh": "自审脚本可运行",
+   "title_en": "Self-audit script runnability",
+   "status": "design_target",
+   "source_ids": [
+    "PKG-EVIDENCE-LEDGER",
+    "PKG-CLAIM-PROVENANCE",
+    "PKG-GATES"
+   ],
+   "owner": "evidence officer",
+   "non_ai_equivalent": "内部审计与复核",
+   "evidence_output": "self_audit_report"
+  }
+ ]
+}

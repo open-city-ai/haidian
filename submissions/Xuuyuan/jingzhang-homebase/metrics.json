@@ -1,0 +1,124 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "The repository provisional boundary is used only for intake and scenario comparison."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2356816.907,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(conceptual_space_envelope_area)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual envelopes are not existing buildings, parcels, or approved footprints."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.176699,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_green_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Scenario indicator only; recalculate after official boundaries and surveyed existing green space are available."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.16871,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_public_space_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Scenario indicator only; overlaps with other conceptual land-use layers are intentional."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls, parcels, ownership, existing buildings, and official site geometry are absent."
+    },
+    "housing_land_share_scenario": {
+      "status": "known",
+      "value": 0.293168,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "conceptual_0701_area / provisional_site_area",
+      "confidence": "low",
+      "assumptions": [
+        "Design scenario, not a statutory quota or supply commitment."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(provisional_key_areas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Names and announced approximate areas are official; repository polygons remain provisional."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(homebase_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(homebase_personas)",
+      "confidence": "high",
+      "assumptions": []
+    }
+  }
+}

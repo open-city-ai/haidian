@@ -1,0 +1,167 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area of PROV-SITE-001",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note": "Provisional boundary. Official polygon will change this value."
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 232385.989,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "Sum of building footprint areas",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BUILDINGS-001"
+      ],
+      "note": "Recomputed from geometry/buildings.geojson via EPSG:4548"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.284,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "Green space area / site area",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note": "Geometry-computed via EPSG:4548. Heritage park (148 ha) + Qinghe (42 ha) + Xiaoyuehe + pocket parks + rail corridor buffer green = 323.6 ha."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.01,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "Public space area / site area",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note": "After spatial fix: plazas, public living rooms, activity nodes clipped to site boundary."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "Total floor area / site area",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ],
+      "reason": "Need official FAR controls from regulatory planning conditions. Conceptual direction: Zhongzhiyuan 1.5-2.0, Origin 2.0-2.5, Dazhongsi 2.5-3.5."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "Feature count in key_areas.geojson",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note": "Three key areas: Zhongzhiyuan, AI Origin, Dazhongsi."
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "Feature count in land_use.geojson",
+      "confidence": "high",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ],
+      "note": "13 zones seamlessly cover entire site, zero overlap, all within boundary. Includes LU-013 rail/transport corridor."
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "Number of AI scenario cards",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "12 scenario cards, 4 industry-testing."
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "Number of user personas",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "5 personas: developers, startups, enterprises, residents, academia."
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "Number of AI pilgrimage landmarks",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "3 landmarks: Origin Monument, Light of Innovation, Smart Economy Ring."
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "Number of renewal projects",
+      "confidence": "high",
+      "assumptions": [],
+      "note": "8 projects: slow mobility, blue-green, industry, transit, infrastructure, operations."
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 17500.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "Sum of road centerline lengths",
+      "confidence": "medium",
+      "assumptions": [
+        "A-TRANSPORT-001"
+      ],
+      "note": "Conceptual road network."
+    }
+  }
+}

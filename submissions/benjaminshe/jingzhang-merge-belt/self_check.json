@@ -1,69 +1,200 @@
 {
- "schema_version": "0.1.0",
- "checks": [
-  {
-   "check_id": "FINAL_DETERMINISTIC",
-   "result": "pass",
-   "severity": "major",
-   "target": "manifest.json + proposal.md/.en.md + report/*.html",
-   "message": "Deterministic validation PASS on final bytes (hashes, bilingual pairing, evidence density, references)."
+  "ok": true,
+  "submission_dir": "submissions\\benjaminshe\\jingzhang-merge-belt",
+  "pr_author": "benjaminshe",
+  "stage": "formal",
+  "deterministic_validation": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "errors": [],
+      "warnings": [
+        "submissions/benjaminshe/jingzhang-merge-belt/proposal.md: 可能涉及非公开或敏感资料; maintainer review required",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/site_boundary.geojson: uses provisional boundary; do not treat it as an official redline or precise-area basis. Organizer data gaps do not block content scoring; recalculate when official geometry is supplied"
+      ],
+      "proposal_files": [
+        "submissions/benjaminshe/jingzhang-merge-belt/proposal.md"
+      ],
+      "changelog_files": [],
+      "changed_files": [
+        "submissions/benjaminshe/jingzhang-merge-belt/agent.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/key-areas.en.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/key-areas.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/land-use-structure.en.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/land-use-structure.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/logo-concept.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/metrics-evidence.en.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/metrics-evidence.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/mobility-bluegreen.en.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/mobility-bluegreen.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/site-overview.en.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assets/figures/site-overview.png",
+        "submissions/benjaminshe/jingzhang-merge-belt/assumptions.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/compliance_matrix.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/design_depth_matrix.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/drawings/a0-boards.en.pdf",
+        "submissions/benjaminshe/jingzhang-merge-belt/drawings/a0-boards.pdf",
+        "submissions/benjaminshe/jingzhang-merge-belt/drawings/a3-booklet.en.pdf",
+        "submissions/benjaminshe/jingzhang-merge-belt/drawings/a3-booklet.pdf",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/buildings.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/constraints.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/green_space.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/key_areas.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/land_use.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/phasing.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/public_space.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/roads.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/geometry/site_boundary.geojson",
+        "submissions/benjaminshe/jingzhang-merge-belt/manifest.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/metrics.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/proposal.en.md",
+        "submissions/benjaminshe/jingzhang-merge-belt/proposal.md",
+        "submissions/benjaminshe/jingzhang-merge-belt/report/copyright_statement.md",
+        "submissions/benjaminshe/jingzhang-merge-belt/report/narrative.md",
+        "submissions/benjaminshe/jingzhang-merge-belt/report/proposal.en.html",
+        "submissions/benjaminshe/jingzhang-merge-belt/report/proposal.html",
+        "submissions/benjaminshe/jingzhang-merge-belt/self_check.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/sources.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/standard_matrix.json",
+        "submissions/benjaminshe/jingzhang-merge-belt/visual/index.en.html",
+        "submissions/benjaminshe/jingzhang-merge-belt/visual/index.html"
+      ],
+      "ai_package_stages": {
+        "submissions/benjaminshe/jingzhang-merge-belt": "formal"
+      },
+      "total_bytes": 7823136,
+      "maintainer_bypass": false
+    },
+    "stderr": ""
   },
-  {
-   "check_id": "FINAL_SPATIAL",
-   "result": "pass",
-   "severity": "major",
-   "target": "geometry/*.geojson",
-   "message": "Spatial review PASS (land use covers boundary without gaps/overlaps; key areas inside boundary; provisional warnings acknowledged)."
+  "spatial_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "stage": "formal",
+      "issues": [
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-001",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-002",
+          "expected": null,
+          "actual": null
+        },
+        {
+          "check_id": "KEY_AREA_PROVISIONAL",
+          "severity": "minor",
+          "target_file": "geometry/key_areas.geojson",
+          "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+          "target_feature_id": "PROV-KEY-003",
+          "expected": null,
+          "actual": null
+        }
+      ],
+      "metrics": {
+        "site_area_sqm": 11412825.386,
+        "green_space_area_sqm": 1408600.768,
+        "public_space_area_sqm": 836345.643,
+        "building_footprint_area_sqm": 17725.887,
+        "green_ratio": 0.123423,
+        "public_space_ratio": 0.073281
+      }
+    },
+    "stderr": ""
   },
-  {
-   "check_id": "FINAL_VISUAL",
-   "result": "pass",
-   "severity": "major",
-   "target": "visual/index.html + assets/figures + drawings/*.pdf",
-   "message": "Visual packaging check PASS (offline-only page, required sections, data-metric attributes present)."
+  "visual_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "issues": [],
+      "metrics_seen": {
+        "site_area_sqm": 11412825.386,
+        "green_ratio": 0.123423,
+        "public_space_ratio": 0.073281,
+        "land_use_zone_count": 20.0,
+        "catalyst_building_count": 7.0,
+        "scenario_card_count": 16.0
+      }
+    },
+    "stderr": ""
   },
-  {
-   "check_id": "FINAL_PROFESSIONAL_EVIDENCE",
-   "result": "pass",
-   "severity": "major",
-   "target": "compliance/standard/design-depth matrices + sources.json",
-   "message": "Professional evidence review PASS (taskbook coverage, standards, source registry consistency)."
+  "professional_review": {
+    "returncode": 0,
+    "ok": true,
+    "stdout": {
+      "ok": true,
+      "issues": [],
+      "summary": {
+        "standard_matrix_items": 6,
+        "design_depth_items": 15,
+        "known_metric_refs_required": 33,
+        "proposal_format_version": "2",
+        "evidence_contract": "section-anchors-plus-structured-audit",
+        "proposal_reference_counts": {
+          "source": 10,
+          "standard": 6,
+          "depth": 16,
+          "data": 19,
+          "metric": 34
+        }
+      }
+    },
+    "stderr": ""
   },
-  {
-   "check_id": "BOUNDARY_TRUST",
-   "result": "pass",
-   "severity": "major",
-   "target": "geometry/site_boundary.geojson",
-   "message": "Provisional boundary is present; replace with official redline before professional scoring."
-  },
-  {
-   "check_id": "KEY_AREAS_TRUST",
-   "result": "pass",
-   "severity": "major",
-   "target": "geometry/key_areas.geojson",
-   "message": "Three required key areas are provisional; replace with official polygons before professional scoring."
-  },
-  {
-   "check_id": "LAND_USE_TOPOLOGY",
-   "result": "pass",
-   "severity": "major",
-   "target": "geometry/land_use.geojson",
-   "message": "Initial land-use polygons are derived from site boundary partitioning."
-  },
-  {
-   "check_id": "VISUAL_STATIC",
-   "result": "pass",
-   "severity": "info",
-   "target": "visual/index.html",
-   "message": "Static HTML visualization is generated without external dependencies."
-  },
-  {
-   "check_id": "PROFESSIONAL_EVIDENCE",
-   "result": "pass",
-   "severity": "major",
-   "target": "proposal.md",
-   "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
-  }
- ],
- "generated_from": "scripts/self_check_submission.py on final v0.7 bytes (f31fae9b + review fixes)"
+  "spatial_issue_ids": [
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL"
+  ],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "missing_review_dependencies": [],
+  "can_enter_formal_review": true,
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
+  "next_actions": [],
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "validate_local_submission.py",
+      "message": "deterministic_validation: PASS"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "spatial_review.py",
+      "message": "spatial_review: PASS"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual_review.py",
+      "message": "visual_review: PASS"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "professional_review.py",
+      "message": "professional_review: PASS"
+    }
+  ]
 }

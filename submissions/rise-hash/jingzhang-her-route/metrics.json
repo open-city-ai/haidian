@@ -1,0 +1,220 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(provisional_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Boundary is provisional, not an official redline."
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(concept_land_use_polygon_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept partition over provisional site."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 706944.404,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(concept_building_footprint_area)",
+      "confidence": "low",
+      "assumptions": [
+        "No existing-building survey; footprints are design diagrams."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1194814.943,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(concept_green_network)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept geometry only."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.104691,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are concept/provisional."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 147024.729,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(concept_public_space_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept geometry only."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.012882,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Both numerator and denominator are concept/provisional."
+      ]
+    },
+    "concept_road_centerline_length_m": {
+      "status": "known",
+      "value": 26478.536,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(concept_road_centerline_length)",
+      "confidence": "medium",
+      "assumptions": [
+        "Not an official road redline or engineering alignment."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "Count is official; geometry is provisional."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(explicit_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industrial_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenarios_labeled_industrial_test)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_profiles)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(ai_pilgrimage_landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official boundary are absent."
+    },
+    "building_height_limit_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official height control is absent."
+    },
+    "building_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official building coverage control is absent."
+    },
+    "project_cost": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "quantity_survey_x_unit_cost",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified quantities, relocation scope, or operating-cost baseline."
+    }
+  }
+}

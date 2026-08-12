@@ -1,35 +1,53 @@
 {
-  "schema_version": "0.1.0",
-  "assumptions": [
-    {
-      "id": "A-CONTROLS-001",
-      "status": "pending_professional_confirmation",
-      "statement": "控规指标（容积率、建筑高度、密度、绿地率控制、退线）、道路红线、权属、市政管线与工程条件均未包含在公开资料包中，需以批准的控规与官方附件为准。",
-      "impact": "方案中的开发强度、建筑高度、拆改留与市政内容均为设计意向或待确认事项，不构成审定结论。"
-    },
-    {
-      "id": "A-BOUNDARY-001",
-      "status": "provisional",
-      "statement": "场地边界与三处重点区使用维护者登记的临时粗略 polygon（official_boundary=false, geometry_role=provisional_constraint）。",
-      "impact": "全部面积与比例指标为临时边界下的复算值；官方红线发布后将重算 site/key areas/land use/roads/green/public/buildings/phasing/metrics 全部图层与指标。"
-    },
-    {
-      "id": "A-FLOORS-001",
-      "status": "design_intent",
-      "statement": "概念总建筑规模按建筑类型假定层数推算（科研10、商业8、教育7、人才公寓12、文化4层）。",
-      "impact": "total_floor_area_sqm 与概念容积率仅为设计讨论，正式容积率指标 floor_area_ratio 保持 unknown。"
-    },
-    {
-      "id": "A-ROAD-WIDTH-001",
-      "status": "design_intent",
-      "statement": "道路面积按中心线长度乘以分类假定宽度估算（绿道12m、支路15m、步行8m、骑行6m、接驳10m）。",
-      "impact": "road_area_sqm 与 road_area_ratio 为概念估算，非道路工程设计。"
-    },
-    {
-      "id": "A-SCENARIO-001",
-      "status": "concept",
-      "statement": "12 张 AI 场景卡映射到 8 个公共空间节点与 6 条缝合廊道；场景均为概念建议与测试申请制，不构成已批准运营。",
-      "impact": "scenario_node_count 为运营单元计数，不代表已落地设施数量。"
-    }
-  ]
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-CONTROLS-001",
+   "status": "pending_professional_confirmation",
+   "statement": "控规指标（容积率、建筑高度、密度、绿地率控制、退线）、道路红线、权属、市政管线与工程条件均未包含在公开资料包中，需以批准的控规与官方附件为准。",
+   "impact": "方案中的开发强度、建筑高度、拆改留与市政内容均为设计意向或待确认事项，不构成审定结论。"
+  },
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional",
+   "statement": "场地边界与三处重点区使用维护者登记的临时粗略 polygon（official_boundary=false, geometry_role=provisional_constraint）。",
+   "impact": "全部面积与比例指标为临时边界下的复算值；官方红线发布后将重算 site/key areas/land use/roads/green/public/buildings/phasing/metrics 全部图层与指标。"
+  },
+  {
+   "id": "A-FLOORS-001",
+   "status": "design_intent",
+   "statement": "概念总建筑规模按建筑类型假定层数推算（科研10、商业8、教育7、人才公寓12、文化4层）。",
+   "impact": "total_floor_area_sqm 与概念容积率仅为设计讨论，正式容积率指标 floor_area_ratio 保持 unknown。"
+  },
+  {
+   "id": "A-ROAD-WIDTH-001",
+   "status": "design_intent",
+   "statement": "道路面积按中心线长度乘以分类假定宽度估算（绿道12m、支路15m、步行8m、骑行6m、接驳10m）。",
+   "impact": "road_area_sqm 与 road_area_ratio 为概念估算，非道路工程设计。"
+  },
+  {
+   "id": "A-SCENARIO-001",
+   "status": "concept",
+   "statement": "12 张 AI 场景卡映射到 8 个公共空间节点与 6 条缝合廊道；场景均为概念建议与测试申请制，不构成已批准运营。",
+   "impact": "scenario_node_count 为运营单元计数，不代表已落地设施数量。"
+  },
+  {
+   "id": "A-KEY003-OFFSET-001",
+   "status": "pending_official_anchoring",
+   "statement": "PROV-KEY-003（大钟寺AI产业聚集区临时 polygon）经社区独立复核（Issue #1029）质心位于北京北站一带，距大钟寺地铁站约 2.26 km；该临时几何仅按公告南北序与约面积配置，尚未完成站点/道路锚定（维护者 PR #1036 已澄清语义）。",
+   "impact": "本包大钟寺片区的详细设计结论限定为方向性概念；官方 key-area polygon 或站点锚定关系发布后，大钟寺相关图层、指标、图件与叙事锚点需统一重算。"
+  },
+  {
+   "id": "A-HERITAGE-FOURTO-001",
+   "status": "active",
+   "statement": "清华园车站旧址保护范围与建控地带（CX-003、CX-005–CX-008）由北京市文物局第十一批划定文字四至（2026-08-11 访问）经 OSM 建筑轮廓定向偏移生成：J01=way/122100032（直接命名锚定），J02=way/916931904、J03=way/122100013（紧邻方位与体量推定），Y01 未落图、西界以 J02 西墙外推 2m 代替；米—度换算按 WGS84 本地尺度（1°lat≈111,035 m、1°lon≈85,413 m）。",
+   "impact": "推定面误差保守 ±5–15 m、西界不确定性最高；全部 provisional_constraint，不得作为法定区划或工程依据；官方区划图纸发布后统一替换重算。"
+  },
+  {
+   "id": "A-HERITAGE-POINT-FIX-001",
+   "status": "active",
+   "statement": "v1.6 及以前 CX-003/CX-004 为未核实示意点位：CX-003 原偏东约 1.7 km（落于新清华园站一带），CX-004 原偏东南约 3.0 km。v1.7 分别经 OSM way/122100032、way/1303228717 校正。",
+   "impact": "两点位为约束提示、未参与面积复算，校正不改变任何设计结论；本包其余点状要素以落图锚定为准。"
+  }
+ ]
 }

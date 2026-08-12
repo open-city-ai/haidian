@@ -1,0 +1,65 @@
+{
+  "schema": "jingzhang-ai-nexus/wind-health-validation-plan",
+  "version": "1",
+  "status": "synthetic-tabletop-only",
+  "disclaimer": "Field Pilot: NOT AUTHORIZED / NOT RUN",
+  "corridor_length_km": 9.5,
+  "target_heat_island_reduction_c": 1.5,
+  "synthetic_fixtures": [
+    {
+      "id": "F-01",
+      "name": "主导风廊几何提取",
+      "source": "geometry/green_space.geojson + OSM building footprints",
+      "output": "wind-corridor-centerline"
+    },
+    {
+      "id": "F-02",
+      "name": "地表温度基线",
+      "source": "Landsat-8 Band 10 公开数据",
+      "output": "summer-avg-lst-2025"
+    },
+    {
+      "id": "F-03",
+      "name": "CFD 简化切片模拟",
+      "source": "OpenFOAM 2D section",
+      "output": "velocity-temperature-cross-section"
+    },
+    {
+      "id": "F-04",
+      "name": "植被覆盖系数",
+      "source": "NDVI from Sentinel-2",
+      "output": "cooling-potential-map"
+    }
+  ],
+  "acceptance_checks": [
+    {
+      "id": "AC-01",
+      "condition": "主导风廊无建筑阻挡（走廊净宽≥30m）"
+    },
+    {
+      "id": "AC-02",
+      "condition": "植被覆盖系数沿风廊 ≥ 0.4"
+    },
+    {
+      "id": "AC-03",
+      "condition": "CFD 简化模拟风速 ≥ 1.5 m/s (2m above ground)"
+    },
+    {
+      "id": "AC-04",
+      "condition": "表面温度模拟降幅 ≥ 1.0°C（保守，低于 target 1.5°C）"
+    },
+    {
+      "id": "AC-05",
+      "condition": "风廊终点出口无气流死区"
+    },
+    {
+      "id": "AC-06",
+      "condition": "合成验证不声称任何现场实测等效性"
+    }
+  ],
+  "fail_closed_branches": [
+    "AC-01 失败 → 标注建筑阻挡点，概念建议调整地块或降低高度",
+    "AC-02 失败 → 增加绿化面积情景，重跑 NDVI 模拟",
+    "AC-03/04 失败 → 不做 1.5°C 声明；仅声称 '合成模拟显示改善趋势'"
+  ]
+}

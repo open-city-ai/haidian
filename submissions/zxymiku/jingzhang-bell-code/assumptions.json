@@ -1,0 +1,47 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "容积率、建筑高度、密度、绿地率、退线等控规条件，以及道路红线、权属、市政管线与工程约束，必须以官方附件确认后才可用于法定用途。",
+      "impact": "本方案全部强度类指标保持 status=unknown，建筑规模与开发强度按概念建议表达，不构成法定控制值；官方数据到位后需整体复算。"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_official_data",
+      "statement": "官方精确红线与三处重点区 official polygon 尚未公开取得，本方案使用 provisional_boundaries.geojson（与公告面积偏差 0.02%–0.43%）。",
+      "impact": "site_boundary/key_areas/land_use/buildings/roads/green_space/public_space/phasing 与全部面积指标均标为 provisional；官方 polygon 发布后整包复算，复算路径见 visual/assets/missing_data_checklist.json（GAP-BOUNDARY-001/002）。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_verification",
+      "statement": "清华园车站旧址、大钟寺（觉生寺）等文物保护单位的精确控制范围与文物事实，须以文物部门公开资料核实后引用。",
+      "impact": "方案中的文保要素以示意点表达（geometry_role=existing_condition, confidence=low），相关文化叙事措辞保守，不突破文保/绿地/蓝线约束。"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "design_concept",
+      "statement": "现状建筑轮廓、高度、年代与权属底数缺失，本方案建筑基底为概念示意肌理（139 栋），仅表达空间关系。",
+      "impact": "拆改留分类只给方向性建议，不构成实施结论；正式评分前需以现状建筑底数替换或标注待补。"
+    },
+    {
+      "id": "A-ROADS-001",
+      "status": "design_concept",
+      "statement": "道路红线与断面数据缺失，本方案路网为概念网格，主干路/快速路仅作现状示意（constraints 图层，confidence=low）。",
+      "impact": "交通结论为方向性建议；市政与道路工程线位须专业深化。"
+    },
+    {
+      "id": "A-METRICS-001",
+      "status": "computed_from_submitted_geometry",
+      "statement": "全部面积与比例指标在 EPSG:4548 投影下由提交 GeoJSON 复算；provisional 边界下偏差已在备注中披露。",
+      "impact": "指标可复核、可复算；官方边界发布后指标随图层重算。"
+    },
+    {
+      "id": "A-BELL-001",
+      "status": "design_concept",
+      "statement": "「鸣钟京张」命名体系、三钟节点、鸣钟登记协议、静音时段等均为概念建议，属可讨论的城市设计主张，不涉及任何法定审批或政府承诺。",
+      "impact": "活动、招商、资金、政策与运营表述均为深化方向；大钟寺/觉生寺文化事实引用前须核实清权。"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0-dynamic-preference-screen",
+  "screen_id": "MOBILITY-DYNAMIC-PREFERENCE-001",
+  "status": "synthetic_dynamic_preference_replay_not_local_preference",
+  "purpose_zh": "把不同群体、时段和交通候选的偏好变化拆开，先过公共交通、容量、无障碍和空中闭锁硬门，再比较满意度代理与系统效率代理。",
+  "purpose_en": "Expose preference changes across groups, time windows and mobility policies, then compare satisfaction and system-efficiency proxies only after transit, capacity, accessibility and air-lock guards.",
+  "population_reference": 3122000,
+  "population_source": "visual/assets/population-scale-screen.json",
+  "regional_readout_source": "visual/assets/regional-scale-commute-readout.json",
+  "privacy": {
+    "aggregation": "group_horizon_policy_only",
+    "personal_traces": 0,
+    "local_satisfaction_responses": 0,
+    "operating_authorizations": 0
+  },
+  "modes": ["metro", "bus", "bicycle", "walking_wheelchair", "car", "enterprise_shuttle", "logistics", "air_candidate"],
+  "mode_contract": {
+    "backbone": ["metro", "bus"],
+    "first_last_mile": ["bicycle", "walking_wheelchair", "enterprise_shuttle"],
+    "necessary_access": ["car", "logistics"],
+    "air_candidate_status": "blocked",
+    "air_agents": 0,
+    "choice_rule": "Choose among eligible ground alternatives by horizon-adjusted weighted utility; never let an air candidate enter the choice set before authorization and staffed ground fallback."
+  },
+  "objective": {
+    "selection_order": ["hard_gates", "worst_group_satisfaction_p10", "accessibility_p10", "weighted_system_utility", "mean_satisfaction", "vehicle_km"],
+    "hard_gates": {
+      "max_mode_load_ratio": 1.35,
+      "max_feeder_share": 0.08,
+      "min_accessibility_completion": 0.90,
+      "min_first_last_mile_completion": 0.88,
+      "max_external_car_inflow_ratio": 0.12,
+      "air_agents_must_be_zero": true,
+      "accessible_fallback_required": true
+    },
+    "interpretation": "The raw satisfaction leader may be rejected by a hard gate. The selected policy is the highest eligible candidate in the lexicographic order, not the highest unfiltered number."
+  },
+  "horizons": [
+    {"id": "AM_ARRIVAL", "label_zh": "早到岗", "label_en": "AM arrival", "time_window": "07:00-10:00", "weight_shift": {"time": 0.05, "wait": 0.02, "reliability": 0.02, "accessibility": 0.00, "comfort": -0.04, "cost": -0.05}},
+    {"id": "MIDDAY_SERVICE", "label_zh": "日间服务", "label_en": "Midday service", "time_window": "10:00-16:00", "weight_shift": {"time": 0.00, "wait": 0.00, "reliability": 0.00, "accessibility": 0.02, "comfort": 0.02, "cost": -0.04}},
+    {"id": "PM_RETURN", "label_zh": "晚高峰回程", "label_en": "PM return", "time_window": "16:00-20:00", "weight_shift": {"time": 0.03, "wait": 0.03, "reliability": 0.04, "accessibility": 0.01, "comfort": -0.03, "cost": -0.08}},
+    {"id": "NIGHT_RETURN", "label_zh": "夜班回家", "label_en": "Night return", "time_window": "20:00-23:30", "weight_shift": {"time": -0.03, "wait": 0.01, "reliability": 0.08, "accessibility": 0.06, "comfort": 0.03, "cost": -0.15}}
+  ],
+  "groups": [
+    {"id": "enterprise_core", "label_zh": "企业核心员工", "label_en": "enterprise core", "share": 0.18, "weights": {"time": 0.25, "wait": 0.15, "reliability": 0.20, "accessibility": 0.10, "comfort": 0.10, "cost": 0.20}},
+    {"id": "resident_worker", "label_zh": "居民工作者", "label_en": "resident workers", "share": 0.22, "weights": {"time": 0.15, "wait": 0.15, "reliability": 0.20, "accessibility": 0.25, "comfort": 0.10, "cost": 0.15}},
+    {"id": "care_child", "label_zh": "照护者与儿童", "label_en": "carers and children", "share": 0.14, "weights": {"time": 0.10, "wait": 0.10, "reliability": 0.15, "accessibility": 0.35, "comfort": 0.15, "cost": 0.15}},
+    {"id": "student", "label_zh": "学生与研究人员", "label_en": "students and researchers", "share": 0.14, "weights": {"time": 0.15, "wait": 0.20, "reliability": 0.10, "accessibility": 0.15, "comfort": 0.20, "cost": 0.20}},
+    {"id": "service_logistics", "label_zh": "服务与物流", "label_en": "service and logistics", "share": 0.10, "weights": {"time": 0.15, "wait": 0.15, "reliability": 0.20, "accessibility": 0.15, "comfort": 0.10, "cost": 0.25}},
+    {"id": "night_shift", "label_zh": "夜班工作者", "label_en": "night shift", "share": 0.05, "weights": {"time": 0.10, "wait": 0.15, "reliability": 0.30, "accessibility": 0.25, "comfort": 0.10, "cost": 0.10}},
+    {"id": "accessible_older", "label_zh": "无障碍与老年群体", "label_en": "accessible and older", "share": 0.07, "weights": {"time": 0.10, "wait": 0.15, "reliability": 0.15, "accessibility": 0.40, "comfort": 0.10, "cost": 0.10}},
+    {"id": "cross_boundary", "label_zh": "跨边界通勤者", "label_en": "cross-boundary commuters", "share": 0.10, "weights": {"time": 0.30, "wait": 0.15, "reliability": 0.20, "accessibility": 0.10, "comfort": 0.10, "cost": 0.15}}
+  ],
+  "candidate_attributes": {
+    "O1_transit_priority": {"label_zh": "O1 公交优先", "label_en": "O1 transit priority", "mode_load_ratio": 1.3112, "feeder_share": 0.04, "accessibility_completion": 0.9337, "first_last_mile_completion": 0.914, "external_car_inflow_ratio": 0.0847, "vehicle_km": 3611754, "base_satisfaction": 66.23, "base_efficiency": 65.90, "component_scores": {"time": 68, "wait": 65, "reliability": 70, "accessibility": 72, "comfort": 64, "cost": 67}},
+    "O2_equity_balanced": {"label_zh": "O2 公平平衡", "label_en": "O2 equity balanced", "mode_load_ratio": 1.4268, "feeder_share": 0.09, "accessibility_completion": 0.9331, "first_last_mile_completion": 0.878, "external_car_inflow_ratio": 0.1020, "vehicle_km": 3110028, "base_satisfaction": 66.22, "base_efficiency": 67.10, "component_scores": {"time": 67, "wait": 70, "reliability": 72, "accessibility": 78, "comfort": 66, "cost": 65}},
+    "O3_active_first": {"label_zh": "O3 慢行优先", "label_en": "O3 active-first", "mode_load_ratio": 1.5724, "feeder_share": 0.10, "accessibility_completion": 0.9289, "first_last_mile_completion": 0.872, "external_car_inflow_ratio": 0.0710, "vehicle_km": 2976150, "base_satisfaction": 66.78, "base_efficiency": 68.40, "component_scores": {"time": 71, "wait": 68, "reliability": 66, "accessibility": 69, "comfort": 75, "cost": 72}},
+    "O4_capacity_balanced": {"label_zh": "O4 容量平衡", "label_en": "O4 capacity balanced", "mode_load_ratio": 1.2088, "feeder_share": 0.06, "accessibility_completion": 0.9343, "first_last_mile_completion": 0.921, "external_car_inflow_ratio": 0.0847, "vehicle_km": 3513768, "base_satisfaction": 66.44, "base_efficiency": 67.90, "component_scores": {"time": 69, "wait": 68, "reliability": 74, "accessibility": 76, "comfort": 68, "cost": 66}}
+  },
+  "calibration_required_before_local_decision": ["grouped stated-preference or intercept responses", "dated 15-minute OD and boarding observations", "mode-specific reliability and denial records", "accessible route walk-throughs", "dated first/last-mile accessibility checks by route and service window", "curb and loading logs", "resident and enterprise review of the weight interpretation"],
+  "source_boundaries": ["This screen uses declared synthetic weights and persisted synthetic regional candidate attributes.", "No paper coefficient, resident survey, employee preference or local demand estimate is imported.", "The source papers inform the rolling-horizon and equity decomposition, not a Haidian outcome."]
+}

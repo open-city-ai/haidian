@@ -1,0 +1,427 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2607762.079,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.228494,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 291801.756,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space plazas), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.025568,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 2825440.437,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "建筑基底为概念设计量，非现状测绘成果。"
+      ]
+    },
+    "building_density": {
+      "status": "known",
+      "value": 0.247567,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "概念建筑密度，仅表达设计意图；法定建筑密度以控规为准。"
+      ]
+    },
+    "concept_total_floor_area_sqm": {
+      "status": "known",
+      "value": 19142630.539,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(footprint_area * floors_assumption)",
+      "confidence": "low",
+      "assumptions": [
+        "概念总建筑面积=概念基底×层数假设，仅用于量级讨论，不构成建设规模结论。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方容积率控制条件与官方精确边界均未公开，待正式控规条件补齐后复算。"
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control(parcel)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方建筑高度控制条件未公开，待正式控规/城市设计导则补齐。"
+    },
+    "green_ratio_control": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_green_ratio_requirement",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方绿地率控制要求未公开，待正式控规条件补齐。"
+    },
+    "setback_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_setback(road_redline)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "道路红线与退线条件未公开，待正式控规条件补齐。"
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 39112.021,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines), EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "道路中心线为概念线位，非道路红线。"
+      ]
+    },
+    "road_area_sqm_concept": {
+      "status": "known",
+      "value": 713869.793,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length * assumed_width_by_class)",
+      "confidence": "low",
+      "assumptions": [
+        "按道路等级假定宽度（主干40m/次干25m/联络15m/绿道12m/骑行6m/步行8m）估算，仅概念量级。"
+      ]
+    },
+    "slow_mobility_spine_length_m": {
+      "status": "known",
+      "value": 9643.47,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson#ROAD-001"
+      ],
+      "formula": "line_length(ROAD-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "智脊慢行主轴长度按提交边界内中心线量算。"
+      ]
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 2393162.602,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-001"
+      ],
+      "formula": "polygon_area(PHASE-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 5096308.377,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-002"
+      ],
+      "formula": "polygon_area(PHASE-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3923354.407,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson#PHASE-003"
+      ],
+      "formula": "polygon_area(PHASE-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.005,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(three key areas), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-001"
+      ],
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "key_area_ai_origin_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-002"
+      ],
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson#PROV-KEY-003"
+      ],
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 10.0,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 8.0,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(renewal projects listed in implementation chapter)",
+      "confidence": "medium",
+      "assumptions": [
+        "项目清单为概念建议，实施以专业团队深化为准。"
+      ]
+    },
+    "land_use_area_05_sqm": {
+      "status": "known",
+      "value": 292167.306,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=05), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 05（商业服务业用地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "land_use_area_0701_sqm": {
+      "status": "known",
+      "value": 1675192.331,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0701), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 0701（城镇住宅用地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "land_use_area_0702_sqm": {
+      "status": "known",
+      "value": 364529.078,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0702), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 0702（城镇社区服务设施用地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "land_use_area_0802_sqm": {
+      "status": "known",
+      "value": 4568449.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0802), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 0802（科研用地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "land_use_area_0803_sqm": {
+      "status": "known",
+      "value": 381425.567,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0803), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 0803（文化用地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "land_use_area_0804_sqm": {
+      "status": "known",
+      "value": 2236562.964,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=0804), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 0804（教育用地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    },
+    "land_use_area_1401_sqm": {
+      "status": "known",
+      "value": 1894498.64,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use where code=1401), EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "用地分类 1401（公园绿地），按国土空间用地用海分类指南口径。",
+        "提交边界与重点区为维护者临时粗略多边形（provisional_rough），面积复算仅用于设计讨论，正式评分前须用官方多边形重算。"
+      ]
+    }
+  }
+}

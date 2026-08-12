@@ -1,0 +1,125 @@
+{
+  "schema_version": "1.0.0",
+  "version": 1,
+  "disclaimer": "concept-only",
+  "summary": "The crosswalk makes each G0 scenario readable against existing package geometry. It records references only; it does not assign coordinates, legal boundaries, capacity, permission, or field performance.",
+  "items": [
+    {"id": "scn-01-community-desk", "type": "node", "title": "Community continuity desk", "summary": "A provisional public-space reference for the community continuity scenario.", "source": "spatial.json#SCN-01", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-01 / LAND-01 / FOOTPRINT-01"}},
+    {"id": "scn-02-skills-corridor", "type": "corridor", "title": "Skills corridor", "summary": "A provisional corridor reference for the reskilling scenario.", "source": "spatial.json#SCN-02", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-02 / LAND-03 / MOBILITY-04"}},
+    {"id": "scn-03-intergenerational-learning", "type": "node", "title": "Intergenerational learning", "summary": "A provisional public-space reference for intergenerational learning.", "source": "spatial.json#SCN-03", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-03 / LAND-01 / MOBILITY-02"}},
+    {"id": "scn-04-night-human-service", "type": "node", "title": "Night human service", "summary": "A provisional public-space and green-buffer reference for night service.", "source": "spatial.json#SCN-04", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-04 / LAND-07 / GREEN-02"}},
+    {"id": "scn-05-international-service", "type": "node", "title": "International service assistant", "summary": "A provisional service reference for multilingual public information.", "source": "spatial.json#SCN-05", "public_level": "provisional", "geometry": {"mode": "concept", "label": "PUBLIC-05 / LAND-07 / FOOTPRINT-05"}},
+    {"id": "scn-06-civic-agent-api", "type": "area", "title": "Civic facility Agent API", "summary": "A provisional governance-zone reference for the civic API protocol.", "source": "spatial.json#SCN-06", "public_level": "provisional", "geometry": {"mode": "concept", "label": "SERVICE-ZONE-02 / LAND-06 / FOOTPRINT-05"}},
+    {"id": "scn-07-low-speed-robot", "type": "corridor", "title": "Low-speed robot observation", "summary": "A provisional slow-mobility and service-zone reference for bounded observation.", "source": "spatial.json#SCN-07", "public_level": "provisional", "geometry": {"mode": "concept", "label": "SERVICE-ZONE-01 / MOBILITY-05 / GREEN-01"}},
+    {"id": "scn-08-low-altitude-sandbox", "type": "area", "title": "Low-altitude logistics sandbox", "summary": "A provisional blue-green reference for a paper-only logistics rule sandbox.", "source": "spatial.json#SCN-08", "public_level": "provisional", "geometry": {"mode": "concept", "label": "SERVICE-ZONE-01 / MOBILITY-03 / LAND-04 / GREEN-02"}},
+    {"id": "scn-09-flood-observation", "type": "area", "title": "Flood-simulation observation", "summary": "A provisional blue-green reference for explainable flood simulation.", "source": "spatial.json#SCN-09", "public_level": "provisional", "geometry": {"mode": "concept", "label": "GREEN-01 / MOBILITY-03 / LAND-04 / GREEN-03"}},
+    {"id": "scn-10-energy-heat-ledger", "type": "area", "title": "Compute, energy and heat ledger", "summary": "A provisional data-governance and phasing reference for an auditable ledger.", "source": "spatial.json#SCN-10", "public_level": "provisional", "geometry": {"mode": "concept", "label": "FOOTPRINT-05 / LAND-05 / SERVICE-ZONE-02 / PHASE-02"}}
+  ],
+  "boundary": {
+    "official_boundary": false,
+    "geometry_role": "provisional_constraint",
+    "precision": "provisional_rough",
+    "recalculation_trigger": "When official boundary, key-area, road, accessibility, ownership, service or climate baselines arrive, recalculate geometry, metrics, figures, HTML, PDFs and this crosswalk together."
+  },
+  "scenario_spatial_crosswalk": [
+    {
+      "scenario_id": "SCN-01",
+      "title_zh": "社区保留率协商台",
+      "anchors": [
+        {"path": "geometry/public_space.geojson", "feature_id": "PUBLIC-01", "role": "public_entry"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-01", "role": "community_learning_band"},
+        {"path": "geometry/buildings.geojson", "feature_id": "FOOTPRINT-01", "role": "staffed_front_desk_concept"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-02",
+      "title_zh": "技能再造走廊",
+      "anchors": [
+        {"path": "geometry/public_space.geojson", "feature_id": "PUBLIC-02", "role": "learning_entry"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-03", "role": "skills_band"},
+        {"path": "geometry/roads.geojson", "feature_id": "MOBILITY-04", "role": "ordinary_slow_route"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-03",
+      "title_zh": "代际共学导航",
+      "anchors": [
+        {"path": "geometry/public_space.geojson", "feature_id": "PUBLIC-03", "role": "intergenerational_entry"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-01", "role": "community_learning_band"},
+        {"path": "geometry/roads.geojson", "feature_id": "MOBILITY-02", "role": "human_priority_walk_axis"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-04",
+      "title_zh": "夜间人工服务",
+      "anchors": [
+        {"path": "geometry/public_space.geojson", "feature_id": "PUBLIC-04", "role": "night_service_entry"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-07", "role": "twenty_four_hour_service_band"},
+        {"path": "geometry/green_space.geojson", "feature_id": "GREEN-02", "role": "screen_free_night_buffer"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-05",
+      "title_zh": "国际服务助手",
+      "anchors": [
+        {"path": "geometry/public_space.geojson", "feature_id": "PUBLIC-05", "role": "multilingual_service_entry"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-07", "role": "data_culture_public_band"},
+        {"path": "geometry/buildings.geojson", "feature_id": "FOOTPRINT-05", "role": "data_governance_concept"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-06",
+      "title_zh": "市政设施 Agent API",
+      "anchors": [
+        {"path": "geometry/constraints.geojson", "feature_id": "SERVICE-ZONE-02", "role": "reversible_data_governance_zone"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-06", "role": "data_culture_public_band"},
+        {"path": "geometry/buildings.geojson", "feature_id": "FOOTPRINT-05", "role": "data_governance_concept"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-07",
+      "title_zh": "低速机器人公共测试",
+      "anchors": [
+        {"path": "geometry/constraints.geojson", "feature_id": "SERVICE-ZONE-01", "role": "embodied_ai_observation_zone"},
+        {"path": "geometry/roads.geojson", "feature_id": "MOBILITY-05", "role": "slow_robot_observation_line"},
+        {"path": "geometry/green_space.geojson", "feature_id": "GREEN-01", "role": "river_buffer_interface"},
+        {"path": "geometry/key_areas.geojson", "feature_id": "PROV-KEY-001", "role": "provisional_key_area_context"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-08",
+      "title_zh": "低空物流规则沙盒",
+      "anchors": [
+        {"path": "geometry/constraints.geojson", "feature_id": "SERVICE-ZONE-01", "role": "embodied_ai_observation_zone"},
+        {"path": "geometry/roads.geojson", "feature_id": "MOBILITY-03", "role": "blue_green_interface"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-04", "role": "blue_green_buffer_band"},
+        {"path": "geometry/green_space.geojson", "feature_id": "GREEN-02", "role": "low_altitude_buffer_reference"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-09",
+      "title_zh": "内涝模拟观察台",
+      "anchors": [
+        {"path": "geometry/green_space.geojson", "feature_id": "GREEN-01", "role": "river_buffer_interface"},
+        {"path": "geometry/roads.geojson", "feature_id": "MOBILITY-03", "role": "blue_green_interface"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-04", "role": "blue_green_buffer_band"},
+        {"path": "geometry/green_space.geojson", "feature_id": "GREEN-03", "role": "flood_simulation_reference"}
+      ]
+    },
+    {
+      "scenario_id": "SCN-10",
+      "title_zh": "算电热协同台账",
+      "anchors": [
+        {"path": "geometry/buildings.geojson", "feature_id": "FOOTPRINT-05", "role": "data_governance_concept"},
+        {"path": "geometry/land_use.geojson", "feature_id": "LAND-05", "role": "data_culture_public_band"},
+        {"path": "geometry/constraints.geojson", "feature_id": "SERVICE-ZONE-02", "role": "public_data_review_zone"},
+        {"path": "geometry/phasing.geojson", "feature_id": "PHASE-02", "role": "sandbox_and_public_review_phase"}
+      ]
+    }
+  ],
+  "interpretation_limits": [
+    "An anchor is a package reference, not a surveyed location, legal boundary, approved facility or service-capacity claim.",
+    "All ten scenarios remain G0 conceptual protocols; operational_status stays not_authorized_not_run and performance_results stays null until independent authorization and field evidence exist.",
+    "Provisional key areas and design-proposal layers must be recalculated after organizer-owned official data arrives."
+  ]
+}

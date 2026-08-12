@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "site-package",
+      "title": "百年京张AI创新带 site-package（公告任务、枚举、范围、指标、schema）",
+      "type": "brief",
+      "path": "brief/site-package/",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-08-07",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, brief/site-package/, accessed 2026-08-07",
+      "usage_note": "项目任务书、用地/建筑/道路/来源枚举、允许设计空间、planning_limits 指标范围与 schema 的唯一机器可读依据；用于方案结构、指标口径与合规判定。",
+      "risk_note": "site-package 内含临时粗略边界，属 provisional，不得作为官方红线或精确面积依据；官方精确边界发布后须重新复算。"
+    },
+    {
+      "id": "source-registry",
+      "title": "公开来源可用性登记表 data/source_registry.json",
+      "type": "brief",
+      "path": "data/source_registry.json",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-08-07",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, data/source_registry.json, accessed 2026-08-07",
+      "usage_note": "区分 usable_for_formal=yes / background_only / provisional_only / no 的来源；用于判断正式证据、背景材料与临时约束的使用边界。",
+      "risk_note": "登记表本身是维护者整理的导航层，不是新的权威来源；background/provisional/needs-review 类不得升级为官方边界、法定控制或正式打分证据。"
+    },
+    {
+      "id": "processed-fact-pack",
+      "title": "Agent 可读事实索引 data/processed/agent_fact_pack.md",
+      "type": "brief",
+      "path": "data/processed/agent_fact_pack.md",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-08-07",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, data/processed/agent_fact_pack.md, accessed 2026-08-07",
+      "usage_note": "范围、必做任务、来源使用边界与缺失数据清单的导航层；帮助 agent 快速定位 site-package 内的权威字段。",
+      "risk_note": "派生索引，不构成新的权威来源；任何数字须回溯到 site-package 原始字段核验。"
+    },
+    {
+      "id": "provisional-boundary",
+      "title": "百年京张AI创新带临时粗略边界与三处重点区 polygon",
+      "type": "boundary",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-06-05",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, brief/site-package/geometry/provisional_boundaries.geojson + provisional_boundaries_basis.md, accessed 2026-08-07",
+      "usage_note": "本方案提交场地边界的临时几何来源，以及三处重点区（众智园加速区 / AI原点社区 / 大钟寺产业集聚区）的临时范围；仅用于生成、可视化和 intake 自检。",
+      "risk_note": "明确为 provisional_constraint，official_boundary=false，boundary_precision=provisional_rough；不得作为官方红线、审批依据或精确面积复算依据。派生自公告文字四至与面积约束（source:official-announcement），官方精确边界发布后须重新复算所有图层。"
+    },
+    {
+      "id": "official-announcement",
+      "title": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "type": "policy",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "published_at": "2026-05-09",
+      "public_status": "external-public",
+      "citation": "北京市规划和自然资源委员会海淀分局, 资格预审公告, 2026-05-09, https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html, accessed 2026-08-07",
+      "usage_note": "项目第一权威来源（authority A0 / T0）：官方项目名称、文字四至、官方面积值、三层范围、设计任务与成果深度。",
+      "risk_note": "公告文字四至仅提供范围描述，未给出可机器读取的精确红线 polygon；据此推导的临时边界须标注为 provisional。"
+    },
+    {
+      "id": "agent-taskbook",
+      "title": "面向全球智能体开展“百年京张AI创新带城市设计开源征集”的任务书摘录",
+      "type": "brief",
+      "path": "brief/site-package/agent_taskbook.json",
+      "publisher": "User-provided cleared document (经由维护者登记入 brief/site-package)",
+      "published_at": "2026-05-18",
+      "public_status": "confirmed-public",
+      "citation": "brief/site-package/agent_taskbook.json (SRC-2026-0518-AGENT-OPEN-CALL-TASKBOOK), accessed 2026-08-07",
+      "usage_note": "面向 agent 的开源征集原则、六项必做任务（agent.1–agent.6）、场景卡/品牌/朝圣地标/长期运营要求与边界条款；用于 compliance_matrix 与方案叙事。",
+      "risk_note": "user_provided_cleared，不可作为官方红线、法定规划控制、工程可行性或已确认的政府实施承诺；所有空间落地建议均为概念建议。"
+    },
+    {
+      "id": "three-areas-two-wings",
+      "title": "“三区两翼”打造世界级AI集聚地",
+      "type": "industry",
+      "url": "https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html",
+      "publisher": "北京市科学技术委员会、中关村科技园区管理委员会",
+      "published_at": "2026-04-03",
+      "public_status": "external-public",
+      "citation": "北京市科委中关村管委会, “三区两翼”打造世界级AI集聚地, 2026-04-03, https://kw.beijing.gov.cn/xwdt/kcyx/xwdtcyfz/202604/t20260403_4573808.html, accessed 2026-08-07",
+      "usage_note": "三区两翼产业空间组织与重点节点的官方背景（authority A1 / T0）；用于产业生态叙事与三区定位的互证。",
+      "risk_note": "官方部门转载新闻，作背景与叙事补充；关键数字须与公告（A0）互证，不单独作为规划结论。"
+    },
+    {
+      "id": "mohurd-urban-design-measures",
+      "title": "城市设计管理办法",
+      "type": "policy",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "published_at": "2017-03-14",
+      "public_status": "external-public",
+      "citation": "住房和城乡建设部, 城市设计管理办法, 2017-03-14, https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html, accessed 2026-08-07",
+      "usage_note": "城市设计目的与范围、公共空间与城市风貌、建筑高度/体量/风格/色彩控制的专业标准依据（authority A0）。",
+      "risk_note": "通用管理办法，不提供本地宗地级控制指标；具体控制须以本地控规为准。"
+    },
+    {
+      "id": "mnr-land-use-classification",
+      "title": "国土空间调查、规划、用途管制用地用海分类指南",
+      "type": "policy",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "publisher": "自然资源部",
+      "published_at": "2023-11-22",
+      "public_status": "external-public",
+      "citation": "自然资源部, 用地用海分类指南, 2023-11-22, https://www.gov.cn/zhengceku/202311/content_6917279.htm, accessed 2026-08-07",
+      "usage_note": "用地分类代码与术语的权威依据（authority A0）；用于 land_use.geojson 的 code 字段口径与用地结构指标。",
+      "risk_note": "分类指南不等于本地控规用地边界；具体用地边界须以官方控规为准。"
+    }
+  ]
+}

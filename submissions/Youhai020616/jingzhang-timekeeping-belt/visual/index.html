@@ -63,6 +63,12 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="wrap">
 <header class="hero">
   <div class="lang"><a href="index.en.html">English</a></div>
+  <svg width="212" height="74" viewBox="0 0 300 200" role="img" aria-label="京张授时带标志：基准线、表盘与未闭合的缺口" style="display:block;margin-bottom:10px">
+    <line x1="24" y1="100" x2="276" y2="100" stroke="#26221F" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 156.6 38.2 A 64 64 0 1 0 189.0 58.9" fill="none" stroke="#26221F" stroke-width="11" stroke-linecap="round"/>
+    <line x1="167.9" y1="56.2" x2="180.8" y2="35.9" stroke="#1F7A72" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="140" cy="100" r="8" fill="#26221F"/>
+  </svg>
   <h1>京张授时带 · 让城市 AI 服务对得上时</h1>
   <p class="sub">把京张铁路以时刻表运转的运营纪律转译为城市 AI 治理：每个进入公共空间的 AI 服务持有一张有到期日的运行时刻表，定期与人工基准对时；到期未对时自动降级为人工服务，误点记录公开、只增不删。一条授时脊、三座授时站、八个对时点承载这套机制。</p>
   <span class="status">概念方案包 · 全部几何基于临时边界(provisional) · 不替代法定规划</span>
@@ -75,8 +81,8 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="tile"><div class="t-label">授时脊</div><div class="t-value">9,667 m</div><div class="t-sub">概念线位</div></div>
 <div class="tile"><div class="t-label">授时站 / 对时点</div><div class="t-value">3 / 8</div><div class="t-sub">概念节点</div></div>
 <div class="tile"><div class="t-label">场景 / 产业测试</div><div class="t-value">12 / 3</div><div class="t-sub">全部为概念建议</div></div>
-<div class="tile"><div class="t-label">时刻表字段 / 服务门</div><div class="t-value">10 / 6</div><div class="t-sub">T0–T5</div></div>
-<div class="tile"><div class="t-label">桌面演练</div><div class="t-value">6/6</div><div class="t-sub">逐字节可复跑</div></div></div>
+<div class="tile"><div class="t-label">时刻表字段 / 服务门</div><div class="t-value">12 / 6</div><div class="t-sub">含版本绑定·探针策略</div></div>
+<div class="tile"><div class="t-label">三套确定性演练</div><div class="t-value">12/12</div><div class="t-sub">逐字节可复跑</div></div></div>
 
 <h2 id="overview-map">总览地图 · 三层范围</h2>
 <p class="secp">统筹研究范围约 43.6 km² · 总体设计范围复算 11,412,825.386 m² · 重点区域约 368.4 ha；一条授时脊纵贯，三座授时站对应三处重点区域。</p>
@@ -91,6 +97,13 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="gate"><div class="g-id">T5</div><div class="g-name">续期/降级/退役</div><div class="g-desc">对时合格才能续期</div></div></div>
 <div class="proto-note"><b>关键设计：T4 的窗口即到期日。</b>
 批准运行与设定退场是同一个动作——继续运行才需要证据(一次合格的对时)，停止是无人作为时的默认结果，"试点永久化"在结构上不可能。服务底线锚定现行法规：无障碍环境建设法第三十九条(保留人工办理等传统服务方式)、生成式AI暂行办法第十四/十五条(处置整改与投诉反馈)。</div>
+
+<h2>会进化的服务如何守时</h2>
+<div class="landmarks">
+<div class="lm"><b>进化即失效</b>对时资格绑定版本哈希：服务任何自我进化立即作废资格，沙箱重新对时后以新窗口回归。资格不继承，档案要继承；公共空间无热更新。</div>
+<div class="lm"><b>红蓝对时</b>人工核准类别内由红方校时 agent 生成对抗探针，防止静态基准被背题——agent 出题，人类定合格；红方发现的基准缺口回流共建室。</div>
+<div class="lm"><b>校时员轮值</b>对时由认证校时员轮值执行：认证依托驻区高校实践课程；回避自己参与开发的服务；裁决权在专业维护角色。</div>
+</div>
 
 <h2>AI 场景 · 十二张场景卡</h2>
 <div class="scns"><div class="scn test"><span class="scn-id">SCN-01</span> 模型基准公开复核场<span class=badge>产业测试</span></div>
@@ -109,14 +122,11 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="two-col">
 <div>
 <h2>自检状态 · 桌面演练(确定性)</h2>
-<div class="drill"><span>D1 字段完整性</span><b>4/4</b></div>
-<div class="drill"><span>D2 到期降级</span><b>4/4</b></div>
-<div class="drill"><span>D3 超差降级</span><b>PASS</b></div>
-<div class="drill"><span>D4 准点续期</span><b>PASS</b></div>
-<div class="drill"><span>D5 非AI路径连续</span><b>4/4</b></div>
-<div class="drill"><span>D6 退役五步</span><b>5/5</b></div>
+<div class="drill"><span>D1-D6 协议结构：到期/超差降级·续期·非AI路径·退役</span><b>6/6</b></div>
+<div class="drill"><span>E1-E3 评测回放：合格续期·超差降级·决定可追溯</span><b>3/3</b></div>
+<div class="drill"><span>E4-E6 演进与探针：进化即失效·红蓝对时·谱系继承</span><b>3/3</b></div>
 <div class="drill"><span>确定性校验 / 空间校验 / 视觉校验 / 专业证据校验</span><b>见 self_check.json</b></div>
-<div class="cmd">node visual/assets/run_timecheck_tabletop.js --check</div>
+<div class="cmd">node run_timecheck_tabletop.js / run_baseline_replay.js / run_evolution_probes.js --check</div>
 <div class="honest">演练仅证明协议结构与退出分支可复现；真实部署：未授权未运行 · 责任角色未指派 · 基准未建立。</div>
 </div>
 <div>

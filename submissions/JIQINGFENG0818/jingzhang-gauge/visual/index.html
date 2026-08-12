@@ -3226,7 +3226,7 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
 
 <section id="s-lu">
   <h2><span>04</span>用地分区</h2>
-  <p class="lede">用地采用 Voronoi 剖分生成，相邻图斑共享精确边界坐标，完整覆盖设计范围且无缝隙、无重叠。道路用地沿地块边界扣除，不产生夹缝地。</p>
+  <p class="lede">用地采用 Voronoi 剖分生成，相邻图斑共享精确边界坐标，覆盖设计范围但并非完全无缝：topology_check 记录残留缝隙 14.897 m²、重叠 0.099 m²，land_use_partition_complete=false，相对 11.41 km² 约为百万分之一点五量级。道路用地沿地块边界扣除，不产生夹缝地。</p>
   <table>
     <thead><tr><th>代码</th><th>用地类别</th><th class="num">面积 (ha)</th><th>占比</th><th class="num">%</th></tr></thead>
     <tbody><tr><td class="mono">1207</td><td>城镇村道路用地</td><td class="mono num">240.5</td><td class="bar"><i style="width:21.08%;background:#F0F1EE"></i></td><td class="mono num">21.08%</td></tr>
@@ -3322,8 +3322,8 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
     <div><div class="k">绿地率</div><div class="v">26.16<span style="font-size:15px">%</span></div><div class="u">green_ratio</div></div>
     <div><div class="k">公共空间率</div><div class="v">4.59<span style="font-size:15px">%</span></div><div class="u">public_space_ratio</div></div>
     <div><div class="k">道路面积率</div><div class="v">21.08<span style="font-size:15px">%</span></div><div class="u">road_area_ratio</div></div>
-    <div><div class="k">用地剖分缝隙</div><div class="v" style="color:#2C6B62">1.51<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.000013%</div></div>
-    <div><div class="k">用地剖分重叠</div><div class="v" style="color:#2C6B62">0.15<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.000001%</div></div>
+    <div><div class="k">用地剖分缝隙</div><div class="v" style="color:#2C6B62">14.897<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.00013%</div></div>
+    <div><div class="k">用地剖分重叠</div><div class="v" style="color:#2C6B62">0.099<span style="font-size:15px"> ㎡</span></div><div class="u">占总面积 0.00000087%</div></div>
   </div>
 </section>
 
@@ -3346,8 +3346,8 @@ footer{margin-top:58px;padding-top:20px;border-top:2px solid var(--ink);
   <table>
     <thead><tr><th>检查项</th><th>结果</th><th>说明</th></tr></thead>
     <tbody>
-      <tr><td>空间审查 spatial_review</td><td><span class="pill ok">PASS</span></td><td>用地覆盖完整，无缝隙、无重叠、无越界</td></tr>
-      <tr><td>重点区域几何</td><td><span class="pill wip">provisional</span></td><td>组织方官方边界缺失，采用临时替代范围；规则明示不影响内容评分</td></tr>
+      <tr><td>空间审查 spatial_review</td><td><span class="pill ok">PASS</span></td><td>无越界；用地剖分残留缝隙 14.897 m²、重叠 0.099 m²，land_use_partition_complete=false</td></tr>
+      <tr><td>重点区域几何</td><td><span class="pill wip">provisional</span></td><td>组织方官方边界缺失，采用临时替代范围；官方数据发布后需复算，资格与评分由维护者/评审依正式规则判断</td></tr>
       <tr><td>法定控制指标</td><td><span class="pill wip">missing</span></td><td>容积率、建筑高度、密度、绿地率、退线均缺失，保持 unknown 未代填</td></tr>
       <tr><td>可视化打包检查</td><td><span class="pill ok">离线</span></td><td>无远程脚本、样式、字体、媒体与地图瓦片；地图由本地 GeoJSON 现场生成</td></tr>
     </tbody>

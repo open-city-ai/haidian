@@ -7,8 +7,8 @@ bilingual_contract_version: "1"
 translation_file: "proposal.en.md"
 license: "COMMUNITY-DISPLAY-ONLY"
 summary: "以京张遗址公园为可回退的公共创新主脉，以众智园、AI原点社区、大钟寺为三站，以中关村科技服务翼和小月河场景赋能翼承接研发、开源、生活与国际交往；所有空间和运营动作均为概念建议，临时边界待正式数据替换后整包重算。"
-tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
-scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+tracks: ["jingzhang-heritage-narrative", "civic-agent-governance", "ai-origin-community"]
+scenarios: ["ai-cultural-guide", "public-safety-operations-review", "ai-traffic-walkability"]
 iteration: "v0.2"
 ---
 
@@ -131,6 +131,8 @@ iteration: "v0.2"
 | 10 公共维护协同台 | 折返信号公共庭 | 汇总设施维护、公众反馈和场景状态，支持折返 | 只收匿名或自愿反馈；维护者和公众可质询 |
 | 11 智能终端体验街 | 大钟寺智能原生街坊 | 让机器人、终端和内容消费在可控空间接受公众观察 | 设安全边界、人工接管和儿童/无障碍保护 |
 | 12 全球 AI 活动周路线 | 一带公共空间系统 | 从遗产叙事、开源社区到产业验证形成可步行路线 | 活动须逐场获得许可、清权和安全复核 |
+
+场景治理的数据最小化、可解释、人工等价服务和可回退原则参考《生成式人工智能服务管理暂行办法》的适用范围边界（面向境内公众的生成服务、违法内容处置与投诉举报义务），本方案作为背景引用，不声称已完成备案或安全评估 [standard:GENERATIVE-AI-INTERIM-MEASURES]；慢行断点诊断与智能终端体验街的"保留人工办理/现场指导"边界参考《无障碍环境建设法》第 39 条列举的公共服务场景，不泛化为所有公共空间或数字界面 [standard:BARRIER-FREE-ENVIRONMENT-LAW]；公共房间与小月河生活服务台的"传统服务与智能服务并行"设计背景参考国办发〔2020〕45 号，该文件面向全国且阶段性目标已到期，仅作政策语境 [standard:ELDERLY-SMART-TECH-PLAN-2020-45]。
 
 这套场景卡采用社区 Issue #1119 的折返思想作为可选参考：绿色表示常态，黄色表示受控试点，红色表示退回上一稳定状态并公开原因；90 天复审和时限只是设计目标，不是政府承诺或现场性能结论 [source:COMMUNITY-SWITCHBACK-1119] [data:geometry/constraints.geojson#NODE-002]。
 

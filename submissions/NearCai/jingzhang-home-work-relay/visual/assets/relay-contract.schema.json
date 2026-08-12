@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/jingzhang-home-work-relay/relay-contract.schema.json",
+  "title": "Home-Work Relay Contract Collection",
+  "type": "object",
+  "required": ["version", "authority_note", "states", "gates", "contracts"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {"const": "1.2"},
+    "authority_note": {"type": "string", "minLength": 20},
+    "states": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "required": ["id", "label_zh", "label_en", "human_owner", "can_move_to"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string", "pattern": "^[a-z][a-z0-9_]+$"},
+          "label_zh": {"type": "string", "minLength": 2},
+          "label_en": {"type": "string", "minLength": 2},
+          "human_owner": {"type": "string", "minLength": 2},
+          "can_move_to": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string"}}
+        }
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["id", "label_zh", "label_en", "required_evidence", "block_if", "signer_roles"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"enum": ["G1", "G2", "G3"]},
+          "label_zh": {"type": "string", "minLength": 2},
+          "label_en": {"type": "string", "minLength": 2},
+          "required_evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "block_if": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "signer_roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+        }
+      }
+    },
+    "contracts": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["contract_id", "relay_type", "title_zh", "title_en", "actor", "input", "state", "consent", "ai_boundary", "fallback", "stop_rule", "success_evidence", "service_level", "status"],
+        "additionalProperties": false,
+        "properties": {
+          "contract_id": {"type": "string", "pattern": "^HWR-C[1-6]$"},
+          "relay_type": {"enum": ["tenure", "layout", "workspace", "service", "consent", "departure_return"]},
+          "title_zh": {"type": "string", "minLength": 2},
+          "title_en": {"type": "string", "minLength": 2},
+          "actor": {
+            "type": "object",
+            "required": ["responsible_role", "accountable_role", "consulted_roles", "informed_roles"],
+            "additionalProperties": false,
+            "properties": {
+              "responsible_role": {"type": "string", "minLength": 2},
+              "accountable_role": {"type": "string", "minLength": 2},
+              "consulted_roles": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "informed_roles": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+            }
+          },
+          "input": {
+            "type": "object",
+            "required": ["request", "minimum_data", "required_evidence", "prohibited_inputs"],
+            "additionalProperties": false,
+            "properties": {
+              "request": {"type": "string", "minLength": 4},
+              "minimum_data": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "required_evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "prohibited_inputs": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+            }
+          },
+          "state": {
+            "type": "object",
+            "required": ["entry", "target", "failure"],
+            "additionalProperties": false,
+            "properties": {
+              "entry": {"type": "string"},
+              "target": {"type": "string"},
+              "failure": {"const": "paused_fallback"}
+            }
+          },
+          "consent": {
+            "type": "object",
+            "required": ["required_parties", "withdrawal_path", "effect_of_withdrawal"],
+            "additionalProperties": false,
+            "properties": {
+              "required_parties": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "withdrawal_path": {"type": "string", "minLength": 4},
+              "effect_of_withdrawal": {"type": "string", "minLength": 4}
+            }
+          },
+          "ai_boundary": {
+            "type": "object",
+            "required": ["allowed", "forbidden", "human_decision"],
+            "additionalProperties": false,
+            "properties": {
+              "allowed": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "forbidden": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "human_decision": {"type": "string", "minLength": 4}
+            }
+          },
+          "fallback": {
+            "type": "object",
+            "required": ["no_ai_route", "offline_route", "rollback_action", "receiving_role"],
+            "additionalProperties": false,
+            "properties": {
+              "no_ai_route": {"type": "string", "minLength": 4},
+              "offline_route": {"type": "string", "minLength": 4},
+              "rollback_action": {"type": "string", "minLength": 4},
+              "receiving_role": {"type": "string", "minLength": 2}
+            }
+          },
+          "stop_rule": {
+            "type": "object",
+            "required": ["triggers", "stop_authority", "resume_evidence"],
+            "additionalProperties": false,
+            "properties": {
+              "triggers": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+              "stop_authority": {"type": "string", "minLength": 2},
+              "resume_evidence": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+            }
+          },
+          "success_evidence": {"type": "array", "minItems": 2, "items": {"type": "string"}},
+          "service_level": {
+            "type": "object",
+            "required": ["status", "formula", "clock_owner"],
+            "additionalProperties": false,
+            "properties": {
+              "status": {"const": "unknown_pending_shadow_phase"},
+              "formula": {"type": "string", "minLength": 8},
+              "clock_owner": {"type": "string", "minLength": 2}
+            }
+          },
+          "status": {"const": "protocol_only_not_authorized_not_run"}
+        }
+      }
+    }
+  }
+}

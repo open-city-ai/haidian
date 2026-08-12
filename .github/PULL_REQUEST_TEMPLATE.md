@@ -34,7 +34,7 @@
 - [ ] `geometry/site_boundary.geojson` 使用可信 official boundary，且 `official_boundary=true`
 - [ ] `geometry/key_areas.geojson` 使用三处可信 official key-area polygons，且 `official_boundary=true`
 - [ ] `manifest.validation_claim.known_blockers` 为空
-- [ ] `self_check_submission.py` 输出 `can_enter_formal_review=true`
+- [ ] `self_check_submission.py --mark-self-checked` 输出 `can_enter_formal_review=true`，并将 `manifest.validation_claim.readiness_contract` 写为 `persisted-self-check-v1`、`self_checked` 写为 `true`
 - [ ] 没有 blocking self-check、空间复核、视觉复核或专业证据链缺口
 
 ## 原创与版权声明
@@ -64,11 +64,11 @@
 python3 -m pip install -r requirements-review.txt
 python3 scripts/render_proposal_html.py submissions/<my-github-login>/<proposal-slug>
 python3 scripts/finalize_submission.py submissions/<my-github-login>/<proposal-slug>
-python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login>
+python3 scripts/self_check_submission.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --mark-self-checked --json
 python3 scripts/participant_preflight.py submissions/<my-github-login>/<proposal-slug> --pr-author <my-github-login> --check-push
 ```
 
-- [ ] 一键自检 `self_check_submission.py` 已通过
+- [ ] 一键自检 `self_check_submission.py --mark-self-checked` 已通过
 - [ ] 投稿预检 `participant_preflight.py --check-push` 已通过，目录归属、变更范围、文件大小和远程推送均无 blocker
 - [ ] deterministic validation、spatial review、visual packaging check、professional evidence review 均为 PASS
 - [ ] 已记录 `package_type` 与派生的 `review_status`，且未把包类型误写为评审决定

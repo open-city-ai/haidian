@@ -1,0 +1,131 @@
+{
+  "schema_version": "1",
+  "title": "Headline claim disclosure audit",
+  "scope": "headline_numeric_claims_only",
+  "purpose": "Check that the selected headline numbers carry a human-readable status label and a source or runner link in both proposal languages.",
+  "boundary": "This is a self-audit of disclosure and cross-file wording. It does not validate model validity, local performance, survey equivalence, professional approval, or implementation authorization.",
+  "status_vocabulary": {
+    "synthetic": "runner output under declared counterfactual inputs; not a local observation",
+    "design_target": "a proposed stop or acceptance threshold; not an achieved result",
+    "known": "a value that can be read back from a package file; not necessarily a local baseline",
+    "unknown": "a required field that must be supplied by dated official, field, operator, or stakeholder evidence"
+  },
+  "headline_claims": [
+    {
+      "id": "population_scale_replay",
+      "match_zh": "3,122,000/3,122,000",
+      "match_en": "3,122,000/3,122,000",
+      "category": "synthetic",
+      "required_zh": ["合成屏查读数", "不是海淀道路"],
+      "required_en": ["synthetic screen outputs", "not Haidian road"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js"],
+      "prohibited_interpretations": ["workforce count", "observed local OD", "resident survey"]
+    },
+    {
+      "id": "selected_composite_proxy",
+      "match_zh": "54.67 → 66.44",
+      "match_en": "54.67 to 66.44",
+      "category": "synthetic",
+      "required_zh": ["综合出行压力代理分", "居民调查结果仍待正式数据补齐"],
+      "required_en": ["composite mobility-pressure proxy score", "A resident survey result remains pending formal evidence"],
+      "source_files": ["visual/assets/regional-scale-commute-readout.json", "visual/assets/run-regional-commute-simulation.js"],
+      "prohibited_interpretations": ["resident satisfaction result", "public acceptance", "local performance"]
+    },
+    {
+      "id": "capacity_overflow",
+      "match_zh": "332,639 人次容量溢出代理",
+      "match_en": "332,639 synthetic capacity-overflow person-trips",
+      "category": "synthetic",
+      "required_zh": ["补班次/槽位、再谈扩展", "合成"],
+      "required_en": ["add service before expansion", "synthetic"],
+      "source_files": ["visual/assets/capacity-closure-screen.json", "visual/assets/run-capacity-closure-screen.js"],
+      "prohibited_interpretations": ["actual fleet shortage", "procurement quantity", "operational capacity"]
+    },
+    {
+      "id": "capacity_closure_units",
+      "match_zh": "301,925 个声明服务单元",
+      "match_en": "301,925 declared service units",
+      "category": "synthetic",
+      "required_zh": ["不是实际班次", "正式决策前"],
+      "required_en": ["synthetic", "not an actual timetable"],
+      "source_files": ["visual/assets/capacity-closure-screen.json", "visual/assets/run-capacity-closure-screen.js"],
+      "prohibited_interpretations": ["budget", "fleet procurement", "permit"]
+    },
+    {
+      "id": "network_edge_pressure",
+      "match_zh": "1.264×",
+      "match_en": "1.264×",
+      "category": "synthetic",
+      "required_zh": ["合成屏查读数", "不是海淀道路"],
+      "required_en": ["synthetic screen outputs", "not Haidian road"],
+      "source_files": ["visual/assets/network-flow-readout.json", "visual/assets/run-network-flow-screen.js"],
+      "prohibited_interpretations": ["observed station load", "real-time traffic", "operable timetable"]
+    },
+    {
+      "id": "relative_resource_index",
+      "match_zh": "−30.4%",
+      "match_en": "−30.4%",
+      "category": "synthetic",
+      "required_zh": ["相对资源指数", "不是 kWh"],
+      "required_en": ["relative resource index", "not kWh"],
+      "source_files": ["visual/assets/resource-pressure-readout.json", "visual/assets/run-resource-pressure-screen.js"],
+      "prohibited_interpretations": ["emissions reduction", "energy performance", "environmental benefit"]
+    },
+    {
+      "id": "disruption_fallback",
+      "match_zh": "76.92%",
+      "match_en": "76.92%",
+      "category": "synthetic",
+      "required_zh": ["回退覆盖率代理", "透明合成压力测试"],
+      "required_en": ["fallback coverage proxy", "not local resilience"],
+      "source_files": ["visual/assets/resilience-recovery-readout.json", "visual/assets/run-resilience-recovery-screen.js"],
+      "prohibited_interpretations": ["incident-response performance", "accessibility audit", "local p90"]
+    },
+    {
+      "id": "wheelchair_recovery",
+      "match_zh": "27.2997 分钟",
+      "match_en": "27.2997 minutes",
+      "category": "synthetic",
+      "required_zh": ["恢复代理", "合成屏查通过"],
+      "required_en": ["recovery proxy", "synthetic screen passes"],
+      "source_files": ["visual/assets/resilience-recovery-readout.json", "visual/assets/run-resilience-recovery-screen.js"],
+      "prohibited_interpretations": ["wheelchair user field result", "accessibility audit", "incident response"]
+    },
+    {
+      "id": "candidate_gate",
+      "match_zh": "1.35× 网络筛查门",
+      "match_en": "1.35× network gate",
+      "category": "design_target",
+      "required_zh": ["合成屏查读数", "网络筛查门"],
+      "required_en": ["synthetic screen outputs", "network gate"],
+      "source_files": ["visual/assets/network-flow-screen.json", "visual/assets/capacity-closure-screen.json"],
+      "prohibited_interpretations": ["service-level guarantee", "existing capacity", "approval"]
+    },
+    {
+      "id": "commute_co_benefit_selected_proxy",
+      "match_zh": "91.88",
+      "match_en": "91.88",
+      "category": "synthetic",
+      "required_zh": ["综合出行压力代理分", "合成屏查读数", "不是居民满意度"],
+      "required_en": ["composite mobility-pressure proxy score", "synthetic screen output", "not resident satisfaction"],
+      "source_files": ["visual/assets/commute-co-benefit-readout.json", "visual/assets/run-commute-co-benefit-optimization.js"],
+      "prohibited_interpretations": ["resident satisfaction result", "field performance", "official score"]
+    },
+    {
+      "id": "time_budget_sufficiency",
+      "match_zh": "当前曲线属于合成充分性代理",
+      "match_en": "These curves are synthetic sufficiency proxies",
+      "category": "synthetic",
+      "required_zh": ["合成充分性代理", "不能替代", "本地可达性基线"],
+      "required_en": ["synthetic sufficiency proxies", "cannot replace", "local baseline"],
+      "source_files": ["visual/assets/commute-co-benefit-accessibility.json", "visual/assets/run-commute-co-benefit-accessibility.js"],
+      "prohibited_interpretations": ["observed accessibility", "service guarantee", "real-world optimal threshold"]
+    }
+  ],
+  "headline_wording_guard": {
+    "forbidden_headlines_zh": ["居民满意度最高", "居民满意度提升", "已优化居民满意度"],
+    "forbidden_headlines_en": ["highest resident satisfaction", "improved resident satisfaction", "resident satisfaction improved"],
+    "preferred_terms_zh": ["综合出行压力代理分", "群体代理分", "合成屏查读数"],
+    "preferred_terms_en": ["composite mobility-pressure proxy score", "group proxy score", "synthetic screen output"]
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/jingzhang-apprentice-city/teachback-bundle.schema.json",
+  "title": "Jing-Zhang Teach-back Graduation Bundle 1.0",
+  "x-graduation_gates": [
+    "NEED",
+    "BUILD",
+    "PRACTISE",
+    "HANDOVER",
+    "TEACH-BACK",
+    "GRADUATE"
+  ],
+  "x-gate_sequence_note": "All six gates are mandatory; the schema validates evidence shape but never awards graduation.",
+  "type": "object",
+  "required": [
+    "bundle_id",
+    "scenario_id",
+    "status",
+    "gates",
+    "public_need",
+    "rights",
+    "resources",
+    "practice",
+    "handover",
+    "teachback",
+    "jury",
+    "retirement"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "bundle_id": {
+      "type": "string",
+      "pattern": "^TB-[A-Z0-9-]+$"
+    },
+    "scenario_id": {
+      "type": "string",
+      "pattern": "^SC-[0-9]{2}$"
+    },
+    "status": {
+      "enum": [
+        "concept",
+        "simulation",
+        "contained_practice",
+        "limited_field",
+        "jury_hold",
+        "graduated_for_deepening",
+        "retired"
+      ]
+    },
+    "gates": {
+      "const": [
+        "NEED",
+        "BUILD",
+        "PRACTISE",
+        "HANDOVER",
+        "TEACH-BACK",
+        "GRADUATE"
+      ]
+    },
+    "public_need": {
+      "type": "object",
+      "required": [
+        "problem",
+        "baseline",
+        "no_ai_route"
+      ],
+      "additionalProperties": true
+    },
+    "rights": {
+      "type": "object",
+      "required": [
+        "source_ids",
+        "data_class",
+        "retention",
+        "appeal"
+      ],
+      "additionalProperties": true
+    },
+    "resources": {
+      "type": "object",
+      "required": [
+        "people",
+        "space",
+        "equipment",
+        "energy_water",
+        "cost_status"
+      ],
+      "additionalProperties": true
+    },
+    "practice": {
+      "type": "object",
+      "required": [
+        "environment",
+        "test_ids",
+        "hard_stops",
+        "results_status"
+      ],
+      "additionalProperties": true
+    },
+    "handover": {
+      "type": "object",
+      "required": [
+        "accountable_role",
+        "backup_role",
+        "takeover_target",
+        "incident_drill"
+      ],
+      "additionalProperties": true
+    },
+    "teachback": {
+      "type": "object",
+      "required": [
+        "public_artifact",
+        "non_origin_maintainers",
+        "capability_replay"
+      ],
+      "additionalProperties": true
+    },
+    "jury": {
+      "type": "object",
+      "required": [
+        "seats",
+        "conflict_check",
+        "decision",
+        "reason"
+      ],
+      "additionalProperties": true
+    },
+    "retirement": {
+      "type": "object",
+      "required": [
+        "model",
+        "data",
+        "equipment",
+        "space",
+        "knowledge_archive"
+      ],
+      "additionalProperties": true
+    }
+  }
+}

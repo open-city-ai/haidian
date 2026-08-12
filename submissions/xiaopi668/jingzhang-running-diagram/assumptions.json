@@ -1,0 +1,68 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-PROVISIONAL",
+   "status": "provisional_constraint",
+   "statement": "总体设计范围（SITE-001）与三处重点区（PROV-KEY-001/002/003）均为仓库登记的临时粗略 polygon，仅用于生成、展示、讨论与包内自检。",
+   "impact": "全部几何、指标、图件与 HTML 须在官方 polygon 发布后整链重算；临时几何不得支撑官方红线、审批或精确面积结论。",
+   "recalculation_trigger": "官方 SITE_BOUNDARY 或 KEY_AREA GeoJSON 在仓库发布。"
+  },
+  {
+   "id": "A-CONTROLS-PENDING",
+   "status": "pending_professional_confirmation",
+   "statement": "官方控规条件（容积率、建筑高度、建筑密度、绿地率、退线）未随公开资料发布。",
+   "impact": "开发强度相关指标登记为 unknown；正文中强度结论均为概念建议，标注待正式控制条件补齐。",
+   "recalculation_trigger": "经批准的控规条件或官方任务书附件发布。"
+  },
+  {
+   "id": "A-BUILDINGS-CONCEPTUAL",
+   "status": "agent_generated_design",
+   "statement": "建筑基底为从临时用地划分生成的概念体量块（177 栋、约 34.1 万 m²），非现状建筑、非批准建筑方案。",
+   "impact": "建筑基底与体量指标仅为空间供给示意，不构成工程或拆除重建结论。",
+   "recalculation_trigger": "官方现状建筑/权属/控规数据可用。"
+  },
+  {
+   "id": "A-ROADS-CONCEPTUAL",
+   "status": "agent_generated_design",
+   "statement": "道路中心线为按运行图空间语法（一带三站两翼）绘制的概念示意线；现状主干路为按公告文字四至的低置信度上下文线。",
+   "impact": "不主张任何道路红线或工程线位结论。",
+   "recalculation_trigger": "官方道路红线或工程方案可用。"
+  },
+  {
+   "id": "A-EXISTING-CONTEXT",
+   "status": "agent_inferred_from_public_data",
+   "statement": "现状铁路带、水系与主干路为公开知识与公告文字四至的概念示意线，非实测数据。",
+   "impact": "上下文线仅支撑叙事，不承载法定或权属主张。",
+   "recalculation_trigger": "官方测绘或清权数据可用。"
+  },
+  {
+   "id": "A-RUNNING-DIAGRAM-CONCEPT",
+   "status": "concept_suggestion",
+   "statement": "「运行图」总体概念、命名体系（R-Line/枢纽站/班次卡/年度运行图）、正点协议与 Logo 方向均为原创概念建议，供专业团队深化。",
+   "impact": "名称不影射既有商标与机构；Logo 方向不含未清权素材；概念本身不构成政府审定结论。",
+   "recalculation_trigger": "组织方或专业团队对命名/品牌方向确认。"
+  },
+  {
+   "id": "A-SCENARIO-OPERATION",
+   "status": "concept_suggestion",
+   "statement": "十张班次卡、三个产业测试验证场景、活动体系、政策与运营机制均为概念建议；未获批运营安排、招商或资金承诺。",
+   "impact": "每个场景标注隐私边界、人工复核与运营主体；不把测试场景写成已批准运营。",
+   "recalculation_trigger": "组织方或社区确认场景可行性。"
+  },
+  {
+   "id": "A-KEY-AREA-ORIENTATION",
+   "status": "agent_inferred_from_public_data",
+   "statement": "三处重点区的南北顺序、位置线索与约面积以公告与 provisional 边界为准（众智园居北、原点社区居中、大钟寺居南）；具体四至待官方 polygon。",
+   "impact": "重点区详细设计为方向性设计，官方 polygon 发布后须重算。",
+   "recalculation_trigger": "官方 KEY_AREA polygon 发布。"
+  },
+  {
+   "id": "A-CULTURE-CLEARANCE",
+   "status": "pending_clearance",
+   "statement": "文化叙事与地标概念引用公开遗产事实（京张铁路百年史）；任何图像、字体、Logo、肖像或商标使用须在发布前完成清权。",
+   "impact": "本包不含未授权第三方素材；图件由 agent 生成；地标为概念装置不构成已批准项目。",
+   "recalculation_trigger": "任何外部再发布视觉资产之前。"
+  }
+ ]
+}

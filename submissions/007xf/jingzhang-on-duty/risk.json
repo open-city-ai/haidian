@@ -1,0 +1,749 @@
+{
+  "version": 1,
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 3,
+      "note": "公共服务助手和场景传感存在最少必要数据边界与功能漂移风险。",
+      "mitigation": "默认不做人脸识别，限制保留期限和访问角色，并提供人工申诉与停用路径。",
+      "human_review": "由运营方数据负责人和法律顾问在试点前复核。"
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 3,
+      "note": "三厅跨空间协同，但可以拆成互不依赖的人工、轻改造和验证实施包。",
+      "mitigation": "P0 先运行，P1 和 P2 分别采购、验收和暂停，避免一次性系统集成。",
+      "human_review": "由项目管理和专业设计团队核实现状条件。"
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 2,
+      "note": "居民可能不信任自动建议或不愿使用智能手机和生物识别。",
+      "mitigation": "保留同等人工、纸本、电话和免登录路径，并以六道接受门槛控制扩展。",
+      "human_review": "由银龄、残障、照护者和一线人员参与开放前测试。"
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 3,
+      "note": "值守岗位、设施维护和供应商迁移会产生持续运营成本。",
+      "mitigation": "建设与运维预算同步披露，使用小而可替换组件和开放工单格式。",
+      "human_review": "由未来运营单位在采购前确认全生命周期成本。"
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 3,
+      "note": "公共 AI、机器人和自主接驳的适用规则可能随场景和时间变化。",
+      "mitigation": "只在已发布运行边界内试点，自动到期并在规则变化后重新立项。",
+      "human_review": "由主管部门和专业顾问核对届时有效规定。"
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 4,
+      "note": "仓库临时总体边界与公开地图所示遗址公园位置存在未解决冲突。",
+      "mitigation": "所有空间成果标记临时，避免地块和文保断言，官方 polygon 到位后整体复算。",
+      "human_review": "须由组织方、测绘规划和文保专业团队确认正式边界。"
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 2,
+      "note": "九个场景使用成熟产品类别，三个机器人或助手场景仍需受控验证。",
+      "mitigation": "按 9+3+4 分层，地理围栏、影子模式、人工监管和物理停用共同约束。",
+      "human_review": "由安全、网络和具体设备专业团队完成现场验收。"
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 2,
+      "note": "数字界面可能排斥老年人、残障人士、儿童照护者和临时访客。",
+      "mitigation": "六类画像参与测试，连续无障碍路线和非数字替代作为开门条件。",
+      "human_review": "由代表性用户和无障碍专业人员共同复核。"
+    }
+  ],
+  "implementation_readiness": {
+    "schema_version": "0.1.0",
+    "governing_rule": "Repository requirements, Beijing planning and service conditions, cleared data and professional review take precedence over all precedent references.",
+    "future_city_position": "Future character is expressed through reliable service, visible operating state, reversible components and precise night-time wayfinding rather than ubiquitous screens or speculative megastructures.",
+    "reference_transfers": [
+      {
+        "city": "Shenzhen",
+        "imported_principles": [
+          "scenario_list_with_named_responsibility_unit",
+          "modular_public_service_interface",
+          "innovation_ecosystem_linked_to_real_demand",
+          "human_and_ecological_public_space"
+        ],
+        "not_imported": [
+          "skyline",
+          "development_density",
+          "citywide_platform_scope",
+          "performance_claims",
+          "branded_visual_language"
+        ],
+        "source_ids": [
+          "CASE-SHENZHEN-AI-SCENARIOS",
+          "CASE-SHENZHEN-URBAN-DESIGN"
+        ]
+      },
+      {
+        "city": "Chongqing",
+        "imported_principles": [
+          "continuous_route_experience",
+          "station_city_service_connection",
+          "small_entry_problem_solving",
+          "verify_warn_classify_coordinate_loop"
+        ],
+        "not_imported": [
+          "mountain_morphology",
+          "vertical_city_form",
+          "local_project_scale",
+          "performance_claims",
+          "branded_visual_language"
+        ],
+        "source_ids": [
+          "CASE-CHONGQING-SMALL-CUT",
+          "CASE-CHONGQING-TRAILS"
+        ]
+      }
+    ],
+    "technology_lanes": {
+      "deploy_now": {
+        "count": 9,
+        "scenario_ids": [
+          "S04",
+          "S05",
+          "S06",
+          "S07",
+          "S08",
+          "S09",
+          "S10",
+          "S11",
+          "S12"
+        ],
+        "meaning": "Uses available product categories and existing service workflows; procurement, cybersecurity, accessibility and site acceptance are still required."
+      },
+      "controlled_pilot": {
+        "count": 3,
+        "scenario_ids": [
+          "S01",
+          "S02",
+          "S03"
+        ],
+        "meaning": "Technically feasible only inside a published operating envelope with human supervision, physical stopping and automatic expiry."
+      },
+      "excluded_from_base_scheme": {
+        "count": 4,
+        "capabilities": [
+          "fully_automated_administrative_or_legal_decision",
+          "mandatory_facial_recognition_or_compulsory_app_for_public_service",
+          "unattended_open_road_autonomous_fleet",
+          "citywide_irreversible_construction_dependent_on_ai_operation"
+        ],
+        "meaning": "Not required to make the place work and not permitted to drive irreversible spatial investment in this proposal."
+      }
+    },
+    "implementation_packages": [
+      {
+        "id": "P0",
+        "name_zh": "先开人工服务",
+        "name_en": "Human Service First",
+        "scope": [
+          "existing_counter",
+          "paper_map",
+          "route_number",
+          "telephone",
+          "duty_roster",
+          "public_issue_log"
+        ],
+        "construction_dependency": "none_or_minor_furniture",
+        "entry_condition": "operator_and_existing_service_process_confirmed",
+        "exit_condition": "same_task_can_be_completed_without_smartphone"
+      },
+      {
+        "id": "P1",
+        "name_zh": "轻改造数字层",
+        "name_en": "Reversible Digital Layer",
+        "scope": [
+          "status_light",
+          "accessible_multimodal_signage",
+          "environmental_sensor",
+          "maintenance_ticketing",
+          "retrieval_only_information_assistant"
+        ],
+        "construction_dependency": "reversible_fit_out_and_low_voltage_review",
+        "entry_condition": "official_site_and_existing_condition_check",
+        "exit_condition": "offline_fallback_takeover_and_accessibility_drills_pass"
+      },
+      {
+        "id": "P2",
+        "name_zh": "受控产业验证",
+        "name_en": "Controlled Industry Validation",
+        "scope": [
+          "geofenced_low_speed_robot",
+          "separated_or_closed_route_shuttle",
+          "shadow_mode_public_service_assistant"
+        ],
+        "construction_dependency": "temporary_barriers_safe_zone_and_supervision_post",
+        "entry_condition": "safety_case_privacy_review_and_named_operator_complete",
+        "exit_condition": "retain_modify_or_retire_decision_after_one_complete_pilot_cycle"
+      }
+    ],
+    "acceptance_gates": [
+      {
+        "id": "G1",
+        "rule": "same_task_without_smartphone",
+        "target": "all_public_service_scenarios"
+      },
+      {
+        "id": "G2",
+        "rule": "human_choice_without_penalty",
+        "target": "all_public_service_scenarios"
+      },
+      {
+        "id": "G3",
+        "rule": "no_mandatory_biometrics_or_compulsory_app",
+        "target": "zero_exceptions_in_base_scheme"
+      },
+      {
+        "id": "G4",
+        "rule": "accessibility_test_with_representative_users",
+        "target": "before_public_opening"
+      },
+      {
+        "id": "G5",
+        "rule": "stop_and_takeover_drill",
+        "target": "every_scenario_before_opening_and_after_material_change"
+      },
+      {
+        "id": "G6",
+        "rule": "scale_only_against_pre_agreed_completion_error_takeover_and_complaint_thresholds",
+        "target": "operator_sets_numeric_thresholds_after_baseline"
+      }
+    ],
+    "national_cleared_references": [
+      "DATA-SRC-GENERATIVE-AI-INTERIM-MEASURES",
+      "DATA-SRC-BARRIER-FREE-ENVIRONMENT-LAW",
+      "DATA-SRC-ELDERLY-SMART-TECH-PLAN-2020-45"
+    ],
+    "concept_version": "ON_DUTY_JINGZHANG_V3",
+    "central_claim": "The city stays open when AI stops; every digital service has a visible state, named handover and equal non-digital path.",
+    "duty_contract_v3": {
+      "states": [
+        {
+          "id": "OFF",
+          "public_meaning": "not available; fallback opens first",
+          "transition_authority": "named operator"
+        },
+        {
+          "id": "SHADOW",
+          "public_meaning": "observes but does not affect service",
+          "transition_authority": "operator plus data/security owner"
+        },
+        {
+          "id": "ASSISTED",
+          "public_meaning": "staff sees advice and decides",
+          "transition_authority": "trained duty role"
+        },
+        {
+          "id": "ACTIVE",
+          "public_meaning": "works only inside the published operating envelope",
+          "transition_authority": "operator after all gates pass"
+        },
+        {
+          "id": "DEGRADED",
+          "public_meaning": "limited function; human path becomes primary",
+          "transition_authority": "automatic threshold or duty role"
+        },
+        {
+          "id": "STOPPED",
+          "public_meaning": "isolated after incident or boundary breach",
+          "transition_authority": "any authorized duty role"
+        },
+        {
+          "id": "RETIRED",
+          "public_meaning": "removed with data, device and vendor exit record",
+          "transition_authority": "owner after public review"
+        }
+      ],
+      "forbidden_transition": "SHADOW_or_STOPPED_directly_to_ACTIVE_without_gate_review",
+      "public_display": [
+        "current_state",
+        "named_role",
+        "fallback_route",
+        "last_update",
+        "complaint_and_takeover_entry"
+      ]
+    },
+    "shift_packet": {
+      "fields": [
+        "service_state",
+        "named_duty_role",
+        "last_incident",
+        "data_and_model_version",
+        "unresolved_ticket",
+        "fallback_and_accessibility_status",
+        "next_shift_owner"
+      ],
+      "storage_rule": "operator-controlled auditable register with role-based access and retention schedule",
+      "public_subset": [
+        "service_state",
+        "named_duty_role",
+        "fallback_and_accessibility_status",
+        "last_update"
+      ]
+    },
+    "originality_boundary": {
+      "original_combination": [
+        "railway_shift_discipline_translated_into_a_seven_state_public_ai_contract",
+        "three_spatially_distinct_handover_courts_linked_by_one_human_fallback_spine",
+        "every_scenario_tied_to_a_shift_packet_stop_drill_and_vendor_exit_artifact",
+        "future_character_defined_by_reliable_low_disturbance_service_not_iconic_form"
+      ],
+      "not_claimed": [
+        "invention_of_human_oversight",
+        "invention_of_algorithmic_transparency",
+        "ownership_of_railway_history_or_public_service_principles",
+        "verified_local_performance_before_baseline_collection"
+      ],
+      "precedent_rule": "Mechanisms may inform governance; no case image, branded form, local budget, statutory control or performance result is copied."
+    },
+    "planning_ai_workbench": [
+      {
+        "task": "authorized_base_map_gap_detection",
+        "ai_output": "candidate discontinuities",
+        "human_decision": "planner verifies survey and right-of-way"
+      },
+      {
+        "task": "aggregated_issue_clustering",
+        "ai_output": "candidate service themes",
+        "human_decision": "community panel accepts, modifies or rejects"
+      },
+      {
+        "task": "shade_and_heat_scenario_testing",
+        "ai_output": "comparative options",
+        "human_decision": "landscape and municipal professionals select after field data"
+      },
+      {
+        "task": "accessible_route_qa",
+        "ai_output": "suspected barriers",
+        "human_decision": "representative users and accessibility professional test on site"
+      },
+      {
+        "task": "pilot_incident_pattern_review",
+        "ai_output": "anomaly candidates",
+        "human_decision": "operator investigates and records closure"
+      },
+      {
+        "task": "bilingual_evidence_consistency_check",
+        "ai_output": "missing or conflicting evidence markers",
+        "human_decision": "author and professional reviewer correct the package"
+      },
+      {
+        "task": "procurement_interoperability_check",
+        "ai_output": "lock_in_and_exit_risk flags",
+        "human_decision": "owner and procurement counsel set contract clauses"
+      }
+    ],
+    "stakeholder_governance": {
+      "roles": [
+        {
+          "id": "district_coordinator",
+          "accountable_for": "cross-department scope and public-interest floor",
+          "veto_on": "scope drift"
+        },
+        {
+          "id": "street_or_community",
+          "accountable_for": "daily user needs and no-login route",
+          "veto_on": "removal of equal human access"
+        },
+        {
+          "id": "site_operator",
+          "accountable_for": "roster, SLO, incidents, maintenance and handover",
+          "veto_on": "operation without staffing or OPEX"
+        },
+        {
+          "id": "professional_design_team",
+          "accountable_for": "survey, heritage, accessibility, fire, traffic and municipal integration",
+          "veto_on": "unverified engineering claim"
+        },
+        {
+          "id": "system_supplier",
+          "accountable_for": "documented system boundary, version, cyber controls and exit package",
+          "veto_on": "none_over_public_owner"
+        },
+        {
+          "id": "data_security_owner",
+          "accountable_for": "lawful data boundary, retention, access and incident response",
+          "veto_on": "unacceptable privacy or security risk"
+        },
+        {
+          "id": "representative_user_panel",
+          "accountable_for": "paid usability evidence from excluded and daily users",
+          "veto_on": "unresolved exclusion before public opening"
+        },
+        {
+          "id": "independent_evaluator",
+          "accountable_for": "baseline, gate audit and retain-modify-retire recommendation",
+          "veto_on": "unsupported scale-up claim"
+        }
+      ],
+      "funding_firewall": "Base public access and human fallback remain public-interest obligations; test fees may support maintenance but cannot buy service priority, data access or displacement of public space."
+    },
+    "delivery_portfolio": [
+      {
+        "id": "D1",
+        "package": "human_duty_service",
+        "lead": "site_operator",
+        "capex_band": "S",
+        "opex_band": "M",
+        "first_product": "roster_paper_map_phone_and_issue_log",
+        "acceptance": "same_task_without_smartphone",
+        "stop": "no_named_shift_or_unfunded_opex",
+        "handover": "baseline_register"
+      },
+      {
+        "id": "D2",
+        "package": "accessible_public_realm",
+        "lead": "professional_design_team",
+        "capex_band": "M",
+        "opex_band": "S",
+        "first_product": "numbered_step_free_route_and_rest_points",
+        "acceptance": "representative_user_route_test",
+        "stop": "survey_or_ownership_conflict",
+        "handover": "as_built_accessibility_register"
+      },
+      {
+        "id": "D3",
+        "package": "visible_state_and_shift_register",
+        "lead": "site_operator",
+        "capex_band": "S",
+        "opex_band": "S",
+        "first_product": "status_board_and_shift_packet",
+        "acceptance": "public_state_matches_operator_log",
+        "stop": "state_cannot_be_verified",
+        "handover": "open_machine_readable_export"
+      },
+      {
+        "id": "D4",
+        "package": "heritage_first_interpretation",
+        "lead": "professional_design_team",
+        "capex_band": "S",
+        "opex_band": "S",
+        "first_product": "curator_checked_physical_and_paper_route",
+        "acceptance": "no_unverified_heritage_geometry_claim",
+        "stop": "heritage_review_pending",
+        "handover": "source_and_content_register"
+      },
+      {
+        "id": "D5",
+        "package": "reversible_environmental_layer",
+        "lead": "site_operator",
+        "capex_band": "M",
+        "opex_band": "M",
+        "first_product": "shade_water_light_and_low_voltage_sensor_kit",
+        "acceptance": "works_when_network_or_ai_is_off",
+        "stop": "maintenance_owner_or_safe_power_missing",
+        "handover": "asset_and_spare_parts_register"
+      },
+      {
+        "id": "D6",
+        "package": "controlled_robot_test_yard",
+        "lead": "site_operator",
+        "capex_band": "M",
+        "opex_band": "M",
+        "first_product": "separated_loop_physical_stop_and_safety_case",
+        "acceptance": "stop_and_takeover_drill",
+        "stop": "route_weather_speed_or_supervision_boundary_breach",
+        "handover": "incident_and_retirement_record"
+      },
+      {
+        "id": "D7",
+        "package": "shadow_mode_public_service_assistant",
+        "lead": "data_security_owner",
+        "capex_band": "S",
+        "opex_band": "M",
+        "first_product": "staff_only_retrieval_assistant",
+        "acceptance": "no_automated_public_decision_and_error_baseline_complete",
+        "stop": "privacy_source_freshness_or_accuracy_breach",
+        "handover": "model_data_prompt_and_vendor_exit_record"
+      },
+      {
+        "id": "D8",
+        "package": "independent_evidence_and_annual_review",
+        "lead": "independent_evaluator",
+        "capex_band": "S",
+        "opex_band": "S",
+        "first_product": "public_scorecard_and_retain_modify_retire_hearing",
+        "acceptance": "findings_publish_response_and_owner",
+        "stop": "evaluator_conflict_or_missing_baseline",
+        "handover": "annual_public_decision_record"
+      }
+    ],
+    "cost_band_rule": {
+      "S": "minor equipment, furniture, training or study",
+      "M": "reversible site works or controlled pilot",
+      "L": "capital construction; excluded until official controls and business case exist"
+    },
+    "procurement_split": [
+      "D1_human_service",
+      "D2_spatial_accessibility",
+      "D3_to_D5_interoperable_components",
+      "D6_to_D7_time_limited_pilots",
+      "D8_independent_evaluation"
+    ],
+    "lock_in_controls": [
+      "open_export",
+      "documented_api_or_data_format",
+      "asset_register",
+      "spare_parts_and_training",
+      "model_data_prompt_register",
+      "deletion_and_exit_certificate"
+    ],
+    "public_evidence_protocol": {
+      "phase_zero_weeks": {
+        "minimum": 8,
+        "maximum": 12,
+        "meaning": "concept evidence window after site and operator authorization, not a promised construction schedule"
+      },
+      "journeys": [
+        "sunny_day_daily_service",
+        "rain_or_heat_stress_service",
+        "night_or_system_outage_service"
+      ],
+      "participant_groups": [
+        "older_or_non_digital",
+        "wheelchair_or_mobility",
+        "sensory_disability",
+        "caregiver_and_child",
+        "night_worker",
+        "visitor_without_local_app"
+      ],
+      "participation_rule": "compensate time where permitted; record consent; do not require service users to become test subjects",
+      "decision_record": [
+        "finding",
+        "accept_modify_or_reject",
+        "reason",
+        "owner",
+        "due_date",
+        "closure_evidence"
+      ],
+      "baseline_before_target": [
+        "task_completion",
+        "time_to_human_takeover",
+        "wrong_or_unusable_guidance",
+        "complaint_and_appeal",
+        "service_parity_without_smartphone",
+        "operator_minutes_and_maintenance_cost"
+      ]
+    },
+    "regional_exchange_matrix": [
+      {
+        "area": "北纬社区",
+        "exchange_object": "resident_questions_and_inclusive_service_tests",
+        "landing_space": "AI_origin_two_door_service_court",
+        "clearance": "consent_and_aggregation",
+        "exit": "return_plain_language_decision_record"
+      },
+      {
+        "area": "未来科学城",
+        "exchange_object": "validated_research_tools_and_talent_programmes",
+        "landing_space": "zhongzhiyuan_shadow_validation_wing",
+        "clearance": "safety_data_and_ip_review",
+        "exit": "time_limited_sandbox_or_reject"
+      },
+      {
+        "area": "怀柔科学城",
+        "exchange_object": "scientific_facility_and_instrument_service_scenarios",
+        "landing_space": "zhongzhiyuan_public_review_wing",
+        "clearance": "professional_and_security_review",
+        "exit": "documented_validation_protocol"
+      },
+      {
+        "area": "经开区",
+        "exchange_object": "manufacturing_robotics_and_maintenance_chain",
+        "landing_space": "dazhongsi_operations_and_logistics_wing",
+        "clearance": "product_safety_procurement_and_vendor_exit",
+        "exit": "repairable_component_or_no_deployment"
+      },
+      {
+        "area": "京津冀",
+        "exchange_object": "portable_public_service_and_interoperability_protocol",
+        "landing_space": "dazhongsi_international_and_regional_interface",
+        "clearance": "jurisdiction_data_and_service_owner_check",
+        "exit": "open_protocol_with_local_reauthorization"
+      }
+    ],
+    "ecosystem_handover_map": [
+      {
+        "id": "land",
+        "entry_gate": "official_boundary_ownership_and_permitted_use",
+        "spatial_interface": "twelve_cells_as_task_index_only",
+        "handover_or_exit": "verified_conditions_or_relocate_without_land_allocation_claim"
+      },
+      {
+        "id": "space",
+        "entry_gate": "existing_heritage_structure_fire_and_accessibility_survey",
+        "spatial_interface": "three_courts_twelve_wings_retained_space_first",
+        "handover_or_exit": "adaptation_asset_record_or_delete_unsafe_wing"
+      },
+      {
+        "id": "industry",
+        "entry_gate": "real_issue_before_company_list",
+        "spatial_interface": "zhongzhiyuan_validation_and_dazhongsi_repair_supply",
+        "handover_or_exit": "safety_case_repairable_component_or_no_deploy"
+      },
+      {
+        "id": "funding",
+        "entry_gate": "D1_D8_and_opex_secured_first",
+        "spatial_interface": "financial_firewall_between_public_access_and_testing",
+        "handover_or_exit": "lifecycle_cost_and_funding_owner_or_no_launch"
+      },
+      {
+        "id": "talent",
+        "entry_gate": "competency_ethics_safety_and_takeover_training",
+        "spatial_interface": "research_wing_maintenance_school_and_court_rotations",
+        "handover_or_exit": "competency_record_and_shift_handover"
+      },
+      {
+        "id": "compute",
+        "entry_gate": "workload_cyber_energy_and_offline_review",
+        "spatial_interface": "shadow_back_of_house_shared_service_first",
+        "handover_or_exit": "workload_version_stop_record_without_data_centre_claim"
+      },
+      {
+        "id": "data",
+        "entry_gate": "lawful_source_minimisation_retention_access_deletion",
+        "spatial_interface": "data_security_owner_and_shift_packet",
+        "handover_or_exit": "source_version_access_deletion_proof_or_stopped"
+      },
+      {
+        "id": "scenario",
+        "entry_gate": "persona_fallback_stop_and_public_evidence",
+        "spatial_interface": "twelve_nodes_in_9_3_4_lanes",
+        "handover_or_exit": "retain_modify_or_retire_record"
+      }
+    ],
+    "public_component_library": [
+      {
+        "id": "C01",
+        "component": "named_human_duty_counter",
+        "offline_value": "equal_human_completion_and_takeover",
+        "owner": "site_operator"
+      },
+      {
+        "id": "C02",
+        "component": "paper_map_and_route_number_cabinet",
+        "offline_value": "wayfinding_without_phone_or_network",
+        "owner": "street_or_community"
+      },
+      {
+        "id": "C03",
+        "component": "tactile_audible_large_text_sign",
+        "offline_value": "multimodal_direction_without_screen_or_colour",
+        "owner": "professional_design_team"
+      },
+      {
+        "id": "C04",
+        "component": "state_lamp_plus_text_symbol_board",
+        "offline_value": "clear_off_stopped_and_human_entry",
+        "owner": "site_operator"
+      },
+      {
+        "id": "C05",
+        "component": "physical_stop_and_safe_waiting_bay",
+        "offline_value": "local_stop_and_people_separation",
+        "owner": "authorised_safety_role"
+      },
+      {
+        "id": "C06",
+        "component": "movable_shade_seat_water_charging_kit",
+        "offline_value": "thermal_comfort_when_ai_is_off",
+        "owner": "site_operator"
+      },
+      {
+        "id": "C07",
+        "component": "shift_wall_and_public_issue_desk",
+        "offline_value": "state_open_issue_and_response_deadline",
+        "owner": "site_operator"
+      },
+      {
+        "id": "C08",
+        "component": "removable_test_edge_and_ground_marking",
+        "offline_value": "physical_separation_from_accessible_line",
+        "owner": "professional_design_team"
+      }
+    ],
+    "culture_story_stops": [
+      "start_shift",
+      "dispatch",
+      "maintain",
+      "handover",
+      "public_review"
+    ],
+    "accountability_honour_system": [
+      {
+        "id": "gap_closed",
+        "recognises": "accessibility_or_service_gap_repaired_with_evidence"
+      },
+      {
+        "id": "good_stop",
+        "recognises": "timely_stop_before_harm_with_drill_or_incident_evidence"
+      },
+      {
+        "id": "closed_loop",
+        "recognises": "public_finding_answered_with_owner_and_closure_evidence"
+      }
+    ],
+    "innovation_conversion_pipeline": [
+      {
+        "gate": "G1_ASK",
+        "artifact": "public_issue_brief_and_non_ai_baseline",
+        "decision": "community_and_frontline_accept_merge_or_reject"
+      },
+      {
+        "gate": "G2_SHADOW",
+        "artifact": "data_model_card_shadow_result_maintenance_exit_draft",
+        "decision": "professional_data_security_and_operator_field_entry"
+      },
+      {
+        "gate": "G3_PROVE",
+        "artifact": "separated_test_safety_takeover_and_accessibility_evidence",
+        "decision": "representative_users_and_operator_pause_or_retire"
+      },
+      {
+        "gate": "G4_HANDOVER",
+        "artifact": "shift_packet_open_export_training_and_opex",
+        "decision": "D8_precedes_time_limited_procurement_or_trial"
+      },
+      {
+        "gate": "G5_RETAIN_MODIFY_RETIRE",
+        "artifact": "incident_complaint_cost_parity_and_deletion_proof",
+        "decision": "public_reason_and_next_owner"
+      }
+    ],
+    "event_brand_system": [
+      {
+        "id": "on_duty_open_day",
+        "function": "public_issue_framing"
+      },
+      {
+        "id": "open_maintenance_school",
+        "function": "developer_operator_maintenance_training"
+      },
+      {
+        "id": "night_handover_drill",
+        "function": "takeover_accessibility_and_outage_proof"
+      },
+      {
+        "id": "civic_ai_duty_week",
+        "function": "international_evidence_exchange_and_handover"
+      }
+    ]
+  }
+}

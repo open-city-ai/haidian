@@ -63,6 +63,12 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="wrap">
 <header class="hero">
   <div class="lang"><a href="index.html">中文</a></div>
+  <svg width="212" height="74" viewBox="0 0 300 200" role="img" aria-label="Jing-Zhang Timekeeping Belt mark: baseline, dial and the unclosed gap" style="display:block;margin-bottom:10px">
+    <line x1="24" y1="100" x2="276" y2="100" stroke="#26221F" stroke-width="7" stroke-linecap="round"/>
+    <path d="M 156.6 38.2 A 64 64 0 1 0 189.0 58.9" fill="none" stroke="#26221F" stroke-width="11" stroke-linecap="round"/>
+    <line x1="167.9" y1="56.2" x2="180.8" y2="35.9" stroke="#1F7A72" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="140" cy="100" r="8" fill="#26221F"/>
+  </svg>
   <h1>Jing-Zhang Timekeeping Belt · Keeping Civic AI On Time</h1>
   <p class="sub">The railway's oldest operating discipline — the timetable — becomes civic AI governance: every AI service in public space holds a service timetable with an expiry date, periodically time-checked against a human-maintained baseline. Overdue services degrade automatically to their guaranteed non-AI path; every delay enters a public, append-only ledger. One spine, three stations and eight time-check points carry the protocol.</p>
   <span class="status">Conceptual package · all geometry on provisional boundary · not statutory planning</span>
@@ -75,8 +81,8 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="tile"><div class="t-label">Timekeeping Spine</div><div class="t-value">9,667 m</div><div class="t-sub">concept alignment</div></div>
 <div class="tile"><div class="t-label">Stations / points</div><div class="t-value">3 / 8</div><div class="t-sub">concept nodes</div></div>
 <div class="tile"><div class="t-label">Scenarios / tests</div><div class="t-value">12 / 3</div><div class="t-sub">all conceptual</div></div>
-<div class="tile"><div class="t-label">Fields / gates</div><div class="t-value">10 / 6</div><div class="t-sub">T0–T5</div></div>
-<div class="tile"><div class="t-label">Tabletop drill</div><div class="t-value">6/6</div><div class="t-sub">byte-reproducible</div></div></div>
+<div class="tile"><div class="t-label">Fields / gates</div><div class="t-value">12 / 6</div><div class="t-sub">incl. version binding & probes</div></div>
+<div class="tile"><div class="t-label">Three drill suites</div><div class="t-value">12/12</div><div class="t-sub">byte-reproducible</div></div></div>
 
 <h2 id="overview-map">总览地图 · 三层范围 · Overview map & scope levels</h2>
 <p class="secp">Coordinated research ~43.6 km² · overall design area recomputed 11,412,825.386 m² · key areas ~368.4 ha; one Timekeeping Spine, three stations on the three key areas. (总览地图 · 三层范围 · 重点区域)</p>
@@ -91,6 +97,13 @@ footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line);
 <div class="gate"><div class="g-id">T5</div><div class="g-name">Renew/degrade/retire</div><div class="g-desc">renewal needs evidence</div></div></div>
 <div class="proto-note"><b>Key design: the T4 window is the expiry date.</b>
 Approving a service and scheduling its exit are one act — continuing requires evidence (a passed time check), stopping is the default when no one acts, so pilot-forever is structurally impossible. The service floor is anchored in current law: Barrier-Free Environment Law Art. 39 (retain staffed traditional service), Generative AI Interim Measures Art. 14/15 (remediation and complaint feedback).</div>
+
+<h2>How a self-evolving service stays on time</h2>
+<div class="landmarks">
+<div class="lm"><b>Evolution voids the pass</b>The pass binds to the version hash: any self-evolution voids it at once; the service re-enters only through a fresh sandbox time check. The pass is not inherited, the record is; no hot-patching in public space.</div>
+<div class="lm"><b>Red-blue time checks</b>Within human-approved classes, a red checker agent generates adversarial probes so no service can memorise the exam — agents write questions, humans define passing; discovered gaps feed the co-build room.</div>
+<div class="lm"><b>Certified time-checkers</b>Checks are staffed by certified time-checkers, trained through university practicum courses; checkers recuse from services they helped build; humans adjudicate.</div>
+</div>
 
 <h2>AI 场景 · Twelve scenario cards</h2>
 <div class="scns"><div class="scn test"><span class="scn-id">SCN-01</span> Public model benchmark review<span class=badge>industry test</span></div>
@@ -109,14 +122,11 @@ Approving a service and scheduling its exit are one act — continuing requires 
 <div class="two-col">
 <div>
 <h2>自检状态 · Tabletop drill (deterministic)</h2>
-<div class="drill"><span>D1 Field completeness</span><b>4/4</b></div>
-<div class="drill"><span>D2 Overdue degrade</span><b>4/4</b></div>
-<div class="drill"><span>D3 Out-of-tolerance degrade</span><b>PASS</b></div>
-<div class="drill"><span>D4 On-time renewal</span><b>PASS</b></div>
-<div class="drill"><span>D5 Non-AI path continuity</span><b>4/4</b></div>
-<div class="drill"><span>D6 Five-step retirement</span><b>5/5</b></div>
+<div class="drill"><span>D1-D6 Protocol structure: degrade, renewal, non-AI path, retirement</span><b>6/6</b></div>
+<div class="drill"><span>E1-E3 Baseline replay: renewal, degrade, traceable decisions</span><b>3/3</b></div>
+<div class="drill"><span>E4-E6 Evolution & probes: version voiding, red-blue checks, lineage</span><b>3/3</b></div>
 <div class="drill"><span>Deterministic / spatial / visual / professional checks</span><b>see self_check.json</b></div>
-<div class="cmd">node visual/assets/run_timecheck_tabletop.js --check</div>
+<div class="cmd">node run_timecheck_tabletop.js / run_baseline_replay.js / run_evolution_probes.js --check</div>
 <div class="honest">The drill proves protocol structure and exit branches only; real deployment: not authorized / not run · role unassigned · baseline not built.</div>
 </div>
 <div>

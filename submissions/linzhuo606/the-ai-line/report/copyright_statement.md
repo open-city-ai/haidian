@@ -9,7 +9,7 @@
 ## 二、逐资产权利台账
 
 **图像资产（全部原创矢量绘制，无第三方图片/照片/地图截图/AI图库素材）**
-- assets/figures/site-overview.png 等五张核心图纸：由本包 GeoJSON/metrics 经 matplotlib 程序化绘制，原创，CC-BY-4.0。
+- assets/figures/site-overview.png 等六张核心图纸（含生态图谱）：由本包 GeoJSON/metrics 经 matplotlib 程序化绘制，原创，CC-BY-4.0。
 - assets/figures/brand-logo.png：品牌标识概念稿，原创矢量绘制，图形与文字组合未检索到既有商标冲突，但**尚未进行正式商标近似检索与注册**，正式启用前必须完成查重（图上已标"概念稿未注册"）。
 - drawings/*.pdf、visual/index.html 内嵌 SVG：同上，由同一数据源程序化生成，原创。
 
@@ -24,7 +24,7 @@
 - 官方公告快照、智能体任务书摘录、公开资料登记表、事实包、临时边界 polygon、站点包：许可与可用性分级见 sources.json 各条 usage_note；OSM 与商业地图数据未用于任何图层。
 
 **生成工具与方法披露**
-- 生成模型：Claude Fable 5（Anthropic），经 Claude Code 环境驱动本仓库脚本完成；全部生成脚本可复现（AI原生规划工作流见 proposal.md 第十一章）。
+- 生成模型：Claude Fable 5（Anthropic），经 Claude Code 环境驱动本仓库脚本完成；全部生成脚本可复现（AI原生规划工作流见 proposal.md 指标体系章）。
 - 无障碍案例引用（马尔堡、日本点字砖、NaviLens、Wayfindr、新加坡BCA等）为公开常识性事实提及，未复制其受版权保护的表达。
 
 **第三方权利风险自查结论**：未使用人物肖像、企业标识、论文图表、新闻图片、受版权保护的地图底图或未清权数据；唯一待办为 Logo 正式商标查重（见上）。

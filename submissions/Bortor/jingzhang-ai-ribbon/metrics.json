@@ -1,0 +1,293 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional boundary PROV-SITE-001 used; official polygon required for final scoring."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_key_area_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announced value 1,921,000 sqm."
+      ]
+    },
+    "ai_origin_key_area_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announced value 1,043,000 sqm."
+      ]
+    },
+    "dazhongsi_key_area_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announced value 720,000 sqm."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1235920.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept blocks only; not official construction scale."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 4077942.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.357312,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 948956.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.083148,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary not present in public site package."
+    },
+    "road_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "road_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official road redlines not available; only conceptual centerlines submitted."
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 1226431.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_1))",
+      "confidence": "medium",
+      "assumptions": [
+        "AI origin community first-phase concept area."
+      ]
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3080556.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_2))",
+      "confidence": "medium",
+      "assumptions": [
+        "Zhongzhiyuan + Dazhongsi second-phase concept area."
+      ]
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 7105865.7,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(polygon_area(phase_3))",
+      "confidence": "medium",
+      "assumptions": [
+        "Transition zones and full spine third-phase concept area."
+      ]
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 1543598.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=05))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0701_area_sqm": {
+      "status": "known",
+      "value": 1725850.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=0701))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 1948633.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=0802))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 293723.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=0803))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0804_area_sqm": {
+      "status": "known",
+      "value": 352610.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=0804))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0806_area_sqm": {
+      "status": "known",
+      "value": 251495.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=0806))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 4077942.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=1401))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_1403_area_sqm": {
+      "status": "known",
+      "value": 901555.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=1403))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_16_area_sqm": {
+      "status": "known",
+      "value": 317445.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_code=16))",
+      "confidence": "medium",
+      "assumptions": []
+    }
+  }
+}

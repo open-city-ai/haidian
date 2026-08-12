@@ -102,10 +102,11 @@
    "source_files": [
     "geometry/public_space.geojson"
    ],
-   "formula": "sum(polygon_area(public_space))",
+   "formula": "area(union(public_space)) @EPSG:4548",
    "confidence": "medium",
    "assumptions": [
-    "基于 provisional_constraint 临时边界，非官方精确面积"
+    "基于 provisional_constraint 临时边界，非官方精确面积",
+    "公共空间图元之间存在 13555.5 sqm 重叠，按并集计一次，不做重复计数"
    ]
   },
   "road_area_sqm": {

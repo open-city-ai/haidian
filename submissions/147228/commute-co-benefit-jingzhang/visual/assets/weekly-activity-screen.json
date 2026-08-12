@@ -1,0 +1,46 @@
+{
+  "screen_id": "weekly-activity-chain-screen-v1",
+  "model_version": "regional-scale-commute-v2.14",
+  "status": "synthetic_weekly_activity_screen_not_observed_demand",
+  "profile_id": "O4_capacity_balanced",
+  "scope": {
+    "days": 7,
+    "day_labels_zh": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+    "day_labels_en": ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+    "population_reference": 3122000,
+    "population_reference_source": "HAIDIAN-POPULATION-2024",
+    "agent_day_rule": "Every declared synthetic agent is processed on every synthetic day; only aggregate counters are retained.",
+    "trip_rule": "An active agent contributes one representative activity-chain trip for the screen; this is a design unit, not a trip survey."
+  },
+  "activity_profiles": {
+    "enterprise_employee": {"weekday_active_share": 1, "weekend_active_share": 0.2, "activity_weights_weekday": {"work": 0.9, "service": 0.1}, "activity_weights_weekend": {"service": 0.55, "discretionary": 0.45}},
+    "resident_worker": {"weekday_active_share": 1, "weekend_active_share": 0.3, "activity_weights_weekday": {"work": 0.82, "service": 0.18}, "activity_weights_weekend": {"service": 0.6, "discretionary": 0.4}},
+    "carer_or_child": {"weekday_active_share": 0.85, "weekend_active_share": 0.9, "activity_weights_weekday": {"care_or_school": 0.7, "service": 0.3}, "activity_weights_weekend": {"care_or_school": 0.45, "service": 0.35, "discretionary": 0.2}},
+    "visitor_service": {"weekday_active_share": 0.6, "weekend_active_share": 0.8, "activity_weights_weekday": {"service": 0.75, "discretionary": 0.25}, "activity_weights_weekend": {"service": 0.6, "discretionary": 0.4}},
+    "logistics_and_maintenance": {"weekday_active_share": 0.9, "weekend_active_share": 0.85, "activity_weights_weekday": {"logistics": 0.85, "service": 0.15}, "activity_weights_weekend": {"logistics": 0.8, "service": 0.2}},
+    "night_worker": {"weekday_active_share": 0.9, "weekend_active_share": 0.85, "activity_weights_weekday": {"night_work": 0.9, "service": 0.1}, "activity_weights_weekend": {"night_work": 0.85, "service": 0.15}}
+  },
+  "weekend_mode_adjustment": {
+    "walking_wheelchair": 0.04,
+    "bicycle": 0.03,
+    "car": -0.04,
+    "enterprise_shuttle": -0.03,
+    "interpretation": "A transparent synthetic sensitivity adjustment for day type; it is not a local weekend mode-share estimate."
+  },
+  "gates": {
+    "require_all_agent_days_processed": true,
+    "require_agent_day_mass_conservation": true,
+    "require_activity_mass_conservation": true,
+    "require_mode_mass_conservation": true,
+    "aggregate_only": true,
+    "air_candidate_must_remain_blocked": true
+  },
+  "calibration_required": [
+    "weekly grouped activity diaries or intercept samples",
+    "weekday and weekend mode shares by group",
+    "night work, care and school service windows",
+    "dated metro, bus, bicycle and shuttle supply by time slice",
+    "cross-boundary grouped OD and freight/service movement records"
+  ],
+  "research_boundary": "ABIT, SimMobility and POLARIS support keeping activity generation, timing, mode choice, transit, traffic, pedestrian and freight interactions explicit. Their coefficients, case-study results and calibration are not imported into Haidian."
+}

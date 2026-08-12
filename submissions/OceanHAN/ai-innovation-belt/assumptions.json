@@ -1,0 +1,95 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "status": "provisional_constraint",
+   "statement": "总体设计范围使用组织方提供的 provisional_rough 临时边界（PROV-SITE-001），面积 1141.3 公顷与公告约 11.4 平方公里一致。",
+   "impact": "所有面积、比例与几何结论为临时计算；官方红线发布后必须整包重算，不得作为审批或精确面积依据。"
+  },
+  {
+   "id": "A-KEYAREA-002",
+   "status": "provisional_constraint",
+   "statement": "三处重点区（众智园 192.1ha、AI原点社区 104.3ha、大钟寺 72.0ha）使用 provisional polygon，按公告面积校核。",
+   "impact": "重点区内部详细设计为方向性概念建议；官方 polygon 发布后需按新边界重算用地与指标。"
+  },
+  {
+   "id": "A-CONTROLS-003",
+   "status": "pending_professional_confirmation",
+   "statement": "容积率、建筑高度、建筑密度、绿地率、退线、建筑控制线与道路红线等控规条件未在公开资料中提供。",
+   "impact": "相关指标列为 unknown/pending_official_control，正文以“待正式控规条件确认”表述，不编造审定数值。"
+  },
+  {
+   "id": "A-BUILDING-004",
+   "status": "conceptual_only",
+   "statement": "buildings.geojson 为概念示意体块（表达拆改留逻辑与体量关系），非现状建筑轮廓或权属边界。",
+   "impact": "不得据此得出地块级拆改留结论；正式深化需要现状建筑、年代、用途与权属数据。"
+  },
+  {
+   "id": "A-ROAD-005",
+   "status": "conceptual_only",
+   "statement": "roads.geojson 的主线绿道与东西缝合路为概念走向，不代表道路红线或现状道路。",
+   "impact": "交通结论为临时设计讨论；正式交通方案需道路红线、断面、轨道站点边界与客流数据。"
+  },
+  {
+   "id": "A-OSM-006",
+   "status": "not_used",
+   "statement": "本版未直接使用 OSM 数据；若后续引入道路底图需遵守 ODbL 归属并在 sources.json 登记。",
+   "impact": "无第三方地图数据许可风险。"
+  },
+  {
+   "id": "A-OPERATION-007",
+   "status": "conceptual_suggestion",
+   "statement": "年度活动体系、开发者社区运营、场景开放与朝圣地标均为概念建议或可供专业团队深化研究的参考方案。",
+   "impact": "不构成政府活动安排、投资承诺或实施保证。"
+  },
+  {
+   "id": "A-BILINGUAL-008",
+   "status": "compliant",
+   "statement": "本包按 bilingual_contract_version 1 提供 proposal.md/proposal.en.md 等义对照及对应图件、HTML 与图纸。",
+   "impact": "语言映射缺失属于阻断性校验错误，本包已完整配对。"
+  },
+  {
+   "id": "A-DATA-009",
+   "status": "data_gap",
+   "statement": "现状地块宗地、建筑轮廓、文保范围（清华园车站旧址）、市政管线、轨道站点边界等数据缺失（见 missing-data.md）。",
+   "impact": "相关设计结论降级为待确认事项；数据补齐后进入深化复算。"
+  },
+  {
+   "id": "A-BASELINE-001",
+   "status": "conceptual_governance",
+   "statement": "v0.4 双轨验证：每个 AI 场景合入前须先证明无 AI 普通基线可用，再谈 AI 增益；智能设备不占用无障碍净宽、消防通道或普通服务台。",
+   "impact": "提升可实施性与公共利益；无 AI 基线缺失即 no-merge，保障技术退场后城市仍可基本运作。"
+  },
+  {
+   "id": "A-CONTRACT-001",
+   "status": "conceptual_governance",
+   "statement": "12 张场景卡均需登记四段可验证合同（无 AI 基线 / AI 增益 / 立即退场 / 退场红利及维护人）。",
+   "impact": "四段字段与状态机核对逻辑写入 compliance_matrix.json agent.3 扩展字段；作为强制评审依据。"
+  },
+  {
+   "id": "A-GATES-001",
+   "status": "conceptual_governance",
+   "statement": "项目成熟度 G 闸门与场景准入 C 闸门双轨独立：项目成熟不等于场景可上线；无法推进时默认保留现状、隔离风险、公开缺口。",
+   "impact": "每个项目/场景均有明确准入与失败默认动作，可实施性可复核。"
+  },
+  {
+   "id": "A-TABLETOP-001",
+   "status": "advisory_synthetic_only",
+   "statement": "visual/assets/mainline-tabletop.json 为纯开关式合成推演（样例，合成数据），不采样任何真实个体；仅证明合同逻辑闭合。",
+   "impact": "不代表真实设备/人员/场地绩效；现场指标在获得许可、方法、样本与复核前保持 unknown。"
+  },
+  {
+   "id": "A-GOVERNANCE-001",
+   "status": "conceptual_governance",
+   "statement": "主线场景 8 状态机（proposed→…→blackout_drill→retained/removed_archived），退场演练与红利审计不可跳过；运营方不能为自己审计签字。",
+   "impact": "保证拔线不是技术方单方面决定，退场判断由维护者/独立评估者/受影响公众共同复核。"
+  },
+  {
+   "id": "A-RISK-001",
+   "status": "conceptual_governance",
+   "statement": "技术退场债务是主要风险：定义硬停止条件（无 AI 路径不可用/无具名人工/无法拔线/敏感数据越界/红利无维护人），出现任一即停试隔离。",
+   "impact": "增强风险合规意识；隐私、版权、授权与实施风险均由具名人工复核，证据不足保持 pending。"
+  }
+ ]
+}

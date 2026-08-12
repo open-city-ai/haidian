@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "simulation_id": "full-cost-closeout-receipt-v1",
+  "title_zh": "停算清账回执离线桌面审计",
+  "title_en": "Offline Closeout Receipt Tabletop Audit",
+  "status": "synthetic_tabletop_only_not_authorized_not_run",
+  "synthetic_only": true,
+  "real_personal_data_used": 0,
+  "field_performance": null,
+  "task_count": 24,
+  "reproduction_command": "jq -e '(.task_count == (.tasks | length)) and ([.tasks[] | ((if (.missing_fields | length) == 0 then \"eligible_for_professional_review\" else \"stop_and_close\" end) == .actual_decision) and (.expected_decision == .actual_decision) and .dispatch_schema_valid and .audit_complete] | all)' simulation.json",
+  "method": {
+    "purpose": "Check whether each proposal scenario produces a complete closeout receipt or stops when one required record is absent.",
+    "decision_rule": "A case is eligible for professional review only when missing_fields is empty; otherwise it must stop_and_close.",
+    "limitations": [
+      "This is a deterministic synthetic tabletop audit, not a field pilot.",
+      "It does not establish permission, feasibility, service quality, public acceptance or model performance.",
+      "All real-world cost, benefit, accessibility and restoration values remain unknown until measured with authorization."
+    ]
+  },
+  "receipt_contract": {
+    "required_fields": [
+      "authorization_record",
+      "non_ai_comparator",
+      "seven_cost_snapshot",
+      "civic_return_threshold",
+      "human_steward",
+      "affected_group_review",
+      "accessibility_check",
+      "appeal_window",
+      "data_deletion_record",
+      "exit_budget_owner",
+      "physical_restoration_plan",
+      "field_measurement_status"
+    ],
+    "eligible_decision": "eligible_for_professional_review",
+    "stop_decision": "stop_and_close",
+    "stop_effect": "Keep the staffed non-AI route, freeze expansion, publish the missing record and assign a repair-or-retire owner."
+  },
+  "tasks": [
+    {"task_id":"S01-complete","scenario_id":"S01","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S01-stop","scenario_id":"S01","missing_fields":["authorization_record"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S02-complete","scenario_id":"S02","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S02-stop","scenario_id":"S02","missing_fields":["non_ai_comparator"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S03-complete","scenario_id":"S03","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S03-stop","scenario_id":"S03","missing_fields":["seven_cost_snapshot"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S04-complete","scenario_id":"S04","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S04-stop","scenario_id":"S04","missing_fields":["civic_return_threshold"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S05-complete","scenario_id":"S05","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S05-stop","scenario_id":"S05","missing_fields":["human_steward"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S06-complete","scenario_id":"S06","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S06-stop","scenario_id":"S06","missing_fields":["affected_group_review"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S07-complete","scenario_id":"S07","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S07-stop","scenario_id":"S07","missing_fields":["accessibility_check"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S08-complete","scenario_id":"S08","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S08-stop","scenario_id":"S08","missing_fields":["appeal_window"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S09-complete","scenario_id":"S09","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S09-stop","scenario_id":"S09","missing_fields":["data_deletion_record"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S10-complete","scenario_id":"S10","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S10-stop","scenario_id":"S10","missing_fields":["exit_budget_owner"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S11-complete","scenario_id":"S11","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S11-stop","scenario_id":"S11","missing_fields":["physical_restoration_plan"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S12-complete","scenario_id":"S12","missing_fields":[],"expected_decision":"eligible_for_professional_review","actual_decision":"eligible_for_professional_review","outcome":"success","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true},
+    {"task_id":"S12-stop","scenario_id":"S12","missing_fields":["field_measurement_status"],"expected_decision":"stop_and_close","actual_decision":"stop_and_close","outcome":"stop_missing_evidence","dispatch_schema_valid":true,"energy_used_kwh":0,"energy_budget_kwh":0,"audit_complete":true}
+  ]
+}

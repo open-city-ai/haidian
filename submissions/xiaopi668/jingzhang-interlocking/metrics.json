@@ -1,0 +1,351 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Site boundary is the repository provisional polygon PROV-SITE-001; official polygon must replace it and trigger full recalculation."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1657536.533,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Green space is the concept 正线公园廊 spine plus pocket parks inside the provisional boundary."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 863264.775,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Public space is six 换签点 plazas plus public interface strips inside the provisional boundary."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1853073.462,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept footprints only; not a statutory building scale. Real building, ownership, structural and heritage surveys required."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.145235,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept ratio within provisional boundary; statutory green ratio requires official controls and greenery surveys."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.07564,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept ratio within provisional boundary."
+      ]
+    },
+    "spine_length_m": {
+      "status": "known",
+      "value": 9715.9,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-001 greenway centerline in EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual public slow-traffic spine along the old railway corridor; not an engineering alignment."
+      ]
+    },
+    "flank_road_length_m": {
+      "status": "known",
+      "value": 19431.7,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(ROAD-002)+length(ROAD-003)",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual service channels; road redlines require traffic engineering review."
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 42,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": [
+        "Land-use cells partition the provisional site without gaps or overlaps."
+      ]
+    },
+    "block_section_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "formula": "count(constraint_type=block_section)",
+      "confidence": "high",
+      "assumptions": [
+        "Twelve 闭塞区间 (block sections) are the core spatial governance units of the train-staff concept."
+      ]
+    },
+    "exchange_point_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/constraints.geojson",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(constraint_type=exchange_point)",
+      "confidence": "high",
+      "assumptions": [
+        "Six 换签点 connect east-west seams and host staff exchange plazas."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Twelve AI scenario cards, each with a staff route table (进路表)."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards with card_type=industry_test)",
+      "confidence": "high",
+      "assumptions": [
+        "Four industry test/validation scenarios, exceeding the required three."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(personas)",
+      "confidence": "high",
+      "assumptions": [
+        "Six user persona classes, exceeding the required five."
+      ]
+    },
+    "ai_ecosystem_case_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "sources.json"
+      ],
+      "formula": "count(global ecosystem cases analysed)",
+      "confidence": "high",
+      "assumptions": [
+        "Seven global AI ecosystem cases distilled into transferable mechanisms."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "count(landmarks)",
+      "confidence": "high",
+      "assumptions": [
+        "Four AI pilgrimage landmarks: 路签塔, 换签钟, 扳道员记忆廊, 信号灯阵."
+      ]
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(renewal_projects)",
+      "confidence": "high",
+      "assumptions": [
+        "Ten independently pausable renewal projects."
+      ]
+    },
+    "phasing_stage_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing features)",
+      "confidence": "high",
+      "assumptions": [
+        "Three implementation stages: 近期试验先发, 中期开源贯通, 远期常态运营."
+      ]
+    },
+    "staff_route_table_coverage_ratio": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md",
+        "visual/index.html"
+      ],
+      "formula": "scenario_cards_with_route_table / scenario_card_count",
+      "confidence": "high",
+      "assumptions": [
+        "Every scenario card declares permitted/forbidden tasks, data boundary, human review and fallback path."
+      ]
+    },
+    "fallback_drill_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(annual fallback drills, one per block section)",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual annual drill plan; actual frequency depends on operators and permits."
+      ]
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_features))",
+      "confidence": "low",
+      "assumptions": [
+        "Provisional key-area rectangles; official polygons must replace them. 369.29 ha vs official 368.4 ha text value (+0.24%)."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official boundary are missing from the public site package; concept volume must not be presented as a statutory control."
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Height controls (aviation/landscape/heritage) require approved regulatory planning conditions."
+    },
+    "green_ratio_statutory": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved regulatory green ratio",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Statutory green ratio requires official controls; the reported green_ratio is a concept ratio only."
+    },
+    "construction_demolition_scale": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "not applicable",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No building survey, ownership, heritage or engineering conditions; demolition/retain decisions are not made."
+    },
+    "live_service_success_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "not applicable",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No authorized pilot exists; on-site performance stays null until licensed baseline measurement."
+    }
+  }
+}

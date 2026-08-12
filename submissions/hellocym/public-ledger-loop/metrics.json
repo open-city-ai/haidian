@@ -1,0 +1,235 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional boundary approximates the 11.4 km2 overall design area; replace with official polygon before precise use."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2060403.169,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(project_features_to_EPSG4548(green_space_features)))",
+      "confidence": "medium",
+      "assumptions": [
+        "Design layer is clipped to provisional boundary."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.180534,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio, not an official green-space control."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 188264.757,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(project_features_to_EPSG4548(public_space_features)))",
+      "confidence": "medium",
+      "assumptions": [
+        "Public rooms are conceptual design polygons."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.016496,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Design ratio, not an official public-space control."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 285532.338,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(project_features_to_EPSG4548(building_footprints)))",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual footprints only; no parcel, ownership or approved building-control data supplied."
+      ]
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 26139.639,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "length(union(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Includes conceptual slow-mobility and service loops, not road redlines."
+      ]
+    },
+    "phase_area_sqm": {
+      "status": "known",
+      "value": 10993644.706,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(area(phase_features))",
+      "confidence": "medium",
+      "assumptions": [
+        "Phases are conceptual bands and may overlap at coordination boundaries only if official implementation geometry changes."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required_key_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "ai_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(conceptual_scenario_nodes_proposed_in_narrative_and_public_rooms)",
+      "confidence": "medium",
+      "assumptions": [
+        "Nodes are conceptual public-space and service interfaces; the validator-authoritative geometry layers do not add a separate node file."
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario_cards_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Cards are design concepts, not approved deployments."
+      ]
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(industry_validation_scenarios_in_proposal)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three validation packages are proposed for professional and community review."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(user_personas)",
+      "confidence": "medium",
+      "assumptions": [
+        "Personas are synthetic design personas, not personal data."
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(AI_pilgrimage_landmarks)",
+      "confidence": "medium",
+      "assumptions": [
+        "Landmarks are conceptual public-space nodes; heritage and engineering review is pending."
+      ]
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_total_floor_area_after_control_conditions",
+      "confidence": "unknown",
+      "assumptions": [
+        "No approved regulatory floor-area controls are present."
+      ],
+      "reason": "Official control conditions and verified existing floor area are missing."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "Do not use a design guess as an official FAR."
+      ],
+      "reason": "Approved FAR controls are missing."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_footprint_area / official_site_area",
+      "confidence": "unknown",
+      "assumptions": [
+        "Official parcel and building-control conditions are missing."
+      ],
+      "reason": "Approved density controls are missing."
+    }
+  }
+}

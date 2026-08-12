@@ -1,0 +1,301 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.385554,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_provisional_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "The submitted boundary is the repository provisional constraint, not an official redline."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 122716.291794,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "polygon_area(union(concept_building_envelopes))",
+      "confidence": "low",
+      "assumptions": [
+        "Concept envelopes are design proposals pending survey, ownership and regulatory review."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1341559.139636,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "polygon_area(green_space_union)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.117548,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 85276.580449,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "polygon_area(public_space_union)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.007472,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "concept_mobility_length_m": {
+      "status": "known",
+      "value": 13841.27331,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(projected_length(concept_centerlines))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual connections are not road redlines or engineering alignments."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(documented_scenario_cards)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ],
+      "formula": "count(scenario_cards where category=testing_and_validation)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(documented_personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(documented_landmark_concepts)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and an official site boundary are not present."
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(approved_building_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing buildings, approved development rights and detailed control conditions are missing."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The submitted building layer contains conceptual envelopes, not surveyed existing footprints."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(centerline_length * approved_width)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved road redlines and widths are not available."
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved road redlines and an official site boundary are not available."
+    },
+    "land_use_0802_area_sqm": {
+      "status": "known",
+      "value": 2464937.45,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0802)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_1401_area_sqm": {
+      "status": "known",
+      "value": 2514285.11,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=1401)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0803_area_sqm": {
+      "status": "known",
+      "value": 2376334.029,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0803)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_0702_area_sqm": {
+      "status": "known",
+      "value": 2079359.101,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=0702)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_05_area_sqm": {
+      "status": "known",
+      "value": 1977924.819,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(area where land_use_code=05)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4232697.16,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(area where phase=1)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3853523.42,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(area where phase=2)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 3326616.036,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(area where phase=3)",
+      "confidence": "medium",
+      "assumptions": []
+    }
+  }
+}

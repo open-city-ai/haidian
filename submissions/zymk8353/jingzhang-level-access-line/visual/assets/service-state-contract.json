@@ -1,0 +1,74 @@
+{
+  "schema_version": "0.1.0",
+  "public_states": [
+    "UNKNOWN",
+    "READY",
+    "DEGRADED",
+    "CLOSED"
+  ],
+  "internal_states": [
+    "UNKNOWN",
+    "AUDITED",
+    "READY",
+    "DEGRADED",
+    "CLOSED",
+    "REPAIR",
+    "RECOMMISSION_REVIEW"
+  ],
+  "transitions": [
+    {
+      "from": "UNKNOWN",
+      "to": "AUDITED",
+      "authority": "authorised_using_unit",
+      "evidence": "asset_and_route_audit"
+    },
+    {
+      "from": "AUDITED",
+      "to": "READY",
+      "authority": "authorised_using_unit",
+      "evidence": "current_signed_confirmation"
+    },
+    {
+      "from": "READY",
+      "to": "DEGRADED",
+      "authority": "using_unit_or_verified_rule",
+      "evidence": "service_impact_with_verified_alternative"
+    },
+    {
+      "from": "READY",
+      "to": "CLOSED",
+      "authority": "using_unit",
+      "evidence": "stop_decision_or_expired_critical_state"
+    },
+    {
+      "from": "CLOSED",
+      "to": "REPAIR",
+      "authority": "licensed_maintainer",
+      "evidence": "work_order"
+    },
+    {
+      "from": "REPAIR",
+      "to": "RECOMMISSION_REVIEW",
+      "authority": "licensed_maintainer",
+      "evidence": "repair_record"
+    },
+    {
+      "from": "RECOMMISSION_REVIEW",
+      "to": "READY",
+      "authority": "qualified_roles_under_applicable_rules",
+      "evidence": "inspection_or_review_plus_using_unit_signature"
+    },
+    {
+      "from": "*",
+      "to": "UNKNOWN",
+      "authority": "expiry_rule",
+      "evidence": "confirmation_ttl_expired"
+    }
+  ],
+  "never_allowed": [
+    "public_report_to_ready",
+    "ai_repair_or_release",
+    "silent_stale_green",
+    "safety_control_bypass"
+  ]
+}

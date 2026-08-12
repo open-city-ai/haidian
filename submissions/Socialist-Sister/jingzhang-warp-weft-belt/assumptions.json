@@ -1,0 +1,68 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "category": "planning_controls",
+      "title": "法定控规与工程约束待官方确认",
+      "description": "Detailed regulatory controls, road redlines, ownership, municipal utilities, and engineering constraints must be confirmed from official attachments before statutory use.",
+      "status": "pending_professional_confirmation",
+      "justification": "Official regulatory plan attachments and engineering attachments were not publicly available at submission time; inventing them is prohibited.",
+      "impact": "The package can be reviewed as a formal AI submission only for provided official boundaries and submitted design layers; statutory controls still need professional confirmation."
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "category": "boundary",
+      "title": "临时边界为推算几何，非官方红线",
+      "description": "本方案使用的 SITE-001 与 PROV-KEY-001/002/003 边界为基于官方公告文字四至、位置线索与约面积推算的临时粗略 polygon（official_boundary=false），非官方红线、紫线、蓝线，亦非精确面积依据。",
+      "status": "provisional_disclosed",
+      "justification": "截至 2026-08-07 公开复核，官方公告正文未附精确边界，资格预审文件下载受密码保护；重算需等待官方 polygon 发布。",
+      "impact": "正式 polygon 发布后须重算全部边界、用地、道路、绿地、公共空间、建筑、分期与指标；本方案所有空间结论按「可讨论、可复核、可替换后重算」撰写。"
+    },
+    {
+      "id": "A-CONTROLS-002",
+      "category": "planning_controls",
+      "title": "控规指标缺失：容积率/建筑高度/建筑密度/绿地率/退线均未知",
+      "description": "floor_area_ratio、building_height、building_density、green_ratio、setback 五项法定控制指标在提交时 status=unknown、value=null，待官方控规或正式设计任务书附件发布后补齐。",
+      "status": "unknown_pending_official",
+      "justification": "brief/site-package/ranges/planning_limits.json 中 five official_planning_controls 均标记 missing 且 required_for_final_submission=true；来源 SRC-2026-BJ-GH-QUAL-PREANNOUNCEMENT 未附控制数值。",
+      "impact": "任何涉及强度、高度、密度、绿地率与退线的表述均为方向性概念，不表述为法定控制结论。"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "category": "existing_conditions",
+      "title": "现状建筑与土地权属数据缺失",
+      "description": "现状地块/宗地边界、土地权属或权属状态说明，以及现状建筑轮廓、高度、层数、用途、建成年代与保留/改造/拆除状态，均未从公开资料取得。",
+      "status": "unknown_pending_official",
+      "justification": "missing-data.md 将其列入「必须补齐」清单；AI agent 不得自行编造现状建筑与权属。",
+      "impact": "拆改留方案与更新项目清单基于概念性判断，须在官方现状测绘与权属数据发布后复核。"
+    },
+    {
+      "id": "A-LANDUSE-001",
+      "category": "land_use",
+      "title": "用地分类基于 MNR 指南的有限子集",
+      "description": "本方案用地功能组织使用《国土空间调查、规划、用途管制用地用海分类指南》的类别子集进行语义统一，全部用地性质为概念建议。",
+      "status": "concept_only",
+      "justification": "SRC-2023-MNR-LAND-USE-CLASSIFICATION 提供分类术语与代码参考；法定用地性质以控规与国土空间规划为准。",
+      "impact": "land_use 图斑不构成法定用地性质结论，正式分类以官方控规与规划审批为准。"
+    },
+    {
+      "id": "A-CASES-001",
+      "category": "references",
+      "title": "全球案例为机制性引用，不构成投资承诺",
+      "description": "新加坡纬壹科技城、法国 Station F、深圳南山区、杭州未来科技城、特拉维夫、硅谷帕洛阿尔托、班加罗尔、韩国板桥等八个全球案例仅作机制转译引用，不引用投资额、产值与企业名单。",
+      "status": "mechanism_reference_only",
+      "justification": "proposal 第1章明确「以上案例仅作机制性引用，不引用不可核实的投资额、产值与企业名单」；案例来源 authority_level=public_reference。",
+      "impact": "任何案例相关表述均不构成投资、招商或落地承诺。"
+    },
+    {
+      "id": "A-CONCEPT-001",
+      "category": "concept",
+      "title": "所有空间建议为概念建议",
+      "description": "本方案全部空间结构、用地、场景、地标与运营内容均为开源征集投稿的设计概念建议，非政府批准方案；凡涉及官方批准、实施承诺、投资安排与招商政策的表述一律禁止。",
+      "status": "concept_only",
+      "justification": "对外口径统一为「开源征集投稿的设计概念，非政府批准方案」，与 agent 任务书合规边界语言一致。",
+      "impact": "方案不构成任何审批依据或实施承诺，正式实施须经法定程序与专业复核。"
+    }
+  ]
+}

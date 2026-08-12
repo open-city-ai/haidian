@@ -1,0 +1,720 @@
+{
+ "type": "FeatureCollection",
+ "name": "constraints_and_design_context",
+ "note_zh": "本文件承载三类内容：主办方临时范围约束的原样引用、两翼AI服务分区建议、以及12个AI场景节点；均为概念建议或引用，不构成审批依据。",
+ "features": [
+  {
+   "type": "Feature",
+   "id": "PROV-RESEARCH-001",
+   "properties": {
+    "id": "PROV-RESEARCH-001",
+    "layer": "SITE_BOUNDARY",
+    "scope_id": "coordinated_research_area",
+    "name_zh": "统筹研究范围粗略替代边界",
+    "source_type": "agent_inferred_from_public_data",
+    "confidence": "medium",
+    "geometry_role": "provisional_constraint",
+    "official_boundary": false,
+    "boundary_precision": "provisional_rough",
+    "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+    "derived_from_source_ids": [
+     "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+    ],
+    "source_title": "依据公告文字四至、约43.6平方公里面积约束和道路名称形成的临时粗略范围",
+    "derivation_method": "以公告文字四至北五环路、京藏高速、西直门外大街、万泉河路作粗略定位，并在EPSG:4548下校核至公告约43.6平方公里；折线不等同于道路红线或法定范围线。",
+    "area_sqm_declared": 43609232.558,
+    "usage_note": "由主办方临时数据原样引用；官方精确红线尚未公开，不得作为审批依据或精确面积复算依据。",
+    "context_role_zh": "公告文字四至推定的43.6平方公里统筹研究范围，用于产业与未来城市研究的上位背景，不是本方案的设计范围。",
+    "copied_from": "brief/site-package/geometry/provisional_boundaries.geojson"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.31885,
+       39.938
+      ],
+      [
+       116.36615,
+       39.938
+      ],
+      [
+       116.37215,
+       39.965
+      ],
+      [
+       116.37215,
+       40.027
+      ],
+      [
+       116.33285,
+       40.027
+      ],
+      [
+       116.32085,
+       40.0
+      ],
+      [
+       116.31285,
+       39.965
+      ],
+      [
+       116.31885,
+       39.938
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "PROV-KEY-SCOPE-001",
+   "properties": {
+    "id": "PROV-KEY-SCOPE-001",
+    "layer": "SITE_BOUNDARY",
+    "scope_id": "key_detailed_design_area",
+    "name_zh": "重点详细设计范围粗略替代边界",
+    "source_type": "agent_inferred_from_public_data",
+    "confidence": "medium",
+    "geometry_role": "provisional_constraint",
+    "official_boundary": false,
+    "boundary_precision": "provisional_rough",
+    "source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+    "derived_from_source_ids": [
+     "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+    ],
+    "source_title": "依据三处重点片区临时 polygon 汇总形成的重点区域范围",
+    "derivation_method": "直接汇总PROV-KEY-001/002/003为MultiPolygon，并以公告三处面积之和368.4公顷进行EPSG:4548面积校核。",
+    "area_sqm_declared": 3692893.005,
+    "usage_note": "由主办方临时数据原样引用；官方精确红线尚未公开，不得作为审批依据或精确面积复算依据。",
+    "context_role_zh": "公告约368.4公顷的三处重点区合并范围，用于校核重点设计深度覆盖。",
+    "copied_from": "brief/site-package/geometry/provisional_boundaries.geojson"
+   },
+   "geometry": {
+    "type": "MultiPolygon",
+    "coordinates": [
+     [
+      [
+       [
+        116.343,
+        40.0075
+       ],
+       [
+        116.354,
+        40.0075
+       ],
+       [
+        116.354,
+        40.026
+       ],
+       [
+        116.343,
+        40.026
+       ],
+       [
+        116.343,
+        40.0075
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        116.342,
+        39.9835
+       ],
+       [
+        116.353,
+        39.9835
+       ],
+       [
+        116.353,
+        39.9935
+       ],
+       [
+        116.342,
+        39.9935
+       ],
+       [
+        116.342,
+        39.9835
+       ]
+      ]
+     ],
+     [
+      [
+       [
+        116.342,
+        39.944
+       ],
+       [
+        116.355,
+        39.944
+       ],
+       [
+        116.355,
+        39.94984
+       ],
+       [
+        116.342,
+        39.94984
+       ],
+       [
+        116.342,
+        39.944
+       ]
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "AIZ-WING-W",
+   "properties": {
+    "id": "AIZ-WING-W",
+    "layer": "AI_SERVICE_ZONE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "中关村科技服务翼",
+    "corridor_band": "W2",
+    "related_tracks": [
+     "enterprise-services-ecosystem"
+    ],
+    "description_zh": "承接中关村科技服务资源的西侧服务翼，面向企业服务、概念验证与成果转化，是验证长廊的服务供给侧。",
+    "area_sqm_declared": 2281293.62,
+    "derivation_method": "由用地分区中对应横向带的所有单元聚合而成，是功能组织建议而非管理分区。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.3405611,
+       39.944
+      ],
+      [
+       116.3404,
+       39.9498
+      ],
+      [
+       116.3400611,
+       39.962
+      ],
+      [
+       116.3397,
+       39.975
+      ],
+      [
+       116.3402484,
+       39.9835
+      ],
+      [
+       116.3408935,
+       39.9935
+      ],
+      [
+       116.3417,
+       40.006
+      ],
+      [
+       116.3417732,
+       40.0075
+      ],
+      [
+       116.3422366,
+       40.017
+      ],
+      [
+       116.3427,
+       40.0265
+      ],
+      [
+       116.345,
+       40.0265
+      ],
+      [
+       116.3446,
+       40.017
+      ],
+      [
+       116.344,
+       40.0075
+      ],
+      [
+       116.343,
+       39.9935
+      ],
+      [
+       116.3428,
+       39.9835
+      ],
+      [
+       116.3432,
+       39.975
+      ],
+      [
+       116.3438,
+       39.962
+      ],
+      [
+       116.3434,
+       39.9498
+      ],
+      [
+       116.3432,
+       39.944
+      ],
+      [
+       116.3432,
+       39.939
+      ],
+      [
+       116.3407,
+       39.939
+      ],
+      [
+       116.3405611,
+       39.944
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "AIZ-WING-E",
+   "properties": {
+    "id": "AIZ-WING-E",
+    "layer": "AI_SERVICE_ZONE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "小月河场景赋能翼",
+    "corridor_band": "E2",
+    "related_tracks": [
+     "ai-public-services",
+     "youth-friendly-public-space"
+    ],
+    "description_zh": "沿小月河展开的东侧场景赋能翼，面向生活服务、文化体验与滨水公共生活，是验证长廊的场景需求侧。",
+    "area_sqm_declared": 2326246.213,
+    "derivation_method": "由用地分区中对应横向带的所有单元聚合而成，是功能组织建议而非管理分区。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       116.3516,
+       39.9498
+      ],
+      [
+       116.352,
+       39.962
+      ],
+      [
+       116.3514,
+       39.975
+      ],
+      [
+       116.351,
+       39.9835
+      ],
+      [
+       116.3512,
+       39.9935
+      ],
+      [
+       116.3522,
+       40.0075
+      ],
+      [
+       116.3528,
+       40.017
+      ],
+      [
+       116.3532,
+       40.0265
+      ],
+      [
+       116.3553,
+       40.0265
+      ],
+      [
+       116.3547795,
+       40.017
+      ],
+      [
+       116.3542589,
+       40.0075
+      ],
+      [
+       116.3534918,
+       39.9935
+      ],
+      [
+       116.3533,
+       39.99
+      ],
+      [
+       116.35382,
+       39.9835
+      ],
+      [
+       116.3545,
+       39.975
+      ],
+      [
+       116.3553,
+       39.965
+      ],
+      [
+       116.3553,
+       39.962
+      ],
+      [
+       116.3553,
+       39.9498
+      ],
+      [
+       116.3553,
+       39.944
+      ],
+      [
+       116.3553,
+       39.939
+      ],
+      [
+       116.3514,
+       39.939
+      ],
+      [
+       116.3514,
+       39.944
+      ],
+      [
+       116.3516,
+       39.9498
+      ]
+     ]
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-01",
+   "properties": {
+    "id": "SCN-01",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "大钟寺智能原生消费街区",
+    "scenario_type_zh": "智能原生消费",
+    "primary_persona_zh": "通勤上班族 / 周边居民",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "店内客流仅统计匿名总量，不做人脸识别，不建立个人画像；退出机制为默认不参与。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3486,
+     39.9465
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-02",
+   "properties": {
+    "id": "SCN-02",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "大钟寺站首末公里接驳验证",
+    "scenario_type_zh": "低速自动驾驶接驳",
+    "primary_persona_zh": "携带大件行李的旅客 / 行动不便者",
+    "is_industry_validation_scenario": true,
+    "data_boundary_zh": "车载感知数据在车端脱敏，公共区域仅保留脱敏轨迹与安全事件；不发布可识别个人的原始影像。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.347,
+     39.9469
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-03",
+   "properties": {
+    "id": "SCN-03",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "北下关社区AI照护站",
+    "scenario_type_zh": "AI+社区照护",
+    "primary_persona_zh": "独居老年人 / 照护者",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "健康数据由居民主动授权后使用，本地处理优先；不授权者获得同等的人工上门服务。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3452,
+     39.956
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-04",
+   "properties": {
+    "id": "SCN-04",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "学院路科教开放实验界面",
+    "scenario_type_zh": "校城共享验证",
+    "primary_persona_zh": "高校学生 / 青年研究者",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "开放实验数据以科研授权数据集为限，不接入个人学籍与成绩数据。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3496,
+     39.966
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-05",
+   "properties": {
+    "id": "SCN-05",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "AI+健康验证院区",
+    "scenario_type_zh": "医疗辅助决策验证",
+    "primary_persona_zh": "慢病患者 / 基层医生",
+    "is_industry_validation_scenario": true,
+    "data_boundary_zh": "医疗数据不出院区，模型在院内环境验证；对外仅公开脱敏的效果指标与失败案例。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.344,
+     39.979
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-06",
+   "properties": {
+    "id": "SCN-06",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "AI原点验证广场",
+    "scenario_type_zh": "公众提案与公示",
+    "primary_persona_zh": "全体市民 / 提案人",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "提案与投票记录以匿名编号公开，不公开提案人身份；未成年人提案需监护人确认。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3468,
+     39.9885
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-07",
+   "properties": {
+    "id": "SCN-07",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "原点人才社区智能生活服务",
+    "scenario_type_zh": "社区智能生活",
+    "primary_persona_zh": "新就业青年 / 双职工家庭",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "居住与出行数据仅在社区侧聚合展示，不与就业单位共享。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3452,
+     39.9885
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-08",
+   "properties": {
+    "id": "SCN-08",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "京张文化AI导览",
+    "scenario_type_zh": "文化叙事导览",
+    "primary_persona_zh": "外地访客 / 国际访客 / 儿童",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "导览不采集人脸，位置数据仅用于当次导览会话，会话结束即删除。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3489,
+     39.9885
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-09",
+   "properties": {
+    "id": "SCN-09",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "小月河滨水机器人配送验证",
+    "scenario_type_zh": "配送机器人",
+    "primary_persona_zh": "外卖骑手 / 商户 / 沿线居民",
+    "is_industry_validation_scenario": true,
+    "data_boundary_zh": "机器人运行日志按周公开脱敏统计；避让失败与接管事件必须公开，不得选择性披露。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3492,
+     40.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-10",
+   "properties": {
+    "id": "SCN-10",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "全民智能健身与无障碍出行",
+    "scenario_type_zh": "全民健身与无障碍",
+    "primary_persona_zh": "轮椅使用者 / 视障人士 / 老年人",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "无障碍导航不记录残障状态标签，路径偏好仅存于用户设备端。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3455,
+     40.0
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-11",
+   "properties": {
+    "id": "SCN-11",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "众智园验证广场与算力开放日",
+    "scenario_type_zh": "算力与模型开放验证",
+    "primary_persona_zh": "创业团队 / 独立开发者",
+    "is_industry_validation_scenario": true,
+    "data_boundary_zh": "开放算力申请记录与配额分配结果公开，申请材料中的商业秘密不公开。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3478,
+     40.012
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "id": "SCN-12",
+   "properties": {
+    "id": "SCN-12",
+    "layer": "SCENARIO_NODE",
+    "source_type": "agent_generated_design",
+    "confidence": "medium",
+    "geometry_role": "design_proposal",
+    "name_zh": "众智园中试与城市治理复盘",
+    "scenario_type_zh": "城市治理智能体复盘",
+    "primary_persona_zh": "街道工作人员 / 应急人员",
+    "is_industry_validation_scenario": false,
+    "data_boundary_zh": "治理复盘使用事件级脱敏数据，任何自动结论均须人工复核后方可采纳。",
+    "human_fallback_zh": "该场景必须保留不依赖智能终端的人工办理路径，且人工路径不得更慢更贵。",
+    "derivation_method": "按九段验证长廊的功能组织概念性布点；点位为示意位置，不表达设施选址结论。",
+    "usage_note": "概念建议方案，供专业团队深化研究；不得作为审批依据、权属边界或建设规模承诺。"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     116.3484,
+     40.0215
+    ]
+   }
+  }
+ ]
+}

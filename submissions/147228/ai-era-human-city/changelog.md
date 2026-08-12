@@ -1,5 +1,61 @@
 # 方案迭代记录
 
+## v2.3 - 2026-08-11
+
+- 新增 `spatial.json` 场景—空间交叉索引，把十个 G0 场景绑定到现有 provisional GeoJSON 要素；它只记录包内引用，不新增官方几何、容量、许可或现场绩效主张。
+- 新增空间完整性 runner 与重复锚点负例回归，确认每个场景均有可解析锚点、路径一致且不重复；官方边界到位后仍须连同 geometry、指标、图件、HTML、PDF 和自检一起重算。
+- 本轮只增加可复核的包内证据链，不改变现有 geometry、正式 metrics、公开排序或评分保护边界。
+
+## v2.1 - 2026-08-11
+
+- 新增七维专业审阅证据地图：把任务对齐、差异化主张、AI 原生创新、实施可深化性、公共利益、风险分层和表达完整度逐项连到 28 个包内证据引用，并为每项登记未证明内容、置信度和下一道专业门。
+- 新增确定性 `run-ai-era-professional-review-map-v21.js`，检查七维顺序、引用文件、正式依据 ID、`official_boundary=false`、`geometry_role=provisional_constraint`、`not_authorized_not_run`、`performance_results=null` 和 `not_an_official_score=true`；runner 不分配官方分数。
+- 新增双语表达级图件、proposal/HTML/visual 入口和权利/双语审校登记；本轮不新增 geometry、正式 metrics、许可、部署、工程、投资或现场绩效主张。
+- 在所有内容、图件和报告完成后持久化 `manifest.validation_claim.self_checked=true`；数据置信度按临时粗略边界与待补现场资料降为 low，避免把结构证据写成实地确定性。
+
+## v1.7 - 2026-08-10
+
+- 新增从同源 provisional GeoJSON 与节点计划生成的空间证据图谱：总览与三处重点区缩放同时呈现人优先线、蓝绿缓冲、十个场景节点、四段公共接口和人工兜底。
+- 增加 `ai-era-spatial-atlas-v17.json` 与确定性 runner，检查三处重点区、每区四段功能带、十个场景节点、双语 SVG/PNG 尺寸及非官方边界；不新增 geometry、指标、许可、容量或现场结果。
+- 增加众智园一条空间决策差分：用反事实的单一机器展示入口与本包采用的普通到达—人工接管—受限模拟—冻结退出进行并置，新增 `ai-era-spatial-delta-readout.json`；差分只属于 `design_target`，不提供尺寸或现场绩效。
+- 中英文 proposal、主图、HTML、PDF、manifest 与双语/权利台账将随本轮重新生成；所有空间动作仍是概念建议/参考方案，供专业团队深化研究。
+
+## v1.6 - 2026-08-10
+
+- 对齐中英文 proposal 的证据引用多重集，补回重点区、公共空间、标准与来源的对应标记；英文候选名保留为受保护的代码文本，双语审计不再把它误判为未翻译正文。
+- 重新生成英文离线 HTML、A0/A3 图册并刷新 manifest 哈希；不改变 geometry、正式 metrics、来源等级、概念性实施边界、公共排序或官方评分主张。
+
+## v1.5 - 2026-08-10
+
+- 修复双语评审图板的 CJK 混排换行：项目族表格现在按可见字符宽度分栏，长句不会越过右侧卡片边界。
+- 为英文任务书三联卡、四季卡和项目族卡单独设定字号与行高，避免标题、正文和脚注互相覆盖。
+- 将八张审阅图板的 SVG/PNG 尺寸一致性重新设为可执行门禁（1600×1000），避免栅格化工具生成正方形 PNG 时造成横向裁切或比例漂移。
+- 只改善表达层与渲染可读性，不修改 geometry、正式 metrics、来源等级、实施边界或任何官方评分主张。
+
+## v1.4 - 2026-08-10
+
+- 将画像与公平协议从 6 类扩为 9 类，单独补入青年学生与初入行者、首次到访者与国际访客、公共服务与一线维护人员；每类均绑定场景、临时空间锚点、普通替代路径和停止条件。
+- 新增 `ai-era-people-fairness-audit.json` 与确定性 runner，复核 9 类必需群体、10 张场景卡、10 个空间要素覆盖，并保持 `official_boundary=false`、`operational_status=not_authorized_not_run`。
+- 同步中英文 proposal、metrics、离线 visual index 与双语审校范围；新增内容仍是概念设计视角，不升级为人口调查、无障碍认证、现场公平结果或官方评分。
+
+## v1.3 - 2026-08-10
+
+- 新增 `ai-era-provisional-spatial-readout.json` 与确定性 runner，从同一组 provisional GeoJSON 复算 3 个重点区、9 段相邻锚点的最小顶点间距，并明确它不是路线、服务半径、无障碍结论或工程尺寸。
+- 在图 06 的中英文图板中增加关系读数和统一的非官方边界说明，缩短英文标签并修复节点名称与色块的遮挡，重新生成 PNG。
+- 同步双语 proposal 与 `metrics.json`；不改变 geometry、正式面积、现场绩效、许可、运营主体、公共排序或官方评分边界。
+
+## v1.2 - 2026-08-10
+
+- 新增 `taskbook-culture-operations-atlas-v12.json` 与双语图 10，把 agent.4 公共空间/地标、agent.5 文化叙事、agent.6 全球活动/长期运营落到三处 provisional 公共空间锚点、四季节奏和五个概念项目族。
+- 生成器与确定性 runner 增加三项任务书位置、三处地标、四季运营和非官方评分边界检查；同步中英文 proposal、离线 visual index、权利台账与双语审校范围。
+- 只补充包内字段的表达级索引，不改变 geometry、正式 metrics、来源等级、公共排序或实施边界。
+
+## v1.1 - 2026-08-10
+
+- 从既有 ordinary journey、traceability 与 implementation JSON 合约生成三张双语审阅图板，分别覆盖 5 步任务链、5 步回退、6 项验收、10 张场景卡和 5 个概念项目族的 G0/G1 门。
+- 新增 `build-ai-era-evidence-boards.js` 与 `run-ai-era-evidence-boards.js`；生成器和校验器均为本地、可复现、包内数据驱动，并显式保留 `not_an_official`、`result_status=not_run` 与 G0 边界。
+- 同步中英文 proposal、HTML 看板、manifest 与权利台账；图板只改善评审可读性，不新增现场绩效、许可、授权、部署或官方评分结论。
+
 ## v1.0 - 2026-08-10
 
 - 在中英文设计依据入口前置六层“证据等级与公共任务边界”表，区分 formal 任务/标准、来源分级、临时空间、包内派生证据、背景方法和合成回放。

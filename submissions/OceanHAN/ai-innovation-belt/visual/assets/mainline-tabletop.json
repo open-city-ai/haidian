@@ -1,0 +1,66 @@
+{
+  "schema_version": "0.1.0",
+  "kind": "advisory_tabletop_simulation",
+  "description": "纯开关式合成推演（样例，使用合成数据，不采样任何真实个体）。用于在阶段前检查：每张 AI 场景卡是否满足 DOUBLE-TRACK 验证主线的四段可验证合同。本文件不是现场绩效证据；现场效果字段保持 null / unknown。",
+  "case_count": 60,
+  "branch_definitions": {
+    "no_baseline": "缺 无 AI 基线 普通路径",
+    "no_human": "缺 人工复核/接管",
+    "no_unplug": "缺 可拔线/回退能力",
+    "no_bequest": "缺 退场后公共红利",
+    "forbidden_data": "出现 禁入数据（个人敏感/未授权）"
+  },
+  "policy": "任一分支 blocked => 该场景不得进入下一阶段（no-merge gate）。仅全部分支通过且退场红利可独立运行的场景进入 bequest 归档。",
+  "scenarios": {
+    "PR-01_ai_traffic_signal": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "人工可接管信号机 + 日志归档（交管）"
+    },
+    "PR-02_oss_model_bench": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "评测方法卡 + 人工复核（评测团队）"
+    },
+    "PR-03_data_factor_lounge": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "纸面指南 + 合规台账（运营方）"
+    },
+    "PR-04_device_experience": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "静态说明 + 人工客服（园区运营）"
+    },
+    "PR-05_ai_programming_street": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "纸面教程 + 人工辅导（学校/社区）"
+    },
+    "PR-06_dev_night_plaza": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "纸面登记 + 人工签到（社区运营）"
+    },
+    "PR-07_ai_followup_kiosk": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "纸面健康手册 + 人工随访（社区）"
+    },
+    "PR-08_ai_gov_service": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "有人柜台 + 申诉渠道（政务部门）"
+    },
+    "PR-09_delivery_test_corridor": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "普通物流路径保留 + 安全保障（运营方）"
+    },
+    "PR-10_oss_release_hall": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "纸面版 + 公开归档（开源社区）"
+    },
+    "PR-11_ai_accessibility_guide": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "触觉静态地图 + 人工导览（游园/社区）"
+    },
+    "PR-12_global_roadshow": {
+      "no_baseline": "pass", "no_human": "pass", "no_unplug": "pass", "no_bequest": "pass", "forbidden_data": "pass",
+      "resolution": "staged", "note": "展板 + 人工接待（会展运营方）"
+    }
+  },
+  "evidence_boundary": "tabletop 结果仅说明合同逻辑闭合与字段完整；不代表真实设备、人员、场地或公众表现。现场服务成功率 / 恢复时间 / 维护劳动 在获得许可、方法、样本、覆盖、偏差、责任人与复核日期前保持 null/unknown。",
+  "data_notice": "本文件仅含合成样例数据，不涉及任何个体隐私或真实运营数据。"
+}

@@ -1,0 +1,196 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "pending_professional_confirmation",
+      "statement": "总体与三处重点区使用临时粗略几何，不是官方红线。",
+      "impact": "面积、落位和图面仅支持概念设计与本地复核，不能用于审批或精确法定指标。",
+      "affected_files": [
+        "proposal.md",
+        "geometry/*.geojson",
+        "metrics.json",
+        "assets/figures/*",
+        "drawings/*",
+        "visual/index.html"
+      ],
+      "evidence_gap": "缺少组织方提供、带坐标系与版本说明的正式总体和重点区 polygon。",
+      "release_condition": "取得组织方正式GIS/CAD/PDF及坐标、版本和授权说明。",
+      "responsible_role": "组织方数据负责人、规划与测绘专业团队",
+      "update_action": "替换SITE与KEY图层，在EPSG:4548重算全部几何、指标、图、网页、PDF和正文引用。"
+    },
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "全域法定用地、容积率、总建筑面积、高度、密度与退线保持未知。",
+      "impact": "用地和建筑仅表达概念结构与深化方法，不构成控规调整或许可结论。",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "geometry/land_use.geojson",
+        "geometry/buildings.geojson"
+      ],
+      "evidence_gap": "缺少适用控规、街区与地块控制、计容规则和审批文件。",
+      "release_condition": "取得有效法定规划与主管部门确认的适用口径。",
+      "responsible_role": "注册城乡规划师、建筑师与规划主管程序",
+      "update_action": "逐地块核对用途、强度、体量、退线和拆改留，更新标准矩阵与全部图件。"
+    },
+    {
+      "id": "A-EXISTING-001",
+      "status": "pending_professional_confirmation",
+      "statement": "现状建筑、产权主体、租赁使用、人口与公共服务底数尚未形成完整清权台账。",
+      "impact": "不对现实建筑作拆除、新建或搬迁决定，不声称现状使用者已同意。",
+      "affected_files": [
+        "proposal.md",
+        "geometry/buildings.geojson",
+        "design_depth_matrix.json"
+      ],
+      "evidence_gap": "缺少逐栋测绘、结构、权属、使用者、租赁、消防和社会影响调查。",
+      "release_condition": "完成有资质的现状调查和受影响者参与并形成可审计记录。",
+      "responsible_role": "规划、建筑、测绘、产权、消防与公众参与团队",
+      "update_action": "将概念建筑原型替换为现状底账，逐项形成留、改、拆、新的条件式判断。"
+    },
+    {
+      "id": "A-TRANSPORT-001",
+      "status": "pending_professional_confirmation",
+      "statement": "道路与慢行图层是概念中心线，不是道路红线、站口方案或铁路安全边界。",
+      "impact": "不能据此承诺道路打通、站城工程、客流容量或停车供给。",
+      "affected_files": [
+        "proposal.md",
+        "geometry/roads.geojson",
+        "assets/figures/mobility-bluegreen.png"
+      ],
+      "evidence_gap": "缺少道路红线、站点出入口、客流、交通调查、铁路保护与工程条件。",
+      "release_condition": "取得交通、轨道与铁路相关正式资料并完成专项评估。",
+      "responsible_role": "交通工程师、轨道运营与铁路安全专业主体",
+      "update_action": "重建网络模型，复核路径、断面、过街、接驳、停车、物流和应急。"
+    },
+    {
+      "id": "A-MUNICIPAL-001",
+      "status": "pending_professional_confirmation",
+      "statement": "给排水、电力、通信、热力、环卫、消防和算力容量均保持未知。",
+      "impact": "新型基础设施只表达接口、计量、停机和迁移要求，不承诺容量或能效。",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "geometry/constraints.geojson"
+      ],
+      "evidence_gap": "缺少地下管线、负荷、排水、防洪、消防、网络与能源专项资料。",
+      "release_condition": "取得主管部门与运营单位资料并完成市政、能源、消防和网络安全论证。",
+      "responsible_role": "市政、能源、消防、通信与网络安全专业团队",
+      "update_action": "补充约束图层，核算容量、线位、冗余、故障模式和生命周期成本。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "京张铁路历史、文保对象、保护范围和建设控制地带尚未形成可再分发的完整底账。",
+      "impact": "文化叙事和导视只使用核验后的事实，不把概念绿地当作文保范围。",
+      "affected_files": [
+        "proposal.md",
+        "geometry/constraints.geojson",
+        "report/copyright_statement.md",
+        "assets/figures/*"
+      ],
+      "evidence_gap": "缺少正式文保名录、空间范围、历史档案版本和图像许可。",
+      "release_condition": "取得文保主管文件、档案来源和逐项版权许可。",
+      "responsible_role": "文保、历史研究、档案与版权专业人员",
+      "update_action": "补文保约束，逐条核验文字与图像，修订导视、地标和施工禁限条件。"
+    },
+    {
+      "id": "A-OPERATIONS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "场景、地标、活动和责任主体均为运营建议，尚未获得机构授权、预算或场地许可。",
+      "impact": "只能进入准备和低风险试验设计，不能宣称已运行、已采购或已形成政府安排。",
+      "affected_files": [
+        "proposal.md",
+        "geometry/public_space.geojson",
+        "geometry/phasing.geojson"
+      ],
+      "evidence_gap": "缺少具名运营主体、人员、保险、采购、预算、场地和长期维护协议。",
+      "release_condition": "责任主体书面接受任务并通过法务、财务、安全与公共利益审查。",
+      "responsible_role": "未来授权的运营主体、场地宿主与独立复核组",
+      "update_action": "逐场景签署责任、数据、人工接管、维护、退出和恢复协议。"
+    },
+    {
+      "id": "A-DATA-GOV-001",
+      "status": "pending_professional_confirmation",
+      "statement": "本阶段没有现场个人数据、运行模型或在线公共AI服务。",
+      "impact": "所有场景指标是预登记框架，不是现状绩效；高影响决定始终由人作出。",
+      "affected_files": [
+        "proposal.md",
+        "sources.json",
+        "self_check.json"
+      ],
+      "evidence_gap": "缺少清权数据、数据保护影响评估、模型卡、攻击测试和独立基准。",
+      "release_condition": "每个试点完成数据清单、适用法律评估、清权、风险测试和用户共审。",
+      "responsible_role": "数据保护、网络安全、法务、领域专业与现实使用者代表",
+      "update_action": "先用合成或公开数据离线验证，再按风险逐门放行；越界即停止和删除。"
+    },
+    {
+      "id": "A-CLIMATE-001",
+      "status": "pending_professional_confirmation",
+      "statement": "绿地、雨洪、热舒适和生态绩效只有概念几何，没有本地基线与工程模型。",
+      "impact": "green_ratio是提交几何比例，不是法定绿地率或已实现生态成效。",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "geometry/green_space.geojson"
+      ],
+      "evidence_gap": "缺少树木、土壤、地形、排水、地下水、逐时气象、物种和维护资料。",
+      "release_condition": "完成四季调查、专项模型、工程复核和维护资源确认。",
+      "responsible_role": "景观、生态、水务、建筑物理与运维专业团队",
+      "update_action": "校准蓝绿布局，设置基线、方法、误差、极端事件和维护验收指标。"
+    },
+    {
+      "id": "A-COPYRIGHT-001",
+      "status": "pending_professional_confirmation",
+      "statement": "外部案例、网页和历史材料只登记文字线索，未默认取得视觉资产再分发权。",
+      "impact": "当前五图、网页和PDF只使用本方案自生成几何、文字和图形。",
+      "affected_files": [
+        "sources.json",
+        "proposal.md",
+        "report/copyright_statement.md",
+        "assets/figures/*",
+        "drawings/*"
+      ],
+      "evidence_gap": "部分案例的一手来源、图片、地图、标志和字体许可尚未逐项闭环。",
+      "release_condition": "完成来源、权利人、许可条款、署名和派生使用核验。",
+      "responsible_role": "版权与法务复核人员",
+      "update_action": "只纳入已清权材料；无法确认的视觉资料继续排除并以自制抽象图替代。"
+    },
+    {
+      "id": "A-BILINGUAL-001",
+      "status": "known_blocker",
+      "statement": "本轮按用户要求仅完成简体中文，未制作正式英文对照成果。",
+      "impact": "新v2双语契约保持启用，因此整包确定性校验和finalize当前应被阻断。",
+      "affected_files": [
+        "proposal.md",
+        "manifest.json",
+        "assets/figures/*",
+        "drawings/*",
+        "report/*",
+        "visual/*"
+      ],
+      "evidence_gap": "缺少人工校对的英文主稿、HTML、五图和A3/A0对照版。",
+      "release_condition": "完成术语统一、专业翻译、双向校对和所有显示材料对照检查。",
+      "responsible_role": "中英双语规划与技术编辑团队",
+      "update_action": "生成英文对应物并逐条核对语义、数字、图例、风险限定和manifest映射。"
+    },
+    {
+      "id": "A-PROFESSIONAL-001",
+      "status": "pending_external_review",
+      "statement": "本成果是AI生成的竞赛设计准备稿，未经过具备相应资质的全专业签审。",
+      "impact": "不能替代法定规划、建筑、交通、市政、生态、文保、法务或安全意见。",
+      "affected_files": [
+        "proposal.md",
+        "standard_matrix.json",
+        "design_depth_matrix.json",
+        "self_check.json"
+      ],
+      "evidence_gap": "缺少跨专业外部复核、现场踏勘和主管程序反馈。",
+      "release_condition": "完成具名专业团队复核、意见闭环与版本签署。",
+      "responsible_role": "注册规划、建筑及相关专项专业人员",
+      "update_action": "把复核问题、修改决定和保留异议写入变更记录，再决定是否进入ready_for_review。"
+    }
+  ]
+}

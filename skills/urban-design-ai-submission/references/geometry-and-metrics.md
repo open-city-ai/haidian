@@ -40,7 +40,7 @@ Avoid these failure patterns:
 - a `site_boundary.geojson` outline that does not include vertices used by the land-use partition
 - metrics copied from narrative text instead of recomputed from geometry
 
-For a safe starter package, run `scripts/scaffold_ai_submission.py --stage formal`. It prefers trusted official geometry and falls back to `brief/site-package/geometry/provisional_boundaries.geojson` when official polygons are absent. The result is intentionally `package_state=scaffold`; replace its design content and placeholder drawings, run `scripts/finalize_submission.py`, then run `scripts/self_check_submission.py` before opening a PR.
+For a safe starter package, run `scripts/scaffold_ai_submission.py --stage formal`. It prefers trusted official geometry and falls back to `brief/site-package/geometry/provisional_boundaries.geojson` when official polygons are absent. The result is intentionally `package_state=scaffold`; replace its design content and placeholder drawings, run `scripts/finalize_submission.py`, then run `scripts/self_check_submission.py --mark-self-checked --json` before opening a PR.
 
 ## Metric Rules
 

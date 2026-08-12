@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang Neural Spine</title>
+<style>
+:root{--bg:#f8f9fa;--card:#fff;--primary:#1565C0;--accent:#FF8F00;--green:#2E7D32;--text:#1a1a1a;--muted:#666;--border:#e0e0e0;--radius:8px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.header{background:linear-gradient(135deg,#1565C0 0%,#0D47A1 100%);color:#fff;padding:40px 20px;text-align:center}
+.header h1{font-size:2em;margin-bottom:8px}
+.header .subtitle{font-size:1.1em;opacity:0.9}
+.header .meta{font-size:0.85em;opacity:0.7;margin-top:12px}
+.container{max-width:1200px;margin:0 auto;padding:20px}
+.section{background:var(--card);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,0.08)}
+.section h2{font-size:1.3em;color:var(--primary);border-bottom:2px solid var(--border);padding-bottom:8px;margin-bottom:16px}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px}
+.metric-card{background:#f5f7fa;border-radius:var(--radius);padding:16px;text-align:center;border-left:4px solid var(--primary)}
+.metric-card .value{font-size:1.8em;font-weight:700;color:var(--primary)}
+.metric-card .label{font-size:0.85em;color:var(--muted);margin-top:4px}
+.metric-card .status{font-size:0.75em;margin-top:4px}
+.status-high{color:var(--green)}.status-medium{color:var(--accent)}.status-unknown{color:#d32f2f}
+.figures-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.figure-box{text-align:center}
+.figure-box img{width:100%;border-radius:var(--radius);border:1px solid var(--border)}
+.figure-box .caption{font-size:0.85em;color:var(--muted);margin-top:6px}
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.area-card{border-radius:var(--radius);padding:16px;color:#fff;text-align:center}
+.area-foundry{background:linear-gradient(135deg,#2196F3,#1565C0)}
+.area-origin{background:linear-gradient(135deg,#FF9800,#E65100)}
+.area-market{background:linear-gradient(135deg,#4CAF50,#2E7D32)}
+.area-card h3{font-size:1.1em;margin-bottom:8px}
+.area-card .area-name{font-size:0.9em;opacity:0.9}
+.area-card .area-size{font-size:1.4em;font-weight:700;margin:8px 0}
+table{width:100%;border-collapse:collapse;font-size:0.85em}
+th,td{padding:8px 12px;text-align:left;border-bottom:1px solid var(--border)}
+th{background:#f5f7fa;font-weight:600;color:var(--primary)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:0.75em;font-weight:600}
+.badge-ok{background:#e8f5e9;color:#2E7D32}
+.badge-pending{background:#fff3e0;color:#E65100}
+.task-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.task-item{padding:8px 12px;background:#f5f7fa;border-radius:4px;font-size:0.85em}
+.task-item .check{color:var(--green);font-weight:700}
+.footer{text-align:center;padding:24px;color:var(--muted);font-size:0.8em}
+@media(max-width:768px){.areas-grid{grid-template-columns:1fr}.task-list{grid-template-columns:1fr}.figures-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>Jingzhang Neural Spine</h1>
+<div class="subtitle">Centennial Jingzhang AI Innovation Belt Urban Design Open Call</div>
+<div class="meta">Agent: Codex (77aC1) | Proposal v1.0 | Provisional Boundary | EPSG:4548</div>
+</div>
+<div class="container">
+
+<div class="section">
+<h2>核心指标 / Core Metrics</h2>
+<div class="metrics-grid">
+<div class="metric-card"><div class="value"><span data-metric="site_area_sqm" data-value="11412825.386">11.4 km²</span></div><div class="label">总体设计范围 Site Area</div><div class="status status-medium">provisional</div></div>
+<div class="metric-card"><div class="value">3</div><div class="label">重点区域 Key Areas</div><div class="status status-high">known</div></div>
+<div class="metric-card"><div class="value"><span data-metric="green_ratio" data-value="0.123423">12.3%</span></div><div class="label">绿地率 Green Ratio</div><div class="status status-medium">provisional</div></div>
+<div class="metric-card"><div class="value"><span data-metric="public_space_ratio" data-value="0.073281">7.3%</span></div><div class="label">公共空间率 Public Space</div><div class="status status-medium">provisional</div></div>
+<div class="metric-card"><div class="value">310,807</div><div class="label">建筑基底 sqm</div><div class="status status-medium">provisional</div></div>
+<div class="metric-card"><div class="value">unknown</div><div class="label">容积率 FAR</div><div class="status status-unknown">pending</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>总览地图 / Site Overview</h2>
+<div class="figure-box"><img src="../assets/figures/site-overview.png" alt="Site Overview"><div class="caption">总体设计范围（provisional）、三处重点区域与京张铁路廊道。</div></div>
+</div>
+
+<div class="section">
+<h2>三层范围 / Three-Level Scope</h2>
+<p>统筹研究范围 43.6 km²、总体设计范围 11.4 km²、重点区域范围 368.4 ha。边界均为 provisional_rough，正式数据发布后重新复算。</p>
+<div class="figure-box"><img src="../assets/figures/land-use-structure.png" alt="Land Use"><div class="caption">用地分区覆盖全部提交边界，无缝隙、无重叠。</div></div>
+</div>
+
+<div class="section">
+<h2>重点区域 / Key Areas</h2>
+<div class="areas-grid">
+<div class="area-card area-foundry"><h3>The Foundry</h3><div class="area-name">铸件坊 · 众智园</div><div class="area-size">192.1 ha</div><div class="area-name">AI R&D Acceleration</div></div>
+<div class="area-card area-origin"><h3>The Origin</h3><div class="area-name">原点 · AI原点社区</div><div class="area-size">104.3 ha</div><div class="area-name">Talent Community</div></div>
+<div class="area-card area-market"><h3>The Market</h3><div class="area-name">集市 · 大钟寺</div><div class="area-size">72.0 ha</div><div class="area-name">Industry Cluster</div></div>
+</div>
+<div class="figure-box"><img src="../assets/figures/key-areas.png" alt="Key Areas"><div class="caption">三处重点区域详细设计。</div></div>
+</div>
+
+<div class="section">
+<h2>用地分区 / Land Use Zones</h2>
+<table>
+<tr><th>Zone</th><th>Code</th><th>Intent</th></tr>
+<tr><td>AI研发创新用地</td><td>0802</td><td>实验组团与开放算力中心</td></tr>
+<tr><td>公园绿地与开敞空间</td><td>1401</td><td>铁路遗址公园脊干</td></tr>
+<tr><td>产业服务与商业服务用地</td><td>05</td><td>集市与廊道服务设施</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>交通慢行 / Mobility & Walkability</h2>
+<p>京张铁路遗址公园为南北连续慢行脊干，衔接地铁13号线、昌平线与规划线路；东西向依托学院路、北土城路。AI自适应信号与智能公交接驳为概念建议。</p>
+</div>
+
+<div class="section">
+<h2>蓝绿公共空间 / Blue-Green Network</h2>
+<p>铁路公园为纵向蓝绿脊干，小月河为横向蓝绿廊道，串联三区中央绿地与社区公园。AI朝圣地标：詹天佑节点、开源贡献荣誉墙、AI里程碑长廊。</p>
+<div class="figure-box"><img src="../assets/figures/mobility-bluegreen.png" alt="Mobility & Blue-Green"><div class="caption">交通慢行与蓝绿公共空间网络。</div></div>
+</div>
+
+<div class="section">
+<h2>建筑 / Buildings</h2>
+<p>建筑基底约 310,807 平方米（provisional）。保留高校科研建筑与铁路遗迹；改造低效产业用地；新建实验组团、混合开发与AI商业综合体。容积率因缺少官方控规记为 unknown。</p>
+</div>
+
+<div class="section">
+<h2>更新项目 / Renewal Projects</h2>
+<table>
+<tr><th>Phase</th><th>Projects</th></tr>
+<tr><td>一期 0-2年</td><td>铸件坊实验组团、开放算力中心、铁路公园脊干贯通</td></tr>
+<tr><td>二期 2-4年</td><td>原点社区混合开发、首批AI场景、开源贡献荣誉墙</td></tr>
+<tr><td>三期 4-6年</td><td>集市AI商业综合体、产业办公集聚、运营闭环</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>AI 场景 / AI Scenarios</h2>
+<table>
+<tr><th>ID</th><th>Scenario</th><th>Location</th></tr>
+<tr><td>SC-01</td><td>AI+社区诊所</td><td>原点社区</td></tr>
+<tr><td>SC-02</td><td>AI+导师中心</td><td>原点社区</td></tr>
+<tr><td>SC-03</td><td>AI+自适应零售</td><td>原点社区</td></tr>
+<tr><td>SC-04</td><td>AI+出行舱</td><td>全廊道</td></tr>
+<tr><td>SC-05</td><td>AI+长者照护站</td><td>原点社区</td></tr>
+<tr><td>SC-06</td><td>AI+城市农业</td><td>铁路公园</td></tr>
+<tr><td>SC-07</td><td>AI+创客实验室</td><td>铸件坊</td></tr>
+<tr><td>SC-08</td><td>AI+应急响应</td><td>全廊道</td></tr>
+<tr><td>SC-09</td><td>AI+文化导览</td><td>铁路公园</td></tr>
+<tr><td>SC-10</td><td>AI+能源微电网</td><td>集市/铸件坊</td></tr>
+</table>
+<p>产业测试验证场景：lab-to-street testbed、AI+交通自适应走廊、AI+公共安全运营复核。</p>
+</div>
+
+<div class="section">
+<h2>任务覆盖 / Task Coverage</h2>
+<div class="task-list">
+<div class="task-item"><span class="check">✓</span> agent.1 总体概念与命名体系</div>
+<div class="task-item"><span class="check">✓</span> agent.2 AI创新生态案例(7例)</div>
+<div class="task-item"><span class="check">✓</span> agent.3 AI场景卡(10张)+画像(5类)</div>
+<div class="task-item"><span class="check">✓</span> agent.4 AI朝圣地标(3个)+公共空间</div>
+<div class="task-item"><span class="check">✓</span> agent.5 文化叙事(京张+中关村+AI)</div>
+<div class="task-item"><span class="check">✓</span> agent.6 全球活动体系与长期运营</div>
+</div>
+</div>
+
+<div class="section">
+<h2>来源 / Sources</h2>
+<table>
+<tr><th>Source ID</th><th>Type</th><th>Usage</th></tr>
+<tr><td>OFFICIAL-ANNOUNCEMENT</td><td>official_public</td><td>Primary control basis</td></tr>
+<tr><td>AGENT-TASKBOOK</td><td>user_provided_cleared</td><td>Agent task framework</td></tr>
+<tr><td>BOUNDARY-SOURCE</td><td>provisional</td><td>Site boundary (provisional_rough)</td></tr>
+<tr><td>SOURCE-REGISTRY</td><td>registry</td><td>Source usability classification</td></tr>
+<tr><td>SITE-PACKAGE</td><td>official_public</td><td>Brief, enums, schemas</td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>假设 / Assumptions</h2>
+<p>Assumption A-CONTROLS-001: 控规指标、道路红线、权属、市政和工程约束需以官方附件确认。 <span class="badge badge-pending">pending</span></p>
+</div>
+
+<div class="section">
+<h2>自检状态 / Self-Check Status</h2>
+<table>
+<tr><th>Gate</th><th>Status</th></tr>
+<tr><td>Deterministic Validation</td><td><span class="badge badge-ok">PASS</span></td></tr>
+<tr><td>Spatial Review</td><td><span class="badge badge-ok">PASS</span></td></tr>
+<tr><td>Visual Static</td><td><span class="badge badge-ok">PASS</span></td></tr>
+<tr><td>Professional Review</td><td><span class="badge badge-ok">PASS</span></td></tr>
+<tr><td>Bilingual Contract</td><td><span class="badge badge-ok">v1</span></td></tr>
+</table>
+</div>
+
+<div class="section">
+<h2>设计图件 / Figures</h2>
+<div class="figures-grid">
+<div class="figure-box"><img src="../assets/figures/metrics-evidence.png" alt="Metrics"><div class="caption">指标证据链。</div></div>
+</div>
+</div>
+
+</div>
+<div class="footer">
+<p>Generated by Codex Agent (77aC1) | All boundaries provisional_rough | License: COMMUNITY-DISPLAY-ONLY</p>
+<p>This is a conceptual suggestion, not statutory planning or government approval.</p>
+</div>
+</body>
+</html>

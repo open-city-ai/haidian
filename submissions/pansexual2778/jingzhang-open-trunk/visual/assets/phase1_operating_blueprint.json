@@ -1,0 +1,155 @@
+{
+  "schema_version": "1.0.0",
+  "blueprint_id": "BP-P1-OPEN-TRUNK-001",
+  "blueprint_name": "一期运营蓝图：原点社区场景沙盒（智能体贡献荣誉墙 + 开源成果展示廊 + PR平台）",
+  "package": "jingzhang-open-trunk",
+  "status": "concept_proposal",
+  "disclaimer": "本文全部金额、目标、时间窗与责任分工为方向性概念建议（以立项批复、可研报告与专业深化为准），不构成政府承诺、投资结论或实施安排。对应 assumptions.json A-DESIGN-CONCEPT-001。",
+  "phase": {
+    "id": "P1",
+    "name": "原点社区场景沙盒（Origin Repo Scenario Sandbox）",
+    "window_months": 24,
+    "window_note": "概念：24个月沙盒运行期 + 决策门评估，以立项批复为准",
+    "escalation_model": "沙盒 → 0.5km → 全phase → 全带 分级放量"
+  },
+  "positioning": {
+    "one_line": "把原点社区 0.5km 建成可提交、可合并、可发布的城市级开源场景沙盒，验证「贡献-评审-发布」闭环后分级放量",
+    "value_proposition": [
+      "以最小资本投入验证开源协作模式在本地的可运行性（小切口试点-评估-推广）",
+      "以「三件套」沉淀可复制的运营SOP与数据卡体系，为二期众智园、三期大钟寺输出治理模板",
+      "以公开可核验KPI建立政府-市场-社区互信，降低后续分期决策风险"
+    ],
+    "alignment": [
+      "呼应「一干三核两翼」中原点社区=原点仓库定位",
+      "承接一期里程碑：原点发布广场开工+PR平台上线、荣誉墙落地、慢行主轴示范段贯通",
+      "为 KPI 三元组（pilot_scenario_sessions_target / pilot_contributor_target / pilot_gate_pass_rate_target）提供执行载体"
+    ]
+  },
+  "spatial_scope": {
+    "scope_type": "scenario_sandbox",
+    "radius_km": 0.5,
+    "center_anchor": "原点社区发布广场（Origin Release Plaza）",
+    "within_scope": [
+      "原点发布广场 / 开源成果展示廊（场景卡 S-14 开源数据集/模型贡献墙）",
+      "智能体贡献荣誉墙（原点社区发布庭院）",
+      "PR广场（京张开源广场，提案-公示-评审-落地-反馈五步流程入口）",
+      "开源干线慢行主轴示范段（一期贯通段）",
+      "原点社区孵化街区轻改造范围（存量更新）"
+    ],
+    "outside_scope": "大钟寺四象限（二期试点）、众智园（二期）、小月河翼（三期）",
+    "geometry_source": "geometry/phasing.geojson P1 先导提交 + key_areas 原点社区",
+    "note": "精确边界与权属以清权结果与立项批复为准"
+  },
+  "operating_model": {
+    "quadripartite": {
+      "government": "政府统筹（区发改委牵头，规自/网信/数据/文旅/宣传按事项监管）",
+      "market": "市场主体运营（区属城投平台 + 专业运营公司，SPV 模式）",
+      "community": "开发者社区参与（PR 提交-评审-合并-发布四步机制）",
+      "university": "高校科研支撑（清华/北航等近校资源，S-4 实训走廊）"
+    },
+    "spv": "SPV（Special Purpose Vehicle）概念：由区属城投与专业运营公司合资组建，作为沙盒统一运营主体",
+    "management": "管委会统筹 + SPV 运营 + 第三方评测机构独立评估三层架构（概念）"
+  },
+  "budget": {
+    "directional_total": "1-3 亿元量级（概念）",
+    "capex_pct": 60,
+    "opex_pct": 40,
+    "capex_items": [
+      "原点发布广场与开源成果展示廊轻改造",
+      "开源干线慢行主轴示范段",
+      "智能体贡献荣誉墙设施",
+      "智慧化底座（PR 平台、数据卡系统、场景沙盒环境）"
+    ],
+    "opex_items": [
+      "PR 平台与 12 项年度活动运营",
+      "常驻运营团队与开发者激励",
+      "数据治理与合规运维"
+    ],
+    "funding_structure": "财政 40% / 城投平台 30% / 产业基金与社会资本 30%（概念）",
+    "note": "金额为方向性量级，以可研与立项批复为准；对应 metrics.json capex_range_by_phase"
+  },
+  "kpi": {
+    "core": [
+      {
+        "name": "场景开放场次",
+        "baseline": 0,
+        "target": 24,
+        "unit": "场/年",
+        "method": "PR 平台排期 + 入场登记",
+        "review_frequency": "季度",
+        "weight": 0.35,
+        "metric_ref": "pilot_scenario_sessions_target",
+        "note": "以立项批复为准"
+      },
+      {
+        "name": "贡献者登记数",
+        "baseline": 0,
+        "target": 200,
+        "unit": "人",
+        "method": "荣誉墙登记系统",
+        "review_frequency": "季度",
+        "weight": 0.35,
+        "metric_ref": "pilot_contributor_target",
+        "note": "以立项批复为准"
+      },
+      {
+        "name": "公众满意度",
+        "baseline": 0,
+        "target": 0.8,
+        "unit": "比例",
+        "method": "第三方线上抽样，样本≥300/季",
+        "review_frequency": "季度",
+        "weight": 0.30,
+        "metric_ref": "pilot_gate_pass_rate_target",
+        "note": "以立项批复为准"
+      }
+    ],
+    "supporting": [
+      "数据卡完成率（一期试点前全部 14 张上线）",
+      "S-5 安全与隐私评估通过率（硬性否决项）",
+      "活动参与人次",
+      "试点通过率"
+    ],
+    "composite_formula": "综合达标率 = 0.35×场景场次达标 + 0.35×贡献者达标 + 0.30×满意度达标"
+  },
+  "milestones": [
+    {"id": "M0", "name": "立项与清权启动", "time_window": "第0-3月", "deliverable": "立项批复、权属清点、SPV组建", "responsible": "区发改委+SPV"},
+    {"id": "M1", "name": "开工与平台上线", "time_window": "第3-6月", "deliverable": "PR平台上线、三件套动工", "responsible": "SPV+设计团队"},
+    {"id": "M2", "name": "沙盒三件套试运行", "time_window": "第18月", "deliverable": "荣誉墙+展示廊+PR平台试运行、首批数据卡", "responsible": "SPV+开发者社区"},
+    {"id": "M3", "name": "中期评估", "time_window": "第12-18月", "deliverable": "周年评估报告、KPI中期核算", "responsible": "第三方评测机构"},
+    {"id": "M4", "name": "一期决策门", "time_window": "第24月", "deliverable": "综合达标率结论、二期立项建议", "responsible": "管委会+第三方"}
+  ],
+  "quarterly_gantt": [
+    {"quarter": "Q1", "task": "立项与清权启动", "output": "立项批复、清权清单", "owner": "区发改委", "budget": "OPEX 10%", "checkpoint": "M0"},
+    {"quarter": "Q2", "task": "SPV组建+PR平台开发", "output": "SPV成立、PR平台v1", "owner": "SPV", "budget": "OPEX 15%", "checkpoint": "设计评审"},
+    {"quarter": "Q3", "task": "三件套开工", "output": "荣誉墙/展示廊施工、慢行示范段开工", "owner": "SPV+设计团队", "budget": "CAPEX 60%", "checkpoint": "施工进度"},
+    {"quarter": "Q4", "task": "平台上线+首场活动", "output": "PR平台正式上线、首场开源活动", "owner": "SPV+开发者社区", "budget": "CAPEX 20%", "checkpoint": "M1"},
+    {"quarter": "Q5", "task": "沙盒试运行爬坡", "output": "三件套试运行、首批场景开放", "owner": "SPV", "budget": "OPEX 25%", "checkpoint": "安全评估"},
+    {"quarter": "Q6", "task": "周年中期评估", "output": "M3评估报告、KPI中期核算", "owner": "第三方评测机构", "budget": "OPEX 10%", "checkpoint": "M3"},
+    {"quarter": "Q7", "task": "场景常态化+活动季", "output": "12项活动铺开、数据卡全量上线", "owner": "SPV+社区", "budget": "OPEX 25%", "checkpoint": "KPI复核"},
+    {"quarter": "Q8", "task": "一期决策门评估", "output": "M4结论、二期立项建议书、SOP手册", "owner": "管委会+第三方", "budget": "OPEX 15%", "checkpoint": "M4决策门"}
+  ],
+  "risks": [
+    {"risk": "权属与文保", "probability": "中", "impact": "高", "response": "清权前置清单+可分离交付", "trigger": "清权超期则先启动不涉权事项"},
+    {"risk": "安全与隐私", "probability": "中", "impact": "高", "response": "S-5沙盒+数据卡+安全评估前置", "trigger": "未通过评估不得进入公开试点"},
+    {"risk": "资金缺口", "probability": "中", "impact": "高", "response": "资金来源结构+分季预算管控", "trigger": "缺口>20%启动调整"},
+    {"risk": "场景低活跃", "probability": "中", "impact": "中", "response": "月度策展+定向邀约", "trigger": "连续2季低于目标50%则转线下"},
+    {"risk": "数据泄露", "probability": "低", "impact": "高", "response": "数据卡+脱敏+人工复核+权限管控", "trigger": "事件触发应急与公示"},
+    {"risk": "市民接受度", "probability": "中", "impact": "中", "response": "公众参与五步流程+满意度季度调查", "trigger": "满意度<60%启动优化"},
+    {"risk": "运营主体能力", "probability": "中", "impact": "中", "response": "SPV+第三方评测双轨", "trigger": "绩效不达标更换运营方"},
+    {"risk": "政策与数据口径变化", "probability": "低", "impact": "中", "response": "以批复为准+回写机制", "trigger": "官方数据发布后整包复算"}
+  ],
+  "decision_gate": {
+    "enter_phase2": "综合达标率≥80%",
+    "adjust_extend": "40-80% 调整方案续期6个月",
+    "shrink": "<40% 收缩至沙盒",
+    "formula": "composite = 0.35×sessions + 0.35×contributors + 0.30×satisfaction",
+    "review_point": "第24月",
+    "midterm_reassessment": "约第5年重排二/三期"
+  },
+  "machine_links": {
+    "metrics": ["pilot_scenario_sessions_target", "pilot_contributor_target", "pilot_gate_pass_rate_target", "capex_range_by_phase"],
+    "assumptions": ["A-DESIGN-CONCEPT-001"],
+    "compliance_requirement": "agent.6"
+  }
+}

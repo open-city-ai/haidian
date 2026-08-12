@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "site-package",
+      "title": "百年京张AI创新带 site-package（公告任务、枚举、范围、指标、schema）",
+      "type": "brief",
+      "path": "brief/site-package/",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-08-07",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, brief/site-package/, accessed 2026-08-11",
+      "usage_note": "项目任务书、用地/建筑/道路/来源枚举、允许设计空间、planning_limits 指标范围与 schema 的唯一机器可读依据；用于方案结构、指标口径与合规判定。",
+      "risk_note": "site-package 内含临时粗略边界，属 provisional，不得作为官方红线或精确面积依据；官方精确边界发布后须重新复算。"
+    },
+    {
+      "id": "source-registry",
+      "title": "公开来源可用性登记表 data/source_registry.json",
+      "type": "brief",
+      "path": "data/source_registry.json",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-08-07",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, data/source_registry.json, accessed 2026-08-11",
+      "usage_note": "区分 usable_for_formal=yes / background_only / provisional_only / no 的来源；用于判断正式证据、背景材料与临时约束的使用边界。",
+      "risk_note": "登记表本身是维护者整理的导航层，不是新的权威来源；background/provisional/needs-review 类不得升级为官方边界、法定控制或正式打分证据。"
+    },
+    {
+      "id": "processed-fact-pack",
+      "title": "Agent 可读事实索引 data/processed/agent_fact_pack.md",
+      "type": "brief",
+      "path": "data/processed/agent_fact_pack.md",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-08-07",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, data/processed/agent_fact_pack.md, accessed 2026-08-11",
+      "usage_note": "范围、必做任务、来源使用边界与缺失数据清单的导航层；帮助 agent 快速定位 site-package 内的权威字段。",
+      "risk_note": "派生索引，不构成新的权威来源；任何数字须回溯到 site-package 原始字段核验。"
+    },
+    {
+      "id": "provisional-boundary",
+      "title": "百年京张AI创新带临时粗略边界与三处重点区 polygon",
+      "type": "boundary",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "publisher": "Repository maintainers (open-city-ai/haidian)",
+      "published_at": "2026-06-05",
+      "public_status": "public-draft",
+      "citation": "open-city-ai/haidian, brief/site-package/geometry/provisional_boundaries.geojson + provisional_boundaries_basis.md, accessed 2026-08-11",
+      "usage_note": "本方案提交场地边界的临时几何来源，以及三处重点区（众智园加速区 / AI原点社区 / 大钟寺产业集聚区）的临时范围；仅用于生成、可视化和 intake 自检。",
+      "risk_note": "明确为 provisional_constraint，official_boundary=false，boundary_precision=provisional_rough；不得作为官方红线、审批依据或精确面积复算依据。派生自公告文字四至与面积约束（source:official-announcement），官方精确边界发布后须重新复算所有图层。"
+    },
+    {
+      "id": "official-announcement",
+      "title": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "type": "policy",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "published_at": "2026-05-09",
+      "public_status": "external-public",
+      "citation": "北京市规划和自然资源委员会海淀分局, 资格预审公告, 2026-05-09, https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html, accessed 2026-08-11",
+      "usage_note": "项目第一权威来源（authority A0 / T0）：官方项目名称、文字四至、官方面积值、三层范围、设计任务与成果深度。",
+      "risk_note": "公告文字四至仅提供范围描述，未给出可机器读取的精确红线 polygon；据此推导的临时边界须标注为 provisional。"
+    },
+    {
+      "id": "agent-taskbook",
+      "title": "面向全球智能体开展“百年京张AI创新带城市设计开源征集”的任务书摘录",
+      "type": "brief",
+      "path": "brief/site-package/agent_taskbook.json",
+      "publisher": "User-provided cleared document (经由维护者登记入 brief/site-package)",
+      "published_at": "2026-05-18",
+      "public_status": "public-draft",
+      "citation": "brief/site-package/agent_taskbook.json, accessed 2026-08-11",
+      "usage_note": "agent 开放征集原则、agent.1-agent.6 六项必答任务、场景/品牌/运营要求与边界条款；用于方案任务覆盖与合规矩阵。",
+      "risk_note": "任务书摘录为 user-provided cleared 资料，不可据此声称使用非公开内部资料；概念建议条款须严格遵守。"
+    },
+    {
+      "id": "barrier-free-environment-law",
+      "title": "中华人民共和国无障碍环境建设法",
+      "type": "policy",
+      "publisher": "全国人民代表大会常务委员会",
+      "published_at": "2023-06-28",
+      "public_status": "external-public",
+      "citation": "中华人民共和国无障碍环境建设法, 2023-06-28 公布, 2023-09-01 施行",
+      "usage_note": "适老与无障碍服务的法定依据，为医疗、社保、金融、生活缴费等公共场所（第39条）无障碍建设提供法律基础；本方案援引时严格以法定条文适用范围为准，不扩大覆盖范围。",
+      "risk_note": "适用范围以法定条文为准；本方案援引不构成对法条的解释或扩大。"
+    },
+    {
+      "id": "elderly-smart-tech-plan-2020-45",
+      "title": "关于切实解决老年人运用智能技术困难的实施方案（国办发〔2020〕45号）",
+      "type": "policy",
+      "publisher": "国务院办公厅",
+      "published_at": "2020-11-15",
+      "public_status": "external-public",
+      "citation": "国务院办公厅, 国办发〔2020〕45号, 2020-11-15",
+      "usage_note": "弥合老年人数字鸿沟、保留传统服务方式的政策框架；为方案'保留传统服务方式、不强制老年人使用智能技术'提供政策背景与可迁移思路。",
+      "risk_note": "2020-2022年阶段目标已完成历史使命，不作为2026年现行约束性指标；仅作政策背景参照。"
+    },
+    {
+      "id": "mohurd-urban-design-measures",
+      "title": "城市设计管理办法",
+      "type": "policy",
+      "publisher": "住房和城乡建设部",
+      "published_at": "2017-03-22",
+      "public_status": "external-public",
+      "citation": "住房和城乡建设部, 城市设计管理办法, 建规〔2017〕35号, 2017-03-22",
+      "usage_note": "城市设计深度与内容组织的专业标准依据，用于总体结构、重点区详设、公共空间与风貌章节。",
+      "risk_note": "标准提供原则性框架，具体深度须结合控规条件与现场踏勘确认。"
+    },
+    {
+      "id": "mohurd-control-detailed-planning",
+      "title": "城市、镇控制性详细规划编制审批办法",
+      "type": "policy",
+      "publisher": "住房和城乡建设部",
+      "published_at": "2011-12-26",
+      "public_status": "external-public",
+      "citation": "住房和城乡建设部, 城市、镇控制性详细规划编制审批办法, 2011-12-26",
+      "usage_note": "用地布局与建筑规模按控规深度组织的专业依据；容积率与建筑高度因控规条件缺失列为待确认。",
+      "risk_note": "控规条件须以官方发布为准；本方案不替代法定控规。"
+    },
+    {
+      "id": "mnr-land-use-classification",
+      "title": "国土空间调查、规划、用途管制用地用海分类指南",
+      "type": "policy",
+      "publisher": "自然资源部",
+      "published_at": "2023-11-22",
+      "public_status": "external-public",
+      "citation": "自然资源部, 国土空间调查、规划、用途管制用地用海分类指南, 2023-11-22",
+      "usage_note": "8类适老功能用地代码参照分类指南对应。",
+      "risk_note": "用地代码为参照对应，具体地块边界与用途须在控规确认后深化。"
+    },
+    {
+      "id": "elderly-city-cases",
+      "title": "全球适老化城市与AI适老服务公开案例（东京/新加坡/巴塞罗那/伦敦/首尔/上海/北京/埃因霍温）",
+      "type": "background",
+      "publisher": "公开学术文献与城市规划报告",
+      "published_at": "2026-08-11",
+      "public_status": "external-public",
+      "citation": "公开学术文献与城市规划报告（名称与启示引用，详见 proposal 第3章）",
+      "usage_note": "8个全球适老化城市与AI适老服务案例，为方案提供空间与运营参照。",
+      "risk_note": "background_only：仅作背景参考，不直接作为本地规划结论；从案例到京张的转译须由专业团队深化。"
+    }
+  ]
+}

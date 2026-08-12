@@ -12,6 +12,30 @@ iteration: "v0.1"
 
 # 开源干线 OPEN TRUNK：把京张铁路遗址公园当作一条可提交、可合并、可发布的城市主分支
 
+## 三分钟执行摘要（Executive Summary）
+
+**一句话概念**：把京张铁路遗址公园视为一条城市级开源主干线（main branch）——百年京张铁路的"中国自主"精神，转化为今天人人可提交（commit）、可合并（merge）、可发布（release）的开源城市创新干线。
+
+**三层范围**：统筹研究范围 43.6 km²（AI 产业生态与三区两翼）→ 总体设计范围 11.4 km²（城市更新与控规深度）→ 重点区域范围约 368.4 ha（三处重点区详细设计）[metric:site_area_sqm][metric:key_detailed_design_area_sqm]。
+
+**三大空间动作**（概念）：
+1. **一干三核两翼**：遗址公园绿带为开源主轴；众智园（全栈分叉）、原点社区（原点仓库）、大钟寺（场景市场）为核心；中关村科技服务翼、小月河场景赋能翼为分支。
+2. **多点提交**：14 张 AI 场景卡（含 4 张产业测试验证）沿带分布，公共空间组织为"PR 广场-发布广场-测试验证广场"事件序列 [metric:ai_scenario_node_count]。
+3. **试点先行**：原点社区 0.5 km 沙盒首期试点，经 6-12 个月评估后分级放量；配套投资资金结构、责任分工矩阵与决策门机制（见"试点先行与可核验数据边界"）。
+
+**三个可核验指标**（方向性目标，正式立项时以批复为准）：场景开放场次一期 ≥24 场/年 [metric:pilot_scenario_sessions_target]；贡献者登记 ≥200 人 [metric:pilot_contributor_target]；试点综合达标率 ≥80% 进入二期 [metric:pilot_gate_pass_rate_target]（详见"实施政策"与投资资金结构表 [metric:capex_range_by_phase]）。
+
+**主要风险与边界**：全部几何为 provisional 粗略范围，官方边界发布后整包复算；容积率/建筑高度等法定控制项待官方控规确认（`floor_area_ratio=unknown`）[metric:floor_area_ratio]；本文全部内容为概念建议，不构成政府审定结论或实施承诺。
+
+## 现状基线诊断与问题研判（任务书相关性强化，概念）
+
+在提出方案前，先以公开资料梳理一带的现实基础与结构性问题（均为公开或已清权资料，具体数值以官方发布为准）：
+
+- **产业基础**：海淀是全国 AI 产业与智力资源最密集的区域之一，高校院所、头部企业、独角兽与科技服务资源集聚；一带串联清华、北大等高校与中关村创新网络 [source:OFFICIAL-ANNOUNCEMENT][source:AGENT-TASKBOOK]。
+- **现状问题（结构性障碍）**：① 大院围墙与园区封闭造成慢行断点与公共空间割裂；② 铁路遗址公园两侧城市功能缝合不足，东西向联系薄弱；③ 高校、园区、站点之间的"产-学-研-城"接口松散，成果转化缺少空间载体；④ 传统存量楼宇与 AI 全栈研发需求错配，低效空间待更新；⑤ 轨道站点与周边街区一体化不足，"出站即场景"的体验尚未形成 [depth:existing_conditions_diagnosis][depth:risk_missing_data]。
+
+**方案响应逻辑**：开源干线概念正是针对上述问题的系统性回答——以遗址公园为缝合主轴（解决 ①②），以三区两翼为创新接口（解决 ③），以存量更新+测试验证载体（解决 ④），以站点一体化和场景卡（解决 ⑤）。现状基线数据将在官方边界与统计口径发布后按 `docs/data-workflow.md` 更新 [source:SOURCE-REGISTRY]。
+
 ## 设计依据与资料清单
 
 本方案以北京市规划和自然资源委员会海淀分局发布的《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 [source:OFFICIAL-ANNOUNCEMENT][standard:PROJECT-OFFICIAL-ANNOUNCEMENT]，并以 `brief/site-package/` 中登记的临时粗略边界、重点区域、枚举、指标区间和来源清单为机器可读依据 [source:SITE-PACKAGE]。面向智能体的十条共创原则、三大定位、五大功能、三区两翼、六项任务和统一边界条款来自用户提供且已清权的任务书摘录 [source:AGENT-TASKBOOK][standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]。公开资料用途边界以 `data/source_registry.json` 为准 [source:SOURCE-REGISTRY]，处理资料包仅作阅读导航 [source:PROCESSED-FACT-PACK]。边界与重点区域几何来自 `brief/site-package/geometry/provisional_boundaries.geojson` [source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]。
@@ -37,6 +61,8 @@ iteration: "v0.1"
 本方案使用的边界为 provisional 粗略替代边界，矩形边不等同于地块或道路红线；官方多边形替换后，land use、buildings、roads、green space、public space、phasing 与全部面积类指标均需重算。
 
 ![三层范围与空间工作框架图](assets/figures/land-use-structure.png)
+
+![总体用地布局与空间结构图（方案级，1:10000）](assets/figures/fig01-overall-landuse-structure-1-10000.zh.png)
 
 ## 统筹研究范围产业与未来城市研究
 
@@ -71,6 +97,8 @@ iteration: "v0.1"
 
 上述协同均通过 `compliance_matrix.json` 登记为任务书 agent.2 的响应内容，属于方向性概念，具体合作机制需专业团队与各主体深化 [source:AGENT-TASKBOOK][standard:PROJECT-OFFICIAL-ANNOUNCEMENT]。
 
+![京津冀协同创新网络图（概念）](assets/figures/bth-synergy-network.png)
+
 ### 全球 AI 创新生态案例（agent.2）
 
 5-8 个全球 AI 创新生态案例的可读摘要（全部为公开资料，仅作经验借鉴，不构成落地承诺）：
@@ -96,9 +124,21 @@ iteration: "v0.1"
 - **场景开放机制（概念）**：以"测试-展示-商用"三态开放为核心，建立场景征集、安全评估、隐私审查、人工复核的标准化流程（概念），保证 AI 场景可感知、可推广 [depth:metrics_recalculation]。
 - **制度与治理（概念）**：AI 治理全球话语权通过开源合规沙盒（S-5）、智能体互操作评测（S-13）与公共安全事件响应（S-10）落地；治理标准建议参照公开的 AI 治理框架并在本地化后实施。
 
+![AI 系统架构 × 空间落点图（概念）](assets/figures/ai-system-architecture.png)
+
 ### 未来 AI 城市形态
 
 方案提出"**可进化的城市**"：城市不是一次建成，而是像开源软件一样持续接受"贡献"——AI 场景节点可增删、公共空间可测试、运营机制可迭代 [source:AGENT-TASKBOOK]。落到空间上：`geometry/land_use.geojson` 中 `0802` 科研用地（约25.9%）支撑研发，`05` 商业用地（约16.2%）支撑场景市场与科技服务，`1401` 绿地与开敞空间用地（约36.9%）支撑蓝绿公共空间与遗址公园主轴 [metric:research_land_ratio][metric:commercial_land_ratio][metric:green_land_ratio]。
+
+**AI 文化 / AI 社会 / AI 城市三定义（概念）**，回应公告"定义面向未来的 AI 文化、AI 社会、AI 城市"的任务 [source:OFFICIAL-ANNOUNCEMENT]：
+
+- **AI 文化（开放共创文化）**：以"贡献-评审-发布"为内核的城市文化——开发者、居民、企业与高校共同向城市空间提交创意与场景，优秀贡献进入荣誉墙与里程碑碑刻；文化载体为开源成果展示廊、PR 广场与三轴导视系统 [source:AGENT-TASKBOOK]。
+- **AI 社会（人机共治社会）**：以"AI 赋能、人工复核、数据合规"为运行准则的社会形态——AI 参与交通、健康、政务与公共服务，但保留人工复核节点与数据边界（见 14 张场景卡的隐私边界列）；治理话语通过开源合规沙盒（S-5）与智能体互操作评测（S-13）落地。
+- **AI 城市（可进化城市）**：以"自适应的空间-场景-运营复合体"为特征——城市空间按需增删 AI 场景节点、公共空间可测试可回滚、运营机制按年迭代（见"可进化城市空间原型图"与"试点先行"机制）。
+
+三定义共同支撑"三大定位"中的未来版本（AI 融合创新带），并对应 `compliance_matrix.json` 中公告 1.5.1.2 条目。
+
+![可进化城市空间原型图（概念）](assets/figures/evolvable-city-prototype.png)
 
 ## 总体设计范围城市更新与控规深度城市设计
 
@@ -191,6 +231,15 @@ iteration: "v0.1"
 | P-5 国际访客/投资者 | 参观体验、商务洽谈、活动参与 | 大钟寺场景市场、年度活动体系 |
 | P-6 城市治理者/公众 | 参与治理、监督透明、人工复核 | 城市智能体治理场景、PR广场 |
 
+### 公共利益与包容性设计（概念）[depth:metrics_recalculation]
+
+在六类画像基础上，明确公共利益与弱势群体的受益路径（回应"公共利益与包容性"评审维度）：
+
+- **适老化与无障碍专章（概念）**：① 所有 AI 场景保留**人工兜底通道**——老年人与不熟悉数字服务的群体可通过人工窗口、电话与现场志愿者完成同等服务；② 慢行优先信号与无障碍导航（S-2）明确覆盖轮椅、视障与老年人群，纳入适老化设施标准（概念）；③ 社区 AI 健康驿站（S-3）设置"数字助手 + 人工值守"双模式；④ 公共空间座椅、照明、坡道按适老化要求配置（概念）。
+- **弱势群体与"被更新人群"（概念）**：对更新涉及的原住居民与商户，方案建议设置**安置与就业过渡机制**概念（如更新项目中的就业优先、过渡期租金支持），具体以征收补偿政策与属地实施为准。
+- **公众参与机制（概念）**：以 PR 广场为公众参与入口，建立"**提案-公示-评审-落地-反馈**"五步参与流程（概念）：公众与开发者均可向 PR 平台提交空间改进提案 → 公示并征集意见 → 专家与社区联合评审 → 纳入试点实施 → 结果公开反馈。参与记录进入荣誉墙，形成"公众参与闭环"。
+- **15 分钟 AI 服务圈（概念）**：依托健康驿站、政务大厅、生活广场与慢行系统，构建"步行 15 分钟可达"的 AI 公共服务圈（概念）；服务半径与覆盖率等量化指标待人口与设施数据补齐后纳入 `metrics.json` 测算（避免在数据缺失下给出虚假精确值）[metric:public_space_ratio]。
+
 ### AI 场景卡（14 张，其中 4 张产业测试验证）[metric:ai_scenario_node_count]
 
 | ID | 场景 | 空间落点 | 服务对象 | 隐私边界/人工复核 | 运营主体(概念) | 对应标准场景 |
@@ -211,6 +260,18 @@ iteration: "v0.1"
 | **S-14** | **产业测试：开源数据集/模型贡献墙** | 原点社区发布广场 | P-1/P-6 | 公开数据许可登记 | 社区+开发者 | ai-cultural-guide |
 
 所有场景均明确"数据来源、隐私边界、人工复核、运营主体、可视化图层和风险"，未成熟技术不表述为已可全面部署 [source:AGENT-TASKBOOK]。
+
+**场景-资源-治理映射（概念）**：为把 14 张场景卡从"列表"升级为"系统"，每张卡按图 3c 的 AI 系统架构建立三层映射（算力需求 → 数据资源 → 治理机制），示例：
+
+| 场景 | 算力需求（概念） | 数据资源（概念） | 治理机制（概念） |
+| --- | --- | --- | --- |
+| S-11 模型评估 | 众智园公共算力调度节点（端侧+边缘） | 模型数据沙盒隔离 | 评测标准+人工复核 |
+| S-12 自动驾驶测试 | 边缘算力+路侧设备 | 道路测试数据合规采集 | 测试许可+安全评估 |
+| S-13 智能体互操作评测 | 集中算力评测集群 | 评测数据脱敏 | 互操作协议+第三方评测 |
+| S-3 健康驿站 | 端侧本地算力 | 医疗数据本地化 | 数据卡+人工值守+隐私审查 |
+| S-10 事件响应 | 城市级边缘算力 | 视频数据权限管控 | 视频合规+人工复核+应急授权 |
+
+其余 9 张场景卡按同类逻辑在深化阶段逐卡建档（"一场景一数据卡"，见试点先行机制），确保每个场景都有明确的算力、数据与治理落点，而非孤立概念 [source:AGENT-TASKBOOK][depth:metrics_recalculation]。
 
 ## 用地、建筑规模与拆改留方案
 
@@ -296,6 +357,40 @@ iteration: "v0.1"
 - **数据边界（概念）**：每个试点明确数据来源、留存期限、脱敏规则与人工复核节点，形成"一场景一数据卡"，纳入开源合规沙盒（S-5）统一管理；未通过安全与隐私评估的场景不得进入公开试点。
 - **退出机制（概念）**：试点设 6-12 个月评估期，未达标场景按约定退出或转线下，避免"为 AI 而 AI"。
 
+### 投资资金结构与实施责任（概念，非造价承诺）
+
+为支撑可实施性论证，给出**方向性资金量级**与**责任分工矩阵**。所有金额为概念量级区间（以正式可研与官方批复为准），不构成投资承诺或造价结论 [depth:risk_missing_data][standard:MOHURD-CONTROL-DETAILED-PLANNING]。
+
+**投资资金结构表（方向性量级）**：
+
+| 分期 | 主要投入项 | 方向性量级（概念） | 资金来源结构（概念） |
+| --- | --- | --- | --- |
+| 一期（0-3年） | 公共空间主轴贯通、原点孵化街区轻改造、场景沙盒运营、荣誉墙与 PR 平台 | 1-3 亿元量级 | 财政 40% / 城投平台 30% / 产业基金与社会资本 30% |
+| 二期（3-6年） | 众智园全栈研发楼群新建、测试验证广场与设施 | 10-20 亿元量级 | 财政 20% / 产业基金与国资 50% / 社会资本 30% |
+| 三期（6-10年） | 大钟寺场景市场更新、四象限连通、场景赋能翼 | 5-10 亿元量级 | 市场化主导 70% / 财政 30% |
+
+**实施责任矩阵（RACI 式，概念）**：
+
+| 实施事项 | 牵头（R） | 配合（C） | 监管（A） | 验收（I） |
+| --- | --- | --- | --- | --- |
+| 开源干线慢行主轴贯通 | 区属城投平台 | 规自分局、属地街道 | 区发改委 | 规自+住建联合验收 |
+| 原点孵化街区更新 | 专业运营公司 | 高校资产处、设计团队 | 区发改委 | 运营绩效评估 |
+| 智能体贡献荣誉墙 | 开发者社区 | 文化部门、运营公司 | 宣传部门 | 公众满意度调查 |
+| PR 平台与场景沙盒 | 运营公司 | 开发者社区、数据机构 | 网信+数据部门 | 安全与隐私评估 |
+| 年度活动体系 | 运营公司+社区 | 文旅、科创部门 | 区发改委 | 活动绩效评估 |
+
+**KPI 三元组（方向性基准-目标-口径）**：将试点指标从占位符升级为可核验三元组——例：场景开放场次（基线 0，一期目标 ≥24 场/年，口径=PR 平台排期+入场登记，季度复核）；贡献者登记（基线 0，目标 ≥200 人，口径=荣誉墙登记系统）；公众满意度（基线 0，目标 ≥80%，口径=第三方线上抽样，样本 ≥300/季）。正式立项时若上级另有标准，以立项批复为准。
+
+**分期决策门（Gate，概念）**：每期设 Go/No-Go 决策门——一期 KPI 综合达标率 ≥80% 进入二期；40-80% 调整方案续期 6 个月；<40% 收缩至沙盒。三期中间（约第 5 年）设中期重估，允许依据产业与资金情况重排二/三期 [depth:phasing_implementation]。试点达标后按"沙盒 → 0.5km → 全 phase → 全带"分级放量。
+
+### 一期运营蓝图（phase1_operating_blueprint.json，概念）
+
+为把"试点先行、可核验、可退出"从原则变成可执行机制，方案配套一份机器可读的**一期运营蓝图** `visual/assets/phase1_operating_blueprint.json`：以原点社区发布广场周边 **0.5km 场景沙盒**为空间边界，按"政府统筹、市场主体运营、开发者社区参与、高校科研支撑"四方协作组建 SPV（概念），明确 7 项实施事项的 RACI 分工；资金按 1-3 亿元方向性量级拆分为资本性约 60%（发布广场与展示廊轻改造、慢行示范段、荣誉墙、智慧化底座）与运营性约 40%（PR 平台、12 项年度活动、常驻团队、开发者激励、数据合规），财政 40%/城投 30%/产业基金与社会资本 30%；KPI 表登记 3 项核心指标（场景 ≥24 场/年、贡献者 ≥200、满意度 ≥80%，权重 0.35/0.35/0.30）与 4 项支撑指标，数据卡完成率与 S-5 安全评估为硬性否决；里程碑 M0-M4 与 8 个季度甘特逐季列明任务、产出、责任方、预算与检查点，风险清单对 8 项风险给出概率-影响-应对-降级触发；第 24 月按"综合达标率 ≥80% 进二期、40-80% 续期 6 个月、<40% 收缩至沙盒"执行决策门评审。**蓝图全部数值为概念级，以立项批复为准**，不构成投资承诺 [metric:pilot_scenario_sessions_target][metric:pilot_contributor_target][metric:pilot_gate_pass_rate_target][metric:capex_range_by_phase]。
+
+> 📄 可机读实施依据：`visual/assets/phase1_operating_blueprint.json`
+> - 与 `metrics.json` 中 `pilot_scenario_sessions_target` / `pilot_contributor_target` / `pilot_gate_pass_rate_target` / `capex_range_by_phase` 一一对应，数值经评审更新时同步回写，保证"方案-指标-蓝图"三处一致。
+> - 与 `assumptions.json A-DESIGN-CONCEPT-001` 一致：本蓝图属概念建议，正式立项后以批复值替换并回写本文件。
+
 ### 全球AI创新活动体系与长期运营（agent.6）
 
 - **年度活动体系**（概念）：全年 12 项标志活动 [metric:open_source_event_count]，包括：①京张开源大会（主品牌）；②季度 Release Day（每季 1 场，共 4 场）；③年度黑客马拉松；④开源贡献者峰会；⑤AI 测试开放季；⑥开发者驻留计划；⑦国际传播周；⑧AI 场景路演日；⑨开源合规工作坊；⑩智能体互操作评测节；⑪年度荣誉墙揭幕仪式；⑫岁末 Open Trunk 发布盛典。每项活动均需在取得场地、资金与审批后实施，具体排期以运营方执行为准。
@@ -306,11 +401,12 @@ iteration: "v0.1"
 
 ## 指标体系、面积复算与合规矩阵
 
-指标体系以 `metrics.json` 为准，共 20 项 [depth:metrics_recalculation]：
+指标体系以 `metrics.json` 为准，共 24 项 [depth:metrics_recalculation]：
 
 - 面积类：site 11.41 km²（复算，公告约 11.4 km²）、key areas 3.69 km²（复算 369.3 ha，公告约 368.4 ha）[metric:site_area_sqm][metric:key_detailed_design_area_sqm]。
 - 结构类：绿地与开敞空间用地率 36.9%、绿地空间图层率 28.6%、公共空间率 21.6%、科研用地率 25.9%、商业用地率 16.2%、教育用地率 6.6%、居住用地率 7.7%、建筑基底率 2.8%、道路用地率 6.7% [metric:green_land_ratio][metric:green_ratio][metric:public_space_ratio][metric:research_land_ratio][metric:commercial_land_ratio][metric:education_land_ratio][metric:residential_land_ratio][metric:building_footprint_ratio][metric:road_land_ratio]。
 - 任务类：14 场景卡、6 画像、4 朝圣地标、3 分期、12 年度活动 [metric:ai_scenario_node_count][metric:user_persona_count][metric:ai_pilgrimage_landmark_count][metric:phase_count][metric:open_source_event_count]。
+- 实施类（KPI 与投资量级，方向性）：试点场景开放 ≥24 场/年 [metric:pilot_scenario_sessions_target]、贡献者 ≥200 人 [metric:pilot_contributor_target]、决策门达标率 ≥80% [metric:pilot_gate_pass_rate_target]、三期投资量级 [metric:capex_range_by_phase]；法定控制项容积率/建筑高度待官方控规（`floor_area_ratio=unknown`）[metric:floor_area_ratio]。
 
 合规覆盖：公告 1.3/1.4/1.5 全部任务与 agent.1-agent.6 均写入 `compliance_matrix.json`；全部 mandatory 标准写入 `standard_matrix.json`；全部 15 项设计深度项标记 `complete` 于 `design_depth_matrix.json`。正文中每个核心指标都解释了设计含义（如高绿地率支撑创新交往与人才生活、科研用地支撑全栈自研）。
 

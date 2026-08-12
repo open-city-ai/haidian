@@ -1,0 +1,289 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "official_coordinated_research_area_approx_sqm": {
+      "status": "known",
+      "value": 43600000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_announcement_approximate_value",
+      "confidence": "high",
+      "assumptions": ["This is an approximate area stated in the official announcement, not an exact polygon calculation."],
+      "claim_class": "official_announcement_approximate"
+    },
+    "official_overall_design_area_approx_sqm": {
+      "status": "known",
+      "value": 11400000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_announcement_approximate_value",
+      "confidence": "high",
+      "assumptions": ["This is an approximate area stated in the official announcement, not an exact polygon calculation."],
+      "claim_class": "official_announcement_approximate"
+    },
+    "official_key_detailed_design_area_approx_sqm": {
+      "status": "known",
+      "value": 3684000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_announcement_approximate_value",
+      "confidence": "high",
+      "assumptions": ["This is the announced approximate sum for the three key areas, not an exact union of official polygons."],
+      "claim_class": "official_announcement_approximate"
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson", "brief/site-package/geometry/provisional_boundaries.geojson"],
+      "formula": "polygon_area(submitted concept boundary derived from PROV-SITE-001, projected to EPSG:4548)",
+      "confidence": "low",
+      "assumptions": ["This is a provisional design calculation from repository-maintained rough geometry, not an official, trusted, statutory, or precise site-area fact.", "Recalculate all dependent metrics when rights-cleared official geometry and professional base data arrive."],
+      "claim_class": "provisional_geometry_derived"
+    },
+    "land_use_research_area_sqm": {
+      "status": "known",
+      "value": 2674562.492,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "polygon_area(LU-001)",
+      "confidence": "low",
+      "assumptions": ["Concept partition derived from the provisional site boundary; not observed or statutory land use."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "land_use_green_open_area_sqm": {
+      "status": "known",
+      "value": 2589339.239,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "polygon_area(LU-002)",
+      "confidence": "low",
+      "assumptions": ["Concept partition derived from the provisional site boundary; not observed green space or a statutory green-space control."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "land_use_industry_commercial_area_sqm": {
+      "status": "known",
+      "value": 3366138.181,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "polygon_area(LU-003)",
+      "confidence": "low",
+      "assumptions": ["Concept partition derived from the provisional site boundary; not observed or approved land use."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "land_use_community_service_area_sqm": {
+      "status": "known",
+      "value": 2782792.823,
+      "unit": "sqm",
+      "source_files": ["geometry/land_use.geojson"],
+      "formula": "polygon_area(LU-004)",
+      "confidence": "low",
+      "assumptions": ["Concept partition derived from the provisional site boundary; not observed or approved land use."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": ["geometry/buildings.geojson"],
+      "formula": "sum(polygon_area(scaffold_concept_building_footprints))",
+      "confidence": "low",
+      "assumptions": ["The footprint is an agent-generated scaffold design object, not an existing-building survey or confirmed construction scale."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": ["geometry/green_space.geojson"],
+      "formula": "polygon_area(GREEN-001)",
+      "confidence": "low",
+      "assumptions": ["Agent-generated design polygon inside a provisional boundary; not observed or approved green space."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "green_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["Temporary ratio from agent-generated design geometry; not an observed ratio or statutory green-space control."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": ["geometry/public_space.geojson"],
+      "formula": "polygon_area(PUBLIC-001)",
+      "confidence": "low",
+      "assumptions": ["Agent-generated design polygon inside a provisional boundary; not observed or approved public space."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "public_space_area_sqm / provisional_site_area_sqm",
+      "confidence": "low",
+      "assumptions": ["Temporary ratio from agent-generated design geometry; not an observed ratio or public-space commitment."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "phase_1_concept_area_sqm": {
+      "status": "known",
+      "value": 4587013.573,
+      "unit": "sqm",
+      "source_files": ["geometry/phasing.geojson"],
+      "formula": "polygon_area(PHASE-001)",
+      "confidence": "low",
+      "assumptions": ["This is a provisional concept envelope for reversible pilot discussion, not an approved implementation phase or schedule."],
+      "claim_class": "provisional_design_quantity"
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["brief/site-package/design_brief.json", "geometry/key_areas.geojson"],
+      "formula": "count(required_key_area_ids)",
+      "confidence": "high",
+      "assumptions": ["The count and names are official task requirements; submitted polygons remain provisional."],
+      "claim_class": "official_task_count"
+    },
+    "zhongzhiyuan_announced_area_approx_sqm": {
+      "status": "known",
+      "value": 1921000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_announcement_approximate_value",
+      "confidence": "high",
+      "assumptions": ["Approximate announced area; no exact official polygon is available."],
+      "claim_class": "official_announcement_approximate"
+    },
+    "ai_origin_announced_area_approx_sqm": {
+      "status": "known",
+      "value": 1043000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_announcement_approximate_value",
+      "confidence": "high",
+      "assumptions": ["Approximate announced area; no exact official polygon is available."],
+      "claim_class": "official_announcement_approximate"
+    },
+    "dazhongsi_announced_area_approx_sqm": {
+      "status": "known",
+      "value": 720000,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_announcement_approximate_value",
+      "confidence": "high",
+      "assumptions": ["Approximate announced area; no exact official polygon is available."],
+      "claim_class": "official_announcement_approximate"
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": ["proposal.md", "proposal.en.md"],
+      "formula": "count(v0.1_scenario_cards)",
+      "confidence": "high",
+      "assumptions": ["Exact authored design-output count in the bilingual v0.1 proposal; it is not a real-world performance, approval, deployment, or operational result."],
+      "claim_class": "proposal_output_count"
+    },
+    "industrial_test_scenario_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["proposal.md", "proposal.en.md"],
+      "formula": "count(v0.1_scenario_cards where id starts with TV-)",
+      "confidence": "high",
+      "assumptions": ["Exact authored design-output count in the bilingual v0.1 proposal; it is not evidence of real-world testing performance, approval, deployment, or operation."],
+      "claim_class": "proposal_output_count"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": ["proposal.md", "proposal.en.md"],
+      "formula": "count(v0.1_design_personas)",
+      "confidence": "high",
+      "assumptions": ["Exact authored design-output count in the bilingual v0.1 proposal; the personas are hypotheses, not surveyed groups, stakeholder findings, user endorsement, or real-world performance."],
+      "claim_class": "proposal_output_count"
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": ["proposal.md", "proposal.en.md"],
+      "formula": "count(v0.1_conceptual_landmarks)",
+      "confidence": "high",
+      "assumptions": ["Exact authored design-output count in the bilingual v0.1 proposal; it is not evidence of site confirmation, approval, funding, construction, visitation, or real-world performance."],
+      "claim_class": "proposal_output_count"
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "sum(approved_or_surveyed_floor_area)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified existing-building survey, approved construction scale, or official development program is present."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and an exact official site boundary are not present."
+    },
+    "building_coverage_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "verified_building_footprint_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The scaffold footprint is not a verified existing or proposed building inventory, and no approved coverage control is present."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": ["brief/site-package/ranges/planning_limits.json"],
+      "formula": "official_or_professionally_confirmed_height_control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No approved height, heritage, landscape, aviation, or parcel control is present."
+    },
+    "road_area_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": ["geometry/roads.geojson"],
+      "formula": "sum(verified_road_area_polygons)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "The current road layer is a conceptual line and cannot support road-area or road-ratio calculation."
+    },
+    "road_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["geometry/roads.geojson", "geometry/site_boundary.geojson"],
+      "formula": "road_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No verified road-area geometry or exact official site boundary is present."
+    }
+  }
+}

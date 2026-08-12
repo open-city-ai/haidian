@@ -1,0 +1,114 @@
+{
+  "schema_version": "mobility-responsibility-transfer-v1",
+  "contract_id": "MOB-RESPONSIBILITY-TRANSFER-01",
+  "status": "conceptual_contract_not_authorized",
+  "review_surface": {
+    "first_path": "Dazhongsi interchange -> accessible ground route -> AI Origin Community service desk",
+    "field_status": "HOLD",
+    "real_transfers_accepted": 0,
+    "real_operating_result": null,
+    "not_a_score": true
+  },
+  "resource_units": [
+    {
+      "id": "MRT-01",
+      "interface": "accessible route and curb space",
+      "recipient_role": "transport and accessibility review role",
+      "non_ai_equivalent": "posted route, staffed wayfinding and public transport",
+      "denominator": ["audited route segments", "usable crossing windows", "available staffed fallback windows"],
+      "evidence_required": ["dated route walk audit", "crossing and gradient record", "fallback handover record"],
+      "refusal_condition": "any route segment or staffed fallback is unverified",
+      "writeback": "freeze reservation and return to P0 inventory"
+    },
+    {
+      "id": "MRT-02",
+      "interface": "rail and bus transfer capacity",
+      "recipient_role": "rail and bus operations role",
+      "non_ai_equivalent": "published timetable, platform information and staffed transfer desk",
+      "denominator": ["dated headway record", "station or stop capacity record", "transfer observation windows"],
+      "evidence_required": ["operator confirmation", "manual count", "delay and missed-connection log"],
+      "refusal_condition": "capacity, timetable or transfer responsibility is unknown",
+      "writeback": "remove feeder demand from the pilot and keep public transport priority"
+    },
+    {
+      "id": "MRT-03",
+      "interface": "enterprise curb and loading window",
+      "recipient_role": "enterprise mobility coordinator role",
+      "non_ai_equivalent": "paper booking register and on-site marshal",
+      "denominator": ["available curb minutes", "clearing staff minutes", "fire and accessible route minutes protected"],
+      "evidence_required": ["window register", "clearing record", "fire and accessibility check"],
+      "refusal_condition": "a booking would displace a public, fire or accessible route",
+      "writeback": "reject the request and retain the public route"
+    },
+    {
+      "id": "MRT-04",
+      "interface": "resident daily service access",
+      "recipient_role": "community liaison and resident/carer observation roles",
+      "non_ai_equivalent": "walk-in, telephone and paper service",
+      "denominator": ["observed service attempts by group", "available human service windows", "accessible alternatives"],
+      "evidence_required": ["grouped completion log", "refusal and detour log", "anonymous complaint record"],
+      "refusal_condition": "the digital option is required for basic access or a group loses an alternative",
+      "writeback": "disable the digital recommendation and keep the human route open"
+    },
+    {
+      "id": "MRT-05",
+      "interface": "maintenance and removable equipment",
+      "recipient_role": "field maintenance role",
+      "non_ai_equivalent": "manual inspection, repair ticket and removable sign or barrier",
+      "denominator": ["inspection hours", "repair capacity", "equipment inventory"],
+      "evidence_required": ["asset register", "inspection time", "repair or removal receipt"],
+      "refusal_condition": "no named maintenance role or no removal path exists",
+      "writeback": "remove the temporary asset and return the location to the last safe state"
+    },
+    {
+      "id": "MRT-06",
+      "interface": "data, privacy and complaint handling",
+      "recipient_role": "data stewardship and independent privacy review roles",
+      "non_ai_equivalent": "aggregate paper register with a public complaint channel",
+      "denominator": ["grouped records", "retention window", "complaint cases with closure owner"],
+      "evidence_required": ["purpose and retention record", "access log", "closure or deletion record"],
+      "refusal_condition": "personal trajectory, unclear purpose or ownerless complaint is requested",
+      "writeback": "stop collection, delete or quarantine the record, and reopen the complaint"
+    },
+    {
+      "id": "MRT-07",
+      "interface": "public review and equity burden",
+      "recipient_role": "independent safety, accessibility, privacy and equity review roles",
+      "non_ai_equivalent": "public notice, staffed observation and group-specific manual review",
+      "denominator": ["observed groups", "valid comparison windows", "negative or refused cases"],
+      "evidence_required": ["group split", "negative-case register", "review decision with version"],
+      "refusal_condition": "only average performance is available or negative cases are excluded",
+      "writeback": "hold expansion and publish an aggregate correction or withdrawal record"
+    }
+  ],
+  "coverage_groups": [
+    "enterprise_employee",
+    "resident",
+    "carer_or_child",
+    "wheelchair_or_assistive_device_user",
+    "night_shift_worker",
+    "visitor",
+    "logistics_or_maintenance_worker",
+    "emergency_responder"
+  ],
+  "writeback_fields": [
+    "event_id",
+    "service_group",
+    "interface_id",
+    "requested_resource",
+    "accepted_or_refused",
+    "fallback_route",
+    "responsible_role",
+    "evidence_version",
+    "next_decision"
+  ],
+  "offline_evidence": {
+    "fixture_status": "design_only",
+    "real_receipts": 0,
+    "real_accepted_transfers": 0,
+    "real_authorization": 0,
+    "field_baseline": "unknown",
+    "next_action": "collect dated local denominators before any P1 acceptance"
+  },
+  "boundary": "This contract makes resource burden and refusal visible. It does not prove staffing, capacity, accessibility performance, public acceptance, safety, funding, permission or operation."
+}

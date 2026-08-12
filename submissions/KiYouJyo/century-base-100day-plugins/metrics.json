@@ -1,0 +1,277 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "EPSG:4548 area of the submitted provisional site polygon",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 100157.42,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "area(union(conceptual design footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BUILDINGS-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1969634.272,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "area(union(design green-space polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-MUNICIPAL-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.172581,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 382418.123,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "area(union(conceptual public-space polygons))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-FACILITIES-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.033508,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "slow_mobility_length_m": {
+      "status": "known",
+      "value": 32240.927,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(length(conceptual greenway, cycleway and pedestrian centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "A-ROADS-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(required provisional key-area features)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-KEYAREA-001"
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "count(structured scenarios)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "industry_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "count(scenarios where industry_validation=true)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "count(structured personas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "count(primary landmarks)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "protocol_field_count": {
+      "status": "known",
+      "value": 26,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "count(Urban Version Protocol fields)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "human_override_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "scenarios with accountable human and pause/rollback fields / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "physical_restoration_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "scenarios with physical restoration fields / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "carrier_interface_contract_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "scenarios with carrier interface, envelope, base-impact, portability and restoration-acceptance fields / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pending_official_data_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "assumptions.json"
+      ],
+      "formula": "count(pending official/professional data groups)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Official FAR controls, official boundary and verified total floor area are unavailable."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official building footprint / official site area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Existing building survey, official boundary and statutory density control are unavailable."
+    },
+    "maximum_building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "max(approved building height)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved height, heritage views and aviation/technical controls are unavailable."
+    },
+    "base_disturbance_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "visual/assets/design_program.json"
+      ],
+      "formula": "field-verified disturbed long-life fabric / intervention area",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Requires surveyed existing conditions and a construction method statement."
+    },
+    "cross_site_deployability_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "visual/assets/design_program.json"
+      ],
+      "formula": "verified plug-ins passing interface and transfer tests / tested plug-ins",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "No prototype deployment or transfer test has yet occurred."
+    }
+  }
+}

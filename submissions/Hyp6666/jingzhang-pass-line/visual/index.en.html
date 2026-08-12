@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Pass Line — Evidence Dashboard</title>
+<style>
+:root{
+  --ink:#1c2026;--muted:#5a6068;--paper:#faf8f3;--line:#d7d0c4;
+  --rust:#9c4632;--green:#4a7c59;--green-soft:#b4ceb2;--blue:#3c668a;
+  --accent:#d4903c;--warn-bg:#fff4e0;--warn-bd:#d4903c;
+  --ok-bg:#eef5ee;--ok-bd:#4a7c59;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:#e8e4dc;color:var(--ink);line-height:1.55}
+.wrap{max-width:1320px;margin:0 auto}
+header{background:#1c2026;color:#f4efe6;border-bottom:5px solid var(--rust)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:28px;padding:36px 28px 30px}
+.eyebrow{color:#9fd7c0;letter-spacing:.16em;text-transform:uppercase;font-size:11px;margin-bottom:14px}
+h1{font-size:32px;line-height:1.2;margin:0 0 10px;letter-spacing:.5px}
+h2{font-size:20px;margin:0 0 12px}
+h3{font-size:15px;margin:0 0 8px;color:var(--ink)}
+p{margin:0 0 8px}
+.hero-copy{max-width:880px;color:#d8d3c8;font-size:15px}
+.status-box{border:1px solid rgba(244,239,230,.22);border-radius:8px;padding:16px;background:rgba(244,239,230,.06)}
+.status-box strong{display:block;font-size:18px;margin-bottom:8px;color:#fff}
+.pill-row{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.pill{display:inline-flex;align-items:center;border-radius:999px;border:1px solid rgba(244,239,230,.26);padding:5px 10px;font-size:11px;color:#f4efe6}
+main{padding:24px 22px 36px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin:0 auto 18px;box-shadow:0 8px 24px rgba(28,32,38,.07);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;padding:18px 22px;border-bottom:1px solid #e6e0d4;background:#f4efe6}
+.sheet-head p{color:var(--muted);max-width:780px;font-size:13px}
+.body{padding:20px 22px}
+.three-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gate-card{border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff;border-top:5px solid var(--rust)}
+.gate-card.family{border-top-color:var(--green)}
+.gate-card.consumption{border-top-color:var(--blue)}
+.gate-card h3{font-size:16px;margin-bottom:6px}
+.gate-card .gate-type{font-size:11px;color:var(--muted);font-family:ui-monospace,Menlo,monospace;margin-bottom:10px}
+.gate-card ul{margin:8px 0 0;padding-left:18px;color:#3a4048;font-size:13px}
+.gate-card li{margin-bottom:4px}
+.sub-gates{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:14px;padding:12px;background:#f8f5ee;border-radius:6px}
+.sub-gate{text-align:center;font-size:11px;padding:8px 4px;border:1px solid var(--line);border-radius:4px;background:#fff}
+.sub-gate b{display:block;color:var(--rust);font-size:13px;margin-bottom:2px}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.metric{border:1px solid var(--line);border-radius:6px;padding:12px;background:#fff}
+.metric.unknown{background:#fdf6ec;border-color:var(--warn-bd)}
+.metric span{display:block;color:var(--muted);font-size:11px;font-family:ui-monospace,Menlo,monospace}
+.metric strong{display:block;font-size:22px;font-variant-numeric:tabular-nums;margin-top:4px;color:var(--ink)}
+.metric.unknown strong{color:var(--rust)}
+.metric .status{font-size:10px;margin-top:4px;color:var(--green)}
+.metric.unknown .status{color:var(--rust)}
+.scenario-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.scn{border:1px solid var(--line);border-radius:6px;padding:12px;background:#fff;font-size:12px}
+.scn b{display:block;color:var(--ink);font-size:13px;margin-bottom:4px}
+.scn .meta{color:var(--muted);font-size:11px}
+.scn.test{border-left:4px solid var(--accent)}
+.matrix-table{width:100%;border-collapse:collapse;font-size:12px;background:#fff;border-radius:6px;overflow:hidden}
+.matrix-table th,.matrix-table td{border:1px solid var(--line);padding:8px 10px;text-align:left}
+.matrix-table th{background:#1c2026;color:#f4efe6;font-weight:600}
+.matrix-table td.ok{background:var(--ok-bg);color:var(--green);font-weight:600;text-align:center}
+.matrix-table tr:nth-child(even) td:not(.ok){background:#f8f5ee}
+.source-list{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:#3a4048;background:#f4efe6;border:1px solid var(--line);border-radius:6px;padding:12px;line-height:1.7}
+.note-box{border-left:4px solid var(--warn-bd);background:var(--warn-bg);padding:12px 16px;border-radius:0 6px 6px 0;margin:8px 0;font-size:13px}
+.note-box strong{color:var(--rust)}
+.map-svg{width:100%;height:auto;border:1px solid var(--line);border-radius:6px;background:#fff;display:block}
+.persona-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.persona{border:1px solid var(--line);border-radius:6px;padding:12px;background:#fff;font-size:12px}
+.persona b{display:block;color:var(--ink);margin-bottom:3px}
+.persona .role{color:var(--green);font-size:11px}
+.phase-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.phase{border:1px solid var(--line);border-radius:6px;padding:14px;background:#fff;border-left:5px solid var(--green)}
+.phase:nth-child(2){border-left-color:var(--accent)}
+.phase:nth-child(3){border-left-color:var(--blue)}
+.phase h3{font-size:14px;margin-bottom:6px}
+.phase .scope{font-size:12px;color:var(--muted);margin-top:6px}
+.footer{padding:20px 22px;border-top:1px solid var(--line);background:#f4efe6;font-size:11px;color:var(--muted)}
+@media(max-width:980px){.hero{grid-template-columns:1fr}.three-col,.phase-grid{grid-template-columns:1fr}.sub-gates{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){main{padding:14px}.hero{padding:24px 18px}.sub-gates{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+<div class="wrap hero">
+<div>
+<div class="eyebrow">Centennial Jing-Zhang AI Innovation Belt · Submission Evidence Dashboard</div>
+<h1>The Pass Line</h1>
+<p class="hero-copy"><strong>Thesis</strong>: Before any AI service may enter a street, it must first pass a live walk-test on site across four use scenarios — children, elderly, accessibility, and caregivers. No clearance, no street. This page is the visual evidence dashboard; authoritative data lives in GeoJSON, metrics.json, matrices, and self-check results.</p>
+<div class="pill-row">
+<span class="pill">3 scopes</span>
+<span class="pill">3 gate types</span>
+<span class="pill">3 walk-test routes</span>
+<span class="pill">5 sub-gates</span>
+<span class="pill">12 scenario cards</span>
+<span class="pill">6 personas</span>
+<span class="pill">3 landmarks</span>
+<span class="pill">bilingual v1</span>
+</div>
+</div>
+<aside class="status-box">
+<strong>Intake Status</strong>
+<p>provisional geometry: intake-ready</p>
+<p style="margin-top:8px;font-size:12px;color:#c8c0b0">Official precise boundaries not yet released. All geometry and areas are provisional rough; recompute when official data arrives. The organizer data gap does not block content scoring.</p>
+<p style="margin-top:10px;font-size:11px;color:#9fd7c0">package_state: ready_for_review<br>readiness_contract: persisted-self-check-v1</p>
+</aside>
+</div>
+</div>
+<main class="wrap">
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>01 · Overview Map</h2><p>Three scopes, three key areas (colored by gate type), the Jing-Zhang heritage rail spine, and three standard walk-test routes. All elements derived from GeoJSON.</p></div>
+<span class="pill">geometry + metrics</span>
+</div>
+<div class="body">
+<svg class="map-svg" viewBox="0 0 1200 480" role="img" aria-label="The Pass Line overview map">
+<rect x="0" y="0" width="1200" height="480" fill="#faf8f3"/>
+<rect x="380" y="40" width="380" height="400" fill="none" stroke="#9c4632" stroke-width="2" stroke-dasharray="10 6" rx="4"/>
+<text x="570" y="32" text-anchor="middle" font-size="12" fill="#9c4632" font-family="ui-monospace,Menlo">Overall Design Area (provisional)</text>
+<rect x="555" y="40" width="50" height="400" fill="#b4ceb2" stroke="#4a7c59" stroke-width="1" opacity="0.7"/>
+<text x="580" y="465" text-anchor="middle" font-size="11" fill="#4a7c59">Jing-Zhang Heritage Spine</text>
+<rect x="430" y="50" width="300" height="120" fill="#e8c4ba" stroke="#9c4632" stroke-width="2" rx="4"/>
+<circle cx="580" cy="110" r="18" fill="#9c4632"/>
+<text x="580" y="116" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">GATE</text>
+<text x="580" y="180" text-anchor="middle" font-size="13" fill="#1c2026" font-weight="bold">Zhongzhiyuan · Prototype Gate</text>
+<text x="580" y="196" text-anchor="middle" font-size="10" fill="#5a6068">192.1 ha · research_prototype_gate</text>
+<rect x="440" y="220" width="280" height="80" fill="#cce0c8" stroke="#4a7c59" stroke-width="2" rx="4"/>
+<circle cx="580" cy="260" r="18" fill="#4a7c59"/>
+<text x="580" y="266" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">GATE</text>
+<text x="580" y="320" text-anchor="middle" font-size="13" fill="#1c2026" font-weight="bold">Origin Community · Family Gate</text>
+<text x="580" y="336" text-anchor="middle" font-size="10" fill="#5a6068">104.3 ha · family_daily_gate · with Kid Probe Line</text>
+<rect x="435" y="350" width="290" height="70" fill="#c5d2e0" stroke="#3c668a" stroke-width="2" rx="4"/>
+<circle cx="580" cy="385" r="18" fill="#3c668a"/>
+<text x="580" y="391" text-anchor="middle" font-size="11" fill="#fff" font-weight="bold">GATE</text>
+<text x="580" y="440" text-anchor="middle" font-size="13" fill="#1c2026" font-weight="bold">Dazhongsi · Business Gate</text>
+<text x="580" y="456" text-anchor="middle" font-size="10" fill="#5a6068">72.0 ha · consumption_business_gate</text>
+<path d="M 480 60 L 580 110 L 680 160" fill="none" stroke="#d4903c" stroke-width="4" stroke-linecap="round"/>
+<path d="M 460 230 L 580 260 L 700 290" fill="none" stroke="#d4903c" stroke-width="4" stroke-linecap="round"/>
+<path d="M 440 360 L 580 385 L 720 410" fill="none" stroke="#d4903c" stroke-width="4" stroke-linecap="round"/>
+<text x="100" y="240" font-size="13" fill="#3c668a" font-weight="bold">Zhongguancun Tech Wing</text>
+<text x="100" y="258" font-size="10" fill="#5a6068">International Passage Gate</text>
+<text x="880" y="240" font-size="13" fill="#4a7c59" font-weight="bold">Xiaoyuehe Scenario Wing</text>
+<text x="880" y="258" font-size="10" fill="#5a6068">Scenario Empowerment Gate</text>
+<g transform="translate(40,380)">
+<text x="0" y="0" font-size="11" fill="#1c2026" font-weight="bold">Legend</text>
+<rect x="0" y="10" width="14" height="10" fill="#e8c4ba" stroke="#9c4632"/><text x="20" y="19" font-size="10" fill="#1c2026">Prototype Gate area</text>
+<rect x="0" y="26" width="14" height="10" fill="#cce0c8" stroke="#4a7c59"/><text x="20" y="35" font-size="10" fill="#1c2026">Family Gate area</text>
+<rect x="0" y="42" width="14" height="10" fill="#c5d2e0" stroke="#3c668a"/><text x="20" y="51" font-size="10" fill="#1c2026">Business Gate area</text>
+<line x1="0" y1="62" x2="14" y2="62" stroke="#d4903c" stroke-width="3"/><text x="20" y="66" font-size="10" fill="#1c2026">Walk-test route ≥800m</text>
+</g>
+</svg>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>02 · Three Gates × Three Areas</h2><p>Each key area maps to one gate type, carrying a distinct AI service clearance function.</p></div>
+<span class="pill">key_areas + public_space</span>
+</div>
+<div class="body">
+<div class="three-col">
+<div class="gate-card">
+<h3>Zhongzhiyuan · Prototype Gate</h3>
+<div class="gate-type">research_prototype_gate · 192.1 ha</div>
+<p style="font-size:13px">Live verification before research-prototype AI services enter the street. Any prototype must complete four use-scenario walk-tests before public release.</p>
+<ul>
+<li>New research lab (45m conceptual)</li>
+<li>New compute annex (30m conceptual)</li>
+<li>Retained heritage workshop (12m)</li>
+<li>Scenarios: shuttle, delivery, prototype verify</li>
+</ul>
+</div>
+<div class="gate-card family">
+<h3>Origin Community · Family Gate</h3>
+<div class="gate-type">family_daily_gate · 104.3 ha</div>
+<p style="font-size:13px">Family-daily AI service walk-tests, focusing on child-friendliness and elderly accessibility. <strong style="color:#9c4632">Kid Probe Line as clearance precondition (unique signature).</strong></p>
+<ul>
+<li>Retained residential + renovated hub</li>
+<li>New childcare, renovated elder day-care</li>
+<li>Scenarios: health-nav, culture, kids tutor</li>
+</ul>
+</div>
+<div class="gate-card consumption">
+<h3>Dazhongsi · Business Gate</h3>
+<div class="gate-type">consumption_business_gate · 72.0 ha</div>
+<p style="font-size:13px">Commercial AI services must pass the Accessibility Gate (wheelchair tester full route), focusing on correctability and exitability.</p>
+<ul>
+<li>New retail-AI complex (30m)</li>
+<li>New office tower (60m conceptual)</li>
+<li>Renovated market, new service plaza</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>03 · Five Sub-Gates Mechanism</h2><p>Each pass gate consists of five sub-gates. Any sub-gate failure freezes the service and returns it to the sandbox. Drawn from careline but flipped into spatial walk-tests.</p></div>
+<span class="pill">core innovation</span>
+</div>
+<div class="body">
+<div class="sub-gates">
+<div class="sub-gate"><b>Comprehensible</b>Can a child/senior understand it?</div>
+<div class="sub-gate"><b>Choosable</b>Can the user opt out?</div>
+<div class="sub-gate"><b>Supervised</b>Can staff take over?</div>
+<div class="sub-gate"><b>Correctable</b>Can errors be fixed on the spot?</div>
+<div class="sub-gate"><b>Exitable</b>Can the user one-tap exit & clear?</div>
+</div>
+<div class="note-box" style="margin-top:14px"><strong>Failure action</strong> is the core: clearance becomes a spatial institution with consequences, not another governance promise. Each sub-gate failure has an explicit freeze / return-to-sandbox consequence.</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>04 · Core Metrics</h2><p>All recomputed from geometry via EPSG:4548 projection. unknown = official regulatory missing, not a proposal gap.</p></div>
+<span class="pill">metrics.json</span>
+</div>
+<div class="body">
+<div class="metrics-grid">
+<div class="metric"><span>site_area_sqm</span><strong data-metric="site_area_sqm" data-value="11412825">11.41M</strong><div class="status">known · high · sqm</div></div>
+<div class="metric"><span>key_area_count</span><strong data-metric="key_area_count" data-value="3">3</strong><div class="status">known · high · areas</div></div>
+<div class="metric"><span>key_area_total_area_sqm</span><strong data-metric="key_area_total_area_sqm" data-value="3692893">3.69M</strong><div class="status">known · medium · sqm</div></div>
+<div class="metric"><span>green_ratio</span><strong data-metric="green_ratio" data-value="0.255835"> 0.255835</strong><div class="status">known · low · ratio</div></div>
+<div class="metric"><span>public_space_ratio</span><strong data-metric="public_space_ratio" data-value="0.001692"> 0.001692</strong><div class="status">known · low · ratio</div></div>
+<div class="metric"><span>pass_gate_count</span><strong data-metric="pass_gate_count" data-value="3">3</strong><div class="status">known · high · gates</div></div>
+<div class="metric"><span>walk_test_route_total_length_m</span><strong>see metrics.json</strong><div class="status">known · medium · m</div></div>
+<div class="metric unknown"><span>floor_area_ratio</span><strong>unknown</strong><div class="status">official missing</div></div>
+<div class="metric unknown"><span>building_height_m</span><strong>unknown</strong><div class="status">official missing</div></div>
+<div class="metric unknown"><span>building_density</span><strong>unknown</strong><div class="status">official missing</div></div>
+</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>05 · AI Scenario Cards (12, incl. 3 industrial tests)</h2><p>Satisfies agent.3 hard target: ≥10 cards, ≥3 industrial test/validation. Orange border = industrial test.</p></div>
+<span class="pill">scenarios × 12</span>
+</div>
+<div class="body">
+<div class="scenario-grid">
+<div class="scn test"><b>SC-001 Community guide robot</b><span class="meta">Origin · all ages · no face capture · ✓test 1</span></div>
+<div class="scn test"><b>SC-002 Elderly voice navigation</b><span class="meta">Origin · seniors · on-device · ✓test 2</span></div>
+<div class="scn"><b>SC-003 Kids English tutor</b><span class="meta">Origin · children · parent stop</span></div>
+<div class="scn test"><b>SC-004 Kid Probe Line itself</b><span class="meta">Origin · children · ✓test 3</span></div>
+<div class="scn"><b>SC-005 Mall AI guide</b><span class="meta">Dazhongsi · consumers · no biometric</span></div>
+<div class="scn"><b>SC-006 Accessibility gate walk-test</b><span class="meta">Dazhongsi · wheelchair users</span></div>
+<div class="scn"><b>SC-007 Public-safety ops review</b><span class="meta">Dazhongsi · security · human review</span></div>
+<div class="scn"><b>SC-008 Enterprise-service copilot</b><span class="meta">Dazhongsi · office workers · isolated</span></div>
+<div class="scn"><b>SC-009 Autonomous low-speed shuttle</b><span class="meta">Zhongzhiyuan · all ages · on-vehicle</span></div>
+<div class="scn"><b>SC-010 Robot delivery</b><span class="meta">Zhongzhiyuan · all ages · locker handoff</span></div>
+<div class="scn"><b>SC-011 Prototype live verification</b><span class="meta">Zhongzhiyuan · researchers · sandbox</span></div>
+<div class="scn"><b>SC-012 Care robot walk-test</b><span class="meta">Origin · caregivers · controlled</span></div>
+</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>06 · User Personas (6, satisfies ≥5)</h2><p>Each persona has a concrete role in the Pass Line — not decorative.</p></div>
+<span class="pill">personas × 6</span>
+</div>
+<div class="body">
+<div class="persona-grid">
+<div class="persona"><b>P-001 Ms. Lin</b>35yo working mother<span class="role">Kid Probe Line parent tester</span></div>
+<div class="persona"><b>P-002 Mr. Zhang</b>52yo wheelchair user<span class="role">Accessibility Gate resident tester</span></div>
+<div class="persona"><b>P-003 Auntie Wang</b>58yo eldercare nurse<span class="role">Caregiver Gate tester · on Honor Wall</span></div>
+<div class="persona"><b>P-004 Dr. Chen</b>28yo AI researcher<span class="role">Prototype Gate service-side rep</span></div>
+<div class="persona"><b>P-005 Xiao Yu</b>14yo junior high student<span class="role">Youth volunteer culture-guide tester</span></div>
+<div class="persona"><b>P-006 Grandma Li</b>78yo living alone<span class="role">Core elderly-gate validator</span></div>
+</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>07 · Compliance Matrix</h2><p>Covers announcement 1.3/1.4/1.5 + agent.1-6, each mapped to section/layer/metric/figure/HTML/source/check.</p></div>
+<span class="pill">compliance_matrix.json</span>
+</div>
+<div class="body">
+<table class="matrix-table">
+<thead><tr><th>Task</th><th>Section</th><th>Layer</th><th>Metric</th><th>Fig</th><th>HTML</th><th>Source</th><th>Check</th></tr></thead>
+<tbody>
+<tr><td>agent.1 Naming/Logo</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>agent.2 AI ecosystem (8 cases)</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>agent.3 Cards 12 + personas 6</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>agent.4 Landmarks 3</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>agent.5 Cultural narrative</td><td class="ok">✓</td><td>—</td><td>—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>agent.6 Long-term operation</td><td class="ok">✓</td><td class="ok">✓</td><td>—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>Announcement 1.3</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>Announcement 1.4</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+<tr><td>Announcement 1.5</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>08 · Phasing</h2><p>Conceptual phasing, pending official timeline. Any phase review missing → next phase does not start — the clearance mechanism applies to the proposal's own implementation.</p></div>
+<span class="pill">phasing.geojson</span>
+</div>
+<div class="body">
+<div class="phase-grid">
+<div class="phase"><h3>Phase 1 · Three Pilot Gates</h3><p style="font-size:13px">Three pilot gate plazas and walk-test starter segments.</p><div class="scope">Establish verification loop demo</div></div>
+<div class="phase"><h3>Phase 2 · Full Walk-Test Network</h3><p style="font-size:13px">Complete routes, Kid Probe Line, Caregiver Honor Wall in three areas.</p><div class="scope">Child-friendly & elderly belt-wide</div></div>
+<div class="phase"><h3>Phase 3 · Belt-Wide Clearance Network</h3><p style="font-size:13px">Entire Overall Design Area, linking both wings.</p><div class="scope">Wing synergy + remote clearance protocol</div></div>
+</div>
+</div>
+</section>
+
+<section class="sheet">
+<div class="sheet-head">
+<div><h2>09 · Sources &amp; Assumptions</h2><p>All sources are public or cleared. Provisional boundary is explicitly labeled, not misrepresented as official redline.</p></div>
+<span class="pill">sources.json + assumptions.json</span>
+</div>
+<div class="body">
+<div class="source-list">
+<strong>Formal-usable (7):</strong> Qualification Pre-Announcement · Agent Taskbook · Urban Design Measures · Regulatory Planning Measures · Land-Use Classification Guide · Generative AI Interim Measures · Barrier-Free Environment Law<br>
+<strong>Background (1):</strong> Beijing Sci-Tech "three areas two wings" report (background_only, not formal evidence)<br>
+<strong>Provisional (1):</strong> provisional_boundaries.geojson (provisional_only, official_boundary=false)<br>
+<strong>Open data:</strong> OpenStreetMap (ODbL, base map bootstrap only)<br>
+<strong>Key assumptions:</strong> official precise boundary pending · regulatory indicators missing · gate-type mapping recompute after official polygon · conceptual heights not approval values
+</div>
+<div class="note-box" style="margin-top:14px"><strong>Provisional warning</strong>: site_boundary and key_areas are provisional_constraint (official_boundary=false, boundary_precision=provisional_rough). Usable only for proposal generation, self-check, visualization, and design discussion; <strong>cannot serve as official redline, approval basis, precise area basis, or statutory control conclusion</strong>. All derived layers and metrics must be recomputed after official polygons are replaced.</div>
+</div>
+</section>
+
+<div class="footer">
+The Pass Line · Generated by ZCode (GLM-5.2) · All spatial ideas are conceptual suggestions, pending professional deepening · This page is fully offline static HTML: no CDN / remote tiles / external scripts / iframe / API calls / tracking · Authoritative data in GeoJSON, metrics.json, matrices, and self-check results.
+</div>
+
+</main>
+</body>
+</html>

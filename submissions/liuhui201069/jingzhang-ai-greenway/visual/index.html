@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>轨迹共生·京张AI绿廊 — 方案可视化看板</title>
+<style>
+:root{--ink:#22282e;--muted:#68737d;--paper:#fff;--line:#dde3ea;--green:#2E7D32;--gold:#B7791F;--bg:#eef1f4}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB",Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1240px;margin:auto}header{background:#182430;color:#fff;border-bottom:5px solid var(--green)}
+.hero{padding:34px 26px}.eyebrow{color:#9fd7c0;letter-spacing:.14em;font-size:12px;text-transform:uppercase}
+h1{font-size:32px;margin:8px 0 10px}h2{font-size:20px;margin:0 0 10px}h3{font-size:15px;margin:0 0 6px}
+.hero p{color:#cfdae4;max-width:900px;margin:0}
+.langsw{float:right;margin-top:6px}.langsw a{color:#9fd7c0;text-decoration:none;border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;font-size:13px}
+.status{margin-top:16px;border-left:4px solid var(--gold);background:rgba(255,255,255,.07);padding:10px 14px;border-radius:6px;font-size:13.5px;color:#f4e9cf;max-width:900px}
+main{padding:20px}
+.sheet{background:var(--paper);border:1px solid var(--line);border-radius:8px;margin-bottom:16px;padding:20px 22px;box-shadow:0 8px 22px rgba(24,36,48,.06)}
+.sheet>p{color:var(--muted);font-size:14px;margin:4px 0 12px}
+.mapframe{border:1px solid #c6cfd8;border-radius:8px;overflow:hidden;background:#f8fafc}
+svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px;font-size:13px;color:#40515e}
+.legend i{width:13px;height:13px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-2px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:8px;padding:14px;background:#fbfcfe}
+.card b{font-size:14px}.card p{font-size:12.8px;color:var(--muted);margin:6px 0 0}
+.mgrid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.metric{border:1px solid var(--line);border-radius:8px;padding:12px;background:#fbfdff;text-align:center}
+.metric span{display:block;font-size:11.5px;color:var(--muted)}
+.metric strong{display:block;font-size:19px;margin-top:5px;font-variant-numeric:tabular-nums}
+.note{border-left:4px solid var(--gold);background:#fff9eb;padding:9px 13px;border-radius:6px;font-size:13px;margin-top:12px;color:#7a5b12}
+.ok{border-left:4px solid var(--green);background:#f0fdf4;padding:9px 13px;border-radius:6px;font-size:13px;margin-top:12px;color:#14532d}
+.scen{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.scen article{border:1px solid var(--line);border-radius:8px;padding:11px;background:linear-gradient(180deg,#fff,#f8fafc)}
+.scen b{font-size:12.8px}.scen p{font-size:11.8px;color:var(--muted);margin:5px 0 0}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+footer{color:var(--muted);text-align:center;font-size:12.5px;padding:8px 0 26px}
+@media(max-width:960px){.cards,.mgrid{grid-template-columns:1fr 1fr}.scen{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero">
+<div class="langsw"><a href="index.en.html">English</a></div>
+<div class="eyebrow">百年京张AI创新带城市设计开源征集 · 正式提交包</div>
+<h1>轨迹共生 · 京张AI绿廊</h1>
+<p>离线电子展示成果。权威数据以 GeoJSON、metrics.json、三个矩阵与自检结果为准；本页由同一套几何与指标状态生成，展示总体结构、三层范围、重点区域、用地、交通蓝绿、AI场景、核心指标、任务覆盖、自检状态、来源与假设。</p>
+<div class="status"><b>临时边界状态</b> — 全部空间图层基于临时约束范围（provisional constraint）生成：可用于方案讨论、自检与展示，不作为官方红线、精确面积或法定控制依据；官方多边形发布后整体重算。</div>
+</div></header>
+<main class="wrap">
+<section class="sheet"><h2>总览地图（由提交包几何直接生成）</h2><p>用地分区：45 个用地单元完整剖分总体设计范围；交通慢行：绿轴慢行主线与两级智慧服务街贯穿全线；蓝绿公共空间：绿轴公园与三处广场节点；建筑与更新项目：深红色为AI朝圣地标概念体量，更新项目按三期组织；虚线为临时边界与三处重点区域。</p>
+<div class="mapframe"><svg viewBox="0 0 1160 300" role="img" aria-label="site overview generated from submission geometry" xmlns="http://www.w3.org/2000/svg">
+<rect width="1160" height="300" fill="#f8fafc"/>
+<path d="M130.4,215.8 L18.6,215.8 L19.1,275.5 L130.4,277.1 L130.4,215.8 Z" fill="#D97B53" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-001 大钟寺智能原生商务用地</title></path>
+<path d="M130.4,215.8 L130.4,213.0 L18.6,213.0 L18.6,215.8 L130.4,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-002 绿轴西智慧服务街</title></path>
+<path d="M130.4,213.0 L130.4,192.2 L18.4,192.2 L18.6,213.0 L130.4,213.0 Z" fill="#79B279" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-003 京张遗址公园绿轴·大钟寺智能产业段</title></path>
+<path d="M130.4,192.2 L130.4,189.4 L18.4,189.4 L18.4,192.2 L130.4,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-004 绿轴东智慧服务街</title></path>
+<path d="M130.4,189.4 L130.4,130.5 L18.0,131.3 L18.4,189.4 L130.4,189.4 Z" fill="#AE8CB0" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-005 大钟寺古钟文化与AI展示用地</title></path>
+<path d="M169.7,215.8 L130.4,215.8 L130.4,277.1 L169.7,277.6 L169.7,215.8 Z" fill="#D97B53" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-006 大钟寺智能原生商务用地</title></path>
+<path d="M130.4,215.8 L169.7,215.8 L169.7,213.0 L130.4,213.0 L130.4,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-007 绿轴西智慧服务街</title></path>
+<path d="M130.4,213.0 L169.7,213.0 L169.7,192.2 L130.4,192.2 L130.4,213.0 Z" fill="#E6C25A" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-008 大钟寺智钟广场</title></path>
+<path d="M130.4,192.2 L169.7,192.2 L169.7,189.4 L130.4,189.4 L130.4,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-009 绿轴东智慧服务街</title></path>
+<path d="M130.4,189.4 L169.7,189.4 L169.7,130.2 L130.4,130.5 L130.4,189.4 Z" fill="#AE8CB0" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-010 大钟寺古钟文化与AI展示用地</title></path>
+<path d="M355.2,215.8 L169.7,215.8 L169.7,277.6 L355.2,280.2 L355.2,215.8 Z" fill="#EFC988" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-011 缝合社区居住用地</title></path>
+<path d="M169.7,215.8 L355.2,215.8 L355.2,213.0 L169.7,213.0 L169.7,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-012 绿轴西智慧服务街</title></path>
+<path d="M169.7,213.0 L355.2,213.0 L355.2,192.2 L169.7,192.2 L169.7,213.0 Z" fill="#79B279" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-013 京张遗址公园绿轴·南部缝合共生段</title></path>
+<path d="M169.7,192.2 L355.2,192.2 L355.2,189.4 L169.7,189.4 L169.7,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-014 绿轴东智慧服务街</title></path>
+<path d="M169.7,189.4 L355.2,189.4 L355.2,129.1 L351.7,128.9 L169.7,130.2 L169.7,189.4 Z" fill="#D97B53" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-015 轨道站点智慧商业用地</title></path>
+<path d="M535.0,215.8 L355.2,215.8 L355.2,280.2 L481.2,282.0 L535.0,278.9 L535.0,215.8 Z" fill="#7FA8C9" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-016 AI原点开源研发用地</title></path>
+<path d="M355.2,215.8 L535.0,215.8 L535.0,213.0 L355.2,213.0 L355.2,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-017 绿轴西智慧服务街</title></path>
+<path d="M355.2,213.0 L535.0,213.0 L535.0,192.2 L355.2,192.2 L355.2,213.0 Z" fill="#79B279" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-018 京张遗址公园绿轴·原点社区南段</title></path>
+<path d="M355.2,192.2 L535.0,192.2 L535.0,189.4 L355.2,189.4 L355.2,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-019 绿轴东智慧服务街</title></path>
+<path d="M355.2,189.4 L535.0,189.4 L535.0,138.8 L355.2,129.1 L355.2,189.4 Z" fill="#E2A77B" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-020 原点社区服务设施用地</title></path>
+<path d="M568.8,215.8 L535.0,215.8 L535.0,278.9 L568.8,277.0 L568.8,215.8 Z" fill="#7FA8C9" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-021 AI原点开源研发用地</title></path>
+<path d="M535.0,215.8 L568.8,215.8 L568.8,213.0 L535.0,213.0 L535.0,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-022 绿轴西智慧服务街</title></path>
+<path d="M535.0,213.0 L568.8,213.0 L568.8,192.2 L535.0,192.2 L535.0,213.0 Z" fill="#E6C25A" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-023 京张AI原点广场</title></path>
+<path d="M535.0,192.2 L568.8,192.2 L568.8,189.4 L535.0,189.4 L535.0,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-024 绿轴东智慧服务街</title></path>
+<path d="M535.0,189.4 L568.8,189.4 L568.8,140.7 L535.0,138.8 L535.0,189.4 Z" fill="#E2A77B" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-025 原点社区服务设施用地</title></path>
+<path d="M714.9,215.8 L568.8,215.8 L568.8,277.0 L714.9,268.7 L714.9,215.8 Z" fill="#EFC988" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-026 共生社区居住用地</title></path>
+<path d="M568.8,215.8 L714.9,215.8 L714.9,213.0 L568.8,213.0 L568.8,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-027 绿轴西智慧服务街</title></path>
+<path d="M568.8,213.0 L714.9,213.0 L714.9,192.2 L568.8,192.2 L568.8,213.0 Z" fill="#79B279" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-028 京张遗址公园绿轴·原点社区北段</title></path>
+<path d="M568.8,192.2 L714.9,192.2 L714.9,189.4 L568.8,189.4 L568.8,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-029 绿轴东智慧服务街</title></path>
+<path d="M568.8,189.4 L714.9,189.4 L714.9,144.2 L672.7,146.3 L568.8,140.7 L568.8,189.4 Z" fill="#7FA8C9" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-030 AI原点场景验证用地</title></path>
+<path d="M917.2,215.8 L714.9,215.8 L714.9,268.7 L878.9,259.3 L917.2,257.6 L917.2,215.8 Z" fill="#5B8DB8" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-031 高校协同教育用地</title></path>
+<path d="M714.9,215.8 L917.2,215.8 L917.2,213.0 L714.9,213.0 L714.9,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-032 绿轴西智慧服务街</title></path>
+<path d="M714.9,213.0 L917.2,213.0 L917.2,192.2 L714.9,192.2 L714.9,213.0 Z" fill="#79B279" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-033 京张遗址公园绿轴·学院智源段</title></path>
+<path d="M714.9,192.2 L917.2,192.2 L917.2,189.4 L714.9,189.4 L714.9,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-034 绿轴东智慧服务街</title></path>
+<path d="M714.9,189.4 L917.2,189.4 L917.2,134.2 L714.9,144.2 L714.9,189.4 Z" fill="#7FA8C9" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-035 校企联合研发用地</title></path>
+<path d="M956.5,215.8 L917.2,215.8 L917.2,257.6 L956.5,255.8 L956.5,215.8 Z" fill="#7FA8C9" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-036 众智园全栈创新用地</title></path>
+<path d="M917.2,215.8 L956.5,215.8 L956.5,213.0 L917.2,213.0 L917.2,215.8 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-037 绿轴西智慧服务街</title></path>
+<path d="M917.2,213.0 L956.5,213.0 L956.5,192.2 L917.2,192.2 L917.2,213.0 Z" fill="#E6C25A" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-038 众智穹顶广场</title></path>
+<path d="M917.2,192.2 L956.5,192.2 L956.5,189.4 L917.2,189.4 L917.2,192.2 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-039 绿轴东智慧服务街</title></path>
+<path d="M917.2,189.4 L956.5,189.4 L956.5,132.3 L917.2,134.2 L917.2,189.4 Z" fill="#EDE9DE" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-040 众智园战略留白用地</title></path>
+<path d="M956.5,215.8 L956.5,255.8 L1142.0,247.5 L1141.8,215.8 L956.5,215.8 Z" fill="#7FA8C9" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-041 众智园全栈创新用地</title></path>
+<path d="M956.5,213.0 L956.5,215.8 L1141.8,215.8 L1141.7,213.0 L956.5,213.0 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-042 绿轴西智慧服务街</title></path>
+<path d="M956.5,192.2 L956.5,213.0 L1141.7,213.0 L1141.6,192.2 L956.5,192.2 Z" fill="#79B279" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-043 京张遗址公园绿轴·众智园加速段</title></path>
+<path d="M956.5,189.4 L956.5,192.2 L1141.6,192.2 L1141.6,189.4 L956.5,189.4 Z" fill="#C8CDD2" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-044 绿轴东智慧服务街</title></path>
+<path d="M956.5,189.4 L1141.6,189.4 L1141.1,123.2 L956.5,132.3 L956.5,189.4 Z" fill="#EDE9DE" fill-opacity="0.9" stroke="#ffffff" stroke-width="0.6"><title>LU-045 众智园战略留白用地</title></path>
+<path d="M18.5,202.6 L1141.7,202.6" fill="none" stroke="#2E7D32" stroke-width="3"/>
+<path d="M145.4,235.9 L154.7,235.9 L154.7,226.6 L145.4,226.6 L145.4,235.9 Z" fill="#B03A2E"><title>BLDG-001 大钟寺·智钟阁（AI朝圣地标一）</title></path>
+<path d="M547.9,238.8 L555.9,238.8 L555.9,230.7 L547.9,230.7 L547.9,238.8 Z" fill="#B03A2E"><title>BLDG-002 京张AI原点塔（AI朝圣地标二）</title></path>
+<path d="M919.9,243.6 L930.3,243.6 L930.3,229.7 L919.9,229.7 L919.9,243.6 Z" fill="#B03A2E"><title>BLDG-003 众智穹顶·全球智能体会堂（AI朝圣地标三）</title></path>
+<path d="M59.3,262.0 L67.4,262.0 L67.4,249.3 L59.3,249.3 L59.3,262.0 Z" fill="#4A5560"><title>BLDG-004 智能原生消费旗舰组团</title></path>
+<path d="M70.7,165.1 L77.7,165.1 L77.7,154.7 L70.7,154.7 L70.7,165.1 Z" fill="#4A5560"><title>BLDG-005 古钟声景AI展示馆</title></path>
+<path d="M267.7,164.9 L275.8,164.9 L275.8,153.4 L267.7,153.4 L267.7,164.9 Z" fill="#4A5560"><title>BLDG-006 站城共生服务综合体</title></path>
+<path d="M259.0,257.0 L265.9,257.0 L265.9,245.4 L259.0,245.4 L259.0,257.0 Z" fill="#4A5560"><title>BLDG-007 缝合社区共生住区组团</title></path>
+<path d="M441.1,261.9 L449.2,261.9 L449.2,249.1 L441.1,249.1 L441.1,261.9 Z" fill="#4A5560"><title>BLDG-008 开源协作研发工场</title></path>
+<path d="M441.7,164.4 L448.6,164.4 L448.6,154.0 L441.7,154.0 L441.7,164.4 Z" fill="#4A5560"><title>BLDG-009 原点社区全龄服务中心</title></path>
+<path d="M638.4,255.2 L645.3,255.2 L645.3,243.7 L638.4,243.7 L638.4,255.2 Z" fill="#4A5560"><title>BLDG-010 人才共生公寓组团</title></path>
+<path d="M637.8,171.4 L645.9,171.4 L645.9,158.7 L637.8,158.7 L637.8,171.4 Z" fill="#4A5560"><title>BLDG-011 城市场景验证实验场</title></path>
+<path d="M812.0,248.0 L820.1,248.0 L820.1,236.4 L812.0,236.4 L812.0,248.0 Z" fill="#4A5560"><title>BLDG-012 校企协同创新学院</title></path>
+<path d="M812.0,168.2 L820.1,168.2 L820.1,155.5 L812.0,155.5 L812.0,168.2 Z" fill="#4A5560"><title>BLDG-013 联合实验室集群</title></path>
+<path d="M1053.9,244.7 L1063.2,244.7 L1063.2,230.9 L1053.9,230.9 L1053.9,244.7 Z" fill="#4A5560"><title>BLDG-014 全栈自主创新加速工场</title></path>
+<path d="M898.1,246.3 L897.3,137.8 L1134.8,136.0 L1135.6,244.6 L898.1,246.3 Z" fill="none" stroke="#8A939B" stroke-width="1.6" stroke-dasharray="7 5"><title>PROV-KEY-001</title></path>
+<path d="M590.1,258.5 L589.3,149.9 L717.7,148.9 L718.5,257.5 L590.1,258.5 Z" fill="none" stroke="#8A939B" stroke-width="1.6" stroke-dasharray="7 5"><title>PROV-KEY-002</title></path>
+<path d="M83.1,262.2 L82.2,133.8 L157.2,133.2 L158.1,261.7 L83.1,262.2 Z" fill="none" stroke="#8A939B" stroke-width="1.6" stroke-dasharray="7 5"><title>PROV-KEY-003</title></path>
+<path d="M19.1,275.5 L18.0,131.3 L351.7,128.9 L672.7,146.3 L1141.1,123.2 L1142.0,247.5 L878.9,259.3 L481.2,282.0 L19.1,275.5 Z" fill="none" stroke="#7A828A" stroke-width="2" stroke-dasharray="10 6"/>
+<circle cx="74.2" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-01 全龄AI伴行绿道</title></circle>
+<circle cx="152.9" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-02 大钟寺声景AI剧场</title></circle>
+<circle cx="242.8" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-03 智能原生首店街区</title></circle>
+<circle cx="321.5" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-04 站城无感通行接驳</title></circle>
+<circle cx="445.1" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-05 社区共生AI管家</title></circle>
+<circle cx="546.3" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-06 原点开源创客市集</title></circle>
+<circle cx="636.2" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-07 城市场景验证开放实验场</title></circle>
+<circle cx="804.8" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-08 校园-园区知识走廊</title></circle>
+<circle cx="939.7" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-09 众智穹顶全球智能体峰会场</title></circle>
+<circle cx="1063.3" cy="202.6" r="4.5" fill="#2B6CB0" stroke="#fff" stroke-width="1"><title>SC-10 京张百年记忆数字长卷</title></circle>
+</svg></div>
+<div class="legend"><span><i style="background:#79B279"></i>公园绿地/绿轴</span><span><i style="background:#7FA8C9"></i>科研</span><span><i style="background:#EFC988"></i>居住</span><span><i style="background:#D97B53"></i>商业</span><span><i style="background:#E6C25A"></i>广场</span><span><i style="background:#B03A2E"></i>AI地标（概念）</span><span><i style="background:#8A939B"></i>临时边界（虚线）</span></div>
+</section>
+<section class="sheet"><h2>核心指标（EPSG:4548 复算）</h2>
+<div class="mgrid"><div class="metric"><span>场地面积（㎡）</span><strong data-metric="site_area_sqm" data-value="11412825.386">11,412,825.386</strong></div>
+<div class="metric"><span>绿地率</span><strong data-metric="green_ratio" data-value="0.138">13.8%</strong></div>
+<div class="metric"><span>公共空间占比</span><strong data-metric="public_space_ratio" data-value="0.066">6.6%</strong></div>
+<div class="metric"><span>道路用地占比</span><strong data-metric="road_ratio" data-value="0.041">4.1%</strong></div>
+<div class="metric"><span>公园绿地（㎡）</span><strong data-metric="green_space_area_sqm" data-value="1573879.966">1,573,879.966</strong></div>
+<div class="metric"><span>重点区域数量</span><strong data-metric="key_area_count" data-value="3">3</strong></div></div>
+<div class="note">容积率：待正式数据补齐（批准控规条件未公开，不给出法定强度结论）</div>
+</section>
+<section class="sheet"><h2>三层范围</h2><div class="cards"><div class="card"><b>统筹研究范围 43.6 km²</b><p>回答创新链组织：高校策源 → 开源协作 → 企业转化 → 场景验证 → 消费传播的五环节闭环。</p></div>
+<div class="card"><b>总体设计范围 11.4 km²</b><p>回答空间落图：一脉三核两带三期；45 个用地单元无缝隙无重叠剖分；指标全部可复算。</p></div>
+<div class="card"><b>重点区域范围 368.4 ha</b><p>回答详细设计：三处片区各有定位、广场节点、地标与实施依赖，边界为临时约束。</p></div></div></section>
+<section class="sheet"><h2>重点区域（临时范围内的概念建议）</h2><div class="cards"><div class="card"><b>众智园AI自主创新加速区 · 约192.1公顷</b><p>加速引擎：众智穹顶广场+全球智能体会堂+加速工场；东侧留白用地对冲产业不确定性。</p></div>
+<div class="card"><b>北京AI原点社区 · 约104.3公顷</b><p>日常发生器：研发、居住、社区服务混合；原点广场+开源工场+全龄服务中心步行互见。</p></div>
+<div class="card"><b>大钟寺AI产业集聚区 · 约72公顷</b><p>城市门户：智钟广场+古钟声景AI展示+智能原生商务与首店街区，承接西直门人流。</p></div></div></section>
+<section class="sheet"><h2>AI 场景 — 十张场景卡（SC-04/05/07 兼作产业测试验证场景）</h2>
+<div class="scen"><article><b>SC-01 全龄AI伴行绿道</b><p>绿轴南段，服务居民与访客的无障碍伴行</p></article>
+<article><b>SC-02 大钟寺声景AI剧场</b><p>古钟声景与AI声学体验结合的文化场景</p></article>
+<article><b>SC-03 智能原生首店街区</b><p>大钟寺西带的智能原生消费场景</p></article>
+<article><b>SC-04 站城无感通行接驳</b><p>测试验证场景：多模态识别与隐私平衡</p></article>
+<article><b>SC-05 社区共生AI管家</b><p>测试验证场景：服务智能体人工复核机制</p></article>
+<article><b>SC-06 原点开源创客市集</b><p>原点广场的开发者社区日常场景</p></article>
+<article><b>SC-07 城市场景验证开放实验场</b><p>测试验证场景：真实城市环境受控测试</p></article>
+<article><b>SC-08 校园-园区知识走廊</b><p>学院智源段的校企协同场景</p></article>
+<article><b>SC-09 众智穹顶全球智能体峰会场</b><p>全球AI活动体系的主场</p></article>
+<article><b>SC-10 京张百年记忆数字长卷</b><p>铁路文脉与AI新文化的叙事载体</p></article></div>
+<div class="note">共同边界：不做无差别人脸采集；涉个人自动决策可申诉、可人工复核；测试公示范围并可退出。全部为概念建议，部署须经合规审查。</div>
+</section>
+<section class="sheet"><h2>任务覆盖与自检</h2><p>公告 1.3-1.5 与 agent.1-agent.6 在 compliance_matrix.json 逐条映射；六项专业标准见 standard_matrix.json；15 项设计深度全部完成见 design_depth_matrix.json。</p>
+<div class="ok">自检状态：deterministic validation / spatial review / visual check / evidence review 于提交前全部通过；KEY_AREA_PROVISIONAL 为组织方数据缺口警示，不阻断内容评分。</div>
+</section>
+<section class="sheet"><div class="two">
+<div><h3>来源</h3><p style="font-size:13.5px;color:var(--muted)">全部来源、许可与用途边界记录于 sources.json；未将背景或临时资料升级为法定依据。本页不加载任何远程资源。</p></div>
+<div><h3>假设与重算触发</h3><p style="font-size:13.5px;color:var(--muted)">临时边界精度、待补控规条件与重算触发条件记录于 assumptions.json；官方多边形发布后从边界到指标整体重算。</p></div>
+</div></section>
+</main>
+<footer>AI Agent: Claude Fable 5 (GitHub: liuhui201069) · v1.1 · 2026-08-11 · CC-BY-4.0</footer>
+</body>
+</html>

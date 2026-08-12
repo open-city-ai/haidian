@@ -1,0 +1,349 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "crs_note": {
+  "exchange_crs": "EPSG:4326",
+  "calculation_crs": "EPSG:4548",
+  "note_zh": "GeoJSON 交换坐标为 EPSG:4326（经度、纬度）；全部面积与长度在 EPSG:4548（CGCS2000 3度带，中央经线117°E）下计算。"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.386,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "projected_area(union(SITE_BOUNDARY), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。"
+   ]
+  },
+  "land_use_total_area_sqm": {
+   "status": "known",
+   "value": 11412852.506,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(projected_area(LAND_USE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。",
+    "A-TOPOLOGY-001：用地分区为对范围线的无缝无叠剖分，合计面积与范围面积的偏差仅来自坐标取整。"
+   ]
+  },
+  "land_use_partition_gap_sqm": {
+   "status": "known",
+   "value": 83.741,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "projected_area(site - union(LAND_USE), EPSG:4548)",
+   "confidence": "high",
+   "assumptions": [
+    "A-TOPOLOGY-001：残差应远小于校验容差 max(1 sqm, 0.01% 范围面积)。"
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 3356625.391,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "projected_area(union(GREEN_SPACE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。"
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.29411,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。"
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 1295402.729,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "projected_area(union(PUBLIC_SPACE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。",
+    "A-PUBLIC-001：公共空间与建筑基底、绿地均不重叠，不重复计入。"
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.113504,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。"
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2075004.419,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "projected_area(union(BUILDING_FOOTPRINT), EPSG:4548)",
+   "confidence": "low",
+   "assumptions": [
+    "A-COVERAGE-001：基底面积由各用地单元的假定基底覆盖率生成，非现状测绘也非控规结论。"
+   ]
+  },
+  "site_coverage_ratio": {
+   "status": "known",
+   "value": 0.181813,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area_sqm / site_area_sqm",
+   "confidence": "low",
+   "assumptions": [
+    "A-COVERAGE-001：假定覆盖率下的示意值；官方建筑密度控制缺失。"
+   ]
+  },
+  "assumed_gross_floor_area_sqm": {
+   "status": "known",
+   "value": 10760538.251,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(projected_area(footprint) * assumed_average_floors)",
+   "confidence": "low",
+   "assumptions": [
+    "A-COVERAGE-001 与 A-FLOORS-001：平均层数为方案假定，非控规容积率或高度控制；仅表达规模量级。"
+   ],
+   "caveat_zh": "该值不是容积率结论，也不构成建设规模承诺；控规强度控制公开后必须整体复算。"
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "公开资料中没有本项目经批准的容积率控制指标，也没有官方精确范围面积；不得用假定层数反推容积率结论。"
+  },
+  "max_building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "official_height_control",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "公开资料中没有本项目的建筑高度控制值；紧邻铁路遗址与文物的高度约束须由主管部门确认。"
+  },
+  "research_and_development_land_area_sqm": {
+   "status": "known",
+   "value": 2008877.55,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(projected_area(LAND_USE where land_use_code=0802))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。"
+   ]
+  },
+  "reserved_land_area_sqm": {
+   "status": "known",
+   "value": 416692.885,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(projected_area(LAND_USE where land_use_code=16))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。",
+    "A-RESERVE-001：留白用地用于承接算力与中试等尚不确定的需求，是应对不确定性的弹性安排。"
+   ]
+  },
+  "plaza_land_area_sqm": {
+   "status": "known",
+   "value": 1006478.071,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(projected_area(LAND_USE where land_use_code=1403))",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。"
+   ]
+  },
+  "validation_spine_length_m": {
+   "status": "known",
+   "value": 9722.33,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "projected_length(ROAD_CENTERLINE where road_class=greenway, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-MOBILITY-001：慢行主线为概念线位，不表达道路红线或现状线位。"
+   ]
+  },
+  "total_proposed_centerline_length_m": {
+   "status": "known",
+   "value": 19048.14,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(projected_length(ROAD_CENTERLINE), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-MOBILITY-001：全部为概念线位。"
+   ]
+  },
+  "east_west_stitch_count": {
+   "status": "known",
+   "value": 7,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(ROAD_CENTERLINE where road_class=pedestrian)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-MOBILITY-001：缝合连接的跨越方式须结合铁路与市政条件深化。"
+   ]
+  },
+  "east_west_stitch_length_m": {
+   "status": "known",
+   "value": 8198.308,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(projected_length(ROAD_CENTERLINE where road_class=pedestrian), EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-MOBILITY-001：概念线位。"
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA)",
+   "confidence": "high",
+   "assumptions": [
+    "A-BOUNDARY-001：三处重点区采用主办方临时粗略范围。"
+   ]
+  },
+  "scenario_node_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-SCENARIO-001：场景点位为示意位置，不表达设施选址结论。"
+   ]
+  },
+  "industry_validation_scenario_count": {
+   "status": "known",
+   "value": 4,
+   "unit": "count",
+   "source_files": [
+    "geometry/constraints.geojson"
+   ],
+   "formula": "count(SCENARIO_NODE where is_industry_validation_scenario=true)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-SCENARIO-001：产业验证场景须由行业主管部门与企业共同确认准入条件。"
+   ]
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 3169219.746,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "projected_area(PHASE where phase=phase_1, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。",
+    "A-PHASING-001：分期时序须结合权属、资金与审批安排确认。"
+   ]
+  },
+  "phase_1_share_of_site": {
+   "status": "known",
+   "value": 0.277689,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/phasing.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "phase_1_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "A-BOUNDARY-001：面积基于主办方临时粗略范围，官方精确红线公开后必须整体复算。",
+    "A-PHASING-001"
+   ]
+  },
+  "official_planning_controls_available": {
+   "status": "known",
+   "value": 0,
+   "unit": "count",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "count(planning_limits where status=known)",
+   "confidence": "high",
+   "assumptions": [
+    "A-CONTROLS-001：容积率、建筑高度、建筑密度、绿地率、退线五项官方控制指标当前全部缺失。"
+   ],
+   "caveat_zh": "该指标刻意保留为0，用于显式声明官方控制条件缺口，而不是隐藏它。"
+  }
+ }
+}

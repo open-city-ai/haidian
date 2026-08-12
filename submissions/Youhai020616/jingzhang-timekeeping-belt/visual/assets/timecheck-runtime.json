@@ -1,0 +1,48 @@
+{
+ "note_zh": "对时协议的参考运行时映射与课程化校时。对时协议不需要发明新软件品类：四个核心动作与现代 agent 评测框架的四类标准能力一一对应；本文件定义映射接口，不绑定任何具体产品。",
+ "runtime_mapping": [
+  {
+   "protocol_action_zh": "人工基准答案集（基准站维护）",
+   "framework_capability": "benchmark_design",
+   "interface_zh": "基准可版本化、可署名、可记录异议；条目=（输入, 期望读数, 限差口径）"
+  },
+  {
+   "protocol_action_zh": "对时 = 抽样回放 + 偏差测量",
+   "framework_capability": "evaluation_run",
+   "interface_zh": "逐条比对留痕；偏差由比对机械推出，不由人工指定"
+  },
+  {
+   "protocol_action_zh": "准点续期 / 超差降级",
+   "framework_capability": "eval_gated_release",
+   "interface_zh": "决定=f(偏差, 限差)；超差输出降级指令与复测条件"
+  },
+  {
+   "protocol_action_zh": "误点档案（只增不删）",
+   "framework_capability": "trace_history",
+   "interface_zh": "每次对时的输入哈希、比对行、决定全部落档可追溯"
+  },
+  {
+   "protocol_action_zh": "进化即失效（版本绑定，资格不继承·档案要继承）",
+   "framework_capability": "snapshot_and_reeval",
+   "interface_zh": "每轮自演化前快照、出新版后重跑基准——版本哈希变更即触发 version_voided，重新对时后以新窗口回归"
+  },
+  {
+   "protocol_action_zh": "红蓝对时（人工核准类别内的对抗探针）",
+   "framework_capability": "case_generation",
+   "interface_zh": "红方校时 agent 在核准类别内生成探针；人类保留基准维护、类别核准与争议裁决权"
+  },
+  {
+   "protocol_action_zh": "校时员轮值（认证上岗的运营人力）",
+   "framework_capability": "human_in_the_loop_staffing",
+   "interface_zh": "认证校时员执行回放与记录；专业角色裁决；评测框架是其工作台而非替代者"
+  }
+ ],
+ "minimal_executable_proof_zh": "run_baseline_replay.js 以零依赖、离线、确定性方式演练该循环：合成基准（5条）× 两次模拟读数（合格/超差）→ 逐条回放 → 偏差测量 → 续期/降级决定 → 证据落档（含输入哈希），E1-E3 全部通过后 baseline-replay-evidence.json 可被第三方逐字节复跑核对。",
+ "selection_principles_zh": [
+  "开源可审计——运行时代码必须可被公众检查，正如它检查 AI 服务",
+  "模型与供应商中立——协议只依赖四类能力，任何实现均可替换，不得把任一具体产品设为参与或采购的必要条件",
+  "离线可复核——每次对时证据须能脱离运行时独立验证（本包演练脚本即格式样板）"
+ ],
+ "open_source_examples_zh": "开源生态已有多个满足四类能力的框架（如 Apache-2.0 许可、以基准设计-评测运行-轨迹观测-自演化为核心循环的 PenguinHarness 等 agent 构建器，及其他任何支持 OpenAI 协议的评测工具链）；均为可选参考，非必要条件。",
+ "time_checker_staffing_zh": "对时轮值由经认证的校时员执行：认证依托驻区高校实践课程（复跑本包演练/参与基准评审/模拟对时）；两人一组值守，专业角色兜底，资深者参与红方探针维护。保护栏：未成年人不轮值；回避自己参与开发的服务；裁决权在专业维护角色。落地需高校与主管部门另行确认。"
+}

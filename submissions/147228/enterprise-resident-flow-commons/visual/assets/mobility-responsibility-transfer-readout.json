@@ -1,0 +1,75 @@
+{
+  "screen_id": "MOB-RESPONSIBILITY-TRANSFER-001",
+  "status": "MOBILITY_RESPONSIBILITY_TRANSFER_PASS",
+  "check_count": 14,
+  "checks": {
+    "eight_interfaces_present": true,
+    "seven_cost_classes_present": true,
+    "all_cost_classes_used": true,
+    "all_assets_have_receiver": true,
+    "all_assets_have_non_ai_equivalent": true,
+    "all_assets_have_group_observer": true,
+    "failed_and_withdrawn_are_in_denominator": true,
+    "all_assets_have_stop_and_recovery_evidence": true,
+    "all_transfer_states_fail_closed": true,
+    "originator_accountability_retained": true,
+    "no_personal_trace_requirement": true,
+    "no_real_receipt_or_authorization_claim": true,
+    "air_candidate_blocked": true,
+    "negative_fixtures_reject_missing_fields": true
+  },
+  "summary": {
+    "interface_count": 8,
+    "cost_class_count": 7,
+    "cost_class_coverage": {
+      "space_route": 7,
+      "energy_water": 2,
+      "equipment_parts": 5,
+      "data_compute": 2,
+      "labor_maintenance": 8,
+      "public_attention": 8,
+      "public_exit_funding": 4
+    },
+    "transfer_ready_count": 0,
+    "field_receipts": 0,
+    "accepted_transfers": 0,
+    "real_operating_authorizations": 0,
+    "failed_attempts_in_denominator": true,
+    "withdrawals_in_denominator": true,
+    "air_candidate": "blocked_outside_transfer_denominator",
+    "fixture_results": [
+      {
+        "id": "F-01",
+        "expected_error": "missing_receiver_role",
+        "detected": true
+      },
+      {
+        "id": "F-02",
+        "expected_error": "missing_non_ai_equivalent",
+        "detected": true
+      },
+      {
+        "id": "F-03",
+        "expected_error": "failed_attempts_excluded",
+        "detected": true
+      },
+      {
+        "id": "F-04",
+        "expected_error": "missing_stop_evidence",
+        "detected": true
+      },
+      {
+        "id": "F-05",
+        "expected_error": "missing_recovery_evidence",
+        "detected": true
+      },
+      {
+        "id": "F-06",
+        "expected_error": "missing_affected_group_observer",
+        "detected": true
+      }
+    ]
+  },
+  "interpretation_zh": "移交屏证明的是字段、拒收和失败分母可以离线复核，不证明责任角色已经任命、预算已经落实或服务已经运行。",
+  "interpretation_en": "The transfer screen proves that fields, refusal and failed-attempt denominators are reviewable offline; it does not prove that roles are appointed, budgets are funded or services are operating."
+}

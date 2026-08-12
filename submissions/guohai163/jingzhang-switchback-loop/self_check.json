@@ -1,0 +1,136 @@
+{
+  "schema_version": "0.1.0",
+  "ok": true,
+  "submission_dir": "submissions/guohai163/jingzhang-switchback-loop",
+  "pr_author": "guohai163",
+  "stage": "formal",
+  "package_type": "professional_design_package",
+  "review_status": "formal-review-ready",
+  "can_enter_formal_review": true,
+  "missing_review_dependencies": [],
+  "spatial_issue_ids": [
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL",
+    "KEY_AREA_PROVISIONAL"
+  ],
+  "visual_issue_ids": [],
+  "professional_issue_ids": [],
+  "next_actions": [
+    "Review legacy bilingual compatibility warning: proposal.md bilingual contract requires translation_file=proposal.zh.md; legacy v1 package remains compatible",
+    "Recalculate every geometry layer and derived metric once organizer official boundary and key-area polygons are published"
+  ],
+  "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/guohai163/jingzhang-switchback-loop",
+      "title_zh": "确定性格式与包完整性校验",
+      "message": "scripts/validate_local_submission.py --pr-author guohai163 返回 PASS：必交文件、路径归属、Markdown 必填章节、元数据、三套矩阵、图纸、版权声明与 HTML 全部通过；仅余 provisional 边界与 legacy bilingual 兼容性 warning。"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "title_zh": "可信空间复核",
+      "message": "scripts/spatial_review.py（shapely + pyproj，EPSG:4548）返回 PASS，issues=3，均为 KEY_AREA_PROVISIONAL（minor）：三处重点区使用临时粗略范围，不得作为官方红线或精确面积依据。"
+    },
+    {
+      "check_id": "FORMAT_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submissions/guohai163/jingzhang-switchback-loop",
+      "title_zh": "确定性格式与包完整性校验",
+      "message": "必交文件、路径归属、Markdown 必填章节、元数据、矩阵、图纸、版权声明与 HTML 均已生成并通过本地等价校验。"
+    },
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/site_boundary.geojson",
+      "title_zh": "边界可信度复核",
+      "message": "使用 provisional_rough 边界，geometry_role=provisional_constraint、official_boundary=false、source_type 可追溯、confidence=medium；组织方官方 polygon 缺失属数据缺口，不阻断内容评分，官方数据发布后须全量复算。"
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/land_use.geojson",
+      "title_zh": "用地拓扑与覆盖复核",
+      "message": "137 个用地多边形按分带构造共享坐标，无缝无叠覆盖提交边界；覆盖率 1.0，残差 20.124 平方米，约为 0.01% 拓扑容差的五十分之一。"
+    },
+    {
+      "check_id": "KEY_AREA_COVERAGE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/key_areas.geojson",
+      "title_zh": "三处重点区覆盖与面积核对",
+      "message": "三处 KEY_AREA 均位于提交边界内且互不重叠，area_id 齐备；复算面积与公告面积偏差分别为 0.43%、0.02%、0.06%。"
+    },
+    {
+      "check_id": "METRIC_RECALC",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "metrics.json",
+      "title_zh": "指标复算一致性",
+      "message": "site/green/public/building 面积与比例均由 GeoJSON 在 EPSG:4548 下复算，与 metrics.json 完全一致；ratio 类指标均在 0–1 区间内。"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "title_zh": "离线视觉打包复核",
+      "message": "visual/index.html 与 report/proposal.html 均为离线静态页面，无 CDN、远程瓦片、外部脚本字体、iframe、表单或 API 调用；核心指标以 data-metric/data-value 标注并与 metrics.json 一致。"
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "title_zh": "专业证据链复核",
+      "message": "正文覆盖全部来源、标准、深度项、图层与 known 指标的机器可读引用；三套矩阵字段完整。"
+    },
+    {
+      "check_id": "COPYRIGHT_SCAN",
+      "result": "pass",
+      "severity": "major",
+      "target": "report/copyright_statement.md",
+      "title_zh": "版权与合规扫描",
+      "message": "全部图纸、图片与页面均由本智能体生成，未嵌入第三方图片、地图瓦片、字体、商标或肖像；未使用个人隐私或非公开资料。"
+    },
+    {
+      "check_id": "SCENARIO_PRIVACY_BOUNDARY",
+      "result": "pass",
+      "severity": "major",
+      "target": "proposal.md",
+      "title_zh": "AI 场景隐私与人工复核边界",
+      "message": "12 张场景卡均标注数据边界、隐私限制与人工复核环节，排除持续监控与不可复核的自动决策。"
+    },
+    {
+      "check_id": "TASKBOOK_COVERAGE",
+      "result": "pass",
+      "severity": "major",
+      "target": "compliance_matrix.json",
+      "title_zh": "智能体任务书覆盖",
+      "message": "agent.1–agent.6 在正文中实际展开：命名/Logo、7 个生态案例、12 张场景卡（4 个测试验证）、6 类画像、5 处朝圣地标、文化叙事与长期运营机制。"
+    },
+    {
+      "check_id": "OFFICIAL_GEOMETRY_AVAILABLE",
+      "result": "unknown",
+      "severity": "info",
+      "target": "geometry/site_boundary.geojson",
+      "title_zh": "官方几何可得性",
+      "message": "组织方尚未发布官方三层范围与重点区 polygon；本项记录为已知数据缺口，不作为方案质量问题。"
+    },
+    {
+      "check_id": "STATUTORY_CONTROL_CONDITIONS",
+      "result": "unknown",
+      "severity": "info",
+      "target": "metrics.json",
+      "title_zh": "法定控规条件可得性",
+      "message": "容积率、建筑高度、建筑密度、绿地率与退线均未提供，相关指标保持 unknown。"
+    }
+  ]
+}

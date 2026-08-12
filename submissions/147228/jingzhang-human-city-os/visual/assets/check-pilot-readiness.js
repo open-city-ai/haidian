@@ -38,6 +38,10 @@ function recordFailures(record) {
   };
   localCheck(gateIds.has(record.release_gate), `${record.scenario_id}: release gate must resolve`);
   localCheck(record.no_deployment_claim === true, `${record.scenario_id}: no_deployment_claim must stay true`);
+  localCheck(typeof record.first_evidence_needed_zh === "string" && record.first_evidence_needed_zh.length >= 20, `${record.scenario_id}: first_evidence_needed_zh must describe the first evidence`);
+  localCheck(typeof record.first_evidence_needed_en === "string" && record.first_evidence_needed_en.length >= 20, `${record.scenario_id}: first_evidence_needed_en must describe the first evidence`);
+  localCheck(typeof record.first_evidence_owner_zh === "string" && record.first_evidence_owner_zh.includes("待授权"), `${record.scenario_id}: first_evidence_owner_zh must remain unconfirmed`);
+  localCheck(typeof record.first_evidence_owner_en === "string" && record.first_evidence_owner_en.includes("To-be-authorized"), `${record.scenario_id}: first_evidence_owner_en must remain unconfirmed`);
   for (const [field, expected] of Object.entries(expectedFields)) {
     localCheck(record.readiness?.[field] === expected, `${record.scenario_id}: ${field} must be ${expected}`);
   }

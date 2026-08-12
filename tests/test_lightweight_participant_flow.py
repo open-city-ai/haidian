@@ -67,16 +67,21 @@ class LightweightParticipantFlowTests(unittest.TestCase):
         self.assertTrue(report["ok"])
         self.assertEqual(report["partial_clone_filter"], "blob:none")
         self.assertEqual(report["depth"], 50)
-        self.assertIn("scenarios", report["sparse_paths"])
-        self.assertIn("sources", report["sparse_paths"])
+        self.assertIn("/scenarios", report["sparse_paths"])
+        self.assertIn("/sources", report["sparse_paths"])
+        self.assertIn("/tracks.json", report["sparse_paths"])
         flattened = [token for command in report["commands"] for token in command]
         self.assertIn("--filter=blob:none", flattened)
         self.assertIn("sparse-checkout", flattened)
-        self.assertIn("scenarios", flattened)
-        self.assertIn("sources", flattened)
+        self.assertIn("/scenarios", flattened)
+        self.assertIn("/sources", flattened)
         self.assertIn("submissions/octocat/agent-city", flattened)
         self.assertIn("submission/octocat/agent-city", flattened)
         self.assertIn("upstream", flattened)
+        self.assertIn("--no-cone", flattened)
+        self.assertIn("/requirements-review.txt", flattened)
+        self.assertIn("/requirements-translation.txt", flattened)
+        self.assertIn("/tracks.json", flattened)
 
     def test_bootstrap_defaults_fork_to_case_preserving_login(self) -> None:
         completed = self.run_command(
@@ -127,6 +132,29 @@ class LightweightParticipantFlowTests(unittest.TestCase):
             with mock.patch.object(bootstrap, "run", return_value="true"):
                 complete_report = bootstrap.build_report(args, target, [])
             self.assertTrue(complete_report["ok"])
+
+    def test_bootstrap_cli_reports_structured_validation_failure(self) -> None:
+        bootstrap = load_bootstrap_module()
+        with tempfile.TemporaryDirectory() as tmp:
+            with mock.patch.object(bootstrap, "command_plan", return_value=[]), \
+                mock.patch.object(bootstrap, "execute_plan"), \
+                mock.patch.object(
+                    bootstrap,
+                    "build_report",
+                    return_value={
+                        "ok": False,
+                        "missing_required_files": ["requirements-review.txt"],
+                        "missing_required_directories": ["scenarios"],
+                    },
+                ), \
+                mock.patch("builtins.print") as print_mock:
+                return_code = bootstrap.main(["--target", tmp])
+
+            self.assertEqual(return_code, 1)
+            rendered = print_mock.call_args.args[0]
+            self.assertIn("requirements-review.txt", rendered)
+            self.assertIn("scenarios", rendered)
+            self.assertNotIn("KeyError", rendered)
 
     def test_peer_catalog_reads_local_index_without_materializing_media(self) -> None:
         completed = self.run_command(

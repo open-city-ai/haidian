@@ -13,6 +13,7 @@
 | proposal.md | 本投稿原创中文方案文字，由 AI 工具辅助研究、组织与起草，投稿者负责选择、核验与发布 | 正式资料和背景案例只以短摘要及证据标签引用 | 可按投稿许可展示；不得把概念建议改述为官方批准或承诺 |
 | proposal.en.md | 对 proposal.md 的完整独立英文译稿，章节、主张、证据和图位对齐 | 使用仓库术语表；不复制第三方译文 | 与中文主稿共同展示；语义一致性由投稿者最终复核 |
 | report/narrative.md | 从主体方案原创提炼的派生摘要 | 无外部文字资产 | 仅作阅读导航，不替代主体方案或机器证据 |
+| visual/assets/question-ledger.schema.json、question-ledger.example.json | 本投稿原创的问题治理交换格式与 12 项概念示例 | 来源、假设与设计 feature 仅以 ID 引用 | 用于展示问题、责任、验证门和退出条件；不是实际运营台账、审批或采购记录 |
 | compliance_matrix.json、standard_matrix.json、design_depth_matrix.json、sources.json | 本投稿原创的结构化编排；官方要求、标准状态和来源字段作事实性登记 | 对仓库 schema、任务书、标准索引和来源登记表进行映射 | 可用于校验和审查；背景或 provisional 来源不得被升级为正式控制依据 |
 | geometry/*.geojson 与 metrics.json | 由仓库 provisional geometry、统一分类和投稿生成逻辑派生；原始来源权利与限制保留 | PROVISIONAL-BOUNDARIES；无外部地图、OSM 或截图 | 仅支撑概念生成、面积与拓扑校核及图解；不得作为官方红线、精确面积或审批依据 |
 | assets/figures/site-overview.png 及 .en.png | 由本投稿文字、GeoJSON、metrics 和矩阵程序派生的原创信息图 | 无外部图片、地图底图、图标或字体文件 | 中文和英文阅读版使用；图不是边界或指标的权威数据源 |

@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0.0",
+  "screen_id": "MOBILITY-SERVICE-CONTINUITY-001",
+  "status": "synthetic_staged_recovery_not_operational",
+  "purpose": "Compare early notice, bounded mode shift, human takeover and maintenance verification across enterprise, resident, accessibility, logistics, night and cross-boundary groups under declared disruptions.",
+  "population_reference": 3122000,
+  "aggregate_only": true,
+  "air_candidate": "blocked",
+  "method_sources": [
+    "DISRUPTION-MODE-SHIFT-2022",
+    "ROBUST-TRANSIT-PATH-2022",
+    "EQUITABLE-TRANSIT-UNCERTAINTY-2020",
+    "BEIJING-URT-RESCHEDULE-2024"
+  ],
+  "clocks": [
+    {
+      "id": "passenger_service_clock",
+      "label_zh": "乘客服务时钟",
+      "label_en": "passenger service clock",
+      "unit": "minutes",
+      "tracks": ["notice", "handoff", "fallback", "arrival"]
+    },
+    {
+      "id": "asset_recovery_clock",
+      "label_zh": "资产恢复时钟",
+      "label_en": "asset recovery clock",
+      "unit": "hours",
+      "tracks": ["owner", "repair", "accessible verification", "public-route restoration"]
+    }
+  ],
+  "stages": [
+    {"id": "S0", "label_zh": "正常", "label_en": "normal", "service_minute": 0, "asset_hour": 0},
+    {"id": "S1", "label_zh": "预警", "label_en": "notice", "service_minute": 5, "asset_hour": 0},
+    {"id": "S2", "label_zh": "中断", "label_en": "disruption", "service_minute": 15, "asset_hour": 0},
+    {"id": "S3", "label_zh": "接管", "label_en": "fallback", "service_minute": 35, "asset_hour": 1},
+    {"id": "S4", "label_zh": "修复", "label_en": "repair", "service_minute": 60, "asset_hour": 3},
+    {"id": "S5", "label_zh": "复核", "label_en": "verify", "service_minute": 90, "asset_hour": 4}
+  ],
+  "groups": [
+    {"id": "enterprise_employee", "label_zh": "企业员工", "label_en": "enterprise employee", "count": 1092700, "risk_multiplier": 0.92},
+    {"id": "resident_worker", "label_zh": "居民工作者", "label_en": "resident worker", "count": 936600, "risk_multiplier": 1.00},
+    {"id": "carer_or_child", "label_zh": "照护者 / 儿童", "label_en": "carer / child", "count": 468300, "risk_multiplier": 1.18},
+    {"id": "visitor_service", "label_zh": "访客 / 服务", "label_en": "visitor / service", "count": 312200, "risk_multiplier": 0.98},
+    {"id": "logistics_and_maintenance", "label_zh": "物流 / 维护", "label_en": "logistics / maintenance", "count": 156100, "risk_multiplier": 1.15},
+    {"id": "night_worker", "label_zh": "夜班工作者", "label_en": "night worker", "count": 156100, "risk_multiplier": 1.12}
+  ],
+  "mode_shares_from_regional_readout": {
+    "metro": 0.305,
+    "bus": 0.193,
+    "bicycle": 0.1354,
+    "walking_wheelchair": 0.2091,
+    "car": 0.0959,
+    "enterprise_shuttle": 0.0616
+  },
+  "policies": [
+    {
+      "id": "P0_late_notice",
+      "label_zh": "P0 晚通知",
+      "label_en": "P0 late notice",
+      "announcement_lead_minutes": 0,
+      "fallback_capture": 0.58,
+      "repair_factor": 1.15,
+      "protected_group_bonus": 0,
+      "human_takeover": false
+    },
+    {
+      "id": "P1_early_bounded",
+      "label_zh": "P1 提前通知 + 有界换乘",
+      "label_en": "P1 early notice + bounded shift",
+      "announcement_lead_minutes": 15,
+      "fallback_capture": 0.82,
+      "repair_factor": 0.92,
+      "protected_group_bonus": 0.08,
+      "human_takeover": true
+    },
+    {
+      "id": "P2_human_first",
+      "label_zh": "P2 人工优先",
+      "label_en": "P2 human first",
+      "announcement_lead_minutes": 20,
+      "fallback_capture": 0.88,
+      "repair_factor": 0.80,
+      "protected_group_bonus": 0.16,
+      "human_takeover": true
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "R1_metro_disruption",
+      "label_zh": "地铁中断",
+      "label_en": "metro disruption",
+      "impact_modes": ["metro"],
+      "affected_share_by_mode": {"metro": 0.25},
+      "base_delay_minutes": 30,
+      "repair_hours": 2,
+      "notice_required_minutes": 10,
+      "accessibility_exposure": 0.04,
+      "description_zh": "地铁 30 分钟中断；公交、人工引导和受控接驳保留，但空中候选不开放。",
+      "description_en": "Thirty-minute metro disruption; bus, human wayfinding and bounded feeders remain, while the air candidate stays closed."
+    },
+    {
+      "id": "R2_bus_disruption",
+      "label_zh": "公交中断",
+      "label_en": "bus disruption",
+      "impact_modes": ["bus"],
+      "affected_share_by_mode": {"bus": 0.22},
+      "base_delay_minutes": 25,
+      "repair_hours": 2.5,
+      "notice_required_minutes": 10,
+      "accessibility_exposure": 0.06,
+      "description_zh": "公交线路中断；地铁、人工服务和有限接驳承担回退。",
+      "description_en": "Bus-line disruption; metro, human service and bounded feeders provide the fallback."
+    },
+    {
+      "id": "W1_severe_weather",
+      "label_zh": "强天气",
+      "label_en": "severe weather",
+      "impact_modes": ["bicycle", "walking_wheelchair"],
+      "affected_share_by_mode": {"bicycle": 0.35, "walking_wheelchair": 0.12},
+      "base_delay_minutes": 45,
+      "repair_hours": 4,
+      "notice_required_minutes": 20,
+      "accessibility_exposure": 0.16,
+      "description_zh": "骑行和步行条件下降；连续无障碍路线不能被车辆回退挤占。",
+      "description_en": "Cycling and walking conditions deteriorate; the continuous accessible route cannot be displaced by vehicles."
+    },
+    {
+      "id": "C1_curb_service_failure",
+      "label_zh": "路缘服务故障",
+      "label_en": "curb-service failure",
+      "impact_modes": ["car", "enterprise_shuttle"],
+      "affected_share_by_mode": {"car": 0.28, "enterprise_shuttle": 0.25},
+      "base_delay_minutes": 20,
+      "repair_hours": 3,
+      "notice_required_minutes": 5,
+      "accessibility_exposure": 0.08,
+      "description_zh": "停车、接送或装卸路缘进入人工清场；公共通行与消防净空优先。",
+      "description_en": "Parking, pickup or loading curb enters human clearing; public access and fire clearance take priority."
+    },
+    {
+      "id": "X1_cross_boundary_return",
+      "label_zh": "跨边界返程",
+      "label_en": "cross-boundary return",
+      "impact_modes": ["metro", "bus", "enterprise_shuttle"],
+      "affected_share_by_mode": {"metro": 0.10, "bus": 0.08, "enterprise_shuttle": 0.12},
+      "base_delay_minutes": 35,
+      "repair_hours": 2.5,
+      "notice_required_minutes": 15,
+      "accessibility_exposure": 0.10,
+      "description_zh": "对外通勤返程发生衔接失效；不把边界外的人流硬塞回站点内。",
+      "description_en": "An external commute loses a connection; people outside the boundary are not forced into an internal station queue."
+    }
+  ],
+  "selection_rule": [
+    "all_agents_processed",
+    "mass_conservation",
+    "accessible_route_preserved",
+    "air_candidate_blocked",
+    "gate_pass",
+    "continuity_proxy_max",
+    "worst_group_continuity_gap_points_min",
+    "recovery_p50_minutes_min"
+  ],
+  "calibration_required_before_local_decision": [
+    "dated disruption and recovery logs by metro, bus, bicycle, curb and external gateway",
+    "15-minute mode, station, stop, curb and accessible-route counts",
+    "announcement lead time, alternate-mode acceptance and denied-boarding observations",
+    "grouped recovery time and accessible-route verification records",
+    "enterprise and resident satisfaction/intercept evidence without continuous personal traces",
+    "named maintenance owner, service window and public-route restoration receipt"
+  ],
+  "interpretation": "This staged screen makes early warning, bounded mode shift, human takeover and asset recovery visible in one aggregate ledger. It is not a timetable, incident forecast, resident satisfaction survey, local resilience claim or permission to operate an air service. Replace every declared input with dated local evidence before decisions."
+}

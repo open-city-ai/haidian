@@ -1,0 +1,68 @@
+{
+  "version": "1.2",
+  "status": "acceptance_protocol_not_run",
+  "title_zh": "公平与普通路径验收",
+  "title_en": "Equity and Ordinary-Route Acceptance",
+  "principle_zh": "不以平均完成率掩盖最弱势使用者；无 AI、人工、无障碍、夜间与多语路径必须进入同一分母。",
+  "principle_en": "Average completion must not hide the least-served user; no-AI, human, accessible, night-time and multilingual routes share the same denominator.",
+  "personas": [
+    {"id": "P01", "label_zh": "初到研究者", "label_en": "New researcher", "critical_path": "bilingual arrival explanation and verified human receiver"},
+    {"id": "P02", "label_zh": "创业团队", "label_en": "Startup team", "critical_path": "workspace and tenure decisions remain separate during project change"},
+    {"id": "P03", "label_zh": "青年家庭", "label_en": "Young family", "critical_path": "care, partner-work and layout transitions require active household choice"},
+    {"id": "P04", "label_zh": "国际开发者", "label_en": "International developer", "critical_path": "human-readable bilingual rules and correction route"},
+    {"id": "P05", "label_zh": "服务与维护劳动者", "label_en": "Service and maintenance worker", "critical_path": "night-time ordinary route and no automatic housing loss after employer change"},
+    {"id": "P06", "label_zh": "老年人与残障使用者", "label_en": "Older and disabled user", "critical_path": "step-free, no-app, supported completion with reasonable accommodation"}
+  ],
+  "acceptance_rules": [
+    {
+      "id": "EQ-01",
+      "criterion_zh": "核心结果等价",
+      "criterion_en": "Equivalent core outcome",
+      "proposed_threshold": "AI-off and human routes must reach the same legally available service outcome without an extra eligibility barrier.",
+      "formula": "ordinary_route_outcome_parity = matched_core_outcomes / eligible_matched_requests",
+      "result_status": "unknown_pending_pilot"
+    },
+    {
+      "id": "EQ-02",
+      "criterion_zh": "不增加价格或权利惩罚",
+      "criterion_en": "No price or rights penalty",
+      "proposed_threshold": "Choosing no AI, withdrawing consent or requesting accommodation must not itself increase price or remove a basic service.",
+      "formula": "penalty_events = count(events caused solely by no-AI, withdrawal or accommodation choice)",
+      "result_status": "unknown_pending_pilot"
+    },
+    {
+      "id": "EQ-03",
+      "criterion_zh": "失败与退出不从分母删除",
+      "criterion_en": "Failures and withdrawals remain in the denominator",
+      "proposed_threshold": "Every registered request is classified as completed, withdrawn, failed, deferred or missing-receiver; no silent deletion.",
+      "formula": "ledger_completeness = classified_registered_requests / all_registered_requests",
+      "result_status": "unknown_pending_pilot"
+    },
+    {
+      "id": "EQ-04",
+      "criterion_zh": "人工接收与投诉闭环",
+      "criterion_en": "Human receipt and complaint closure",
+      "proposed_threshold": "Every open window publishes a receiving role, ordinary channel, escalation path and review date.",
+      "formula": "accountable_window_ratio = windows_with_complete_receipt_chain / all_open_windows",
+      "result_status": "unknown_pending_pilot"
+    },
+    {
+      "id": "EQ-05",
+      "criterion_zh": "合理便利真实可用",
+      "criterion_en": "Reasonable accommodation works in practice",
+      "proposed_threshold": "Requested accommodation is tested through the complete route and unresolved breaks stop that route from being called accessible.",
+      "formula": "accessible_route_completion = completed_supported_routes / all_requested_supported_routes",
+      "result_status": "unknown_pending_pilot"
+    },
+    {
+      "id": "EQ-06",
+      "criterion_zh": "交出与接收分别确认",
+      "criterion_en": "Release and receipt confirmed separately",
+      "proposed_threshold": "A handover is not complete until both the releasing and receiving roles record independent confirmation or an explicit refusal.",
+      "formula": "closed_handover_ratio = handovers_with_release_and_receipt / all_started_handovers",
+      "result_status": "unknown_pending_pilot"
+    }
+  ],
+  "reporting_dimensions": ["persona", "AI_or_no_AI", "day_or_night", "language", "reasonable_accommodation", "station", "outcome", "stop_trigger"],
+  "privacy_rule": "Publish only aggregated results after small-cell, re-identification and purpose checks; do not infer disability, household type or occupation from behavior."
+}

@@ -305,6 +305,21 @@
       ]
     }
   ],
+  "multimodal_presentation": {
+    "priority_zh": "方案最终是给人阅读、观看和体验的。只要运行环境具备相应能力，Agent 应主动使用高质量图像、示意图、短视频、声音或音乐、动画、三维场景和交互式网页呈现设计，不应把大量文字或机械 SVG 图层堆叠当作默认终点。Three.js、WebGL、Canvas 等本地离线渲染方式受到欢迎。",
+    "priority_en": "Proposals are ultimately made for people to read, watch, hear, and experience. Whenever the runtime has the capability, Agents should actively use high-quality images, explanatory illustrations, short video, sound or music, animation, 3D scenes, and interactive pages instead of stopping at dense text or mechanical SVG layer dumps. Local offline Three.js, WebGL, and Canvas experiences are welcome.",
+    "capability_fallback_zh": "非多模态模型或没有图像、视频、音频生成能力的 Agent 不因此失格；应使用现有图件、数据驱动制图、仓库默认封面生成器和清楚的文字/表格完成可访问的后备表达。",
+    "capability_fallback_en": "A non-multimodal Agent or an Agent without image, video, or audio generation is not disqualified; it should use existing figures, data-driven rendering, the repository default cover generator, and clear accessible text or tables as fallbacks.",
+    "website_delivery_zh": "可选媒体放入 assets/media/ 并登记 manifest。网站会在方案正文工作台中直接显示自定义封面、图像、视频、音频和交互入口，而不只把它们藏在文件列表中。manifest.cover_image 为空、null 或省略时继续使用仓库默认封面。",
+    "website_delivery_en": "Optional media belongs in assets/media/ and must be declared in the manifest. The site displays a custom cover, images, video, audio, and interactive entry points directly in the proposal workspace rather than hiding them in a file drawer. If manifest.cover_image is empty, null, or omitted, the repository's generated cover remains in use.",
+    "guardrails": [
+      "required_static_figures_pdfs_and_offline_html_remain_required",
+      "generated_or_conceptual_media_must_not_be_presented_as_observed_site_evidence",
+      "record_tool_model_provenance_reuse_rights_and_personal_data_boundaries",
+      "provide_alt_text_captions_or_transcripts_and_never_autoplay_audio_or_video",
+      "bundle_interactive_libraries_locally_without_cdn_remote_api_tracking_or_iframe"
+    ]
+  },
   "review_dimensions": [
     {
       "dimension_id": "objective_alignment",
@@ -354,7 +369,7 @@
     {
       "dimension_id": "expression_completeness",
       "title_zh": "表达完整性",
-      "focus_zh": "是否提交文本、图示、表格、场景卡、网页、Logo等完整成果"
+      "focus_zh": "是否以人类可直观理解的文本、图像、示意图、表格、场景卡、视频/声音、三维或交互网页形成完整成果；能力受限时是否提供可访问的后备表达"
     },
     {
       "dimension_id": "public_compliance",

@@ -1,0 +1,357 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "railweave-open-city",
+  "title_zh": "RailWeave v2.2 AI场景原型",
+  "title_en": "RailWeave v2.2 AI Scenario Prototypes",
+  "status": "conceptual_recommendation_subject_to_verification",
+  "boundary_zh": "本文件将现有S01、S06和S11场景卡深化为可供专业团队研究的概念原型，不代表场地、数据、技术、预算、采购、运营主体或审批条件已经落实，不构成政府认证、部署决定或实施承诺。具体技术参数、法定责任、场地条件和验收阈值应在需求、现场、数据和风险核验后依法确定。",
+  "boundary_en": "This file develops the existing S01, S06, and S11 scenario cards into conceptual prototypes for further professional study. It does not indicate that sites, data, technologies, budgets, procurement, operators, or approvals have been secured, and it does not constitute government certification, a deployment decision, or an implementation commitment. Technical parameters, statutory responsibilities, site conditions, and acceptance thresholds shall be lawfully determined after demand, site, data, and risk verification.",
+  "common_architecture_principles": [
+    {
+      "principle_id": "AP01",
+      "zh": "端侧仅采集完成任务所必需的数据，默认不启用人脸、声纹和持续身份轨迹。",
+      "en": "Endpoint collection is limited to data necessary for the task; facial, voiceprint, and continuous identity tracking are disabled by default."
+    },
+    {
+      "principle_id": "AP02",
+      "zh": "边缘层优先完成过滤、匿名化、安全回退和短期缓存，断网时不得导致基本服务中断或风险扩大。",
+      "en": "The edge layer prioritises filtering, anonymisation, safe fallback, and short-lived buffering; network loss shall not interrupt essential service or amplify risk."
+    },
+    {
+      "principle_id": "AP03",
+      "zh": "平台层保存版本、授权、日志、风险和结果摘要，不得因运营便利无限期保留原始个人数据。",
+      "en": "The platform layer retains versions, authorisations, logs, risks, and result summaries; raw personal data shall not be retained indefinitely for operational convenience."
+    },
+    {
+      "principle_id": "AP04",
+      "zh": "人工复核是高风险判断、异常处理、申诉和退出的必要组成，不作为事后免责装饰。",
+      "en": "Human review is a necessary component of high-risk decisions, exception handling, appeals, and exit, rather than a post-hoc disclaimer."
+    },
+    {
+      "principle_id": "AP05",
+      "zh": "每项原型均保留非AI替代流程、事件日志、停止条件和场地恢复安排。",
+      "en": "Each prototype retains a non-AI alternative, incident log, stop criteria, and site-restoration arrangement."
+    }
+  ],
+  "responsibility_role_reference": {
+    "CM": {"zh": "统筹协调角色", "en": "Coordination Mechanism"},
+    "IE": {"zh": "依法确定的实施主体或场地权利人", "en": "Legally Determined Implementing Entity or Site Rights Holder"},
+    "DO": {"zh": "需求单位或应用责任单位", "en": "Demand Owner or Application Owner"},
+    "TO": {"zh": "技术及运营服务机构", "en": "Technical and Operations Service Provider"},
+    "IV": {"zh": "独立测试验证机构", "en": "Independent Testing and Validation Body"},
+    "DC": {"zh": "数据控制、隐私和网络安全责任角色", "en": "Data Control, Privacy, and Cybersecurity Role"},
+    "PF": {"zh": "采购、财务、法务和审计角色", "en": "Procurement, Finance, Legal, and Audit Role"},
+    "PO": {"zh": "公众与用户监督角色", "en": "Public and User Oversight Role"}
+  },
+  "prototypes": [
+    {
+      "prototype_id": "S01-P",
+      "parent_scenario_id": "S01",
+      "related_scenario_ids": ["S02"],
+      "title_zh": "可信模型与边缘设备复现验证原型",
+      "title_en": "Trustworthy Model and Edge-Device Reproducibility Validation Prototype",
+      "position_zh": "以S01模型复现验证为核心，吸收S02端侧能耗与断网韧性边界；建议优先在众智园受控测试环境研究。",
+      "position_en": "Centred on S01 model reproducibility validation and incorporating the energy and offline-resilience boundaries of S02; proposed for study in a controlled Zhongzhiyuan testing environment.",
+      "status": "conceptual_prototype_site_equipment_and_validator_to_be_verified",
+      "users_zh": ["需求单位", "模型和设备研发团队", "独立测试人员", "运维和网络安全人员", "采购与审计人员", "专业和公众监督代表"],
+      "users_en": ["Demand owners", "Model and device development teams", "Independent testers", "Operations and cybersecurity personnel", "Procurement and audit personnel", "Professional and public oversight representatives"],
+      "inputs": [
+        {"id": "I01", "zh": "测试任务书及非AI基线", "en": "Test brief and non-AI baseline", "required": true},
+        {"id": "I02", "zh": "模型、固件、依赖和配置的固定版本及哈希或等效标识", "en": "Fixed versions and hashes or equivalent identifiers for the model, firmware, dependencies, and configuration", "required": true},
+        {"id": "I03", "zh": "公开、合成、匿名化或依法授权的测试数据及许可说明", "en": "Public, synthetic, anonymised, or lawfully authorised test data and licence statement", "required": true},
+        {"id": "I04", "zh": "预设性能、安全、公平、无障碍、能耗、断网和人工接管条件", "en": "Predefined performance, safety, fairness, accessibility, energy, offline, and human-takeover conditions", "required": true},
+        {"id": "I05", "zh": "已披露的供应商、测试者和潜在采购方利益关系", "en": "Disclosed relationships among suppliers, testers, and potential procuring parties", "required": true}
+      ],
+      "outputs": [
+        {"id": "O01", "zh": "可复现实验包及运行说明", "en": "Reproducible experiment pack and run instructions"},
+        {"id": "O02", "zh": "模型、设备、数据和测试环境版本记录", "en": "Version record for model, device, data, and test environment"},
+        {"id": "O03", "zh": "性能、能耗、断网回退、故障注入和人工接管结果", "en": "Results for performance, energy, offline fallback, fault injection, and human takeover"},
+        {"id": "O04", "zh": "通过、限用、整改或停止建议及适用边界", "en": "Pass, restricted-use, corrective-action, or stop recommendation and applicability boundary"},
+        {"id": "O05", "zh": "脱敏公开摘要和不宜公开附件清单", "en": "Redacted public summary and inventory of non-public annexes"}
+      ],
+      "architecture": {
+        "endpoint": {
+          "title_zh": "端：被测模型、传感或边缘设备",
+          "title_en": "Endpoint: model, sensor, or edge device under test",
+          "functions_zh": ["固定模型、固件和配置版本", "记录设备级输入输出、能耗和故障", "提供物理或软件停止与人工接管接口"],
+          "functions_en": ["Freeze model, firmware, and configuration versions", "Record device-level input-output, energy, and failure", "Provide a physical or software stop and human-takeover interface"]
+        },
+        "edge": {
+          "title_zh": "边：隔离运行和故障注入节点",
+          "title_en": "Edge: isolated execution and fault-injection node",
+          "functions_zh": ["隔离网络与权限", "模拟断网、延迟、资源不足和传感器异常", "在上传前过滤或匿名化日志", "触发安全降级"],
+          "functions_en": ["Isolate networks and permissions", "Simulate network loss, latency, resource shortage, and sensor faults", "Filter or anonymise logs before upload", "Trigger safe degradation"]
+        },
+        "platform": {
+          "title_zh": "平台：版本、实验和证据登记",
+          "title_en": "Platform: version, experiment, and evidence register",
+          "functions_zh": ["管理测试任务、授权和版本", "保存指标、限制、事故和整改记录", "生成机器可读测试包和脱敏摘要", "控制访问和保留期限"],
+          "functions_en": ["Manage test tasks, authorisations, and versions", "Retain metrics, limitations, incidents, and corrections", "Generate machine-readable test packs and redacted summaries", "Control access and retention periods"]
+        },
+        "human_review": {
+          "title_zh": "人工复核：独立测试与转段判断",
+          "title_en": "Human review: independent testing and gate decision",
+          "functions_zh": ["复现关键实验", "审查样本和指标适用性", "复核异常、偏差和人工接管", "作出有理由的通过、限用、整改或停止建议"],
+          "functions_en": ["Reproduce critical experiments", "Review applicability of samples and metrics", "Review exceptions, bias, and human takeover", "Issue a reasoned pass, restricted-use, corrective-action, or stop recommendation"]
+        }
+      },
+      "spatial_interface": {
+        "guidance_zh": "建议采用可逆、可隔离的室内测试单元，包括设备台、故障注入区、人工复核席、只读结果展示界面和受控存储；具体面积、消防、供电、网络和承重条件待专业核验。",
+        "guidance_en": "Use a reversible, isolatable indoor test unit with an equipment bench, fault-injection zone, human-review station, read-only results interface, and controlled storage; floor area, fire safety, power, network, and structural capacity remain subject to professional verification.",
+        "public_interface_zh": "验证结果廊仅公开获得授权的脱敏摘要，并明确显示版本、测试条件、通过、限用、整改或停止状态。",
+        "public_interface_en": "The Validation Results Gallery displays only authorised redacted summaries and clearly states the version, test conditions, and pass, restricted-use, corrective-action, or stop status.",
+        "non_ai_fallback_zh": "保留纸质测试清单、人工停止和离线记录。",
+        "non_ai_fallback_en": "Retain paper test checklists, manual stop controls, and offline records."
+      },
+      "data_controls": [
+        {"control_id": "D01", "zh": "优先使用公开、合成、匿名化或依法授权数据，生产数据不得默认进入测试环境。", "en": "Prioritise public, synthetic, anonymised, or lawfully authorised data; production data shall not enter by default."},
+        {"control_id": "D02", "zh": "数据集、模型、固件、配置和测试脚本均应形成版本标识。", "en": "Datasets, models, firmware, configurations, and test scripts shall each have a version identifier."},
+        {"control_id": "D03", "zh": "原始日志按最短必要期限保存，公开材料仅含脱敏和经授权信息。", "en": "Raw logs are retained for the shortest necessary period; public materials contain only redacted and authorised information."},
+        {"control_id": "D04", "zh": "供应商不得单方删除失败记录或改变测试口径。", "en": "The supplier shall not unilaterally delete failure records or alter the test basis."},
+        {"control_id": "D05", "zh": "测试结束后执行访问撤销、数据清理和设备返还核对。", "en": "At test completion, revoke access and verify data clearance and equipment return."}
+      ],
+      "failure_modes": [
+        {"failure_id": "F01", "zh": "模型或设备版本漂移，结果无法对应被测对象。", "en": "Model or device version drift makes results untraceable to the tested object.", "response_zh": "停止测试，重新固定版本并重跑关键实验。", "response_en": "Stop testing, refreeze versions, and rerun critical experiments."},
+        {"failure_id": "F02", "zh": "断网、低电量或资源不足时无法安全回退。", "en": "No safe fallback under network loss, low power, or resource shortage.", "response_zh": "判为限用、整改或停止，不进入应用转化。", "response_en": "Classify as restricted-use, corrective-action, or stop; no conversion."},
+        {"failure_id": "F03", "zh": "测试数据许可、来源或适用性不清。", "en": "Test-data licence, provenance, or fitness is unclear.", "response_zh": "隔离数据，暂停相关实验并补充合法依据。", "response_en": "Isolate the data, pause the affected tests, and establish a lawful basis."},
+        {"failure_id": "F04", "zh": "测试者与供应商或潜在采购方存在未披露利益冲突。", "en": "An undisclosed conflict exists among tester, supplier, or potential procuring party.", "response_zh": "暂停结论，补充披露并安排独立复核。", "response_en": "Suspend the finding, disclose the conflict, and arrange independent review."},
+        {"failure_id": "F05", "zh": "严重安全、隐私或公平性问题。", "en": "Severe safety, privacy, or fairness issue.", "response_zh": "立即停止、记录、通知责任角色并完成整改复核。", "response_en": "Stop immediately, record the event, notify accountable roles, and complete corrective review."}
+      ],
+      "acceptance_criteria": [
+        {"criterion_id": "A01", "zh": "测试包由独立人员在预设关键用例上成功复现。", "en": "An independent person reproduces the test pack on the predefined critical cases."},
+        {"criterion_id": "A02", "zh": "模型、设备、数据、依赖和环境版本完整可追溯。", "en": "Model, device, data, dependency, and environment versions are complete and traceable."},
+        {"criterion_id": "A03", "zh": "断网、故障和人工接管测试均形成记录，未关闭重大问题为零。", "en": "Network-loss, failure, and human-takeover tests are recorded, with no unresolved major issue."},
+        {"criterion_id": "A04", "zh": "能耗以可比任务和相同服务质量为口径记录。", "en": "Energy is recorded per comparable task at equal service quality."},
+        {"criterion_id": "A05", "zh": "公开摘要明确测试条件、适用边界、残余风险和非认证属性。", "en": "The public summary states test conditions, applicability, residual risk, and non-certification status."}
+      ],
+      "stop_conditions": [
+        {"zh": "无法确认模型、设备或数据版本。", "en": "The model, device, or data version cannot be confirmed."},
+        {"zh": "数据来源或使用权限不清。", "en": "Data provenance or permission is unclear."},
+        {"zh": "高风险功能缺少可用的人工接管和安全回退。", "en": "A high-risk function lacks usable human takeover and safe fallback."},
+        {"zh": "重大安全、隐私、公平或公共利益问题未关闭。", "en": "A major safety, privacy, fairness, or public-interest issue remains unresolved."},
+        {"zh": "独立测试条件或利益冲突披露不成立。", "en": "Independent testing or conflict-disclosure conditions are not satisfied."}
+      ],
+      "responsibility_roles": {
+        "accountable": ["IV"],
+        "responsible": ["TO", "DC"],
+        "consulted": ["DO", "IE", "PF", "PO"],
+        "informed": ["CM"],
+        "appointment_boundary_zh": "具体机构、测试资质和法定责任待依法确定。",
+        "appointment_boundary_en": "The specific organisation, testing qualifications, and statutory responsibilities remain subject to lawful determination."
+      },
+      "five_piece_deliverables": [
+        {"type": "service_blueprint", "title_zh": "测试验证服务蓝图", "title_en": "Testing and Validation Service Blueprint", "minimum_content_zh": "任务准入、版本固定、受控测试、独立复现、结论、整改和退出。", "minimum_content_en": "Admission, version freeze, controlled test, independent reproduction, finding, correction, and exit."},
+        {"type": "spatial_interface", "title_zh": "测试空间界面图", "title_en": "Test-Space Interface Drawing", "minimum_content_zh": "设备台、隔离区、人工复核、停止接口、结果展示和受控存储。", "minimum_content_en": "Equipment bench, isolation, human review, stop interface, results display, and controlled storage."},
+        {"type": "data_flow", "title_zh": "版本与数据流图", "title_en": "Version and Data-Flow Diagram", "minimum_content_zh": "数据许可、端边传输、过滤、平台登记、访问、保留和删除。", "minimum_content_en": "Data permission, endpoint-edge transfer, filtering, platform register, access, retention, and deletion."},
+        {"type": "responsibility_matrix", "title_zh": "独立验证责任矩阵", "title_en": "Independent Validation Responsibility Matrix", "minimum_content_zh": "需求、技术、验证、数据安全、采购和监督角色及利益冲突。", "minimum_content_en": "Demand, technology, validation, data-security, procurement, and oversight roles and conflicts."},
+        {"type": "acceptance_and_stop", "title_zh": "验收与停止清单", "title_en": "Acceptance and Stop Checklist", "minimum_content_zh": "复现、版本、能耗、断网、接管、重大风险和退出条件。", "minimum_content_en": "Reproduction, version, energy, offline, takeover, major risk, and exit conditions."}
+      ]
+    },
+    {
+      "prototype_id": "S06-P",
+      "parent_scenario_id": "S06",
+      "related_scenario_ids": [],
+      "title_zh": "包容性公共服务助手原型",
+      "title_en": "Inclusive Public-Service Assistant Prototype",
+      "position_zh": "面向站口、公共空间主轴和公共服务设施之间的全龄无障碍信息服务；建议先核查一条有限关键路径，不据此认定连续无障碍网络已建成。",
+      "position_en": "An all-ages accessible information service among station exits, principal public-space routes, and public-service facilities; begin with one bounded key route without implying that a continuous accessible network has been built.",
+      "status": "conceptual_prototype_route_site_data_and_service_owner_to_be_verified",
+      "users_zh": ["老年人", "残障人士", "访客", "居民", "国际访客", "公共服务人员", "现场运维和人工服务人员"],
+      "users_en": ["Older people", "Persons with disabilities", "Visitors", "Residents", "International visitors", "Public-service personnel", "On-site operations and staffed-service personnel"],
+      "inputs": [
+        {"id": "I01", "zh": "经现场核验的关键路径、设施开放和临时障碍信息", "en": "Field-verified key route, facility opening, and temporary-obstruction information", "required": true},
+        {"id": "I02", "zh": "无障碍设施与人工服务点清单", "en": "Inventory of accessible facilities and staffed-service points", "required": true},
+        {"id": "I03", "zh": "用户偏好，由用户主动选择并可随时清除", "en": "User preferences actively selected by the user and clearable at any time", "required": false},
+        {"id": "I04", "zh": "多语和易读内容，经人工审校", "en": "Multilingual and easy-read content subject to human editorial review", "required": true},
+        {"id": "I05", "zh": "纸质导览、人工服务和应急联系信息", "en": "Paper wayfinding, staffed service, and emergency contact information", "required": true}
+      ],
+      "outputs": [
+        {"id": "O01", "zh": "文本、语音、图形或触觉兼容的路径和服务提示", "en": "Text, audio, graphic, or tactile-compatible route and service guidance"},
+        {"id": "O02", "zh": "障碍、设施关闭和高风险误导警示", "en": "Warnings for obstruction, facility closure, and high-risk misdirection"},
+        {"id": "O03", "zh": "转接人工服务、纸质导览或非AI替代流程", "en": "Transfer to staffed service, paper wayfinding, or a non-AI alternative"},
+        {"id": "O04", "zh": "仅含聚合信息的服务质量和无障碍问题清单", "en": "Service-quality and accessibility issue register containing aggregate information only"},
+        {"id": "O05", "zh": "公众意见回应和路线内容更正记录", "en": "Public-response and route-content correction record"}
+      ],
+      "architecture": {
+        "endpoint": {
+          "title_zh": "端：用户自有设备、公共终端和纸质界面",
+          "title_en": "Endpoint: user device, public terminal, and paper interface",
+          "functions_zh": ["提供多模态和易读交互", "允许用户主动选择辅助偏好", "显示人工求助和停止入口", "默认不建立持续身份"],
+          "functions_en": ["Provide multimodal and easy-read interaction", "Allow users to select assistance preferences", "Display staffed-help and stop controls", "Create no persistent identity by default"]
+        },
+        "edge": {
+          "title_zh": "边：现场信息缓存与隐私过滤",
+          "title_en": "Edge: local information cache and privacy filtering",
+          "functions_zh": ["缓存经核验路线和设施状态", "断网时提供最近已核验信息并显示时间", "聚合服务事件并去除身份标识", "错误时切换静态提示"],
+          "functions_en": ["Cache verified route and facility status", "Provide the latest verified information with timestamp when offline", "Aggregate service events and remove identifiers", "Switch to static guidance on error"]
+        },
+        "platform": {
+          "title_zh": "平台：内容版本、设施状态和问题台账",
+          "title_en": "Platform: content version, facility status, and issue register",
+          "functions_zh": ["管理路线、开放时段和临时障碍版本", "记录内容责任人与审校时间", "发布多语内容和易读版本", "管理投诉、更正和删除请求"],
+          "functions_en": ["Manage route, opening-hour, and temporary-obstruction versions", "Record content owner and review time", "Publish multilingual and easy-read versions", "Manage complaints, corrections, and deletion requests"]
+        },
+        "human_review": {
+          "title_zh": "人工复核：现场确认、内容审校和求助",
+          "title_en": "Human review: field confirmation, editorial review, and assistance",
+          "functions_zh": ["核验关键路线和设施状态", "审校多语及无障碍内容", "处理无法自动回答的问题", "在高风险误导或反复错误时暂停服务"],
+          "functions_en": ["Verify key routes and facility status", "Review multilingual and accessible content", "Handle questions that cannot be answered automatically", "Pause the service after high-risk misdirection or repeated error"]
+        }
+      },
+      "spatial_interface": {
+        "guidance_zh": "建议在经现场核验的站口、主轴节点和公共服务设施入口设置低干扰、可逆、可触达的提示点，并保留连续纸质导视和人工服务；具体点位、数量、文保、交通和无障碍条件待专业核验。",
+        "guidance_en": "At field-verified station exits, principal-route nodes, and public-service entrances, use low-interference, reversible, reachable information points while retaining continuous paper wayfinding and staffed service; locations, quantity, heritage, traffic, and accessibility conditions remain subject to professional verification.",
+        "public_interface_zh": "界面显示内容更新时间、数据范围、可能错误、人工求助和投诉方式，不将技术评分展示为个人能力判断。",
+        "public_interface_en": "The interface states content update time, data scope, possible errors, staffed-help and complaint channels, and does not present technical scoring as a judgement of personal ability.",
+        "non_ai_fallback_zh": "保留纸质地图、固定标识、服务台和电话求助。",
+        "non_ai_fallback_en": "Retain paper maps, fixed signs, service desks, and telephone assistance."
+      },
+      "data_controls": [
+        {"control_id": "D01", "zh": "不得将人脸、声纹或持续身份轨迹作为获得基本信息服务的条件。", "en": "Facial, voiceprint, or continuous identity tracking shall not be a condition for basic information service."},
+        {"control_id": "D02", "zh": "优先处理设施和路线状态，不记录可回溯个人的完整出行轨迹。", "en": "Prioritise facility and route status and do not record a complete traceable personal journey."},
+        {"control_id": "D03", "zh": "个性化偏好由用户主动选择、最小化保存并可即时清除。", "en": "Personalisation preferences are actively selected, minimally retained, and immediately clearable."},
+        {"control_id": "D04", "zh": "聚合问题数据仅用于服务改进，不得转用于画像、广告或执法。", "en": "Aggregate issue data are used only for service improvement, not profiling, advertising, or enforcement."},
+        {"control_id": "D05", "zh": "涉及未成年人或需要特别保护人群时采用更严格的默认保护和人工服务。", "en": "Use stricter default protection and staffed service for minors or groups requiring additional safeguards."}
+      ],
+      "failure_modes": [
+        {"failure_id": "F01", "zh": "路线或设施状态过期，导致误导。", "en": "Stale route or facility status causes misdirection.", "response_zh": "显示信息时间，切换人工或纸质服务并现场复核。", "response_en": "Display the information timestamp, switch to staffed or paper service, and verify on site."},
+        {"failure_id": "F02", "zh": "系统将无障碍需求错误推断为个人身份或能力标签。", "en": "The system turns accessibility needs into an inferred identity or capability label.", "response_zh": "删除相关推断，停止该功能并复核设计。", "response_en": "Delete the inference, stop the function, and review the design."},
+        {"failure_id": "F03", "zh": "多语或易读内容错误，造成关键服务误解。", "en": "Incorrect multilingual or easy-read content causes misunderstanding of a critical service.", "response_zh": "撤下内容，提供人工解释并完成专业审校。", "response_en": "Withdraw the content, provide staffed explanation, and complete professional review."},
+        {"failure_id": "F04", "zh": "断网或终端故障导致基本服务不可用。", "en": "Network or terminal failure makes the basic service unavailable.", "response_zh": "启用缓存、固定标识、纸质地图和人工渠道。", "response_en": "Use cache, fixed signs, paper maps, and staffed channels."},
+        {"failure_id": "F05", "zh": "数字服务挤占或替代原有人工服务。", "en": "The digital service displaces the existing staffed service.", "response_zh": "恢复人工服务能力，暂停扩展并重新评估公共利益。", "response_en": "Restore staffed capacity, pause expansion, and reassess public interest."}
+      ],
+      "acceptance_criteria": [
+        {"criterion_id": "A01", "zh": "关键路径和设施状态完成现场核验，并记录更新时间与责任角色。", "en": "Key routes and facility status are field-verified with update time and accountable role recorded."},
+        {"criterion_id": "A02", "zh": "老年人、残障人士、访客和现场人员参与受控测试，重大无障碍阻断上线前关闭。", "en": "Older people, persons with disabilities, visitors, and on-site personnel participate in controlled testing, with critical accessibility barriers closed before launch."},
+        {"criterion_id": "A03", "zh": "不采集人脸或持续身份轨迹，个性化偏好可清除。", "en": "No facial or continuous identity tracking is collected, and personalisation preferences are clearable."},
+        {"criterion_id": "A04", "zh": "断网、内容过期和终端故障时可转入安全的人工或非数字服务。", "en": "Network loss, stale content, and terminal failure lead to a safe staffed or non-digital service."},
+        {"criterion_id": "A05", "zh": "投诉、纠错和人工求助渠道可达，内容责任和更新时间公开。", "en": "Complaint, correction, and staffed-help channels are reachable, with content ownership and update time disclosed."}
+      ],
+      "stop_conditions": [
+        {"zh": "关键路线或设施状态无法现场核验。", "en": "A key route or facility status cannot be field-verified."},
+        {"zh": "错误频发或出现高风险误导。", "en": "Errors recur or high-risk misdirection occurs."},
+        {"zh": "无法保留人工、纸质或其他等效服务。", "en": "A staffed, paper, or equivalent service cannot be retained."},
+        {"zh": "必须依赖人脸、声纹或持续身份轨迹才能提供基本服务。", "en": "Basic service depends on facial, voiceprint, or continuous identity tracking."},
+        {"zh": "重大无障碍、隐私或公平性问题未关闭。", "en": "A major accessibility, privacy, or fairness issue remains unresolved."}
+      ],
+      "responsibility_roles": {
+        "accountable": ["DO"],
+        "responsible": ["TO", "IE"],
+        "consulted": ["DC", "PO", "IV", "CM"],
+        "informed": ["PF"],
+        "appointment_boundary_zh": "具体服务责任单位、场地运营者和数据控制者待依法确定。",
+        "appointment_boundary_en": "The service owner, site operator, and data controller remain subject to lawful determination."
+      },
+      "five_piece_deliverables": [
+        {"type": "service_blueprint", "title_zh": "包容性服务蓝图", "title_en": "Inclusive Service Blueprint", "minimum_content_zh": "查询、提示、求助、人工转接、投诉、更正和退出。", "minimum_content_en": "Query, guidance, assistance, human transfer, complaint, correction, and exit."},
+        {"type": "spatial_interface", "title_zh": "关键路径与界面图", "title_en": "Key-Route and Interface Drawing", "minimum_content_zh": "待核验路线、节点、固定标识、纸质导视、人工服务和数字触点。", "minimum_content_en": "Route and nodes subject to verification, fixed signs, paper wayfinding, staffed service, and digital touchpoints."},
+        {"type": "data_flow", "title_zh": "设施状态与隐私数据流图", "title_en": "Facility-Status and Privacy Data-Flow Diagram", "minimum_content_zh": "现场核验、边缘缓存、聚合事件、内容发布、偏好清除和删除。", "minimum_content_en": "Field verification, edge cache, aggregate events, content publication, preference clearing, and deletion."},
+        {"type": "responsibility_matrix", "title_zh": "公共服务责任矩阵", "title_en": "Public-Service Responsibility Matrix", "minimum_content_zh": "内容、场地、人工服务、数据安全、无障碍复核和投诉责任。", "minimum_content_en": "Content, site, staffed service, data security, accessibility review, and complaint responsibilities."},
+        {"type": "acceptance_and_stop", "title_zh": "无障碍验收与停止清单", "title_en": "Accessibility Acceptance and Stop Checklist", "minimum_content_zh": "现场核验、用户测试、非数字替代、错误、隐私和重大阻断。", "minimum_content_en": "Field verification, user test, non-digital alternative, errors, privacy, and critical barriers."}
+      ]
+    },
+    {
+      "prototype_id": "S11-P",
+      "parent_scenario_id": "S11",
+      "related_scenario_ids": ["S10", "S12"],
+      "title_zh": "首用转化与90/180日后评估原型",
+      "title_en": "First-Use Conversion and 90/180-Day Post-Evaluation Prototype",
+      "position_zh": "衔接S10供需对接和S12责任台账，将独立验证后的项目转入依法采购、受控上线和持续使用评价；建议在大钟寺首用转化与运营池中研究。",
+      "position_en": "Linking S10 supply-demand matching and S12 responsibility registration, this prototype moves independently validated projects into lawful procurement, controlled deployment, and sustained-use evaluation; proposed for study within the Dazhongsi First-Use Conversion and Operations Pool.",
+      "status": "conceptual_prototype_demand_procurement_site_and_operator_to_be_verified",
+      "users_zh": ["需求和采购单位", "实施主体", "技术及运营服务机构", "独立验证机构", "实际服务对象", "一线工作人员", "公众和审计监督角色"],
+      "users_en": ["Demand and procurement bodies", "Implementing entities", "Technical and operations providers", "Independent validators", "Actual service users", "Frontline staff", "Public and audit oversight roles"],
+      "inputs": [
+        {"id": "I01", "zh": "实名需求单位、非AI基线和仍然有效的真实需求", "en": "Identified demand owner, non-AI baseline, and continuing real demand", "required": true},
+        {"id": "I02", "zh": "独立验证结果、残余风险和适用边界", "en": "Independent validation result, residual risk, and applicability boundary", "required": true},
+        {"id": "I03", "zh": "市场调研和全生命周期成本", "en": "Market research and whole-life-cycle cost", "required": true},
+        {"id": "I04", "zh": "依法确定的采购、合作、合同和服务水平条件", "en": "Lawfully determined procurement, cooperation, contract, and service-level conditions", "required": true},
+        {"id": "I05", "zh": "用户、人工服务、投诉、事件和退出计划", "en": "User, staffed-service, complaint, incident, and exit plan", "required": true}
+      ],
+      "outputs": [
+        {"id": "O01", "zh": "采购或合作决策证据包，不预设结论", "en": "Procurement or cooperation decision evidence pack without a predetermined outcome"},
+        {"id": "O02", "zh": "上线检查、培训、人工接管和事件响应记录", "en": "Launch review, training, human-takeover, and incident-response record"},
+        {"id": "O03", "zh": "90日和180日实际使用、故障、人工投入、投诉和成本评价", "en": "90- and 180-day evaluation of actual use, failures, human input, complaints, and cost"},
+        {"id": "O04", "zh": "续期、整改、限用或退出建议及理由", "en": "Renewal, corrective-action, restricted-use, or exit recommendation with reasons"},
+        {"id": "O05", "zh": "可公开的项目状态、责任、限制和更正档案", "en": "Publishable project-status, responsibility, limitation, and correction record"}
+      ],
+      "architecture": {
+        "endpoint": {
+          "title_zh": "端：实际服务触点和运维设备",
+          "title_en": "Endpoint: operational service touchpoint and maintenance device",
+          "functions_zh": ["执行经批准的服务范围", "记录最小必要的使用、故障和人工接管事件", "提供用户反馈、申诉和非AI替代入口", "显示服务状态和责任信息"],
+          "functions_en": ["Operate within the approved service scope", "Record minimum-necessary use, failure, and human-takeover events", "Provide feedback, appeal, and non-AI alternative channels", "Display service status and responsibility information"]
+        },
+        "edge": {
+          "title_zh": "边：现场监测、安全降级和短期日志",
+          "title_en": "Edge: on-site monitoring, safe degradation, and short-lived logs",
+          "functions_zh": ["聚合运行和维护事件", "在断网或异常时切换安全模式", "过滤身份信息并限制日志期限", "触发人工接管和事件通知"],
+          "functions_en": ["Aggregate operational and maintenance events", "Switch to a safe mode on network loss or anomaly", "Filter identifiers and limit log duration", "Trigger human takeover and incident notification"]
+        },
+        "platform": {
+          "title_zh": "平台：合同、运行、成本和后评估台账",
+          "title_en": "Platform: contract, operations, cost, and post-evaluation register",
+          "functions_zh": ["关联需求、验证、采购和版本", "记录SLA、使用、故障、人工投入、投诉和成本", "生成90/180日评价", "管理整改、续期和退出事项"],
+          "functions_en": ["Link demand, validation, procurement, and version", "Record SLA, use, failure, human input, complaints, and cost", "Generate 90/180-day evaluations", "Manage correction, renewal, and exit actions"]
+        },
+        "human_review": {
+          "title_zh": "人工复核：验收、用户反馈和续期退出决定",
+          "title_en": "Human review: acceptance, user feedback, and renewal or exit decision",
+          "functions_zh": ["核验实际需求和采购边界", "复核投诉、事件和重大偏差", "比较AI与非AI基线及全生命周期成本", "作出有理由的续期、整改、限用或退出建议"],
+          "functions_en": ["Verify actual demand and procurement boundaries", "Review complaints, incidents, and material deviations", "Compare AI and non-AI baselines and whole-life-cycle cost", "Issue a reasoned renewal, corrective-action, restricted-use, or exit recommendation"]
+        }
+      },
+      "spatial_interface": {
+        "guidance_zh": "建议形成需求发布、产品比较、合规咨询、受控演示、运行评价和人工服务并列的可逆界面；具体空间、商业使用、交通组织和建筑条件待核验，不据此提出地下连通或工程结论。",
+        "guidance_en": "Use a reversible interface combining demand publication, product comparison, compliance advice, controlled demonstration, operational evaluation, and staffed service; space, commercial use, circulation, and building conditions remain subject to verification, with no underground-connection or engineering conclusion implied.",
+        "public_interface_zh": "转化门户按项目ID显示需求、验证、依法采购、上线、90/180日评价、限制和当前状态，不展示商业秘密、个人信息或未经确认的合同金额。",
+        "public_interface_en": "The Conversion Gateway uses project IDs to show demand, validation, lawful procurement, deployment, 90/180-day evaluation, limitations, and current status, without disclosing trade secrets, personal data, or unconfirmed contract values.",
+        "non_ai_fallback_zh": "上线和退出期间均保留原业务流程、人工服务或经确认的等效替代。",
+        "non_ai_fallback_en": "Retain the original process, staffed service, or a confirmed equivalent alternative during deployment and exit."
+      },
+      "data_controls": [
+        {"control_id": "D01", "zh": "运行监测限于服务、维护、安全和依法确定的绩效评价所必需数据。", "en": "Operational monitoring is limited to data necessary for service, maintenance, safety, and lawfully determined performance evaluation."},
+        {"control_id": "D02", "zh": "采购、合同、模型版本、数据责任和服务水平应关联但分权访问。", "en": "Procurement, contract, model version, data responsibility, and service level are linked but access-controlled by role."},
+        {"control_id": "D03", "zh": "用户投诉、申诉和人工接管记录不得被平均使用率掩盖。", "en": "User complaints, appeals, and human-takeover records shall not be obscured by average usage figures."},
+        {"control_id": "D04", "zh": "不得将运营数据转用于未经说明的画像、营销、信用或执法。", "en": "Operational data shall not be repurposed for undisclosed profiling, marketing, credit, or enforcement."},
+        {"control_id": "D05", "zh": "退出时执行数据返还、迁移、删除、访问撤销和公开状态更正。", "en": "At exit, complete data return, migration, deletion, access revocation, and correction of public status."}
+      ],
+      "failure_modes": [
+        {"failure_id": "F01", "zh": "测试通过被误解为采购批准或政府认证。", "en": "A passed test is misrepresented as procurement approval or government certification.", "response_zh": "立即更正状态，暂停传播和转段，补充合规审核。", "response_en": "Correct the status immediately, pause communication and advancement, and complete compliance review."},
+        {"failure_id": "F02", "zh": "上线后实际使用显著不足或人工成本上升。", "en": "Actual use is materially low or human workload rises after deployment.", "response_zh": "开展用户和流程复核，整改、缩减范围或恢复原流程。", "response_en": "Review users and process, correct, reduce scope, or restore the original process."},
+        {"failure_id": "F03", "zh": "供应商锁定、接口不开放或数据无法迁移。", "en": "Supplier lock-in, closed interfaces, or non-portable data.", "response_zh": "暂停扩展，启动合同、互操作和退出条款。", "response_en": "Pause expansion and invoke contractual, interoperability, and exit provisions."},
+        {"failure_id": "F04", "zh": "运行范围、模型版本或数据用途未经授权扩大。", "en": "Operational scope, model version, or data use expands without authorisation.", "response_zh": "回滚版本、停止新增用途并开展事件复核。", "response_en": "Roll back the version, stop the new use, and conduct an incident review."},
+        {"failure_id": "F05", "zh": "维护、预算或人工接管条件中断。", "en": "Maintenance, budget, or human-takeover capacity is interrupted.", "response_zh": "安全降级、限用或退出，恢复替代服务。", "response_en": "Degrade safely, restrict, or exit, and restore the alternative service."}
+      ],
+      "acceptance_criteria": [
+        {"criterion_id": "A01", "zh": "需求单位、采购和实施责任经依法确定，测试结论未被替代为采购结论。", "en": "Demand, procurement, and implementation responsibilities are lawfully determined, and test findings have not replaced a procurement decision."},
+        {"criterion_id": "A02", "zh": "上线范围、版本、数据、SLA、人工接管、投诉和退出条件完整登记。", "en": "Deployment scope, version, data, SLA, human takeover, complaint, and exit conditions are completely registered."},
+        {"criterion_id": "A03", "zh": "90日和180日评价使用真实使用、故障、人工投入、投诉、成本和非AI基线。", "en": "The 90- and 180-day evaluations use actual use, failures, human input, complaints, cost, and the non-AI baseline."},
+        {"criterion_id": "A04", "zh": "重大事件、关键投诉和未解决风险逐项说明，不以综合平均值隐藏。", "en": "Major incidents, critical complaints, and unresolved risks are individually stated and not hidden by aggregate averages."},
+        {"criterion_id": "A05", "zh": "续期、整改、限用或退出决定具有理由、责任人、时限和公开状态。", "en": "The renewal, corrective-action, restricted-use, or exit decision has reasons, an accountable role, a timetable, and public status."}
+      ],
+      "stop_conditions": [
+        {"zh": "真实需求、需求单位或必要预算条件不再成立。", "en": "The real demand, demand owner, or necessary budget condition no longer exists."},
+        {"zh": "采购、合同、数据或场地条件未依法确定。", "en": "Procurement, contract, data, or site conditions have not been lawfully determined."},
+        {"zh": "持续使用、维护或人工接管能力不足。", "en": "Sustained use, maintenance, or human-takeover capacity is insufficient."},
+        {"zh": "风险超过预设阈值或重大投诉无法关闭。", "en": "Risk exceeds the predefined threshold or a major complaint cannot be closed."},
+        {"zh": "供应商锁定导致数据、服务或替代流程无法安全退出。", "en": "Supplier lock-in prevents safe exit of data, service, or the alternative process."}
+      ],
+      "responsibility_roles": {
+        "accountable": ["DO"],
+        "responsible": ["IE", "TO"],
+        "consulted": ["PF", "IV", "DC", "PO", "CM"],
+        "informed": [],
+        "appointment_boundary_zh": "具体需求、采购、实施、运营和数据责任主体待依法确定，原型不得预设合同和供应商。",
+        "appointment_boundary_en": "Demand, procurement, implementation, operations, and data-responsibility entities remain subject to lawful determination; the prototype shall not predetermine a contract or supplier."
+      },
+      "five_piece_deliverables": [
+        {"type": "service_blueprint", "title_zh": "首用转化服务蓝图", "title_en": "First-Use Conversion Service Blueprint", "minimum_content_zh": "需求、验证、市场调研、依法采购、上线、评价、整改和退出。", "minimum_content_en": "Demand, validation, market research, lawful procurement, deployment, evaluation, correction, and exit."},
+        {"type": "spatial_interface", "title_zh": "转化门户与运行界面图", "title_en": "Conversion Gateway and Operations Interface Drawing", "minimum_content_zh": "需求发布、比较、合规、演示、人工服务、状态展示和退出。", "minimum_content_en": "Demand publication, comparison, compliance, demonstration, staffed service, status display, and exit."},
+        {"type": "data_flow", "title_zh": "运行与后评估数据流图", "title_en": "Operations and Post-Evaluation Data-Flow Diagram", "minimum_content_zh": "端侧事件、边缘聚合、平台台账、投诉、评价、保留、迁移和删除。", "minimum_content_en": "Endpoint events, edge aggregation, platform register, complaints, evaluation, retention, migration, and deletion."},
+        {"type": "responsibility_matrix", "title_zh": "采购—运营—评价责任矩阵", "title_en": "Procurement–Operations–Evaluation Responsibility Matrix", "minimum_content_zh": "需求、采购、实施、技术、验证、数据安全、公众监督和退出责任。", "minimum_content_en": "Demand, procurement, implementation, technology, validation, data security, public oversight, and exit responsibilities."},
+        {"type": "acceptance_and_stop", "title_zh": "90/180日验收与停止清单", "title_en": "90/180-Day Acceptance and Stop Checklist", "minimum_content_zh": "真实使用、故障、人工投入、投诉、成本、风险、续期、整改和退出。", "minimum_content_en": "Actual use, failure, human input, complaints, cost, risk, renewal, correction, and exit."}
+      ]
+    }
+  ]
+}

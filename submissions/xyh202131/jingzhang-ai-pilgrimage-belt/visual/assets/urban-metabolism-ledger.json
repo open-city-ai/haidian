@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.1.0",
+  "ledger_id": "JZ-URBAN-METABOLISM-V1",
+  "status": "concept_only_g0_real_world_evidence_pending",
+  "title_zh": "京张 AI 城市代谢账本：十二场景、七类资源、完整退出",
+  "title_en": "Jing-Zhang AI Urban Metabolism Ledger: Twelve Scenes, Seven Resources, Complete Exit",
+  "purpose_zh": "把既有十二个 G0 场景从服务器中心核算扩展为覆盖算力、能源、设备材料、数据、人工复核、供应商依赖和失败退出成本的完整系统资源护照；只建立可审计字段、证据入口和停止条件，不宣称存在任何实测绿色绩效。",
+  "purpose_en": "Extend the existing twelve G0 scenes from server-centred accounting to whole-system resource passports covering compute, energy, equipment and materials, data, human review, vendor dependency, and failure/exit cost. This establishes auditable fields, evidence entries, and stop conditions only; it claims no measured green performance.",
+  "authority_boundary": {
+    "all_scenes_remain": "G0",
+    "geometry_changed": false,
+    "new_scene_or_project_ids_added": false,
+    "field_measurement_count": 0,
+    "confirmed_vendor_count": 0,
+    "confirmed_equipment_lifecycle_count": 0,
+    "measured_human_review_minutes_scene_count": 0,
+    "real_approval_count": 0,
+    "real_operation_count": 0,
+    "rights_status": "not_fully_cleared",
+    "rule_zh": "字段存在只证明资源边界已被设计；不得把行业均值、设备铭牌、供应商材料、模拟值或设计覆盖率写成项目实测值、已采购条件、批准或运行成绩。",
+    "rule_en": "Field presence proves only that a resource boundary has been designed. Industry averages, nameplate values, vendor material, simulations, or design-coverage ratios may not be presented as measured project values, procured conditions, approvals, or operating results."
+  },
+  "typed_status_vocabulary": [
+    {"status": "not_applicable", "use": "the resource or evidence type is demonstrably outside a scene boundary; a reason is mandatory"},
+    {"status": "not_measured", "use": "the quantity could matter but no field or controlled measurement exists"},
+    {"status": "external_confirmation_required", "use": "a qualified owner, operator, authority, supplier, or specialist must confirm it"},
+    {"status": "not_yet_authorized", "use": "the action or service has no permission to proceed"},
+    {"status": "not_fully_cleared", "use": "rights, license, procurement, or reuse conditions remain independently unresolved"}
+  ],
+  "evidence_anchor_types": [
+    {"type": "design_object", "minimum": "stable file path and object ID"},
+    {"type": "source", "minimum": "source ID, date, authority, permitted use, and prohibited inference"},
+    {"type": "assumption", "minimum": "stable assumption ID, impact, owner needed, and replacement trigger"},
+    {"type": "field_measurement", "minimum": "instrument or method, timestamp, place, denominator, uncertainty, and responsible recorder"},
+    {"type": "responsibility_acceptance", "minimum": "named accountable organisation or role, accepted scope, contact path, and validity period"},
+    {"type": "vendor_or_procurement_term", "minimum": "product/version, contract term, export/repair/end-of-life duties, and rights status"},
+    {"type": "independent_retest", "minimum": "version, method, reviewer independence, failures, corrections, and signed decision"}
+  ],
+  "whole_system_boundary": [
+    "server_or_cloud_compute",
+    "edge_compute_and_network",
+    "public_or_personal_end_device",
+    "sensor_display_power_and_fixing",
+    "staffed_and_non_ai_baseline",
+    "human_review_handoff_and_recovery",
+    "place_accessibility_quiet_and_restoration"
+  ],
+  "resource_dimensions": [
+    {"resource_id": "R-COMPUTE", "label_zh": "算力", "label_en": "Compute", "required_fields": ["task_denominator", "server_or_cloud", "edge", "network", "end_device", "idle_or_standby", "measurement_evidence"], "current_global_status": "not_measured"},
+    {"resource_id": "R-ENERGY", "label_zh": "能源", "label_en": "Energy", "required_fields": ["task_denominator", "operational_energy", "standby_energy", "network_and_device_energy", "non_ai_baseline", "measurement_evidence"], "current_global_status": "not_measured"},
+    {"resource_id": "R-EQUIPMENT", "label_zh": "设备与材料", "label_en": "Equipment and materials", "required_fields": ["existing_facility_first", "quantity", "repairability", "component_availability", "service_life", "reuse_destination", "end_of_life_evidence"], "current_global_status": "external_confirmation_required"},
+    {"resource_id": "R-DATA", "label_zh": "数据", "label_en": "Data", "required_fields": ["minimum_fields", "prohibited_fields", "retention", "export", "deletion", "rights_and_provenance", "volume_denominator"], "current_global_status": "not_fully_cleared"},
+    {"resource_id": "R-HUMAN", "label_zh": "人工复核", "label_en": "Human review", "required_fields": ["role_type", "task", "planned_minutes", "actual_minutes", "handoff_capacity", "training_or_safeguarding", "responsibility_acceptance"], "current_global_status": "not_measured"},
+    {"resource_id": "R-VENDOR", "label_zh": "供应商依赖", "label_en": "Vendor dependency", "required_fields": ["vendor", "version", "interoperability", "data_export", "service_exit", "repair_and_parts", "contract_and_rights"], "current_global_status": "external_confirmation_required"},
+    {"resource_id": "R-EXIT", "label_zh": "失败与退出成本", "label_en": "Failure and exit cost", "required_fields": ["stop_trigger", "human_safe_state", "physical_removal", "data_and_log_closure", "staff_time", "place_restoration", "independent_acceptance"], "current_global_status": "not_measured"}
+  ],
+  "denominator_contract": {
+    "required_before_any_intensity_claim": ["one clearly named public task or service unit", "ordinary non-AI comparison task", "included system components", "time window", "attempt/completion/abandonment rule", "group disaggregation where rights may differ"],
+    "currently_valid_project_denominator_count": 0,
+    "rule": "No energy, compute, data, human-time, equipment-life, or exit-cost intensity may be published until its denominator and whole-system boundary are preregistered and evidenced."
+  },
+  "component_exit_contract": [
+    {"destination": "retain_as_existing_facility", "proof_needed": "condition and owner confirmation"},
+    {"destination": "repair_or_reuse_on_site", "proof_needed": "repairability, parts, safety, and responsibility evidence"},
+    {"destination": "redeploy_elsewhere", "proof_needed": "rights, compatibility, transport, and receiving-owner acceptance"},
+    {"destination": "return_to_supplier", "proof_needed": "binding take-back term and receipt"},
+    {"destination": "licensed_recycling_or_disposal", "proof_needed": "material identity, compliant chain, and receipt"},
+    {"destination": "data_export_delete_and_log_closure", "proof_needed": "export format, deletion evidence, retained minimum incident record, and rights review"},
+    {"destination": "restore_ordinary_place_and_service", "proof_needed": "cable/fixing/signage/queue removal, accessibility and quiet check, staffed/non-AI service recovery, and independent acceptance"}
+  ],
+  "scene_resource_passports": [
+    {
+      "scene_id": "SCENE-001", "scenario_code": "SC-04", "place_ref": "PROV-KEY-001", "name_zh": "低速配送安全沙盒", "name_en": "Low-speed delivery safety sandbox", "task_denominator": "unknown_pending_bounded_task_definition", "non_ai_baseline": "staffed/manual delivery and physical stop route",
+      "resource_profile": {"compute": "not_measured_including_edge_network_and_operator_device", "energy": "not_measured_including_vehicle_charge_standby_and_network", "equipment": "external_confirmation_required_for_vehicle_barrier_battery_repairability_and_life", "data": "not_fully_cleared_for_route_event_video_and_incident_retention", "human_review": "not_measured_for_safety_observer_takeover_and_recovery", "vendor_dependency": "external_confirmation_required_for_vehicle_stack_parts_export_and_take_back", "failure_exit": "not_measured_for_isolation_removal_battery_chain_and_path_restoration"},
+      "burden_hotspot": "mobile equipment, battery, safety observer, physical isolation, and accessible bypass", "required_anchor_types": ["field_measurement", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-002", "scenario_code": "SC-07", "place_ref": "PROV-KEY-001", "name_zh": "公共空间能耗助手", "name_en": "Public-space energy assistant", "task_denominator": "unknown_pending_comfort_and_service_unit", "non_ai_baseline": "manual operating schedule, physical controls, and staffed explanation",
+      "resource_profile": {"compute": "not_measured_including_model_sensor_gateway_network_and_display", "energy": "not_measured_and_cannot_be_inferred_from_recommendation", "equipment": "external_confirmation_required_for_existing_controls_sensors_display_and_repair", "data": "not_fully_cleared_for_environmental_occupancy_and_control_logs", "human_review": "not_measured_for_facility_operator_review_override_and_explanation", "vendor_dependency": "external_confirmation_required_for_bms_protocol_export_and_offline_control", "failure_exit": "not_measured_for_reverting_to_manual_schedule_removing_overlay_and_restoring_controls"},
+      "burden_hotspot": "the assistant's own full-system energy versus a manual operating baseline", "required_anchor_types": ["field_measurement", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-003", "scenario_code": "SC-10", "place_ref": "PROV-KEY-001", "name_zh": "安全事件辅助研判", "name_en": "Assisted safety-incident assessment", "task_denominator": "unknown_pending_incident_class_and_review_unit", "non_ai_baseline": "staffed incident intake, checklist, escalation, and safe refusal",
+      "resource_profile": {"compute": "not_measured_including_inference_storage_network_and_reviewer_device", "energy": "not_measured_for_compute_storage_network_and_staffed_fallback", "equipment": "external_confirmation_required_for_terminal_recording_and_retention_hardware", "data": "not_fully_cleared_for_incident_records_and_prohibited_biometric_or_identity_fields", "human_review": "not_measured_for_triage_override_escalation_and_correction", "vendor_dependency": "external_confirmation_required_for_model_version_logs_export_and_service_exit", "failure_exit": "not_measured_for_taking_output_offline_preserving_minimum_record_and_restoring_staffed_process"},
+      "burden_hotspot": "high-consequence human review and minimum lawful incident record", "required_anchor_types": ["source", "field_measurement", "responsibility_acceptance", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-004", "scenario_code": "SC-11", "place_ref": "PROV-KEY-001", "name_zh": "失败与修正公开档案", "name_en": "Public archive of failures and corrections", "task_denominator": "unknown_pending_published_case_unit", "non_ai_baseline": "paper archive, staffed explanation, and correction request",
+      "resource_profile": {"compute": "not_measured_for_indexing_search_storage_and_public_device", "energy": "not_measured_for_storage_network_display_and_staffed_archive", "equipment": "external_confirmation_required_for_display_storage_print_and_repair", "data": "not_fully_cleared_for_redaction_retention_versioning_and_publication_rights", "human_review": "not_measured_for_redaction_curation_appeal_and_correction", "vendor_dependency": "external_confirmation_required_for_exportable_formats_search_and_long_term_access", "failure_exit": "not_measured_for_unpublishing_preserving_correction_history_and_returning_to_paper_staffed_access"},
+      "burden_hotspot": "long-lived storage, redaction labour, correction, and durable non-screen access", "required_anchor_types": ["source", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-005", "scenario_code": "SC-01", "place_ref": "PROV-KEY-002", "name_zh": "京张可信文化导览", "name_en": "Trusted Jing-Zhang cultural guide", "task_denominator": "unknown_pending_guide_task_and_content_unit", "non_ai_baseline": "physical wayfinding, printed source list, and staffed curatorial route",
+      "resource_profile": {"compute": "not_measured_for_retrieval_generation_network_and_visitor_device", "energy": "not_measured_for_compute_network_display_audio_and_print_baseline", "equipment": "external_confirmation_required_for_signage_audio_display_and_repairable_mounts", "data": "not_fully_cleared_for_sources_generated_media_visitor_queries_and_retention", "human_review": "not_measured_for_curation_source_check_labeling_and_correction", "vendor_dependency": "external_confirmation_required_for_model_content_platform_export_and_offline_fallback", "failure_exit": "not_measured_for_content_withdrawal_signage_removal_source_correction_and_daily_street_restoration"},
+      "burden_hotspot": "source and media rights, curatorial labour, and physical/non-AI continuity", "required_anchor_types": ["source", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-006", "scenario_code": "SC-06", "place_ref": "PROV-KEY-002", "name_zh": "开源协作匹配", "name_en": "Open-source collaboration matching", "task_denominator": "unknown_pending_matching_task_and_participant_unit", "non_ai_baseline": "paper noticeboard, oral introduction, and staffed opt-in/withdrawal",
+      "resource_profile": {"compute": "not_measured_for_matching_storage_network_and_participant_device", "energy": "not_measured_for_compute_network_display_and_staffed_baseline", "equipment": "external_confirmation_required_for_display_print_and_reversible_event_kit", "data": "not_fully_cleared_for_profiles_skills_preferences_consent_and_deletion", "human_review": "not_measured_for_safeguarding_moderation_introduction_and_withdrawal", "vendor_dependency": "external_confirmation_required_for_identity_portability_export_and_service_exit", "failure_exit": "not_measured_for_stopping_matching_deleting_profiles_closing_consent_and_restoring_resident_use"},
+      "burden_hotspot": "consent withdrawal, profile deletion, safeguarding, and no-account parity", "required_anchor_types": ["field_measurement", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-007", "scenario_code": "SC-09", "place_ref": "PROV-KEY-002", "name_zh": "教育体验工坊", "name_en": "Educational experience workshop", "task_denominator": "unknown_pending_learning_task_session_and_group", "non_ai_baseline": "screen-free materials, facilitator explanation, and paper withdrawal",
+      "resource_profile": {"compute": "not_measured_for_local_or_cloud_tools_network_and_devices", "energy": "not_measured_for_devices_charging_network_light_and_non_ai_baseline", "equipment": "external_confirmation_required_for_shared_kits_batteries_repair_cleaning_and_storage", "data": "not_fully_cleared_for_participant_work_consent_safeguarding_and_generated_content", "human_review": "not_measured_for_facilitation_safeguarding_accessibility_and_cleanup", "vendor_dependency": "external_confirmation_required_for_licenses_accounts_exports_and_offline_alternative", "failure_exit": "not_measured_for_session_stop_data_withdrawal_kit_removal_quiet_and_court_restoration"},
+      "burden_hotspot": "shared devices, safeguarding labour, screen-free parity, cleanup, and quiet recovery", "required_anchor_types": ["source", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-008", "scenario_code": "SC-12", "place_ref": "PROV-KEY-002", "name_zh": "气候与无障碍共同测试", "name_en": "Climate and accessibility joint testing", "task_denominator": "unknown_pending_route_weather_task_and_group", "non_ai_baseline": "qualified walk-through, manual observation sheet, and staffed assistance",
+      "resource_profile": {"compute": "not_measured_for_sensor_processing_network_and_participant_device", "energy": "not_measured_for_sensor_gateway_device_and_manual_baseline", "equipment": "external_confirmation_required_for_sensors_mounts_batteries_calibration_repair_and_life", "data": "not_fully_cleared_for_route_weather_accessibility_and_participant_records", "human_review": "not_measured_for_qualified_survey_co_testing_assistance_and_interpretation", "vendor_dependency": "external_confirmation_required_for_sensor_format_calibration_export_parts_and_take_back", "failure_exit": "not_measured_for_device_removal_data_closure_accessibility_recheck_and_daily_route_restoration"},
+      "burden_hotspot": "qualified co-testing labour, calibration, temporary fixtures, and group-disaggregated burden", "required_anchor_types": ["field_measurement", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-009", "scenario_code": "SC-02", "place_ref": "PROV-KEY-003", "name_zh": "无障碍路径助手", "name_en": "Accessible route assistant", "task_denominator": "unknown_pending_origin_destination_task_and_group", "non_ai_baseline": "physical accessible-route information and staffed route assistance",
+      "resource_profile": {"compute": "not_measured_for_routing_map_storage_network_and_user_device", "energy": "not_measured_for_compute_network_signage_and_staffed_baseline", "equipment": "external_confirmation_required_for_signage_beacons_kiosks_mounts_and_repair", "data": "not_fully_cleared_for_route_barriers_location_queries_and_accessibility_reports", "human_review": "not_measured_for_route_verification_handoff_assistance_and_correction", "vendor_dependency": "external_confirmation_required_for_map_updates_exports_offline_operation_and_exit", "failure_exit": "not_measured_for_stale_route_stop_physical_wayfinding_continuity_device_removal_and_four_arm_retest"},
+      "burden_hotspot": "route freshness, communication support, same-task staffed service, and four-way continuity", "required_anchor_types": ["field_measurement", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-010", "scenario_code": "SC-03", "place_ref": "PROV-KEY-003", "name_zh": "慢行拥堵提示", "name_en": "Slow-mobility crowding notice", "task_denominator": "unknown_pending_route_interval_and_movement_unit", "non_ai_baseline": "physical route status and staffed/manual diversion information",
+      "resource_profile": {"compute": "not_measured_for_sensing_aggregation_network_display_and_device", "energy": "not_measured_for_sensor_gateway_display_network_and_manual_baseline", "equipment": "external_confirmation_required_for_sensor_display_fixing_repair_calibration_and_life", "data": "not_fully_cleared_for_counts_images_retention_and_reidentification_risk", "human_review": "not_measured_for_source_check_override_crowd_safety_and_correction", "vendor_dependency": "external_confirmation_required_for_sensor_protocol_model_version_export_and_exit", "failure_exit": "not_measured_for_stale_signal_shutdown_device_signage_removal_and_commute_restoration"},
+      "burden_hotspot": "sensing and display overhead, privacy, stale information, and uninterrupted commute", "required_anchor_types": ["field_measurement", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-011", "scenario_code": "SC-05", "place_ref": "PROV-KEY-003", "name_zh": "企业服务智能体", "name_en": "Enterprise-service agent", "task_denominator": "unknown_pending_service_question_and_authoritative_answer_unit", "non_ai_baseline": "authoritative paper source list and staffed service desk",
+      "resource_profile": {"compute": "not_measured_for_retrieval_generation_storage_network_and_terminal", "energy": "not_measured_for_compute_storage_network_kiosk_and_staffed_baseline", "equipment": "external_confirmation_required_for_terminal_print_accessibility_repair_and_life", "data": "not_fully_cleared_for_business_queries_documents_logs_retention_and_confidentiality", "human_review": "not_measured_for_source_maintenance_handoff_formal_error_and_appeal", "vendor_dependency": "external_confirmation_required_for_model_search_host_export_interoperability_and_exit", "failure_exit": "not_measured_for_offline_switch_source_correction_data_export_staffed_continuity_and_place_recovery"},
+      "burden_hotspot": "authoritative-source maintenance, formal-error refusal, confidential records, and staffed parity", "required_anchor_types": ["source", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    },
+    {
+      "scene_id": "SCENE-012", "scenario_code": "SC-08", "place_ref": "PROV-KEY-003", "name_zh": "社区健康导航", "name_en": "Community health navigation", "task_denominator": "unknown_pending_navigation_task_and_safe_handoff_unit", "non_ai_baseline": "authoritative public information, staffed navigation, and safe refusal",
+      "resource_profile": {"compute": "not_measured_for_retrieval_generation_network_and_terminal", "energy": "not_measured_for_compute_network_display_print_and_staffed_baseline", "equipment": "external_confirmation_required_for_terminal_print_privacy_accessibility_and_repair", "data": "not_fully_cleared_for_queries_sensitive_inference_logs_retention_and_deletion", "human_review": "not_measured_for_safe_refusal_source_check_handoff_and_complaint", "vendor_dependency": "external_confirmation_required_for_model_source_update_export_and_service_exit", "failure_exit": "not_measured_for_diagnosis_like_output_stop_data_closure_staffed_handoff_and_quiet_restoration"},
+      "burden_hotspot": "sensitive inference prohibition, safe refusal, human handoff, and durable source access", "required_anchor_types": ["source", "responsibility_acceptance", "vendor_or_procurement_term", "independent_retest"], "current_decision": "NO_GO_G0"
+    }
+  ],
+  "public_decision_gate": {
+    "required_to_discuss_any_future_pass": ["task denominator closed", "whole-system boundary closed", "measurement and source anchors closed", "named responsibility accepted", "non-AI same-task baseline evidenced", "vendor export/repair/exit terms evidenced", "component and place exit destinations accepted", "independent retest complete"],
+    "hard_no_go": ["only server energy counted", "resource value copied from an industry average or vendor claim", "unknown field silently omitted", "human review or place restoration excluded", "vendor lock-in has no export or service-exit route", "equipment has no repair or end-of-life destination", "ordinary or non-AI path becomes weaker", "rights remain unresolved for the proposed use"],
+    "pass_is_not": ["deployment authorization", "site approval", "procurement approval", "maturity upgrade", "rights clearance", "evidence of environmental benefit"]
+  },
+  "summary": {
+    "existing_scene_passport_count": 12,
+    "resource_dimension_count": 7,
+    "design_field_coverage_ratio": 1.0,
+    "measured_energy_scene_count": 0,
+    "measured_compute_scene_count": 0,
+    "confirmed_equipment_lifecycle_scene_count": 0,
+    "measured_human_review_minutes_scene_count": 0,
+    "confirmed_vendor_scene_count": 0,
+    "valid_task_denominator_count": 0,
+    "real_approval_or_operation_count": 0,
+    "interpretation": "Design coverage is complete for this ledger version; environmental, labour, procurement, approval, and operating performance remains unknown or zero as explicitly typed."
+  },
+  "evidence_backlinks": {
+    "human_zh": "proposal.md#ai-城市代谢十二场景七类资源完整退出--ai-urban-metabolism-twelve-scenes-seven-resources-complete-exit",
+    "human_en": "proposal.en.md#ai-urban-metabolism-twelve-scenes-seven-resources-complete-exit",
+    "visual_zh": "visual/index.html#metabolism",
+    "visual_en": "visual/index.en.html#metabolism",
+    "drawing_zh": "assets/figures/urban-metabolism-ledger.svg",
+    "drawing_en": "assets/figures/urban-metabolism-ledger.en.svg",
+    "assumption": "assumptions.json#A-URBAN-METABOLISM-014",
+    "key_area_matrix": "visual/assets/key-area-evidence-matrix.json#urban_metabolism_contract",
+    "non_ai_guard": "visual/assets/non-ai-parity-contract.json#JZ-NON-AI-PARITY-V2",
+    "maintenance_guard": "visual/assets/key-area-evidence-matrix.json#maintenance_urbanism_contract"
+  },
+  "self_audit": {
+    "server_only_accounting_used": false,
+    "industry_average_or_vendor_claim_used_as_project_measurement": false,
+    "field_completeness_claimed_as_green_performance": false,
+    "energy_water_compute_human_minutes_or_equipment_life_invented": false,
+    "vendor_or_procurement_status_claimed_as_confirmed": false,
+    "human_review_and_non_ai_baseline_included": true,
+    "component_data_service_and_place_exit_destinations_included": true,
+    "geometry_or_scene_ids_changed": false,
+    "maturity_authorization_operation_or_rights_status_upgraded": false
+  }
+}

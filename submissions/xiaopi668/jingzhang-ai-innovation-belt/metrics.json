@@ -1,0 +1,240 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "assumptions": [
+        "Provisional boundary from maintainer site package; recalc when official polygon arrives."
+      ]
+    },
+    "land_use_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(land_use_partition))",
+      "confidence": "high",
+      "assumptions": [
+        "Land-use partition tiles the full submitted provisional boundary with no gap/overlap (verified by shapely)."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 307291.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept footprints inside key areas; indicative, not statutory."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1252,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional; official green ratio control is missing (pending approved regulatory conditions)."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0394,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Station-plaza concept spaces; provisional boundary."
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 12716.9,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": [
+        "Concept spine/connector network; not road redline."
+      ]
+    },
+    "phase_area_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phasing_union)",
+      "confidence": "medium",
+      "assumptions": [
+        "Three-phase concept scope."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved height control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Height controls pending approved regulatory planning conditions."
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved building density control",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved density control not present in public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan key area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announce value 1,921,000 sqm for calibration."
+      ]
+    },
+    "origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(origin community key area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announce value 1,043,000 sqm for calibration."
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi key area)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional polygon; announce value 720,000 sqm for calibration."
+      ]
+    },
+    "land_use_05_sqm": {
+      "status": "known",
+      "value": 2335762.1,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(land_use where code=05)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional partition."
+      ]
+    },
+    "land_use_0701_sqm": {
+      "status": "known",
+      "value": 821318.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(land_use where code=0701)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional partition."
+      ]
+    },
+    "land_use_0802_sqm": {
+      "status": "known",
+      "value": 4153203.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(land_use where code=0802)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional partition."
+      ]
+    },
+    "land_use_1401_sqm": {
+      "status": "known",
+      "value": 4102562.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "polygon_area(land_use where code=1401)",
+      "confidence": "medium",
+      "assumptions": [
+        "Provisional partition."
+      ]
+    }
+  }
+}

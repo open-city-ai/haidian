@@ -1,0 +1,1 @@
+All diagrams, figures, boards, and text in this package were generated for this submission from public or cleared repository materials. No external imagery, remote maps, trademarks, or personal data are used. The proposal is an open conceptual contribution, not an approved plan.

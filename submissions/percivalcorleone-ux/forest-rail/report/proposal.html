@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>林轨 / Forest Rail - proposal report</title>
+<style>
+:root {
+  --ink: #172033;
+  --muted: #667085;
+  --line: #d7dee8;
+  --paper: #ffffff;
+  --bg: #f4f7fa;
+  --accent: #245b8f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.75;
+}
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 42px 24px 72px;
+  background: var(--paper);
+  min-height: 100vh;
+  box-shadow: 0 0 0 1px rgba(23, 32, 51, 0.05);
+}
+.hero {
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 24px;
+  margin-bottom: 30px;
+}
+h1 { font-size: 34px; line-height: 1.22; margin: 0 0 10px; }
+h2 { font-size: 25px; margin: 34px 0 12px; border-top: 1px solid var(--line); padding-top: 24px; }
+h3 { font-size: 20px; margin: 26px 0 10px; }
+p, li { font-size: 16px; }
+blockquote {
+  margin: 18px 0;
+  padding: 12px 18px;
+  border-left: 4px solid var(--line);
+  color: var(--muted);
+  background: #f8fafc;
+}
+code {
+  background: #eef2f7;
+  color: #1d4f7a;
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+}
+.summary { color: var(--muted); font-size: 17px; }
+.translation-link a { color: var(--accent); font-weight: 700; }
+.proposal-table { margin: 20px 0 26px; overflow-x: auto; }
+.proposal-table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  font-size: 15px;
+}
+.proposal-table th, .proposal-table td {
+  border: 1px solid var(--line);
+  padding: 9px 12px;
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.6;
+}
+.proposal-table th { background: #eef2f7; color: var(--ink); font-weight: 700; }
+.proposal-table tbody tr:nth-child(even) { background: #fafcfe; }
+.proposal-table .align-center { text-align: center; }
+.proposal-table .align-right { text-align: right; }
+.proposal-figure {
+  margin: 22px 0 28px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #f8fafc;
+}
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.proposal-figure figcaption {
+  padding: 10px 14px;
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.evidence {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  margin: 0 0.12em;
+  border-bottom: 1px solid #8aa8c3;
+  color: #315f87;
+  font-size: 0.68em;
+  font-weight: 650;
+  line-height: 1.35;
+  vertical-align: super;
+}
+@media (max-width: 720px) {
+  main { padding: 26px 16px 52px; }
+  h1 { font-size: 26px; }
+  h2 { font-size: 21px; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<h1>林轨 / Forest Rail</h1>
+<p class="summary">林轨是公园城市主张：京张遗产廊道为公共底盘，AI 作暗流调度座位/灯带/日用与隔离轨短驳；可复制林下工位（含企业包年公共席）解放创造力；近端最小路径与远期廊道预留并存，安全可退出。</p>
+<p class="translation-link"><a href="proposal.en.html">Read in English</a></p>
+</section>
+<h1>林轨 / Forest Rail</h1>
+<p>京张铁路遗址公园已经把铁轨留在了城里：有人跑步，有人推童车，有人沿轨散步。本方案不重新发明这条公园，也不把它做成科技秀场。</p>
+<p>本方案的公众承诺只有三句：<strong>走得通、坐得住、想得成</strong>。</p>
+<ul>
+<li><strong>走得通</strong>：轮椅、婴儿车、步行者、换乘者能沿软铺与引导轨理解并完成站—园—校—园区间的横向联系。</li>
+<li><strong>坐得住</strong>：遮阴、避雨、安静停留与林下共用工位不以消费为门槛；最低开放席位不可撤光。</li>
+<li><strong>想得成</strong>：人在公园层获得安静与创造力；企业可按规则包年认领<strong>公共席配额</strong>（不是私人舱）；AI 只作暗流调度，失败即退回人工与纸面通道。</li>
+</ul>
+<p>方案不是给公园再铺一层「未来感」，而是把技术放进日常权利、运营责任与可停止机制。当前成果来自公开资料与仓库场地包，<strong>未做</strong>现场踏勘、居民访谈、客流/OD 调查、树木普查或设备测试。文中节点、周期与验收门均为可供专业团队深化的概念建议；GitHub 合并不等于官方征集资格、规划批准、资金承诺、获奖或实施决定 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>。</p>
+<h2>城市规划总判断</h2>
+<p>林轨回答的是<strong>怎么组织这座 AI 创新带的空间与运行</strong>，不是给走廊贴智能设备清单。</p>
+<p>1. <strong>公园城市作底盘</strong>：京张遗产廊道是公共权利与日常创造力的主空间；众智园 / 原点 / 大钟寺共用同一套<strong>可复制的中央公园层单元</strong>，职能不同，不是三个互不相关的样板秀场。 2. <strong>AI 作暗流调度</strong>：林轨终端后台调度座位、灯带、无品牌日用与隔离轨短驳；人侧只感到安静、可坐、可问人。调度范围限于公园层，<strong>不是</strong>全区楼宇总控。 3. <strong>空间经济服务公共底线</strong>：企业包年/包季公共席形成运营营收<strong>假设</strong>与幸福感意向；不得挤占最低开放席；营收不作投资承诺 [assumption:A-DESK-LEASE-001]。 4. <strong>双时间尺度同廊</strong>：近端最小路径=引导轨+软铺+树冠+人工服务+可退出终端；同一廊道预留隔离运行制式的断面/净空/权属接口（更高运力含磁悬浮等仅为形态预留，<strong>非已批工程、无线路里程、无投资额</strong>）[assumption:A-RAIL-RESERVE-001]。</p>
+<p>命名：「林轨」=<em>Forest Rail — the park layer of an AI city</em>。</p>
+<ul>
+<li><strong>林</strong>：望出去是树，不是幕墙秀场。</li>
+<li><strong>轨（双轨分区）</strong>：引导轨给人方向；与人行<strong>完全隔离</strong>的运行轨才承载 AI 可调度短驳。</li>
+<li><strong>林轨终端</strong>：暗流调度公共座位/共用工位、低照度灯带、无品牌日用与节点开闭。不做人脸、不推品牌广告。</li>
+<li><strong>三站节点</strong>：<code>FR-NODE-ZZY</code> / <code>FR-NODE-YY</code> / <code>FR-NODE-DZS</code> 可随正式 polygon 重定位 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-DZS" title="空间数据：geometry/public_space.geojson#FR-NODE-DZS">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="forest_rail_node_count" title="指标：forest_rail_node_count">指标</sup>。</li>
+</ul>
+<p><strong>本方案不做的事</strong>：全区楼宇总控、网红打卡、灯光秀、绿化条冒充公园、私人舱工位、攀爬装饰轨、用监控换「智能」、品牌门店矩阵、把磁悬浮写成已批可建工程。</p>
+<p><strong>AI 失败时，公园主体（软铺、树冠、最低座位、人工服务）仍可独立成立。</strong></p>
+<h2>一页执行摘要</h2>
+<div class="proposal-table"><table><thead><tr><th>评审问题</th><th>林轨的城市规划判断</th><th>可核验成果</th></tr></thead><tbody><tr><td>核心命题</td><td>公园城市底盘 + AI 暗流；林下工位可复制（含企业包年公共席）；最小路径与廊道制式预留同脊</td><td>总判断 + 四系统 + Gate</td></tr><tr><td>空间响应</td><td>一脊三站；引导轨 / 隔离运行轨分区；站—校—园—河缝合</td><td>9 类 GeoJSON、三节点、五证据图</td></tr><tr><td>实施起点</td><td>近：软铺树冠人工+工位协议；中：终端与日用试运行；长：隔离运行/更高制式仅 Gate+专项后</td><td>FR-01–09 + 前置清单</td></tr><tr><td>公共价值</td><td>走得通、坐得住、想得成；最低席位不可撤光</td><td><sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="min_open_seats_count" title="指标：min_open_seats_count">指标</sup></td></tr><tr><td>证据与边界</td><td>provisional 几何可复算；案例仅机制；营收/磁浮为假设或形态预留</td><td>metrics / assumptions / self_check</td></tr></tbody></table></div>
+<h2>设计依据与资料清单</h2>
+<p>本方案以《百年京张AI创新带城市设计国际方案征集资格预审公告》为第一依据 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-OFFICIAL-ANNOUNCEMENT" title="标准：PROJECT-OFFICIAL-ANNOUNCEMENT">标准</sup>，以 <code>brief/site-package/</code> 中登记的临时边界、重点区域和指标范围为机器可读依据 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="existing_conditions_diagnosis" title="深度：existing_conditions_diagnosis">深度</sup>。</p>
+<p>当前采用 provisional boundary（<code>geometry/site_boundary.geojson</code>、<code>geometry/key_areas.geojson</code>），标注 <code>provisional_constraint</code>、<code>official_boundary=false</code>。正式边界发布后，所有空间数据、指标和图纸需要重新计算。这个限制不阻断内容评分，但正文中涉及面积、比例和空间位置的结论只能作为可讨论、可替换的设计参考。</p>
+<p>资料登记表（<code>data/source_registry.json</code>）登记 formal / 背景 / provisional 资料；背景和 provisional <strong>不升级</strong>为法定依据 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>证据类别</th><th>本方案采用方式</th><th>可以支持</th><th>不能证明</th></tr></thead><tbody><tr><td>官方任务依据</td><td>公告、任务书摘录</td><td>三层范围文字、三重点区名称、agent 任务</td><td>精确 polygon、控规指标、工程条件</td></tr><tr><td>临时空间依据</td><td>仓库 provisional boundaries</td><td>生成、拓扑自检、相对关系、离线可视化</td><td>official redline、权属、精确审批面积</td></tr><tr><td>智能体设计数据</td><td>本包 GeoJSON / metrics</td><td>概念节点、容量讨论、分期示意</td><td>现状测绘、已确定拆改留</td></tr><tr><td>背景案例</td><td>公开建成公园与 AI 生态资料</td><td>机制启发</td><td>海淀绩效、投资额、可直接移植的容积率</td></tr><tr><td>桌面演练证据</td><td><code>visual/assets/*tabletop*</code></td><td>本地合成逻辑可复跑</td><td>现场绩效、已指派运营主体</td></tr></tbody></table></div>
+<p>包内权威顺序：GeoJSON → metrics → 三矩阵 → sources/assumptions/self_check → proposal.md → 图 → HTML → PDF。概念示意不能替代证据图。</p>
+<figure class="proposal-figure"><img src="../assets/figures/site-overview.png" alt="资料证据链与提交包关系图"><figcaption>资料证据链与提交包关系图</figcaption></figure>
+<h2>三层范围工作框架</h2>
+<p>方案按公告三个层次组织 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_level_scope_framework" title="深度：three_level_scope_framework">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>层级</th><th>公告口径</th><th>本层深度</th><th>林轨判断</th></tr></thead><tbody><tr><td>统筹研究</td><td><strong>43.6 km²</strong>（北五环—京藏—西直门外—万泉河）</td><td>产业生态 + 未来城市形态</td><td>京张廊道=公园城市脊；三区两翼用「验证—转译—采用」回路协同</td></tr><tr><td>总体设计</td><td><strong>11.4 km²</strong>（遗址公园周边 1–2 km）</td><td>控规深度城市设计</td><td>一脊双轨分区；林下工位协议；公园层调度语法；市政接口列前置</td></tr><tr><td>重点区域</td><td><strong>368.4 ha</strong>（众智园 192.1 / 原点 104.3 / 大钟寺 72.0）</td><td>详细设计 / 组件图则级</td><td>三站共用可复制公园单元，职能不同 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="key_area_count" title="指标：key_area_count">指标</sup></td></tr></tbody></table></div>
+<p>公告文字面积为 formal 口径；包内 provisional polygon 复算总体约 11,412,825 m²，与 11.4 km² 差约 0.11%，<strong>两组值不互相替代</strong> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="announced_overall_design_area_sqm" title="指标：announced_overall_design_area_sqm">指标</sup>。官方 polygon 到位后按 [assumption:A-AREA-MISMATCH-001] 整链重算 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<p>三层不割裂：统筹定走向，总体落图层与容量边界，重点区验证组件能否落地。</p>
+<figure class="proposal-figure"><img src="../assets/figures/land-use-structure.png" alt="三层范围与轨导动线结构图"><figcaption>三层范围与轨导动线结构图</figcaption></figure>
+<h2>统筹研究范围产业与未来城市研究</h2>
+<p>京张铁路是这片区域里已有的叙事线，不需要再发明一条。1909 年通车，2019 年地下化后地面段成为遗址公园走廊。公告要求融合百年京张文化、中关村创新文化与 AI 创新文化 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="PROJECT-AGENT-OPEN-CALL-TASKBOOK" title="标准：PROJECT-AGENT-OPEN-CALL-TASKBOOK">标准</sup>。</p>
+<p>林轨的判断很窄：<strong>不另造叙事，用铁轨本身；不另造绿廊，把遗址公园接入三站日常。</strong> 轨条留在地上，生锈；人走在轨间软铺上。这条线串起三处重点区——众智园临清河，原点社区近高校，大钟寺临地铁。轨导动线是脊柱，不是装饰。</p>
+<p>产业协同按人真会走的路径写：</p>
+<ul>
+<li><strong>高校策源</strong>：成果沿遗址走廊向南走，不悬空画圆</li>
+<li><strong>开源协作</strong>：原点社区接发布与代码协作</li>
+<li><strong>企业转化</strong>：大钟寺接智能体、终端与数据要素企业；众智园接安全评测</li>
+<li><strong>公共服务</strong>：沿轨径放可问人的服务节点，不堆无人屏幕</li>
+<li><strong>国际交流</strong>：用可步行的轨径组织访问路线，不做巡游舞台</li>
+</ul>
+<p>命名：「林轨」既是方案名也是空间描述。国际母题 <em>Forest Rail — the park layer of an AI city</em>。最小识别：锈色双轨 + 三个树冠绿节点字标见 <code>assets/forest-rail-mark.svg</code>；色彩净空规则见 agent.5。</p>
+<h3>优秀城市案例：机制迁移（背景）</h3>
+<p>下列为公开建成/已运营项目，<strong>只迁移机制</strong>，不移植容积率、投资额、客流 KPI 或治理权限。</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>可迁移的城市规划机制</th><th>学 / 不学</th><th>不能证明</th></tr></thead><tbody><tr><td>纽约 Central Park</td><td>公园作城市公共权利底盘；多入口分层慢行</td><td><strong>学</strong>公园优先于景观秀；<strong>不学</strong>封闭式巨型管理</td><td>海淀客流/面积目标</td></tr><tr><td>纽约 High Line</td><td>废弃铁路→连续公共廊道</td><td><strong>学</strong>铁路叙事再利用；<strong>不学</strong>高架游览消费、攀爬遗产</td><td>本案轨高程/造价</td></tr><tr><td>费城 Rail Park</td><td>分段滚动开放</td><td><strong>学</strong>一期一段轻量试点；<strong>不学</strong>未完成段包装成建成</td><td>分期资金已到位</td></tr><tr><td>伦敦 King&#x27;s Cross</td><td>出站即入公共空间</td><td><strong>学</strong>站城缝合；<strong>不学</strong>商业综合体主导</td><td>站口 OD</td></tr><tr><td>新加坡 Gardens by the Bay</td><td>中央看板汇聚园艺/访客/安防传感；自动化降人工巡检；智能不抢游客体验</td><td><strong>学</strong>「暗流运维」；<strong>不学</strong>温室工程参数照搬</td><td>海淀传感预算</td></tr><tr><td>Paris Station F</td><td>旧铁路设施→高密度共享工位</td><td><strong>学</strong>遗产空间改共享密度；<strong>不学</strong>私人巨型房东</td><td>工位数 KPI</td></tr><tr><td>Singapore one-north / LaunchPad</td><td>街区即测试场；共享设施低门槛</td><td><strong>学</strong>场景开放；<strong>不学</strong>单一国资统筹复制</td><td>国资结构</td></tr><tr><td>Toronto Quayside 审查教训</td><td>数据治理、公众责任、退出前置</td><td><strong>学</strong>失败与退出公开；<strong>不学</strong>未审数据平台</td><td>可直接落地的平台架构</td></tr><tr><td>上海徐汇跑道公园</td><td>遗存→日常线性空间</td><td><strong>学</strong>叙事本土化；<strong>不学</strong>宽幅硬质打卡</td><td>材料已批准</td></tr><tr><td>京张铁路遗址公园（已建）</td><td>铁轨留城、日常已在走</td><td><strong>学</strong>增量连接三站日常；<strong>不学</strong>抢功重做平行绿廊</td><td>接口改造已获批</td></tr></tbody></table></div>
+<p>本案立场：把遗产轨从「可看」推进到「可引导、可共事、可概念短驳」；突破落在<strong>公园城市单元可复制</strong>与<strong>AI 暗流可退出</strong>。</p>
+<p>城市案例完整来源登记于 <code>sources.json</code>（<code>CASE-*</code>，background_only）；正文不堆叠全部 ID。表中已引用关键案例见 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-GARDENS-BY-THE-BAY" title="来源：CASE-GARDENS-BY-THE-BAY">来源</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-AI-PARIS-STATIONF" title="来源：CASE-AI-PARIS-STATIONF">来源</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-JZ-HERITAGE-PARK" title="来源：CASE-JZ-HERITAGE-PARK">来源</sup>。</p>
+<h3>城市生命体叙事 · 国际传播与最小识别（agent.5）</h3>
+<p><strong>国际主张</strong>：<em>Forest Rail — the park layer of an AI city.</em> 中文对应：<strong>林轨——AI 城市的公园层。</strong></p>
+<p>对<strong>城市生命体</strong>：公园/森林是调节器——疏林与软铺让人安静，安静之后才谈创造力与绿色日常。公共载体是<strong>共用办公区与休息区</strong>，不是写字楼大厅搬进公园。</p>
+<p><strong>京张三幕</strong>：</p>
+<p>1. <strong>敢为人先（1909）</strong>：京张通车——工程把不可能变成可通行。 2. <strong>铁轨留城（2019）</strong>：地下化后地面段成为遗址公园。 3. <strong>林轨日常化（本案）</strong>：三站接入公园层；锈轨减找路摩擦；终端与概念智驾减运货/座位/灯带/日用摩擦——<strong>安全第一，失败退回步行与人工</strong>。</p>
+<p><strong>最小视觉识别</strong>（可延展、非品牌帝国）：</p>
+<div class="proposal-table"><table><thead><tr><th>要素</th><th>规则</th></tr></thead><tbody><tr><td>字标</td><td><code>assets/forest-rail-mark.svg</code>：锈色双轨 + 三枚树冠绿节点</td></tr><tr><td>色彩</td><td>锈 <code>#B65A3C</code>、树冠绿 <code>#2F6B4F</code>、纸白底；禁止渐变发光与企业商标色替换</td></tr><tr><td>净空</td><td>标志四周至少 1× 节点直径；不得拉伸、旋转、加冠名</td></tr><tr><td>导视</td><td>图标优先于长句；中英双语安全信息；与字标分离，导视不冒充政府标识</td></tr></tbody></table></div>
+<figure class="proposal-figure"><img src="../assets/forest-rail-mark.svg" alt="林轨最小字标"><figcaption>林轨最小字标</figcaption></figure>
+<h3>全球 AI 创新生态案例与八要素图谱（agent.2）</h3>
+<p>下列为任务书要求的 AI 创新生态案例（背景级；不编造投资额/企业名单为既成事实）<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-AI-STANFORD-RP" title="来源：CASE-AI-STANFORD-RP">来源</sup>–<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-AI-TORONTO-VECTOR" title="来源：CASE-AI-TORONTO-VECTOR">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>案例</th><th>可迁移机制</th><th>学什么 / 不学什么</th><th>不可移植数字</th></tr></thead><tbody><tr><td>Stanford Research Park</td><td>土地·空间·产业·人才</td><td><strong>学</strong>高校—土地—人才管道；<strong>不学</strong>低密度大园区供地</td><td>园区亩产/租金</td></tr><tr><td>London Knowledge Quarter</td><td>空间·产业·数据·场景</td><td><strong>学</strong>车站城区知识密集更新；<strong>不学</strong>照搬院所体量</td><td>机构数量目标</td></tr><tr><td>Singapore one-north / LaunchPad</td><td>土地·空间·算力·数据·场景</td><td><strong>学</strong>街区即测试场；<strong>不学</strong>单一国资统筹复制</td><td>国资预算结构</td></tr><tr><td>深圳南山「模力营」</td><td>空间·算力·数据·场景·人才</td><td><strong>学</strong>公共要素打包；<strong>不学</strong>只做大模型写字楼</td><td>算力卡配额</td></tr><tr><td>上海张江 AI 枢纽模式</td><td>空间·产业·算力·数据·场景</td><td><strong>学</strong>垂直行业×AI；<strong>不学</strong>单一赛道行政主导</td><td>联盟名单</td></tr><tr><td>Paris Station F</td><td>空间·场景·算力·产业</td><td><strong>学</strong>旧铁路设施改共享密度；<strong>不学</strong>私人巨型房东</td><td>工位数 KPI</td></tr><tr><td>Toronto Vector Institute</td><td>人才·产业·资金·空间</td><td><strong>学</strong>非营利人才—产业枢纽；<strong>不学</strong>以单一院所替代产业带</td><td>基金规模</td></tr></tbody></table></div>
+<p><strong>八要素机制（概念级，非承诺）</strong>——每格挂到三站动作：</p>
+<div class="proposal-table"><table><thead><tr><th>要素</th><th>众智园</th><th>原点社区</th><th>大钟寺</th></tr></thead><tbody><tr><td>土地</td><td>滨水公共界面许可谈判</td><td>近校零散空间许可池</td><td>站城衔接临时许可</td></tr><tr><td>空间</td><td>验证共享庭/林下步道</td><td>开源厅/林下共学</td><td>林下工位/日用点</td></tr><tr><td>产业</td><td>安全评测与标准界面</td><td>开源转化与近校孵化</td><td>终端/数据要素界面</td></tr><tr><td>资金</td><td>引导性共创（不写额度）</td><td>同左</td><td>同左</td></tr><tr><td>人才</td><td>预约参观与带训</td><td>驻留/开源贡献</td><td>通勤办公与访客</td></tr><tr><td>算力</td><td>端侧+评测节点概念</td><td>共享协作算力概念</td><td>边缘节点概念</td></tr><tr><td>数据</td><td>匿名评测日志</td><td>开源贡献展示（非个人画像）</td><td>匿名人流/缺货</td></tr><tr><td>场景</td><td>TEST-04 安全节点</td><td>TEST-05 工位公平开闭</td><td>TEST-01/02/03</td></tr></tbody></table></div>
+<h3>城市智能体运行协议：慢行断点（可审计）</h3>
+<p>正文不写「AI 管理」空话。慢行断点识别协议如下：</p>
+<div class="proposal-table"><table><thead><tr><th>步骤</th><th>做什么</th><th>谁做</th><th>误判如何纠正</th></tr></thead><tbody><tr><td>1 采集</td><td>匿名热力计数 + 路网拓扑缺口规则（断点=无连续步行边 / 强制绕行过长）</td><td>林轨终端传感 + 路网图层</td><td>原始计数不存身份</td></tr><tr><td>2 候选</td><td>算法输出「疑似断点」清单（位置、类型、置信度）</td><td>算法</td><td>低置信度不得自动施工</td></tr><tr><td>3 校验</td><td>人工巡检拍照/步行实测；对照交通/权属约束</td><td>运维巡检员</td><td>误报标记 false_positive 并反馈训练/规则</td></tr><tr><td>4 审核</td><td>区级/项目管理方审定是否进入改造清单</td><td>项目审核人</td><td>可申诉；会议纪要归档</td></tr><tr><td>5 纠错</td><td>已改段复查；未达验收则回退或补强</td><td>运维 + 设计</td><td>停止条件：安全冲突或文保否决即停</td></tr></tbody></table></div>
+<p>城市智能体<strong>不替代规划审批</strong>，不输出个人画像。</p>
+<h3>产业测试验证场景卡（agent.3 · ≥5 · 统一六字段）</h3>
+<div class="proposal-table"><table><thead><tr><th>字段</th><th>TEST-01 日用品补货调度</th><th>TEST-02 座位/灯带环境调控</th><th>TEST-03 隔离段智驾短驳</th><th>TEST-04 安全节点预约</th><th>TEST-05 近校工位公平开闭</th></tr></thead><tbody><tr><td>测试目标</td><td>补货时效与公平择点</td><td>最低席位与人工窗口不被关光</td><td>急停/让行/失败即停</td><td>预约制评测节点不开放成景点</td><td>噪声阈值开闭仍保最低席位</td></tr><tr><td>场地</td><td>大钟寺日用试运行点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-DZS" title="空间数据：geometry/public_space.geojson#FR-NODE-DZS">空间数据</sup></td><td>三站工位区（桌面以 DZS 为代表）</td><td>隔离概念段</td><td>众智园 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-ZZY" title="空间数据：geometry/public_space.geojson#FR-NODE-ZZY">空间数据</sup></td><td>原点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-YY" title="空间数据：geometry/public_space.geojson#FR-NODE-YY">空间数据</sup></td></tr><tr><td>数据</td><td>匿名人流、缺货、周转</td><td>噪声/雨情/匿名密度</td><td>车载传感、越界、急停日志</td><td>预约槽、到访计数（匿名）</td><td>噪声/密度；无身份</td></tr><tr><td>责任主体</td><td>运维；商户准入人工复核</td><td>运维；人工服务窗口</td><td>安全评估方+运维；概念</td><td>评测运营方+人工接待</td><td>运维+近校物业协商</td></tr><tr><td>停止条件</td><td>低需求节点被撤光；隐私事件</td><td>最低席位不达标；强制扫码</td><td>碰撞/急停失败/越界</td><td>未预约涌入或数据越权</td><td>轮椅席被关光；强制 App</td></tr><tr><td>人工复核</td><td>每周择点审计；可申诉</td><td>每日最低供给巡检；桌面演练 PASS 不等于现场授权</td><td>每次试跑前后安全签字</td><td>预约名单人工抽查</td><td>每周公平审计</td></tr></tbody></table></div>
+<p><sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="industry_test_scenario_count" title="指标：industry_test_scenario_count">指标</sup> = 5。桌面演练：<code>node visual/assets/run_desk_tabletop.js --check</code> → <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="visual/assets/desk-tabletop-evidence.json" title="空间数据：visual/assets/desk-tabletop-evidence.json">空间数据</sup>；<strong>G2 责任主体未指派前，限域试用 NOT AUTHORIZED</strong> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="visual/assets/operations-matrix.json" title="空间数据：visual/assets/operations-matrix.json">空间数据</sup> <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="desk_pilot_gate_count" title="指标：desk_pilot_gate_count">指标</sup>。</p>
+<p>视听专用接驳车为 TEST-03 扩展概念（触觉+语音/文字+人工键），不写成已商用 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="visual/assets/av-safety-gates.json" title="空间数据：visual/assets/av-safety-gates.json">空间数据</sup>。</p>
+<h2>总体设计范围城市更新与控规深度城市设计</h2>
+<p>总体层按城市设计与控规深度组织空间主张 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-CONTROL-DETAILED-PLANNING" title="标准：MOHURD-CONTROL-DETAILED-PLANNING">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="overall_spatial_structure" title="深度：overall_spatial_structure">深度</sup>。建筑方案深度待正式条件补齐前保持概念级，并以 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-ARCH-DESIGN-DEPTH-2016" title="标准：MOHURD-ARCH-DESIGN-DEPTH-2016">标准</sup> 标明待深化边界（当前为 data_gap，不伪造审定深度）。</p>
+<h3>动线结构与普通人完整路径</h3>
+<p>轨导动线沿京张遗址公园走廊布置，串联三站。动线不是新画的红线，是对既有铁路线位的复用。</p>
+<pre><code>众智园 FR-NODE-ZZY（北）──轨── 原点 FR-NODE-YY（中）──轨── 大钟寺 FR-NODE-DZS（南）
+                │                    │
+              清河界面              近校慢行缝合</code></pre>
+<p><strong>普通人完整路径（无 AI 亦可完成）</strong>：静态导向 → 连续无障碍软铺 → 遮阴与停留 → 人工服务点 → 可选数字辅助。拒绝 AI <strong>不得</strong>降低基本服务。</p>
+<p>铁轨分两种作用，<strong>物理分区、互不混用</strong> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>：</p>
+<div class="proposal-table"><table><thead><tr><th>作用</th><th>用什么</th><th>干什么</th><th>边界</th></tr></thead><tbody><tr><td><strong>装饰引导轨</strong></td><td>锈轨 / 仿轨 / 地面绘画 + 软铺</td><td>方向：眼跟锈轨，脚走软铺</td><td>禁止轨上奔跑/攀爬；装饰轨不加灯带</td></tr><tr><td><strong>AI 运行轨（概念）</strong></td><td>隔离段智驾短驳</td><td>低速载人 + 自动配货；<strong>安全性第一</strong></td><td>与步行分区；非成熟商用</td></tr></tbody></table></div>
+<h3>林轨系统语法：连续要素 / 可撤回要素 / 失败回退</h3>
+<div class="proposal-table"><table><thead><tr><th>类型</th><th>成员</th><th>规则</th></tr></thead><tbody><tr><td>连续要素</td><td>装饰引导轨、软铺、树冠、最低开放座位、低照度边缘灯、人工服务点</td><td>近端分期必须落地；不依赖 AI 在线</td></tr><tr><td>可撤回要素</td><td>林轨终端节点、智驾运行段、无品牌日用点、传感</td><td>可停用；停用后连续要素仍工作</td></tr><tr><td>失败回退</td><td>运行轨停→步行+人工；终端断网→纸面时段；日用点撤→最低供给清单</td><td>写入验收句，可演练</td></tr></tbody></table></div>
+<h3>林轨横向缝合（关系型接口）</h3>
+<p>九类关系是待核验的接口类型，不是九个已选址工程：</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>相对接口</th><th>首要公共任务</th><th>核验前不得声称</th></tr></thead><tbody><tr><td>FR-OI-01</td><td>公园—科研园区</td><td>共享进出与停留</td><td>已有开放通道或园区同意</td></tr><tr><td>FR-OI-02</td><td>公园—校园社区</td><td>学习/托育/老人休息</td><td>校门时段可直接开放</td></tr><tr><td>FR-OI-03</td><td>公园—铁路遗产</td><td>可溯源讲述与保护提示</td><td>可进入保护范围或改造本体</td></tr><tr><td>FR-OI-04</td><td>公园—轨道公交</td><td>最后 500 m 与无障碍换乘</td><td>站口客流或工程条件已核实</td></tr><tr><td>FR-OI-05</td><td>公园—蓝绿安全</td><td>暑热/暴雨替代路线提示</td><td>排水工程已批准</td></tr><tr><td>FR-OI-06</td><td>公园—公共服务</td><td>人工接管便民转介</td><td>机构进驻或数据共享已确定</td></tr><tr><td>FR-OI-07</td><td>公园—生产物流</td><td>人与低速物流分时边界</td><td>机器人可上路已许可</td></tr><tr><td>FR-OI-08</td><td>公园—夜间安静</td><td>照明噪声与居民休息</td><td>夜间活动已获许可</td></tr><tr><td>FR-OI-09</td><td>公园—市政算力</td><td>边缘节点断电降级</td><td>电力余量已确认</td></tr></tbody></table></div>
+<h3>四系统：公共工位 · 智驾短驳 · 边缘灯带 · 无品牌日用</h3>
+<h4>1）公共工位系统（Shared Desk Protocol）</h4>
+<p>林下工位是<strong>可复制的中央公园层单元</strong>：众智园 / 原点 / 大钟寺同一协议、不同职能。对标 Station F「遗产空间→共享密度」，但不做私人舱、不以消费为入场门槛 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-AI-PARIS-STATIONF" title="来源：CASE-AI-PARIS-STATIONF">来源</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>对象</td><td>林下共用工位、弯道座位、雨棚热桌；三站各设工位区 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="desk_zone_count" title="指标：desk_zone_count">指标</sup></td></tr><tr><td>两种席位</td><td><strong>A 公共开放席</strong>：谁来谁坐。<strong>B 企业包年/包季公共席</strong>：园区或企业认领席位配额，仍守同一开闭/安静/无身份规则，<strong>不是私人隔断舱</strong></td></tr><tr><td>空间经济</td><td>B 类意向形成公园运营营收假设与片区幸福感；数字不入 metrics 作保证，见 [assumption:A-DESK-LEASE-001]</td></tr><tr><td>AI（暗流）</td><td>噪声/雨情/匿名密度 → 开闭与电源；安静/讨论分区；不做人脸</td></tr><tr><td>硬约束</td><td>最低开放席位 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="min_open_seats_count" title="指标：min_open_seats_count">指标</sup> 不可被租赁配额挤光；不强制扫码；轮椅席不被关光</td></tr><tr><td>Gate</td><td>环境超阈值可关，人工窗口常开；申诉路径；G2 未指派则 NOT AUTHORIZED</td></tr><tr><td>证据</td><td><code>visual/assets/run_desk_tabletop.js</code> / <code>desk-tabletop-evidence.json</code></td></tr></tbody></table></div>
+<h4>2）安全优先智驾短驳与廊道制式预留（Safety-First AV Rail）</h4>
+<p>隔离轨是 AI 城市<strong>最可调度</strong>的基础设施：与人行完全物理隔离，路径可调、速度可控、建设扰动低于开墙破路；重点城市场所形态长期相对稳定，故廊道投资有城市学理由——<strong>非海淀本地统计证明</strong>。</p>
+<div class="proposal-table"><table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>分区</td><td>引导轨 ≠ 运行轨；运行轨与步行<strong>完全隔离</strong></td></tr><tr><td>近端最小路径</td><td>只做引导轨 + 软铺 + 标识；运行轨仅隔离概念段</td></tr><tr><td>AI</td><td>班次、避让、日用补货；失败即停，恢复步行优先</td></tr><tr><td>远期预留</td><td>同一廊道预留隔离运行制式的断面/净空/权属接口；更高运力（含磁悬浮等概念）仅作<strong>形态预留</strong>，<strong>非已批工程、无线路里程、无投资额</strong> [assumption:A-RAIL-RESERVE-001]</td></tr><tr><td>Gate</td><td>无安全评估/责任主体/急停演练 → <strong>NOT AUTHORIZED</strong> <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="visual/assets/av-safety-gates.json" title="空间数据：visual/assets/av-safety-gates.json">空间数据</sup></td></tr><tr><td>指标</td><td>未入 metrics 的精确公里数不得主张；一律 concept</td></tr></tbody></table></div>
+<h4>3）边缘灯带（Edge Light Protocol）</h4>
+<div class="proposal-table"><table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>对象</td><td>软铺边缘 + 座位区低照度地灯 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="light_zone_count" title="指标：light_zone_count">指标</sup></td></tr><tr><td>AI</td><td>日照/时段/匿名密度调亮度与区段</td></tr><tr><td>禁令</td><td>装饰轨加灯带、跑马、投影、灯光秀</td></tr><tr><td>包容</td><td>眩光上限、低视力友好；故障默认熄灭或极弱常亮</td></tr></tbody></table></div>
+<h4>4）无品牌日用（Unbranded Daily Essentials）</h4>
+<div class="proposal-table"><table><thead><tr><th>项</th><th>内容</th></tr></thead><tbody><tr><td>流程</td><td>多点试运行 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="daily_trial_point_count" title="指标：daily_trial_point_count">指标</sup> → 契合度 → 开放准入摊位 / 社区快周转店</td></tr><tr><td>AI</td><td>缺货、周转、匿名人流；<strong>公平择点</strong>（低需求保留最低供给）</td></tr><tr><td>边界</td><td>无品牌标识、不人脸、不广告；人工复核升级；每周偏差审计</td></tr></tbody></table></div>
+<h3>公园层智能调度（暗流运维）</h3>
+<p>对标 Gardens by the Bay 的中央看板思路：传感与规则汇入运维台，触发告警与开闭，<strong>游客侧仍是安静公园</strong> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-GARDENS-BY-THE-BAY" title="来源：CASE-GARDENS-BY-THE-BAY">来源</sup>。林轨调度对象限于公园层四系统，<strong>不是</strong>全区楼宇总控。</p>
+<div class="proposal-table"><table><thead><tr><th>调度域</th><th>输入（最小必要）</th><th>输出</th><th>失败回退</th></tr></thead><tbody><tr><td>工位开闭</td><td>噪声/雨情/匿名密度</td><td>分区开闭、电源</td><td>保留最低席位 + 人工窗口</td></tr><tr><td>边缘灯带</td><td>日照/时段/密度</td><td>区段亮度</td><td>熄灭或极弱常亮</td></tr><tr><td>无品牌日用</td><td>缺货/匿名人流</td><td>补货建议、公平择点</td><td>最低供给清单 + 人工审计</td></tr><tr><td>隔离短驳</td><td>车载传感/急停状态</td><td>班次或停运</td><td>立即停运，步行优先</td></tr><tr><td>节点开闭</td><td>天气/活动许可</td><td>试运行点开闭</td><td>纸面时段表</td></tr></tbody></table></div>
+<p>治理边界（Quayside 教训）：最小数据、可审计、可申诉、可退出；不做人脸、不存个人画像 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="CASE-TORONTO-QUAYSIDE" title="来源：CASE-TORONTO-QUAYSIDE">来源</sup>。</p>
+<h3>无障碍与包容性（行动不便者优先）</h3>
+<div class="proposal-table"><table><thead><tr><th>人群</th><th>空间与设施</th><th>林轨终端 / 智驾边界</th></tr></thead><tbody><tr><td><strong>轮椅使用者</strong></td><td>尽量无坡、少坡；必坡≤1:20 + 扶手；软铺连续防滑</td><td>不因 AI 关席取消全部可达座位</td></tr><tr><td><strong>视听障碍者</strong></td><td>触觉导引 + 低眩光边缘灯</td><td>概念专用 AI 接驳车：触觉+语音/文字+人工键</td></tr><tr><td><strong>认知障碍/低数字技能</strong></td><td>不依赖 App；纸质/图标 + 人工</td><td>AI 只建议，不强制扫码</td></tr><tr><td><strong>非中文使用者</strong></td><td>图标优先；安全信息中英双语</td><td>不做人脸、不推广告</td></tr></tbody></table></div>
+<p><strong>公平择点</strong>：算法纳入低需求社区最低服务半径；可审计、可申诉、可人工覆写。</p>
+<h3>安全专节（停止条件与人工接管）</h3>
+<div class="proposal-table"><table><thead><tr><th>风险</th><th>硬规则</th><th>停止 / 接管</th></tr></thead><tbody><tr><td>智驾碰撞/越界/急停失败</td><td>安全第一；让行步行</td><td>立即停运，恢复步行优先</td></tr><tr><td>灯带眩光</td><td>只照边缘与座位区</td><td>故障熄灭或极弱常亮</td></tr><tr><td>锈轨攀爬/奔跑</td><td>装饰轨禁止攀爬</td><td>巡检劝阻；文保冲突即停改造</td></tr><tr><td>儿童与软铺</td><td>孩子可在轨旁软铺活动，不在锈轨上</td><td>湿滑即限流或关闭段</td></tr><tr><td>隐私</td><td>不做人脸、不存身份</td><td>越权采集即隔离传感</td></tr><tr><td>断网</td><td>终端可离线</td><td>退回纸面时段与人工窗口</td></tr></tbody></table></div>
+<h2>用地、建筑规模与拆改留方案</h2>
+<p>总体设计范围内的更新按三类处理。凡涉容积率、建筑高度、道路红线等控制条件，一律区分<strong>已知资料 / 概念建议 / 待专业确认</strong>；缺官方数据标 unknown，不编数字 [assumption:A-CONTROLS-001]。</p>
+<ul>
+<li><strong>保留（概念建议）</strong>：京张遗址走廊两侧已建成且质量良好的建筑，意向保留——待权属与质量普查确认</li>
+<li><strong>改造（概念建议）</strong>：首层业态和外立面需调整者——去掉 LED 屏、增加林下通透性——待消防/权属确认</li>
+<li><strong>更新（待专业确认）</strong>：低效空间识别后的新建机会——新建高度<strong>宜</strong>控制在树冠以下；<strong>不得</strong>写成已批高度或容积率</li>
+</ul>
+<p>用地方案依据国土空间分类标准表达 <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MNR-LAND-USE-CLASSIFICATION-GUIDE" title="标准：MNR-LAND-USE-CLASSIFICATION-GUIDE">标准</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="land_use_layout" title="深度：land_use_layout">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="development_intensity_controls" title="深度：development_intensity_controls">深度</sup>，覆盖设计边界且无重叠 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/land_use.geojson#LU-001" title="空间数据：geometry/land_use.geojson#LU-001">空间数据</sup>。建筑基底和保留/改造/更新分类记录在 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/buildings.geojson#BLDG-001" title="空间数据：geometry/buildings.geojson#BLDG-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="retain_renovate_demolish" title="深度：retain_renovate_demolish">深度</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="height_massing_character" title="深度：height_massing_character">深度</sup>。</p>
+<p>建筑基底示意<strong>不是</strong>现状普查结果，也<strong>不是</strong>建筑规模或密度控制指标。</p>
+<h2>交通、轨道、市政与公共服务设施</h2>
+<p>交通方案回应公告对轨道站点一体化、道路微循环、慢行断点和绿色交通的要求 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="traffic_rail_slow_parking" title="深度：traffic_rail_slow_parking">深度</sup>。市政与新基建接口（端侧节点、供电、网络）按 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="municipal_new_infrastructure" title="深度：municipal_new_infrastructure">深度</sup> 列为深化前置，缺资料不编工程参数。</p>
+<p>重点处理：</p>
+<p>1. <strong>大钟寺站四象限步行连通</strong>：地铁 13 号线大钟寺站周边，打通路口四个象限的步行联系，轨径从站口延伸进片区 2. <strong>北五环跨越节点</strong>：遗址走廊跨北五环处的慢行衔接（桥下空间或跨线设施），保持南北贯通 3. <strong>轨径与市政道路交叉</strong>：交叉处慢行优先，轨条嵌入路面标识方向，不设信号灯管轨径</p>
+<p>道路和慢行图层保持在提交边界内 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/roads.geojson#ROAD-001" title="空间数据：geometry/roads.geojson#ROAD-001">空间数据</sup>，与公共空间、绿地相互校核。当前边界为 provisional，交通结论只能作为设计讨论。</p>
+<figure class="proposal-figure"><img src="../assets/figures/mobility-bluegreen.png" alt="交通慢行与蓝绿公共空间复合系统图"><figcaption>交通慢行与蓝绿公共空间复合系统图</figcaption></figure>
+<p>市政设施覆盖端侧算力节点、分布式能源和传统市政融合。缺少管线、能源、排水等工程资料时列为深化前置条件，不编工程参数。</p>
+<h2>蓝绿空间、公共空间与城市风貌</h2>
+<p>蓝绿空间以京张遗址走廊为骨架，统筹清河、小月河和周边社区出行 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="blue_green_public_space" title="深度：blue_green_public_space">深度</sup> <sup class="evidence evidence-standard" data-evidence-kind="standard" data-evidence-value="MOHURD-URBAN-DESIGN-MEASURES" title="标准：MOHURD-URBAN-DESIGN-MEASURES">标准</sup>。</p>
+<p><strong>树冠层是风貌控制的核心手段</strong>：选冠幅 ≥8m 的本土乔木（国槐、白蜡、银杏、栾树），覆盖率目标 ≥70% 建筑屋面。树不修剪成几何造型。建筑高度低于树冠——这是城市森林的基本判据。</p>
+<p>风貌原则：</p>
+<ul>
+<li>建筑外立面用砖、混凝土、木材等可老化材料，不用光滑玻璃幕墙</li>
+<li>锈色和灰绿是基调色，来源于轨道氧化和树冠</li>
+<li>屋顶不做造型，做绿化或设备平台</li>
+<li>公共艺术只接受与场地历史相关的、可老化的作品——铁、石、木，不用不锈钢和灯光装置</li>
+</ul>
+<p>城市风貌控制中哪些是设计建议、哪些待官方确认，在 <code>standard_matrix.json</code> 中逐条标注。</p>
+<h2>重点区域详细设计</h2>
+<p>三站使用同一结构块（位置 / 公园层角色 / 林轨终端 / 智驾物流 / 五组件 / 不许做什么 / 测试卡），深度对齐，避免只做大钟寺「样板端」 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。当前三处 polygon 均为 provisional <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>。</p>
+<h3>众智园 AI 自主创新加速区</h3>
+<p><strong>位置</strong>：最北段，临清河 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-001" title="空间数据：geometry/key_areas.geojson#PROV-KEY-001">空间数据</sup>；节点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-ZZY" title="空间数据：geometry/public_space.geojson#FR-NODE-ZZY">空间数据</sup>。</p>
+<p><strong>公园层角色</strong>：清河滨水安静验证界面——退让建筑，林下步道与雨洪草坡；安全评测转译为<strong>预约制</strong>协作节点，不做开放景点。</p>
+<p><strong>林轨终端</strong>：预约制安全节点开闭；访客座位保留最低供给；河岸边缘低照度地灯；可选无品牌日用点。</p>
+<p><strong>智驾/物流（概念）</strong>：隔离段物料/访客短驳仅作概念延伸；未授权前不混入人流。</p>
+<div class="proposal-table"><table><thead><tr><th>组件</th><th>本地规则</th><th>不许做什么</th><th>核验前不得声称</th></tr></thead><tbody><tr><td>树冠层</td><td>疏林+雨洪草坡，国槐/白蜡，冠幅≥8m</td><td>几何绿篱、观赏小乔充数</td><td>已成林荫效果</td></tr><tr><td>轨径</td><td>河岸段引导轨入地，人走软铺</td><td>架高桥、抛光喷漆、加灯带</td><td>「天然认路」已成立</td></tr><tr><td>软铺</td><td>透水防滑，河岸缓坡</td><td>大面积沥青、光滑石材</td><td>雨天通行已验收</td></tr><tr><td>林下办公</td><td>河岸开放座位与轻量休息棚</td><td>私人舱、网红打卡装置</td><td>高利用率已证实</td></tr><tr><td>锈</td><td>自然氧化时间标记</td><td>仿锈面板、人工做旧喷漆</td><td>必为原生铁路锈</td></tr></tbody></table></div>
+<p><strong>不许做什么</strong>：开放式围观测评；河岸光幕秀场；个人画像采集；无人配送抢时；自称已建成测评场馆。</p>
+<p><strong>测试卡绑定</strong>：TEST-04 安全节点预约。</p>
+<h3>北京 AI 原点社区</h3>
+<p><strong>位置</strong>：中段，近高校 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-002" title="空间数据：geometry/key_areas.geojson#PROV-KEY-002">空间数据</sup>；节点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-YY" title="空间数据：geometry/public_space.geojson#FR-NODE-YY">空间数据</sup>。</p>
+<p><strong>公园层角色</strong>：近校林下共学 / 开源第三空间——轨径缝合校门与园区，打通围墙断点。</p>
+<p><strong>林轨终端</strong>：24h 协作区按噪声阈值开闭；热桌电源；安静/讨论分区；最低席位与人工窗口。</p>
+<p><strong>智驾/物流（概念）</strong>：校门—园区补货与无障碍接驳概念；成熟前人工兜底。</p>
+<div class="proposal-table"><table><thead><tr><th>组件</th><th>本地规则</th><th>不许做什么</th><th>核验前不得声称</th></tr></thead><tbody><tr><td>树冠层</td><td>校门—园区轴列疏林，覆盖讨论场地</td><td>球形/方形树阵</td><td>已成荫</td></tr><tr><td>轨径</td><td>引导轨指向发布厅，人走软铺</td><td>架高桥、抛光、轨上灯带</td><td>「直达自然」</td></tr><tr><td>软铺</td><td>校区街衔接透水连续防滑</td><td>大面积沥青、光滑石材</td><td>通行已验收</td></tr><tr><td>林下办公</td><td>共用热桌；安静/讨论分离</td><td>私人舱、打卡舱</td><td>「高效协作」已证实</td></tr><tr><td>锈</td><td>自然氧化时间标记</td><td>仿锈面板、人工做旧</td><td>必为原生锈</td></tr></tbody></table></div>
+<p><strong>不许做什么</strong>：人才公寓综合体式堆砌；灯光秀；开发者画像采集；私人舱工位；自称发布厅已正式启用。</p>
+<p><strong>测试卡绑定</strong>：TEST-05 近校工位公平开闭。</p>
+<h3>大钟寺 AI 产业聚集区——城市森林</h3>
+<p><strong>位置</strong>：最南段，临地铁大钟寺站 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/key_areas.geojson#PROV-KEY-003" title="空间数据：geometry/key_areas.geojson#PROV-KEY-003">空间数据</sup>；节点 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/public_space.geojson#FR-NODE-DZS" title="空间数据：geometry/public_space.geojson#FR-NODE-DZS">空间数据</sup>。</p>
+<p><strong>公园层角色</strong>（公告约 <strong>72.0 ha</strong>）：站城入园 + <strong>可复制中央公园层单元的南端样板</strong>——出站即入公园，公园里能共用一张桌子；周边产业楼宇可认领林下包年公共席，把「中央公园可复制」做成站区日常，而非一次性网红装置。</p>
+<p><strong>林轨终端</strong>：全套座位/灯带/日用试运行；断网退回纸面规则。</p>
+<p><strong>智驾/物流（概念）</strong>：日用补货 + 视听专用接驳扩展概念；与步行完全分区；非商用结论。</p>
+<div class="proposal-table"><table><thead><tr><th>组件</th><th>本地规则</th><th>不许做什么</th><th>核验前不得声称</th></tr></thead><tbody><tr><td>树冠层</td><td>国槐/白蜡，冠幅≥8m，压住低层屋面</td><td>球形修剪、小乔充数</td><td>屋面遮挡已达标</td></tr><tr><td>轨径</td><td>站口四象限各引引导轨进公园</td><td>架高桥、抛光、轨上跑/攀爬</td><td>「出站自然入园」已验收</td></tr><tr><td>软铺</td><td>轮椅尽量无坡、同标高连续</td><td>沥青广场、光滑石材、台阶断点</td><td>无障碍已贯通</td></tr><tr><td>林下办公</td><td>公共开放席 + 企业包年公共席；玻璃隔断、谁来谁坐规则统一</td><td>私人舱、LED 外立面、打卡舱、租赁挤光最低席</td><td>「高协同」或营收已证实</td></tr><tr><td>锈</td><td>自然氧化时间标记</td><td>仿锈面板、人工做旧喷漆</td><td>必为原生锈</td></tr></tbody></table></div>
+<p><strong>不许做什么</strong>：品牌门店矩阵；人脸监控/广告推送；灯光秀；关光全部座位；自称智驾/磁浮已商用或已批。</p>
+<p><strong>大钟寺站一体化</strong>：A/B/C/D 四出口各引轨径进四象限。第一眼是公园与锈轨，不是广告屏。</p>
+<p><strong>商业与运营</strong>：无品牌日用试运行 → 开放准入摊位；企业包年公共席为运营意向（假设）；低需求保留最低供给。</p>
+<p><strong>测试卡绑定</strong>：TEST-01 / TEST-02 / TEST-03。</p>
+<p>概念示意（非正式证据图；正式主张以 GeoJSON / metrics / 五张证据图为准）：</p>
+<figure class="proposal-figure"><img src="../assets/concepts/shared-workstations.png" alt="共用林下工位区（公园专用区 · 玻璃隔断）"><figcaption>共用林下工位区（公园专用区 · 玻璃隔断）</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/concepts/guiding-rails.png" alt="装饰引导轨（锈轨/仿轨 + 软铺；禁止轨上奔跑/攀爬）"><figcaption>装饰引导轨（锈轨/仿轨 + 软铺；禁止轨上奔跑/攀爬）</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/concepts/ai-rail-transport.png" alt="AI 运行轨概念：载人短驳 + 自动配货舱（与步行分区）"><figcaption>AI 运行轨概念：载人短驳 + 自动配货舱（与步行分区）</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/concepts/station-into-park.png" alt="大钟寺站出站进入公园轨径"><figcaption>大钟寺站出站进入公园轨径</figcaption></figure>
+<figure class="proposal-figure"><img src="../assets/figures/key-areas.png" alt="三处重点区域索引与设计任务图"><figcaption>三处重点区域索引与设计任务图</figcaption></figure>
+<h2>AI 创新生态、人才画像与 AI+ 场景</h2>
+<p>场景卡与画像对齐公告 agent.3 要求 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>，深度矩阵见 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="three_key_area_detailed_design" title="深度：three_key_area_detailed_design">深度</sup>。</p>
+<div class="proposal-table"><table><thead><tr><th>画像</th><th>谁</th><th>在林轨上做什么</th><th>数据边界</th></tr></thead><tbody><tr><td><strong>走路通勤的程序员</strong></td><td>住在附近、每天步行上班的 AI 工程师</td><td>从大钟寺站出来，沿轨径走 800m 进办公楼；中午在林下吃饭；下班沿轨径散步回家</td><td>不采集个人通勤轨迹；轨径人流只做匿名计数</td></tr><tr><td><strong>带孩子散步的居民</strong></td><td>片区周边小区住户</td><td>傍晚推婴儿车沿软铺走，孩子在轨旁软铺上跑（不在锈轨上）；在林下座椅坐着聊天</td><td>不采集家庭画像；不推送商业信息</td></tr><tr><td><strong>来开会的企业访客</strong></td><td>头部企业的商务客人</td><td>大钟寺站出来，轨径引导到企业展厅；开完会沿轨径走到下一个节点</td><td>企业标识和案例需清权</td></tr><tr><td><strong>独自工作的自由职业者</strong></td><td>不在固定公司上班的人</td><td>早上来公园共用工位区找空位坐下；环境安静时开放，人多时关闭；工位可共用、不占座</td><td>不记录工位使用者身份</td></tr><tr><td><strong>退休后每天散步的老人</strong></td><td>70-80 岁，住附近</td><td>每天早上沿轨径走一圈，在弯道处的长椅坐一会儿看树；路面必须防滑</td><td>不采集健康数据</td></tr><tr><td><strong>轮椅使用者</strong></td><td>需轮椅出行者</td><td>走无坡/少坡的连续软铺；在站城衔接与公园节点使用无障碍座位与回转空间</td><td>不采集行动能力画像</td></tr><tr><td><strong>视听障碍者</strong></td><td>视障或听障访客、居民</td><td>靠触觉导引、低眩光地灯与（概念）专用 AI 轨道接驳车完成站—公园—节点移动</td><td>不做人脸；接驳车提供语音/文字/触觉多模态，可随时人工协助</td></tr><tr><td><strong>非中文访客与低数字技能者</strong></td><td>国际访客、不愿或不会用 App 的居民</td><td>看图标与双语标识即可坐下、避雨、买到水；复杂操作找人工服务点</td><td>不强制注册或扫码</td></tr></tbody></table></div>
+<h3>场景卡（≥10 · 六字段协议）</h3>
+<p>每张场景统一六字段：服务对象 / 最小必要数据 / 空间边界 / 人工复核者 / 退出申诉 / 停止条件。下表为摘要；完整字段在测试卡与运营矩阵中展开。<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="scenario_card_count" title="指标：scenario_card_count">指标</sup></p>
+<div class="proposal-table"><table><thead><tr><th>#</th><th>场景</th><th>空间载体</th><th>服务对象</th><th>最小数据</th><th>人工复核</th><th>退出/停止</th></tr></thead><tbody><tr><td>01</td><td>出站入园</td><td>大钟寺站口</td><td>所有到达者</td><td>无</td><td>站务/运维</td><td>广告屏盖过公园视线即整改</td></tr><tr><td>02</td><td>轨径慢行</td><td>全廊道</td><td>通勤/散步</td><td>匿名计数可选</td><td>巡检</td><td>湿滑/文保冲突即限流</td></tr><tr><td>03</td><td>林下共用工位</td><td>三站工位区</td><td>自由职业/午休</td><td>噪声/雨情/密度</td><td>人工窗口</td><td>低于最低席位即停 AI 关席</td></tr><tr><td>04</td><td>锈轨弯道长椅</td><td>弯道</td><td>老人/亲子</td><td>无</td><td>巡检</td><td>攀爬风险即劝阻</td></tr><tr><td>05</td><td>企业沿轨展厅</td><td>大钟寺首层</td><td>访客</td><td>无身份</td><td>商户合规</td><td>遮挡公园安静即关展</td></tr><tr><td>06</td><td>雨天避让</td><td>雨棚+树冠</td><td>所有人</td><td>雨情</td><td>人工开放雨棚</td><td>内涝即关闭段</td></tr><tr><td>07</td><td>开源发布厅</td><td>原点</td><td>开发者/师生</td><td>公开 commit 流</td><td>活动主办</td><td>强制扫码入场即停</td></tr><tr><td>08</td><td>智驾短驳（概念）</td><td>隔离段</td><td>试跑乘客</td><td>车载传感</td><td>安全签字</td><td>急停失败即永久停运至复审</td></tr><tr><td>08b</td><td>视听接驳（概念）</td><td>固定站</td><td>视听障碍者</td><td>无人脸</td><td>人工协助键</td><td>多模态失效即停</td></tr><tr><td>09</td><td>夜间灯带</td><td>软铺边缘</td><td>夜行者</td><td>时段/密度</td><td>运维</td><td>眩光投诉即降功率</td></tr><tr><td>10</td><td>清河创新廊</td><td>众智园</td><td>预约访客</td><td>预约槽</td><td>接待人工</td><td>未预约涌入即关闭</td></tr><tr><td>11</td><td>数据要素会客厅</td><td>大钟寺</td><td>企业/监管</td><td>授权范围</td><td>合规官</td><td>越权展示即下线</td></tr><tr><td>12</td><td>近校转化街</td><td>原点</td><td>初创/投资人</td><td>无画像</td><td>服务台</td><td>扰民即限时</td></tr><tr><td>13</td><td>无品牌日用点</td><td>多点</td><td>居民/通勤</td><td>缺货/匿名人流</td><td>每周审计</td><td>撤低需求点即违规</td></tr><tr><td>14</td><td>正式摊位升级</td><td>高契合点</td><td>社区商户</td><td>契合度报告</td><td>准入委员会</td><td>品牌垄断即撤销</td></tr><tr><td>15</td><td>轮椅慢行</td><td>无坡段</td><td>轮椅/婴儿车</td><td>无</td><td>无障碍巡检</td><td>断坡未修即绕行指引</td></tr><tr><td>16</td><td>最低公共供给</td><td>低需求节点</td><td>低需求社区</td><td>供给清单</td><td>每日巡检</td><td>关光最后一处水/座即停 AI</td></tr></tbody></table></div>
+<h3>组件库与弱荣誉展示（agent.4 · 轻量）</h3>
+<p>不做网红打卡榜。可复用组件与「弱荣誉」记录如下：</p>
+<div class="proposal-table"><table><thead><tr><th>组件 ID</th><th>名称</th><th>用途</th><th>荣誉记录方式</th></tr></thead><tbody><tr><td>FR-C01</td><td>锈轨引导段</td><td>方向识别</td><td>贡献者可在节点铜牌留姓名缩写（可选、可拒绝）</td></tr><tr><td>FR-C02</td><td>林下热桌单元</td><td>共用办公</td><td>开源贡献墙滚动（非个人画像）</td></tr><tr><td>FR-C03</td><td>边缘灯带模组</td><td>低眩光照明</td><td>无</td></tr><tr><td>FR-C04</td><td>无品牌日用铺面</td><td>一日必需</td><td>社区服务时长公开账（聚合）</td></tr><tr><td>FR-C05</td><td>人工服务亭</td><td>无 AI 等价服务</td><td>值班公开簿</td></tr><tr><td>FR-C06</td><td>接管急停柱</td><td>智驾/终端停用</td><td>演练记录归档</td></tr></tbody></table></div>
+<p>三处弱地标（非网红）保留：锈轨弯道大槐树；轨径-小月河石粉广场；旧站台矮墙。</p>
+<h3>年度活动与长期运营（agent.6 · 机制）</h3>
+<div class="proposal-table"><table><thead><tr><th>节奏</th><th>活动</th><th>开放对象</th><th>转化出口</th><th>停止条件</th></tr></thead><tbody><tr><td>季</td><td>林下开源下午茶</td><td>开发者/师生</td><td>原点发布厅路演槽</td><td>扰民/强制商业冠名</td></tr><tr><td>半年</td><td>无品牌日用公平审计公开日</td><td>居民/商户</td><td>择点调整说明</td><td>数据越权</td></tr><tr><td>年</td><td>公园层安全演练日</td><td>运维/公众旁听</td><td>急停与断网接管剧本更新</td><td>未达演练签到门槛则推迟运行轨讨论</td></tr><tr><td>常态</td><td>开发者社区：场景卡 Issue 化</td><td>全球开发者</td><td>可复用组件 PR</td><td>人身攻击/隐私泄露即封禁</td></tr></tbody></table></div>
+<p>国际招引只通过可步行访问路线与公开证据册，不做巡游舞台。</p>
+<h2>更新项目清单、实施政策与分期计划</h2>
+<p>项目清单与分期分别由 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="renewal_project_list" title="深度：renewal_project_list">深度</sup> 与 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="phasing_implementation" title="深度：phasing_implementation">深度</sup> 约束；无主体/资金/审批时只写风险，不承诺落地。</p>
+<div class="proposal-table"><table><thead><tr><th>编号</th><th>项目</th><th>类型</th><th>主要依赖</th><th>分期</th></tr></thead><tbody><tr><td>FR-01</td><td>大钟寺站四象限轨径连通</td><td>慢行/轨道一体化</td><td>轨道站点、路口交通组织</td><td>近期试点</td></tr><tr><td>FR-02</td><td>轨径引导段铺设（大钟寺段）</td><td>公共空间</td><td>锈轨来源、软铺材料、排水</td><td>近期试点</td></tr><tr><td>FR-03</td><td>树冠层种植（大钟寺段）</td><td>绿化</td><td>苗木规格、土壤改良、管线避让</td><td>近期启动，3-5 年成冠</td></tr><tr><td>FR-04</td><td>林下办公首层改造</td><td>建筑改造</td><td>权属、首层业态调整</td><td>中期</td></tr><tr><td>FR-05</td><td>众智园清河创新界面</td><td>蓝绿/产业</td><td>河道蓝线、生态和防洪条件</td><td>中期</td></tr><tr><td>FR-06</td><td>原点社区校区慢行缝合</td><td>慢行</td><td>校区边界、围墙拆除协商</td><td>中期</td></tr><tr><td>FR-07</td><td>节点间 AI 运行轨概念验证段（载人短驳+自动配货）</td><td>新基建（概念）</td><td>工程可行性研究、安全评估、分区隔离；见 PR-12</td><td>长期/待深化</td></tr><tr><td>FR-08</td><td>全线轨径贯通（三处重点区连通）</td><td>公共空间/慢行</td><td>北五环跨越、沿线权属；见 PR-03/05</td><td>长期</td></tr><tr><td>FR-09</td><td>林轨终端试点（座位·灯带·日用·无障碍）</td><td>运营/治理</td><td>最低供给、公平择点、人工窗口；见 PR-11/13/14</td><td>近期试点</td></tr></tbody></table></div>
+<p>近期试点可以用轻量设施启动（铺石粉、放长椅、种树苗），<strong>无 AI 也可成立</strong>。中期终端与日用试运行。长期隔离运行轨仅当 AV Gate 全过。<strong>AI 失败不拖垮公园主体</strong>写入验收。</p>
+<p><strong>前置条件清单</strong>（参与主体、权属、成本级别、验收、运维）：见 <code>report/narrative.md</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NARRATIVE-SUPPORT" title="来源：NARRATIVE-SUPPORT">来源</sup>。</p>
+<p>分期空间证据 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/phasing.geojson#PHASE-001" title="空间数据：geometry/phasing.geojson#PHASE-001">空间数据</sup>。</p>
+<h2>指标体系、面积复算与合规矩阵</h2>
+<p>指标分三类：</p>
+<div class="proposal-table"><table><thead><tr><th>类型</th><th>示例</th><th>数据来源</th><th>精度</th></tr></thead><tbody><tr><td>可由提交几何复算的空间指标</td><td>边界面积、绿地比例、公共空间比例、建筑基底</td><td>GeoJSON 图层</td><td>受 provisional boundary 限制</td></tr><tr><td>需要官方控规支撑的管控指标</td><td>容积率、建筑高度、建筑密度、退线</td><td>待正式控规</td><td>当前标注 unknown</td></tr><tr><td>需要运营数据持续校准的绩效指标</td><td>轨径日均人流、林下工位使用率、节点开闭频次</td><td>运营后采集</td><td>当前为设计建议值</td></tr></tbody></table></div>
+<p>三类指标分别进入 <code>metrics.json</code>、<code>assumptions.json</code> 和 <code>compliance_matrix.json</code>。完整复算保存在 <code>metrics.json</code>，正文只解释设计含义 <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="metrics_recalculation" title="深度：metrics_recalculation">深度</sup>。</p>
+<figure class="proposal-figure"><img src="../assets/figures/metrics-evidence.png" alt="核心指标复算与证据链图"><figcaption>核心指标复算与证据链图</figcaption></figure>
+<p>关键空间指标可由 <sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="site_area_sqm" title="指标：site_area_sqm">指标</sup>、<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="green_ratio" title="指标：green_ratio">指标</sup>、<sup class="evidence evidence-metric" data-evidence-kind="metric" data-evidence-value="public_space_ratio" title="指标：public_space_ratio">指标</sup> 登记复核；其余见 <code>metrics.json</code>（含最低席位、产业测试与工位门闩）；绿地边界见 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/green_space.geojson#GREEN-001" title="空间数据：geometry/green_space.geojson#GREEN-001">空间数据</sup>。</p>
+<h3>合规矩阵覆盖</h3>
+<p><code>compliance_matrix.json</code> 逐条映射公告 1.3-1.5 和 agent.1-agent.6：</p>
+<div class="proposal-table"><table><thead><tr><th>要求</th><th>本方案章节</th><th>核心证据</th></tr></thead><tbody><tr><td>1.3 构建世界级 AI 创新生态</td><td>统筹研究 + 八要素</td><td>7 案例表 + 三站要素落点</td></tr><tr><td>1.4 三层范围</td><td>三层范围</td><td>各层任务表</td></tr><tr><td>1.5.3.1 众智园</td><td>重点区域·众智园</td><td>PROV-KEY-001 + FR-NODE-ZZY + TEST-04</td></tr><tr><td>1.5.3.2 原点社区</td><td>重点区域·原点社区</td><td>PROV-KEY-002 + FR-NODE-YY + TEST-05</td></tr><tr><td>1.5.3.3 大钟寺</td><td>重点区域·大钟寺</td><td>PROV-KEY-003 + FR-NODE-DZS + TEST-01/02/03</td></tr><tr><td>agent.1 一带总体概念</td><td>动线 + 系统语法</td><td>一脊三站 + 连续/可撤回要素</td></tr><tr><td>agent.2 AI 全栈创新</td><td>全球 AI 生态 + 八要素</td><td>CASE-AI-*</td></tr><tr><td>agent.3 AI+ 场景</td><td>画像/场景/测试卡</td><td>16 场景 + 5 测试卡 + 桌面演练</td></tr><tr><td>agent.4 公共空间与地标</td><td>组件库 + 弱地标</td><td>FR-C01–C06</td></tr><tr><td>agent.5 文化融合叙事</td><td>城市生命体 + 最小字标</td><td>主张句 + forest-rail-mark.svg</td></tr><tr><td>agent.6 全球活动与长期运营</td><td>年度活动表 + 前置清单</td><td>agent.6 表；narrative.md</td></tr></tbody></table></div>
+<h2>风险、版权与合规说明</h2>
+<p>缺资料与 provisional 边界处理见 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SOURCE-REGISTRY" title="来源：SOURCE-REGISTRY">来源</sup> 与 <sup class="evidence evidence-data" data-evidence-kind="data" data-evidence-value="geometry/site_boundary.geojson#SITE-001" title="空间数据：geometry/site_boundary.geojson#SITE-001">空间数据</sup> <sup class="evidence evidence-depth" data-evidence-kind="depth" data-evidence-value="risk_missing_data" title="深度：risk_missing_data">深度</sup>。</p>
+<p>所有空间结论受 provisional boundary 限制。正式边界发布后必须<strong>整链重算</strong>：九组 GeoJSON、metrics、五张证据图、A3/A0、HTML 与 manifest——不能只换单个文件。</p>
+<p><strong>逐条压制 forbidden claims</strong>（<code>allowed_design_space.json</code>）：本方案<strong>不主张</strong>官方批准、已批控规、最终权属、已确认建设规模、保证实施、无来源精确文保控制、无来源精确道路红线。企业包年席营收与廊道制式预留（含磁浮概念）均为假设/形态预留，<strong>不是</strong>投资或工程承诺。</p>
+<h3>AI 运行轨与林轨终端（概念）</h3>
+<ul>
+<li><strong>智驾短驳车</strong>：<strong>安全性第一</strong>——限速、急停、让行步行与装饰轨区；碰撞/越界/急停失败即停运。可载人，并可自动配置货物/物料舱（含日用点补货）。概念建议，非成熟商用结论。</li>
+<li><strong>林轨终端</strong>：智能调控公共开放座位/共用工位、地面灯带/低照度地灯，以及无品牌日用点的日常必需品开闭/补货/调配；不做人脸、不推品牌广告；断网可人工接管；<strong>保留最低开放席位、人工窗口与低需求社区基本供给</strong>。</li>
+<li><strong>无品牌日用试运行点</strong>：起步无品牌标识；AI 只输出契合度与供给建议，正式摊位升级须人工复核与开放准入；失败可撤点；<strong>不得只追高人流量撤低点需求节点</strong>。</li>
+<li><strong>无障碍</strong>：轮椅路径尽量无坡/少坡（必坡≤1:20 + 扶手）；视听障碍者预留<strong>专用 AI 轨道接驳车</strong>概念（触觉 + 语音/文字 + 人工键）；认知/低数字技能/非中文使用者不强制 App，现场人工与双语标识兜底。</li>
+<li><strong>装饰引导轨</strong>：禁止攀爬与奔跑；与运行轨物理分区。铁轨是城市线索，公园优先人与自然、让人安静下来。</li>
+</ul>
+<h3>版权与双语等价</h3>
+<ul>
+<li>完整权利链：<code>report/copyright_statement.md</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="COPYRIGHT-STATEMENT" title="来源：COPYRIGHT-STATEMENT">来源</sup>（逐资产表；证据图为程序工程图，概念渲染为示意）</li>
+<li>中英图等价核对与前置条件表：<code>report/narrative.md</code> <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="NARRATIVE-SUPPORT" title="来源：NARRATIVE-SUPPORT">来源</sup></li>
+<li>图件页脚仅写投稿包 geometry/metrics + 2026-08；<strong>禁止</strong>幻觉机构名、XX市、Working Draft 政府背书</li>
+</ul>
+<h3>缺资料清单</h3>
+<p><code>missing_data_checklist.csv</code> 中列出的官方边界、控规、道路、市政、文保等缺口进入 <code>assumptions.json</code> 和自检。缺少官方条件的结论降级为待确认事项。</p>
+<h3>版权</h3>
+<p>方案必须提供中英双语（<code>proposal.en.md</code>）。图片、数据和代码资产在 <code>sources.json</code> 和 <code>report/copyright_statement.md</code> 中说明来源和授权。HTML 页面不加载远程脚本、地图瓦片、字体、iframe 或外部 API。</p>
+<h3>声明</h3>
+<p>本方案不声称官方批准、审定控规、最终权属、最终建设规模或保证实施。</p>
+<h2>参考资料</h2>
+<p>完整索引见 <sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="OFFICIAL-ANNOUNCEMENT" title="来源：OFFICIAL-ANNOUNCEMENT">来源</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="AGENT-TASKBOOK" title="来源：AGENT-TASKBOOK">来源</sup>、<sup class="evidence evidence-source" data-evidence-kind="source" data-evidence-value="SITE-PACKAGE" title="来源：SITE-PACKAGE">来源</sup>、<code>sources.json</code>、<code>metrics.json</code>、<code>compliance_matrix.json</code>。</p>
+<ul>
+<li>brief/public-brief.md</li>
+<li>brief/site-package/design_brief.json</li>
+<li>brief/site-package/allowed_design_space.json</li>
+<li>data/processed/agent_fact_pack.md</li>
+<li>data/processed/project_scope_summary.csv</li>
+<li>data/processed/agent_task_requirements.csv</li>
+<li>data/processed/missing_data_checklist.csv</li>
+<li>完整来源索引：<code>sources.json</code>、<code>metrics.json</code>、<code>compliance_matrix.json</code>、<code>standard_matrix.json</code>、<code>design_depth_matrix.json</code></li>
+</ul>
+</main>
+</body>
+</html>

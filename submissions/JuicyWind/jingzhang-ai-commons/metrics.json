@@ -1,0 +1,135 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "The submitted boundary derives from provisional source DATA-SRC-PROVISIONAL-BOUNDARIES-20260605, not an official redline; value is indicative for visualization only and must be recalculated when official polygons are published.",
+        "No official total design area polygon was provided by the organizer; this metric does not claim statutory precision."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio is computed against the provisional submitted boundary and is indicative for design discussion only; recalculate when official geometry is published."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "Ratio is computed against the provisional submitted boundary and is indicative for design discussion only; recalculate when official geometry is published."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "maintenance_alerts": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count/week",
+      "source_files": [],
+      "formula": "count(maintenance_alerts_logged_per_week)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual operational metric for the Urban Greening Management Hall; requires a deployed sensing and alerting system plus operating baseline before it can be computed."
+    },
+    "coverage_pct": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "green_assets_with_recorded_maintenance_response / total_green_assets",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual maintenance coverage metric; no operating data or asset register is yet available."
+    },
+    "response_time": {
+      "status": "unknown",
+      "value": null,
+      "unit": "min",
+      "source_files": [],
+      "formula": "avg(alert_to_task_start_minutes)",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual response-time metric for robot-assisted maintenance; requires field trials and operational logging."
+    },
+    "maintenance_cost_estimate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "cny/year",
+      "source_files": [],
+      "formula": "estimated_running_cost_per_year",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual cost estimate for the exhibit's robotic stewardship model; requires energy, labor, materials, and procurement baselines before it can be stated."
+    },
+    "labor_hours_saved": {
+      "status": "unknown",
+      "value": null,
+      "unit": "hours/year",
+      "source_files": [],
+      "formula": "estimated_human_hours_reduced_per_year",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Conceptual labor-savings estimate; not yet validated by trials or operator data."
+    }
+  }
+}

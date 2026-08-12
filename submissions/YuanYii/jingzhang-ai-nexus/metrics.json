@@ -13,10 +13,11 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "polygon_area(submitted_site_boundary)",
-      "confidence": "high",
+      "confidence": "medium",
       "assumptions": [
         "provisional_only"
-      ]
+      ],
+      "note_zh": "基于官方 provisional 边界（EPSG:4548）直接计算（11,412,825.39 m²）"
     },
     "building_footprint_area_sqm": {
       "status": "known",
@@ -26,20 +27,36 @@
         "geometry/buildings.geojson"
       ],
       "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [],
+      "caveat": "building status classification (retain/renovate/demolish/new) not yet available pending official building survey data; all building polygons currently marked status=unknown",
+      "note_zh": "基于 63 个 provisional 建筑多边形求和；要素为园区/地块级，数值量级待官方建筑普查校核"
+    },
+    "building_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "formula": "building_footprint_area_sqm / official_buildable_land_area",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "official buildable land area not yet provided; provisional estimate of 0.158 (provisional geometry) is concept-only and removed from known metrics",
+      "note_zh": "官方可建设用地数据未提供，暂不给出确认值；此前 0.158 仅为 provisional 几何概念估算，已降级为 unknown"
     },
     "green_ratio": {
       "status": "known",
-      "value": 0.311110,
+      "value": 0.31111,
       "unit": "ratio",
       "source_files": [
         "geometry/green_space.geojson",
         "geometry/site_boundary.geojson"
       ],
       "formula": "green_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [],
+      "note_zh": "双口径：本值含全部绿地斑块（约 355.1 ha，green_space.geojson 10 斑块）；规划绿地口径 270.8 ha（LU-002）见 proposal 正文"
     },
     "public_space_ratio": {
       "status": "known",
@@ -50,8 +67,9 @@
         "geometry/site_boundary.geojson"
       ],
       "formula": "public_space_area_sqm / site_area_sqm",
-      "confidence": "medium",
-      "assumptions": []
+      "confidence": "low",
+      "assumptions": [],
+      "note_zh": "27 个 provisional 公共空间要素，含园区级开放空间；口径待官方用地校核"
     },
     "floor_area_ratio": {
       "status": "unknown",
@@ -75,6 +93,289 @@
       "formula": "count(key_detailed_design_areas)",
       "confidence": "high",
       "assumptions": []
+    },
+    "interval_sharing_ratio": {
+      "value": null,
+      "unit": "ratio",
+      "note": "concept-only: 区间共享窗口时间占比（路签归还后社区预约时段/总运营时间）",
+      "confidence": "concept",
+      "status": "unknown",
+      "reason": "concept-only indicator, value pending operational plan definition"
+    },
+    "community_participation_rate": {
+      "value": null,
+      "unit": "percent",
+      "note": "concept-only: 社区参与率基线（第13号场景卡），待试点后采集",
+      "confidence": "concept",
+      "status": "unknown",
+      "reason": "concept-only indicator, baseline to be established after pilot deployment"
+    },
+    "green_300m_coverage": {
+      "status": "known",
+      "value": 0.856,
+      "unit": "ratio",
+      "formula": "area(unary_union(buffer(green_space_patches,300m)) ∩ site_boundary) / site_area_sqm",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "synthetic estimate based on provisional geometry; recalculate when official data released"
+    },
+    "tod_station_500m_cover": {
+      "status": "known",
+      "value": 0.2061,
+      "unit": "ratio",
+      "formula": "area(unary_union(buffer(key_area_centroids,500m)) ∩ site_boundary) / site_area_sqm",
+      "source_files": [
+        "geometry/key_areas.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "synthetic estimate based on provisional geometry; recalculate when official data released",
+      "note_zh": "按三处重点区域质心 500m 圈估算（key_area_centroids），非真实站点坐标；官方站点数据到位后重算"
+    },
+    "greenway_gap_count": {
+      "status": "known",
+      "value": 15,
+      "unit": "count",
+      "formula": "count(roads features intersecting the largest green-space patch)",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/green_space.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "synthetic estimate based on provisional geometry; recalculate when official data released"
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 27321.2,
+      "unit": "m",
+      "formula": "sum(linestring_length, EPSG:4548)",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "conceptual road network from provisional geometry; recalculate when official data released",
+      "note_zh": "16 条概念路网线要素总长，非官方道路红线"
+    },
+    "building_count": {
+      "status": "known",
+      "value": 63,
+      "unit": "count",
+      "formula": "count(features in buildings.geojson)",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "count of provisional building polygons; classification pending official survey",
+      "note_zh": "63 个 provisional 建筑/园区地块要素"
+    },
+    "public_space_count": {
+      "status": "known",
+      "value": 27,
+      "unit": "count",
+      "formula": "count(features in public_space.geojson)",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "count of provisional public-space features"
+    },
+    "green_patch_count": {
+      "status": "known",
+      "value": 10,
+      "unit": "count",
+      "formula": "count(features in green_space.geojson)",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "count of provisional green-space patches"
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "formula": "count(features in land_use.geojson)",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "four land-use categories from provisional geometry"
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(features in phasing.geojson)",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "count of provisional phasing zones"
+    },
+    "constraint_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "formula": "count(features in constraints.geojson)",
+      "source_files": [
+        "geometry/constraints.geojson"
+      ],
+      "confidence": "medium",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "count of provisional constraints (1 polygon + 2 line features)"
+    },
+    "land_use_rd_innovation_area_sqm": {
+      "status": "known",
+      "value": 3119000.0,
+      "unit": "sqm",
+      "formula": "polygon_area(LU-004, EPSG:4548)",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "provisional; matches LU-004 311.9 ha in proposal",
+      "note_zh": "研发创新用地（0802）311.9 ha"
+    },
+    "land_use_industry_commerce_area_sqm": {
+      "status": "known",
+      "value": 3094000.0,
+      "unit": "sqm",
+      "formula": "polygon_area(LU-001, EPSG:4548)",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "provisional; matches LU-001 309.4 ha in proposal",
+      "note_zh": "产业商业用地（05）309.4 ha"
+    },
+    "land_use_green_water_area_sqm": {
+      "status": "known",
+      "value": 2708000.0,
+      "unit": "sqm",
+      "formula": "polygon_area(LU-003, EPSG:4548)",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "provisional; matches LU-003 270.8 ha in proposal",
+      "note_zh": "绿意开敞用地（1401）270.8 ha（规划绿地双口径之一）"
+    },
+    "land_use_talent_community_area_sqm": {
+      "status": "known",
+      "value": 2492000.0,
+      "unit": "sqm",
+      "formula": "polygon_area(LU-002, EPSG:4548)",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "confidence": "low",
+      "assumption_ids": [
+        "A-DATA-001"
+      ],
+      "assumptions": "provisional; matches LU-002 249.2 ha in proposal",
+      "note_zh": "人才社区用地（0702）249.2 ha"
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "formula": "count(scenario cards in proposal)",
+      "source_files": [
+        "proposal.md"
+      ],
+      "confidence": "high",
+      "assumptions": "13 AI scenario cards (L1=8/L2=4/L3=1)",
+      "note_zh": "13 张 AI 场景卡（proposal 场景卡表）"
+    },
+    "renewal_project_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(JZ-01..06 action projects)",
+      "source_files": [
+        "proposal.md"
+      ],
+      "confidence": "high",
+      "assumptions": "six Proof-Mile action projects JZ-01~06",
+      "note_zh": "JZ-01~06 六个更新项目（Proof-Mile 接口）"
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(user personas in proposal)",
+      "source_files": [
+        "proposal.md"
+      ],
+      "confidence": "high",
+      "assumptions": "six typical user personas",
+      "note_zh": "6 类典型用户画像"
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "formula": "count(AI pilgrimage landmarks)",
+      "source_files": [
+        "proposal.md"
+      ],
+      "confidence": "high",
+      "assumptions": "three AI pilgrimage landmarks",
+      "note_zh": "3 大 AI 朝圣地标"
+    },
+    "proof_mile_interface_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "formula": "count(JZ interfaces in proof_mile ledger)",
+      "source_files": [
+        "proposal.md",
+        "visual/assets/proof-mile-delivery.json"
+      ],
+      "confidence": "high",
+      "assumptions": "six Proof-Mile verification interfaces JZ-01~06",
+      "note_zh": "Proof-Mile 验算接口 6 个"
     }
   }
 }

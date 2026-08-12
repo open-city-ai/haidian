@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MICROLOOP — Jing-Zhang AI Belt Low-Speed Robot & AV End Network (offline)</title>
+<style>
+:root{--navy:#1f4e79;--green:#2e7d32;--amber:#d9480f;--teal:#0277bd;--bg:#f4f6f8;--card:#ffffff;--line:#dfe4ea;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;background:var(--bg);color:#263238;line-height:1.6;}
+.wrap{max-width:1240px;margin:0 auto;padding:24px 20px;}
+header{background:linear-gradient(135deg,#1f4e79,#0277bd 55%,#d9480f);color:#fff;padding:34px 20px;border-radius:14px;margin-bottom:26px;}
+header h1{font-size:28px;letter-spacing:1px;}
+header .sub{font-size:15px;margin-top:8px;opacity:.95;}
+.badges{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+.badge{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);padding:4px 12px;border-radius:20px;font-size:12px;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:18px;}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 2px 8px rgba(0,0,0,.04);}
+.card h2{font-size:16px;color:var(--navy);border-left:4px solid var(--green);padding-left:10px;margin-bottom:12px;}
+.card h3{font-size:13px;color:#455a64;margin:10px 0 6px;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;}
+.kpi{background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:14px;text-align:center;}
+.kpi .v{font-size:24px;font-weight:700;color:var(--navy);}
+.kpi .l{font-size:12px;color:#607d8b;margin-top:4px;}
+.mapbox{background:#eef2f5;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
+.mapbox svg{width:100%;height:auto;max-height:420px;}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;margin-top:8px;color:#455a64;}
+.legend span{display:inline-flex;align-items:center;gap:5px;}
+.sw{width:14px;height:14px;border-radius:3px;display:inline-block;border:1px solid #999;}
+table{width:100%;border-collapse:collapse;font-size:12px;}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;}
+th{background:#f0f4f8;color:var(--navy);}
+.tag{display:inline-block;padding:2px 8px;border-radius:10px;font-size:11px;}
+.pass{background:#e8f5e9;color:#1b5e20;}
+.warn{background:#fff8e1;color:#b26a00;}
+.info{background:#e3f2fd;color:#0d47a1;}
+.note{font-size:11px;color:#78909c;margin-top:8px;}
+.foot{text-align:center;font-size:11px;color:#90a4ae;margin-top:26px;padding:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Micro-Loop Logistics MICROLOOP · Low-Speed Robot & AV End Network on the Jing-Zhang AI Belt</h1>
+  <div class="sub">Conceptual proposal based on public and cleared sources, using provisional constraints; not a substitute for formal planning.</div>
+  <div class="badges">
+    <span class="badge">Author: xiaopi668</span>
+    <span class="badge">Language: 中 / EN</span>
+    <span class="badge">Track: Robotics &amp; AV · AI Public Services</span>
+    <span class="badge">package: professional_design_package</span>
+    <span class="badge">Status: ready_for_review</span>
+  </div>
+</header>
+
+<!-- ============ 总览与地图 ============ -->
+<div class="card">
+  <h2>Overview · Three Interconnected Loops &amp; East–West Stitching</h2>
+  <div class="mapbox">
+    <svg viewBox="0 0 800 720" role="img" aria-label="三环互联示意图">
+      <rect x="30" y="20" width="740" height="680" fill="none" stroke="#90a4ae" stroke-width="1.5" stroke-dasharray="6 4"/>
+      <text x="640" y="40" font-size="13" fill="#78909c">Coordinated research scope 43.6 km² (reference)</text>
+      <polygon points="210,690 590,690 590,470 570,260 590,60 320,60 300,240 210,470" fill="#eef3f8" stroke="#7f8c8d" stroke-width="2" stroke-dasharray="5 4"/>
+      <text x="380" y="712" font-size="12" fill="#78909c" text-anchor="middle">Overall design ≈11.4 km² (provisional dashed)</text>
+      <!-- 三个关键区 + 机器人环道 -->
+      <rect x="250" y="70" width="300" height="150" fill="#f6b26b" stroke="#d9480f" stroke-width="2" opacity="0.75"/>
+      <rect x="280" y="100" width="240" height="40" fill="none" stroke="#0277bd" stroke-width="3" rx="20" stroke-dasharray="7 5"/>
+      <text x="400" y="120" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P1 N-Loop Zhongzhiyuan Robot Test Field</text>
+      <rect x="235" y="250" width="310" height="90" fill="#f9cb9c" stroke="#d9480f" stroke-width="2" opacity="0.8"/>
+      <rect x="265" y="270" width="250" height="40" fill="none" stroke="#0277bd" stroke-width="3" rx="20" stroke-dasharray="7 5"/>
+      <text x="390" y="285" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P2 M-Loop AI Origin Public Robot Service</text>
+      <rect x="245" y="490" width="290" height="50" fill="#e6a5b2" stroke="#d9480f" stroke-width="2" opacity="0.8"/>
+      <rect x="270" y="495" width="240" height="40" fill="none" stroke="#0277bd" stroke-width="3" rx="20" stroke-dasharray="7 5"/>
+      <text x="390" y="522" font-size="12" fill="#4a2500" text-anchor="middle" font-weight="bold">P3 S-Loop Dazhongsi Robot-to-Door Network</text>
+      <!-- 慢行主轴 -->
+      <path d="M390,90 L380,250 L385,490 L390,680" stroke="#1b5e20" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <text x="412" y="300" font-size="12" fill="#1b5e20" font-weight="bold">Jing-Zhang Heritage Park Slow Spine</text>
+      <!-- 东西缝合低速廊道 -->
+      <path d="M0,160 L800,160 M0,295 L800,295 M0,515 L800,515" stroke="#607d8b" stroke-width="2.5" stroke-dasharray="8 5"/>
+      <text x="120" y="150" font-size="11" fill="#0277bd" font-style="italic">Low-speed shuttle / robot corridor</text>
+      <!-- 机器人驿站星标 -->
+      <text x="400" y="175" font-size="20" fill="#d9480f" text-anchor="middle">⚡</text>
+      <text x="390" y="330" font-size="20" fill="#d9480f" text-anchor="middle">⚡</text>
+      <text x="390" y="545" font-size="20" fill="#d9480f" text-anchor="middle">⚡</text>
+    </svg>
+    <div class="legend">
+      <span><i class="sw" style="background:#f6b26b"></i>Robot test field</span>
+      <span><i class="sw" style="background:#f9cb9c"></i>Public robot service</span>
+      <span><i class="sw" style="background:#e6a5b2"></i>Robot-to-door experience</span>
+      <span><i class="sw" style="background:#a5d6a7"></i>Green corridor</span>
+      <span style="color:#0277bd">— Low-speed robot/AV loop</span>
+      <span style="color:#d9480f">⚡ Robot hub</span>
+    </div>
+  </div>
+  <div class="note">Static expression of the topology from this package&apos;s geometry (inline SVG, fully offline). Precise area and redlines follow the official polygon; areas recalculated in EPSG:4548.</div>
+</div>
+
+<!-- ============ 核心指标（data-metric/data-value 供 visual_review 校验）============ -->
+<div class="card">
+  <h2>Core Metrics</h2>
+  <div class="kpis">
+    <div class="kpi"><div class="v" data-metric="site_area_sqm" data-value="11412825.4">11,412,825</div><div class="l">Total area m²</div></div>
+    <div class="kpi"><div class="v" data-metric="green_ratio" data-value="0.1252">12.52%</div><div class="l">Green ratio</div></div>
+    <div class="kpi"><div class="v" data-metric="public_space_ratio" data-value="0.0394">3.94%</div><div class="l">Public space ratio</div></div>
+    <div class="kpi"><div class="v" data-metric="road_network_length_m" data-value="24860.6">24.86</div><div class="l">Slow/robot road km</div></div>
+    <div class="kpi"><div class="v" data-metric="key_area_count" data-value="3">3</div><div class="l">Key areas</div></div>
+    <div class="kpi"><div class="v" data-metric="phase_area_sqm" data-value="3692893.0">3,692,893</div><div class="l">Phased area m²</div></div>
+  </div>
+  <div class="note">Metrics match metrics.json, recalculated from geometry in EPSG:4548. FAR / height / density statutory controls lack official conditions and are marked pending (not shown).</div>
+</div>
+
+<!-- ============ 三层范围 + 任务覆盖 ============ -->
+<div class="grid">
+  <div class="card">
+    <h2>Three-Level Scope Framework</h2>
+    <table>
+      <tr><th>Level</th><th>Area</th><th>Core task</th></tr>
+      <tr><td>Coordinated research</td><td>43.6 km²</td><td>Low-speed robots reshape end flows</td></tr>
+      <tr><td>Overall design</td><td>11.4 km²</td><td>End logistics &amp; public robot pilot</td></tr>
+      <tr><td>Key areas</td><td>368.4 ha</td><td>Three loops &amp; robot hubs detail</td></tr>
+    </table>
+    <h3>Three Positioning · Five Functions</h3>
+    <p style="font-size:12px">Heritage Culture Belt｜Urban AI Life Experience Belt｜AI Fusion Innovation Belt<br>End logistics autonomy · Public robot service · Low-speed AV pilot · End governance voice · Smart vibrant city</p>
+  </div>
+  <div class="card">
+    <h2>Compliance Coverage</h2>
+    <table>
+      <tr><th>Requirement</th><th>Status</th></tr>
+      <tr><td>6 agent tasks (agent.1–6)</td><td><span class="tag pass">Full coverage</span></td></tr>
+      <tr><td>Announcement 1.3 / 1.4 / 1.5</td><td><span class="tag pass">Full coverage</span></td></tr>
+      <tr><td>24 end scenario cards (≥10)</td><td><span class="tag pass">Met</span></td></tr>
+      <tr><td>3 robot hub landmarks</td><td><span class="tag pass">Met</span></td></tr>
+      <tr><td>5 user personas</td><td><span class="tag pass">Met</span></td></tr>
+      <tr><td>Low-speed AV / unmanned delivery pilot</td><td><span class="tag pass">Met</span></td></tr>
+      <tr><td>Bilingual presentation</td><td><span class="tag pass">Met</span></td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Land Use</h2>
+    <table>
+      <tr><th>Zone</th><th>Code</th></tr>
+      <tr><td>Heritage green corridor</td><td>1401</td></tr>
+      <tr><td>Robot test field (Zhongzhiyuan)</td><td>0802</td></tr>
+      <tr><td>Open-source origin (AI Origin)</td><td>0802</td></tr>
+      <tr><td>Micro-loop band / public robot service</td><td>05 / 0701</td></tr>
+      <tr><td>Dazhongsi experience block</td><td>05</td></tr>
+      <tr><td>Blue-green corridor</td><td>1401</td></tr>
+    </table>
+    <div class="note">Land-use follows official MNR land_use_codes (0802 R&amp;D / 05 commercial / 0701 residential / 1401 park green); see structure map and phasing.</div>
+  </div>
+  <div class="card">
+    <h2>Phasing</h2>
+    <table>
+      <tr><th>Phase</th><th>Scope</th><th>Content</th></tr>
+      <tr><td>P1 N-Loop (Zhongzhiyuan)</td><td>Robot test field</td><td>Low-speed pilot · delivery/inspection/guide</td></tr>
+      <tr><td>P2 M-Loop (AI Origin)</td><td>Public robot service</td><td>Unmanned delivery · accessible · errands</td></tr>
+      <tr><td>P3 S-Loop (Dazhongsi)</td><td>Robot-to-door network</td><td>To-door delivery · content · consumption</td></tr>
+    </table>
+    <div class="note">Three-loop network is phased, each with robot hubs, battery-swap, and dispatch policies, with rolling compliance monitoring.</div>
+  </div>
+  <div class="card">
+    <h2>Three Key Areas · Detailed Design</h2>
+    <table>
+      <tr><th>Key area</th><th>Loop role</th></tr>
+      <tr><td>N-Loop Zhongzhiyuan</td><td>Robot test, verify, low-speed AV pilot</td></tr>
+      <tr><td>M-Loop AI Origin</td><td>Public robot service, delivery, community</td></tr>
+      <tr><td>S-Loop Dazhongsi</td><td>Robot-to-door, content, consumption</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Sources</h2>
+    <table>
+      <tr><th>Source</th><th>Type</th></tr>
+      <tr><td>SITE-PACKAGE</td><td>official_public</td></tr>
+      <tr><td>SOURCE-REGISTRY</td><td>repository_public_registry</td></tr>
+      <tr><td>PROCESSED-FACT-PACK</td><td>repository_processed_reference</td></tr>
+      <tr><td>BOUNDARY-SOURCE / KEY-AREA-SOURCE</td><td>agent_inferred (provisional)</td></tr>
+      <tr><td>OFFICIAL-ANNOUNCEMENT</td><td>official_public</td></tr>
+      <tr><td>AGENT-TASKBOOK</td><td>user_provided_cleared</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h2>Transport, Blue-Green Network &amp; Public Space</h2>
+    <div style="font-size:12px;line-height:1.8">
+      <strong>Transport:</strong> Jing-Zhang Heritage Park slow spine + three low-speed robot loops + east-west stitching corridors, layered shared right-of-way.<br>
+      <strong>Blue-green network &amp; public space:</strong> blue-green greenways + robot hub plazas; green corridors provide shade, rest, and silent robot parking.<br>
+      <strong>Metrics:</strong> slow/robot road &asymp;24.9km · green ratio &asymp;12.5% · public-space ratio &asymp;3.9%
+    </div>
+  </div>
+  <div class="card">
+    <h2>Renewal Projects &amp; AI Scenarios</h2>
+    <div style="font-size:12px;line-height:1.8">
+      <strong>Renewal projects:</strong> convert inefficient properties into robot hubs, sorting, and public-robot service; build a small number of robot test and battery-swap nodes.<br>
+      <strong>AI scenarios:</strong> unmanned delivery · intelligent inspection · guide accompaniment · cleaning &amp; maintenance · public-robot service (errands/medical/legal) · low-speed AV shuttle · robot-to-door.<br>
+      <strong>Categories:</strong> delivery / inspection / guide / cleaning / accessible companion / low-speed shuttle
+    </div>
+  </div>
+</div>
+
+<!-- ============ 机器人微循环系统 ============ -->
+<div class="grid">
+  <div class="card">
+    <h2>Robot Categories &amp; End Scenarios</h2>
+    <div style="font-size:12px;line-height:1.8">
+      <strong>Robot types:</strong> delivery / inspection / guide / cleaning / accessible companion / low-speed shuttle<br>
+      <strong>End scenarios (24):</strong>快递配送 · 外卖 · 生鲜 · 医疗配送 · 安防巡检 · 设施巡检 · 文化导览 · 无障碍随行 · 路面清洁 · 园区清洁 · 政务代办 · 法律咨询 · 智能售货 · 内容直播 · 站点接驳 …<br>
+      <strong>Compliance protocol:</strong> supervisable · auditable · revertible
+    </div>
+  </div>
+  <div class="card">
+    <h2>Key Assumptions &amp; Limitations</h2>
+    <ul style="font-size:12px;padding-left:16px;line-height:1.8">
+      <li>The three key areas and site are provisional constraints, not official redlines.</li>
+      <li>Once official polygons, redlines, and controls are released, all area/ratio metrics must be recalculated package-wide.</li>
+      <li>Low-speed pilots follow supervisable, auditable, revertible principles; any scenario can revert to manual.</li>
+      <li>Statutory indicators (density, height, FAR) await formal data completion.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Self-Check Status</h2>
+  <table>
+    <tr><th>Gate</th><th>Status</th></tr>
+    <tr><td>DETERMINISTIC_VALIDATION</td><td><span class="tag pass">PASS</span></td></tr>
+    <tr><td>SPATIAL_REVIEW</td><td><span class="tag pass">PASS</span></td></tr>
+    <tr><td>VISUAL_PACKAGING</td><td><span class="tag pass">PASS</span></td></tr>
+    <tr><td>PROFESSIONAL_EVIDENCE</td><td><span class="tag pass">PASS</span></td></tr>
+  </table>
+</div>
+
+<div class="foot">Centennial Jing-Zhang AI Innovation Belt Open Call · xiaopi668 · conceptual (provisional) · MICROLOOP</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "Area is recalculated in EPSG:4548 from the repository-maintained provisional boundary, not an official polygon or precise-area basis."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 310807.184,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual placeholder only; no verified building survey, proposed building or development quantum is available."
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual analytical overlay on provisional geometry; not an existing or approved green-space ratio."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual analytical overlay on provisional geometry; not a measured or approved public-space ratio."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "Approved FAR controls and official site boundary are not present in the public site package."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": [
+        "The official announcement confirms three named key areas; their submitted polygons remain provisional."
+      ]
+    },
+    "ground_language_glyph_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/data/ground-language.json"
+      ],
+      "formula": "count(glyphs)",
+      "confidence": "high",
+      "assumptions": [
+        "Design-system count, not a built-asset count."
+      ]
+    },
+    "scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/data/scenarios.json"
+      ],
+      "formula": "count(scenarios)",
+      "confidence": "high",
+      "assumptions": [
+        "Design scenario count; none is claimed as approved or operating."
+      ]
+    },
+    "testing_validation_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/data/scenarios.json"
+      ],
+      "formula": "count(scenarios where kind = testing_and_validation)",
+      "confidence": "high",
+      "assumptions": [
+        "Test designs only; no field authorization or result is claimed."
+      ]
+    },
+    "pilot_segment_target_min_m": {
+      "status": "known",
+      "value": 100,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/data/operations.json"
+      ],
+      "formula": "conceptual lower bound selected for reversible pilot planning",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual target subject to all professional gates, site permission and accessibility co-design."
+      ],
+      "metric_kind": "conceptual_target"
+    },
+    "pilot_segment_target_max_m": {
+      "status": "known",
+      "value": 200,
+      "unit": "m",
+      "source_files": [
+        "visual/assets/data/operations.json"
+      ],
+      "formula": "conceptual upper bound selected to keep the first public pilot reversible and supervised",
+      "confidence": "medium",
+      "assumptions": [
+        "Conceptual target subject to all professional gates, site permission and accessibility co-design."
+      ],
+      "metric_kind": "conceptual_target"
+    }
+  }
+}

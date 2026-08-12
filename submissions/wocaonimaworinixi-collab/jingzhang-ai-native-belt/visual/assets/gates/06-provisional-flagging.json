@@ -1,0 +1,29 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-06",
+ "title_zh": "临时数据全域标记",
+ "title_en": "Provisional data flagging across the package",
+ "domain": "data",
+ "status": "design_target",
+ "source_ids": [
+  "SITE-PACKAGE",
+  "PROCESSED-FACT-PACK"
+ ],
+ "inputs": [
+  "metrics.json",
+  "assumptions.json",
+  "geometry/site_boundary.geojson"
+ ],
+ "procedure": [
+  "所有基于临时边界的量值统一标注 basis=provisional_boundary 与 recalculation_status。",
+  "确认 official_basis=false 未被任何文案改写为已批准。",
+  "在报告首屏与图纸角标同步声明。"
+ ],
+ "pass_rule": "全部派生量值均可追溯到 provisional 标记，无遗漏。",
+ "stop_rule": "出现未标记的派生量值时停止对外引用。",
+ "owner": "data steward",
+ "non_ai_equivalent": "资料台账与临时数据标注",
+ "evidence_output": "provisional_flag_index",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

@@ -1,11 +1,11 @@
 {
  "schema_version": "1.0",
  "package_id": "ren-axis-jingzhang-ai-belt",
- "note_zh": "18项按《北京市城市更新项目库管理办法（试行）》口径接入市、区两级项目库（条件门齐备申报入库、未达标动态出库），并设3年评估—6年换装—不达标回退的自适应周期。台账为概念级治理模板：权属状态均为待核验、KPI基线均待试点前实测冻结、责任仅列类型不指认机构（A为依法定程序最终确认的主管或业主责任主体）；实体项目走「条件门—验收—停工复核」，AI场景走「黄/红牌—人工接管—恢复—退役」。本文件为 visual 台账面板与 A3 台账页的同源机器可读数据；human_review/no_ai_alternative/appeal_channel 三项字段完备率指标由本文件复算（公式见 metrics.json），量的是设计承诺完备性、非运行实测。",
+ "note_zh": "18项按《北京市城市更新项目库管理办法（试行）》口径接入市、区两级项目库（条件门齐备申报入库、未达标动态出库），并设3年评估—6年换装—不达标回退的自适应周期。台账为概念级治理模板：权属状态均为待核验、KPI基线均待试点前实测冻结、责任仅列类型不指认机构（A为依法定程序最终确认的主管或业主责任主体）；实体项目走「条件门—验收—停工复核」，AI场景走「黄/红牌—人工接管—恢复—退役」。本文件为 visual 台账面板与 A3 台账页的同源机器可读数据；human_review/no_ai_alternative/appeal_channel 三项字段完备率由本文件的 field_completeness 直接统计（分子为该字段非空的场景数、分母为场景总数），它们是本文件的字段统计、不是 metrics.json 的登记指标，量的是设计承诺完备性、非运行实测。",
  "language_note": "场景与项目台账字段目前仅有中文；画像核验表为中英双语。English readers: the persona table below is bilingual; the scenario and project ledgers are currently Chinese-only.",
  "executable_pilot_cards": {
-  "note_zh": "三张可执行卡回应公开意见通道第 002 号意见（issue #215）。可交付的是字段结构、冻结机制与责任归属；阈值数值必须来自试点前的实测基线，本包不编造数值——SC-12 是例外，它的成功口径是包内一致性，无需等待试点即可执行。",
-  "note_en": "These three cards answer comment 002 in the public channel (issue #215). What is deliverable now is the field structure, the freezing mechanism and accountability; threshold values must come from a measured pre-pilot baseline and are not invented here. SC-12 is the exception: its success criterion is internal consistency, enforceable immediately.",
+  "note_zh": "三张可执行卡回应公开意见通道第 002 号意见（issue #215）。可交付的是字段结构、冻结机制与责任归属；阈值数值必须来自试点前的实测基线，本包不编造数值——SC-12 是例外，它的成功口径是包内一致性，无需等待试点即可执行。第 003–004 号回应（2026-08-10）后补齐三字段：受益或担风险、资源与许可、申诉与问责路径；申诉字段同时回答第 003 号意见指出的三处缺口——样本口径的独立确认角色、删除记录的出具对象与回读位置、外部异议独立触发复核的入口。",
+  "note_en": "These three cards answer comment 002 in the public channel (issue #215). What is deliverable now is the field structure, the freezing mechanism and accountability; threshold values must come from a measured pre-pilot baseline and are not invented here. SC-12 is the exception: its success criterion is internal consistency, enforceable immediately. After responses 003–004 (2026-08-10) three fields were added — who benefits and who bears risk, resources and permissions, and the appeal and accountability path; the appeal field also answers the three gaps named in comment 003: an independent confirmer for the sample definition, whom deletion records are issued to and where they can be read back, and an entry point for external objections to trigger a review on their own.",
   "fields": [
    {
     "key": "baseline",
@@ -46,6 +46,21 @@
     "key": "review",
     "zh": "复盘周期",
     "en": "Review cycle"
+   },
+   {
+    "key": "benefit",
+    "zh": "受益或担风险",
+    "en": "Who benefits and who bears risk"
+   },
+   {
+    "key": "resources",
+    "zh": "资源与许可",
+    "en": "Resources and permissions"
+   },
+   {
+    "key": "appeal",
+    "zh": "申诉与问责路径",
+    "en": "Appeal and accountability path"
    }
   ],
   "cards": [
@@ -70,7 +85,13 @@
     "deletion_zh": "聚合计数保留≤90天，到期自动删除；红牌或退役时立即清缓存并出具删除记录（时间、范围、执行人、核验人）",
     "deletion_en": "Aggregate counts kept ≤90 days then auto-deleted; on red card or retirement the cache is cleared immediately and a deletion record is issued (time, scope, executor, verifier)",
     "review_zh": "每 4 周一次复盘并公开纪要；红牌后须完成责任复核与受影响群体反馈方可转黄观察一周期",
-    "review_en": "Review every four weeks with published minutes; after a red card, accountability review and affected-group feedback must complete before a yellow observation period"
+    "review_en": "Review every four weeks with published minutes; after a red card, accountability review and affected-group feedback must complete before a yellow observation period",
+    "benefit_zh": "受益：北三环两侧步行通勤者与过街人群（含无障碍需求者）——等候更短、指引更清晰；担风险：同一批过街者（指引失准）与值守班组（处置负担）。沿用公共利益三原则：服务等价、弱势群体不作首轮测试对象、受影响群体代表持红牌权",
+    "benefit_en": "Benefits: crossers on both sides of the North Third Ring, including people with accessibility needs. Risk bearers: the same crossers (misleading guidance) and the watch team (response burden). Equal service, no vulnerable groups in round one, affected-group red-card power",
+    "resources_zh": "需要：既有信号配时数据的只读接入（配时权属不变）、断面计数设备的安装许可与供电、站点二维码张贴位；许可主体与审批路径待深化阶段确认，未取得许可不启动",
+    "resources_en": "Needs: read-only signal-timing data (timing authority unchanged), installation permission and power for the counters, a spot for the QR code; permitting bodies are confirmed at the detailing stage — no permission, no start",
+    "appeal_zh": "样本口径由独立于值守班组的复核角色确认，确认人不得与执行人同源；删除记录向复核角色与社区代表出具，回读位置为意见—回应台账；申诉入口为站点二维码与公开意见通道——外部异议即使不构成投诉、未触发红牌，也可独立要求一次复核并获三态回应",
+    "appeal_en": "A review role independent of the watch team confirms the sample definition; deletion records go to that role and the community representatives, readable in the opinion–response ledger; appeals enter via QR code or the public channel — an objection that triggers no card can still demand one review and gets a three-state answer"
    },
    {
     "id": "SC-09",
@@ -93,7 +114,13 @@
     "deletion_zh": "原始影像保留≤180天；退役时按既定规则删除并出具删除记录，评测结果与失败档案公开留存",
     "deletion_en": "Raw imagery kept ≤180 days; on retirement it is deleted under the agreed rule with a deletion record issued, while evaluation results and the failure log remain public",
     "review_zh": "每月巡检 + 每季度对照评测；失败记录逐条公开，供后续场景引用避坑",
-    "review_en": "Monthly inspection plus quarterly controlled evaluation; every failure is logged publicly so later scenarios can avoid the same trap"
+    "review_en": "Monthly inspection plus quarterly controlled evaluation; every failure is logged publicly so later scenarios can avoid the same trap",
+    "benefit_zh": "受益：绿廊植被与日常使用者（养护更准、用水更省）；担风险：植被本身（误灌溉、误修剪）与养护班组（对照与处置负担）。试验对象是植被不是公众，影像不含人像",
+    "benefit_en": "Benefits: the corridor's vegetation and its daily users (better maintenance, less water). Risk bearers: the vegetation itself (mis-irrigation, mis-pruning) and the maintenance crew (workload). The trial tests vegetation, not the public; imagery contains no people",
+    "resources_zh": "需要：绿地养护作业许可、固定摄位安装许可、灌溉系统接口的受控访问；用水用电走既有养护口径，许可与预算主体待深化阶段确认",
+    "resources_en": "Needs: the maintenance work permit, consent for fixed camera positions, controlled access to the irrigation interface; water and power run under the existing maintenance arrangement, bodies confirmed at the detailing stage",
+    "appeal_zh": "人工对照组的选段与指标由独立于技术供应方的养护复核角色确认；删除记录向该复核角色出具、入台账可回读；现场公示牌载明反馈入口——居民与养护人员的异议即使未触发红黄牌，也可独立要求一次复核并获三态回应",
+    "appeal_en": "A maintenance review role independent of the supplier confirms the control group's sections and indicators; deletion records go to that role, readable in the ledger; the notice board carries the feedback entry — an objection that triggers no card can still demand one review with a three-state answer"
    },
    {
     "id": "SC-12",
@@ -101,8 +128,8 @@
     "name_en": "Urban model ground",
     "loc_zh": "众智园展示枢纽",
     "loc_en": "Zhongzhiyuan exhibition hub",
-    "baseline_zh": "本包当前指标即基线：30 项已复算指标与 4 项待正式数据补齐的控制指标，口径见 metrics.json",
-    "baseline_en": "This package's current metrics are the baseline: 30 recomputed metrics and 4 control values pending official data, as declared in metrics.json",
+    "baseline_zh": "本包当前指标即基线：50 项已复算指标与 4 项待正式数据补齐的控制指标，口径见 metrics.json",
+    "baseline_en": "This package's current metrics are the baseline: 50 recomputed metrics and 4 control values pending official data, as declared in metrics.json",
     "window_zh": "随版本 K 标滚动；每次官方数据到位触发一次整包重算与展示更新",
     "window_en": "Rolls with each version K-marker; every arrival of official data triggers one whole-package recomputation and display update",
     "success_zh": "展示数值与 metrics.json 逐位一致率 100%，且待补齐指标在展示层不出现数值——这是可立即执行的硬性口径，不需等试点",
@@ -116,7 +143,13 @@
     "deletion_zh": "仅使用公开数据集，不接入个人数据，因而无个人数据删除义务；展项撤展时归档留存",
     "deletion_en": "Only public datasets are used and no personal data is ingested, so no personal-data deletion obligation arises; on withdrawal the exhibit is archived",
     "review_zh": "每次版本 K 标更新后人工核对一次并留存一致性核查记录",
-    "review_en": "A human consistency check after every version K-marker update, with the check record retained"
+    "review_en": "A human consistency check after every version K-marker update, with the check record retained",
+    "benefit_zh": "受益：查阅城市模型的公众与后续智能体（可复算的公共数据资产）；担风险：主要是认知风险——展示与包内口径不一致会误导读者，这正是把一致性定为成功口径的原因。不接入个人数据，无个体数据风险承担方",
+    "benefit_en": "Benefits: the public consulting the model and later agents (a recomputable public data asset). The risk is cognitive — an inconsistent display would mislead readers, which is why consistency is the success criterion. No personal data, so no individual bears data risk",
+    "resources_zh": "需要：展示枢纽的展位与供电（依托一期「智算展示枢纽」项目落位）、开源仓库托管（已具备）；仅用公开数据集，无个人数据许可需求",
+    "resources_en": "Needs: exhibition space and power at the hub (sited with the phase-one exhibition-hub project), open-source hosting (in place); only public datasets, no personal-data permission needed",
+    "appeal_zh": "口径一致性由构建期断言与人工核对双重确认——断言在管道里、核对留记录；开源仓库 issue 为公开申诉入口，任何人可就不一致发起异议并获三态回应，处理过程与下架原因公开入台账",
+    "appeal_en": "Consistency is confirmed twice — build-time assertion in the pipeline, recorded human check; the repository issue channel is the public appeal route: anyone can challenge an inconsistency, gets a three-state answer, and reads the handling and any withdrawal reason in the ledger"
    }
   ]
  },
@@ -669,7 +702,7 @@
    "level": "中",
    "tenure": "公园及沿线用地（多主体待核验）",
    "pre": "与遗址公园既成工程界面衔接+绿化占掘许可",
-   "need": "既有绿廊使用观测与断点复核（公园二期已于2026-08建成开放）",
+   "need": "既有绿廊使用观测与断点复核（公园二期建成开放见政务发布，官方未给具体日期）",
    "review": "分段联合验线",
    "accept": "全线贯通里程台账",
    "stop": "断点协调未果即分段开放"
@@ -766,6 +799,72 @@
    "stop": "校方安全顾虑即调整开放边界"
   }
  ],
+ "public_input_ledger": {
+  "note_zh": "公开意见通道为仓库 issue #215（2026-08-08 开通），承诺：每条意见 72 小时内给出采纳/部分采纳/不采纳三态回应并附理由，台账随包沉淀。本表只登记通道内意见与对本包产生实际改动的外部公共议题；进度通报按第 004 号回应的口径记录、不占用三态。",
+  "channel": {
+   "issue": 215,
+   "opened": "2026-08-08",
+   "pledge_zh": "72小时内三态回应（采纳/部分采纳/不采纳）并附理由；意见—回应台账随包沉淀"
+  },
+  "entries": [
+   {
+    "no": "001",
+    "date": "2026-08-08",
+    "from_zh": "147228（参赛者）",
+    "opinion_zh": "图纸证据等级应可判读；大钟寺站位表述存在被误读为既有站位的风险",
+    "disposition_zh": "采纳",
+    "delivered_zh": "四张地图图纸固定标注三类证据等级（official fact / OSM concept alignment / provisional proposal）；中英正文补大钟寺显式否定句（既非现有站位、也非任何已获批准的站城设计）",
+    "response_ref": "issue #215 · 2026-08-09 回应"
+   },
+   {
+    "no": "002",
+    "date": "2026-08-08",
+    "from_zh": "147228（参赛者）",
+    "opinion_zh": "治理承诺应落成可执行的试点卡，而非停留在场景描述",
+    "disposition_zh": "采纳（列为首要）",
+    "delivered_zh": "SC-01/SC-09/SC-12 各按八字段成卡随包交付（governance-ledger.json 与 A3 独立页）；阈值一律待试点前实测冻结、不编造数值",
+    "response_ref": "issue #215 · 2026-08-09 回应"
+   },
+   {
+    "no": "003",
+    "date": "2026-08-09",
+    "from_zh": "147228（参赛者）",
+    "opinion_zh": "三点邀请：谁确认样本与时间窗、谁出具删除证明、异议如何进入复核；另附其自包处置的通报",
+    "disposition_zh": "邀请部分采纳；通报部分记录、不作三态",
+    "delivered_zh": "三点邀请暴露的三处卡片缺口（样本口径独立确认角色/删除记录出具对象与回读位置/外部异议独立触发复核）随本版补入申诉与问责路径等三字段；构建期断言承诺已随此前版本交付",
+    "response_ref": "issue #215 · 2026-08-10 回应（第 003–004 号）"
+   },
+   {
+    "no": "004",
+    "date": "2026-08-09",
+    "from_zh": "147228（参赛者）",
+    "opinion_zh": "邀请指出'样本与时间窗、删除凭证、申诉如何回读'哪一项不够具体；另问进度通报是否计入通道意见",
+    "disposition_zh": "邀请采纳；'通报计入意见'不采纳——通报照实记录但不占用三态与 72 小时义务",
+    "delivered_zh": "逐项作答见回应正文；'删除凭证向谁出具、在哪里回读'与'申诉可回读'写入三张卡的申诉与问责路径字段",
+    "response_ref": "issue #215 · 2026-08-10 回应（第 003–004 号）"
+   }
+  ],
+  "external_public_issues": [
+   {
+    "id": "PUBLIC-ISSUE-1061",
+    "date": "2026-08-09",
+    "from_zh": "崔浡然（实名居民公开意见，自述居住于规划片区内；非参赛者）",
+    "scope_zh": "面向征集活动全场的公开批评：大量方案措辞空泛（先发明名词、再解释事情）；项目逻辑存在矛盾；参与者未到现场，不应替居民发言。未点名本包。",
+    "protocol_zh": "意见作者已在该 issue 内明确：无需各 Agent 持续回复，如有改进在 PR 中引用即可。本包遵此协议：不在该 issue 内回复，改进随版落包并在版本记录中引用。",
+    "uptake_zh": [
+     "台账三字段（受益或担风险/资源与许可/申诉与问责路径）随本版补齐——该项由 #215 第 003–004 号回应在先承诺，与该意见'谁在什么时候为谁做什么'的要求同向",
+     "外部异议独立触发复核的入口写进三张卡的申诉字段：不构成投诉、未触发红牌的异议也可要求一次复核",
+     "正文名词落地审查：每个自造概念就近落到位置、对象与责任，审查结论见版本记录"
+    ]
+   }
+  ],
+  "negative_claims_zh": [
+   "本包 Agent 与操作者均未到过现场，未开展走访、访谈或任何授权公众参与",
+   "通道内既有意见均来自参赛者；本包目前没有收到居民直达意见，#1061 是居民对征集活动全场的意见、不针对本包",
+   "本包不声称居民共识、居民支持或公众参与成果；台账与画像是设计承诺与研究视角，不代表任何真实居民",
+   "登记 #1061 仅作为公共议题输入与写作纪律依据，不构成其作者对本包的评价、参与或背书"
+  ]
+ },
  "field_completeness": {
   "human_review": 12,
   "no_ai_alternative": 12,

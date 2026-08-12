@@ -1,0 +1,805 @@
+{
+  "schema_version": "1.0.0",
+  "contract_name": "Civic Dividend Contract 0.4",
+  "states": [
+    "BASE",
+    "BOOST",
+    "BLACKOUT",
+    "BEQUEST"
+  ],
+  "rule": "No AI pilot advances unless its non-AI baseline and post-unplug civic bequest are both usable.",
+  "contracts": [
+    {
+      "id": "SCN-01-EMBODIED-UNPLUG",
+      "short_id": "SCN-01",
+      "title_zh": "具身智能退场测试",
+      "title_en": "Embodied-AI unplug drill",
+      "yard_id": "DY-01-SAFETY-DIVIDEND",
+      "seam_id": "US-06-TEST-YARD",
+      "key_area_id": "PROV-KEY-001",
+      "service_class": "controlled_industry_test",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "可触摸障碍模块与纸面安全边界",
+        "non_ai_service_en": "Tactile obstacle modules and a printed safety envelope",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-06-TEST-YARD"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "可触摸障碍模块与纸面安全边界",
+        "asset_en": "Tactile obstacle modules and a printed safety envelope",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-02-EDGE-OFFLINE",
+      "short_id": "SCN-02",
+      "title_zh": "端侧能耗与断网韧性",
+      "title_en": "Edge energy and offline resilience",
+      "yard_id": "DY-01-SAFETY-DIVIDEND",
+      "seam_id": "US-06-TEST-YARD",
+      "key_area_id": "PROV-KEY-001",
+      "service_class": "controlled_industry_test",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "公共能耗表与人工运行包络",
+        "non_ai_service_en": "A public energy meter and human operating envelope",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-06-TEST-YARD"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "公共能耗表与人工运行包络",
+        "asset_en": "A public energy meter and human operating envelope",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-03-FAILURE-LIBRARY",
+      "short_id": "SCN-03",
+      "title_zh": "模型红队与失败陈列",
+      "title_en": "Model red-team and failure library",
+      "yard_id": "DY-01-SAFETY-DIVIDEND",
+      "seam_id": "US-05-SAFETY-SOUTH",
+      "key_area_id": "PROV-KEY-001",
+      "service_class": "controlled_industry_test",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "版本化失败卡与纸面风险标记",
+        "non_ai_service_en": "Versioned failure cards and paper risk markers",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-05-SAFETY-SOUTH"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "版本化失败卡与纸面风险标记",
+        "asset_en": "Versioned failure cards and paper risk markers",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-04-RAIN-MANUAL-GAUGE",
+      "short_id": "SCN-04",
+      "title_zh": "雨洪感知与人工雨尺",
+      "title_en": "Rain sensing and manual gauge",
+      "yard_id": "DY-01-SAFETY-DIVIDEND",
+      "seam_id": "US-05-SAFETY-SOUTH",
+      "key_area_id": "PROV-KEY-001",
+      "service_class": "controlled_industry_test",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "人工雨尺与雨花园养护卡",
+        "non_ai_service_en": "A manual rain gauge and rain-garden care card",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-05-SAFETY-SOUTH"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "人工雨尺与雨花园养护卡",
+        "asset_en": "A manual rain gauge and rain-garden care card",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-05-OPEN-MAINTENANCE",
+      "short_id": "SCN-05",
+      "title_zh": "开源维护门诊",
+      "title_en": "Open-source maintenance clinic",
+      "yard_id": "DY-02-OPEN-DIVIDEND",
+      "seam_id": "US-04-ORIGIN-WORKS",
+      "key_area_id": "PROV-KEY-002",
+      "service_class": "industry_translation",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "可复用修补手册、问题单与零件架",
+        "non_ai_service_en": "A reusable repair manual, issue docket, and parts shelf",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-04-ORIGIN-WORKS"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "可复用修补手册、问题单与零件架",
+        "asset_en": "A reusable repair manual, issue docket, and parts shelf",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-06-CIVIC-INTEROP",
+      "short_id": "SCN-06",
+      "title_zh": "城市服务互操作沙盒",
+      "title_en": "Civic-service interoperability sandbox",
+      "yard_id": "DY-02-OPEN-DIVIDEND",
+      "seam_id": "US-04-ORIGIN-WORKS",
+      "key_area_id": "PROV-KEY-002",
+      "service_class": "industry_translation",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "开放适配器与纸面服务流程",
+        "non_ai_service_en": "An open adapter and paper service workflow",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-04-ORIGIN-WORKS"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "开放适配器与纸面服务流程",
+        "asset_en": "An open adapter and paper service workflow",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-07-BILINGUAL-LABEL",
+      "short_id": "SCN-07",
+      "title_zh": "双语模型说明工坊",
+      "title_en": "Bilingual model-label workshop",
+      "yard_id": "DY-02-OPEN-DIVIDEND",
+      "seam_id": "US-03-OPEN-SOUTH",
+      "key_area_id": "PROV-KEY-002",
+      "service_class": "knowledge_translation",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "通俗双语模型说明模板",
+        "non_ai_service_en": "A plain-language bilingual model-label template",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-03-OPEN-SOUTH"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "通俗双语模型说明模板",
+        "asset_en": "A plain-language bilingual model-label template",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-08-YOUTH-REVERSE-MENTOR",
+      "short_id": "SCN-08",
+      "title_zh": "青年反向导师课",
+      "title_en": "Youth reverse-mentoring studio",
+      "yard_id": "DY-02-OPEN-DIVIDEND",
+      "seam_id": "US-03-OPEN-SOUTH",
+      "key_area_id": "PROV-KEY-002",
+      "service_class": "knowledge_translation",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "纸面任务卡与工具借用目录",
+        "non_ai_service_en": "Paper task cards and a tool-lending catalogue",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-03-OPEN-SOUTH"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "纸面任务卡与工具借用目录",
+        "asset_en": "Paper task cards and a tool-lending catalogue",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-09-ACCESSIBLE-DUAL-PATH",
+      "short_id": "SCN-09",
+      "title_zh": "无障碍慢行双轨导航",
+      "title_en": "Accessible dual-path wayfinding",
+      "yard_id": "DY-03-EVERYDAY-DIVIDEND",
+      "seam_id": "US-02-CIVIC-CROSSING",
+      "key_area_id": "PROV-KEY-003",
+      "service_class": "public_service",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "触觉静态地图与实测普通路线",
+        "non_ai_service_en": "A tactile static map and field-audited ordinary route",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-02-CIVIC-CROSSING"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "触觉静态地图与实测普通路线",
+        "asset_en": "A tactile static map and field-audited ordinary route",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-10-STAFFED-TRIAGE",
+      "short_id": "SCN-10",
+      "title_zh": "公共服务分诊柜台",
+      "title_en": "Staffed public-service triage",
+      "yard_id": "DY-03-EVERYDAY-DIVIDEND",
+      "seam_id": "US-02-CIVIC-CROSSING",
+      "key_area_id": "PROV-KEY-003",
+      "service_class": "public_service",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "有人目录、纸面材料单与电话路径",
+        "non_ai_service_en": "A staffed directory, paper checklist, and telephone route",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-02-CIVIC-CROSSING"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "有人目录、纸面材料单与电话路径",
+        "asset_en": "A staffed directory, paper checklist, and telephone route",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-11-HERITAGE-COMMONS",
+      "short_id": "SCN-11",
+      "title_zh": "京张记忆共读",
+      "title_en": "Jing-Zhang memory commons",
+      "yard_id": "DY-03-EVERYDAY-DIVIDEND",
+      "seam_id": "US-01-SOUTH-GATE",
+      "key_area_id": "PROV-KEY-003",
+      "service_class": "culture_public_life",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "经核史的实体时间线与权利卡",
+        "non_ai_service_en": "A verified physical timeline and rights card",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-01-SOUTH-GATE"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "经核史的实体时间线与权利卡",
+        "asset_en": "A verified physical timeline and rights card",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    },
+    {
+      "id": "SCN-12-CONSUMER-UNPLUG",
+      "short_id": "SCN-12",
+      "title_zh": "消费智能体拔线沙盒",
+      "title_en": "Consumer-agent unplug sandbox",
+      "yard_id": "DY-03-EVERYDAY-DIVIDEND",
+      "seam_id": "US-01-SOUTH-GATE",
+      "key_area_id": "PROV-KEY-003",
+      "service_class": "public_service",
+      "public_purpose_zh": "验证有限AI增益，同时确保普通公共服务不依赖AI。",
+      "public_purpose_en": "Test a bounded AI benefit while keeping ordinary public service independent of AI.",
+      "baseline": {
+        "required": true,
+        "non_ai_service_zh": "人工比价板、退款和申诉入口",
+        "non_ai_service_en": "A manual comparison board plus refund and appeal routes",
+        "access_without_account": true,
+        "human_contact_required": true
+      },
+      "boost": {
+        "deployment_status": "proposed_synthetic_or_shadow_only",
+        "allowed_data": [
+          "synthetic_fixture",
+          "public_non_personal_reference",
+          "opt_in_minimized_feedback"
+        ],
+        "prohibited_data": [
+          "face_identity",
+          "continuous_personal_trajectory",
+          "medical_record",
+          "payment_credential",
+          "personal_score"
+        ],
+        "human_role_ids": [
+          "ROLE-OPERATIONS",
+          "ROLE-PUBLIC-STEWARD"
+        ],
+        "bounded_location": "US-01-SOUTH-GATE"
+      },
+      "blackout": {
+        "scheduled_unplug_required": true,
+        "trigger_authority_role_ids": [
+          "ROLE-PUBLIC-STEWARD",
+          "ROLE-SAFETY"
+        ],
+        "unplug_action": "disconnect model, network, sensors, and automated actuator; retain ordinary route and staffed service",
+        "recovery_evidence": [
+          "equipment_isolated",
+          "data_deletion_receipt",
+          "ordinary_route_open",
+          "human_service_available"
+        ]
+      },
+      "bequest": {
+        "asset_zh": "人工比价板、退款和申诉入口",
+        "asset_en": "A manual comparison board plus refund and appeal routes",
+        "must_work_without_ai": true,
+        "open_reuse_package": [
+          "plain_language_card",
+          "maintenance_note",
+          "negative_result",
+          "version_and_owner"
+        ]
+      },
+      "field_results": null,
+      "status": "concept_not_authorized_not_run"
+    }
+  ]
+}

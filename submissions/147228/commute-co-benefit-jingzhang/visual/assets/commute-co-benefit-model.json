@@ -1,0 +1,118 @@
+{
+  "model_version": "1.1",
+  "model_class": "population_scale_synthetic_activity_chain_policy_screen",
+  "purpose": "Compare enterprise-resident multimodal commute policy bundles on a declared population-scale synthetic activity chain.",
+  "regional_scope": {
+    "population_reference": 3122000,
+    "population_reference_label": "Haidian permanent residents at the end of 2024",
+    "population_reference_source": "HAIDIAN-POPULATION-2024",
+    "coverage_ratio": 1,
+    "morning_outbound_trips": 3122000,
+    "return_legs": 3122000,
+    "interpretation": "A synthetic stress screen sized to a population reference. It is not a workforce census, observed OD matrix, resident survey, or field performance result."
+  },
+  "activity_chain": {
+    "nodes": [
+      {"id": "home_departure", "label_zh": "居住地出发", "label_en": "home departure"},
+      {"id": "first_last_mile", "label_zh": "首末端接驳", "label_en": "first/last mile"},
+      {"id": "work_or_school", "label_zh": "到岗/到校", "label_en": "work or school"},
+      {"id": "midday_service", "label_zh": "午间服务", "label_en": "midday service"},
+      {"id": "return_transfer", "label_zh": "返程换乘", "label_en": "return transfer"},
+      {"id": "home_arrival", "label_zh": "回家到达", "label_en": "home arrival"}
+    ],
+    "links": [
+      {"id": "AC-01", "from": "home_departure", "to": "first_last_mile", "purpose": "access"},
+      {"id": "AC-02", "from": "first_last_mile", "to": "work_or_school", "purpose": "arrival"},
+      {"id": "AC-03", "from": "work_or_school", "to": "midday_service", "purpose": "service"},
+      {"id": "AC-04", "from": "midday_service", "to": "return_transfer", "purpose": "return"},
+      {"id": "AC-05", "from": "return_transfer", "to": "home_arrival", "purpose": "home"}
+    ],
+    "chain_completion_definition": "All five links retain a feasible ground or human fallback in the candidate screen; this is a policy contract, not a measured completion rate."
+  },
+  "synthetic_population": {
+    "groups": [
+      {"id": "enterprise_employee", "label_zh": "企业员工", "label_en": "enterprise employees", "count": 1092700, "share": 0.35, "activity": "work"},
+      {"id": "resident_worker", "label_zh": "居民工作者", "label_en": "resident workers", "count": 936600, "share": 0.30, "activity": "work"},
+      {"id": "carer_or_child", "label_zh": "照护者/儿童", "label_en": "carers / children", "count": 468300, "share": 0.15, "activity": "care_or_school"},
+      {"id": "visitor_service", "label_zh": "访客/服务人员", "label_en": "visitors / service users", "count": 312200, "share": 0.10, "activity": "service"},
+      {"id": "logistics_and_maintenance", "label_zh": "物流/维护", "label_en": "logistics / maintenance", "count": 156100, "share": 0.05, "activity": "service"},
+      {"id": "night_worker", "label_zh": "夜班工作者", "label_en": "night workers", "count": 156100, "share": 0.05, "activity": "work"}
+    ],
+    "privacy": "Aggregate group, mode, time band, activity link, route edge and scenario counts only; no personal identifiers or continuous trajectories."
+  },
+  "modes": ["metro", "bus", "bicycle", "walking_wheelchair", "car", "enterprise_shuttle"],
+  "mode_parameters": {
+    "metro": {"label_zh": "地铁", "label_en": "metro", "base_minutes": 42, "wait_minutes": 6, "reliability": 0.82, "capacity_person_trips": 900000, "vehicle_km_per_person": 0.10, "curb_conflict": 0.001},
+    "bus": {"label_zh": "公交", "label_en": "bus", "base_minutes": 52, "wait_minutes": 9, "reliability": 0.76, "capacity_person_trips": 650000, "vehicle_km_per_person": 0.17, "curb_conflict": 0.003},
+    "bicycle": {"label_zh": "自行车", "label_en": "bicycle", "base_minutes": 34, "wait_minutes": 2, "reliability": 0.88, "capacity_person_trips": 430000, "vehicle_km_per_person": 0.06, "curb_conflict": 0.004},
+    "walking_wheelchair": {"label_zh": "步行/无障碍", "label_en": "walking / accessible", "base_minutes": 44, "wait_minutes": 1, "reliability": 0.90, "capacity_person_trips": 580000, "vehicle_km_per_person": 0, "curb_conflict": 0.004},
+    "car": {"label_zh": "汽车", "label_en": "car", "base_minutes": 39, "wait_minutes": 4, "reliability": 0.64, "capacity_person_trips": 470000, "vehicle_km_per_person": 12.8, "curb_conflict": 0.012},
+    "enterprise_shuttle": {"label_zh": "企业接驳", "label_en": "enterprise shuttle", "base_minutes": 38, "wait_minutes": 7, "reliability": 0.80, "capacity_person_trips": 220000, "vehicle_km_per_person": 0.72, "curb_conflict": 0.004}
+  },
+  "mode_weights": {
+    "B0": {
+      "enterprise_employee": {"metro": 0.34, "bus": 0.16, "bicycle": 0.08, "walking_wheelchair": 0.08, "car": 0.28, "enterprise_shuttle": 0.06},
+      "resident_worker": {"metro": 0.24, "bus": 0.18, "bicycle": 0.12, "walking_wheelchair": 0.16, "car": 0.25, "enterprise_shuttle": 0.05},
+      "carer_or_child": {"metro": 0.14, "bus": 0.20, "bicycle": 0.05, "walking_wheelchair": 0.38, "car": 0.18, "enterprise_shuttle": 0.05},
+      "visitor_service": {"metro": 0.28, "bus": 0.23, "bicycle": 0.13, "walking_wheelchair": 0.24, "car": 0.07, "enterprise_shuttle": 0.05},
+      "logistics_and_maintenance": {"metro": 0.04, "bus": 0.04, "bicycle": 0.01, "walking_wheelchair": 0.02, "car": 0.84, "enterprise_shuttle": 0.05},
+      "night_worker": {"metro": 0.18, "bus": 0.32, "bicycle": 0.05, "walking_wheelchair": 0.10, "car": 0.28, "enterprise_shuttle": 0.07}
+    },
+    "C1": {
+      "enterprise_employee": {"metro": 0.43, "bus": 0.20, "bicycle": 0.11, "walking_wheelchair": 0.08, "car": 0.10, "enterprise_shuttle": 0.08},
+      "resident_worker": {"metro": 0.32, "bus": 0.22, "bicycle": 0.14, "walking_wheelchair": 0.16, "car": 0.11, "enterprise_shuttle": 0.05},
+      "carer_or_child": {"metro": 0.15, "bus": 0.22, "bicycle": 0.05, "walking_wheelchair": 0.40, "car": 0.13, "enterprise_shuttle": 0.05},
+      "visitor_service": {"metro": 0.32, "bus": 0.25, "bicycle": 0.14, "walking_wheelchair": 0.21, "car": 0.04, "enterprise_shuttle": 0.04},
+      "logistics_and_maintenance": {"metro": 0.04, "bus": 0.05, "bicycle": 0.01, "walking_wheelchair": 0.02, "car": 0.80, "enterprise_shuttle": 0.08},
+      "night_worker": {"metro": 0.22, "bus": 0.34, "bicycle": 0.05, "walking_wheelchair": 0.12, "car": 0.20, "enterprise_shuttle": 0.07}
+    },
+    "C2": {
+      "enterprise_employee": {"metro": 0.41, "bus": 0.21, "bicycle": 0.12, "walking_wheelchair": 0.10, "car": 0.08, "enterprise_shuttle": 0.08},
+      "resident_worker": {"metro": 0.31, "bus": 0.24, "bicycle": 0.16, "walking_wheelchair": 0.19, "car": 0.05, "enterprise_shuttle": 0.05},
+      "carer_or_child": {"metro": 0.17, "bus": 0.27, "bicycle": 0.04, "walking_wheelchair": 0.43, "car": 0.04, "enterprise_shuttle": 0.05},
+      "visitor_service": {"metro": 0.31, "bus": 0.25, "bicycle": 0.17, "walking_wheelchair": 0.22, "car": 0.01, "enterprise_shuttle": 0.04},
+      "logistics_and_maintenance": {"metro": 0.04, "bus": 0.06, "bicycle": 0.02, "walking_wheelchair": 0.03, "car": 0.77, "enterprise_shuttle": 0.08},
+      "night_worker": {"metro": 0.23, "bus": 0.38, "bicycle": 0.05, "walking_wheelchair": 0.18, "car": 0.09, "enterprise_shuttle": 0.07}
+    },
+    "C3": {
+      "enterprise_employee": {"metro": 0.42, "bus": 0.20, "bicycle": 0.13, "walking_wheelchair": 0.11, "car": 0.06, "enterprise_shuttle": 0.08},
+      "resident_worker": {"metro": 0.33, "bus": 0.22, "bicycle": 0.17, "walking_wheelchair": 0.20, "car": 0.03, "enterprise_shuttle": 0.05},
+      "carer_or_child": {"metro": 0.38, "bus": 0.14, "bicycle": 0.02, "walking_wheelchair": 0.39, "car": 0.02, "enterprise_shuttle": 0.05},
+      "visitor_service": {"metro": 0.32, "bus": 0.26, "bicycle": 0.17, "walking_wheelchair": 0.20, "car": 0.01, "enterprise_shuttle": 0.04},
+      "logistics_and_maintenance": {"metro": 0.04, "bus": 0.06, "bicycle": 0.02, "walking_wheelchair": 0.03, "car": 0.76, "enterprise_shuttle": 0.09},
+      "night_worker": {"metro": 0.34, "bus": 0.24, "bicycle": 0.04, "walking_wheelchair": 0.16, "car": 0.14, "enterprise_shuttle": 0.08}
+    }
+  },
+  "protected_time_budget_controls": {
+    "profile": "C3",
+    "purpose": "Use a declared 50-minute sufficiency guard for carers/children and night workers before comparing the all-agent proxy; retain 40 minutes as a diagnostic curve.",
+    "groups": ["carer_or_child", "night_worker"],
+    "diagnostic_budgets_minutes": [40, 50],
+    "protected_gate_budget_minutes": 50,
+    "mode_weight_interpretation": "Declared synthetic guard profile; not observed local mode share, service availability, accessibility performance or resident preference.",
+    "field_gate": ["dated station lift and accessible-route audit", "dated night-service and human-fallback roster", "grouped time-budget OD and resident response"],
+    "stop_rule": "If either protected group loses the dated field threshold or an equivalent ground/human fallback is absent, hold the policy and return to P0."
+  },
+  "policy_bundles": [
+    {"id": "B0_inertial_baseline", "weight_profile": "B0", "label_zh": "B0 惯性基线", "label_en": "B0 inertial baseline", "enterprise_shift_share": 0, "curb_factor": 1, "reliability_bonus": 0, "accessibility_protection": 0, "air_candidate": false},
+    {"id": "C1_employer_staggered", "weight_profile": "C1", "label_zh": "C1 企业错峰", "label_en": "C1 employer staggering", "enterprise_shift_share": 0.20, "curb_factor": 0.88, "reliability_bonus": 0.04, "accessibility_protection": 0.02, "air_candidate": false},
+    {"id": "C2_equity_guarded", "weight_profile": "C2", "label_zh": "C2 公平保护", "label_en": "C2 equity guarded", "enterprise_shift_share": 0.12, "curb_factor": 0.82, "reliability_bonus": 0.06, "accessibility_protection": 0.05, "air_candidate": false},
+    {"id": "C3_commute_co_benefit", "weight_profile": "C3", "label_zh": "C3 通勤共益组合", "label_en": "C3 commute co-benefit bundle", "enterprise_shift_share": 0.18, "curb_factor": 0.76, "reliability_bonus": 0.08, "accessibility_protection": 0.07, "air_candidate": false},
+    {"id": "A1_air_candidate_blocked", "weight_profile": "C3", "label_zh": "A1 空中候选（阻断）", "label_en": "A1 air candidate (blocked)", "enterprise_shift_share": 0.18, "curb_factor": 0.70, "reliability_bonus": 0.10, "accessibility_protection": 0.07, "air_candidate": true}
+  ],
+  "route_edges": [
+    {"id": "E01", "label_zh": "居住地—社区接口", "label_en": "home to community interface", "capacity": 3400000},
+    {"id": "E02", "label_zh": "社区—轨道/公交接口", "label_en": "community to rail/bus interface", "capacity": 2600000},
+    {"id": "E03", "label_zh": "轨道/公交—企业入口", "label_en": "rail/bus to enterprise front door", "capacity": 2100000},
+    {"id": "E04", "label_zh": "社区—照护服务接口", "label_en": "community to care/service interface", "capacity": 650000},
+    {"id": "E05", "label_zh": "路缘—物流维护接口", "label_en": "curb to logistics/maintenance interface", "capacity": 420000},
+    {"id": "E06", "label_zh": "企业—对外通勤接口", "label_en": "enterprise to external commute interface", "capacity": 2100000}
+  ],
+  "scoring": {
+    "weights": {"time": 0.30, "wait": 0.15, "reliability": 0.18, "crowding": 0.12, "curb_conflict": 0.10, "activity_chain": 0.10, "vehicle_km": 0.05},
+    "satisfaction_scale": "100 minus weighted generalized-cost points; synthetic comparison scale only",
+    "hard_gates": {"all_agents_processed": true, "mass_conservation": true, "max_mode_load_ratio": 1.35, "minimum_group_accessibility": 0.92, "maximum_group_satisfaction_gap": 8, "air_candidate_must_be_blocked": true}
+  },
+  "source_boundary": "Method papers and public policy sources calibrate model structure only. No external coefficient, local OD, resident response, timetable, route capacity or air-service result is imported as observed Haidian data.",
+  "status": "synthetic_aggregate_screen_not_authorized_not_run"
+}

@@ -1,0 +1,285 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(submitted_site_boundary) in EPSG:4548",
+   "confidence": "medium",
+   "assumptions": [
+    "Boundary is provisional (provisional_constraint); official redline pending.",
+    "Recalculated in EPSG:4548; replace after official boundary release."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(KEY_AREA features)",
+   "confidence": "high",
+   "assumptions": [
+    "Three required key areas present as provisional_constraint."
+   ]
+  },
+  "land_use_area_research_sqm": {
+   "status": "known",
+   "value": 4818245.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LAND_USE where code=0802))",
+   "confidence": "medium",
+   "assumptions": [
+    "Design proposal partition derived from provisional boundary."
+   ]
+  },
+  "land_use_area_commercial_sqm": {
+   "status": "known",
+   "value": 1069329.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LAND_USE where code=05))",
+   "confidence": "medium",
+   "assumptions": [
+    "Design proposal partition derived from provisional boundary."
+   ]
+  },
+  "land_use_area_residential_sqm": {
+   "status": "known",
+   "value": 1845516.7,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LAND_USE where code=0701))",
+   "confidence": "medium",
+   "assumptions": [
+    "Design proposal partition derived from provisional boundary."
+   ]
+  },
+  "land_use_area_education_sqm": {
+   "status": "known",
+   "value": 352609.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LAND_USE where code=0804))",
+   "confidence": "medium",
+   "assumptions": [
+    "Design proposal partition derived from provisional boundary."
+   ]
+  },
+  "land_use_area_culture_sqm": {
+   "status": "known",
+   "value": 149220.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(LAND_USE where code=0803))",
+   "confidence": "medium",
+   "assumptions": [
+    "Design proposal partition derived from provisional boundary."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2478396.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(GREEN_SPACE))",
+   "confidence": "medium",
+   "assumptions": [
+    "Green polygons match land_use codes 1401/1402 in the same partition."
+   ]
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.2172,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Ratio recalculated on provisional boundary; official value may differ."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 137017.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(PUBLIC_SPACE))",
+   "confidence": "medium",
+   "assumptions": [
+    "Includes plazas (code 1403) and courtyard plazas inside research parcels."
+   ]
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.012,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area_sqm / site_area_sqm",
+   "confidence": "medium",
+   "assumptions": [
+    "Ratio recalculated on provisional boundary; official value may differ."
+   ]
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 981004.8,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(BUILDING_FOOTPRINT))",
+   "confidence": "medium",
+   "assumptions": [
+    "Representative footprints only; not a final building scale determination."
+   ]
+  },
+  "building_count": {
+   "status": "known",
+   "value": 21,
+   "unit": "count",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "count(BUILDING_FOOTPRINT)",
+   "confidence": "high",
+   "assumptions": [
+    "Count of representative design footprints in the proposal."
+   ]
+  },
+  "road_length_m": {
+   "status": "known",
+   "value": 39824.0,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(length(ROAD_CENTERLINE)) with lat/lon length approximation",
+   "confidence": "low",
+   "assumptions": [
+    "Schematic alignments; road redline requires official survey."
+   ]
+  },
+  "road_count": {
+   "status": "known",
+   "value": 12,
+   "unit": "count",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "count(ROAD_CENTERLINE)",
+   "confidence": "high",
+   "assumptions": [
+    "Schematic network for design discussion only."
+   ]
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 5282940.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(PHASE where phase=phase_1))",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing partition covers the submitted boundary without gaps or overlaps."
+   ]
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 5064535.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(PHASE where phase=phase_2))",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing partition covers the submitted boundary without gaps or overlaps."
+   ]
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 1065403.1,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(PHASE where phase=phase_3))",
+   "confidence": "medium",
+   "assumptions": [
+    "Phasing partition covers the submitted boundary without gaps or overlaps."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area_sqm / official_site_area_sqm",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved FAR controls and official site boundary are not present in the public site package. Pending official regulatory-plan attachment.",
+   "required_for_formal_submission": true
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "approved height controls per parcel",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Official height controls, aviation/landscape/heritage constraints not provided in the cleared site package.",
+   "required_for_formal_submission": true
+  },
+  "green_ratio_statutory": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "approved green ratio per parcel",
+   "confidence": "unknown",
+   "assumptions": [],
+   "reason": "Approved regulatory planning conditions not included in the cleared site package.",
+   "required_for_formal_submission": true
+  }
+ }
+}

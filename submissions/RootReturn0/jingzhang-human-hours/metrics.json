@@ -1,0 +1,109 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": ["geometry/site_boundary.geojson"],
+      "formula": "area(union(site_boundary)) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": ["A-PROVISIONAL-GEOMETRY-001"],
+      "reason": "Recomputed from the repository-maintained provisional polygon; not an official redline or statutory area."
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.123423,
+      "unit": "ratio",
+      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "area(union(green_space)) / area(union(site_boundary))",
+      "confidence": "low",
+      "assumptions": ["A-PROVISIONAL-GEOMETRY-001"],
+      "reason": "Internal ratio of proposal geometry only; not an existing-condition or approved planning indicator."
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.073281,
+      "unit": "ratio",
+      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
+      "formula": "area(union(public_space)) / area(union(site_boundary))",
+      "confidence": "low",
+      "assumptions": ["A-PROVISIONAL-GEOMETRY-001"],
+      "reason": "Internal ratio of proposal geometry only; not an existing-condition or approved planning indicator."
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": ["geometry/key_areas.geojson"],
+      "formula": "count(distinct required key_area_id)",
+      "confidence": "medium",
+      "assumptions": ["A-PROVISIONAL-GEOMETRY-001"],
+      "reason": "Three taskbook-required key-area types are represented by provisional polygons."
+    },
+    "METRIC-REST-COMPLIANCE": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["docs/product-iterations/human-hours-ai-72198959/modules/07-evidence-metrics/metric-catalog.json", "docs/product-iterations/human-hours-ai-72198959/registries/sources.jsonl"],
+      "formula": "compliant_eligible_shifts / eligible_shifts",
+      "confidence": "unknown",
+      "assumptions": ["ASM-011", "ASM-012"],
+      "reason": "Project-level scheduling, actual working-time and applicable-rule evidence has not been collected."
+    },
+    "METRIC-UNPLANNED-EXTENSION": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": ["docs/product-iterations/human-hours-ai-72198959/modules/07-evidence-metrics/metric-catalog.json", "docs/product-iterations/human-hours-ai-72198959/registries/sources.jsonl"],
+      "formula": "count(distinct qualifying_extension_event_id)",
+      "confidence": "unknown",
+      "assumptions": ["ASM-011", "ASM-012"],
+      "reason": "No complete project-level shift, exception, replacement or grievance record exists."
+    },
+    "METRIC-HANDOFF-FAILURE": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["docs/product-iterations/human-hours-ai-72198959/modules/07-evidence-metrics/metric-catalog.json", "docs/product-iterations/human-hours-ai-72198959/registries/sources.jsonl"],
+      "formula": "failed_eligible_handoffs / all_eligible_handoff_attempts",
+      "confidence": "unknown",
+      "assumptions": ["ASM-011", "ASM-012"],
+      "reason": "All-channel handoff testing and a measured threshold are not available."
+    },
+    "METRIC-NO-AI-EQUIVALENCE": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["docs/product-iterations/human-hours-ai-72198959/modules/07-evidence-metrics/metric-catalog.json", "docs/product-iterations/human-hours-ai-72198959/registries/sources.jsonl"],
+      "formula": "passed_required_cells / all_required_cells",
+      "confidence": "unknown",
+      "assumptions": ["ASM-011", "ASM-012"],
+      "reason": "Equivalent human, paper, telephone and digital path tests have not started."
+    },
+    "METRIC-PROHIBITED-DATA-USE": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": ["docs/product-iterations/human-hours-ai-72198959/modules/07-evidence-metrics/metric-catalog.json", "docs/product-iterations/human-hours-ai-72198959/registries/sources.jsonl"],
+      "formula": "count(distinct verified_prohibited_processing_event_id)",
+      "confidence": "unknown",
+      "assumptions": ["ASM-011", "ASM-012"],
+      "reason": "The complete system, controller, data-use and audit-log inventory is not available."
+    },
+    "METRIC-EQUITY-BURDEN": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": ["docs/product-iterations/human-hours-ai-72198959/modules/07-evidence-metrics/metric-catalog.json", "docs/product-iterations/human-hours-ai-72198959/registries/sources.jsonl"],
+      "formula": "passed_required_groups / required_groups",
+      "confidence": "unknown",
+      "assumptions": ["ASM-011", "ASM-012"],
+      "reason": "Independent review across nine persona categories and five staff roles has not been completed."
+    }
+  }
+}

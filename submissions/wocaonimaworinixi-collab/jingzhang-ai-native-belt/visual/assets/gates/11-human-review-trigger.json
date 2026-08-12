@@ -1,0 +1,28 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-11",
+ "title_zh": "高风险人工复核触发",
+ "title_en": "High-risk human review trigger",
+ "domain": "governance",
+ "status": "design_target",
+ "source_ids": [
+  "PKG-RISK",
+  "PROJECT-AGENT-OPEN-CALL-TASKBOOK"
+ ],
+ "inputs": [
+  "risk.json",
+  "simulation.json"
+ ],
+ "procedure": [
+  "风险评分达到 4 分即强制写入 human_review 与停止条件。",
+  "仿真中被标记高风险的任务必须 100% 进入人工复核路径。",
+  "记录拦截率并对未拦截样本逐条复盘。"
+ ],
+ "pass_rule": "高风险拦截率为 1.0，且每个 4 分维度均有署名复核角色。",
+ "stop_rule": "出现高风险任务绕过人工复核时停止上线。",
+ "owner": "governance lead",
+ "non_ai_equivalent": "重大事项人工审批制度",
+ "evidence_output": "human_review_ledger",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:jingzhang:closure-fixtures:0.3.0",
+  "title": "Synthetic joined golden-asset closure fixture set",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "logical_time",
+    "disclosure",
+    "positive_assets",
+    "negative_fixtures"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "0.3.0"
+    },
+    "logical_time": {
+      "type": "string"
+    },
+    "disclosure": {
+      "type": "object",
+      "required": [
+        "synthetic",
+        "executed",
+        "field_validated",
+        "official_site_connected"
+      ]
+    },
+    "positive_assets": {
+      "type": "array",
+      "minItems": 4,
+      "items": {
+        "type": "object",
+        "required": [
+          "asset_id",
+          "spatial_join",
+          "maintenance_debt",
+          "intervention",
+          "transition",
+          "event_journal",
+          "receipt",
+          "fallback",
+          "disposition",
+          "ledgers",
+          "escrow",
+          "disclosure"
+        ]
+      }
+    },
+    "negative_fixtures": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "fixture_id",
+          "base_asset_id",
+          "asset"
+        ]
+      }
+    }
+  },
+  "x-evidence-status": {
+    "synthetic": true,
+    "executed": true,
+    "field_validated": false,
+    "official_site_connected": false,
+    "statement_zh": "本记录为已执行的可复现合成闭环测试证据，未经过现场验证，未连接任何官方场地、资产或业务系统。",
+    "statement_en": "This record is executed reproducible synthetic closure-test evidence; it is not field validated and is not connected to any official site, asset, or operational system."
+  },
+  "x-state-allowlist": {
+    "L0_CANDIDATE": [
+      "L1_CONTRACTED"
+    ],
+    "L1_CONTRACTED": [
+      "L2_COMMISSIONING"
+    ],
+    "L2_COMMISSIONING": [
+      "L3_IN_SERVICE"
+    ],
+    "L3_IN_SERVICE": [
+      "L4_MAINTENANCE_DUE",
+      "L5_INCIDENT_REPAIR"
+    ],
+    "L4_MAINTENANCE_DUE": [
+      "L5_INCIDENT_REPAIR"
+    ],
+    "L5_INCIDENT_REPAIR": [
+      "L6_UPGRADE_RECERTIFY"
+    ],
+    "L6_UPGRADE_RECERTIFY": [
+      "L3_IN_SERVICE",
+      "L7_RETIRED"
+    ],
+    "L7_RETIRED": []
+  }
+}

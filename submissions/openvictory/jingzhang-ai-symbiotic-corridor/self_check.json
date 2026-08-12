@@ -1,6 +1,36 @@
 {
   "schema_version": "0.1.0",
+  "ok": true,
+  "can_enter_formal_review": true,
   "checks": [
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "package",
+      "message": "Deterministic submission validation passes locally via scripts/self_check_submission.py and scripts/participant_preflight.py: scope limited to the participant proposal directory, manifest SHA-256 hashes verified for every registered asset, and PR-author claim matches the fork path."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/",
+      "message": "SPATIAL_REVIEW PASS (issues=3, all KEY_AREA_PROVISIONAL): provisional site boundary and three provisional key areas are explicitly disclosed as non-official; all areas recomputed in EPSG:4548 with validator union logic; organizer geometry gaps do not block content scoring and recalculation is committed once official geometry is supplied."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html, assets/figures/",
+      "message": "VISUAL_PACKAGING PASS (issues=0): static HTML visualization has no external dependencies (no CDN, tiles, scripts, remote fonts, requests, iframes, or forms); five figure pairs are truly bilingual renders from GeoJSON in both Chinese and English; PDFs rebuilt as true-figure editions."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "v0.16 proposal includes executive brief table (6 rows), evidence level table (6 categories with what-cannot-be-proved column), 3-option scenario comparison (7-dimension scoring), OSM independent spatial cross-check (7 stations inside boundary, Dazhongsi ~200m outside), 12 scenario cards with seven-field matrix and SYM credential IDs, SYM Symbiosis Credential Schema 1.0 named deliverable, 8 action packages with exit conditions and 3-phase timeline, 5+5 user personas, 3 AI landmarks, 14-metric EPSG:4548 recalculation table with three epistemic subsections, a clause-by-clause taskbook traceability index mapping all 23 mandatory announcement/agent requirements to script-verified real headings, SVG brand logo, generation-and-review method disclosure binding all eight self-check IDs, and comprehensive reference bibliography."
+    },
     {
       "check_id": "BOUNDARY_TRUST",
       "result": "pass",
@@ -30,11 +60,11 @@
       "message": "Static HTML visualization generated without external dependencies (no CDN, remote map tiles, external scripts, external fonts, API requests, iframes, or form submissions)."
     },
     {
-      "check_id": "PROFESSIONAL_EVIDENCE",
+      "check_id": "PROFESSIONAL_EVIDENCE_DETAIL",
       "result": "pass",
       "severity": "major",
       "target": "proposal.md",
-      "message": "v0.6 proposal includes executive brief table (6 rows), evidence level table (6 categories), 3-option scenario comparison (7-dimension scoring), 12 scenario cards with seven-field matrix and SYM credential IDs, 8 action packages with exit conditions and 3-phase timeline, 5+5 user personas, 3 AI landmarks, 14 metrics table, SVG brand logo, and comprehensive reference bibliography."
+      "message": "Supplementary evidence inventory retained for traceability; the blocking PROFESSIONAL_EVIDENCE gate above carries the formal four-gate record."
     },
     {
       "check_id": "METRICS_CONSISTENCY",
@@ -55,7 +85,7 @@
       "result": "pass",
       "severity": "info",
       "target": "report/copyright_statement.md, sources.json, assets/",
-      "message": "All text, geometry, diagrams, PDFs, and HTML assets declared as AI agent OpenSquilla generated. Fonts use open-source/generic Chinese families. SVG symbiosis-mark.svg uses original geometric composition without corporate trademarks. CASE-* sources registered with URLs and accessed dates."
+      "message": "All text, geometry, diagrams, PDFs, and HTML assets declared as AI agent OpenSquilla generated. Fonts unified to Noto Sans SC (SIL Open Font License v1.1, commercial use permitted); figures and PDFs re-rendered with this font and registered in the asset manifest. SVG symbiosis-mark.svg uses original geometric composition without corporate trademarks. CASE-* sources registered with URLs and accessed dates."
     }
   ]
 }

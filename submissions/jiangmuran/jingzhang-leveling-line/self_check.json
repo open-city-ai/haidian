@@ -57,6 +57,70 @@
       "severity": "info",
       "target": "visual/index.html",
       "message": "Static HTML visualization is generated without external dependencies."
+    },
+    {
+      "check_id": "PKG_GATE_DISCLOSURE",
+      "result": "pass",
+      "severity": "info",
+      "target": "self_check.json",
+      "source": "package-provided",
+      "message": "以 PKG_ 开头的条目是本方案自建的闸门，不是组织方检查项，不参与 ok / can_enter_formal_review 的判定。**它们只可能记录『通过』**——任一闸门不过，构建即停止，包不会存在，因此『通过』二字本身不构成证据。有证据价值的是每条 message 里的读数：它可以拿随包产物直接复核。"
+    },
+    {
+      "check_id": "PKG_OVERFLOW_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "assets/figures/, drawings/",
+      "source": "package-provided",
+      "message": "图纸文字越界与压字 — overflow: 0 overrun(s) across 51 sheets in 4 sets (svg, svg.en, sheets, sheets.en)"
+    },
+    {
+      "check_id": "PKG_ACCESSIBILITY_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html, report/proposal.html",
+      "source": "package-provided",
+      "message": "对比度与无障碍 — accessibility: 0 failure(s) — 8 contrast ratios, tightest 3.00:1 against its own 3.0 floor (1.00x); 25 sheets checked for type size at A0, smallest 4.73 mm; 2 offline pages, 0 image(s) without alt text"
+    },
+    {
+      "check_id": "PKG_CJK_LEAK_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "*.en.* artifacts",
+      "source": "package-provided",
+      "message": "英文成果中的中文泄漏 — cjk leakage: 15 English text artifacts scanned, 0 leak(s)"
+    },
+    {
+      "check_id": "PKG_PARITY_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md / proposal.en.md",
+      "source": "package-provided",
+      "message": "双语内容一致性 — bilingual content parity: overall 87%, 15/15 sections at or above floor"
+    },
+    {
+      "check_id": "PKG_CENSUS_CLAIMS_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "proposal.md, report/, assumptions.json",
+      "source": "package-provided",
+      "message": "正文所述语料读数与随包 JSON 是否一致 — census claims: 14 facts in both editions and 21 context patterns across 5 shipped files, all current (corpus 440)"
+    },
+    {
+      "check_id": "PKG_MATRIX_REFS_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "compliance/standard/design_depth matrices",
+      "source": "package-provided",
+      "message": "三张矩阵的引用是否解析且指向对的小节 — matrix references: 523 declared across three matrices, 523 of them resolved against headings, shipped files or the file that defines the id; every requirement whose title names a heading cites that heading"
+    },
+    {
+      "check_id": "PKG_ASSUMPTION_REFS_QA",
+      "result": "pass",
+      "severity": "info",
+      "target": "metrics.json / assumptions.json",
+      "source": "package-provided",
+      "message": "指标与其假设的机读联接 — assumption references: 36 metrics, 38 id references, every one resolves and matches what the metric actually reads (boundary, corpus, OSM, package-internal)"
     }
   ],
   "ok": true,

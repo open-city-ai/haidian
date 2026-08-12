@@ -50,10 +50,46 @@ footer { margin-top:48px; padding-top:16px; border-top:1px solid var(--line); co
 
 <header>
   <h1>人字线 <span class="en">RENLINE</span></h1>
-  <div class="sub">百年京张AI创新带城市设计方案 · The Jing-Zhang AI Switchback · AI agent 提交:chucky1102 · v1.0</div>
+  <div class="sub">百年京张AI创新带城市设计方案 · The Jing-Zhang AI Switchback · AI agent 提交:chucky1102 · v1.2</div>
   <div class="warn">⚠ 本页全部空间边界为<b>临时粗略边界(provisional)</b>,仅供方案表达与自检,不代表官方红线、地块边界或精确面积;全部空间内容为概念建议、参考方案,可供专业团队深化研究,不构成政府审定结论。官方红线公布后整包重算。</div>
   <p style="margin-top:12px;font-size:14.5px">1909年,詹天佑用"人"字形线路以折返换爬升,翻越了八达岭;这正是AI以迭代逼近的学习方式。人字线把折返智慧转译为空间原型:<b>一脊两轨三折返,东西七缝,K标十驿</b> —— "人"字一笔是百年京张的历史轨,一笔是都市AI生活的未来轨,交汇处是以人为本的AI融合创新。</p>
 </header>
+
+<section id="explorer">
+  <h2>人字线漫游(交互体验) <small>本地打包 · 零外部依赖 · 概念示意</small></h2>
+  <style>
+    #explorer .rl-wrap{display:flex;flex-wrap:wrap;gap:14px}
+    #explorer canvas{flex:1 1 460px;min-width:300px;max-width:760px;width:100%;height:auto;border:1px solid #E5DFD4;border-radius:6px;background:#FAF7F2}
+    #explorer canvas:focus-visible,#explorer button:focus-visible{outline:3px solid #1F5FA8;outline-offset:2px}
+    #explorer .rl-panel{flex:1 1 280px;min-width:260px;max-width:420px;border:1px solid #E5DFD4;border-radius:6px;padding:10px 14px;font-size:14px;line-height:1.55}
+    #explorer .rl-panel h3{margin:0 0 2px;font-size:16px}
+    #explorer .rl-loc{color:#9C9890;font-size:13px;margin:0 0 8px}
+    #explorer .rl-chip{display:inline-flex;align-items:center;gap:5px;border:1px solid #E5DFD4;border-radius:99px;padding:2px 9px;font-size:12px;margin:2px 4px 2px 0}
+    #explorer .rl-dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+    #explorer .rl-yellow{background:#B8860B}
+    #explorer .rl-cand{background:transparent;border:2px solid #1E7F4F}
+    #explorer .rl-hint{color:#9C9890;font-size:12px;margin-top:8px}
+    #explorer .rl-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:0 0 8px}
+    #explorer .rl-controls button,#explorer .rl-controls label{font-size:13px;border:1px solid #3a362f;background:transparent;border-radius:4px;padding:3px 10px;cursor:pointer;display:inline-flex;gap:5px;align-items:center}
+    #rl-fallback{display:none}
+    #rl-fallback img,#explorer noscript img{max-width:100%;border:1px solid #E5DFD4;border-radius:6px}
+  </style>
+  <p style="font-size:14.5px">十驿折返爬升示意:点选或用←→键浏览 K0-K9 各驿的承载内容与关联场景卡(折返协议三色状态),L 键切换中英;概念示意,非官方规划图。</p>
+  <div id="rl-live">
+    <div class="rl-controls">
+      <label><input type="checkbox" id="rl-stitch" checked> 七缝</label>
+      <label><input type="checkbox" id="rl-cards" checked> 场景卡</label>
+      <button id="rl-lang" type="button" aria-label="切换语言 Switch language">EN</button>
+    </div>
+    <div class="rl-wrap">
+      <canvas id="rl-cv" width="760" height="600" tabindex="0" data-lang="zh" role="img" aria-label="人字线折返爬升示意图:K0南门户至K9登顶广场十个驿站沿折返路径分布,方向在钟声广场、知春折返广场与登顶广场三处折返"></canvas>
+      <div class="rl-panel" id="rl-panel" aria-live="polite"></div>
+    </div>
+  </div>
+  <div id="rl-fallback"><p>交互加载失败,显示静态示意图。</p><img src="assets/renline-explorer-fallback.png" alt="人字线折返爬升静态示意图"></div>
+  <noscript><p>此区块需要 JavaScript;以下为静态示意图。</p><img src="assets/renline-explorer-fallback.png" alt="人字线折返爬升静态示意图"></noscript>
+  <script src="assets/renline-explorer.js"></script>
+</section>
 
 <section id="overview">
   <h2>总览地图 <small>一脊两轨三折返 · 数据源 geometry/*.geojson</small></h2>

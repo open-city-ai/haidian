@@ -1,0 +1,149 @@
+{
+  "schema_version": "0.1.0",
+  "registry_note_zh": "本表来源均取自仓库公开来源登记表或资料包本地标准快照。provisional_only 与 background_only 来源不得升级为官方边界或正式评分依据。",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "path": "brief/site-package/",
+      "source_type": "official_public",
+      "usage": "项目任务书、枚举、允许设计空间、范围限值与校验 schema。",
+      "usage_en": "Project brief, enums, allowed design space, planning limits, and validation schemas.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "资料包本身是组织方整理的公开材料集合，不含官方精确红线。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "source_type": "repository_public_registry",
+      "usage": "公开来源可用性登记表，区分 formal-ready / background_only / provisional_only。",
+      "usage_en": "Public source usability registry.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "登记表是索引，引用时须回到具体来源记录。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "path": "data/processed/agent_fact_pack.md",
+      "source_type": "repository_processed_reference",
+      "usage": "范围、必答任务、来源使用边界与缺口清单的导航层。",
+      "usage_en": "Navigation layer for scopes, required tasks, and missing-data checklist.",
+      "usable_for_formal": "background_only",
+      "limitation_zh": "派生导航材料，不作为独立权威来源。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "source_type": "official_public",
+      "usage": "三层范围面积与文字四至、三处重点片区名称与南北顺序、设计任务与成果要求的唯一官方依据。",
+      "usage_en": "Official basis for the three scope areas, key-area names, design tasks, and deliverable requirements.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "公告只给出面积与文字四至，未附边界图或空间数据；不能据此生成官方红线。",
+      "registry_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "published_date": "2026-05-09"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "source_type": "user_provided_cleared",
+      "usage": "六项智能体必答任务、三大定位、五大功能、三区两翼与评审维度。",
+      "usage_en": "The six required agent tasks, three positionings, five functions, three areas and two wings.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "为清权摘录版本，不替代组织方正式征集文件。",
+      "registry_source_id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "published_date": "2026-05-18"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "提交范围线几何来源（临时约束范围 PROV-SITE-001）。",
+      "usage_en": "Source of the submitted boundary geometry (provisional PROV-SITE-001).",
+      "usable_for_formal": "provisional_only",
+      "limitation_zh": "依据公告文字四至与约面积推定的粗略折线，禁止作为官方红线或审批依据。",
+      "registry_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "published_date": "2026-06-05"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "source_type": "agent_inferred_from_public_data",
+      "usage": "三处重点详细设计片区的临时占位范围（PROV-KEY-001/002/003）。",
+      "usage_en": "Provisional placeholder extents for the three key detailed-design areas.",
+      "usable_for_formal": "provisional_only",
+      "limitation_zh": "公告未给出重点片区四至，矩形边界仅承担占位作用。",
+      "registry_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "published_date": "2026-06-05"
+    },
+    {
+      "id": "STANDARD-URBAN-DESIGN-MEASURES",
+      "path": "brief/site-package/standards/references/mohurd-urban-design-measures.md",
+      "source_type": "official_public",
+      "usage": "城市设计编制要求与总体、重点地区层次划分依据。",
+      "usage_en": "Requirements for urban design and the hierarchy of overall versus key-area design.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "具体适用条款仍须由注册专业人员核定。",
+      "registry_source_id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "published_date": "2017-03-14"
+    },
+    {
+      "id": "STANDARD-CONTROL-DETAILED-PLANNING",
+      "path": "brief/site-package/standards/references/mohurd-control-detailed-planning.md",
+      "source_type": "official_public",
+      "usage": "控规深度城市设计的内容边界与法定程序要求。",
+      "usage_en": "Content boundary and statutory process requirements for regulatory-plan-level urban design.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "明确容积率、建筑高度等属法定程序结论，本方案不予给出。",
+      "registry_source_id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING"
+    },
+    {
+      "id": "STANDARD-LAND-USE-CLASSIFICATION",
+      "path": "brief/site-package/standards/references/mnr-land-use-classification-guide.md",
+      "source_type": "official_public",
+      "usage": "用地分类代码体系，用于 land_use.geojson 的分类口径。",
+      "usage_en": "Land-use classification codes used for the land_use.geojson taxonomy.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "仅使用资料包提供的分类子集代码；法定使用前需导入完整官方代码表。",
+      "registry_source_id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+      "published_date": "2023-11-22"
+    },
+    {
+      "id": "STANDARD-GENERATIVE-AI",
+      "path": "brief/site-package/standards/references/generative-ai-interim-measures.md",
+      "source_type": "official_public",
+      "usage": "AI 场景设计的合规边界：生成内容标识、训练数据合法性、个人信息保护。",
+      "usage_en": "Compliance boundary for AI scenarios: content labeling, lawful training data, and personal-information protection.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "为服务管理要求，不构成具体产品的技术验收标准。",
+      "registry_source_id": "DATA-SRC-GENERATIVE-AI-INTERIM-MEASURES",
+      "published_date": "2023-07-13"
+    },
+    {
+      "id": "STANDARD-BARRIER-FREE",
+      "path": "brief/site-package/standards/references/barrier-free-environment-law.md",
+      "source_type": "official_public",
+      "usage": "公共空间与 AI 服务的无障碍与信息无障碍强制要求。",
+      "usage_en": "Mandatory accessibility and information-accessibility requirements for public space and AI services.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "法律要求需在后续施工图与产品设计阶段逐条落实与验收。",
+      "registry_source_id": "DATA-SRC-BARRIER-FREE-ENVIRONMENT-LAW",
+      "published_date": "2023-06-28"
+    },
+    {
+      "id": "STANDARD-ELDERLY-SMART-TECH",
+      "path": "brief/site-package/standards/references/elderly-smart-tech-plan-2020-45.md",
+      "source_type": "official_public",
+      "usage": "老年人运用智能技术的兜底要求，构成本方案人工通道不可取消原则的依据。",
+      "usage_en": "Requirements for older people using smart technology, basis of the non-removable human-channel principle.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "政策文件提出方向性要求，具体服务标准须结合行业规范细化。",
+      "registry_source_id": "DATA-SRC-ELDERLY-SMART-TECH-PLAN-2020-45",
+      "published_date": "2020-11-24"
+    },
+    {
+      "id": "STANDARD-ARCH-DESIGN-DEPTH",
+      "path": "brief/site-package/standards/references/mohurd-arch-design-depth-2016.md",
+      "source_type": "official_public",
+      "usage": "设计文件编制深度参照，用于界定概念方案与工程设计的分界。",
+      "usage_en": "Design-document depth reference used to delimit concept design from engineering design.",
+      "usable_for_formal": "yes",
+      "limitation_zh": "资料包内为简要快照，工程阶段须使用完整规定原文。"
+    }
+  ]
+}

@@ -1,0 +1,200 @@
+{
+  "schema_version": "1.0.0",
+  "title_zh": "京张开源脉冲八项公开取舍登记",
+  "title_en": "Eight public-interest trade-offs for Open Pulse",
+  "status": "conceptual_position_register",
+  "operational_status": "not_authorized_not_run",
+  "official_boundary": false,
+  "baseline_status": "unknown",
+  "non_neutrality": {
+    "author_position_zh": "本方案明确优先普通公共服务、无障碍连续、人工可否决和可退出权；不以展示效率、活动流量或自动化便利换取无法回退的公共代价。",
+    "author_position_en": "This proposal explicitly prioritises ordinary public service, step-free continuity, human veto and the right to exit; showcase efficiency, event footfall and automation convenience cannot buy irreversible public cost.",
+    "boundary": "这是作者的设计立场，不是居民调查结果、政府决策、专业批准或现场绩效。"
+  },
+  "positions": [
+    {
+      "id": "PI-P01",
+      "title_zh": "普通回家路径优先于展示动线",
+      "title_en": "Ordinary return beats the showcase route",
+      "conflict_zh": "活动、展陈与机器人窗口可能占用居民、老人、残障者和照护者的连续路径。",
+      "conflict_en": "Events, displays and robot windows may occupy the continuous route used by residents, older people, disabled people and carers.",
+      "position_zh": "先保证无账号、无屏幕、无障碍的普通路径，再讨论展示或扩容。",
+      "position_en": "Secure an account-free, screen-free and step-free ordinary route before any display or scale-up.",
+      "affected_groups": ["older_residents", "disabled_people", "carers", "children_and_guardians", "visitors"],
+      "spatial_anchor": ["PUBLIC-001", "ROAD-001", "PROV-KEY-003"],
+      "linked_scenarios": ["S01", "S02", "S03", "S10", "S11"],
+      "linked_operations": ["OP-02", "OP-06"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/gates/09-accessible-route.json", "observable_zh": "连续无障碍路线和人工引导可被逐段复核。", "status": "required_before_pilot"},
+        {"ref": "visual/assets/gates/27-robot-public-route.json", "observable_zh": "机器人窗口不切断普通路径。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "人工引导、实体导视、普通步行与手推车服务。",
+      "stop_condition_zh": "出现路线断点、冲突无法人工化解或活动结束后不能恢复日常使用，立即暂停并撤回智能组件。",
+      "unresolved_decision_zh": "正式道路、消防、无障碍和产权条件须由专业团队核定。",
+      "source_ids": ["BEIJING-ACCESSIBILITY-REGULATION", "NIST-HUMAN-CENTERED-AI"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P02",
+      "title_zh": "技能连续性优先于自动化替代",
+      "title_en": "Skill continuity beats automation replacement",
+      "conflict_zh": "配送、客服、内容和维护自动化可能降低某些岗位的议价能力或使小商户失去入口。",
+      "conflict_en": "Automation in delivery, service, content and maintenance may weaken some workers' bargaining position or remove small businesses from the interface.",
+      "position_zh": "每个自动化场景必须先提供人工等价路径、技能再造和申诉入口，不把效率目标写成就业结果。",
+      "position_en": "Every automation scene must retain a manual equivalent, a reskilling route and an appeal channel; an efficiency target is not an employment outcome.",
+      "affected_groups": ["night_workers", "small_businesses", "maintenance_crews", "community_service_workers"],
+      "spatial_anchor": ["PROV-KEY-002", "PROV-KEY-003"],
+      "linked_scenarios": ["S02", "S05", "S08", "S10", "S14"],
+      "linked_operations": ["OP-02", "OP-04", "OP-05"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/human-first-buffer.json", "observable_zh": "人工柜台、纸面流程、再培训和申诉链可定位。", "status": "required_before_pilot"},
+        {"ref": "visual/assets/gates/29-non-ai-equivalence.json", "observable_zh": "每行场景都有可运行的非 AI 等价服务。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "人工咨询、纸面工单、线下课程、普通商业通行和人工维护。",
+      "stop_condition_zh": "出现未经同意的画像、服务入口被自动化垄断或人工等价路径中断，冻结扩容。",
+      "unresolved_decision_zh": "真实岗位、技能和商户连续性基线须通过知情、补偿、可退出的参与补齐。",
+      "source_ids": ["NIST-HUMAN-CENTERED-AI", "UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P03",
+      "title_zh": "可解释公共服务优先于黑箱便利",
+      "title_en": "Explainable public service beats black-box convenience",
+      "conflict_zh": "城市 API 和数据协同可以减少重复办理，也可能把资格、资源或服务判断藏进不可申诉的模型。",
+      "conflict_en": "City APIs and data coordination may reduce repeated paperwork, but can hide eligibility, resource or service decisions inside an unappealable model.",
+      "position_zh": "API 只传最小字段、状态、责任和回退；任何影响人的判断必须能由人工解释、纠正和撤回。",
+      "position_en": "The API carries only minimum fields, state, responsibility and fallback; any decision affecting people must be explainable, correctable and withdrawable by a human.",
+      "affected_groups": ["older_residents", "disabled_people", "visitors", "small_businesses", "developers_startups_university_teams"],
+      "spatial_anchor": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "linked_scenarios": ["S04", "S07", "S08", "S09"],
+      "linked_operations": ["OP-01", "OP-05", "OP-08"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/city-api-energy-contract.json", "observable_zh": "最小字段、责任角色、停止条件和 release note 完整。", "status": "required_before_pilot"},
+        {"ref": "visual/assets/gates/22-privacy-minimization.json", "observable_zh": "数据用途、授权、留存和撤回边界可审阅。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "人工柜台、电话、纸面申请、公开规则和可追踪回执。",
+      "stop_condition_zh": "无法说明数据来源、责任人、纠错路径或回退状态时，不开放 API 窗口。",
+      "unresolved_decision_zh": "正式数据治理、采购、网络隔离和个人信息合规须由相应专业主体确认。",
+      "source_ids": ["NIST-HUMAN-CENTERED-AI", "CASE-HELSINKI-AI-REGISTER", "CASE-UK-ATRS"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P04",
+      "title_zh": "清凉、安静与安全优先于夜间经济增量",
+      "title_en": "Cool, quiet and safe routes beat night-time growth",
+      "conflict_zh": "夜间活动、灯光和消费可增加活力，也可能增加热暴露、噪声、眩光、雨洪和夜班人员负担。",
+      "conflict_en": "Night events, lighting and consumption may add vitality, but can also increase heat exposure, noise, glare, flooding and night-worker burden.",
+      "position_zh": "把夜间安静链、休息点、低照度和普通归家作为先决条件，活动只能在可降容和可复原窗口内发生。",
+      "position_en": "Treat the quiet chain, rest points, low-glare route and ordinary return as prerequisites; events only occur in a reducible and recoverable window.",
+      "affected_groups": ["night_workers", "older_residents", "children_and_guardians", "visitors", "disabled_people"],
+      "spatial_anchor": ["PUBLIC-001", "PROV-KEY-003"],
+      "linked_scenarios": ["S10", "S11", "S12", "S14"],
+      "linked_operations": ["OP-03", "OP-06", "OP-07"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/wind-health-validation-plan.json", "observable_zh": "风热水健康六项专业输入、校准和停止条件仍为待补齐。", "status": "professional_review_required"},
+        {"ref": "visual/assets/gates/16-noise-equity.json", "observable_zh": "照度、噪声与分组影响不以平均值掩盖。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "固定照明、人工巡查、实体导视、安静座椅和普通公园开放。",
+      "stop_condition_zh": "专业测量、夜间安全或雨洪条件不满足时，活动降容、取消或恢复普通路线。",
+      "unresolved_decision_zh": "夜间客流、噪声、照度、风热和排水基线须现场采集并经专业复核。",
+      "source_ids": ["WHO-HEAT-HEALTH-2026", "WHO-URBAN-HEALTH-AND-GREEN", "BEIJING-FLOOD-PLAN-2021-2025"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P05",
+      "title_zh": "公开贡献优先于无偿抽取注意力",
+      "title_en": "Reciprocal contribution beats unpaid attention extraction",
+      "conflict_zh": "全球 AI 周、开源发布和公共测试需要公众时间与故事，也可能把参与者变成不可撤回的展示素材。",
+      "conflict_en": "Global AI weeks, open publishing and public tests need people's time and stories, but may turn participants into irreversible display material.",
+      "position_zh": "参与必须有清楚目的、补偿或支持、可撤回授权、纸面/多语种入口和公开的修改结果。",
+      "position_en": "Participation requires a clear purpose, compensation or support, revocable consent, paper/multilingual access and a public account of what changed.",
+      "affected_groups": ["older_residents", "visitors", "small_businesses", "children_and_guardians", "developers_startups_university_teams"],
+      "spatial_anchor": ["PROV-KEY-002", "PROV-KEY-003"],
+      "linked_scenarios": ["S05", "S06", "S12"],
+      "linked_operations": ["OP-05", "OP-08"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/participation-cycle.json", "observable_zh": "问题、渠道、决定、异议和退出记录形成回传链。", "status": "required_before_pilot"},
+        {"ref": "visual/assets/gates/33-rights-clearance.json", "observable_zh": "素材、贡献和移除路径逐项清权。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "人工座谈、纸面意见、现场柜台、公告栏和不参与的普通公共使用。",
+      "stop_condition_zh": "授权、归属、删除或纠错路径不清，立即撤下素材并停止展示。",
+      "unresolved_decision_zh": "参与补偿、社区授权和文化/文保审查须由专业及社区主体共同确定。",
+      "source_ids": ["CASE-DECIDIM-BARCELONA", "CASE-UK-ATRS", "UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P06",
+      "title_zh": "可维护资产优先于一次性智能装置",
+      "title_en": "Maintainable assets beat one-off smart devices",
+      "conflict_zh": "新增传感器、屏幕和接口可以提高可见性，也可能制造停产、废弃、能源和维护负担。",
+      "conflict_en": "New sensors, screens and interfaces can improve visibility, but may create downtime, obsolescence, energy and maintenance burdens.",
+      "position_zh": "只有资产所有者、备件、巡检、退出和普通替代路径明确，才允许从有界小测走向扩散。",
+      "position_en": "Scale beyond a bounded test only when the asset owner, spares, inspection, retirement and ordinary substitute are explicit.",
+      "affected_groups": ["maintenance_crews", "disabled_people", "older_residents", "small_businesses"],
+      "spatial_anchor": ["PROV-KEY-001", "PUBLIC-001", "ROAD-001"],
+      "linked_scenarios": ["S02", "S03", "S13", "S14"],
+      "linked_operations": ["OP-03", "OP-04", "OP-07", "OP-08"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/resource-accounts.json", "observable_zh": "空间权利、气候水生态、数据权利、体验参与、资产备件五本账可回读。", "status": "required_before_pilot"},
+        {"ref": "visual/assets/gates/35-maintenance-sla.json", "observable_zh": "责任、维护时钟和逾期处置不依赖单一设备。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "人工巡查、纸面记录、实体导视、固定设施和手工清疏。",
+      "stop_condition_zh": "维护责任、备件、能源或退役安排缺失，保持概念状态，不进入公开运行。",
+      "unresolved_decision_zh": "资产清单、预算、权属和维护能力须由运营及专业主体确认。",
+      "source_ids": ["ISO-55001-2024", "RESILIENT-CITY-INFRASTRUCTURE-2024"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P07",
+      "title_zh": "分组差异优先于漂亮平均数",
+      "title_en": "Group differences beat a flattering average",
+      "conflict_zh": "一个总体平均值可能掩盖老人、残障者、儿童、访客、小商户和维护者在不同时间段的相反体验。",
+      "conflict_en": "A single average may hide opposite experiences among older people, disabled people, children, visitors, small businesses and maintenance staff across time periods.",
+      "position_zh": "先做分组、昼夜和季节对照，再谈总体改善；缺基线时公开未知，不用模型分数代替生活体验。",
+      "position_en": "Compare groups, day/night and seasons before claiming overall improvement; disclose unknowns instead of replacing lived experience with a model score.",
+      "affected_groups": ["older_residents", "disabled_people", "carers", "night_workers", "visitors", "maintenance_crews"],
+      "spatial_anchor": ["PUBLIC-001", "PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "linked_scenarios": ["S01", "S07", "S11", "S13", "S14"],
+      "linked_operations": ["OP-02", "OP-03", "OP-08"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/public-interest-audit.json", "observable_zh": "分组影响、投诉回应、无 App 服务和夜间链条均有待测方法。", "status": "baseline_required_before_pilot"},
+        {"ref": "visual/assets/gates/21-participation-differences.json", "observable_zh": "分组差异不能被平均值抹平。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "分组访谈、配对步行、人工计数、纸面回执和公开异议记录。",
+      "stop_condition_zh": "分组差异无法解释、参与不具备知情/补偿/退出条件或只剩模型代理指标时，暂停扩容。",
+      "unresolved_decision_zh": "样本框、参与支持、隐私保护和专业评价方案须由社区及专业团队确定。",
+      "source_ids": ["WHO-URBAN-HEALTH-AND-GREEN", "NIST-HUMAN-CENTERED-AI"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    },
+    {
+      "id": "PI-P08",
+      "title_zh": "可撤回扩散优先于永久性承诺",
+      "title_en": "Reversible learning beats permanent commitment",
+      "conflict_zh": "一旦把试点写成品牌、采购或固定空间承诺，失败、伤害和数据缺口就更难被公开纠正。",
+      "conflict_en": "Once a pilot becomes a brand, procurement or fixed-space commitment, failures, harms and data gaps become harder to correct in public.",
+      "position_zh": "每个构件都以版本化证据、公众回执、人工裁决和扩散/修复/退出决定收尾；未知项不能继承成成功。",
+      "position_en": "Every component ends with versioned evidence, public receipt, human adjudication and an expand/repair/retire decision; an unknown cannot be inherited as success.",
+      "affected_groups": ["older_residents", "disabled_people", "carers", "night_workers", "children_and_guardians", "visitors", "small_businesses", "maintenance_crews"],
+      "spatial_anchor": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+      "linked_scenarios": ["S04", "S05", "S08", "S09", "S12"],
+      "linked_operations": ["OP-01", "OP-05", "OP-08"],
+      "acceptance_evidence": [
+        {"ref": "visual/assets/gates/39-phase-gate.json", "observable_zh": "分期闸门与待补输入逐项挂接。", "status": "required_before_pilot"},
+        {"ref": "visual/assets/gates/40-scale-retire.json", "observable_zh": "扩散、修复和退出均有公开决定入口。", "status": "required_before_pilot"}
+      ],
+      "ordinary_equivalent_zh": "普通公共服务保持不变；纸面、人工、实体路径优先留存。",
+      "stop_condition_zh": "证据不可复算、权利台账不完整、回执缺失或出现未解决公共伤害时，退出而不是扩散。",
+      "unresolved_decision_zh": "正式的放行主体、责任边界、保险和公共参与程序须在专业阶段明确。",
+      "source_ids": ["NIST-HUMAN-CENTERED-AI", "ISO-55001-2024", "UN-HABITAT-PEOPLE-CENTRED-SMART-CITIES"],
+      "baseline": "unknown",
+      "status": "conceptual_suggestion_for_professional_refinement"
+    }
+  ]
+}

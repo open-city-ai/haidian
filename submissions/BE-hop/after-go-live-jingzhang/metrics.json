@@ -20,14 +20,16 @@
     },
     "building_footprint_area_sqm": {
       "status": "known",
-      "value": 310807.184,
+      "value": 14020.326141,
       "unit": "sqm",
       "source_files": [
         "geometry/buildings.geojson"
       ],
-      "formula": "sum(polygon_area(building_footprints))",
-      "confidence": "medium",
-      "assumptions": []
+      "formula": "recalculate typological envelopes in EPSG:4548; value refreshed by spatial review",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDING-TYPOLOGY-001"
+      ]
     },
     "green_ratio": {
       "status": "known",
@@ -100,12 +102,12 @@
     },
     "persona_count": {
       "status": "known",
-      "value": 6,
+      "value": 7,
       "unit": "count",
       "source_files": [
-        "proposal.md"
+        "visual/assets/persona-rights-audit.json"
       ],
-      "formula": "count(persona rows)",
+      "formula": "count(personas)",
       "confidence": "high",
       "assumptions": []
     },
@@ -187,6 +189,207 @@
         "A-PERFORMANCE-001"
       ],
       "reason": "Must be measured per scenario risk tier during drills."
+    },
+    "co_design_stage_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(node_type == human_ai_cocreation_space)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "spatial_interface_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "three civic landmarks + six human-AI co-creation nodes",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "spatial_prototype_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(node_type == spatial_renewal_prototype)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "east_west_stitch_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(design_role == conceptual_cross_link_between_service_and_scenario_wings)",
+      "confidence": "high",
+      "assumptions": [
+        "Directional concepts, not alignments."
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "no-build validation + reversible pilots + evidence-led deepening",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "detailed_spatial_prototype_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-prototypes.json"
+      ],
+      "formula": "count(key_area_typologies)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "operating_state_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/spatial-prototypes.json"
+      ],
+      "formula": "count(operating_states)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "scenario_contract_completeness": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "scenario required fields present / all required fields",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_rights_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/persona-rights-audit.json"
+      ],
+      "formula": "personas with ordinary entry, veto/appeal, human service and cost incidence / 7",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "regional_interface_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "visual/assets/regional-synergy.json"
+      ],
+      "formula": "count(conceptual exchange interfaces)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "adoption_responsibility_register_coverage": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "visual/assets/adoption-responsibility-register.json"
+      ],
+      "formula": "scenario entries with benefit, burden, decision, maintenance, appeal and exit / 12",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1408600.768,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum design green polygons in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 836345.643,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum area polygons only in EPSG:4548; nodes and helper lines excluded",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "sustained_use_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "measure during an authorised pilot using a confirmed denominator",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "No authorised pilot or measured baseline exists."
+    },
+    "complaint_rate": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "measure during an authorised pilot using a confirmed denominator",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "No authorised pilot or measured baseline exists."
+    },
+    "whole_life_cost_amount": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "measure during an authorised pilot using a confirmed denominator",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "No authorised pilot or measured baseline exists."
+    },
+    "field_accessibility_performance": {
+      "status": "unknown",
+      "value": null,
+      "unit": "none",
+      "source_files": [
+        "visual/assets/scenario-cards.json"
+      ],
+      "formula": "measure during an authorised pilot using a confirmed denominator",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-PERFORMANCE-001"
+      ],
+      "reason": "No authorised pilot or measured baseline exists."
     }
   }
 }

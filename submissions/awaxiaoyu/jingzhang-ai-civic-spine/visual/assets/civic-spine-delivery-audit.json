@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "audit_id": "CIVIC-SPINE-DELIVERY-AUDIT-001",
+  "claim_level": "local_structural_audit",
+  "operational_status": "not_authorized_not_run",
+  "gate_effect": "none; validates the package's delivery contracts, not field performance or authorization",
+  "reproduce": "node visual/assets/run-civic-spine-delivery-audit.js --check",
+  "expected": {
+    "scenario_cards": 12,
+    "implementation_projects": 12,
+    "key_areas": 3,
+    "inclusion_groups": 6,
+    "minimum_common_gates": [
+      "manual or paper alternative remains available",
+      "human takeover cannot be removed",
+      "provisional geometry warning is visible",
+      "appeal path and switchback trigger are stated",
+      "official geometry and professional review are required before public deployment"
+    ]
+  },
+  "negative_fixtures": [
+    {
+      "id": "NEG-SCENARIO-NO-HUMAN-TAKEOVER",
+      "target": "scenario",
+      "mutation": "clear human_takeover",
+      "expected_failed_checks": ["human_control"]
+    },
+    {
+      "id": "NEG-SCENARIO-NO-PRIVACY",
+      "target": "scenario",
+      "mutation": "clear privacy_boundary and switchback_trigger",
+      "expected_failed_checks": ["privacy_boundary", "switchback"]
+    },
+    {
+      "id": "NEG-PROJECT-NO-PAUSE",
+      "target": "project",
+      "mutation": "clear pause_trigger",
+      "expected_failed_checks": ["pause_condition"]
+    },
+    {
+      "id": "NEG-PROJECT-NO-PROFESSIONAL-INTERFACE",
+      "target": "project",
+      "mutation": "clear professional_interface and approval_dependency",
+      "expected_failed_checks": ["professional_interface", "approval_dependency"]
+    }
+  ]
+}

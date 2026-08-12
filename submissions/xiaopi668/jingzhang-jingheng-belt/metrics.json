@@ -1,0 +1,166 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界复算，官方红线补齐后需重算。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_total_sqm": {
+      "status": "known",
+      "value": 3692893.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(key_area_polygon_areas, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时粗略边界复算。"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 3757324.8,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(polygon_area(green_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 2397804.5,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(polygon_area(public_space))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.3292,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "绿地率按设计绿地面积计算，非法定绿地率指标。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.2101,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1140761.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "low",
+      "assumptions": [
+        "概念性建筑基底示意，非现状测绘。"
+      ]
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "value": 73518.0,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(linestring_length(roads)) approx",
+      "confidence": "low",
+      "assumptions": [
+        "近似按纬度尺度换算，非测量值。"
+      ]
+    },
+    "land_use_parcel_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 7,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规条件未公开，容积率待正式条件确认。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "pending_official_height_controls",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "建筑高度控制待官方批复，本方案仅作概念建议。"
+    }
+  }
+}

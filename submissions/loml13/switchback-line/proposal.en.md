@@ -90,14 +90,23 @@ All mechanisms are concept suggestions for professional teams to deepen; none is
 
 ## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-The overall design area is the ~11.4 km² corridor of urban districts and industry zones within 1–2 km of the Jingzhang heritage park [source:OFFICIAL-ANNOUNCEMENT]. At regulatory-plan urban-design depth the proposal sets a structure of "one spine, three folds, six stitching corridors, two wings" [depth:overall_spatial_structure]:
+The overall design area is the ~11.4 km² corridor of urban districts and industry zones within 1–2 km of the Jingzhang heritage park [source:OFFICIAL-ANNOUNCEMENT]. Design judgments start from an existing-conditions diagnosis (schematic reading from public knowledge, not survey data) [depth:existing_conditions_diagnosis]:
+
+- **D1 east–west severance**: 5–8 minute walking detours across the rail corridor — the direct basis for the stitching corridors;
+- **D2 slow-mobility gaps**: no continuous north–south slow link and no direct station–park frontage — answered by the spine greenway and three connection spurs;
+- **D3 public-space discontinuity**: the heritage park is fragmented without themed nodes or evening use — answered by the eight themed public nodes;
+- **D4 unlinked industry anchors**: no conversion or release node between the north and south anchors — answered by AI Origin's "release station" role.
+
+![Existing-conditions diagnosis: severance, gaps, discontinuity, missing links](assets/figures/existing-diagnosis.png)
+
+At regulatory-plan urban-design depth the proposal sets a structure of "one spine, three folds, six stitching corridors, two wings" [depth:overall_spatial_structure]:
 
 - **One spine**: the Jingzhang heritage-park vitality belt along the historic alignment [data:geometry/constraints.geojson#CX-001] (land-use code 1401, area [metric:land_use_area_1401_sqm]), the shared carrier of culture and experience belts [data:geometry/green_space.geojson#GS-001].
 - **Three folds**: three switchback nodes at the key areas — Dazhongsi (departure), AI Origin (release), Zhongzhiyuan (acceleration) — detailed in the next chapter.
 - **Six stitching corridors**: six east-west "herringbone" links crossing the spine to re-weave the districts split by the railway [data:geometry/roads.geojson#RD-004], walking-and-cycling first, with transit-connection spurs [data:geometry/roads.geojson#RD-010].
 - **Two wings**: the Zhongguancun technology-service wing (west-side research, education, and housing renewal cells; [metric:land_use_area_0802_sqm], [metric:land_use_area_0701_sqm]) and the Xiaoyuehe scenario-empowerment wing (east-side waterfront and education/commerce cells; [metric:land_use_area_0804_sqm]).
 
-The renewal framework follows retain–renovate–demolish logic: retain the historic alignment, the Qinghuayuan station site, and the Dazhongsi anchors [data:geometry/constraints.geojson#CX-004]; renovate low-efficiency industrial land into AI R&D, mixed use, and talent housing; concentrate concept new-build massing in the three key areas (total concept footprint [metric:building_footprint_area_sqm], concept gross floor area [metric:total_floor_area_sqm] — both design intent, not approved figures) [depth:retain_renovate_demolish]. All development intensity, height, and demolition conclusions are pending regulatory conditions: the proposal offers design intent and a recomputation method only; statutory values follow the approved regulatory plan [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Land use uses the national classification codes [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] with no invented categories. The concept corridor-average FAR (~0.7, concept GFA over provisional site area) is for design discussion only; the formal FAR metric [metric:floor_area_ratio] is reported as unknown pending regulatory conditions.
+The renewal framework follows retain–renovate–demolish logic: retain the historic alignment, the Qinghuayuan station site, and the Dazhongsi anchors [data:geometry/constraints.geojson#CX-004] (v1.7: the Qinghuayuan station site's protection scope and construction control belts are now mapped as provisional polygons derived from the officially published textual boundaries [data:geometry/constraints.geojson#CX-003][source:BJWW-QHY-STATION-T11][source:BJGOV-HERITAGE-BATCH11][source:BJGOV-CCZ-RULES]; Juesheng Temple (Dazhongsi) keeps a point geometry with its first-batch textual boundaries registered [source:BJWW-JUESHENG-T1], as its anchors are not publicly verifiable; both points were corrected against OSM footprints [source:OPENSTREETMAP] — method and error budget in A-HERITAGE-FOURTO-001 / A-HERITAGE-POINT-FIX-001 [source:ISSUE-1774]); renovate low-efficiency industrial land into AI R&D, mixed use, and talent housing; concentrate concept new-build massing in the three key areas (total concept footprint [metric:building_footprint_area_sqm], concept gross floor area [metric:total_floor_area_sqm] — both design intent, not approved figures) [depth:retain_renovate_demolish]. All development intensity, height, and demolition conclusions are pending regulatory conditions: the proposal offers design intent and a recomputation method only; statutory values follow the approved regulatory plan [standard:MOHURD-CONTROL-DETAILED-PLANNING]. Land use uses the national classification codes [standard:MNR-LAND-USE-CLASSIFICATION-GUIDE] with no invented categories. The concept corridor-average FAR (~0.7, concept GFA over provisional site area) is for design discussion only; the formal FAR metric [metric:floor_area_ratio] is reported as unknown pending regulatory conditions.
 
 ## Detailed Design of Key Areas
 
@@ -113,7 +122,7 @@ Positioning: the world-class AI innovation ecosystem expressed as a community �
 
 ### Dazhongsi AI Industry Cluster — the departure hall (~72.0 ha announced; provisional recalculation [metric:key_area_dazhongsi_sqm])
 
-Positioning: the display-and-transaction hall for AI-native business — the public's point of departure onto the line. Structure: the south gateway plaza [data:geometry/public_space.geojson#PS-001] and the Switchback Theatre [data:geometry/public_space.geojson#PS-002] form the arrival sequence; commercial land (05, [metric:land_use_area_05_sqm]) hosts the computational-consumption lab and AI-native retail; cultural land (0803, [metric:land_use_area_0803_sqm]) links the Dazhongsi Ancient Bell Museum into a dialogue across time. Mobility: the Dazhongsi station connection (concept) [data:geometry/roads.geojson#RD-010] and stitching corridors 01/02. Scenarios: computational-consumption lab (SC-07), transit MaaS (SC-10). Risk: complex existing ownership; renewal proceeds as negotiated micro-renewal with no parcel-level demolition conclusion.
+Positioning: the display-and-transaction hall for AI-native business — the public's point of departure onto the line. Structure: the south gateway plaza [data:geometry/public_space.geojson#PS-001] and the Switchback Theatre [data:geometry/public_space.geojson#PS-002] form the arrival sequence; commercial land (05, [metric:land_use_area_05_sqm]) hosts the computational-consumption lab and AI-native retail; cultural land (0803, [metric:land_use_area_0803_sqm]) links the Dazhongsi Ancient Bell Museum (point corrected against OSM, first-batch textual protection boundaries registered [data:geometry/constraints.geojson#CX-004]) into a dialogue across time. Mobility: the Dazhongsi station connection (concept) [data:geometry/roads.geojson#RD-010] and stitching corridors 01/02. Scenarios: computational-consumption lab (SC-07), transit MaaS (SC-10). Risk: complex existing ownership; renewal proceeds as negotiated micro-renewal with no parcel-level demolition conclusion. **Position disclosure**: the provisional polygon this subsection relies on (PROV-KEY-003) has been found by community review to be centered near Beijing North Station, about 2.26 km from Dazhongsi metro station, and is not yet station-anchored ([source:ISSUE-1029]; maintainers clarified its placeholder semantics in PR #1036). All spatial conclusions in this subsection are directional concepts and will be recomputed once the official boundary or anchoring relationship is published.
 
 ![Key-area index and design tasks](assets/figures/key-areas.png)
 
@@ -129,7 +138,7 @@ The ecosystem is organized as factors–scenarios–operations: factors (land, s
 | P2 developer / engineer | community, toolchain, affordable collaboration space | AI Origin developer street, SC-03 |
 | P3 local resident (incl. long-time) | undisturbed life, better services, participation | west housing renewal cells, SC-08 |
 | P4 university student | internships, courses, showcases, affordable culture | education innovation streets, SC-01/02 |
-| P5 city visitor / AI pilgrim | legible, shareable experience routes | landmarks and wayfinding, SC-12 |
+| P5 city visitor / AI innovation visitor | legible, shareable experience routes | landmarks and wayfinding, SC-12 |
 | P6 merchant / operator | footfall, rule certainty, data compliance | Dazhongsi commercial cells, SC-07 |
 
 ### AI scenario cards (12; SC-04/05/06 are industrial test-and-validation scenarios)
@@ -149,9 +158,21 @@ Each card lists its spatial anchor, users, data boundary, and human-review mecha
 | SC-09 | Xiaoyuehe ecological sensing | waterfront greenway | P3 | environmental data only | manual incident handling |
 | SC-10 | Station-integrated MaaS | three connection spurs | all | de-identified trips | human-approved dispatch |
 | SC-11 | City-governance "switchback ticket" | whole belt | P3/P6 | per government data rules | AI dispatch with human fallback |
-| SC-12 | International developer pilgrimage guide | three landmarks [metric:ai_pilgrimage_landmark_count] | P5/P2 | multilingual public content | compliance review |
+| SC-12 | international developer innovation guide | three landmarks [metric:ai_innovation_landmark_count] | P5/P2 | multilingual public content | compliance review |
 
 Privacy and review principle: all scenarios follow the charter's "human final judgment" clause [source:AGENT-TASKBOOK]; no non-public data, no mandatory vendor, no immature technology presented as deployable.
+
+### Scenario governance: adopting the Switchback Protocol as the unified operating contract
+
+The scenario cards adopt the peer-contributed **Switchback Protocol v1.0** ([source:SWITCHBACK-PROTOCOL], CC-BY-4.0, credit: chucky1102 / RENLINE) as their unified operating contract; the adapted machine-readable version is at `visual/assets/switchback-protocol.json`. Rationale: dozens of proposals have each invented their own state machines and time limits, making mechanisms impossible to compare; adopting one minimal shared contract lets reviewers and operators read this proposal's scenario governance like a common interface. The mapping:
+
+- **Three-color states**: all twelve cards start yellow (controlled pilot); SC-12, the lowest-risk guide, is the green candidate; red is not failure but a planned switchback — reverting to the last stable state with a public explanation;
+- **Digital time limits** (design targets, not government commitments): human takeover within 5 minutes (tightened to 3 at the SC-05 test port), appeals acknowledged in 1 working day and resolved in 7, a non-smart equivalent path within a 15-minute walk;
+- **90-day public review**: renew / reduce / pause / switchback; missing two consecutive reviews auto-triggers red;
+- **Quantified triggers and recovery**: one safety-grade takeover or complaints above threshold triggers red (thresholds set after first-phase measurement, no fabricated baselines); recovery needs two consecutive clean cycles plus one yellow observation period;
+- **Three-tier ledger**: near-miss / switchback / decommission; every review-born design change is written back into its scenario card; model updates, source withdrawals, and license expiries auto-trigger review.
+
+This proposal's earlier four-step opening procedure (apply, sandbox, evaluate, publish) maps onto the protocol's ascent gates (virtual_evaluation → controlled_site → real_block), and the three demonstration packages (DP-1/2/3) map onto its roles model (accountable operator, safety officer, data steward, public redress, independent reviewer).
 
 ### One-minute experiences
 
@@ -168,7 +189,7 @@ Making the scenarios perceptible:
 - **SC-09 ecological sensing**: a morning runner on the waterfront reads today's water quality and bird report from bank sensors; anomalies go to maintenance staff.
 - **SC-10 MaaS**: a visitor leaving Dazhongsi station gets a route — "6 minutes via the stitching corridor to the launch event" — with live crowding hints.
 - **SC-11 switchback ticket**: a merchant photographs a blocked storefront, AI dispatches the ticket to the grid, and the resolution returns with on-site photos, appealable throughout.
-- **SC-12 pilgrimage guide**: an international developer walks the three landmarks with the multilingual guide, scans at the switchback landmark, and submits an open-source project link for Honor Wall review.
+- **SC-12 innovation guide**: an international developer walks the three landmarks with the multilingual guide, scans at the switchback landmark, and submits an open-source project link for Honor Wall review.
 
 ## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
 
@@ -188,13 +209,15 @@ Municipal and new infrastructure [depth:municipal_new_infrastructure]: edge-comp
 
 Blue-green system: the heritage-park spine and the Xiaoyuehe waterfront greenway form the "one spine, one greenway" skeleton; green area [metric:green_space_area_sqm], green ratio [metric:green_ratio] (provisional recalculation) [depth:blue_green_public_space]. Public-space system: eight themed nodes (South Gateway Plaza, Switchback Theatre, Maker Crossing, AI Origin Plaza, Memory Courtyard, Switchback Viewpoint, Test-Port Plaza, Cloud-Top Plaza) plus two heritage-park promenades; public-space area [metric:public_space_area_sqm], ratio [metric:public_space_ratio] [data:geometry/public_space.geojson#PS-001].
 
-Urban character: a two-rail vocabulary (heritage rail · data rail) unifies paving, wayfinding, and street furniture; the herringbone motif recurs across parapets, paving, and signage, forming a recognizable urban temperament [standard:MOHURD-URBAN-DESIGN-MEASURES].
+Urban character: a two-rail vocabulary (heritage rail · data rail) unifies paving, wayfinding, and street furniture; the herringbone motif recurs across parapets, paving, and signage, forming a recognizable urban temperament [standard:MOHURD-URBAN-DESIGN-MEASURES]. The intended spatial scale is expressed in a typical section: within the 120 m spine, retained rails on display, herringbone paving, and slow-mobility priority; 24 m promenades on both sides; active ground floors of the research and commercial frontages opening to the park; massing low at the park and higher at the wings (concept proportions, not engineering design).
 
-### AI pilgrimage landmarks and honor display (agent.4)
+![Typical section: heritage spine × stitching corridor (AI Origin segment)](assets/figures/section-spine.png)
 
-Three AI pilgrimage landmarks (concept suggestions at public-art scale, not engineering conclusions) [metric:ai_pilgrimage_landmark_count]:
+### AI innovation landmarks and honor display (agent.4)
 
-1. **The Switchback Station spirit landmark** (AI Origin Plaza): two rail strokes meeting at a glowing dot; the ground carries twin timelines of Jingzhang railway history and AI history — the pilgrim stands on the crossing, between two ascents.
+Three AI innovation landmarks (answering the taskbook's pilgrimage-landmark requirement; this proposal names them "AI innovation landmarks" to stress their public character — accessible, participatory, auditable public innovation destinations rather than objects of tech worship; concept suggestions at public-art scale, not engineering conclusions) [metric:ai_innovation_landmark_count]:
+
+1. **The Switchback Station spirit landmark** (AI Origin Plaza): two rail strokes meeting at a glowing dot; the ground carries twin timelines of Jingzhang railway history and AI history — the visitor stands on the crossing, between two ascents.
 2. **Jingzhang 1909 Time Gate** (Dazhongsi south gateway): an arrival-sequence portal abstracted from the historic station arch; at night a data-light band replays the "train arriving" image.
 3. **Zhongzhiyuan Cloud-Rail Tower** (Cloud-Top Plaza): a concept tower combining lookout and compute display, visualizing audited public test data in real time.
 
@@ -221,7 +244,58 @@ Concept renewal project list (not project-approval conclusions) [depth:renewal_p
 
 Phasing: near (2026–2028, concept area [metric:phasing_area_2026_2028_sqm]) twin-core launch; mid (2028–2031, [metric:phasing_area_2028_2031_sqm]) stitching into a network; far (2031–2035, [metric:phasing_area_2031_2035_sqm]) Zhongzhiyuan leadership [data:geometry/phasing.geojson#PH-001][depth:phasing_implementation]. Policy suggestions (concept level): a design–test–evaluate–diffuse scenario-opening mechanism; elastic use control for reserve land; negotiated micro-renewal as principle, with no ownership-level demolition conclusions.
 
-Long-term operations (agent.6): annual program — spring Switchback Developer Conference, summer Switchback Festival × AI art season, autumn Model First-Release Week (with SC-04), winter Jingzhang culture season; brand IP — primary "THE SWITCHBACK LINE" plus "Switchback Station" sub-brands; developer community — the Switchback Club with contribution points linked to the Honor Wall; scenario opening — four steps (apply, sandbox, evaluate, publish); international communication — the "Second Ascent" narrative joining global AI-city networks, with a conversion path from event participation to scenario testing, team landing, and community retention. All events and operations are concept suggestions, not government commitments or investment-attraction policy [source:AGENT-TASKBOOK].
+### Three demonstration implementation packages (concept suggestions for professional teams and operators)
+
+From the twelve scenario cards, the three industrial test-and-validation scenarios are developed into startable implementation packages using ten elements: user problem, space and facilities, one-minute flow, data and compute, operating body, preconditions, cost magnitude, phases, metrics, and exit. All cost figures are order-of-magnitude estimates from public market-price knowledge, with assumptions stated; none is an investment commitment.
+
+#### DP-1 Public first-release model evaluation (SC-04 @ AI Origin Plaza [data:geometry/public_space.geojson#PS-004])
+
+| Element | Content |
+| --- | --- |
+| User problem | AI startups lack a credible public evaluation and first-release channel; the public lacks a legible interface to model capabilities |
+| Space and facilities | release and audience zones at Origin Plaza (open space), a concept 200–300 sqm evaluation-prep and media area, livestream and on-screen data equipment |
+| One-minute flow | team submits model → sandbox pre-evaluation → public benchmark day with live results → audience votes on interpretability → expert panel review → public report |
+| Data / compute / equipment | licensed public evaluation datasets; sandbox compute linked with DP-3; large screen, livestream, timing equipment |
+| Operating body (suggested types) | third-party evaluation institution leads, community co-governance committee supervises; partner types: universities, open-source communities, tech media |
+| Preconditions | large-event safety permit, temporary-structure fire safety, data-licensing review, published expert-review rules |
+| Cost magnitude (assumptions) | CAPEX in the order of several million RMB (plaza retrofit and equipment); OPEX roughly 10^5 RMB per event, assuming 6–10 events/year — order-of-magnitude estimates |
+| Phases | 0–1 yr: two pilot evaluations; 1–3 yrs: quarterly first-release weeks; 3–5 yrs: annual branded program and international evaluation calendar |
+| Metrics and review | baseline zero events; targets: annual events, participating teams, 100% public reports, review timeliness; sources: operation logs and public reports; quarterly review |
+| Failure and exit | participation below threshold for two consecutive seasons → switch to online releases plus small roadshows; the plaza installation is reversible and returns to public use |
+
+#### DP-2 Open robotics test port (SC-05 @ Qinghe Test-Port Plaza [data:geometry/public_space.geojson#PS-007])
+
+| Element | Content |
+| --- | --- |
+| User problem | service-robotics firms lack compliant test grounds in real urban environments; lab data cannot support deployment confidence in public space |
+| Space and facilities | fenced/marked test zones, a public viewing gallery with explainer screens, equipment room and safety-officer post, swappable test-prop store |
+| One-minute flow | booking → safety briefing and insurance check → zoned tests (obstacle avoidance / delivery / interaction) → simplified public replay of decisions → safety officer sign-off |
+| Data / compute / equipment | graded test-data management; IP-sensitive data never leaves the domain; simplified public replays; on-device recording |
+| Operating body (suggested types) | professional test operator plus park platform company; partner types: robotics firms, insurers, university labs |
+| Preconditions | site-use approval and public-safety assessment, liability insurance, emergency drills, fire and electrical safety |
+| Cost magnitude (assumptions) | CAPEX below roughly one million RMB (light retrofit, demountable facilities); OPEX roughly one million RMB/year (staff, maintenance, insurance) — order-of-magnitude estimates |
+| Phases | 0–1 yr: weekday tests plus weekend public open days; 1–3 yrs: test standards and data formats published as open documents; 3–5 yrs: a replicable urban test-ground operating model |
+| Metrics and review | test sessions and participating firms, zero safety incidents, replay publication rate, open-day attendance; monthly safety review plus quarterly operations review |
+| Failure and exit | utilization below 30% for two consecutive seasons → convert to a public science-experience ground; fences and props are demountable and the site returns to park use |
+
+#### DP-3 Edge compute and data sandbox (SC-06 @ Zhongzhiyuan R&D core; public showcase window at Dazhongsi, linked with SC-07)
+
+| Element | Content |
+| --- | --- |
+| User problem | small teams and researchers lack affordable compute and compliant urban data environments; public-data opening lacks an auditable technical carrier |
+| Space and facilities | containerized edge-compute micro-facility, sandbox operations area and audit room (concept ~500 sqm); the Dazhongsi computational-consumption lab serves as the public understanding window |
+| One-minute flow | application with purpose statement → in-sandbox training with data staying in-domain → audit (data provenance, de-identification, outputs) → only audited model weights leave → quarterly public audit summaries |
+| Data / compute / equipment | graded opening of public data after legality review and de-identification; shared compute pool by application; trusted computing and log-audit equipment |
+| Operating body (suggested types) | data-governance task force plus professional technical operator; partner types: universities and institutes, open-source foundations, compliance advisers |
+| Preconditions | data-provenance legality review, classified cybersecurity protection, power capacity and cooling, published audit rules |
+| Cost magnitude (assumptions) | CAPEX in the order of tens of millions RMB depending on scale; OPEX in the order of millions RMB/year (power, operations, audits) — order-of-magnitude estimates |
+| Phases | 0–1 yr: invitation-only pilot; 1–3 yrs: application-based opening with quarterly public audits; 3–5 yrs: an auditable public-data infrastructure model |
+| Metrics and review | hosted projects, published audit summaries, zero data-exfiltration events, compute utilization; quarterly dual review of audits and operations |
+| Failure and exit | persistently low utilization → compute shifts to university teaching and public research sharing; general-purpose equipment can be repurposed wholesale; sandbox data destroyed on schedule |
+
+All three packages share three principles: reversible (sites return to public use), auditable (reports and audit summaries are public), exitable (explicit failure conditions and reuse mechanisms). The Dazhongsi key area gains its implementation handle through DP-3's public showcase window linked with SC-07; its standalone package is suggested for a second phase once regulatory conditions are available.
+
+Long-term operations (agent.6): annual program — spring Switchback Developer Conference, summer Switchback Festival × AI art season, autumn Model First-Release Week (with SC-04), winter Jingzhang culture season; the annual flagship **Switchback Hackathon**: a 48-hour developer competition whose problem statements all come from real urban needs surfaced by the twelve scenario cards (slow-mobility gap detection, heritage interpretation, community elder-care ticketing, etc.); winning teams receive priority access to the data sandbox and the robotics test port, plugging directly into the DP-1/DP-2/DP-3 demonstration packages, and reviewed open-source outcomes enter the public knowledge base — forming a conversion chain of "hackathon → scenario testing → team landing → community retention"; brand IP — primary "THE SWITCHBACK LINE" plus "Switchback Station" sub-brands; developer community — the Switchback Club with contribution points linked to the Honor Wall; scenario opening — four steps (apply, sandbox, evaluate, publish); international communication — the "Second Ascent" narrative joining global AI-city networks. All events and operations are concept suggestions, not government commitments or investment-attraction policy [source:AGENT-TASKBOOK].
 
 ## Metrics, Area Recalculation, and Compliance Matrix
 
@@ -240,7 +314,7 @@ Metrics sit in three tiers: announcement-constrained (areas), design-intent (con
 | Slow corridors | [metric:slow_greenway_length_m] m | greenway + cycling + walking |
 | Historic alignment | [metric:heritage_spine_length_m] m | schematic alignment |
 | Phasing areas | near/mid/far | [metric:phasing_area_2026_2028_sqm] / [metric:phasing_area_2028_2031_sqm] / [metric:phasing_area_2031_2035_sqm] |
-| Scenario nodes / landmarks | [metric:scenario_node_count] / [metric:ai_pilgrimage_landmark_count] | 12 cards mapped to 8 nodes and 6 corridors |
+| Scenario nodes / landmarks | [metric:scenario_node_count] / [metric:ai_innovation_landmark_count] | 12 cards mapped to 8 nodes and 6 corridors |
 
 Land-use breakdown: research [metric:land_use_area_0802_sqm], education [metric:land_use_area_0804_sqm], residential [metric:land_use_area_0701_sqm], commercial [metric:land_use_area_05_sqm], cultural [metric:land_use_area_0803_sqm], park green [metric:land_use_area_1401_sqm], reserve [metric:land_use_area_16_sqm]. Compliance coverage: all 17 mandatory announcement tasks (1.3.1–1.5.3.3) and all 6 agent tasks (agent.1–agent.6) are registered in `compliance_matrix.json` and supported by the sections above; standard responses in `standard_matrix.json`; depth evidence in `design_depth_matrix.json` (all 15 items complete).
 
@@ -248,13 +322,35 @@ Land-use breakdown: research [metric:land_use_area_0802_sqm], education [metric:
 
 ## Risk, Copyright, and Compliance
 
-Main risks and responses: (1) data risk — official redline and key-area polygons are missing; all spatial conclusions are concept suggestions under provisional geometry, with full-package recalculation committed upon official release (A-CONTROLS-001); (2) implementation risk — complex ownership across the three areas, long renewal cycles; the proposal favors micro-renewal and elastic mechanisms; (3) technology risk — scenario cards stay within mature capabilities, with immature technology marked as pilot; (4) compliance risk — all landmark, signage, and logo materials require separate rights clearance [source:AGENT-TASKBOOK].
+The primary measure of success in this proposal is not "how many people come to see AI" but **how much value the AI industry returns to residents, public space, and city governance**. A public-value and risk matrix follows (structured registration in `risk.json`, covering data privacy, implementation complexity, public acceptance, operations cost, policy uncertainty, spatial dispute, technology maturity, and equity & inclusion).
 
-Copyright and responsibility: text, code, and graphics are generated by an AI agent (Pi) for open-call review and public discussion under the COMMUNITY-DISPLAY-ONLY license in `report/copyright_statement.md`; nothing constitutes official approval, planning conclusion, investment commitment, or engineering feasibility; all spatial suggestions are "concept suggestions, reference schemes, or material for professional teams to deepen" [standard:PROJECT-AGENT-OPEN-CALL-TASKBOOK]. The eight risk dimensions (data privacy, implementation complexity, public acceptance, operations cost, policy uncertainty, spatial dispute, technology maturity, equity and inclusion) are annotated in `assumptions.json` and the compliance matrix [depth:risk_missing_data].
+### Public-value matrix (concept-level quantification; all values recomputed or estimated)
+
+| Public value | Concept measure | Beneficiaries |
+| --- | --- | --- |
+| Slow-mobility time saved by stitching | six corridors compress cross-corridor detours from 5–8 min to 2–3 min (concept estimate) [metric:slow_greenway_length_m] | residents and commuters on both sides |
+| Green and public-space supply | green ratio [metric:green_ratio], public-space ratio [metric:public_space_ratio] (provisional recalculation); eight themed nodes serving the three key areas [metric:public_space_area_sqm] | all users |
+| Jobs and skill pathways | service and operations roles created by the test port, sandbox, evaluations and community operations (types listed, counts not estimated); hackathon and developer community as skill and showcase channels | youth, developers, career changers |
+| Public-service improvement | community canteen and elder-care pilot (SC-08), ecological stewardship (SC-09), switchback ticket (SC-11) | local residents including seniors |
+| Heritage legibility | the heritage park turns the "invisible railway" into walkable, narrated, participatory public space [metric:heritage_spine_length_m] | citizens, visitors, students |
+
+### Risk matrix (trigger — mitigation — suggested responsible body)
+
+| Risk | Trigger | Mitigation | Suggested responsible body (concept) |
+| --- | --- | --- | --- |
+| rent inflation and small-merchant displacement | innovation-space premium squeezing existing shops | participatory renewal, quotas for public stalls and micro spaces (concept), negotiated relocation | platform company + sub-district/community |
+| corporate capture of public space | events or firms monopolizing venues | time-sharing, rigidly protected public hours, public event approvals | operator + community co-governance committee |
+| safety of children, seniors, disabled and night users | test operations, night events, lighting and interface barriers | physical separation of test zones, accessible design, night patrols and lighting standards | operator + property + safety officers |
+| privacy, cybersecurity and algorithmic bias | data collection, sensors, recommender algorithms | minimal collection, data staying in-domain, quarterly public audits, opt-out channels and human review | data-governance task force |
+| heritage consumed by tech branding | over-commercial packaging, historical distortion | historical fact checking, heritage review first, layered cultural vs commercial signage | heritage authority + curatorial team |
+| stormwater, heat island, carbon and long-term maintenance | resource and environmental load of construction and operation | sponge measures along the waterfront, reuse of existing buildings first, maintenance budget in operating plans | municipal departments + operator |
+
+Main risks and responses: (1) data risk — official redline and key-area polygons are missing; all spatial conclusions are concept suggestions under provisional geometry, with full-package recalculation committed upon official release (A-CONTROLS-001); (2) implementation risk — complex ownership across the three areas, long renewal cycles; the proposal favors micro-renewal and elastic mechanisms; (3) technology risk — scenario cards stay within mature capabilities, with immature technology marked as pilot; (4) compliance risk — all landmark, signage, and logo materials require separate rights clearance [source:AGENT-TASKBOOK].
 
 ## References
 
 - Public brief draft: `brief/public-brief.md`
+- Public brief material boundary statement: `brief/README.md`
 - Pre-qualification announcement (Haidian Branch of Beijing Municipal Commission of Planning and Natural Resources, 2026-05-09) [source:OFFICIAL-ANNOUNCEMENT]: https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html
 - Agent-facing open-call taskbook excerpt (2026-05-18) [source:AGENT-TASKBOOK]: `brief/site-package/agent_taskbook.json`
 - Site package [source:SITE-PACKAGE]: `brief/site-package/` (design_brief.json / allowed_design_space.json / sources.json / enums / ranges / schemas)
@@ -262,4 +358,5 @@ Copyright and responsibility: text, code, and graphics are generated by an AI ag
 - Processed fact pack [source:PROCESSED-FACT-PACK]: `data/processed/agent_fact_pack.md` and companion CSVs
 - Provisional boundary and key-area geometry [source:BOUNDARY-SOURCE][source:KEY-AREA-SOURCE]: `brief/site-package/geometry/provisional_boundaries.geojson`
 - Professional standards (local snapshots under `brief/site-package/standards/references/`): Urban Design Measures; Regulatory Detailed Planning Compilation and Approval Measures; Territorial Spatial Land-Use Classification Guide; Design-Document Depth Regulation (2016 edition)
-- Reproduction command: `python3 scripts/self_check_submission.py submissions/loml13/switchback-line --pr-author loml13`
+
+Reproduction command (not a source entry): `python3 scripts/self_check_submission.py submissions/loml13/switchback-line --pr-author loml13`

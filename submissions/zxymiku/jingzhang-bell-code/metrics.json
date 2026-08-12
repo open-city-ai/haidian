@@ -1,0 +1,329 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "medium",
+      "assumptions": [
+        "基于临时边界（provisional）复算，公告文字面积约 11.4 km²；官方边界发布后需整包复算"
+      ]
+    },
+    "corridor_length_m": {
+      "status": "known",
+      "value": 9717.818,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(belt_greenway_centerline))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_detailed_design_areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhongzhiyuan_sqm": {
+      "status": "known",
+      "value": 1929201.877,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "medium",
+      "assumptions": [
+        "公告约 192.1 公顷；临时边界偏差 0.4%"
+      ]
+    },
+    "key_area_beijing_origin_sqm": {
+      "status": "known",
+      "value": 1043236.909,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community)",
+      "confidence": "medium",
+      "assumptions": [
+        "公告约 104.3 公顷；临时边界偏差 0.02%"
+      ]
+    },
+    "key_area_dazhongsi_sqm": {
+      "status": "known",
+      "value": 720454.219,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster)",
+      "confidence": "medium",
+      "assumptions": [
+        "公告约 72.0 公顷；临时边界偏差 0.06%"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.23,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": [
+        "green_space 图层含清河、小月河滨水绿带，横跨其他用地分类；图斑重叠按 unary_union 去重后复算",
+        "高于 1401+1402 用地口径（land_use_green_ratio 约 15%）的部分为滨水绿带叠加量，两口径不可直接比较"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.011,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 401852.951,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "buildings_count": {
+      "status": "known",
+      "value": 139,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_footprints)",
+      "confidence": "medium",
+      "assumptions": [
+        "概念示意肌理，不代表现状建筑底数"
+      ]
+    },
+    "road_network_length_m": {
+      "status": "known",
+      "value": 60538.588,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(line_length(road_centerlines))",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_research_ratio": {
+      "status": "known",
+      "value": 0.163,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(0802)/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_commercial_ratio": {
+      "status": "known",
+      "value": 0.295,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(05)/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_residential_ratio": {
+      "status": "known",
+      "value": 0.026,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(0701)/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_education_ratio": {
+      "status": "known",
+      "value": 0.173,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(0804)/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_green_ratio": {
+      "status": "known",
+      "value": 0.155,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(1401+1402)/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_reserved_ratio": {
+      "status": "known",
+      "value": 0.161,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(16)/site_area",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "land_use_road_ratio": {
+      "status": "known",
+      "value": 0.0018,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "area(1207)/site_area",
+      "confidence": "medium",
+      "assumptions": [
+        "1207 图斑仅记独立道路用地；路网主体以 roads.geojson 线要素表达（60.5 km），未将线位折算为用地比例"
+      ]
+    },
+    "bell_node_count": {
+      "status": "known",
+      "value": 5,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_bell_nodes)",
+      "confidence": "medium",
+      "assumptions": [
+        "归钟广场/校音台/启钟台/荣誉墙/开源展示廊 5 处"
+      ]
+    },
+    "phase_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phases)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_1_area_sqm": {
+      "status": "known",
+      "value": 4426503.25,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_1)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_2_area_sqm": {
+      "status": "known",
+      "value": 3186092.282,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_2)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "phase_3_area_sqm": {
+      "status": "known",
+      "value": 2806011.977,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase_3)",
+      "confidence": "medium",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "公开资料无已批准控规强度指标；正式提交前需以官方控规条件补齐，本方案按概念建议处理"
+    },
+    "ai_innovation_index": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "composite(innovation_output, innovation_actors, factors) per Haidian public statistics",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "概念建议口径（公告 1.5(2)）：综合创新产出/创新主体/要素三维度，按海淀公开统计口径归一化构建；官方数据到位后复算，不构成法定或考核结论"
+    },
+    "ai_talent_density": {
+      "status": "unknown",
+      "value": null,
+      "unit": "per_10000_residents",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "ai_industry_talent / resident_population * 10000",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "概念建议口径（公告 1.5(2)）：AI 产业人才/常住人口；依赖人口普查与就业统计公开数据，官方数据到位后复算"
+    },
+    "ai_industry_output": {
+      "status": "unknown",
+      "value": null,
+      "unit": "cny",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "value_added(ai_core + ai_enabled_industries) and share",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "概念建议口径（公告 1.5(2)）：区域 AI 核心产业与 AI+ 赋能产业增加值及占比；依赖统计年鉴与产业公开数据，官方数据到位后复算"
+    }
+  }
+}

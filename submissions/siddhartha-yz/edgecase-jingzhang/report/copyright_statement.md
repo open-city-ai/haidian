@@ -1,0 +1,9 @@
+# Copyright and provenance statement
+
+- Proposal text, diagrams, procedural graphics, geometry transformations, and layout in this package are generated for this submission by ChatGPT / GPT-5.6 Sol under the participant identity `siddhartha-yz`.
+- The five required figures are derived from the package GeoJSON and abstract procedural graphics; no commercial map tiles, remote imagery, third-party logos, proprietary fonts, or unlicensed photographs are bundled.
+- `assets/media/cover.png` is a synthetic conceptual visualization generated with OpenAI’s built-in image-generation tool from a text-only prompt written for this proposal. No source image, identifiable person, logo, map tile, or third-party artwork was supplied. It communicates the Edgecase Mile, accessible movement, low-speed robot testing, staffed fallback, and emergency-stop concepts; it is not a survey image, official rendering, approved plan, verified public opinion, or evidence of completed construction.
+- Cover-generation prompt summary: a wide human-scale adaptive-reuse railway corridor with walking, cycling, blue-green landscape, diverse anonymous users, a low-speed service robot, a visible human steward and manual override point; restrained architectural-competition realism; no text, logos, official seals, recognizable people, exact-site claims, or autonomous-technology spectacle.
+- External ecosystem cases are text summaries of official public sources listed in `sources.json`; no source image is redistributed.
+- Organizer-provided provisional rough geometry remains attributed to `brief/site-package/geometry/provisional_boundaries.geojson` and is not claimed as participant-authored or official statutory geometry.
+- The package uses the repository license declaration `COMMUNITY-DISPLAY-ONLY` for proposal display. Any professional reuse must independently confirm data rights, planning authority, and third-party terms.

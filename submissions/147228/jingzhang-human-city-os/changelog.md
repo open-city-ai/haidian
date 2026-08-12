@@ -1,5 +1,39 @@
 # 方案迭代记录
 
+## v2.7 - 2026-08-11
+
+- 跟随主线双语渲染器重生成英文 HTML 报告，证据标签在英文页显示为 `Source`、`Standard`、`Depth`、`Spatial data` 与 `Metric`，不改正文、几何、指标或图件内容。
+- 用当前主线自检器重新持久化四道门禁与 `manifest.validation_claim`；`PROFESSIONAL_EVIDENCE` 以包内可回读的 pass 记录，避免旧版自检快照被新验证器误判为未完成。
+- 本轮只修复双语证据表达与自检快照一致性；继续保持临时边界、未授权/未运行、未知输入和不产生官方分数的边界。
+
+## v2.6 - 2026-08-10
+
+- 新增 `public-interest-coverage-v26.json` 与确定性 runner，在既有 6 类基础 persona 外补充青年初入行者、开发者与研究者、首次到访者与国际访客；每类回接已有场景和 GeoJSON 锚点，并登记受益、影响风险、人工替代、停止条件与待补证据。
+- 中英文 proposal 明确 6 类基础 persona + 3 类公共利益扩展的关系；新增内容不改写人口、服务、就业、无障碍或官方评分结论。
+- 修复离线引用审计对 `depth:brief_alignment` 的错误阻断：该标识是 reviewer navigation 中明确登记的 formal 维度，不是设计深度矩阵中的行；审计现在只接受设计深度项或已登记 reviewer 维度，并新增未知 depth 负样本，避免放宽为任意字符串。
+- 刷新 `human-city-reference-audit.json` 与 manifest 哈希；当前中英文提案共 703 条包内引用、134 个唯一引用全部解析，仍不产生官方评分或现场绩效结论。
+
+## v2.5 - 2026-08-10
+
+- 新增双语图 27“公共空间连接、组件与社群转化”和两个结构化台账：`public-space-connector-atlas-v25.json` 以南北贯通、东西缝合和五类人本组件把 agent.4 落到既有空间锚点；`developer-community-conversion-v25.json` 以“公开问题—共学复核—受控场景—版本发布”四阶段把 agent.6 的开发者社群、场景开放和标准/知识外溢写成可停止、可回放的概念链。
+- 公共贡献三联展明确为概念展示，不是官方荣誉/奖励系统；所有新增空间和运营表达继续保持 `official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run`、`performance_results=null` 与 `not_a_score=true`，不新增几何、指标、运营方、许可、资金或绩效结论。
+- 同步中英文 proposal、离线 visual index、双语审计、确定性 checker、HTML、PDF/图册与 manifest；不修改正式 metrics、来源等级、`submissions-data.js`、`gallery-publication.json` 或公开排序。
+
+## v2.4 - 2026-08-10
+
+- 为 23 条公告 / 任务书要求各自增加差异化、包内可回读的 `evidence_items`，并在 reviewer evidence map 中标注差异化主张与复核边界。
+- 为全部开放假设增加 `priority` 与保守的补料排序说明；优先级是排程工具，不是缺口已解决的证据。
+- 为 PUE 与绿电占比增加明确标注为未测量的政策参考基线，不改变正式 metric value / status。
+- 将既有 `people_first` / `baseline_reproduction` 的三项 `decision_diff` 展开为双语首屏可回读表；仅提高空间取舍可见性，不把概念比较升级为推荐、正式面积或运行结果。
+- 同步中英文 proposal 与 reviewer navigation index；不改 geometry、官方边界结论、分数或公共发布状态。
+
+## v2.3 - 2026-08-10
+
+- 新增双语图 26“城市 API 六步可回放序列”与 `city-api-sequence-v23.json`：目录、授权、调用、日志、审计、退出逐步绑定既有空间锚点、场景、发布门、人工等效和停止/回退动作；新增离线 checker 与证据回读。
+- 为 6 个测试类场景补充 `first_evidence_needed_zh/en` 与 `first_evidence_owner_zh/en`，明确授权前第一份资料和待授权复核角色，不把建议角色升级为运营主体。
+- `parametric-tradeoff-study-evidence.json` 新增由既有 baseline/variant shares 和派生面积回算的 `decision_diff`，只表达概念取舍，不改变正式 geometry、metrics、图纸或发布状态。
+- 同步中英文 proposal、离线 visual index、PDF/HTML、双语图件和 manifest；修复中文 visual index 重复图 24。保持 `official_boundary=false`、`geometry_role=provisional_constraint`、`operational_status=not_authorized_not_run` 与所有 unknown；不修改 `submissions-data.js` / `gallery-publication.json`。
+
 ## v2.2 - 2026-08-10
 
 - 将 `site-overview.png` / `.en.png` 改为评审首屏空间证据复合板：左侧从七个包内 GeoJSON 读取同源显示变换底图，右侧把三处重点区 × 五段空间动作、人工等效与停止/回退压成可读卡片，底部显式列出 EPSG:4548 指标输入和未补齐资料。

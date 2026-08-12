@@ -1,0 +1,338 @@
+{
+  "schema_version": "0.1.0",
+  "evidence_grade_definition_zh": {
+    "A": "官方公开资料：征集公告、面向智能体任务书、官方资料包与国家用地分类标准，可作为正式依据。",
+    "B": "公开专业资料与登记层：来源可用性登记表、处理资料导航层，以及标注为临时的粗略边界，只能按其登记的用途边界使用。",
+    "C": "方案生成数据：本提交包由智能体生成的设计图层，是设计推演结果而非事实观测，可复算但不可作为现状依据。",
+    "D": "假设推演：运营机制、活动体系与绩效设想，属于开放共创建议，不构成已确定安排。"
+  },
+  "sources": [
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "evidence_grade": "A",
+      "source_type": "official_public",
+      "title_zh": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "provider_zh": "北京市规划和自然资源委员会海淀分局",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "usage": "征集任务、三层范围、三处重点区域、成果语言与深度要求的第一依据。",
+      "used_by": [
+        "proposal.chapter.1",
+        "proposal.chapter.2",
+        "compliance_matrix"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "公告文字给出四至描述与面积，但未附精确矢量边界。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "evidence_grade": "A",
+      "source_type": "user_provided_cleared",
+      "title_zh": "面向全球智能体开展百年京张AI创新带城市设计开源征集任务书摘录",
+      "provider_zh": "征集组织方（经清权摘录）",
+      "path": "brief/site-package/agent_taskbook.json",
+      "usage": "共创公约十条、agent.1 至 agent.6 六项必选任务、三大定位、五大功能、三区两翼与边界条款。",
+      "used_by": [
+        "proposal.chapter.0",
+        "proposal.chapter.5",
+        "proposal.chapter.13",
+        "compliance_matrix"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "本方案的接口体系、场景卡、命名体系与运营机制均以此为任务依据。"
+    },
+    {
+      "id": "SITE-PACKAGE",
+      "evidence_grade": "A",
+      "source_type": "official_public",
+      "title_zh": "项目场地资料包",
+      "provider_zh": "仓库维护者登记",
+      "path": "brief/site-package/",
+      "usage": "设计任务书、坐标政策、指标范围、专业标准索引与结构化模式定义。",
+      "used_by": [
+        "proposal.chapter.1",
+        "metrics"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "坐标交换采用 EPSG:4326，面积计算采用 EPSG:4548。"
+    },
+    {
+      "id": "LAND-USE-CLASSIFICATION",
+      "evidence_grade": "A",
+      "source_type": "official_public",
+      "title_zh": "国土空间调查、规划、用途管制用地用海分类指南（项目子集）",
+      "provider_zh": "自然资源部（经项目子集摘录）",
+      "path": "brief/site-package/enums/land_use_codes.json",
+      "usage": "用地分类代码体系，本方案全部用地类型均取自该表，未新增自创分类。",
+      "used_by": [
+        "geometry/land_use.geojson",
+        "metrics.land_use_code_count",
+        "metrics.reserved_land_ratio"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "其中16留白用地被用于承接未来AI场景不确定需求，是用官方工具回答新问题而非另立新类。正式法定使用前需导入完整分类表。"
+    },
+    {
+      "id": "ALLOWED-DESIGN-SPACE",
+      "evidence_grade": "A",
+      "source_type": "official_public",
+      "title_zh": "可设计空间与图层编辑权限定义",
+      "provider_zh": "仓库维护者登记",
+      "path": "brief/site-package/allowed_design_space.json",
+      "usage": "界定可编辑图层、锁定图层、必交图层，以及临时边界的允许用途与禁止用途。",
+      "used_by": [
+        "geometry",
+        "proposal.chapter.1",
+        "assumptions"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "本方案全部生成要素均落在提交边界内，锁定图层未被编辑。"
+    },
+    {
+      "id": "LAYER-AND-TYPE-ENUMS",
+      "evidence_grade": "A",
+      "source_type": "official_public",
+      "title_zh": "图层、来源类型、置信度与几何角色枚举",
+      "provider_zh": "仓库维护者登记",
+      "path": "brief/site-package/enums/",
+      "usage": "约束全部要素的 layer、source_type、confidence、geometry_role 取值。",
+      "used_by": [
+        "geometry"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "概念体量与交通概念的表达语义由自定义字段 representation_level 承载，不越出枚举范围。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "evidence_grade": "B",
+      "source_type": "repository_public_registry",
+      "title_zh": "公共来源可用性登记表",
+      "provider_zh": "仓库维护者登记",
+      "path": "data/source_registry.json",
+      "usage": "区分 formal 可用、仅背景、仅临时与待审来源，约束证据升级行为。",
+      "used_by": [
+        "proposal.chapter.1",
+        "sources"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "high",
+      "notes_zh": "本方案未将任何背景或临时材料升级为官方边界、法定控制或实施承诺。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "evidence_grade": "B",
+      "source_type": "repository_processed_reference",
+      "title_zh": "智能体可读资料导航层",
+      "provider_zh": "仓库维护者登记",
+      "path": "data/processed/agent_fact_pack.md",
+      "usage": "三层范围、任务清单、资料用途与缺口清单的阅读导航。",
+      "used_by": [
+        "proposal.chapter.1",
+        "proposal.chapter.2"
+      ],
+      "usable_for_formal": "yes",
+      "confidence": "medium",
+      "notes_zh": "导航层不是新的权威来源；全部事实判断仍回到 A 级资料。"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "evidence_grade": "B",
+      "source_type": "agent_inferred_from_public_data",
+      "title_zh": "总体设计范围临时粗略边界",
+      "provider_zh": "仓库维护者依据公告文字四至推定",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "usage": "提交包 site_boundary 的几何来源。",
+      "used_by": [
+        "geometry/site_boundary.geojson",
+        "metrics.site_area_sqm"
+      ],
+      "usable_for_formal": "provisional_only",
+      "confidence": "medium",
+      "notes_zh": "不得作为官方红线、审批依据或精确面积复算依据；官方边界发布后全部图层与指标须重算。"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "evidence_grade": "B",
+      "source_type": "agent_inferred_from_public_data",
+      "title_zh": "三处重点区域临时粗略边界",
+      "provider_zh": "仓库维护者依据公告片区名称与面积推定",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "usage": "众智园、北京AI原点社区、大钟寺三处重点详细设计区域的几何来源。",
+      "used_by": [
+        "geometry/key_areas.geojson",
+        "metrics.key_area_count"
+      ],
+      "usable_for_formal": "provisional_only",
+      "confidence": "medium",
+      "notes_zh": "小月河场景赋能翼与中关村科技服务翼无临时多边形，其空间位置为本方案概念建议。"
+    },
+    {
+      "id": "DESIGN-LAND-USE",
+      "evidence_grade": "C",
+      "source_type": "agent_generated_design",
+      "title_zh": "人字开物带用地结构概念图层",
+      "provider_zh": "本提交包生成",
+      "path": "geometry/land_use.geojson",
+      "usage": "用地结构与AI能力叠加属性，是留白用地占比与创新空间类型数的复算依据。",
+      "used_by": [
+        "metrics.reserved_land_ratio",
+        "metrics.land_use_coverage_ratio",
+        "metrics.green_open_space_land_ratio"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "medium",
+      "notes_zh": "以边界顶点纬度为行断点的梯形网格划分，生成规则写入图层顶层字段，可完整复算；为概念性结构表达，非法定控规用地方案。"
+    },
+    {
+      "id": "DESIGN-SERVICE-ZONE",
+      "evidence_grade": "C",
+      "source_type": "agent_generated_design",
+      "title_zh": "Switchback Protocol 能力接口空间承载分区",
+      "provider_zh": "本提交包生成",
+      "path": "geometry/ai_service_zone.geojson",
+      "usage": "十类开放能力接口在三区两翼与全带级的空间承载。",
+      "used_by": [
+        "metrics.ai_service_zone_count",
+        "metrics.ai_service_zone_area_sqm"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "medium",
+      "notes_zh": "分区角色由任务书 three_areas_two_wings 的官方角色推出，非自造功能分区。"
+    },
+    {
+      "id": "DESIGN-SCENARIO-NODE",
+      "evidence_grade": "C",
+      "source_type": "agent_generated_design",
+      "title_zh": "AI场景卡地理化节点图层",
+      "provider_zh": "本提交包生成",
+      "path": "geometry/scenario_node.geojson",
+      "usage": "十张AI场景卡的空间落位、治理准入、公众入口与指标引用链。",
+      "used_by": [
+        "metrics.scenario_node_count",
+        "metrics.industry_validation_scenario_count",
+        "metrics.public_entry_coverage_ratio"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "medium",
+      "notes_zh": "节点编号同时作为场景卡号、导视编号与荣誉资产编号，形成可机器校验的贡献记录基础。"
+    },
+    {
+      "id": "DESIGN-DERIVED-OPEN-SPACE",
+      "evidence_grade": "C",
+      "source_type": "agent_generated_design",
+      "title_zh": "绿地与公共空间派生图层",
+      "provider_zh": "本提交包生成",
+      "path": "geometry/green_space.geojson",
+      "usage": "绿地系统与公共空间体系，由用地图层与场景节点派生，保持空间语义一致。",
+      "used_by": [
+        "metrics.green_ratio",
+        "metrics.public_space_ratio",
+        "metrics.interpretation_node_count"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "medium",
+      "notes_zh": "京张遗址公园按绿地系统上的文化接口表达，未新增地类；公共空间与既有广场重叠部分已做差集扣除。"
+    },
+    {
+      "id": "DESIGN-CONCEPT-MASSING",
+      "evidence_grade": "C",
+      "source_type": "agent_generated_design",
+      "title_zh": "城市更新概念体量基底图层",
+      "provider_zh": "本提交包生成",
+      "path": "geometry/buildings.geojson",
+      "usage": "保留、更新、场景预留三类概念体量的空间分布。",
+      "used_by": [
+        "metrics.building_count",
+        "metrics.building_footprint_area_sqm"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "low",
+      "notes_zh": "非现状测绘成果；不构成建筑规模、高度、强度、容积率或地块拆改留结论。"
+    },
+    {
+      "id": "DESIGN-MOBILITY-CONCEPT",
+      "evidence_grade": "C",
+      "source_type": "agent_generated_design",
+      "title_zh": "交通组织概念图层",
+      "provider_zh": "本提交包生成",
+      "path": "geometry/roads.geojson",
+      "usage": "南北慢行主廊、东西缝合联系与服务联系的交通组织意图。",
+      "used_by": [
+        "metrics.road_centerline_length_m",
+        "metrics.continuous_walk_path_length_m"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "low",
+      "notes_zh": "不含道路红线、车道数、线形、桥隧、地下空间或轨道线位结论；道路用地占比须在正式控规条件下重新校核。"
+    },
+    {
+      "id": "OPERATION-ASSUMPTIONS",
+      "evidence_grade": "D",
+      "source_type": "agent_generated_design",
+      "title_zh": "运营机制与绩效设想登记",
+      "provider_zh": "本提交包生成",
+      "path": "assumptions.json",
+      "usage": "活动体系、荣誉体系、测试准入与运营绩效指标的假设登记与解除条件。",
+      "used_by": [
+        "proposal.chapter.10",
+        "proposal.chapter.14",
+        "metrics"
+      ],
+      "usable_for_formal": "design_derived",
+      "confidence": "low",
+      "notes_zh": "全部为开放共创建议，不构成政府安排、财政支持、招商承诺或审批结论；运营期绩效指标在设计阶段不设目标值。"
+    },
+    {
+      "id": "REF-JINGZHANG-PARK-2026",
+      "evidence_grade": "B",
+      "source_type": "official_public",
+      "title_zh": "京张铁路遗址公共空间改造提升工程（二期）建成开放报道",
+      "provider_zh": "新京报、中国新闻网转述海淀区园林绿化局信息",
+      "url": "https://www.bjnews.com.cn/detail/1786012517189857.html",
+      "usage": "作为本带线性公共空间的现状基线：二期已于 2026 年 8 月 6 日建成开放，全长 9 公里、总用地约 53 公顷、服务沿线 70 个社区约 45 万居民，全线打通 9 条城市支路并拆除封闭围挡。",
+      "used_by": [
+        "proposal.chapter.9",
+        "proposal.chapter.8"
+      ],
+      "usable_for_formal": "background_only",
+      "confidence": "medium",
+      "notes_zh": "媒体报道转述，非规划文件。用于说明现状基线与本方案的衔接关系，不作为面积、边界或指标复算依据。"
+    },
+    {
+      "id": "REF-QINGHUAYUAN-STATION",
+      "evidence_grade": "B",
+      "source_type": "official_public",
+      "title_zh": "清华园车站旧址历史沿革与保护等级",
+      "provider_zh": "清华大学校史馆、光明网",
+      "url": "https://xsg.tsinghua.edu.cn/info/1003/3296.htm",
+      "usage": "确认本带范围内的京张铁路遗产本体：1910 年建成，中西合璧外廊式五开间三拱门，建筑面积约 290.8 平方米，匾额为京张铁路上仅存的詹天佑手迹；2012 年区普查登记文物，2021 年北京市第一批不可移动革命文物，2023 年 1 月增补为北京市文物保护单位，2023 年 4 月对外开放。",
+      "used_by": [
+        "proposal.chapter.9"
+      ],
+      "usable_for_formal": "background_only",
+      "confidence": "medium",
+      "notes_zh": "校史与媒体资料。保护范围与建设控制地带须以文物主管部门公布文件为准，本方案不作推定。"
+    },
+    {
+      "id": "REF-HIGHLINE-OPERATIONS",
+      "evidence_grade": "C",
+      "source_type": "official_public",
+      "title_zh": "纽约 High Line 线性遗产公园运营基线",
+      "provider_zh": "Friends of the High Line 公开年度信息",
+      "url": "https://thehighline.org/",
+      "usage": "作为线性铁路遗产公园的运营对标：长度约 2.33 公里，2024 年访客约 618 万人次，运营支出约 2270 万美元，全年运营人员 72 人、旺季增至 87 人；由非营利机构依据许可协议运营，私人募款覆盖接近全部年度运营预算。",
+      "used_by": [
+        "proposal.chapter.6",
+        "proposal.chapter.3"
+      ],
+      "usable_for_formal": "background_only",
+      "confidence": "medium",
+      "notes_zh": "境外案例，制度环境与本地不同，仅用于校准运营强度量级，不作为本方案的目标值或承诺。"
+    }
+  ]
+}

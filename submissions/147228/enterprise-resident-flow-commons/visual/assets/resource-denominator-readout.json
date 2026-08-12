@@ -1,0 +1,148 @@
+{
+  "version": "1.0-resource-denominator",
+  "screen_id": "MOB-RESOURCE-DENOMINATOR-001",
+  "generated_by": "node visual/assets/run-resource-denominator-screen.js",
+  "status": "synthetic_contract_screen_not_local_inventory",
+  "population_reference": {
+    "synthetic_agents": 3122000,
+    "status": "synthetic_reference_not_local_count",
+    "rule": "This reference links the contract screen to the population-scale stress replay; it is not a Haidian population measurement."
+  },
+  "summary": {
+    "stress_contract_count": 5,
+    "locked_contract_count": 0,
+    "current_intensity_claims": 0,
+    "current_local_measurements": 0,
+    "current_operating_authorizations": 0,
+    "blocked_claim_count": 3,
+    "air_candidate": "blocked"
+  },
+  "scenario_contracts": [
+    {
+      "id": "D-01",
+      "stress_case": "metro_disruption",
+      "label_zh": "地铁中断时的一次完成通勤请求",
+      "label_en": "one completed commute request during a metro disruption",
+      "service_unit_zh": "每名完成的跨方式到岗请求",
+      "service_unit_en": "one completed cross-mode arrival request",
+      "non_ai_baseline_zh": "既有站务告知 + 公交、步行或无障碍人工绕行",
+      "non_ai_baseline_en": "existing station notice plus staffed bus, walking or accessible reroute",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run",
+      "owner_needed_zh": "轨道/公交运营、企业服务和街道人工服务责任角色",
+      "owner_needed_en": "rail/bus operator, enterprise service and staffed community-service roles"
+    },
+    {
+      "id": "D-02",
+      "stress_case": "bus_disruption",
+      "label_zh": "公交中断时的一次完成居民服务请求",
+      "label_en": "one completed resident-service request during a bus disruption",
+      "service_unit_zh": "每名完成的门到门居民服务请求",
+      "service_unit_en": "one completed door-to-door resident service request",
+      "non_ai_baseline_zh": "人工站点问询 + 既有轨道、步行/无障碍和电话服务",
+      "non_ai_baseline_en": "staffed stop information plus existing rail, walk/accessibility and telephone service",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run",
+      "owner_needed_zh": "公交/轨道运营、社区服务和人工电话入口责任角色",
+      "owner_needed_en": "bus/rail operator, community service and staffed telephone-entry roles"
+    },
+    {
+      "id": "D-03",
+      "stress_case": "severe_weather",
+      "label_zh": "雨雪天气的一次安全到达请求",
+      "label_en": "one safe arrival request during severe weather",
+      "service_unit_zh": "每名完成的安全门到门出行请求",
+      "service_unit_en": "one completed safe door-to-door trip request",
+      "non_ai_baseline_zh": "人工天气告知 + 可走的无障碍/步行路线 + 公共交通回退",
+      "non_ai_baseline_en": "staffed weather notice plus a usable accessible/walking path and public-transit fallback",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run",
+      "owner_needed_zh": "道路维护、公共交通、照明和人工接管责任角色",
+      "owner_needed_en": "road maintenance, public transport, lighting and human-handoff roles"
+    },
+    {
+      "id": "D-04",
+      "stress_case": "curb_service_failure",
+      "label_zh": "路缘服务失效时的一次装卸或接驳请求",
+      "label_en": "one loading or shuttle request during a curb-service failure",
+      "service_unit_zh": "每次完成且不占用消防/无障碍通道的路缘服务请求",
+      "service_unit_en": "one completed curb-service request without blocking fire or accessible passage",
+      "non_ai_baseline_zh": "人工排班 + 公开路缘规则 + 现场人工清场",
+      "non_ai_baseline_en": "staffed scheduling plus public curb rules and on-site manual clearing",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run",
+      "owner_needed_zh": "路缘管理、企业车队、物流和现场清场责任角色",
+      "owner_needed_en": "curb management, enterprise fleet, logistics and on-site clearing roles"
+    },
+    {
+      "id": "D-05",
+      "stress_case": "cross_boundary_return",
+      "label_zh": "跨边界通勤返程的一次完成请求",
+      "label_en": "one completed cross-boundary return commute request",
+      "service_unit_zh": "每名完成的跨边界返程请求",
+      "service_unit_en": "one completed cross-boundary return request",
+      "non_ai_baseline_zh": "人工班次确认 + 轨道/公交 + 企业班车或电话回退",
+      "non_ai_baseline_en": "staffed timetable confirmation plus rail/bus and enterprise shuttle or telephone fallback",
+      "evidence_status": "unknown",
+      "operational_status": "not_authorized_not_run",
+      "owner_needed_zh": "轨道/公交运营、企业班车和夜间人工服务责任角色",
+      "owner_needed_en": "rail/bus operator, enterprise shuttle and night staffed-service roles"
+    }
+  ],
+  "claims": [
+    {
+      "id": "C-01",
+      "label_zh": "每次完成服务的能源或算力强度",
+      "label_en": "energy or compute intensity per completed service",
+      "requires": [
+        "service_unit_locked",
+        "non_ai_baseline_locked",
+        "whole_system_boundary_locked",
+        "time_window_locked",
+        "dated_measurement_available"
+      ],
+      "status": "blocked_until_dated_evidence"
+    },
+    {
+      "id": "C-02",
+      "label_zh": "每客公里或每车公里强度",
+      "label_en": "intensity per passenger-kilometre or vehicle-kilometre",
+      "requires": [
+        "service_unit_locked",
+        "group_breakdown_locked",
+        "dated_measurement_available",
+        "accountable_role_acceptance"
+      ],
+      "status": "blocked_until_dated_evidence"
+    },
+    {
+      "id": "C-03",
+      "label_zh": "人工复核分钟与退出成本",
+      "label_en": "human-review minutes and exit cost",
+      "requires": [
+        "completion_rule_locked",
+        "whole_system_boundary_locked",
+        "dated_measurement_available",
+        "accountable_role_acceptance"
+      ],
+      "status": "blocked_until_dated_evidence"
+    }
+  ],
+  "checks": {
+    "five_stress_contracts": true,
+    "population_reference_is_synthetic": true,
+    "all_service_units_present": true,
+    "all_non_ai_baselines_present": true,
+    "all_whole_system_boundaries_present": true,
+    "all_time_windows_present": true,
+    "all_completion_rules_present": true,
+    "all_group_breakdowns_present": true,
+    "all_owner_fields_present": true,
+    "all_evidence_unknown": true,
+    "no_operating_authorization": true,
+    "all_claims_blocked_until_evidence": true,
+    "no_personal_trace_requirement": true,
+    "air_candidate_fail_closed": true
+  },
+  "interpretation": "This screen keeps intensity and burden claims blocked until a dated, owned service denominator and a non-AI comparison exist. It is a contract audit, not a local performance result."
+}

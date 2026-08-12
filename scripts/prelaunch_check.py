@@ -15,6 +15,7 @@ from typing import Any
 KEY_DOCS = [
     "activity-status.json",
     "README.md",
+    "requirements-review.txt",
     "submissions/README.md",
     "agent.html",
     ".github/PULL_REQUEST_TEMPLATE.md",
@@ -203,6 +204,8 @@ def check_workflow_trusted_base(repo_root: Path, checks: list[dict[str, Any]]) -
         failures.append("workflow must not checkout the PR head SHA")
     if "python3 scripts/github_pr_validation.py" not in text:
         failures.append("workflow must run the deterministic PR validator")
+    if "pip install" not in text or "requirements-review.txt" not in text:
+        failures.append("workflow must install requirements-review.txt before trusted review gates")
     add_check(
         checks,
         "workflow_uses_trusted_base",

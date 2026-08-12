@@ -1,0 +1,94 @@
+{
+  "schema_version": "0.1.0",
+  "sources": [
+    {
+      "id": "SITE-PACKAGE",
+      "source_type": "official_public",
+      "path": "brief/site-package/",
+      "usage": "场地资料包：design_brief.json、allowed_design_space.json、enums/、ranges/、schemas/ 提供项目简介、枚举、允许设计空间、指标区间与 schema，是生成与自检的机器可读依据。"
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "source_type": "repository_public_registry",
+      "path": "data/source_registry.json",
+      "usage": "来源可用性登记表：区分 formal-ready、background-only、provisional-only 与 needs-review 资料，约束每条来源的允许用途与禁止用途。"
+    },
+    {
+      "id": "PROCESSED-FACT-PACK",
+      "source_type": "repository_processed_reference",
+      "path": "data/processed/agent_fact_pack.md",
+      "usage": "阅读导航层：汇总三层范围、三处重点区、公告任务、agent.1-agent.6、资料可用性与缺资料清单；不是新的权威来源，事实判断需回到原始登记材料。"
+    },
+    {
+      "id": "BOUNDARY-SOURCE",
+      "source_type": "agent_inferred_from_public_data",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "usage": "提交包 geometry/site_boundary.geojson 的临时边界来源，用于方案生成、自检与可视化。",
+      "usage_note": "边界为维护者依据公告文字四至与面积推定，provisional-only：不得作为官方红线、审批依据或精确面积依据；官方 boundary 发布后须替换并全量重算图层与指标。"
+    },
+    {
+      "id": "KEY-AREA-SOURCE",
+      "source_type": "agent_inferred_from_public_data",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "usage": "提交包 geometry/key_areas.geojson 中三处重点区域（众智园、北京AI原点社区、大钟寺）的临时边界来源，用于详细设计、面积复算与可视化。",
+      "usage_note": "三处重点区域为临时粗略 polygon，provisional-only：不得用于官方红线、审批依据或精确面积计算；official polygons 发布后须替换并复核 key area 面积指标。"
+    },
+    {
+      "id": "OFFICIAL-ANNOUNCEMENT",
+      "source_type": "official_public",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "path": "brief/site-package/standards/references/project-official-announcement.md",
+      "usage": "《百年京张AI创新带城市设计国际方案征集资格预审公告》：三层范围、三处重点区、设计任务、成果深度与评分要求的正式任务依据。"
+    },
+    {
+      "id": "AGENT-TASKBOOK",
+      "source_type": "user_provided_cleared",
+      "path": "brief/site-package/agent_taskbook.json",
+      "usage": "面向智能体开源征集任务书：十条共创原则、三大定位、五大功能、agent.1-agent.6 六项任务、场景卡与品牌运营要求及统一边界条款。"
+    },
+    {
+      "id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "source_type": "official_announcement",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "path": "brief/site-package/standards/references/project-official-announcement.md",
+      "published_date": "2026-05-09",
+      "usage": "公告正式任务依据的登记条目：项目名称、组织方、范围描述、面积值、设计任务与提交深度；文字四至与面积值不能替代 official GIS/CAD polygon。"
+    },
+    {
+      "id": "DATA-SRC-AGENT-TASKBOOK-20260518",
+      "source_type": "user_provided_cleared",
+      "path": "brief/site-package/agent_taskbook.json",
+      "published_date": "2026-05-18",
+      "usage": "智能体任务书登记条目：agent 任务覆盖、AI 场景卡要求、品牌与运营要求、公共合规表述；不是官方空间红线或控规条件。"
+    },
+    {
+      "id": "DATA-SRC-MOHURD-URBAN-DESIGN-MEASURES",
+      "source_type": "official_standard",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "path": "brief/site-package/standards/references/mohurd-urban-design-measures.md",
+      "usage": "《城市设计管理办法》：城市设计目的与范围、公共空间与城市特色风貌、建筑高度体量风格色彩天际线与界面控制参考。"
+    },
+    {
+      "id": "DATA-SRC-MOHURD-CONTROL-DETAILED-PLANNING",
+      "source_type": "official_standard",
+      "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "path": "brief/site-package/standards/references/mohurd-control-detailed-planning.md",
+      "usage": "《城市、镇控制性详细规划编制审批办法》：控规深度参考与规划许可实施管理边界；要求区分已知控制与待补控制，不得编造容积率、高度、红线结论。"
+    },
+    {
+      "id": "DATA-SRC-MNR-LAND-USE-CLASSIFICATION-202311",
+      "source_type": "official_standard",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "path": "brief/site-package/standards/references/mnr-land-use-classification-guide.md",
+      "usage": "《国土空间调查、规划、用途管制用地用海分类指南》：统一 land_use_code 语义，供 GeoJSON 用地分类与指标复算引用。"
+    },
+    {
+      "id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "source_type": "provisional_repository_data",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "published_date": "2026-06-05",
+      "usage": "三层范围与三处重点区临时粗略 polygon 的登记条目：供临时 AI 生成边界、离线可视化、自检与带标注的设计讨论。",
+      "usage_note": "provisional-only：不得作为 official redline、法定控规、精确面积、正式评分或审批实施依据；EPSG:4548 下推定的坐标仅供生成与展示。"
+    }
+  ]
+}

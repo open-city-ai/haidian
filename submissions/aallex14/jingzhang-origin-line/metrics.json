@@ -1,0 +1,174 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "area(geometry/site_boundary.geojson#SITE-001) in EPSG:4548",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-METRIC-001"
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 2579853.091,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "sum(area(feature) for feature in geometry/green_space.geojson) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONCEPT-GEOMETRY-001"
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 17925.842,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "sum(area(feature) for feature in geometry/public_space.geojson) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONCEPT-GEOMETRY-001"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 38508.515,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(area(feature) for feature in geometry/buildings.geojson) in EPSG:4548",
+      "confidence": "low",
+      "assumptions": [
+        "A-CONCEPT-GEOMETRY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.226049,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONCEPT-GEOMETRY-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.001571,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm (EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONCEPT-GEOMETRY-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(features in geometry/key_areas.geojson)",
+      "confidence": "medium",
+      "assumptions": [
+        "A-BOUNDARY-001"
+      ]
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of AI scenario cards defined in proposal.md (agent.3)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "test_scenario_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of industry test/validation scenarios defined in proposal.md (agent.3)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "persona_class_count": {
+      "status": "known",
+      "value": 6,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of user persona classes defined in proposal.md (agent.3)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of AI pilgrimage landmarks defined in proposal.md (agent.4)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "annual_event_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count of annual flagship events defined in proposal.md (agent.6)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [],
+      "formula": "total floor area / site area; requires official regulatory-plan conditions",
+      "confidence": "unknown",
+      "reason": "待正式数据补齐：容积率属于法定控规条件，公告与任务书未公开，本方案不作数值判断。",
+      "assumptions": [
+        "A-CONTROLS-001"
+      ]
+    }
+  }
+}

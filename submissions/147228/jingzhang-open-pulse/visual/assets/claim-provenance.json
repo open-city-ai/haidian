@@ -1,103 +1,544 @@
 {
   "schema_version": "0.1.0",
   "proposal_id": "jingzhang-open-pulse",
-  "revision": "v3.7",
+  "revision": "v4.3-recovery",
   "status": "audit_contract",
-  "title_zh": "页面可见数字的来源回读表",
-  "title_en": "Visible-claim provenance register",
-  "boundary_zh": "这张表只核验页面可见数字能否回到包内原始值、来源文件、双语指标标记和对应图件。它不把临时几何、OSM 筛查、模型读数或设计目标升级为官方事实、现场绩效或审批结果。",
-  "boundary_en": "This register checks only whether visible numbers return to package values, source files, bilingual metric markers and corresponding figures. It does not promote provisional geometry, OSM screening, model outputs or design targets into official facts, field performance or approval.",
+  "title_zh": "双语可见指标来源回读表",
+  "title_en": "Bilingual visible-metric provenance register",
+  "boundary_zh": "本表核验中英文审阅稿共同展示的可见指标。已知值回指 metrics.json；模型值明确标为模型输出；缺少现场或专业基线的指标保持 unknown。它们都不是绩效、预测、健康结论或审批结果。",
+  "boundary_en": "This register verifies the visible metrics shared by the Chinese and English review narratives. Known values return to metrics.json; model values are labelled as model outputs; metrics without field or professional baselines remain unknown. None is a performance result, forecast, health finding or approval.",
   "runner": "visual/assets/run-open-pulse-claim-provenance.js",
+  "record_count": 31,
   "records": [
     {
-      "claim_id": "site_area_sqm",
-      "claim_zh": "总体设计范围面积",
-      "claim_en": "overall design area",
-      "raw_value_path": "metrics.json#/metrics/site_area_sqm/value",
-      "raw_value": 11412825.386,
-      "source_files": ["geometry/site_boundary.geojson"],
-      "figure_files": ["assets/figures/site-overview.png", "assets/figures/site-overview.en.png"],
-      "proposal_token": "[metric:site_area_sqm]"
+      "claim_id": "resilience_v13_candidate_count",
+      "claim_zh": "resilience_v13_candidate_count",
+      "claim_en": "resilience_v13_candidate_count",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_candidate_count/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_candidate_count/status",
+      "raw_value": 5,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_candidate_count]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_monte_carlo_draws",
+      "claim_zh": "resilience_v13_monte_carlo_draws",
+      "claim_en": "resilience_v13_monte_carlo_draws",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_monte_carlo_draws/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_monte_carlo_draws/status",
+      "raw_value": 50000,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_monte_carlo_draws]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_selected_mean_score",
+      "claim_zh": "resilience_v13_selected_mean_score",
+      "claim_en": "resilience_v13_selected_mean_score",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_selected_mean_score/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_selected_mean_score/status",
+      "raw_value": 72.518,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_selected_mean_score]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_selected_p05_score",
+      "claim_zh": "resilience_v13_selected_p05_score",
+      "claim_en": "resilience_v13_selected_p05_score",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_selected_p05_score/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_selected_p05_score/status",
+      "raw_value": 70.252,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_selected_p05_score]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_selected_win_rate",
+      "claim_zh": "resilience_v13_selected_win_rate",
+      "claim_en": "resilience_v13_selected_win_rate",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_selected_win_rate/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_selected_win_rate/status",
+      "raw_value": 0.78862,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_selected_win_rate]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_selected_mean_regret",
+      "claim_zh": "resilience_v13_selected_mean_regret",
+      "claim_en": "resilience_v13_selected_mean_regret",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_selected_mean_regret/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_selected_mean_regret/status",
+      "raw_value": 0.314,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_selected_mean_regret]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_selected_min_stress_score",
+      "claim_zh": "resilience_v13_selected_min_stress_score",
+      "claim_en": "resilience_v13_selected_min_stress_score",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_selected_min_stress_score/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_selected_min_stress_score/status",
+      "raw_value": 67.194,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_selected_min_stress_score]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
+    },
+    {
+      "claim_id": "resilience_v13_hard_gates_passed",
+      "claim_zh": "resilience_v13_hard_gates_passed",
+      "claim_en": "resilience_v13_hard_gates_passed",
+      "raw_value_path": "metrics.json#/metrics/resilience_v13_hard_gates_passed/value",
+      "status_path": "metrics.json#/metrics/resilience_v13_hard_gates_passed/status",
+      "raw_value": 5,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/innovation-friction-simulation.json",
+        "visual/assets/run-open-pulse-resilience-boundary-audit.js"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resilience_v13_hard_gates_passed]",
+      "evidence_class": "model_output_not_field_result",
+      "boundary_zh": "该值是包内模型比较输出，不是现场绩效、预测、健康结果或审批结论。",
+      "boundary_en": "This value is a package-level model comparison output, not field performance, a forecast, a health finding or an approval result."
     },
     {
       "claim_id": "green_ratio",
-      "claim_zh": "连续绿地比例",
-      "claim_en": "connected green-space ratio",
+      "claim_zh": "green_ratio",
+      "claim_en": "green_ratio",
       "raw_value_path": "metrics.json#/metrics/green_ratio/value",
+      "status_path": "metrics.json#/metrics/green_ratio/status",
       "raw_value": 0.123423,
-      "source_files": ["geometry/green_space.geojson", "geometry/site_boundary.geojson"],
-      "figure_files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
-      "proposal_token": "[metric:green_ratio]"
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:green_ratio]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "user_persona_count",
+      "claim_zh": "user_persona_count",
+      "claim_en": "user_persona_count",
+      "raw_value_path": "metrics.json#/metrics/user_persona_count/value",
+      "status_path": "metrics.json#/metrics/user_persona_count/status",
+      "raw_value": 5,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:user_persona_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "ai_landmark_count",
+      "claim_zh": "ai_landmark_count",
+      "claim_en": "ai_landmark_count",
+      "raw_value_path": "metrics.json#/metrics/ai_landmark_count/value",
+      "status_path": "metrics.json#/metrics/ai_landmark_count/status",
+      "raw_value": 4,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:ai_landmark_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "policy_enterprise_playbook_card_count",
+      "claim_zh": "policy_enterprise_playbook_card_count",
+      "claim_en": "policy_enterprise_playbook_card_count",
+      "raw_value_path": "metrics.json#/metrics/policy_enterprise_playbook_card_count/value",
+      "status_path": "metrics.json#/metrics/policy_enterprise_playbook_card_count/status",
+      "raw_value": 42,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:policy_enterprise_playbook_card_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "industry_validation_case_count",
+      "claim_zh": "industry_validation_case_count",
+      "claim_en": "industry_validation_case_count",
+      "raw_value_path": "metrics.json#/metrics/industry_validation_case_count/value",
+      "status_path": "metrics.json#/metrics/industry_validation_case_count/status",
+      "raw_value": 3,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:industry_validation_case_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "scenario_card_count",
+      "claim_zh": "scenario_card_count",
+      "claim_en": "scenario_card_count",
+      "raw_value_path": "metrics.json#/metrics/scenario_card_count/value",
+      "status_path": "metrics.json#/metrics/scenario_card_count/status",
+      "raw_value": 14,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:scenario_card_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "pedestrian_wind_comfort_acceptable_area_ratio",
+      "claim_zh": "行人层风舒适可接受面积比例",
+      "claim_en": "pedestrian wind-comfort acceptable-area ratio",
+      "raw_value_path": "metrics.json#/metrics/pedestrian_wind_comfort_acceptable_area_ratio/value",
+      "status_path": "metrics.json#/metrics/pedestrian_wind_comfort_acceptable_area_ratio/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/wind-health-validation-plan.json",
+        "visual/assets/wind-health-field-protocol.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:pedestrian_wind_comfort_acceptable_area_ratio]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "缺少经校准的行人层 CFD、现场风速风向和专业确认的舒适准则，不能给出比例。",
+      "boundary_en": "No ratio is reported without calibrated pedestrian-level CFD, field wind observations and a professionally accepted comfort criterion."
+    },
+    {
+      "claim_id": "pollutant_stagnation_hotspot_count",
+      "claim_zh": "污染滞留热点数量",
+      "claim_en": "pollutant-stagnation hotspot count",
+      "raw_value_path": "metrics.json#/metrics/pollutant_stagnation_hotspot_count/value",
+      "status_path": "metrics.json#/metrics/pollutant_stagnation_hotspot_count/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/wind-health-validation-plan.json",
+        "visual/assets/wind-health-field-protocol.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:pollutant_stagnation_hotspot_count]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "缺少排放清单、背景浓度、现场 PM2.5 和经校准扩散模型，不能报告热点数量。",
+      "boundary_en": "No hotspot count is reported without an emissions inventory, background concentrations, field PM2.5 observations and a calibrated dispersion model."
+    },
+    {
+      "claim_id": "mean_radiant_temperature_baseline_c",
+      "claim_zh": "平均辐射温度基线",
+      "claim_en": "mean-radiant-temperature baseline",
+      "raw_value_path": "metrics.json#/metrics/mean_radiant_temperature_baseline_c/value",
+      "status_path": "metrics.json#/metrics/mean_radiant_temperature_baseline_c/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/wind-health-validation-plan.json",
+        "visual/assets/wind-health-field-protocol.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:mean_radiant_temperature_baseline_c]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "缺少分季节、分时段的 MRT 实测和经校准热环境模型，不能给出温度基线。",
+      "boundary_en": "No temperature baseline is reported without seasonal, time-specific MRT observations and a calibrated outdoor thermal model."
+    },
+    {
+      "claim_id": "continuous_shaded_accessible_route_ratio",
+      "claim_zh": "连续遮阴无障碍路线比例",
+      "claim_en": "continuous shaded accessible-route ratio",
+      "raw_value_path": "metrics.json#/metrics/continuous_shaded_accessible_route_ratio/value",
+      "status_path": "metrics.json#/metrics/continuous_shaded_accessible_route_ratio/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "geometry/roads.geojson",
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/wind-health-validation-plan.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:continuous_shaded_accessible_route_ratio]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "路线仍属概念几何，且缺少树冠、日照和无障碍现场核验，不能给出比例。",
+      "boundary_en": "No ratio is reported because the route geometry remains conceptual and canopy, solar and field-accessibility checks are missing."
+    },
+    {
+      "claim_id": "blue_green_accessible_route_overlap_ratio",
+      "claim_zh": "蓝绿空间与无障碍路线有效重合比例",
+      "claim_en": "blue-green accessible-route overlap ratio",
+      "raw_value_path": "metrics.json#/metrics/blue_green_accessible_route_overlap_ratio/value",
+      "status_path": "metrics.json#/metrics/blue_green_accessible_route_overlap_ratio/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/public_space.geojson",
+        "geometry/roads.geojson",
+        "proposal.md",
+        "visual/assets/wind-health-validation-plan.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:blue_green_accessible_route_overlap_ratio]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "概念图层不能替代入口、坡度、连续性、安全、水质和维护的现场核验，也不能由空间邻近推导健康收益。",
+      "boundary_en": "Concept layers do not replace field checks of entrances, gradients, continuity, safety, water quality and maintenance, and proximity does not establish a health benefit."
+    },
+    {
+      "claim_id": "water_risk_exceedance_route_verified_ratio",
+      "claim_zh": "超标水风险下关键路线核验比例",
+      "claim_en": "water-risk exceedance-route verified ratio",
+      "raw_value_path": "metrics.json#/metrics/water_risk_exceedance_route_verified_ratio/value",
+      "status_path": "metrics.json#/metrics/water_risk_exceedance_route_verified_ratio/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "assumptions.json",
+        "proposal.md",
+        "visual/assets/wind-health-validation-plan.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:water_risk_exceedance_route_verified_ratio]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "缺少经核验的 DEM、排水系统、设计暴雨和二维地表水模型，不能作无内涝或路线安全承诺。",
+      "boundary_en": "No flood-free or route-safety claim is made without a verified DEM, drainage system, design storms and calibrated two-dimensional surface-flow modelling."
+    },
+    {
+      "claim_id": "site_area_sqm",
+      "claim_zh": "site_area_sqm",
+      "claim_en": "site_area_sqm",
+      "raw_value_path": "metrics.json#/metrics/site_area_sqm/value",
+      "status_path": "metrics.json#/metrics/site_area_sqm/status",
+      "raw_value": 11412825.386,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:site_area_sqm]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "key_area_count",
+      "claim_zh": "key_area_count",
+      "claim_en": "key_area_count",
+      "raw_value_path": "metrics.json#/metrics/key_area_count/value",
+      "status_path": "metrics.json#/metrics/key_area_count/status",
+      "raw_value": 3,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:key_area_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "building_footprint_area_sqm",
+      "claim_zh": "building_footprint_area_sqm",
+      "claim_en": "building_footprint_area_sqm",
+      "raw_value_path": "metrics.json#/metrics/building_footprint_area_sqm/value",
+      "status_path": "metrics.json#/metrics/building_footprint_area_sqm/status",
+      "raw_value": 310807.184,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:building_footprint_area_sqm]",
+      "evidence_class": "package_metric"
     },
     {
       "claim_id": "public_space_ratio",
-      "claim_zh": "公共空间比例",
-      "claim_en": "public-space ratio",
+      "claim_zh": "public_space_ratio",
+      "claim_en": "public_space_ratio",
       "raw_value_path": "metrics.json#/metrics/public_space_ratio/value",
+      "status_path": "metrics.json#/metrics/public_space_ratio/status",
       "raw_value": 0.073281,
-      "source_files": ["geometry/public_space.geojson", "geometry/site_boundary.geojson"],
-      "figure_files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
-      "proposal_token": "[metric:public_space_ratio]"
-    },
-    {
-      "claim_id": "building_unit_count",
-      "claim_zh": "建筑单元数量",
-      "claim_en": "building-unit count",
-      "raw_value_path": "metrics.json#/metrics/building_unit_count/value",
-      "raw_value": 9,
-      "source_files": ["geometry/buildings.geojson"],
-      "figure_files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
-      "proposal_token": "[metric:building_unit_count]"
-    },
-    {
-      "claim_id": "public_scenario_node_count",
-      "claim_zh": "公共场景节点数量",
-      "claim_en": "public scenario-node count",
-      "raw_value_path": "metrics.json#/metrics/public_scenario_node_count/value",
-      "raw_value": 14,
-      "source_files": ["geometry/public_space.geojson", "visual/assets/scenario-operation-matrix.json"],
-      "figure_files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
-      "proposal_token": "[metric:public_scenario_node_count]"
-    },
-    {
-      "claim_id": "design_slow_mobility_network_length_m",
-      "claim_zh": "概念慢行网络长度",
-      "claim_en": "concept slow-mobility network length",
-      "raw_value_path": "metrics.json#/metrics/design_slow_mobility_network_length_m/value",
-      "raw_value": 13013.9,
-      "source_files": ["geometry/roads.geojson"],
-      "figure_files": ["assets/figures/mobility-bluegreen.png", "assets/figures/mobility-bluegreen.en.png"],
-      "proposal_token": "[metric:design_slow_mobility_network_length_m]"
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:public_space_ratio]",
+      "evidence_class": "package_metric"
     },
     {
       "claim_id": "osm_mapped_station_names_within_800m_count",
-      "claim_zh": "800 米范围内的轨道站名筛查数量",
-      "claim_en": "mapped station-name count within 800 m",
+      "claim_zh": "osm_mapped_station_names_within_800m_count",
+      "claim_en": "osm_mapped_station_names_within_800m_count",
       "raw_value_path": "metrics.json#/metrics/osm_mapped_station_names_within_800m_count/value",
+      "status_path": "metrics.json#/metrics/osm_mapped_station_names_within_800m_count/status",
       "raw_value": 16,
-      "source_files": ["sources.json", "report/narrative.md"],
-      "figure_files": ["assets/figures/site-overview.png", "assets/figures/site-overview.en.png"],
-      "proposal_token": "[metric:osm_mapped_station_names_within_800m_count]"
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:osm_mapped_station_names_within_800m_count]",
+      "evidence_class": "package_metric"
     },
     {
       "claim_id": "osm_mapped_crossing_count",
-      "claim_zh": "过街点筛查数量",
-      "claim_en": "mapped crossing-node count",
+      "claim_zh": "osm_mapped_crossing_count",
+      "claim_en": "osm_mapped_crossing_count",
       "raw_value_path": "metrics.json#/metrics/osm_mapped_crossing_count/value",
+      "status_path": "metrics.json#/metrics/osm_mapped_crossing_count/status",
       "raw_value": 189,
-      "source_files": ["sources.json", "report/narrative.md"],
-      "figure_files": ["assets/figures/mobility-bluegreen.png", "assets/figures/mobility-bluegreen.en.png"],
-      "proposal_token": "[metric:osm_mapped_crossing_count]"
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:osm_mapped_crossing_count]",
+      "evidence_class": "package_metric"
     },
     {
-      "claim_id": "resilience_v13_candidate_count",
-      "claim_zh": "低遗憾候选方案数量",
-      "claim_en": "low-regret candidate count",
-      "raw_value_path": "metrics.json#/metrics/resilience_v13_candidate_count/value",
-      "raw_value": 5,
-      "source_files": ["report/narrative.md"],
-      "figure_files": ["assets/figures/metrics-evidence.png", "assets/figures/metrics-evidence.en.png"],
-      "proposal_token": "[metric:resilience_v13_candidate_count]"
+      "claim_id": "design_north_south_spine_length_m",
+      "claim_zh": "design_north_south_spine_length_m",
+      "claim_en": "design_north_south_spine_length_m",
+      "raw_value_path": "metrics.json#/metrics/design_north_south_spine_length_m/value",
+      "status_path": "metrics.json#/metrics/design_north_south_spine_length_m/status",
+      "raw_value": 9604.8,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:design_north_south_spine_length_m]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "design_east_west_connector_count",
+      "claim_zh": "design_east_west_connector_count",
+      "claim_en": "design_east_west_connector_count",
+      "raw_value_path": "metrics.json#/metrics/design_east_west_connector_count/value",
+      "status_path": "metrics.json#/metrics/design_east_west_connector_count/status",
+      "raw_value": 3,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:design_east_west_connector_count]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "design_slow_mobility_network_length_m",
+      "claim_zh": "design_slow_mobility_network_length_m",
+      "claim_en": "design_slow_mobility_network_length_m",
+      "raw_value_path": "metrics.json#/metrics/design_slow_mobility_network_length_m/value",
+      "status_path": "metrics.json#/metrics/design_slow_mobility_network_length_m/status",
+      "raw_value": 13013.9,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:design_slow_mobility_network_length_m]",
+      "evidence_class": "package_metric"
+    },
+    {
+      "claim_id": "resident_transport_satisfaction_index",
+      "claim_zh": "居民交通满意度指数",
+      "claim_en": "resident transport-satisfaction index",
+      "raw_value_path": "metrics.json#/metrics/resident_transport_satisfaction_index/value",
+      "status_path": "metrics.json#/metrics/resident_transport_satisfaction_index/status",
+      "raw_value": null,
+      "expected_status": "unknown",
+      "source_files": [
+        "metrics.json",
+        "visual/assets/wind-health-validation-plan.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:resident_transport_satisfaction_index]",
+      "evidence_class": "unmeasured_unknown_baseline",
+      "boundary_zh": "当前没有足够的现场基线或专业核验，指标保持 unknown，不能把概念方案当作实测结论。",
+      "boundary_en": "The metric remains unknown because the package has no sufficient field baseline or professional verification; the concept is not reported as a measured result."
+    },
+    {
+      "claim_id": "building_footprint_ratio",
+      "claim_zh": "building_footprint_ratio",
+      "claim_en": "building_footprint_ratio",
+      "raw_value_path": "metrics.json#/metrics/building_footprint_ratio/value",
+      "status_path": "metrics.json#/metrics/building_footprint_ratio/status",
+      "raw_value": 0.027233,
+      "expected_status": "known",
+      "source_files": [
+        "metrics.json"
+      ],
+      "figure_files": [],
+      "proposal_token": "[metric:building_footprint_ratio]",
+      "evidence_class": "package_metric"
     }
   ]
 }

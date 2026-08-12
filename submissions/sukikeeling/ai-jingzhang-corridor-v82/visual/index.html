@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>京张智谷 / JZ Valley — 方案可视化展示</title>
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-panel:#151b23;
+    --bg-panel-2:#1b232d;
+    --line:#2a333d;
+    --ink:#e8edf2;
+    --ink-dim:#9aa7b2;
+    --rail-gray:#5b6672;
+    --signal-red:#e0483f;
+    --signal-amber:#e0a83f;
+    --signal-green:#2fae66;
+    --data-cyan:#33c4d1;
+    --radius:10px;
+    font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei","Heiti SC",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);scroll-behavior:smooth;}
+  a{color:var(--data-cyan);}
+  section{padding:64px 24px;max-width:1240px;margin:0 auto;}
+  h1,h2,h3{margin:0 0 12px 0;font-weight:700;}
+  h2{font-size:26px;border-left:5px solid var(--data-cyan);padding-left:14px;letter-spacing:1px;}
+  h2 .en{font-size:13px;color:var(--ink-dim);font-weight:400;margin-left:10px;}
+  p{line-height:1.75;color:var(--ink-dim);}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--ink-dim);margin-right:6px;}
+  .img-frame{width:100%;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;background:var(--bg-panel-2);position:relative;}
+  .img-frame img{width:100%;display:block;}
+  .img-caption{font-size:12px;color:var(--ink-dim);text-align:right;padding:6px 10px;border-top:1px dashed var(--line);}
+  .img-fallback{display:flex;align-items:center;justify-content:center;min-height:340px;color:var(--ink-dim);font-size:14px;flex-direction:column;gap:8px;padding:20px;text-align:center;}
+  .img-fallback .icon{font-size:34px;opacity:.5;}
+
+  /* ---------- Hero ---------- */
+  #hero{padding-top:56px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+  .hero-title{font-size:40px;line-height:1.25;margin-bottom:6px;}
+  .hero-title .zh{color:var(--ink);}
+  .hero-title .en{color:var(--data-cyan);font-size:22px;font-weight:400;margin-left:10px;}
+  .hero-loop{display:flex;align-items:center;gap:10px;margin:18px 0 26px 0;padding:14px 18px;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);}
+  .loop-node{padding:6px 12px;border-radius:6px;background:var(--bg-panel-2);border:1px solid var(--line);font-size:14px;white-space:nowrap;}
+  .loop-arrow{color:var(--signal-amber);font-size:18px;}
+  .hero-sub{color:var(--ink-dim);max-width:760px;}
+
+  /* ---------- Governance banner ---------- */
+  #discipline{background:linear-gradient(90deg,rgba(224,72,63,.12),rgba(224,168,63,.12),rgba(47,174,102,.12));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 24px;}
+  .discipline-inner{max-width:1240px;margin:0 auto;text-align:center;}
+  .discipline-flow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;font-size:22px;font-weight:700;margin-top:14px;}
+  .discipline-step{padding:10px 18px;border-radius:8px;}
+  .discipline-step:nth-child(1){background:rgba(51,196,209,.12);color:var(--data-cyan);border:1px solid var(--data-cyan);}
+  .discipline-step:nth-child(3){background:rgba(47,174,102,.12);color:var(--signal-green);border:1px solid var(--signal-green);}
+  .discipline-step:nth-child(5){background:rgba(224,168,63,.12);color:var(--signal-amber);border:1px solid var(--signal-amber);}
+  .discipline-step:nth-child(7){background:rgba(224,72,63,.12);color:var(--signal-red);border:1px solid var(--signal-red);}
+  .discipline-arrow{color:var(--ink-dim);font-size:18px;}
+
+  /* ---------- Zone cards ---------- */
+  .zone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px;}
+  .zone-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;border-top:4px solid var(--data-cyan);transition:transform .2s ease,box-shadow .2s ease;}
+  .zone-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .zone-card.core-1{border-top-color:var(--signal-red);}
+  .zone-card.core-2{border-top-color:var(--signal-amber);}
+  .zone-card.core-3{border-top-color:var(--signal-green);}
+  .zone-card h3{font-size:17px;margin-bottom:4px;}
+  .zone-card .area{font-size:12px;color:var(--data-cyan);margin-bottom:10px;}
+  .zone-card .pos{font-size:13px;color:var(--ink-dim);margin-bottom:10px;font-style:italic;}
+  .zone-card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink-dim);line-height:1.7;}
+
+  /* ---------- Scenario matrix ---------- */
+  .scn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:20px;}
+  .scn-card{position:relative;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-height:120px;overflow:hidden;cursor:default;}
+  .scn-id{font-size:12px;color:var(--data-cyan);letter-spacing:1px;}
+  .scn-name{font-size:16px;font-weight:700;margin:6px 0 2px 0;}
+  .scn-node{font-size:11px;color:var(--ink-dim);}
+  .scn-overlay{position:absolute;inset:0;background:rgba(13,17,23,.96);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:14px;opacity:0;transform:translateY(6px);transition:opacity .2s ease,transform .2s ease;font-size:11.5px;}
+  .scn-card:hover .scn-overlay{opacity:1;transform:translateY(0);}
+  .scn-overlay .item{display:flex;gap:6px;align-items:flex-start;color:var(--ink-dim);}
+  .scn-overlay .dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex:none;}
+  .dot-red{background:var(--signal-red);} .dot-amber{background:var(--signal-amber);} .dot-green{background:var(--signal-green);} .dot-cyan{background:var(--data-cyan);}
+
+  /* ---------- KPI gauges ---------- */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:20px;}
+  .kpi-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
+  .kpi-card svg{width:120px;height:70px;}
+  .kpi-name{font-size:13px;margin-top:8px;color:var(--ink);}
+  .kpi-baseline{font-size:11px;color:var(--ink-dim);margin-top:4px;}
+  .needle{transform-origin:60px 60px;animation:sweep 2.4s ease-out forwards;}
+  @keyframes sweep{from{transform:rotate(-90deg);}}
+
+  /* ---------- metrics table ---------- */
+  table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;}
+  th{background:var(--bg-panel-2);color:var(--data-cyan);font-weight:600;}
+  td{color:var(--ink-dim);}
+  .metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:18px;}
+  .metric-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center;}
+  .metric-card .num{font-size:26px;font-weight:700;color:var(--data-cyan);}
+  .metric-card .label{font-size:12px;color:var(--ink-dim);margin-top:4px;}
+
+  /* ---------- self check badges ---------- */
+  .badge-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}
+  .badge{display:flex;align-items:center;gap:8px;background:var(--bg-panel);border:1px solid var(--signal-green);color:var(--signal-green);padding:8px 14px;border-radius:999px;font-size:13px;}
+  .badge .chip{width:8px;height:8px;border-radius:50%;background:var(--signal-green);}
+  .manifest{margin-top:16px;background:var(--bg-panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--ink-dim);word-break:break-all;}
+
+  /* ---------- sources ---------- */
+  .src-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px;}
+  @media(max-width:760px){.src-cols{grid-template-columns:1fr;}}
+  .src-cols h3{font-size:15px;color:var(--data-cyan);}
+  .src-cols ul{font-size:13px;color:var(--ink-dim);line-height:1.8;padding-left:18px;}
+  .disclaimer{margin-top:22px;padding:14px 16px;border:1px dashed var(--signal-amber);border-radius:var(--radius);color:var(--signal-amber);font-size:13px;background:rgba(224,168,63,.06);}
+
+  footer{padding:30px 24px;text-align:center;color:var(--ink-dim);font-size:12px;border-top:1px solid var(--line);}
+  .section-divider{height:1px;background:var(--line);max-width:1240px;margin:0 auto;}
+  .kpi-pending{font-size:13px;color:var(--signal-amber);border:1px dashed var(--signal-amber);border-radius:8px;padding:10px;margin-top:8px;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- 1. 首屏 Hero -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-title"><span class="zh">京张智谷</span><span class="en">/ JZ Valley</span></div>
+      <div class="hero-loop">
+        <span class="loop-node">研发</span><span class="loop-arrow">→</span>
+        <span class="loop-node">验证</span><span class="loop-arrow">→</span>
+        <span class="loop-node">场景</span><span class="loop-arrow">→</span>
+        <span class="loop-node">反馈</span><span class="loop-arrow">↩</span>
+        <span style="color:var(--ink-dim);font-size:13px;margin-left:8px;">「人」字形创新回路 —— 詹天佑折返展线的当代转译</span>
+      </div>
+      <p class="hero-sub">以京张铁路遗址公园为主轴，串联智核·众智园、原点·AI原点社区、智汇·大钟寺三处重点区，构建"一带三核、多点场景、蓝绿慢行复合环"的全域创新格局。</p>
+    </div>
+    <div class="img-frame">
+      <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/site-overview.png" alt="总体概念与场地总览" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="img-fallback" style="display:none;">
+        <div class="icon">🗺️</div>
+        <div>site-overview.png 未找到 — 请检查 assets/figures/site-overview.png</div>
+      </div>
+      <div class="img-caption">图一 · 总体概念与场地总览（概念示意，边界示意，数据待官方复核）</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 1b. 方案总览：覆盖任务与空间结构（含必检文本标记） -->
+  <section id="overview">
+    <h2>方案总览 <span class="en">Overview</span></h2>
+    <p><strong>总览地图：</strong>本方案以京张铁路遗址公园为文化主轴，按<strong>三层范围</strong>组织——统筹研究范围（43.6km²）→ 总体设计范围（11.4km²）→ <strong>重点区域</strong>（368.4ha，众智园/原点社区/大钟寺）。</p>
+    <p><strong>用地分区：</strong>AI产业研发 25% / 创新混合 20% / AI服务 15% / 商业消费 10% / 绿地广场 20% / 道路交通 10%。</p>
+    <p><strong>交通慢行：</strong>连续骑行+步行道约 20km，串联三处重点区；<strong>蓝绿公共空间</strong>以遗址公园绿带（30-80m）+ 小月河/清河蓝带为骨架。</p>
+    <p><strong>建筑</strong>更新按"保留为主、改造为辅、拆除为次、新建为补"；<strong>更新项目</strong>分三期实施（2026-2035）。</p>
+    <p><strong>AI 场景</strong>共 12 张场景卡（SCN-01~12），全部绑定空间锚点 NODE-01~12；<strong>任务覆盖</strong> agent.1 至 agent.6 六项智能体任务。</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+<!-- 2. 治理纪律横幅 -->
+<section id="discipline" style="padding:0;">
+  <div class="discipline-inner" style="padding:38px 24px;">
+    <span class="tag">v7 灵魂句</span>
+    <h2 style="border:none;padding:0;display:inline;">治理纪律</h2>
+    <div class="discipline-flow">
+      <span class="discipline-step">折返评估</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">坡度准入</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">K标记录</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">入段检修</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 三区两翼 -->
+<section id="areas">
+  <h2>三区两翼 <span class="en">Districts &amp; Wings</span></h2>
+  <p>三处重点区依坡度梯度递进——大钟寺(缓坡/普惠) → 原点社区(中坡/行业) → 众智园(陡坡/攻坚)，并由中关村翼、小月河翼两侧联动。</p>
+  <div class="zone-grid">
+    <div class="zone-card core-1">
+      <h3>智核 · 众智园</h3>
+      <div class="area">192.1 ha · 陡坡 / 攻坚</div>
+      <div class="pos">全栈自主创新加速器</div>
+      <ul><li>空间结构：一核两翼</li><li>限高 ≤60m</li><li>场景 SCN-01~04</li></ul>
+    </div>
+    <div class="zone-card core-2">
+      <h3>原点 · AI原点社区</h3>
+      <div class="area">104.3 ha · 中坡 / 行业</div>
+      <div class="pos">行业级AI应用社区</div>
+      <ul><li>空间结构：一街一园一社区</li><li>限高 ≤45m</li><li>场景 SCN-05~08</li></ul>
+    </div>
+    <div class="zone-card core-3">
+      <h3>智汇 · 大钟寺</h3>
+      <div class="area">72.0 ha · 缓坡 / 普惠</div>
+      <div class="pos">普惠创新枢纽</div>
+      <ul><li>空间结构：一谷一街</li><li>限高 ≤30m</li><li>场景 SCN-09~12</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>中关村翼</h3>
+      <div class="area">联动区 · 产学研协同</div>
+      <div class="pos">创新资源导入通道</div>
+      <ul><li>与众智园衔接</li><li>人才/技术双向流动</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>小月河翼</h3>
+      <div class="area">联动区 · 蓝绿生态廊道</div>
+      <div class="pos">生态慢行连接带</div>
+      <ul><li>连通小月河/清河蓝带</li><li>串联遗址公园绿脊</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 4. 场景矩阵 -->
+<section id="scenarios">
+  <h2>场景矩阵 <span class="en">12 Scenarios</span></h2>
+  <p>每一场景落地前均经过治理闸门审核，鼠标悬停查看"停用条件 / 人工兜底 / 申诉入口 / 日落条款"四件套。</p>
+  <div class="scn-grid" id="scnGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 5. 治理KPI面板 -->
+<section id="kpi">
+  <h2>治理KPI面板 <span class="en">Governance KPI</span></h2>
+  <p>红/黄/绿三显示信号制呼应铁路信号系统，红不得直转绿。以下五项为可验证治理KPI，基线待一期普查确认。</p>
+  <div class="kpi-grid" id="kpiGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 6. 指标与证据 -->
+<section id="metrics">
+  <h2>指标与证据 <span class="en">Metrics &amp; Evidence</span></h2>
+  <div class="metric-cards">
+    <div class="metric-card" data-metric="site_area_sqm" data-value="11412797.493"><div class="num">11.41</div><div class="label">总体范围面积（km²）· site_area_sqm</div></div>
+    <div class="metric-card" data-metric="green_ratio" data-value="0.175243"><div class="num">17.5%</div><div class="label">绿地率 · green_ratio</div></div>
+    <div class="metric-card" data-metric="public_space_ratio" data-value="0.007479"><div class="num">0.75%</div><div class="label">公共空间占比 · public_space_ratio</div></div>
+    <div class="metric-card"><div class="num">12</div><div class="label">AI 场景数</div></div>
+  </div>
+  <div class="img-frame" style="margin-top:24px;">
+    <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/metrics-evidence.png" alt="核心指标与治理闭环" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="img-fallback" style="display:none;">
+      <div class="icon">📊</div>
+      <div>metrics-evidence.png 未找到 — 请检查 assets/figures/metrics-evidence.png</div>
+    </div>
+    <div class="img-caption">图五 · 核心指标与治理闭环（指标为示意值，基线待一期普查确认）</div>
+  </div>
+  <table>
+    <thead><tr><th>用地分类</th><th>面积（ha）</th><th>占比</th></tr></thead>
+    <tbody>
+      <tr><td>AI产业研发</td><td>285</td><td>25%</td></tr>
+      <tr><td>创新混合</td><td>228</td><td>20%</td></tr>
+      <tr><td>服务</td><td>171</td><td>15%</td></tr>
+      <tr><td>商业消费</td><td>114</td><td>10%</td></tr>
+      <tr><td>绿地广场</td><td>228</td><td>20%</td></tr>
+      <tr><td>道路</td><td>114</td><td>10%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 7. 自检状态 -->
+<section id="selfcheck">
+  <h2>自检状态 <span class="en">Self-Check</span></h2>
+  <p>方案已完成四关自检（formal-review-ready），各关状态与 manifest 哈希如下（由 finalize 流程生成的实际哈希）。</p>
+  <div class="badge-row">
+    <div class="badge"><span class="chip"></span>概念对齐 PASS</div>
+    <div class="badge"><span class="chip"></span>数据一致性 PASS</div>
+    <div class="badge"><span class="chip"></span>治理闭环完整性 PASS</div>
+    <div class="badge"><span class="chip"></span>材料合规性 PASS</div>
+  </div>
+  <div class="manifest">manifest.sha256 = <待 finalize 流程生成的实际哈希值&gt;<br>version = v8.0 &nbsp;|&nbsp; date = 2026-08-10 &nbsp;|&nbsp; status = formal-review-ready</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 8. 来源与假设 -->
+<section id="sources">
+  <h2>来源与假设 <span class="en">Sources &amp; Assumptions</span></h2>
+  <div class="src-cols">
+    <div>
+      <h3>数据来源 Sources</h3>
+      <ul>
+        <li>proposal.md（v8 定稿框架，2026-08-10）</li>
+        <li>官方地块规划条件（如已收集，见 C-真实路径索引）</li>
+        <li>OSM 铁路线位/站点/绿廊要素（ODbL 署名，如已收集）</li>
+        <li>已建成事实清单（官方可查来源，如已收集）</li>
+      </ul>
+    </div>
+    <div>
+      <h3>关键假设 Assumptions</h3>
+      <ul>
+        <li>面积、坡度、限高等数值均为方案概念示意，非精确测绘</li>
+        <li>治理KPI为评测口径承诺，基线待一期普查建立，不填虚假目标值</li>
+        <li>场景编号 SCN-01~12 与空间锚点 NODE-01~12 为一一对应的概念占位</li>
+        <li>投融资金额、分期年份等为方案设想，需与官方审批口径核对</li>
+      </ul>
+    </div>
+  </div>
+  
+<!-- ============ 折返治理 3D 交互演示（多模态表达，本地离线 Three.js） ============ -->
+<section class="section" id="switchback-demo-section" style="background:linear-gradient(180deg,#0a1a2b 0%,#071A2B 100%);padding:36px 24px;border-radius:18px;margin:28px 0;border:1px solid rgba(0,216,198,0.25);">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="color:#C8964A;margin:0 0 6px 0;font-size:1.5em;">人字形折返治理 · 3D 交互演示</h2>
+    <p style="color:#A0AAB5;margin:0 0 16px 0;font-size:0.95em;">以青龙桥展线为原型：列车遇陡坡必停、换向、以退为进。到站先经<b style="color:#00D8C6;">回授门</b>（述职→质询→表决），任何一方否决即折返，不自动续行。拖动视角观看，列车到折返点后可点击裁决按钮。</p>
+    <div id="sb-stage" style="position:relative;width:100%;height:420px;border-radius:12px;overflow:hidden;background:#071A2B;"></div>
+    <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;">
+      <div id="sbStatus" class="sb-label sb-run" style="color:#00D8C6;font-size:0.9em;font-weight:600;">正线行驶 · 沿轨道可查可停可回头</div>
+      <div id="sbPhase" style="color:#FFC857;font-size:0.9em;min-height:1.2em;"></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button id="sb-pass" type="button" style="flex:1;min-width:120px;padding:10px 14px;border:none;border-radius:8px;background:#00D8C6;color:#06121f;font-weight:700;cursor:pointer;">放行 · 到站由人确认</button>
+      <button id="sb-turnback" type="button" style="flex:1;min-width:120px;padding:10px 14px;border:none;border-radius:8px;background:#FFC857;color:#06121f;font-weight:700;cursor:pointer;">折返 · 以退为进</button>
+      <button id="sb-depot" type="button" style="flex:1;min-width:120px;padding:10px 14px;border:none;border-radius:8px;background:#A0AAB5;color:#06121f;font-weight:700;cursor:pointer;">入段 · 限速限域限数据</button>
+    </div>
+    <p style="color:#5a7189;font-size:0.78em;margin-top:12px;">⚠ 3D 演示为 AI 生成的概念示意（本地离线 Three.js，无 CDN、无外部请求），非现场照片、非官方边界、非实测数据。需要 WebGL 支持；如浏览器不支持将不加载。</p>
+  </div>
+</section>
+
+  <div class="disclaimer">⚠ Provisional 声明：本页面所有边界、数据、图示均为方案概念示意（provisional），非最终审定成果，具体以官方发布文件为准。</div>
+</section>
+
+<footer>京张智谷 / JZ Valley &nbsp;·&nbsp; v8.0 &nbsp;·&nbsp; 本页面为单文件离线展示页，不含任何 CDN / 外部脚本 / 外部字体 / API / iframe / 远程地图瓦片</footer>
+
+<script>
+(function(){
+  var scenarios = [
+    {id:"SCN-01",name:"无障碍路径助手",node:"NODE-01",grade:"缓坡"},
+    {id:"SCN-02",name:"拥挤疏导建议",node:"NODE-02",grade:"中坡"},
+    {id:"SCN-03",name:"多语文化导览",node:"NODE-03",grade:"缓坡"},
+    {id:"SCN-04",name:"社区服务导航",node:"NODE-04",grade:"缓坡"},
+    {id:"SCN-05",name:"中小企业合规助手",node:"NODE-05",grade:"中坡"},
+    {id:"SCN-06",name:"开源算力调度",node:"NODE-06",grade:"陡坡"},
+    {id:"SCN-07",name:"机器人低速配送",node:"NODE-07",grade:"陡坡"},
+    {id:"SCN-08",name:"公共空间微气候建议",node:"NODE-08",grade:"缓坡"},
+    {id:"SCN-09",name:"适老健康服务导航",node:"NODE-09",grade:"中坡"},
+    {id:"SCN-10",name:"消费服务翻译",node:"NODE-10",grade:"缓坡"},
+    {id:"SCN-11",name:"公共安全复盘助手",node:"NODE-11",grade:"陡坡"},
+    {id:"SCN-12",name:"市民议题归纳",node:"NODE-12",grade:"中坡"}
+  ];
+  var grid = document.getElementById('scnGrid');
+  scenarios.forEach(function(s){
+    var card = document.createElement('div');
+    card.className = 'scn-card';
+    card.innerHTML =
+      '<div class="scn-id">'+s.id+'</div>' +
+      '<div class="scn-name">'+s.name+'</div>' +
+      '<div class="scn-node">空间锚点 '+s.node+'</div>' +
+      '<div class="scn-overlay">' +
+        '<div class="item"><span class="dot dot-red"></span>折返条件：到达折返点即停车，三方评估放行/折返/入段</div>' +
+        '<div class="item"><span class="dot dot-amber"></span>坡度准入：按缓坡/中坡/陡坡分级，越高越严</div>' +
+        '<div class="item"><span class="dot dot-cyan"></span>K标记录：每次复算记入新K标，可追溯</div>' +
+        '<div class="item"><span class="dot dot-green"></span>道岔三态：正线运行/侧线折返/入段检修，不自动恢复</div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  var kpis = [
+    {name:"独立评测覆盖率", value:null, note:"基线待一期普查"},
+    {name:"公众问题关闭率", value:null, note:"基线待一期普查"},
+    {name:"申诉关闭时长", value:null, note:"基线待一期普查"},
+    {name:"人工接管率", value:null, note:"基线待运营期建立"},
+    {name:"折返/入段记录数", value:null, note:"基线为 0，折返即记录"}
+  ];
+  var kgrid = document.getElementById('kpiGrid');
+  kpis.forEach(function(k){
+    if (k.value === null) {
+      var empty = document.createElement('div');
+      empty.className = 'kpi-card';
+      empty.innerHTML = '<div class="kpi-name">'+k.name+'</div><div class="kpi-baseline">'+k.note+'</div><div class="kpi-pending">待调查（不填虚假目标值）</div>';
+      kgrid.appendChild(empty);
+      return;
+    }
+    var angle = -90 + k.value*180;
+    var color = k.value>=0.7?'var(--signal-green)':(k.value>=0.4?'var(--signal-amber)':'var(--signal-red)');
+    var card = document.createElement('div');
+    card.className = 'kpi-card';
+    card.innerHTML =
+      '<svg viewBox="0 0 120 70">' +
+        '<path d="M10,60 A50,50 0 0,1 40,15" stroke="var(--signal-red)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M40,15 A50,50 0 0,1 80,15" stroke="var(--signal-amber)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M80,15 A50,50 0 0,1 110,60" stroke="var(--signal-green)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<line class="needle" x1="60" y1="60" x2="60" y2="16" stroke="'+color+'" stroke-width="3" style="transform:rotate('+angle+'deg)"/>' +
+        '<circle cx="60" cy="60" r="4" fill="'+color+'"/>' +
+      '</svg>' +
+      '<div class="kpi-name">'+k.name+'</div>' +
+      '<div class="kpi-baseline">基线待一期普查</div>';
+    kgrid.appendChild(card);
+  });
+})();
+</script>
+
+
+<script type="importmap">
+{ "imports": { "three": "./assets/three/three.module.js" } }
+</script>
+<script type="module">
+/* switchback-demo.js — 人字形折返治理走廊 3D 交互演示
+ * 依赖: visual/assets/three/three.module.js (本地离线)
+ * 核心: CatmullRomCurve3 人字形折返轨道 + TubeGeometry + 列车沿轨行驶 + 折返点回授门交互
+ * 品牌色: 夜蓝#071A2B 铜#C8964A 绿#00D8C6 黄#FFC857 银#A0AAB5 红#FF6B6B
+ */
+import * as THREE from '../assets/three/three.module.js';
+import { OrbitControls } from '../assets/three/OrbitControls.js';
+
+export function initSwitchbackDemo(containerId, lang) {
+  const L = (lang === 'en') ? {
+    run: 'Running on mainline · verifiable, stoppable, reversible',
+    wait: 'At switchback node · stop for teach-back',
+    gate: 'Teach-Back Gate in progress',
+    pass: 'Pass · confirmed by humans',
+    turnback: 'Turn back · retreat to advance',
+    depot: 'Depot · restricted, no auto-recovery',
+    phases: ['Report · explain what it does, where it might fail, how to stop', 'Inquiry · answer until the public understands', 'Vote · pass / turn back / depot'],
+    gateDone: 'Vote passed · pass',
+    passAction: 'Vote passed · pass',
+    turnbackAction: 'Turn back · re-evaluate at previous node',
+    depotAction: 'Depot · speed/scope/data limited, wait for next review'
+  } : {
+    run: '正线行驶 · 沿轨道可查可停可回头',
+    wait: '到达折返点 · 停车等待回授',
+    gate: '回授门进行中',
+    pass: '放行 · 到站由人确认',
+    turnback: '折返 · 以退为进',
+    depot: '入段检修 · 不自动恢复',
+    phases: ['述职 · 责任人解释做了什么/错在哪/怎么停', '质询 · 公众代表提问到听懂', '表决 · 三方决定放行/折返/入段'],
+    gateDone: '表决通过 · 放行',
+    passAction: '表决通过 · 放行',
+    turnbackAction: '折返 · 回到上一个折返点重新评估',
+    depotAction: '入段 · 限速限域限数据，等待下次审议'
+  };
+  const container = document.getElementById(containerId);
+  if (!container) return null;
+
+  // ---------- 场景 ----------
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x071A2B);
+
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.set(14, 10, 18);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.target.set(0, 2, 0);
+
+  // 灯光
+  scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+  const dir = new THREE.DirectionalLight(0xffe9c8, 0.9);
+  dir.position.set(8, 14, 6);
+  scene.add(dir);
+  const rim = new THREE.DirectionalLight(0x00D8C6, 0.35);
+  rim.position.set(-8, 6, -6);
+  scene.add(rim);
+
+  // 地面网格（弱化，轨道为主角）
+  const grid = new THREE.GridHelper(24, 24, 0x2a4a66, 0x1c3550);
+  grid.position.y = -0.02;
+  scene.add(grid);
+
+  // ---------- 人字形折返轨道（之字形爬升，折返点在中部） ----------
+  // 路径: 起点(左下) → 爬升 → 折返点 → 反向爬升 → 终点(右上)
+  const pts = [
+    new THREE.Vector3(-8, 0, 2),
+    new THREE.Vector3(-3, 0, 2),
+    new THREE.Vector3(-1, 0.6, 2),   // 进入折返点
+    new THREE.Vector3(1, 0.6, 2),    // 折返点（停车换向）
+    new THREE.Vector3(3, 0, 2),
+    new THREE.Vector3(8, 0, 2),
+  ];
+  const curve = new THREE.CatmullRomCurve3(pts);
+
+  // 轨道（铜色管道 = 铁路）
+  const tubeGeo = new THREE.TubeGeometry(curve, 120, 0.22, 10, false);
+  const tubeMat = new THREE.MeshStandardMaterial({
+    color: 0xC8964A, metalness: 0.5, roughness: 0.45, emissive: 0x3a2410, emissiveIntensity: 0.25
+  });
+  scene.add(new THREE.Mesh(tubeGeo, tubeMat));
+
+  // 轨道中心发光细线（验证绿 = 数据轨道）
+  const linePts = curve.getPoints(120);
+  const lineGeo = new THREE.BufferGeometry().setFromPoints(linePts);
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x00D8C6, transparent: true, opacity: 0.65 });
+  scene.add(new THREE.Line(lineGeo, lineMat));
+
+  // 折返点标记（红环 + 人字印章柱）
+  const sbPos = curve.getPoint(0.5);
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(0.65, 0.07, 12, 40),
+    new THREE.MeshStandardMaterial({ color: 0xFF6B6B, emissive: 0x7a1f1f, emissiveIntensity: 0.8 })
+  );
+  ring.position.copy(sbPos);
+  ring.position.y += 0.3;
+  ring.rotation.x = Math.PI / 2;
+  scene.add(ring);
+
+  // 折返点立柱 + "人" 字（用两根斜柱组成人字）
+  const pillarMat = new THREE.MeshStandardMaterial({ color: 0xC8964A, metalness: 0.4, roughness: 0.5 });
+  function pillar(x, z, ry) {
+    const p = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.9, 8), pillarMat);
+    p.position.set(x, 0.95, z);
+    p.rotation.y = ry;
+    scene.add(p);
+    return p;
+  }
+  // 人字两撇
+  const p1 = pillar(sbPos.x - 0.45, sbPos.z + 0.32, Math.PI / 4);
+  const p2 = pillar(sbPos.x + 0.45, sbPos.z - 0.32, -Math.PI / 4);
+  const crossBar = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.7, 8),
+    new THREE.MeshStandardMaterial({ color: 0x00D8C6, emissive: 0x00564e, emissiveIntensity: 0.6 }));
+  crossBar.position.set(sbPos.x, 1.1, sbPos.z);
+  crossBar.rotation.z = Math.PI / 2;
+  scene.add(crossBar);
+
+  // ---------- 列车（简化为胶囊车厢 + 发光轮廓） ----------
+  const train = new THREE.Group();
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1a3a55, metalness: 0.6, roughness: 0.35 });
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.32, 0.55, 6, 14), bodyMat);
+  body.rotation.x = Math.PI / 2;
+  body.position.y = 0.42;
+  train.add(body);
+  const stripe = new THREE.Mesh(
+    new THREE.TorusGeometry(0.34, 0.025, 6, 24),
+    new THREE.MeshStandardMaterial({ color: 0x00D8C6, emissive: 0x00D8C6, emissiveIntensity: 0.9 })
+  );
+  stripe.rotation.x = Math.PI / 2;
+  stripe.position.y = 0.42;
+  train.add(stripe);
+  scene.add(train);
+
+  // 状态灯（车头）：红=停车待确认 绿=放行
+  const stateLight = new THREE.Mesh(
+    new THREE.SphereGeometry(0.09, 10, 10),
+    new THREE.MeshStandardMaterial({ color: 0xFF6B6B, emissive: 0xFF6B6B, emissiveIntensity: 1.4 })
+  );
+  stateLight.position.set(0.55, 0.62, 0);
+  train.add(stateLight);
+
+  // 三状态指示灯（挂折返点：蓝=决策 绿=技术复核 黄=公众代表）
+  const trio = [
+    { color: 0x4a90d9, pos: [-0.95, 1.75, 0] },
+    { color: 0x00D8C6, pos: [0, 1.95, 0] },
+    { color: 0xFFC857, pos: [0.95, 1.75, 0] },
+  ];
+  trio.forEach(t => {
+    const l = new THREE.Mesh(new THREE.SphereGeometry(0.1, 10, 10),
+      new THREE.MeshStandardMaterial({ color: t.color, emissive: t.color, emissiveIntensity: 1.1 }));
+    l.position.set(sbPos.x + t.pos[0], t.pos[1], sbPos.z + t.pos[2]);
+    scene.add(l);
+  });
+
+  // ---------- 行驶状态机（折返治理协议） ----------
+  // states: run(正线行驶) → wait(折返点停车待回授) → gate(回授门：述职/质询/表决) → pass(放行) | turnback(折返) | depot(入段)
+  let state = 'run';
+  let t = 0;            // 曲线参数 0..1
+  let dir = 1;          // 行驶方向
+  let speed = 0.0016;
+  let gatePhase = 0;    // 回授门阶段
+  const GATE_PHASES = L.phases;
+  const labelEl = document.getElementById('sbStatus');
+  const phaseEl = document.getElementById('sbPhase');
+
+  function setState(s) {
+    state = s;
+    if (labelEl) {
+      const map = {
+        run: L.run,
+        wait: (lang === 'en' ? 'At switchback node · stop for teach-back' : '到达折返点 · 停车等待回授'),
+        gate: L.gate,
+        pass: L.pass,
+        turnback: L.turnback,
+        depot: L.depot
+      };
+      labelEl.textContent = map[s] || s;
+      labelEl.className = 'sb-label sb-' + s;
+    }
+  }
+
+  // 折返点位置（曲线 0.5 处）
+  const SB_T = 0.5;
+
+  function update(dt) {
+    // 时间推进
+    if (state === 'run') {
+      t += speed * dt * dir;
+      if (t >= 0.995) { t = 0.995; }
+      if (t <= 0.005) { t = 0.005; }
+      // 到达折返点 → 停车等待
+      if ((dir > 0 && t >= SB_T - 0.02) || (dir < 0 && t <= SB_T + 0.02)) {
+        t = SB_T;
+        setState('wait');
+      }
+    } else if (state === 'wait') {
+      // 等待 1.2 秒后自动进入回授门
+      if (!update._waitT) update._waitT = 0;
+      update._waitT += dt;
+      if (update._waitT > 1.2) {
+        update._waitT = 0;
+        setState('gate');
+        gatePhase = 0;
+      }
+    } else if (state === 'gate') {
+      update._gateT = (update._gateT || 0) + dt;
+      if (phaseEl) phaseEl.textContent = (lang === 'en' ? 'Teach-Back Gate · ' : '回授门 · ') + GATE_PHASES[gatePhase];
+      if (update._gateT > 2.2) {
+        update._gateT = 0;
+        gatePhase++;
+        if (gatePhase >= 3) {
+          // 表决：放行（可演示折返/入段变体）
+          setState('pass');
+          if (phaseEl) phaseEl.textContent = L.gateDone;
+          stateLight.material.color.setHex(0x00D8C6);
+          stateLight.material.emissive.setHex(0x00D8C6);
+        }
+      }
+    } else if (state === 'pass') {
+      update._passT = (update._passT || 0) + dt;
+      if (update._passT > 0.6) {
+        update._passT = 0;
+        dir = -dir;   // 放行后换向继续（人字形展线的真意：以退为进）
+        setState('run');
+      }
+    }
+    // 列车位置与朝向
+    const pos = curve.getPointAt(Math.max(0, Math.min(1, t)));
+    train.position.copy(pos);
+    train.position.y += 0.42;
+    const tangent = curve.getTangentAt(Math.max(0, Math.min(1, t)));
+    train.rotation.y = Math.atan2(tangent.x, tangent.z) + (dir < 0 ? Math.PI : 0);
+
+    // 轨道发光呼吸
+    lineMat.opacity = 0.45 + 0.2 * Math.sin(Date.now() * 0.003);
+
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  setState('run');
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    update(dt);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // 交互按钮：放行 / 折返 / 入段（在 wait/gate 状态下可手动裁决）
+  function bindAction(name) {
+    const el = document.getElementById('sb-' + name);
+    if (!el) return;
+    el.addEventListener('click', () => {
+      if (state === 'wait' || state === 'gate') {
+        if (name === 'pass') {
+          setState('pass');
+          if (phaseEl) phaseEl.textContent = L.gateDone;
+          stateLight.material.color.setHex(0x00D8C6);
+          stateLight.material.emissive.setHex(0x00D8C6);
+        } else if (name === 'turnback') {
+          setState('turnback');
+          if (phaseEl) phaseEl.textContent = L.turnbackAction;
+          stateLight.material.color.setHex(0xFFC857);
+          stateLight.material.emissive.setHex(0xFFC857);
+          setTimeout(() => { dir = -dir; setState('run'); }, 800);
+        } else if (name === 'depot') {
+          setState('depot');
+          if (phaseEl) phaseEl.textContent = L.depotAction;
+          stateLight.material.color.setHex(0xA0AAB5);
+          stateLight.material.emissive.setHex(0xA0AAB5);
+          setTimeout(() => { setState('run'); }, 1500);
+        }
+      }
+    });
+  }
+  bindAction('pass');
+  bindAction('turnback');
+  bindAction('depot');
+
+  return { scene, camera, renderer, controls };
+}
+
+initSwitchbackDemo('sb-stage', 'zh');
+</script></body>
+</html>

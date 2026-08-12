@@ -1,0 +1,265 @@
+{
+  "version": 1,
+  "summary": "v0.2 treats the proposal as a reversible public protocol inside provisional geometry. Scores indicate residual risk before authorized pilot delivery, not probability or approval.",
+  "register_contract": {
+    "score_meaning": "1=low residual concern after current controls; 5=high unresolved residual concern before an authorized pilot",
+    "states": [
+      "open",
+      "controlled",
+      "hold",
+      "accepted_by_authorized_human",
+      "retired"
+    ],
+    "mandatory_fields": [
+      "trigger",
+      "affected_groups",
+      "accountable_role",
+      "prevention",
+      "human_signoff",
+      "appeal_path",
+      "hold_rule",
+      "resume_gate",
+      "retention",
+      "residual_risk",
+      "evidence_refs"
+    ],
+    "default_rule": "uncertain authority, missing evidence or an unresolved red card keeps the affected interface on hold"
+  },
+  "dimensions": [
+    {
+      "id": "data_privacy",
+      "label": "数据隐私",
+      "score": 3,
+      "note": "Public-facing AI could over-collect location, voice, accessibility or service-request data.",
+      "mitigation": "Each interface declares minimum inputs, forbidden data, retention, non-AI parity and automatic expiry; synthetic fixtures are the default.",
+      "human_review": "Data-protection role and affected-group steward both sign before limited pilot; either may pause and require deletion evidence.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "collection exceeds the declared minimum, forbidden data appears, or deletion evidence is absent",
+      "affected_groups": [
+        "service users",
+        "disabled users",
+        "children",
+        "frontline staff"
+      ],
+      "accountable_role": "data_protection_role",
+      "prevention": "Each interface declares minimum inputs, forbidden data, retention, non-AI parity and automatic expiry; synthetic fixtures are the default.",
+      "human_signoff": "Data-protection role and affected-group steward both sign before limited pilot; either may pause and require deletion evidence.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "scoped data deleted; incident reviewed; revised data card and synthetic fixture pass",
+      "retention": "appeal/deletion records: declared case window plus 90-day non-personal audit log",
+      "residual_risk": "re-identification and operational leakage remain possible until an independent data review",
+      "evidence_refs": [
+        "visual/assets/port-protocols.json",
+        "simulation.json",
+        "assumptions.json#A-SIM-005"
+      ]
+    },
+    {
+      "id": "implementation_complexity",
+      "label": "实施复杂度",
+      "score": 4,
+      "note": "Ownership, heritage, rail, traffic, utilities, fire and multi-role coordination are unresolved.",
+      "mitigation": "Gate 0 blocks physical delivery; P1 uses three small reversible pads, role-based RACI and explicit permission dependencies.",
+      "human_review": "Authorized sponsor plus relevant planning, heritage, traffic, fire, accessibility and utility professionals decide entry to each phase.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "any ownership, heritage, rail, traffic, utility, fire, accessibility or operating permission is missing",
+      "affected_groups": [
+        "residents",
+        "operators",
+        "heritage users",
+        "emergency services"
+      ],
+      "accountable_role": "authorized_delivery_sponsor_role",
+      "prevention": "Gate 0 blocks physical delivery; P1 uses three small reversible pads, role-based RACI and explicit permission dependencies.",
+      "human_signoff": "Authorized sponsor plus relevant planning, heritage, traffic, fire, accessibility and utility professionals decide entry to each phase.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "all Gate 0 dependencies signed by authorized roles; reversible method and safe removal verified",
+      "retention": "permission and phase-decision record retained for the project lifecycle",
+      "residual_risk": "multi-party delay and interface conflict remain high without an authorized sponsor",
+      "evidence_refs": [
+        "visual/assets/port-protocols.json",
+        "geometry/phasing.geojson",
+        "assumptions.json"
+      ]
+    },
+    {
+      "id": "public_acceptance",
+      "label": "公众接受度",
+      "score": 3,
+      "note": "AI branding may crowd out daily life or create surveillance and technology-exclusion concerns.",
+      "mitigation": "Free threshold space, non-AI route, quiet hours, no facial recognition, public change log and independent appeal are mandatory.",
+      "human_review": "Three affected-group steward seats hold a red-card pause and verify that feedback changes the protocol or spatial component.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "surveillance concern, daily-use displacement, repeated complaint or an affected-group red card",
+      "affected_groups": [
+        "residents",
+        "small operators",
+        "older and disabled users",
+        "children and caregivers"
+      ],
+      "accountable_role": "affected_group_steward_role",
+      "prevention": "Free threshold space, non-AI route, quiet hours, no facial recognition, public change log and independent appeal are mandatory.",
+      "human_signoff": "Three affected-group steward seats hold a red-card pause and verify that feedback changes the protocol or spatial component.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "written response published; harmed service restored; steward confirms protocol or spatial change",
+      "retention": "complaint and response record retained 12 months without unnecessary personal content",
+      "residual_risk": "technology symbolism may still create distrust even when service controls pass",
+      "evidence_refs": [
+        "visual/assets/port-protocols.json",
+        "risk.json",
+        "proposal.md#public-interest"
+      ]
+    },
+    {
+      "id": "operations_cost",
+      "label": "运维成本",
+      "score": 3,
+      "note": "Staffing, accessibility support, audit, maintenance, compute energy and insurance lack committed funding.",
+      "mitigation": "Projects use resource bands, low-power mock interfaces, expiry-by-default and an operations reserve gate; unfunded services do not launch.",
+      "human_review": "Future sponsor, operator, public steward and finance/procurement roles review total lifecycle resources before renewal.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "staffing, maintenance, accessibility support, audit, insurance or energy reserve is unfunded",
+      "affected_groups": [
+        "service users",
+        "frontline staff",
+        "future operator",
+        "public sponsor"
+      ],
+      "accountable_role": "operations_finance_role",
+      "prevention": "Projects use resource bands, low-power mock interfaces, expiry-by-default and an operations reserve gate; unfunded services do not launch.",
+      "human_signoff": "Future sponsor, operator, public steward and finance/procurement roles review total lifecycle resources before renewal.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "lifecycle resource envelope, reserve and responsible operator confirmed; unfunded interface remains closed",
+      "retention": "resource decision and renewal record retained for each 90-day cycle",
+      "residual_risk": "resource bands are not budgets and cost escalation remains unmeasured",
+      "evidence_refs": [
+        "visual/assets/port-protocols.json",
+        "metrics.json",
+        "assumptions.json#A-OWNER-004"
+      ]
+    },
+    {
+      "id": "policy_uncertainty",
+      "label": "政策不确定性",
+      "score": 4,
+      "note": "No statutory planning control, data authorization or implementing mandate is established by this submission.",
+      "mitigation": "All controls remain unknown or provisional; passport states never bypass approval, procurement, data or professional review.",
+      "human_review": "Only authorized government and professional processes can approve controls or field operations; the Agent cannot promote status.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "a concept passport is represented as approval, or law/policy/mandate changes",
+      "affected_groups": [
+        "all users",
+        "authorized authorities",
+        "future operators"
+      ],
+      "accountable_role": "authorized_governance_role",
+      "prevention": "All controls remain unknown or provisional; passport states never bypass approval, procurement, data or professional review.",
+      "human_signoff": "Only authorized government and professional processes can approve controls or field operations; the Agent cannot promote status.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "claim corrected; applicable professional and authority reviews completed; public status label refreshed",
+      "retention": "approval, version and correction records retained under the authorized records policy",
+      "residual_risk": "future policy interpretation and procurement requirements remain outside Agent control",
+      "evidence_refs": [
+        "manifest.json",
+        "assumptions.json",
+        "report/copyright_statement.md"
+      ]
+    },
+    {
+      "id": "spatial_dispute",
+      "label": "空间争议",
+      "score": 4,
+      "note": "Provisional polygons and unknown ownership may conflict with actual parcels, protected areas or daily community use.",
+      "mitigation": "Every design feature is normalized, reversible and re-computable; official polygons and surveys invalidate derived placement.",
+      "human_review": "Survey, ownership, heritage, landscape and community-access reviews precede any location decision.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "official geometry, survey, title, protection or daily-use evidence conflicts with a generated feature",
+      "affected_groups": [
+        "rights holders",
+        "residents",
+        "heritage users",
+        "public-space users"
+      ],
+      "accountable_role": "spatial_due_diligence_role",
+      "prevention": "Every design feature is normalized, reversible and re-computable; official polygons and surveys invalidate derived placement.",
+      "human_signoff": "Survey, ownership, heritage, landscape and community-access reviews precede any location decision.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "all derived geometry recomputed; conflict logged; affected users and authorized professionals sign location decision",
+      "retention": "source geometry, change log and decision retained for the design lifecycle",
+      "residual_risk": "provisional placement cannot predict parcel, asset or community-use conflict",
+      "evidence_refs": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "geometry/constraints.geojson",
+        "assumptions.json#A-BND-001"
+      ]
+    },
+    {
+      "id": "technology_maturity",
+      "label": "技术成熟度",
+      "score": 3,
+      "note": "Synthetic protocol checks do not prove model accuracy, field safety, accessibility or reliability.",
+      "mitigation": "State progression is concept → simulation → sandbox → limited → hold/retire; model/version change forces retest.",
+      "human_review": "Assurance role verifies fixtures; service professional makes the decision; public steward can pause at any state.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "model/version changes, fixture fails, unexplained high-risk output or field reliability falls below a declared gate",
+      "affected_groups": [
+        "service users",
+        "human reviewers",
+        "operators"
+      ],
+      "accountable_role": "ai_assurance_role",
+      "prevention": "State progression is concept → simulation → sandbox → limited → hold/retire; model/version change forces retest.",
+      "human_signoff": "Assurance role verifies fixtures; service professional makes the decision; public steward can pause at any state.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "affected version invalidated; all required fixtures rerun; service professional and public steward approve limited restart",
+      "retention": "fixture input/output hashes and non-personal change log retained for the declared version",
+      "residual_risk": "synthetic checks do not establish field accuracy, reliability or safety",
+      "evidence_refs": [
+        "simulation.json",
+        "visual/assets/replay-protocols.js",
+        "visual/assets/simulation.schema.json",
+        "visual/assets/replay-evidence.json",
+        "visual/assets/port-protocols.json",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "equity_inclusion",
+      "label": "公平与包容性",
+      "score": 3,
+      "note": "Digital-only services, rent pressure, inaccessible interfaces or event capture could exclude residents and small operators.",
+      "mitigation": "Non-AI parity, free public threshold, affordable-space covenant, no-displacement trigger, accessible co-testing and benefit ledger are required.",
+      "human_review": "Affected-group stewards, accessibility reviewer and independent appeal role review distributional impact at 30/60/90 days.",
+      "status": "open_before_authorized_pilot",
+      "trigger": "non-AI service is slower or worse, an interface is inaccessible, displacement/rent pressure appears, or benefits concentrate",
+      "affected_groups": [
+        "older and disabled users",
+        "small operators",
+        "low-income residents",
+        "children",
+        "frontline workers"
+      ],
+      "accountable_role": "public_interest_and_accessibility_role",
+      "prevention": "Non-AI parity, free public threshold, affordable-space covenant, no-displacement trigger, accessible co-testing and benefit ledger are required.",
+      "human_signoff": "Affected-group stewards, accessibility reviewer and independent appeal role review distributional impact at 30/60/90 days.",
+      "appeal_path": "in-person, phone and paper intake; independent human written outcome; no service penalty for refusing AI",
+      "hold_rule": "trigger or unresolved red card immediately moves linked interfaces to hold; human service parity stays available",
+      "resume_gate": "parity restored and co-tested; distributional response and benefit ledger published; unresolved harm retires the interface",
+      "retention": "parity, accessibility, benefit and appeal records retained for each 30/60/90-day review",
+      "residual_risk": "affordability and displacement cannot be proven without field baselines and ongoing monitoring",
+      "evidence_refs": [
+        "visual/assets/port-protocols.json#field_validation_plan",
+        "metrics.json",
+        "assumptions.json#A-OWNER-004"
+      ]
+    }
+  ]
+}

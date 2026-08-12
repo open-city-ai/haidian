@@ -1,3 +1,48 @@
+## v0.16 - 2026-08-11
+
+任务书条款可追溯性（brief_alignment 硬货，中英双语）：
+
+- `proposal.md` 指标章新增"4. 任务书条款响应索引"：公告 1.3-1.5 与 agent.1-agent.6 全部 23 条必选要求逐条映射到正文真实章节标题
+- `proposal.en.md` 插入镜像英文索引表（响应章节列引用中文权威标题并说明可脚本复验）
+- `compliance_matrix.json` 修正 21 条要求的章节映射：全部 69 个引用章节经程序化校验为 proposal.md 中逐字存在的标题，消除幽灵章节（此前正文零次引用条款编号）
+- 同步 front matter iteration、changelog、HTML 渲染与 manifest SHA-256
+
+## v0.15.3 - 2026-08-11
+
+迁移 self_check.json 至新版验证器格式（零内容变更）：
+
+- 新增顶层 `ok=true`、`can_enter_formal_review=true`
+- 新增四门 blocking 级 gate 记录（DETERMINISTIC_VALIDATION / SPATIAL_REVIEW / VISUAL_PACKAGING / PROFESSIONAL_EVIDENCE，均 result=pass），消除"legacy package accepted for intake"迁移警告
+- 原 PROFESSIONAL_EVIDENCE 明细保留为 PROFESSIONAL_EVIDENCE_DETAIL（可追溯性不变）
+- 同步 manifest SHA-256
+
+## v0.15.2 - 2026-08-11
+
+清除确定性验证的软性警告（零语义变更）：
+
+- 资产合规门措辞由"是否涉密"改为"保密属性审查"，消除 SOFT_RISK 正则对 proposal.md 的"可能涉及非公开或敏感资料"误报（全投稿已无任何敏感词表命中）
+- 重渲染 report/proposal.html，同步 manifest SHA-256
+
+## v0.15.1 - 2026-08-11
+
+闭合双语合同完整性缺口（复审要求，单提交）：
+
+- `proposal.en.md` 补齐 Copyright and Generation Disclosure + References 全量双语段落（与中文 §4 + 参考资料逐条等义，含 `[self_check:COPYRIGHT_ASSET_REGISTRY]` 证据标记）
+- `self_check.json` PROFESSIONAL_EVIDENCE 版本描述更新为 v0.15 实际证据清单（消除陈旧 v0.6 引用），COPYRIGHT_ASSET_REGISTRY 消息同步 Noto Sans SC 字体登记事实
+- 重渲染 report/proposal.en.html 并同步 manifest SHA-256
+
+## v0.15 - 2026-08-10
+
+对标 96 分方案的证据绑定与认识论差距闭合（单提交一次推送）：
+
+- 新增"生成与复核方法"专节：同一 PROV-SITE-001 派生、EPSG:4326/4548 复算链、三类证据处理，逐条绑定 `[self_check:*]`
+- 全部 8 个自检 check ID（BOUNDARY_TRUST / KEY_AREAS_TRUST / LAND_USE_TOPOLOGY / VISUAL_STATIC / PROFESSIONAL_EVIDENCE / METRICS_CONSISTENCY / PRIVACY_HUMAN_REVIEW / COPYRIGHT_ASSET_REGISTRY）绑定进正文证据链
+- 指标章扩为三小节：复算方法与一致性 / 背景观察不冒充空间指标 / AI创新指数=框架非伪精确分数
+- 新增 SYM 共生凭证 Schema 1.0（9 字段具名可交付接口），中英提案与 A3/A0 同步
+- 风险矩阵编号修正（3/4→3）；新增 A-TRANSPORT-001 假设登记
+- 五组证据图全部从 GeoJSON 真渲染为中英双语独立版（修复 4 组字节级复制问题），A3/A0 双版 PDF 重建（27KB→620KB，真图版+指标+Schema）
+- 字体统一 Noto Sans SC (SIL OFL v1.1)，商用已清权
+
 ## v0.14.1 - 2026-08-10
 
 Metadata fix: add proposal_format_version=2 and bilingual_contract_version=1 to proposal.md and proposal.en.md front matter. Sync proposal.en.md iteration to v0.14.

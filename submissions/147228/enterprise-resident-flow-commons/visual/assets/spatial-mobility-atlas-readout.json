@@ -1,0 +1,193 @@
+{
+  "screen_id": "MOB-SPATIAL-DECISION-001",
+  "status": "PASS_WITH_CONDITIONAL_CELLS",
+  "status_boundary": "supplemental design-decision layer; not a core validator gate, score, gallery-promotion or operating authorization",
+  "generated_at": "2026-08-12",
+  "checks": [
+    {
+      "id": "schema",
+      "status": "PASS",
+      "detail": "schema=1.0-spatial-mobility-atlas"
+    },
+    {
+      "id": "population_reference",
+      "status": "PASS",
+      "detail": "3,122,000 is a synthetic replay reference"
+    },
+    {
+      "id": "key_area_set",
+      "status": "PASS",
+      "detail": "three provisional key-area IDs are explicit"
+    },
+    {
+      "id": "window_set",
+      "status": "PASS",
+      "detail": "four time windows are explicit"
+    },
+    {
+      "id": "cell_count",
+      "status": "PASS",
+      "detail": "cells=12"
+    },
+    {
+      "id": "cell_identity",
+      "status": "PASS",
+      "detail": "unique IDs and known key-area/window IDs"
+    },
+    {
+      "id": "one_cell_per_slot",
+      "status": "PASS",
+      "detail": "every key-area/window slot has one decision cell"
+    },
+    {
+      "id": "synthetic_boundaries",
+      "status": "PASS",
+      "detail": "all screen values are synthetic and air agents stay zero"
+    },
+    {
+      "id": "hard_guards",
+      "status": "PASS",
+      "detail": "feeder and worst-group synthetic guards pass"
+    },
+    {
+      "id": "human_decisions",
+      "status": "PASS",
+      "detail": "each cell names a human question and proposed owner"
+    },
+    {
+      "id": "evidence_requests",
+      "status": "PASS",
+      "detail": "each cell has evidence requests and a stop condition"
+    },
+    {
+      "id": "air_gate",
+      "status": "PASS",
+      "detail": "air candidate is fail-closed and outside operations"
+    },
+    {
+      "id": "field_claim_guard",
+      "status": "PASS",
+      "detail": "decision cells contain no local field or approval claim"
+    }
+  ],
+  "summary": {
+    "checks_passed": 13,
+    "checks_total": 13,
+    "key_areas": 3,
+    "time_windows": 4,
+    "decision_cells": 12,
+    "conditional_review_cells": 5,
+    "hold_cells": 7,
+    "field_measurements": 0,
+    "resident_satisfaction_measurements": 0,
+    "operating_authorizations": 0,
+    "air_agents": 0
+  },
+  "release_readout": [
+    {
+      "id": "ATLAS-001",
+      "key_area_id": "PROV-KEY-001",
+      "window_id": "AM_ARRIVAL",
+      "release": "conditional_review",
+      "human_decision_question_zh": "现场交通与无障碍复核能否证明班车窗口不会切断公共路线？",
+      "stop_condition": "Stop and return to metro, bus and human guidance if the accessible route or fire clearance is interrupted."
+    },
+    {
+      "id": "ATLAS-002",
+      "key_area_id": "PROV-KEY-001",
+      "window_id": "MIDDAY_SERVICE",
+      "release": "hold",
+      "human_decision_question_zh": "责任人、清场时限和投诉回写是否已经在现场可执行？",
+      "stop_condition": "Hold the window if delivery or visitor queues spill into the accessible route or public road."
+    },
+    {
+      "id": "ATLAS-003",
+      "key_area_id": "PROV-KEY-001",
+      "window_id": "PM_RETURN",
+      "release": "conditional_review",
+      "human_decision_question_zh": "最慢群体和夜间回家链是否比全体平均值更安全？",
+      "stop_condition": "Stop feeder expansion when return-home coverage or accessible transfer worsens."
+    },
+    {
+      "id": "ATLAS-004",
+      "key_area_id": "PROV-KEY-001",
+      "window_id": "NIGHT_RETURN",
+      "release": "hold",
+      "human_decision_question_zh": "谁在末班车、照明、维修和拒载时段承担现场接手？",
+      "stop_condition": "Hold the night window when a staffed and accessible return path is not documented."
+    },
+    {
+      "id": "ATLAS-005",
+      "key_area_id": "PROV-KEY-002",
+      "window_id": "AM_ARRIVAL",
+      "release": "hold",
+      "human_decision_question_zh": "儿童、照护者和轮椅使用者是否拥有同等清晰的替代路线？",
+      "stop_condition": "Hold any curb change when the accessible route is longer, less safe or dependent on a digital account."
+    },
+    {
+      "id": "ATLAS-006",
+      "key_area_id": "PROV-KEY-002",
+      "window_id": "MIDDAY_SERVICE",
+      "release": "conditional_review",
+      "human_decision_question_zh": "服务台能否在高峰时段解释、记录并纠正一次冲突？",
+      "stop_condition": "Stop a booking rule if it displaces an urgent care trip or blocks the public route."
+    },
+    {
+      "id": "ATLAS-007",
+      "key_area_id": "PROV-KEY-002",
+      "window_id": "PM_RETURN",
+      "release": "conditional_review",
+      "human_decision_question_zh": "分组导流是否减少最弱群体的等待与绕行，而非只减少车辆排队？",
+      "stop_condition": "Stop if the accessible or child-safe route loses priority during the release window."
+    },
+    {
+      "id": "ATLAS-008",
+      "key_area_id": "PROV-KEY-002",
+      "window_id": "NIGHT_RETURN",
+      "release": "conditional_review",
+      "human_decision_question_zh": "夜间回家链是否有可见的责任人、替代路线和退出条件？",
+      "stop_condition": "Stop if the night route lacks lighting, human handoff or an accessible alternative."
+    },
+    {
+      "id": "ATLAS-009",
+      "key_area_id": "PROV-KEY-003",
+      "window_id": "AM_ARRIVAL",
+      "release": "hold",
+      "human_decision_question_zh": "维护者是否先发布正式锚定关系，再允许任何站口空间动作？",
+      "stop_condition": "Hold all geometry-led action until the key-area anchor and station relation are formally confirmed."
+    },
+    {
+      "id": "ATLAS-010",
+      "key_area_id": "PROV-KEY-003",
+      "window_id": "MIDDAY_SERVICE",
+      "release": "hold",
+      "human_decision_question_zh": "临时关系线能否支持调查而不诱导错误的站点建设结论？",
+      "stop_condition": "Hold any fixed intervention if the geometry or public-space ownership remains unclear."
+    },
+    {
+      "id": "ATLAS-011",
+      "key_area_id": "PROV-KEY-003",
+      "window_id": "PM_RETURN",
+      "release": "hold",
+      "human_decision_question_zh": "轨道优先、居民回家和无障碍连续性是否在同一时段都被保住？",
+      "stop_condition": "Hold feeder or event changes when external OD and the worst-group route are not measured."
+    },
+    {
+      "id": "ATLAS-012",
+      "key_area_id": "PROV-KEY-003",
+      "window_id": "NIGHT_RETURN",
+      "release": "hold",
+      "human_decision_question_zh": "正式锚点、末班车回退和夜间安全责任是否同时成立？",
+      "stop_condition": "Hold the night action when any anchor, service, safety or human handoff is missing."
+    }
+  ],
+  "boundary": [
+    "field demand",
+    "resident satisfaction",
+    "professional approval",
+    "operating permit",
+    "public acceptance",
+    "official geometry",
+    "gallery score or promotion"
+  ]
+}

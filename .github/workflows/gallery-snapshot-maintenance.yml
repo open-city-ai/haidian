@@ -40,9 +40,27 @@ jobs:
 
           # This workflow runs only for the canonical repository's trusted main
           # push. It never checks out or executes a contributor PR head.
-          if git ls-remote --exit-code origin "refs/heads/${branch}" >/dev/null 2>&1; then
-            git fetch origin "refs/heads/${branch}:refs/remotes/origin/${branch}"
+          # The repository ruleset requires an administrator to bootstrap this
+          # maintenance ref once. Do not attempt a create-only push with the
+          # GITHUB_TOKEN: it cannot satisfy the admin-only branch-creation rule.
+          if ! git ls-remote --exit-code origin "refs/heads/${branch}" >/dev/null 2>&1; then
+            message="${branch} does not exist. An administrator must create it from trusted main before this workflow can publish a review PR."
+            {
+              echo "### Gallery snapshot maintenance blocked"
+              echo
+              echo "${message}"
+              echo
+              echo "One-time bootstrap (run with administrator bypass):"
+              echo 'git fetch origin main'
+              echo "git push origin origin/main:refs/heads/${branch}"
+              echo
+              echo "Then re-run this workflow with workflow_dispatch."
+            } >> "${GITHUB_STEP_SUMMARY}"
+            echo "::error title=Maintenance branch bootstrap required::${message}"
+            echo "bootstrap-required=true" >> "${GITHUB_OUTPUT}"
+            exit 1
           fi
+          git fetch origin "refs/heads/${branch}:refs/remotes/origin/${branch}"
           git switch --create "${branch}" "${GITHUB_SHA}"
           python3 scripts/generate_submissions_data.py
           python3 scripts/generate_submissions_data.py --check
@@ -64,13 +82,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: refresh generated gallery snapshot"
 
-          if expected="$(git rev-parse --verify "refs/remotes/origin/${branch}" 2>/dev/null)"; then
-            git push --force-with-lease="refs/heads/${branch}:${expected}" \
-              origin "HEAD:refs/heads/${branch}"
-          else
-            git push --force-with-lease="refs/heads/${branch}:0000000000000000000000000000000000000000" \
-              origin "HEAD:refs/heads/${branch}"
-          fi
+          expected="$(git rev-parse --verify "refs/remotes/origin/${branch}")"
+          git push --force-with-lease="refs/heads/${branch}:${expected}" \
+            origin "HEAD:refs/heads/${branch}"
           echo "changed=true" >> "${GITHUB_OUTPUT}"
 
       - name: Open or update snapshot maintenance PR

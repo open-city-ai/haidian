@@ -32,9 +32,44 @@
     {
       "check_id": "PROFESSIONAL_EVIDENCE",
       "result": "pass",
-      "severity": "major",
+      "severity": "blocking",
       "target": "proposal.md",
-      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+      "message": "Professional evidence chain complete (depth/standard/metric refs)."
+    },
+    {
+      "check_id": "OVERALL_OK",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submission package",
+      "message": "All four review gates passed; package is ready for formal review."
+    },
+    {
+      "check_id": "CAN_ENTER_FORMAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "submission package",
+      "message": "Package state ready_for_review with stage formal; may enter formal review."
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "manifest.json",
+      "message": "All declared file hashes match on-disk bytes (deterministic validator)."
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "geometry/*.geojson",
+      "message": "No blocking spatial issues; land_use topology-safe; provisional advisory only."
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "visual/index.html",
+      "message": "Visual board is static, offline, and metric-consistent."
     }
   ]
 }

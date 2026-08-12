@@ -6,11 +6,81 @@ proposal_format_version: "2"
 bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "COMMUNITY-DISPLAY-ONLY"
-iteration: "v2.2"
-summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.2 puts the shared display-transformed geometry, three focus areas, and five spatial-action stages on the reviewer first screen, with human equivalents, machine limits, stop/replay actions, and data gaps visible together. Provisional geometry, known metrics, and unknowns remain unchanged."
+iteration: "v2.6"
+summary: "A reversible urban release that treats human dignity as the foundation, machine-callable infrastructure as an added capability, and compute-energy, climate, and governance as hard constraints. v2.6 extends the six base personas with youth and early entrants, developers and researchers, and first-time or international visitors, making benefit, impact, human alternative, and stop conditions replayable. Provisional geometry, known metrics, and unknowns remain unchanged."
 tracks: ["ai-traffic-walkability", "enterprise-services-ecosystem", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
 ---
+
+## v2.6 Public-interest coverage extension | Return three easily hidden groups to the scenes
+
+The existing `personas-and-fairness.json` registers six base personas. This iteration does not rewrite that contract. It adds three groups often hidden by an AI-centred narrative: youth, students and people entering the workforce; developers and researchers; and first-time or international visitors. Each returns through benefit, impact risk, spatial/scenario reference, human alternative, stop condition, and missing evidence, without turning a concept population into a demographic survey, service-coverage rate, or fairness outcome.[data:visual/assets/public-interest-coverage-v26.json] [data:visual/assets/run-public-interest-coverage-v26.js] [depth:risk_missing_data]
+
+| Public-interest extension | Visible benefit | Impact to prevent | Existing scenario and spatial return | If evidence is missing |
+| --- | --- | --- | --- | --- |
+| Youth, students, and people entering the workforce | Reskilling, staffed explanation, and withdrawable learning without automated eligibility scoring | Transition pressure, stigma, waiting time, and excess retention of learning data | `SC-A02` / `ROAD-A-SKILL` / `BLDG-A-02` | Stay at G0 and do not open automated routing without staffed advice, exit records, or job-quality evidence |
+| Developers and researchers | Least-privilege catalogue, public observer seat, and bounded experiments without platform scoring as entry | Vendor lock-in, unclear IP, test spillover, and accidental personal/civic-data access | `SC-B01` / `ZONE-B-API` / `BLDG-B-01` / `BLDG-D-01` | Freeze the experiment and return to the paper protocol when authorization, rights, logs, or takeover are unclear |
+| First-time and international visitors | Multilingual public information, staffed explanation, ordinary movement, and withdrawable service | Language barriers, wrong health/daily-life information, case-data collection, and cultural misreading | `SC-D03` / `BLDG-D-02` / `PUBLIC-D-GLOBAL` | Close the display and retain ordinary movement and staffed service when language, rights, or case authorization is incomplete |
+
+This is a coverage and evidence-gap register, not a demographic survey, accessibility certification, service outcome, employment result, or official score. Recompute it with personas, scenarios, geometry, metrics, figures, HTML, PDFs, and self-check after formal baselines, rights, and authorization arrive.[data:geometry/constraints.geojson#SC-A02] [data:geometry/constraints.geojson#SC-D03] [depth:risk_missing_data]
+
+## v2.5 Public-space connectors and community conversion | Make agent.4 and agent.6 more than an event list
+
+v2.5 closes two places where an “AI showcase” can hide the real urban question. **North–south continuity / east–west stitching** is not a new road or engineering alignment: it is a reading rule that connects the three focus areas as ordinary arrival → staffed choice → bounded machine → blue-green recovery → exit replay, while public problem desks, community service, OPC learning and Xiaoyuehe screen-free recovery stitch innovation back to daily life.[data:visual/assets/public-space-connector-atlas-v25.json] [data:geometry/phasing.geojson#PHASE-V01] [depth:overall_spatial_structure]
+
+The component library makes five human-first public-space actions reusable: staffed access desk, intergenerational learning table, screen-free recovery node, contribution/honour replay wall, and pause/rollback marker. Each component points to an existing `public_space` or `green_space` anchor, keeps `dimensions=null`, and makes no venue, rights, heritage, operator or construction claim.[data:visual/assets/public-space-connector-atlas-v25.json] [data:geometry/public_space.geojson#PUBLIC-A-INCLUSION] [data:geometry/green_space.geojson#GREEN-A-QUIET-1]
+
+The “three-panel public contribution display” shows only authorized, traceable and withdrawable problem, care and replay contributions. Honour refers to public contribution, not an official honour, award, enterprise list,招商 commitment or public-credit score. Rights, attribution, withdrawal and independent review must be available before a professional team deepens the concept.[data:visual/assets/public-space-connector-atlas-v25.json] [depth:risk_missing_data]
+
+Developer-community and long-term operation are now a stoppable four-gate conversion chain: **open problem → learn / review → bounded scenario → replay / release**. Each gate declares a spatial anchor, human equivalent, first evidence and stop condition. It connects paid transition for workers at displacement risk, developer protocol review, public-service questions and city release notes without naming an operator, budget, schedule,招商 arrangement or settled policy.[data:visual/assets/developer-community-conversion-v25.json] [source:HD-OPC-2026] [depth:phasing_implementation]
+
+Figure 27 places the connector strategy, five components and the conversion chain on one presentation-level urban-design board; it is not a debug screenshot, engineering drawing or scorecard.[data:visual/assets/check-public-space-operations-v25.js]
+
+![Figure 27 | Public-space connectors, components and developer/community conversion: north–south continuity, east–west stitching, contribution replay and release](assets/figures/public-space-operations-v25.en.png)
+
+This increment changes evidence legibility and transferability only. It does not change `geometry`, `metrics`, the five core figures or publication ordering. All anchors remain `official_boundary=false` and `geometry_role=provisional_constraint`; activities, components and conversion remain conceptual suggestions / reference schemes for professional teams to deepen. When official boundary, rights, heritage, accessibility, climate, data-authorization and operation inputs arrive, recompute the figures, HTML, PDFs, manifest and self-check together.[data:visual/assets/check-public-space-operations-v25.js] [depth:metrics_recalculation] [depth:risk_missing_data]
+
+## v2.4 Evidence crosswalk and policy boundary | Make every requirement independently replayable
+
+v2.4 adds no new spatial commitment. Instead, each of the 23 announcement / taskbook requirements now has a shortest package-local evidence chain in `compliance_matrix.json`: `evidence_items` provides a unique entrance, spatial or structural references, and a review boundary; `reviewer_evidence_map.differentiator_zh` records why that response is more than an AI showcase. A reviewer can therefore audit a requirement without treating one repeated summary table as proof of every claim.[data:compliance_matrix.json] [depth:brief_alignment]
+
+`assumptions.json` now labels every missing input with a `priority`. High priority means that the missing input would change space, metrics, or a release gate; it does not mean that the input is solved. Official boundaries, road / airspace, rights, public baselines, energy, climate, authorization, and operational outcomes remain open.[data:assumptions.json] [depth:risk_missing_data]
+
+`metrics.json` adds `proposal_baseline_not_measured` `design_target` objects to `operational_pue` and `green_electricity_share`. The first only references Beijing computing-infrastructure policy direction; the second explicitly treats 30% as a proposal baseline derived from a specified existing-data-centre target band. Neither is a project statutory control, permit conclusion, or measured performance.[source:BJ-COMPUTE-2024] [source:BJ-DATACENTER-2024]
+
+Once authorized energy design, credentials, and metering exist, drawings, HTML, PDFs, and self-check must be recalculated together.[metric:operational_pue] [metric:green_electricity_share]
+
+This increment improves evidence legibility, missing-data ordering, and policy boundaries only. It does not turn any unknown into an outcome or create an official score, government endorsement, or implementation approval.[depth:metrics_recalculation] [depth:risk_missing_data]
+
+## v2.3 six-step city-API sequence | Make callability replayable as accountability
+
+v2.2 put “where the spatial relationship sits” and “how a person enters, refuses, pauses and exits” on one first-screen board. v2.3 turns the city API from a sentence into a six-step replayable sequence: **catalogue → authorize → call → log → audit → exit**. Each step provides a spatial anchor, an accountability role, a human equivalent, a stop/return trigger and an in-package evidence entry, so a reviewer can follow who may call, why, and when the call must stop.[data:visual/assets/city-api-sequence-v23.json] [depth:municipal_new_infrastructure] [depth:phasing_implementation]
+
+Figure 26 is a presentation-level urban-design diagram, not an API deployment architecture, engineering section or operating result. The six steps use only existing provisional anchors—`PUBLIC-B-API`, `SC-B01`, `SC-B04`, `SC-C04` and `PHASE-V02`—and retain `official_boundary=false`, `geometry_role=provisional_constraint`, `operational_status=not_authorized_not_run` and `performance_results=null`. Staffed, telephone, paper and offline explanation/withdrawal routes remain alongside AI; failure to replay or unclear accountability returns to the prior release gate.[data:geometry/public_space.geojson#PUBLIC-B-API] [data:geometry/constraints.geojson#SC-B01] [data:geometry/phasing.geojson#PHASE-V02]
+
+The offline check for the six-step sequence is recorded at [data:visual/assets/city-api-sequence-v23-evidence.json]; it proves only that fields, references, stop boundaries and bilingual figures replay locally, not interface capability, permits, operation or any score.
+
+![Figure 26 | Six-step replayable city-API sequence: catalogue, authorize, call, log, audit and exit](assets/figures/city-api-sequence-v23.en.png)
+
+The six test-oriented records now also state `first_evidence_needed_zh/en` and `first_evidence_owner_zh/en`. These fields say what the first evidence would be and which class of to-be-authorized role would review it; they do not turn a suggested role into a confirmed operator.[data:visual/assets/pilot-readiness-register.json] [depth:risk_missing_data]
+
+Parametric trade-offs no longer show only that candidates exist: `parametric-tradeoff-study-evidence.json` adds `decision_diff`, recalculating the deltas for community retention, reversible meanwhile space, and the API/embodied band from existing baseline shares, variant shares and derived areas. `status=conceptual_comparison_only`; no formal geometry, metrics, drawings or release state changes.[data:visual/assets/parametric-tradeoff-study-evidence.json]
+
+The deltas reconnect to the existing community-retention support area, reversible-space ratio and metric-recalculation rules.[metric:community_retention_support_area_ratio] [metric:reversible_space_ratio] [depth:metrics_recalculation]
+
+### One reviewer-readable AI spatial delta | Callability is not the only objective
+
+The table below expands only the existing `people_first` versus `baseline_reproduction` calculation so a reviewer can see what the spatial trade-off changes before opening the JSON. It is not a recommendation, an existing condition, a settled plan, or a formal area metric. All three rows use the same provisional site-area input; `derived_area_sqm_delta` is for conceptual comparison only.[data:visual/assets/parametric-tradeoff-study.json] [data:visual/assets/parametric-tradeoff-study-evidence.json] [data:visual/assets/spatial-action-rooms-v21.json]
+
+| Existing spatial band | baseline → people-first | share delta | derived area delta (sqm) | Linked spatial-action room |
+| --- | ---: | ---: | ---: | --- |
+| Community retention and services (LU-H01) | 18.2759% → 24.0000% | +5.7241 pp | +653,284.939 | Beijing AI Origin Community: retention ledger, staffed access, screen-free recovery |
+| Reversible meanwhile use (LU-B01) | 15.0936% → 18.0000% | +2.9064 pp | +331,703.646 | Blue-green stay, meanwhile use, and exit/replay path |
+| City API and embodied-AI research (LU-B02) | 15.4835% → 11.0000% | −4.4835 pp | −511,691.664 | Zhongzhiyuan: bounded test, staffed takeover, stop/exit |
+
+This table improves delta visibility only. Formal geometry, areas, metrics, permits, and operating results still require a full recalculation after official inputs arrive.[depth:metrics_recalculation] [depth:risk_missing_data]
+
+v2.3 improves accountability readability, implementation reviewability and expression completeness only. It adds no official boundary, development quantum, building height, engineering alignment, capacity, investment, permit, settled policy or operating-performance claim. When official geometry, rights, road/airspace, safety, energy, climate, authorization and public-baseline inputs arrive, recompute the sequence board, readiness register, parametric replay, metrics, HTML, PDFs and self-check together.[depth:risk_missing_data]
 
 ## v1.9 One-page execution brief | from taskbook to spatial response
 
@@ -86,7 +156,7 @@ Three provisional key areas, a six-layer spatial operating system, four value ch
 
 | Value chain | Readable conceptual move | Package evidence | Data still required |
 | --- | --- | --- | --- |
-| A Human dignity | Resident retention and service repair, a skills-transition corridor, human/phone/paper access, no-screen green space and wellbeing support | `LU-H01`, `ROAD-A-SKILL`, six personas, seventeen scenario cards | Resident baseline, small-business and employment follow-up, accessibility walk-through and authorized operations records |
+| A Human dignity | Resident retention and service repair, a skills-transition corridor, human/phone/paper access, no-screen green space and wellbeing support | `LU-H01`, `ROAD-A-SKILL`, six base personas plus three public-interest extensions, seventeen scenario cards | Resident baseline, small-business and employment follow-up, accessibility walk-through and authorized operations records |
 | B Machine-ready | Urban API exchange, silicon right-of-way test field, layered low-altitude logistics, reversible components and a public digital-twin bench | `LU-B01`/`LU-B02`, `ROAD-B-SILICON`, interface prototypes | Traffic/aviation/safety sections, interface responsibility, professional models and field tests |
 | C Hard constraints | Compute-power and heat audit, floodway and sponge simulation, regulatory sandbox, public-data authorization and version release room | `SC-C01`—`SC-C05`, three release gates, five-stage startup protocol | Energy/heat network, hydrology, insurance/liability, data authorization and formal boundary |
 | D Spillover | OPC shared lab, standards spillover studio and international service room that turn R&D records into reusable protocols | `SC-D01`—`SC-D03`, three-area interfaces | Participants, IP permissions, cross-region cooperation and service verification |
@@ -274,7 +344,7 @@ This is a pre-authorization working contract. The package contains no site visit
 
 ## v0.6: Put “who can enter and who can stop” on one spatial page
 
-This iteration reorganizes the acceptance relationships already distributed across six persona records, seventeen scenario cards, three release gates, and provisional spatial anchors into Figure 09. The six persona paths start with existing residents/older people, workers at displacement risk, night AI workers, OPCs/small merchants, public-service staff, and disabled or low-digital users. Ten directly related scenarios are selected as legible paths, while all seventeen cards, sixteen geometry nodes, and all three release gates remain visible so that representative personas stay alongside the complete scenario registry. [data:geometry/constraints.geojson#SC-A01] [metric:scenario_node_count] [depth:municipal_new_infrastructure]
+This iteration reorganizes the acceptance relationships already distributed across six base persona records, three public-interest extensions, seventeen scenario cards, three release gates, and provisional spatial anchors into Figure 09. The six base persona paths start with existing residents/older people, workers at displacement risk, night AI workers, OPCs/small merchants, public-service staff, and disabled or low-digital users; the three extensions register benefit, impact, human alternative, and stop conditions in `public-interest-coverage-v26.json`. Ten directly related scenarios are selected as legible paths, while all seventeen cards, sixteen geometry nodes, and all three release gates remain visible so that representative personas stay alongside the complete scenario registry. [data:geometry/constraints.geojson#SC-A01] [metric:scenario_node_count] [depth:municipal_new_infrastructure]
 
 `visual/assets/human-city-acceptance-atlas.json` records only existing persona, scenario, and gate IDs. Its offline runner resolves 6/6 persona paths, 17/17 scenario cards, 10/10 representative links, 30/30 representative spatial references, 47/47 scenario spatial references, and 3/3 release gates; a fabricated persona anchor must fail. PASS proves only that the figure has not hidden the package's references and stop conditions. It does not prove real human coverage, staffed service, spatial access, field safety, permits, or social performance. [data:geometry/constraints.geojson#SC-C04] [data:geometry/phasing.geojson#PHASE-V10] [depth:risk_missing_data]
 
@@ -470,7 +540,7 @@ The AI Origin Community places workers at substitution risk, not only celebrated
 
 ## AI Innovation Ecosystem, Personas, and AI+ Scenarios
 
-Six personas establish that the right to refuse AI is part of service quality. Long-term residents and older people need a human channel, familiar social networks, privacy, and low-disruption renewal. Workers at substitution risk need a verifiable route to a new job. AI researchers need safe night travel, twenty-four-hour basics, and screen-free recovery. OPCs and small teams need on-demand labs, compute, and compliance support. Public-service staff need explainable work orders and human review. International visitors need language, medical navigation, intellectual-property, compliance, and daily-life support. [source:HD-AI-TALENT-2026] [depth:municipal_new_infrastructure]
+Six base personas plus three public-interest extensions establish that the right to refuse AI is part of service quality. Long-term residents and older people need a human channel, familiar social networks, privacy, and low-disruption renewal. Workers at substitution risk need a verifiable route to a new job. AI researchers need safe night travel, twenty-four-hour basics, and screen-free recovery. OPCs and small teams need on-demand labs, compute, and compliance support. Public-service staff need explainable work orders and human review. Youth and early entrants need a non-automated learning and transition route; developers and researchers need least privilege and a rights register; international visitors need multilingual explanation, ordinary movement, and withdrawable service. The extension is not a demographic survey or outcome claim. [source:HD-AI-TALENT-2026] [data:visual/assets/public-interest-coverage-v26.json] [depth:municipal_new_infrastructure]
 
 | Persona | Non-negotiable right | Spatial/service response | Validation |
 | --- | --- | --- | --- |
@@ -543,6 +613,19 @@ Three pilgrimage landmarks make the operating philosophy visible. The Human Rele
 Implementation uses three city releases instead of a single completion date. Release v0.1 establishes baselines, a public issue list, and the minimum human-service guarantee. Release v0.2 conducts reversible pilots, independent evaluation, and incident drills. Release v1.0 expands only projects that pass public-interest, energy, climate, accessibility, and reversibility reviews. The three geometries cover the provisional site as governance responsibility zones, not as promised development timing. [data:geometry/phasing.geojson#PHASE-V02] [metric:version_release_count] [depth:phasing_implementation]
 
 Before a suggested project enters its next gate, it leaves a synthetic human-city handoff receipt. H0 hands a problem from community observation to data and spatial review; H1 confirms an equivalent human entrance; H2 checks minimum fields and revocation; H3 reviews energy, climate, mobility, and safety evidence; H4 performs independent replay and opens an objection window; H5 records version differences and exit. The three cases are synthetic fixtures and the roles are abstract suggestions. They make who takes over, what permits acceptance, when to stop, and how to return to the previous gate queryable without presenting a suggested role as a real operator. [data:visual/assets/human-city-receipt.json] [data:visual/assets/implementation-operation-matrix.json]
+
+### v2.7 bounded public-service tabletop contract | Make “human takes over first” rejectable
+
+The existing handoff receipt answers how one human-first service can be replayed. This revision adds four spatially anchored tabletop contracts for the human channel, city-API authorization, incident replay, and multilingual public service. Each card keeps the user, space, proposed role, permission, minimum data, human alternative, missing baseline, acceptance, privacy, and stop/recovery action on one line. Roles remain pending-authorization placeholders; field_location=null; no real system is connected. [data:visual/assets/human-city-public-service-tabletop-v1.json] [depth:phasing_implementation]
+
+| Contract card | Spatial anchor | Acceptable synthetic action | If evidence is missing or scope is exceeded |
+| --- | --- | --- | --- |
+| HC-T01 Human channel and intergenerational learning | PUBLIC-A-INCLUSION | Submit a question without scanning, receive human explanation and an expected receipt | Return to paper/telephone when the human route is unavailable or exclusionary |
+| HC-T02 City-API authorization desk | SC-B01 | Explain purpose, permission, minimum fields, and revocation | Freeze the call on excess permission, purpose drift, or missing logs |
+| HC-T03 Regulatory-sandbox incident replay desk | SC-C03 | Record who stops, who reviews, how to appeal, and when recovery may be considered | Keep the human-safe state when accountability or human stop is missing |
+| HC-T04 Multilingual public-service living room | PUBLIC-D-GLOBAL | Provide bilingual-reviewed public information and human routing | Retain paper information when bilingual terms or service scope is unclear |
+
+The four positive fixtures must satisfy consent, human handoff, permission scope, minimum data, appeal, bilingual review, and a low-impact action. Eight negative fixtures reject missing consent, human entry, minimum data, permission, appeal, low-impact boundaries, bilingual review, or a spatial anchor. run-human-city-public-service-tabletop-v1.js --check replays 4/4 positive and 8/8 negative fixtures offline and writes an expected receipt. PASS proves only that the contract is rejectable and replayable; it does not prove service performance, staffing, permits, accessibility outcomes, incident safety, public outcomes, or an official score. [data:visual/assets/run-human-city-public-service-tabletop-v1.js] [data:visual/assets/human-city-public-service-tabletop-v1-evidence.json] [depth:risk_missing_data]
 
 | Project | Release | Prerequisite | Stop or rollback condition |
 | --- | --- | --- | --- |

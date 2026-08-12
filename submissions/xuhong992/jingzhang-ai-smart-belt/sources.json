@@ -5,43 +5,104 @@
       "id": "SITE-PACKAGE",
       "path": "brief/site-package/",
       "source_type": "official_public",
-      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
+      "usage": "Project brief, enums, allowed design space, ranges, and schemas.",
+      "formal_usable": "yes"
     },
     {
       "id": "SOURCE-REGISTRY",
       "path": "data/source_registry.json",
       "source_type": "repository_public_registry",
-      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
+      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials.",
+      "formal_usable": "yes"
     },
     {
       "id": "PROCESSED-FACT-PACK",
       "path": "data/processed/agent_fact_pack.md",
       "source_type": "repository_processed_reference",
-      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
+      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source.",
+      "formal_usable": "yes"
     },
     {
       "id": "BOUNDARY-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
       "source_type": "agent_inferred_from_public_data",
-      "usage": "Submitted site boundary geometry source (provisional)."
+      "usage": "Submitted site boundary geometry source (provisional).",
+      "formal_usable": "provisional_only",
+      "registry_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
     },
     {
       "id": "KEY-AREA-SOURCE",
       "path": "brief/site-package/geometry/provisional_boundaries.geojson",
       "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional)."
+      "usage": "Three required detailed-design key area boundaries (provisional).",
+      "formal_usable": "provisional_only",
+      "registry_source_id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
     },
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
       "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
       "source_type": "official_public",
-      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context.",
+      "formal_usable": "yes",
+      "registry_source_id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
     },
     {
       "id": "AGENT-TASKBOOK",
       "path": "brief/site-package/agent_taskbook.json",
       "source_type": "user_provided_cleared",
-      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause.",
+      "formal_usable": "yes",
+      "registry_source_id": "DATA-SRC-AGENT-TASKBOOK-20260518"
+    }
+  ],
+  "asset_copyrights": [
+    {
+      "asset_group": "geometry/*.geojson（9 个空间图层）",
+      "generated_by": "agent_generated (Claude Code / Python shapely)",
+      "author": "xuhong992",
+      "source_basis": "brief/site-package/geometry/provisional_boundaries.geojson (provisional_only)",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "note": "由 agent 基于 provisional boundary 剖分生成；不含第三方版权几何，无商业地图数据、无内部数据。"
+    },
+    {
+      "asset_group": "assets/figures/*.png（5 张设计图）",
+      "generated_by": "agent_generated (Python matplotlib/Pillow)",
+      "author": "xuhong992",
+      "source_basis": "geometry/*.geojson 与 metrics.json（同源派生）",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "note": "全部由提交包自身几何/指标绘制，不使用外部图片、字体文件、图标、地图瓦片、照片或未授权素材。"
+    },
+    {
+      "asset_group": "drawings/a3-booklet.pdf、a0-boards.pdf",
+      "generated_by": "agent_generated (matplotlib PdfPages)",
+      "author": "xuhong992",
+      "source_basis": "assets/figures/*.png 与 proposal 证据链",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "note": "PDF 由本包图件排版生成，不嵌入第三方字体（使用系统字体渲染）或受版权素材。"
+    },
+    {
+      "asset_group": "visual/index.html、report/proposal.html",
+      "generated_by": "agent_generated（静态 HTML/CSS/SVG）",
+      "author": "xuhong992",
+      "source_basis": "geometry/metrics/matrices 与 proposal 内容",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "note": "离线静态页面，无 CDN、远程瓦片、远程字体、外部脚本或 API；内联 SVG/内联样式均为本项目自绘。"
+    },
+    {
+      "asset_group": "命名、Logo 方向（智脉京张 / ZHANG-ZHI SMART BELT）",
+      "generated_by": "agent_generated（概念建议）",
+      "author": "xuhong992",
+      "source_basis": "设计概念，无外部商标",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "note": "「智脉京张」与「ZHANG-ZHI SMART BELT」为概念性命名与 Logo 方向，尚未注册；正式使用前须另行商标与版权检索并清权，不作为已定稿 VI。"
+    },
+    {
+      "asset_group": "proposal.md、proposal.en.md、矩阵、指标、假设等文本数据",
+      "generated_by": "agent_generated + 公开资料引用",
+      "author": "xuhong992",
+      "source_basis": "sources.json 所列公开/清权来源",
+      "license": "COMMUNITY-DISPLAY-ONLY",
+      "note": "正文仅引用公开或清权来源；8 个国际案例为公开常识性行业案例，正式深化前需逐案补充权威来源（见 P1 待办）。"
     }
   ]
 }

@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1.0",
+  "package_iteration": "v0.9-provisional-spatial-readout",
+  "status": "concept_only",
+  "source_geometry": [
+    "geometry/roads.geojson",
+    "geometry/public_space.geojson",
+    "geometry/constraints.geojson",
+    "geometry/green_space.geojson"
+  ],
+  "derivation": {
+    "method": "For each adjacent anchor pair, calculate the minimum geodesic separation between their GeoJSON vertices and round to the nearest 10 m.",
+    "unit": "m",
+    "semantics_zh": "最小顶点间距只用于复核锚点关系和先后，不是步行路线、道路长度、服务半径或工程尺寸；各段不能相加成实际通行距离。",
+    "semantics_en": "Minimum vertex separation is only a relational readout of anchor order. It is not a walking route, road length, service radius, engineering dimension, or a sum-able access distance.",
+    "official_boundary": false,
+    "recalculation_required": true,
+    "not_for": [
+      "official redline",
+      "precise area or capacity",
+      "accessibility or travel-time conclusion",
+      "permit, deployment, operator, or performance claim"
+    ]
+  },
+  "plans": [
+    {
+      "plan_id": "AI-NODE-ZHONGZHIYUAN",
+      "area_id": "PROV-KEY-001",
+      "anchor_refs": [
+        "geometry/roads.geojson#MOBILITY-05",
+        "geometry/public_space.geojson#PUBLIC-01",
+        "geometry/constraints.geojson#SCN-06",
+        "geometry/green_space.geojson#GREEN-02"
+      ],
+      "segment_readouts": [
+        {"from": "MOBILITY-05", "to": "PUBLIC-01", "minimum_vertex_separation_m": 1970},
+        {"from": "PUBLIC-01", "to": "SCN-06", "minimum_vertex_separation_m": 2540},
+        {"from": "SCN-06", "to": "GREEN-02", "minimum_vertex_separation_m": 2330}
+      ],
+      "functional_band_count": 4,
+      "human_fallback_count": 4,
+      "readout_status": "provisional_geometry_only"
+    },
+    {
+      "plan_id": "AI-NODE-ORIGIN-COMMUNITY",
+      "area_id": "PROV-KEY-002",
+      "anchor_refs": [
+        "geometry/roads.geojson#MOBILITY-04",
+        "geometry/public_space.geojson#PUBLIC-02",
+        "geometry/constraints.geojson#SCN-02",
+        "geometry/green_space.geojson#GREEN-03"
+      ],
+      "segment_readouts": [
+        {"from": "MOBILITY-04", "to": "PUBLIC-02", "minimum_vertex_separation_m": 3240},
+        {"from": "PUBLIC-02", "to": "SCN-02", "minimum_vertex_separation_m": 90},
+        {"from": "SCN-02", "to": "GREEN-03", "minimum_vertex_separation_m": 3420}
+      ],
+      "functional_band_count": 4,
+      "human_fallback_count": 4,
+      "readout_status": "provisional_geometry_only"
+    },
+    {
+      "plan_id": "AI-NODE-DAZHONGSI",
+      "area_id": "PROV-KEY-003",
+      "anchor_refs": [
+        "geometry/public_space.geojson#PUBLIC-05",
+        "geometry/constraints.geojson#SCN-05",
+        "geometry/constraints.geojson#SERVICE-ZONE-02",
+        "geometry/public_space.geojson#PUBLIC-04"
+      ],
+      "segment_readouts": [
+        {"from": "PUBLIC-05", "to": "SCN-05", "minimum_vertex_separation_m": 120},
+        {"from": "SCN-05", "to": "SERVICE-ZONE-02", "minimum_vertex_separation_m": 1620},
+        {"from": "SERVICE-ZONE-02", "to": "PUBLIC-04", "minimum_vertex_separation_m": 330}
+      ],
+      "functional_band_count": 4,
+      "human_fallback_count": 4,
+      "readout_status": "provisional_geometry_only"
+    }
+  ]
+}

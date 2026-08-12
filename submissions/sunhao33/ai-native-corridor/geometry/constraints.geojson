@@ -1,0 +1,139 @@
+{
+  "type": "FeatureCollection",
+  "name": "constraint_annotations",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "CONST-001",
+      "properties": {
+        "id": "CONST-001",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "high",
+        "geometry_role": "design_proposal",
+        "constraint_type": "missing_data",
+        "severity": "high",
+        "name_zh": "官方管控数据缺失",
+        "description": "FAR、建筑高度、建筑密度、退线、道路红线、市政管线容量、文保范围、工程地质条件未在公开场地包中提供。",
+        "impact": "开发强度分区和建筑形态为概念方案；更新项目拆迁量无法精确估算。",
+        "source": "assumptions.json → A-CONTROLS-001"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    },
+    {
+      "type": "Feature",
+      "id": "CONST-002",
+      "properties": {
+        "id": "CONST-002",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "high",
+        "geometry_role": "design_proposal",
+        "constraint_type": "missing_data",
+        "severity": "high",
+        "name_zh": "土地权属数据缺失",
+        "description": "地块权属边界、产权人清单、用地性质批文未提供。",
+        "impact": "更新项目清单的拆迁量和实施时序需与权属数据校核。",
+        "source": "assumptions.json → A-CONTROLS-001"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    },
+    {
+      "type": "Feature",
+      "id": "CONST-003",
+      "properties": {
+        "id": "CONST-003",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "constraint_type": "missing_data",
+        "severity": "medium",
+        "name_zh": "交通基础设施数据缺失",
+        "description": "现状交通量、轨道站点客流、停车供需、道路断面未提供。",
+        "impact": "交通组织方案和慢行系统设计为概念级别。",
+        "source": "missing_data_checklist.csv"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    },
+    {
+      "type": "Feature",
+      "id": "CONST-004",
+      "properties": {
+        "id": "CONST-004",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "constraint_type": "missing_data",
+        "severity": "medium",
+        "name_zh": "市政基础设施数据缺失",
+        "description": "电网容量、给排水管网、燃气管道、通信管廊未提供。",
+        "impact": "新型基础设施（分布式能源、端侧算力）布局为概念建议。",
+        "source": "missing_data_checklist.csv"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    },
+    {
+      "type": "Feature",
+      "id": "CONST-005",
+      "properties": {
+        "id": "CONST-005",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_inferred_from_public_data",
+        "confidence": "high",
+        "geometry_role": "provisional_constraint",
+        "constraint_type": "provisional_boundary",
+        "severity": "high",
+        "name_zh": "官方边界多边形缺失",
+        "description": "SITE_BOUNDARY和KEY_AREA的官方精确多边形未取得；当前使用基于公告文字四至推断的provisional边界。",
+        "impact": "所有空间指标和几何图层基于临时范围计算，替换官方多边形后需重算。",
+        "source": "self_check.json → BOUNDARY_TRUST / KEY_AREAS_TRUST"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    },
+    {
+      "type": "Feature",
+      "id": "CONST-006",
+      "properties": {
+        "id": "CONST-006",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "constraint_type": "design_assumption",
+        "severity": "low",
+        "name_zh": "AI场景为概念设计",
+        "description": "10个AI场景卡、3个测试验证场景和AI朝圣地标均为概念设计阶段的产物。",
+        "impact": "技术可行性、数据可用性和运营模式需实施主体进一步验证。",
+        "source": "assumptions.json → A-SCENARIO-001"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    },
+    {
+      "type": "Feature",
+      "id": "CONST-007",
+      "properties": {
+        "id": "CONST-007",
+        "layer": "REGULATORY_CONTROL",
+        "source_type": "agent_generated_design",
+        "confidence": "medium",
+        "geometry_role": "design_proposal",
+        "constraint_type": "design_assumption",
+        "severity": "low",
+        "name_zh": "运营体系为概念建议",
+        "description": "四季AI活动体系、开发者社区运营机制和治理结构为概念建议。",
+        "impact": "具体活动方案、预算和人员安排需组织方和运营方协商确定。",
+        "source": "assumptions.json → A-OPERATION-001"
+      },
+      "geometry": {"type": "Point", "coordinates": [116.3475, 39.983]}
+    }
+  ],
+  "metadata": {
+    "design_concept": "AI-Native Urban Co-Evolution Lab",
+    "proposal_id": "ai-native-corridor",
+    "note": "所有约束项均来源于assumptions.json、self_check.json和missing_data_checklist.csv；使用Point几何表示全区域性约束而非特定空间范围。",
+    "total_constraints": 7,
+    "by_severity": {"high": 3, "medium": 2, "low": 2}
+  }
+}

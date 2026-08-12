@@ -21,7 +21,7 @@
 
 `COMMUNITY-DISPLAY-ONLY` 是 `schema/proposal.schema.json` 的 `license` 枚举值之一，仓库未发布其规范条款文本。本包对它的自述含义为：允许为本次开源征集的评审、公开展示、教学与知识沉淀而复制与引用，须保留出处；不授予商业使用，不授予将本包内容表述为法定规划或政府决定的权利；第三方进一步使用时仍须自行核验其中每条外部来源的原始权利状态。
 
-构建溯源：自 v1.9 起全部载体使用同一版本印记，v1.11 已整体重刷为 `JING-ZHANG HANDOVER LINE / PACKAGE v1.11`（图纸另附页码）。此前正文、图纸 v1.6 与图件 v1.0 三套页脚并存的状态已不存在。成果时效以 manifest 的 sha256 与 changelog 为准，不以页脚数字为准。
+构建溯源：自 v1.9 起全部载体使用同一版本印记，v1.14 已整体重刷为 `JING-ZHANG HANDOVER LINE / PACKAGE v1.14`（图纸另附页码）。此前正文、图纸 v1.6 与图件 v1.0 三套页脚并存的状态已不存在。成果时效以 manifest 的 sha256 与 changelog 为准，不以页脚数字为准。
 
 v1.6 新增的 `visual/assets/governance/shift-ledger.schema.json` 为本方案原创的 JSON Schema Draft 2020-12 机器契约；`example-scn05-shift-ledger.json` 是合成、未执行且角色未授权的沙盒结构样例，不含个人数据，也不连接真实导航、政务、维护或告警服务。`validation-report.json` 仅记录 Schema 元模式与样例结构校验，不能据此声称路线、性能、安全、无障碍质量、法律合规、公众接受度或现场运行已经验证。
 

@@ -42,6 +42,12 @@
       "status": "pending_professional_confirmation",
       "statement": "全部指标由 geometry 几何层经 shapely 复算得到，指标口径（用地分类、范围、面积基准）依赖上文假设与 §5 指标定义。",
       "impact": "任何几何层或假设变更时须整体重跑复算脚本并同步 metrics.json 与核心指标展示，保证 METRICS_RECOMPUTED 自检通过。"
+    },
+    {
+      "id": "A-OSM-CHECK-001",
+      "status": "verified_discrepancy_disclosed",
+      "statement": "2026-08-11 用 OSM/Overpass 实况要素对本包临时边界做独立交叉核验（EPSG:4548）：OSM 测绘的京张铁路遗址公园（13.86 ha）与 SITE-001 不相交、最近距离约 412.5 m；与本包智脊绿道 RD-001 最近约 1051.6 m；大钟寺站在 SITE-001 界外约 82 m、距 KEY-003 质心约 1733 m；五道口站距 KEY-002 质心约 880 m。",
+      "impact": "本包智脊沿遗址廊道的空间关系、三芯与真实轨道站点的位置关系均为临时约束范围下的概念布局，与 OSM 实况存在公里级偏差；官方 polygon 发布后须以官方几何整体替换并重算全部图层与指标。该核验与社区 Issue #846、#1029 的发现一致，仅作偏差披露，不把 OSM 升级为正式依据。"
     }
   ]
 }

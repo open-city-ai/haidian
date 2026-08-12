@@ -1,0 +1,307 @@
+{
+ "schema_version": "0.1.0",
+ "units": {
+  "length": "m",
+  "area": "sqm"
+ },
+ "metrics": {
+  "site_area_sqm": {
+   "status": "known",
+   "value": 11412825.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "polygon_area(site_boundary, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional boundary per brief; official polygon triggers recomputation."
+   ]
+  },
+  "land_use_area_sqm": {
+   "status": "known",
+   "value": 11412844.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "sum(polygon_area(land_use, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Land-use partition fully covers the submitted boundary."
+   ]
+  },
+  "commercial_land_ratio": {
+   "status": "known",
+   "value": 0.1586,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(code=05) / site_area",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "residential_land_ratio": {
+   "status": "known",
+   "value": 0.2784,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(code=0701+0702) / site_area",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "rnd_land_ratio": {
+   "status": "known",
+   "value": 0.223,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(code=0802) / site_area",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "education_land_ratio": {
+   "status": "known",
+   "value": 0.0591,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/land_use.geojson"
+   ],
+   "formula": "area(code=0804) / site_area",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "building_footprint_area_sqm": {
+   "status": "known",
+   "value": 2420695.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/buildings.geojson"
+   ],
+   "formula": "sum(polygon_area(building_footprints, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual massing grid, not statutory building control."
+   ]
+  },
+  "building_density": {
+   "status": "known",
+   "value": 0.2121,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/buildings.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "building_footprint_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual density estimate; official conditions pending."
+   ]
+  },
+  "green_space_area_sqm": {
+   "status": "known",
+   "value": 2629839.4,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/green_space.geojson"
+   ],
+   "formula": "sum(polygon_area(green_space, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "green_ratio": {
+   "status": "known",
+   "value": 0.2304,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/green_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "green_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Includes heritage-park spine green band."
+   ]
+  },
+  "public_space_area_sqm": {
+   "status": "known",
+   "value": 594744.0,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/public_space.geojson"
+   ],
+   "formula": "sum(polygon_area(public_space, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": []
+  },
+  "public_space_ratio": {
+   "status": "known",
+   "value": 0.0521,
+   "unit": "ratio",
+   "source_files": [
+    "geometry/public_space.geojson",
+    "geometry/site_boundary.geojson"
+   ],
+   "formula": "public_space_area / site_area",
+   "confidence": "medium",
+   "assumptions": [
+    "Plaza cores at the three key areas."
+   ]
+  },
+  "road_centerline_length_m": {
+   "status": "known",
+   "value": 19063.0,
+   "unit": "m",
+   "source_files": [
+    "geometry/roads.geojson"
+   ],
+   "formula": "sum(line_length(roads, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Greenway spine + nine east-west connectors; not road redlines."
+   ]
+  },
+  "phasing_area_sqm": {
+   "status": "known",
+   "value": 11412805.3,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "sum(polygon_area(phasing zones, EPSG:4548))",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual phasing bands; official phasing pending."
+   ]
+  },
+  "key_area_count": {
+   "status": "known",
+   "value": 3,
+   "unit": "count",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "count(key_detailed_design_areas)",
+   "confidence": "high",
+   "assumptions": []
+  },
+  "zhongzhiyuan_area_sqm": {
+   "status": "known",
+   "value": 1929201.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygon; announced value 1,921,000 sqm."
+   ]
+  },
+  "beijing_ai_origin_community_area_sqm": {
+   "status": "known",
+   "value": 1043236.9,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygon; announced value 1,043,000 sqm."
+   ]
+  },
+  "dazhongsi_area_sqm": {
+   "status": "known",
+   "value": 720454.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/key_areas.geojson"
+   ],
+   "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Provisional polygon; announced value 720,000 sqm."
+   ]
+  },
+  "floor_area_ratio": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "total_floor_area / official_site_area",
+   "confidence": "unknown",
+   "reason": "Approved FAR controls and official boundary are not in the public site package.",
+   "required_for_formal_submission": true
+  },
+  "building_height_m": {
+   "status": "unknown",
+   "value": null,
+   "unit": "m",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "n/a",
+   "confidence": "unknown",
+   "reason": "Approved height controls pending official planning conditions.",
+   "required_for_formal_submission": true
+  },
+  "green_ratio_official": {
+   "status": "unknown",
+   "value": null,
+   "unit": "ratio",
+   "source_files": [
+    "brief/site-package/ranges/planning_limits.json"
+   ],
+   "formula": "n/a",
+   "confidence": "unknown",
+   "reason": "Statutory green ratio pending official planning conditions.",
+   "required_for_formal_submission": true
+  },
+  "phase_1_area_sqm": {
+   "status": "known",
+   "value": 1540039.6,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-001, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual phasing bands"
+   ]
+  },
+  "phase_2_area_sqm": {
+   "status": "known",
+   "value": 4723548.2,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-002, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual phasing bands"
+   ]
+  },
+  "phase_3_area_sqm": {
+   "status": "known",
+   "value": 5149217.5,
+   "unit": "sqm",
+   "source_files": [
+    "geometry/phasing.geojson"
+   ],
+   "formula": "polygon_area(PHASE-003, EPSG:4548)",
+   "confidence": "medium",
+   "assumptions": [
+    "Conceptual phasing bands"
+   ]
+  }
+ }
+}

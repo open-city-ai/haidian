@@ -220,13 +220,14 @@ language: "en"
 
 # English proposal
 
-English content.
+English content [source:SITE-PACKAGE] [standard:STD-001] [depth:DEPTH-001]
+[data:geometry/site_boundary.geojson#SITE] [metric:site_area_ha].
 
 # 中文正式译文
 
 ## 设计依据与资料清单
 
-中文内容。
+中文内容 [source:SITE-PACKAGE]。
 """,
                 encoding="utf-8",
             )
@@ -236,6 +237,15 @@ English content.
             self.assertIn('<html lang="en">', html)
             self.assertIn('<section lang="en">', html)
             self.assertIn('<section lang="zh-CN"><h1>中文正式译文</h1>', html)
+            self.assertIn('title="Source: SITE-PACKAGE">Source</sup>', html)
+            self.assertIn('title="Standard: STD-001">Standard</sup>', html)
+            self.assertIn('title="Depth: DEPTH-001">Depth</sup>', html)
+            self.assertIn(
+                'title="Spatial data: geometry/site_boundary.geojson#SITE">Spatial data</sup>',
+                html,
+            )
+            self.assertIn('title="Metric: site_area_ha">Metric</sup>', html)
+            self.assertIn('title="来源：SITE-PACKAGE">来源</sup>', html)
 
     def test_cli_renders_primary_and_standalone_translation(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
@@ -245,7 +255,7 @@ English content.
                 encoding="utf-8",
             )
             (submission_dir / "proposal.en.md").write_text(
-                '---\ntitle: "English Proposal"\nsummary: "English summary"\nlanguage: "en"\ntranslation_of: "proposal.md"\n---\n\n# English Proposal\n',
+                '---\ntitle: "English Proposal"\nsummary: "English summary"\nlanguage: "en"\ntranslation_of: "proposal.md"\n---\n\n# English Proposal\n\nEvidence [source:SITE-PACKAGE].\n',
                 encoding="utf-8",
             )
             completed = subprocess.run(
@@ -259,6 +269,8 @@ English content.
             translated = (submission_dir / "report" / "proposal.en.html").read_text(encoding="utf-8")
             self.assertIn('href="proposal.en.html"', primary)
             self.assertIn('href="proposal.html"', translated)
+            self.assertIn('title="Source: SITE-PACKAGE">Source</sup>', translated)
+            self.assertNotIn('>来源</sup>', translated)
 
     def test_cli_uses_relative_language_links_for_custom_output(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:

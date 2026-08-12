@@ -1,0 +1,88 @@
+{
+  "schema_version": "0.1.0",
+  "project_id": "centennial-jingzhang-ai-belt",
+  "proposal_id": "jingzhang-bell-code",
+  "note_zh": "缺资料清单（missing data checklist）。本清单登记全部待补资料缺口，官方数据到位后按 GAP 编号逐项复算更新。",
+  "gaps": [
+    {
+      "gap_id": "GAP-BOUNDARY-001",
+      "category": "边界",
+      "description_zh": "官方精确红线（SITE_BOUNDARY official polygon）未公开取得",
+      "status": "open",
+      "impact": "全部面积类图层与指标以 provisional 边界复算（偏差 0.02%–0.43%），不得作为官方红线或审批依据",
+      "resolution_plan": "官方 polygon 发布后整包复算；见 assumptions.json A-BOUNDARY-001"
+    },
+    {
+      "gap_id": "GAP-BOUNDARY-002",
+      "category": "边界",
+      "description_zh": "三处重点区域 official polygon 未公开取得",
+      "status": "open",
+      "impact": "key_areas/land_use 面积与分区结构为示意",
+      "resolution_plan": "官方发布后按新边界重绘三区图层"
+    },
+    {
+      "gap_id": "GAP-CONTROLS-001",
+      "category": "控规",
+      "description_zh": "容积率/建筑高度/密度/退线等控规条件未公开",
+      "status": "open",
+      "impact": "全部强度类指标 status=unknown，建筑规模按概念建议表达",
+      "resolution_plan": "以官方控规附件补齐；见 assumptions.json A-CONTROLS-001"
+    },
+    {
+      "gap_id": "GAP-BUILDINGS-001",
+      "category": "现状底数",
+      "description_zh": "现状建筑轮廓、高度、年代底数缺失",
+      "status": "open",
+      "impact": "建筑基底为概念示意肌理（139 栋），拆改留只给方向",
+      "resolution_plan": "以现状建筑底数替换或标注待补；见 assumptions.json A-BUILDINGS-001"
+    },
+    {
+      "gap_id": "GAP-OWNERSHIP-001",
+      "category": "权属",
+      "description_zh": "权属信息未公开",
+      "status": "open",
+      "impact": "更新项目清单与拆改留不涉及具体权属结论",
+      "resolution_plan": "官方权属数据到位后深化"
+    },
+    {
+      "gap_id": "GAP-HERITAGE-001",
+      "category": "文保",
+      "description_zh": "文保单位精确控制范围与文物事实待核实",
+      "status": "open",
+      "impact": "文保要素以示意点表达（confidence=low），文化叙事措辞保守",
+      "resolution_plan": "以文保部门公开资料核实；见 assumptions.json A-HERITAGE-001"
+    },
+    {
+      "gap_id": "GAP-HERITAGE-002",
+      "category": "文保",
+      "description_zh": "大钟寺（觉生寺）控制线范围未公开",
+      "status": "open",
+      "impact": "归钟广场与觉生寺协调区为示意边界",
+      "resolution_plan": "文物部门资料核实后更新 constraints.geojson"
+    },
+    {
+      "gap_id": "GAP-ROADS-001",
+      "category": "交通",
+      "description_zh": "道路红线与断面数据缺失",
+      "status": "open",
+      "impact": "路网为概念网格（60.5 km 复算），交通结论为方向性建议",
+      "resolution_plan": "以官方道路规划数据深化；见 assumptions.json A-ROADS-001"
+    },
+    {
+      "gap_id": "GAP-UTILITIES-001",
+      "category": "市政",
+      "description_zh": "市政管线底数缺失",
+      "status": "open",
+      "impact": "同频配电与管沟预留为概念方向",
+      "resolution_plan": "以官方市政管线资料深化"
+    },
+    {
+      "gap_id": "GAP-STANDARD-001",
+      "category": "标准",
+      "description_zh": "住建部建筑专业设计深度规定（2016）官方文件待取得",
+      "status": "open",
+      "impact": "该标准列为 data_gap 深化提醒项",
+      "resolution_plan": "取得官方文件后启用；见 standard_matrix.json MOHURD-ARCH-DESIGN-DEPTH-2016"
+    }
+  ]
+}

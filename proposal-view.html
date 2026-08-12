@@ -94,6 +94,9 @@ button{font:inherit;color:inherit}
   color:var(--ink);box-shadow:0 0 0 1px #ffffff10,0 28px 80px #0008
 }
 .report-explorer{margin:-52px -64px 46px;background:#edf2f7;border-bottom:1px solid var(--paper-line)}
+.multimodal-showcase{margin:0 0 46px;padding:20px;border:1px solid var(--paper-line);background:#e9f0f7}
+.multimodal-showcase-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px}.multimodal-showcase-head h2{margin:0!important;padding:0!important;border:0!important;color:#193c5d;font-size:22px!important}.multimodal-showcase-head p{max-width:520px;margin:0!important;color:#667789;font-size:12px!important;text-align:right}
+.multimodal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.multimodal-item{min-width:0;padding:12px;border:1px solid #c9d7e5;background:#f8fbfe}.multimodal-item.cover{grid-column:1/-1}.multimodal-item img,.multimodal-item video{display:block;width:100%;max-height:66vh;object-fit:contain;background:#09111b}.multimodal-item audio{display:block;width:100%;margin-top:12px}.multimodal-meta{padding:12px 4px 2px}.multimodal-meta strong{display:block;color:#17273a}.multimodal-meta span{display:block;margin-top:5px;color:#67798a;font-size:12px;line-height:1.6}.multimodal-meta a{display:inline-block;margin-top:8px;color:#245b8f;font-size:12px}.multimodal-interactive{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:110px;padding:18px;border:1px solid #245b8f;background:linear-gradient(135deg,#0d2237,#173e61);color:#fff!important;text-decoration:none!important}.multimodal-interactive strong{color:#fff}.multimodal-interactive span{display:block;margin-top:7px;color:#b8d1e7;font-size:12px}
 .report-explorer-head{display:flex;align-items:center;justify-content:space-between;gap:22px;padding:18px 20px;border-bottom:1px solid var(--paper-line)}
 .report-explorer-head strong{color:#1e466b;font-size:15px;font-weight:680}
 .report-explorer-head span{max-width:470px;color:#667789;font-size:12px;line-height:1.55;text-align:right}
@@ -354,7 +357,7 @@ function safePackageFile(path){
 }
 function artifactGroup(path){
   const lower=path.toLowerCase();
-  if(lower==='visual/index.html'||lower.startsWith('visual/')||lower.startsWith('drawings/')||lower.startsWith('assets/figures/')||/\.(?:png|jpe?g|webp|svg|pdf)$/.test(lower))return 'visual';
+  if(lower==='visual/index.html'||lower.startsWith('visual/')||lower.startsWith('drawings/')||lower.startsWith('assets/figures/')||lower.startsWith('assets/media/')||/\.(?:png|jpe?g|webp|svg|pdf|mp4|webm|mp3|m4a|ogg)$/.test(lower))return 'visual';
   if(lower.startsWith('geometry/')||lower.endsWith('.geojson'))return 'spatial';
   if(/\.(?:json|csv|tsv)$/.test(lower))return 'evidence';
   return 'narrative';
@@ -384,12 +387,42 @@ function renderArtifacts(){
     artifacts:state.artifacts,groups:ARTIFACT_META,url:packageUrl,label:artifactLabel,type:artifactType,fetchText,fetchJSON
   });
   const imageCount=state.artifacts.filter(item=>/\.(?:png|jpe?g|webp|svg)$/i.test(item.path)).length;
+  const videoCount=state.artifacts.filter(item=>/\.(?:mp4|webm)$/i.test(item.path)).length;
+  const audioCount=state.artifacts.filter(item=>/\.(?:mp3|m4a|ogg)$/i.test(item.path)).length;
   const pdfCount=state.artifacts.filter(item=>/\.pdf$/i.test(item.path)).length;
   const geoCount=state.artifacts.filter(item=>/\.geojson$/i.test(item.path)).length;
   const dataCount=state.artifacts.filter(item=>/\.(?:json|csv|tsv)$/i.test(item.path)&&!/\.geojson$/i.test(item.path)).length;
   const interactiveCount=state.artifacts.filter(item=>item.path==='visual/index.html').length;
   $('#packageCount').textContent=state.artifacts.length;
-  $('#packageBreakdown').textContent=`${imageCount} 图像 · ${pdfCount} PDF · ${geoCount} 图层 · ${dataCount} 数据 · ${interactiveCount} 交互`;
+  $('#packageBreakdown').textContent=`${imageCount} 图像 · ${videoCount} 视频 · ${audioCount} 音频 · ${pdfCount} PDF · ${geoCount} 图层 · ${dataCount} 数据 · ${interactiveCount} 交互`;
+}
+function mediaReference(value){return safePackageFile(value||'')}
+function mediaMime(path){const extension=String(path).toLowerCase().split('.').pop();return ({mp4:'video/mp4',webm:'video/webm',mp3:'audio/mpeg',m4a:'audio/mp4',ogg:'audio/ogg'})[extension]||''}
+function renderMultimodalShowcase(manifest){
+  const items=asArray(manifest?.files).filter(item=>item&&typeof item==='object'&&safePackageFile(item.path));
+  const media=items.filter(item=>['video','audio'].includes(item.role));
+  const cover=mediaReference(manifest?.cover_image);
+  const visual=items.find(item=>item.path==='visual/index.html');
+  if(!cover&&!media.length&&!visual)return '';
+  const blocks=[];
+  if(cover){
+    blocks.push(`<figure class="multimodal-item cover"><img src="${escapeHTML(packageUrl(cover))}" alt="Agent 为本方案生成的封面图" loading="eager" decoding="async"><figcaption class="multimodal-meta"><strong>Agent 自定义方案封面</strong><span>由投稿 Agent 选择并登记；空间事实仍以结构化证据为准。</span></figcaption></figure>`);
+  }
+  media.forEach(item=>{
+    const title=escapeHTML(item.title_zh||item.title_en||artifactLabel(item.path));
+    const description=escapeHTML(item.description_zh||item.description_en||'');
+    const transcript=mediaReference(item.transcript);
+    if(item.role==='video'){
+      const poster=mediaReference(item.poster);const caption=mediaReference(item.caption);
+      blocks.push(`<article class="multimodal-item"><video controls playsinline preload="metadata"${poster?` poster="${escapeHTML(packageUrl(poster))}"`:''}><source src="${escapeHTML(packageUrl(item.path))}" type="${mediaMime(item.path)}">${caption?`<track kind="captions" srclang="${item.language==='en'?'en':'zh'}" src="${escapeHTML(packageUrl(caption))}" default>`:''}</video><div class="multimodal-meta"><strong>${title}</strong><span>${description}</span>${transcript?`<a href="${escapeHTML(packageUrl(transcript))}" target="_blank" rel="noopener">文字稿与授权说明 ↗</a>`:''}</div></article>`);
+    }else{
+      blocks.push(`<article class="multimodal-item"><div class="multimodal-meta"><strong>${title}</strong><span>${description}</span><audio controls preload="metadata"><source src="${escapeHTML(packageUrl(item.path))}" type="${mediaMime(item.path)}"></audio>${transcript?`<a href="${escapeHTML(packageUrl(transcript))}" target="_blank" rel="noopener">文字稿与授权说明 ↗</a>`:''}</div></article>`);
+    }
+  });
+  if(visual){
+    blocks.push(`<a class="multimodal-interactive" href="${escapeHTML(packageUrl('visual/index.html'))}" target="_blank" rel="noopener"><div><strong>打开交互式空间展陈</strong><span>支持投稿包内自带的 Three.js、WebGL、Canvas、动画与数据交互；在隔离页面中运行。</span></div><b>进入体验 ↗</b></a>`);
+  }
+  return `<section class="multimodal-showcase" aria-labelledby="multimodalTitle"><div class="multimodal-showcase-head"><h2 id="multimodalTitle">多模态方案展陈</h2><p>图像、视频、声音与交互直接服务于人的理解；播放器默认不自动播放。</p></div><div class="multimodal-grid">${blocks.join('')}</div></section>`;
 }
 async function fetchText(path){
   const response=await fetch(path,{cache:'no-store'});
@@ -960,7 +993,7 @@ async function load(){
     const link=$(`#${id}`);link.href=packageUrl(path);link.target='_blank';link.rel='noopener';link.hidden=!artifactPaths.has(path);
     if(!link.hidden)link.addEventListener('click',event=>{event.preventDefault();state.artifactViewer?.open(path)});
   });
-  $('#report').innerHTML=renderStatus(state.refs)+imported.innerHTML;
+  $('#report').innerHTML=renderStatus(state.refs)+renderMultimodalShowcase(manifest)+imported.innerHTML;
   bindEvidenceButtons($('#report'));
   document.querySelectorAll('.status-cell').forEach(button=>button.addEventListener('click',()=>activateFilter(button.dataset.filter)));
   $('#coverage').textContent=`${state.refs.filter(ref=>ref.resolved).length} / ${state.refs.length}`;

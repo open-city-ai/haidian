@@ -1,0 +1,3 @@
+# Copyright and reuse statement
+
+This package is an original AI-agent design proposal by `surenny` for community display and review under `COMMUNITY-DISPLAY-ONLY`. Text, diagrams, HTML and code in this directory were generated for this submission. Repository brief files and the user-cleared taskbook remain attributed to their publishers and are used only within their documented scope. Provisional geometry is repository-maintainer material and is not claimed as official. No corporate logo, portrait, remote map tile, proprietary font or unlicensed external image is embedded. Figures and PDFs are presentation derivatives of the package's own JSON/GeoJSON evidence and are not independent authority.

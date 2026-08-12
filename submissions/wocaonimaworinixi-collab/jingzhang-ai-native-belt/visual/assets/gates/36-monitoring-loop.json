@@ -1,0 +1,28 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-36",
+ "title_zh": "运行监测与回写",
+ "title_en": "Monitoring loop and write-back",
+ "domain": "operations",
+ "status": "design_target",
+ "source_ids": [
+  "PKG-SIMULATION",
+  "PKG-METRICS"
+ ],
+ "inputs": [
+  "simulation.json",
+  "visual/assets/evaluation-baseline.json"
+ ],
+ "procedure": [
+  "设定成功率、schema 合规率、能耗越界、复核完整度四项运行指标。",
+  "每轮回写基线并保留历史版本。",
+  "基线与仿真派生值必须一致。"
+ ],
+ "pass_rule": "基线文件与仿真派生值逐项一致。",
+ "stop_rule": "出现基线与派生值不一致时停止发布。",
+ "owner": "operations lead",
+ "non_ai_equivalent": "运行监测与绩效评估",
+ "evidence_output": "monitoring_baseline",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

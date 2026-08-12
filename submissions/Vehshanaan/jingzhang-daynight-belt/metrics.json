@@ -1,0 +1,556 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary)",
+      "confidence": "high",
+      "value": 11412825.386,
+      "assumptions": [
+        "Submitted boundary is explicitly provisional; calculated area is a working value for intake comparison, not an official scoring area."
+      ]
+    },
+    "key_detailed_design_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "sum(polygon_area(key_area_features))",
+      "confidence": "high",
+      "value": 3692893.005,
+      "assumptions": [
+        "Key-area polygons are provisional (provisional_constraint), from the maintainer provisional set."
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "value": 3,
+      "assumptions": []
+    },
+    "zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(zhongzhiyuan_ai_acceleration_area)",
+      "confidence": "medium",
+      "value": 1929201.877,
+      "assumptions": [
+        "Provisional polygon; announced area 192.1 ha is official text."
+      ]
+    },
+    "beijing_ai_origin_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(beijing_ai_origin_community)",
+      "confidence": "medium",
+      "value": 1043236.909,
+      "assumptions": [
+        "Provisional polygon; announced area 104.3 ha is official text."
+      ]
+    },
+    "dazhongsi_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(dazhongsi_ai_industry_cluster)",
+      "confidence": "medium",
+      "value": 720454.219,
+      "assumptions": [
+        "Provisional polygon; announced area 72.0 ha is official text."
+      ]
+    },
+    "land_use_polygon_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "value": 75,
+      "assumptions": [
+        "Exact partition of the submitted boundary: no gaps, no overlaps (within 1e-6 sqm projection tolerance)."
+      ]
+    },
+    "land_use_residential_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0701))",
+      "confidence": "medium",
+      "value": 186509.951,
+      "assumptions": []
+    },
+    "land_use_research_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0802))",
+      "confidence": "medium",
+      "value": 669675.518,
+      "assumptions": []
+    },
+    "land_use_culture_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0803))",
+      "confidence": "medium",
+      "value": 1052550.051,
+      "assumptions": []
+    },
+    "land_use_commercial_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=05))",
+      "confidence": "medium",
+      "value": 2689712.937,
+      "assumptions": []
+    },
+    "land_use_education_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0804))",
+      "confidence": "medium",
+      "value": 875625.536,
+      "assumptions": []
+    },
+    "land_use_medical_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0806))",
+      "confidence": "medium",
+      "value": 190625.495,
+      "assumptions": []
+    },
+    "land_use_sport_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0805))",
+      "confidence": "medium",
+      "value": 406025.077,
+      "assumptions": [
+        "Youth sport land (0805) is a youth-friendly public-space addition over the first proposal."
+      ]
+    },
+    "land_use_community_service_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=0702))",
+      "confidence": "medium",
+      "value": 201720.017,
+      "assumptions": [
+        "Community service land (0702) hosts co-working and 24h youth service nodes."
+      ]
+    },
+    "land_use_road_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=1207))",
+      "confidence": "medium",
+      "value": 1872516.001,
+      "assumptions": []
+    },
+    "land_use_green_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=1401))",
+      "confidence": "medium",
+      "value": 2997864.802,
+      "assumptions": []
+    },
+    "land_use_plaza_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area(code=1403))",
+      "confidence": "medium",
+      "value": 270000.0,
+      "assumptions": []
+    },
+    "green_ratio": {
+      "status": "known",
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_area / site_area",
+      "confidence": "medium",
+      "value": 0.263,
+      "assumptions": [
+        "Calculated on provisional boundary; not a statutory green ratio."
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "plaza_area / site_area",
+      "confidence": "medium",
+      "value": 0.024,
+      "assumptions": [
+        "Public space expressed as plaza land (1403); park green is in green_ratio."
+      ]
+    },
+    "sport_land_ratio": {
+      "status": "known",
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "sport_land_area / site_area",
+      "confidence": "medium",
+      "value": 0.036,
+      "assumptions": [
+        "Youth sport land ratio; concept-level, not a statutory sports-facility standard."
+      ]
+    },
+    "road_ratio": {
+      "status": "known",
+      "unit": "ratio",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_area / site_area",
+      "confidence": "medium",
+      "value": 0.164,
+      "assumptions": [
+        "Road land-use cells are concept-level; not road redlines."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area(building_footprints))",
+      "confidence": "medium",
+      "value": 291383.987,
+      "assumptions": []
+    },
+    "building_footprint_ratio": {
+      "status": "known",
+      "unit": "ratio",
+      "source_files": [
+        "geometry/buildings.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "building_footprint_area / site_area",
+      "confidence": "medium",
+      "value": 0.026,
+      "assumptions": [
+        "Concept-level footprints only; not a statutory building coverage ratio."
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(building_features)",
+      "confidence": "medium",
+      "value": 34,
+      "assumptions": []
+    },
+    "green_space_feature_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "count(green_space_features)",
+      "confidence": "medium",
+      "value": 15,
+      "assumptions": []
+    },
+    "public_space_feature_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(public_space_features incl. youth nodes)",
+      "confidence": "medium",
+      "value": 6,
+      "assumptions": [
+        "Count includes the three youth 24h nodes (SCENARIO_NODE) in public_space.geojson."
+      ]
+    },
+    "youth_landmark_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(SCENARIO_NODE youth landmarks)",
+      "confidence": "high",
+      "value": 3,
+      "assumptions": []
+    },
+    "youth_24h_node_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(node_role=24h_youth_landmark)",
+      "confidence": "high",
+      "value": 3,
+      "assumptions": []
+    },
+    "road_centerline_length_m": {
+      "status": "known",
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "projected_length(road_centerlines, EPSG:4548)",
+      "confidence": "medium",
+      "value": 23584.012,
+      "assumptions": [
+        "Centerlines are concept-level design lines, not road redlines."
+      ]
+    },
+    "spine_length_m": {
+      "status": "known",
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "projected_length(design_role=north_south_spine, EPSG:4548)",
+      "confidence": "medium",
+      "value": 9723.47,
+      "assumptions": [
+        "Spine metric counts only the heritage park 24h greenway spine (single north-south line), distinct from the full conceptual road network."
+      ]
+    },
+    "phase_p1_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase P1)",
+      "confidence": "medium",
+      "value": 3907456.248,
+      "assumptions": []
+    },
+    "phase_p2_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase P2)",
+      "confidence": "medium",
+      "value": 3962822.546,
+      "assumptions": []
+    },
+    "phase_p3_area_sqm": {
+      "status": "known",
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "polygon_area(phase P3)",
+      "confidence": "medium",
+      "value": 3542546.591,
+      "assumptions": []
+    },
+    "total_floor_area_sqm": {
+      "status": "unknown",
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "sum(floor_area_by_building)",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [],
+      "reason": "Approved FAR controls, official floor area data and official boundary are not present in the public site package."
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [],
+      "reason": "Approved FAR controls are not present in the public site package; pending official regulatory conditions."
+    },
+    "building_height_control_m": {
+      "status": "unknown",
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_height_control",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [],
+      "reason": "Official height controls are missing; pending regulatory conditions or design brief attachments."
+    },
+    "green_ratio_official_control": {
+      "status": "unknown",
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "official_green_ratio_control",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [],
+      "reason": "Official green ratio controls are missing; pending approved regulatory conditions."
+    },
+    "public_space_per_capita_sqm": {
+      "status": "unknown",
+      "unit": "sqm",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "youth_public_space_area / service_population",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [
+        "Serving youth and night-time active populations along the belt; population basis not declared."
+      ],
+      "reason": "No official resident/employee population baseline is published; the per-capita public-space indicator is pending official population data."
+    },
+    "night_lighting_coverage_ratio": {
+      "status": "unknown",
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "lit_public_space_length / total_public_space_length",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [
+        "24h lighting principle only; lighting inventory and brightness standards pending."
+      ],
+      "reason": "No municipal lighting inventory or brightness standard is published; the night-lighting coverage indicator is pending official data."
+    },
+    "youth_facility_24h_ratio": {
+      "status": "unknown",
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "24h_open_youth_facilities / total_youth_facilities",
+      "confidence": "unknown",
+      "value": null,
+      "assumptions": [
+        "24h opening depends on operators and business models, not a spatial constant."
+      ],
+      "reason": "24h opening ratio is an operational decision by operators and public bodies, not a spatial constant; no target is asserted."
+    },
+    "scenario_card_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(youth scenario cards in proposal)",
+      "confidence": "high",
+      "value": 12,
+      "assumptions": [
+        "12 scenario cards include 3 test/validation scenarios and 9 everyday youth-life scenarios."
+      ]
+    },
+    "user_persona_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(youth personas in proposal)",
+      "confidence": "high",
+      "value": 6,
+      "assumptions": []
+    },
+    "ai_landmark_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(youth pilgrimage landmarks in proposal)",
+      "confidence": "high",
+      "value": 3,
+      "assumptions": []
+    },
+    "case_study_count": {
+      "status": "known",
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(global youth-friendly city case studies in proposal)",
+      "confidence": "high",
+      "value": 6,
+      "assumptions": []
+    }
+  }
+}

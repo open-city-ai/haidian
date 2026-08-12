@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.1.0",
+  "checks": [
+    {
+      "check_id": "BOUNDARY_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/site_boundary.geojson",
+      "message": "Provisional boundary is present; recalculate when official redline is supplied. Provisional geometry does not block content scoring."
+    },
+    {
+      "check_id": "KEY_AREAS_TRUST",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/key_areas.geojson",
+      "message": "Three required key areas are provisional; recalculate when official polygons are supplied. Provisional geometry does not block content scoring."
+    },
+    {
+      "check_id": "LAND_USE_TOPOLOGY",
+      "result": "pass",
+      "severity": "major",
+      "target": "geometry/land_use.geojson",
+      "message": "Initial land-use polygons are derived from site boundary partitioning."
+    },
+    {
+      "check_id": "VISUAL_STATIC",
+      "result": "pass",
+      "severity": "info",
+      "target": "visual/index.html",
+      "message": "Static HTML visualization is generated without external dependencies."
+    },
+    {
+      "check_id": "PROFESSIONAL_EVIDENCE",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "proposal.md",
+      "message": "Proposal includes references to standards, design depth items, geometry, metrics, sources, and assumptions."
+    },
+    {
+      "check_id": "DETERMINISTIC_VALIDATION",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "self_check.json",
+      "message": "Deterministic validation passed"
+    },
+    {
+      "check_id": "SPATIAL_REVIEW",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "self_check.json",
+      "message": "Spatial review passed"
+    },
+    {
+      "check_id": "VISUAL_PACKAGING",
+      "result": "pass",
+      "severity": "blocking",
+      "target": "self_check.json",
+      "message": "Visual packaging check passed"
+    }
+  ],
+  "ok": true,
+  "can_enter_formal_review": true,
+  "review_status": "pending-professional-review"
+}

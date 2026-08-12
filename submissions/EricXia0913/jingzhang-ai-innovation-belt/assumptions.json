@@ -1,0 +1,54 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "assumption_type": "regulatory_control_pending",
+      "statement": "总体设计范围缺少已公开的法定控制性详细规划控制条件（容积率、建筑高度、建筑密度、退线、道路红线、设施标准等），开发强度相关结论待正式控规文件发布并经专业确认后复算。",
+      "impact": "容积率、高度、密度等法定指标一律保持 unknown 并以概念值（conceptual_far 等）呈现；控规条件补齐前，涉及强度与红线的设计内容仅作为概念建议，不得用于审批或评分结论。"
+    },
+    {
+      "id": "A-BOUNDARY-001",
+      "status": "active",
+      "assumption_type": "provisional_geometry",
+      "statement": "提交包 geometry/site_boundary.geojson 与 geometry/key_areas.geojson 基于维护者推定的临时粗略边界（DATA-SRC-PROVISIONAL-BOUNDARIES-20260605）生成，官方红线尚未在公开渠道获得。",
+      "impact": "临时边界不得用于官方红线、审批依据或精确面积计算；官方边界发布后，用地、建筑、道路、绿地、公共空间、分期图层与全部面积指标必须整体重算，不能只替换单个文件。"
+    },
+    {
+      "id": "A-BUILDINGS-001",
+      "status": "limited",
+      "assumption_type": "data_gap",
+      "statement": "现状建筑基底、权属、建筑年代与结构信息缺失，geometry/buildings.geojson 表达的是概念建筑基底（约20.5万㎡）而非实测现状底数。",
+      "impact": "拆改留分类只能提供方法与待校准清单，不能编造具体拆改结论；建筑规模与风貌控制结论均为概念建议，待现状底数与权属资料补齐后校准。"
+    },
+    {
+      "id": "A-ROAD-001",
+      "status": "active",
+      "assumption_type": "conceptual_design",
+      "statement": "geometry/roads.geojson 为概念路网与慢行组织，不代表道路红线、断面或工程定线；跨环路慢行节点与轨道一体化方案为设计建议。",
+      "impact": "道路、慢行与停车相关结论仅作为临时设计讨论；道路红线、管线、消防与市政条件缺失，正式深化前需以官方道路与市政资料复核。"
+    },
+    {
+      "id": "A-HERITAGE-001",
+      "status": "pending_professional_confirmation",
+      "assumption_type": "heritage_verification_pending",
+      "statement": "京张铁路相关文保单位（如清华园火车站）的保护范围与建设控制地带尚未取得官方图件核实，风貌与历史文化表达基于公开资料。",
+      "impact": "涉及文保范围的风貌、高度与场景设计均按概念建议表达并明确待确认；文保图件核实后须调整相关控制表述，严禁在无文保依据时给出伪精确控制线。"
+    },
+    {
+      "id": "A-ECOSYSTEM-001",
+      "status": "limited",
+      "assumption_type": "reference_review",
+      "statement": "生态与蓝绿空间结论（绿地率约37.1%、公共空间占比约2.8%）依据概念图层复算与公开案例资料综述，非官方生态控制指标或环评结论。",
+      "impact": "蓝绿系统指标仅供设计讨论与展示；河道蓝线、防洪与生态管控条件补齐前，绿地率等数值不得作为法定生态指标引用。"
+    },
+    {
+      "id": "A-OPERATION-001",
+      "status": "limited",
+      "assumption_type": "conceptual_operation",
+      "statement": "全球AI创新活动体系、开发者社区运营、场景开放日、朝圣路线与长期运营机制均为概念建议与参考方案，不构成已确定的政府活动或实施安排。",
+      "impact": "运营与活动内容不承担实施承诺；涉及公共空间许可、活动安全与版权清权的部分已列入项目依赖条件，正式推进前需另行取得授权与许可。"
+    }
+  ]
+}

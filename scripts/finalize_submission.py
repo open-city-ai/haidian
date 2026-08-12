@@ -10,6 +10,7 @@ from pathlib import Path
 
 from validate_submission import (
     DISPLAY_BASE_FILES,
+    PERSISTED_READINESS_CONTRACT,
     is_empty_pdf,
     localized_path,
     parse_front_matter,
@@ -131,6 +132,7 @@ def main() -> int:
     manifest["package_state"] = "ready_for_review"
     claim = manifest.get("validation_claim")
     if isinstance(claim, dict):
+        claim["readiness_contract"] = PERSISTED_READINESS_CONTRACT
         claim["self_checked"] = False
         claim["known_blockers"] = [
             item for item in claim.get("known_blockers", [])
@@ -174,7 +176,7 @@ def main() -> int:
             item["sha256"] = digest(root / rel)
     manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"Review-ready package: {root}")
-    print("Run self_check_submission.py now. Any later file edit requires refreshed manifest hashes and another full validation.")
+    print("Run self_check_submission.py --mark-self-checked --json now; it records the four-gate report and refreshes self_check.json's manifest hash. Any later file edit requires refreshed manifest hashes and another full validation.")
     return 0
 
 

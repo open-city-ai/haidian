@@ -11,17 +11,26 @@ const packageFiles = {
   metrics: path.join(packageRoot, "metrics.json"),
   sources: path.join(packageRoot, "sources.json"),
   depth: path.join(packageRoot, "design_depth_matrix.json"),
-  standards: path.join(packageRoot, "standard_matrix.json")
+  standards: path.join(packageRoot, "standard_matrix.json"),
+  navigation: path.join(directory, "reviewer-navigation-index.json")
 };
 
 const metrics = JSON.parse(fs.readFileSync(packageFiles.metrics, "utf8"));
 const sources = JSON.parse(fs.readFileSync(packageFiles.sources, "utf8"));
 const depth = JSON.parse(fs.readFileSync(packageFiles.depth, "utf8"));
 const standards = JSON.parse(fs.readFileSync(packageFiles.standards, "utf8"));
+const navigation = JSON.parse(fs.readFileSync(packageFiles.navigation, "utf8"));
 const registries = {
   metric: new Set(Object.keys(metrics.metrics || {})),
   source: new Set((sources.sources || []).map((entry) => entry.id)),
-  depth: new Set((depth.items || []).map((entry) => entry.item_id)),
+  // `depth:` is also used for an explicitly registered reviewer dimension
+  // when the cited text is a rubric-facing evidence route rather than one of
+  // the professional design-depth rows. Keep the alias package-local and
+  // fail closed for every other unregistered reference.
+  depth: new Set([
+    ...(depth.items || []).map((entry) => entry.item_id),
+    ...(navigation.rubric_dimensions || []).map((entry) => entry.dimension_id)
+  ]),
   standard: new Set((standards.standards || []).map((entry) => entry.standard_id))
 };
 const geometryFeatureIds = new Map();
@@ -80,7 +89,8 @@ const byKind = Object.fromEntries(["metric", "source", "data", "depth", "standar
 }));
 const negativeSamples = [
   { id: "unknown-metric", reference: "metric:NOT-IN-METRICS", pass: !resolves("metric", "NOT-IN-METRICS") },
-  { id: "unknown-spatial-feature", reference: "data:geometry/site_boundary.geojson#NOT-IN-GEOJSON", pass: !resolves("data", "geometry/site_boundary.geojson#NOT-IN-GEOJSON") }
+  { id: "unknown-spatial-feature", reference: "data:geometry/site_boundary.geojson#NOT-IN-GEOJSON", pass: !resolves("data", "geometry/site_boundary.geojson#NOT-IN-GEOJSON") },
+  { id: "unknown-depth", reference: "depth:NOT-IN-REGISTERED-DEPTH", pass: !resolves("depth", "NOT-IN-REGISTERED-DEPTH") }
 ];
 
 const result = {
@@ -94,7 +104,7 @@ const result = {
   by_kind: byKind,
   unresolved,
   negative_samples: negativeSamples,
-  scope_note: "Resolves only package-local metric/source/data/depth/standard markers. It does not verify the truth of a claim, the authority of a source, or field/operational performance."
+  scope_note: "Resolves only package-local metric/source/data/depth/standard markers; depth accepts design-depth item IDs and explicitly registered reviewer-dimension IDs. It does not verify the truth of a claim, the authority of a source, or field/operational performance."
 };
 
 fs.writeFileSync(outputPath, `${JSON.stringify(result, null, 2)}\n`, "utf8");

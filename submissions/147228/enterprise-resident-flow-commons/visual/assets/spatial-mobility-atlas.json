@@ -1,0 +1,167 @@
+{
+  "schema_version": "1.0-spatial-mobility-atlas",
+  "screen_id": "MOB-SPATIAL-DECISION-001",
+  "status": "synthetic_decision_layer_not_field_plan",
+  "purpose_zh": "把合成群组仿真信号翻译成重点区、时段和责任角色可复核的空间动作。",
+  "purpose_en": "Translate synthetic group-screen signals into reviewable spatial actions by key area, time window and accountable role.",
+  "population_reference": {
+    "value": 3122000,
+    "unit": "synthetic_agents_reference",
+    "source_id": "HAIDIAN-POPULATION-2024",
+    "boundary": "This is a scale reference for a synthetic replay, not a local trip count or survey."
+  },
+  "geometry_boundary": {
+    "status": "provisional_constraint",
+    "key_area_ids": ["PROV-KEY-001", "PROV-KEY-002", "PROV-KEY-003"],
+    "source": "geometry/key_areas.geojson",
+    "anchor_caveat": "PROV-KEY-003 remains an inherited provisional polygon and is not a Dazhongsi station buffer."
+  },
+  "policy": {
+    "backbone": ["metro", "bus"],
+    "supplemental_modes": ["bicycle", "walking_wheelchair", "car", "enterprise_shuttle", "logistics"],
+    "air_status": "blocked",
+    "air_agents": 0,
+    "release_rule": "Synthetic screening can propose a review question. A named professional and dated local evidence must release a spatial action."
+  },
+  "windows": [
+    {"id": "AM_ARRIVAL", "label_zh": "早到岗", "label_en": "AM arrival", "time_window": "07:00-10:00", "primary_groups": ["enterprise_employee", "cross_boundary_commuter"]},
+    {"id": "MIDDAY_SERVICE", "label_zh": "日间服务", "label_en": "Midday service", "time_window": "10:00-16:00", "primary_groups": ["resident", "care_child", "visitor", "logistics"]},
+    {"id": "PM_RETURN", "label_zh": "晚高峰回程", "label_en": "PM return", "time_window": "16:00-20:00", "primary_groups": ["resident", "enterprise_employee", "cross_boundary_commuter"]},
+    {"id": "NIGHT_RETURN", "label_zh": "夜班回家", "label_en": "Night return", "time_window": "20:00-23:30", "primary_groups": ["night_shift", "accessible_older", "logistics"]}
+  ],
+  "decision_contract": {
+    "model_can_do": ["rank declared synthetic counterfactuals", "expose mode competition and worst-group guards", "identify missing evidence before a pilot"],
+    "human_must_decide": ["whether a curb or route change is safe and lawful", "whether an accessible equivalent route is present", "whether a named operator can staff and restore the service", "whether local residents and affected operators have been heard"],
+    "cannot_claim": ["field demand", "resident satisfaction", "professional approval", "operating permit", "public acceptance", "official geometry", "gallery score or promotion"]
+  },
+  "hard_guards": {
+    "public_backbone_required": true,
+    "max_feeder_share": 0.08,
+    "max_worst_group_access_delta": -0.05,
+    "air_agents_must_be_zero": true,
+    "accessible_fallback_required": true,
+    "required_evidence_before_release": ["dated grouped OD or count", "route and curb safety review", "accessibility continuity check", "named owner and restoration path"]
+  },
+  "cells": [
+    {
+      "id": "ATLAS-001", "key_area_id": "PROV-KEY-001", "key_area_name_zh": "众智园", "key_area_name_en": "Zhongzhiyuan", "window_id": "AM_ARRIVAL",
+      "spatial_problem_zh": "企业到岗、班车并入和站口步行在同一早高峰争用路缘。", "spatial_problem_en": "Enterprise arrival, feeder merging and station-side walking compete for the same morning curb.",
+      "backbone_modes": ["metro", "bus"], "support_modes": ["enterprise_shuttle", "bicycle", "walking_wheelchair"],
+      "synthetic_screen": {"transit_index": 0.98, "feeder_share": 0.04, "vehicle_km_ratio": 0.91, "worst_group_access_delta": -0.01, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "只把企业候车、骑行停放和装卸划成短时可清场窗口，保留连续人行线和消防净空。", "spatial_action_en": "Mark short, clearable windows for enterprise waiting, bicycle parking and loading while preserving the continuous footway and fire clearance.",
+      "human_decision_question_zh": "现场交通与无障碍复核能否证明班车窗口不会切断公共路线？", "human_decision_question_en": "Can field traffic and accessibility review show that the feeder window will not cut the public route?",
+      "decision_owner": ["enterprise_transport_coordinator", "transit_operator", "accessibility_reviewer", "curb_maintenance"], "release": "conditional_review",
+      "stop_condition": "Stop and return to metro, bus and human guidance if the accessible route or fire clearance is interrupted.", "required_evidence": ["AM grouped count", "curb clearance log", "accessible route audit"]
+    },
+    {
+      "id": "ATLAS-002", "key_area_id": "PROV-KEY-001", "key_area_name_zh": "众智园", "key_area_name_en": "Zhongzhiyuan", "window_id": "MIDDAY_SERVICE",
+      "spatial_problem_zh": "装卸、访客和居民经过性步行需要同一条企业边界。", "spatial_problem_en": "Loading, visitors and through-walking share the enterprise edge during service hours.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["logistics", "car", "bicycle"],
+      "synthetic_screen": {"transit_index": 0.97, "feeder_share": 0.03, "vehicle_km_ratio": 0.89, "worst_group_access_delta": -0.02, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "把装卸预约和访客下客放进可撤回时窗，设置人工引导和不依赖 App 的路缘牌。", "spatial_action_en": "Place loading and visitor drop-off inside reversible windows with human guidance and curb signs that do not depend on an app.",
+      "human_decision_question_zh": "责任人、清场时限和投诉回写是否已经在现场可执行？", "human_decision_question_en": "Are an owner, clearing time and complaint writeback executable on site?",
+      "decision_owner": ["enterprise_transport_coordinator", "logistics_operator", "community_liaison", "curb_maintenance"], "release": "hold",
+      "stop_condition": "Hold the window if delivery or visitor queues spill into the accessible route or public road.", "required_evidence": ["loading count", "service window trial", "complaint and clearance receipt"]
+    },
+    {
+      "id": "ATLAS-003", "key_area_id": "PROV-KEY-001", "key_area_name_zh": "众智园", "key_area_name_en": "Zhongzhiyuan", "window_id": "PM_RETURN",
+      "spatial_problem_zh": "企业下班、班车回程和社区方向步行在入口形成反向冲突。", "spatial_problem_en": "Enterprise release, feeder return trips and community-bound walking create opposing flows at the entrance.",
+      "backbone_modes": ["metro", "bus"], "support_modes": ["enterprise_shuttle", "walking_wheelchair", "bicycle"],
+      "synthetic_screen": {"transit_index": 0.98, "feeder_share": 0.05, "vehicle_km_ratio": 0.92, "worst_group_access_delta": -0.02, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "先做分向导流和站口人工接管，班车只在公共交通余量与回家保障同时可见时进入复核。", "spatial_action_en": "Start with directional separation and staffed station handoff; review feeders only when public-transport capacity and guaranteed return are both visible.",
+      "human_decision_question_zh": "最慢群体和夜间回家链是否比全体平均值更安全？", "human_decision_question_en": "Is the slowest group and its return-home chain safer than the all-group average suggests?",
+      "decision_owner": ["transit_operator", "enterprise_transport_coordinator", "accessibility_reviewer", "community_liaison"], "release": "conditional_review",
+      "stop_condition": "Stop feeder expansion when return-home coverage or accessible transfer worsens.", "required_evidence": ["PM grouped OD", "station transfer count", "night-return fallback"]
+    },
+    {
+      "id": "ATLAS-004", "key_area_id": "PROV-KEY-001", "key_area_name_zh": "众智园", "key_area_name_en": "Zhongzhiyuan", "window_id": "NIGHT_RETURN",
+      "spatial_problem_zh": "夜班人员、维护物流和无障碍归家需要不同的安全服务窗口。", "spatial_problem_en": "Night workers, maintenance logistics and accessible return trips need different safe service windows.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["enterprise_shuttle", "logistics", "car"],
+      "synthetic_screen": {"transit_index": 0.96, "feeder_share": 0.06, "vehicle_km_ratio": 0.94, "worst_group_access_delta": -0.03, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "夜间只保留有人值守的公共交通和连续步行回退，不开放未经授权的自动接驳。", "spatial_action_en": "At night keep staffed public-transport and continuous walking fallback only; do not open an unauthorized automated feeder.",
+      "human_decision_question_zh": "谁在末班车、照明、维修和拒载时段承担现场接手？", "human_decision_question_en": "Who takes over on site at the last service, lighting, repair and refusal points?",
+      "decision_owner": ["transit_operator", "enterprise_transport_coordinator", "accessibility_reviewer", "curb_maintenance"], "release": "hold",
+      "stop_condition": "Hold the night window when a staffed and accessible return path is not documented.", "required_evidence": ["night service log", "lighting and route audit", "named human handoff"]
+    },
+    {
+      "id": "ATLAS-005", "key_area_id": "PROV-KEY-002", "key_area_name_zh": "AI 原点社区", "key_area_name_en": "AI Origin Community", "window_id": "AM_ARRIVAL",
+      "spatial_problem_zh": "上学、照护、企业出行和轮椅通行共享社区入口。", "spatial_problem_en": "School, care, enterprise travel and wheelchair movement share the community entrance.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["bicycle", "enterprise_shuttle"],
+      "synthetic_screen": {"transit_index": 0.97, "feeder_share": 0.03, "vehicle_km_ratio": 0.88, "worst_group_access_delta": -0.04, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "先画连续坡道、照护停靠和人工服务台，任何数字预约都不改变公共通行。", "spatial_action_en": "First mark the continuous ramp, care drop-off and human service desk; digital booking must not change public access.",
+      "human_decision_question_zh": "儿童、照护者和轮椅使用者是否拥有同等清晰的替代路线？", "human_decision_question_en": "Do children, carers and wheelchair users have equally clear alternative routes?",
+      "decision_owner": ["community_liaison", "accessibility_reviewer", "transit_operator"], "release": "hold",
+      "stop_condition": "Hold any curb change when the accessible route is longer, less safe or dependent on a digital account.", "required_evidence": ["school and care count", "accessible route walk-through", "human service trial"]
+    },
+    {
+      "id": "ATLAS-006", "key_area_id": "PROV-KEY-002", "key_area_name_zh": "AI 原点社区", "key_area_name_en": "AI Origin Community", "window_id": "MIDDAY_SERVICE",
+      "spatial_problem_zh": "就医、买菜、快递和社区维护在日间路缘叠加。", "spatial_problem_en": "Medical, grocery, parcel and community maintenance trips overlap at the daytime curb.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["logistics", "bicycle", "car"],
+      "synthetic_screen": {"transit_index": 0.98, "feeder_share": 0.02, "vehicle_km_ratio": 0.86, "worst_group_access_delta": -0.02, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "将医疗和照护下客与快递装卸分开登记，保留无需预约的人工通道。", "spatial_action_en": "Register medical and care drop-off separately from parcel loading while retaining an unreserved human passage.",
+      "human_decision_question_zh": "服务台能否在高峰时段解释、记录并纠正一次冲突？", "human_decision_question_en": "Can the service desk explain, record and correct one conflict during the peak window?",
+      "decision_owner": ["community_liaison", "logistics_operator", "curb_maintenance"], "release": "conditional_review",
+      "stop_condition": "Stop a booking rule if it displaces an urgent care trip or blocks the public route.", "required_evidence": ["service-type count", "care access audit", "manual conflict receipt"]
+    },
+    {
+      "id": "ATLAS-007", "key_area_id": "PROV-KEY-002", "key_area_name_zh": "AI 原点社区", "key_area_name_en": "AI Origin Community", "window_id": "PM_RETURN",
+      "spatial_problem_zh": "居民回家、学生接送和企业接驳在社区边界叠加。", "spatial_problem_en": "Resident return, school pick-up and enterprise feeders overlap at the community edge.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["bicycle", "enterprise_shuttle", "car"],
+      "synthetic_screen": {"transit_index": 0.97, "feeder_share": 0.04, "vehicle_km_ratio": 0.90, "worst_group_access_delta": -0.03, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "把学生接送、居民步行和企业下客分成不同窗口，先验证人工导流再谈合并。", "spatial_action_en": "Separate school pick-up, resident walking and enterprise drop-off windows; test staffed guidance before consolidation.",
+      "human_decision_question_zh": "分组导流是否减少最弱群体的等待与绕行，而非只减少车辆排队？", "human_decision_question_en": "Does grouped guidance reduce waiting and detours for the most exposed group, not only vehicle queues?",
+      "decision_owner": ["community_liaison", "enterprise_transport_coordinator", "accessibility_reviewer"], "release": "conditional_review",
+      "stop_condition": "Stop if the accessible or child-safe route loses priority during the release window.", "required_evidence": ["PM people-flow count", "child-safe crossing review", "grouped waiting log"]
+    },
+    {
+      "id": "ATLAS-008", "key_area_id": "PROV-KEY-002", "key_area_name_zh": "AI 原点社区", "key_area_name_en": "AI Origin Community", "window_id": "NIGHT_RETURN",
+      "spatial_problem_zh": "夜班、老年人和照护回家需要照明、人工询问与连续无障碍路径。", "spatial_problem_en": "Night return for shift workers, older residents and carers needs lighting, human help and a continuous accessible path.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["enterprise_shuttle", "car"],
+      "synthetic_screen": {"transit_index": 0.96, "feeder_share": 0.05, "vehicle_km_ratio": 0.93, "worst_group_access_delta": -0.04, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "建立夜间人工服务点和照明巡检回执，公共交通失效时只启用地面人工回退。", "spatial_action_en": "Establish a night human-service point and lighting inspection receipt; use staffed ground fallback when transit fails.",
+      "human_decision_question_zh": "夜间回家链是否有可见的责任人、替代路线和退出条件？", "human_decision_question_en": "Does the night return chain show an owner, an alternative route and a stop condition?",
+      "decision_owner": ["community_liaison", "transit_operator", "accessibility_reviewer", "curb_maintenance"], "release": "conditional_review",
+      "stop_condition": "Stop if the night route lacks lighting, human handoff or an accessible alternative.", "required_evidence": ["night walk-through", "lighting log", "human fallback drill"]
+    },
+    {
+      "id": "ATLAS-009", "key_area_id": "PROV-KEY-003", "key_area_name_zh": "大钟寺", "key_area_name_en": "Dazhongsi", "window_id": "AM_ARRIVAL",
+      "spatial_problem_zh": "轨道换乘、骑行停放和企业到岗关系受临时锚点限制。", "spatial_problem_en": "Rail transfer, bicycle parking and enterprise arrival are constrained by the provisional anchor.",
+      "backbone_modes": ["metro", "bus"], "support_modes": ["bicycle", "walking_wheelchair", "enterprise_shuttle"],
+      "synthetic_screen": {"transit_index": 0.98, "feeder_share": 0.03, "vehicle_km_ratio": 0.90, "worst_group_access_delta": -0.02, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "只画换乘关系和调查任务，不把临时多边形当作站点缓冲区，不发布工程位置。", "spatial_action_en": "Draw only the transfer relationship and survey tasks; do not treat the provisional polygon as a station buffer or publish an engineering location.",
+      "human_decision_question_zh": "维护者是否先发布正式锚定关系，再允许任何站口空间动作？", "human_decision_question_en": "Has the maintainer published an official anchor relationship before any station-side spatial action is allowed?",
+      "decision_owner": ["transit_operator", "accessibility_reviewer", "site_data_steward"], "release": "hold",
+      "stop_condition": "Hold all geometry-led action until the key-area anchor and station relation are formally confirmed.", "required_evidence": ["official anchor", "station entrance survey", "transfer and bicycle count"]
+    },
+    {
+      "id": "ATLAS-010", "key_area_id": "PROV-KEY-003", "key_area_name_zh": "大钟寺", "key_area_name_en": "Dazhongsi", "window_id": "MIDDAY_SERVICE",
+      "spatial_problem_zh": "访客、装卸和轨道站口服务可能共享同一临时关系线。", "spatial_problem_en": "Visitors, loading and station-side service may share the same provisional relationship line.",
+      "backbone_modes": ["metro", "walking_wheelchair"], "support_modes": ["bus", "logistics", "bicycle"],
+      "synthetic_screen": {"transit_index": 0.97, "feeder_share": 0.02, "vehicle_km_ratio": 0.87, "worst_group_access_delta": -0.02, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "把活动日、装卸和站口调查分开，先做公共空间观察与无障碍复核。", "spatial_action_en": "Separate event-day, loading and station surveys; begin with public-space observation and accessibility review.",
+      "human_decision_question_zh": "临时关系线能否支持调查而不诱导错误的站点建设结论？", "human_decision_question_en": "Can the provisional relationship support a survey without inducing a false station-building conclusion?",
+      "decision_owner": ["site_data_steward", "logistics_operator", "accessibility_reviewer"], "release": "hold",
+      "stop_condition": "Hold any fixed intervention if the geometry or public-space ownership remains unclear.", "required_evidence": ["geometry readback", "public-space ownership", "accessible movement audit"]
+    },
+    {
+      "id": "ATLAS-011", "key_area_id": "PROV-KEY-003", "key_area_name_zh": "大钟寺", "key_area_name_en": "Dazhongsi", "window_id": "PM_RETURN",
+      "spatial_problem_zh": "跨边界通勤、活动日人流和居民归家需要不同的换乘与路缘规则。", "spatial_problem_en": "Cross-boundary commuting, event flows and resident return require different transfer and curb rules.",
+      "backbone_modes": ["metro", "bus"], "support_modes": ["walking_wheelchair", "bicycle", "enterprise_shuttle"],
+      "synthetic_screen": {"transit_index": 0.97, "feeder_share": 0.05, "vehicle_km_ratio": 0.92, "worst_group_access_delta": -0.03, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "把跨边界 OD、活动日人流和居民回家分别记录，禁止用合成排序替代现场容量。", "spatial_action_en": "Record cross-boundary OD, event flows and resident return separately; do not use synthetic ranking as a substitute for field capacity.",
+      "human_decision_question_zh": "轨道优先、居民回家和无障碍连续性是否在同一时段都被保住？", "human_decision_question_en": "Are rail priority, resident return and accessible continuity all protected in the same window?",
+      "decision_owner": ["transit_operator", "community_liaison", "accessibility_reviewer", "curb_maintenance"], "release": "hold",
+      "stop_condition": "Hold feeder or event changes when external OD and the worst-group route are not measured.", "required_evidence": ["cross-boundary grouped OD", "event-day count", "accessible transfer audit"]
+    },
+    {
+      "id": "ATLAS-012", "key_area_id": "PROV-KEY-003", "key_area_name_zh": "大钟寺", "key_area_name_en": "Dazhongsi", "window_id": "NIGHT_RETURN",
+      "spatial_problem_zh": "夜间轨道接驳、装卸维护和跨边界回家均受临时空间关系与安全证据约束。", "spatial_problem_en": "Night rail connection, maintenance loading and cross-boundary return are constrained by provisional geometry and safety evidence.",
+      "backbone_modes": ["bus", "walking_wheelchair"], "support_modes": ["metro", "enterprise_shuttle", "logistics"],
+      "synthetic_screen": {"transit_index": 0.95, "feeder_share": 0.06, "vehicle_km_ratio": 0.95, "worst_group_access_delta": -0.04, "air_agents": 0, "status": "synthetic_counterfactual"},
+      "spatial_action_zh": "夜间只保留地面公共交通、人行回退和人工安全检查，空中候选保持零代理。", "spatial_action_en": "At night keep ground public transport, walking fallback and staffed safety checks; keep the air candidate at zero agents.",
+      "human_decision_question_zh": "正式锚点、末班车回退和夜间安全责任是否同时成立？", "human_decision_question_en": "Are the official anchor, last-service fallback and night safety responsibility all in place?",
+      "decision_owner": ["transit_operator", "accessibility_reviewer", "site_data_steward", "curb_maintenance"], "release": "hold",
+      "stop_condition": "Hold the night action when any anchor, service, safety or human handoff is missing.", "required_evidence": ["official anchor", "last-service audit", "night safety and handoff record"]
+    }
+  ]
+}

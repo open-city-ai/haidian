@@ -1,0 +1,3322 @@
+{
+  "schema_version": "1.0.0",
+  "screen_id": "MOBILITY-SERVICE-CONTINUITY-001",
+  "status": "synthetic_staged_recovery_not_operational",
+  "population_reference": 3122000,
+  "aggregate_only": true,
+  "clocks": [
+    {
+      "id": "passenger_service_clock",
+      "label_zh": "乘客服务时钟",
+      "label_en": "passenger service clock",
+      "unit": "minutes",
+      "tracks": [
+        "notice",
+        "handoff",
+        "fallback",
+        "arrival"
+      ]
+    },
+    {
+      "id": "asset_recovery_clock",
+      "label_zh": "资产恢复时钟",
+      "label_en": "asset recovery clock",
+      "unit": "hours",
+      "tracks": [
+        "owner",
+        "repair",
+        "accessible verification",
+        "public-route restoration"
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "id": "S0",
+      "label_zh": "正常",
+      "label_en": "normal",
+      "service_minute": 0,
+      "asset_hour": 0
+    },
+    {
+      "id": "S1",
+      "label_zh": "预警",
+      "label_en": "notice",
+      "service_minute": 5,
+      "asset_hour": 0
+    },
+    {
+      "id": "S2",
+      "label_zh": "中断",
+      "label_en": "disruption",
+      "service_minute": 15,
+      "asset_hour": 0
+    },
+    {
+      "id": "S3",
+      "label_zh": "接管",
+      "label_en": "fallback",
+      "service_minute": 35,
+      "asset_hour": 1
+    },
+    {
+      "id": "S4",
+      "label_zh": "修复",
+      "label_en": "repair",
+      "service_minute": 60,
+      "asset_hour": 3
+    },
+    {
+      "id": "S5",
+      "label_zh": "复核",
+      "label_en": "verify",
+      "service_minute": 90,
+      "asset_hour": 4
+    }
+  ],
+  "policy_summary": [
+    {
+      "policy_id": "P0_late_notice",
+      "label_zh": "P0 晚通知",
+      "label_en": "P0 late notice",
+      "mean_continuity_proxy": 0.9572,
+      "min_continuity_proxy": 0.9425,
+      "max_worst_group_gap_points": 1.38,
+      "mean_recovery_minutes_proxy": 193.2,
+      "gate_pass_count": 0,
+      "human_takeover": false
+    },
+    {
+      "policy_id": "P1_early_bounded",
+      "label_zh": "P1 提前通知 + 有界换乘",
+      "label_en": "P1 early notice + bounded shift",
+      "mean_continuity_proxy": 0.9872,
+      "min_continuity_proxy": 0.9783,
+      "max_worst_group_gap_points": 0.49,
+      "mean_recovery_minutes_proxy": 154.56,
+      "gate_pass_count": 5,
+      "human_takeover": true
+    },
+    {
+      "policy_id": "P2_human_first",
+      "label_zh": "P2 人工优先",
+      "label_en": "P2 human first",
+      "mean_continuity_proxy": 0.9916,
+      "min_continuity_proxy": 0.9876,
+      "max_worst_group_gap_points": 0.25,
+      "mean_recovery_minutes_proxy": 134.4,
+      "gate_pass_count": 5,
+      "human_takeover": true
+    }
+  ],
+  "scenarios": [
+    {
+      "scenario_id": "R1_metro_disruption",
+      "label_zh": "地铁中断",
+      "label_en": "metro disruption",
+      "affected_modes_zh": "地铁",
+      "affected_modes_en": "metro",
+      "description_zh": "地铁 30 分钟中断；公交、人工引导和受控接驳保留，但空中候选不开放。",
+      "description_en": "Thirty-minute metro disruption; bus, human wayfinding and bounded feeders remain, while the air candidate stays closed.",
+      "selected_policy_id": "P2_human_first",
+      "selected_policy_readout": {
+        "policy_id": "P2_human_first",
+        "policy_label_zh": "P2 人工优先",
+        "policy_label_en": "P2 human first",
+        "scenario_id": "R1_metro_disruption",
+        "scenario_label_zh": "地铁中断",
+        "scenario_label_en": "metro disruption",
+        "affected_modes": [
+          "metro"
+        ],
+        "affected_share": 0.07625,
+        "affected_agents": 240552,
+        "fallback_agents": 219192,
+        "continuity_proxy": 0.9908,
+        "worst_group_continuity_gap_points": 0.19,
+        "recovery_p50_minutes_proxy": 96,
+        "queue_person_minutes_proxy": 453194,
+        "notice_coverage_proxy": 1,
+        "accessible_route_preserved": true,
+        "human_takeover": true,
+        "gate_pass": true,
+        "checks": {
+          "all_agents_processed": true,
+          "mass_conservation": true,
+          "accessible_route_preserved": true,
+          "air_candidate_blocked": true,
+          "recovery_within_declared_window": true,
+          "worst_group_gap_within_gate": true
+        },
+        "groups": [
+          {
+            "group_id": "enterprise_employee",
+            "label_zh": "企业员工",
+            "label_en": "enterprise employee",
+            "population_agents": 1092700,
+            "affected_agents": 76653,
+            "fallback_agents": 69846,
+            "unserved_agents": 6807,
+            "delay_minutes_proxy": 20.92,
+            "continuity_proxy": 0.9915,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "resident_worker",
+            "label_zh": "居民工作者",
+            "label_en": "resident worker",
+            "population_agents": 936600,
+            "affected_agents": 71416,
+            "fallback_agents": 65074,
+            "unserved_agents": 6342,
+            "delay_minutes_proxy": 21.16,
+            "continuity_proxy": 0.9909,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "carer_or_child",
+            "label_zh": "照护者 / 儿童",
+            "label_en": "carer / child",
+            "population_agents": 468300,
+            "affected_agents": 42135,
+            "fallback_agents": 38394,
+            "unserved_agents": 3742,
+            "delay_minutes_proxy": 21.69,
+            "continuity_proxy": 0.9896,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "visitor_service",
+            "label_zh": "访客 / 服务",
+            "label_en": "visitor / service",
+            "population_agents": 312200,
+            "affected_agents": 23329,
+            "fallback_agents": 21258,
+            "unserved_agents": 2072,
+            "delay_minutes_proxy": 21.1,
+            "continuity_proxy": 0.9911,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "logistics_and_maintenance",
+            "label_zh": "物流 / 维护",
+            "label_en": "logistics / maintenance",
+            "population_agents": 156100,
+            "affected_agents": 13688,
+            "fallback_agents": 12473,
+            "unserved_agents": 1215,
+            "delay_minutes_proxy": 21.6,
+            "continuity_proxy": 0.9898,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "night_worker",
+            "label_zh": "夜班工作者",
+            "label_en": "night worker",
+            "population_agents": 156100,
+            "affected_agents": 13331,
+            "fallback_agents": 12147,
+            "unserved_agents": 1184,
+            "delay_minutes_proxy": 21.51,
+            "continuity_proxy": 0.9901,
+            "accessible_route_preserved": true
+          }
+        ],
+        "stage_trace": [
+          {
+            "stage_id": "S0",
+            "label_zh": "正常",
+            "label_en": "normal",
+            "passenger_service_minute": 0,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9908
+          },
+          {
+            "stage_id": "S1",
+            "label_zh": "预警",
+            "label_en": "notice",
+            "passenger_service_minute": 5,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9908
+          },
+          {
+            "stage_id": "S2",
+            "label_zh": "中断",
+            "label_en": "disruption",
+            "passenger_service_minute": 15,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9891
+          },
+          {
+            "stage_id": "S3",
+            "label_zh": "接管",
+            "label_en": "fallback",
+            "passenger_service_minute": 35,
+            "asset_recovery_hour": 1,
+            "continuity_proxy": 0.9908
+          },
+          {
+            "stage_id": "S4",
+            "label_zh": "修复",
+            "label_en": "repair",
+            "passenger_service_minute": 60,
+            "asset_recovery_hour": 3,
+            "continuity_proxy": 0.9908
+          },
+          {
+            "stage_id": "S5",
+            "label_zh": "复核",
+            "label_en": "verify",
+            "passenger_service_minute": 90,
+            "asset_recovery_hour": 4,
+            "continuity_proxy": 0.9948
+          }
+        ],
+        "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+      },
+      "policy_readouts": [
+        {
+          "policy_id": "P0_late_notice",
+          "policy_label_zh": "P0 晚通知",
+          "policy_label_en": "P0 late notice",
+          "scenario_id": "R1_metro_disruption",
+          "scenario_label_zh": "地铁中断",
+          "scenario_label_en": "metro disruption",
+          "affected_modes": [
+            "metro"
+          ],
+          "affected_share": 0.07625,
+          "affected_agents": 240552,
+          "fallback_agents": 87061,
+          "continuity_proxy": 0.9471,
+          "worst_group_continuity_gap_points": 1.29,
+          "recovery_p50_minutes_proxy": 138,
+          "queue_person_minutes_proxy": 4617128,
+          "notice_coverage_proxy": 0,
+          "accessible_route_preserved": false,
+          "human_takeover": false,
+          "gate_pass": false,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": false,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 76653,
+              "fallback_agents": 27742,
+              "unserved_agents": 48911,
+              "delay_minutes_proxy": 29.66,
+              "continuity_proxy": 0.9516,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 71416,
+              "fallback_agents": 25847,
+              "unserved_agents": 45569,
+              "delay_minutes_proxy": 30,
+              "continuity_proxy": 0.9476,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 42135,
+              "fallback_agents": 15250,
+              "unserved_agents": 26886,
+              "delay_minutes_proxy": 30.76,
+              "continuity_proxy": 0.9387,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 23329,
+              "fallback_agents": 8443,
+              "unserved_agents": 14886,
+              "delay_minutes_proxy": 29.92,
+              "continuity_proxy": 0.9486,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 13688,
+              "fallback_agents": 4954,
+              "unserved_agents": 8734,
+              "delay_minutes_proxy": 30.63,
+              "continuity_proxy": 0.9402,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 13331,
+              "fallback_agents": 4825,
+              "unserved_agents": 8506,
+              "delay_minutes_proxy": 30.5,
+              "continuity_proxy": 0.9417,
+              "accessible_route_preserved": false
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9471
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9471
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9343
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9471
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9471
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9511
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P1_early_bounded",
+          "policy_label_zh": "P1 提前通知 + 有界换乘",
+          "policy_label_en": "P1 early notice + bounded shift",
+          "scenario_id": "R1_metro_disruption",
+          "scenario_label_zh": "地铁中断",
+          "scenario_label_en": "metro disruption",
+          "affected_modes": [
+            "metro"
+          ],
+          "affected_share": 0.07625,
+          "affected_agents": 240552,
+          "fallback_agents": 204902,
+          "continuity_proxy": 0.9863,
+          "worst_group_continuity_gap_points": 0.3,
+          "recovery_p50_minutes_proxy": 110.4,
+          "queue_person_minutes_proxy": 756314,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 76653,
+              "fallback_agents": 65293,
+              "unserved_agents": 11360,
+              "delay_minutes_proxy": 20.92,
+              "continuity_proxy": 0.9873,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 71416,
+              "fallback_agents": 60832,
+              "unserved_agents": 10584,
+              "delay_minutes_proxy": 21.16,
+              "continuity_proxy": 0.9864,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 42135,
+              "fallback_agents": 35891,
+              "unserved_agents": 6244,
+              "delay_minutes_proxy": 21.69,
+              "continuity_proxy": 0.9843,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 23329,
+              "fallback_agents": 19872,
+              "unserved_agents": 3457,
+              "delay_minutes_proxy": 21.1,
+              "continuity_proxy": 0.9866,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 13688,
+              "fallback_agents": 11659,
+              "unserved_agents": 2029,
+              "delay_minutes_proxy": 21.6,
+              "continuity_proxy": 0.9846,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 13331,
+              "fallback_agents": 11355,
+              "unserved_agents": 1976,
+              "delay_minutes_proxy": 21.51,
+              "continuity_proxy": 0.985,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9863
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9863
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9833
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9863
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9863
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9903
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P2_human_first",
+          "policy_label_zh": "P2 人工优先",
+          "policy_label_en": "P2 human first",
+          "scenario_id": "R1_metro_disruption",
+          "scenario_label_zh": "地铁中断",
+          "scenario_label_en": "metro disruption",
+          "affected_modes": [
+            "metro"
+          ],
+          "affected_share": 0.07625,
+          "affected_agents": 240552,
+          "fallback_agents": 219192,
+          "continuity_proxy": 0.9908,
+          "worst_group_continuity_gap_points": 0.19,
+          "recovery_p50_minutes_proxy": 96,
+          "queue_person_minutes_proxy": 453194,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 76653,
+              "fallback_agents": 69846,
+              "unserved_agents": 6807,
+              "delay_minutes_proxy": 20.92,
+              "continuity_proxy": 0.9915,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 71416,
+              "fallback_agents": 65074,
+              "unserved_agents": 6342,
+              "delay_minutes_proxy": 21.16,
+              "continuity_proxy": 0.9909,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 42135,
+              "fallback_agents": 38394,
+              "unserved_agents": 3742,
+              "delay_minutes_proxy": 21.69,
+              "continuity_proxy": 0.9896,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 23329,
+              "fallback_agents": 21258,
+              "unserved_agents": 2072,
+              "delay_minutes_proxy": 21.1,
+              "continuity_proxy": 0.9911,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 13688,
+              "fallback_agents": 12473,
+              "unserved_agents": 1215,
+              "delay_minutes_proxy": 21.6,
+              "continuity_proxy": 0.9898,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 13331,
+              "fallback_agents": 12147,
+              "unserved_agents": 1184,
+              "delay_minutes_proxy": 21.51,
+              "continuity_proxy": 0.9901,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9908
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9908
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9891
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9908
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9908
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9948
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        }
+      ]
+    },
+    {
+      "scenario_id": "R2_bus_disruption",
+      "label_zh": "公交中断",
+      "label_en": "bus disruption",
+      "affected_modes_zh": "公交",
+      "affected_modes_en": "bus",
+      "description_zh": "公交线路中断；地铁、人工服务和有限接驳承担回退。",
+      "description_en": "Bus-line disruption; metro, human service and bounded feeders provide the fallback.",
+      "selected_policy_id": "P2_human_first",
+      "selected_policy_readout": {
+        "policy_id": "P2_human_first",
+        "policy_label_zh": "P2 人工优先",
+        "policy_label_en": "P2 human first",
+        "scenario_id": "R2_bus_disruption",
+        "scenario_label_zh": "公交中断",
+        "scenario_label_en": "bus disruption",
+        "affected_modes": [
+          "bus"
+        ],
+        "affected_share": 0.04246,
+        "affected_agents": 133951,
+        "fallback_agents": 121468,
+        "continuity_proxy": 0.994,
+        "worst_group_continuity_gap_points": 0.12,
+        "recovery_p50_minutes_proxy": 120,
+        "queue_person_minutes_proxy": 220669,
+        "notice_coverage_proxy": 1,
+        "accessible_route_preserved": true,
+        "human_takeover": true,
+        "gate_pass": true,
+        "checks": {
+          "all_agents_processed": true,
+          "mass_conservation": true,
+          "accessible_route_preserved": true,
+          "air_candidate_blocked": true,
+          "recovery_within_declared_window": true,
+          "worst_group_gap_within_gate": true
+        },
+        "groups": [
+          {
+            "group_id": "enterprise_employee",
+            "label_zh": "企业员工",
+            "label_en": "enterprise employee",
+            "population_agents": 1092700,
+            "affected_agents": 42684,
+            "fallback_agents": 38706,
+            "unserved_agents": 3978,
+            "delay_minutes_proxy": 17.43,
+            "continuity_proxy": 0.9944,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "resident_worker",
+            "label_zh": "居民工作者",
+            "label_en": "resident worker",
+            "population_agents": 936600,
+            "affected_agents": 39768,
+            "fallback_agents": 36062,
+            "unserved_agents": 3706,
+            "delay_minutes_proxy": 17.63,
+            "continuity_proxy": 0.994,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "carer_or_child",
+            "label_zh": "照护者 / 儿童",
+            "label_en": "carer / child",
+            "population_agents": 468300,
+            "affected_agents": 23463,
+            "fallback_agents": 21276,
+            "unserved_agents": 2187,
+            "delay_minutes_proxy": 18.07,
+            "continuity_proxy": 0.9932,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "visitor_service",
+            "label_zh": "访客 / 服务",
+            "label_en": "visitor / service",
+            "population_agents": 312200,
+            "affected_agents": 12991,
+            "fallback_agents": 11780,
+            "unserved_agents": 1211,
+            "delay_minutes_proxy": 17.58,
+            "continuity_proxy": 0.9941,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "logistics_and_maintenance",
+            "label_zh": "物流 / 维护",
+            "label_en": "logistics / maintenance",
+            "population_agents": 156100,
+            "affected_agents": 7622,
+            "fallback_agents": 6912,
+            "unserved_agents": 710,
+            "delay_minutes_proxy": 18,
+            "continuity_proxy": 0.9933,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "night_worker",
+            "label_zh": "夜班工作者",
+            "label_en": "night worker",
+            "population_agents": 156100,
+            "affected_agents": 7423,
+            "fallback_agents": 6732,
+            "unserved_agents": 692,
+            "delay_minutes_proxy": 17.93,
+            "continuity_proxy": 0.9935,
+            "accessible_route_preserved": true
+          }
+        ],
+        "stage_trace": [
+          {
+            "stage_id": "S0",
+            "label_zh": "正常",
+            "label_en": "normal",
+            "passenger_service_minute": 0,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.994
+          },
+          {
+            "stage_id": "S1",
+            "label_zh": "预警",
+            "label_en": "notice",
+            "passenger_service_minute": 5,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.994
+          },
+          {
+            "stage_id": "S2",
+            "label_zh": "中断",
+            "label_en": "disruption",
+            "passenger_service_minute": 15,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9921
+          },
+          {
+            "stage_id": "S3",
+            "label_zh": "接管",
+            "label_en": "fallback",
+            "passenger_service_minute": 35,
+            "asset_recovery_hour": 1,
+            "continuity_proxy": 0.994
+          },
+          {
+            "stage_id": "S4",
+            "label_zh": "修复",
+            "label_en": "repair",
+            "passenger_service_minute": 60,
+            "asset_recovery_hour": 3,
+            "continuity_proxy": 0.994
+          },
+          {
+            "stage_id": "S5",
+            "label_zh": "复核",
+            "label_en": "verify",
+            "passenger_service_minute": 90,
+            "asset_recovery_hour": 4,
+            "continuity_proxy": 0.998
+          }
+        ],
+        "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+      },
+      "policy_readouts": [
+        {
+          "policy_id": "P0_late_notice",
+          "policy_label_zh": "P0 晚通知",
+          "policy_label_en": "P0 late notice",
+          "scenario_id": "R2_bus_disruption",
+          "scenario_label_zh": "公交中断",
+          "scenario_label_en": "bus disruption",
+          "affected_modes": [
+            "bus"
+          ],
+          "affected_share": 0.04246,
+          "affected_agents": 133951,
+          "fallback_agents": 47470,
+          "continuity_proxy": 0.9687,
+          "worst_group_continuity_gap_points": 0.75,
+          "recovery_p50_minutes_proxy": 172.5,
+          "queue_person_minutes_proxy": 2167862,
+          "notice_coverage_proxy": 0,
+          "accessible_route_preserved": false,
+          "human_takeover": false,
+          "gate_pass": false,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": false,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 42684,
+              "fallback_agents": 15126,
+              "unserved_agents": 27558,
+              "delay_minutes_proxy": 24.72,
+              "continuity_proxy": 0.9713,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 39768,
+              "fallback_agents": 14093,
+              "unserved_agents": 25675,
+              "delay_minutes_proxy": 25,
+              "continuity_proxy": 0.969,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 23463,
+              "fallback_agents": 8315,
+              "unserved_agents": 15148,
+              "delay_minutes_proxy": 25.63,
+              "continuity_proxy": 0.9638,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 12991,
+              "fallback_agents": 4604,
+              "unserved_agents": 8387,
+              "delay_minutes_proxy": 24.93,
+              "continuity_proxy": 0.9696,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 7622,
+              "fallback_agents": 2701,
+              "unserved_agents": 4921,
+              "delay_minutes_proxy": 25.52,
+              "continuity_proxy": 0.9647,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 7423,
+              "fallback_agents": 2631,
+              "unserved_agents": 4793,
+              "delay_minutes_proxy": 25.42,
+              "continuity_proxy": 0.9655,
+              "accessible_route_preserved": false
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9558
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9727
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P1_early_bounded",
+          "policy_label_zh": "P1 提前通知 + 有界换乘",
+          "policy_label_en": "P1 early notice + bounded shift",
+          "scenario_id": "R2_bus_disruption",
+          "scenario_label_zh": "公交中断",
+          "scenario_label_en": "bus disruption",
+          "affected_modes": [
+            "bus"
+          ],
+          "affected_share": 0.04246,
+          "affected_agents": 133951,
+          "fallback_agents": 113551,
+          "continuity_proxy": 0.9914,
+          "worst_group_continuity_gap_points": 0.19,
+          "recovery_p50_minutes_proxy": 138,
+          "queue_person_minutes_proxy": 360629,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 42684,
+              "fallback_agents": 36184,
+              "unserved_agents": 6501,
+              "delay_minutes_proxy": 17.43,
+              "continuity_proxy": 0.9921,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 39768,
+              "fallback_agents": 33711,
+              "unserved_agents": 6057,
+              "delay_minutes_proxy": 17.63,
+              "continuity_proxy": 0.9915,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 23463,
+              "fallback_agents": 19890,
+              "unserved_agents": 3573,
+              "delay_minutes_proxy": 18.07,
+              "continuity_proxy": 0.9902,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 12991,
+              "fallback_agents": 11012,
+              "unserved_agents": 1979,
+              "delay_minutes_proxy": 17.58,
+              "continuity_proxy": 0.9916,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 7622,
+              "fallback_agents": 6461,
+              "unserved_agents": 1161,
+              "delay_minutes_proxy": 18,
+              "continuity_proxy": 0.9905,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 7423,
+              "fallback_agents": 6293,
+              "unserved_agents": 1131,
+              "delay_minutes_proxy": 17.93,
+              "continuity_proxy": 0.9907,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9914
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9914
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9884
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9914
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9914
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9954
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P2_human_first",
+          "policy_label_zh": "P2 人工优先",
+          "policy_label_en": "P2 human first",
+          "scenario_id": "R2_bus_disruption",
+          "scenario_label_zh": "公交中断",
+          "scenario_label_en": "bus disruption",
+          "affected_modes": [
+            "bus"
+          ],
+          "affected_share": 0.04246,
+          "affected_agents": 133951,
+          "fallback_agents": 121468,
+          "continuity_proxy": 0.994,
+          "worst_group_continuity_gap_points": 0.12,
+          "recovery_p50_minutes_proxy": 120,
+          "queue_person_minutes_proxy": 220669,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 42684,
+              "fallback_agents": 38706,
+              "unserved_agents": 3978,
+              "delay_minutes_proxy": 17.43,
+              "continuity_proxy": 0.9944,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 39768,
+              "fallback_agents": 36062,
+              "unserved_agents": 3706,
+              "delay_minutes_proxy": 17.63,
+              "continuity_proxy": 0.994,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 23463,
+              "fallback_agents": 21276,
+              "unserved_agents": 2187,
+              "delay_minutes_proxy": 18.07,
+              "continuity_proxy": 0.9932,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 12991,
+              "fallback_agents": 11780,
+              "unserved_agents": 1211,
+              "delay_minutes_proxy": 17.58,
+              "continuity_proxy": 0.9941,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 7622,
+              "fallback_agents": 6912,
+              "unserved_agents": 710,
+              "delay_minutes_proxy": 18,
+              "continuity_proxy": 0.9933,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 7423,
+              "fallback_agents": 6732,
+              "unserved_agents": 692,
+              "delay_minutes_proxy": 17.93,
+              "continuity_proxy": 0.9935,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.994
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.994
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9921
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.994
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.994
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.998
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        }
+      ]
+    },
+    {
+      "scenario_id": "W1_severe_weather",
+      "label_zh": "强天气",
+      "label_en": "severe weather",
+      "affected_modes_zh": "自行车 + 步行/无障碍",
+      "affected_modes_en": "bicycle + walking_wheelchair",
+      "description_zh": "骑行和步行条件下降；连续无障碍路线不能被车辆回退挤占。",
+      "description_en": "Cycling and walking conditions deteriorate; the continuous accessible route cannot be displaced by vehicles.",
+      "selected_policy_id": "P2_human_first",
+      "selected_policy_readout": {
+        "policy_id": "P2_human_first",
+        "policy_label_zh": "P2 人工优先",
+        "policy_label_en": "P2 human first",
+        "scenario_id": "W1_severe_weather",
+        "scenario_label_zh": "强天气",
+        "scenario_label_en": "severe weather",
+        "affected_modes": [
+          "bicycle",
+          "walking_wheelchair"
+        ],
+        "affected_share": 0.072482,
+        "affected_agents": 228665,
+        "fallback_agents": 202323,
+        "continuity_proxy": 0.9876,
+        "worst_group_continuity_gap_points": 0.25,
+        "recovery_p50_minutes_proxy": 192,
+        "queue_person_minutes_proxy": 838205,
+        "notice_coverage_proxy": 1,
+        "accessible_route_preserved": true,
+        "human_takeover": true,
+        "gate_pass": true,
+        "checks": {
+          "all_agents_processed": true,
+          "mass_conservation": true,
+          "accessible_route_preserved": true,
+          "air_candidate_blocked": true,
+          "recovery_within_declared_window": true,
+          "worst_group_gap_within_gate": true
+        },
+        "groups": [
+          {
+            "group_id": "enterprise_employee",
+            "label_zh": "企业员工",
+            "label_en": "enterprise employee",
+            "population_agents": 1092700,
+            "affected_agents": 72865,
+            "fallback_agents": 64471,
+            "unserved_agents": 8394,
+            "delay_minutes_proxy": 31.38,
+            "continuity_proxy": 0.9885,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "resident_worker",
+            "label_zh": "居民工作者",
+            "label_en": "resident worker",
+            "population_agents": 936600,
+            "affected_agents": 67887,
+            "fallback_agents": 60066,
+            "unserved_agents": 7821,
+            "delay_minutes_proxy": 31.73,
+            "continuity_proxy": 0.9878,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "carer_or_child",
+            "label_zh": "照护者 / 儿童",
+            "label_en": "carer / child",
+            "population_agents": 468300,
+            "affected_agents": 40053,
+            "fallback_agents": 35439,
+            "unserved_agents": 4614,
+            "delay_minutes_proxy": 32.53,
+            "continuity_proxy": 0.986,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "visitor_service",
+            "label_zh": "访客 / 服务",
+            "label_en": "visitor / service",
+            "population_agents": 312200,
+            "affected_agents": 22176,
+            "fallback_agents": 19622,
+            "unserved_agents": 2555,
+            "delay_minutes_proxy": 31.65,
+            "continuity_proxy": 0.9879,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "logistics_and_maintenance",
+            "label_zh": "物流 / 维护",
+            "label_en": "logistics / maintenance",
+            "population_agents": 156100,
+            "affected_agents": 13012,
+            "fallback_agents": 11513,
+            "unserved_agents": 1499,
+            "delay_minutes_proxy": 32.4,
+            "continuity_proxy": 0.9863,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "night_worker",
+            "label_zh": "夜班工作者",
+            "label_en": "night worker",
+            "population_agents": 156100,
+            "affected_agents": 12672,
+            "fallback_agents": 11212,
+            "unserved_agents": 1460,
+            "delay_minutes_proxy": 32.27,
+            "continuity_proxy": 0.9866,
+            "accessible_route_preserved": true
+          }
+        ],
+        "stage_trace": [
+          {
+            "stage_id": "S0",
+            "label_zh": "正常",
+            "label_en": "normal",
+            "passenger_service_minute": 0,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9876
+          },
+          {
+            "stage_id": "S1",
+            "label_zh": "预警",
+            "label_en": "notice",
+            "passenger_service_minute": 5,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9876
+          },
+          {
+            "stage_id": "S2",
+            "label_zh": "中断",
+            "label_en": "disruption",
+            "passenger_service_minute": 15,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9853
+          },
+          {
+            "stage_id": "S3",
+            "label_zh": "接管",
+            "label_en": "fallback",
+            "passenger_service_minute": 35,
+            "asset_recovery_hour": 1,
+            "continuity_proxy": 0.9876
+          },
+          {
+            "stage_id": "S4",
+            "label_zh": "修复",
+            "label_en": "repair",
+            "passenger_service_minute": 60,
+            "asset_recovery_hour": 3,
+            "continuity_proxy": 0.9876
+          },
+          {
+            "stage_id": "S5",
+            "label_zh": "复核",
+            "label_en": "verify",
+            "passenger_service_minute": 90,
+            "asset_recovery_hour": 4,
+            "continuity_proxy": 0.9916
+          }
+        ],
+        "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+      },
+      "policy_readouts": [
+        {
+          "policy_id": "P0_late_notice",
+          "policy_label_zh": "P0 晚通知",
+          "policy_label_en": "P0 late notice",
+          "scenario_id": "W1_severe_weather",
+          "scenario_label_zh": "强天气",
+          "scenario_label_en": "severe weather",
+          "affected_modes": [
+            "bicycle",
+            "walking_wheelchair"
+          ],
+          "affected_share": 0.072482,
+          "affected_agents": 228665,
+          "fallback_agents": 72414,
+          "continuity_proxy": 0.9425,
+          "worst_group_continuity_gap_points": 1.38,
+          "recovery_p50_minutes_proxy": 276,
+          "queue_person_minutes_proxy": 7050295,
+          "notice_coverage_proxy": 0,
+          "accessible_route_preserved": false,
+          "human_takeover": false,
+          "gate_pass": false,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": false,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 72865,
+              "fallback_agents": 23075,
+              "unserved_agents": 49790,
+              "delay_minutes_proxy": 44.5,
+              "continuity_proxy": 0.9473,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 67887,
+              "fallback_agents": 21498,
+              "unserved_agents": 46388,
+              "delay_minutes_proxy": 45,
+              "continuity_proxy": 0.9431,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 40053,
+              "fallback_agents": 12684,
+              "unserved_agents": 27369,
+              "delay_minutes_proxy": 46.13,
+              "continuity_proxy": 0.9335,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 22176,
+              "fallback_agents": 7023,
+              "unserved_agents": 15154,
+              "delay_minutes_proxy": 44.87,
+              "continuity_proxy": 0.9442,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 13012,
+              "fallback_agents": 4121,
+              "unserved_agents": 8891,
+              "delay_minutes_proxy": 45.94,
+              "continuity_proxy": 0.9351,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 12672,
+              "fallback_agents": 4013,
+              "unserved_agents": 8659,
+              "delay_minutes_proxy": 45.76,
+              "continuity_proxy": 0.9367,
+              "accessible_route_preserved": false
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9425
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9425
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9289
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9425
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9425
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9465
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P1_early_bounded",
+          "policy_label_zh": "P1 提前通知 + 有界换乘",
+          "policy_label_en": "P1 early notice + bounded shift",
+          "scenario_id": "W1_severe_weather",
+          "scenario_label_zh": "强天气",
+          "scenario_label_en": "severe weather",
+          "affected_modes": [
+            "bicycle",
+            "walking_wheelchair"
+          ],
+          "affected_share": 0.072482,
+          "affected_agents": 228665,
+          "fallback_agents": 173402,
+          "continuity_proxy": 0.9783,
+          "worst_group_continuity_gap_points": 0.49,
+          "recovery_p50_minutes_proxy": 220.8,
+          "queue_person_minutes_proxy": 1830240,
+          "notice_coverage_proxy": 0.75,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 72865,
+              "fallback_agents": 55255,
+              "unserved_agents": 17610,
+              "delay_minutes_proxy": 32.66,
+              "continuity_proxy": 0.98,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 67887,
+              "fallback_agents": 51480,
+              "unserved_agents": 16407,
+              "delay_minutes_proxy": 33.03,
+              "continuity_proxy": 0.9785,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 40053,
+              "fallback_agents": 30373,
+              "unserved_agents": 9680,
+              "delay_minutes_proxy": 33.86,
+              "continuity_proxy": 0.9751,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 22176,
+              "fallback_agents": 16817,
+              "unserved_agents": 5360,
+              "delay_minutes_proxy": 32.93,
+              "continuity_proxy": 0.9788,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 13012,
+              "fallback_agents": 9867,
+              "unserved_agents": 3145,
+              "delay_minutes_proxy": 33.72,
+              "continuity_proxy": 0.9757,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 12672,
+              "fallback_agents": 9610,
+              "unserved_agents": 3063,
+              "delay_minutes_proxy": 33.58,
+              "continuity_proxy": 0.9762,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9783
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9783
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9735
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9783
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9783
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9823
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P2_human_first",
+          "policy_label_zh": "P2 人工优先",
+          "policy_label_en": "P2 human first",
+          "scenario_id": "W1_severe_weather",
+          "scenario_label_zh": "强天气",
+          "scenario_label_en": "severe weather",
+          "affected_modes": [
+            "bicycle",
+            "walking_wheelchair"
+          ],
+          "affected_share": 0.072482,
+          "affected_agents": 228665,
+          "fallback_agents": 202323,
+          "continuity_proxy": 0.9876,
+          "worst_group_continuity_gap_points": 0.25,
+          "recovery_p50_minutes_proxy": 192,
+          "queue_person_minutes_proxy": 838205,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 72865,
+              "fallback_agents": 64471,
+              "unserved_agents": 8394,
+              "delay_minutes_proxy": 31.38,
+              "continuity_proxy": 0.9885,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 67887,
+              "fallback_agents": 60066,
+              "unserved_agents": 7821,
+              "delay_minutes_proxy": 31.73,
+              "continuity_proxy": 0.9878,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 40053,
+              "fallback_agents": 35439,
+              "unserved_agents": 4614,
+              "delay_minutes_proxy": 32.53,
+              "continuity_proxy": 0.986,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 22176,
+              "fallback_agents": 19622,
+              "unserved_agents": 2555,
+              "delay_minutes_proxy": 31.65,
+              "continuity_proxy": 0.9879,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 13012,
+              "fallback_agents": 11513,
+              "unserved_agents": 1499,
+              "delay_minutes_proxy": 32.4,
+              "continuity_proxy": 0.9863,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 12672,
+              "fallback_agents": 11212,
+              "unserved_agents": 1460,
+              "delay_minutes_proxy": 32.27,
+              "continuity_proxy": 0.9866,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9876
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9876
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9853
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9876
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9876
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9916
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        }
+      ]
+    },
+    {
+      "scenario_id": "C1_curb_service_failure",
+      "label_zh": "路缘服务故障",
+      "label_en": "curb-service failure",
+      "affected_modes_zh": "汽车 + 企业接驳",
+      "affected_modes_en": "car + enterprise_shuttle",
+      "description_zh": "停车、接送或装卸路缘进入人工清场；公共通行与消防净空优先。",
+      "description_en": "Parking, pickup or loading curb enters human clearing; public access and fire clearance take priority.",
+      "selected_policy_id": "P2_human_first",
+      "selected_policy_readout": {
+        "policy_id": "P2_human_first",
+        "policy_label_zh": "P2 人工优先",
+        "policy_label_en": "P2 human first",
+        "scenario_id": "C1_curb_service_failure",
+        "scenario_label_zh": "路缘服务故障",
+        "scenario_label_en": "curb-service failure",
+        "affected_modes": [
+          "car",
+          "enterprise_shuttle"
+        ],
+        "affected_share": 0.042252,
+        "affected_agents": 133295,
+        "fallback_agents": 120287,
+        "continuity_proxy": 0.9941,
+        "worst_group_continuity_gap_points": 0.12,
+        "recovery_p50_minutes_proxy": 144,
+        "queue_person_minutes_proxy": 183984,
+        "notice_coverage_proxy": 1,
+        "accessible_route_preserved": true,
+        "human_takeover": true,
+        "gate_pass": true,
+        "checks": {
+          "all_agents_processed": true,
+          "mass_conservation": true,
+          "accessible_route_preserved": true,
+          "air_candidate_blocked": true,
+          "recovery_within_declared_window": true,
+          "worst_group_gap_within_gate": true
+        },
+        "groups": [
+          {
+            "group_id": "enterprise_employee",
+            "label_zh": "企业员工",
+            "label_en": "enterprise employee",
+            "population_agents": 1092700,
+            "affected_agents": 42475,
+            "fallback_agents": 38330,
+            "unserved_agents": 4146,
+            "delay_minutes_proxy": 13.95,
+            "continuity_proxy": 0.9945,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "resident_worker",
+            "label_zh": "居民工作者",
+            "label_en": "resident worker",
+            "population_agents": 936600,
+            "affected_agents": 39573,
+            "fallback_agents": 35711,
+            "unserved_agents": 3862,
+            "delay_minutes_proxy": 14.1,
+            "continuity_proxy": 0.9941,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "carer_or_child",
+            "label_zh": "照护者 / 儿童",
+            "label_en": "carer / child",
+            "population_agents": 468300,
+            "affected_agents": 23348,
+            "fallback_agents": 21069,
+            "unserved_agents": 2279,
+            "delay_minutes_proxy": 14.46,
+            "continuity_proxy": 0.9933,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "visitor_service",
+            "label_zh": "访客 / 服务",
+            "label_en": "visitor / service",
+            "population_agents": 312200,
+            "affected_agents": 12927,
+            "fallback_agents": 11666,
+            "unserved_agents": 1262,
+            "delay_minutes_proxy": 14.06,
+            "continuity_proxy": 0.9942,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "logistics_and_maintenance",
+            "label_zh": "物流 / 维护",
+            "label_en": "logistics / maintenance",
+            "population_agents": 156100,
+            "affected_agents": 7585,
+            "fallback_agents": 6845,
+            "unserved_agents": 740,
+            "delay_minutes_proxy": 14.4,
+            "continuity_proxy": 0.9934,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "night_worker",
+            "label_zh": "夜班工作者",
+            "label_en": "night worker",
+            "population_agents": 156100,
+            "affected_agents": 7387,
+            "fallback_agents": 6666,
+            "unserved_agents": 721,
+            "delay_minutes_proxy": 14.34,
+            "continuity_proxy": 0.9935,
+            "accessible_route_preserved": true
+          }
+        ],
+        "stage_trace": [
+          {
+            "stage_id": "S0",
+            "label_zh": "正常",
+            "label_en": "normal",
+            "passenger_service_minute": 0,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9941
+          },
+          {
+            "stage_id": "S1",
+            "label_zh": "预警",
+            "label_en": "notice",
+            "passenger_service_minute": 5,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9941
+          },
+          {
+            "stage_id": "S2",
+            "label_zh": "中断",
+            "label_en": "disruption",
+            "passenger_service_minute": 15,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9921
+          },
+          {
+            "stage_id": "S3",
+            "label_zh": "接管",
+            "label_en": "fallback",
+            "passenger_service_minute": 35,
+            "asset_recovery_hour": 1,
+            "continuity_proxy": 0.9941
+          },
+          {
+            "stage_id": "S4",
+            "label_zh": "修复",
+            "label_en": "repair",
+            "passenger_service_minute": 60,
+            "asset_recovery_hour": 3,
+            "continuity_proxy": 0.9941
+          },
+          {
+            "stage_id": "S5",
+            "label_zh": "复核",
+            "label_en": "verify",
+            "passenger_service_minute": 90,
+            "asset_recovery_hour": 4,
+            "continuity_proxy": 0.9981
+          }
+        ],
+        "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+      },
+      "policy_readouts": [
+        {
+          "policy_id": "P0_late_notice",
+          "policy_label_zh": "P0 晚通知",
+          "policy_label_en": "P0 late notice",
+          "scenario_id": "C1_curb_service_failure",
+          "scenario_label_zh": "路缘服务故障",
+          "scenario_label_en": "curb-service failure",
+          "affected_modes": [
+            "car",
+            "enterprise_shuttle"
+          ],
+          "affected_share": 0.042252,
+          "affected_agents": 133295,
+          "fallback_agents": 46233,
+          "continuity_proxy": 0.9687,
+          "worst_group_continuity_gap_points": 0.76,
+          "recovery_p50_minutes_proxy": 207,
+          "queue_person_minutes_proxy": 1746016,
+          "notice_coverage_proxy": 0,
+          "accessible_route_preserved": false,
+          "human_takeover": false,
+          "gate_pass": false,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": false,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 42475,
+              "fallback_agents": 14732,
+              "unserved_agents": 27743,
+              "delay_minutes_proxy": 19.78,
+              "continuity_proxy": 0.9713,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 39573,
+              "fallback_agents": 13726,
+              "unserved_agents": 25848,
+              "delay_minutes_proxy": 20,
+              "continuity_proxy": 0.969,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 23348,
+              "fallback_agents": 8098,
+              "unserved_agents": 15250,
+              "delay_minutes_proxy": 20.5,
+              "continuity_proxy": 0.9637,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 12927,
+              "fallback_agents": 4484,
+              "unserved_agents": 8444,
+              "delay_minutes_proxy": 19.94,
+              "continuity_proxy": 0.9695,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 7585,
+              "fallback_agents": 2631,
+              "unserved_agents": 4954,
+              "delay_minutes_proxy": 20.42,
+              "continuity_proxy": 0.9646,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 7387,
+              "fallback_agents": 2562,
+              "unserved_agents": 4825,
+              "delay_minutes_proxy": 20.34,
+              "continuity_proxy": 0.9654,
+              "accessible_route_preserved": false
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9556
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9687
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9727
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P1_early_bounded",
+          "policy_label_zh": "P1 提前通知 + 有界换乘",
+          "policy_label_en": "P1 early notice + bounded shift",
+          "scenario_id": "C1_curb_service_failure",
+          "scenario_label_zh": "路缘服务故障",
+          "scenario_label_en": "curb-service failure",
+          "affected_modes": [
+            "car",
+            "enterprise_shuttle"
+          ],
+          "affected_share": 0.042252,
+          "affected_agents": 133295,
+          "fallback_agents": 112449,
+          "continuity_proxy": 0.9915,
+          "worst_group_continuity_gap_points": 0.19,
+          "recovery_p50_minutes_proxy": 165.6,
+          "queue_person_minutes_proxy": 294813,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 42475,
+              "fallback_agents": 35832,
+              "unserved_agents": 6643,
+              "delay_minutes_proxy": 13.95,
+              "continuity_proxy": 0.9922,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 39573,
+              "fallback_agents": 33384,
+              "unserved_agents": 6189,
+              "delay_minutes_proxy": 14.1,
+              "continuity_proxy": 0.9916,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 23348,
+              "fallback_agents": 19697,
+              "unserved_agents": 3652,
+              "delay_minutes_proxy": 14.46,
+              "continuity_proxy": 0.9903,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 12927,
+              "fallback_agents": 10905,
+              "unserved_agents": 2022,
+              "delay_minutes_proxy": 14.06,
+              "continuity_proxy": 0.9918,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 7585,
+              "fallback_agents": 6399,
+              "unserved_agents": 1186,
+              "delay_minutes_proxy": 14.4,
+              "continuity_proxy": 0.9905,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 7387,
+              "fallback_agents": 6232,
+              "unserved_agents": 1155,
+              "delay_minutes_proxy": 14.34,
+              "continuity_proxy": 0.9908,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9884
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9955
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P2_human_first",
+          "policy_label_zh": "P2 人工优先",
+          "policy_label_en": "P2 human first",
+          "scenario_id": "C1_curb_service_failure",
+          "scenario_label_zh": "路缘服务故障",
+          "scenario_label_en": "curb-service failure",
+          "affected_modes": [
+            "car",
+            "enterprise_shuttle"
+          ],
+          "affected_share": 0.042252,
+          "affected_agents": 133295,
+          "fallback_agents": 120287,
+          "continuity_proxy": 0.9941,
+          "worst_group_continuity_gap_points": 0.12,
+          "recovery_p50_minutes_proxy": 144,
+          "queue_person_minutes_proxy": 183984,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 42475,
+              "fallback_agents": 38330,
+              "unserved_agents": 4146,
+              "delay_minutes_proxy": 13.95,
+              "continuity_proxy": 0.9945,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 39573,
+              "fallback_agents": 35711,
+              "unserved_agents": 3862,
+              "delay_minutes_proxy": 14.1,
+              "continuity_proxy": 0.9941,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 23348,
+              "fallback_agents": 21069,
+              "unserved_agents": 2279,
+              "delay_minutes_proxy": 14.46,
+              "continuity_proxy": 0.9933,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 12927,
+              "fallback_agents": 11666,
+              "unserved_agents": 1262,
+              "delay_minutes_proxy": 14.06,
+              "continuity_proxy": 0.9942,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 7585,
+              "fallback_agents": 6845,
+              "unserved_agents": 740,
+              "delay_minutes_proxy": 14.4,
+              "continuity_proxy": 0.9934,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 7387,
+              "fallback_agents": 6666,
+              "unserved_agents": 721,
+              "delay_minutes_proxy": 14.34,
+              "continuity_proxy": 0.9935,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9941
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9941
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9921
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9941
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9941
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9981
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        }
+      ]
+    },
+    {
+      "scenario_id": "X1_cross_boundary_return",
+      "label_zh": "跨边界返程",
+      "label_en": "cross-boundary return",
+      "affected_modes_zh": "地铁 + 公交 + 企业接驳",
+      "affected_modes_en": "metro + bus + enterprise_shuttle",
+      "description_zh": "对外通勤返程发生衔接失效；不把边界外的人流硬塞回站点内。",
+      "description_en": "An external commute loses a connection; people outside the boundary are not forced into an internal station queue.",
+      "selected_policy_id": "P2_human_first",
+      "selected_policy_readout": {
+        "policy_id": "P2_human_first",
+        "policy_label_zh": "P2 人工优先",
+        "policy_label_en": "P2 human first",
+        "scenario_id": "X1_cross_boundary_return",
+        "scenario_label_zh": "跨边界返程",
+        "scenario_label_en": "cross-boundary return",
+        "affected_modes": [
+          "metro",
+          "bus",
+          "enterprise_shuttle"
+        ],
+        "affected_share": 0.053332,
+        "affected_agents": 168251,
+        "fallback_agents": 151089,
+        "continuity_proxy": 0.9915,
+        "worst_group_continuity_gap_points": 0.16,
+        "recovery_p50_minutes_proxy": 120,
+        "queue_person_minutes_proxy": 424736,
+        "notice_coverage_proxy": 1,
+        "accessible_route_preserved": true,
+        "human_takeover": true,
+        "gate_pass": true,
+        "checks": {
+          "all_agents_processed": true,
+          "mass_conservation": true,
+          "accessible_route_preserved": true,
+          "air_candidate_blocked": true,
+          "recovery_within_declared_window": true,
+          "worst_group_gap_within_gate": true
+        },
+        "groups": [
+          {
+            "group_id": "enterprise_employee",
+            "label_zh": "企业员工",
+            "label_en": "enterprise employee",
+            "population_agents": 1092700,
+            "affected_agents": 53614,
+            "fallback_agents": 48145,
+            "unserved_agents": 5469,
+            "delay_minutes_proxy": 24.41,
+            "continuity_proxy": 0.9921,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "resident_worker",
+            "label_zh": "居民工作者",
+            "label_en": "resident worker",
+            "population_agents": 936600,
+            "affected_agents": 49951,
+            "fallback_agents": 44856,
+            "unserved_agents": 5095,
+            "delay_minutes_proxy": 24.68,
+            "continuity_proxy": 0.9916,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "carer_or_child",
+            "label_zh": "照护者 / 儿童",
+            "label_en": "carer / child",
+            "population_agents": 468300,
+            "affected_agents": 29471,
+            "fallback_agents": 26465,
+            "unserved_agents": 3006,
+            "delay_minutes_proxy": 25.3,
+            "continuity_proxy": 0.9905,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "visitor_service",
+            "label_zh": "访客 / 服务",
+            "label_en": "visitor / service",
+            "population_agents": 312200,
+            "affected_agents": 16317,
+            "fallback_agents": 14653,
+            "unserved_agents": 1664,
+            "delay_minutes_proxy": 24.61,
+            "continuity_proxy": 0.9918,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "logistics_and_maintenance",
+            "label_zh": "物流 / 维护",
+            "label_en": "logistics / maintenance",
+            "population_agents": 156100,
+            "affected_agents": 9574,
+            "fallback_agents": 8597,
+            "unserved_agents": 977,
+            "delay_minutes_proxy": 25.2,
+            "continuity_proxy": 0.9907,
+            "accessible_route_preserved": true
+          },
+          {
+            "group_id": "night_worker",
+            "label_zh": "夜班工作者",
+            "label_en": "night worker",
+            "population_agents": 156100,
+            "affected_agents": 9324,
+            "fallback_agents": 8373,
+            "unserved_agents": 951,
+            "delay_minutes_proxy": 25.1,
+            "continuity_proxy": 0.9909,
+            "accessible_route_preserved": true
+          }
+        ],
+        "stage_trace": [
+          {
+            "stage_id": "S0",
+            "label_zh": "正常",
+            "label_en": "normal",
+            "passenger_service_minute": 0,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9915
+          },
+          {
+            "stage_id": "S1",
+            "label_zh": "预警",
+            "label_en": "notice",
+            "passenger_service_minute": 5,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9915
+          },
+          {
+            "stage_id": "S2",
+            "label_zh": "中断",
+            "label_en": "disruption",
+            "passenger_service_minute": 15,
+            "asset_recovery_hour": 0,
+            "continuity_proxy": 0.9895
+          },
+          {
+            "stage_id": "S3",
+            "label_zh": "接管",
+            "label_en": "fallback",
+            "passenger_service_minute": 35,
+            "asset_recovery_hour": 1,
+            "continuity_proxy": 0.9915
+          },
+          {
+            "stage_id": "S4",
+            "label_zh": "修复",
+            "label_en": "repair",
+            "passenger_service_minute": 60,
+            "asset_recovery_hour": 3,
+            "continuity_proxy": 0.9915
+          },
+          {
+            "stage_id": "S5",
+            "label_zh": "复核",
+            "label_en": "verify",
+            "passenger_service_minute": 90,
+            "asset_recovery_hour": 4,
+            "continuity_proxy": 0.9955
+          }
+        ],
+        "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+      },
+      "policy_readouts": [
+        {
+          "policy_id": "P0_late_notice",
+          "policy_label_zh": "P0 晚通知",
+          "policy_label_en": "P0 late notice",
+          "scenario_id": "X1_cross_boundary_return",
+          "scenario_label_zh": "跨边界返程",
+          "scenario_label_en": "cross-boundary return",
+          "affected_modes": [
+            "metro",
+            "bus",
+            "enterprise_shuttle"
+          ],
+          "affected_share": 0.053332,
+          "affected_agents": 168251,
+          "fallback_agents": 57086,
+          "continuity_proxy": 0.9591,
+          "worst_group_continuity_gap_points": 0.98,
+          "recovery_p50_minutes_proxy": 172.5,
+          "queue_person_minutes_proxy": 3901163,
+          "notice_coverage_proxy": 0,
+          "accessible_route_preserved": false,
+          "human_takeover": false,
+          "gate_pass": false,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": false,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 53614,
+              "fallback_agents": 18191,
+              "unserved_agents": 35423,
+              "delay_minutes_proxy": 34.61,
+              "continuity_proxy": 0.9625,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 49951,
+              "fallback_agents": 16948,
+              "unserved_agents": 33002,
+              "delay_minutes_proxy": 35,
+              "continuity_proxy": 0.9595,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 29471,
+              "fallback_agents": 9999,
+              "unserved_agents": 19471,
+              "delay_minutes_proxy": 35.88,
+              "continuity_proxy": 0.9527,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 16317,
+              "fallback_agents": 5536,
+              "unserved_agents": 10781,
+              "delay_minutes_proxy": 34.9,
+              "continuity_proxy": 0.9602,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 9574,
+              "fallback_agents": 3248,
+              "unserved_agents": 6325,
+              "delay_minutes_proxy": 35.73,
+              "continuity_proxy": 0.9538,
+              "accessible_route_preserved": false
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 9324,
+              "fallback_agents": 3164,
+              "unserved_agents": 6160,
+              "delay_minutes_proxy": 35.59,
+              "continuity_proxy": 0.955,
+              "accessible_route_preserved": false
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9591
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9591
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9459
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9591
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9591
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9631
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P1_early_bounded",
+          "policy_label_zh": "P1 提前通知 + 有界换乘",
+          "policy_label_en": "P1 early notice + bounded shift",
+          "scenario_id": "X1_cross_boundary_return",
+          "scenario_label_zh": "跨边界返程",
+          "scenario_label_en": "cross-boundary return",
+          "affected_modes": [
+            "metro",
+            "bus",
+            "enterprise_shuttle"
+          ],
+          "affected_share": 0.053332,
+          "affected_agents": 168251,
+          "fallback_agents": 141247,
+          "continuity_proxy": 0.9884,
+          "worst_group_continuity_gap_points": 0.25,
+          "recovery_p50_minutes_proxy": 138,
+          "queue_person_minutes_proxy": 668337,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 53614,
+              "fallback_agents": 45009,
+              "unserved_agents": 8605,
+              "delay_minutes_proxy": 24.41,
+              "continuity_proxy": 0.9893,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 49951,
+              "fallback_agents": 41934,
+              "unserved_agents": 8017,
+              "delay_minutes_proxy": 24.68,
+              "continuity_proxy": 0.9885,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 29471,
+              "fallback_agents": 24741,
+              "unserved_agents": 4730,
+              "delay_minutes_proxy": 25.3,
+              "continuity_proxy": 0.9868,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 16317,
+              "fallback_agents": 13698,
+              "unserved_agents": 2619,
+              "delay_minutes_proxy": 24.61,
+              "continuity_proxy": 0.9887,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 9574,
+              "fallback_agents": 8037,
+              "unserved_agents": 1537,
+              "delay_minutes_proxy": 25.2,
+              "continuity_proxy": 0.9871,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 9324,
+              "fallback_agents": 7828,
+              "unserved_agents": 1497,
+              "delay_minutes_proxy": 25.1,
+              "continuity_proxy": 0.9874,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9884
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9884
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9852
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9884
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9884
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9924
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        },
+        {
+          "policy_id": "P2_human_first",
+          "policy_label_zh": "P2 人工优先",
+          "policy_label_en": "P2 human first",
+          "scenario_id": "X1_cross_boundary_return",
+          "scenario_label_zh": "跨边界返程",
+          "scenario_label_en": "cross-boundary return",
+          "affected_modes": [
+            "metro",
+            "bus",
+            "enterprise_shuttle"
+          ],
+          "affected_share": 0.053332,
+          "affected_agents": 168251,
+          "fallback_agents": 151089,
+          "continuity_proxy": 0.9915,
+          "worst_group_continuity_gap_points": 0.16,
+          "recovery_p50_minutes_proxy": 120,
+          "queue_person_minutes_proxy": 424736,
+          "notice_coverage_proxy": 1,
+          "accessible_route_preserved": true,
+          "human_takeover": true,
+          "gate_pass": true,
+          "checks": {
+            "all_agents_processed": true,
+            "mass_conservation": true,
+            "accessible_route_preserved": true,
+            "air_candidate_blocked": true,
+            "recovery_within_declared_window": true,
+            "worst_group_gap_within_gate": true
+          },
+          "groups": [
+            {
+              "group_id": "enterprise_employee",
+              "label_zh": "企业员工",
+              "label_en": "enterprise employee",
+              "population_agents": 1092700,
+              "affected_agents": 53614,
+              "fallback_agents": 48145,
+              "unserved_agents": 5469,
+              "delay_minutes_proxy": 24.41,
+              "continuity_proxy": 0.9921,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "resident_worker",
+              "label_zh": "居民工作者",
+              "label_en": "resident worker",
+              "population_agents": 936600,
+              "affected_agents": 49951,
+              "fallback_agents": 44856,
+              "unserved_agents": 5095,
+              "delay_minutes_proxy": 24.68,
+              "continuity_proxy": 0.9916,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "carer_or_child",
+              "label_zh": "照护者 / 儿童",
+              "label_en": "carer / child",
+              "population_agents": 468300,
+              "affected_agents": 29471,
+              "fallback_agents": 26465,
+              "unserved_agents": 3006,
+              "delay_minutes_proxy": 25.3,
+              "continuity_proxy": 0.9905,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "visitor_service",
+              "label_zh": "访客 / 服务",
+              "label_en": "visitor / service",
+              "population_agents": 312200,
+              "affected_agents": 16317,
+              "fallback_agents": 14653,
+              "unserved_agents": 1664,
+              "delay_minutes_proxy": 24.61,
+              "continuity_proxy": 0.9918,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "logistics_and_maintenance",
+              "label_zh": "物流 / 维护",
+              "label_en": "logistics / maintenance",
+              "population_agents": 156100,
+              "affected_agents": 9574,
+              "fallback_agents": 8597,
+              "unserved_agents": 977,
+              "delay_minutes_proxy": 25.2,
+              "continuity_proxy": 0.9907,
+              "accessible_route_preserved": true
+            },
+            {
+              "group_id": "night_worker",
+              "label_zh": "夜班工作者",
+              "label_en": "night worker",
+              "population_agents": 156100,
+              "affected_agents": 9324,
+              "fallback_agents": 8373,
+              "unserved_agents": 951,
+              "delay_minutes_proxy": 25.1,
+              "continuity_proxy": 0.9909,
+              "accessible_route_preserved": true
+            }
+          ],
+          "stage_trace": [
+            {
+              "stage_id": "S0",
+              "label_zh": "正常",
+              "label_en": "normal",
+              "passenger_service_minute": 0,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S1",
+              "label_zh": "预警",
+              "label_en": "notice",
+              "passenger_service_minute": 5,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S2",
+              "label_zh": "中断",
+              "label_en": "disruption",
+              "passenger_service_minute": 15,
+              "asset_recovery_hour": 0,
+              "continuity_proxy": 0.9895
+            },
+            {
+              "stage_id": "S3",
+              "label_zh": "接管",
+              "label_en": "fallback",
+              "passenger_service_minute": 35,
+              "asset_recovery_hour": 1,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S4",
+              "label_zh": "修复",
+              "label_en": "repair",
+              "passenger_service_minute": 60,
+              "asset_recovery_hour": 3,
+              "continuity_proxy": 0.9915
+            },
+            {
+              "stage_id": "S5",
+              "label_zh": "复核",
+              "label_en": "verify",
+              "passenger_service_minute": 90,
+              "asset_recovery_hour": 4,
+              "continuity_proxy": 0.9955
+            }
+          ],
+          "interpretation": "Synthetic aggregate screen only; replace disruption, notice, fallback, repair and group evidence before any local decision."
+        }
+      ]
+    }
+  ],
+  "checks": {
+    "population_matches_regional": true,
+    "group_total_matches_population": true,
+    "mode_share_parity": true,
+    "five_scenarios": true,
+    "three_policies": true,
+    "six_stages": true,
+    "aggregate_only": true,
+    "air_candidate_fail_closed": true,
+    "all_scenarios_processed": true,
+    "all_policies_processed": true,
+    "all_agents_processed": true,
+    "all_mass_conserved": true,
+    "selected_policy_accessibility_preserved": true,
+    "selected_policy_gate_passes": true,
+    "policy_differentiation_visible": true
+  },
+  "method_sources": [
+    "DISRUPTION-MODE-SHIFT-2022",
+    "ROBUST-TRANSIT-PATH-2022",
+    "EQUITABLE-TRANSIT-UNCERTAINTY-2020",
+    "BEIJING-URT-RESCHEDULE-2024"
+  ],
+  "calibration_required_before_local_decision": [
+    "dated disruption and recovery logs by metro, bus, bicycle, curb and external gateway",
+    "15-minute mode, station, stop, curb and accessible-route counts",
+    "announcement lead time, alternate-mode acceptance and denied-boarding observations",
+    "grouped recovery time and accessible-route verification records",
+    "enterprise and resident satisfaction/intercept evidence without continuous personal traces",
+    "named maintenance owner, service window and public-route restoration receipt"
+  ],
+  "interpretation": "This staged screen makes early warning, bounded mode shift, human takeover and asset recovery visible in one aggregate ledger. It is not a timetable, incident forecast, resident satisfaction survey, local resilience claim or permission to operate an air service. Replace every declared input with dated local evidence before decisions."
+}

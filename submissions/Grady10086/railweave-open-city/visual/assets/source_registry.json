@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.1.0",
+  "registry_id": "RAILWEAVE-SOURCE-REGISTRY",
+  "canonical_records_path": "sources.json",
+  "assumptions_path": "assumptions.json",
+  "spatial_conflict_register_path": "visual/assets/spatial_source_conflicts.json",
+  "purpose_zh": "为随包交付的来源登记提供用途边界、证据层级和失效来源处理规则；具体URL、访问日期、许可和逐条用途以sources.json为准。",
+  "purpose_en": "Provides in-package rules for source-use boundaries, evidence levels, and unavailable-source handling. URLs, access dates, licences, and item-level permitted uses remain canonical in sources.json.",
+  "path_resolution": "All paths in this registry are relative to the railweave-open-city submission root unless explicitly marked repository_root.",
+  "evidence_levels": [
+    {
+      "level": "L1",
+      "name_zh": "正式法定或批准依据",
+      "name_en": "Statutory or approved basis",
+      "allowed_zh": "仅在文件明确适用的地块、河段或对象内使用正式表述；无正式坐标时不得绘制实线边界。",
+      "allowed_en": "Formal wording is limited to the parcel, section, or object expressly covered by the document; no solid boundary is drawn without official coordinates."
+    },
+    {
+      "level": "L2",
+      "name_zh": "官方项目事实与阶段状态",
+      "name_en": "Official project facts and stage status",
+      "allowed_zh": "保留发布机构、日期和项目范围，不外推连续开放、法定边界或实施承诺。",
+      "allowed_en": "Retain publisher, date, and project scope; do not extrapolate continuous access, statutory boundaries, or implementation commitments."
+    },
+    {
+      "level": "L3",
+      "name_zh": "官方文字范围与示意关系",
+      "name_en": "Official written scope and indicative relationships",
+      "allowed_zh": "只表达约规模、文字四至或研究索引，不作为可量测红线。",
+      "allowed_en": "Express approximate scale, written bounds, or a study index only; do not treat it as a measurable red line."
+    },
+    {
+      "level": "L4",
+      "name_zh": "开放数据工作底图",
+      "name_en": "Open-data working basemap",
+      "allowed_zh": "用于工作底图、方位校核和踏勘索引，须保留快照日期、许可、署名和非测绘限制。",
+      "allowed_en": "Use for working context, orientation checks, and field-survey indexing only, retaining snapshot date, licence, attribution, and non-survey limitations."
+    },
+    {
+      "level": "L5",
+      "name_zh": "设计建议与临时几何",
+      "name_en": "Design proposals and provisional geometry",
+      "allowed_zh": "统一标注概念性、临时、待核验和非施工依据；正式边界到位后整包重算。",
+      "allowed_en": "Mark as conceptual, provisional, subject to verification, and not for construction; recalculate the package when official geometry arrives."
+    }
+  ],
+  "source_use_groups": {
+    "formal_or_limited_official": [
+      "OFFICIAL-ANNOUNCEMENT",
+      "JINGZHANG-CONTROL-NOTICE",
+      "LANJING-IMPLEMENTATION",
+      "LANJING-TRAFFIC",
+      "PARK-PHASE1",
+      "PARK-PHASE2",
+      "QINGHUAYUAN-HERITAGE",
+      "AI-ORIGIN-2026",
+      "AI-ORIGIN-TALENT-STATION",
+      "BEIJING-SCENARIO-DEMAND",
+      "BEIJING-URBAN-RENEWAL",
+      "HAIDIAN-RENEWAL-GUIDE"
+    ],
+    "background_only": [
+      "ZHONGZHIYUAN-RENEWAL",
+      "DAZHONGSI-RENEWAL",
+      "HAIDIAN-STATS-2025",
+      "CASE-VECTOR-TORONTO",
+      "CASE-MILA-MONTREAL",
+      "CASE-STATION-F",
+      "CASE-MARIA-01",
+      "CASE-MARS-TORONTO",
+      "CASE-22BARCELONA",
+      "CASE-BLOXHUB"
+    ],
+    "open_working_basemap": [
+      "OSM-WORKING-DATA"
+    ],
+    "official_public_cost_samples": [
+      "BJ-ACCESS-GUIDE-SERVICE-2026",
+      "BJ-ACCESS-HOME-AUDIT-2026"
+    ],
+    "background_or_rejected_cost_comparators": [
+      "BJ-ACCESS-EVALUATION-2026",
+      "BJ-HOSPITAL-SIGNAGE-2020"
+    ],
+    "provisional_or_participant_generated": [
+      "BOUNDARY-SOURCE",
+      "KEY-AREA-SOURCE"
+    ],
+    "participant_audit_records": [
+      "SPATIAL-SOURCE-CONFLICT-REGISTER"
+    ],
+    "task_and_repository_material": [
+      "SITE-PACKAGE",
+      "AGENT-TASKBOOK",
+      "SOURCE-REGISTRY",
+      "PROCESSED-FACT-PACK"
+    ]
+  },
+  "withdrawn_source_rule": {
+    "source_ids": [
+      "ZHONGZHIYUAN-RENEWAL",
+      "DAZHONGSI-RENEWAL"
+    ],
+    "status": "background_search_lead_only",
+    "upgrade_requires_zh": "恢复后的官方页面、官方归档件或经清权附件。",
+    "upgrade_requires_en": "A restored official page, official archive, or rights-cleared attachment."
+  },
+  "conflict_rule": {
+    "rule_zh": "L4与L5不一致时登记冲突，不以开放数据改写法定边界或把临时几何包装为官方结论。",
+    "rule_en": "Register conflicts between L4 and L5; never use open data to amend a statutory boundary or present provisional geometry as an official conclusion.",
+    "current_record_ids": [
+      "SC-OSM-SITE-001"
+    ]
+  }
+}

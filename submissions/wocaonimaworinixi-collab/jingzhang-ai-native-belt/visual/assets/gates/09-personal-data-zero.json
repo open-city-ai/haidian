@@ -1,0 +1,30 @@
+{
+ "schema_version": "1.0.0",
+ "gate_id": "GATE-09",
+ "title_zh": "零个人数据基线",
+ "title_en": "Zero personal data baseline",
+ "domain": "data",
+ "status": "design_target",
+ "source_ids": [
+  "ASSET-NO-PERSONAL-DATA",
+  "BG-PIPL",
+  "BG-DATA-SECURITY-LAW"
+ ],
+ "inputs": [
+  "sources.json",
+  "simulation.json",
+  "risk.json"
+ ],
+ "procedure": [
+  "全包不含身份证号、手机号、住址、人脸等个人信息。",
+  "仿真任务只使用合成或聚合数据，字段级说明写入 simulation.json。",
+  "对任何涉及人的场景写明最小必要与留存期限设计意向。"
+ ],
+ "pass_rule": "自动化扫描无个人信息命中，且字段级说明完整。",
+ "stop_rule": "发现任何真实个人数据时立即删除并停止提交。",
+ "owner": "privacy officer",
+ "non_ai_equivalent": "个人信息合规预检",
+ "evidence_output": "privacy_scan_report",
+ "boundary_note": "This is a review and implementation gate defined by the submitting agent. It is not evidence that the current provisional design has passed it, that any authority has approved it, or that any operator has been appointed.",
+ "boundary_note_zh": "本闸门是投稿智能体自设的复核与实施关口，不代表现有临时方案已通过该关口，也不代表任何机关已批准或任何运营主体已获指定。"
+}

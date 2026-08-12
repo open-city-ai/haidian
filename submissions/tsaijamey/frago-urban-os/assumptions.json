@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1.0",
+  "assumptions": [
+    {
+      "id": "A-CONTROLS-001",
+      "status": "pending_professional_confirmation",
+      "statement": "Detailed regulatory controls, road redlines, plot boundaries, ownership, municipal utilities, heritage protection lines, and engineering constraints are not included in the cleared site package and must be confirmed from official attachments before any statutory use.",
+      "statement_zh": "控规指标、道路红线、地块边界、权属、市政管线、文物保护控制线与工程条件均未包含在已清权资料包中，正式使用前须由官方附件确认。",
+      "impact": "Development intensity, building height, retain-renovate-demolish conclusions, and engineering feasibility are recorded as pending rather than as design conclusions.",
+      "recalculation_trigger": "Official regulatory conditions or announcement attachments are published.",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json",
+        "design_depth_matrix.json"
+      ]
+    },
+    {
+      "id": "A-BOUNDARY-PROVISIONAL-001",
+      "status": "provisional_constraint",
+      "statement": "The submitted site boundary and the three key-area polygons are derived from brief/site-package/geometry/provisional_boundaries.geojson and carry official_boundary=false.",
+      "statement_zh": "提交的总体边界与三处重点区 polygon 来自临时粗略边界文件，标注 official_boundary=false，只能用于方案生成、自检、可视化与设计讨论。",
+      "impact": "All boundary-derived areas, ratios, and topology checks are internal consistency evidence only; they are not official redlines, precise-area evidence, or approval-ready controls.",
+      "recalculation_trigger": "Official SITE_BOUNDARY or KEY_AREA polygons are released; the whole package (geometry, metrics, figures, drawings, HTML) must be regenerated rather than patched file by file.",
+      "affected_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson",
+        "metrics.json",
+        "proposal.md"
+      ]
+    },
+    {
+      "id": "A-GEOM-METRIC-ALIGN-001",
+      "status": "resolved_internally_aligned",
+      "statement": "Geometry-derived metric values in metrics.json have been recalculated against the final submitted geometry layers and verified by an independent read-only pass; self_check METRICS_NARRATIVE_ALIGNMENT is pass. The alignment holds only for the current geometry round: any regeneration or replacement of a layer re-opens this assumption.",
+      "statement_zh": "metrics.json 中由几何派生的数值（提交边界面积、绿地比例、公共空间比例、建筑基底面积、分期数量）已与最终提交图层统一复算对齐，并由只读脚本独立复核，self_check 的 METRICS_NARRATIVE_ALIGNMENT 判定为 pass。该对齐只对当前这一轮几何成立：任何图层被重新生成或替换，本条即重新开启。",
+      "impact": "Exact values in metrics.json are authoritative for the current geometry round; the proposal text keeps quantities qualitative and points to metrics.json, so a future geometry change shifts numbers without invalidating narrative claims.",
+      "recalculation_trigger": "Final geometry layers are regenerated or replaced (including the whole-package recalculation triggered by official polygons under A-BOUNDARY-PROVISIONAL-001).",
+      "affected_files": [
+        "metrics.json",
+        "geometry/",
+        "visual/index.html",
+        "report/proposal.html"
+      ]
+    },
+    {
+      "id": "A-CASE-EVIDENCE-001",
+      "status": "qualitative_evidence_only",
+      "statement": "The six global innovation-district cases are described only at the level of publicly observable organisational mechanisms taken from official pages accessed on 2026-08-10. No investment amounts, output values, company lists, or performance figures are cited.",
+      "statement_zh": "六个全球创新区案例只描述其官方公开页面可观察到的组织机制，访问日期 2026-08-10；不引用投资额、产值、企业名单与绩效数据。如需引用数值，须另行核实并登记来源。",
+      "impact": "Case-based arguments support mechanism design only; they must not be read as benchmarking data.",
+      "recalculation_trigger": "A numeric claim about any case is introduced into the proposal.",
+      "affected_files": [
+        "proposal.md",
+        "sources.json"
+      ]
+    },
+    {
+      "id": "A-SCENARIO-UNAPPROVED-001",
+      "status": "concept_proposal_only",
+      "statement": "Every AI scenario card and industry test-validation scenario in this package is a concept illustration pending human review. None is an approved service, an operating deployment, or a committed government arrangement.",
+      "statement_zh": "本包中的全部 AI 场景卡与产业测试验证场景均为概念示意、待人工复核、未经批准运营，不构成任何已确定的服务安排或政府承诺。",
+      "impact": "Scenario counts are content-coverage evidence, not deployment evidence.",
+      "recalculation_trigger": "A scenario enters a real pilot with a named operating entity and approval record.",
+      "affected_files": [
+        "proposal.md",
+        "compliance_matrix.json"
+      ]
+    },
+    {
+      "id": "A-EXISTING-BUILDING-001",
+      "status": "unknown",
+      "statement": "No existing-building survey, ownership registry, or structural assessment is available in the cleared source set, so the retain-renovate-demolish work is expressed as method and criteria rather than as plot-level conclusions.",
+      "statement_zh": "已清权资料中没有现状建筑普查、权属登记与结构评估数据，因此拆改留只给出判据与流程，不给出具体地块结论；绝大多数建筑对象记为待确认。",
+      "impact": "Building footprint metrics reflect the submitted layer, not a survey of existing stock.",
+      "recalculation_trigger": "Official building survey or ownership data becomes available.",
+      "affected_files": [
+        "proposal.md",
+        "geometry/buildings.geojson",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-MUNICIPAL-CAPACITY-001",
+      "status": "unknown",
+      "statement": "Municipal pipeline capacity, energy load, drainage, flood control, fire protection, and traffic section capacity data are not available; carrying-capacity conclusions are therefore listed as prerequisites for formal deepening.",
+      "statement_zh": "市政管线容量、能源负荷、排水防洪、消防与交通断面通行能力数据缺失，综合承载能力结论列为正式深化前置条件，方案不给出估值。",
+      "impact": "Infrastructure proposals stay at the level of layout principles and governance constraints.",
+      "recalculation_trigger": "Municipal and transport engineering data is supplied by the organiser or the responsible authorities.",
+      "affected_files": [
+        "proposal.md",
+        "design_depth_matrix.json"
+      ]
+    },
+    {
+      "id": "A-BILINGUAL-PENDING-001",
+      "status": "resolved_delivered",
+      "statement": "The bilingual contract declared in the front matter is fulfilled. Ten English counterparts are delivered: proposal.en.md (full parallel translation, same 13 sections), report/proposal.en.html, visual/index.en.html, drawings/a3-booklet.en.pdf, drawings/a0-boards.en.pdf, and five .en.png figures. Every counterpart is registered in manifest.json with language=\"en\" and translation_of pointing back to its primary file, and all manifest sha256 entries verify. Translation equivalence itself remains subject to maintainer human review.",
+      "statement_zh": "双语契约已履行。10 个英文副本全部交付：proposal.en.md（完整对照译稿，与中文主稿同为 13 章）、report/proposal.en.html、visual/index.en.html、drawings/a3-booklet.en.pdf、drawings/a0-boards.en.pdf 与 5 张 .en.png 图件。每个副本均在 manifest.json 中登记 language=\"en\" 并以 translation_of 指回主文件，全部 sha256 校验通过。译文等义性本身仍由维护者人工复核，不由本条覆盖。",
+      "impact": "The bilingual gate is satisfied; this entry is retained as a delivery record rather than an open item. Any later edit to a primary file re-opens it until the matching counterpart and manifest hash are updated.",
+      "recalculation_trigger": "A primary-language file is edited without regenerating its counterpart and refreshing the manifest hash.",
+      "affected_files": [
+        "proposal.md",
+        "manifest.json",
+        "report/",
+        "visual/",
+        "drawings/"
+      ]
+    },
+    {
+      "id": "A-OPERATION-BASELINE-001",
+      "status": "unknown",
+      "statement": "Performance indicators such as scenario usage frequency, event participation, walkability improvement, service satisfaction, and contributor conversion have no operating baseline data; only measurement definitions are provided.",
+      "statement_zh": "场景使用频次、活动参与度、慢行可达性改善、服务满意度与贡献者转化率等绩效指标没有运营基线数据，当前阶段只定义口径与采集方式，不给出数值。",
+      "impact": "No performance number is claimed anywhere in the package.",
+      "recalculation_trigger": "A pilot produces published evaluation results.",
+      "affected_files": [
+        "proposal.md",
+        "metrics.json"
+      ]
+    },
+    {
+      "id": "A-KEY-AREA-NAMING-001",
+      "status": "source_variance_resolved",
+      "statement": "The two authoritative sources spell the third key area differently: the official announcement writes 大钟寺AI产业聚集区, while the agent taskbook excerpt writes 大钟寺AI产业集聚区. This package standardises on the announcement spelling 聚集 throughout text, matrices, metrics, and geometry, because the announcement is the statutory solicitation document and outranks the co-creation covenant. The variance is a source-side difference, not a typographical error in this submission.",
+      "statement_zh": "两份权威来源对第三处重点区的写法不一致：官方公告写「大钟寺AI产业聚集区」，面向智能体的任务书摘录写「大钟寺AI产业集聚区」。本包全域统一采用公告写法「聚集」——公告是法定征集程序的组织文件，权威等级高于共创约定。此处差异来自来源本身，不是本投稿的笔误。",
+      "impact": "Reviewers cross-checking the taskbook JSON will see 集聚 there and 聚集 here; both refer to the same area_id dazhongsi_ai_industry_cluster, which is used unchanged as the machine-readable key.",
+      "recalculation_trigger": "The organiser publishes a corrected or unified official name for the area.",
+      "affected_files": [
+        "proposal.md",
+        "report/narrative.md",
+        "compliance_matrix.json",
+        "metrics.json",
+        "geometry/key_areas.geojson"
+      ]
+    }
+  ]
+}

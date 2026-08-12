@@ -1,0 +1,206 @@
+{
+ "schema_version": "0.1.0",
+ "ok": true,
+ "can_enter_formal_review": true,
+ "stage": "formal",
+ "package_type": "professional_design_package",
+ "review_status": "formal-review-ready",
+ "pr_author": "miraclelgz666",
+ "checks": [
+  {
+   "check_id": "DETERMINISTIC_VALIDATION",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "manifest.json + all listed files",
+   "message": "All manifest sha256 digests match file content. No deterministic validation errors."
+  },
+  {
+   "check_id": "BOUNDARY_TRUST",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/site_boundary.geojson",
+   "message": "Provisional boundary is present; replace with official redline before professional scoring."
+  },
+  {
+   "check_id": "KEY_AREAS_TRUST",
+   "result": "pass",
+   "severity": "minor",
+   "target": "geometry/key_areas.geojson",
+   "message": "Three required key areas are provisional (PROV-KEY-001/002/003); replace with official polygons before professional scoring."
+  },
+  {
+   "check_id": "LAND_USE_TOPOLOGY",
+   "result": "pass",
+   "severity": "major",
+   "target": "geometry/land_use.geojson",
+   "message": "Land-use polygons derived from site boundary partitioning; topology valid, no gaps or overlaps."
+  },
+  {
+   "check_id": "SPATIAL_REVIEW",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "geometry/*.geojson",
+   "message": "Spatial review passed with 0 blocking/major issues. 3 minor KEY_AREA_PROVISIONAL notices (organizer data gap)."
+  },
+  {
+   "check_id": "VISUAL_STATIC",
+   "result": "pass",
+   "severity": "major",
+   "target": "visual/index.html",
+   "message": "Static HTML visualization generated without external dependencies; required metrics declared."
+  },
+  {
+   "check_id": "PROFESSIONAL_EVIDENCE",
+   "result": "pass",
+   "severity": "blocking",
+   "target": "proposal.md",
+   "message": "Professional review passed. 6 standard_matrix items, 15 design_depth items; v2 claim-adjacent references present in every required section."
+  },
+  {
+   "check_id": "METRIC_CONSISTENCY",
+   "result": "pass",
+   "severity": "major",
+   "target": "metrics.json",
+   "message": "site_area_sqm 11412825.4, green_ratio 0.290861, public_space_ratio 0.018598, building_density 0.044523 consistent across spatial and manifest data."
+  }
+ ],
+ "deterministic_validation": {
+  "ok": true,
+  "errors": [],
+  "warnings": [
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/site_boundary.geojson: uses provisional boundary; do not treat it as an official redline or precise-area basis. Organizer data gaps do not block content scoring; recalculate when official geometry is supplied"
+  ],
+  "proposal_files": [
+   "submissions/miraclelgz666/jingzhang-annual-rings/proposal.md"
+  ],
+  "changelog_files": [
+   "submissions/miraclelgz666/jingzhang-annual-rings/changelog.md"
+  ],
+  "changed_files": [
+   "submissions/miraclelgz666/jingzhang-annual-rings/agent.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/key-areas.en.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/key-areas.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/land-use-structure.en.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/land-use-structure.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/metrics-evidence.en.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/metrics-evidence.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/mobility-bluegreen.en.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/mobility-bluegreen.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/site-overview.en.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assets/figures/site-overview.png",
+   "submissions/miraclelgz666/jingzhang-annual-rings/assumptions.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/changelog.md",
+   "submissions/miraclelgz666/jingzhang-annual-rings/compliance_matrix.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/design_depth_matrix.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/drawings/a0-boards.en.pdf",
+   "submissions/miraclelgz666/jingzhang-annual-rings/drawings/a0-boards.pdf",
+   "submissions/miraclelgz666/jingzhang-annual-rings/drawings/a3-booklet.en.pdf",
+   "submissions/miraclelgz666/jingzhang-annual-rings/drawings/a3-booklet.pdf",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/buildings.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/constraints.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/green_space.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/key_areas.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/land_use.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/phasing.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/public_space.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/roads.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/geometry/site_boundary.geojson",
+   "submissions/miraclelgz666/jingzhang-annual-rings/manifest.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/metrics.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/proposal.en.md",
+   "submissions/miraclelgz666/jingzhang-annual-rings/proposal.md",
+   "submissions/miraclelgz666/jingzhang-annual-rings/report/copyright_statement.md",
+   "submissions/miraclelgz666/jingzhang-annual-rings/report/narrative.md",
+   "submissions/miraclelgz666/jingzhang-annual-rings/report/proposal.en.html",
+   "submissions/miraclelgz666/jingzhang-annual-rings/report/proposal.html",
+   "submissions/miraclelgz666/jingzhang-annual-rings/self_check.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/sources.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/standard_matrix.json",
+   "submissions/miraclelgz666/jingzhang-annual-rings/visual/index.en.html",
+   "submissions/miraclelgz666/jingzhang-annual-rings/visual/index.html"
+  ],
+  "ai_package_stages": {
+   "submissions/miraclelgz666/jingzhang-annual-rings": "formal"
+  },
+  "total_bytes": 14825138,
+  "maintainer_bypass": false
+ },
+ "spatial_review": {
+  "ok": true,
+  "stage": "formal",
+  "issues": [
+   {
+    "check_id": "KEY_AREA_PROVISIONAL",
+    "severity": "minor",
+    "target_file": "geometry/key_areas.geojson",
+    "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+    "target_feature_id": "PROV-KEY-001",
+    "expected": null,
+    "actual": null
+   },
+   {
+    "check_id": "KEY_AREA_PROVISIONAL",
+    "severity": "minor",
+    "target_file": "geometry/key_areas.geojson",
+    "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+    "target_feature_id": "PROV-KEY-002",
+    "expected": null,
+    "actual": null
+   },
+   {
+    "check_id": "KEY_AREA_PROVISIONAL",
+    "severity": "minor",
+    "target_file": "geometry/key_areas.geojson",
+    "message": "Key detailed-design area is provisional; do not use it as an official redline or precise-area basis. Content scoring remains eligible.",
+    "target_feature_id": "PROV-KEY-003",
+    "expected": null,
+    "actual": null
+   }
+  ],
+  "metrics": {
+   "site_area_sqm": 11412825.386,
+   "green_space_area_sqm": 3319545.877,
+   "public_space_area_sqm": 212261.289,
+   "building_footprint_area_sqm": 508131.584,
+   "green_ratio": 0.290861,
+   "public_space_ratio": 0.018598
+  }
+ },
+ "visual_review": {
+  "ok": true,
+  "issues": [],
+  "metrics_seen": {
+   "site_area_sqm": 11412825.386,
+   "green_ratio": 0.290861,
+   "public_space_ratio": 0.018598,
+   "building_density": 0.044523,
+   "road_centerline_length_m": 25312.0,
+   "ring_count": 13.0,
+   "coordinated_research_area_sqm": 43609232.558,
+   "key_detailed_design_area_sqm": 3692893.005,
+   "zhongzhiyuan_area_sqm": 1929201.877,
+   "beijing_ai_origin_area_sqm": 1043236.909,
+   "dazhongsi_area_sqm": 720454.219
+  }
+ },
+ "professional_review": {
+  "ok": true,
+  "issues": [],
+  "summary": {
+   "standard_matrix_items": 6,
+   "design_depth_items": 15,
+   "known_metric_refs_required": 34,
+   "proposal_format_version": "2",
+   "evidence_contract": "section-anchors-plus-structured-audit",
+   "proposal_reference_counts": {
+    "source": 4,
+    "standard": 5,
+    "depth": 10,
+    "data": 19,
+    "metric": 21
+   }
+  }
+ },
+ "missing_review_dependencies": [],
+ "next_actions": []
+}

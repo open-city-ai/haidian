@@ -1,0 +1,137 @@
+{
+  "schema_version": "0.1.0",
+  "package_iteration": "v2.3",
+  "sequence_id": "CITY-API-SEQUENCE-V23-001",
+  "status": "conceptual_sequence_evidence",
+  "title_zh": "城市 API 六步可回放序列",
+  "title_en": "Six-step replayable city-API sequence",
+  "purpose_zh": "把既有城市 API、普通人服务链、场景卡和发布门压成一张可回放的空间—责任序列；它只表达概念建议，不代表接口已建成、已授权或正在运行。",
+  "purpose_en": "Compress the existing city API, ordinary-person journey, scenario cards, and release gates into a replayable spatial-accountability sequence; it is a conceptual suggestion, not evidence of a built, authorized, or running interface.",
+  "spatial_anchor_refs": [
+    "geometry/public_space.geojson#PUBLIC-B-API",
+    "geometry/constraints.geojson#SC-B01",
+    "geometry/constraints.geojson#SC-B04",
+    "geometry/constraints.geojson#SC-C04",
+    "geometry/phasing.geojson#PHASE-V02"
+  ],
+  "scenario_refs": [
+    "SC-B01",
+    "SC-B04",
+    "SC-C04",
+    "SC-C05"
+  ],
+  "steps": [
+    {
+      "step_id": "API-01",
+      "label_zh": "目录",
+      "label_en": "Catalogue",
+      "actor_zh": "公共问题台 / 资料责任角色",
+      "actor_en": "Public problem desk / data-responsibility role",
+      "action_zh": "公开问题、数据用途、空间锚点和版本，不把未授权数据写进可调用目录。",
+      "action_en": "Publish the problem, data purpose, spatial anchor, and version; do not place unauthorized data in the callable catalogue.",
+      "evidence_refs": [
+        "visual/assets/scenario-space-operation-matrix.json#SC-B01",
+        "visual/assets/data-readiness-register.json#DR-04"
+      ],
+      "human_equivalent_zh": "人工解释、纸面目录和电话咨询并列。",
+      "human_equivalent_en": "Staffed explanation, a paper catalogue, and telephone advice remain available.",
+      "stop_trigger_zh": "问题、用途或责任不清时停在观察与补资料。",
+      "stop_trigger_en": "Stay in observation and evidence completion when the problem, purpose, or accountability is unclear."
+    },
+    {
+      "step_id": "API-02",
+      "label_zh": "授权",
+      "label_en": "Authorize",
+      "actor_zh": "授权核验 / 独立复核角色",
+      "actor_en": "Authorization check / independent review role",
+      "action_zh": "按地点、时间、数据、责任四限定核验最小权限与公众说明。",
+      "action_en": "Check least privilege and public explanation against place, time, data, and accountability bounds.",
+      "evidence_refs": [
+        "visual/assets/human-machine-interface-prototypes.json#SECTION-B-BOUNDED-TEST",
+        "visual/assets/pilot-readiness-register.json#SC-B01"
+      ],
+      "human_equivalent_zh": "人工核验、非数字入口和撤销授权可直接完成请求。",
+      "human_equivalent_en": "A staffed check, a non-digital entry, and authorization withdrawal can complete the request directly.",
+      "stop_trigger_zh": "无同意、越权或责任待确认时只保留纸面协议。",
+      "stop_trigger_en": "Keep only a paper protocol when consent is absent, privilege is exceeded, or accountability is unconfirmed."
+    },
+    {
+      "step_id": "API-03",
+      "label_zh": "调用",
+      "label_en": "Call",
+      "actor_zh": "受限场景 / 人工接管角色",
+      "actor_en": "Bounded scenario / human-takeover role",
+      "action_zh": "在既定场景和发布门内调用最小问题；AI 只给建议，不替代许可、执法或权益决定。",
+      "action_en": "Call only the minimum problem inside the declared scenario and release gate; AI advises but does not replace permits, enforcement, or rights decisions.",
+      "evidence_refs": [
+        "visual/assets/scenario-cards.json#SC-B01",
+        "visual/assets/human-city-ordinary-journey.json#J3",
+        "geometry/phasing.geojson#PHASE-V02"
+      ],
+      "human_equivalent_zh": "人工、电话、纸面或现场服务与 AI 辅助并列。",
+      "human_equivalent_en": "Staffed, telephone, paper, or on-site service runs alongside AI assistance.",
+      "stop_trigger_zh": "安全事件、无障碍受阻或建议不可解释时冻结调用并回到人工。",
+      "stop_trigger_en": "Freeze the call and return to human service after a safety event, accessibility barrier, or unexplained recommendation."
+    },
+    {
+      "step_id": "API-04",
+      "label_zh": "日志",
+      "label_en": "Log",
+      "actor_zh": "日志 / 公众问题台",
+      "actor_en": "Logging / public-issue desk",
+      "action_zh": "只记录最小必要的版本、授权、接管、异议和退出字段，保留可读的版本差异。",
+      "action_en": "Record only the minimum version, authorization, takeover, objection, and exit fields, with a readable version diff.",
+      "evidence_refs": [
+        "visual/assets/human-city-receipt.json#H0-H5",
+        "visual/assets/scenario-space-operation-matrix.json#SC-C05"
+      ],
+      "human_equivalent_zh": "人工答复、纸面回执和撤回路径不依赖自动日志。",
+      "human_equivalent_en": "Staffed answers, a paper receipt, and withdrawal paths do not depend on automated logs.",
+      "stop_trigger_zh": "超出最小记录、无法解释或无法撤回时冻结版本。",
+      "stop_trigger_en": "Freeze the version when logging exceeds the minimum, cannot be explained, or cannot be withdrawn."
+    },
+    {
+      "step_id": "API-05",
+      "label_zh": "审计",
+      "label_en": "Audit",
+      "actor_zh": "独立复核 / 公众异议角色",
+      "actor_en": "Independent review / public-objection role",
+      "action_zh": "回放输入、人工接管、异议和未解决项，区分包内结构 PASS 与现实绩效。",
+      "action_en": "Replay inputs, human takeover, objections, and unresolved items, distinguishing package-structure PASS from real-world performance.",
+      "evidence_refs": [
+        "visual/assets/human-city-receipt-evidence.json",
+        "visual/assets/human-city-reference-audit.json"
+      ],
+      "human_equivalent_zh": "由人解释、答复并允许提出异议，不用自动结论替代听取。",
+      "human_equivalent_en": "A person explains and answers, with objections allowed; an automated conclusion does not replace listening.",
+      "stop_trigger_zh": "不能独立回放、最慢群体变差或异议无答复时不进入下一门。",
+      "stop_trigger_en": "Do not advance the gate when independent replay fails, the slowest group worsens, or objections have no answer."
+    },
+    {
+      "step_id": "API-06",
+      "label_zh": "退出",
+      "label_en": "Exit",
+      "actor_zh": "发布门 / 责任待确认角色",
+      "actor_en": "Release gate / accountability-to-be-confirmed role",
+      "action_zh": "撤回调用、删除或冻结资料，发布 release note，并决定修复、维持或回到上一门。",
+      "action_en": "Withdraw the call, delete or freeze data, publish a release note, and decide whether to repair, hold, or return to the prior gate.",
+      "evidence_refs": [
+        "visual/assets/release-gate-ledger.json",
+        "visual/assets/governance-startup-protocol.json"
+      ],
+      "human_equivalent_zh": "人工、电话、纸面和线下意见在退出后继续可用。",
+      "human_equivalent_en": "Staffed, telephone, paper, and offline opinion routes remain available after exit.",
+      "stop_trigger_zh": "没有删除证明、责任答复或人工等效入口时不得扩展。",
+      "stop_trigger_en": "Do not expand without deletion proof, an accountable answer, and an equivalent human entry."
+    }
+  ],
+  "operational_status": "not_authorized_not_run",
+  "performance_results": null,
+  "official_boundary": false,
+  "geometry_role": "provisional_constraint",
+  "not_a_score": true,
+  "confidence": "low",
+  "recompute_trigger": "official geometry, rights, accessibility, safety, energy, climate, authorization, or public-baseline inputs change",
+  "boundary_zh": "该序列只把既有空间锚点与责任动作变成可读图，不生成官方边界、工程断面、接口能力、许可或运营绩效。",
+  "boundary_en": "The sequence only makes existing spatial anchors and accountability actions readable; it produces no official boundary, engineering section, interface capacity, permit, or operating performance."
+}

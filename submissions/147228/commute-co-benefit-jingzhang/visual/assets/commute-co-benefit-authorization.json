@@ -1,0 +1,159 @@
+{
+  "schema_version": "0.1.0",
+  "register_id": "COMMUTE-CO-BENEFIT-AUTHORIZATION-LADDER-1000",
+  "status": "decision_register_not_operational",
+  "current_stage": "P0",
+  "current_action": "hold_and_collect_dated_grouped_evidence",
+  "selected_policy": {
+    "id": "C3_commute_co_benefit",
+    "label_zh": "C3 通勤共益组合",
+    "label_en": "C3 commute co-benefit bundle",
+    "score_proxy": 91.91,
+    "baseline_policy": "B0_inertial_baseline",
+    "population_reference": 3122000,
+    "coverage_ratio": 1
+  },
+  "source_boundary": "This register converts the checked-in synthetic contract into a staged evidence and stop rule. It grants no pilot, permit, partnership, resident consent or operating result.",
+  "stages": [
+    {
+      "id": "P0",
+      "label_zh": "登记与基线",
+      "label_en": "register + baseline",
+      "status": "current_hold",
+      "action_zh": "当前停在这里：补日期化分组证据",
+      "action_en": "current hold: collect dated grouped evidence",
+      "entry_evidence": [
+        "dated_grouped_OD_and_enterprise_shift_acceptance",
+        "metro_bus_headway_station_stop_and_curb_capacity",
+        "resident_care_accessibility_and_night_return_validation",
+        "complaint_redress_and_human_fallback_rehearsal",
+        "privacy_suppression_retention_and_deletion_proof"
+      ],
+      "output_zh": "分组 OD、方式、容量、责任人与隐私规则",
+      "output_en": "grouped OD, modes, capacity, owners and privacy rules",
+      "stop_zh": "缺一项就不预约，不扩容，保留公共与人工入口",
+      "stop_en": "missing evidence means no booking or expansion; keep public and human access",
+      "roles_zh": [
+        "交通与属地管理",
+        "企业交通专员",
+        "社区与无障碍顾问",
+        "数据保护与独立复核"
+      ],
+      "roles_en": [
+        "transport and local authority",
+        "employer mobility lead",
+        "community and accessibility adviser",
+        "data protection and independent review"
+      ]
+    },
+    {
+      "id": "P1",
+      "label_zh": "可逆小试",
+      "label_en": "reversible pilot",
+      "status": "blocked_until_P0",
+      "action_zh": "只试一条最小活动链，现场人员可以随时接管",
+      "action_en": "test one minimum activity chain; people can take over at any time",
+      "entry_evidence": [
+        "P0 evidence is dated and signed",
+        "one accountable operator and one independent stop reviewer",
+        "public route, phone and paper fallback rehearsed",
+        "accessibility, night return and complaint fields have a baseline"
+      ],
+      "output_zh": "按企业、居民、照护、夜班和服务组回读等待、可达、冲突与投诉",
+      "output_en": "read wait, access, conflict and complaints by employer, resident, care, night and service groups",
+      "stop_zh": "任何保护组变差，立即切回地铁、公交、人工、电话和纸面入口",
+      "stop_en": "any protected-group decline returns immediately to metro, bus, human, phone and paper access",
+      "roles_zh": [
+        "现场运营者",
+        "公共交通与路缘责任人",
+        "社区代表",
+        "独立停机复核人"
+      ],
+      "roles_en": [
+        "field operator",
+        "transit and curb owner",
+        "community representative",
+        "independent stop reviewer"
+      ]
+    },
+    {
+      "id": "P2",
+      "label_zh": "条件扩展",
+      "label_en": "conditional expansion",
+      "status": "blocked_until_P1",
+      "action_zh": "只有证据闭合后，才讨论扩大时段、方式和服务范围",
+      "action_en": "expand time windows, modes and service scope only after evidence closes",
+      "entry_evidence": [
+        "P1 readout covers every protected group",
+        "capacity and headway remain inside the approved envelope",
+        "complaints have owners, updates and closure evidence",
+        "privacy retention and deletion proof is complete",
+        "professional safety, accessibility and traffic review is complete"
+      ],
+      "output_zh": "可追溯的扩展或撤回决定，保留版本、阈值和复核日期",
+      "output_en": "traceable expansion or withdrawal decision with version, thresholds and review date",
+      "stop_zh": "分组恶化、证据过期或责任缺位，就回到 P0 或停止",
+      "stop_en": "group decline, expired evidence or missing ownership returns to P0 or stops",
+      "roles_zh": [
+        "专业交通与安全复核",
+        "运营与维护",
+        "公共服务与社区",
+        "数据保护与审计"
+      ],
+      "roles_en": [
+        "professional transport and safety review",
+        "operations and maintenance",
+        "public service and community",
+        "data protection and audit"
+      ]
+    },
+    {
+      "id": "A1",
+      "label_zh": "空中候选",
+      "label_en": "air candidate",
+      "status": "blocked",
+      "action_zh": "不用于填补地面证据缺口，不进入当前政策排名",
+      "action_en": "does not fill a ground-evidence gap and stays out of the current policy ranking",
+      "entry_evidence": [
+        "separate aviation approval and safety case",
+        "weather, noise, emergency and ground-transfer evidence",
+        "public consultation and an equivalent ground fallback"
+      ],
+      "output_zh": "在独立审批前只保留接口假设，当前状态为阻断",
+      "output_en": "keep only an interface hypothesis before independent approval; current state is blocked",
+      "stop_zh": "任一空中门失败，继续使用地面与人工回退",
+      "stop_en": "any air gate failure keeps ground and human fallback in place",
+      "roles_zh": [
+        "有权审批部门",
+        "安全与无障碍复核",
+        "地面接驳运营者",
+        "公众与社区"
+      ],
+      "roles_en": [
+        "authorised aviation authority",
+        "safety and accessibility review",
+        "ground-transfer operator",
+        "public and community"
+      ]
+    }
+  ],
+  "model_may_claim": [
+    "the checked-in population-scale synthetic screen is deterministic and aggregate only",
+    "the selected ground policy passes its declared hard gates under synthetic inputs",
+    "the next evidence owners, fields and stop actions are explicit"
+  ],
+  "model_must_not_claim": [
+    "resident acceptance or employee adoption",
+    "local OD, timetable capacity, service quality or traffic improvement",
+    "permission, procurement, partnership, public consultation completion or air-service approval"
+  ],
+  "checks": {
+    "stage_order_complete": true,
+    "every_stage_has_evidence_action_stop_and_roles": true,
+    "current_stage_is_p0": true,
+    "current_action_is_hold": true,
+    "air_candidate_blocked": true,
+    "source_is_non_operational": true,
+    "aggregate_only": true
+  }
+}

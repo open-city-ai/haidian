@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0.0",
+  "pilot": {
+    "length_target_m": {"minimum": 100, "maximum": 200, "status": "conceptual_target"},
+    "principle_zh": "先在可封闭、可监督、可复原的非关键通行空间做小规模样段，不直接进入道路交叉口或法定盲道。",
+    "principle_en": "Start with a closable, supervised and reversible sample in non-critical circulation space, not a road junction or statutory tactile path.",
+    "rollback_zh": "任何无障碍混淆、绊滑风险、高风险误读、机器不停车或维护失效都立即停测、遮盖/移除样件并公开原因。",
+    "rollback_en": "Any accessibility confusion, trip/slip risk, high-risk misread, robot failure to stop or maintenance failure stops the test, covers/removes the prototype and publishes the reason."
+  },
+  "phases": [
+    {
+      "id": "PH1",
+      "name_zh": "纸面与室内共读",
+      "name_en": "Paper and indoor co-reading",
+      "duration": "gate_based_not_committed",
+      "outputs": ["dictionary_v0", "accessible_mockups", "cross_vendor_test_protocol"]
+    },
+    {
+      "id": "PH2",
+      "name_zh": "100–200 米可逆样段",
+      "name_en": "100–200 m reversible segment",
+      "duration": "gate_based_not_committed",
+      "outputs": ["weather_log", "comprehension_log", "maintenance_log", "rollback_drill"]
+    },
+    {
+      "id": "PH3",
+      "name_zh": "三区差异化验证",
+      "name_en": "Three-field differentiated validation",
+      "duration": "only_after_ph2_passes",
+      "outputs": ["translation_yard", "co_reading_commons", "handover_field"]
+    },
+    {
+      "id": "PH4",
+      "name_zh": "开放词典与专业深化",
+      "name_en": "Open dictionary and professional deepening",
+      "duration": "conditional",
+      "outputs": ["versioned_specification", "procurement_neutral_tests", "public_lessons"]
+    }
+  ],
+  "gates": [
+    "accessibility_co_design_pass",
+    "statutory_non_confusion_pass",
+    "trip_slip_wheelability_pass",
+    "cross_vendor_read_and_default_stop_pass",
+    "rain_dust_leaf_low_light_occlusion_pass",
+    "traffic_property_heritage_and_maintenance_review",
+    "incident_and_rollback_drill_pass",
+    "public_comprehension_pass"
+  ],
+  "governance_roles": [
+    {
+      "id": "R1",
+      "name_zh": "公众共读席",
+      "name_en": "Public co-reading seats",
+      "scope_zh": "残障使用者、儿童/照护者、老年人和普通使用者拥有版本否决和问题升级权。",
+      "scope_en": "Disabled users, children/caregivers, older people and everyday users can veto a version and escalate issues."
+    },
+    {
+      "id": "R2",
+      "name_zh": "专业安全席",
+      "name_en": "Professional safety seats",
+      "scope_zh": "无障碍、交通、材料、消防、文保、运维和数据专业判断是否可测试。",
+      "scope_en": "Accessibility, transport, material, fire, heritage, maintenance and data professionals decide whether testing may proceed."
+    },
+    {
+      "id": "R3",
+      "name_zh": "多厂商测试席",
+      "name_en": "Multi-vendor test seats",
+      "scope_zh": "提交可复现实验和失败样本，不拥有公共词典。",
+      "scope_en": "Submit reproducible tests and failure samples without owning the public dictionary."
+    },
+    {
+      "id": "R4",
+      "name_zh": "现场值守与维护席",
+      "name_en": "Site duty and maintenance seats",
+      "scope_zh": "有权立即停测、隔离风险、启用人工替代并登记修复。",
+      "scope_en": "May stop tests immediately, isolate risk, activate human alternatives and log repairs."
+    }
+  ],
+  "metrics": [
+    {"id": "M1", "name_zh": "首次理解率", "name_en": "First-read comprehension", "status": "target_requires_baseline", "direction": "higher_is_better"},
+    {"id": "M2", "name_zh": "高风险误读数", "name_en": "High-risk misreads", "status": "zero_tolerance_gate", "direction": "zero_required"},
+    {"id": "M3", "name_zh": "跨厂商一致行为率", "name_en": "Cross-vendor behavior agreement", "status": "target_requires_protocol", "direction": "higher_is_better"},
+    {"id": "M4", "name_zh": "不确定状态停车率", "name_en": "Stop rate under uncertainty", "status": "safety_gate", "direction": "100_percent_required_in_test"},
+    {"id": "M5", "name_zh": "无障碍净空占用时长", "name_en": "Accessible-clearance obstruction time", "status": "zero_tolerance_gate", "direction": "zero_required"},
+    {"id": "M6", "name_zh": "三译码同步可用率", "name_en": "Three-translation simultaneous availability", "status": "target_requires_field_data", "direction": "higher_is_better"},
+    {"id": "M7", "name_zh": "缺陷发现至隔离时间", "name_en": "Defect-to-isolation time", "status": "target_requires_operator", "direction": "lower_is_better"},
+    {"id": "M8", "name_zh": "公众问题闭环率", "name_en": "Public issue closure rate", "status": "target_requires_governance", "direction": "higher_is_better"}
+  ],
+  "privacy": {
+    "allowed": ["glyph_id", "public_state", "version", "validity", "anonymous_test_result", "asset_condition"],
+    "prohibited": ["name", "face_template", "voiceprint", "phone", "account", "order_id", "home_address", "individual_route_history"],
+    "principle": "public_state_not_personal_identity"
+  }
+}

@@ -1,103 +1,150 @@
 ---
-title: "AFTER GO-LIVE: The Jingzhang AI Adoption and Operations Relay"
+title: "AFTER GO-LIVE: Human–AI Co-designed City and Adoption Space for Jing-Zhang"
 author_github: "BE-hop"
 author_name: "BE-hop × OpenAI Codex"
 language: "en"
+proposal_format_version: "2"
+bilingual_contract_version: "1"
 translation_of: "proposal.md"
 license: "CC-BY-SA-4.0"
-summary: "An urban adoption system that treats demonstration as the start, not the finish: one adoption spine connects three relay yards for proof and packaging, translation and training, and adoption and operation, while a mandatory handover protocol defines acceptance, staffing, human takeover, non-digital fallback, maintenance, recovery, exit and asset disposition."
+summary: "A spatially explicit urban-design proposal that translates railway operating culture into a four-state system for ordinary use, AI assistance, staffed degradation, and exit/reuse across three key-area typologies."
 tracks: ["enterprise-services-ecosystem", "ai-public-services", "civic-agent-governance"]
 scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safety-operations-review"]
+iteration: "v3.0-r1"
 ---
 
 # AFTER GO-LIVE
 
-## 01 The proposition: cities do not lack demos; they lack successors
+## Executive Summary: design every launch so space can return to ordinary city life
 
-AFTER GO-LIVE defines the Jingzhang AI Innovation Belt as an **urban adoption and operations relay**. A technology demonstration is only the start. A service can enter daily use only after its problem owner, users, provider, actual operator, resource type, acceptance method, training, human takeover, non-digital fallback, maintenance, recovery, exit and asset disposition are explicit. The proposal answers the official three scales, Three Areas and Two Wings, AI-enabled urban services and long-term operation tasks without claiming approval, investment or construction commitments. [source:OFFICIAL-ANNOUNCEMENT] [source:AGENT-TASKBOOK]
+This is first an urban-design, adaptive-reuse and public-realm proposal. Operations are not a separate policy layer: they determine plans, sections, interfaces and components. A four-state system keeps each place useful during NORMAL, AI-ASSISTED, DEGRADED / HUMAN-ONLY and EXIT / REUSE conditions. One adoption spine links the Zhongzhiyuan Prototype Marshalling Yard, AI Origin Translation Platform and a transferable Dazhongsi Urban Adoption Concourse typology, while two lateral wings connect professional supply with everyday feedback.[data:geometry/roads.geojson#ROAD-001] [metric:operating_state_count]
 
-Across the 184 merged entries reviewed on 8 August 2026, titles and summaries mention validation 60 times and operation 48 times, but maintenance once, cost twice and training zero times. This corpus count is not a quality judgement; it identifies post-demo adoption capacity as a distinct design opportunity. Licensed peer methods were compared, while their names, spatial grammar and graphics were not copied. [source:PEER-CATALOG]
+Each key area now has a typological plan, relational section and four-state transformation. Zhongzhiyuan separates controlled testing, observation, repair and an ordinary bypass. AI Origin combines an open ground floor, accessible model garden, learning court and quiet/care room. Dazhongsi separates a public concourse, reversible units, staffed counter and maintenance band. PROV-KEY-003 is not represented as the actual station location.[source:ISSUE-1029] [depth:three_key_area_detailed_design]
 
-![One adoption spine, three relay yards and two support wings](assets/figures/site-overview.en.png)
+![Overall urban design](assets/figures/site-overview.en.png)
 
-## 02 Spatial system
+## Design Basis and Source List
 
-The Jingzhang heritage park corridor becomes an **adoption spine**, a conceptual route for services, staff, knowledge and responsibility rather than a new statutory road. [data:geometry/roads.geojson#ROAD-001]
+The evidence stack separates the official call and Agent taskbook, repository source registry, official Beijing/Haidian historical context, and narrowly applicable legal or policy sources. Every entry records publisher, date, permitted use and limits. International examples are mechanism references, never evidence of local performance, partnership, finance or authority.[source:OFFICIAL-ANNOUNCEMENT] [source:SOURCE-REGISTRY]
 
-| Relay yard | Role | Gate to the next yard |
-| --- | --- | --- |
-| Zhongzhiyuan - `PROVE & PACKAGE` | Test technical performance, safety, maintainability and exit | repeatable metrics, recovery and human takeover drill |
-| AI Origin Community - `TRANSLATE & TRAIN` | turn technology into jobs, SOPs, accessibility and public acceptance | frontline staff can operate independently; fallback works |
-| Dazhongsi - `ADOPT & OPERATE` | run, staff and continuously review services in frequent urban life | operator, resources, exit and asset disposition are explicit |
+Official site and key-area polygons, statutory land use, survey, building condition, title, utilities, transport, underground-rail and heritage controls remain incomplete. Repository provisional geometry supports generation and recalculation only. Three AI-generated images are conceptual typology views paired with deterministic plans and sections; none is a photograph, survey or approval basis.[data:geometry/site_boundary.geojson#SITE-001] [source:AI-CONCEPT-VISUALS]
 
-The Zhongguancun wing provides procurement, legal, standards, finance and enterprise services. The Xiaoyuehe wing provides resident needs, public experience, accessibility testing and everyday feedback. Every relay must pass both reviews. All mapped boundaries remain provisional, exchanged in EPSG:4326 and recalculated in EPSG:4548. They are not official redlines, property, regulatory or engineering evidence. [source:BOUNDARY-SOURCE] [assumption:A-BOUNDARY-001]
+## Historical Spatial Grammar: fact, function and contemporary use
 
-## 03 The Go-Live Handover Protocol
+Railway culture becomes a working spatial grammar rather than decorative switches or signals. A line becomes continuous public movement and an adoption spine; a platform becomes an equal handover interface; a marshalling yard becomes a place for combining and testing components, algorithms and services; duty and repair become staffed maintenance and incident review; a timetable becomes day/night sharing; retirement becomes component migration and ordinary reuse.[source:BJ-PARK-OPEN-2023] [depth:cultural_narrative]
 
-Every scenario must specify twelve fields: problem owner, users, provider, operator, resource type, acceptance metrics, human takeover, non-digital fallback, maintenance cycle, recovery, exit condition and asset disposition. A missing field keeps the service in experimentation.
+Every translation must pass both a factual and practical gate. Treatment of authentic track, buildings or structures awaits heritage, railway, structural and landscape review. Six international cases transfer only problem-first access, controlled testing, resident collaboration, open interfaces, lifecycle procurement and post-deployment review. Their institutions, budgets, outcomes and powers are not imported.[data:visual/assets/case-transfer-matrix.json#cases]
 
-| Gate | Evidence | Failure action |
-| --- | --- | --- |
-| G0 Problem | current workflow, affected people, non-AI baseline | fix the process or cancel the AI path |
-| G1 Safety | risk tier, minimised data, human review | narrow or stop testing |
-| G2 Service | task success, accessibility, fallback | return to human/offline service |
-| G3 Operations | training, roster, maintenance, recovery drill | remain in sandbox |
-| G4 Adoption | continued use, complaints, recovery time, cost components | degrade, replace or exit |
-| G5 Assets | disposition of data, code, devices and contracts | freeze additions and complete closure |
+![Historical grammar, cases and regional interfaces](assets/figures/history-regional.en.png)
 
-NIST's post-deployment monitoring, appeal/override, incident response, recovery and decommissioning outcomes and the UK government's end-to-end AI procurement, lock-in and contract-management guidance inform this translation. They are methodological references, not statutory standards for Beijing. [source:NIST-AI-RMF] [source:UK-AI-PROCUREMENT]
+## Three-Level Scope Framework
 
-![Relay from proof to adoption](assets/figures/land-use-structure.en.png)
+The coordinated research level treats the roughly nine-kilometre heritage-park corridor and surrounding innovation resources as public adoption infrastructure. The overall-design level organises the adoption spine, east–west stitching, public nodes and gates within provisional geometry. The detailed level develops three spatial typologies that a professional team can later re-anchor and dimension. Functional overlays do not replace statutory classifications.[source:BJ-AI-BELT-2026] [depth:three_level_scope_framework]
 
-## 04 Twelve scenario cards
+A base/design split controls overclaiming. The base contains only provisional extents, the three required key areas and explicit gaps. The design layer contains relationships, prototypes, nodes, components and phases. Official polygons replace the base first, after which every area and shared boundary is recalculated in EPSG:4548.[data:geometry/key_areas.geojson#PROV-KEY-001] [metric:site_area_sqm]
 
-1. **Model-service acceptance bench**: blind task set, refusal boundaries, human review; fall back to manual search; export assets and stop on drift.  
-2. **Low-speed robot operations handover yard**: emergency stop, yielding and takeover drills; manual delivery fallback; return or transfer hardware and erase data.  
-3. **Edge-device offline continuity bench**: offline task completion, cache limits and resynchronisation; paper forms/offline lists; erase and recycle at exit.  
-4. Accessible route operations: paid co-testing, verified obstacle closure, tactile/high-contrast permanent guidance.  
-5. Multilingual public-service navigation: traceable sources and human transfer, with staff and paper index available.  
-6. SME continuity copilot: no legal determination, specialist escalation and exportable knowledge base.  
-7. Health-resource navigation: navigation only, never diagnosis; phone and paper directory remain available.  
-8. Jingzhang cultural guide: sourced history, accessibility and multilingual testing; withdraw disputed content.  
-9. Public-space maintenance triage: verified work-order closure; phone and on-site reporting remain available.  
-10. Event-day operations desk: AI advice never replaces public-safety command; staff, broadcast and paper maps prevail.  
-11. Role training relay: independent operation and recovery drill are preconditions to launch.  
-12. Community issue intake: human correction and response deadlines; the model cannot rank civic priorities.
+## Coordinated Research Area: Industry and Future City Research
 
-The first three are industry test-and-validation scenarios. All travel through the three relay yards before controlled adoption. [data:geometry/public_space.geojson#SCN-01] [metric:scenario_count]
+Regional synergy is described as exchange interfaces, not partnerships. The AI Latitude Community exchanges talent and civic-innovation questions; Future Science City exchanges research-testing methods; Huairou Science City exchanges public interpretation and adoption-testing methods; Beijing E-Town exchanges engineering, supply-chain and maintenance practice; Jing-Jin-Ji receives portable service contracts, training and exit templates. No company, investment or established corridor is claimed.[data:visual/assets/regional-synergy.json#interfaces] [source:AGENT-TASKBOOK]
 
-## 05 Six participating personas
+The six-case matrix connects a public fact, transferable mechanism, Jing-Zhang spatial carrier and non-transfer limit. Barcelona maps to problem intake and the handover desk; CitCom.ai to controlled testing; Smart Kalasatama to the co-design hall; Punggol to operating interfaces; UK procurement guidance to the responsibility register and TCO; NIST AI RMF to four-state review. Local legal and procurement review remains necessary.[source:UK-AI-PROCUREMENT] [source:NIST-AI-RMF]
 
-City operators may refuse an untrained handover. SMEs receive portable data and non-locking interfaces. Residents and carers retain offline access. Disabled and older users participate in acceptance without carrying the burden of finding every defect. Start-ups and researchers receive clear test and exit conditions. International young talent receives multilingual service with human transfer. No persona is used for commercial targeting.
+## Overall Design Area: Urban Renewal and Regulatory-Plan-Level Urban Design
 
-## 06 Three low-volume civic landmarks
+The structure is one spine, three relay grounds, two supporting wings and five external interfaces. The spine is neither an equipment corridor nor road redline: it combines priority walking/cycling, continuous access, shade and stormwater, fixed information, visible staff and ordinary use during digital failure. Three cross-links reconnect Zhongguancun expertise and Xiaoyue River everyday feedback without claiming roads, bridges or engineering alignments.[data:geometry/roads.geojson#STITCH-001] [depth:overall_spatial_structure]
 
-- **Handoff Table, Zhongzhiyuan**: a movable table and status board showing acceptance tasks, limits, maintenance and exit.
-- **User Acceptance Hall, AI Origin Community**: preferably an adapted existing ground-floor shared room for accessibility, multilingual, staff and resident acceptance.
-- **Service Commons, Dazhongsi**: an operations desk embedded in an existing service interface, displaying live status, human channels, last recovery drill and next review.
+The four-state system turns operational questions into form. NORMAL protects ordinary access and stay. AI-ASSISTED adds dry-jointed, reversible devices under named human responsibility. HUMAN-ONLY closes automation and redirects to staff, paper and fixed information. EXIT / REUSE removes the service and returns the bay to ordinary use or moves components elsewhere. Every prototype shows entries, clear widths, duty points, maintenance and asset routes in all four states.[data:visual/assets/spatial-prototypes.json#operating_states] [metric:detailed_spatial_prototype_count]
 
-These are low-disturbance, movable concepts, not site ownership, heritage or construction conclusions. Honour is awarded for responsible handover, sustained operation and responsible exit rather than device counts.
+![Land-use overlays and four states](assets/figures/land-use-structure.en.png)
 
-## 07 Six international references
+## Detailed Design of Key Areas
 
-Barcelona Innova Lab informs a one-stop pilot entry; CitCom.ai Valencia informs access to urban test infrastructure and governance; Smart Kalasatama informs resident-city-company-research collaboration; Punggol's Open Digital Platform informs operational interfaces and logging; UK AI procurement guidance informs problem-first contracting and portability; NIST AI RMF informs post-deployment monitoring, recovery and retirement. Each is an official or first-party source with contextual limitations recorded in `sources.json`; none proves that Jingzhang already has the same institutions or funding.
+### Zhongzhiyuan: Prototype Marshalling Yard
 
-## 08 Implementation and lifecycle cost
+The controlled test yard is the inner zone. A parallel public veranda remains physically separated; a repair workshop connects to a back-of-house strip; the staffed handover desk occupies the threshold; and a step-free ordinary bypass never enters the machine domain. When a low-speed robot loses contact, staff isolate and remove it while the ordinary route remains complete.[data:geometry/buildings.geojson#BLDG-001] [depth:three_key_area_detailed_design]
 
-**0-90 days:** no-build validation of three existing service workflows, baselines, protocols, SOPs and drills. Stop if no problem owner, operator or non-digital fallback exists.  
-**3-12 months:** one movable or adapted relay yard in each area; prioritise scenarios 01-03 and exit after two failed review cycles.  
-**1-3 years:** extend only passed scenarios while retaining non-AI alternatives.
+![Zhongzhiyuan typological plan and section](assets/figures/zhongzhiyuan-typology.en.png)
 
-`TCO = discovery and design + data governance + procurement and integration + training and change + operation and monitoring + human takeover + maintenance and upgrade + incident recovery + exit and disposal`. No investment total is invented; ranges require named responsibility, pricing scope, time horizon and source documents. [metric:lifecycle_cost_completeness]
+### AI Origin: Translation Platform
 
-## 09 Adoption metrics
+An open ground floor connects a co-design hall, accessible tactile model garden, learning court, feedback arcade and protected quiet/care room. Physical models, high contrast, seated participation, paper, telephone and staffed facilitation remain beside any digital interface. Daytime academic use and evening community deliberation share the court without forcing every participant into one social or sensory condition.[data:geometry/buildings.geojson#BLDG-003] [depth:blue_green_public_space]
 
-The core metrics are operator assignment, acceptance pass rate, training completion, human-takeover coverage, non-digital fallback coverage, recovery time, continued use and closed-loop asset exit. Pre-launch gates require 100% operator assignment, training, takeover, fallback for public services and exit disposition. Performance and recovery thresholds remain scenario-specific baselines until tested; they are not promotional targets. [metric:handover_field_coverage] [metric:operator_assignment_rate] [metric:manual_takeover_coverage]
+![AI Origin typological plan and section](assets/figures/ai-origin-typology.en.png)
 
-![Adoption evidence dashboard](assets/figures/metrics-evidence.en.png)
+### Dazhongsi: Urban Adoption Concourse Typology
 
-## 10 Risks, data and rights
+This is a transferable station-area type, not a site plan drawn on the current rectangle. A pedestrian public hall, reversible service units, visible staffed counter, separated logistics/maintenance band and free seating operate independently of digital services. Removing a bay closes its floor interface and restores ordinary concourse use. Official station-area geometry must re-anchor every dimension.[source:ISSUE-1029] [data:geometry/constraints.geojson#HOLD-003]
 
-Official boundaries, detailed polygons, regulatory controls, road redlines, ownership, existing buildings, utilities, heritage controls and service inventories remain missing. Every affected spatial move is a concept for professional development. No vendor is required, no personal data is needed, and AI does not decide planning approval, diagnosis or public-safety command. Figures, HTML and PDF documents are generated deterministically from the submitted GeoJSON, metrics and matrices without remote maps, CDNs, external fonts or unlicensed imagery. Original text, code and graphics are released under `CC-BY-SA-4.0`; cited facts retain their source terms.
+![Dazhongsi transferable concourse typology](assets/figures/dazhongsi-typology.en.png)
 
-**No handover, no launch. No safe degradation, no launch. No responsible exit, no adoption.**
+All three drawings are authoritative only as typological relationships. Survey, fire, structure, heritage, trees, ownership and underground-space evidence must determine exact siting, dimensions, materials and construction while preserving the ordinary–assisted–human-only–exit logic.
+
+![Three-key-area drawing index](assets/figures/key-areas.en.png)
+
+## AI Innovation Ecosystem, Personas, and AI+ Scenarios
+
+Seven personas undergo a rights audit: operators may stop automation; micro businesses opt in and approve publication; residents/caregivers retain ordinary entry and quiet space; disabled users may veto inaccessible routes; people with low digital confidence receive equivalent paper, telephone and staffed access; R&D teams carry remediation duties; international youth receive understandable language and human translation review. Benefits and time, data, queue or maintenance burdens are both recorded.[data:visual/assets/persona-rights-audit.json#personas] [metric:persona_rights_coverage]
+
+All twelve scenario cards specify spatial carrier, beneficiary, burden bearer, problem-owner role, unconfirmed operator, resource type, AI role, human decision, acceptance gate, takeover, ordinary alternative, maintenance, appeal, stop and asset exit. Model service, low-speed robots and edge/offline continuity include full blueprints. Completeness describes the design contract, not achieved field performance.[data:visual/assets/scenario-cards.json#scenarios] [metric:scenario_contract_completeness]
+
+![Scenario contracts and blueprints](assets/figures/scenario-blueprints.en.png)
+
+## Human–AI Co-design and Adoption Responsibility Register
+
+Observe, generate, deliberate, prototype 1:1, review and adopt/exit all occupy real spaces. AI organises public evidence, exposes gaps, generates at least three comparable options and summarises test data. Planners, engineers, operators, residents and disabled participants decide public interest, feasibility and rights. Statutory approval, resource priority, medical judgment and public-safety response never pass to AI.[depth:ai_native_collaboration] [metric:co_design_stage_count]
+
+The responsibility register records benefit, burden, problem ownership, operator, resources, human decision, appeal, maintenance, stop and asset destination for each scenario. Operators remain unknown until authorised assignment. Without signed roles, training, takeover drills, ordinary alternatives and an exit reserve, a service cannot enter open public space.[data:visual/assets/adoption-responsibility-register.json#entries] [metric:adoption_responsibility_register_coverage]
+
+## Land Use, Building Scale, and Retain-Renovate-Demolish Strategy
+
+Four colours describe adoption/R&D, civic relay/open space, enterprise/daily services and training/public-service functional overlays; none is a statutory classification. Four building types are an open-ground handover box, shared workshop/maintenance band, accessible translation court and reversible service unit. GeoJSON footprints are recomputable typological envelopes, not surveyed or approved buildings.[data:geometry/land_use.geojson#LU-001] [data:geometry/buildings.geojson#BLDG-001]
+
+The decision path is retain, adapt after structural/title/fire confirmation, insert reversibly for short trials, or defer when evidence is missing. FAR, gross floor area, height, setbacks, parking and demolition remain unknown pending official controls and survey. No conceptual component is used to infer development intensity.[metric:floor_area_ratio] [depth:retain_renovate_demolish]
+
+## Transport, Rail, Municipal Infrastructure, and Public Services
+
+Mobility combines the continuous spine, three conceptual stitches and an ordinary bypass in every key area. Walking, cycling, accessibility and public stay take priority over low-speed devices. Robots remain in controlled testing until safety, takeover, insurance and professional requirements are met. Rail interchange, road crossings, fire access, logistics, parking and underground-rail protection await dedicated evidence.[data:geometry/roads.geojson#ROAD-001] [depth:traffic_rail_slow_parking]
+
+Infrastructure follows “mobile validation before fixed works”. Edge devices require offline operation, local read-only modes, replaceable interfaces, maintenance access, shut-down and data erasure. Fixed information, staff, telephone and paper continue during failure. No power, communication, drainage, fire or capacity commitment is made without engineering evidence.[data:visual/assets/scenario-cards.json#SCN-03] [depth:municipal_new_infrastructure]
+
+![Mobility and blue-green public-space evidence](assets/figures/mobility-bluegreen.en.png)
+
+## Blue-Green Network, Public Space, and Urban Character
+
+The public-space minimum is continuous accessibility, shade/stormwater, free stay, fixed information, staffed service, basic night lighting and ordinary use when digital systems fail. Rain gardens separate testing and public edges, organise shade, reduce exposure and create maintainable boundaries. Three low-volume landmarks are the handover desk, translation model wall and service commons; no generic technology monument is proposed.[source:BJ-PARK-OPEN-2023] [data:geometry/green_space.geojson#GREEN-001]
+
+Character comes from engineering clarity, durability, repair and replacement—not unverified railway props. The solid/dashed identity mark is functional: solid means accepted human responsibility; dashed means an AI suggestion pending validation and withdrawal. Monochrome, small, light/dark and wayfinding variants share one SVG rule. Uncleared historic images, brands, artworks and external fonts are excluded.[data:assets/identity/after-go-live-logo.svg] [source:LOCAL-TOOLCHAIN]
+
+## Renewal Projects, Implementation Policy, and Phasing
+
+Days 0–90 contain no construction: request official bases, walk the site, map journeys, compare three options, deliberate through paper/physical models, assign roles and drill failure. Months 3–12 use removable segments for model service, low-speed robots, edge continuity and the three spatial interfaces. Years 1–3 deepen only elements that pass public value, spatial-use and operational handover gates; every phase may stop, move or exit.[data:geometry/phasing.geojson#PHASE-001] [depth:phasing_implementation]
+
+Whole-life cost covers survey/design, data/rights, integration, spatial work, training, routine operation, human fallback, maintenance/recovery and exit. No monetary amount is invented. Open Marshalling Week, Translation Review Season and Adoption Retrospective describe possible spatial/time formats only; branding, operators, funds and partnerships remain unconfirmed.[source:UK-AI-PROCUREMENT] [metric:lifecycle_cost_completeness]
+
+![Co-design, responsibility, phasing and TCO](assets/figures/responsibility-implementation.en.png)
+
+## Metrics, Area Recalculation, and Compliance Matrix
+
+Metrics separate spatial design, adoption readiness and real performance. The first groups count three detailed prototypes, four states, interfaces and complete contracts. Real recovery, sustained use, complaints, cost and field accessibility remain unknown until an authorised pilot. A 1.0 ratio means documented field coverage, not performance success.[metric:detailed_spatial_prototype_count] [metric:scenario_contract_completeness]
+
+GeoJSON exchanges in EPSG:4326 and is recalculated in EPSG:4548. Adjacent land-use partitions retain shared vertices and are checked for gaps and overlaps. New official boundaries, key areas, controls, survey or specialist constraints trigger the entire geometry–metric–figure chain. Task, standard and depth matrices keep exhaustive audit evidence outside the reading layer.[metric:green_space_area_sqm] [depth:metrics_recalculation]
+
+![Metrics, risks and recalculation triggers](assets/figures/metrics-evidence.en.png)
+
+## Risk, Copyright, and Compliance
+
+Risks include reading provisional geometry as an official line, treating PROV-KEY-003 as Dazhongsi station, replacing conservation with symbols, delegating professional judgment to AI, digital exclusion, vendor lock-in, omitted maintenance and stranded assets. Controls include fixed warnings, decision-hold areas, human final decisions, equivalent ordinary channels, the responsibility register, TCO and exit lists. Fixed works, heritage, underground rail, roads and public safety require separate statutory processes.[source:ISSUE-1029] [depth:risk_missing_data]
+
+Article 39 of the Barrier-Free Environment Construction Law is used only for the public-service matters it explicitly lists. The Interim Measures for Generative AI Services are cited only within their scope. Elderly smart-technology policy is background for parallel traditional and intelligent routes, not local approval. Personal data follow minimisation, purpose limitation, appeal and human review.[source:PRC-BARRIER-FREE-LAW-ART39] [source:PRC-GENAI-MEASURES]
+
+Prompts, human revision, hashes and licences for three AI concept images appear in the generation ledger; they carry no dimensional, existing-condition or approval evidence. Original text, deterministic figures, structured data and package visuals use CC-BY-SA-4.0. Offline HTML loads no remote map, CDN, external font or tracker.[source:AI-CONCEPT-VISUALS] [source:LOCAL-TOOLCHAIN]
+
+## References
+
+1. Official open-call announcement, Agent taskbook, source registry and provisional geometry.
+2. Beijing and Haidian public sources on Jing-Zhang heritage, the heritage park and the AI innovation belt.
+3. Barrier-free law, scoped generative-AI measures and elderly smart-technology policy.
+4. First-party material for Barcelona, CitCom.ai, Smart Kalasatama, Punggol, UK AI procurement and NIST AI RMF.
+5. Open-city-ai/haidian Issue #1029 on provisional key-area anchoring.[source:ISSUE-1029]
+
+Full URLs, dates, rights, use limits, fonts, Python dependencies and image-generation records are in `sources.json`, `report/copyright_statement.md` and `visual/assets/generation-ledger.json`.

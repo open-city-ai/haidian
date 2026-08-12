@@ -22,6 +22,10 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 **状态标签：目标设计 · 未部署 · 未授权 · 未运行**
 
+![智行京张评审主板：一条普通路线、三座公共证明庭、六个自动驾驶机制和一年循环](assets/figures/site-overview.png)
+
+图注：这张主板只回答一个空间公共服务问题——自动化进场前，普通路线、人工接管、返程和申诉能否保持完整。三座节点、六个案例机制和 Q1—Q4 循环均为概念审查框架，不代表道路获批、车辆部署或现场绩效。
+
 | 普通人路径 | 必须看见的空间/服务 | 必须留下的证据 | 不通过时 |
 | --- | --- | --- | --- |
 | 选择普通或自动辅助路径 | 拟设双入口、目标连续无障碍面、拟提供纸面/电话入口 | 选择状态与障碍记录，不记录身份 | 普通路径不可用则不开试验 |
@@ -46,11 +50,36 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 这张表是阅读索引，不是新增实测证据；无网络 runner 会把这些引用逐一回接到契约和场景矩阵，并在引用缺失或计数不一致时失败。
 
+### 六个自动驾驶案例：只搬机制，不搬结果
+
+案例不是装饰性背书。这里选择的六个官方机制都直接作用于自动驾驶的空间放行，并逐一回答“哪条规则可以进入京张设计、哪种结论绝不能跟着搬来”。
+
+| 官方机制 | 可迁移到京张的动作 | 明确禁止的推断 |
+| --- | --- | --- |
+| 北京道路测试与示范应用规则 [source:BEIJING-AV-TEST-2025] | 把批准道路/封闭场地、责任主体、时间窗和停止权限设为放行前必填项 | 不代表京张已有指定道路、运营者、车辆或许可 |
+| 新加坡 CETRAN 与公共路径“先测试、再讨论豁免” [source:SINGAPORE-LTA-CETRAN-AV] | 封闭场地与共享路径检查先于任何公共路线窗口，行人和主动交通使用者进入审查 | 外国测试框架不等于北京认证、豁免或本地安全结论 |
+| 英国自动驾驶试验行为准则 [source:UK-CCAV-AV-TRIAL-CODE] | 开窗前留下公开安全说明、责任人、保险和公众参与记录 | 英国法律条件不产生中国许可，也不免除责任 |
+| 伦敦 TfL CAV 试验指引 [source:TFL-CAV-LONDON-TRIALS] | 把步行、轮椅、骑行和公交/轨道连续性设为车辆路线的前置条件 | 政策对齐不证明京张路线可用或安全 |
+| 日本永平寺 Level 4 授权 [source:JAPAN-MLIT-EIHEIJI-L4] | 每个候选窗口写清限定运行设计域、失败安全停车和有人恢复路径 | 个案授权不能迁移为车辆、路线或远程运营许可 |
+| 美国 NHTSA AV TEST 公共地图 [source:US-NHTSA-AV-TEST] | 公布有限地点/路线、状态、协调者、运营者和更新时间 | 自愿披露不等于完整安全证据、事故报告或独立审查 |
+
+六个机制最终只进入同一张 P0 完整路线回执：**入口 → 普通路径 → 状态/同意 → 受限服务 → 人工接管 → 返程 → 申诉**。任一环断裂即失败，平均分、车辆完成率或合成回放不得抵消断点 [data:visual/assets/case-mechanism-matrix.json]。
+
 ### 身份系统：把“能退出”做成可见的公共符号
 
 “智行京张”的识别不是车辆品牌，也不是上一版方案的两条平行线复用。`assets/identity/jingzhang-commons-mark.svg` 以一条普通路线连续线连接三座试验庭，以两条人本安全弧表示“人工接管”和“可逆撤回”；`visual/assets/identity-system.json` 同步登记高对比、触觉、纸面、电话和声音替代。三座地标目录进一步把身份系统落到可读的公共界面：人工接管纪念台记录被暂停的自动化，路缘灯塔显示不含个人身份的状态，人机换乘客厅解释轨道、步行、轮椅、物流与人工服务的关系 [data:visual/assets/public-landmarks.json]。
 
 这是公共叙事和运营入口，不是注册商标、建筑物、企业合作或现场成效。标识一旦无法说明责任人、停止动作和普通路线，先撤下服务窗口，再保留人工路径。
+
+## 资源与决策板——先确认公共底线，再谈自动化扩展
+
+自动驾驶方案还缺一张能回答“谁持有底线、什么资源可以进入、谁能暂停”的交付板。`resource-decision-board.json` 把人工服务与无障碍、路缘与可逆空间、安全与独立评价、数据与有限算力、撤场与修复分成五类资源；每一类都登记建议的确认渠道、持有的公共底线、最低证据和否决条件。[data:visual/assets/resource-decision-board.json] [depth:phasing_implementation]
+
+这张板只描述确认程序，不填预算金额、机构名称、供应商、保险结果、许可或运营绩效。提案角色可以提出候选，不能单独放行；公共利益、无障碍、安全和独立复核角色可以暂停或退回人工；资源支持不能换取永久路缘、免于复核或更高评分。四道门从观察登记、最小资源核验、可逆窗口与独立回放走到条件扩展或撤场，任何一项缺失都停留在纸面或合成回放。[data:visual/assets/check-resource-decision-board.js] [depth:risk_missing_data]
+
+![资源与决策板——五类资源、四道决策门和暂停边界](assets/figures/resource-decision-board.png)
+
+板上的“资源渠道”不是资金承诺。只有官方边界、权属、消防、无障碍、保险、数据授权、公众基线和可执行的撤场责任同时到位，专业团队才可决定是否进入下一门；在此之前，普通路线、人工服务和公共通行保持优先。[depth:phasing_implementation] [depth:risk_missing_data]
 
 ## 设计依据与资料清单
 
@@ -95,10 +124,6 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 自动驾驶不是独立道路系统，而是叠加在步行、骑行、轨道、公交、消防、绿地和维护系统上的“受限服务层”。任何车辆或机器人都必须让位于连续人工路线；路缘空间首先登记谁可以停、何时停、停多久、谁负责清场 [standard:BEIJING-ACCESSIBILITY-REGULATION] [standard:ISO-TR-4448-PUBLIC-MOBILE-ROBOTS]。
 
-![自动驾驶公共带总览：三座试验庭、两条安全网和阶段门槛](assets/figures/site-overview.png)
-
-图注：总览图把三座试验庭放在一条公共轴上，并把人本安全网、生态与数据安全网和分期门槛作为同一套空间关系阅读；它不表达法定边界或已开放道路。
-
 ## 总体设计范围城市更新与控规深度城市设计
 
 总体设计把 provisional 的用地、建筑、道路、绿地、公共空间和分期图层作为同一套空间底盘；自动驾驶节点只表达测试关系，不生成法定红线。设计意图是先守住人行主链、消防净空、维护通道、安静界面和可逆改造，再讨论路缘服务窗口 [depth:overall_spatial_structure]。几何影响由 `land_use.geojson`、`buildings.geojson`、`constraints.geojson` 和 `phasing.geojson` 共同回读，指标影响由面积、建筑底盘、绿地和公共空间比例复算。当前没有官方控规、权属、地下管线、消防审查和拆改清单，因此不提出容积率、建筑高度、拆除数量或投资金额；后续应由规划、建筑、市政、消防和交通专业人员统一深化。
@@ -137,7 +162,7 @@ scenarios: ["ai-traffic-walkability", "enterprise-service-copilot", "public-safe
 
 为避免“节点”被误读成一处车辆停靠点，本包把三处节点拆成普通人路径、公开状态与同意、受限服务窗口、人工接管/停止和恢复普通路径五个连续界面。众智园先验收可关闭的安全评测庭，AI 原点先保留纸面/电话/人工等价服务，大钟寺先把轨道到达、安静通行和物流维护窗口分开；尺寸、容量、速度、路权、许可和性能仍为空，节点计划只表达 functional bands，不是道路断面或红线 [data:visual/assets/autonomy-node-interface-plans.json#AV-INTERFACE-001]。
 
-![三处自动驾驶节点的公共界面与功能带](assets/figures/autonomy-node-interface.svg)
+![三处自动驾驶节点的公共界面与功能带](assets/figures/autonomy-node-interface.png)
 
 图注：三行节点计划把“普通路径先行、受限服务可关、证据不足即人工回退”放到同一张图上；颜色表示界面关系，不表示现状测量、工程尺寸或车辆性能。
 

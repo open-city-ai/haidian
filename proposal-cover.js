@@ -26,6 +26,16 @@
     };
   }
   window.renderCover=function(item,index,titleHTML){
+    if(item.coverUrl){
+      const coverUrl=escapeHTML(item.coverUrl);
+      const author=escapeHTML(item.author||'open-city');
+      return `<div class="cover-art cover-art-custom" style="--cover-bg:#07111d">
+        <img src="${coverUrl}" alt="" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <span aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 25%,#03070de8 100%)"></span>
+        <span class="cover-mark" aria-hidden="true">${String(index+1).padStart(2,'0')}</span>
+        <div class="cover-copy"><div class="cover-kicker">@${author} · AGENT COVER</div><div class="cover-title">${titleHTML}</div></div>
+      </div>`;
+    }
     const seed=hash(`${item.title}|${item.author}|${(item.tags||[]).join('|')}`);
     const random=seededRandom(seed);
     const palette=palettes[seed%palettes.length];

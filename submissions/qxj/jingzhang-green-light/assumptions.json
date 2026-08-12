@@ -1,0 +1,61 @@
+{
+ "schema_version": "0.1.0",
+ "assumptions": [
+  {
+   "id": "A-BOUNDARY-001",
+   "title_zh": "总体设计范围使用临时粗略边界",
+   "statement_zh": "官方精确红线尚未提供，本方案全部几何由 brief/site-package/geometry/provisional_boundaries.geojson 推导。该边界在 EPSG:4548 下面积为 11,412,825 平方米，与公告约 11.4 平方公里相差约 0.11%，面积口径可用但形状粗糙。",
+   "impact_zh": "不可作为法定红线、审批依据、精确面积复算依据、权属或工程边界。官方边界发布后，用地、道路、绿地、公共空间、建筑、分期与全部指标均需重算。",
+   "confidence": "medium",
+   "resolution_zh": "取得官方 SITE_BOUNDARY 与三处 KEY_AREA 后重跑几何与指标生成流程。"
+  },
+  {
+   "id": "A-CONTROLS-001",
+   "title_zh": "官方规划控制指标全部缺失",
+   "statement_zh": "容积率上限、建筑高度上限、建筑密度上限、绿地率要求与退线要求在 brief/site-package/ranges/planning_limits.json 中均记录为 missing，本方案不作推定，对应指标在 metrics.json 中如实标注为待正式数据补齐。",
+   "impact_zh": "方案不提出任何开发强度、建筑高度、退线或地块级拆改留结论。正文出现的容积率与建筑密度是概念方案自身的估算比值，不是规划控制指标。",
+   "confidence": "high",
+   "resolution_zh": "以正式规划条件下发的控制指标替换，并重算相关指标与图纸。"
+  },
+  {
+   "id": "A-STOREY-001",
+   "title_zh": "建筑层数为方案假设值",
+   "statement_zh": "总建筑面积与容积率由建筑基底面积乘以假设层数得到。按用地性质取值：科研6层、商业服务业5层、居住8层、社区服务3层、文化3层、教育5层、医疗卫生4层。",
+   "impact_zh": "total_floor_area_sqm、floor_area_ratio、building_density 三项均为概念方案自身的估算，不是规划控制指标，也不构成建筑高度或容积率结论。",
+   "confidence": "low",
+   "resolution_zh": "以正式规划条件下发的容积率、高度与密度控制指标替换。"
+  },
+  {
+   "id": "A-WIDTH-001",
+   "title_zh": "断面宽度无实测数据，路权分级为方法演示",
+   "statement_zh": "仓库未提供全线实测断面宽度，公开渠道亦未取得。A/B/C 三级路权分级依据为推断宽度与沿线人流密度判断。",
+   "impact_zh": "row_grade_*_length_m 与 conflict_segment_ratio 反映的是分级方法而非实测结论。本方案主张的是「怎么分级、分完怎么用」这套可复用方法，不宣称某一段实际宽度为具体数值。",
+   "confidence": "low",
+   "resolution_zh": "取得实测断面数据后重算分级，分级方法本身不受影响。"
+  },
+  {
+   "id": "A-THRESHOLD-001",
+   "title_zh": "安全阈值均为建议值",
+   "statement_zh": "轻型载具限速、机体宽度上限、噪声上限、人流密度阈值均为参考公开实践提出的建议值。",
+   "impact_zh": "不构成工程可行性结论、安全认证结论或运营许可依据。",
+   "confidence": "low",
+   "resolution_zh": "由交通、市政与安全专业团队结合实测与法规核定。"
+  },
+  {
+   "id": "A-MODEL-001",
+   "title_zh": "生成方式披露",
+   "statement_zh": "本方案由 Claude Opus 5 模型在 Claude Code 环境中生成。几何图层与指标由 Python 脚本（shapely 2.1.2 + pyproj 3.7.2）从临时边界确定性推导，图纸与展板由 matplotlib 与手写内联 SVG 生成；方案正文、设计判断、场景与叙事由智能体撰写，并经人工审阅命名、概念方向与风险边界。",
+   "impact_zh": "满足共创公约 charter.6 的生成方法披露要求。所有空间落地建议均为概念建议，最终判断由人类与专业团队完成（charter.7）。",
+   "confidence": "high",
+   "resolution_zh": "不适用；此项为披露而非待解决事项。"
+  },
+  {
+   "id": "A-HISTORY-001",
+   "title_zh": "历史站点与重点区域的位置对应关系待核实",
+   "statement_zh": "方案在文化叙事中提到京张铁路历史站点与三个重点区域的空间呼应关系。该对应关系为概念层面的呼应，未取得权威测绘依据。",
+   "impact_zh": "仅用于文化叙事，不作为空间正式证据，不用于任何面积或边界判断。",
+   "confidence": "low",
+   "resolution_zh": "以文物与测绘主管部门公布的遗址位置资料核实后再明确表述。"
+  }
+ ]
+}

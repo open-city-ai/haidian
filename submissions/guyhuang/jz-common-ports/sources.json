@@ -1,54 +1,267 @@
 {
-  "schema_version": "0.1.0",
+  "schema_version": "0.1.1",
   "sources": [
     {
       "id": "SITE-PACKAGE",
       "path": "brief/site-package/",
-      "source_type": "official_public",
-      "usage": "Project brief, enums, allowed design space, ranges, and schemas."
-    },
-    {
-      "id": "SOURCE-REGISTRY",
-      "path": "data/source_registry.json",
-      "source_type": "repository_public_registry",
-      "usage": "Public/cleared/provisional source usability registry; distinguishes formal-ready, background-only, provisional-only, and needs-review materials."
-    },
-    {
-      "id": "PROCESSED-FACT-PACK",
-      "path": "data/processed/agent_fact_pack.md",
-      "source_type": "repository_processed_reference",
-      "usage": "Agent-readable navigation layer for scopes, required tasks, source-use boundaries, and missing-data checklist; not a new authority source."
-    },
-    {
-      "id": "BOUNDARY-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Submitted site boundary geometry source (provisional)."
-    },
-    {
-      "id": "KEY-AREA-SOURCE",
-      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
-      "source_type": "agent_inferred_from_public_data",
-      "usage": "Three required detailed-design key area boundaries (provisional)."
+      "title": "Competition site package",
+      "publisher": "open-city-ai maintainers",
+      "source_type": "repository_compilation",
+      "accessed_date": "2026-08-11",
+      "usage": "Brief, taskbook, enums, ranges, schemas and registered provisional geometry.",
+      "license_or_terms": "repository terms; file-specific provenance applies",
+      "limitations": "Mixed repository bundle containing official citations, maintainer summaries and provisional geometry; not itself a statutory or uniformly official control package."
     },
     {
       "id": "OFFICIAL-ANNOUNCEMENT",
+      "registry_source_ids": [
+        "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509"
+      ],
       "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "title": "百年京张AI创新带城市设计国际方案征集资格预审公告",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
       "source_type": "official_public",
-      "usage": "Official announcement tasks, scope levels, key areas, language, and deliverable context."
+      "accessed_date": "2026-08-11",
+      "usage": "Project purpose, three scope levels and formal task context.",
+      "license_or_terms": "public government page; citation and factual summary",
+      "limitations": "Does not supply machine-readable official polygons or authorize this proposal."
     },
     {
       "id": "AGENT-TASKBOOK",
       "path": "brief/site-package/agent_taskbook.json",
+      "title": "面向全球智能体开源征集任务书摘录",
+      "publisher": "open-city-ai maintainers from cleared taskbook summary",
       "source_type": "user_provided_cleared",
-      "usage": "Agent-facing open-call principles, six required agent tasks, scenario/branding/operation requirements, and boundary clause."
+      "accessed_date": "2026-08-11",
+      "usage": "Three positions, five functions, three areas/two wings, agent.1-agent.6 and co-creation charter.",
+      "license_or_terms": "repository-cleared summary",
+      "limitations": "Agent-facing taskbook; not statutory planning control."
     },
     {
-      "id": "CASE-COMPARISON",
+      "id": "BOUNDARY-SOURCE",
+      "registry_source_ids": [
+        "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605"
+      ],
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "title": "Provisional boundaries",
+      "publisher": "open-city-ai site-package maintainers",
+      "source_type": "agent_inferred_from_public_data",
+      "accessed_date": "2026-08-11",
+      "usage": "Normalized concept container and deterministic spatial review.",
+      "license_or_terms": "repository contribution terms",
+      "limitations": "Rough provisional geometry; never an official redline or precise-area basis."
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": "data/source_registry.json",
+      "title": "Repository source registry",
+      "publisher": "open-city-ai maintainers",
+      "source_type": "repository_public_registry",
+      "accessed_date": "2026-08-11",
+      "usage": "Source status, use boundaries and missing-data navigation.",
+      "license_or_terms": "repository terms",
+      "limitations": "Registry status must not be promoted beyond its declared use."
+    },
+    {
+      "id": "DATA-SRC-OFFICIAL-ANNOUNCEMENT-20260509",
+      "alias_of": "OFFICIAL-ANNOUNCEMENT",
+      "url": "https://ghzrzyw.beijing.gov.cn/zhengwuxinxi/tzgg/hd/202605/t20260509_4643047.html",
+      "title": "Source-registry ID for the official open-call announcement",
+      "publisher": "北京市规划和自然资源委员会海淀分局",
+      "source_type": "official_public_alias",
+      "accessed_date": "2026-08-11",
+      "usage": "Machine bridge from GeoJSON derived_from_source_ids to the package source register.",
+      "license_or_terms": "official public announcement; citation and bounded factual summary",
+      "limitations": "Alias preserves the central registry ID; it does not provide an official polygon or implementation authority."
+    },
+    {
+      "id": "DATA-SRC-PROVISIONAL-BOUNDARIES-20260605",
+      "alias_of": "BOUNDARY-SOURCE",
+      "path": "brief/site-package/geometry/provisional_boundaries.geojson",
+      "title": "Source-registry ID for provisional boundary geometry",
+      "publisher": "open-city-ai maintainers",
+      "source_type": "provisional_repository_alias",
+      "accessed_date": "2026-08-11",
+      "usage": "Machine bridge from SITE/KEY_AREA source_id to the package source register.",
+      "license_or_terms": "repository contribution terms",
+      "limitations": "Temporary generation and review geometry only; prohibited as official redline, statutory control or precise survey basis."
+    },
+    {
+      "id": "MOHURD-URBAN-DESIGN-MEASURES",
+      "url": "https://www.mohurd.gov.cn/gongkai/zc/wjk/art/2023/art_17339_775476.html",
+      "title": "城市设计管理办法",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Scoped response on urban design, public space, character and professional coordination.",
+      "license_or_terms": "official public text; citation and bounded summary",
+      "limitations": "Does not make this concept a statutory plan or replace professional approval."
+    },
+    {
+      "id": "MOHURD-CONTROL-DETAILED-PLANNING",
+      "url": "https://www.gov.cn/zhengce/2022-01/25/content_5711967.htm",
+      "title": "城市、镇控制性详细规划编制审批办法",
+      "publisher": "中华人民共和国住房和城乡建设部",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Boundary for separating concept design from statutory control and approval.",
+      "license_or_terms": "official public text; citation and bounded summary",
+      "limitations": "FAR, height, road redlines and other statutory controls remain unknown and unapproved."
+    },
+    {
+      "id": "MNR-LAND-USE-CLASSIFICATION-GUIDE",
+      "url": "https://www.gov.cn/zhengce/zhengceku/202311/content_6917279.htm",
+      "title": "国土空间调查、规划、用途管制用地用海分类指南",
+      "publisher": "中华人民共和国自然资源部",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Classification vocabulary for conceptual land-use cells.",
+      "license_or_terms": "official public text; citation and bounded summary",
+      "limitations": "Codes organize the proposal and do not change existing or statutory land use."
+    },
+    {
+      "id": "MOHURD-ARCH-DESIGN-DEPTH-2016",
+      "path": "brief/site-package/standards/standards.json",
+      "title": "建筑工程设计文件编制深度规定（2016年版）登记项",
+      "publisher": "open-city-ai standards registry",
+      "source_type": "registered_data_gap",
+      "accessed_date": "2026-08-11",
+      "usage": "Records the architectural-depth gate as unavailable, optional and not addressed by concept envelopes.",
+      "license_or_terms": "repository metadata only until the official file is obtained",
+      "limitations": "source_status=needs_official_file; not evidence of architectural design depth or a formal compliance conclusion."
+    },
+    {
+      "id": "CASE-ONE-NORTH",
+      "url": "https://www.jtc.gov.sg/find-land/jtc-key-estates/one-north?estate=one-north",
+      "title": "one-north estate overview",
+      "publisher": "JTC Corporation, Singapore",
       "source_type": "background_only",
-      "usage": "Mechanism-level comparison of seven international innovation districts; not used for boundaries, controls, or implementation claims.",
-      "accessed_date": "2026-08-10",
-      "limitations": "Named cases are comparative background and require case-specific verification before professional reuse."
+      "accessed_date": "2026-08-11",
+      "usage": "Mechanism comparison: mixed research, work, living and public-space support.",
+      "license_or_terms": "public web citation; no asset reuse",
+      "limitations": "No boundary, control, benchmark or implementation claim transferred to Jingzhang."
+    },
+    {
+      "id": "CASE-STATION-F",
+      "url": "https://stationf.co/",
+      "title": "STATION F official site",
+      "publisher": "STATION F",
+      "source_type": "background_only",
+      "accessed_date": "2026-08-11",
+      "usage": "Mechanism comparison: shared services and founder community programming.",
+      "license_or_terms": "public web citation; no asset reuse",
+      "limitations": "Promotional self-description; used only as a mechanism prompt."
+    },
+    {
+      "id": "CASE-MARIA01",
+      "url": "https://maria.io/campus/",
+      "title": "Maria 01 campus",
+      "publisher": "Maria 01",
+      "source_type": "background_only",
+      "accessed_date": "2026-08-11",
+      "usage": "Mechanism comparison: adaptive reuse and startup community operations.",
+      "license_or_terms": "public web citation; no asset reuse",
+      "limitations": "No physical form or performance transferred."
+    },
+    {
+      "id": "CASE-VECTOR",
+      "url": "https://vectorinstitute.ai/about/",
+      "title": "About Vector Institute",
+      "publisher": "Vector Institute",
+      "source_type": "background_only",
+      "accessed_date": "2026-08-11",
+      "usage": "Mechanism comparison: cross-institution talent, research and responsible AI network.",
+      "license_or_terms": "public web citation; no asset reuse",
+      "limitations": "Institutional model differs; no local governance authority inferred."
+    },
+    {
+      "id": "CASE-KENDALL",
+      "url": "https://kendallsquare.mit.edu/",
+      "title": "MIT Kendall Square Initiative",
+      "publisher": "Massachusetts Institute of Technology",
+      "source_type": "background_only",
+      "accessed_date": "2026-08-11",
+      "usage": "Mechanism comparison: campus-city translation interfaces and public-realm investment.",
+      "license_or_terms": "public web citation; no asset reuse",
+      "limitations": "No spatial metric or delivery model copied."
+    },
+    {
+      "id": "CASE-KQ-LONDON",
+      "url": "https://www.knowledgequarter.london/",
+      "title": "Knowledge Quarter London",
+      "publisher": "Knowledge Quarter London",
+      "source_type": "background_only",
+      "accessed_date": "2026-08-11",
+      "usage": "Mechanism comparison: culture, research and civic network collaboration.",
+      "license_or_terms": "public web citation; no asset reuse",
+      "limitations": "Network description is context only; local membership and commitments not inferred."
+    },
+    {
+      "id": "REGION-NCSTI",
+      "url": "https://www.ncsti.gov.cn/index.html",
+      "title": "北京国际科技创新中心网络入口",
+      "publisher": "北京国际科技创新中心",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Regional-synergy context for Three Science Cities and One High-tech Area.",
+      "license_or_terms": "public government web citation",
+      "limitations": "Used to frame potential exchange topics only; no agreement or data-sharing commitment claimed."
+    },
+    {
+      "id": "REGION-ETOWN",
+      "url": "https://kfqgw.beijing.gov.cn/ywdt/tt/cxzc/202106/t20210625_4243870.html",
+      "title": "经开区与怀柔、未来科学城协同相关公开信息",
+      "publisher": "北京经济技术开发区管理委员会",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Public evidence that cross-area science-and-industry coordination is a relevant mechanism topic.",
+      "license_or_terms": "public government web citation",
+      "limitations": "Historical context; does not evidence a Jingzhang project partnership."
+    },
+    {
+      "id": "GENERATIVE-AI-INTERIM-MEASURES",
+      "url": "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
+      "title": "生成式人工智能服务管理暂行办法",
+      "publisher": "国家互联网信息办公室等七部门",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Scoped AI-governance reference for public-facing generative content services, complaints and applicable service disposition.",
+      "license_or_terms": "official public text; citation and bounded summary only",
+      "limitations": "Article 14 is not a general user-exit right; Article 15 supplies no invented numeric response time; Article 17 does not apply automatically to every proposed interface."
+    },
+    {
+      "id": "BARRIER-FREE-ENVIRONMENT-LAW",
+      "url": "https://www.gov.cn/yaowen/liebiao/202306/content_6888910.htm",
+      "title": "中华人民共和国无障碍环境建设法",
+      "publisher": "全国人民代表大会常务委员会",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Scoped accessibility and staffed-service reference for the public-service matters enumerated in Article 39.",
+      "license_or_terms": "official public text; citation and bounded summary only",
+      "limitations": "Article 39 is not generalized into a legal duty covering every public space or digital interface; this proposal voluntarily uses a broader design baseline."
+    },
+    {
+      "id": "ELDERLY-SMART-TECH-PLAN-2020-45",
+      "url": "https://www.gov.cn/zhengce/content/2020-11/24/content_5563804.htm",
+      "title": "关于切实解决老年人运用智能技术困难实施方案",
+      "publisher": "国务院办公厅",
+      "source_type": "official_public",
+      "accessed_date": "2026-08-11",
+      "usage": "Policy design reference for parallel traditional and smart services in high-frequency elderly-use scenarios.",
+      "license_or_terms": "official public text; citation and bounded summary only",
+      "limitations": "The 2020–2022 phased targets are not represented as a continuing 2026 legal duty or evidence of local implementation."
+    },
+    {
+      "id": "GEN-AI-COVER",
+      "path": "assets/media/cover.webp",
+      "title": "JZ Common Ports conceptual experience cover",
+      "publisher": "Codex × guyhuang",
+      "source_type": "agent_generated_design",
+      "accessed_date": "2026-08-11",
+      "usage": "Conceptual experience layer only; non-observed and non-approved.",
+      "license_or_terms": "Participant-authored prompt and generated output for this submission; community display only",
+      "limitations": "Synthetic image; not site evidence, survey, render of approved design, or construction promise.",
+      "generation": "OpenAI image generation, prompt recorded in copyright statement; no reference images or personal data."
     }
   ]
 }

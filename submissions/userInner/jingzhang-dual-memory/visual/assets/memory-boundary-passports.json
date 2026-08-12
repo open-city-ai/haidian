@@ -1,0 +1,129 @@
+{
+  "schema_version": "1.0",
+  "artifact_id": "DM-MBP-001",
+  "status": "design_target",
+  "purpose": "Translate each public AI intervention into a spatial, operational and rights-verifiable passport.",
+  "boundary_notice": "All locations use provisional geometry. Module dimensions describe reversible prototype envelopes, not official site controls.",
+  "shared_release_rule": {
+    "required_evidence": [
+      "named_operator_and_asset_steward",
+      "continuous_non_ai_equivalent_route",
+      "visible_data_and_retention_notice",
+      "tested_physical_stop_and_human_takeover",
+      "complaint_and_deletion_receipt_channel",
+      "independent_accessibility_walkthrough"
+    ],
+    "decision_values": ["hold", "limited_release", "revise", "retire"],
+    "default_decision": "hold"
+  },
+  "passports": [
+    {
+      "passport_id": "DM-P01",
+      "name_zh": "众智园三带同意剖面",
+      "name_en": "Zhizhiyuan three-zone consent section",
+      "provisional_anchor": "geometry/key_areas.geojson#PROV-KEY-001",
+      "prototype_envelope": {
+        "length_m": 60,
+        "width_m": 14,
+        "components": [
+          {"name": "no_ai_public_walk", "minimum_clear_width_m": 4.0},
+          {"name": "anonymous_assist_strip", "width_m": 2.5},
+          {"name": "controlled_test_court", "width_m": 5.0},
+          {"name": "planting_and_safety_buffer", "width_m": 2.5}
+        ]
+      },
+      "operator_roles": {
+        "service_operator": "selected pilot operator; not appointed",
+        "public_space_steward": "site owner or delegated public-space operator; pending",
+        "human_takeover": "on-site trained controller during every test window",
+        "independent_reviewer": "accessibility and data-governance reviewers; pending"
+      },
+      "data_contract": {
+        "allowed": ["synthetic run id", "aggregate obstacle event", "emergency-stop event", "equipment health"],
+        "forbidden": ["facial identity", "individual trajectory", "voice content", "resident profiling"],
+        "maximum_retention": "test events 30 days; raw sensor frames 0 days unless a separately approved incident hold applies",
+        "processing": "edge first; export only aggregate or incident-minimum records"
+      },
+      "ordinary_equivalent": "A continuous tactile, step-free bypass remains open; human trolley delivery substitutes for any robot service.",
+      "stop_triggers": [
+        "accessible clear width below 1.8 m",
+        "controller loses line of sight",
+        "physical stop or manual takeover fails",
+        "a child, wheelchair or blind-cane route is obstructed",
+        "unannounced data field appears in the audit log"
+      ],
+      "release_evidence": ["dimension survey", "barrier-free walkthrough", "stop drill", "data-field diff", "public notice photo"],
+      "cost_band_cny": {"low": 1200000, "high": 2200000, "confidence": "concept_range"},
+      "current_decision": "hold"
+    },
+    {
+      "passport_id": "DM-P02",
+      "name_zh": "AI原点来源诊所",
+      "name_en": "AI Origin provenance clinic",
+      "provisional_anchor": "geometry/key_areas.geojson#PROV-KEY-002",
+      "prototype_envelope": {
+        "indoor_area_sqm": 180,
+        "public_forecourt_sqm": 120,
+        "ordinary_service_counter_count": 1,
+        "accessible_consultation_room_count": 1
+      },
+      "operator_roles": {
+        "service_operator": "university-enterprise-community consortium; proposed only",
+        "public_space_steward": "host building operator; pending",
+        "human_takeover": "named duty advisor for every automated explanation",
+        "independent_reviewer": "rotating legal, accessibility and community panel"
+      },
+      "data_contract": {
+        "allowed": ["voluntary project card", "source citation", "model limitation", "withdrawal status"],
+        "forbidden": ["undisclosed training data", "student performance profile", "community political profile"],
+        "maximum_retention": "public project card until withdrawal; consultation notes 7 days; identity proof not retained",
+        "processing": "public registry separated from private consultation; withdrawal propagates within 24 hours"
+      },
+      "ordinary_equivalent": "Paper source checklist, phone booking and a staffed consultation desk provide the same core service without an account.",
+      "stop_triggers": [
+        "source or model owner cannot be identified",
+        "withdrawal is not reflected within 24 hours",
+        "automated advice is presented as legal or planning approval",
+        "paper and human channels are unavailable"
+      ],
+      "release_evidence": ["withdrawal drill", "plain-language comprehension test", "source-card audit", "ordinary-channel service test"],
+      "cost_band_cny": {"low": 800000, "high": 1500000, "confidence": "concept_range"},
+      "current_decision": "hold"
+    },
+    {
+      "passport_id": "DM-P03",
+      "name_zh": "大钟寺无账号普惠客厅",
+      "name_en": "Dazhongsi account-free civic lounge",
+      "provisional_anchor": "geometry/key_areas.geojson#PROV-KEY-003",
+      "prototype_envelope": {
+        "service_area_sqm": 260,
+        "weather_protected_queue_sqm": 80,
+        "manual_service_positions": 2,
+        "quiet_waiting_positions": 12
+      },
+      "operator_roles": {
+        "service_operator": "selected public-service and translation provider; not appointed",
+        "public_space_steward": "station-area property or delegated operator; pending",
+        "human_takeover": "two staffed positions during service hours",
+        "independent_reviewer": "disability, elder and multilingual user panel"
+      },
+      "data_contract": {
+        "allowed": ["session language", "service topic category", "aggregate wait time"],
+        "forbidden": ["faceprint", "persistent device id", "cross-service profile", "raw voice after session"],
+        "maximum_retention": "session media 0 days; aggregate queue data 90 days",
+        "processing": "on-device translation where feasible; no advertising reuse"
+      },
+      "ordinary_equivalent": "Human, paper and telephone channels remain visible and receive the same queue priority as AI-assisted service.",
+      "stop_triggers": [
+        "non-account access is refused",
+        "translation confidence warning is hidden",
+        "wheelchair turning or tactile route is blocked",
+        "session media persists after service",
+        "AI queue receives priority over ordinary service"
+      ],
+      "release_evidence": ["mystery-user test", "multilingual error test", "wheelchair route test", "session deletion receipt"],
+      "cost_band_cny": {"low": 1500000, "high": 2800000, "confidence": "concept_range"},
+      "current_decision": "hold"
+    }
+  ]
+}

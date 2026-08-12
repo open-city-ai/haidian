@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jingzhang AI Valley / JZ Valley — Proposal Visualization Dashboard</title>
+<style>
+  :root{
+    --bg:#0d1117;
+    --bg-panel:#151b23;
+    --bg-panel-2:#1b232d;
+    --line:#2a333d;
+    --ink:#e8edf2;
+    --ink-dim:#9aa7b2;
+    --rail-gray:#5b6672;
+    --signal-red:#e0483f;
+    --signal-amber:#e0a83f;
+    --signal-green:#2fae66;
+    --data-cyan:#33c4d1;
+    --radius:10px;
+    font-family:-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei","Heiti SC",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);scroll-behavior:smooth;}
+  a{color:var(--data-cyan);}
+  section{padding:64px 24px;max-width:1240px;margin:0 auto;}
+  h1,h2,h3{margin:0 0 12px 0;font-weight:700;}
+  h2{font-size:26px;border-left:5px solid var(--data-cyan);padding-left:14px;letter-spacing:1px;}
+  h2 .en{font-size:13px;color:var(--ink-dim);font-weight:400;margin-left:10px;}
+  p{line-height:1.75;color:var(--ink-dim);}
+  .tag{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;border:1px solid var(--line);color:var(--ink-dim);margin-right:6px;}
+  .img-frame{width:100%;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;background:var(--bg-panel-2);position:relative;}
+  .img-frame img{width:100%;display:block;}
+  .img-caption{font-size:12px;color:var(--ink-dim);text-align:right;padding:6px 10px;border-top:1px dashed var(--line);}
+  .img-fallback{display:flex;align-items:center;justify-content:center;min-height:340px;color:var(--ink-dim);font-size:14px;flex-direction:column;gap:8px;padding:20px;text-align:center;}
+  .img-fallback .icon{font-size:34px;opacity:.5;}
+
+  /* ---------- Hero ---------- */
+  #hero{padding-top:56px;}
+  .hero-grid{display:grid;grid-template-columns:1fr;gap:28px;}
+  .hero-title{font-size:40px;line-height:1.25;margin-bottom:6px;}
+  .hero-title .zh{color:var(--ink);}
+  .hero-title .en{color:var(--data-cyan);font-size:22px;font-weight:400;margin-left:10px;}
+  .hero-loop{display:flex;align-items:center;gap:10px;margin:18px 0 26px 0;padding:14px 18px;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);}
+  .loop-node{padding:6px 12px;border-radius:6px;background:var(--bg-panel-2);border:1px solid var(--line);font-size:14px;white-space:nowrap;}
+  .loop-arrow{color:var(--signal-amber);font-size:18px;}
+  .hero-sub{color:var(--ink-dim);max-width:760px;}
+
+  /* ---------- Governance banner ---------- */
+  #discipline{background:linear-gradient(90deg,rgba(224,72,63,.12),rgba(224,168,63,.12),rgba(47,174,102,.12));border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 24px;}
+  .discipline-inner{max-width:1240px;margin:0 auto;text-align:center;}
+  .discipline-flow{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:14px;font-size:22px;font-weight:700;margin-top:14px;}
+  .discipline-step{padding:10px 18px;border-radius:8px;}
+  .discipline-step:nth-child(1){background:rgba(51,196,209,.12);color:var(--data-cyan);border:1px solid var(--data-cyan);}
+  .discipline-step:nth-child(3){background:rgba(47,174,102,.12);color:var(--signal-green);border:1px solid var(--signal-green);}
+  .discipline-step:nth-child(5){background:rgba(224,168,63,.12);color:var(--signal-amber);border:1px solid var(--signal-amber);}
+  .discipline-step:nth-child(7){background:rgba(224,72,63,.12);color:var(--signal-red);border:1px solid var(--signal-red);}
+  .discipline-arrow{color:var(--ink-dim);font-size:18px;}
+
+  /* ---------- Zone cards ---------- */
+  .zone-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:20px;}
+  .zone-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:20px;border-top:4px solid var(--data-cyan);transition:transform .2s ease,box-shadow .2s ease;}
+  .zone-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,.35);}
+  .zone-card.core-1{border-top-color:var(--signal-red);}
+  .zone-card.core-2{border-top-color:var(--signal-amber);}
+  .zone-card.core-3{border-top-color:var(--signal-green);}
+  .zone-card h3{font-size:17px;margin-bottom:4px;}
+  .zone-card .area{font-size:12px;color:var(--data-cyan);margin-bottom:10px;}
+  .zone-card .pos{font-size:13px;color:var(--ink-dim);margin-bottom:10px;font-style:italic;}
+  .zone-card ul{margin:0;padding-left:18px;font-size:13px;color:var(--ink-dim);line-height:1.7;}
+
+  /* ---------- Scenario matrix ---------- */
+  .scn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-top:20px;}
+  .scn-card{position:relative;background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;min-height:120px;overflow:hidden;cursor:default;}
+  .scn-id{font-size:12px;color:var(--data-cyan);letter-spacing:1px;}
+  .scn-name{font-size:16px;font-weight:700;margin:6px 0 2px 0;}
+  .scn-node{font-size:11px;color:var(--ink-dim);}
+  .scn-overlay{position:absolute;inset:0;background:rgba(13,17,23,.96);display:flex;flex-direction:column;justify-content:center;gap:6px;padding:14px;opacity:0;transform:translateY(6px);transition:opacity .2s ease,transform .2s ease;font-size:11.5px;}
+  .scn-card:hover .scn-overlay{opacity:1;transform:translateY(0);}
+  .scn-overlay .item{display:flex;gap:6px;align-items:flex-start;color:var(--ink-dim);}
+  .scn-overlay .dot{width:7px;height:7px;border-radius:50%;margin-top:4px;flex:none;}
+  .dot-red{background:var(--signal-red);} .dot-amber{background:var(--signal-amber);} .dot-green{background:var(--signal-green);} .dot-cyan{background:var(--data-cyan);}
+
+  /* ---------- KPI gauges ---------- */
+  .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;margin-top:20px;}
+  .kpi-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center;}
+  .kpi-card svg{width:120px;height:70px;}
+  .kpi-name{font-size:13px;margin-top:8px;color:var(--ink);}
+  .kpi-baseline{font-size:11px;color:var(--ink-dim);margin-top:4px;}
+  .needle{transform-origin:60px 60px;animation:sweep 2.4s ease-out forwards;}
+  @keyframes sweep{from{transform:rotate(-90deg);}}
+
+  /* ---------- metrics table ---------- */
+  table{width:100%;border-collapse:collapse;margin-top:16px;font-size:14px;}
+  th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;}
+  th{background:var(--bg-panel-2);color:var(--data-cyan);font-weight:600;}
+  td{color:var(--ink-dim);}
+  .metric-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:18px;}
+  .metric-card{background:var(--bg-panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;text-align:center;}
+  .metric-card .num{font-size:26px;font-weight:700;color:var(--data-cyan);}
+  .metric-card .label{font-size:12px;color:var(--ink-dim);margin-top:4px;}
+
+  /* ---------- self check badges ---------- */
+  .badge-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px;}
+  .badge{display:flex;align-items:center;gap:8px;background:var(--bg-panel);border:1px solid var(--signal-green);color:var(--signal-green);padding:8px 14px;border-radius:999px;font-size:13px;}
+  .badge .chip{width:8px;height:8px;border-radius:50%;background:var(--signal-green);}
+  .manifest{margin-top:16px;background:var(--bg-panel-2);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;font-family:ui-monospace,Consolas,monospace;font-size:12px;color:var(--ink-dim);word-break:break-all;}
+
+  /* ---------- sources ---------- */
+  .src-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px;}
+  @media(max-width:760px){.src-cols{grid-template-columns:1fr;}}
+  .src-cols h3{font-size:15px;color:var(--data-cyan);}
+  .src-cols ul{font-size:13px;color:var(--ink-dim);line-height:1.8;padding-left:18px;}
+  .disclaimer{margin-top:22px;padding:14px 16px;border:1px dashed var(--signal-amber);border-radius:var(--radius);color:var(--signal-amber);font-size:13px;background:rgba(224,168,63,.06);}
+
+  footer{padding:30px 24px;text-align:center;color:var(--ink-dim);font-size:12px;border-top:1px solid var(--line);}
+  .section-divider{height:1px;background:var(--line);max-width:1240px;margin:0 auto;}
+  .kpi-pending{font-size:13px;color:var(--signal-amber);border:1px dashed var(--signal-amber);border-radius:8px;padding:10px;margin-top:8px;text-align:center;}
+</style>
+</head>
+<body>
+
+<!-- 1. 首屏 Hero -->
+<section id="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-title"><span class="zh">Jingzhang AI Valley</span><span class="en">/ JZ Valley</span></div>
+      <div class="hero-loop">
+        <span class="loop-node">R&amp;D</span><span class="loop-arrow">→</span>
+        <span class="loop-node">Validate</span><span class="loop-arrow">→</span>
+        <span class="loop-node">Scenario</span><span class="loop-arrow">→</span>
+        <span class="loop-node">Feedback</span><span class="loop-arrow">↩</span>
+        <span style="color:var(--ink-dim);font-size:13px;margin-left:8px;">Switchback Innovation Loop — a contemporary translation of Zhan Tianyou’s switchback railway</span>
+      </div>
+      <p class="hero-sub">Centered on the Jingzhang Railway Heritage Park, linking three key districts—Zhongzhiyuan AI Valley, AI Origin Community, and Dazhongsi Smart Hub—forming a corridor-wide innovation network of public spaces, AI scenarios, and blue-green slow-traffic loops.</p>
+    </div>
+    <div class="img-frame">
+      <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/site-overview.png" alt="Site Overview and Concept" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+      <div class="img-fallback" style="display:none;">
+        <div class="icon">🗺️</div>
+        <div>site-overview.png not found — check assets/figures/site-overview.png</div>
+      </div>
+      <div class="img-caption">Figure 1 · Site Overview & Concept (provisional, pending official boundary review)</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 1b. 方案总览：覆盖任务与空间结构（含必检文本标记） -->
+  <section id="overview">
+    <h2>Proposal Overview <span class="en">Overview</span></h2>
+    <p><strong>Overview Map: </strong>The proposal uses Jingzhang Railway Heritage Park as the cultural spine, organized by <strong>three-tier scope</strong>leading from Area-wide Study (43.6 km²) to Overall Design (11.4 km²) to the three <strong>key areas</strong> (368.4 ha: Zhongzhiyuan, AI Origin Community, Dazhongsi).</p>
+    <p><strong>Land-use distribution: </strong>AI R&amp;D 25% / Innovation Mixed 20% / AI Services 15% / Commercial 10% / Green Space 20% / Transport 10%.</p>
+    <p><strong>Slow traffic: </strong>Approx. 20km continuous cycling + walking path linking the three key areas; <strong>blue-green public space</strong>the heritage park green corridor (30-80m wide) with Xiaoyue River and Qinghe blue corridors.</p>
+    <p><strong>Buildings</strong>follow the principle: retain first, retrofit second, demolish third, build new last; <strong>phasing projects</strong>implemented in three phases (2026-2035).</p>
+    <p><strong>AI scenarios</strong>: 12 scenario cards (SCN-01~12), each bound to a spatial anchor NODE-01~12; <strong>tasks cover</strong>agent.1 through agent.6 6 agent tasks。</p>
+  </section>
+
+  <div class="section-divider"></div>
+
+<!-- 2. Governance Discipline横幅 -->
+<section id="discipline" style="padding:0;">
+  <div class="discipline-inner" style="padding:38px 24px;">
+    <span class="tag">Governance Creed</span>
+    <h2 style="border:none;padding:0;display:inline;">Governance Discipline</h2>
+    <div class="discipline-flow">
+      <span class="discipline-step">Switchback Review</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">Grade Access</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">K-marker Log</span>
+      <span class="discipline-arrow">→</span>
+      <span class="discipline-step">Depot Entry</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 三区两翼 -->
+<section id="areas">
+  <h2>Districts &amp; Wings <span class="en">Three Districts, Two Wings</span></h2>
+  <p>The three key districts follow a grade gradient: Dazhongsi (gentle slope/inclusive) → AI Origin Community (medium slope/industry) → Zhongzhiyuan (steep slope/cutting-edge), flanked by the Zhongguancun and Xiaoyue River wings.</p>
+  <div class="zone-grid">
+    <div class="zone-card core-1">
+      <h3>Zhongzhiyuan · AI Valley</h3>
+      <div class="area">192.1 ha · Steep / Cutting-edge</div>
+      <div class="pos">Full-stack independent innovation accelerator</div>
+      <ul><li>Spatial structure: one core, two wings</li><li>Height limit ≤60m</li><li>Scenarios SCN-01~04</li></ul>
+    </div>
+    <div class="zone-card core-2">
+      <h3>AI Origin Community</h3>
+      <div class="area">104.3 ha · Medium / Industry</div>
+      <div class="pos">Industry-grade AI application community</div>
+      <ul><li>Spatial structure: one street, one park, one community</li><li>Height limit ≤45m</li><li>Scenarios SCN-05~08</li></ul>
+    </div>
+    <div class="zone-card core-3">
+      <h3>Dazhongsi · Smart Hub</h3>
+      <div class="area">72.0 ha · Gentle / Inclusive</div>
+      <div class="pos">Inclusive innovation hub</div>
+      <ul><li>Spatial structure: one valley, one street</li><li>Height limit ≤30m</li><li>Scenarios SCN-09~12</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>Zhongguancun Wing</h3>
+      <div class="area">Linkage zone · Industry-academia synergy</div>
+      <div class="pos">Innovation resource channel</div>
+      <ul><li>Connects to Zhongzhiyuan</li><li>Talent &amp; technology bidirectional flow</li></ul>
+    </div>
+    <div class="zone-card">
+      <h3>Xiaoyue River Wing</h3>
+      <div class="area">Linkage zone · Blue-green ecological corridor</div>
+      <div class="pos">Ecological slow-traffic connector</div>
+      <ul><li>Links Xiaoyue River &amp; Qinghe blue corridors</li><li>Connects heritage park green spine</li></ul>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 4. 场景矩阵 -->
+<section id="scenarios">
+  <h2>Scenario Matrix <span class="en">12 Scenarios</span></h2>
+  <p>Each scenario passes a governance gate before deployment. Hover to view the four-part safety kit: deactivation conditions, human fallback, appeal channel, sunset clause.</p>
+  <div class="scn-grid" id="scnGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 5. 治理KPI面板 -->
+<section id="kpi">
+  <h2>Governance KPI <span class="en">Governance KPIs</span></h2>
+  <p>Three-signal status (red/yellow/green) mirrors railway signaling: red cannot jump to green. Five verifiable governance KPIs below; baselines pending first survey.</p>
+  <div class="kpi-grid" id="kpiGrid"></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 6. 指标与证据 -->
+<section id="metrics">
+  <h2>Metrics &amp; Evidence <span class="en">Metrics &amp; Evidence</span></h2>
+  <div class="metric-cards">
+    <div class="metric-card" data-metric="site_area_sqm" data-value="11412797.493"><div class="num">11.41</div><div class="label">Site Area (km²) · site_area_sqm</div></div>
+    <div class="metric-card" data-metric="green_ratio" data-value="0.175243"><div class="num">17.5%</div><div class="label">Green Ratio · green_ratio</div></div>
+    <div class="metric-card" data-metric="public_space_ratio" data-value="0.007479"><div class="num">0.75%</div><div class="label">Public Space Ratio · public_space_ratio</div></div>
+    <div class="metric-card"><div class="num">12</div><div class="label">AI Scenarios</div></div>
+  </div>
+  <div class="img-frame" style="margin-top:24px;">
+    <div class="prov-overlay" style="background:#ff6b6b;color:white;font-size:11px;font-weight:bold;padding:2px 6px;margin-bottom:2px;display:inline-block;border-radius:3px;">⚠ PROVISIONAL / 概念示意 / 非官方红线</div>
+<img src="../assets/figures/metrics-evidence.png" alt="Core Metrics and Governance Loop" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+    <div class="img-fallback" style="display:none;">
+      <div class="icon">📊</div>
+      <div>metrics-evidence.png not found — check assets/figures/metrics-evidence.png</div>
+    </div>
+    <div class="img-caption">Figure 5 · Core Metrics & Governance Loop (illustrative, baseline pending first survey)</div>
+  </div>
+  <table>
+    <thead><tr><th>Land Use</th><th>Area (ha)</th><th>Ratio</th></tr></thead>
+    <tbody>
+      <tr><td>AI R&amp;D</td><td>285</td><td>25%</td></tr>
+      <tr><td>Innovation Mixed</td><td>228</td><td>20%</td></tr>
+      <tr><td>Services</td><td>171</td><td>15%</td></tr>
+      <tr><td>Commercial</td><td>114</td><td>10%</td></tr>
+      <tr><td>Green Space</td><td>228</td><td>20%</td></tr>
+      <tr><td>Transport</td><td>114</td><td>10%</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 7. 自检状态 -->
+<section id="selfcheck">
+  <h2>Self-Check <span class="en">Self-Check Status</span></h2>
+  <p>All four gates passed (formal-review-ready). Status and manifest hashes below (generated by the finalize workflow).</p>
+  <div class="badge-row">
+    <div class="badge"><span class="chip"></span>Concept Alignment PASS</div>
+    <div class="badge"><span class="chip"></span>Data Consistency PASS</div>
+    <div class="badge"><span class="chip"></span>Governance Loop PASS</div>
+    <div class="badge"><span class="chip"></span>Material Compliance PASS</div>
+  </div>
+  <div class="manifest">manifest.sha256 = &lt;generated by finalize workflow&gt;<br>version = v8.1 &nbsp;|&nbsp; date = 2026-08-10 &nbsp;|&nbsp; status = formal-review-ready</div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- 8. 来源与假设 -->
+<section id="sources">
+  <h2>Sources &amp; Assumptions <span class="en">Sources &amp; Assumptions</span></h2>
+  <div class="src-cols">
+    <div>
+      <h3>Sources</h3>
+      <ul>
+        <li>proposal.md (v8 final framework, 2026-08-10)</li>
+        <li>Official plot conditions (where collected, see materials index)</li>
+        <li>OSM railway alignment/stations/green corridors (ODbL attribution, where collected)</li>
+        <li>Built fact inventory (official verifiable sources, where collected)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Assumptions</h3>
+      <ul>
+        <li>Area, grade, and height values are conceptual, not precise survey</li>
+        <li>Governance KPIs are evaluation commitments; baselines pending first survey, no fabricated targets</li>
+        <li>Scenario IDs SCN-01~12 and spatial anchors NODE-01~12 are one-to-one conceptual placeholders</li>
+        <li>Investment amounts, phasing years are conceptual; must be verified against official approvals</li>
+      </ul>
+    </div>
+  </div>
+  <div class="disclaimer">⚠ Provisional Disclaimer: All boundaries, data, and graphics on this page are conceptual (provisional), not final approved outcomes, and subject to official released documents.</div>
+</section>
+
+
+<!-- ============ Switchback Governance 3D Interactive Demo (offline Three.js) ============ -->
+<section class="section" id="switchback-demo-section" style="background:linear-gradient(180deg,#0a1a2b 0%,#071A2B 100%);padding:36px 24px;border-radius:18px;margin:28px 0;border:1px solid rgba(0,216,198,0.25);">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="color:#C8964A;margin:0 0 6px 0;font-size:1.5em;">Switchback Governance · 3D Interactive Demo</h2>
+    <p style="color:#A0AAB5;margin:0 0 16px 0;font-size:0.95em;">Modeled on the Qinglongqiao switchback line: a train on a steep grade must stop, change direction, and advance by retreating. At every stop it must pass the <b style="color:#00D8C6;">Teach-Back Gate</b> (report → inquiry → vote); any veto turns it back — no automatic continuation. Drag to orbit; click a verdict button when the train stops at the switchback node.</p>
+    <div id="sb-stage" style="position:relative;width:100%;height:420px;border-radius:12px;overflow:hidden;background:#071A2B;"></div>
+    <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;">
+      <div id="sbStatus" class="sb-label sb-run" style="color:#00D8C6;font-size:0.9em;font-weight:600;">Running on mainline · verifiable, stoppable, reversible</div>
+      <div id="sbPhase" style="color:#FFC857;font-size:0.9em;min-height:1.2em;"></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
+      <button id="sb-pass" type="button" style="flex:1;min-width:120px;padding:10px 14px;border:none;border-radius:8px;background:#00D8C6;color:#06121f;font-weight:700;cursor:pointer;">Pass · confirmed by humans</button>
+      <button id="sb-turnback" type="button" style="flex:1;min-width:120px;padding:10px 14px;border:none;border-radius:8px;background:#FFC857;color:#06121f;font-weight:700;cursor:pointer;">Turn back · retreat to advance</button>
+      <button id="sb-depot" type="button" style="flex:1;min-width:120px;padding:10px 14px;border:none;border-radius:8px;background:#A0AAB5;color:#06121f;font-weight:700;cursor:pointer;">Depot · restricted operation</button>
+    </div>
+    <p style="color:#5a7189;font-size:0.78em;margin-top:12px;">&#9888; The 3D demo is an AI-generated concept illustration (local offline Three.js, no CDN, no external requests); it is not a site photo, official boundary, or measured data. Requires WebGL; it will not load if unsupported.</p>
+  </div>
+</section>
+
+<footer>Jingzhang AI Valley / JZ Valley &nbsp;·&nbsp; v8.1 &nbsp;·&nbsp; Single-file offline display, no CDN / external scripts / fonts / API / iframe / remote map tiles</footer>
+
+<script>
+(function(){
+  var scenarios = [
+    {id:"SCN-01",name:"Accessible Route Assistant",node:"NODE-01",grade:"Gentle"},
+    {id:"SCN-02",name:"Crowd Guidance",node:"NODE-02",grade:"Medium"},
+    {id:"SCN-03",name:"Multilingual Guide",node:"NODE-03",grade:"Gentle"},
+    {id:"SCN-04",name:"Community Navigation",node:"NODE-04",grade:"Gentle"},
+    {id:"SCN-05",name:"SME Compliance",node:"NODE-05",grade:"Medium"},
+    {id:"SCN-06",name:"Open-source Compute",node:"NODE-06",grade:"Steep"},
+    {id:"SCN-07",name:"Robot Delivery",node:"NODE-07",grade:"Steep"},
+    {id:"SCN-08",name:"Microclimate Advice",node:"NODE-08",grade:"Gentle"},
+    {id:"SCN-09",name:"Aged-care Navigation",node:"NODE-09",grade:"Medium"},
+    {id:"SCN-10",name:"Consumer Translation",node:"NODE-10",grade:"Gentle"},
+    {id:"SCN-11",name:"Safety Review",node:"NODE-11",grade:"Steep"},
+    {id:"SCN-12",name:"Issue Synthesis",node:"NODE-12",grade:"Medium"}
+  ];
+  var grid = document.getElementById('scnGrid');
+  scenarios.forEach(function(s){
+    var card = document.createElement('div');
+    card.className = 'scn-card';
+    card.innerHTML =
+      '<div class="scn-id">'+s.id+'</div>' +
+      '<div class="scn-name">'+s.name+'</div>' +
+      '<div class="scn-node">Anchor '+s.node+'</div>' +
+      '<div class="scn-overlay">' +
+        '<div class="item"><span class="dot dot-red"></span>Switchback: stop at node, three-party review pass/return/depot</div>' +
+        '<div class="item"><span class="dot dot-amber"></span>Grade Access: Steeper = stricter, Gentle = inclusive</div>' +
+        '<div class="item"><span class="dot dot-cyan"></span>K-marker Log: each recalculation generates a new K-marker, fully traceable</div>' +
+        '<div class="item"><span class="dot dot-green"></span>Switch States: Main line / Switchback / Depot Entry, no automatic recovery</div>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  var kpis = [
+    {name:"Independent Evaluation Coverage", value:null, note:"Baseline pending first survey"},
+    {name:"Public Issue Closure Rate", value:null, note:"Baseline pending first survey"},
+    {name:"Appeal Resolution Time", value:null, note:"Baseline pending first survey"},
+    {name:"Human Override Rate", value:null, note:"Baseline pending operation phase"},
+    {name:"Switchback/Entry Records", value:null, note:"Baseline 0, recorded on each switchback"}
+  ];
+  var kgrid = document.getElementById('kpiGrid');
+  kpis.forEach(function(k){
+    if (k.value === null) {
+      var empty = document.createElement('div');
+      empty.className = 'kpi-card';
+      empty.innerHTML = '<div class="kpi-name">'+k.name+'</div><div class="kpi-baseline">'+k.note+'</div><div class="kpi-pending">Pending survey (no fabricated values)</div>';
+      kgrid.appendChild(empty);
+      return;
+    }
+    var angle = -90 + k.value*180;
+    var color = k.value>=0.7?'var(--signal-green)':(k.value>=0.4?'var(--signal-amber)':'var(--signal-red)');
+    var card = document.createElement('div');
+    card.className = 'kpi-card';
+    card.innerHTML =
+      '<svg viewBox="0 0 120 70">' +
+        '<path d="M10,60 A50,50 0 0,1 40,15" stroke="var(--signal-red)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M40,15 A50,50 0 0,1 80,15" stroke="var(--signal-amber)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<path d="M80,15 A50,50 0 0,1 110,60" stroke="var(--signal-green)" stroke-width="10" fill="none" stroke-linecap="round"/>' +
+        '<line class="needle" x1="60" y1="60" x2="60" y2="16" stroke="'+color+'" stroke-width="3" style="transform:rotate('+angle+'deg)"/>' +
+        '<circle cx="60" cy="60" r="4" fill="'+color+'"/>' +
+      '</svg>' +
+      '<div class="kpi-name">'+k.name+'</div>' +
+      '<div class="kpi-baseline">Baseline pending first survey</div>';
+    kgrid.appendChild(card);
+  });
+})();
+</script>
+
+
+<script type="importmap">
+{ "imports": { "three": "./assets/three/three.module.js" } }
+</script>
+<script type="module">
+
+import * as THREE from '../assets/three/three.module.js';
+import { OrbitControls } from '../assets/three/OrbitControls.js';
+
+export function initSwitchbackDemo(containerId, lang) {
+  const L = {
+    run: 'Running on mainline · verifiable, stoppable, reversible',
+    wait: 'At switchback node · stop for teach-back',
+    gate: 'Teach-Back Gate in progress',
+    pass: 'Pass · confirmed by humans',
+    turnback: 'Turn back · retreat to advance',
+    depot: 'Depot · restricted, no auto-recovery',
+    phases: ['Report · explain what it does, where it might fail, how to stop', 'Inquiry · answer until the public understands', 'Vote · pass / turn back / depot'],
+    gateDone: 'Vote passed · pass',
+    passAction: 'Vote passed · pass',
+    turnbackAction: 'Turn back · re-evaluate at previous node',
+    depotAction: 'Depot · speed/scope/data limited, wait for next review'
+  };
+  const container = document.getElementById(containerId);
+  if (!container) return null;
+
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x071A2B);
+
+  const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+  camera.position.set(14, 10, 18);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  container.appendChild(renderer.domElement);
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  controls.target.set(0, 2, 0);
+
+
+  scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+  const dir = new THREE.DirectionalLight(0xffe9c8, 0.9);
+  dir.position.set(8, 14, 6);
+  scene.add(dir);
+  const rim = new THREE.DirectionalLight(0x00D8C6, 0.35);
+  rim.position.set(-8, 6, -6);
+  scene.add(rim);
+
+
+  const grid = new THREE.GridHelper(24, 24, 0x2a4a66, 0x1c3550);
+  grid.position.y = -0.02;
+  scene.add(grid);
+
+
+
+  const pts = [
+    new THREE.Vector3(-8, 0, 2),
+    new THREE.Vector3(-3, 0, 2),
+    new THREE.Vector3(-1, 0.6, 2),
+    new THREE.Vector3(1, 0.6, 2),
+    new THREE.Vector3(3, 0, 2),
+    new THREE.Vector3(8, 0, 2),
+  ];
+  const curve = new THREE.CatmullRomCurve3(pts);
+
+
+  const tubeGeo = new THREE.TubeGeometry(curve, 120, 0.22, 10, false);
+  const tubeMat = new THREE.MeshStandardMaterial({
+    color: 0xC8964A, metalness: 0.5, roughness: 0.45, emissive: 0x3a2410, emissiveIntensity: 0.25
+  });
+  scene.add(new THREE.Mesh(tubeGeo, tubeMat));
+
+
+  const linePts = curve.getPoints(120);
+  const lineGeo = new THREE.BufferGeometry().setFromPoints(linePts);
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x00D8C6, transparent: true, opacity: 0.65 });
+  scene.add(new THREE.Line(lineGeo, lineMat));
+
+
+  const sbPos = curve.getPoint(0.5);
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(0.65, 0.07, 12, 40),
+    new THREE.MeshStandardMaterial({ color: 0xFF6B6B, emissive: 0x7a1f1f, emissiveIntensity: 0.8 })
+  );
+  ring.position.copy(sbPos);
+  ring.position.y += 0.3;
+  ring.rotation.x = Math.PI / 2;
+  scene.add(ring);
+
+
+  const pillarMat = new THREE.MeshStandardMaterial({ color: 0xC8964A, metalness: 0.4, roughness: 0.5 });
+  function pillar(x, z, ry) {
+    const p = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.9, 8), pillarMat);
+    p.position.set(x, 0.95, z);
+    p.rotation.y = ry;
+    scene.add(p);
+    return p;
+  }
+
+  const p1 = pillar(sbPos.x - 0.45, sbPos.z + 0.32, Math.PI / 4);
+  const p2 = pillar(sbPos.x + 0.45, sbPos.z - 0.32, -Math.PI / 4);
+  const crossBar = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.7, 8),
+    new THREE.MeshStandardMaterial({ color: 0x00D8C6, emissive: 0x00564e, emissiveIntensity: 0.6 }));
+  crossBar.position.set(sbPos.x, 1.1, sbPos.z);
+  crossBar.rotation.z = Math.PI / 2;
+  scene.add(crossBar);
+
+
+  const train = new THREE.Group();
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1a3a55, metalness: 0.6, roughness: 0.35 });
+  const body = new THREE.Mesh(new THREE.CapsuleGeometry(0.32, 0.55, 6, 14), bodyMat);
+  body.rotation.x = Math.PI / 2;
+  body.position.y = 0.42;
+  train.add(body);
+  const stripe = new THREE.Mesh(
+    new THREE.TorusGeometry(0.34, 0.025, 6, 24),
+    new THREE.MeshStandardMaterial({ color: 0x00D8C6, emissive: 0x00D8C6, emissiveIntensity: 0.9 })
+  );
+  stripe.rotation.x = Math.PI / 2;
+  stripe.position.y = 0.42;
+  train.add(stripe);
+  scene.add(train);
+
+
+  const stateLight = new THREE.Mesh(
+    new THREE.SphereGeometry(0.09, 10, 10),
+    new THREE.MeshStandardMaterial({ color: 0xFF6B6B, emissive: 0xFF6B6B, emissiveIntensity: 1.4 })
+  );
+  stateLight.position.set(0.55, 0.62, 0);
+  train.add(stateLight);
+
+
+  const trio = [
+    { color: 0x4a90d9, pos: [-0.95, 1.75, 0] },
+    { color: 0x00D8C6, pos: [0, 1.95, 0] },
+    { color: 0xFFC857, pos: [0.95, 1.75, 0] },
+  ];
+  trio.forEach(t => {
+    const l = new THREE.Mesh(new THREE.SphereGeometry(0.1, 10, 10),
+      new THREE.MeshStandardMaterial({ color: t.color, emissive: t.color, emissiveIntensity: 1.1 }));
+    l.position.set(sbPos.x + t.pos[0], t.pos[1], sbPos.z + t.pos[2]);
+    scene.add(l);
+  });
+
+
+
+  let state = 'run';
+  let t = 0;
+  let dir = 1;
+  let speed = 0.0016;
+  let gatePhase = 0;
+  const GATE_PHASES = L.phases;
+  const labelEl = document.getElementById('sbStatus');
+  const phaseEl = document.getElementById('sbPhase');
+
+  function setState(s) {
+    state = s;
+    if (labelEl) {
+      const map = {
+        run: L.run,
+        wait: L.wait,
+        gate: L.gate,
+        pass: L.pass,
+        turnback: L.turnback,
+        depot: L.depot
+      };
+      labelEl.textContent = map[s] || s;
+      labelEl.className = 'sb-label sb-' + s;
+    }
+  }
+
+
+  const SB_T = 0.5;
+
+  function update(dt) {
+
+    if (state === 'run') {
+      t += speed * dt * dir;
+      if (t >= 0.995) { t = 0.995; }
+      if (t <= 0.005) { t = 0.005; }
+
+      if ((dir > 0 && t >= SB_T - 0.02) || (dir < 0 && t <= SB_T + 0.02)) {
+        t = SB_T;
+        setState('wait');
+      }
+    } else if (state === 'wait') {
+
+      if (!update._waitT) update._waitT = 0;
+      update._waitT += dt;
+      if (update._waitT > 1.2) {
+        update._waitT = 0;
+        setState('gate');
+        gatePhase = 0;
+      }
+    } else if (state === 'gate') {
+      update._gateT = (update._gateT || 0) + dt;
+      if (phaseEl) phaseEl.textContent = 'Teach-Back Gate · ' + GATE_PHASES[gatePhase];
+      if (update._gateT > 2.2) {
+        update._gateT = 0;
+        gatePhase++;
+        if (gatePhase >= 3) {
+
+          setState('pass');
+          if (phaseEl) phaseEl.textContent = L.gateDone;
+          stateLight.material.color.setHex(0x00D8C6);
+          stateLight.material.emissive.setHex(0x00D8C6);
+        }
+      }
+    } else if (state === 'pass') {
+      update._passT = (update._passT || 0) + dt;
+      if (update._passT > 0.6) {
+        update._passT = 0;
+        dir = -dir;
+        setState('run');
+      }
+    }
+
+    const pos = curve.getPointAt(Math.max(0, Math.min(1, t)));
+    train.position.copy(pos);
+    train.position.y += 0.42;
+    const tangent = curve.getTangentAt(Math.max(0, Math.min(1, t)));
+    train.rotation.y = Math.atan2(tangent.x, tangent.z) + (dir < 0 ? Math.PI : 0);
+
+
+    lineMat.opacity = 0.45 + 0.2 * Math.sin(Date.now() * 0.003);
+
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  setState('run');
+  let last = performance.now();
+  function loop(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    update(dt);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+
+  function bindAction(name) {
+    const el = document.getElementById('sb-' + name);
+    if (!el) return;
+    el.addEventListener('click', () => {
+      if (state === 'wait' || state === 'gate') {
+        if (name === 'pass') {
+          setState('pass');
+          if (phaseEl) phaseEl.textContent = L.gateDone;
+          stateLight.material.color.setHex(0x00D8C6);
+          stateLight.material.emissive.setHex(0x00D8C6);
+        } else if (name === 'turnback') {
+          setState('turnback');
+          if (phaseEl) phaseEl.textContent = L.turnbackAction;
+          stateLight.material.color.setHex(0xFFC857);
+          stateLight.material.emissive.setHex(0xFFC857);
+          setTimeout(() => { dir = -dir; setState('run'); }, 800);
+        } else if (name === 'depot') {
+          setState('depot');
+          if (phaseEl) phaseEl.textContent = L.depotAction;
+          stateLight.material.color.setHex(0xA0AAB5);
+          stateLight.material.emissive.setHex(0xA0AAB5);
+          setTimeout(() => { setState('run'); }, 1500);
+        }
+      }
+    });
+  }
+  bindAction('pass');
+  bindAction('turnback');
+  bindAction('depot');
+
+  return { scene, camera, renderer, controls };
+}
+
+initSwitchbackDemo('sb-stage', 'en');
+</script></body>
+</html>

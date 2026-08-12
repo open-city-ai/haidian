@@ -1,0 +1,204 @@
+{
+  "schema_version": "0.1.0",
+  "register_id": "JZ-AIOS-FAILURE-GOVERNANCE-06",
+  "status": "concept_only_g0",
+  "as_of": "2026-08-12",
+  "purpose_zh": "在既有 JZ-AIOS 内，把失败分类、停止权限、人工交接、三载体回写、公众纠正、独立复测和主动退役连成一个可审计但未执行的合同。",
+  "purpose_en": "Within existing JZ-AIOS, connect failure classification, stop authority, staffed handoff, three-carrier writeback, public correction, independent retest, and active retirement in one auditable but unexecuted contract.",
+  "selected_work_packages": [
+    "failure_classification_and_stop_authority",
+    "three_carrier_state_writeback",
+    "appeal_changes_decision",
+    "independent_retest_and_append_only_versions",
+    "active_retirement_and_ordinary_use_restoration"
+  ],
+  "authority_boundary": {
+    "all_scenes_remain": "G0",
+    "real_failure_or_incident_records": 0,
+    "confirmed_stop_authorities": 0,
+    "confirmed_accountable_operators": 0,
+    "real_public_corrections": 0,
+    "completed_real_independent_retests": 0,
+    "completed_real_retirements": 0,
+    "approved_restart_decisions": 0,
+    "synthetic_governance_replays": 1,
+    "synthetic_declared_stop_events": 4,
+    "rule_zh": "T-02 的四个停止事件是无个人信息、无模型/API/现实服务调用的确定性合成治理回放；它们不是现实事故、现场恢复、责任接受或部署证据。",
+    "rule_en": "The four T-02 stop events are a deterministic, PII-free synthetic governance replay with no model, API, or real-service call. They are not real incidents, field recovery, responsibility acceptance, or deployment evidence."
+  },
+  "four_axis_state_model": {
+    "separation_rule": "runtime_state, maturity_gate, authorization_state, and service_state are never collapsed into one status or colour",
+    "axes": [
+      {
+        "axis": "runtime_state",
+        "allowed_values": ["ordinary", "verification", "failure_stop", "recovery"],
+        "public_question_zh": "现在空间和服务处于哪一种运行态？",
+        "public_question_en": "Which runtime state is the place and service in now?"
+      },
+      {
+        "axis": "maturity_gate",
+        "allowed_values": ["G0", "G1", "G2", "G3"],
+        "current_value": "G0",
+        "public_question_zh": "证据成熟度到哪一门？",
+        "public_question_en": "Which evidence-maturity gate has been reached?"
+      },
+      {
+        "axis": "authorization_state",
+        "allowed_values": ["not_authorized", "scope_limited", "expired", "withdrawn", "retired"],
+        "current_value": "not_authorized",
+        "public_question_zh": "谁在什么范围内授权了什么？",
+        "public_question_en": "Who authorized what, and within which scope?"
+      },
+      {
+        "axis": "service_state",
+        "allowed_values": ["ordinary_non_ai_available", "optional_ai_bounded", "automation_unavailable", "staffed_handoff_required", "service_retired"],
+        "current_value": "ordinary_non_ai_available_concept_requirement_not_verified_service",
+        "public_question_zh": "公众现在实际还能获得什么服务？",
+        "public_question_en": "What service can the public actually obtain now?"
+      }
+    ]
+  },
+  "failure_classes": [
+    {
+      "class_id": "FAIL-SAFETY-ACCESS",
+      "name_zh": "安全与无障碍",
+      "name_en": "Safety and accessibility",
+      "examples_zh": ["碰撞或越界", "连续普通路径受阻", "实体急停或人工接管失效"],
+      "stop_level": "immediate_hard_stop",
+      "minimum_public_record": "affected task and place; stop time; ordinary detour; role vacancy; no personal details"
+    },
+    {
+      "class_id": "FAIL-RIGHTS-CONSENT",
+      "name_zh": "权利、同意与禁采",
+      "name_en": "Rights, consent, and prohibited data",
+      "examples_zh": ["无法撤回同意", "采集禁采数据", "账户/扫码/AI 成为唯一入口"],
+      "stop_level": "immediate_hard_stop",
+      "minimum_public_record": "right affected; data action; withdrawal route; staffed contact; no exposed personal data"
+    },
+    {
+      "class_id": "FAIL-SOURCE-VERSION",
+      "name_zh": "来源、版本与可复现",
+      "name_en": "Source, version, and reproducibility",
+      "examples_zh": ["来源过期或冲突", "模型/规则版本未锁定", "旧证据被覆盖"],
+      "stop_level": "freeze_output_and_review",
+      "minimum_public_record": "affected version; source status; correction notice; retained prior evidence; retest scope"
+    },
+    {
+      "class_id": "FAIL-SERVICE-HANDOFF",
+      "name_zh": "服务与人工交接",
+      "name_en": "Service and staffed handoff",
+      "examples_zh": ["人工路径不可用", "普通服务被验证活动占用", "责任角色缺席"],
+      "stop_level": "stop_automation_keep_or_safely_refuse_ordinary_service",
+      "minimum_public_record": "available non-AI task; safe refusal; next staffed contact; queue owner vacancy"
+    },
+    {
+      "class_id": "FAIL-EVIDENCE-DECISION",
+      "name_zh": "证据与决策",
+      "name_en": "Evidence and decision",
+      "examples_zh": ["分母不成立", "PASS 被解释为部署授权", "申诉未进入 go/no-go"],
+      "stop_level": "decision_hold",
+      "minimum_public_record": "decision held; missing evidence; appeal effect; independent reviewer requirement"
+    },
+    {
+      "class_id": "FAIL-PLACE-EXIT",
+      "name_zh": "场所恢复与退出",
+      "name_en": "Place restoration and exit",
+      "examples_zh": ["构件无法拆除", "夜间静音或普通通行无法恢复", "设备/数据/服务无退出去向"],
+      "stop_level": "retire_or_remain_stopped",
+      "minimum_public_record": "component destination; place-restoration gap; ordinary-use status; retirement receipt"
+    }
+  ],
+  "required_human_role_types": [
+    {"role_id": "ROLE-PUBLIC-RECEIVER", "duty": "receive oral, paper, telephone, or in-person stop/appeal", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-ON-SITE-STOP", "duty": "exercise immediate physical or procedural stop authority", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-ACCOUNTABLE-DECISION", "duty": "own go/no-go, restart, withdrawal, and retirement decisions", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-SERVICE-HANDOFF", "duty": "keep the same basic task available by staffed or non-AI means, or issue a safe refusal", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-SOURCE-VERSION", "duty": "freeze sources, versions, corrections, and prior evidence", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-PLACE-RESTORATION", "duty": "remove reversible components and document ordinary-use restoration", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-INDEPENDENT-RETEST", "duty": "repeat the affected task independently against the locked failure condition", "confirmation_status": "unconfirmed"},
+    {"role_id": "ROLE-RIGHTS-DATA", "duty": "review consent, prohibited data, retention, correction, and public redaction", "confirmation_status": "unconfirmed"}
+  ],
+  "three_carrier_writeback_contract": {
+    "contract_rule_zh": "暂停、复核、恢复、撤回和退役均作为一个原子事件同时准备三份回写；任一载体缺失或相互矛盾时，公众界面显示更保守状态，普通非 AI 路径优先，禁止重启。",
+    "contract_rule_en": "Pause, review, recovery, withdrawal, and retirement each prepare one atomic event across all three carriers. If a carrier is missing or inconsistent, the public interface shows the more conservative state, the ordinary non-AI path takes priority, and restart is prohibited.",
+    "carriers": [
+      {
+        "carrier_id": "CARRIER-SCENE-PASSPORT",
+        "existing_target": "visual/assets/pilot-readiness-register.json#records",
+        "required_fields": ["scene_or_item_id", "runtime_state", "maturity_gate", "authorization_state", "service_state", "failure_class", "stop_authority_role", "version_before", "version_after", "evidence_refs", "appeal_refs", "expiry_or_retirement"]
+      },
+      {
+        "carrier_id": "CARRIER-CIVIC-TIMETABLE",
+        "existing_target": "visual/assets/key-area-evidence-matrix.json#twin_track_frontend_contract.civic_timetable",
+        "required_fields": ["place_or_service", "public_runtime_state", "available_ordinary_path", "staffed_contact", "start_time", "review_time", "next_update", "source_and_version", "exit_or_detour"]
+      },
+      {
+        "carrier_id": "CARRIER-EVIDENCE-MATRIX",
+        "existing_target": "visual/assets/key-area-evidence-matrix.json#antifragile_failure_governance_contract",
+        "required_fields": ["claim_held_or_changed", "evidence_version", "evidence_anchor_type", "scope", "limitations", "independent_retest", "go_no_go_decision", "does_not_authorize"]
+      }
+    ],
+    "transitions": [
+      {"event": "pause", "passport": "failure_stop + reason + authority vacancy", "timetable": "automation unavailable + ordinary path + next update", "evidence_matrix": "affected claim held; prior evidence preserved"},
+      {"event": "review", "passport": "review scope + locked versions + appeal refs", "timetable": "staffed/non-AI service and correction status", "evidence_matrix": "evidence anchors, limitations, and missing independent inputs"},
+      {"event": "recovery", "passport": "recovery state only; maturity and authorization unchanged", "timetable": "ordinary-use restoration status and bounded service availability", "evidence_matrix": "independent retest result and no-restart gaps"},
+      {"event": "withdrawal", "passport": "authorization withdrawn; service privilege removed", "timetable": "withdrawn service and ordinary alternative", "evidence_matrix": "withdrawal reason; superseded claim retained, not deleted"},
+      {"event": "retirement", "passport": "service retired + expiry + component/data destinations", "timetable": "service retired; ordinary path and staffed explanation", "evidence_matrix": "retirement receipt, place restoration, unresolved liabilities, reuse prohibition"}
+    ],
+    "conflict_policy": "fail_closed_to_the_most_conservative_combination_without_changing_maturity_or_authorization"
+  },
+  "appeal_and_public_correction": {
+    "entry_modes": ["oral", "paper", "telephone_if_future_service_exists", "in_person_staffed"],
+    "account_qr_or_ai_required": false,
+    "decision_effects": ["hold", "narrow_scope", "correct", "retest", "withdraw", "retire", "reasoned_no_change"],
+    "required_receipt_fields": ["durable_non_technical_reference", "received_time", "affected_task", "current_public_state", "decision_owner_role", "next_update", "decision_effect", "reason", "version_refs"],
+    "privacy_rule": "publish failure class, affected task, decision, correction, and evidence version only; never publish a complainant identity, sensitive narrative, raw personal data, or a shame ranking",
+    "current_real_appeals": 0,
+    "current_real_decision_changes_from_appeal": 0
+  },
+  "append_only_version_contract": {
+    "rule": "new evidence or a corrected version appends a new immutable record and links supersedes/superseded_by; prior evidence remains addressable and is never overwritten",
+    "required_fields": ["record_id", "subject_id", "version", "created_at", "anchor_type", "content_digest", "scope", "limitations", "supersedes", "superseded_by", "retention_status", "public_correction_ref"],
+    "typed_unknowns": {
+      "real_evidence_versions": "not_collected",
+      "real_content_digests": "not_collected",
+      "confirmed_record_custodian": "external_confirmation_required",
+      "retention_period": "not_approved",
+      "public_correction_service": "not_authorized"
+    }
+  },
+  "synthetic_storyboard": {
+    "story_id": "STORY-T02-STALE-SOURCE-SYNTHETIC",
+    "basis": "visual/assets/t02-g0-g1-replay-result.json#STOP-STALE-SOURCE",
+    "not_a_real_incident": true,
+    "steps": [
+      {"step": "01_detect", "public_state": "verification", "action_zh": "合成请求命中过期来源条件；不生成实质回答。", "action_en": "A synthetic request hits the stale-source condition; no substantive answer is produced."},
+      {"step": "02_stop", "public_state": "failure_stop", "action_zh": "冻结输出，保留纸面来源页和人工路径。", "action_en": "Freeze output while retaining the paper source page and staffed path."},
+      {"step": "03_handoff", "public_state": "failure_stop", "action_zh": "交给来源包保管角色；该角色目前未确认。", "action_en": "Hand off to the source-pack custodian role, which is currently unconfirmed."},
+      {"step": "04_writeback", "public_state": "failure_stop", "action_zh": "同一事件准备护照、时刻表和证据矩阵三份回写。", "action_en": "Prepare passport, timetable, and evidence-matrix writebacks for the same event."},
+      {"step": "05_correct", "public_state": "recovery", "action_zh": "追加更正版本并保留旧证据，不覆盖历史。", "action_en": "Append a corrected version while retaining prior evidence; do not overwrite history."},
+      {"step": "06_retest", "public_state": "recovery", "action_zh": "由独立复测角色按锁定条件完整重放；现实复测仍为 0。", "action_en": "An independent role replays the locked condition in full; real retests remain 0."},
+      {"step": "07_decide", "public_state": "ordinary_or_retired", "action_zh": "证据未闭合则保持停止或退役；闭合也只恢复普通使用，不自动升级 G0 或授权部署。", "action_en": "If evidence remains open, stay stopped or retire. Closure restores ordinary use only and does not automatically advance G0 or authorize deployment."}
+    ]
+  },
+  "active_retirement_contract": {
+    "triggers": ["repeated hard failure", "no accountable stop authority", "ordinary or non-AI path cannot be restored", "rights or prohibited-data breach cannot be closed", "independent retest cannot reproduce the bounded claim", "component, data, service, or place exit has no accountable destination"],
+    "receipt_fields": ["retired_subject", "decision_owner_role", "decision_basis", "effective_time", "service_and_authorization_state", "version_and_evidence_refs", "component_destinations", "data_and_log_closure", "ordinary_place_restoration", "same_task_service_restoration", "unresolved_liabilities", "independent_acceptance"],
+    "reuse_rule": "a retired component, model, dataset, route, claim, or service cannot silently re-enter another scene; a new passport, evidence scope, rights review, and authorization decision are required",
+    "current_real_retirement_receipts": 0
+  },
+  "permanent_authorization_statement_zh": "文件检查、合成回放、机器 PASS、独立复测或恢复验收只对其明确对象和范围有效；均不授权试用、采购、建设、部署、成熟度升级、场地批准、专业批准、权利清除或现实成效主张。",
+  "permanent_authorization_statement_en": "A file check, synthetic replay, machine PASS, independent retest, or restoration acceptance is valid only for its named object and scope. None authorizes trial, procurement, construction, deployment, maturity advancement, site approval, professional approval, rights clearance, or a real-world outcome claim.",
+  "drawing_refs": [
+    "assets/figures/failure-governance-writeback.svg",
+    "assets/figures/failure-governance-writeback.en.svg",
+    "assets/figures/failure-governance-writeback.png",
+    "assets/figures/failure-governance-writeback.en.png"
+  ],
+  "does_not_prove": [
+    "a real accident, complaint, correction, field recovery, independent retest, retirement, or restart",
+    "a confirmed operator, stop authority, staffed window, legal duty, site, threshold, or approval",
+    "that documentation coverage or a synthetic PASS is deployment authorization",
+    "rights clearance, engineering feasibility, procurement readiness, or operating resilience"
+  ]
+}

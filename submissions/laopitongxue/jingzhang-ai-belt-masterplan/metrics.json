@@ -1,0 +1,518 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "study_area_km2": {
+      "status": "known",
+      "value": 43.6,
+      "unit": "none",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "official_announcement_approximate_area",
+      "confidence": "medium",
+      "assumptions": [
+        "Official announcement states an approximate coordinated research area; no official polygon is available."
+      ]
+    },
+    "overall_design_area_km2": {
+      "status": "known",
+      "value": 11.412825,
+      "unit": "none",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "site_area_sqm / 1000000",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-METRIC-RECOMPUTE-001"
+      ]
+    },
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area_EPSG4548(submitted_site_boundary)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-METRIC-RECOMPUTE-001"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key_area_features)",
+      "confidence": "high",
+      "assumptions": [
+        "The official task names three key areas; their submitted polygons remain provisional."
+      ]
+    },
+    "land_use_area_sum": {
+      "status": "known",
+      "value": 11412825.386,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(polygon_area_EPSG4548(land_use_features))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CONTROLS-001"
+      ]
+    },
+    "land_use_balance_error": {
+      "status": "known",
+      "value": 0.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "gap_area + outside_area + overlap_area in EPSG4548",
+      "confidence": "high",
+      "assumptions": [
+        "Floating-point noise below 0.001 sqm is treated as zero for the parametric partition."
+      ]
+    },
+    "green_space_area_sqm": {
+      "status": "known",
+      "value": 1735502.778,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "union_area_EPSG4548(green_space_features)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-CLIMATE-ECOLOGY-001"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.152066,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual climate commons; not an approved green-space ratio."
+      ]
+    },
+    "public_space_area_sqm": {
+      "status": "known",
+      "value": 394030.789,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "union_area_EPSG4548(public_space_features)",
+      "confidence": "low",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-PUBLIC-SERVICES-001"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.034525,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "Conceptual public courts and care-rest nodes; not an approved public-space ratio."
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 1352793.703,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(polygon_area_EPSG4548(prototype_envelopes))",
+      "confidence": "low",
+      "assumptions": [
+        "A-BUILDINGS-001",
+        "Prototype envelopes are not existing or approved building footprints."
+      ]
+    },
+    "land_use_zone_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "count(land_use_features)",
+      "confidence": "high",
+      "assumptions": [
+        "Count describes the submitted concept package only."
+      ]
+    },
+    "mobility_feature_count": {
+      "status": "known",
+      "value": 13,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(road_features)",
+      "confidence": "high",
+      "assumptions": [
+        "Conceptual routes do not assert real road centerlines or redlines."
+      ]
+    },
+    "cross_stitch_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "count(id starts ROAD-STITCH-)",
+      "confidence": "high",
+      "assumptions": [
+        "A-TRANSPORT-001"
+      ]
+    },
+    "public_court_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(id starts PUBLIC-COURT-)",
+      "confidence": "high",
+      "assumptions": [
+        "Three public courts correspond to three provisional key-area concepts."
+      ]
+    },
+    "care_rest_node_count": {
+      "status": "known",
+      "value": 9,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(id starts PUBLIC-CARE-REST-)",
+      "confidence": "high",
+      "assumptions": [
+        "A-PUBLIC-SERVICES-001"
+      ]
+    },
+    "building_prototype_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(prototype_envelope_features)",
+      "confidence": "high",
+      "assumptions": [
+        "A-BUILDINGS-001"
+      ]
+    },
+    "phasing_gate_count": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "count(phasing_features)",
+      "confidence": "high",
+      "assumptions": [
+        "Phases are decision gates, not committed government dates."
+      ]
+    },
+    "persona_count": {
+      "status": "known",
+      "value": 8,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(persona_definitions_in_proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "Personas require verification through real participation."
+      ]
+    },
+    "ai_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(numbered_AI_scenario_cards)",
+      "confidence": "high",
+      "assumptions": [
+        "Scenarios are proposals, not deployed services."
+      ]
+    },
+    "industry_test_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(cards T01 through T03)",
+      "confidence": "high",
+      "assumptions": [
+        "Industry tests require regulator, operator, and participant approval."
+      ]
+    },
+    "daily_life_scenario_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(daily_life_outcomes)",
+      "confidence": "high",
+      "assumptions": [
+        "Daily-life outcomes are an evaluation frame, not observed baseline performance."
+      ]
+    },
+    "pilgrimage_landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "proposal.md",
+        "geometry/public_space.geojson"
+      ],
+      "formula": "count(concept_landmarks_linked_to_public_courts)",
+      "confidence": "high",
+      "assumptions": [
+        "Landmarks are concepts pending heritage, ownership, fire-safety, and operating review."
+      ]
+    },
+    "project_count": {
+      "status": "known",
+      "value": 14,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(projects P01 through P14)",
+      "confidence": "high",
+      "assumptions": [
+        "Projects are a concept schedule, not approved capital projects."
+      ]
+    },
+    "source_count": {
+      "status": "known",
+      "value": 38,
+      "unit": "count",
+      "source_files": [
+        "sources.json"
+      ],
+      "formula": "count(source_entries)",
+      "confidence": "high",
+      "assumptions": [
+        "Source count is not a proxy for source quality."
+      ]
+    },
+    "compliance_completion": {
+      "status": "known",
+      "value": 1.0,
+      "unit": "ratio",
+      "source_files": [
+        "compliance_matrix.json"
+      ],
+      "formula": "mandatory_requirements_with_evidence_mapping / mandatory_requirements",
+      "confidence": "high",
+      "assumptions": [
+        "Mapping completeness does not imply statutory approval or professional sufficiency."
+      ]
+    },
+    "operations_review_frequency": {
+      "status": "known",
+      "value": 4,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "quarterly_reviews_per_year",
+      "confidence": "low",
+      "assumptions": [
+        "Proposed operating cadence; responsible bodies are not yet appointed."
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDINGS-001"
+      ],
+      "reason": "Official FAR controls, official boundary, and verified floor area are unavailable."
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "approved_or_simulated_height",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-CONTROLS-001",
+        "A-BUILDINGS-001"
+      ],
+      "reason": "Official height controls and existing building survey are unavailable."
+    },
+    "service_accessibility": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "network_based_accessibility_after_facility_and_population_baseline",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-POPULATION-HOUSING-001",
+        "A-PUBLIC-SERVICES-001"
+      ],
+      "reason": "Facility inventory, population distribution, barriers, and opening hours are unavailable."
+    },
+    "public_benefit_coverage": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "beneficiary_groups_with_verified_benefit / affected_groups",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-DISTRIBUTIONAL-EQUITY-001"
+      ],
+      "reason": "No representative participation or distributional baseline is available."
+    },
+    "geometry_status": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/site_boundary.geojson",
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "official_geometry_readiness_index",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-KEY-AREAS-001"
+      ],
+      "reason": "Official overall and key-area polygons are unavailable."
+    },
+    "boundary_confidence": {
+      "status": "unknown",
+      "value": null,
+      "unit": "index",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "official_boundary_confidence",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-BOUNDARY-001",
+        "A-OSM-MISMATCH-001"
+      ],
+      "reason": "The submitted boundary is explicitly provisional and cannot be scored as an official confidence value."
+    },
+    "transport_mode_share": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "observed_person_trips_by_mode / all_observed_person_trips",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-TRANSPORT-001"
+      ],
+      "reason": "Current counts, station entrances, service levels, and OD data are unavailable."
+    },
+    "stormwater_capacity_sqm": {
+      "status": "unknown",
+      "value": null,
+      "unit": "sqm",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "verified_storage_or_infiltration_capacity",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-MUNICIPAL-SAFETY-001",
+        "A-CLIMATE-ECOLOGY-001"
+      ],
+      "reason": "Topography, soils, groundwater, pipes, and design storms are unavailable."
+    },
+    "population_count": {
+      "status": "unknown",
+      "value": null,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "verified_resident_population_with_date_and_geography",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-POPULATION-HOUSING-001"
+      ],
+      "reason": "A site-matched resident baseline is unavailable."
+    },
+    "affordable_housing_share": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "verified_affordable_units / verified_all_units",
+      "confidence": "unknown",
+      "assumptions": [
+        "A-POPULATION-HOUSING-001",
+        "A-DISTRIBUTIONAL-EQUITY-001"
+      ],
+      "reason": "Housing inventory, tenure, rent, eligibility, and policy controls are unavailable."
+    }
+  }
+}

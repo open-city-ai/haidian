@@ -1,0 +1,46 @@
+{
+  "version": "1.0-asset-closeout-receipts",
+  "ledger_id": "MOB-ASSET-CLOSEOUT-RECEIPTS-01",
+  "status": "synthetic_receipt_schema_not_field_log",
+  "scope": "enterprise-resident mobility assets and service interfaces",
+  "purpose": "Make ownership, service windows, repair evidence, accessibility fallback and public-route restoration visible before a mobility asset is marked closed.",
+  "boundary": "These are empty receipt templates and synthetic checks. They contain no real work order, asset inventory, operator contract, response time, repair result or resident complaint.",
+  "authorization": {
+    "operations_authorized": false,
+    "field_receipts": 0,
+    "closed_receipts": 0,
+    "personal_data_required": false,
+    "air_candidate": "blocked"
+  },
+  "receipt_schema": [
+    "receipt_id",
+    "asset_id",
+    "service_window",
+    "trigger",
+    "proposed_owner_role",
+    "dated_evidence",
+    "repair_or_clearing_action",
+    "accessible_fallback",
+    "verification_result",
+    "public_route_restoration",
+    "closeout_state"
+  ],
+  "receipts": [
+    {"receipt_id":"R-001","asset_id":"metro_interface","label_zh":"地铁站口换乘界面","label_en":"metro transfer interface","service_window_zh":"早晚高峰 / 活动日","service_window_en":"AM/PM peak / event day","trigger_zh":"拥挤、断点或信息冲突","trigger_en":"crowding, break or information conflict","proposed_owner_role":"rail_and_accessibility_review_role","accessible_fallback_zh":"人工引导 + 公共路线","accessible_fallback_en":"human wayfinding + public route"},
+    {"receipt_id":"R-002","asset_id":"bus_stop_interface","label_zh":"公交站候车界面","label_en":"bus-stop waiting interface","service_window_zh":"工作日 / 夜间","service_window_en":"weekday / night","trigger_zh":"候车、照明或班次异常","trigger_en":"waiting, lighting or headway issue","proposed_owner_role":"bus_operations_role","accessible_fallback_zh":"电话确认 + 人工候车","accessible_fallback_en":"telephone confirmation + human waiting support"},
+    {"receipt_id":"R-003","asset_id":"protected_cycle_link","label_zh":"受保护骑行链","label_en":"protected cycle link","service_window_zh":"日常 / 雨雪后","service_window_en":"daily / after rain or snow","trigger_zh":"占用、积水或隔离设施破损","trigger_en":"obstruction, ponding or damaged separation","proposed_owner_role":"field_maintenance_role","accessible_fallback_zh":"步行/公交替代，不强迫绕行","accessible_fallback_en":"walk/bus alternative without forced detour"},
+    {"receipt_id":"R-004","asset_id":"accessible_route","label_zh":"连续无障碍路线","label_en":"continuous accessible route","service_window_zh":"全天 / 照护时段","service_window_en":"all day / care windows","trigger_zh":"坡道、盲道、过街或门槛中断","trigger_en":"ramp, tactile path, crossing or threshold break","proposed_owner_role":"accessibility_service_role","accessible_fallback_zh":"人工带行 + 公共路线","accessible_fallback_en":"assisted trip + public route"},
+    {"receipt_id":"R-005","asset_id":"managed_curb","label_zh":"时段路缘服务位","label_en":"managed curb service bay","service_window_zh":"接送 / 装卸窗口","service_window_en":"pickup / loading window","trigger_zh":"超时、占用或消防净空冲突","trigger_en":"overstay, occupation or fire-clearance conflict","proposed_owner_role":"curb_service_role","accessible_fallback_zh":"冻结预约 + 人工清场","accessible_fallback_en":"freeze booking + human clearing"},
+    {"receipt_id":"R-006","asset_id":"enterprise_shuttle","label_zh":"企业接驳服务","label_en":"enterprise shuttle service","service_window_zh":"企业时窗 / 夜班","service_window_en":"enterprise windows / night shift","trigger_zh":"班次、车队或调度证据缺失","trigger_en":"missing headway, fleet or dispatch evidence","proposed_owner_role":"enterprise_mobility_coordinator_role","accessible_fallback_zh":"地铁/公交 + 人工确认","accessible_fallback_en":"metro/bus + human confirmation"},
+    {"receipt_id":"R-007","asset_id":"logistics_gate","label_zh":"物流维护关口","label_en":"logistics maintenance gate","service_window_zh":"午间 / 低峰维护","service_window_en":"midday / off-peak maintenance","trigger_zh":"装卸、维修或居民通行冲突","trigger_en":"loading, maintenance or resident-access conflict","proposed_owner_role":"logistics_and_maintenance_role","accessible_fallback_zh":"改时段 + 人工路缘协调","accessible_fallback_en":"shift window + human curb coordination"},
+    {"receipt_id":"R-008","asset_id":"air_experiment_gate","label_zh":"空中实验地面闸门","label_en":"air-experiment ground gate","service_window_zh":"仅获批测试窗口","service_window_en":"approved test windows only","trigger_zh":"空域、天气、疏散或地面兜底缺证","trigger_en":"missing airspace, weather, egress or ground-fallback evidence","proposed_owner_role":"professional_safety_review_role","accessible_fallback_zh":"保持地面系统，空中候选关闭","accessible_fallback_en":"keep ground system; air candidate closed"}
+  ],
+  "closeout_gates": [
+    {"id":"C-G01","label_zh":"具名责任角色与服务窗口","label_en":"named role and service window"},
+    {"id":"C-G02","label_zh":"有日期的现场或授权证据","label_en":"dated field or authorised evidence"},
+    {"id":"C-G03","label_zh":"无障碍和人工等价回退可用","label_en":"accessible and human-equivalent fallback available"},
+    {"id":"C-G04","label_zh":"公共路线、消防净空和安静界面恢复","label_en":"public route, fire clearance and quiet interface restored"},
+    {"id":"C-G05","label_zh":"复核人确认后才可关闭或撤回","label_en":"reviewer confirmation before close or withdrawal"}
+  ],
+  "interpretation": "The receipt ledger turns complaint-to-maintenance closure into an auditable interface. Every real receipt remains unissued until a dated owner, action, verification and restoration record exists."
+}

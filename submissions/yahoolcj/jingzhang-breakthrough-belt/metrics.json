@@ -1,0 +1,267 @@
+{
+  "schema_version": "0.1.0",
+  "units": {
+    "length": "m",
+    "area": "sqm"
+  },
+  "metrics": {
+    "site_area_sqm": {
+      "status": "known",
+      "value": 11412825.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "polygon_area(submitted_site_boundary, EPSG:4548)",
+      "confidence": "high",
+      "assumptions": [
+        "使用 provisional SITE-001；官方边界发布后需复算。"
+      ]
+    },
+    "land_use_coverage_check": {
+      "status": "known",
+      "value": 0.0012,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/land_use.geojson"
+      ],
+      "formula": "sum(land_use polygon areas)",
+      "confidence": "high",
+      "assumptions": [
+        "land_use 应无缝覆盖场地；gap 已并入留白用地。"
+      ]
+    },
+    "green_ratio": {
+      "status": "known",
+      "value": 0.1388,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/green_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "green_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "绿地按概念布局示意，待官方绿地系统与蓝线数据补齐后复算。"
+      ]
+    },
+    "public_space_ratio": {
+      "status": "known",
+      "value": 0.0464,
+      "unit": "ratio",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "public_space_area_sqm / site_area_sqm",
+      "confidence": "low",
+      "assumptions": [
+        "公共空间为站城广场等概念布局，非现状统计。"
+      ]
+    },
+    "building_footprint_area_sqm": {
+      "status": "known",
+      "value": 88841.3,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "sum(building footprint areas, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "概念体量示意，非现状建筑实测；不构成建设规模结论。"
+      ]
+    },
+    "building_count": {
+      "status": "known",
+      "value": 75,
+      "unit": "count",
+      "source_files": [
+        "geometry/buildings.geojson"
+      ],
+      "formula": "count(features)",
+      "confidence": "low",
+      "assumptions": []
+    },
+    "road_length_m": {
+      "status": "known",
+      "value": 43130.8,
+      "unit": "m",
+      "source_files": [
+        "geometry/roads.geojson"
+      ],
+      "formula": "sum(centerline lengths, EPSG:4548)",
+      "confidence": "low",
+      "assumptions": [
+        "概念道路组织，非现状实测。"
+      ]
+    },
+    "road_density_km_per_km2": {
+      "status": "known",
+      "value": 3.779,
+      "unit": "km/km2",
+      "source_files": [
+        "geometry/roads.geojson",
+        "geometry/site_boundary.geojson"
+      ],
+      "formula": "road_length_km / site_area_km2",
+      "confidence": "low",
+      "assumptions": [
+        "概念道路密度。"
+      ]
+    },
+    "key_area_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "count(key areas)",
+      "confidence": "high",
+      "assumptions": []
+    },
+    "key_area_zhongzhiyuan_area_sqm": {
+      "status": "known",
+      "value": 1929201.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-001, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 边界；官方边界发布后复算。"
+      ]
+    },
+    "key_area_origin_community_area_sqm": {
+      "status": "known",
+      "value": 1043236.9,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-002, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 边界；官方边界发布后复算。"
+      ]
+    },
+    "key_area_dazhongsi_area_sqm": {
+      "status": "known",
+      "value": 720454.2,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/key_areas.geojson"
+      ],
+      "formula": "polygon_area(PROV-KEY-003, EPSG:4548)",
+      "confidence": "medium",
+      "assumptions": [
+        "provisional 边界；官方边界发布后复算。"
+      ]
+    },
+    "green_spine_length_km": {
+      "status": "known",
+      "value": 8.05,
+      "unit": "km",
+      "source_files": [
+        "geometry/green_space.geojson"
+      ],
+      "formula": "length(central heritage-park spine)",
+      "confidence": "low",
+      "assumptions": [
+        "概念绿隧主轴长度。"
+      ]
+    },
+    "scenario_node_count": {
+      "status": "known",
+      "value": 12,
+      "unit": "count",
+      "source_files": [
+        "proposal.md"
+      ],
+      "formula": "count(scenario cards in proposal)",
+      "confidence": "high",
+      "assumptions": [
+        "对应正文场景卡 ≥10 张，其中测试验证场景 ≥3 个。"
+      ]
+    },
+    "landmark_count": {
+      "status": "known",
+      "value": 3,
+      "unit": "count",
+      "source_files": [
+        "geometry/public_space.geojson",
+        "proposal.md"
+      ],
+      "formula": "count(AI pilgrimage landmarks)",
+      "confidence": "medium",
+      "assumptions": [
+        "0号贯通碑、八达岭隧道数字孪生馆、贯通测量广场为概念纪念与服务节点（任务书所称朝圣地标），待专业深化。"
+      ]
+    },
+    "phase_p1_area_sqm": {
+      "status": "known",
+      "value": 1491937.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(phase P1 polygon areas)",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念时序建议。"
+      ]
+    },
+    "phase_p2_area_sqm": {
+      "status": "known",
+      "value": 2818951.0,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(phase P2 polygon areas)",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念时序建议。"
+      ]
+    },
+    "phase_p3_area_sqm": {
+      "status": "known",
+      "value": 7101956.4,
+      "unit": "sqm",
+      "source_files": [
+        "geometry/phasing.geojson"
+      ],
+      "formula": "sum(phase P3 polygon areas)",
+      "confidence": "low",
+      "assumptions": [
+        "分期为概念时序建议。"
+      ]
+    },
+    "floor_area_ratio": {
+      "status": "unknown",
+      "value": null,
+      "unit": "ratio",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "total_floor_area_sqm / official_site_area_sqm",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方控规容积率控制条件未公开；待正式控制条件补齐后按统一公式复算。"
+    },
+    "building_height_m": {
+      "status": "unknown",
+      "value": null,
+      "unit": "m",
+      "source_files": [
+        "brief/site-package/ranges/planning_limits.json"
+      ],
+      "formula": "-",
+      "confidence": "unknown",
+      "assumptions": [],
+      "reason": "官方高度控制/航空限高等条件未公开；正文按'待正式数据补齐'表述。"
+    }
+  }
+}

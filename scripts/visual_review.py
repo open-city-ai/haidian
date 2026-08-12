@@ -49,6 +49,7 @@ FORBIDDEN_PATTERNS = [
     (re.compile(r"<script\b[^>]*\bsrc\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML must not load remote scripts"),
     (re.compile(r"<link\b[^>]*\bhref\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML must not load remote linked resources"),
     (re.compile(r"<(?:img|source|video|audio)\b[^>]*\bsrc\s*=\s*['\"]?(?:https?:)?//", re.I), "HTML must not load remote media"),
+    (re.compile(r"<(?:video|audio)\b[^>]*\bautoplay\b", re.I), "HTML must not autoplay media"),
 ]
 
 
