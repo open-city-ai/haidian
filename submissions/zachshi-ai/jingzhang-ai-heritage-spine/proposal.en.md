@@ -90,6 +90,32 @@ The proposal defines synergy interfaces with innovation nodes outside Haidian [s
 
 All synergies are conceptual suggestions requiring deepening after regional planning and policy coordination conditions are confirmed.
 
+
+### Logo Visual Identity Specification
+
+**Core Form**: Using the Jing-Zhang railway gauge line (1.435m standard gauge) as the visual motif, fused with AI neural-network node graphics, forming a "rail + neural network" dual-layer overlay symbol. The rail lines are arranged diagonally at 45°, symbolizing "crossing"; the neural-network nodes use a hexagonal honeycomb structure, symbolizing "connection and emergence."
+
+**Color Specification**: Primary deep blue (#1E50A0, innovation), ochre (#8B5A2B, heritage), bright cyan (#00D4AA, AI vitality). Supporting colors: warm gray (#F5F5F5, background), dark charcoal (#333333, text). No highly saturated colors outside brand colors.
+
+**Application Rules**: Minimum Logo size no less than 24px (screen) or 10mm (print); clearance around Logo no less than 1/2 of Logo height; no distortion, rotation, or shadow effects. Chinese and English use sans-serif fonts (Chinese: Source Han Sans; English: Helvetica Neue), Bold weight.
+
+**Extension System**: The Logo can be decomposed into the rail motif (for cultural contexts) and neural-network motif (for AI contexts), forming a composable identity system. The three-zone Logos share the core motif but differentiate by primary color (Zhongzhiyuan - deep blue, Origin Community - bright cyan, Dazhongsi - ochre).
+
+All Logos are conceptual directions requiring trademark registration, copyright clearance, and professional design deepening before use [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+
+### Operational KPIs and Monitoring Indicators
+
+| Indicator | Target | Monitoring Frequency | Exit/Adjustment Threshold |
+|-----------|--------|---------------------|--------------------------|
+| Annual event participation | Year 1 ≥5,000 people | Quarterly | Adjust event format if <1,000 for 2 consecutive quarters |
+| Scenario trial occupancy | Year 1 ≥60% | Monthly | Pause recruitment if <30% for 3 consecutive months |
+| Developer community activity | Monthly avg ≥100 contributions | Monthly | Adjust strategy if <30 for 2 consecutive months |
+| Public space usage | Daily avg ≥200 person-times | Weekly | Optimize space design if <50 for 2 consecutive weeks |
+| Green/public space maintenance | Annual compliance ≥95% | Quarterly | Replace maintenance provider if <90% for 2 consecutive quarters |
+
+All KPIs are conceptual operational indicators requiring quantification by professional teams after operating entities, funding, and professional review are confirmed [assumption:A-CONTROLS-001].
+
 ### Global AI Innovation Ecosystem Case Studies
 
 The following 6 global cases provide spatial and operational references for the proposal [source:agent-taskbook]:

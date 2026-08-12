@@ -84,6 +84,30 @@ The silver synergy loop: Zhongzhiyuan handles elderly-AI-tech verification and r
 
 The belt coordinates with Haidian's existing public-service system: northward toward Qinghe/Shangdi mixed industry-residential elderly medical demand; southward toward the Xizhimenwai medical/civic dense belt; eastward toward the Xueyuanlu university belt for volunteers, social workers and elderly-tech R&D; westward toward the Xiaoyuehe green belt to extend barrier-free recreational slow mobility. This synergy is a concept research lens only, not a cross-regional administrative arrangement or government commitment.
 
+
+### Logo Visual Identity Specification
+
+**Core Form**: Using the Jing-Zhang railway gauge line as the visual motif, fused with the "accessible ramp" diagonal symbol and "intergenerational connection" double-ring graphic, forming a "rail + ramp + connection" three-layer overlay symbol. The rail line uses a gentle angle (≤15°), symbolizing "gentle accessibility"; the double rings interlock, symbolizing "intergenerational mutual aid."
+
+**Color Specification**: Primary warm orange (#EA7C28, silver-age warmth), deep teal (#0F766E, barrier-free access), Jing-Zhang ochre (#8B5A2B, historical lineage). Emphasizes "warm, accessible, trustworthy" rather than cold technology.
+
+**Application Rules**: Minimum Logo size no less than 32px (age-friendly); clearance no less than 2/3 of Logo height; no use in small-font or low-contrast backgrounds. Typography uses large font size, high contrast, and iconographic design consistent with age-friendly interface principles.
+
+All Logos are conceptual directions requiring trademark registration, copyright clearance, and professional design deepening before use [standard:BARRIER-FREE-ENVIRONMENT-LAW].
+
+
+### Operational KPIs and Monitoring Indicators
+
+| Indicator | Target | Monitoring Frequency | Exit/Adjustment Threshold |
+|-----------|--------|---------------------|--------------------------|
+| Accessibility facility coverage | Within 3 years ≥90% | Semi-annually | Adjust renovation plan if <70% for 1 consecutive year |
+| Silver-age service usage | Monthly avg ≥800 person-times | Monthly | Optimize service design if <300 for 2 consecutive months |
+| Human service retention | Maintain ≥30% human channels | Quarterly | Increase human service points if <20% for 2 consecutive quarters |
+| Elderly satisfaction | ≥4.0/5.0 | Semi-annually | Full service assessment if <3.5 for 1 consecutive year |
+| Accessibility complaint resolution | ≥98% | Quarterly | Strengthen response if <95% for 2 consecutive quarters |
+
+All KPIs are conceptual operational indicators requiring quantification by professional teams after operating entities, funding, and professional review are confirmed [assumption:A-CONTROLS-001].
+
 ### Global Elderly-City & AI-Elderly-Service Case Studies
 
 Eight global cases provide spatial and operational references for elderly service, barrier-free design and AI elderly applications; case information is drawn from public academic literature, planning reports and city policy documents [source:agent-taskbook]:

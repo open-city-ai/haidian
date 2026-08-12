@@ -65,6 +65,30 @@ The proposal responds to the three positionings in the announcement: the Centenn
 
 The proposal forms public-service coordination with the Beiwei Community, the Future Science City, the Huairou Science City, the Economic-Technological Development Area, and the Beijing-Tianjin-Hebei region. Through the concept of a "cross-district service one-code pass," it explores the possibility of cross-regional mutual recognition of government services, cross-regional navigation of health records, and cross-regional coordination of legal services; however, all cross-district mechanisms are conceptual suggestions and do not constitute policy commitments [source:agent-taskbook] [assumption:A-SERVICE-003].
 
+
+### Logo Visual Identity Specification
+
+**Core Form**: Using the "service station" (service point + roof eave) as the visual motif, fused with the "citizen silhouette" (human outline) graphic, forming a "roof + person" combined symbol. The roof uses rounded squares, symbolizing "shelter and inclusion"; the human silhouette uses a dynamic pose, symbolizing "service reach."
+
+**Color Specification**: Primary service blue (#2563EB, government services), health green (#16A085, health services), legal purple (#8E44AD, legal services). The three segments each use their corresponding primary color, forming a "one-axis-three-color" service identity system.
+
+**Application Rules**: Minimum Logo size no less than 24px; Chinese and English use sans-serif fonts; no dark primary on dark backgrounds. Wayfinding uses iconographic, large-font, high-contrast design consistent with age-friendly and accessible design principles.
+
+All Logos are conceptual directions requiring trademark registration, copyright clearance, and professional design deepening before use [standard:MOHURD-URBAN-DESIGN-MEASURES].
+
+
+### Operational KPIs and Monitoring Indicators
+
+| Indicator | Target | Monitoring Frequency | Exit/Adjustment Threshold |
+|-----------|--------|---------------------|--------------------------|
+| Service station coverage | ≥80% within 300-500m radius | Semi-annually | Add stations if <60% for 1 consecutive year |
+| Service transaction volume | Monthly avg ≥5,000 items | Monthly | Optimize service catalog if <2,000 for 2 consecutive months |
+| Citizen satisfaction | ≥4.0/5.0 | Quarterly | Full assessment if <3.5 for 2 consecutive quarters |
+| Human service response time | ≤5 minutes | Weekly | Increase staff if >10 minutes for 2 consecutive weeks |
+| Cross-district service interoperability | ≥70% | Semi-annually | Strengthen coordination if <50% for 1 consecutive year |
+
+All KPIs are conceptual operational indicators requiring quantification by professional teams after operating entities, funding, and professional review are confirmed [assumption:A-CONTROLS-001].
+
 ### Case Studies of AI Civic-Service Ecosystems
 
 This proposal studies 7 domestic and international public-service digitalization cases, extracting transferable mechanisms; all are compiled from public materials, with no fabricated enterprise lists or investment figures [source:estonia-eresidency-khealth]:
