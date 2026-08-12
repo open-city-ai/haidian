@@ -15,6 +15,7 @@ import json
 import re
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 from dataclasses import dataclass
 from datetime import date
@@ -24,6 +25,10 @@ from typing import Any
 
 
 DEFAULT_USER_AGENT = "Mozilla/5.0 (compatible; haidian-ai-standards-fetcher/0.1)"
+ALLOWED_URL_SCHEMES = {"http", "https"}
+REDIRECT_STATUS_CODES = {301, 302, 303, 307, 308}
+MAX_REDIRECTS = 5
+MAX_RESPONSE_BYTES = 10 * 1024 * 1024
 
 
 @dataclass
@@ -85,6 +90,11 @@ class VisibleTextParser(HTMLParser):
         return "\n\n".join(lines)
 
 
+class NoRedirectHandler(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # type: ignore[no-untyped-def]
+        return None
+
+
 def slugify(value: str) -> str:
     slug = re.sub(r"[^a-z0-9-]+", "-", value.lower()).strip("-")
     slug = re.sub(r"-{2,}", "-", slug)
@@ -107,18 +117,84 @@ def decode_html(raw: bytes, content_type: str | None) -> str:
 
 
 def fetch_url(url: str, timeout: float) -> FetchResult:
-    request = urllib.request.Request(url, headers={"User-Agent": DEFAULT_USER_AGENT})
-    try:
-        with urllib.request.urlopen(request, timeout=timeout) as response:
-            raw = response.read()
-            content_type = response.headers.get("content-type")
-            final_url = response.geturl()
-    except urllib.error.HTTPError as exc:
-        return FetchResult(False, f"http_{exc.code}", error=str(exc), final_url=url)
-    except urllib.error.URLError as exc:
-        return FetchResult(False, "url_error", error=str(exc.reason), final_url=url)
-    except TimeoutError as exc:
-        return FetchResult(False, "timeout", error=str(exc), final_url=url)
+    opener = urllib.request.build_opener(NoRedirectHandler())
+    current_url = url
+    response = None
+    for redirect_count in range(MAX_REDIRECTS + 1):
+        try:
+            scheme = urllib.parse.urlsplit(current_url).scheme.lower()
+        except ValueError as exc:
+            return FetchResult(False, "invalid_url", error=str(exc), final_url=current_url)
+        if scheme not in ALLOWED_URL_SCHEMES:
+            return FetchResult(
+                False,
+                "unsupported_url_scheme",
+                error=f"URL scheme must be http or https: {scheme or 'missing'}",
+                final_url=current_url,
+            )
+        request = urllib.request.Request(
+            current_url, headers={"User-Agent": DEFAULT_USER_AGENT}
+        )
+        try:
+            response = opener.open(request, timeout=timeout)
+            break
+        except urllib.error.HTTPError as exc:
+            if exc.code not in REDIRECT_STATUS_CODES:
+                return FetchResult(
+                    False, f"http_{exc.code}", error=str(exc), final_url=current_url
+                )
+            location = exc.headers.get("location") or exc.headers.get("uri")
+            exc.close()
+            if not location:
+                return FetchResult(
+                    False,
+                    "redirect_missing_location",
+                    error=f"HTTP {exc.code} response has no Location header",
+                    final_url=current_url,
+                )
+            if redirect_count == MAX_REDIRECTS:
+                return FetchResult(
+                    False,
+                    "too_many_redirects",
+                    error=f"redirect limit exceeded ({MAX_REDIRECTS})",
+                    final_url=current_url,
+                )
+            current_url = urllib.parse.urljoin(current_url, location)
+        except urllib.error.URLError as exc:
+            return FetchResult(
+                False, "url_error", error=str(exc.reason), final_url=current_url
+            )
+        except (TimeoutError, ValueError) as exc:
+            status = "timeout" if isinstance(exc, TimeoutError) else "invalid_url"
+            return FetchResult(False, status, error=str(exc), final_url=current_url)
+
+    if response is None:
+        return FetchResult(False, "url_error", error="request produced no response", final_url=current_url)
+    with response:
+        content_type = response.headers.get("content-type")
+        final_url = response.geturl()
+        content_length = response.headers.get("content-length")
+        try:
+            declared_length = int(content_length) if content_length is not None else None
+        except ValueError:
+            declared_length = None
+        if declared_length is not None and declared_length > MAX_RESPONSE_BYTES:
+            return FetchResult(
+                False,
+                "response_too_large",
+                error=f"declared response size exceeds {MAX_RESPONSE_BYTES} bytes",
+                final_url=final_url,
+                content_type=content_type,
+            )
+        raw = response.read(MAX_RESPONSE_BYTES + 1)
+    if len(raw) > MAX_RESPONSE_BYTES:
+        return FetchResult(
+            False,
+            "response_too_large",
+            error=f"response exceeds {MAX_RESPONSE_BYTES} bytes",
+            final_url=final_url,
+            content_type=content_type,
+        )
 
     parser = VisibleTextParser()
     parser.feed(decode_html(raw, content_type))
