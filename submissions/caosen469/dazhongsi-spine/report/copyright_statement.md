@@ -1,6 +1,6 @@
 # 版权与合规声明 / Copyright Statement
 
-本声明替换 scaffold 桩，作为本提交包（`submissions/caosen469/dazhongsi-spine/`）的版权与原创性卫生主文档，对应寻路决策 #5 的 R0–R4 规则。
+本声明替换初始占位模板（scaffold 桩），作为本提交包（`submissions/caosen469/dazhongsi-spine/`）的版权与原创性卫生主文档，对应寻路决策 #5 的 R0–R4 规则。
 
 ## 1. 生成方式与身份披露
 

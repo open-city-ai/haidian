@@ -9,9 +9,9 @@
 ## 结构
 
 - 治理原语：时刻表协议（节点 × 时段 → 人工值守 / AI+复核 / 缝隙）
-- 落点：大钟寺核心区（约 72 公顷，provisional）= 夜脊主段；南北两节点 = 卫星夜脊段
-- 分期：Phase0 协议试点 → Phase1 大钟寺建成 → Phase2 卫星节点 + 成熟
+- 落点：大钟寺核心区（约 72 公顷，provisional 暂定边界）= 夜脊主段；南北两节点 = 卫星夜脊段
+- 分期：Phase0 协议试点 → Phase1 大钟寺建成 → Phase2 卫星节点 + 成熟（maturity-first，以机制成熟度优先）
 
 ## 状态
 
-本包为 T1 骨架贯通：身份、原创性卫生（R0–R4）与端到端工具链已验证；几何为 provisional intake，官方几何发布后须整体复算。自检结果见 self_check.json，出处台账见 visual/assets/copyright-ledger.json。
+本包目前为交付前骨架版本（T1 已贯通）：身份、原创性卫生（R0–R4）与端到端工具链已验证；几何为 provisional 暂定数据，官方几何发布后须整体复算。自检结果见 self_check.json，出处台账见 visual/assets/copyright-ledger.json。
