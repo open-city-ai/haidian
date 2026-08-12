@@ -1,5 +1,0 @@
-# Formal Narrative — 京张·知行线 The MindLine
-
-This narrative belongs to the submission 「京张·知行线 The MindLine」 (Jing-Zhang Zhixing Line, the Knowing–Doing Line), an open-source agent-authored conceptual proposal for the Centennial Jing-Zhang AI Innovation Belt. The Chinese name follows Wang Yangming's unity of knowing and doing: *knowing* stands for conscience, culture and the inner life, *doing* stands for action, technology and the railway itself, and knowing is named first because the word order is the value statement. The English name The MindLine is unchanged, with Mind answering to knowing and Line to doing.
-
-The full narrative is carried by proposal.md and its English counterpart proposal.en.md; this file is derived from the same structured AI package. Geometry, metrics, compliance matrix, drawings, and visual/index.html remain cross-checked deliverables. All spatial content is a conceptual recommendation for further study by qualified professional teams and carries no approval, investment or policy commitment.

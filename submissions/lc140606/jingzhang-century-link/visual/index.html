@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>京张百年脉 · Interactive Visual — jingzhang-century-link</title>
+<style>
+:root { --ink: #1a1a1a; --paper: #fdfdf8; --line: #d0d0c8; --brand: #8B0000; --bg: #faf7f0; --muted: #6b6b66; }
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; background: var(--paper); color: var(--ink); line-height: 1.65; font-size: 15px; }
+.page { max-width: 920px; margin: 24px auto; padding: 40px 56px 80px; background: var(--paper); border: 1px solid var(--line); }
+header.cover { border-bottom: 2px solid var(--brand); padding-bottom: 16px; margin-bottom: 28px; }
+header.cover h1 { margin: 0 0 4px; font-size: 26px; letter-spacing: 0.5px; }
+header.cover .meta { color: var(--muted); font-size: 13px; }
+h1, h2, h3 { color: var(--ink); margin-top: 1.6em; }
+h2 { font-size: 19px; border-left: 4px solid var(--brand); padding-left: 10px; }
+h3 { font-size: 16px; }
+p { margin: 0.6em 0; text-align: justify; }
+code { background: #efe9d9; padding: 1px 5px; border-radius: 3px; font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; font-size: 13px; }
+pre { background: #1a1a1a; color: #e6e6e0; padding: 14px 18px; border-radius: 6px; overflow-x: auto; }
+pre code { background: transparent; color: inherit; padding: 0; }
+ul { margin: 0.6em 0; padding-left: 24px; }
+li { margin: 0.25em 0; }
+blockquote { border-left: 3px solid var(--line); padding-left: 14px; color: var(--muted); margin: 0.8em 0; }
+figure { margin: 20px 0; text-align: center; }
+figure img { max-width: 100%; height: auto; border: 1px solid var(--line); }
+figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.ev-source { background: #fde7e7; color: var(--brand); padding: 0 4px; border-radius: 3px; font-family: ui-monospace, monospace; font-size: 12px; }
+.ev-standard { background: #e7f0fd; color: #191970; padding: 0 4px; border-radius: 3px; font-family: ui-monospace, monospace; font-size: 12px; }
+.ev-depth { background: #e7fde7; color: #2E8B57; padding: 0 4px; border-radius: 3px; font-family: ui-monospace, monospace; font-size: 12px; }
+.ev-metric { background: #fdf6e7; color: #B8860B; padding: 0 4px; border-radius: 3px; font-family: ui-monospace, monospace; font-size: 12px; }
+.ev-data { background: #f0e7fd; color: #6A5ACD; padding: 0 4px; border-radius: 3px; font-family: ui-monospace, monospace; font-size: 12px; }
+.toc { background: var(--bg); border: 1px solid var(--line); padding: 12px 18px; margin: 20px 0 28px; }
+.toc h3 { margin: 0 0 8px; font-size: 14px; }
+.toc ol { margin: 0; padding-left: 22px; }
+.toc a { color: var(--ink); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+.lang-toggle { float: right; }
+.lang-toggle a { color: var(--brand); text-decoration: none; padding: 4px 10px; border: 1px solid var(--brand); border-radius: 4px; font-size: 12px; }
+.disclaimer { margin-top: 60px; padding: 16px 20px; background: #fdf0f0; border: 1px solid #f5cccc; color: #8B0000; font-size: 13px; }
+footer { margin-top: 40px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+.viz-wrap { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; }
+@media (max-width: 800px) { .viz-wrap { grid-template-columns: 1fr; } }
+.map-box { background: #fff; border: 1px solid var(--line); padding: 12px; }
+.map-box h3 { margin: 0 0 8px; font-size: 14px; }
+.map-box svg { width: 100%; height: auto; display: block; }
+.filter-bar { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 12px; }
+.filter-bar button { padding: 4px 10px; border: 1px solid var(--line); background: #fff; cursor: pointer; font-size: 12px; border-radius: 4px; }
+.filter-bar button.active { background: var(--brand); color: #fff; border-color: var(--brand); }
+.metric-card { background: #fff; border: 1px solid var(--line); padding: 10px 12px; margin: 6px 0; }
+.metric-card .name { font-size: 12px; color: var(--muted); }
+.metric-card .val { font-size: 20px; font-weight: 600; }
+.metric-card .tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 3px; margin-top: 4px; }
+.tag-met { background: #2E8B57; color: #fff; }
+.tag-provisional { background: #FFA500; color: #fff; }
+.tag-concept { background: #4682B4; color: #fff; }
+.tag-not_yet { background: #A9A9A9; color: #fff; }
+.tag-self { background: #6A5ACD; color: #fff; }
+.tag-primary { background: #DC143C; color: #fff; }
+.tag-secondary { background: #4682B4; color: #fff; }
+</style>
+</head>
+<body>
+<div class="page">
+<header class="cover">
+  <h1>京张百年脉 · Interactive Visual</h1>
+  <div class="meta">lc140606 / 刘春华 · 2026-08-10 · Tracks: agent.1 / agent.4 / agent.5</div>
+  <p style="font-size:14px;color:#6b6b66;">所有指标以 <code>data-metric</code> / <code>data-value</code> 标签嵌入,供 self_check 工具校验。点击图层过滤按钮可切换显隐。</p>
+</header>
+
+<div class="filter-bar" id="filter-bar">
+  <button class="active" data-toggle="all">All Layers</button>
+  <button data-toggle="key_area">Key Areas</button>
+  <button data-toggle="land_use">Land Use</button>
+  <button data-toggle="green">Green / Blue</button>
+  <button data-toggle="road">Roads</button>
+  <button data-toggle="public">Public Space</button>
+</div>
+
+<div class="viz-wrap">
+  <div class="map-box">
+    <h3>Site Map (SVG, click nodes for details)</h3>
+    <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+      <rect width="600" height="600" fill="#f5f5dc"/>
+<path d="M -577.0,593.4 870.9,593.4 1054.6,416.4 1054.6,9.8 -148.5,9.8 -515.8,186.9 -760.7,416.4 -577.0,593.4 Z" fill="#F5F5DC" stroke="#A9A9A9" stroke-dasharray="4,4" stroke-width="1.5" opacity="0.6" data-layer="research"/>
+<path d="M 91.8,586.9 538.8,586.9 538.8,416.4 477.6,252.5 538.8,13.1 153.1,13.1 122.4,147.5 61.2,350.8 91.8,586.9 Z" fill="#FFE4B5" stroke="#B8860B" stroke-width="2" opacity="0.7" data-layer="site"/>
+<path d="M 61.2,586.9 220.4,586.9 220.4,443.4 61.2,443.4 61.2,586.9 Z" fill="#FF6B6B" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="AI_INNOVATION"/>
+<path d="M 61.2,443.4 220.4,443.4 220.4,300.0 61.2,300.0 61.2,443.4 Z" fill="#FF6B6B" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="AI_INNOVATION"/>
+<path d="M 61.2,300.0 220.4,300.0 220.4,156.6 61.2,156.6 61.2,300.0 Z" fill="#FFD93D" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="MIXED_USE"/>
+<path d="M 61.2,156.6 220.4,156.6 220.4,13.1 61.2,13.1 61.2,156.6 Z" fill="#FFD93D" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="MIXED_USE"/>
+<path d="M 220.4,586.9 379.6,586.9 379.6,443.4 220.4,443.4 220.4,586.9 Z" fill="#6BCB77" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="RESIDENTIAL"/>
+<path d="M 220.4,443.4 379.6,443.4 379.6,300.0 220.4,300.0 220.4,443.4 Z" fill="#4D96FF" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="CULTURAL_PUBLIC"/>
+<path d="M 220.4,300.0 379.6,300.0 379.6,156.6 220.4,156.6 220.4,300.0 Z" fill="#95E1D3" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="GREEN_PUBLIC"/>
+<path d="M 220.4,156.6 379.6,156.6 379.6,13.1 220.4,13.1 220.4,156.6 Z" fill="#95E1D3" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="GREEN_PUBLIC"/>
+<path d="M 379.6,586.9 538.8,586.9 538.8,443.4 379.6,443.4 379.6,586.9 Z" fill="#FFD93D" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="MIXED_USE"/>
+<path d="M 379.6,443.4 538.8,443.4 538.8,300.0 379.6,300.0 379.6,443.4 Z" fill="#C780FA" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="INDUSTRY_AI"/>
+<path d="M 379.6,300.0 538.8,300.0 538.8,156.6 379.6,156.6 379.6,300.0 Z" fill="#6BCB77" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="RESIDENTIAL"/>
+<path d="M 379.6,156.6 538.8,156.6 538.8,13.1 379.6,13.1 379.6,156.6 Z" fill="#4D96FF" stroke="white" stroke-width="0.6" opacity="0.7" data-layer="land_use" data-class="CULTURAL_PUBLIC"/>
+<path d="M 94.9,586.9 125.5,586.9 248.0,16.4 217.3,16.4 94.9,586.9 Z" fill="#90EE90" stroke="#006400" stroke-width="0.6" opacity="0.85" data-layer="green"/>
+<path d="M 535.7,383.6 544.9,383.6 544.9,55.7 535.7,55.7 535.7,383.6 Z" fill="#90EE90" stroke="#006400" stroke-width="0.6" opacity="0.85" data-layer="green"/>
+<path d="M 284.7,95.1 376.5,95.1 376.5,68.9 284.7,68.9 284.7,95.1 Z" fill="#90EE90" stroke="#006400" stroke-width="0.6" opacity="0.85" data-layer="green"/>
+<path d="M 254.1,278.7 300.0,278.7 300.0,259.0 254.1,259.0 254.1,278.7 Z" fill="#90EE90" stroke="#006400" stroke-width="0.6" opacity="0.85" data-layer="green"/>
+<path d="M 192.9,547.5 284.7,547.5 284.7,521.3 192.9,521.3 192.9,547.5 Z" fill="#90EE90" stroke="#006400" stroke-width="0.6" opacity="0.85" data-layer="green"/>
+<path d="M 85.7,482.0 116.3,482.0 514.3,186.9 483.7,186.9 85.7,482.0 Z" fill="#20B2AA" stroke="#006400" stroke-width="0.6" opacity="0.85" data-layer="green"/>
+<path d="M 91.8,580.3 L 122.4,449.2 L 153.1,318.0 L 183.7,186.9 L 214.3,55.7 L 244.9,16.4" fill="none" stroke="#2F4F4F" stroke-width="3.0" data-layer="road" data-class="rail_trail_heritage"/>
+<path d="M 538.8,580.3 L 538.8,449.2 L 538.8,318.0 L 538.8,186.9 L 538.8,55.7 L 538.8,16.4" fill="none" stroke="#696969" stroke-width="1.5" data-layer="road" data-class="urban_arterial"/>
+<path d="M 61.2,16.4 L 223.5,16.4 L 376.5,16.4 L 538.8,16.4" fill="none" stroke="#696969" stroke-width="1.5" data-layer="road" data-class="urban_arterial"/>
+<path d="M 131.6,547.5 L 284.7,547.5 L 468.4,547.5" fill="none" stroke="#696969" stroke-width="1.5" data-layer="road" data-class="urban_arterial"/>
+<path d="M 162.2,534.4 L 345.9,534.4 L 529.6,534.4" fill="none" stroke="#696969" stroke-width="1.5" data-layer="road" data-class="secondary"/>
+<path d="M 101.0,285.2 L 284.7,285.2 L 468.4,285.2" fill="none" stroke="#696969" stroke-width="1.5" data-layer="road" data-class="urban_arterial"/>
+<path d="M 101.0,482.0 L 254.1,416.4 L 376.5,350.8 L 468.4,285.2 L 499.0,186.9" fill="none" stroke="#20B2AA" stroke-width="2.5" data-layer="road" data-class="blue_green_trail"/>
+<path d="M 376.5,121.3 L 315.3,186.9 L 254.1,252.5 L 192.9,318.0 L 131.6,383.6" fill="none" stroke="#20B2AA" stroke-width="2.5" data-layer="road" data-class="blue_green_trail"/>
+<path d="M 162.2,137.7 499.0,137.7 499.0,16.4 162.2,16.4 162.2,137.7 Z" fill="#FF7F50" stroke="black" stroke-width="1.5" opacity="0.55" data-layer="key_area" data-id="KEY-001"/>
+<text x="296.938775510102" y="89.1803278688742" text-anchor="middle" font-size="11" font-weight="bold" fill="white" stroke="black" stroke-width="0.4" paint-order="stroke">众智园 AI 自主创新加速区</text>
+<path d="M 131.6,295.1 468.4,295.1 468.4,229.5 131.6,229.5 131.6,295.1 Z" fill="#4682B4" stroke="black" stroke-width="1.5" opacity="0.55" data-layer="key_area" data-id="KEY-002"/>
+<text x="266.32653061199187" y="268.852459016409" text-anchor="middle" font-size="11" font-weight="bold" fill="white" stroke="black" stroke-width="0.4" paint-order="stroke">北京 AI 原点社区</text>
+<path d="M 131.6,554.1 529.6,554.1 529.6,515.8 131.6,515.8 131.6,554.1 Z" fill="#9ACD32" stroke="black" stroke-width="1.5" opacity="0.55" data-layer="key_area" data-id="KEY-003"/>
+<text x="290.816326530741" y="538.7803278688707" text-anchor="middle" font-size="11" font-weight="bold" fill="white" stroke="black" stroke-width="0.4" paint-order="stroke">大钟寺 AI 产业聚集区</text>
+<circle cx="376.5" cy="186.9" r="7" fill="#DC143C" stroke="black" stroke-width="0.8" data-layer="public" data-level="regional_portal"><title>学院路门户广场 (概念)</title></circle>
+<circle cx="266.3" cy="268.9" r="7" fill="#DC143C" stroke="black" stroke-width="0.8" data-layer="public" data-level="regional_portal"><title>AI 原点广场 (概念)</title></circle>
+<circle cx="290.8" cy="539.0" r="7" fill="#DC143C" stroke="black" stroke-width="0.8" data-layer="public" data-level="regional_portal"><title>大钟寺门户广场 (概念)</title></circle>
+<circle cx="296.9" cy="89.2" r="4" fill="#FF8C00" stroke="black" stroke-width="0.8" data-layer="public" data-level="community"><title>众智园工程师广场 (概念)</title></circle>
+<circle cx="376.5" cy="68.9" r="4" fill="#FF8C00" stroke="black" stroke-width="0.8" data-layer="public" data-level="community"><title>众智园中央数据广场 (概念)</title></circle>
+<circle cx="361.2" cy="252.5" r="4" fill="#FF8C00" stroke="black" stroke-width="0.8" data-layer="public" data-level="community"><title>AI 原点开放模型馆广场 (概念)</title></circle>
+<circle cx="192.9" cy="272.1" r="4" fill="#FF8C00" stroke="black" stroke-width="0.8" data-layer="public" data-level="community"><title>AI 原点居住客厅广场 (概念)</title></circle>
+<circle cx="223.5" cy="527.9" r="4" fill="#FF8C00" stroke="black" stroke-width="0.8" data-layer="public" data-level="community"><title>大钟寺京张铁路纪念广场 (概念)</title></circle>
+<g transform="translate(570, 30)"><text x="0" y="0" text-anchor="middle" font-size="14" font-weight="bold">N</text><line x1="0" y1="4" x2="0" y2="22" stroke="black" stroke-width="1.5" marker-end="url(#arrow)"/></g>
+<defs><marker id="arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="black"/></marker></defs>
+    </svg>
+    <p style="font-size:11px;color:#999;margin-top:6px;">
+      All boundaries provisional (geometry_role=provisional_constraint, official_boundary=false).
+      Coordinate reference system: EPSG:4326.
+    </p>
+  </div>
+  <div>
+    <h3>Metrics (13 items)</h3>
+    <div id="metric-list">
+      <div class="metric-card" data-metric="site_area_sqm" data-value="11400000" data-status="provisional">
+  <div class="name">总体设计范围面积 · site_area_sqm</div>
+  <div class="val">11400000 <span style="font-size:13px;color:#999;">sqm</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="coordinated_research_area_sqm" data-value="43600000" data-status="provisional">
+  <div class="name">协调研究范围面积 · coordinated_research_area_sqm</div>
+  <div class="val">43600000 <span style="font-size:13px;color:#999;">sqm</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="key_area_count" data-value="3" data-status="known">
+  <div class="name">重点片区数量 · key_area_count</div>
+  <div class="val">3 <span style="font-size:13px;color:#999;">count</span></div>
+  <div class="tag tag-known">known</div>
+</div><div class="metric-card" data-metric="zhongzhiyuan_ai_acceleration_area_area_sqm" data-value="1921000" data-status="provisional">
+  <div class="name">zhongzhiyuan_ai_acceleration_area_area_sqm · zhongzhiyuan_ai_acceleration_area_area_sqm</div>
+  <div class="val">1921000 <span style="font-size:13px;color:#999;">sqm</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="beijing_ai_origin_community_area_sqm" data-value="1043000" data-status="provisional">
+  <div class="name">beijing_ai_origin_community_area_sqm · beijing_ai_origin_community_area_sqm</div>
+  <div class="val">1043000 <span style="font-size:13px;color:#999;">sqm</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="dazhongsi_ai_industry_cluster_area_sqm" data-value="720000" data-status="provisional">
+  <div class="name">dazhongsi_ai_industry_cluster_area_sqm · dazhongsi_ai_industry_cluster_area_sqm</div>
+  <div class="val">720000 <span style="font-size:13px;color:#999;">sqm</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="green_ratio" data-value="0.18" data-status="provisional">
+  <div class="name">绿地率 · green_ratio</div>
+  <div class="val">0.18 <span style="font-size:13px;color:#999;">ratio</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="public_space_ratio" data-value="0.12" data-status="provisional">
+  <div class="name">公共空间占比 · public_space_ratio</div>
+  <div class="val">0.12 <span style="font-size:13px;color:#999;">ratio</span></div>
+  <div class="tag tag-provisional">provisional</div>
+</div><div class="metric-card" data-metric="scenario_card_count" data-value="10" data-status="known">
+  <div class="name">场景卡片数 · scenario_card_count</div>
+  <div class="val">10 <span style="font-size:13px;color:#999;">count</span></div>
+  <div class="tag tag-known">known</div>
+</div><div class="metric-card" data-metric="scenario_node_count" data-value="10" data-status="known">
+  <div class="name">场景节点数 · scenario_node_count</div>
+  <div class="val">10 <span style="font-size:13px;color:#999;">count</span></div>
+  <div class="tag tag-known">known</div>
+</div><div class="metric-card" data-metric="building_height_m" data-value="None" data-status="unknown">
+  <div class="name">建筑高度 · building_height_m</div>
+  <div class="val">None <span style="font-size:13px;color:#999;">m</span></div>
+  <div class="tag tag-unknown">unknown</div>
+</div><div class="metric-card" data-metric="floor_area_ratio" data-value="None" data-status="unknown">
+  <div class="name">容积率 · floor_area_ratio</div>
+  <div class="val">None <span style="font-size:13px;color:#999;">ratio</span></div>
+  <div class="tag tag-unknown">unknown</div>
+</div><div class="metric-card" data-metric="total_floor_area_sqm" data-value="None" data-status="unknown">
+  <div class="name">总建筑面积 · total_floor_area_sqm</div>
+  <div class="val">None <span style="font-size:13px;color:#999;">sqm</span></div>
+  <div class="tag tag-unknown">unknown</div>
+</div>
+    </div>
+    <h3 style="margin-top:18px;">Sources (8 items)</h3>
+    <div id="source-list">
+      <div class="metric-card" data-source="OFFICIAL-ANNOUNCEMENT">
+  <div class="name">OFFICIAL-ANNOUNCEMENT · OFFICIAL-ANNOUNCEMENT</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="AGENT-TASKBOOK">
+  <div class="name">AGENT-TASKBOOK · AGENT-TASKBOOK</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="SITE-PACKAGE">
+  <div class="name">SITE-PACKAGE · SITE-PACKAGE</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="SOURCE-REGISTRY">
+  <div class="name">SOURCE-REGISTRY · SOURCE-REGISTRY</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="PROCESSED-FACT-PACK">
+  <div class="name">PROCESSED-FACT-PACK · PROCESSED-FACT-PACK</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="BOUNDARY-SOURCE">
+  <div class="name">BOUNDARY-SOURCE · BOUNDARY-SOURCE</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="KEY-AREA-SOURCE">
+  <div class="name">KEY-AREA-SOURCE · KEY-AREA-SOURCE</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div><div class="metric-card" data-source="AUTHOR-PROFILE">
+  <div class="name">AUTHOR-PROFILE · AUTHOR-PROFILE</div>
+  <div style="font-size:13px;">— · —</div>
+  <div class="tag tag-secondary">secondary</div>
+</div>
+    </div>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <strong>Interactive Visual Disclaimer:</strong>
+  本图为概念性可视化,所有空间边界为 provisional constraint。
+  所有控制性指标 (容积率 / 高度 / 密度) 标记为 unknown, 以官方控规为准。
+</div>
+<footer>
+  lc140606 / 刘春华 · 2026-08-10 ·
+  License: CC-BY-4.0 (text) / ODbL-1.0 (geometry) ·
+  See <code>manifest.json</code> for full submission package.
+</footer>
+</div>
+<script>
+const buttons = document.querySelectorAll('.filter-bar button');
+const svgPaths = document.querySelectorAll('svg [data-layer]');
+buttons.forEach(btn => btn.addEventListener('click', () => {
+  buttons.forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const target = btn.dataset.toggle;
+  svgPaths.forEach(el => {
+    if (target === 'all') {
+      el.style.display = '';
+    } else {
+      el.style.display = (el.dataset.layer === target) ? '' : 'none';
+    }
+  });
+}));
+
+document.querySelectorAll('.metric-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.metric-card').forEach(c => c.style.borderColor = '');
+    card.style.borderColor = 'var(--brand)';
+  });
+});
+</script>
+</body>
+</html>

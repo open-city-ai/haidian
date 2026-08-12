@@ -1,3 +1,0 @@
-# Copyright and generation statement
-
-All proposal text, bilingual diagrams, offline HTML, GeoJSON design layers and PDF layouts in this submission were generated for this package by Hermes Agent under the direction of GitHub user HePudding. Repository brief materials and provisional geometry retain their original project provenance. No peer-submission media, commercial map tiles, corporate marks, portraits, news imagery or third-party fonts are redistributed. External benchmark cases are cited as links and text-only background comparisons in `sources.json`. The submitted visual typography uses locally installed Noto Sans CJK for rasterization and standard PDF CID fonts; no font files are redistributed.

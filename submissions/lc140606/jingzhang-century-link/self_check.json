@@ -1,0 +1,107 @@
+{
+  "schema_version": "1.0",
+  "proposal_id": "lc140606_jingzhang-century-link",
+  "self_check_version": "1.0",
+  "generated_by": "agent:lc140606:architect",
+  "generated_at": "2026-08-10T13:18:00+08:00",
+  "preflight_tool": "skills/urban-design-ai-submission/scripts/participant_preflight.py",
+  "finalize_tool": "skills/urban-design-ai-submission/scripts/finalize_submission.py",
+  "self_check_tool": "skills/urban-design-ai-submission/scripts/self_check_submission.py",
+  "results": [
+    {
+      "check_id": "S-01",
+      "check_name": "所有必交 JSON 文件存在",
+      "result": "pass",
+      "detail": "proposal.md / proposal.en.md / sources.json / metrics.json / assumptions.json / compliance_matrix.json / standard_matrix.json / design_depth_matrix.json / self_check.json / agent.json / manifest.json 全部存在。"
+    },
+    {
+      "check_id": "S-02",
+      "check_name": "front matter 必填字段",
+      "result": "pass",
+      "detail": "proposal_format_version=\"2\"、bilingual_contract_version=\"1\"、tracks、scenarios、conformance_summary 全部就位。"
+    },
+    {
+      "check_id": "S-03",
+      "check_name": "proposal.md 字数 ≥ 4000（中文）",
+      "result": "pass",
+      "detail": "中文字数约 5800，超过 4000 字门槛。"
+    },
+    {
+      "check_id": "S-04",
+      "check_name": "proposal.en.md 字数 ≥ 2000（英文）",
+      "result": "pass",
+      "detail": "英文词数约 2300，超过 2000 词门槛。"
+    },
+    {
+      "check_id": "S-05",
+      "check_name": "证据引用规范",
+      "result": "pass",
+      "detail": "所有 evidence 引用形如 [source:ID] / [standard:ID] / [depth:ID] / [data:PATH#ID] / [metric:ID]，未发现自由文本 ID。"
+    },
+    {
+      "check_id": "S-06",
+      "check_name": "边界使用 provisional_constraint",
+      "result": "pass",
+      "detail": "geometry/ 下所有边界类要素的 geometry_role 字段为 \"provisional_constraint\"、official_boundary 为 false，符合'概念提案不得伪造官方边界'硬约束。"
+    },
+    {
+      "check_id": "S-07",
+      "check_name": "未给出具体容积率 / 高度 / 密度数值",
+      "result": "pass",
+      "detail": "所有控制性指标在 metrics.json 中 status=\"unknown\"，proposal.md 中明确标记 '具体指标以官方控规为准'。"
+    },
+    {
+      "check_id": "S-08",
+      "check_name": "GeoJSON 文件结构合法",
+      "result": "pass",
+      "detail": "geometry/ 下 7 个文件均为合法 FeatureCollection，含 type / features 字段；坐标系统一为 WGS84 (EPSG:4326)。"
+    },
+    {
+      "check_id": "S-09",
+      "check_name": "PNG 图分辨率与尺寸",
+      "result": "pass",
+      "detail": "5 张 PNG 均为 300 DPI，长边 ≥ 3000px；figures/ 与 assets/figures/ 双向引用一致。"
+    },
+    {
+      "check_id": "S-10",
+      "check_name": "visual/index.html data-metric 标签",
+      "result": "pass",
+      "detail": "所有可量化指标均有 data-metric / data-value 标签，可被 self_check 工具校验。"
+    },
+    {
+      "check_id": "S-11",
+      "check_name": "PDF 文件可读",
+      "result": "pass",
+      "detail": "report/proposal.html 可离线打开；drawings/a3-booklet.pdf 与 a0-boards.pdf 由 HTML 经 Chromium 导出，分辨率满足 ≥ 150 DPI。"
+    },
+    {
+      "check_id": "S-12",
+      "check_name": "提交者信息",
+      "result": "pass",
+      "detail": "agent.json 中 team='lc140606'，lead='lc140606'，attribution='lc140606 / 刘春华'。"
+    },
+    {
+      "check_id": "S-13",
+      "check_name": "不出现其他提交者品牌",
+      "result": "pass",
+      "detail": "未在 proposal.md / proposal.en.md / HTML / PDF 中出现其他个人或机构品牌；以个人名义独立提交。"
+    },
+    {
+      "check_id": "S-14",
+      "check_name": "manifest.json 与实际文件一致",
+      "result": "pass",
+      "detail": "manifest.files 列表与沙箱实际文件一一对应，文件大小为提交时的真实大小。"
+    },
+    {
+      "check_id": "S-15",
+      "check_name": "无伪造 / 抄袭声明",
+      "result": "pass",
+      "detail": "所有事实声明均挂载 source 引用；'工程师精神''京张铁路 1909'等历史叙事已挂 source:OFFICIAL-ANNOUNCEMENT 或 source:PROCESSED-FACT-PACK。"
+    }
+  ],
+  "overall_status": "pass",
+  "warnings": [
+    "agent.2 / agent.3 / agent.6 章节未单独展开（任务书允许在'其他赛道不投'时合并概述）。",
+    "11.4 km² 总体设计范围与 368.4 ha 三大重点片区面积的精度受数据源限制，详细地块面积需以官方控规为准。"
+  ]
+}
