@@ -20,6 +20,49 @@ def write_csv(path: Path, rows: list[dict[str, str]], fields: list[str]) -> None
 
 
 class SourceRegistryDraftTests(unittest.TestCase):
+    def test_invalid_draft_does_not_replace_existing_output(self) -> None:
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "data").mkdir()
+            existing_path = root / "data" / "source_registry.json"
+            existing_path.write_text(
+                json.dumps({"schema_version": "0.1.0", "updated_date": "2026-08-12", "sources": []}),
+                encoding="utf-8",
+            )
+            seed_path = root / "seed.csv"
+            write_csv(
+                seed_path,
+                [{"id": "bad", "title": "Bad source", "url": "ftp://example.com/source", "topic": "test"}],
+                ["id", "title", "url", "topic"],
+            )
+            out_path = root / "draft.json"
+            original = b'{"existing":"maintainer draft"}\n'
+            out_path.write_bytes(original)
+
+            completed = subprocess.run(
+                [
+                    sys.executable,
+                    str(REPO_ROOT / "scripts" / "prepare_source_registry_draft.py"),
+                    "--repo-root",
+                    str(root),
+                    "--input",
+                    str(seed_path),
+                    "--existing-registry",
+                    str(existing_path),
+                    "--out",
+                    str(out_path),
+                    "--json",
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(completed.returncode, 1, completed.stdout + completed.stderr)
+            self.assertFalse(json.loads(completed.stdout)["ok"])
+            self.assertEqual(out_path.read_bytes(), original)
+            self.assertEqual(list(root.glob(".draft.json.*.tmp")), [])
+
     def test_seed_csv_generates_needs_review_draft_and_skips_existing_urls(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
