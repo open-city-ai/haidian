@@ -238,6 +238,11 @@ def item_summary(item: dict[str, Any]) -> dict[str, Any]:
 def download_bundle(item: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
     base = proposal_base(item)
     output = Path(args.output_dir).expanduser().resolve() / proposal_key(item)
+    submissions_root = (Path(args.repo_root).expanduser().resolve() / "submissions").resolve()
+    if output.resolve().is_relative_to(submissions_root):
+        raise PeerReaderError(
+            f"peer download cache must stay outside the submissions tree: {output}"
+        )
     output.mkdir(parents=True, exist_ok=True)
     files = list(DEFAULT_TEXT_FILES)
     if args.full_text:
